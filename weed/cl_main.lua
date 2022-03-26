@@ -92,7 +92,7 @@ SpawnObject = function(model, coords, cb)
                 Citizen.Wait(0)
             end
 
-            exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                 function()
                     local obj = CreateObject(model, coords.x, coords.y, coords.z, false, true, false)
 
@@ -230,7 +230,7 @@ RegisterNUICallback(
         current.water = current.water + math.random(14, 25)
         local v = current
         SendNUIMessage({action = "data", data = {water = v.water, percent = v.percent, fertz = v.fertz}})
-        exports["Atlantiss"]:RemoveFirstItem("water")
+        exports["Ora"]:RemoveFirstItem("water")
         TriggerServerEvent("editWeed", currentID, current)
     end
 )
@@ -240,7 +240,7 @@ RegisterNUICallback(
     function()
         for i = 1, math.random(10, 28), 1 do
             items = {name = "weed_plant", data = {purety = current.purety, price = 0}}
-            exports["Atlantiss"]:AddItem(items)
+            exports["Ora"]:AddItem(items)
         end
         SetNuiFocus(0, 0)
         inNUI = false
@@ -265,7 +265,7 @@ RegisterNUICallback(
         current.fertz = current.fertz + math.random(5, 10)
         local v = current
         SendNUIMessage({action = "data", data = {water = v.water, percent = v.percent, fertz = v.fertz}})
-        exports["Atlantiss"]:RemoveFirstItem("fertz")
+        exports["Ora"]:RemoveFirstItem("fertz")
 
         TriggerServerEvent("editWeed", currentID, current)
     end
@@ -450,8 +450,8 @@ Citizen.CreateThread(
                                 action = "showUI",
                                 data = {water = v.water, percent = v.percent, fertz = v.fertz},
                                 items = {
-                                    water = exports["Atlantiss"]:GetItemCount("water"),
-                                    fertz = exports["Atlantiss"]:GetItemCount("fertz")
+                                    water = exports["Ora"]:GetItemCount("water"),
+                                    fertz = exports["Ora"]:GetItemCount("fertz")
                                 }
                             }
                         )

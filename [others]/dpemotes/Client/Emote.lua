@@ -258,7 +258,7 @@ function AddPropToPlayer(prop1, bone, off1, off2, off3, rot1, rot2, rot3)
     LoadPropDict(prop1)
   end
 
-  exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+  exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
     function()
         prop = CreateObject(GetHashKey(prop1), x, y, z+0.2,  true,  true, true)
         AttachEntityToEntity(prop, Player, GetPedBoneIndex(Player, bone), off1, off2, off3, rot1, rot2, rot3, true, true, false, true, 1, true)
