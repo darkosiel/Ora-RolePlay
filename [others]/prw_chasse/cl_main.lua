@@ -167,7 +167,7 @@ Citizen.CreateThread(function()
         if IsControlJustPressed(1, Keys["K"]) and IsPedWeaponReadyToShoot(ped) then
             --print(GetSelectedPedWeapon(ped))
             if not tableHasValue(depecWeps, tonumber(GetSelectedPedWeapon(ped))) then
-                --exports["Atlantiss"]:ShowNotification("~r~Vous n'avez pas le matériel necessaire.")
+                --exports["Ora"]:ShowNotification("~r~Vous n'avez pas le matériel necessaire.")
             else
                 local ent = GetClosestPed(pedCoords, 3.0)
                 if ent and DoesEntityExist(ent) and IsEntityDead(ent) and not tableHasValue(huntedPeds, ent) and GetClosestPlayer(3.0) == nil then
@@ -178,7 +178,7 @@ Citizen.CreateThread(function()
                     Citizen.Wait(4000)
                     FreezeEntityPosition(PlayerPedId(), false)
                     if not allowedPeds[mdl] then
-                        exports["Atlantiss"]:ShowNotification("~r~Cette viande n'a aucune valeur.")
+                        exports["Ora"]:ShowNotification("~r~Cette viande n'a aucune valeur.")
                     else
                         -- Biche
                         if (mdl == "-664053099") then
@@ -262,12 +262,12 @@ end)
 function addRewardsToInventory(itemName, itemLabel, qty)
     local loopCounter = 0
 
-    if (exports["Atlantiss"]:CanReceive(itemName, qty)) then
+    if (exports["Ora"]:CanReceive(itemName, qty)) then
         while (loopCounter <= qty) do
-            exports["Atlantiss"]:AddItem({name = itemName, data = {quality = math.random(50, 99)}})
+            exports["Ora"]:AddItem({name = itemName, data = {quality = math.random(50, 99)}})
             loopCounter = loopCounter + 1
         end
-        exports["Atlantiss"]:ShowNotification(
+        exports["Ora"]:ShowNotification(
             "Vous avez récupéré ~b~" ..
                 qty .. "x~w~ de ~g~" .. itemLabel .."~s~."
         )

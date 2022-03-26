@@ -501,7 +501,7 @@ function EatSomething(items)
     Citizen.CreateThread(
         function()
             local x, y, z = table.unpack(GetEntityCoords(playerPed))
-            exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                 function()
                     prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
                     AttachEntityToEntity(
@@ -558,7 +558,7 @@ function DrinkSomething()
     Citizen.CreateThread(
         function()
             local x, y, z = table.unpack(GetEntityCoords(playerPed))
-            exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                 function()
                     prop = CreateObject(GetHashKey(prop_name), x, y, z + 0.2, true, true, true)
                     AttachEntityToEntity(

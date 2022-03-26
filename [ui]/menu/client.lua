@@ -84,21 +84,21 @@ RegisterNUICallback(
 RegisterNUICallback(
     "carJack",
     function(data)
-        exports["Atlantiss"]:CarJack()
+        exports["Ora"]:CarJack()
     end
 )
 
 RegisterNUICallback(
     "repair",
     function(data)
-        exports["Atlantiss"]:Repair()
+        exports["Ora"]:Repair()
     end
 )
 
 RegisterNUICallback(
     "lavage",
     function(data)
-        exports["Atlantiss"]:lavage()
+        exports["Ora"]:lavage()
     end
 )
 
@@ -106,7 +106,7 @@ RegisterNUICallback(
 RegisterNUICallback(
     "togglelock",
     function(data)
-        exports["Atlantiss"]:OpenCar()
+        exports["Ora"]:OpenCar()
     end
 )
 
@@ -175,7 +175,7 @@ SpawnObject = function(model, coords, cb)
                 Citizen.Wait(0)
             end
 
-            exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                 function()
                     local obj = CreateObject(model, coords.x, coords.y, coords.z, false, true, false)
 
@@ -321,7 +321,7 @@ Citizen.CreateThread(
     function()
         SetNuiFocus(false, false)
         Crosshair(false)
-        Items = exports["Atlantiss"]:GetItemsData()
+        Items = exports["Ora"]:GetItemsData()
         while true do
             local Ped = PlayerPedId()
             if not IsPedRagdoll(Ped) then
@@ -437,7 +437,7 @@ Citizen.CreateThread(
                         y = y,
                         z = z - 1.0
                     }
-                    exports["Atlantiss"]:TriggerPlayerEvent("newProps", -1, carryingItem, coords)
+                    exports["Ora"]:TriggerPlayerEvent("newProps", -1, carryingItem, coords)
                     carrying = false
                     DeleteEntity(carryingProps)
                     carryingItem = {}
@@ -463,18 +463,18 @@ RegisterNUICallback(
             )
             if
                 DoesEntityExist(obj[current[1]].obj) and
-                    exports["Atlantiss"]:CanReceive(current[2].item[1].name, #current[2].item)
+                    exports["Ora"]:CanReceive(current[2].item[1].name, #current[2].item)
              then
                 randPickupAnim()
                 for i = 1, #current[2].item, 1 do
                     exports['Atlantiss']:AddItem(current[2].item[i])
                 end
-                exports["Atlantiss"]:TriggerPlayerEvent("deletePickup", -1, current[1])
-            elseif not exports["Atlantiss"]:CanReceive(current[2].item[1].name, #current[2].item) then
-            -- exports["Atlantiss"]:ShowNotification("~r~Vous n'avez pas assez de place !")
+                exports["Ora"]:TriggerPlayerEvent("deletePickup", -1, current[1])
+            elseif not exports["Ora"]:CanReceive(current[2].item[1].name, #current[2].item) then
+            -- exports["Ora"]:ShowNotification("~r~Vous n'avez pas assez de place !")
             end
         else
-            exports["Atlantiss"]:ShowNotification("~r~Un joueur est trop proche de vous (anti-glitch)")
+            exports["Ora"]:ShowNotification("~r~Un joueur est trop proche de vous (anti-glitch)")
         end
     end
 )
@@ -523,7 +523,7 @@ RegisterNUICallback(
             local _props = props[item.name] == nil and "hei_prop_heist_box" or props[item.name]
             local model = (type(_props) == "number" and _props or GetHashKey(_props))
 
-            exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                 function()
                     obX = CreateObject(model, GetEntityCoords(PlayerPedId()), true, true, true)
                     AttachEntityToEntity(
@@ -543,14 +543,14 @@ RegisterNUICallback(
                         1,
                         true
                     )
-                    exports["Atlantiss"]:TriggerPlayerEvent("deletePickup", -1, current[1])
+                    exports["Ora"]:TriggerPlayerEvent("deletePickup", -1, current[1])
                     carrying = true
                     carryingProps = obX
                 end,
                 model
             )
         else
-            exports["Atlantiss"]:ShowNotification("~r~Un joueur est trop proche de vous (anti-glitch)")
+            exports["Ora"]:ShowNotification("~r~Un joueur est trop proche de vous (anti-glitch)")
         end
     end
 )
