@@ -66,7 +66,7 @@ body {
     position: absolute;
     height: 40px;
     bottom: 60px;
-    left: 50%;
+    left: 21%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%); }
