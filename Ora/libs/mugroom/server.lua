@@ -1227,7 +1227,7 @@ AddEventHandler(
                             TriggerClientEvent('Atlantiss::CE::Inventory:AddItems', _source, items)
                             TriggerClientEvent('atlantiss:refreshStorage', _source)
                             TriggerClientEvent(
-                                'atlantiss:InvNotification', 
+                                'atlantiss:ShowNotification', 
                                 _source, 
                                 "Vous avez récupéré " ..
                                     #ids .. " x " .. string.lower(Items[itemName].label) .. " depuis le coffre."
@@ -1269,16 +1269,16 @@ AddEventHandler(
         local _source = source
 
         if (storageQueue[storageName] == nil) then
-            return TriggerClientEvent('atlantiss:InvNotification', source, "Erreur, cette queue de traitement (".. storageName ..") n'existe pas.", "error")
+            return TriggerClientEvent('atlantiss:ShowNotification', source, "Erreur, cette queue de traitement (".. storageName ..") n'existe pas.", "error")
         end
 
         if (storageQueue[storageName][itemName] == nil) then
-            return TriggerClientEvent('atlantiss:InvNotification', source, "Erreur, cette queue de traitement (".. storageName ..") ne possède pas l'item " .. itemName, "error")
+            return TriggerClientEvent('atlantiss:ShowNotification', source, "Erreur, cette queue de traitement (".. storageName ..") ne possède pas l'item " .. itemName, "error")
         end
         
         if QueueRunning[storageQueue[storageName]] then
             TriggerClientEvent(
-                'atlantiss:InvNotification',
+                'atlantiss:ShowNotification',
                 _source,
                 "Un dépôt dans ce coffre est déjà en cours, merci de patienter",
                 'warning'
@@ -1324,7 +1324,7 @@ AddEventHandler(
                         },
                         function(insertId)
                             TriggerClientEvent(
-                                'atlantiss:InvNotification',
+                                'atlantiss:ShowNotification',
                                 _source,
                                 "Vous avez envoyé " ..
                                     added ..
@@ -1357,7 +1357,7 @@ AddEventHandler(
                             ["@metadata"] = json.encode(metadata)
                         },
                         function(insertId)
-                            TriggerClientEvent('atlantiss:InvNotification', _source, 'Vous avez envoyé '.. added .. " x " .. Items[itemName].label .. " dans votre coffre.")
+                            TriggerClientEvent('atlantiss:ShowNotification', _source, 'Vous avez envoyé '.. added .. " x " .. Items[itemName].label .. " dans votre coffre.")
                             QueueRunning[storageQueue[storageName]] = nil
                             storageQueue[storageName][itemName] = nil
                             storageQueue[storageName] = nil
