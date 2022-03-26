@@ -107,7 +107,7 @@ end
 
 Citizen.CreateThread(
     function()
-        while (GetResourceState("Atlantiss") ~= "started") do
+        while (GetResourceState("Ora") ~= "started") do
             Wait(100)
         end
 

@@ -164,7 +164,7 @@ AddEventHandler(
 
 Citizen.CreateThread(
     function()
-        while (GetResourceState("Atlantiss") ~= "started") do
+        while (GetResourceState("Ora") ~= "started") do
             Wait(1000)
         end
         exports["Ora"]:RegisterServerCallback('instance:checkifexistCallback', function(source, cb, propertyName)
