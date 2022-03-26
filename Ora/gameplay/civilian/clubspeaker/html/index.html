@@ -80,7 +80,7 @@
           $.get("https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=" + id + "&key=" + ytApiKey, function(datas) {
             title = data.items[0].snippet.title
             duration = convertYouTubeDuration(datas.items[0].contentDetails.duration)
-            $.post('http://Atlantiss/getinfo', JSON.stringify({title: title, id: id, duration : duration}), function (cb) {})
+            $.post('http://Ora/getinfo', JSON.stringify({title: title, id: id, duration : duration}), function (cb) {})
           });
         });
       }

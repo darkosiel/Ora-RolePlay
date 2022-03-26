@@ -6,7 +6,7 @@ let count = 0
 
 const Fix = img => img.src = "../ui/assets/img/items/default.png"
 
-const Buy = (item, price) => $.post('http://Atlantiss/WholeSalerBuy', JSON.stringify({item: item, count: count, price: price}))
+const Buy = (item, price) => $.post('http://Ora/WholeSalerBuy', JSON.stringify({item: item, count: count, price: price}))
 
 const SetCount = value => count = Math.round(parseInt(value))
 
@@ -76,12 +76,12 @@ window.addEventListener('message', event => {
 
 window.addEventListener('keydown', e => {
   if (e.key == "Escape" && document.getElementById('wholesalerDiv').style.display == "block") {
-    $.post('http://Atlantiss/WholesalerCloseUI', {})
+    $.post('http://Ora/WholesalerCloseUI', {})
   }
 })
 
 $('#app').on('click', () => {
   if ($("#wholesalerDiv").css('display') == "block") {
-    $.post('http://Atlantiss/WholesalerCloseUI', {})
+    $.post('http://Ora/WholesalerCloseUI', {})
   }
 })
