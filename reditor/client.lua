@@ -5,12 +5,12 @@ Citizen.CreateThread(
 
 			if(IsRecording()) then
 				if(IsControlJustPressed(1, config.binding.stop_save_record)) then
-					exports['Atlantiss']:ShowNotification('~g~Enregistrement sauvegardé')
+					exports['Ora']:ShowNotification('~g~Enregistrement sauvegardé')
 					StopRecordingAndSaveClip()
 				end
 
 				if(IsControlJustPressed(1, config.binding.stop_discard_record)) then
-					exports['Atlantiss']:ShowNotification('~r~Enregistrement annulé')
+					exports['Ora']:ShowNotification('~r~Enregistrement annulé')
 					StopRecordingAndDiscardClip()
 				end
 			else
@@ -21,7 +21,7 @@ Citizen.CreateThread(
 				end ]]
 
 				if(IsControlJustPressed(1, config.binding.start_record)) then
-					exports['Atlantiss']:ShowNotification('~b~Enregistrement en cours')
+					exports['Ora']:ShowNotification('~b~Enregistrement en cours')
 					StartRecording(1)
 				end
 			end
