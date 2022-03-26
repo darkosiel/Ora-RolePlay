@@ -7,7 +7,7 @@ local function HideInventory()
     if currentStorage and currentStorage.name ~= nil then currentStorage = {} end
     SetNuiFocus(false, false)
 	Atlantiss.Inventory.State.IsOpen = false
-    if not washudoff then exports["Atlantiss_utils"]:SetPlayerHUD(true) end
+    if not washudoff then exports["Ora_utils"]:SetPlayerHUD(true) end
 end
 
 local function OpenInventory()
@@ -27,10 +27,10 @@ local function OpenInventory()
         currentStorage:RefreshDB()
         currentStorage:RefreshWeight()
     else
-        if not exports["Atlantiss_utils"]:GetPlayerHUD() then
+        if not exports["Ora_utils"]:GetPlayerHUD() then
             washudoff = true
         else
-            exports["Atlantiss_utils"]:SetPlayerHUD(false)
+            exports["Ora_utils"]:SetPlayerHUD(false)
             washudoff = false
         end
         SetNuiFocus(true, true)
@@ -103,10 +103,10 @@ local function RefreshStealing(closestPly)
 end
 
 local function OpenInvStorage()
-    if not exports["Atlantiss_utils"]:GetPlayerHUD() then
+    if not exports["Ora_utils"]:GetPlayerHUD() then
         washudoff = true
     else
-        exports["Atlantiss_utils"]:SetPlayerHUD(false)
+        exports["Ora_utils"]:SetPlayerHUD(false)
         washudoff = false
     end
     Atlantiss.Inventory.State.IsOpen = true
@@ -119,10 +119,10 @@ local function OpenInvStorage()
 end
 
 local function Fouilling(targetInv)
-    if not exports["Atlantiss_utils"]:GetPlayerHUD() then
+    if not exports["Ora_utils"]:GetPlayerHUD() then
         washudoff = true
     else
-        exports["Atlantiss_utils"]:SetPlayerHUD(false)
+        exports["Ora_utils"]:SetPlayerHUD(false)
         washudoff = false
     end
     Atlantiss.Inventory.State.IsOpen = true

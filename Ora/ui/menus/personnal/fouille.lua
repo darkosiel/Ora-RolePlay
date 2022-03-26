@@ -21,7 +21,7 @@ AddEventHandler("SearchPlayer", function(data)
     local playerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity))
     if CanBeFouilled(data.entity, playerId) then
         TriggerPlayerEvent("RageUI:Popup", playerId, {message = "~b~Vous êtes en train de vous faire fouiller"})
-        exports["Atlantiss_utils"]:sendME("* L'individu fouille quelqu'un *")
+        exports["Ora_utils"]:sendME("* L'individu fouille quelqu'un *")
         TriggerServerCallback("getInventoryOtherPPL", function(Inv, Money, black_money)
             currPlayerInv = json.decode(Inv)
             TriggerEvent('atlantiss:inventoryFouille', currPlayerInv)
@@ -59,7 +59,7 @@ local function Fouiller()
         local pedT = GetPlayerPed(player)
         if CanBeFouilled(pedT, closestPly) then
             TriggerPlayerEvent("RageUI:Popup", closestPly, {message = "~b~Vous êtes en train de vous faire fouiller"})
-            exports["Atlantiss_utils"]:sendME("* L'individu fouille quelqu'un *")
+            exports["Ora_utils"]:sendME("* L'individu fouille quelqu'un *")
             TriggerServerCallback(
                 "getInventoryOtherPPL",
                 function(Inv, Money, black_money)
