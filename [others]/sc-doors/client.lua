@@ -5,7 +5,7 @@ local myJob2 = nil
 Citizen.CreateThread(
     function()
         -- Update the door list
-        exports["Atlantiss"]:TriggerServerCallback(
+        exports["Ora"]:TriggerServerCallback(
             "sc-doors:getDoorState",
             function(doorState)
                 for index, state in pairs(doorState) do

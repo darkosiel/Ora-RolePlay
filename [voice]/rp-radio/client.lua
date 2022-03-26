@@ -199,7 +199,7 @@ function Radio:Toggle(toggle)
         end
         local boneId = self.Bone
 
-        exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+        exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
             function()
                 local ped = PlayerPedId()
                 local x,y,z = table.unpack(GetEntityCoords(ped))
@@ -269,7 +269,7 @@ end
 function Radio:Add(id)
     if lastRadioId ~= id then
         lastRadioId = id
-        exports["Atlantiss"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~" .. id .. "~s~")
+        exports["Ora"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~" .. id .. "~s~")
         exports.saltychat:SetRadioChannel(id, false)
         TriggerServerEvent("rp-radio:setPlayerRadioChannel", id, false)
     else
@@ -282,7 +282,7 @@ end
 -- Remove player from radio channel
 function Radio:Remove()
     if (lastRadioId ~= nil) then
-        exports["Atlantiss"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~Aucun~s~")
+        exports["Ora"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~Aucun~s~")
         TriggerServerEvent("rp-radio:removePlayerRadioChannel", lastRadioId)
         exports.saltychat:SetRadioChannel("", false)
     else

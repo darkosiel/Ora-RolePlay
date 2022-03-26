@@ -306,7 +306,7 @@ end
 exports("AddTargetEntity", AddTargetEntity)
 
 NetworkAddTargetEntity = function(netEntityId, parameters)
-	exports["Atlantiss"]:TriggerPlayerEvent("Qtarget:NetworkAddTargetEntity", -1, netEntityId, parameters)
+	exports["Ora"]:TriggerPlayerEvent("Qtarget:NetworkAddTargetEntity", -1, netEntityId, parameters)
 end
 exports("NetworkAddTargetEntity", NetworkAddTargetEntity)
 
@@ -367,7 +367,7 @@ end
 exports("RemoveTargetEntity", RemoveTargetEntity)
 
 NetworkRemoveTargetEntity = function(netEntityId)
-	exports["Atlantiss"]:TriggerPlayerEvent("Qtarget:NetworkRemoveTargetEntity", -1, netEntityId)
+	exports["Ora"]:TriggerPlayerEvent("Qtarget:NetworkRemoveTargetEntity", -1, netEntityId)
 end
 exports("NetworkRemoveTargetEntity", NetworkRemoveTargetEntity)
 
@@ -392,7 +392,7 @@ end
 exports("RemoveLabelFromTargetEntity", RemoveLabelFromTargetEntity)
 
 NetworkRemoveLabelFromTargetEntity = function(netEntityId, labels)
-	exports["Atlantiss"]:TriggerPlayerEvent("Qtarget:NetworkAddTargetEntity", -1, netEntityId, labels)
+	exports["Ora"]:TriggerPlayerEvent("Qtarget:NetworkAddTargetEntity", -1, netEntityId, labels)
 end
 exports("NetworkRemoveLabelFromTargetEntity", NetworkRemoveLabelFromTargetEntity)
 

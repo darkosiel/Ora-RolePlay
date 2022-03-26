@@ -92,7 +92,7 @@ AddEventHandler('Client:toggleSpreaders', function()
         while not HasAnimDictLoaded(main.animDict) do Wait(0) end
         TaskPlayAnim(ped, main.animDict, main.animName, -8.0, 8.0, -1, 50, 8.0, false, false, false)
         local coords = GetEntityCoords(ped)
-        exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+        exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
             function()
                 local prop = CreateObject(main.spreadersModel, coords.x, coords.y, coords.z, true, true, true)
                 spreadersProp = prop
@@ -276,13 +276,13 @@ AddEventHandler('Client:toggleStabilisers', function(setup)
                 local prop
                 local prop2
                 local coordsTwo = GetOffsetFromEntityInWorldCoords(ped, -0.7, 0.0, 0.0)
-                exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                     function()
                         prop = CreateObject(main.stabilisersModel, coordsOne.x, coordsOne.y, coordsOne.z, true, true, true)
                     end,
                     main.stabilisersModel
                 )
-                exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
                     function()
                         prop2 = CreateObject(main.stabilisersModel, coordsTwo.x, coordsTwo.y, coordsTwo.z, true, true, true)
                     end,

@@ -100,20 +100,20 @@ TriggerEvent('instance:registerType', 'skin')
 
 TriggerEvent('instance:registerType', 'labos',
   function(instance)
-    exports["Atlantiss"]:EnterLabos()
+    exports["Ora"]:EnterLabos()
   end,
   function(instance)
-    exports["Atlantiss"]:ExitLabos()
+    exports["Ora"]:ExitLabos()
   end
 )
 
 
 TriggerEvent('instance:registerType', 'property',
   function(instance)
-    exports["Atlantiss"]:EnterAppart()
+    exports["Ora"]:EnterAppart()
   end,
   function(instance)
-    exports["Atlantiss"]:ExitAppart()
+    exports["Ora"]:ExitAppart()
   end
 )
 

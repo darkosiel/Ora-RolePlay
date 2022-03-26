@@ -24,7 +24,7 @@ function Settings:Load()
                 end
 
                 if Data.food ~= nil and Data.thirst ~= nil then
-                    exports['Atlantiss_utils']:InitHungerThirst(Data.food, Data.thirst)
+                    exports['Ora_utils']:InitHungerThirst(Data.food, Data.thirst)
                 end
                 --self.FarmLimit = Data[1].farm_limit
                 self:Format()
