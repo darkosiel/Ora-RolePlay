@@ -173,7 +173,7 @@ Citizen.CreateThread(
     function()
         while true do
             Citizen.Wait(1)
-            while (GetResourceState("Atlantiss") ~= "started") do Wait(50) end
+            while (GetResourceState("Ora") ~= "started") do Wait(50) end
             ResetScriptGfxAlign()
             --	--print(soif,faim)
 
