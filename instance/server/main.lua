@@ -167,7 +167,7 @@ Citizen.CreateThread(
         while (GetResourceState("Atlantiss") ~= "started") do
             Wait(1000)
         end
-        exports["Ora"]:RegisterServerCallback('instance:checkifexistCallback', function(source, cb, propertyName)
+        exports["Atlantiss"]:RegisterServerCallback('instance:checkifexistCallback', function(source, cb, propertyName)
             cb(existOrNot[propertyName])
         end)
     end

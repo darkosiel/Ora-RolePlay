@@ -12,7 +12,7 @@ local bank = 0
 function setBankBalance(value)
     if type(value) == "table" and #value > 0 then
         for i = 1, #value, 1 do
-            exports["Ora"]:TriggerServerCallback(
+            exports["Atlantiss"]:TriggerServerCallback(
                 "getBankingAccountsPly2",
                 function(val)
                     val = val[1]

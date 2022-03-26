@@ -17,7 +17,7 @@ M.RequiredItems = function(items)
 	local cnt = 0
 	for item, count in pairs(items) do
 		cnt = cnt + 1
-		if exports["Ora"]:GetItemCount(item) >= count then
+		if exports["Atlantiss"]:GetItemCount(item) >= count then
 			cnt = cnt - 1
 		end
 	end
@@ -28,7 +28,7 @@ M.RequiredItems = function(items)
 end
 
 M.CheckOptions = function(data, entity, distance)
-	local job = exports["Ora"]:AtlantissGetJob()
+	local job = exports["Atlantiss"]:AtlantissGetJob()
 	local dist = data.distance == nil or distance <= data.distance
 	local canInteract = data.canInteract == nil or data.canInteract(entity)
 	local requiredItem = data.required_items == nil or data.required_items and M.RequiredItems(data.required_items)

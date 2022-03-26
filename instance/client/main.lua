@@ -60,7 +60,7 @@ function LeaveInstance()
         SetEntityVisible(PlayerPedId(), true, 0)
         SetEntityCollision(PlayerPedId(), true, true)
 
-        exports["Ora"]:TriggerServerCallback(
+        exports["Atlantiss"]:TriggerServerCallback(
             "onlinePlayers:list",
             function(users)
                 for userId, userValue in pairs(users) do
@@ -227,10 +227,10 @@ TriggerEvent(
     "instance:registerType",
     "labos",
     function(instance)
-        exports["Ora"]:EnterLabos()
+        exports["Atlantiss"]:EnterLabos()
     end,
     function(instance)
-        exports["Ora"]:ExitLabos()
+        exports["Atlantiss"]:ExitLabos()
     end
 )
 
@@ -238,10 +238,10 @@ TriggerEvent(
     "instance:registerType",
     "illegal_property",
     function(instance)
-        exports["Ora"]:EnterIllegalProperty()
+        exports["Atlantiss"]:EnterIllegalProperty()
     end,
     function(instance)
-        exports["Ora"]:ExitIllegalProperty()
+        exports["Atlantiss"]:ExitIllegalProperty()
     end
 )
 
@@ -249,10 +249,10 @@ TriggerEvent(
     "instance:registerType",
     "property",
     function(instance)
-        exports["Ora"]:EnterAppart()
+        exports["Atlantiss"]:EnterAppart()
     end,
     function(instance)
-        exports["Ora"]:ExitAppart()
+        exports["Atlantiss"]:ExitAppart()
     end
 )
 

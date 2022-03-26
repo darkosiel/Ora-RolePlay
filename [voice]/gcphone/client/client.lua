@@ -92,7 +92,7 @@ local function OpenPhone()
             function(hasPhone)
                 if hasPhone == true then
                     TriggerServerEvent("gcphone:Connected")
-                    setBankBalance(exports["Ora"]:getCurrentTel())
+                    setBankBalance(exports["Atlantiss"]:getCurrentTel())
                     TooglePhone()
                 else
                     ShowNoPhoneWarning()

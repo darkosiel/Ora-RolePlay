@@ -39,7 +39,7 @@ Player.isCinematic = false
 
 Player.Position = {}
 Player.ZoneName = nil
-Player.Hud = true -- read-only property, to change HUD use exports["Ora_utils"]:SetPlayerHUD(true or false)
+Player.Hud = true -- read-only property, to change HUD use exports["Atlantiss_utils"]:SetPlayerHUD(true or false)
 Player.InteriorID = 0
 Player.Armed = false
 Player.Shooting = false
@@ -106,7 +106,7 @@ Citizen.CreateThread(
         while true do
             Player.Ped = PlayerPedId()
             Player.Pos = GetEntityCoords(Player.Ped)
-            Player.Hud = exports["Ora_utils"]:GetPlayerHUD()
+            Player.Hud = exports["Atlantiss_utils"]:GetPlayerHUD()
             SetPedSuffersCriticalHits(Player.Ped, false)
 
             if (IsPedFalling(Player.Ped) or IsPedInParachuteFreeFall(Player.Ped)) then

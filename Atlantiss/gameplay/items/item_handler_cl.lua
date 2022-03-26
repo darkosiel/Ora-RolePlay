@@ -863,7 +863,7 @@ ItemsFunction = {
 
                 if (veh ~= 0 and GetVehiclePedIsIn(LocalPlayer().Ped, false) == 0) then
                     if (not DecorGetBool(veh, "drifttyres")) then
-                        exports['Ora_utils']:sendME("* L'individu change les roues du véhicule *")
+                        exports['Atlantiss_utils']:sendME("* L'individu change les roues du véhicule *")
                         Atlantiss.Inventory:RemoveFirstItem("driftwheels")
                         TriggerEvent("atlantiss:hideInventory")
 
@@ -909,7 +909,7 @@ ItemsFunction = {
 
                 if (veh ~= 0 and GetVehiclePedIsIn(LocalPlayer().Ped, false) == 0) then
                     if (DecorGetBool(veh, "drifttyres") or GetDriftTyresEnabled(veh, true)) then
-                        exports['Ora_utils']:sendME("* L'individu change les roues du véhicule *")
+                        exports['Atlantiss_utils']:sendME("* L'individu change les roues du véhicule *")
 
                         Atlantiss.Inventory:RemoveFirstItem("roadwheels")
                         TriggerEvent("atlantiss:hideInventory")
