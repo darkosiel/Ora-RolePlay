@@ -1,0 +1,43 @@
+main = {
+    fanCommand = "fan",
+    stabilisersCommand = "stabilisers",
+    spreadersCommand = "spreaders",
+    stabilisersModel = `prop_stabilisers`,
+    fanModel = `prop_fan_fire`, -- prop_fan_fire
+    spreadersModel = `prop_spreaders`,
+    smokeRemovalRadius = 50.0,
+    animDict = "weapons@heavy@minigun",
+    animName = "idle_2_aim_right_med",
+    boneId = 57005,
+    delaySmokeRemoval = 20, -- delay smoke removal by 20 seconds
+    fanSoundDistance = 30.0,
+    spreadersSoundDistance = 25.0,
+    spreadersSoundVolume = 0.1,
+    fanSoundVolume = 0.2,
+    commandFan = "fan",
+    acePermissionsEnabled = false,
+}
+
+translations = {
+    fanSuggestion = "Setup and use an extractor fan",
+    fanHelp = "Setup or remove an extractor fan",
+    stabilisersSuggestion = "Utiliser les stabilisateurs sur le véhicule le plus proche",
+    stabilisersHelp = "Placer ou supprimer les stabilisateurs du véhicule le plus proche",
+    spreadersSuggestion = "Sortir et utiliser le écarteur hydraulique",
+    fanRemoved = "~g~Success~w~: Fan removed",
+    noFanFound = "~r~Error~w~: No fan found",
+    fanSetup = "~g~Success~w~: Fan setup",
+    noVehicleFound = "~r~Erreur~w~: Aucun véhicule trouvé",
+    noStabilisersFound = "~r~Erreur~w~: Aucun stabilisateur trouvé",
+    outsideVehicle = "~r~Erreur~w~: Vous ne devez pas être dans un véhicule",
+    stabilisersRemoved = "~g~Succès~w~: Stabilisateurs retirés",
+    stabilisersSetupAlready = "~r~Erreur~w~: Des stabilisateurs sont déjà sur le véhicule",
+    vehicleNotFound = "Porte du véhicule ~r~non trouvée",
+    vehicleDoorFound = "Porte du véhicule ~g~trouvée",
+    vehicleFound = "Véhicule ~b~trouvé",
+    setup = "setup",
+    remove = "remove",
+    stabilisersError = "~r~Error~w~: Use /stabilisers setup or /stabilisers remove",
+    fanError = "~r~Error~w~: Use /fan setup or /fan remove",
+    spreadersUsage = "Appuyez sur ~b~ENTREE ~w~pour ouvrir ou ~b~ESPACE~w~ pour casser la porte du véhicule",
+}

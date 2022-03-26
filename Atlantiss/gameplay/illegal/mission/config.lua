@@ -1,0 +1,675 @@
+missionConfig = {}
+
+missionConfig.receleurPos = {
+    {x = 978.15, y = -1721.89, z = 31.12 - 0.98, a = 31.09} --{x=3089.95,y=-4713.24,z=15.26,a=215.92}    --{x=-467.76,y=-2699.06,z=5.07,a=215.92}
+}
+
+missionConfig.receleurGoFastPos = {
+    {
+        name = "Macias",
+        pos = {x = 712.13, y = -898.41, z = 23.59 - 0.98, a = 316.50}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_mexlabor_01"
+    },
+    {
+        name = "Alejandro",
+        pos = {x = 370.26, y = -2421.23, z = 6.04 - 0.98, a = 190.78}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_mexlabor_01"
+    },
+    {
+        name = "Coco",
+        pos = {x = 255.37, y = -3058.84, z = 5.77 - 0.98, a = 132.97}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_mexlabor_01"
+    },
+    {
+        name = "Jalisco",
+        pos = {x = -669.95, y = -1184.65, z = 10.61 - 0.98, a = 219.67}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_o_acult_02"
+    },
+    {
+        name = "Salamenca",
+        pos = {x = -329.58, y = -1268.36, z = 31.29 - 0.98, a = 103.13}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_o_acult_02"
+    }
+}
+
+missionConfig.receleurCarjackingPos = {
+    {
+        name = "Jackson",
+        pos = {x = -1132.51, y = 2698.20, z = 18.80 - 0.98, a = 159.81}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "s_m_y_dealer_01"
+    }
+}
+
+missionConfig.startPointGoFast = {
+    {pos = vector3(2860.59, 1459.26, 24.55), heading = 71.9},
+    {pos = vector3(2861.35, 1462.53, 24.55), heading = 72.01},
+    {pos = vector3(2862.22, 1466.41, 24.55), heading = 354.6},
+    {pos = vector3(2862.7, 1469.7, 24.55), heading = 73.66},
+    {pos = vector3(2863.79, 1473.44, 24.55), heading = 79.57},
+    {pos = vector3(2836.9, 1458.98, 24.56), heading = 339.56},
+    {pos = vector3(2832.9, 1460.17, 24.55), heading = 338.5}
+}
+
+missionConfig.startMigrantSmuggling = {
+    {pos = vector3(1120.58, 2647.91, 38.0 - 0.98), heading = 358.41, truckPos = vector3(929.13, 2714.88, 40.52), headingTruck = 176.1},
+    {pos = vector3(627.04, 2724.55, 41.81 - 0.98), heading = 4.8, truckPos = vector3(474.61, 2617.78, 43.09), headingTruck = 278.56},
+    {pos = vector3(333.29, 3406.55, 36.72 - 0.98), heading = 19.33, truckPos = vector3(80.97, 3482.59, 39.73), headingTruck = 187.89},
+    {pos = vector3(1496.71, 3579.4, 35.18 - 0.98), heading = 54.96, truckPos = vector3(1400.41, 3701.01, 33.7), headingTruck = 240.49},
+    {pos = vector3(43.67, 2802.14, 57.88 - 0.98), heading = 148.05, truckPos = vector3(227.18, 2611.53, 46.26), headingTruck = 47.45},
+}
+
+missionConfig.endMigrantSmuggling = {
+    {pos = vector3(937.52, -2441.78, 28.48 - 0.98), heading = 358.41},
+}
+
+missionConfig.migrantSmugglingDropOff = {
+    [1] = {
+        {pos = vector3(2683.84, 3276.83, 55.24 - 0.98)},
+        {pos = vector3(2700.78, 3443.92, 55.8 - 0.98)},
+        {pos = vector3(2591.74, 3174.72, 51.8 - 0.98)}
+    },
+    [2] = {
+        {pos = vector3(2539.24, 2618.61, 37.94 - 0.98)},
+        {pos = vector3(2552.65, 2794.68, 35.12 - 0.98)},
+        {pos = vector3(2389.97, 2524.58, 46.66 - 0.98)}
+    },
+    [3] = {
+        {pos = vector3(2566.51, 382.81, 108.46 - 0.98)},
+        {pos = vector3(2554.57, 296.4, 108.46 - 0.98)}
+    },
+    [4] = {
+        {pos = vector3(30.84, -1040.98, 29.35 - 0.98)},
+        {pos = vector3(21.24, -1305.52, 29.15 - 0.98)},
+        {pos = vector3(-331.27, -1356.12, 31.3 - 0.98)}
+    },
+    [5] = {
+        {pos = vector3(-588.06, -1106.58, 22.18 - 0.98)},
+        {pos = vector3(-610.44, -993.72, 21.79 - 0.98)},
+        {pos = vector3(-602.25, -888.06, 25.25 - 0.98)}
+    },
+    [6] = {
+        {pos = vector3(-1518.64, -551.22, 33.16 - 0.98)},
+        {pos = vector3(-1382.38, -456.74, 34.48 - 0.98)},
+        {pos = vector3(-1571.6, -265.91, 48.28 - 0.98)}
+    },
+}
+
+missionConfig.boss = {
+    {
+        name = "Pablo",
+        pos = {x = 470.73, y = -731.23, z = 27.43 - 0.98, a = 88.92}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "g_m_m_chicold_01",
+        missions = {
+            "Récupération de véhicule Compacts",
+            "Récupération de véhicule Muscle",
+            "Récupération de véhicule SUVs",
+            "Récupération de véhicule Sports",
+            "Récupération de véhicule de luxe"
+        }
+    },
+    {
+        name = "Jordan",
+        pos = {x = 1645.72, y = 4843.35, z = 42.02 - 0.98, a = 148.39}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_mexcntry_01",
+        missions = {"Go Fast - Cannabis", "Go Fast - Meth", "Go Fast - Cocaine", "Go Fast - Armes"}
+    },
+    {
+        name = "Josh",
+        pos = {x = -957.96, y = -1566.88, z = 5.01 - 0.98, a = 110.49}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_malibu_01",
+        missions = {
+            "CarJacking - Voitures Muscle",
+            "CarJacking - Voitures SUV",
+            "CarJacking - Voitures SEDAN",
+            "CarJacking - Voitures COUPES",
+            "CarJacking - Voitures SPORTS",
+            "CarJacking - Voitures SPORTS CLASSIC"
+        }
+    },
+    {
+        name = "Manny",
+        pos = {x = 117.74 , y = -3310.09, z = 6.018 - 0.98, a = 91.66}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "csb_ortega",
+        missions = {
+            "Passeur d'immigrés"
+        }
+    }
+}
+
+missionConfig.missionLists = {
+    ["Récupération de véhicule Compacts"] = {
+        levelRequired = 1,
+        scenarioIndex = 1,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carroberry"),
+        policeType = {"police"},
+        scenarioType = "volvehicule",
+        scenarioSettings = {
+            cars = {"brioso", "asbo", "kanjo", "rhapsody", "issi5", "club"},
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "crochetage",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 50}
+                }
+            },
+            ["money"] = {
+                amount = {600, 650}
+            },
+            ["xp"] = {1500, 1600}
+        }
+    },
+    ["Récupération de véhicule Muscle"] = {
+        levelRequired = 5,
+        scenarioIndex = 1,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carroberry"),
+        policeType = {"police"},
+        scenarioType = "volvehicule",
+        scenarioSettings = {
+            cars = {"blade", "buccaneer2", "chino2", "clique", "gauntlet", "faction2", "vigero", "yosemite"},
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "crochetage",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 50}
+                }
+            },
+            ["money"] = {
+                amount = {650, 700}
+            },
+            ["xp"] = {1600, 1700}
+        }
+    },
+    ["Récupération de véhicule SUVs"] = {
+        levelRequired = 10,
+        scenarioIndex = 1,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carroberry"),
+        policeType = {"police"},
+        scenarioType = "volvehicule",
+        scenarioSettings = {
+            cars = {"baller", "cavalcade", "gresley", "habanero", "landstalker", "novak", "seminole", "xls"},
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "crochetage",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 50}
+                }
+            },
+            ["money"] = {
+                amount = {700, 750}
+            },
+            ["xp"] = {1700, 1800}
+        }
+    },
+    ["Récupération de véhicule Sports"] = {
+        levelRequired = 12,
+        scenarioIndex = 1,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carroberry"),
+        policeType = {"police"},
+        scenarioType = "volvehicule",
+        scenarioSettings = {
+            cars = {"blista2", "buffalo", "comet2", "drafter", "fusilade", "komoda", "feltzer2", "paragon"},
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "crochetage",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 50}
+                }
+            },
+            ["money"] = {
+                amount = {750, 800}
+            },
+            ["xp"] = {1800, 1900}
+        }
+    },
+    ["Récupération de véhicule de luxe"] = {
+        levelRequired = 15,
+        scenarioIndex = 1,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carroberry"),
+        policeType = {"police"},
+        scenarioType = "volvehicule",
+        scenarioSettings = {
+            cars = {"alpha", "banshee"},
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "crochetage",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                type = "clear",
+                amount = {750, 800}
+            },
+            ["xp"] = {1900, 2000}
+        }
+    },
+    -- GO FASTS - Armando
+    ["Go Fast - Cannabis"] = {
+        levelRequired = 1,
+        scenarioIndex = 2,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("gofast"),
+        policeType = {"lssd", "police"},
+        scenarioType = "gofast",
+        scenarioSettings = {
+            configStart = {
+                positions = {
+                    {pos = vector3(1358.59, 3618.67, 34.89), heading = 283.12},
+                    {pos = vector3(1420.52, 3624.48, 34.85), heading = 196.52},
+                    {pos = vector3(1570.3, 3630.92, 35.34), heading = 202.77},
+                    {pos = vector3(1796.44, 3893.15, 34.2), heading = 193.38},
+                    {pos = vector3(1776.15, 4596.7, 37.71), heading = 186.89},
+                    {pos = vector3(3715.07, 4525.3, 21.71), heading = 141.01},
+                    {pos = vector3(2349.37, 3134.57, 48.21), heading = 78.36}
+                },
+                propInTrunk = "bkr_prop_weed_bigbag_03a",
+                itemInTrunk = "gofastweed"
+            },
+            cars = {
+                "jugular",
+                "komoda",
+                "sentinel3",
+                "paragon"
+            },
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {750, 800}
+            },
+            ["xp"] = {2000, 2100}
+        }
+    },
+    ["Go Fast - Meth"] = {
+        levelRequired = 5,
+        scenarioIndex = 2,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("gofast"),
+        policeType = {"lssd", "police"},
+        scenarioType = "gofast",
+        scenarioSettings = {
+            configStart = {
+                positions = {
+                    {pos = vector3(1358.59, 3618.67, 34.89), heading = 283.12},
+                    {pos = vector3(1420.52, 3624.48, 34.85), heading = 196.52},
+                    {pos = vector3(1570.3, 3630.92, 35.34), heading = 202.77},
+                    {pos = vector3(1796.44, 3893.15, 34.2), heading = 193.38},
+                    {pos = vector3(1776.15, 4596.7, 37.71), heading = 186.89},
+                    {pos = vector3(3715.07, 4525.3, 21.71), heading = 141.01},
+                    {pos = vector3(2349.37, 3134.57, 48.21), heading = 78.36}
+                },
+                propInTrunk = "ba_prop_battle_meth_bigbag_01a",
+                itemInTrunk = "gofastmeth"
+            },
+            cars = {
+                "elegy",
+                "sentinel3",
+                "komoda",
+                "kuruma"
+            },
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "meth",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {900, 950}
+            },
+            ["xp"] = {2500, 2600}
+        }
+    },
+    ["Go Fast - Cocaine"] = {
+        levelRequired = 10,
+        scenarioIndex = 2,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("gofast"),
+        policeType = {"lssd", "police"},
+        scenarioType = "gofast",
+        scenarioSettings = {
+            configStart = {
+                positions = {
+                    {pos = vector3(1358.59, 3618.67, 34.89), heading = 283.12},
+                    {pos = vector3(1420.52, 3624.48, 34.85), heading = 196.52},
+                    {pos = vector3(1570.3, 3630.92, 35.34), heading = 202.77},
+                    {pos = vector3(1796.44, 3893.15, 34.2), heading = 193.38},
+                    {pos = vector3(1776.15, 4596.7, 37.71), heading = 186.89},
+                    {pos = vector3(3715.07, 4525.3, 21.71), heading = 141.01},
+                    {pos = vector3(2349.37, 3134.57, 48.21), heading = 78.36}
+                },
+                propInTrunk = "ba_prop_battle_coke_block_01a",
+                itemInTrunk = "gofastcoke"
+            },
+            cars = {
+                "elegy",
+                "kuruma",
+                "sentinel3"
+            },
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "coke1",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {1000, 1100}
+            },
+            ["xp"] = {3000, 3100}
+        }
+    },
+    ["Go Fast - Armes"] = {
+        levelRequired = 15,
+        scenarioIndex = 2,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("gofast"),
+        policeType = {"lssd", "police"},
+        scenarioType = "gofast",
+        scenarioSettings = {
+            configStart = {
+                positions = {
+                    {pos = vector3(1358.59, 3618.67, 34.89), heading = 283.12},
+                    {pos = vector3(1420.52, 3624.48, 34.85), heading = 196.52},
+                    {pos = vector3(1570.3, 3630.92, 35.34), heading = 202.77},
+                    {pos = vector3(1796.44, 3893.15, 34.2), heading = 193.38},
+                    {pos = vector3(1776.15, 4596.7, 37.71), heading = 186.89},
+                    {pos = vector3(3715.07, 4525.3, 21.71), heading = 141.01},
+                    {pos = vector3(2349.37, 3134.57, 48.21), heading = 78.36}
+                },
+                propInTrunk = "prop_gun_case_02",
+                itemInTrunk = "gofastweapon"
+            },
+            cars = {
+                "elegy",
+                "kuruma",
+                "sentinel3"
+            },
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "water",
+                    data = {}
+                },
+                {
+                    name = "coke1",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {1500, 1600}
+            },
+            ["xp"] = {3500, 4000}
+        }
+    },
+    ["CarJacking - Voitures Muscle"] = {
+        levelRequired = 1,
+        scenarioIndex = 3,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carjacking"),
+        policeType = {"lssd", "police"},
+        scenarioType = "carjacking",
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {600,650}
+            },
+            ["xp"] = {1000, 1100}
+        }
+    },
+    ["CarJacking - Voitures SUV"] = {
+        levelRequired = 5,
+        scenarioIndex = 3,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carjacking"),
+        policeType = {"lssd", "police"},
+        scenarioType = "carjacking",
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "weed_pooch",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {700, 750}
+            },
+            ["xp"] = {1300, 1400}
+        }
+    },
+    ["CarJacking - Voitures SEDAN"] = {
+        levelRequired = 7,
+        scenarioIndex = 3,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carjacking"),
+        policeType = {"lssd", "police"},
+        scenarioType = "carjacking",
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "meth",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {800, 850}
+            },
+            ["xp"] = {1500, 1600}
+        }
+    },
+    ["CarJacking - Voitures COUPES"] = {
+        levelRequired = 10,
+        scenarioIndex = 3,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carjacking"),
+        policeType = {"lssd", "police"},
+        scenarioType = "carjacking",
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "meth",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {900,950}
+            },
+            ["xp"] = {1700, 1750}
+        }
+    },
+    ["CarJacking - Voitures SPORTS"] = {
+        levelRequired = 12,
+        scenarioIndex = 3,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carjacking"),
+        policeType = {"lssd", "police"},
+        scenarioType = "carjacking",
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "coke1",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {900, 950}
+            },
+            ["xp"] = {2000, 2100}
+        }
+    },
+    ["CarJacking - Voitures SPORTS CLASSIC"] = {
+        levelRequired = 15,
+        scenarioIndex = 3,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("carjacking"),
+        policeType = {"lssd", "police"},
+        scenarioType = "carjacking",
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "coke1",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {1100, 1150}
+            },
+            ["xp"] = {2500, 3000}
+        }
+    },
+    ["Passeur d'immigrés"] = {
+        levelRequired = 1,
+        scenarioIndex = 4,
+        policeRequired = Atlantiss.Illegal:GetCopsRequired("migrantsmuggling"),
+        policeType = {"lssd", "police"},
+        scenarioType = "migrantsmuggler",
+        scenarioSettings = {
+            truckers = {
+                "s_m_m_movprem_01",
+                "s_m_m_trucker_01",
+                "s_m_m_gentransport"
+            },
+            migrants = {
+                "s_m_m_migrant_01",
+                "s_m_m_mariachi_01",
+                "a_m_y_hasjew_01",
+                "s_f_m_maid_01",
+                "s_f_y_hooker_03",
+                "s_f_y_hooker_02",
+                "g_m_y_armgoon_02",
+                "g_m_m_armgoon_01",
+                "csb_prologuedriver",
+                "csb_hao"
+            },
+            minutes = 30
+        },
+        rewards = {
+            ["items"] = {
+                {
+                    name = "jus",
+                    data = {}
+                },
+                {
+                    name = "tapas",
+                    data = {}
+                },
+                {
+                    name = "coke1",
+                    data = {quality = 100}
+                }
+            },
+            ["money"] = {
+                amount = {400, 550}
+            },
+            ["xp"] = {1500, 1600}
+        }
+    }
+}

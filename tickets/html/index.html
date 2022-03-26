@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700italic,700' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <title>Scratch Card</title>
+  <style type="text/css">
+html {
+  box-sizing: border-box;
+}
+
+/* .bg-image {
+	position: absolute;
+	background-color: RGBA(255,255,255,0.6);
+
+	/* Add the blur effect 
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+
+	/* Full height 
+	height: 100%;
+	width: 100%;
+	/* Center and scale the image nicel
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}*/
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.scratchpad{
+  padding-top:10%;
+  width: 450px;
+  height: 660px;
+  margin:0 auto;
+}
+
+.scratch-container {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width:100%;
+}
+@media only screen and (max-width : 480px) {
+  .scratchpad {width:400px;height:396px;}
+  .scratch-container {width:400px !important;}
+}
+ 
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+  .scratchpad {width:290px;height:287px;}
+  .scratch-container {width:290px !important;}
+}
+.promo-container {
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	width:450px;
+	padding:20px;
+	margin:0 auto;
+	text-align:center;
+	font-family:'Open Sans', Arial,Sans-serif;
+	color:#333;
+	font-size:16px;
+	margin-top:20px;
+}
+.btn {
+  background:#56CFD2;
+  color:#FFF;
+  padding:10px 25px;
+  display:inline-block;
+  margin-top:15px;
+  text-decoration:none;
+  font-weight:600;
+  text-transform:uppercase;
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radiuss:3px;
+}
+  </style>
+ 
+</head>
+<body>
+	<div class="bg-image"></div>
+<div class="scratch-container">
+  <div id="promo" class="scratchpad"></div>
+</div>
+ 
+ 
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://jennamolby.com/scratch-and-win/js/wScratchPad.min.js"></script>
+ 
+<script type="text/javascript">
+ 
+var promoCode = '';
+var bg1 = 'img/1.png';
+var bg2 = 'img/2.png';
+var bg3 = 'img/8.png';
+var bgArray= [ bg1, bg2, bg3 ],
+selectBG = bgArray[Math.floor(Math.random() * bgArray.length)];
+  setup()
+ function setup()
+ {
+	$('#promo').empty()
+	$('body').html('<div id="promo" class="scratchpad"></div>')
+	setTimeout(
+	$('#promo').wScratchPad({
+    // the size of the eraser
+    size        : 70,    
+    // the randomized scratch image   
+    bg:  selectBG,
+    // give real-time updates
+    realtime    : true, 
+    // The overlay image
+    fg: 'img/gratter2.png',
+
+    scratchMove: function (e, percent) {
+        // Show the plain-text promo code and call-to-action when the scratch area is 50% scratched
+        if ((percent > 39)) {
+		  setup()
+        }
+	}
+	
+ })
+ ,200)
+ }
+</script>
+      
+ 
+</body>
+</html>

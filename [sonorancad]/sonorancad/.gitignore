@@ -1,0 +1,9 @@
+config.json
+update.zip
+unzip/
+.vscode
+.git
+stream/*
+!stream/.gitkeep
+plugins/*
+!plugins/template

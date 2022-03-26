@@ -1,0 +1,287 @@
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%
+}
+
+body {
+  margin: 0
+}
+
+main {
+  display: block
+}
+
+h1 {
+  font-size: 2em;
+  margin: .67em 0
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em
+}
+
+a {
+  background-color: transparent
+}
+
+b,
+strong {
+  font-weight: bolder
+}
+
+code {
+  font-family: monospace, monospace;
+  font-size: 1em
+}
+
+small {
+  font-size: 80%
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline
+}
+
+sub {
+  bottom: -.25em
+}
+
+sup {
+  top: -.5em
+}
+
+img {
+  border-style: none
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button {
+  text-transform: none;
+}
+
+[type=button],
+[type=reset],
+[type=submit],
+button {
+  -webkit-appearance: button;
+}
+
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner,
+button::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring,
+button:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details {
+  display: block;
+}
+
+[hidden] {
+  display: none;
+}
+
+.form__group {
+  position: relative;
+  /* padding: 45px; */
+  padding: 30px;
+  margin-top: 10px;
+  width: 50%;
+  background-color: rgba(34, 34, 34, 0.8);
+  border-radius: 5px;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color .2s;
+}
+
+.form__field::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form__field::-moz-placeholder {
+  color: transparent;
+}
+
+.form__field:-ms-input-placeholder,
+.form__field::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:-moz-placeholder-shown~.form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 33px;
+}
+
+.form__field:-ms-input-placeholder~.form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 33px;
+}
+
+.form__field:placeholder-shown~.form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 33px;
+}
+
+.form__label {
+  position: absolute;
+  top: 15px;
+  display: block;
+  transition: .2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  -o-border-image: linear-gradient(90deg, #23c035, #286f36, #1d4123);
+  border-image: linear-gradient(90deg, #23c035, #286f36, #1d4123);
+  border-image-slice: 1
+}
+
+.form__field:focus~.form__label {
+  position: absolute;
+  top: 15px;
+  display: block;
+  transition: .2s;
+  font-size: 1rem;
+  color: #23c035;
+  font-weight: 700
+}
+
+.form__field:invalid,
+.form__field:required {
+  box-shadow: none
+}
+
+body {
+  font-family: Poppins, sans-serif;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+}
+
+#bodyInput {
+  width: 80%;
+  justify-content: center;
+}
+
+#wheelDiv {
+  width: 100%;
+}
+
+#multipleInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #d1d1d1;
+  /*backdrop-filter: blur(2px);*/
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+*{user-select: none;}
+
+#bodyInput input::-webkit-inner-spin-button,
+#bodyInput input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0
+}
+
+#bodyInput input[type=number] {
+  -moz-appearance: textfield
+}
+
+#titre {
+  z-index: 1;
+  color: #fff;
+  position: absolute;
+  top: 20%;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+  display: block;
+}

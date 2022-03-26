@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Atlantiss</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../../../bossMenu/ui/style.css">
+  <link href="../../../../../core/modules/npc_jobs/wholesaler/ui/style.css" rel="stylesheet" type="text/css" />
+
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../../../bossMenu/ui/script.js" type="text/javascript"></script>
+  <script src="../../../../../core/modules/npc_jobs/wholesaler/ui/main.js" defer type="text/javascript"></script>
+  <script src="../../../../../core/modules/jobs/jetsam/ui/main.js" defer type="text/javascript"></script>
+</head>
+
+<body>
+
+  <!-- ClubSpeaker -->
+
+  <div style="display: none;" id="wrapper" class="yt_script">
+    <div id="player"></div>
+    <script>
+      var delay = false
+      var volume = 20
+      $(function () {
+        window.addEventListener('message', function (event) {
+          if (event.data.eventType == 'play') {
+            player.loadVideoById({'videoId':event.data.link, 'startSeconds': event.data.startSeconds});
+          }
+          else if (event.data.eventType == 'addplaylist') {
+            addPlaylist(event.data.link)
+          }
+          else if (event.data.eventType == "volume") {
+            player.setVolume(event.data.volume)
+            volume = event.data.volume
+          }
+          else if (event.data.eventType == 'pause') {
+            if (event.data.state == true) {
+              player.pauseVideo()
+            }
+            else {
+              player.playVideo()
+            }
+          }
+          else if (event.data.eventType == 'stop') {
+            player.stopVideo()
+          }
+        })
+      });
+      
+      //YouTube IFrame API player.
+      var player;
+
+      //Create DOM elements for the player.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+
+      var ytScript = document.getElementsByClassName('yt_script')[0];
+      ytScript.parentNode.insertBefore(tag, ytScript);
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '0%',
+          width: '0%',
+          playerVars: {
+              'autoplay': 0,
+              'controls': 0,
+              'disablekb': 1,
+              'enablejsapi': 1,
+          },
+          events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function convertYouTubeDuration(yt_duration){
+        const time_extractor = /([0-9]*H)?([0-9]*M)?([0-9]*S)?$/;
+        const extracted = time_extractor.exec(yt_duration);
+        const hours = parseInt(extracted[1], 10) || 0;
+        const minutes = parseInt(extracted[2], 10) || 0;
+        const seconds = parseInt(extracted[3], 10) || 0;
+        return minutes+"."+seconds;
+      }
+
+      function addPlaylist(id) {
+        var ytApiKey = "AIzaSyD_YVLtShPA28kpqJCcns45G1DCzc5lVWc";
+        var title;
+        var duration;
+        $.get("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + id + "&key=" + ytApiKey, function(data) {
+          $.get("https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=" + id + "&key=" + ytApiKey, function(datas) {
+            title = data.items[0].snippet.title
+            duration = convertYouTubeDuration(datas.items[0].contentDetails.duration)
+            $.post('http://Atlantiss/getinfo', JSON.stringify({title: title, id: id, duration : duration}), function (cb) {})
+          });
+        });
+      }
+      
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING) {
+            player.setVolume(volume)
+        }
+      }
+    </script>
+  </div>
+
+
+  <!-- Boss Menu -->
+
+
+  <div id="jobUI" style="display:none;">
+    <div class="header">
+      <img src="../../../bossMenu/ui/job.jpg" class="logo">
+      <p id="jobTitle">TITRE JOBS</p>
+      <div class="header-right">
+        <div id="close">&#10060;</div>
+        <h3 class="sans">Bienvenue, <span class="username">Unknown</span></h3>
+        <h4 class="sans">Trésorerie de l'entreprise:9 000 000 $</h4>
+      </div>
+    </div>
+    <div id="load" style="display:none;">
+      <span class="loading"></span>
+    </div>
+
+    <!-- <div id="jobselector" style="display:none;">
+    <div id="tabs">
+      <button id="select_jobselect_offert" class="tab selected">🔎 Rechercher offre</button>
+      <button id="select_jobselect_request" class="tab">📝 Mes candidatures</button>
+    </div>
+    <div id="main">
+      <div id="search_jobselect">
+        <div id="list_jobselect">
+      </div>
+        <div id="selected">
+        <div id="notexist_jobselect">
+          <h1>Select job</h1>
+        </div>
+        <div id="exist_jobselect">
+        <h1>Selectionnée l'offre</h1>
+        <table style="margin-top:3em; z-index:10;">
+          <thead>
+            <tr>
+              <th>ENTREPRISE</th>
+            </tr>
+          </thead>
+          <tbody id="table_jobs">
+            <tr class="tick">
+              <td>Entreprise 1</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+      <div id="set">
+      </div>
+      <div id="job_offers_range">
+      <div id="job_selector_offer_div_0" class="panel3">
+        <h1>Présentation de l'offre</h1>
+            <p class="status">Emploie : <span id="jobselect_state" class="status">IMMEDIAT</span></p>
+        <div class="set">
+        <label>Entrprise</label>
+        <input id="jobselect_buisness" type="text" placeholder=""  disabled></input>
+        </div>
+        <div class="group_set">
+        <label>Date</label>
+        <input id="jobselect_date" type="text" placeholder=""  disabled></input>	
+        </div>
+        <div class="group_set">
+        <label>Poste</label>
+        <input id="jobselect_rank" type="text" placeholder=""  disabled></input>
+        <label>Salaire</label>
+        <input id="jobselect_salary" type="text" placeholder=""  disabled></input>
+        <label>Secteur</label>
+        <input id="jobselect_jobs" type="text" placeholder=""  disabled></input>
+        <label>Contact</label>
+        <input id="jobselect_contact" type="text" placeholder=""  disabled></input></div>
+        <div class="set">
+        <label>Description</label>
+        <textarea id="jobselect_desc" type="text" placeholder="Champs de texte pour votre candidature au poste" disabled></textarea></div>
+        <div class="group_set">
+        <button class="quick" id="job_selector_getpost_0" disabled>Postuler</button>
+        </div>
+      </div>
+    </div>
+                </div>
+      </div>	
+    </div>
+
+    <div id="jobselect_request">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Entreprise</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="table_jobselect_request">
+            <tr class="tick">
+              <td>valeur</td>
+              <td>valeur</td>	
+              <td>valeur</td>	
+            </tr>
+          </tbody>
+        </table>
+          <br />
+        <div class="panel3">
+          <h1>Candidature</h1>
+          <div class="set">
+            <p class="status"><span id="jobselect_request_state" class="status">STATUS</span></p>
+          </div>
+          <div class="group_set">
+          <label>Entreprise</label>
+          <input id="jobselect_request_busi" type="text" placeholder=""  disabled></input>
+          <label>Intitulé du poste</label>
+          <input id="jobselect_request_job_tilte" type="text" placeholder=""  disabled></input>
+          <label>Poste</label>
+          <input id="jobselect_request_rank" type="text" placeholder=""  disabled></input>
+          <label>Salaire</label>
+          <input id="jobselect_request_paycheck" type="text" placeholder=""  disabled></input></div>
+          <div class="set">
+          <label>Description du poste</label>
+          <textarea id="jobselect_request_desc" type="text" placeholder=""  disabled></textarea></div>
+          <div class="group_set">
+          <label>Date de votre candidature</label>
+          <input id="jobselect_request_time" type="text" placeholder=""  disabled></input></div>
+          <div class="set">
+          <label>Contenu de votre candidature</label>
+          <textarea id="jobselect_request_msg" type="text" placeholder=""  disabled></textarea></div>
+          <div class="set">
+          <button class="quick" id="jobselect_request_cancel">Annuler candidature</button>
+          </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<div id="request_form" style="display:none;">
+  <div id="fuckoff">
+    <div class="panel3">
+        <h1>Candidature</h1>
+        <div class="group_set">
+        <label>Entreprise</label>
+        <input id="resquest_form_busi" type="text" placeholder=""  disabled></input></div>
+        <div class="group_set">
+        <label>Nom</label>
+        <input id="resquest_form_creator" type="text" placeholder=""  disabled></input></div>
+        <div class="set">
+        <label>Titre du poste</label>
+        <input id="resquest_form_title" type="text" placeholder=""  disabled></input></div>
+        <div class="set">
+        <label>Descriptif du poste</label>
+        <textarea id="resquest_form_desc" type="text" placeholder=""  disabled></textarea></div>
+        <div class="set">
+        <label>Votre lettre de motivation</label>
+        <textarea id="request_form_msg" type="text" placeholder="Champs de texte pour votre candidature au poste"></textarea></div>
+        <button class="quick" id="validate_request_form">Postuler</button>
+        <button class="quick" id="cancel_request_form">Annuler</button>
+      </div>
+  </div>
+</div> -->
+
+    <div id="entreprise" style="display:none;">
+      <div id="tabs">
+        <button id="select_busi_salaries" class="tab selected">Employés</button>
+        <button id="select_busi_bills" class="tab">Factures</button>
+        <button id="select_busi_treas" class="tab">Trésorerie</button>
+      </div>
+
+      <div id="main">
+        <div id="busi_salaries">
+          <div id="list_busi_salaries">
+          </div>
+          <div id="selected">
+            <div id="notexist_busi_salaries">
+              <h1>Selectionnez un.e salarié.e</h1>
+            </div>
+            <div id="exist_busi_salaries">
+              <h1></h1><br />
+              🥇<span id="busi_rank">Rang : 7</span><br />
+              💸<span id="busi_productivity">Productivité : 0$ (dernier reset le : 24/11/2017 20:16:50)</span><br />
+              💷<span id="busi_paycheck_sal">Salaire : $0</span>
+              <div id="set">
+                <div class="set">
+                  <label>Reset productivite</label>
+                  <button class="quick set" id="busi_reset_prod_button">Reset prod</button>
+                </div>
+                <div class="set">
+                  <label>Prime</label>
+                  <input class="busi_prime" id="busi_prime_rib" type="text" value="LS-" />
+                  <input class="busi_prime" id="busi_prime_input" type="number" value="" min="0" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="0" />
+                  <button id="busi_prime_button" class="quick">Prime</button>
+                </div>
+                <div class="set">
+                  <label>Definir rang</label>
+                  <select id="busi_rank_input">
+                    <!-- <option value="CDD" selected>CDD</option>
+                  <option value="CDI">CDI</option>
+                  <option value="DRH">DRH</option>
+                  <option value="Co-PDG">Co-PDG</option>
+                  <option value="PDG">PDG</option> -->
+                  </select>
+                  <button id="busi_rank_button" class="quick">Definir rang</button>
+                </div>
+                <div class="group_set">
+                  <label>Licenciement</label>
+                  <button class="quick" id="busi_dismiss_button">Licencier</button>
+                </div>
+                <!-- <div class="group_set">
+                <label>Définir PDG</label>
+                <button class="quick" id="busi_change_leader_button">Mettre PDG</button>
+              </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="busi_treas" style="display: none;">
+          <div class="group_set">
+            <label>Récupérer de la trésorerie</label>
+            <input class="busi_prime" id="busi_treas_input" type="number" value="" min="0" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="0" />
+            <button id="busi_treas_button" class="quick">Retirer</button>
+          </div>
+        </div>
+
+        <div id="busi_bills" style="display:none;">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Client</th>
+                <th>Montant</th>
+              </tr>
+            </thead>
+            <tbody id="table_bills">
+              <tr class="tick">
+                <td>valeur</td>
+                <td>valeur</td>
+                <td>valeur</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <div id="set">
+            <!-- <button class="quick" id="delbill" alt="testtooltips">Annuler Facture</button> -->
+            <button class="quick" id="getbill">Obtenir Factures</button>
+            <!-- <select id="bill-select" name="object" size="3"> 
+            <option value="TOUS" selected="">TOUS</option> 
+            <option value="OK">STATUT OK</option> 
+            <option value="ATTENTE">STATUT EN ATTENTE</option> 
+            <option value="ANNULE">STATUT ANNULE</option> 
+          </select>  -->
+          </div>
+          <div class="panel3">
+            <h1 id="invoice">Facture</h1>
+            <!-- <div class="set">
+            <p class="status"><span id="bill_state" class="status">STATUS</span></p>
+          </div> -->
+            <div class="group_set2">
+              <label>Employé</label>
+              <input id="bill_sender" type="text" placeholder="" disabled></input>
+            </div>
+            <div class="group_set2">
+              <label>Client</label>
+              <input id="bill_receiver" type="text" placeholder="" disabled></input>
+            </div>
+            <!-- <div class="group_set">
+            <label>Type</label>
+            <input id="bill_type" type="text" placeholder=""  disabled></input></div>
+          <div class="group_set">
+            <label>Relances</label>
+            <input id="bill_retry" type="text" placeholder=""  disabled></input></div> -->
+            <div class="group_set">
+              <label>Date</label>
+              <input id="bill_time" type="text" placeholder="" disabled></input>
+            </div>
+            <div class="group_set">
+              <label>Montant</label>
+              <input id="bill_amount" type="text" placeholder="" disabled></input>
+            </div>
+            <div class="group_set">
+              <label>Methode</label>
+              <input id="bill_method" type="text" placeholder="" disabled></input>
+            </div>
+            <div class="set">
+              <label>Raison</label>
+              <textarea id="bill_msg" type="text" placeholder="" cols="3" disabled></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Inventory -->
+
+  <div id="app"></div>
+
+
+  <!-- Grossiste & Jetsam -->
+
+  <div id="wholesalerDiv">
+    <div class="container">
+      <h2 class="title jobTitle" style="display: none; color: white;">Job 1</h2>
+      <div id="job" class="row"></div>
+      <h2 class="title orgaTitle" style="display: none; color: white;">Job 2</h2>
+      <div id="orga" class="row"></div>
+    </div>
+  </div>
+
+</body>
+
+<script src="./main.js" type="text/javascript"></script>
+
+</html>

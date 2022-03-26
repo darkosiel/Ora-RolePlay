@@ -1,0 +1,19 @@
+To ensure all modit.store scripts load correctly, we can use the following method to assure the http request has responded before firing another.
+
+in the config.lua file provided, add your script names to the `Mods` table.
+
+E.G:
+I purchased playerhousing, furni and territories.
+I renamed the mods, respectively, housing, furnishing, ganglands.
+I set the `Mods` table in the `config.lua` file as:
+Mods = {
+  'housing',
+  'furnishing',
+  'ganglands',
+}
+
+Add the following to your server.cfg:
+
+add_ace resource.loader command.restart allow
+add_ace resource.loader command.start   allow
+add_ace resource.loader command.stop    allow

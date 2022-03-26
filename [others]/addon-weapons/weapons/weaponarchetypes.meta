@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CWeaponModelInfo__InitDataList>
+	<InitDatas>
+		<Item>
+			<modelName>w_me_pelle</modelName>
+			<txdName>w_me_pelle</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_ex_canette</modelName>
+			<txdName>w_ex_canette</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_ex_bouteille</modelName>
+			<txdName>w_ex_bouteille</txdName>
+			<ptfxAssetName>NULL</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_me_sledgehammer</modelName>
+			<txdName>w_me_sledgehammer</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_me_pickaxe</modelName>
+			<txdName>w_me_pickaxe</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>w_me_katana</modelName>
+			<txdName>w_me_katana</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="50"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_FAKECOMBATPISTOL</modelName>
+			<txdName>W_PI_FakeCombatPistol</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SB_FAKESMG</modelName>
+			<txdName>W_SB_FAKESMG</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_SG_Beambag</modelName>
+			<txdName>W_SG_BEAMBAG</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_ME_Chainsaw</modelName>
+			<txdName>W_ME_Chainsaw</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+		<Item>
+			<modelName>W_PI_NAILGUN</modelName>
+			<txdName>W_PI_NailGun</txdName>
+			<ptfxAssetName>null</ptfxAssetName>
+			<lodDist value="30"/>
+		</Item>
+	</InitDatas>
+</CWeaponModelInfo__InitDataList>

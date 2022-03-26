@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atlantiss</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id="bodyInput" style="display: none;">
+      <div class="form__group field">
+        <input type="text" spellcheck="false" class="form__field" maxlength="200" name="name" id='name' autocomplete="off" oninput="this.value = this.value.replace('~', '')" />
+        <label for="name" id="input-label" class="form__label">Name</label>
+      </div>
+    </div>
+
+    <div id="wheelDiv" style="display: none;">
+      <title id="titre"></title>
+      <div
+        id="multipleInput"
+        style="display: none;"
+        data-wheelnav
+        data-wheelnav-slicepath = "MenuSliceWithoutLine"
+        data-wheelnav-rotateoff
+        data-wheelnav-colors = "#286f36b2"
+        data-wheelnav-keynav
+        data-wheelnav-wheelradius = "150"
+        data-wheelnav-init
+      >
+      <!-- 
+        default color 286f36
+        data-wheelnav-slicepath = "DonutSlice"
+        data-wheelnav-slicepath = "MenuSliceWithoutLine"
+      -->
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script src="raphael.min.js"></script>
+    <script src="wheelnav.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+
+</html>

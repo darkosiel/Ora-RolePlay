@@ -1,0 +1,4 @@
+.vscode
+mdt_config.lua
+ui/cache/
+node_modules/

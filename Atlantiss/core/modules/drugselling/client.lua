@@ -1,0 +1,693 @@
+Atlantiss.DrugDealing.System = {
+  IS_ACTIVATED = false,
+  CURRENT_DESTINATION = nil,
+  CURRENT_DESTINATION_COORDS = nil,
+  NEXT_MISSION_WAIT = math.random(1000 * 10, 1000 * 50),
+  NEXT_MISSION_COUNT = math.random(1, 2),
+  NEXT_MISSION_SELECTED_DRUG = nil,
+  NEXT_MISSION_PED = nil,
+  LAST_MISSION_TIME = 0,
+  HAS_BEEN_CALLED = false,
+  CHARACTER = nil,
+  KEYS =  {["E"] = 38, ["SPACE"] = 22, ["DELETE"] = 178},
+  WARNING_GIVEN = 0,
+  ALLOW_REFRESH = false,
+  ZONES = {},
+  LAST_FETCH = 0,
+  CURRENT_ZONE_ID = nil,
+  QUALITY_TYPES = nil,
+  HAS_BEEN_CALLED = false,
+  CURRENT_DESTINATION_HEADING = 0.0,
+  COUNTER_STARTED = false,
+  PED_HAS_BEEN_CREATED = false
+}
+
+Atlantiss.DrugDealing.Characters = {
+  "CHAR_SIMEON",
+  "CHAR_STRETCH",
+  "CHAR_STEVE",
+  "CHAR_SOLOMON",
+  "CHAR_SAEEDA",
+  "CHAR_TANISHA",
+  "CHAR_TENNIS_COACH",
+  "CHAR_WADE",
+  "CHAR_TOW_TONYA",
+  "CHAR_TRACEY",
+  "CHAR_RON",
+  "CHAR_OSCAR",
+  "CHAR_ORTEGA",
+  "CHAR_ONEIL"
+}
+
+Atlantiss.DrugDealing.Peds = {
+  "a_m_m_eastsa_01",
+  "a_m_m_bevhills_01",
+  "a_m_m_fatlatin_01",
+  "a_m_m_mexlabor_01",
+  "a_m_m_paparazzi_01",
+  "a_m_y_soucent_02",
+  "g_m_m_armlieut_01",
+  "g_m_m_chigoon_02",
+  "g_m_importexport_01",
+  "s_m_m_autoshop_02",
+  "s_m_m_ccrew_01",
+  "s_m_y_barman_01"
+}
+
+Atlantiss.DrugDealing.AvailableDrugs = {
+  "coke1",
+  "meth",
+  "weed_pooch",
+  "lsd_pooch"
+}
+
+Atlantiss.DrugDealing.PolicePhrase = {
+  "Vente de drogue",
+  "Dealer en action",
+}
+
+Atlantiss.DrugDealing.Props = {
+  weed_pooch = "bkr_prop_weed_bag_01a",
+  meth = "p_meth_bag_01_s",
+  coke1 = "bkr_prop_coke_cutblock_01",
+  lsd_pooch = "bkr_prop_coke_cutblock_01"
+}
+
+Atlantiss.DrugDealing.Prices = {
+    weed_pooch = {27, 35},
+    coke1 = {68, 75},
+    meth = {55, 65},
+    lsd_pooch = {75, 80}
+}
+
+Atlantiss.DrugDealing.Demand = {
+  weed_pooch = {4, 5},
+  coke1 = {1, 3},
+  meth = {3, 4},
+  lsd_pooch = {1, 2}
+}
+
+
+Atlantiss.DrugDealing.Locations = {}
+
+RegisterNetEvent("Atlantiss::CE::DrugDealing:StopDealing")
+AddEventHandler(
+    "Atlantiss::CE::DrugDealing:StopDealing",
+    function()
+        Atlantiss.Payment:Debug(string.format("Received event to stop drug dealing"))     
+        Atlantiss.DrugDealing:StopDealing()
+    end
+)
+
+function Atlantiss.DrugDealing:StartTimebar()
+    local timeleft = 4 * 60 * 1000 + GetGameTimer()
+    Atlantiss.DrugDealing.System.COUNTER_STARTED = true
+
+    Citizen.CreateThread(function()
+        scaleform = RequestScaleformMovie_2("INSTRUCTIONAL_BUTTONS")
+        repeat Wait(0) until HasScaleformMovieLoaded(scaleform)
+
+        while true do Wait(0)
+            if renderScaleform == true then
+                DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255, 0)
+            end
+            local timeleft = (timeleft - GetGameTimer()) / 1000
+            local barCount = {1}
+
+            if Atlantiss.DrugDealing.System.COUNTER_STARTED == true and timeleft ~= nil then
+                if timeleft > 0 then
+                    DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
+                else
+                    ShowNotification("~r~Vous n'avez pas été assez rapide pour vendre.~s~")
+                    Atlantiss.DrugDealing:StopDealing()
+                end
+            end
+
+            if timeleft < 0 or Atlantiss.DrugDealing.System.COUNTER_STARTED == false then
+                break
+            end
+        end
+    end)
+end
+
+function Atlantiss.DrugDealing:SetBoostedZoneId(zoneId)
+  self.System.BOOSTED_ZONE_ID = zoneId
+end
+
+function Atlantiss.DrugDealing:GetBoostedZoneId()
+  return self.System.BOOSTED_ZONE_ID
+end
+
+function Atlantiss.DrugDealing:IsDealingInBoostedZone()
+  return self.System.CURRENT_ZONE_ID == self.System.BOOSTED_ZONE_ID
+end
+
+function Atlantiss.DrugDealing:StartDealingAt(zoneId)
+    self.Locations = {}
+    self.System.CURRENT_ZONE_ID = zoneId
+    self.System.IS_ACTIVATED = true
+    self:GetPositionsForZoneId(zoneId)
+    self:StartDealerThread()
+    self:StartDealerAntiBikeThread()
+end
+
+function Atlantiss.DrugDealing:StopDealing()
+  TriggerServerEvent("Atlantiss::SE::DrugDealing:RemoveDealerForZone", self.System.CURRENT_ZONE_ID)
+  self.System.IS_ACTIVATED = false
+  self.System.CURRENT_ZONE_ID = nil
+  self:ResetAllComponentsForNextMission()
+end
+
+function Atlantiss.DrugDealing:CanStartDealingAt(zoneId)
+  self:Debug(string.format("User is trying to start selling at zone id ^5%s^3", zoneId))
+  local canStart = false
+  local noCops = false
+  local canSend = false
+
+  if Atlantiss.DrugDealing.System.LAST_MISSION_TIME < GetGameTimer() - 60000 then
+    TriggerServerCallback("Atlantiss::SE::DrugDealing:CanRegisterForDealingIntoZoneId", 
+        function(canStartDealing)
+            if (canStartDealing) then
+                for key, value in ipairs(Atlantiss.DrugDealing.AvailableDrugs) do
+                    if (Atlantiss.Inventory:GetItemCount(value) > 0) then
+                        canStart = true
+                    end
+                end
+
+                if (canStart == false) then
+                  Atlantiss.DrugDealing:Debug(string.format("player has no items to sell for zone id ^5%s^3", zoneId))
+                  ShowNotification("~r~Vous n'avez pas le necessaire pour vendre.~s~")
+                else
+                  TriggerServerEvent("Atlantiss::SE::DrugDealing:AddDealerForZone", zoneId)
+                  Atlantiss.DrugDealing:StartDealingAt(zoneId)
+                end
+            end
+
+            canSend = true
+        end,
+        zoneId
+    )
+
+    while (canSend == false) do 
+      self:Debug(string.format("Waiting data pulling to check if user can sell for zone id ^5%s^3", zoneId))
+      Wait(100)
+    end
+
+    return canStart
+  else
+    ShowNotification("~r~Vous devez patienter avant de pouvoir recommencer à dealer.~s~")
+  end
+end
+
+function Atlantiss.DrugDealing:GetPositionsForZoneId(zoneId)
+  local canSend = false
+  local positions = {}
+  self:Debug(string.format("Fetching dealing positions for zone id for zone id ^5%s^3", zoneId))
+  TriggerServerCallback("Atlantiss::SE::DrugDealing:GetPositionsForZoneId", function(data)
+    positions = data
+    canSend = true
+  end, zoneId)
+  
+  while (canSend == false) do
+    self:Debug(string.format("Waiting data pulling for zone id ^5%s^3", zoneId))
+    Wait(100)      
+  end
+
+  self:Debug(string.format("Returning dealing positions for zone id ^5%s^3", zoneId))
+  self.Locations = positions
+end
+
+function Atlantiss.DrugDealing:FetchZones()
+  local canSend = false
+  local zones = {}
+  self:Debug(string.format("Fetching all zones"))
+  TriggerServerCallback("Atlantiss::SE::DrugDealing:GetZones", function(data)
+    zones = data
+    canSend = true
+  end, 1)
+  
+  while (canSend == false) do
+    self:Debug(string.format("Waiting data pulling for getting all zones infos"))
+    Wait(100)      
+  end
+
+  self:Debug(string.format("Replacing the zone informations"))
+  self.System.LAST_FETCH = GetGameTimer()
+  self.System.ZONES = zones 
+end
+
+function Atlantiss.DrugDealing:ImDealing()
+    return self.System.IS_ACTIVATED
+end
+
+function Atlantiss.DrugDealing:GetZones()
+  if (#self.System.ZONES == 0 or (GetGameTimer() - self.System.LAST_FETCH) > (1000 * 60)) then
+    self:Debug(string.format("Refetching informations because last fetch is too old"))
+    Atlantiss.DrugDealing:FetchZones()
+  end
+  return self.System.ZONES
+end
+
+function Atlantiss.DrugDealing:AllowRefreshOfZones(allowRefresh)
+  if (allowRefresh ~= self.System.ALLOW_REFRESH) then
+    if (allowRefresh) then
+      self:Debug(string.format("Allowing refresh of zones"))
+    else
+      self:Debug(string.format("Removing refresh of zones"))
+    end
+    self.System.ALLOW_REFRESH = allowRefresh
+  end
+end
+
+function Atlantiss.DrugDealing:IsCorrectLocation(coords1, coords2) 
+    return GetDistanceBetweenCoords(coords1, coords2, false) > 75.0 
+end
+
+function Atlantiss.DrugDealing:StartDealerAntiBikeThread()
+  Citizen.CreateThread(
+    function()
+        while (true) do
+          if (self.System.IS_ACTIVATED == false) then
+            self:Debug(string.format("Looks like the system is not activated anymore. Removing thread"))
+            break
+          end
+          local pedIsInVehicle = IsPedInAnyVehicle(LocalPlayer().Ped, false)
+          if (pedIsInVehicle) then
+              local vehicleUsedByPed = GetVehiclePedIsUsing(LocalPlayer().Ped)
+              if (DoesEntityExist(vehicleUsedByPed) and GetVehicleClass(vehicleUsedByPed) == 8) then
+                self:Debug(string.format("Players is on motorcycles, stopping dealer mode"))
+                ShowNotification("~r~Vous ne pouvez pas vendre à moto.~s~")
+                Atlantiss.DrugDealing:StopDealing()
+              end
+          end
+          Citizen.Wait(1000)
+        end
+      end
+    )
+end
+
+function Atlantiss.DrugDealing:StartDealerThread()
+  Citizen.CreateThread(
+      function()
+          while (true) do
+              if (self.System.IS_ACTIVATED == false) then
+                  self:Debug(string.format("Looks like the system is not activated anymore. Removing thread"))
+                  Citizen.Wait(1)
+                  break
+              else
+                  if (self.System.CURRENT_DESTINATION == nil) then
+                      self:Debug(string.format("Current destination is empty, starting a new appointment"))
+                      local inventoryDrugs = {}
+                      for key, value in ipairs(Atlantiss.DrugDealing.AvailableDrugs) do
+                          local itemQuantity = Atlantiss.Inventory:GetItemCount(value)
+                          if (itemQuantity > 0) then
+                              table.insert(inventoryDrugs, {name = value, qty = itemQuantity})
+                          end
+                      end
+
+                      if (#inventoryDrugs == 0) then
+                          Atlantiss.DrugDealing:StopDealing()
+                          ShowAdvancedNotification(
+                              "Client",
+                              "~b~Dialogue",
+                              "T'as plus de matos. Arret des commandes.",
+                              Atlantiss.DrugDealing.Characters[math.random(#Atlantiss.DrugDealing.Characters)],
+                              1
+                          )
+                          self:Debug(string.format("No more drug in inventory. Stopping dealer mode"))
+                      else
+                          self:Debug(string.format("Script is now waiting ^5%s^3 ms", Atlantiss.DrugDealing.System.NEXT_MISSION_WAIT))
+                          self.System.LAST_MISSION_TIME = GetGameTimer()
+                          Citizen.Wait(Atlantiss.DrugDealing.System.NEXT_MISSION_WAIT)
+
+                          if (self.System.IS_ACTIVATED == false) then
+                            self:Debug(string.format("Looks like the system is not activated anymore. Removing thread"))
+                            break
+                          end
+
+                          local drugObject = inventoryDrugs[math.random(#inventoryDrugs)]
+                          Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG = drugObject.name
+                          self:Debug(string.format("Next drug selected is ^5%s^3 ms", drugObject.name))
+                          if (Atlantiss.DrugDealing.Demand[drugObject.name] ~= nil) then
+                            local askedQtyMax = Atlantiss.DrugDealing.Demand[drugObject.name][1]
+                            if (drugObject.qty < Atlantiss.DrugDealing.Demand[drugObject.name][2]) then
+                              Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = drugObject.qty
+                            else
+                              Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = math.random(Atlantiss.DrugDealing.Demand[drugObject.name][1], Atlantiss.DrugDealing.Demand[drugObject.name][2])
+                            end
+                          else
+                            Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = math.random(1, 2)
+                          end
+
+                          local newLocation = Atlantiss.DrugDealing.Locations[math.random(#Atlantiss.DrugDealing.Locations)]
+                          local newLocationCoords =
+                              vector3(newLocation.pos.x, newLocation.pos.y, newLocation.pos.z)
+                          local newLocationHeading = newLocation.heading
+                          local loopCounter = 0
+
+                          while (Atlantiss.DrugDealing:IsCorrectLocation(newLocationCoords, LocalPlayer().Pos) == false and
+                              loopCounter < 500) do
+                              math.randomseed(GetGameTimer() * math.random(10000, 50000))
+                              newLocation = Atlantiss.DrugDealing.Locations[math.random(#Atlantiss.DrugDealing.Locations)]
+                              newLocationCoords = vector3(newLocation.pos.x, newLocation.pos.y, newLocation.pos.z)
+                              newLocationHeading = newLocation.heading
+                              loopCounter = loopCounter + 1
+                          end
+
+                          self:Debug(string.format("New locations selected is ^5%s^3", newLocationCoords))
+                          Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS = newLocationCoords
+                          Atlantiss.DrugDealing.System.CURRENT_DESTINATION_HEADING = newLocationHeading
+                          Atlantiss.DrugDealing.System.CURRENT_DESTINATION = AddBlipForCoord(newLocationCoords.x, newLocationCoords.y, newLocationCoords.z)
+                          SetBlipRoute(Atlantiss.DrugDealing.System.CURRENT_DESTINATION, true)
+                          SetBlipRouteColour(Atlantiss.DrugDealing.System.CURRENT_DESTINATION, 1)
+
+                          character = Atlantiss.DrugDealing.Characters[math.random(#Atlantiss.DrugDealing.Characters)]
+                          ShowAdvancedNotification(
+                              "Client",
+                              "~b~Dialogue",
+                              "J'ai besoin de " ..
+                              Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT .. " " .. Items[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG].label .. ".",
+                              character,
+                              1
+                          )
+                          Atlantiss.DrugDealing.StartTimebar()
+                      end
+                  else
+                      Citizen.Wait(1)
+                      playerPosition = LocalPlayer().Pos
+                      if
+                          (Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS ~= nil and
+                              GetDistanceBetweenCoords(
+                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.x,
+                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.y,
+                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.z,
+                                  playerPosition.x,
+                                  playerPosition.y,
+                                  playerPosition.z,
+                                  true
+                              ) < 75.0 and
+                              Atlantiss.DrugDealing.System.PED_HAS_BEEN_CREATED == false)
+                       then
+                          local pedModel = Atlantiss.DrugDealing.Peds[math.random(#Atlantiss.DrugDealing.Peds)]
+                          self:Debug(string.format("Ped model ^5%s^3 is selected", pedModel))
+                          Atlantiss.DrugDealing.System.PED_HAS_BEEN_CREATED = true
+
+                          Citizen.CreateThread(
+                              function()
+                                  Atlantiss.DrugDealing.System.NEXT_MISSION_PED = Atlantiss.World.Ped:Create(5, pedModel, vector3(Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.x, Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.y, Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.z), Atlantiss.DrugDealing.System.CURRENT_DESTINATION_HEADING)
+                                  self:Debug(string.format("Ped with model ^5%s^3 is now created", pedModel))
+                                  FreezeEntityPosition(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, true)
+                              end
+                          )
+                      end
+
+                      if
+                          (Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS ~= nil and
+                              GetDistanceBetweenCoords(
+                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.x,
+                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.y,
+                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.z,
+                                  playerPosition.x,
+                                  playerPosition.y,
+                                  playerPosition.z,
+                                  true
+                              ) < 3.0)
+                       then
+                          if (Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT > 0) then
+                              SetTextComponentFormat("STRING")
+                              AddTextComponentString(
+                                  "~r~Appuyez sur ~INPUT_CONTEXT~ pour vendre votre marchandise (Encore " ..
+                                  Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT .. " fois)"
+                              )
+                              DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+                          end
+                          if IsControlJustPressed(0, Keys["E"]) then
+                              if (Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT > 0) then
+                                  if (IsPedInAnyVehicle(LocalPlayer().Ped, true)) then
+                                      ShowAdvancedNotification(
+                                          "Client",
+                                          "~b~Dialogue",
+                                          "J'suis pas ton chien putain, descend au moins de ta caisse",
+                                          character,
+                                          1
+                                      )
+                                  else
+                                    
+                                    if (Atlantiss.DrugDealing.System.HAS_BEEN_CALLED == false) then
+                                      local random = math.random(1, 100)
+                                      Atlantiss.DrugDealing.System.HAS_BEEN_CALLED = true
+                                      if random > 85 then
+                                          Citizen.SetTimeout(
+                                              math.random(1500, 2500),
+                                              function()
+                                                math.randomseed(GetGameTimer() * math.random(12000, 17000))
+                                                msg = Atlantiss.DrugDealing.PolicePhrase[math.random(#Atlantiss.DrugDealing.PolicePhrase)]
+                                                self:Debug(string.format("Police is now called with message ^5%s^3", msg))
+                                                TriggerServerEvent("call:makeCall2", Atlantiss.DrugDealing:GetCopsJuridictionForZoneId(Atlantiss.DrugDealing.System.CURRENT_ZONE_ID), Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS, msg)
+                                              end
+                                          )
+                                      end
+                                    end
+                                      Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)  
+                                      prop_name = Atlantiss.DrugDealing.Props[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG]
+                                      local _prop = nil
+                                      local x, y, z = table.unpack(LocalPlayer().Pos)
+
+                                      SpawnObject(
+                                          prop_name,
+                                          {x = x, y = y, z = z},
+                                          function(prop)
+                                              _prop = prop
+                                              AttachEntityToEntity(
+                                                  prop,
+                                                  playerPed,
+                                                  GetPedBoneIndex(playerPed, 6286),
+                                                  0.12,
+                                                  -0.020,
+                                                  0.010,
+                                                  -85.0,
+                                                  175.0,
+                                                  0.0,
+                                                  true,
+                                                  true,
+                                                  false,
+                                                  true,
+                                                  1,
+                                                  true
+                                              )
+                                          end
+                                      )
+
+                                      TaskPlayAnim(LocalPlayer().Ped, "mp_common","givetake1_a",8.0,1.0,-1,49,0,0,0,0)
+                                      Wait(2000)
+                                      
+                                      Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)  
+                                      math.randomseed(GetGameTimer())
+                                      local xp = math.random(10, 25)
+                                      math.randomseed(GetGameTimer())
+                                      local price = 0
+                                      local object = Atlantiss.Inventory.Data[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][1]
+                                      local qualitySummary = ""
+
+                                      if (object ~= nil) then
+                                          local dataDrug = object.data
+                                          local quality = 10
+                                          qualitySummary = "~r~Merdique~w~"
+
+                                          price =
+                                              price +
+                                              math.random(
+                                                Atlantiss.DrugDealing.Prices[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][1],
+                                                Atlantiss.DrugDealing.Prices[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][2]
+                                              )
+
+                                          if (dataDrug ~= nil and type(dataDrug) == "table") then
+                                              if dataDrug.quality ~= nil then
+                                                  quality = dataDrug.quality
+                                              end
+                                          end
+
+                                          if (quality == 10) then
+                                            Atlantiss.DrugDealing.System.WARNING_GIVEN = Atlantiss.DrugDealing.System.WARNING_GIVEN + 1
+                                          end
+
+
+                                          if (quality > 10 and quality <= 35) then
+                                              typeQuality = "~r~Basse~w~"
+                                              Atlantiss.DrugDealing.System.WARNING_GIVEN = Atlantiss.DrugDealing.System.WARNING_GIVEN + 1
+                                              price = price + (price * ((quality / 100) / 2))
+                                          end
+
+                                          if (quality > 35 and quality < 50) then
+                                              qualitySummary = "~o~Moyenne~w~"
+                                              price = price + ((price*1.1) * ((quality / 100) / 2))
+                                          end
+
+                                          if (quality >= 50 and quality < 75) then
+                                              qualitySummary = "~y~Bonne~w~"
+                                              price = price + ((price*2.1) * ((quality / 100) / 2))
+                                          end
+
+                                          if (quality >= 75 and quality <= 99) then
+                                              qualitySummary = "~g~Exceptionnelle~w~"
+                                              price = price + ((price*2.1) * ((quality / 100) / 2))
+                                          end
+
+                                          if (quality == 100) then
+                                              qualitySummary = "~g~Inégalable~w~"
+                                              price = price + ((price*3.1) * ((quality / 100) / 2))
+                                          end
+
+                                          if (Atlantiss.DrugDealing:IsDealingInBoostedZone()) then
+                                            price = price + 5.0
+                                            ShowNotification(string.format("Deal en zone bonus : ~h~~g~%s~h~~s~", "+ 5$"))
+                                          end
+
+                                          self:Debug(string.format("Selling to PED with price ^5%s^3 and quality ^5%s^3", price, quality))
+
+                                          if (Atlantiss.DrugDealing.System.WARNING_GIVEN == 2 or Atlantiss.DrugDealing.System.WARNING_GIVEN == 7 and quality <= 35) then
+                                              ShowAdvancedNotification(
+                                                  "Client Mécontent",
+                                                  "~b~Dialogue",
+                                                  "~r~Man, arrete la ~h~basse qualité~h~, Sinon j'arrete de bosser avec toi~s~",
+                                                  character,
+                                                  1
+                                              )
+                                          end
+
+                                          if (Atlantiss.DrugDealing.System.WARNING_GIVEN > 10 and quality <= 35) then
+                                              math.randomseed(GetGameTimer() * math.random(5000, 90000))
+                                              local chanceToFight = math.random(0, 100)
+
+                                              if (chanceToFight >= 70 and Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT == 1) then
+                                                  ShowAdvancedNotification(
+                                                      "Client Mécontent",
+                                                      "~b~Dialogue",
+                                                      "~r~Tu fais chier avec ta drogue de ~h~basse qualité~h~!\nVa faire de la qualité bouffon~s~",
+                                                      character,
+                                                      1
+                                                  )
+
+                                                  math.randomseed(GetGameTimer() * math.random(5000, 90000))
+                                                  local weaponType = math.random(0, 100)
+
+                                                  if (weaponType >= 90) then
+                                                      GiveWeaponToPed(
+                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                          GetHashKey("WEAPON_CROWBAR"),
+                                                          -1,
+                                                          0,
+                                                          1
+                                                      )
+                                                  elseif (weaponType >= 85) then
+                                                      GiveWeaponToPed(
+                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                          GetHashKey("WEAPON_WRENCH"),
+                                                          -1,
+                                                          0,
+                                                          1
+                                                      )
+                                                  elseif (weaponType >= 80) then
+                                                      GiveWeaponToPed(
+                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                          GetHashKey("WEAPON_HAMMER"),
+                                                          -1,
+                                                          0,
+                                                          1
+                                                      )
+                                                  elseif (weaponType >= 75) then
+                                                      GiveWeaponToPed(
+                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                          GetHashKey("WEAPON_KNUCKLE"),
+                                                          -1,
+                                                          0,
+                                                          1
+                                                      )
+                                                  else
+                                                  end
+
+                                                  FreezeEntityPosition(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, false)
+                                                  TaskCombatPed(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, LocalPlayer().Ped, 0, 16)
+                                                  SetPedCombatAttributes(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 46, true)
+                                                  SetPedFleeAttributes(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 0, 0)
+                                                  SetPedAsEnemy(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, true)
+                                                  SetPedMaxHealth(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 900)
+                                                  SetPedAlertness(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 3)
+                                                  SetPedCombatRange(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 0)
+                                                  SetPedCombatMovement(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 3)
+                                                  Wait(10000)
+                                              end
+                                          end
+
+                                          Atlantiss.Inventory:RemoveFirstItem(Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG)
+                                      end
+
+                                      ShowAdvancedNotification(
+                                          "Client",
+                                          "~b~Dialogue",
+                                          "Merci mon pote !\n~g~+" .. price .."$\n~y~+" .. xp .. " points d'expérience~s~\nQualité : " .. qualitySummary,
+                                          character,
+                                          1
+                                      )
+
+                                      XNL_AddPlayerXP(math.floor(xp))
+                                      ClearPedSecondaryTask(LocalPlayer().Ped)
+
+                                      PlayAmbientSpeech2(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, "GENERIC_HI", "SPEECH_PARAMS_FORCE")
+                                      show = false
+
+                                      Wait(800)
+
+                                      ClearPedSecondaryTask(LocalPlayer().Ped)
+                                      FreezeEntityPosition(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, false)
+                                      
+                                      TriggerServerCallback(
+                                        "Atlantiss::SE::Money:Fake:AuthorizePayment", 
+                                        function(token)
+                                          TriggerServerEvent(Atlantiss.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
+                                          TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
+                                        end,
+                                        {}
+                                      )
+
+                                      Citizen.Wait(1200)
+                                      DeleteObject(_prop)
+                                      Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT - 1
+
+                                      if (Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT == 0) then
+                                          Wait(3000)
+                                          Atlantiss.DrugDealing:ResetAllComponentsForNextMission()
+                                      end
+                                  end
+                              else
+                                  Wait(3000)
+                                  Atlantiss.DrugDealing:ResetAllComponentsForNextMission()
+                              end
+                          end
+                      end
+                  end
+              end
+          end
+      end
+  )
+end
+
+function Atlantiss.DrugDealing:ResetAllComponentsForNextMission()
+  RemoveBlip(self.System.CURRENT_DESTINATION)
+  local tmpPed = self.System.NEXT_MISSION_PED
+  TaskSmartFleePed(tmpPed, LocalPlayer().Ped, 100.0, 15000, 0, 0)
+  TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = tmpPed, network_id = NetworkGetNetworkIdFromEntity(tmpPed), seconds = 15})
+
+  self.System.NEXT_MISSION_PED = nil
+  self.System.CURRENT_DESTINATION = nil
+  self.System.CURRENT_DESTINATION_COORDS = nil
+  self.System.NEXT_MISSION_WAIT = math.random(1000 * 10, 1000 * 50)
+  self.System.NEXT_MISSION_COUNT = math.random(1,2)
+  self.System.NEXT_MISSION_SELECTED_DRUG = nil
+  self.System.QUALITY_TYPES = nil
+  self.System.HAS_BEEN_CALLED = false
+  self.System.CURRENT_DESTINATION_HEADING = 0.0
+  self.System.COUNTER_STARTED = false
+  self.System.PED_HAS_BEEN_CREATED = false
+  ShowNotification("~y~Vous attendez un nouveau client. Veuillez patienter~s~")
+end
