@@ -1,6 +1,5 @@
 local discordButton = {
-    {index = 0, name = 'Rejoindre le discord', url = "https://discord.com/invite/atlantiss-rp"},
-    {index = 1, name = 'Aller sur le site', url = "https://atlantiss-rp.com/#accueil"}
+    {index = 0, name = 'Rejoindre le discord', url = "https://discord.com/invite/orarp"}
 }
 
 Citizen.CreateThread(
@@ -9,9 +8,9 @@ Citizen.CreateThread(
             SetDiscordRichPresenceAction(v.index, v.name, v.url)
         end
         while true do
-            SetDiscordAppId(687003657975103568)
-            SetDiscordRichPresenceAsset("logo-pp-discord")
-            SetDiscordRichPresenceAssetText("https://discord.gg/atlantiss-rp")
+            SetDiscordAppId(817747736854003742)
+            SetDiscordRichPresenceAsset("logoora")
+            SetDiscordRichPresenceAssetText("https://discord.gg/orarp")
 
             exports["Atlantiss"]:TriggerServerCallback(
                 "onlinePlayers:list",
