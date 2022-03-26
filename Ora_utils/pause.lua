@@ -4,7 +4,8 @@ end
 
 Citizen.CreateThread(function()
   local id = GetPlayerServerId(PlayerId())
-  AddTextEntry('FE_THDR_GTAO', '~g~Ora RP ~w~| https://discord.gg/orarp | ~b~ID : '..id)
+  exports["Ora"]:TriggerServerCallback("onlinePlayers:list",function(users)
+  AddTextEntry('FE_THDR_GTAO', '~g~Ora RP ~w~| https://discord.gg/orarp | ~b~ID : '..id..'| Joueurs en ligne' .. #users .. '/128' )
   AddTextEntry('PM_PANE_LEAVE', 'Retourner sur la liste des serveurs.')
   AddTextEntry('PM_PANE_QUIT', 'Quitter')
   AddTextEntry('PM_SCR_MAP', 'Carte')
