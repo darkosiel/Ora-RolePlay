@@ -467,7 +467,7 @@ RegisterNUICallback(
              then
                 randPickupAnim()
                 for i = 1, #current[2].item, 1 do
-                    exports['Ora']:AddItem(current[2].item[i])
+                    exports['Atlantiss']:AddItem(current[2].item[i])
                 end
                 exports["Ora"]:TriggerPlayerEvent("deletePickup", -1, current[1])
             elseif not exports["Ora"]:CanReceive(current[2].item[1].name, #current[2].item) then

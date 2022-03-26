@@ -36,7 +36,7 @@ local function OpenInventory()
         SetNuiFocus(true, true)
         SendNUIMessage({
             eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-            weapons = Atlantiss.Inventory:GetWeapons(), bars = exports['Ora_utils'].GetPlayerBars()
+            weapons = Atlantiss.Inventory:GetWeapons(), bars = exports['Atlantiss_utils'].GetPlayerBars()
         })
     end
 end
@@ -49,7 +49,7 @@ local function RefreshSto()
     SendNUIMessage({
         eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
         weapons = Atlantiss.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-        bars = exports['Ora_utils'].GetPlayerBars()
+        bars = exports['Atlantiss_utils'].GetPlayerBars()
     })
 end
 
@@ -74,12 +74,12 @@ local function Refresh()
         SendNUIMessage({
             eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
             weapons = Atlantiss.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-            bars = exports['Ora_utils'].GetPlayerBars()
+            bars = exports['Atlantiss_utils'].GetPlayerBars()
         })
     else
         SendNUIMessage({
             eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, weapons = Atlantiss.Inventory:GetWeapons(),
-            bars = exports['Ora_utils'].GetPlayerBars()
+            bars = exports['Atlantiss_utils'].GetPlayerBars()
         })
     end
 end
@@ -95,7 +95,7 @@ local function RefreshStealing(closestPly)
             SendNUIMessage({
                 eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
                 weapons = Atlantiss.Inventory:GetWeapons(), target = currPlayerInv, targWeight = {Atlantiss.Inventory:GetTargetWeight(currPlayerInv), 40}, snoupix = true,
-                bars = exports['Ora_utils'].GetPlayerBars()
+                bars = exports['Atlantiss_utils'].GetPlayerBars()
             })
         end,
         closestPly
@@ -114,7 +114,7 @@ local function OpenInvStorage()
     SendNUIMessage({
         eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
         weapons = Atlantiss.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-        bars = exports['Ora_utils'].GetPlayerBars()
+        bars = exports['Atlantiss_utils'].GetPlayerBars()
     })
 end
 
@@ -130,7 +130,7 @@ local function Fouilling(targetInv)
     SendNUIMessage({
         eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
         weapons = Atlantiss.Inventory:GetWeapons(), target = targetInv, targWeight = {Atlantiss.Inventory:GetTargetWeight(targetInv), 40}, snoupix = true,
-        bars = exports['Ora_utils'].GetPlayerBars()
+        bars = exports['Atlantiss_utils'].GetPlayerBars()
     })
 end
 
@@ -287,7 +287,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
                     if v ~= nil and v ~= false and v ~= 0 and GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), GetEntityCoords(GetPlayerPed(v)), true) < 6.5 then
                         loadAnimDict("mp_common")
                         TaskPlayAnim(PlayerPedId(), "mp_common", "givetake1_b", 5.0, 1.0, 0.8, 48, 0.0, 0, 0, 0)
-                        if IsAWeapon(data.itemData.name) then exports['Ora_utils']:sendME('* L\'individu donne une arme à un autre individu. *') end
+                        if IsAWeapon(data.itemData.name) then exports['Atlantiss_utils']:sendME('* L\'individu donne une arme à un autre individu. *') end
                         DeleteIfWeapon(data.itemData)
                         Atlantiss.Inventory:GiveItemToPlayer(v, data.itemData, data.amount)
                         Refresh()
@@ -349,7 +349,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
         for i=1, #toDrop do
             DeleteIfWeapon(toDrop[i])
         end
-        if IsAWeapon(data.itemData.name) then exports['Ora_utils']:sendME('* L\'individu jette une arme par terre. *') end
+        if IsAWeapon(data.itemData.name) then exports['Atlantiss_utils']:sendME('* L\'individu jette une arme par terre. *') end
         Atlantiss.Inventory:Throw(toDrop)
         Refresh()
         toDrop = {}

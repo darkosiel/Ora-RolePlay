@@ -2847,12 +2847,12 @@ function admin_no_clip()
         Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
         SetEntityVisible(ped, false, false)
         ShowNotification("Noclip ~g~activé")
-        exports['Ora_utils']:ToggleDrain(false)
+        exports['Atlantiss_utils']:ToggleDrain(false)
     else -- désactivé
         SetEntityInvincible(ped, false)
         Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
         ShowNotification("Noclip ~r~désactivé")
-        exports['Ora_utils']:ToggleDrain(true)
+        exports['Atlantiss_utils']:ToggleDrain(true)
     end
 end
 
