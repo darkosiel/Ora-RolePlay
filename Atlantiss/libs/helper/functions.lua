@@ -89,7 +89,7 @@ function getInventoryMaxWeight()
     return 40
 end
 
-local safeZone = (1.0 - GetSafeZoneSize()) * 0.5
+local safeZone = (1.0) * 0.5
 local timerBar = {
     baseX = 0.918,
     baseY = 0.984,

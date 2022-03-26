@@ -66,12 +66,12 @@ local webhookDispatch = {
   ["lssd"] = {url = "https://discord.com/api/webhooks/830064633720864790/iCCAWgUnONP-BYZTufHobwecTbKtvR_I_OUZpgOirLztHcdFpXuifQxeTOCPRUZ-MVSJ", color = 15105570}
 }
 
-Citizen.CreateThread(function()
-  local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
-  local extract = json.decode(loadFile)
-  allUnits = extract.allUnits
-  allUnitsDispatch = extract.allUnitsDispatch
-end)
+-- Citizen.CreateThread(function()
+--   local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
+--   local extract = json.decode(loadFile)
+--   allUnits = extract.allUnits
+--   allUnitsDispatch = extract.allUnitsDispatch
+-- end)
 
 RegisterServerCallback("police:GetAllUnits", function(source, callback, tble)
   if tble == "current" then
