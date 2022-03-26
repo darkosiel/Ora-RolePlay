@@ -152,9 +152,9 @@ AddEventHandler(
         if source == nil or source == 0 then return end
         local webhook = discordWBK[_webhook]
         
-        if (GetConvar("current_env", "dev") == "dev") then
-            webhook = discordWBK[29]
-        end
+        -- if (GetConvar("current_env", "dev") == "dev") then
+        --     webhook = discordWBK[29]
+        -- end
 
         local embeds = {}
         local color = 9936031
