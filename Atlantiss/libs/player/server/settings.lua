@@ -150,7 +150,7 @@ AddEventHandler(
                         _source,
                         14,
                         string.format(
-                            "Se connecte sur Atlantiss\n\n* Ping : %s ms\n* IP V4 : %s\n* SteamHex : %s\n* Licence : %s",
+                            "Se connecte sur Ora\n\n* Ping : %s ms\n* IP V4 : %s\n* SteamHex : %s\n* Licence : %s",
                             playerPing, ipv4, steam64, rockstar 
                         )
                         "info"
@@ -167,7 +167,7 @@ AddEventHandler(
                     _source,
                     14,
                     string.format(
-                        "Se connecte sur Atlantiss\n\n* Ping : %s ms\n* IP V4 : %s\n* SteamHex : %s\n* Licence : %s",
+                        "Se connecte sur Ora\n\n* Ping : %s ms\n* IP V4 : %s\n* SteamHex : %s\n* Licence : %s",
                         playerPing, ipv4, steam64, rockstar 
                     ),
                     "info"

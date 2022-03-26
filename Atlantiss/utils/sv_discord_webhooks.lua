@@ -58,9 +58,9 @@ AddEventHandler(
     function(_webhook, message, type)
         local webhook = discordWBK[_webhook]
 
-        if (GetConvar("current_env", "dev") == "dev") then
-            webhook = discordWBK[29]
-        end
+        -- if (GetConvar("current_env", "dev") == "dev") then
+        --     webhook = discordWBK[29]
+        -- end
 
         local fullname
         if (Atlantiss.Identity:HasFullname(source)) then
@@ -107,7 +107,7 @@ AddEventHandler(
             function(err, text, headers)
             end,
             "POST",
-            json.encode({username = "Atlantiss Logs", embeds = embeds}),
+            json.encode({username = "Ora Logs", embeds = embeds}),
             {["Content-Type"] = "application/json"}
         )
     end
@@ -152,9 +152,9 @@ AddEventHandler(
         if source == nil or source == 0 then return end
         local webhook = discordWBK[_webhook]
         
-        if (GetConvar("current_env", "dev") == "dev") then
-            webhook = discordWBK[29]
-        end
+        -- if (GetConvar("current_env", "dev") == "dev") then
+        --     webhook = discordWBK[29]
+        -- end
 
         local embeds = {}
         local color = 9936031
@@ -208,7 +208,7 @@ AddEventHandler(
             function(err, text, headers)
             end,
             "POST",
-            json.encode({username = "Atlantiss Logs", embeds = embeds}),
+            json.encode({username = "Ora Logs", embeds = embeds}),
             {["Content-Type"] = "application/json"}
         )
     end
