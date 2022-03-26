@@ -1,6 +1,6 @@
 Atlantiss = Atlantiss or {}
 
-Atlantiss.ServerName = "Atlantiss"
+Atlantiss.ServerName = "Ora"
 Atlantiss.Debug = false
 
 -- Module Manager
