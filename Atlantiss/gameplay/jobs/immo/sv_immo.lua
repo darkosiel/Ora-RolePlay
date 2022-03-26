@@ -15,7 +15,7 @@ AddEventHandler(
             }
         )
         Wait(500)
-        local result = MySQL.Sync.fetchAll("SELECT * FROM players_appartement WHERE name = '" .. bool.name .. "'")
+        local result = MySQL.Sync.fetchAll("SELECT * FROM players_appartement WHERE name = @name", { ['@name'] = bool.name})
         for i = 1, #result, 1 do
             result[i].time = os.date("%d/%m/%Y %X", result[i].time)
             TriggerClientEvent("add:Appart", -1, result[i])
