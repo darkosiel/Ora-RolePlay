@@ -120,7 +120,7 @@ function Atlantiss.NpcJobs.Bank:GenerateNewIban()
     )
 
     if (results ~= nil and results[1] ~= nil) then
-      newIban = "ATL-" .. math.random(100000,999999)
+      newIban = "ORA-" .. math.random(100000,999999)
     else 
       isValid = true
     end
