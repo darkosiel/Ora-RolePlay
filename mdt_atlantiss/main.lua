@@ -30,7 +30,7 @@ RegisterCommand("mdt", function(source, args, rawCommand)
     local dict = "amb@world_human_seat_wall_tablet@female@base"
     RequestAnimDict(dict)
 
-    exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+    exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
         function()
           tablet = CreateObject(GetHashKey('prop_cs_tablet'), GetEntityCoords(playerPed), 1, 1, 1)
           AttachEntityToEntity(tablet, playerPed, GetPedBoneIndex(playerPed, 28422), 0.0, 0.0, 0.03, 0.0, 0.0, 0.0, 1, 1, 0, 1, 0, 1)

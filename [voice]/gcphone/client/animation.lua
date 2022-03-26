@@ -58,7 +58,7 @@ function newPhoneProp()
         while not HasModelLoaded(modelHash) do Citizen.Wait(100) end
     end
 
-    exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+    exports["Atlantiss"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
         function()
             local ped = PlayerPedId()
             local x,y,z = table.unpack(GetEntityCoords(ped))

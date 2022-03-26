@@ -15,7 +15,7 @@ Citizen.CreateThread(
     function()
         while true do
             Citizen.Wait(100)
-            bag = exports["Ora"]:GetBags()
+            bag = exports["Atlantiss"]:GetBags()
         end
     end
 )
