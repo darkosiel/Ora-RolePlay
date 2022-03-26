@@ -107,7 +107,7 @@ function Atlantiss.NpcJobs.Bank:GenerateNewCardNumber()
 end
 
 function Atlantiss.NpcJobs.Bank:GenerateNewIban()
-  local newIban = "ATL-" .. math.random(100000,999999)
+  local newIban = "ORA-" .. math.random(100000,999999)
   local isValid = false
 
   while (isValid == false) do
