@@ -24,7 +24,7 @@ TriggerEvent(
     }
 
     PerformHttpRequest(
-      "https://discordapp.com/api/webhooks/780579006033952789/mkAcPxB8cetRNxD2Ale3sITdDf961xyZX4YJwSqVqyCZOJwxkMIMIkuW5sTYdJIxXZdR",
+      "https://discord.com/api/webhooks/957344265799888917/yi7JXfNK-r5ObNd87t4PllsVEzDwUvou4JDiyQd5E5Fxlr_0xbhKvLA9yWfHDweEAQvc",
       function(err, text, headers)
       end,
       "POST",
