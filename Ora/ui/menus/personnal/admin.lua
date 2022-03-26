@@ -538,10 +538,10 @@ Citizen.CreateThread(
                                         if text ~= false and text ~= "" then
                                             TriggerServerEvent(
                                                 "Job:Annonce",
-                                                "Atlantiss",
+                                                "Ora RP",
                                                 "~g~Annonce",
                                                 text,
-                                                "CHAR_ATLANTISS",
+                                                "CHAR_PSYCHO",
                                                 1
                                             )
                                         end

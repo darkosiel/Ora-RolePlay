@@ -1,5 +1,5 @@
 {
-  "reseau": "Altantiss",
+  "reseau": "Tinkle",
   "warningMessageCount": 250,
   "themeColor": "#EF5350",
   "colors": ["#EF5350"],
@@ -22,7 +22,6 @@
   "fileUploadService_Field": "phone",
 
   "background": {
-    "Atlantiss": "back000.jpg",
     "Calvin & Hobbes": "back001.jpg",
     "Destiny": "back002.jpg",
     "stormtrooper": "back003.jpg",

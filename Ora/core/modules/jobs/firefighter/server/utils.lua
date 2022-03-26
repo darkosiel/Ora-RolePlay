@@ -18,7 +18,7 @@ function sendMessage(source, text, customName)
 			}
 		)
 	else
-		print(("[Atlantiss Firefighter v%s] %s"):format(text))
+		print(("[Ora Firefighter v%s] %s"):format(text))
 	end
 end
 
