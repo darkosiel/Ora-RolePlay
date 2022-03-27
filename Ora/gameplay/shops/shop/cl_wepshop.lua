@@ -955,7 +955,7 @@ local function build()
             100,
             "shopui_title_gunclub",
             "shopui_title_gunclub"
-        )
+        ),
         RMenu.Add(
         "ammunation public",
         "weapons",
@@ -967,7 +967,7 @@ local function build()
             100,
             "shopui_title_gunclub",
             "shopui_title_gunclub"
-        )
+        ),
         RMenu.Add(
         "ammunation public",
         "munitions",
