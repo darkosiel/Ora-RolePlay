@@ -1070,6 +1070,34 @@ Citizen.CreateThread(
             --if IsControlJustPressed(0, Keys["E"]) then
             --end
             --end
+            if RageUI.Visible(RMenu:Get("ammunation public", "main public")) then
+                RageUI.DrawContent(
+                    {header = true, glare = false},
+                    function()
+                        RageUI.Button(
+                            "Armes",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation", "weapons")
+                        )
+                        RageUI.Button(
+                            "Armes blanches",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation", "blanches")
+                        )
+                        RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
+                    end,
+                    function()
+                    end
+                )
+            end
             if RageUI.Visible(RMenu:Get("ammunation", "main")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
@@ -1120,34 +1148,6 @@ Citizen.CreateThread(
                             end,
                             RMenu:Get("ammunation privé", "kevlars")
                         )
-                    end,
-                    function()
-                    end
-                )
-            end
-            if RageUI.Visible(RMenu:Get("ammunation public", "main public")) then
-                RageUI.DrawContent(
-                    {header = true, glare = false},
-                    function()
-                        RageUI.Button(
-                            "Armes",
-                            nil,
-                            {},
-                            true,
-                            function()
-                            end,
-                            RMenu:Get("ammunation", "weapons")
-                        )
-                        RageUI.Button(
-                            "Armes blanches",
-                            nil,
-                            {},
-                            true,
-                            function()
-                            end,
-                            RMenu:Get("ammunation", "blanches")
-                        )
-                        RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
                     end,
                     function()
                     end
