@@ -1,7 +1,7 @@
-Atlantiss.Jobs.Casino.Shops = {}
-Atlantiss.Jobs.Casino.Shops.CurrentZone = nil
-Atlantiss.Jobs.Casino.Drinks = {}
-Atlantiss.Jobs.Casino.Shops.Peds = { -- s_m_y_casino_01 s_f_y_casino_01
+Ora.Jobs.Casino.Shops = {}
+Ora.Jobs.Casino.Shops.CurrentZone = nil
+Ora.Jobs.Casino.Drinks = {}
+Ora.Jobs.Casino.Shops.Peds = { -- s_m_y_casino_01 s_f_y_casino_01
 	["Casino Bar 1"] = {
 		Pos = {x = 939.93, y = 27.56, z = 71.83 - 0.98, a = 326.70},
 		Ped = {
@@ -24,7 +24,7 @@ Atlantiss.Jobs.Casino.Shops.Peds = { -- s_m_y_casino_01 s_f_y_casino_01
 		Bar = true
 	}
 }
-Atlantiss.Jobs.Casino.DrinksPrices = {
+Ora.Jobs.Casino.DrinksPrices = {
 	["beer"] = 50,
 	["white_wine"] = 50,
 	["high_quality_wine"] = 50,
@@ -46,12 +46,12 @@ local function TableLength(t)
 	return count
 end
 
-function Atlantiss.Jobs.Casino.INIT()
+function Ora.Jobs.Casino.INIT()
 	Citizen.CreateThread(
 		function()
-			while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+			while (Ora.Player.HasLoaded == false) do Wait(500) end
 		
-			if (Atlantiss.Identity.Job:GetName() == "casino") then
+			if (Ora.Identity.Job:GetName() == "casino") then
 				KeySettings:Add(
 					"keyboard",
 					"F6",
@@ -60,7 +60,7 @@ function Atlantiss.Jobs.Casino.INIT()
 					end,
 					"casino"
 				)
-			elseif (Atlantiss.Identity.Orga:GetName() == "casino") then
+			elseif (Ora.Identity.Orga:GetName() == "casino") then
 				KeySettings:Add(
 					"keyboard",
 					"F7",
@@ -112,10 +112,10 @@ function Atlantiss.Jobs.Casino.INIT()
 					)
 				end
 
-				if (Atlantiss.Identity.Job:GetName() == "casino" and Atlantiss.Identity.Job.ChangingJob) then
+				if (Ora.Identity.Job:GetName() == "casino" and Ora.Identity.Job.ChangingJob) then
 					KeySettings:Clear("keyboard", "F6", "casino")
 					break
-				elseif (Atlantiss.Identity.Orga:GetName() == "casino" and Atlantiss.Identity.Orga.ChangingJob) then
+				elseif (Ora.Identity.Orga:GetName() == "casino" and Ora.Identity.Orga.ChangingJob) then
 					KeySettings:Clear("keyboard", "F7", "casino")
 					break
 				end
@@ -124,39 +124,39 @@ function Atlantiss.Jobs.Casino.INIT()
 	)
 end
 
-function Atlantiss.Jobs.Casino.Shops.EnterZone(zone)
-	while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
+function Ora.Jobs.Casino.Shops.EnterZone(zone)
+	while (Ora.Player.HasLoaded == false) do Wait(50) end
 
 	Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-	KeySettings:Add("keyboard", "E", Atlantiss.Jobs.Casino.Shops.Toggle, "Shop")
-	KeySettings:Add("controller", 46, Atlantiss.Jobs.Casino.Shops.Toggle, "Shop")
-	Atlantiss.Jobs.Casino.Shops.Current = zone
+	KeySettings:Add("keyboard", "E", Ora.Jobs.Casino.Shops.Toggle, "Shop")
+	KeySettings:Add("controller", 46, Ora.Jobs.Casino.Shops.Toggle, "Shop")
+	Ora.Jobs.Casino.Shops.Current = zone
 end
 
-function Atlantiss.Jobs.Casino.Shops.ExitZone(zone)
-	if Atlantiss.Jobs.Casino.Shops.Current ~= nil then
+function Ora.Jobs.Casino.Shops.ExitZone(zone)
+	if Ora.Jobs.Casino.Shops.Current ~= nil then
 		Hint:RemoveAll()
-		if RageUI.Visible(RMenu:Get("shops", Atlantiss.Jobs.Casino.Shops.Current)) then
-			RageUI.Visible(RMenu:Get("shops", Atlantiss.Jobs.Casino.Shops.Current), false)
+		if RageUI.Visible(RMenu:Get("shops", Ora.Jobs.Casino.Shops.Current)) then
+			RageUI.Visible(RMenu:Get("shops", Ora.Jobs.Casino.Shops.Current), false)
 		end
 		KeySettings:Clear("keyboard", "E", "Shop")
 		KeySettings:Clear("controller", 46, "Shop")
-		Atlantiss.Jobs.Casino.Shops.Current = nil
-		Atlantiss.Jobs.Casino.Drinks = {}
+		Ora.Jobs.Casino.Shops.Current = nil
+		Ora.Jobs.Casino.Drinks = {}
 	end
 end
 
-function Atlantiss.Jobs.Casino.Shops.Toggle()
-	RageUI.Visible(RMenu:Get("shops", Atlantiss.Jobs.Casino.Shops.Current), not RageUI.Visible(RMenu:Get("shops", Atlantiss.Jobs.Casino.Shops.Current)))
+function Ora.Jobs.Casino.Shops.Toggle()
+	RageUI.Visible(RMenu:Get("shops", Ora.Jobs.Casino.Shops.Current), not RageUI.Visible(RMenu:Get("shops", Ora.Jobs.Casino.Shops.Current)))
 end
 
 
 Citizen.CreateThread(
 	function()
-		while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
+		while (Ora.Player.HasLoaded == false) do Wait(50) end
 
-		for name, v in pairs(Atlantiss.Jobs.Casino.Shops.Peds) do
-			Zone:Add(v.Pos, Atlantiss.Jobs.Casino.Shops.EnterZone, Atlantiss.Jobs.Casino.Shops.ExitZone, name, 2.5)
+		for name, v in pairs(Ora.Jobs.Casino.Shops.Peds) do
+			Zone:Add(v.Pos, Ora.Jobs.Casino.Shops.EnterZone, Ora.Jobs.Casino.Shops.ExitZone, name, 2.5)
 			Ped:Add(v.Ped.name, v.Ped.model, v.Pos, nil)
 			RMenu.Add("shops", name, RageUI.CreateMenu(nil, "Objets disponibles", 10, 100, "shopui_title_conveniencestore", "shopui_title_conveniencestore"))
 		end
@@ -164,12 +164,12 @@ Citizen.CreateThread(
 		while true do
 			Wait(0)
 
-			if (Atlantiss.Jobs.Casino.Shops.Current ~= nil) then
-				if (RageUI.Visible(RMenu:Get("shops", Atlantiss.Jobs.Casino.Shops.Current)) and Atlantiss.Jobs.Casino.Shops.Peds[Atlantiss.Jobs.Casino.Shops.Current].Bar) then
+			if (Ora.Jobs.Casino.Shops.Current ~= nil) then
+				if (RageUI.Visible(RMenu:Get("shops", Ora.Jobs.Casino.Shops.Current)) and Ora.Jobs.Casino.Shops.Peds[Ora.Jobs.Casino.Shops.Current].Bar) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							if (TableLength(Atlantiss.Jobs.Casino.Drinks) == 0) then
+							if (TableLength(Ora.Jobs.Casino.Drinks) == 0) then
 								RageUI.Button(
 									"~b~Demander au serveur ce qu'il propose",
 									nil,
@@ -179,9 +179,9 @@ Citizen.CreateThread(
 										if Selected then
 											RageUI.Popup({message = "~y~Très bien, merci de patienter."})
 											TriggerServerCallback(
-												"Atlantiss::SE::Job::Casino::GetDrinksStored",
+												"Ora::SE::Job::Casino::GetDrinksStored",
 												function(drinks)
-													Atlantiss.Jobs.Casino.Drinks = drinks
+													Ora.Jobs.Casino.Drinks = drinks
 												end,
 												true
 											)
@@ -189,11 +189,11 @@ Citizen.CreateThread(
 									end
 								)
 							else
-								for name, nb in pairs(Atlantiss.Jobs.Casino.Drinks) do
+								for name, nb in pairs(Ora.Jobs.Casino.Drinks) do
 									RageUI.Button(
 										Items[name].label,
 										nil,
-										{RightLabel = "$"..Atlantiss.Jobs.Casino.DrinksPrices[name]},
+										{RightLabel = "$"..Ora.Jobs.Casino.DrinksPrices[name]},
 										true,
 										function(_, _, Selected)
 											if Selected then
@@ -205,11 +205,11 @@ Citizen.CreateThread(
 													end
 
 													TriggerServerCallback(
-														"Atlantiss::SE::Job::Casino::GetDrinksStored",
+														"Ora::SE::Job::Casino::GetDrinksStored",
 														function(drinks)
-															Atlantiss.Jobs.Casino.Drinks = drinks
+															Ora.Jobs.Casino.Drinks = drinks
 															
-															if (not Atlantiss.Jobs.Casino.Drinks[name]) then
+															if (not Ora.Jobs.Casino.Drinks[name]) then
 																RageUI.CloseAll()
 															end
 														end
@@ -220,19 +220,19 @@ Citizen.CreateThread(
 															name = name,
 															data = {},
 															afterPayment = function()
-																TriggerServerEvent("entreprise:Add", "casino", Atlantiss.Jobs.Casino.DrinksPrices[name] * count)
-																TriggerServerEvent("Atlantiss::SE::Job::Casino::RemoveFromStorage", name, count)
+																TriggerServerEvent("entreprise:Add", "casino", Ora.Jobs.Casino.DrinksPrices[name] * count)
+																TriggerServerEvent("Ora::SE::Job::Casino::RemoveFromStorage", name, count)
 
-																if (Atlantiss.Jobs.Casino.Drinks[name] - count <= 0) then
-																	Atlantiss.Jobs.Casino.Drinks[name] = nil
+																if (Ora.Jobs.Casino.Drinks[name] - count <= 0) then
+																	Ora.Jobs.Casino.Drinks[name] = nil
 																else
-																	Atlantiss.Jobs.Casino.Drinks[name] = Atlantiss.Jobs.Casino.Drinks[name] - count
+																	Ora.Jobs.Casino.Drinks[name] = Ora.Jobs.Casino.Drinks[name] - count
 																end
 															end
 														},
-														price = Atlantiss.Jobs.Casino.DrinksPrices[name] * count,
+														price = Ora.Jobs.Casino.DrinksPrices[name] * count,
 														count = count,
-														title = string.format("%s - %s", Atlantiss.Jobs.Casino.DrinksPrices[name], Atlantiss.Jobs.Casino.Shops.Current),
+														title = string.format("%s - %s", Ora.Jobs.Casino.DrinksPrices[name], Ora.Jobs.Casino.Shops.Current),
 														fct = function() end
 													}
 

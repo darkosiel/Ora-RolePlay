@@ -6,7 +6,7 @@ AddEventHandler("skin:AddMySkin", function(p)
     MySQL.Async.execute(
         'INSERT INTO players_appearance (uuid,face,outfit,tattoo) VALUES(@uuid,@face,@outfit,@tattoo)',
         {
-            ['@uuid']   = Atlantiss.Identity:GetUuid(source),
+            ['@uuid']   = Ora.Identity:GetUuid(source),
             ['@face'] = face,
             ['@outfit'] = outfit,
             ['@tattoo'] = {},
@@ -21,7 +21,7 @@ AddEventHandler("tatoo:add", function(data)
     MySQL.Async.execute(
         'UPDATE players_appearance SET tattoo=@tattoo where uuid=@uid',
         {
-            ['@uid']   = Atlantiss.Identity:GetUuid(source),
+            ['@uid']   = Ora.Identity:GetUuid(source),
             ['@tattoo'] = json.encode(data)
         }
     )

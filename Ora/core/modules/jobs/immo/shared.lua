@@ -1,10 +1,10 @@
-Atlantiss.Jobs.Immo = {}
-Atlantiss.Jobs.Immo.Raids = {}
-Atlantiss.Jobs.Immo.RaidFinishTime = 2700000 -- 45 min
-Atlantiss.Jobs.Immo.TimeToRelaunchRaid = 600000 -- 10 min
-Atlantiss.Jobs.Immo.Tax = 1.35 -- Marge
+Ora.Jobs.Immo = {}
+Ora.Jobs.Immo.Raids = {}
+Ora.Jobs.Immo.RaidFinishTime = 2700000 -- 45 min
+Ora.Jobs.Immo.TimeToRelaunchRaid = 600000 -- 10 min
+Ora.Jobs.Immo.Tax = 1.35 -- Marge
 
-Atlantiss.Jobs.Immo.SafeWeight = {
+Ora.Jobs.Immo.SafeWeight = {
     [1] = 200,
     [2] = 350,
     [3] = 500,
@@ -19,7 +19,7 @@ Atlantiss.Jobs.Immo.SafeWeight = {
     [12] = 10000,
 }
 
-Atlantiss.Jobs.Immo.Garage = {
+Ora.Jobs.Immo.Garage = {
     [1] = 2,
     [2] = 6,
     [3] = 10,
@@ -28,7 +28,7 @@ Atlantiss.Jobs.Immo.Garage = {
     [6] = 64,
 }
 
-Atlantiss.Jobs.Immo.Interiors = { 
+Ora.Jobs.Immo.Interiors = { 
     {
         coords = {x = 1087.69, y = -3095.56, z = -36.5},
         r = {x = -200.0, y = -180.0, z = -57.39},
@@ -222,59 +222,59 @@ Atlantiss.Jobs.Immo.Interiors = {
     },
 }
 
-Atlantiss.Jobs.Immo.ErrorMessages = {}
-Atlantiss.Jobs.Immo.Menu = {}
-Atlantiss.Jobs.Immo.Menu.Property = {}
+Ora.Jobs.Immo.ErrorMessages = {}
+Ora.Jobs.Immo.Menu = {}
+Ora.Jobs.Immo.Menu.Property = {}
 
-function Atlantiss.Jobs.Immo:GetJobName()
+function Ora.Jobs.Immo:GetJobName()
   return "Immo"
 end
 
-function Atlantiss.Jobs.Immo:GetInteriorById(id)
-  if (Atlantiss.Jobs.Immo:GetInteriors()[id] ~= nil) then
-      return Atlantiss.Jobs.Immo:GetInteriors()[id]
+function Ora.Jobs.Immo:GetInteriorById(id)
+  if (Ora.Jobs.Immo:GetInteriors()[id] ~= nil) then
+      return Ora.Jobs.Immo:GetInteriors()[id]
   end
 
   return {}
 end
 
-function Atlantiss.Jobs.Immo:GetAvailableWeight()
+function Ora.Jobs.Immo:GetAvailableWeight()
     local labels = {}
-    for key, value in pairs(Atlantiss.Jobs.Immo.SafeWeight) do
+    for key, value in pairs(Ora.Jobs.Immo.SafeWeight) do
         table.insert(labels, value .. " KG")
     end
 
     return labels
 end
 
-function Atlantiss.Jobs.Immo:GetAvailableGaragePlaces()
+function Ora.Jobs.Immo:GetAvailableGaragePlaces()
     local labels = {}
-    for key, value in pairs(Atlantiss.Jobs.Immo.Garage) do
+    for key, value in pairs(Ora.Jobs.Immo.Garage) do
         table.insert(labels, value .. " Places")
     end
 
     return labels
 end
 
-function Atlantiss.Jobs.Immo:GetInteriorLabels()
+function Ora.Jobs.Immo:GetInteriorLabels()
     local labels = {}
-    for key, value in pairs(Atlantiss.Jobs.Immo:GetInteriors()) do
+    for key, value in pairs(Ora.Jobs.Immo:GetInteriors()) do
         table.insert(labels, value.label)
     end
 
     return labels
 end
 
-function Atlantiss.Jobs.Immo:GetInteriors()
+function Ora.Jobs.Immo:GetInteriors()
   local interiors = {}
-  for key, value in pairs(Atlantiss.Jobs.Immo.Interiors) do
+  for key, value in pairs(Ora.Jobs.Immo.Interiors) do
     table.insert(interiors, value)
   end
 
   return interiors
 end
 
-function Atlantiss.Jobs.Immo:GetSafeCapacityForIndex(safeIndex)
+function Ora.Jobs.Immo:GetSafeCapacityForIndex(safeIndex)
     if (self.SafeWeight[safeIndex] ~= nil) then
         return self.SafeWeight[safeIndex] .. "KG"
     end
@@ -282,7 +282,7 @@ function Atlantiss.Jobs.Immo:GetSafeCapacityForIndex(safeIndex)
     return "200KG"
 end
 
-function Atlantiss.Jobs.Immo:GetParkingPlaceCountForIndex(parkingPlaceIndex)
+function Ora.Jobs.Immo:GetParkingPlaceCountForIndex(parkingPlaceIndex)
     if (self.Garage[parkingPlaceIndex] ~= nil) then
         return self.Garage[parkingPlaceIndex]
     end
@@ -290,15 +290,15 @@ function Atlantiss.Jobs.Immo:GetParkingPlaceCountForIndex(parkingPlaceIndex)
     return 2
 end
 
-function Atlantiss.Jobs.Immo:GetLastValidationMessages()
+function Ora.Jobs.Immo:GetLastValidationMessages()
     return self.ErrorMessages
 end
 
-function Atlantiss.Jobs.Immo:SetLastValidationMessages(messages)
+function Ora.Jobs.Immo:SetLastValidationMessages(messages)
     self.ErrorMessages = messages
 end
 
-function Atlantiss.Jobs.Immo:IsNewAppartValid(data)
+function Ora.Jobs.Immo:IsNewAppartValid(data)
     local errorMessages = {}
     self:SetLastValidationMessages(errorMessages)
     local isValid = true
@@ -342,11 +342,11 @@ function Atlantiss.Jobs.Immo:IsNewAppartValid(data)
     return isValid
 end
 
-function Atlantiss.Jobs.Immo:GetCurrent()
+function Ora.Jobs.Immo:GetCurrent()
     return self.Current
   end
   
-  function Atlantiss.Jobs.Immo:ResetCurrent()
+  function Ora.Jobs.Immo:ResetCurrent()
     self.Current = {
         ENTRY_POS = nil,
         GARAGE_POS = nil,
@@ -364,12 +364,12 @@ function Atlantiss.Jobs.Immo:GetCurrent()
     }
   end
   
-  Atlantiss.Jobs.Immo.Current = Atlantiss.Jobs.Immo:ResetCurrent()
+  Ora.Jobs.Immo.Current = Ora.Jobs.Immo:ResetCurrent()
 
-function Atlantiss.Jobs.Immo:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Atlantiss.Jobs:GetModuleName(), Atlantiss.Jobs.Immo:GetJobName(), message))
+function Ora.Jobs.Immo:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Ora.Jobs:GetModuleName(), Ora.Jobs.Immo:GetJobName(), message))
   end
 end
 
-Atlantiss.Jobs:Register(Atlantiss.Jobs.Immo:GetJobName())
+Ora.Jobs:Register(Ora.Jobs.Immo:GetJobName())

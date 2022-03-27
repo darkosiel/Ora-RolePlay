@@ -274,7 +274,7 @@ Citizen.CreateThread(function()
        --     --(json.encode((PlySkin.hair.style)))
             RageUI.DrawContent({ header = true, glare = false}, function()    
                 hairstyles = {} 
-                if Atlantiss.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
+                if Ora.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
                     for i = 1, 23,1 do
                         hairstyles[i] = GetLabelText("CC_M_HS_"..i-1) 
                     end

@@ -74,7 +74,7 @@ end
 Citizen.CreateThread(
     function()
         while true do
-            local count = Atlantiss.Inventory:GetItemCount(ATMRobberyConfig["itemRequired"])
+            local count = Ora.Inventory:GetItemCount(ATMRobberyConfig["itemRequired"])
             if count ~= nil and count > 0 then 
                 if IsNearATM() then
                     Citizen.Wait(5)
@@ -115,7 +115,7 @@ function startRobbery()
         function(bool)
             if bool == true then
 
-                TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+                TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
                     function(numberOfConnectedCops)
                         if numberOfConnectedCops >= ATMRobberyConfig["policeRequired"] then
                             currentlyRobbering = true
@@ -127,7 +127,7 @@ function startRobbery()
                                 LocalPlayer().Pos.z
                             )
                             TriggerServerEvent(
-                                "atlantiss:sendToDiscord",
+                                "Ora:sendToDiscord",
                                 9,
                                 "[" ..
                                     entityZoneName ..
@@ -136,7 +136,7 @@ function startRobbery()
                                 "info"
                             )
 
-                            Atlantiss.Inventory:RemoveFirstItem("stickybomb")
+                            Ora.Inventory:RemoveFirstItem("stickybomb")
 
                             local nearestATM = getNearestATMObject()
                             local ped = LocalPlayer().Ped
@@ -186,7 +186,7 @@ function startRobbery()
                             ClearPedTasks(ped)
                             SetEntityHeading(ped, GetEntityHeading(nearestATM))
                             thermalentity =
-                            Atlantiss.World.Object:Create(
+                            Ora.World.Object:Create(
                                 "hei_prop_heist_thermite_flash",
                                 (GetEntityCoords(nearestATM).z + GetEntityCoords(nearestATM).y +
                                     GetEntityCoords(nearestATM).z) -
@@ -194,7 +194,7 @@ function startRobbery()
                                 true,
                                 true
                             )
-                            local bagProp4 = Atlantiss.World.Object:Create("p_ld_heist_bag_s_pro_o", coords - 20, true, false)
+                            local bagProp4 = Ora.World.Object:Create("p_ld_heist_bag_s_pro_o", coords - 20, true, false)
                             SetEntityAsMissionEntity(thermalentity, true, true)
                             SetEntityAsMissionEntity(bagProp4, true, true)
                             termitacolocando = true
@@ -270,7 +270,7 @@ function startRobbery()
                             SetPedComponentVariation(LocalPlayer().Ped, 5, 40, 0, 0)
                             DeleteEntity(thermalentity)
                             local thermalentityEntity =
-                            Atlantiss.World.Object:Create(
+                            Ora.World.Object:Create(
                                 "hei_prop_heist_thermite_flash",
                                 (GetEntityCoords(nearestATM).z + 50 + GetEntityCoords(nearestATM).y +
                                     GetEntityCoords(nearestATM).z) -
@@ -338,7 +338,7 @@ function startRobbery()
                                 )
                                 if moneySpawnCounter >= 0 then
                                     moneyObjectRoberry =
-                                    Atlantiss.World.Object:CreateObjectNoOffset(
+                                    Ora.World.Object:CreateObjectNoOffset(
                                         "hei_prop_heist_cash_pile",
                                         GetEntityCoords(nearestATM).x * 1.0,
                                         GetEntityCoords(nearestATM).y + Random(0.5, 2.5) * 1.0,
@@ -402,10 +402,10 @@ function startRobbery()
                                                 ShowNotification("~g~+" .. t .. "$")
                                                 
                                                 TriggerServerCallback(
-                                                    "Atlantiss::SE::Money:Fake:AuthorizePayment",
+                                                    "Ora::SE::Money:Fake:AuthorizePayment",
                                                     function(token)
-                                                      TriggerServerEvent(Atlantiss.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Explosion ATM", LEGIT = false})
-                                                      TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", t, false)
+                                                      TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Explosion ATM", LEGIT = false})
+                                                      TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", t, false)
                                                     end,
                                                     {}
                                                   )

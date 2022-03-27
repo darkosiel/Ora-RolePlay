@@ -1,14 +1,14 @@
-Atlantiss.Identity.Job = {}
+Ora.Identity.Job = {}
 
-function Atlantiss.Identity.Job:GetModuleName()
+function Ora.Identity.Job:GetModuleName()
   return "Job"
 end
 
-function Atlantiss.Identity.Job:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Identity.Job:GetModuleName(), message))
+function Ora.Identity.Job:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Identity.Job:GetModuleName(), message))
   end
 end
 
 
-Atlantiss.Identity:Register(Atlantiss.Identity.Job:GetModuleName())
+Ora.Identity:Register(Ora.Identity.Job:GetModuleName())

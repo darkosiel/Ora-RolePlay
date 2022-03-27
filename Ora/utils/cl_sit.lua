@@ -167,7 +167,7 @@ local function sit(object)
 	local objloc = GetEntityCoords(object)
 	local sitData = { x = objloc.x, y = objloc.y, z = objloc.z + (objinfo.verticalOffset or .0) - .15, a = GetEntityHeading(object) + 180.0 }
 
-	TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+	TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
 		function()
 			fakeEnt = CreateObject(GetEntityModel(object), objloc, true, 0, 0)
 			--PlaceObjectOnGroundProperly(fakeEnt)
@@ -213,10 +213,10 @@ Citizen.CreateThread(function()
                 end
             end
             if closestObj[2] == 3 then
-                if Atlantiss.Inventory:CanReceive(closestObj.it,1) then
+                if Ora.Inventory:CanReceive(closestObj.it,1) then
                     doAnim({"anim@mp_radio@high_apment", "button_press_bedroom"}, true)
                     items = {name=closestObj.it,data={}}
-                    Atlantiss.Inventory:AddItem(items)
+                    Ora.Inventory:AddItem(items)
                     TriggerServerEvent("money:Pay", 10 )
                     ShowNotification("~g~Vous avez payé 10$ pour 1" .. Items[closestObj.it].label)
                 end

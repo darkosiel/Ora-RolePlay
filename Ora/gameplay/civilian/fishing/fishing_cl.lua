@@ -23,7 +23,7 @@ Citizen.CreateThread(
                     DrawText3D(pos["x"], pos["y"], pos["z"] + 0.98, "[E] " .. pos["exercise"])
                     if IsControlJustPressed(0, Keys["E"]) then
                         fishRod = nil
-                        if (Atlantiss.Inventory:GetItemCount("fishingrod") > 0) then
+                        if (Ora.Inventory:GetItemCount("fishingrod") > 0) then
                             startExerciseFishing(ConfigFishing.Exercises[pos["exercise"]], pos)
                         else
                             ShowNotification(
@@ -45,7 +45,7 @@ Citizen.CreateThread(
 
 function AttachEntityToPed(prop, bone_ID, x, y, z, RotX, RotY, RotZ)
     BoneID = GetPedBoneIndex(LocalPlayer().Ped, bone_ID)
-    obj = Atlantiss.World.Object:Create(prop, LocalPlayer().Pos, true, true, true)
+    obj = Ora.World.Object:Create(prop, LocalPlayer().Pos, true, true, true)
     vX, vY, vZ = table.unpack(LocalPlayer().Pos)
     xRot, yRot, zRot = table.unpack(GetEntityRotation(LocalPlayer().Ped, 2))
     AttachEntityToEntity(obj, LocalPlayer().Ped, BoneID, x, y, z, RotX, RotY, RotZ, false, false, false, false, 2, true)
@@ -164,11 +164,11 @@ function startExerciseFishing(animInfo, pos)
                     local chanceToHaveAFish = math.random(0, 100)
 
                     if (chanceToHaveAFish <= 90) then
-                        local itemWin = Atlantiss.Utils:GetRandomValueFromDropTable(pos["item"])
+                        local itemWin = Ora.Utils:GetRandomValueFromDropTable(pos["item"])
                         local chanceToWinTheFish = math.random(0, 100)
 
-                        if Atlantiss.Inventory:CanReceive(itemWin.name, 1) then
-                            Atlantiss.Inventory:AddItem({name = itemWin.name, data = {weight = math.random(1, 5)}})
+                        if Ora.Inventory:CanReceive(itemWin.name, 1) then
+                            Ora.Inventory:AddItem({name = itemWin.name, data = {weight = math.random(1, 5)}})
                             ShowNotification(
                                 "Vous avez récupéré ~b~1~w~ ~g~" .. Items[itemWin.name].label .. "~w~."
                             )

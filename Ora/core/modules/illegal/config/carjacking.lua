@@ -1,4 +1,4 @@
-Atlantiss.Illegal.Carjacking = Atlantiss.Illegal.Carjacking or {}
+Ora.Illegal.Carjacking = Ora.Illegal.Carjacking or {}
 
 local carJackingConfig = {
   START_POSITIONS = {
@@ -102,10 +102,10 @@ local carJackingConfig = {
   }
 }
 
-function Atlantiss.Illegal.Carjacking:InitializeConfig()
-    Atlantiss.Config:SetDataCollection("Atlantiss:Illegal:Config:Carjacking", carJackingConfig)
+function Ora.Illegal.Carjacking:InitializeConfig()
+    Ora.Config:SetDataCollection("Ora:Illegal:Config:Carjacking", carJackingConfig)
 end
 
-function Atlantiss.Illegal.Carjacking:GetConfig()
-  return Atlantiss.Config:GetDataCollection("Atlantiss:Illegal:Config:Carjacking")
+function Ora.Illegal.Carjacking:GetConfig()
+  return Ora.Config:GetDataCollection("Ora:Illegal:Config:Carjacking")
 end

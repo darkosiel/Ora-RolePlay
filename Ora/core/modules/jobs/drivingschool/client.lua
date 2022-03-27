@@ -1,18 +1,18 @@
-Atlantiss.Jobs.DrivingSchool.Licences = {"Voiture", "Moto", "Poid-lourd"}
-Atlantiss.Jobs.DrivingSchool.LicencesIndex = 1
-Atlantiss.Jobs.DrivingSchool.Trailer = nil
+Ora.Jobs.DrivingSchool.Licences = {"Voiture", "Moto", "Poid-lourd"}
+Ora.Jobs.DrivingSchool.LicencesIndex = 1
+Ora.Jobs.DrivingSchool.Trailer = nil
 
 
 RMenu.Add("drivingschool", "main", RageUI.CreateMenu("Auto-école", "Actions disponibles", 10, 100))
 RMenu.Add("drivingschool", "licences", RageUI.CreateSubMenu(RMenu:Get("drivingschool", "main"), "Auto-école", "Liste des permis", 10, 100))
 
 
-function Atlantiss.Jobs.DrivingSchool.INIT()
+function Ora.Jobs.DrivingSchool.INIT()
 	Citizen.CreateThread(
 		function()
-			while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+			while (Ora.Player.HasLoaded == false) do Wait(500) end
 		
-			if (Atlantiss.Identity.Job:GetName() == "drivingschool") then
+			if (Ora.Identity.Job:GetName() == "drivingschool") then
 				KeySettings:Add(
 					"keyboard",
 					"F6",
@@ -21,7 +21,7 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 					end,
 					"drivingschool"
 				)
-			elseif (Atlantiss.Identity.Orga:GetName() == "drivingschool") then
+			elseif (Ora.Identity.Orga:GetName() == "drivingschool") then
 				KeySettings:Add(
 					"keyboard",
 					"F7",
@@ -73,13 +73,13 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 
 							RageUI.List(
 								"Attribuer un permis de conduire",
-								Atlantiss.Jobs.DrivingSchool.Licences,
-								Atlantiss.Jobs.DrivingSchool.LicencesIndex,
+								Ora.Jobs.DrivingSchool.Licences,
+								Ora.Jobs.DrivingSchool.LicencesIndex,
 								nil,
 								{},
 								true,
 								function(Hovered, Active, Selected, Index)
-									Atlantiss.Jobs.DrivingSchool.LicencesIndex = Index
+									Ora.Jobs.DrivingSchool.LicencesIndex = Index
 
 									if (Active) then
 										HoverPlayer()
@@ -90,17 +90,17 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 
 										if (PlayerID) then
 											TriggerServerCallback(
-												"Atlantiss::SE::Identity:GetIdentity",
+												"Ora::SE::Identity:GetIdentity",
 												function(PlayerIdentity)
 													PlayerIdentity.serial = math.random(111111111, 9999999999)
-													PlayerIdentity.male = Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) and "M" or "F"
+													PlayerIdentity.male = Ora.World.Ped:IsPedMale(LocalPlayer().Ped) and "M" or "F"
 													
-													if (Atlantiss.Jobs.DrivingSchool.LicencesIndex == 1) then
-														TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", PlayerID, {{name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = PlayerIdentity}}})
-													elseif (Atlantiss.Jobs.DrivingSchool.LicencesIndex == 2) then
-														TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", PlayerID, {{name = "permis-conduire-moto", data = {points = 12, uid = "LS-" .. Random(99999999), identity = PlayerIdentity}}})
-													elseif (Atlantiss.Jobs.DrivingSchool.LicencesIndex == 3) then
-														TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", PlayerID, {{name = "permis-conduire-pl", data = {points = 12, uid = "LS-" .. Random(99999999), identity = PlayerIdentity}}})
+													if (Ora.Jobs.DrivingSchool.LicencesIndex == 1) then
+														TriggerPlayerEvent("Ora::CE::Inventory:AddItems", PlayerID, {{name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = PlayerIdentity}}})
+													elseif (Ora.Jobs.DrivingSchool.LicencesIndex == 2) then
+														TriggerPlayerEvent("Ora::CE::Inventory:AddItems", PlayerID, {{name = "permis-conduire-moto", data = {points = 12, uid = "LS-" .. Random(99999999), identity = PlayerIdentity}}})
+													elseif (Ora.Jobs.DrivingSchool.LicencesIndex == 3) then
+														TriggerPlayerEvent("Ora::CE::Inventory:AddItems", PlayerID, {{name = "permis-conduire-pl", data = {points = 12, uid = "LS-" .. Random(99999999), identity = PlayerIdentity}}})
 													end
 												end,
 												PlayerID
@@ -127,7 +127,7 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 								true,
 								function(_, _, Selected)
 									if (Selected) then
-										Atlantiss.Jobs.DrivingSchool.Trailer = Atlantiss.World.Vehicle:Create("trailers", {x = 176.36, y = 387.56, z = 109.12}, 262.38, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
+										Ora.Jobs.DrivingSchool.Trailer = Ora.World.Vehicle:Create("trailers", {x = 176.36, y = 387.56, z = 109.12}, 262.38, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
 										SetNewWaypoint(176.36, 387.56)
 										RageUI.Popup({message = "~b~Votre remorque est sortie ici"})
 									end
@@ -145,9 +145,9 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 											return RageUI.Popup({message = "~r~Vous êtes trop loin du garage entreprise"})
 										end
 
-										if (Atlantiss.Jobs.DrivingSchool.Trailer ~= nil and GetVehicleInDirection(18.0) == Atlantiss.Jobs.DrivingSchool.Trailer) then
-											DeleteEntity(Atlantiss.Jobs.DrivingSchool.Trailer)
-											Atlantiss.Jobs.DrivingSchool.Trailer = nil
+										if (Ora.Jobs.DrivingSchool.Trailer ~= nil and GetVehicleInDirection(18.0) == Ora.Jobs.DrivingSchool.Trailer) then
+											DeleteEntity(Ora.Jobs.DrivingSchool.Trailer)
+											Ora.Jobs.DrivingSchool.Trailer = nil
 											RageUI.Popup({message = "~b~Vous avez rangé votre remorque"})
 										else
 											RageUI.Popup({message = "~r~Vous n'avez pas sorti de remorque vous-même ou alors elle n'est pas en face de vous"})
@@ -166,9 +166,9 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 						{header = true, glare = false},
 						function()
 							if (
-								(Atlantiss.Inventory.Data["permis-conduire"] == nil or #Atlantiss.Inventory.Data["permis-conduire"] == 0) and
-								(Atlantiss.Inventory.Data["permis-conduire-moto"] == nil or #Atlantiss.Inventory.Data["permis-conduire-moto"] == 0) and
-								(Atlantiss.Inventory.Data["permis-conduire-pl"] == nil or #Atlantiss.Inventory.Data["permis-conduire-pl"] == 0)
+								(Ora.Inventory.Data["permis-conduire"] == nil or #Ora.Inventory.Data["permis-conduire"] == 0) and
+								(Ora.Inventory.Data["permis-conduire-moto"] == nil or #Ora.Inventory.Data["permis-conduire-moto"] == 0) and
+								(Ora.Inventory.Data["permis-conduire-pl"] == nil or #Ora.Inventory.Data["permis-conduire-pl"] == 0)
 							) then
 								RageUI.Button(
 									"Vide",
@@ -180,9 +180,9 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 								)
 							end
 
-							if Atlantiss.Inventory.Data["permis-conduire"] ~= nil then
-								for i = 1, #Atlantiss.Inventory.Data["permis-conduire"], 1 do
-									local v = Atlantiss.Inventory.Data["permis-conduire"][i]
+							if Ora.Inventory.Data["permis-conduire"] ~= nil then
+								for i = 1, #Ora.Inventory.Data["permis-conduire"], 1 do
+									local v = Ora.Inventory.Data["permis-conduire"][i]
 									local data = v.data
 									local label = data.identity.first_name.." "..data.identity.last_name
 
@@ -224,9 +224,9 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 								end
 							end
 
-							if Atlantiss.Inventory.Data["permis-conduire-moto"] ~= nil then
-									for i = 1, #Atlantiss.Inventory.Data["permis-conduire-moto"], 1 do
-											local v = Atlantiss.Inventory.Data["permis-conduire-moto"][i]
+							if Ora.Inventory.Data["permis-conduire-moto"] ~= nil then
+									for i = 1, #Ora.Inventory.Data["permis-conduire-moto"], 1 do
+											local v = Ora.Inventory.Data["permis-conduire-moto"][i]
 											local data = v.data
 											local label = data.identity.first_name.." "..data.identity.last_name
 											
@@ -248,9 +248,9 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 									end
 							end
 
-							if Atlantiss.Inventory.Data["permis-conduire-pl"] ~= nil then
-									for i = 1, #Atlantiss.Inventory.Data["permis-conduire-pl"], 1 do
-											local v = Atlantiss.Inventory.Data["permis-conduire-pl"][i]
+							if Ora.Inventory.Data["permis-conduire-pl"] ~= nil then
+									for i = 1, #Ora.Inventory.Data["permis-conduire-pl"], 1 do
+											local v = Ora.Inventory.Data["permis-conduire-pl"][i]
 											local data = v.data
 											local label = data.identity.first_name.." "..data.identity.last_name
 
@@ -277,10 +277,10 @@ function Atlantiss.Jobs.DrivingSchool.INIT()
 					)
 				end
 
-        if (Atlantiss.Identity.Job:GetName() == "drivingschool" and Atlantiss.Identity.Job.ChangingJob) then
+        if (Ora.Identity.Job:GetName() == "drivingschool" and Ora.Identity.Job.ChangingJob) then
           KeySettings:Clear("keyboard", "F6", "drivingschool")
           break
-        elseif (Atlantiss.Identity.Orga:GetName() == "drivingschool" and Atlantiss.Identity.Orga.ChangingJob) then
+        elseif (Ora.Identity.Orga:GetName() == "drivingschool" and Ora.Identity.Orga.ChangingJob) then
           KeySettings:Clear("keyboard", "F7", "drivingschool")
           break
         end

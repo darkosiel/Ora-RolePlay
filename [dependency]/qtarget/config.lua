@@ -28,7 +28,7 @@ M.RequiredItems = function(items)
 end
 
 M.CheckOptions = function(data, entity, distance)
-	local job = exports["Ora"]:AtlantissGetJob()
+	local job = exports["Ora"]:OraGetJob()
 	local dist = data.distance == nil or distance <= data.distance
 	local canInteract = data.canInteract == nil or data.canInteract(entity)
 	local requiredItem = data.required_items == nil or data.required_items and M.RequiredItems(data.required_items)

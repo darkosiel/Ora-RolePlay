@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Atlantiss-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj": {}
+    "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Ora-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Atlantiss-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj": {
+    "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Ora-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Atlantiss-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj",
+        "projectUniqueName": "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Ora-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj",
         "projectName": "SaltyServer.net",
-        "projectPath": "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Atlantiss-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj",
+        "projectPath": "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Ora-V2]\\saltychat\\SaltyServer\\SaltyServer.csproj",
         "packagesPath": "C:\\Users\\Clement\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Atlantiss-V2]\\saltychat\\SaltyServer\\obj\\",
+        "outputPath": "C:\\Users\\Clement\\Desktop\\FIVEM-SERVER\\cassiope-core\\resources\\[local]\\[Ora-V2]\\saltychat\\SaltyServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Clement\\AppData\\Roaming\\NuGet\\NuGet.Config",

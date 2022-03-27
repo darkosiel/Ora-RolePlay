@@ -159,7 +159,7 @@ end
 
 RegisterNetEvent("police:AddUnit")
 AddEventHandler("police:AddUnit", function(tble, police, unit, newUnit)
-    if Atlantiss.Service:isInService("police") or Atlantiss.Service:isInService("lssd") then
+    if Ora.Service:isInService("police") or Ora.Service:isInService("lssd") then
         if tble == "current" then
             table.insert(allUnits[police][unit], newUnit)
         else
@@ -170,7 +170,7 @@ end)
 
 RegisterNetEvent("police:DeleteUnit")
 AddEventHandler("police:DeleteUnit", function(tble, police, unit, index)
-    if Atlantiss.Service:isInService("police") or Atlantiss.Service:isInService("lssd") then
+    if Ora.Service:isInService("police") or Ora.Service:isInService("lssd") then
         if tble == "current" then
             table.remove(allUnits[police][unit], index)
         else
@@ -211,7 +211,7 @@ end)
 
 RegisterNetEvent("police:ChangeStatus")
 AddEventHandler("police:ChangeStatus", function(police, unit, index, status, desc)
-    if Atlantiss.Service:isInService("police") or Atlantiss.Service:isInService("lssd") then
+    if Ora.Service:isInService("police") or Ora.Service:isInService("lssd") then
         allUnits[police][unit][index].status = status
         allUnits[police][unit][index].desc = desc
     end
@@ -219,7 +219,7 @@ end)
 
 RegisterNetEvent("police:ChangeSector")
 AddEventHandler("police:ChangeSector", function(tble, police, unit, index, sector)
-    if Atlantiss.Service:isInService("police") or Atlantiss.Service:isInService("lssd") then
+    if Ora.Service:isInService("police") or Ora.Service:isInService("lssd") then
         if tble == "current" then
             allUnits[police][unit][index].sector = sector
         else
@@ -359,7 +359,7 @@ Citizen.CreateThread(function()
                 end
                 RageUI.Button("Rafraichir", nil, {Color = {HightLightColor = {0, 155, 0, 150 }}}, true, function(_, _, Selected)
                     if Selected  then
-                        if Atlantiss.Service:isInService(policeType) then
+                        if Ora.Service:isInService(policeType) then
                             TriggerServerCallback("police:GetAllUnits", function(unitsTable)
                                 allUnits = unitsTable
                             end, "current")
@@ -480,7 +480,7 @@ Citizen.CreateThread(function()
                 end)
                 RageUI.Button("Rafraichir", nil, {Color = {HightLightColor = {0, 155, 0, 150 }}}, true, function(_, _, Selected)
                     if Selected  then
-                        if Atlantiss.Service:isInService(policeType) then
+                        if Ora.Service:isInService(policeType) then
                             TriggerServerCallback("police:GetAllUnits", function(unitsTable)
                                 allUnitsDispatch = unitsTable
                             end, "dispatch")
@@ -579,8 +579,8 @@ Citizen.CreateThread(function()
                 if Selected then
                     local number = KeyboardInput("Numéro de téléphone", "", 7)
                     if number ~= nil and number ~= "" then
-                        TriggerServerEvent("atlantiss:sendToDiscord", 34, "Lance la localisation sur le numéro de téléphone : "..number, "info")
-                        local phoneProp = Atlantiss.World.Object:Create(`prop_police_phone`, GetEntityCoords(PlayerPedId()), true, true, false)
+                        TriggerServerEvent("Ora:sendToDiscord", 34, "Lance la localisation sur le numéro de téléphone : "..number, "info")
+                        local phoneProp = Ora.World.Object:Create(`prop_police_phone`, GetEntityCoords(PlayerPedId()), true, true, false)
                         local bone = GetPedBoneIndex(PlayerPedId(), 28422)
                         AttachEntityToEntity(phoneProp, PlayerPedId(), bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 0, 2, 1)
                         RequestAnimDict("cellphone@str")
@@ -611,7 +611,7 @@ Citizen.CreateThread(function()
                                     if found then
                                         Citizen.CreateThread(function()
                                             local timing = 0
-                                            Atlantiss.Anticheat.Alert.BLIPS = false
+                                            Ora.Anticheat.Alert.BLIPS = false
                                             while pPed ~= nil do
                                                 local blip = GetBlipFromEntity(pPed)
                                                 if not DoesBlipExist(blip) then
@@ -625,7 +625,7 @@ Citizen.CreateThread(function()
                                                 end
                                                 Wait(0)
                                             end
-                                            Atlantiss.Anticheat.Alert.BLIPS = true
+                                            Ora.Anticheat.Alert.BLIPS = true
                                         end)
                                     else
                                         ShowNotification("~r~Erreur!~s~~n~Impossible de localiser le téléphone!")
@@ -676,8 +676,8 @@ Citizen.CreateThread(function()
                     if Selected then
                         local serial = math.random(111111111, 9999999999)
                         local items = {name = "identity", label = i_firstName.." "..i_lastName, data = {identity = {last_name = i_lastName, first_name = i_firstName, birth_date = i_dBirth, origine = i_origin, male = i_sex, serial = serial, face_picture = "N/A"}}}
-                        Atlantiss.Inventory:AddItem(items)
-                        TriggerServerEvent("atlantiss:sendToDiscord", 34, "Création d'une pièce d'identité : "..i_firstName.." "..i_lastName, "info")
+                        Ora.Inventory:AddItem(items)
+                        TriggerServerEvent("Ora:sendToDiscord", 34, "Création d'une pièce d'identité : "..i_firstName.." "..i_lastName, "info")
                         RageUI.GoBack()
                         i_lastName, i_firstName, i_dBirth, i_origin, i_sex = nil, nil, nil, nil, nil
                     end
@@ -704,8 +704,8 @@ Citizen.CreateThread(function()
                     if Selected then
                         local serial = math.random(111111111, 9999999999)
                         local items = {name = "permis-conduire", label = l_firstName.." "..l_lastName, data = {points = 12, uid = "LS-" .. Random(99999999), identity = {last_name = l_lastName, first_name = l_firstName, birth_date = l_dBirth, serial = serial, face_picture = "N/A"}}}
-                        Atlantiss.Inventory:AddItem(items)
-                        TriggerServerEvent("atlantiss:sendToDiscord", 34, "Création d'un permis de conduire : "..l_firstName.." "..l_lastName, "info")
+                        Ora.Inventory:AddItem(items)
+                        TriggerServerEvent("Ora:sendToDiscord", 34, "Création d'un permis de conduire : "..l_firstName.." "..l_lastName, "info")
                         RageUI.GoBack()
                         l_lastName, l_firstName, l_dBirth = nil, nil, nil
                     end

@@ -1,7 +1,7 @@
-Atlantiss.World = {}
-Atlantiss.World.List = {}
+Ora.World = {}
+Ora.World.List = {}
 
-Atlantiss.World.VehicleGeneratorRemoved = {
+Ora.World.VehicleGeneratorRemoved = {
   {x = 1222.7, y = 2712.9, z = 38.01, r = 3.0}, -- AntiSpawn Larry's
   {x = -44.02, y = -1098.0, z = 26.42, r = 3.0}, -- AntiSpawn concess sud
   --{x = 133.89, y = 6604.01, z = 31.84, r = 500}, -- AntiSpawn biker QG
@@ -14,32 +14,32 @@ Atlantiss.World.VehicleGeneratorRemoved = {
 }
 
 
-function Atlantiss.World:GetModuleName()
+function Ora.World:GetModuleName()
   return "World"
 end
 
-function Atlantiss.World:Initialize()
+function Ora.World:Initialize()
   self:InitializeSubmodules()
 end
 
-function Atlantiss.World:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.World:GetModuleName(), message))
+function Ora.World:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.World:GetModuleName(), message))
   end
 end
 
-function Atlantiss.World:Register(submodule)
-  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Submodule ^7.\n",  Atlantiss:GetServerName(), submodule))
+function Ora.World:Register(submodule)
+  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Submodule ^7.\n",  Ora:GetServerName(), submodule))
   self.List[#self.List + 1] = submodule
 end
 
-function Atlantiss.World:InitializeSubmodules()
+function Ora.World:InitializeSubmodules()
 	for _, submodule in pairs(self.List) do
     if self[submodule] and self[submodule]["Initialize"] then
-      Citizen.Trace(string.format("^2[%s] ^3Submodule ^5%s^3 initialized^7.\n", Atlantiss:GetServerName(), submodule))
+      Citizen.Trace(string.format("^2[%s] ^3Submodule ^5%s^3 initialized^7.\n", Ora:GetServerName(), submodule))
       self[submodule]:Initialize()
     end
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.World:GetModuleName())
+Ora.Modules:Register(Ora.World:GetModuleName())

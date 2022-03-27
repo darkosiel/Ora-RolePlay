@@ -194,7 +194,7 @@ RegisterServerCallback(
     "getBankingAccountsPly",
     function(source, callback)
         local _source = source
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
         local acc = {own = {}, coOwn = {}}
         MySQL.Async.fetchAll(
             "SELECT * FROM banking_account where uuid=@uuid",
@@ -647,7 +647,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "atlantiss_banking:getRatiosForCard",
+    "Ora_banking:getRatiosForCard",
     function(source, callback, cardNumber)
         MySQL.Async.fetchAll(
             "SELECT * FROM banking_cards WHERE number = @cardNumber",
@@ -683,9 +683,9 @@ RegisterServerCallback(
     end
 )
 
-RegisterServerEvent("atlantiss_bank:removeMoneyFromBankAccount")
+RegisterServerEvent("Ora_bank:removeMoneyFromBankAccount")
 AddEventHandler(
-    "atlantiss_bank:removeMoneyFromBankAccount",
+    "Ora_bank:removeMoneyFromBankAccount",
     function(id, amount)
         local _source = source
         local account = Banking.GetAccount(id)
@@ -721,9 +721,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("atlantiss_bank:addMoneyToBankAccount")
+RegisterServerEvent("Ora_bank:addMoneyToBankAccount")
 AddEventHandler(
-    "atlantiss_bank:addMoneyToBankAccount",
+    "Ora_bank:addMoneyToBankAccount",
     function(id, amount)
         local source = source
         local account = Banking.GetAccount(id)
@@ -737,9 +737,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("atlantiss_bank:addRemoveQuotaToCard")
+RegisterServerEvent("Ora_bank:addRemoveQuotaToCard")
 AddEventHandler(
-    "atlantiss_bank:addRemoveQuotaToCard",
+    "Ora_bank:addRemoveQuotaToCard",
     function(cardNumber, amount)
         local _source = source
         MySQL.Async.fetchAll(
@@ -781,9 +781,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("atlantiss_bank:addDepositQuotaToCard")
+RegisterServerEvent("Ora_bank:addDepositQuotaToCard")
 AddEventHandler(
-    "atlantiss_bank:addDepositQuotaToCard",
+    "Ora_bank:addDepositQuotaToCard",
     function(cardNumber, amount)
         local _source = source
         MySQL.Async.fetchAll(
@@ -999,7 +999,7 @@ AddEventHandler(
     "bank:GenerateBankAccount",
     function()
         local _source = source
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
         MySQL.Async.fetchAll(
             "SELECT * FROM banking_account",
             {},
@@ -1135,7 +1135,7 @@ local function GetFirstAccountFound(src, cb)
     MySQL.Async.fetchAll(
         "SELECT iban FROM banking_account WHERE uuid = @uuid AND iban LIKE '%ATL%'",
         {
-            ["@uuid"] = Atlantiss.Identity:GetUuid(_src)
+            ["@uuid"] = Ora.Identity:GetUuid(_src)
         },
         function(res)
             if res then
@@ -1147,7 +1147,7 @@ local function GetFirstAccountFound(src, cb)
     )
 end
 
-RegisterServerCallback('Atlantiss:addBankIfExists', function(s, cb, _source, amount)
+RegisterServerCallback('Ora:addBankIfExists', function(s, cb, _source, amount)
     GetFirstAccountFound(
         _source,
         function(bool, res)
@@ -1168,9 +1168,9 @@ RegisterServerCallback('Atlantiss:addBankIfExists', function(s, cb, _source, amo
     )
 end)
 
-RegisterServerEvent("Atlantiss:RemoveFromBankAccount")
+RegisterServerEvent("Ora:RemoveFromBankAccount")
 AddEventHandler(
-    "Atlantiss:RemoveFromBankAccount",
+    "Ora:RemoveFromBankAccount",
     function(id, amount)
         MySQL.Async.execute(
             "UPDATE banking_account SET amount = amount - @amount WHERE iban = @iban",
@@ -1182,9 +1182,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss:AddFromBankAccount")
+RegisterServerEvent("Ora:AddFromBankAccount")
 AddEventHandler(
-    "Atlantiss:AddFromBankAccount",
+    "Ora:AddFromBankAccount",
     function(id, amount)
         MySQL.Async.execute(
             "UPDATE banking_account SET amount = amount + @amount WHERE iban = @iban",

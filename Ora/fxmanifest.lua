@@ -548,9 +548,9 @@ export "RemoveFirstItem"
 
 -- Identity exports
 
-export "AtlantissGetJob"
-export "AtlantissGetOrga"
+export "OraGetJob"
+export "OraGetOrga"
 
 -- Player exports
 
-export "AtlantissPlayerHasLoaded"
+export "OraPlayerHasLoaded"

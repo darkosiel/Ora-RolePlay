@@ -20,7 +20,7 @@ Citizen.CreateThread(
             local casinoWinRate = 100 - playerWinRate
 
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 999999,
                 28,
                     string.format(
@@ -49,7 +49,7 @@ exports["kgv-blackjack"]:SetGetChipsCallback(
             MySQL.Sync.fetchAll(
             "SELECT inventory FROM players_inventory WHERE uuid = @uuid",
             {
-                ["@uuid"] = Atlantiss.Identity:GetUuid(_source)
+                ["@uuid"] = Ora.Identity:GetUuid(_source)
             }
         )
         local numberOfPieces = 0
@@ -85,7 +85,7 @@ exports["kgv-blackjack"]:SetTakeChipsCallback(
                 {message = "~y~Vous avez misé " .. itemToRemove .. "x Jetons de Casino $10~s~"}
             )
             TriggerEvent(
-                  "atlantiss:sendToDiscordFromServer",
+                  "Ora:sendToDiscordFromServer",
                   source,
                   27,
                   "MISE : " .. itemToRemove * 10 .."$",
@@ -93,7 +93,7 @@ exports["kgv-blackjack"]:SetTakeChipsCallback(
             )
             CasinoStats.TOTAL_BET = CasinoStats.TOTAL_BET +  (itemToRemove * 10)
             Wait(50)
-            TriggerClientEvent("Atlantiss::CE::Inventory:RemoveAnyItemsWithName", source, "casinopiece", itemToRemove)
+            TriggerClientEvent("Ora::CE::Inventory:RemoveAnyItemsWithName", source, "casinopiece", itemToRemove)
         end
     end
 )
@@ -114,7 +114,7 @@ exports["kgv-blackjack"]:SetGiveChipsCallback(
             )
 
             TriggerEvent(
-                    "atlantiss:sendToDiscordFromServer",
+                    "Ora:sendToDiscordFromServer",
                     source,
                     27,
                     "GAGNE : " .. itemToAdd * 10 .."$",
@@ -134,13 +134,13 @@ exports["kgv-blackjack"]:SetGiveChipsCallback(
                 table.insert(sendItems, v)
                 itemSent = itemSent + 1
                 if (itemSent >= 150) then
-                    TriggerClientEvent("Atlantiss::CE::Inventory:AddItems", _source, sendItems)
+                    TriggerClientEvent("Ora::CE::Inventory:AddItems", _source, sendItems)
                     sendItems = {}
                     itemSent = 0
                     Wait(100)
                 end
             end
-            TriggerClientEvent("Atlantiss::CE::Inventory:AddItems", _source, sendItems)
+            TriggerClientEvent("Ora::CE::Inventory:AddItems", _source, sendItems)
         end
     end
 )

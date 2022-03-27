@@ -1,6 +1,6 @@
-Atlantiss.Jobs.Jetsam = {}
-Atlantiss.Jobs.Jetsam.OrderWaitTime = 900000 -- 15 min
-Atlantiss.Jobs.Jetsam.TrailerConfig = {
+Ora.Jobs.Jetsam = {}
+Ora.Jobs.Jetsam.OrderWaitTime = 900000 -- 15 min
+Ora.Jobs.Jetsam.TrailerConfig = {
   ----------------
   ----COMPACTS----
   ----------------
@@ -615,14 +615,14 @@ Atlantiss.Jobs.Jetsam.TrailerConfig = {
   [1641462412] = {y = -0.6, z = 0.2}
 }
 
-function Atlantiss.Jobs.Jetsam:GetJobName()
+function Ora.Jobs.Jetsam:GetJobName()
   return "Jetsam"
 end
 
-function Atlantiss.Jobs.Jetsam:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Atlantiss.Jobs:GetModuleName(), Atlantiss.Jobs.Jetsam:GetJobName(), message))
+function Ora.Jobs.Jetsam:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Ora.Jobs:GetModuleName(), Ora.Jobs.Jetsam:GetJobName(), message))
   end
 end
 
-Atlantiss.Jobs:Register(Atlantiss.Jobs.Jetsam:GetJobName())
+Ora.Jobs:Register(Ora.Jobs.Jetsam:GetJobName())

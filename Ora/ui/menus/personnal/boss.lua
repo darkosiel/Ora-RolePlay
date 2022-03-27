@@ -5,8 +5,8 @@ local BleachingJobs = {"casino", "taxi", "ponsonbys", "mecano", "mecano2", "benn
 
 function OpenBossMenu()
     if (
-        Atlantiss.Identity.Job:GetName() ~= "bleacher" and
-        (Atlantiss.Identity.Job:IsBoss() or Atlantiss.Identity.Job:IsCoBoss())
+        Ora.Identity.Job:GetName() ~= "bleacher" and
+        (Ora.Identity.Job:IsBoss() or Ora.Identity.Job:IsCoBoss())
     ) then
         orgas = false
         RageUI.Visible(RMenu:Get("personnal", "boss"), not RageUI.Visible(RMenu:Get("personnal", "boss")))
@@ -15,8 +15,8 @@ end
 
 function OpenBossOrgaMenu()
     if (
-        Atlantiss.Identity.Orga:GetName() ~= "bleacher" and
-        (Atlantiss.Identity.Orga:IsBoss() or Atlantiss.Identity.Orga:IsCoBoss())
+        Ora.Identity.Orga:GetName() ~= "bleacher" and
+        (Ora.Identity.Orga:IsBoss() or Ora.Identity.Orga:IsCoBoss())
     ) then
         orgas = true
         RageUI.Visible(RMenu:Get("personnal", "boss"), not RageUI.Visible(RMenu:Get("personnal", "boss")))
@@ -105,9 +105,9 @@ Citizen.CreateThread(
                                     local player = GetPlayerServerIdInDirection(5.0)
                                     if player then
                                         if orgas then
-                                            TriggerPlayerEvent("Atlantiss::CE::Identity:Orga:Set", player, Atlantiss.Identity.Orga:GetName(), 1)
+                                            TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", player, Ora.Identity.Orga:GetName(), 1)
                                         else
-                                            TriggerPlayerEvent("Atlantiss::CE::Identity:Job:Set", player, Atlantiss.Identity.Job:GetName(), 1)
+                                            TriggerPlayerEvent("Ora::CE::Identity:Job:Set", player, Ora.Identity.Job:GetName(), 1)
                                         end
                                     end
                                 end
@@ -123,22 +123,22 @@ Citizen.CreateThread(
                                 if Selected then
                                     if orgas then
                                         TriggerServerCallback(
-                                            "Atlantiss::SVCB::Identity:Orga:GetEmployees",
-                                            function(res) TriggerEvent('business:activateMenu', res, false, true, Jobs[Atlantiss.Identity.Orga:GetName()].isSelf) end,
-                                            Atlantiss.Identity.Orga:GetName()
+                                            "Ora::SVCB::Identity:Orga:GetEmployees",
+                                            function(res) TriggerEvent('business:activateMenu', res, false, true, Jobs[Ora.Identity.Orga:GetName()].isSelf) end,
+                                            Ora.Identity.Orga:GetName()
                                         )
                                     else
                                         TriggerServerCallback(
-                                            "Atlantiss::SVCB::Identity:Job:GetEmployees",
-                                            function(res) TriggerEvent('business:activateMenu', res, false, false, Jobs[Atlantiss.Identity.Job:GetName()].isSelf) end,
-                                            Atlantiss.Identity.Job:GetName()
+                                            "Ora::SVCB::Identity:Job:GetEmployees",
+                                            function(res) TriggerEvent('business:activateMenu', res, false, false, Jobs[Ora.Identity.Job:GetName()].isSelf) end,
+                                            Ora.Identity.Job:GetName()
                                         )
                                     end
                                 end
                             end
                         )
 
-                        if (Atlantiss.Utils:HasValue(BleachingJobs, Atlantiss.Identity.Job:GetName()) or Atlantiss.Utils:HasValue(BleachingJobs, Atlantiss.Identity.Orga:GetName())) then
+                        if (Ora.Utils:HasValue(BleachingJobs, Ora.Identity.Job:GetName()) or Ora.Utils:HasValue(BleachingJobs, Ora.Identity.Orga:GetName())) then
                             RageUI.Button(
                                 "Fausse facture",
                                 nil,
@@ -147,9 +147,9 @@ Citizen.CreateThread(
                                 function(_, Active, Selected)
                                     if (Selected) then
                                         if orgas then
-                                            CreateFakeFacture(orgas and Atlantiss.Identity.Orga:GetName() or Atlantiss.Identity.Job:GetName())
+                                            CreateFakeFacture(orgas and Ora.Identity.Orga:GetName() or Ora.Identity.Job:GetName())
                                         else
-                                            CreateFakeFacture(orgas and Atlantiss.Identity.Orga:GetName() or Atlantiss.Identity.Job:GetName())
+                                            CreateFakeFacture(orgas and Ora.Identity.Orga:GetName() or Ora.Identity.Job:GetName())
                                         end
                                     end
 

@@ -11,15 +11,15 @@
   INSERT INTO banking_account (label, uuid, amount, iban, is_pro) VALUE ("Réserve illégale", '0', 0, "illegalaccount", 0)
 ]]
 
-Atlantiss.NpcJobs.Bank.MainAccountsIBAN = {"centralbank", "illegalaccount", "casino"}
-Atlantiss.NpcJobs.Bank.MainAccountsAmounts = {}
-Atlantiss.NpcJobs.Bank.Thread = {
+Ora.NpcJobs.Bank.MainAccountsIBAN = {"centralbank", "illegalaccount", "casino"}
+Ora.NpcJobs.Bank.MainAccountsAmounts = {}
+Ora.NpcJobs.Bank.Thread = {
   WaitTime = 600000,
   HaveToUpdate = false
 }
 
 
-function Atlantiss.NpcJobs.Bank:IsBankAccountCreatedForIban(iban)
+function Ora.NpcJobs.Bank:IsBankAccountCreatedForIban(iban)
   local results = MySQL.Sync.fetchAll(
       "SELECT ba.* FROM `banking_account` as ba WHERE ba.`iban` = @iban",
       {
@@ -36,7 +36,7 @@ function Atlantiss.NpcJobs.Bank:IsBankAccountCreatedForIban(iban)
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:IsPersonnalBankAccountCreatedForUuid(uuid)
+function Ora.NpcJobs.Bank:IsPersonnalBankAccountCreatedForUuid(uuid)
   local results = MySQL.Sync.fetchAll(
       "SELECT ba.* FROM `banking_account` as ba WHERE ba.`uuid` = @uuid AND is_pro = @isNotPro",
       {
@@ -54,11 +54,11 @@ function Atlantiss.NpcJobs.Bank:IsPersonnalBankAccountCreatedForUuid(uuid)
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:GetDefaultTodayRatio()
+function Ora.NpcJobs.Bank:GetDefaultTodayRatio()
   return {remove = 0, deposit = 0, maxRemove = 5000, maxDeposit = 5000}
 end
 
-function Atlantiss.NpcJobs.Bank:GenerateAssociationCodeForCompanyAccount()
+function Ora.NpcJobs.Bank:GenerateAssociationCodeForCompanyAccount()
   local associationCode = math.random(100000,999999)
   local isValid = false
 
@@ -82,7 +82,7 @@ function Atlantiss.NpcJobs.Bank:GenerateAssociationCodeForCompanyAccount()
   return associationCode
 end
 
-function Atlantiss.NpcJobs.Bank:GenerateNewCardNumber()
+function Ora.NpcJobs.Bank:GenerateNewCardNumber()
   local newCardNumber = math.random(1111,9999) .. math.random(1111,9999) .. math.random(1111,9999) .. math.random(1111,9999)
   local isValid = false
 
@@ -106,7 +106,7 @@ function Atlantiss.NpcJobs.Bank:GenerateNewCardNumber()
   return newCardNumber
 end
 
-function Atlantiss.NpcJobs.Bank:GenerateNewIban()
+function Ora.NpcJobs.Bank:GenerateNewIban()
   local newIban = "LS-" .. math.random(100000,999999)
   local isValid = false
 
@@ -131,7 +131,7 @@ function Atlantiss.NpcJobs.Bank:GenerateNewIban()
 end
 
   
-function Atlantiss.NpcJobs.Bank:IsSecurityCodeAvailable(securityCode)
+function Ora.NpcJobs.Bank:IsSecurityCodeAvailable(securityCode)
   local results = MySQL.Sync.fetchAll(
       "SELECT ba.* FROM `banking_account` as ba WHERE ba.`association_code` = @association_code AND is_pro = @isPro",
       {
@@ -149,7 +149,7 @@ function Atlantiss.NpcJobs.Bank:IsSecurityCodeAvailable(securityCode)
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:AssociatePlayerToCompanyBySecurityCode(playerUuid, securityCode)
+function Ora.NpcJobs.Bank:AssociatePlayerToCompanyBySecurityCode(playerUuid, securityCode)
   local results = MySQL.Sync.fetchAll(
       "SELECT ba.* FROM `banking_account` as ba WHERE ba.`association_code` = @association_code AND is_pro = @isPro",
       {
@@ -182,7 +182,7 @@ function Atlantiss.NpcJobs.Bank:AssociatePlayerToCompanyBySecurityCode(playerUui
           "UPDATE banking_account SET association_code = @newAssociationCode WHERE id = @bankingAccountId",
           {
               ["@bankingAccountId"] = results[1].id,
-              ["@newAssociationCode"] = Atlantiss.NpcJobs.Bank:GenerateAssociationCodeForCompanyAccount(),
+              ["@newAssociationCode"] = Ora.NpcJobs.Bank:GenerateAssociationCodeForCompanyAccount(),
           }
       )
       return true
@@ -192,7 +192,7 @@ function Atlantiss.NpcJobs.Bank:AssociatePlayerToCompanyBySecurityCode(playerUui
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:CreateBankAccount(iban, label, defaultAmount, isPro, ownerUuid, phone)
+function Ora.NpcJobs.Bank:CreateBankAccount(iban, label, defaultAmount, isPro, ownerUuid, phone)
   local associationCode = nil
 
   if isPro == 1 then
@@ -217,7 +217,7 @@ function Atlantiss.NpcJobs.Bank:CreateBankAccount(iban, label, defaultAmount, is
   self:Debug(string.format("Created new banking account with label ^5%s^3, iban ^5%s^3 and default amount ^5%s^3$", label, iban, defaultAmount))  
 end
 
-function Atlantiss.NpcJobs.Bank:Initialize()
+function Ora.NpcJobs.Bank:Initialize()
   self:Debug(string.format("Initializing ^5%s^3", self:GetJobName()))    
   self:Debug(string.format("Verifying if company banking accounts are created ^5%s^3", self:GetJobName()))    
   
@@ -231,45 +231,45 @@ function Atlantiss.NpcJobs.Bank:Initialize()
   end
 end
 
-RegisterServerEvent("Atlantiss::SE::NpcJobs::Bank:CreateAccount")
+RegisterServerEvent("Ora::SE::NpcJobs::Bank:CreateAccount")
 AddEventHandler(
-    "Atlantiss::SE::NpcJobs::Bank:CreateAccount",
+    "Ora::SE::NpcJobs::Bank:CreateAccount",
     function(phoneNumber)
       local _source = source
-      Atlantiss.NpcJobs.Bank:Debug(string.format("Received event Atlantiss::SE::NpcJobs::Bank:CreateAccount from ^5%s^3", _source))  
-        local playerUuid = Atlantiss.Identity:GetUuid(_source)
-        local playerFullname = Atlantiss.Identity:GetFullname(_source)
+      Ora.NpcJobs.Bank:Debug(string.format("Received event Ora::SE::NpcJobs::Bank:CreateAccount from ^5%s^3", _source))  
+        local playerUuid = Ora.Identity:GetUuid(_source)
+        local playerFullname = Ora.Identity:GetFullname(_source)
 
-        if (Atlantiss.NpcJobs.Bank:IsPersonnalBankAccountCreatedForUuid(playerUuid)) then
-            TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", _source, "~r~Vous possédez déjà un compte en banque")
+        if (Ora.NpcJobs.Bank:IsPersonnalBankAccountCreatedForUuid(playerUuid)) then
+            TriggerClientEvent("Ora::CE::Core:ShowNotification", _source, "~r~Vous possédez déjà un compte en banque")
         else
-          local iban = Atlantiss.NpcJobs.Bank:GenerateNewIban()
-          Atlantiss.NpcJobs.Bank:CreateBankAccount(Atlantiss.NpcJobs.Bank:GenerateNewIban(), "CCP. " .. playerFullname, 0, 0, playerUuid, phoneNumber)
-          TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", _source, string.format("Le compte bancaire de ~g~~h~%s~h~~s~ a été créé", playerFullname))
+          local iban = Ora.NpcJobs.Bank:GenerateNewIban()
+          Ora.NpcJobs.Bank:CreateBankAccount(Ora.NpcJobs.Bank:GenerateNewIban(), "CCP. " .. playerFullname, 0, 0, playerUuid, phoneNumber)
+          TriggerClientEvent("Ora::CE::Core:ShowNotification", _source, string.format("Le compte bancaire de ~g~~h~%s~h~~s~ a été créé", playerFullname))
         end
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::NpcJobs::Bank:CreateCard")
+RegisterServerEvent("Ora::SE::NpcJobs::Bank:CreateCard")
 AddEventHandler(
-    "Atlantiss::SE::NpcJobs::Bank:CreateCard",
+    "Ora::SE::NpcJobs::Bank:CreateCard",
     function(bankAccountId)
       local _source = source
-      Atlantiss.NpcJobs.Bank:Debug(string.format("Received event Atlantiss::SE::NpcJobs::Bank:CreateCard from ^5%s^3", _source))  
-      local playerUuid = Atlantiss.Identity:GetUuid(_source)
-      local playerFullname = Atlantiss.Identity:GetFullname(_source)
-      local cardNumber = Atlantiss.NpcJobs.Bank:GenerateNewCardNumber()
+      Ora.NpcJobs.Bank:Debug(string.format("Received event Ora::SE::NpcJobs::Bank:CreateCard from ^5%s^3", _source))  
+      local playerUuid = Ora.Identity:GetUuid(_source)
+      local playerFullname = Ora.Identity:GetFullname(_source)
+      local cardNumber = Ora.NpcJobs.Bank:GenerateNewCardNumber()
       local cardCode = math.random(1000, 9999)
 
       MySQL.Sync.execute(
           "INSERT INTO banking_cards (type,uuid,account,code,number,current_ratio) VALUES(@type,@uuid,@account,@code,@number,@current_ratio)",
           {
-              ["@type"] = Atlantiss.NpcJobs.Bank:GetCardCodeById(2),
+              ["@type"] = Ora.NpcJobs.Bank:GetCardCodeById(2),
               ["@uuid"] = playerUuid,
               ["@account"] = bankAccountId,
               ["@code"] = cardCode,
               ["@number"] = cardNumber,
-              ["@current_ratio"] = json.encode(Atlantiss.NpcJobs.Bank:GetCardRatioById(2))
+              ["@current_ratio"] = json.encode(Ora.NpcJobs.Bank:GetCardRatioById(2))
           }
       )
       
@@ -277,47 +277,47 @@ AddEventHandler(
           name = "bank_card",
           data = {
               name = playerFullname,
-              type = Atlantiss.NpcJobs.Bank:GetCardCodeById(2),
+              type = Ora.NpcJobs.Bank:GetCardCodeById(2),
               uuid = playerUuid,
               account = bankAccountId,
               number = cardNumber,
-              current_ratio = Atlantiss.NpcJobs.Bank:GetCardRatioById(2),
+              current_ratio = Ora.NpcJobs.Bank:GetCardRatioById(2),
               code = cardCode
           },
           label = bankAccountId
       }
 
-      TriggerClientEvent("Atlantiss::CE::Inventory:AddItems", _source, {items})
-      TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", _source, string.format("Votre carte bancaire possède le code ~g~~h~%s~h~~s~", cardCode))
+      TriggerClientEvent("Ora::CE::Inventory:AddItems", _source, {items})
+      TriggerClientEvent("Ora::CE::Core:ShowNotification", _source, string.format("Votre carte bancaire possède le code ~g~~h~%s~h~~s~", cardCode))
     end
 )
 
 
-RegisterServerEvent("Atlantiss::SE::NpcJobs::Bank:AssociateProAccount")
+RegisterServerEvent("Ora::SE::NpcJobs::Bank:AssociateProAccount")
 AddEventHandler(
-    "Atlantiss::SE::NpcJobs::Bank:AssociateProAccount",
+    "Ora::SE::NpcJobs::Bank:AssociateProAccount",
     function(securityNumber)
       local _source = source
-      Atlantiss.NpcJobs.Bank:Debug(string.format("Received event Atlantiss::SE::NpcJobs::Bank:AssociateProAccount from ^5%s^3", _source))  
-        local playerUuid = Atlantiss.Identity:GetUuid(_source)
-        local playerFullname = Atlantiss.Identity:GetFullname(_source)
+      Ora.NpcJobs.Bank:Debug(string.format("Received event Ora::SE::NpcJobs::Bank:AssociateProAccount from ^5%s^3", _source))  
+        local playerUuid = Ora.Identity:GetUuid(_source)
+        local playerFullname = Ora.Identity:GetFullname(_source)
 
-        if (not Atlantiss.NpcJobs.Bank:IsSecurityCodeAvailable(securityNumber)) then
-          TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", _source, string.format("Le code de sécurité ~g~~h~%s~h~~s~ n'existe pas. Essai loggé.", securityNumber))
+        if (not Ora.NpcJobs.Bank:IsSecurityCodeAvailable(securityNumber)) then
+          TriggerClientEvent("Ora::CE::Core:ShowNotification", _source, string.format("Le code de sécurité ~g~~h~%s~h~~s~ n'existe pas. Essai loggé.", securityNumber))
         else 
-          if (Atlantiss.NpcJobs.Bank:AssociatePlayerToCompanyBySecurityCode(playerUuid, securityNumber)) then
-            TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", _source, string.format("Le compte bancaire entreprise correspondant a ~g~~h~%s~h~~s~ a été associé", securityNumber))
+          if (Ora.NpcJobs.Bank:AssociatePlayerToCompanyBySecurityCode(playerUuid, securityNumber)) then
+            TriggerClientEvent("Ora::CE::Core:ShowNotification", _source, string.format("Le compte bancaire entreprise correspondant a ~g~~h~%s~h~~s~ a été associé", securityNumber))
           else
-            TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", _source, string.format("Le compte bancaire entreprise correspondant a ~g~~h~%s~h~~s~ est déjà associé", securityNumber))
+            TriggerClientEvent("Ora::CE::Core:ShowNotification", _source, string.format("Le compte bancaire entreprise correspondant a ~g~~h~%s~h~~s~ est déjà associé", securityNumber))
           end
         end
     end
 )
 
-RegisterServerCallback("Atlantiss::SE::NpcJobs:Bank:RetrieveCards", 
+RegisterServerCallback("Ora::SE::NpcJobs:Bank:RetrieveCards", 
   function(source, cb) 
       local _source = source
-      local playerUuid = Atlantiss.Identity:GetUuid(_source)
+      local playerUuid = Ora.Identity:GetUuid(_source)
 
       local results = MySQL.Sync.fetchAll(
           "SELECT bc.*, ba.label AS bank_account_name FROM banking_cards AS bc LEFT JOIN banking_account AS ba ON ba.id = bc.account WHERE (bc.uuid = @uuid)",
@@ -334,10 +334,10 @@ RegisterServerCallback("Atlantiss::SE::NpcJobs:Bank:RetrieveCards",
   end
 )
 
-RegisterServerCallback("Atlantiss::SE::NpcJobs:Bank:RetrieveBankAccounts", 
+RegisterServerCallback("Ora::SE::NpcJobs:Bank:RetrieveBankAccounts", 
   function(source, cb) 
       local _source = source
-      local playerUuid = Atlantiss.Identity:GetUuid(_source)
+      local playerUuid = Ora.Identity:GetUuid(_source)
 
       local results = MySQL.Sync.fetchAll(
           "SELECT ba.* FROM banking_account AS ba LEFT JOIN banking_account_company_access AS baca ON baca.banking_account_id = ba.id WHERE (ba.uuid = @uuid) OR (baca.uuid = @uuid)",
@@ -355,32 +355,32 @@ RegisterServerCallback("Atlantiss::SE::NpcJobs:Bank:RetrieveBankAccounts",
 )
 
 
-RegisterServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount")
+RegisterServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount")
 AddEventHandler(
-  "Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount",
+  "Ora::SE::NpcJobs:Bank:UpdateMainAccount",
   function(id, amount, adding)
-    if (Atlantiss.NpcJobs.Bank.MainAccountsAmounts[id] == nil) then
-      return error(string.format("Cannot update %s IBAN because it is not indexed in the table Atlantiss.NpcJobs.Bank.MainAccountsAmounts. (Amount: %s)", id, amount))
+    if (Ora.NpcJobs.Bank.MainAccountsAmounts[id] == nil) then
+      return error(string.format("Cannot update %s IBAN because it is not indexed in the table Ora.NpcJobs.Bank.MainAccountsAmounts. (Amount: %s)", id, amount))
     end
 
     if (adding == true) then
-      Atlantiss.NpcJobs.Bank.MainAccountsAmounts[id] = Atlantiss.NpcJobs.Bank.MainAccountsAmounts[id] + amount
+      Ora.NpcJobs.Bank.MainAccountsAmounts[id] = Ora.NpcJobs.Bank.MainAccountsAmounts[id] + amount
     else
-      Atlantiss.NpcJobs.Bank.MainAccountsAmounts[id] = Atlantiss.NpcJobs.Bank.MainAccountsAmounts[id] - amount
+      Ora.NpcJobs.Bank.MainAccountsAmounts[id] = Ora.NpcJobs.Bank.MainAccountsAmounts[id] - amount
     end
 
-    Atlantiss.NpcJobs.Bank.Thread.HaveToUpdate = true
+    Ora.NpcJobs.Bank.Thread.HaveToUpdate = true
   end
 )
 
 MySQL.ready(function()
   MySQL.Async.fetchAll(
-    string.format('SELECT iban, amount FROM banking_account WHERE iban = "%s"', table.concat(Atlantiss.NpcJobs.Bank.MainAccountsIBAN, '" OR iban = "')),
+    string.format('SELECT iban, amount FROM banking_account WHERE iban = "%s"', table.concat(Ora.NpcJobs.Bank.MainAccountsIBAN, '" OR iban = "')),
     {},
     function(results)
       for _, res in pairs(results) do
-        Atlantiss.NpcJobs.Bank.MainAccountsAmounts[res.iban] = res.amount
-        Atlantiss.NpcJobs.Bank:Debug(string.format("^6Retreived $%s for main account with IBAN %s^0", res.amount, res.iban))
+        Ora.NpcJobs.Bank.MainAccountsAmounts[res.iban] = res.amount
+        Ora.NpcJobs.Bank:Debug(string.format("^6Retreived $%s for main account with IBAN %s^0", res.amount, res.iban))
       end
     end
   )
@@ -389,8 +389,8 @@ end)
 Citizen.CreateThread(
   function()
     while true do
-      if (Atlantiss.NpcJobs.Bank.Thread.HaveToUpdate) then
-        for iban, amount in pairs(Atlantiss.NpcJobs.Bank.MainAccountsAmounts) do
+      if (Ora.NpcJobs.Bank.Thread.HaveToUpdate) then
+        for iban, amount in pairs(Ora.NpcJobs.Bank.MainAccountsAmounts) do
           MySQL.Async.execute(
             "UPDATE banking_account SET amount = @amount WHERE iban = @iban",
             {
@@ -399,17 +399,17 @@ Citizen.CreateThread(
             }
           )
 
-          Atlantiss.NpcJobs.Bank:Debug(string.format("^6Updated %s account value to %s^0", iban, amount))
+          Ora.NpcJobs.Bank:Debug(string.format("^6Updated %s account value to %s^0", iban, amount))
         end
 
-        Atlantiss.NpcJobs.Bank.Thread.HaveToUpdate = false
+        Ora.NpcJobs.Bank.Thread.HaveToUpdate = false
       end
 
       if (os.date("*t").hour == 18 and os.date("*t").min >= 40) then
-        Atlantiss.NpcJobs.Bank.Thread.WaitTime = 60000
+        Ora.NpcJobs.Bank.Thread.WaitTime = 60000
       end
 
-      Wait(Atlantiss.NpcJobs.Bank.Thread.WaitTime)
+      Wait(Ora.NpcJobs.Bank.Thread.WaitTime)
     end
   end
 )

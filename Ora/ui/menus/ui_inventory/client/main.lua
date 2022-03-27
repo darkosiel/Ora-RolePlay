@@ -6,12 +6,12 @@ local pedInVeh = false
 local function HideInventory()
     if currentStorage and currentStorage.name ~= nil then currentStorage = {} end
     SetNuiFocus(false, false)
-	Atlantiss.Inventory.State.IsOpen = false
+	Ora.Inventory.State.IsOpen = false
     if not washudoff then exports["Ora_utils"]:SetPlayerHUD(true) end
 end
 
 local function OpenInventory()
-    Atlantiss.Inventory:RefreshWeight()
+    Ora.Inventory:RefreshWeight()
     if pedInVeh then
         local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
         currentStorage = Storage.New(
@@ -35,8 +35,8 @@ local function OpenInventory()
         end
         SetNuiFocus(true, true)
         SendNUIMessage({
-            eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-            weapons = Atlantiss.Inventory:GetWeapons(), bars = exports['Ora_utils'].GetPlayerBars()
+            eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+            weapons = Ora.Inventory:GetWeapons(), bars = exports['Ora_utils'].GetPlayerBars()
         })
     end
 end
@@ -45,17 +45,17 @@ end
 local function RefreshSto()
     SetNuiFocus(true, true)
     Storage:RefreshWeight()
-    Atlantiss.Inventory:RefreshWeight()
+    Ora.Inventory:RefreshWeight()
     SendNUIMessage({
-        eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-        weapons = Atlantiss.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
+        eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+        weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
         bars = exports['Ora_utils'].GetPlayerBars()
     })
 end
 
 local function Refresh()
     if currentStorage and currentStorage.name ~= nil then return RefreshSto() end
-    Atlantiss.Inventory:RefreshWeight()
+    Ora.Inventory:RefreshWeight()
     SetNuiFocus(true, true)
     if pedInVeh then
         local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
@@ -72,29 +72,29 @@ local function Refresh()
         currentStorage:RefreshDB()
         currentStorage:RefreshWeight()
         SendNUIMessage({
-            eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-            weapons = Atlantiss.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
+            eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+            weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
             bars = exports['Ora_utils'].GetPlayerBars()
         })
     else
         SendNUIMessage({
-            eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, weapons = Atlantiss.Inventory:GetWeapons(),
+            eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, weapons = Ora.Inventory:GetWeapons(),
             bars = exports['Ora_utils'].GetPlayerBars()
         })
     end
 end
 
 local function RefreshStealing(closestPly)
-    Atlantiss.Inventory:RefreshWeight()
+    Ora.Inventory:RefreshWeight()
     TriggerServerCallback(
         "getInventoryOtherPPL",
         function(Inv, Money, black_money)
             currPlayerInv = json.decode(Inv)
-            TriggerEvent('atlantiss:inventoryFouille', currPlayerInv)
+            TriggerEvent('Ora:inventoryFouille', currPlayerInv)
             SetNuiFocus(true, true)
             SendNUIMessage({
-                eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-                weapons = Atlantiss.Inventory:GetWeapons(), target = currPlayerInv, targWeight = {Atlantiss.Inventory:GetTargetWeight(currPlayerInv), 40}, snoupix = true,
+                eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+                weapons = Ora.Inventory:GetWeapons(), target = currPlayerInv, targWeight = {Ora.Inventory:GetTargetWeight(currPlayerInv), 40}, snoupix = true,
                 bars = exports['Ora_utils'].GetPlayerBars()
             })
         end,
@@ -109,11 +109,11 @@ local function OpenInvStorage()
         exports["Ora_utils"]:SetPlayerHUD(false)
         washudoff = false
     end
-    Atlantiss.Inventory.State.IsOpen = true
+    Ora.Inventory.State.IsOpen = true
     SetNuiFocus(true, true)
     SendNUIMessage({
-        eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-        weapons = Atlantiss.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
+        eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+        weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
         bars = exports['Ora_utils'].GetPlayerBars()
     })
 end
@@ -125,11 +125,11 @@ local function Fouilling(targetInv)
         exports["Ora_utils"]:SetPlayerHUD(false)
         washudoff = false
     end
-    Atlantiss.Inventory.State.IsOpen = true
+    Ora.Inventory.State.IsOpen = true
     SetNuiFocus(true, true)
     SendNUIMessage({
-        eventName = "showInventory", eventData = Atlantiss.Inventory.Data, invWeight = Atlantiss.Inventory.Weight, 
-        weapons = Atlantiss.Inventory:GetWeapons(), target = targetInv, targWeight = {Atlantiss.Inventory:GetTargetWeight(targetInv), 40}, snoupix = true,
+        eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+        weapons = Ora.Inventory:GetWeapons(), target = targetInv, targWeight = {Ora.Inventory:GetTargetWeight(targetInv), 40}, snoupix = true,
         bars = exports['Ora_utils'].GetPlayerBars()
     })
 end
@@ -150,18 +150,18 @@ end
 local function DeleteIfWeapon(item)
     if item and item.name then
         if IsAWeapon(item.name) then
-            for i=1, #(Atlantiss.Inventory:GetWeapons()) do
-                if Atlantiss.Inventory:GetWeapons()[i] and Atlantiss.Inventory:GetWeapons()[i].id == item.id then
-                    for k, v in pairs(Atlantiss.Inventory:GetInventory()[item.name]) do
+            for i=1, #(Ora.Inventory:GetWeapons()) do
+                if Ora.Inventory:GetWeapons()[i] and Ora.Inventory:GetWeapons()[i].id == item.id then
+                    for k, v in pairs(Ora.Inventory:GetInventory()[item.name]) do
                         if v.id == item.id and v.data then
-                            Atlantiss.Inventory.Data[item.name][k].data.equipedSlot = 0
+                            Ora.Inventory.Data[item.name][k].data.equipedSlot = 0
                         end
                     end
-                    Atlantiss.Inventory:SetWeapon(nil, i)
+                    Ora.Inventory:SetWeapon(nil, i)
                 end
             end
             Wait(50)
-            Atlantiss.Inventory:Save()
+            Ora.Inventory:Save()
         end
     end
 end
@@ -195,21 +195,21 @@ end
 
 --																			  EVENTS
 
-RegisterNetEvent('atlantiss:openInventory')
-RegisterNetEvent('atlantiss:hideInventory')
-RegisterNetEvent('atlantiss:openInvStorage')
-RegisterNetEvent('atlantiss:InvNotification')
-RegisterNetEvent('atlantiss:inventoryFouille')
-RegisterNetEvent('atlantiss:refreshStorage')
-RegisterNetEvent('atlantiss:inventory:deleteIfWeapon')
+RegisterNetEvent('Ora:openInventory')
+RegisterNetEvent('Ora:hideInventory')
+RegisterNetEvent('Ora:openInvStorage')
+RegisterNetEvent('Ora:InvNotification')
+RegisterNetEvent('Ora:inventoryFouille')
+RegisterNetEvent('Ora:refreshStorage')
+RegisterNetEvent('Ora:inventory:deleteIfWeapon')
 
-AddEventHandler('atlantiss:openInventory', function() OpenInventory() end)
-AddEventHandler('atlantiss:hideInventory', function() SendNUIMessage({eventName = "hideInventory"}) end)
-AddEventHandler('atlantiss:openInvStorage', function() OpenInvStorage() end)
-AddEventHandler('atlantiss:InvNotification', function(message, theme) ShowNotif(message, theme) end)
-AddEventHandler('atlantiss:inventoryFouille', function(targetInv) Fouilling(targetInv) end)
-AddEventHandler('atlantiss:refreshStorage', function() RefreshSto() end)
-AddEventHandler('atlantiss:inventory:deleteIfWeapon', function(item) DeleteIfWeapon(item) end)
+AddEventHandler('Ora:openInventory', function() OpenInventory() end)
+AddEventHandler('Ora:hideInventory', function() SendNUIMessage({eventName = "hideInventory"}) end)
+AddEventHandler('Ora:openInvStorage', function() OpenInvStorage() end)
+AddEventHandler('Ora:InvNotification', function(message, theme) ShowNotif(message, theme) end)
+AddEventHandler('Ora:inventoryFouille', function(targetInv) Fouilling(targetInv) end)
+AddEventHandler('Ora:refreshStorage', function() RefreshSto() end)
+AddEventHandler('Ora:inventory:deleteIfWeapon', function(item) DeleteIfWeapon(item) end)
 
 --																			NUICALLBACKS
 
@@ -231,7 +231,7 @@ RegisterNUICallback('UpdateWeapon', function(data)
     if not data or not data.itemData then return error("L'item utilisé est cassé, veuillez contacter un membre du staff.") end
     if not IsAWeapon(data.itemData.name) then return end
 
-    Atlantiss.Inventory:SetWeapon(data.itemData, data.number)
+    Ora.Inventory:SetWeapon(data.itemData, data.number)
     Refresh()
 end)
 
@@ -240,7 +240,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
 
     if data.eventName == "useInventory" then
         if IsAWeapon(data.itemData.name) then return end
-        Atlantiss.Inventory:UseItem(data.itemData)
+        Ora.Inventory:UseItem(data.itemData)
         if (
             Items[data.itemData.name].category ~= "clothes" and
             Items[data.itemData.name].category ~= "consumable" and
@@ -289,7 +289,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
                         TaskPlayAnim(PlayerPedId(), "mp_common", "givetake1_b", 5.0, 1.0, 0.8, 48, 0.0, 0, 0, 0)
                         if IsAWeapon(data.itemData.name) then exports['Ora_utils']:sendME('* L\'individu donne une arme à un autre individu. *') end
                         DeleteIfWeapon(data.itemData)
-                        Atlantiss.Inventory:GiveItemToPlayer(v, data.itemData, data.amount)
+                        Ora.Inventory:GiveItemToPlayer(v, data.itemData, data.amount)
                         Refresh()
 						break
                     else
@@ -332,7 +332,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
         end)
     elseif data.eventName == "throwInventory" then
         local toDrop = {}
-        for it, itarr in pairs(Atlantiss.Inventory.Data) do
+        for it, itarr in pairs(Ora.Inventory.Data) do
             if it == data.itemData.name then
                 for idx, itemtodrop in pairs(itarr) do
                     if itemtodrop.label == data.itemData.label then
@@ -350,41 +350,41 @@ RegisterNUICallback('inventoryInteraction', function(data)
             DeleteIfWeapon(toDrop[i])
         end
         if IsAWeapon(data.itemData.name) then exports['Ora_utils']:sendME('* L\'individu jette une arme par terre. *') end
-        Atlantiss.Inventory:Throw(toDrop)
+        Ora.Inventory:Throw(toDrop)
         Refresh()
         toDrop = {}
     elseif data.eventName == "infoInventory" then
-        Atlantiss.Inventory:Infos(data.itemData)
+        Ora.Inventory:Infos(data.itemData)
     elseif data.eventName == "renameItem" then
-        Atlantiss.Inventory:Rename(data.itemData)
+        Ora.Inventory:Rename(data.itemData)
         SetNuiFocus(true, true)
         Refresh()
     elseif data.eventName == "renameAllItems" then
-        Atlantiss.Inventory:RenameAll(data.itemData)
+        Ora.Inventory:RenameAll(data.itemData)
         SetNuiFocus(true, true)
         Refresh()
     elseif data.eventName == "weaponOne" then
         if IsAWeapon(data.itemData.name) then
             ShowNotif('Vous avez équipé une arme', 'success')
             showNotificationForWeapon(data.itemData, false)
-            Atlantiss.Inventory:SetWeapon(data.itemData, 1)
-            Atlantiss.Inventory:Save(true)
+            Ora.Inventory:SetWeapon(data.itemData, 1)
+            Ora.Inventory:Save(true)
             Refresh()
         end
     elseif data.eventName == "weaponTwo" then
         if IsAWeapon(data.itemData.name) then
             ShowNotif('Vous avez équipé une arme', 'success')
             showNotificationForWeapon(data.itemData, false)
-            Atlantiss.Inventory:SetWeapon(data.itemData, 2)
-            Atlantiss.Inventory:Save(true)
+            Ora.Inventory:SetWeapon(data.itemData, 2)
+            Ora.Inventory:Save(true)
             Refresh()
         end
     elseif data.eventName == "weaponThree" then
         if IsAWeapon(data.itemData.name) then
             ShowNotif('Vous avez équipé une arme', 'success')
             showNotificationForWeapon(data.itemData, false)
-            Atlantiss.Inventory:SetWeapon(data.itemData, 3)
-            Atlantiss.Inventory:Save(true)
+            Ora.Inventory:SetWeapon(data.itemData, 3)
+            Ora.Inventory:Save(true)
             Refresh()
         end
     end
@@ -394,10 +394,10 @@ RegisterNUICallback('InventoryToTarget', function(data)
     if not data or not data.itemData then return error("L'item utilisé est cassé, veuillez contacter un membre du staff.") end
 
     if Storage:CanAcceptItem(data.itemData.name, data.amount) then
-        for k, v in pairs(Atlantiss.Inventory.Data) do
+        for k, v in pairs(Ora.Inventory.Data) do
             if k == data.itemData.name then
                 for i = 1, data.amount do
-                    DeleteIfWeapon(Atlantiss.Inventory.Data[data.itemData.name][i])
+                    DeleteIfWeapon(Ora.Inventory.Data[data.itemData.name][i])
                 end
             end
         end
@@ -411,7 +411,7 @@ RegisterNUICallback('TargetToInventory', function(data)
     if not data or not data.itemData then return error("L'item utilisé est cassé, veuillez contacter un membre du staff.") end
 
     if data.snoupix then -- fouille
-        if Atlantiss.Inventory:CanReceive(data.itemData.name, data.amount) then
+        if Ora.Inventory:CanReceive(data.itemData.name, data.amount) then
             local closestPly = GetPlayerServerIdInDirection(5.0)
             if closestPly then
                 local canContinue = true
@@ -419,20 +419,20 @@ RegisterNUICallback('TargetToInventory', function(data)
                     ShowNotif("Il n'est pas possible de voler plus d'un item à la fois.", 'error')
                     RefreshStealing(closestPly)
                 else
-                    local hasBeenStolen = Atlantiss.Inventory:StealFromPlayer(closestPly, data.itemData, data.amount)
+                    local hasBeenStolen = Ora.Inventory:StealFromPlayer(closestPly, data.itemData, data.amount)
 
                     if (hasBeenStolen) then
-                        Atlantiss.Inventory:AddItem({name = data.itemData.name, id = data.itemData.id, data = data.itemData.data, label = data.itemData.label})
+                        Ora.Inventory:AddItem({name = data.itemData.name, id = data.itemData.id, data = data.itemData.data, label = data.itemData.label})
                         TriggerServerEvent(
-                            "atlantiss:sendToDiscord",
+                            "Ora:sendToDiscord",
                             2,
-                            Atlantiss.Identity:GetMyName() ..
+                            Ora.Identity:GetMyName() ..
                                 " a volé " ..
                                     data.amount ..
                                         " x " ..
                                             Items[data.itemData.name].label ..
                                                 " a " .. 
-                                                    Atlantiss.Identity:GetFullname(closestPly)
+                                                    Ora.Identity:GetFullname(closestPly)
                         )
                         ShowNotif("Vous avez volé ".. data.amount .." x "..Items[data.itemData.name].label)
                         RefreshStealing(closestPly)
@@ -447,7 +447,7 @@ RegisterNUICallback('TargetToInventory', function(data)
             end
         end
     else
-        if Atlantiss.Inventory:CanReceive(data.itemData.name, data.amount) then
+        if Ora.Inventory:CanReceive(data.itemData.name, data.amount) then
             Storage:TransferToInventory(tonumber(data.amount), data.itemData)
         end
     end
@@ -460,7 +460,7 @@ Citizen.CreateThread(function()
         HideHudComponentThisFrame(19)
 		HudWeaponWheelIgnoreSelection()
 
-        if (Atlantiss.Inventory.State.IsOpen) then
+        if (Ora.Inventory.State.IsOpen) then
 			DisableControlAction(0, 24, true)
 			DisableControlAction(0, 25, true)
 			for i = 0, 5 do
@@ -484,26 +484,26 @@ Citizen.CreateThread(function()
         end
 
         if (IsControlJustPressed(0, Keys['1'])) then
-            if Atlantiss.Inventory.weaponONE and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
-                showNotificationForWeapon(Atlantiss.Inventory.weaponONE, true)
-                Atlantiss.Inventory:UseItem(Atlantiss.Inventory.weaponONE)
-                Atlantiss.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Atlantiss.Inventory.weaponONE.name]))
+            if Ora.Inventory.weaponONE and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
+                showNotificationForWeapon(Ora.Inventory.weaponONE, true)
+                Ora.Inventory:UseItem(Ora.Inventory.weaponONE)
+                Ora.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Ora.Inventory.weaponONE.name]))
             end
         end
 
         if (IsControlJustPressed(0, Keys['2'])) then
-            if Atlantiss.Inventory.weaponTWO and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
-                showNotificationForWeapon(Atlantiss.Inventory.weaponTWO, true)
-                Atlantiss.Inventory:UseItem(Atlantiss.Inventory.weaponTWO) 
-                Atlantiss.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Atlantiss.Inventory.weaponTWO.name]))
+            if Ora.Inventory.weaponTWO and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
+                showNotificationForWeapon(Ora.Inventory.weaponTWO, true)
+                Ora.Inventory:UseItem(Ora.Inventory.weaponTWO) 
+                Ora.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Ora.Inventory.weaponTWO.name]))
             end
         end
 
         if (IsControlJustPressed(0, Keys['3'])) then
-            if Atlantiss.Inventory.weaponTHREE and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
-                showNotificationForWeapon(Atlantiss.Inventory.weaponTHREE, true)
-                Atlantiss.Inventory:UseItem(Atlantiss.Inventory.weaponTHREE) 
-                Atlantiss.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Atlantiss.Inventory.weaponTHREE.name]))
+            if Ora.Inventory.weaponTHREE and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
+                showNotificationForWeapon(Ora.Inventory.weaponTHREE, true)
+                Ora.Inventory:UseItem(Ora.Inventory.weaponTHREE) 
+                Ora.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Ora.Inventory.weaponTHREE.name]))
             end
         end
 	end
@@ -515,18 +515,18 @@ KeySettings:Add(
     function()
         if (
             (LocalPlayer().Handcuff == true) or
-            (Atlantiss.Health.State.IS_DEAD == true) or
-            (Atlantiss.Health.State.IS_WOUNDED == true) or
-            (Atlantiss.Player.HasLoaded == false)
+            (Ora.Health.State.IS_DEAD == true) or
+            (Ora.Health.State.IS_WOUNDED == true) or
+            (Ora.Player.HasLoaded == false)
         ) then
             return RageUI.Popup({message = 'Vous ne pouvez pas faire ça !'})
         end
 
-		if (Atlantiss.Inventory.State.IsOpen) then
+		if (Ora.Inventory.State.IsOpen) then
 			HideInventory()
 		else
 			OpenInventory()
-			Atlantiss.Inventory.State.IsOpen = true
+			Ora.Inventory.State.IsOpen = true
 		end
 	end,
 	"Ouvrir/Fermer l'inventaire"

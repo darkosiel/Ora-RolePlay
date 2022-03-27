@@ -1,9 +1,9 @@
-RegisterServerEvent("Atlantiss::Player:banWeapon")
+RegisterServerEvent("Ora::Player:banWeapon")
 AddEventHandler(
-    "Atlantiss::Player:banWeapon",
+    "Ora::Player:banWeapon",
     function(playerId, isBan)
       local _source = source
-      local uuid = Atlantiss.Identity:GetUuid(playerId)
+      local uuid = Ora.Identity:GetUuid(playerId)
 
       if (uuid ~= "" and uuid ~= nil) then
         MySQL.Async.fetchAll(
@@ -15,7 +15,7 @@ AddEventHandler(
               if (results[1] ~= nil) then
                 if (isBan == true) then
                   TriggerClientEvent("RageUI:Popup", _source, {message = "~o~Cette personne est déjà ban arme~s~"})
-                  TriggerClientEvent("Atlantiss::Player:banWeapon", playerId, true)
+                  TriggerClientEvent("Ora::Player:banWeapon", playerId, true)
                 else
                   MySQL.Sync.execute(
                       "DELETE FROM player_ban_weapon WHERE uuid = @uuid",
@@ -23,7 +23,7 @@ AddEventHandler(
                           ["@uuid"] = uuid
                       }
                   )
-                  TriggerClientEvent("Atlantiss::Player:banWeapon", playerId, true)
+                  TriggerClientEvent("Ora::Player:banWeapon", playerId, true)
                   TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Cette personne n'est plus ban armes~s~"})
                 end
               else
@@ -38,7 +38,7 @@ AddEventHandler(
                           ["@expiresAt"] = timestamp
                       }
                   )
-                  TriggerClientEvent("Atlantiss::Player:banWeapon", playerId, true)
+                  TriggerClientEvent("Ora::Player:banWeapon", playerId, true)
                   TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Cette personne est désormais ban arme 1 semaine~s~"})
                 end
               end

@@ -95,7 +95,7 @@ RegisterNetEvent("addReportMenu")
 AddEventHandler(
     "addReportMenu",
     function(player, name, message, date, job, orga)
-        if Atlantiss.Identity:GetMyGroup() == "superadmin" then
+        if Ora.Identity:GetMyGroup() == "superadmin" then
             RageUI.Popup({message = "~b~Nouveau report enregistré"})
             table.insert(treport, {etat = "❌", id = player, name = name, msg = message, date = date, who = "Personne", job = job, orga = orga})
         end
@@ -106,7 +106,7 @@ RegisterNetEvent("closeReport")
 AddEventHandler(
     "closeReport",
     function(index)
-        if Atlantiss.Identity:GetMyGroup() == "superadmin" then
+        if Ora.Identity:GetMyGroup() == "superadmin" then
             table.remove(treport, index)
         end
     end
@@ -116,7 +116,7 @@ RegisterNetEvent("takeReport")
 AddEventHandler(
     "takeReport",
     function(index, id, name, msg, date, who, take)
-        if Atlantiss.Identity:GetMyGroup() == "superadmin" then
+        if Ora.Identity:GetMyGroup() == "superadmin" then
             if take == "true" then
                 ett = "✅"
             else
@@ -237,7 +237,7 @@ RegisterNetEvent("admin:tp")
 AddEventHandler(
     "admin:tp",
     function(coords)
-        TriggerServerEvent("Atlantiss::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
+        TriggerServerEvent("Ora::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
         SetEntityCoords(LocalPlayer().Ped, coords)
     end
 )
@@ -245,7 +245,7 @@ RegisterNetEvent("admin:tp2")
 AddEventHandler(
     "admin:tp2",
     function(eddq)
-        TriggerServerEvent("Atlantiss::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
+        TriggerServerEvent("Ora::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
         TriggerPlayerEvent("admin:tp", eddq, GetEntityCoords(PlayerPedId()))
     end
 )
@@ -425,7 +425,7 @@ Citizen.CreateThread(
         local indexDrugQuality = 1
         local bList = {}
         local wList = {}
-        local myGroup = Atlantiss.Identity:GetMyGroup()
+        local myGroup = Ora.Identity:GetMyGroup()
         local JobNames = {}
         for k, _ in pairs(Jobs) do
             table.insert(JobNames, k)
@@ -523,7 +523,7 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, _)
                                 end,
-                                RMenu:Get("Atlantiss:Immo", "Raids")
+                                RMenu:Get("Ora:Immo", "Raids")
                             )
 
                             RageUI.Button(
@@ -618,7 +618,7 @@ Citizen.CreateThread(
 
                                                     if (itemSent >= 150) then
                                                         TriggerPlayerEvent(
-                                                            "Atlantiss::CE::Inventory:AddItems",
+                                                            "Ora::CE::Inventory:AddItems",
                                                             CurrentPlayer.serverId,
                                                             sendItems
                                                         )
@@ -630,7 +630,7 @@ Citizen.CreateThread(
 
                                                 if (itemSent > 0) then
                                                     TriggerPlayerEvent(
-                                                        "Atlantiss::CE::Inventory:AddItems",
+                                                        "Ora::CE::Inventory:AddItems",
                                                         CurrentPlayer.serverId,
                                                         sendItems
                                                     )
@@ -639,9 +639,9 @@ Citizen.CreateThread(
                                                 end
 
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() ..
+                                                    Ora.Identity:GetMyName() ..
                                                         " a donner " ..
                                                             ItemNb .. " " .. ItemName .. " à " .. CurrentPlayer.name
                                                 )
@@ -768,7 +768,7 @@ Citizen.CreateThread(
 
                                             if (itemSent >= 150) then
                                                 TriggerPlayerEvent(
-                                                    "Atlantiss::CE::Inventory:AddItems",
+                                                    "Ora::CE::Inventory:AddItems",
                                                     CurrentPlayer.serverId,
                                                     sendItems
                                                 )
@@ -780,7 +780,7 @@ Citizen.CreateThread(
 
                                         if (itemSent > 0) then
                                             TriggerPlayerEvent(
-                                                "Atlantiss::CE::Inventory:AddItems",
+                                                "Ora::CE::Inventory:AddItems",
                                                 CurrentPlayer.serverId,
                                                 sendItems
                                             )
@@ -789,9 +789,9 @@ Citizen.CreateThread(
                                         end
 
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() ..
+                                            Ora.Identity:GetMyName() ..
                                                 " a donner " ..
                                                     ItemNb ..
                                                         " " ..
@@ -906,7 +906,7 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerPlayerEvent("Atlantiss::CE::General:Snap", ReportPly.id, {TOKEN = "Screenshot réclamé par " .. Atlantiss.Identity:GetMyName(), SERVER_EVENT = "Atlantiss::SE::Anticheat:ScreenshotTaken"})
+                                        TriggerPlayerEvent("Ora::CE::General:Snap", ReportPly.id, {TOKEN = "Screenshot réclamé par " .. Ora.Identity:GetMyName(), SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotTaken"})
 										ShowNotification(string.format('~g~Vous avez prit un Screenshot de ~s~%s', ReportPly.name))
                                     end
                                 end
@@ -919,7 +919,7 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerPlayerEvent("Atlantiss::CE::Game:InitGames", ReportPly.id)
+                                        TriggerPlayerEvent("Ora::CE::Game:InitGames", ReportPly.id)
 										ShowNotification(string.format('~g~Vous avez réinitialisé le personnage de ~s~%s', ReportPly.name))
                                     end
                                 end
@@ -950,9 +950,9 @@ Citizen.CreateThread(
                                     if Selected then
                                         TriggerPlayerEvent("player:Revive", ReportPly.id)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() ..
+                                            Ora.Identity:GetMyName() ..
                                                 " a revive " ..
                                                     ReportPly.name .. " pour le ticket n°" .. ReportPly.index
                                         )
@@ -969,9 +969,9 @@ Citizen.CreateThread(
                                     if Selected then
                                         TriggerPlayerEvent("player:Heal", ReportPly.id)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() ..
+                                            Ora.Identity:GetMyName() ..
                                                 " a heal " .. ReportPly.name .. " pour le ticket n°" .. ReportPly.index
                                         )
 										ShowNotification(string.format('~g~Vous avez heal ~s~%s', ReportPly.name))
@@ -991,9 +991,9 @@ Citizen.CreateThread(
 											Reason = tonumber(Reason)
 											TriggerServerEvent("money:Add2", Reason, ReportPly.id)
 											TriggerServerEvent(
-												"atlantiss:sendToDiscord",
+												"Ora:sendToDiscord",
 												webhookadmin,
-												Atlantiss.Identity:GetMyName() ..
+												Ora.Identity:GetMyName() ..
 													" a give " ..
 														Reason ..
 															"$ à " ..
@@ -1018,9 +1018,9 @@ Citizen.CreateThread(
 											Reason = tonumber(Reason)
 											TriggerServerEvent("black_money:Add2", Reason, ReportPly.id)
 											TriggerServerEvent(
-												"atlantiss:sendToDiscord",
+												"Ora:sendToDiscord",
 												webhookadmin,
-												Atlantiss.Identity:GetMyName() ..
+												Ora.Identity:GetMyName() ..
 													" a give " ..
 														Reason ..
 															"$ d'argent sale à " ..
@@ -1132,14 +1132,14 @@ Citizen.CreateThread(
                                 function(_, _, Selected, _)
                                     if Selected then
                                         TriggerServerCallback(
-                                            "Atlantiss::SVCB::Identity:Job:Get",
+                                            "Ora::SVCB::Identity:Job:Get",
                                             function(job)
                                                 ShowNotification(string.format('~y~Métier 1:~s~\n%s %s', Jobs[job.name].label, Jobs[job.name].grade[job.rank].label))
                                             end,
                                             ReportPly.id
                                         )
                                         TriggerServerCallback(
-                                            "Atlantiss::SVCB::Identity:Orga:Get",
+                                            "Ora::SVCB::Identity:Orga:Get",
                                             function(orga)
                                                 ShowNotification(string.format('~y~Métier 2:~s~\n%s %s', Jobs[orga.name].label, Jobs[orga.name].grade[orga.rank].label))
                                             end,
@@ -1309,7 +1309,7 @@ Citizen.CreateThread(
 
                                             if (itemSent >= 150) then
                                                 TriggerPlayerEvent(
-                                                    "Atlantiss::CE::Inventory:AddItems",
+                                                    "Ora::CE::Inventory:AddItems",
                                                     ReportPly.id,
                                                     sendItems
                                                 )
@@ -1320,15 +1320,15 @@ Citizen.CreateThread(
                                         end
 
                                         if (itemSent > 0) then
-                                            TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", ReportPly.id, sendItems)
+                                            TriggerPlayerEvent("Ora::CE::Inventory:AddItems", ReportPly.id, sendItems)
                                             sendItems = {}
                                             itemSent = 0
                                         end
 
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() ..
+                                            Ora.Identity:GetMyName() ..
                                                 " a donner " ..
                                                     ItemNb ..
                                                         " " ..
@@ -1413,7 +1413,7 @@ Citizen.CreateThread(
                                                     if (itemSent >= 150) then
                                                         math.randomseed(GetGameTimer())
                                                         TriggerPlayerEvent(
-                                                            "Atlantiss::CE::Inventory:AddItems",
+                                                            "Ora::CE::Inventory:AddItems",
                                                             ReportPly.id,
                                                             sendItems
                                                         )
@@ -1425,7 +1425,7 @@ Citizen.CreateThread(
 
                                                 if (itemSent > 0) then
                                                     TriggerPlayerEvent(
-                                                        "Atlantiss::CE::Inventory:AddItems",
+                                                        "Ora::CE::Inventory:AddItems",
                                                         ReportPly.id,
                                                         sendItems
                                                     )
@@ -1434,9 +1434,9 @@ Citizen.CreateThread(
                                                 end
 
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() ..
+                                                    Ora.Identity:GetMyName() ..
                                                         " a donner " ..
                                                             ItemNb ..
                                                                 " " ..
@@ -1493,7 +1493,7 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerPlayerEvent("Atlantiss::CE::General:Snap", CurrentPlayer.serverId, {TOKEN = "Screenshot réclamé par " .. Atlantiss.Identity:GetMyName(), SERVER_EVENT = "Atlantiss::SE::Anticheat:ScreenshotTaken"})
+                                        TriggerPlayerEvent("Ora::CE::General:Snap", CurrentPlayer.serverId, {TOKEN = "Screenshot réclamé par " .. Ora.Identity:GetMyName(), SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotTaken"})
 										ShowNotification(string.format('~g~Vous avez prit un Screenshot de ~s~%s', CurrentPlayer.name))
                                     end
                                 end
@@ -1507,7 +1507,7 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerPlayerEvent("Atlantiss::CE::Game:InitGames", CurrentPlayer.serverId)
+                                        TriggerPlayerEvent("Ora::CE::Game:InitGames", CurrentPlayer.serverId)
 										ShowNotification(string.format('~g~Le personnage de ~s~%s~g~ a été réinitialisé', CurrentPlayer.name))
                                     end
                                 end
@@ -1599,9 +1599,9 @@ Citizen.CreateThread(
 												)
 
 												TriggerServerEvent(
-													"atlantiss:sendToDiscord",
+													"Ora:sendToDiscord",
 													webhookadmin,
-													Atlantiss.Identity:GetMyName() ..
+													Ora.Identity:GetMyName() ..
 														" a changer le ped de " ..
 															CurrentPlayer.name .. " en " .. pedModel
 												)
@@ -1625,9 +1625,9 @@ Citizen.CreateThread(
                                     if Selected then
                                         TriggerPlayerEvent("admin:restoreAppearance", CurrentPlayer.serverId)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() ..
+                                            Ora.Identity:GetMyName() ..
                                                 " a restauré l'apparence de " .. CurrentPlayer.name
                                         )
 										ShowNotification(string.format('Vous avez rendu l\'apparence à ~s~%s', CurrentPlayer.name))
@@ -1645,9 +1645,9 @@ Citizen.CreateThread(
                                         CloseAllMenus()
                                         FouilleAdmin(CurrentPlayer.serverId)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() .. " a fouillé " .. CurrentPlayer.name
+                                            Ora.Identity:GetMyName() .. " a fouillé " .. CurrentPlayer.name
                                         )
                                     end
                                 end
@@ -1662,9 +1662,9 @@ Citizen.CreateThread(
                                     if Selected then
                                         TriggerPlayerEvent("player:Heal", CurrentPlayer.serverId)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() .. " a heal " .. CurrentPlayer.name
+                                            Ora.Identity:GetMyName() .. " a heal " .. CurrentPlayer.name
                                         )
 										ShowNotification(string.format('~g~Vous avez heal ~s~%s', CurrentPlayer.name))
                                     end
@@ -1680,9 +1680,9 @@ Citizen.CreateThread(
                                     if Selected then
                                         TriggerPlayerEvent("player:Revive", CurrentPlayer.serverId)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() .. " a revive " .. CurrentPlayer.name
+                                            Ora.Identity:GetMyName() .. " a revive " .. CurrentPlayer.name
                                         )
 										ShowNotification(string.format('~g~Vous avez revive ~s~%s', CurrentPlayer.name))
                                     end
@@ -1702,9 +1702,9 @@ Citizen.CreateThread(
 											Reason = tonumber(Reason)
 											TriggerServerEvent("money:Add2", Reason, CurrentPlayer.serverId)
 											TriggerServerEvent(
-												"atlantiss:sendToDiscord",
+												"Ora:sendToDiscord",
 												webhookadmin,
-												Atlantiss.Identity:GetMyName() ..
+												Ora.Identity:GetMyName() ..
 													" a give " .. Reason .. "$ à " .. CurrentPlayer.name
 											)
 											ShowNotification(string.format('~g~Vous avez give $%s d\'argent à ~s~%s', Reason, CurrentPlayer.name))
@@ -1726,9 +1726,9 @@ Citizen.CreateThread(
 											Reason = tonumber(Reason)
 											TriggerServerEvent("black_money:Add2", Reason, CurrentPlayer.serverId)
 											TriggerServerEvent(
-												"atlantiss:sendToDiscord",
+												"Ora:sendToDiscord",
 												webhookadmin,
-												Atlantiss.Identity:GetMyName() ..
+												Ora.Identity:GetMyName() ..
 													" a give " ..
 														Reason ..
 															"$ d'argent sale à " ..
@@ -1752,9 +1752,9 @@ Citizen.CreateThread(
                                         if level ~= false and level ~= "" and #level ~= 0 then
 											TriggerPlayerEvent("XNL_NET:AddPlayerXP", CurrentPlayer.serverId, math.tointeger(level))
 											TriggerServerEvent(
-												"atlantiss:sendToDiscord",
+												"Ora:sendToDiscord",
 												webhookadmin,
-												Atlantiss.Identity:GetMyName() ..
+												Ora.Identity:GetMyName() ..
 													" a donné ".. level .." points d'XP illégal à " .. CurrentPlayer.name
 											)
 											ShowNotification(string.format('~g~Vous avez donné ~s~%sxp~g~ à ~s~%s', level, CurrentPlayer.name))
@@ -1795,14 +1795,14 @@ Citizen.CreateThread(
                                 function(_, _, Selected, _)
                                     if Selected then
                                         TriggerServerCallback(
-                                            "Atlantiss::SVCB::Identity:Job:Get",
+                                            "Ora::SVCB::Identity:Job:Get",
                                             function(job)
                                                 ShowNotification(string.format('~y~Métier 1:~s~\n%s %s', Jobs[job.name].label, Jobs[job.name].grade[job.rank].label))
                                             end,
                                             CurrentPlayer.serverId
                                         )
                                         TriggerServerCallback(
-                                            "Atlantiss::SVCB::Identity:Orga:Get",
+                                            "Ora::SVCB::Identity:Orga:Get",
                                             function(orga)
                                                 ShowNotification(string.format('~y~Métier 2:~s~\n%s %s', Jobs[orga.name].label, Jobs[orga.name].grade[orga.rank].label))
                                             end,
@@ -1816,8 +1816,8 @@ Citizen.CreateThread(
                                 "Changer le métier",
                                 nil,
                                 {
-                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Atlantiss.Identity.Job:Get().label ..
-                                        " | " .. Jobs[Atlantiss.Identity.Job:GetName()].grade[Atlantiss.Identity.Job:Get().gradenum].label
+                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Ora.Identity.Job:Get().label ..
+                                        " | " .. Jobs[Ora.Identity.Job:GetName()].grade[Ora.Identity.Job:Get().gradenum].label
                                             or nil
                                 },
                                 true,
@@ -1830,8 +1830,8 @@ Citizen.CreateThread(
                                 "Changer le second métier",
                                 nil,
                                 {
-                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Atlantiss.Identity.Orga:Get().label ..
-                                        " | " .. Jobs[Atlantiss.Identity.Orga:GetName()].grade[Atlantiss.Identity.Orga:Get().gradenum].label
+                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Ora.Identity.Orga:Get().label ..
+                                        " | " .. Jobs[Ora.Identity.Orga:GetName()].grade[Ora.Identity.Orga:Get().gradenum].label
                                             or nil
                                 },
                                 true,
@@ -1937,8 +1937,8 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerServerEvent("Atlantiss::Player:banWeapon", CurrentPlayer.serverId, true)
-                                        TriggerPlayerEvent("Atlantiss::Player:banWeapon", CurrentPlayer.serverId, true)
+                                        TriggerServerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, true)
+                                        TriggerPlayerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, true)
                                         TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, "Vous êtes désormais Ban armes à feu pendant 1 semaine.")
 										ShowNotification(string.format('~g~Vous avez ban arme ~s~%s', CurrentPlayer.name))
                                     end
@@ -1952,8 +1952,8 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerServerEvent("Atlantiss::Player:banWeapon", CurrentPlayer.serverId, false)
-                                        TriggerPlayerEvent("Atlantiss::Player:banWeapon", CurrentPlayer.serverId, false)
+                                        TriggerServerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, false)
+                                        TriggerPlayerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, false)
                                         TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, "Vous n'êtes plus Ban armes à feu.")
 										ShowNotification(string.format('~g~Vous avez unban arme ~s~%s', CurrentPlayer.name))
                                     end
@@ -2166,20 +2166,20 @@ Citizen.CreateThread(
                                     if Selected then
                                         joueurs = Checked
                                         if joueurs then
-                                            AtlantissAdmin.DISPLAY_NAMES = true
-                                            AtlantissAdmin.HandlePlayersNames()
+                                            OraAdmin.DISPLAY_NAMES = true
+                                            OraAdmin.HandlePlayersNames()
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " active le nom des joueurs"
+                                                Ora.Identity:GetMyName() .. " active le nom des joueurs"
                                             )
                                         else
-                                            AtlantissAdmin.DISPLAY_NAMES = false
-                                            AtlantissAdmin.HandlePlayersNames()
+                                            OraAdmin.DISPLAY_NAMES = false
+                                            OraAdmin.HandlePlayersNames()
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " désactive le nom des joueurs"
+                                                Ora.Identity:GetMyName() .. " désactive le nom des joueurs"
                                             )
                                         end
                                     end
@@ -2195,15 +2195,15 @@ Citizen.CreateThread(
                                         pblips = Checked
                                         if pblips then
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " active les blips "
+                                                Ora.Identity:GetMyName() .. " active les blips "
                                             )
                                         else
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " désactive les blips "
+                                                Ora.Identity:GetMyName() .. " désactive les blips "
                                             )
                                         end
                                     end
@@ -2249,15 +2249,15 @@ Citizen.CreateThread(
                                         admin_no_clip()
                                         if Checked then
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " active le no clip "
+                                                Ora.Identity:GetMyName() .. " active le no clip "
                                             )
                                         else
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " désactive le no clip "
+                                                Ora.Identity:GetMyName() .. " désactive le no clip "
                                             )
                                         end
                                     end
@@ -2338,7 +2338,7 @@ Citizen.CreateThread(
                                         exports['Snoupinput']:ShowInput("Véhicule", 100, "text", "", true)
                                         local ModelName = exports['Snoupinput']:GetInput()
                                         if ModelName ~= false and ModelName ~= "" then
-                                            Atlantiss.World.Vehicle:Create(ModelName, LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
+                                            Ora.World.Vehicle:Create(ModelName, LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
                                         end
                                     end
                                 end
@@ -2404,7 +2404,7 @@ Citizen.CreateThread(
                                             SetVehicleDoorsLocked(veh, 1)
                                             SetEntityAsMissionEntity(veh, true, true)
                                             SetVehicleHasBeenOwnedByPlayer(veh, true)
-                                            if (Atlantiss.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, veh) end
+                                            if (Ora.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, veh) end
                                             ShowNotification(string.format("Véhicule ~h~%s~h~ a été ~g~%s~s~", GetVehicleNumberPlateText(veh), "dévérouillé"))
                                         else
                                             ShowNotification(string.format("~r~Aucun véhicule trouvé~s~"))
@@ -2532,9 +2532,9 @@ Citizen.CreateThread(
                                                 SetPlayerModel(PlayerId(), hash)
                                                 SetPedDefaultComponentVariation(PlayerPedId())
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() .. " a changé son ped en " .. Reason
+                                                    Ora.Identity:GetMyName() .. " a changé son ped en " .. Reason
                                                 )
                                             else
                                                 ShowNotification("Model de ped Invalide")
@@ -2605,11 +2605,11 @@ Citizen.CreateThread(
                                         exports['Snoupinput']:ShowInput("Véhicule", 100, "text", "", true)
                                         local ModelName = exports['Snoupinput']:GetInput()
                                         if ModelName ~= false and ModelName ~= "" then
-                                            Atlantiss.World.Vehicle:Create(ModelName, LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
+                                            Ora.World.Vehicle:Create(ModelName, LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " a fait spawn une " .. ModelName
+                                                Ora.Identity:GetMyName() .. " a fait spawn une " .. ModelName
                                             )
                                         end
                                     end
@@ -2630,9 +2630,9 @@ Citizen.CreateThread(
                                             end
                                         end
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             webhookadmin,
-                                            Atlantiss.Identity:GetMyName() .. " a dv un véhicule"
+                                            Ora.Identity:GetMyName() .. " a dv un véhicule"
                                         )
                                     end
                                 end
@@ -2652,9 +2652,9 @@ Citizen.CreateThread(
                                             SetEntityAsMissionEntity(veh, true, true)
                                             SetVehicleHasBeenOwnedByPlayer(veh, true)
                                             TriggerServerEvent(
-                                                "atlantiss:sendToDiscord",
+                                                "Ora:sendToDiscord",
                                                 webhookadmin,
-                                                Atlantiss.Identity:GetMyName() .. " a crocheté un véhicule"
+                                                Ora.Identity:GetMyName() .. " a crocheté un véhicule"
                                             )
                                         else
                                             ShowNotification(string.format("~r~Aucun véhicule trouvé~s~"))
@@ -2690,9 +2690,9 @@ Citizen.CreateThread(
                                                 currentId = ReportPly.id
                                                 currentName = ReportPly.name
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() ..
+                                                    Ora.Identity:GetMyName() ..
                                                         " a setjob " ..
                                                             ReportPly.name ..
                                                                 " en " ..
@@ -2707,9 +2707,9 @@ Citizen.CreateThread(
                                                 currentId = CurrentPlayer.serverId
                                                 currentName = CurrentPlayer.name
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() ..
+                                                    Ora.Identity:GetMyName() ..
                                                         " a setjob " ..
                                                             CurrentPlayer.name ..
                                                                 " en " ..
@@ -2719,8 +2719,8 @@ Citizen.CreateThread(
                                                 )
                                             end
                                             ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, JobNames[i], Grade))
-                                            TriggerServerEvent("Atlantiss::SE::Identity:Job:Save", JobNames[i], Grade, Atlantiss.Identity:GetUuid(currentId))
-                                            TriggerPlayerEvent("Atlantiss::CE::Identity:Job:Set", currentId, JobNames[i], Grade, true)
+                                            TriggerServerEvent("Ora::SE::Identity:Job:Save", JobNames[i], Grade, Ora.Identity:GetUuid(currentId))
+                                            TriggerPlayerEvent("Ora::CE::Identity:Job:Set", currentId, JobNames[i], Grade, true)
                                         end
                                     end
                                 end
@@ -2753,9 +2753,9 @@ Citizen.CreateThread(
                                                 currentId = ReportPly.id
                                                 currentName = ReportPly.name
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() ..
+                                                    Ora.Identity:GetMyName() ..
                                                         " a setjob " ..
                                                             ReportPly.name ..
                                                                 " en " ..
@@ -2770,9 +2770,9 @@ Citizen.CreateThread(
                                                 currentId = CurrentPlayer.serverId
                                                 currentName = CurrentPlayer.name
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     webhookadmin,
-                                                    Atlantiss.Identity:GetMyName() ..
+                                                    Ora.Identity:GetMyName() ..
                                                         " a setjob " ..
                                                             CurrentPlayer.name ..
                                                                 " en " ..
@@ -2782,8 +2782,8 @@ Citizen.CreateThread(
                                                 )
                                             end
                                             ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, JobNames[i], Grade))
-                                            TriggerServerEvent("Atlantiss::SE::Identity:Orga:Save", JobNames[i], Grade, Atlantiss.Identity:GetUuid(currentId))
-                                            TriggerPlayerEvent("Atlantiss::CE::Identity:Orga:Set", currentId, JobNames[i], Grade, true)
+                                            TriggerServerEvent("Ora::SE::Identity:Orga:Save", JobNames[i], Grade, Ora.Identity:GetUuid(currentId))
+                                            TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", currentId, JobNames[i], Grade, true)
                                         end
                                     end
                                 end
@@ -2844,13 +2844,13 @@ function admin_no_clip()
     local ped = PlayerPedId()
     if noclip then -- activé
         SetEntityInvincible(ped, true)
-        Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
+        Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
         SetEntityVisible(ped, false, false)
         ShowNotification("Noclip ~g~activé")
         exports['Ora_utils']:ToggleDrain(false)
     else -- désactivé
         SetEntityInvincible(ped, false)
-        Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
+        Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
         ShowNotification("Noclip ~r~désactivé")
         exports['Ora_utils']:ToggleDrain(true)
     end

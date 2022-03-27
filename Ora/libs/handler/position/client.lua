@@ -5,7 +5,7 @@ end
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(30000) --5M
-        if Atlantiss.Player.HasLoaded == true then
+        if Ora.Player.HasLoaded == true then
             if oldF ~= LocalPlayer().FarmLimit then
                 TriggerServerEvent('save:FarmLimit', LocalPlayer().FarmLimit)
                 oldF = LocalPlayer().FarmLimit

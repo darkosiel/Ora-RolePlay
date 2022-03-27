@@ -68,7 +68,7 @@ AddEventHandler('player:HandCuff', function(m)
 
         end)
         local plyCoords = GetEntityCoords(GetPlayerPed(PlayerId()), false)
-        HandCuffObj = Atlantiss.World.Object:Create(GetHashKey("p_cs_cuffs_02_s"), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
+        HandCuffObj = Ora.World.Object:Create(GetHashKey("p_cs_cuffs_02_s"), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
         
         AttachEntityToEntity(HandCuffObj, GetPlayerPed(PlayerId()), GetPedBoneIndex(GetPlayerPed(PlayerId()), 60309), -0.04, 0.06, 0.02, -90.0, -25.0, 80.0, 1, 0, 0, 0, 0, 1)
     else

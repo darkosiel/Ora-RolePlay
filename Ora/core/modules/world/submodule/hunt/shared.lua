@@ -1,4 +1,4 @@
-Atlantiss.World.Animals = {
+Ora.World.Animals = {
   spawn = {
     timeInterval = 5.0, -- minutes
     stop = false, -- don't touch

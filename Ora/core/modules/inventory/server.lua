@@ -1,8 +1,8 @@
-Atlantiss.Inventory.CanReceiveMatchingTable = {}
-Atlantiss.Inventory.CanStealMatchingTable = {}
-Atlantiss.Inventory.StoragePlayerMapper = {}
+Ora.Inventory.CanReceiveMatchingTable = {}
+Ora.Inventory.CanStealMatchingTable = {}
+Ora.Inventory.StoragePlayerMapper = {}
 
-function Atlantiss.Inventory:AddPlayerToStorage(playerId, storageName)
+function Ora.Inventory:AddPlayerToStorage(playerId, storageName)
     if self.StoragePlayerMapper[storageName] == nil then
         self.StoragePlayerMapper[storageName] = {}
     end
@@ -10,7 +10,7 @@ function Atlantiss.Inventory:AddPlayerToStorage(playerId, storageName)
     self.StoragePlayerMapper[storageName][playerId] = true
 end
 
-function Atlantiss.Inventory:RemovePlayerFromStorage(playerId, storageName)
+function Ora.Inventory:RemovePlayerFromStorage(playerId, storageName)
     if self.StoragePlayerMapper[storageName] == nil then
         return false
     end
@@ -23,7 +23,7 @@ function Atlantiss.Inventory:RemovePlayerFromStorage(playerId, storageName)
     return false
 end
 
-function Atlantiss.Inventory:RemovePlayerFromAnyStorage(playerId)
+function Ora.Inventory:RemovePlayerFromAnyStorage(playerId)
     for key, value in pairs(self.StoragePlayerMapper) do
         for storedPlayerId, isInStorage in pairs(self.StoragePlayerMapper[value]) do
             if (storedPlayerId == playerId) then
@@ -36,7 +36,7 @@ function Atlantiss.Inventory:RemovePlayerFromAnyStorage(playerId)
     return false
 end
 
-function Atlantiss.Inventory:IsPlayerInStorage(playerId, storageName)
+function Ora.Inventory:IsPlayerInStorage(playerId, storageName)
     if self.StoragePlayerMapper[storageName] == nil then
         return false
     end
@@ -48,136 +48,136 @@ function Atlantiss.Inventory:IsPlayerInStorage(playerId, storageName)
     return false
 end
 
-function Atlantiss.Inventory:SendRefreshEventToPlayersInStorage(storageName)
+function Ora.Inventory:SendRefreshEventToPlayersInStorage(storageName)
     if self.StoragePlayerMapper[storageName] == nil then
         return false
     end
 
     for playerId, _ in pairs(self.StoragePlayerMapper[storageName]) do
-        TriggerClientEvent("Atlantiss::CE::Inventory:RefreshStorage", playerId, {STORAGE_NAME = storageName})
+        TriggerClientEvent("Ora::CE::Inventory:RefreshStorage", playerId, {STORAGE_NAME = storageName})
     end
 
     return false
 end
 
-RegisterServerEvent("Atlantiss::SE::Inventory:PopulateCanReceiveResult")
+RegisterServerEvent("Ora::SE::Inventory:PopulateCanReceiveResult")
 AddEventHandler(
-    "Atlantiss::SE::Inventory:PopulateCanReceiveResult",
+    "Ora::SE::Inventory:PopulateCanReceiveResult",
     function(canReceive, giverPlayer)
         local _source = source
-        Atlantiss.Inventory.CanReceiveMatchingTable[giverPlayer .. "_" .. _source] = canReceive
+        Ora.Inventory.CanReceiveMatchingTable[giverPlayer .. "_" .. _source] = canReceive
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Inventory:CanReceive",
+    "Ora::SE::Inventory:CanReceive",
     function(source, cb, itemName, qty, otherPlayer)
         local _source = source
-        Atlantiss.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] = nil
-        TriggerClientEvent("Atlantiss::CE::Inventory:CanReceive", otherPlayer, itemName, qty, source)
+        Ora.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] = nil
+        TriggerClientEvent("Ora::CE::Inventory:CanReceive", otherPlayer, itemName, qty, source)
 
         local maxTry = 50
         local currentTry = 0
-        while (Atlantiss.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] == nil and currentTry <= maxTry) do
+        while (Ora.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] == nil and currentTry <= maxTry) do
             currentTry = currentTry + 1
             Wait(100)
         end
 
-        if (Atlantiss.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] == nil) then
-            Atlantiss.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] = false
+        if (Ora.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] == nil) then
+            Ora.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer] = false
         end
         
-        cb(Atlantiss.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer])
+        cb(Ora.Inventory.CanReceiveMatchingTable[_source .. "_" .. otherPlayer])
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Inventory:PopulateCanStealResult")
+RegisterServerEvent("Ora::SE::Inventory:PopulateCanStealResult")
 AddEventHandler(
-    "Atlantiss::SE::Inventory:PopulateCanStealResult",
+    "Ora::SE::Inventory:PopulateCanStealResult",
     function(canSteal, stealerPlayer)
         local _source = source
-        Atlantiss.Inventory:Debug(string.format("Received response for event ^5%s^3 dispatched to ^5%s^3 and response is ^5%s^3", "Atlantiss::CE::Inventory:CanBeStealed", _source, canSteal))     
-        Atlantiss.Inventory.CanStealMatchingTable[stealerPlayer .. "_" .. _source] = canSteal
+        Ora.Inventory:Debug(string.format("Received response for event ^5%s^3 dispatched to ^5%s^3 and response is ^5%s^3", "Ora::CE::Inventory:CanBeStealed", _source, canSteal))     
+        Ora.Inventory.CanStealMatchingTable[stealerPlayer .. "_" .. _source] = canSteal
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Inventory:StealIfAvailable",
+    "Ora::SE::Inventory:StealIfAvailable",
     function(source, cb, itemData, qty, otherPlayer)
         local _source = source
 
-        Atlantiss.Inventory:Debug(string.format("Received event ^5%s^3", "Atlantiss::SE::Inventory:StealIfAvailable"))     
-        Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = nil
-        Atlantiss.Inventory:Debug(string.format("Dispatching event ^5%s^3 to ^5%s^3", "Atlantiss::CE::Inventory:StealIfAvailable", otherPlayer))     
-        TriggerClientEvent("Atlantiss::CE::Inventory:StealIfAvailable", otherPlayer, itemData, qty, source)
+        Ora.Inventory:Debug(string.format("Received event ^5%s^3", "Ora::SE::Inventory:StealIfAvailable"))     
+        Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = nil
+        Ora.Inventory:Debug(string.format("Dispatching event ^5%s^3 to ^5%s^3", "Ora::CE::Inventory:StealIfAvailable", otherPlayer))     
+        TriggerClientEvent("Ora::CE::Inventory:StealIfAvailable", otherPlayer, itemData, qty, source)
 
         local maxTry = 50
         local currentTry = 0
-        while (Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil and currentTry <= maxTry) do
-            Atlantiss.Inventory:Debug(string.format("Waiting response for event ^5%s^3 dispatched to ^5%s^3", "Atlantiss::CE::Inventory:StealIfAvailable", otherPlayer))     
+        while (Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil and currentTry <= maxTry) do
+            Ora.Inventory:Debug(string.format("Waiting response for event ^5%s^3 dispatched to ^5%s^3", "Ora::CE::Inventory:StealIfAvailable", otherPlayer))     
             currentTry = currentTry + 1
             Wait(100)
         end
 
-        if (Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil) then
-            Atlantiss.Inventory:Debug(string.format("Auto set response for callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Atlantiss::CE::Inventory:StealIfAvailable", _source, Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
-            Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = false
+        if (Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil) then
+            Ora.Inventory:Debug(string.format("Auto set response for callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Ora::CE::Inventory:StealIfAvailable", _source, Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
+            Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = false
         end
         
-        Atlantiss.Inventory:Debug(string.format("Returning callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Atlantiss::CE::Inventory:StealIfAvailable", _source, Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
-        cb(Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer])
+        Ora.Inventory:Debug(string.format("Returning callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Ora::CE::Inventory:StealIfAvailable", _source, Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
+        cb(Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer])
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Inventory:CanSteal",
+    "Ora::SE::Inventory:CanSteal",
     function(source, cb, itemName, qty, otherPlayer)
         local _source = source
-        Atlantiss.Inventory:Debug(string.format("Received event ^5%s^3", "Atlantiss::SE::Inventory:CanSteal"))     
-        Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = nil
-        Atlantiss.Inventory:Debug(string.format("Dispatching event ^5%s^3 to ^5%s^3", "Atlantiss::CE::Inventory:CanBeStealed", otherPlayer))     
-        TriggerClientEvent("Atlantiss::CE::Inventory:CanBeStealed", otherPlayer, itemName, qty, source)
+        Ora.Inventory:Debug(string.format("Received event ^5%s^3", "Ora::SE::Inventory:CanSteal"))     
+        Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = nil
+        Ora.Inventory:Debug(string.format("Dispatching event ^5%s^3 to ^5%s^3", "Ora::CE::Inventory:CanBeStealed", otherPlayer))     
+        TriggerClientEvent("Ora::CE::Inventory:CanBeStealed", otherPlayer, itemName, qty, source)
 
         local maxTry = 50
         local currentTry = 0
-        while (Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil and currentTry <= maxTry) do
-            Atlantiss.Inventory:Debug(string.format("Waiting response for event ^5%s^3 dispatched to ^5%s^3", "Atlantiss::CE::Inventory:CanBeStealed", otherPlayer))     
+        while (Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil and currentTry <= maxTry) do
+            Ora.Inventory:Debug(string.format("Waiting response for event ^5%s^3 dispatched to ^5%s^3", "Ora::CE::Inventory:CanBeStealed", otherPlayer))     
             currentTry = currentTry + 1
             Wait(100)
         end
 
-        if (Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil) then
-            Atlantiss.Inventory:Debug(string.format("Auto set response for callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Atlantiss::CE::Inventory:CanBeStealed", _source, Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
-            Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = false
+        if (Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] == nil) then
+            Ora.Inventory:Debug(string.format("Auto set response for callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Ora::CE::Inventory:CanBeStealed", _source, Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
+            Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer] = false
         end
         
-        Atlantiss.Inventory:Debug(string.format("Returning callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Atlantiss::CE::Inventory:CanBeStealed", _source, Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
-        cb(Atlantiss.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer])
+        Ora.Inventory:Debug(string.format("Returning callback for event ^5%s^3 dispatched to ^5%s^3 with answer ^5%s^3", "Ora::CE::Inventory:CanBeStealed", _source, Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer]))     
+        cb(Ora.Inventory.CanStealMatchingTable[_source .. "_" .. otherPlayer])
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Inventory:AddPlayerToStorage")
+RegisterServerEvent("Ora::SE::Inventory:AddPlayerToStorage")
 AddEventHandler(
-    "Atlantiss::SE::Inventory:AddPlayerToStorage",
+    "Ora::SE::Inventory:AddPlayerToStorage",
     function(storageName)
         local _source = source
-        Atlantiss.Inventory:AddPlayerToStorage(_source, storageName)
+        Ora.Inventory:AddPlayerToStorage(_source, storageName)
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Inventory:RemovePlayerFromStorage")
+RegisterServerEvent("Ora::SE::Inventory:RemovePlayerFromStorage")
 AddEventHandler(
-    "Atlantiss::SE::Inventory:RemovePlayerFromStorage",
+    "Ora::SE::Inventory:RemovePlayerFromStorage",
     function(storageName)
         local _source = source
-        Atlantiss.Inventory:RemovePlayerFromStorage(_source, storageName)
+        Ora.Inventory:RemovePlayerFromStorage(_source, storageName)
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Inventory:IsInStorage",
+    "Ora::SE::Inventory:IsInStorage",
     function(source, cb, storageName)
-        cb(Atlantiss.Inventory:IsPlayerInStorage(_source, storageName))
+        cb(Ora.Inventory:IsPlayerInStorage(_source, storageName))
     end
 )
 
@@ -185,15 +185,15 @@ AddEventHandler(
     "playerDropped",
     function(reason)
         local _source = source
-        Atlantiss.Inventory:RemovePlayerFromAnyStorage(_source)
+        Ora.Inventory:RemovePlayerFromAnyStorage(_source)
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Inventory:SaveInventory")
-AddEventHandler("Atlantiss::SE::Inventory:SaveInventory",function(inv, fallbackUuid)
+RegisterServerEvent("Ora::SE::Inventory:SaveInventory")
+AddEventHandler("Ora::SE::Inventory:SaveInventory",function(inv, fallbackUuid)
     local _source = source
     local ply = Player.GetPlayer(_source)
-    local playerUuid = Atlantiss.Identity:GetUuid(_source)
+    local playerUuid = Ora.Identity:GetUuid(_source)
 
     if (playerUuid == nil and fallbackUuid ~= nil) then
         playerUuid = fallbackUuid
@@ -233,10 +233,10 @@ AddEventHandler("Atlantiss::SE::Inventory:SaveInventory",function(inv, fallbackU
     end
 end)
 
-RegisterServerCallback('Atlantiss::SCB::Inventory:GetInventory', function(source, callback)
+RegisterServerCallback('Ora::SCB::Inventory:GetInventory', function(source, callback)
     local _source = source
-    local playerUuid = Atlantiss.Identity:GetUuid(_source)
-    --Atlantiss.Inventory:Debug('Trigger SVCB GetInventory from '..source)
+    local playerUuid = Ora.Identity:GetUuid(_source)
+    --Ora.Inventory:Debug('Trigger SVCB GetInventory from '..source)
 
     MySQL.Async.fetchAll(
         'SELECT inventory FROM players_inventory WHERE uuid = @uuid',
@@ -274,18 +274,18 @@ RegisterServerCallback('Atlantiss::SCB::Inventory:GetInventory', function(source
                 )
             end
             
-            --Atlantiss.Inventory:Debug('Data length fetched from CB: '..#result[1].inventory)
+            --Ora.Inventory:Debug('Data length fetched from CB: '..#result[1].inventory)
             callback(result[1].inventory)
         end
     )
 end)
 
 RegisterServerCallback(
-    "Atlantiss::SE::Inventory:GetItemCount",
+    "Ora::SE::Inventory:GetItemCount",
     function(source, cb, itemName, targetID)
         if targetID == nil or targetID == 0 then return cb(false) end
         local count = 0
-        local target = Atlantiss.Identity:GetUuid(targetID)
+        local target = Ora.Identity:GetUuid(targetID)
 
         MySQL.Async.fetchAll(
             'SELECT inventory FROM players_inventory WHERE uuid = @uuid', 

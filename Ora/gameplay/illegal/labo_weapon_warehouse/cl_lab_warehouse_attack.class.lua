@@ -12,9 +12,9 @@ LabsAndWarehouseAttack.CURRENT_ATTACK_DISPLAY = {
 
 
 -- Handler for current attack update. 
-RegisterNetEvent("Atlantiss::Illegal:updateCurrentAttack")
+RegisterNetEvent("Ora::Illegal:updateCurrentAttack")
 AddEventHandler(
-    "Atlantiss::Illegal:updateCurrentAttack",
+    "Ora::Illegal:updateCurrentAttack",
     function(currentAttackAsJson)
         local currentAttack = json.decode(currentAttackAsJson)
         LabsAndWarehouseAttack.CURRENT_ATTACK = currentAttack
@@ -27,9 +27,9 @@ AddEventHandler(
 )
 
 -- Handler for current attack update. 
-RegisterNetEvent("Atlantiss::Illegal:IsInWarzone")
+RegisterNetEvent("Ora::Illegal:IsInWarzone")
 AddEventHandler(
-    "Atlantiss::Illegal:IsInWarzone",
+    "Ora::Illegal:IsInWarzone",
     function(verificationAsJson)
         local verification = json.decode(verificationAsJson)
         local ped = LocalPlayer().Ped
@@ -44,9 +44,9 @@ AddEventHandler(
 )
 
 -- Handler for current attack update. 
-RegisterNetEvent("Atlantiss::Illegal:StartAttack")
+RegisterNetEvent("Ora::Illegal:StartAttack")
 AddEventHandler(
-    "Atlantiss::Illegal:StartAttack",
+    "Ora::Illegal:StartAttack",
     function(currentAttackAsJson)
         local currentAttack = json.decode(currentAttackAsJson)
         LabsAndWarehouseAttack.CURRENT_ATTACK = currentAttack
@@ -61,9 +61,9 @@ AddEventHandler(
 )
 
 -- Handler for current attack update. 
-RegisterNetEvent("Atlantiss::Illegal:EndAttack")
+RegisterNetEvent("Ora::Illegal:EndAttack")
 AddEventHandler(
-    "Atlantiss::Illegal:EndAttack",
+    "Ora::Illegal:EndAttack",
     function()
         LabsAndWarehouseAttack.CURRENT_ATTACK = {}
         LabsAndWarehouseAttack.SetPlayerNoCallPolice(false)
@@ -179,7 +179,7 @@ function LabsAndWarehouseAttack.GetNearbyIllegalProperties(position)
         local canSend = false
         LabsAndWarehouseAttack.ILLEGAL_PROPERTIES.LIST = {}
 
-        TriggerServerCallback("Atlantiss:Illegal:GetIllegalProperties", function(illegalPropertiesAsJson)
+        TriggerServerCallback("Ora:Illegal:GetIllegalProperties", function(illegalPropertiesAsJson)
             canSend = true
             LabsAndWarehouseAttack.ILLEGAL_PROPERTIES.LIST = json.decode(illegalPropertiesAsJson)
             LabsAndWarehouseAttack.ILLEGAL_PROPERTIES.LOADED = true
@@ -203,7 +203,7 @@ end
 function LabsAndWarehouseAttack.GetOnlinePlayersCountForFaction(organisationId)
     local canSend = false
     local onlineMembersCount = 0
-    TriggerServerCallback("Atlantiss:Illegal:GetOnlinePlayersCountForFaction", function(onlineMembersCountFromCallback)
+    TriggerServerCallback("Ora:Illegal:GetOnlinePlayersCountForFaction", function(onlineMembersCountFromCallback)
       canSend = true
       onlineMembersCount = onlineMembersCountFromCallback
     end, organisationId)
@@ -219,10 +219,10 @@ function LabsAndWarehouseAttack.StartAttack(illegalProperty)
     if (IllegalOrga.CURRENT_ORGA ~= nil and IllegalOrga.GetId() ~= nil) then
         if (illegalProperty.organisation_id == IllegalOrga.GetId()) then
             ShowNotification("~r~Vous ne pouvez pas vous attaquer vous même.\nVotre molotov est remboursé~s~")
-            Atlantiss.Inventory:AddItem({name = "molotov", data = {}})
+            Ora.Inventory:AddItem({name = "molotov", data = {}})
         elseif (illegalProperty.last_attacked_at ~= nil and math.tointeger(illegalProperty.last_attacked_at) > illegalProperty.today) then
             ShowNotification("~r~Cette propriété a été attaquée il y a moins de 2 semaines.\nVotre molotov est remboursé~s~")
-            Atlantiss.Inventory:AddItem({name = "molotov", data = {}})           
+            Ora.Inventory:AddItem({name = "molotov", data = {}})           
         else
             local onlineMembers = LabsAndWarehouseAttack.GetOnlinePlayersCountForFaction(illegalProperty.organisation_id)
 
@@ -232,16 +232,16 @@ function LabsAndWarehouseAttack.StartAttack(illegalProperty)
 
             if (onlineMembers < LabsAndWarehouseAttack.MIN_ONLINE_MEMBERS_TO_ATTACK) then
                 ShowNotification("~r~Cette action n'est pas réalisable pour le moment.\nVotre molotov est remboursé~s~")
-                Atlantiss.Inventory:AddItem({name = "molotov", data = {}})
+                Ora.Inventory:AddItem({name = "molotov", data = {}})
                 return
             else
-              TriggerServerEvent("Atlantiss::Illegal:StartAttack", {DEFENDER = illegalProperty.organisation_id, ATTACKER = IllegalOrga.GetId(), PROPERTY = illegalProperty, GAMETIMER = GetGameTimer()})
+              TriggerServerEvent("Ora::Illegal:StartAttack", {DEFENDER = illegalProperty.organisation_id, ATTACKER = IllegalOrga.GetId(), PROPERTY = illegalProperty, GAMETIMER = GetGameTimer()})
             end
         end
     else
         ShowNotification("~r~Vous ne faites pas parti d'une faction. Vous ne pouvez pas attaquer seul.~s~")
         ShowNotification("~r~Votre molotov est remboursé~s~")
-        Atlantiss.Inventory:AddItem({name = "molotov", data = {}})
+        Ora.Inventory:AddItem({name = "molotov", data = {}})
     end
 end
 
@@ -250,7 +250,7 @@ function LabsAndWarehouseAttack.RaidedByPolice(illegalProperty)
         if (illegalProperty.organisation_id == IllegalOrga.GetId()) then
             ShowNotification("~r~Vous ne pouvez pas vous raider vous même.~s~")        
         else
-            TriggerServerEvent("Atlantiss::Illegal:ChangeOwnerOfPropertyByPolice", {old_owner = illegalProperty.organisation_id, new_owner = IllegalOrga.GetId(), property_id = illegalProperty.id})
+            TriggerServerEvent("Ora::Illegal:ChangeOwnerOfPropertyByPolice", {old_owner = illegalProperty.organisation_id, new_owner = IllegalOrga.GetId(), property_id = illegalProperty.id})
             ShowNotification("~g~Vous avez défoncé la porte de la propriété ".. illegalProperty.name ..".~s~")
         end
     else

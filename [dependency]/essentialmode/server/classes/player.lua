@@ -103,7 +103,7 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 			local newMoney = self.money + m
 
 			self.money = newMoney
-			TriggerEvent(Atlantiss.Payment:GetServerEventName() .. ":SERVERSIDE", FLT.source, {AMOUNT = m, SOURCE = "rTable.addMoney", LEGIT = true})
+			TriggerEvent(Ora.Payment:GetServerEventName() .. ":SERVERSIDE", FLT.source, {AMOUNT = m, SOURCE = "rTable.addMoney", LEGIT = true})
 			if settings.defaultSettings.nativeMoneySystem == "0" then
 				TriggerClientEvent('es:activateMoney', self.source , self.money)
 			end

@@ -1,8 +1,8 @@
 illegalPersistantStatus = {}
 
-RegisterServerEvent("atlantiss_status:addOn")
+RegisterServerEvent("Ora_status:addOn")
 AddEventHandler(
-    "atlantiss_status:addOn",
+    "Ora_status:addOn",
     function(element)
         local steam64 = GetPlayerIdentifiers(source)[1]
         if (illegalPersistantStatus[element] == nil) then
@@ -14,7 +14,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "atlantiss_status:isOnStatus",
+    "Ora_status:isOnStatus",
     function(source, callback, element, playerSource)
         local steam64 = GetPlayerIdentifiers(playerSource)[1]
         if (illegalPersistantStatus[element] == nil) then

@@ -1,4 +1,4 @@
-Atlantiss.DrugDealing.System = {
+Ora.DrugDealing.System = {
   IS_ACTIVATED = false,
   CURRENT_DESTINATION = nil,
   CURRENT_DESTINATION_COORDS = nil,
@@ -22,7 +22,7 @@ Atlantiss.DrugDealing.System = {
   PED_HAS_BEEN_CREATED = false
 }
 
-Atlantiss.DrugDealing.Characters = {
+Ora.DrugDealing.Characters = {
   "CHAR_SIMEON",
   "CHAR_STRETCH",
   "CHAR_STEVE",
@@ -39,7 +39,7 @@ Atlantiss.DrugDealing.Characters = {
   "CHAR_ONEIL"
 }
 
-Atlantiss.DrugDealing.Peds = {
+Ora.DrugDealing.Peds = {
   "a_m_m_eastsa_01",
   "a_m_m_bevhills_01",
   "a_m_m_fatlatin_01",
@@ -54,33 +54,33 @@ Atlantiss.DrugDealing.Peds = {
   "s_m_y_barman_01"
 }
 
-Atlantiss.DrugDealing.AvailableDrugs = {
+Ora.DrugDealing.AvailableDrugs = {
   "coke1",
   "meth",
   "weed_pooch",
   "lsd_pooch"
 }
 
-Atlantiss.DrugDealing.PolicePhrase = {
+Ora.DrugDealing.PolicePhrase = {
   "Vente de drogue",
   "Dealer en action",
 }
 
-Atlantiss.DrugDealing.Props = {
+Ora.DrugDealing.Props = {
   weed_pooch = "bkr_prop_weed_bag_01a",
   meth = "p_meth_bag_01_s",
   coke1 = "bkr_prop_coke_cutblock_01",
   lsd_pooch = "bkr_prop_coke_cutblock_01"
 }
 
-Atlantiss.DrugDealing.Prices = {
+Ora.DrugDealing.Prices = {
     weed_pooch = {27, 35},
     coke1 = {68, 75},
     meth = {55, 65},
     lsd_pooch = {75, 80}
 }
 
-Atlantiss.DrugDealing.Demand = {
+Ora.DrugDealing.Demand = {
   weed_pooch = {4, 5},
   coke1 = {1, 3},
   meth = {3, 4},
@@ -88,20 +88,20 @@ Atlantiss.DrugDealing.Demand = {
 }
 
 
-Atlantiss.DrugDealing.Locations = {}
+Ora.DrugDealing.Locations = {}
 
-RegisterNetEvent("Atlantiss::CE::DrugDealing:StopDealing")
+RegisterNetEvent("Ora::CE::DrugDealing:StopDealing")
 AddEventHandler(
-    "Atlantiss::CE::DrugDealing:StopDealing",
+    "Ora::CE::DrugDealing:StopDealing",
     function()
-        Atlantiss.Payment:Debug(string.format("Received event to stop drug dealing"))     
-        Atlantiss.DrugDealing:StopDealing()
+        Ora.Payment:Debug(string.format("Received event to stop drug dealing"))     
+        Ora.DrugDealing:StopDealing()
     end
 )
 
-function Atlantiss.DrugDealing:StartTimebar()
+function Ora.DrugDealing:StartTimebar()
     local timeleft = 4 * 60 * 1000 + GetGameTimer()
-    Atlantiss.DrugDealing.System.COUNTER_STARTED = true
+    Ora.DrugDealing.System.COUNTER_STARTED = true
 
     Citizen.CreateThread(function()
         scaleform = RequestScaleformMovie_2("INSTRUCTIONAL_BUTTONS")
@@ -114,35 +114,35 @@ function Atlantiss.DrugDealing:StartTimebar()
             local timeleft = (timeleft - GetGameTimer()) / 1000
             local barCount = {1}
 
-            if Atlantiss.DrugDealing.System.COUNTER_STARTED == true and timeleft ~= nil then
+            if Ora.DrugDealing.System.COUNTER_STARTED == true and timeleft ~= nil then
                 if timeleft > 0 then
                     DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
                 else
                     ShowNotification("~r~Vous n'avez pas été assez rapide pour vendre.~s~")
-                    Atlantiss.DrugDealing:StopDealing()
+                    Ora.DrugDealing:StopDealing()
                 end
             end
 
-            if timeleft < 0 or Atlantiss.DrugDealing.System.COUNTER_STARTED == false then
+            if timeleft < 0 or Ora.DrugDealing.System.COUNTER_STARTED == false then
                 break
             end
         end
     end)
 end
 
-function Atlantiss.DrugDealing:SetBoostedZoneId(zoneId)
+function Ora.DrugDealing:SetBoostedZoneId(zoneId)
   self.System.BOOSTED_ZONE_ID = zoneId
 end
 
-function Atlantiss.DrugDealing:GetBoostedZoneId()
+function Ora.DrugDealing:GetBoostedZoneId()
   return self.System.BOOSTED_ZONE_ID
 end
 
-function Atlantiss.DrugDealing:IsDealingInBoostedZone()
+function Ora.DrugDealing:IsDealingInBoostedZone()
   return self.System.CURRENT_ZONE_ID == self.System.BOOSTED_ZONE_ID
 end
 
-function Atlantiss.DrugDealing:StartDealingAt(zoneId)
+function Ora.DrugDealing:StartDealingAt(zoneId)
     self.Locations = {}
     self.System.CURRENT_ZONE_ID = zoneId
     self.System.IS_ACTIVATED = true
@@ -151,35 +151,35 @@ function Atlantiss.DrugDealing:StartDealingAt(zoneId)
     self:StartDealerAntiBikeThread()
 end
 
-function Atlantiss.DrugDealing:StopDealing()
-  TriggerServerEvent("Atlantiss::SE::DrugDealing:RemoveDealerForZone", self.System.CURRENT_ZONE_ID)
+function Ora.DrugDealing:StopDealing()
+  TriggerServerEvent("Ora::SE::DrugDealing:RemoveDealerForZone", self.System.CURRENT_ZONE_ID)
   self.System.IS_ACTIVATED = false
   self.System.CURRENT_ZONE_ID = nil
   self:ResetAllComponentsForNextMission()
 end
 
-function Atlantiss.DrugDealing:CanStartDealingAt(zoneId)
+function Ora.DrugDealing:CanStartDealingAt(zoneId)
   self:Debug(string.format("User is trying to start selling at zone id ^5%s^3", zoneId))
   local canStart = false
   local noCops = false
   local canSend = false
 
-  if Atlantiss.DrugDealing.System.LAST_MISSION_TIME < GetGameTimer() - 60000 then
-    TriggerServerCallback("Atlantiss::SE::DrugDealing:CanRegisterForDealingIntoZoneId", 
+  if Ora.DrugDealing.System.LAST_MISSION_TIME < GetGameTimer() - 60000 then
+    TriggerServerCallback("Ora::SE::DrugDealing:CanRegisterForDealingIntoZoneId", 
         function(canStartDealing)
             if (canStartDealing) then
-                for key, value in ipairs(Atlantiss.DrugDealing.AvailableDrugs) do
-                    if (Atlantiss.Inventory:GetItemCount(value) > 0) then
+                for key, value in ipairs(Ora.DrugDealing.AvailableDrugs) do
+                    if (Ora.Inventory:GetItemCount(value) > 0) then
                         canStart = true
                     end
                 end
 
                 if (canStart == false) then
-                  Atlantiss.DrugDealing:Debug(string.format("player has no items to sell for zone id ^5%s^3", zoneId))
+                  Ora.DrugDealing:Debug(string.format("player has no items to sell for zone id ^5%s^3", zoneId))
                   ShowNotification("~r~Vous n'avez pas le necessaire pour vendre.~s~")
                 else
-                  TriggerServerEvent("Atlantiss::SE::DrugDealing:AddDealerForZone", zoneId)
-                  Atlantiss.DrugDealing:StartDealingAt(zoneId)
+                  TriggerServerEvent("Ora::SE::DrugDealing:AddDealerForZone", zoneId)
+                  Ora.DrugDealing:StartDealingAt(zoneId)
                 end
             end
 
@@ -199,11 +199,11 @@ function Atlantiss.DrugDealing:CanStartDealingAt(zoneId)
   end
 end
 
-function Atlantiss.DrugDealing:GetPositionsForZoneId(zoneId)
+function Ora.DrugDealing:GetPositionsForZoneId(zoneId)
   local canSend = false
   local positions = {}
   self:Debug(string.format("Fetching dealing positions for zone id for zone id ^5%s^3", zoneId))
-  TriggerServerCallback("Atlantiss::SE::DrugDealing:GetPositionsForZoneId", function(data)
+  TriggerServerCallback("Ora::SE::DrugDealing:GetPositionsForZoneId", function(data)
     positions = data
     canSend = true
   end, zoneId)
@@ -217,11 +217,11 @@ function Atlantiss.DrugDealing:GetPositionsForZoneId(zoneId)
   self.Locations = positions
 end
 
-function Atlantiss.DrugDealing:FetchZones()
+function Ora.DrugDealing:FetchZones()
   local canSend = false
   local zones = {}
   self:Debug(string.format("Fetching all zones"))
-  TriggerServerCallback("Atlantiss::SE::DrugDealing:GetZones", function(data)
+  TriggerServerCallback("Ora::SE::DrugDealing:GetZones", function(data)
     zones = data
     canSend = true
   end, 1)
@@ -236,19 +236,19 @@ function Atlantiss.DrugDealing:FetchZones()
   self.System.ZONES = zones 
 end
 
-function Atlantiss.DrugDealing:ImDealing()
+function Ora.DrugDealing:ImDealing()
     return self.System.IS_ACTIVATED
 end
 
-function Atlantiss.DrugDealing:GetZones()
+function Ora.DrugDealing:GetZones()
   if (#self.System.ZONES == 0 or (GetGameTimer() - self.System.LAST_FETCH) > (1000 * 60)) then
     self:Debug(string.format("Refetching informations because last fetch is too old"))
-    Atlantiss.DrugDealing:FetchZones()
+    Ora.DrugDealing:FetchZones()
   end
   return self.System.ZONES
 end
 
-function Atlantiss.DrugDealing:AllowRefreshOfZones(allowRefresh)
+function Ora.DrugDealing:AllowRefreshOfZones(allowRefresh)
   if (allowRefresh ~= self.System.ALLOW_REFRESH) then
     if (allowRefresh) then
       self:Debug(string.format("Allowing refresh of zones"))
@@ -259,11 +259,11 @@ function Atlantiss.DrugDealing:AllowRefreshOfZones(allowRefresh)
   end
 end
 
-function Atlantiss.DrugDealing:IsCorrectLocation(coords1, coords2) 
+function Ora.DrugDealing:IsCorrectLocation(coords1, coords2) 
     return GetDistanceBetweenCoords(coords1, coords2, false) > 75.0 
 end
 
-function Atlantiss.DrugDealing:StartDealerAntiBikeThread()
+function Ora.DrugDealing:StartDealerAntiBikeThread()
   Citizen.CreateThread(
     function()
         while (true) do
@@ -277,7 +277,7 @@ function Atlantiss.DrugDealing:StartDealerAntiBikeThread()
               if (DoesEntityExist(vehicleUsedByPed) and GetVehicleClass(vehicleUsedByPed) == 8) then
                 self:Debug(string.format("Players is on motorcycles, stopping dealer mode"))
                 ShowNotification("~r~Vous ne pouvez pas vendre à moto.~s~")
-                Atlantiss.DrugDealing:StopDealing()
+                Ora.DrugDealing:StopDealing()
               end
           end
           Citizen.Wait(1000)
@@ -286,7 +286,7 @@ function Atlantiss.DrugDealing:StartDealerAntiBikeThread()
     )
 end
 
-function Atlantiss.DrugDealing:StartDealerThread()
+function Ora.DrugDealing:StartDealerThread()
   Citizen.CreateThread(
       function()
           while (true) do
@@ -298,27 +298,27 @@ function Atlantiss.DrugDealing:StartDealerThread()
                   if (self.System.CURRENT_DESTINATION == nil) then
                       self:Debug(string.format("Current destination is empty, starting a new appointment"))
                       local inventoryDrugs = {}
-                      for key, value in ipairs(Atlantiss.DrugDealing.AvailableDrugs) do
-                          local itemQuantity = Atlantiss.Inventory:GetItemCount(value)
+                      for key, value in ipairs(Ora.DrugDealing.AvailableDrugs) do
+                          local itemQuantity = Ora.Inventory:GetItemCount(value)
                           if (itemQuantity > 0) then
                               table.insert(inventoryDrugs, {name = value, qty = itemQuantity})
                           end
                       end
 
                       if (#inventoryDrugs == 0) then
-                          Atlantiss.DrugDealing:StopDealing()
+                          Ora.DrugDealing:StopDealing()
                           ShowAdvancedNotification(
                               "Client",
                               "~b~Dialogue",
                               "T'as plus de matos. Arret des commandes.",
-                              Atlantiss.DrugDealing.Characters[math.random(#Atlantiss.DrugDealing.Characters)],
+                              Ora.DrugDealing.Characters[math.random(#Ora.DrugDealing.Characters)],
                               1
                           )
                           self:Debug(string.format("No more drug in inventory. Stopping dealer mode"))
                       else
-                          self:Debug(string.format("Script is now waiting ^5%s^3 ms", Atlantiss.DrugDealing.System.NEXT_MISSION_WAIT))
+                          self:Debug(string.format("Script is now waiting ^5%s^3 ms", Ora.DrugDealing.System.NEXT_MISSION_WAIT))
                           self.System.LAST_MISSION_TIME = GetGameTimer()
-                          Citizen.Wait(Atlantiss.DrugDealing.System.NEXT_MISSION_WAIT)
+                          Citizen.Wait(Ora.DrugDealing.System.NEXT_MISSION_WAIT)
 
                           if (self.System.IS_ACTIVATED == false) then
                             self:Debug(string.format("Looks like the system is not activated anymore. Removing thread"))
@@ -326,103 +326,103 @@ function Atlantiss.DrugDealing:StartDealerThread()
                           end
 
                           local drugObject = inventoryDrugs[math.random(#inventoryDrugs)]
-                          Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG = drugObject.name
+                          Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG = drugObject.name
                           self:Debug(string.format("Next drug selected is ^5%s^3 ms", drugObject.name))
-                          if (Atlantiss.DrugDealing.Demand[drugObject.name] ~= nil) then
-                            local askedQtyMax = Atlantiss.DrugDealing.Demand[drugObject.name][1]
-                            if (drugObject.qty < Atlantiss.DrugDealing.Demand[drugObject.name][2]) then
-                              Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = drugObject.qty
+                          if (Ora.DrugDealing.Demand[drugObject.name] ~= nil) then
+                            local askedQtyMax = Ora.DrugDealing.Demand[drugObject.name][1]
+                            if (drugObject.qty < Ora.DrugDealing.Demand[drugObject.name][2]) then
+                              Ora.DrugDealing.System.NEXT_MISSION_COUNT = drugObject.qty
                             else
-                              Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = math.random(Atlantiss.DrugDealing.Demand[drugObject.name][1], Atlantiss.DrugDealing.Demand[drugObject.name][2])
+                              Ora.DrugDealing.System.NEXT_MISSION_COUNT = math.random(Ora.DrugDealing.Demand[drugObject.name][1], Ora.DrugDealing.Demand[drugObject.name][2])
                             end
                           else
-                            Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = math.random(1, 2)
+                            Ora.DrugDealing.System.NEXT_MISSION_COUNT = math.random(1, 2)
                           end
 
-                          local newLocation = Atlantiss.DrugDealing.Locations[math.random(#Atlantiss.DrugDealing.Locations)]
+                          local newLocation = Ora.DrugDealing.Locations[math.random(#Ora.DrugDealing.Locations)]
                           local newLocationCoords =
                               vector3(newLocation.pos.x, newLocation.pos.y, newLocation.pos.z)
                           local newLocationHeading = newLocation.heading
                           local loopCounter = 0
 
-                          while (Atlantiss.DrugDealing:IsCorrectLocation(newLocationCoords, LocalPlayer().Pos) == false and
+                          while (Ora.DrugDealing:IsCorrectLocation(newLocationCoords, LocalPlayer().Pos) == false and
                               loopCounter < 500) do
                               math.randomseed(GetGameTimer() * math.random(10000, 50000))
-                              newLocation = Atlantiss.DrugDealing.Locations[math.random(#Atlantiss.DrugDealing.Locations)]
+                              newLocation = Ora.DrugDealing.Locations[math.random(#Ora.DrugDealing.Locations)]
                               newLocationCoords = vector3(newLocation.pos.x, newLocation.pos.y, newLocation.pos.z)
                               newLocationHeading = newLocation.heading
                               loopCounter = loopCounter + 1
                           end
 
                           self:Debug(string.format("New locations selected is ^5%s^3", newLocationCoords))
-                          Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS = newLocationCoords
-                          Atlantiss.DrugDealing.System.CURRENT_DESTINATION_HEADING = newLocationHeading
-                          Atlantiss.DrugDealing.System.CURRENT_DESTINATION = AddBlipForCoord(newLocationCoords.x, newLocationCoords.y, newLocationCoords.z)
-                          SetBlipRoute(Atlantiss.DrugDealing.System.CURRENT_DESTINATION, true)
-                          SetBlipRouteColour(Atlantiss.DrugDealing.System.CURRENT_DESTINATION, 1)
+                          Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS = newLocationCoords
+                          Ora.DrugDealing.System.CURRENT_DESTINATION_HEADING = newLocationHeading
+                          Ora.DrugDealing.System.CURRENT_DESTINATION = AddBlipForCoord(newLocationCoords.x, newLocationCoords.y, newLocationCoords.z)
+                          SetBlipRoute(Ora.DrugDealing.System.CURRENT_DESTINATION, true)
+                          SetBlipRouteColour(Ora.DrugDealing.System.CURRENT_DESTINATION, 1)
 
-                          character = Atlantiss.DrugDealing.Characters[math.random(#Atlantiss.DrugDealing.Characters)]
+                          character = Ora.DrugDealing.Characters[math.random(#Ora.DrugDealing.Characters)]
                           ShowAdvancedNotification(
                               "Client",
                               "~b~Dialogue",
                               "J'ai besoin de " ..
-                              Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT .. " " .. Items[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG].label .. ".",
+                              Ora.DrugDealing.System.NEXT_MISSION_COUNT .. " " .. Items[Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG].label .. ".",
                               character,
                               1
                           )
-                          Atlantiss.DrugDealing.StartTimebar()
+                          Ora.DrugDealing.StartTimebar()
                       end
                   else
                       Citizen.Wait(1)
                       playerPosition = LocalPlayer().Pos
                       if
-                          (Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS ~= nil and
+                          (Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS ~= nil and
                               GetDistanceBetweenCoords(
-                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.x,
-                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.y,
-                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.z,
+                                Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.x,
+                                Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.y,
+                                Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.z,
                                   playerPosition.x,
                                   playerPosition.y,
                                   playerPosition.z,
                                   true
                               ) < 75.0 and
-                              Atlantiss.DrugDealing.System.PED_HAS_BEEN_CREATED == false)
+                              Ora.DrugDealing.System.PED_HAS_BEEN_CREATED == false)
                        then
-                          local pedModel = Atlantiss.DrugDealing.Peds[math.random(#Atlantiss.DrugDealing.Peds)]
+                          local pedModel = Ora.DrugDealing.Peds[math.random(#Ora.DrugDealing.Peds)]
                           self:Debug(string.format("Ped model ^5%s^3 is selected", pedModel))
-                          Atlantiss.DrugDealing.System.PED_HAS_BEEN_CREATED = true
+                          Ora.DrugDealing.System.PED_HAS_BEEN_CREATED = true
 
                           Citizen.CreateThread(
                               function()
-                                  Atlantiss.DrugDealing.System.NEXT_MISSION_PED = Atlantiss.World.Ped:Create(5, pedModel, vector3(Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.x, Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.y, Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.z), Atlantiss.DrugDealing.System.CURRENT_DESTINATION_HEADING)
+                                  Ora.DrugDealing.System.NEXT_MISSION_PED = Ora.World.Ped:Create(5, pedModel, vector3(Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.x, Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.y, Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.z), Ora.DrugDealing.System.CURRENT_DESTINATION_HEADING)
                                   self:Debug(string.format("Ped with model ^5%s^3 is now created", pedModel))
-                                  FreezeEntityPosition(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, true)
+                                  FreezeEntityPosition(Ora.DrugDealing.System.NEXT_MISSION_PED, true)
                               end
                           )
                       end
 
                       if
-                          (Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS ~= nil and
+                          (Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS ~= nil and
                               GetDistanceBetweenCoords(
-                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.x,
-                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.y,
-                                Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS.z,
+                                Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.x,
+                                Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.y,
+                                Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS.z,
                                   playerPosition.x,
                                   playerPosition.y,
                                   playerPosition.z,
                                   true
                               ) < 3.0)
                        then
-                          if (Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT > 0) then
+                          if (Ora.DrugDealing.System.NEXT_MISSION_COUNT > 0) then
                               SetTextComponentFormat("STRING")
                               AddTextComponentString(
                                   "~r~Appuyez sur ~INPUT_CONTEXT~ pour vendre votre marchandise (Encore " ..
-                                  Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT .. " fois)"
+                                  Ora.DrugDealing.System.NEXT_MISSION_COUNT .. " fois)"
                               )
                               DisplayHelpTextFromStringLabel(0, 0, 1, -1)
                           end
                           if IsControlJustPressed(0, Keys["E"]) then
-                              if (Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT > 0) then
+                              if (Ora.DrugDealing.System.NEXT_MISSION_COUNT > 0) then
                                   if (IsPedInAnyVehicle(LocalPlayer().Ped, true)) then
                                       ShowAdvancedNotification(
                                           "Client",
@@ -433,23 +433,23 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                       )
                                   else
                                     
-                                    if (Atlantiss.DrugDealing.System.HAS_BEEN_CALLED == false) then
+                                    if (Ora.DrugDealing.System.HAS_BEEN_CALLED == false) then
                                       local random = math.random(1, 100)
-                                      Atlantiss.DrugDealing.System.HAS_BEEN_CALLED = true
+                                      Ora.DrugDealing.System.HAS_BEEN_CALLED = true
                                       if random > 85 then
                                           Citizen.SetTimeout(
                                               math.random(1500, 2500),
                                               function()
                                                 math.randomseed(GetGameTimer() * math.random(12000, 17000))
-                                                msg = Atlantiss.DrugDealing.PolicePhrase[math.random(#Atlantiss.DrugDealing.PolicePhrase)]
+                                                msg = Ora.DrugDealing.PolicePhrase[math.random(#Ora.DrugDealing.PolicePhrase)]
                                                 self:Debug(string.format("Police is now called with message ^5%s^3", msg))
-                                                TriggerServerEvent("call:makeCall2", Atlantiss.DrugDealing:GetCopsJuridictionForZoneId(Atlantiss.DrugDealing.System.CURRENT_ZONE_ID), Atlantiss.DrugDealing.System.CURRENT_DESTINATION_COORDS, msg)
+                                                TriggerServerEvent("call:makeCall2", Ora.DrugDealing:GetCopsJuridictionForZoneId(Ora.DrugDealing.System.CURRENT_ZONE_ID), Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS, msg)
                                               end
                                           )
                                       end
                                     end
-                                      Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)  
-                                      prop_name = Atlantiss.DrugDealing.Props[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG]
+                                      Ora.Player:FreezePlayer(LocalPlayer().Ped, true)  
+                                      prop_name = Ora.DrugDealing.Props[Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG]
                                       local _prop = nil
                                       local x, y, z = table.unpack(LocalPlayer().Pos)
 
@@ -481,12 +481,12 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                       TaskPlayAnim(LocalPlayer().Ped, "mp_common","givetake1_a",8.0,1.0,-1,49,0,0,0,0)
                                       Wait(2000)
                                       
-                                      Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)  
+                                      Ora.Player:FreezePlayer(LocalPlayer().Ped, false)  
                                       math.randomseed(GetGameTimer())
                                       local xp = math.random(10, 25)
                                       math.randomseed(GetGameTimer())
                                       local price = 0
-                                      local object = Atlantiss.Inventory.Data[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][1]
+                                      local object = Ora.Inventory.Data[Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][1]
                                       local qualitySummary = ""
 
                                       if (object ~= nil) then
@@ -497,8 +497,8 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                           price =
                                               price +
                                               math.random(
-                                                Atlantiss.DrugDealing.Prices[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][1],
-                                                Atlantiss.DrugDealing.Prices[Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][2]
+                                                Ora.DrugDealing.Prices[Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][1],
+                                                Ora.DrugDealing.Prices[Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG][2]
                                               )
 
                                           if (dataDrug ~= nil and type(dataDrug) == "table") then
@@ -508,13 +508,13 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                           end
 
                                           if (quality == 10) then
-                                            Atlantiss.DrugDealing.System.WARNING_GIVEN = Atlantiss.DrugDealing.System.WARNING_GIVEN + 1
+                                            Ora.DrugDealing.System.WARNING_GIVEN = Ora.DrugDealing.System.WARNING_GIVEN + 1
                                           end
 
 
                                           if (quality > 10 and quality <= 35) then
                                               typeQuality = "~r~Basse~w~"
-                                              Atlantiss.DrugDealing.System.WARNING_GIVEN = Atlantiss.DrugDealing.System.WARNING_GIVEN + 1
+                                              Ora.DrugDealing.System.WARNING_GIVEN = Ora.DrugDealing.System.WARNING_GIVEN + 1
                                               price = price + (price * ((quality / 100) / 2))
                                           end
 
@@ -538,14 +538,14 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                               price = price + ((price*3.1) * ((quality / 100) / 2))
                                           end
 
-                                          if (Atlantiss.DrugDealing:IsDealingInBoostedZone()) then
+                                          if (Ora.DrugDealing:IsDealingInBoostedZone()) then
                                             price = price + 5.0
                                             ShowNotification(string.format("Deal en zone bonus : ~h~~g~%s~h~~s~", "+ 5$"))
                                           end
 
                                           self:Debug(string.format("Selling to PED with price ^5%s^3 and quality ^5%s^3", price, quality))
 
-                                          if (Atlantiss.DrugDealing.System.WARNING_GIVEN == 2 or Atlantiss.DrugDealing.System.WARNING_GIVEN == 7 and quality <= 35) then
+                                          if (Ora.DrugDealing.System.WARNING_GIVEN == 2 or Ora.DrugDealing.System.WARNING_GIVEN == 7 and quality <= 35) then
                                               ShowAdvancedNotification(
                                                   "Client Mécontent",
                                                   "~b~Dialogue",
@@ -555,11 +555,11 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                               )
                                           end
 
-                                          if (Atlantiss.DrugDealing.System.WARNING_GIVEN > 10 and quality <= 35) then
+                                          if (Ora.DrugDealing.System.WARNING_GIVEN > 10 and quality <= 35) then
                                               math.randomseed(GetGameTimer() * math.random(5000, 90000))
                                               local chanceToFight = math.random(0, 100)
 
-                                              if (chanceToFight >= 70 and Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT == 1) then
+                                              if (chanceToFight >= 70 and Ora.DrugDealing.System.NEXT_MISSION_COUNT == 1) then
                                                   ShowAdvancedNotification(
                                                       "Client Mécontent",
                                                       "~b~Dialogue",
@@ -573,7 +573,7 @@ function Atlantiss.DrugDealing:StartDealerThread()
 
                                                   if (weaponType >= 90) then
                                                       GiveWeaponToPed(
-                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                        Ora.DrugDealing.System.NEXT_MISSION_PED,
                                                           GetHashKey("WEAPON_CROWBAR"),
                                                           -1,
                                                           0,
@@ -581,7 +581,7 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                                       )
                                                   elseif (weaponType >= 85) then
                                                       GiveWeaponToPed(
-                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                        Ora.DrugDealing.System.NEXT_MISSION_PED,
                                                           GetHashKey("WEAPON_WRENCH"),
                                                           -1,
                                                           0,
@@ -589,7 +589,7 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                                       )
                                                   elseif (weaponType >= 80) then
                                                       GiveWeaponToPed(
-                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                        Ora.DrugDealing.System.NEXT_MISSION_PED,
                                                           GetHashKey("WEAPON_HAMMER"),
                                                           -1,
                                                           0,
@@ -597,7 +597,7 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                                       )
                                                   elseif (weaponType >= 75) then
                                                       GiveWeaponToPed(
-                                                        Atlantiss.DrugDealing.System.NEXT_MISSION_PED,
+                                                        Ora.DrugDealing.System.NEXT_MISSION_PED,
                                                           GetHashKey("WEAPON_KNUCKLE"),
                                                           -1,
                                                           0,
@@ -606,20 +606,20 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                                   else
                                                   end
 
-                                                  FreezeEntityPosition(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, false)
-                                                  TaskCombatPed(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, LocalPlayer().Ped, 0, 16)
-                                                  SetPedCombatAttributes(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 46, true)
-                                                  SetPedFleeAttributes(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 0, 0)
-                                                  SetPedAsEnemy(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, true)
-                                                  SetPedMaxHealth(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 900)
-                                                  SetPedAlertness(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 3)
-                                                  SetPedCombatRange(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 0)
-                                                  SetPedCombatMovement(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, 3)
+                                                  FreezeEntityPosition(Ora.DrugDealing.System.NEXT_MISSION_PED, false)
+                                                  TaskCombatPed(Ora.DrugDealing.System.NEXT_MISSION_PED, LocalPlayer().Ped, 0, 16)
+                                                  SetPedCombatAttributes(Ora.DrugDealing.System.NEXT_MISSION_PED, 46, true)
+                                                  SetPedFleeAttributes(Ora.DrugDealing.System.NEXT_MISSION_PED, 0, 0)
+                                                  SetPedAsEnemy(Ora.DrugDealing.System.NEXT_MISSION_PED, true)
+                                                  SetPedMaxHealth(Ora.DrugDealing.System.NEXT_MISSION_PED, 900)
+                                                  SetPedAlertness(Ora.DrugDealing.System.NEXT_MISSION_PED, 3)
+                                                  SetPedCombatRange(Ora.DrugDealing.System.NEXT_MISSION_PED, 0)
+                                                  SetPedCombatMovement(Ora.DrugDealing.System.NEXT_MISSION_PED, 3)
                                                   Wait(10000)
                                               end
                                           end
 
-                                          Atlantiss.Inventory:RemoveFirstItem(Atlantiss.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG)
+                                          Ora.Inventory:RemoveFirstItem(Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG)
                                       end
 
                                       ShowAdvancedNotification(
@@ -633,35 +633,35 @@ function Atlantiss.DrugDealing:StartDealerThread()
                                       XNL_AddPlayerXP(math.floor(xp))
                                       ClearPedSecondaryTask(LocalPlayer().Ped)
 
-                                      PlayAmbientSpeech2(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, "GENERIC_HI", "SPEECH_PARAMS_FORCE")
+                                      PlayAmbientSpeech2(Ora.DrugDealing.System.NEXT_MISSION_PED, "GENERIC_HI", "SPEECH_PARAMS_FORCE")
                                       show = false
 
                                       Wait(800)
 
                                       ClearPedSecondaryTask(LocalPlayer().Ped)
-                                      FreezeEntityPosition(Atlantiss.DrugDealing.System.NEXT_MISSION_PED, false)
+                                      FreezeEntityPosition(Ora.DrugDealing.System.NEXT_MISSION_PED, false)
                                       
                                       TriggerServerCallback(
-                                        "Atlantiss::SE::Money:Fake:AuthorizePayment", 
+                                        "Ora::SE::Money:Fake:AuthorizePayment", 
                                         function(token)
-                                          TriggerServerEvent(Atlantiss.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
-                                          TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
+                                          TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
+                                          TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
                                         end,
                                         {}
                                       )
 
                                       Citizen.Wait(1200)
                                       DeleteObject(_prop)
-                                      Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT = Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT - 1
+                                      Ora.DrugDealing.System.NEXT_MISSION_COUNT = Ora.DrugDealing.System.NEXT_MISSION_COUNT - 1
 
-                                      if (Atlantiss.DrugDealing.System.NEXT_MISSION_COUNT == 0) then
+                                      if (Ora.DrugDealing.System.NEXT_MISSION_COUNT == 0) then
                                           Wait(3000)
-                                          Atlantiss.DrugDealing:ResetAllComponentsForNextMission()
+                                          Ora.DrugDealing:ResetAllComponentsForNextMission()
                                       end
                                   end
                               else
                                   Wait(3000)
-                                  Atlantiss.DrugDealing:ResetAllComponentsForNextMission()
+                                  Ora.DrugDealing:ResetAllComponentsForNextMission()
                               end
                           end
                       end
@@ -672,11 +672,11 @@ function Atlantiss.DrugDealing:StartDealerThread()
   )
 end
 
-function Atlantiss.DrugDealing:ResetAllComponentsForNextMission()
+function Ora.DrugDealing:ResetAllComponentsForNextMission()
   RemoveBlip(self.System.CURRENT_DESTINATION)
   local tmpPed = self.System.NEXT_MISSION_PED
   TaskSmartFleePed(tmpPed, LocalPlayer().Ped, 100.0, 15000, 0, 0)
-  TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = tmpPed, network_id = NetworkGetNetworkIdFromEntity(tmpPed), seconds = 15})
+  TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = tmpPed, network_id = NetworkGetNetworkIdFromEntity(tmpPed), seconds = 15})
 
   self.System.NEXT_MISSION_PED = nil
   self.System.CURRENT_DESTINATION = nil

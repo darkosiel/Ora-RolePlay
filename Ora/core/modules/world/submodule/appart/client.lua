@@ -1,21 +1,21 @@
-Atlantiss.World.Appart = {}
-Atlantiss.World.Appart.CURRENT = {}
-Atlantiss.World.Appart.LIST = {}
-Atlantiss.World.Appart.LIST_LOADED = false
+Ora.World.Appart = {}
+Ora.World.Appart.CURRENT = {}
+Ora.World.Appart.LIST = {}
+Ora.World.Appart.LIST_LOADED = false
 
-function Atlantiss.World.Appart:GetList()
+function Ora.World.Appart:GetList()
   if self.LIST_LOADED == false then
-    Atlantiss.World:Debug(string.format("Appartement list not loaded. Loading it"))
+    Ora.World:Debug(string.format("Appartement list not loaded. Loading it"))
     local responseReceived = false
 
-    TriggerServerCallback("Atlantiss::SE::World:Appart:GetAll", 
+    TriggerServerCallback("Ora::SE::World:Appart:GetAll", 
         function(appartsAsJson)
             local apparts = json.decode(appartsAsJson)
 
             for key, value in pairs(apparts) do
               self.LIST[math.tointeger(key)] = value
             end
-            Atlantiss.World:Debug(string.format("Appartement list is now loaded. Fetched ^5%s^3 appartements", #apparts))
+            Ora.World:Debug(string.format("Appartement list is now loaded. Fetched ^5%s^3 appartements", #apparts))
             responseReceived = true
         end
     )
@@ -23,7 +23,7 @@ function Atlantiss.World.Appart:GetList()
     local maxTimeProcessing = GetGameTimer() + 5000
 
     while responseReceived == false or maxTimeProcessing < GetGameTimer() do
-      Atlantiss.World:Debug(string.format("Waiting appartement list to be pulled from server"))
+      Ora.World:Debug(string.format("Waiting appartement list to be pulled from server"))
       Wait(100)
     end
 
@@ -33,22 +33,22 @@ function Atlantiss.World.Appart:GetList()
   return self.LIST
 end
 
-function Atlantiss.World.Appart:GetById(appartId)
+function Ora.World.Appart:GetById(appartId)
   if (self:GetList()[appartId] ~= nil) then
-    Atlantiss.World:Debug(string.format("Appartement ^5%s^3 already in list. Returning", appartId))
+    Ora.World:Debug(string.format("Appartement ^5%s^3 already in list. Returning", appartId))
     return self:GetList()[appartId]
   end
 
   local responseReceived = false
   local appart = {}
 
-  Atlantiss.World:Debug(string.format("Appartement ^5%s^3 not in list, loading it", appartId))
-  TriggerServerCallback("Atlantiss::SE::World:Appart:GetById", 
+  Ora.World:Debug(string.format("Appartement ^5%s^3 not in list, loading it", appartId))
+  TriggerServerCallback("Ora::SE::World:Appart:GetById", 
       function(appartAsJson)
           appart = json.decode(appartAsJson)
-          Atlantiss.World:Debug(string.format("Received data for appartement ^5%s^3", appartId))
+          Ora.World:Debug(string.format("Received data for appartement ^5%s^3", appartId))
           if (appart.id ~= nil) then
-            Atlantiss.World:Debug(string.format("Added appartement ^5%s^3 in list", appartId))
+            Ora.World:Debug(string.format("Added appartement ^5%s^3 in list", appartId))
             self:AddToList(appart)
           end
           responseReceived = true
@@ -59,36 +59,36 @@ function Atlantiss.World.Appart:GetById(appartId)
   local maxTimeProcessing = GetGameTimer() + 5000
 
   while responseReceived == false or maxTimeProcessing < GetGameTimer() do
-    Atlantiss.World:Debug(string.format("Waiting pulling data for appartement ^5%s^3", appartId))
+    Ora.World:Debug(string.format("Waiting pulling data for appartement ^5%s^3", appartId))
     Wait(100)
   end
 
   if (appart.id ~= nil) then
-    Atlantiss.World:Debug(string.format("Returning loaded appartement : ^5%s^3", appartId))
+    Ora.World:Debug(string.format("Returning loaded appartement : ^5%s^3", appartId))
     return appart
   end
 
-  Atlantiss.World:Debug(string.format("Appartement : ^5%s^3 not found", appartId))
+  Ora.World:Debug(string.format("Appartement : ^5%s^3 not found", appartId))
   return nil
 end
 
-function Atlantiss.World.Appart:RemoveFromList(id)
+function Ora.World.Appart:RemoveFromList(id)
   if (self:GetList()[id] ~= nil) then
-    Atlantiss.World:Debug(string.format("Appartement : ^5%s^3 has been removed", id))
+    Ora.World:Debug(string.format("Appartement : ^5%s^3 has been removed", id))
     self:GetList()[id] = nil
     return true
   end
-  Atlantiss.World:Debug(string.format("Appartement : ^5%s^3 not found in list. Already removed ?", id))
+  Ora.World:Debug(string.format("Appartement : ^5%s^3 not found in list. Already removed ?", id))
   return false
 end
 
-function Atlantiss.World.Appart:AddToList(object)
+function Ora.World.Appart:AddToList(object)
   if (type(object) == "string") then
     object = json.decode(object)
   end
 
   if (type(object) == "table" and object.id ~= nil) then
-    Atlantiss.World:Debug(string.format("Appartement : ^5%s^3 is now added to list", object.id))
+    Ora.World:Debug(string.format("Appartement : ^5%s^3 is now added to list", object.id))
     self:GetList()[object.id] = object
     return true
   end
@@ -96,43 +96,43 @@ function Atlantiss.World.Appart:AddToList(object)
   return false
 end
 
-function Atlantiss.World.Appart:ExitFromAppartCreateHint(position)
-  Atlantiss.World.Appart.CURRENT.Position = position
+function Ora.World.Appart:ExitFromAppartCreateHint(position)
+  Ora.World.Appart.CURRENT.Position = position
   Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour sortir")
-  KeySettings:Add("keyboard", "E", Atlantiss.World.Appart["ExitAppart"], "Appart_")
-  KeySettings:Add("controller", 46, Atlantiss.World.Appart["ExitAppart"], "Appart_")
+  KeySettings:Add("keyboard", "E", Ora.World.Appart["ExitAppart"], "Appart_")
+  KeySettings:Add("controller", 46, Ora.World.Appart["ExitAppart"], "Appart_")
 end
 
-function Atlantiss.World.Appart:ExitAppart()
-  Atlantiss.Player.SavedPos = {}
+function Ora.World.Appart:ExitAppart()
+  Ora.Player.SavedPos = {}
 
-  if (Atlantiss.World.Appart.CURRENT.Property == nil or Atlantiss.World.Appart.CURRENT.Property.name == nil) then
-    TriggerServerCallback("Atlantiss::SE::Instance:LeaveAllInstance", 
+  if (Ora.World.Appart.CURRENT.Property == nil or Ora.World.Appart.CURRENT.Property.name == nil) then
+    TriggerServerCallback("Ora::SE::Instance:LeaveAllInstance", 
         function(canLeave)
-            Atlantiss.World.Appart:TeleportOutside()
+            Ora.World.Appart:TeleportOutside()
             KeySettings:Clear("keyboard", "E", "Appart_")
             KeySettings:Clear("controller", 46, "Appart_")
             Hint:RemoveAll()
         end
     )
   else
-      TriggerServerCallback("Atlantiss::SE::Instance:LeaveInstance", 
+      TriggerServerCallback("Ora::SE::Instance:LeaveInstance", 
           function(canLeave)
-              Atlantiss.World.Appart:TeleportOutside()
+              Ora.World.Appart:TeleportOutside()
               KeySettings:Clear("keyboard", "E", "Appart_")
               KeySettings:Clear("controller", 46, "Appart_")
               Hint:RemoveAll()
           end,
-          Atlantiss.World.Appart.CURRENT.Property.name
+          Ora.World.Appart.CURRENT.Property.name
       )
   end
 end
 
-function Atlantiss.World.Appart:TeleportOutside()
-  outside = Atlantiss.World.Appart.CURRENT.Outside
+function Ora.World.Appart:TeleportOutside()
+  outside = Ora.World.Appart.CURRENT.Outside
   local playerPed = LocalPlayer().Ped
-  if Atlantiss.World.Appart.CURRENT.Property ~= nil then
-      local propertyData = Atlantiss.Jobs.Immo:GetInteriorById(Atlantiss.World.Appart.CURRENT.Property.indexx)
+  if Ora.World.Appart.CURRENT.Property ~= nil then
+      local propertyData = Ora.Jobs.Immo:GetInteriorById(Ora.World.Appart.CURRENT.Property.indexx)
       if (propertyData ~= nil) then
           Zone:Remove(propertyData.coffre)
       end
@@ -142,48 +142,48 @@ function Atlantiss.World.Appart:TeleportOutside()
   Citizen.CreateThread(
       function()
           DoScreenFadeOut(100)
-          Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)
-          Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
+          Ora.Player:FreezePlayer(LocalPlayer().Ped, true)
+          Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
 
           if outside == nil or outside.x == nil or outside.y == nil or outside.z == nil then
               outside = {x = 254.29, y = -780.99, z = 30.57}
               ShowNotification("~b~Votre localisation de départ n'a pas été trouvé. Vous serez TP au PC")
           end
           
-          Atlantiss.Core:TeleportEntityTo(playerPed, vector3(outside.x, outside.y, outside.z), true)
+          Ora.Core:TeleportEntityTo(playerPed, vector3(outside.x, outside.y, outside.z), true)
           Wait(100)
-          Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
-          Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
+          Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
+          Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
           DoScreenFadeIn(100)
       end
   )
 
-  Atlantiss.World.Appart.CURRENT.Property = nil
-  Atlantiss.World.Appart.CURRENT.Outside = nil
+  Ora.World.Appart.CURRENT.Property = nil
+  Ora.World.Appart.CURRENT.Outside = nil
 end
 
-function Atlantiss.World.Appart:ExitFromAppartRemoveHint()
+function Ora.World.Appart:ExitFromAppartRemoveHint()
   KeySettings:Clear("keyboard", "E", "Appart_")
   KeySettings:Clear("controller", 46, "Appart_")
   Hint:RemoveAll()
 end
 
 
-RegisterNetEvent("Atlantiss::CE::World:Appart:SyncWithID")
+RegisterNetEvent("Ora::CE::World:Appart:SyncWithID")
 AddEventHandler(
-	"Atlantiss::CE::World:Appart:SyncWithID",
+	"Ora::CE::World:Appart:SyncWithID",
 	function(id, new)
-		local property = Atlantiss.World.Appart:GetList()[id]
+		local property = Ora.World.Appart:GetList()[id]
 		local owner = false
 		
 		if (property ~= nil) then
-      if (property.owner and property.owner == Atlantiss.Identity:GetMyUuid()) then
+      if (property.owner and property.owner == Ora.Identity:GetMyUuid()) then
 				owner = true
 			end
 
 			if (not owner and property.coowner ~= nil) then
 				for _, uuid in pairs(property.coowner) do
-					if (Atlantiss.Identity:GetMyUuid() == uuid) then
+					if (Ora.Identity:GetMyUuid() == uuid) then
 						owner = true
 						break
 					end
@@ -193,8 +193,8 @@ AddEventHandler(
 			if (owner == true and new.garagePos ~= property.garagePos) then
 				Marker:Remove(property.garagePos)
 
-				Atlantiss.World.Appart:GetList()[id] = new
-				property = Atlantiss.World.Appart:GetById(id)
+				Ora.World.Appart:GetList()[id] = new
+				property = Ora.World.Appart:GetById(id)
   
 				if (property.garagePos ~= nil) then
 					if (type(property.garagePos) == "string") then
@@ -245,10 +245,10 @@ AddEventHandler(
 					EndTextCommandSetBlipName(blip)
 				end
 			else
-				Atlantiss.World.Appart:GetList()[id] = new
+				Ora.World.Appart:GetList()[id] = new
 			end
     else
-      Atlantiss.World.Appart:GetById(id)
+      Ora.World.Appart:GetById(id)
     end
 	end
 )

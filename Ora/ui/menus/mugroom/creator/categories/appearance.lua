@@ -175,7 +175,7 @@ local parameters = {
 -- TODO Implemented poile au dos ect..
 function CreatorMenuAppearance(indexCharacter, createPlayer)
     hairstyles = {}
-    if Atlantiss.World.Ped:IsPedMale(PlayerPedId()) then
+    if Ora.World.Ped:IsPedMale(PlayerPedId()) then
         for i = 1, 25, 1 do
             hairstyles[i] =
                 GetLabelText("CC_M_HS_" .. i - 1) == "NULL" and "Coupe #" .. i or GetLabelText("CC_M_HS_" .. i - 1)

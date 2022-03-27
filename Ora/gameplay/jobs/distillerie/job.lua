@@ -244,14 +244,14 @@ function craftAlcool(data)
     local hasOneMissing = false
 
     for i = 1, #data.required, 1 do
-        if Atlantiss.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
+        if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
             ShowNotification(
                 "~b~[" ..
                     data.title ..
                         "]\n" ..
                             Items[data.required[i].name].label ..
                                 "~s~ : ~r~" ..
-                                    Atlantiss.Inventory:GetItemCount(data.required[i].name) ..
+                                    Ora.Inventory:GetItemCount(data.required[i].name) ..
                                         "/" .. data.required[i].count .. "~s~"
             )
             hasOneMissing = true
@@ -262,7 +262,7 @@ function craftAlcool(data)
                         "]\n" ..
                             Items[data.required[i].name].label ..
                                 "~s~ : ~g~" ..
-                                    Atlantiss.Inventory:GetItemCount(data.required[i].name) ..
+                                    Ora.Inventory:GetItemCount(data.required[i].name) ..
                                         "/" .. data.required[i].count .. "~s~"
             )
         end
@@ -274,7 +274,7 @@ function craftAlcool(data)
         showMessageInformation("~b~Création du spiritueux en cours (" .. timeWait .. " minute(s))...", data.time)
 
         for i = 1, #data.required, 1 do
-            Atlantiss.Inventory:RemoveFirstItem(data.required[i].name)
+            Ora.Inventory:RemoveFirstItem(data.required[i].name)
         end
 
         local playerPed = LocalPlayer().Ped
@@ -342,10 +342,10 @@ function craftAlcool(data)
         ClearPedTasksImmediately(LocalPlayer().Ped)
 
         serial = GenerateDistillerieSerial()
-        Atlantiss.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
+        Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
 
         serial = GenerateDistillerieSerial()
-        Atlantiss.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
+        Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
     else
         ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
         return

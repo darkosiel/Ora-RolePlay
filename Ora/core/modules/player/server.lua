@@ -4,9 +4,9 @@
 -- ALTER TABLE `players_phone` CHANGE `phone` `phone` VARCHAR(20) NULL DEFAULT NULL;
 -- ALTER TABLE `players_phone` DROP `uuid`;
 
-Atlantiss.Player.SessionData = {}
+Ora.Player.SessionData = {}
 
-function Atlantiss.Player:GetSessionData(playerId)
+function Ora.Player:GetSessionData(playerId)
     if self.SessionData[playerId] ~= nil then
         return self.SessionData[playerId]
     end
@@ -14,7 +14,7 @@ function Atlantiss.Player:GetSessionData(playerId)
     return {}
 end
 
-function Atlantiss.Player:AppendToSessionDataKey(playerId, key, value)
+function Ora.Player:AppendToSessionDataKey(playerId, key, value)
     if self.SessionData[playerId] == nil then
         self.SessionData[playerId] = {}
     end
@@ -26,7 +26,7 @@ function Atlantiss.Player:AppendToSessionDataKey(playerId, key, value)
     table.insert(self.SessionData[playerId][key], value)
 end
 
-function Atlantiss.Player:SetSessionDataKey(playerId, key, value)
+function Ora.Player:SetSessionDataKey(playerId, key, value)
     if self.SessionData[playerId] == nil then
         self.SessionData[playerId] = {}
     end
@@ -38,7 +38,7 @@ function Atlantiss.Player:SetSessionDataKey(playerId, key, value)
     self.SessionData[playerId][key] = value
 end
 
-function Atlantiss.Player:GetSessionDataKey(playerId, key)
+function Ora.Player:GetSessionDataKey(playerId, key)
     if self.SessionData[playerId] == nil then
         return nil
     end
@@ -51,7 +51,7 @@ function Atlantiss.Player:GetSessionDataKey(playerId, key)
 end
 
 
-function Atlantiss.Player:GenerateNewPhoneNumber()
+function Ora.Player:GenerateNewPhoneNumber()
     local newNumber = string.format("555%04d", math.random(1, 9999))
     local isValid = false
 
@@ -75,7 +75,7 @@ function Atlantiss.Player:GenerateNewPhoneNumber()
 end
 
 
-function Atlantiss.Player:RegisterPhoneNumberToPlayer(phoneNumber)
+function Ora.Player:RegisterPhoneNumberToPlayer(phoneNumber)
     local results = MySQL.Sync.insert(
         "INSERT INTO `players_phone` (phone) VALUES(@number)",
         {
@@ -84,11 +84,11 @@ function Atlantiss.Player:RegisterPhoneNumberToPlayer(phoneNumber)
     )
 end
 
-function Atlantiss.Player:GetStrength(playerId)
+function Ora.Player:GetStrength(playerId)
     local results = MySQL.Sync.fetchAll(
         "SELECT strength FROM `users` WHERE uuid = @uuid",
         {
-            ["@uuid"] = Atlantiss.Identity:GetUuid(playerId)
+            ["@uuid"] = Ora.Identity:GetUuid(playerId)
         }
     )
 
@@ -99,11 +99,11 @@ function Atlantiss.Player:GetStrength(playerId)
     return 0
 end
 
-function Atlantiss.Player:GetXp(playerId)
+function Ora.Player:GetXp(playerId)
     local results = MySQL.Sync.fetchAll(
         "SELECT xp FROM `users` WHERE uuid = @uuid",
         {
-            ["@uuid"] = Atlantiss.Identity:GetUuid(playerId)
+            ["@uuid"] = Ora.Identity:GetUuid(playerId)
         }
     )
 
@@ -114,20 +114,20 @@ function Atlantiss.Player:GetXp(playerId)
     return 0
 end
 
-RegisterServerCallback("Atlantiss::SE::Player:Phone:GetNewPhoneNumber", 
+RegisterServerCallback("Ora::SE::Player:Phone:GetNewPhoneNumber", 
   function(source, cb) 
     local _source = source
-    local newPhoneNumber = Atlantiss.Player:GenerateNewPhoneNumber()
-    Atlantiss.Player:RegisterPhoneNumberToPlayer(newPhoneNumber)
+    local newPhoneNumber = Ora.Player:GenerateNewPhoneNumber()
+    Ora.Player:RegisterPhoneNumberToPlayer(newPhoneNumber)
 
 
     cb(newPhoneNumber)
   end
 )
 
-RegisterServerEvent("Atlantiss::SE::Player:AddToSessionData")
+RegisterServerEvent("Ora::SE::Player:AddToSessionData")
 AddEventHandler(
-    "Atlantiss::SE::Player:AddToSessionData",
+    "Ora::SE::Player:AddToSessionData",
     function(key, data)
         local _source = source
         local newData = nil
@@ -137,16 +137,16 @@ AddEventHandler(
             newData = data
         end
 
-        Atlantiss.Player:AppendToSessionDataKey(_source, key, newData)
+        Ora.Player:AppendToSessionDataKey(_source, key, newData)
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Player:SetSessionData")
+RegisterServerEvent("Ora::SE::Player:SetSessionData")
 AddEventHandler(
-    "Atlantiss::SE::Player:SetSessionData",
+    "Ora::SE::Player:SetSessionData",
     function(key, data)
         local _source = source
-        Atlantiss.Player:SetSessionData(_source, key, data)
+        Ora.Player:SetSessionData(_source, key, data)
     end
 )
 
@@ -155,21 +155,21 @@ AddEventHandler(
     "playerDropped",
     function(reason)
         local _source = source
-        local sessionData = Atlantiss.Player:GetSessionData(_source)
-        local fullname = Atlantiss.Identity:GetFullname(_source)
+        local sessionData = Ora.Player:GetSessionData(_source)
+        local fullname = Ora.Identity:GetFullname(_source)
         local hasValue = false
         local message = "```markdown\n# RAPPORT DE SESSION DU JOUEUR ".. fullname .. "\n```"
 
         for key, value in pairs(sessionData) do
-            if (Atlantiss.Player.SessionDataMapper[key] ~= nil) then
+            if (Ora.Player.SessionDataMapper[key] ~= nil) then
                 hasValue = true
-               message = message .. Atlantiss.Player.SessionDataMapper[key](value)
+               message = message .. Ora.Player.SessionDataMapper[key](value)
             end
         end
 
         if (hasValue) then 
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 _source,
                 32,
                 message,
@@ -179,16 +179,16 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Player:UpdateTattoos")
+RegisterServerEvent("Ora::SE::Player:UpdateTattoos")
 AddEventHandler(
-    "Atlantiss::SE::Player:UpdateTattoos",
+    "Ora::SE::Player:UpdateTattoos",
     function(tattooListFixed)
         local _source = source
         MySQL.Async.execute(
             "UPDATE players_appearance SET tattoo = @tattooList WHERE uuid = @uuid",
             {
               ['@tattooList'] = json.encode(tattooListFixed),
-              ['@uuid'] = Atlantiss.Identity:GetUuid(_source)
+              ['@uuid'] = Ora.Identity:GetUuid(_source)
             },
             function (affectedRows)
             end
@@ -196,15 +196,15 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Player:RegisterHealth")
+RegisterServerEvent("Ora::SE::Player:RegisterHealth")
 AddEventHandler(
-    "Atlantiss::SE::Player:RegisterHealth",
+    "Ora::SE::Player:RegisterHealth",
     function(health)
         local _source = source
         local results = MySQL.Sync.fetchAll(
             "SELECT count(uuid) AS result_count FROM players_identity WHERE uuid = @uuid",
             {
-              ['@uuid'] = Atlantiss.Identity:GetUuid(_source)
+              ['@uuid'] = Ora.Identity:GetUuid(_source)
             }
         )
 
@@ -213,17 +213,17 @@ AddEventHandler(
                 "UPDATE players_identity SET health = @health WHERE uuid = @uuid",
                 {
                   ['@health'] = health,
-                  ['@uuid'] = Atlantiss.Identity:GetUuid(_source)
+                  ['@uuid'] = Ora.Identity:GetUuid(_source)
                 }
             )
         end
     end
 )
 
-RegisterServerCallback("Atlantiss::SCB::Player:GetTattoos", 
+RegisterServerCallback("Ora::SCB::Player:GetTattoos", 
   function(source, cb, player) 
     local _source = source
-    local playerUuid = Atlantiss.Identity:GetUuid(player)
+    local playerUuid = Ora.Identity:GetUuid(player)
 
     MySQL.Async.fetchAll(
         "SELECT tattoo FROM players_appearance WHERE uuid = @uuid",
@@ -239,11 +239,11 @@ RegisterServerCallback("Atlantiss::SCB::Player:GetTattoos",
   end
 )
 
-RegisterServerEvent("Atlantiss::SE::Player:SetTattoo")
+RegisterServerEvent("Ora::SE::Player:SetTattoo")
 AddEventHandler(
-    "Atlantiss::SE::Player:SetTattoo",
+    "Ora::SE::Player:SetTattoo",
     function(target, tattoos)
-        local playerUuid = Atlantiss.Identity:GetUuid(target)
+        local playerUuid = Ora.Identity:GetUuid(target)
 
         MySQL.Async.execute(
             "UPDATE players_appearance SET tattoo = @tattoo WHERE uuid = @uuid",

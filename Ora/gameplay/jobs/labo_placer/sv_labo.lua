@@ -28,8 +28,8 @@ ALTER TABLE `organisation_property` ADD `last_attacked_at` VARCHAR(255) NULL AFT
 ]]
 local randomDictionnary = {"Furet","Hibou","Lion","Dauphin","Chat","Chien","Ligre","Ouistiti","Gorille","Abyssin","Addax","Aigle","Alpaga","Chameau","Dromadaire","Ane","Appaloosa","Gavial","Fennec","Malamute","Mara","Mandrill","Morse","Mouflon","Narval","Ocelot","Puma","Guepard","Orque","Taureau","Caracal","Jaguar","Loup","Renard","Vison","Wapiti","Kiwi","Yack","Lama","Lapin","Lézard","Cobra","Coyote","Ragondin","Renne","Chinchilla","Cygne","Vautour","Daim","Cerf","Bison","Dingo","Élan","Écureuil","Zèbre","Quokka","Langur","Koala","Lièvre","Kangourou","Pangolin","Pingouin","Ours","Grizzli","Anhinga","Geai","Paresseux","Gnou","Canari","Perroquet","Goujon","Agneau","Albatros","Alligator","Crocodile","Caïman","Boa","Anaconda","Python","Scorpion","Bongare","Boomslang","Crotale","Échide","Grage","Habu","Jararaca","Katuali","Mamba","Mapanare","Araneus","Gecko","Triton","Charançon","Hanneton","Scarabée","Crabe","Chimpanzée","Béluga","Lamantin","Marsouin","Phoque","Opossum","Wallaby","Caribou","Okapi","Pomme","Orange","Banane","Jesus","Carotte","Patate","Kiwi","Melon","Mangue","Peche","Prune","Salade","Fraise","Framboise","Alpha","Beta","Gamma","Delta","Epsilon","Zeta","Eta","Theta","Iota","Kappa","Lambda","Mu","Nu","Xi","Omicron","Pi","Rho","Sigma","Tau","Upsilon","Phi","Chi","Psi","Omega","Abricot","Acajou","Cheval","Argent","Or","Bleu","Vert","Jaune","Avocat","Blond","Brun","Roux","Gris","Noir","Blanc","Vert","Rouge"}
 
-RegisterServerEvent("Atlantiss:Illegal:createProperty")
-AddEventHandler("Atlantiss:Illegal:createProperty",function(type, illegalProperty)
+RegisterServerEvent("Ora:Illegal:createProperty")
+AddEventHandler("Ora:Illegal:createProperty",function(type, illegalProperty)
     local _source = source
     local newId = MySQL.Sync.insert(
         "INSERT INTO organisation_property (name, type, business_id, outside_door, production_level, security_level, capacity, limitation) VALUES (@name, @type, @business_id, @outside_door, @production_level, @security_level, @capacity, @limitation)",
@@ -47,12 +47,12 @@ AddEventHandler("Atlantiss:Illegal:createProperty",function(type, illegalPropert
     )
 
     local results = MySQL.Sync.fetchAll("SELECT op.*, o.name AS business_name, o.label AS business_label FROM organisation_property AS op LEFT JOIN organisation AS o ON o.id = op.organisation_id  ORDER BY op.id ASC", {})
-    TriggerClientEvent("Atlantiss::Illegal:populateIllegalPropertyList", _source, json.encode(results))
-    TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, Atlantiss.Identity:GetFullname(_source) .. " a créé la propriété " .. illegalProperty.NAME .. " (type = " .. type .. ", business_id = " .. illegalProperty.BUSINESS_ID .. ")", "info")
+    TriggerClientEvent("Ora::Illegal:populateIllegalPropertyList", _source, json.encode(results))
+    TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, Ora.Identity:GetFullname(_source) .. " a créé la propriété " .. illegalProperty.NAME .. " (type = " .. type .. ", business_id = " .. illegalProperty.BUSINESS_ID .. ")", "info")
 end)
 
-RegisterServerEvent("Atlantiss:Illegal:DeleteProperty")
-AddEventHandler("Atlantiss:Illegal:DeleteProperty",function(illegalProperty)
+RegisterServerEvent("Ora:Illegal:DeleteProperty")
+AddEventHandler("Ora:Illegal:DeleteProperty",function(illegalProperty)
     local _source = source
     local newId = MySQL.Sync.execute(
         "DELETE FROM organisation_property WHERE id = @businessPropertyId",
@@ -62,19 +62,19 @@ AddEventHandler("Atlantiss:Illegal:DeleteProperty",function(illegalProperty)
     )
 
     if (illegalProperty.organisation_id ~= nil) then
-        TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", illegalProperty.organisation_id, "Vous n'êtes plus propriétaire de votre propriété ~h~" .. illegalProperty.name .. "~h~")
-        TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", illegalProperty.organisation_id)
+        TriggerEvent("Ora::Illegal:sendMessageToOrga", illegalProperty.organisation_id, "Vous n'êtes plus propriétaire de votre propriété ~h~" .. illegalProperty.name .. "~h~")
+        TriggerEvent("Ora::Illegal:updateOrgaForAllClient", illegalProperty.organisation_id)
         TriggerClientEvent("RageUI:Popup", _source, {message = "~g~La faction a été expulsée et la propriété a été supprimée avec succès.~s~"})
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, Atlantiss.Identity:GetFullname(_source) .. " a expulsé la faction " .. illegalProperty.organisation_id .. " de la propriété " .. illegalProperty.name, "info")
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, Ora.Identity:GetFullname(_source) .. " a expulsé la faction " .. illegalProperty.organisation_id .. " de la propriété " .. illegalProperty.name, "info")
     end
     TriggerClientEvent("RageUI:Popup", _source, {message = "~g~La propriété a été supprimée avec succès.~s~"})
-    TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, Atlantiss.Identity:GetFullname(_source) .. " a supprimé la propriété " .. illegalProperty.name, "info")
-    TriggerEvent("Atlantiss::ServerSidePlayerLoaded", _source)
+    TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, Ora.Identity:GetFullname(_source) .. " a supprimé la propriété " .. illegalProperty.name, "info")
+    TriggerEvent("Ora::ServerSidePlayerLoaded", _source)
 end)
 
 
-RegisterServerEvent("Atlantiss:Illegal:AssignProperty")
-AddEventHandler("Atlantiss:Illegal:AssignProperty",function(illegalProperty, organisation)
+RegisterServerEvent("Ora:Illegal:AssignProperty")
+AddEventHandler("Ora:Illegal:AssignProperty",function(illegalProperty, organisation)
     local _source = source
     local newId = MySQL.Sync.execute(
         "UPDATE organisation_property set organisation_id = @organisationId WHERE id = @businessPropertyId",
@@ -84,15 +84,15 @@ AddEventHandler("Atlantiss:Illegal:AssignProperty",function(illegalProperty, org
         }
     )
 
-    TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", organisation.id)
-    TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", organisation.id, "Votre faction est désormais propriétaire de ~h~" .. illegalProperty.name .. "~h~")
+    TriggerEvent("Ora::Illegal:updateOrgaForAllClient", organisation.id)
+    TriggerEvent("Ora::Illegal:sendMessageToOrga", organisation.id, "Votre faction est désormais propriétaire de ~h~" .. illegalProperty.name .. "~h~")
     TriggerClientEvent("RageUI:Popup", _source, {message = "~g~La faction ~h~".. organisation.name .."~h~ est désormais lié a cette propriété.~s~"})
-    TriggerEvent("Atlantiss::ServerSidePlayerLoaded", _source)
-    TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, Atlantiss.Identity:GetFullname(_source) .. " a associé la faction " .. organisation.name .. " à la propriété " .. illegalProperty.name, "info")
+    TriggerEvent("Ora::ServerSidePlayerLoaded", _source)
+    TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, Ora.Identity:GetFullname(_source) .. " a associé la faction " .. organisation.name .. " à la propriété " .. illegalProperty.name, "info")
 end)
 
-RegisterServerEvent("Atlantiss:Illegal:DeleteFactionFromProperty")
-AddEventHandler("Atlantiss:Illegal:DeleteFactionFromProperty",function(illegalProperty)
+RegisterServerEvent("Ora:Illegal:DeleteFactionFromProperty")
+AddEventHandler("Ora:Illegal:DeleteFactionFromProperty",function(illegalProperty)
     local _source = source
     local newId = MySQL.Sync.execute(
         "UPDATE organisation_property set organisation_id = null WHERE id = @businessPropertyId",
@@ -102,18 +102,18 @@ AddEventHandler("Atlantiss:Illegal:DeleteFactionFromProperty",function(illegalPr
     )
 
     if (illegalProperty.organisation_id ~= nil) then
-        TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", illegalProperty.organisation_id, "Vous n'êtes plus propriétaire de votre propriété ~h~" .. illegalProperty.name .. "~h~")
-        TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", illegalProperty.organisation_id)
+        TriggerEvent("Ora::Illegal:sendMessageToOrga", illegalProperty.organisation_id, "Vous n'êtes plus propriétaire de votre propriété ~h~" .. illegalProperty.name .. "~h~")
+        TriggerEvent("Ora::Illegal:updateOrgaForAllClient", illegalProperty.organisation_id)
         TriggerClientEvent("RageUI:Popup", _source, {message = "~g~La faction a été expulsée.~s~"})
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, Atlantiss.Identity:GetFullname(_source) .. " a expulsé la faction " .. illegalProperty.organisation_id .. " de la propriété " .. illegalProperty.name, "info")
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, Ora.Identity:GetFullname(_source) .. " a expulsé la faction " .. illegalProperty.organisation_id .. " de la propriété " .. illegalProperty.name, "info")
     else
         TriggerClientEvent("RageUI:Popup", _source, {message = "~r~Aucune faction n'est liée.~s~"})
     end
 
-    TriggerEvent("Atlantiss::ServerSidePlayerLoaded", _source)
+    TriggerEvent("Ora::ServerSidePlayerLoaded", _source)
 end)
 
-RegisterServerCallback("Atlantiss:Illegal:getPropertyByName", 
+RegisterServerCallback("Ora:Illegal:getPropertyByName", 
   function(source, cb, propertyName)
     local results = MySQL.Sync.fetchAll(
         "SELECT op.*, o.name AS business_name, o.label AS business_label FROM organisation_property AS op LEFT JOIN organisation AS o ON o.id = op.organisation_id  WHERE op.name = @name", 
@@ -131,22 +131,22 @@ RegisterServerCallback("Atlantiss:Illegal:getPropertyByName",
   end
 )
 
-RegisterServerEvent("Atlantiss::ServerSidePlayerLoaded")
+RegisterServerEvent("Ora::ServerSidePlayerLoaded")
 AddEventHandler(
-    "Atlantiss::ServerSidePlayerLoaded",
+    "Ora::ServerSidePlayerLoaded",
     function(source)
         local _source = source
         local results = MySQL.Sync.fetchAll("SELECT op.*, o.name AS business_name, o.label AS business_label FROM organisation_property AS op LEFT JOIN organisation AS o ON o.id = op.organisation_id ORDER BY op.id ASC", {})
-        TriggerClientEvent("Atlantiss::Illegal:populateIllegalPropertyList", _source, json.encode(results))
+        TriggerClientEvent("Ora::Illegal:populateIllegalPropertyList", _source, json.encode(results))
     end
 )
 
-RegisterServerEvent("Atlantiss:Illegal:SyncProperties")
+RegisterServerEvent("Ora:Illegal:SyncProperties")
 AddEventHandler(
-    "Atlantiss:Illegal:SyncProperties",
+    "Ora:Illegal:SyncProperties",
     function()
         local _source = source
         local results = MySQL.Sync.fetchAll("SELECT op.*, o.name AS business_name, o.label AS business_label FROM organisation_property AS op LEFT JOIN organisation AS o ON o.id = op.organisation_id ORDER BY op.id ASC", {})
-        TriggerClientEvent("Atlantiss::Illegal:populateIllegalPropertyList", _source, json.encode(results))
+        TriggerClientEvent("Ora::Illegal:populateIllegalPropertyList", _source, json.encode(results))
     end
 )

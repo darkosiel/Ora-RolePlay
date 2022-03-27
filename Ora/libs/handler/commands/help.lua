@@ -6,7 +6,7 @@ local KeyList = {
 }
 
 local function chatMessage(msg)
-    TriggerEvent("chatMessage", "^3Atlantiss", {0,255,0}, msg)
+    TriggerEvent("chatMessage", "^3Ora", {0,255,0}, msg)
 end
 
 

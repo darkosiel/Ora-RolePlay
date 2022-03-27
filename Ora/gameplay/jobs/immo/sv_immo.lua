@@ -25,7 +25,7 @@ AddEventHandler(
 RegisterServerCallback(
     "core:GetSKin",
     function(_source, callback)
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
         MySQL.Async.fetchAll(
             "SELECT face FROM players_appearance WHERE uuid =@uuid",
             {
@@ -41,7 +41,7 @@ RegisterServerCallback(
 RegisterServerCallback(
     "core:GetSKin2",
     function(_source, callback)
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
         MySQL.Async.fetchAll(
             "SELECT * FROM players_appearance WHERE uuid =@name",
             {
@@ -72,7 +72,7 @@ RegisterServerEvent("appart:updateown")
 AddEventHandler(
     "appart:updateown",
     function(targetSrc, id)
-        local uuid = Atlantiss.Identity:GetUuid(targetSrc)
+        local uuid = Ora.Identity:GetUuid(targetSrc)
         MySQL.Async.execute(
             "UPDATE players_appartement SET owner=@owner where id=@id",
             {
@@ -88,7 +88,7 @@ RegisterServerEvent("appart:updateownLoc")
 AddEventHandler(
     "appart:updateownLoc",
     function(targetSrc, id, weekRent)
-        local uuid = Atlantiss.Identity:GetUuid(targetSrc)
+        local uuid = Ora.Identity:GetUuid(targetSrc)
         now = os.time()
         MySQL.Async.fetchAll(
             "SELECT time FROM players_appartement WHERE id=@id",
@@ -154,7 +154,7 @@ RegisterServerEvent("core:RemoveCoOwner")
 AddEventHandler(
     "core:RemoveCoOwner",
     function(targetSrc, id, own)
-        local uuid = Atlantiss.Identity:GetUuid(targetSrc)
+        local uuid = Ora.Identity:GetUuid(targetSrc)
 
         for i = 1, #own, 1 do
             if own[i] == uuid then
@@ -181,7 +181,7 @@ AddEventHandler(
             own = {}
         end
         
-        local uuid = Atlantiss.Identity:GetUuid(targetSrc)
+        local uuid = Ora.Identity:GetUuid(targetSrc)
         table.insert(own, uuid)
 
         MySQL.Async.execute(
@@ -220,7 +220,7 @@ RegisterServerCallback(
     end
 )
 
-RegisterServerCallback('Atlantiss::SVCB::immo:GetSourcesFromUUID', function(source, callback, currentProperty)
+RegisterServerCallback('Ora::SVCB::immo:GetSourcesFromUUID', function(source, callback, currentProperty)
     local result = {}
 
     for k ,v in pairs(GetALLPLAYERS()) do

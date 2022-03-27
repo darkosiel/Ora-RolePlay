@@ -49,7 +49,7 @@ local commands = {
 
                 if (itemSent >= 150) then
                     math.randomseed(GetGameTimer())
-                    TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", args[1], sendItems)
+                    TriggerPlayerEvent("Ora::CE::Inventory:AddItems", args[1], sendItems)
                     sendItems = {}
                     itemSent = 0
                     Wait(100)
@@ -57,7 +57,7 @@ local commands = {
             end
 
             if (itemSent > 0) then
-                TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", args[1], sendItems)
+                TriggerPlayerEvent("Ora::CE::Inventory:AddItems", args[1], sendItems)
                 sendItems = {}
                 itemSent = 0
             end
@@ -67,9 +67,9 @@ local commands = {
         text = "car",
         fct = function(args)
             local ModelName = args[1]
-            TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterVehicle", 
+            TriggerServerCallback("Ora::SE::Anticheat:RegisterVehicle", 
                 function()
-                    vehicle = Atlantiss.World.Vehicle:Create(ModelName, GetEntityCoords(PlayerPedId()), GetEntityHeading(PlayerPedId()), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
+                    vehicle = Ora.World.Vehicle:Create(ModelName, GetEntityCoords(PlayerPedId()), GetEntityHeading(PlayerPedId()), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
                 end,
                 GetHashKey(ModelName)
             )
@@ -131,7 +131,7 @@ local commands = {
 Citizen.CreateThread(
     function()
         for i = 1, #commands, 1 do
-            if Atlantiss.Identity:GetMyGroup() == "superadmin" then
+            if Ora.Identity:GetMyGroup() == "superadmin" then
                 RegisterCommand(
                     commands[i].text,
                     function(_, args)
@@ -147,13 +147,13 @@ RegisterCommand(
     "report",
     function(_, args)
         TriggerServerEvent(
-            "atlantiss:sendToDiscord",
+            "Ora:sendToDiscord",
             13,
             table.concat(args, " "),
             "error"
         )
 
-        TriggerServerEvent("addReportMenuS", table.concat(args, " "), Atlantiss.Identity.Job:Get(), Atlantiss.Identity.Orga:Get())
+        TriggerServerEvent("addReportMenuS", table.concat(args, " "), Ora.Identity.Job:Get(), Ora.Identity.Orga:Get())
         TriggerEvent(
             "RageUI:Popup",
             {

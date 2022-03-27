@@ -1,26 +1,26 @@
-RegisterNetEvent("Atlantiss::SE::Job::Bleacher::BleachingMoney")
+RegisterNetEvent("Ora::SE::Job::Bleacher::BleachingMoney")
 AddEventHandler(
-  "Atlantiss::SE::Job::Bleacher::BleachingMoney",
+  "Ora::SE::Job::Bleacher::BleachingMoney",
   function(count)
     local currTime = os.date("*t")
 
-    table.insert(Atlantiss.Jobs.Bleacher.CurrentBleachings, {
-      VALUE = math.floor(count * Atlantiss.Jobs.Bleacher.Tax),
+    table.insert(Ora.Jobs.Bleacher.CurrentBleachings, {
+      VALUE = math.floor(count * Ora.Jobs.Bleacher.Tax),
       TIMESTAMP = string.format("%s:%s", currTime.hour, currTime.min),
-      TIME = GetGameTimer() + (60000 * Atlantiss.Jobs.Bleacher.BleachingTime),
+      TIME = GetGameTimer() + (60000 * Ora.Jobs.Bleacher.BleachingTime),
       INITIALVALUE = count
     })
   end
 )
 
-RegisterNetEvent("Atlantiss::SE::Job::Bleacher::RetreiveBleaching")
+RegisterNetEvent("Ora::SE::Job::Bleacher::RetreiveBleaching")
 AddEventHandler(
-  "Atlantiss::SE::Job::Bleacher::RetreiveBleaching",
+  "Ora::SE::Job::Bleacher::RetreiveBleaching",
   function(id)
     local src = source
 
-    if (not Atlantiss.Jobs.Bleacher.CurrentBleachings[id]) then
-      return Atlantiss.Anticheat:YieldGenericMessage(
+    if (not Ora.Jobs.Bleacher.CurrentBleachings[id]) then
+      return Ora.Anticheat:YieldGenericMessage(
         "[POTENTIAL CHEAT/USEBUG] L'utilisateur demande un paiement qui n'est pas enregistré dans le systeme.",
         src,
         true
@@ -28,23 +28,23 @@ AddEventHandler(
     end
 
     TriggerEvent(
-      Atlantiss.Payment:GetServerEventName() .. ":SERVERSIDE",
+      Ora.Payment:GetServerEventName() .. ":SERVERSIDE",
       src,
       {
-        AMOUNT = Atlantiss.Jobs.Bleacher.CurrentBleachings[id].VALUE,
+        AMOUNT = Ora.Jobs.Bleacher.CurrentBleachings[id].VALUE,
         SOURCE = "Blanchiment d'argent",
         LEGIT = true
       }
     )
 
-    TriggerClientEvent("RageUI:Popup", src, {message = "~b~Tiens, voilà tes $" .. Atlantiss.Jobs.Bleacher.CurrentBleachings[id].VALUE .. " en propre"})
-    table.remove(Atlantiss.Jobs.Bleacher.CurrentBleachings, id)
+    TriggerClientEvent("RageUI:Popup", src, {message = "~b~Tiens, voilà tes $" .. Ora.Jobs.Bleacher.CurrentBleachings[id].VALUE .. " en propre"})
+    table.remove(Ora.Jobs.Bleacher.CurrentBleachings, id)
   end
 )
 
 
 RegisterServerCallback(
-  "Atlantiss::SVCB::Job::Bleacher::CanBleach",
+  "Ora::SVCB::Job::Bleacher::CanBleach",
   function(source, callback, count)
     local currTime = os.date("*t")
 
@@ -61,13 +61,13 @@ RegisterServerCallback(
 )
 
 RegisterServerCallback(
-  "Atlantiss::SVCB::Job::Bleacher::GetFinishedList",
+  "Ora::SVCB::Job::Bleacher::GetFinishedList",
   function(source, callback)
     local finishedOnes = {}
 
-    for id, bleaching in ipairs(Atlantiss.Jobs.Bleacher.CurrentBleachings) do
+    for id, bleaching in ipairs(Ora.Jobs.Bleacher.CurrentBleachings) do
       if (bleaching.TIME - GetGameTimer() <= 0) then
-        table.insert(finishedOnes, Atlantiss.Jobs.Bleacher.CurrentBleachings[id])
+        table.insert(finishedOnes, Ora.Jobs.Bleacher.CurrentBleachings[id])
       end
     end
 

@@ -21,7 +21,7 @@ Config = {
 -- Use a 512 x 128 image!
 -- NOte this might cause an issue of the image getting stuck on peoples screens
 	CustomMenuEnabled = true,
-	MenuImage = "https://atlantiss-rp.com/images/heb/+emotes.jpg",
+	MenuImage = "https://Ora-rp.com/images/heb/+emotes.jpg",
 -- You can change the menu position here
 	MenuPosition = "right", -- (left, right)
 -- You can disable the Ragdoll keybinding here.

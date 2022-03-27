@@ -1,9 +1,9 @@
 local function InitGames()
     if (ifModuleLoaded("Player")) then
-        Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
+        Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
     end
 
-    TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPeds", 
+    TriggerServerCallback("Ora::SE::Anticheat:RegisterPeds", 
         function()
             FreezePlayer(PlayerId(), true)
             DoScreenFadeOut(100)
@@ -30,8 +30,8 @@ local function InitGames()
     )
 end
 
-RegisterNetEvent("Atlantiss::CE::Game:InitGames")
-AddEventHandler("Atlantiss::CE::Game:InitGames", function() InitGames() end)
+RegisterNetEvent("Ora::CE::Game:InitGames")
+AddEventHandler("Ora::CE::Game:InitGames", function() InitGames() end)
 
 
 local firstSpawn = true
@@ -52,7 +52,7 @@ AddEventHandler('onResourceStart', function(resourceName)
 end)
 
 RegisterCommand("InitGames", function(source, args, rawCommand)
-    if (Atlantiss.Anticheat:IsAnticheatWhitelist()) then
+    if (Ora.Anticheat:IsAnticheatWhitelist()) then
         InitGames()
     else
         ShowNotification("~r~Cette commande n'est pas disponible. Faites un report pour demander une réinitialisation~s~")

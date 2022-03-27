@@ -1,4 +1,4 @@
-Atlantiss.Jobs.Immo.SubMenu = {
+Ora.Jobs.Immo.SubMenu = {
 	SelectedProperty = nil,
 	CurrentOwner = "",
 	CurrentCoowners = {},
@@ -19,45 +19,45 @@ RMenu.Add(
 )
 
 RMenu.Add(
-    "Atlantiss:Immo",
+    "Ora:Immo",
     "Raids",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Perquisitions en cours", "Selectionner pour accéder aux détails")
 )
 
 RMenu.Add(
-    "Atlantiss:Immo",
+    "Ora:Immo",
     "Raids_confirm",
-    RageUI.CreateSubMenu(RMenu:Get("Atlantiss:Immo", "Raids"), "Perquisitions en cours", "Options")
+    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "Raids"), "Perquisitions en cours", "Options")
 )
 
 RMenu.Add(
-    "Atlantiss:Immo",
+    "Ora:Immo",
     "List",
     RageUI.CreateSubMenu(RMenu:Get("immo", "main"), "Propriétés existantes", "Liste")
 )
 
 RMenu.Add(
-    "Atlantiss:Immo",
+    "Ora:Immo",
     "CurrentProperty",
-    RageUI.CreateSubMenu(RMenu:Get("Atlantiss:Immo", "List"), "Propriété sélectionnée", "Détails")
+    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "List"), "Propriété sélectionnée", "Détails")
 )
 
 RMenu.Add(
-    "Atlantiss:Immo",
+    "Ora:Immo",
 	"Coowners",
-    RageUI.CreateSubMenu(RMenu:Get("Atlantiss:Immo", "CurrentProperty"), "Co-propriétaire(s)", "Noms")
+    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "CurrentProperty"), "Co-propriétaire(s)", "Noms")
 )
 
 RMenu.Add(
-    "Atlantiss:Immo:Update",
+    "Ora:Immo:Update",
 	"Interior",
-    RageUI.CreateSubMenu(RMenu:Get("Atlantiss:Immo", "CurrentProperty"), "Modifier l'intérieur", "Intérieurs disponibles")
+    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "CurrentProperty"), "Modifier l'intérieur", "Intérieurs disponibles")
 )
 
 RMenu.Add("appart", "main", RageUI.CreateMenu(nil, "Actions disponibles", 10, 100))
 
 
-function Atlantiss.Jobs.Immo:RemoveExits()
+function Ora.Jobs.Immo:RemoveExits()
 	for key, value in pairs(self:GetInteriors()) do
 		local property = value
 		value.entry.z = value.entry.z - 0.9
@@ -65,23 +65,23 @@ function Atlantiss.Jobs.Immo:RemoveExits()
 	end
 end
 
-function Atlantiss.Jobs.Immo:CreateExits()
+function Ora.Jobs.Immo:CreateExits()
 	for key, value in pairs(self:GetInteriors()) do
 		local property = value
 		value.entry.z = value.entry.z - 0.9
-		Zone:Add(value.entry, Atlantiss.World.Appart["ExitFromAppartCreateHint"], Atlantiss.World.Appart["ExitFromAppartRemoveHint"], value.entry, 1.3)
+		Zone:Add(value.entry, Ora.World.Appart["ExitFromAppartCreateHint"], Ora.World.Appart["ExitFromAppartRemoveHint"], value.entry, 1.3)
 	end
 end
 
-function Atlantiss.Jobs.Immo.INIT()
+function Ora.Jobs.Immo.INIT()
 	Citizen.CreateThread(
 		function()
-			while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+			while (Ora.Player.HasLoaded == false) do Wait(500) end
 
 			local PosOfMarker, isMarkerEnabled, WeightOfPos, PosOfInterior, cam, numberOfHouse
 			local PosInLabelAppart = 1
 			local createdCamera = nil
-			local CoordsCamList = Atlantiss.Jobs.Immo:GetInteriors()
+			local CoordsCamList = Ora.Jobs.Immo:GetInteriors()
 			local price
 			local oldIndex
 			local CurrentProperty
@@ -98,13 +98,13 @@ function Atlantiss.Jobs.Immo.INIT()
 				SetFocusEntity(GetPlayerPed(PlayerId()))
 			end
 
-			RMenu:Get("Atlantiss:Immo", "CurrentProperty").Closed = function()
-				Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos = nil
-				Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = false
-				Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff = {}
+			RMenu:Get("Ora:Immo", "CurrentProperty").Closed = function()
+				Ora.Jobs.Immo.SubMenu.CurrentGaragePos = nil
+				Ora.Jobs.Immo.SubMenu.HasBeenUpdated = false
+				Ora.Jobs.Immo.SubMenu.UpdatedStuff = {}
 			end
 
-			if (Atlantiss.Identity.Job:GetName() == "immo") then
+			if (Ora.Identity.Job:GetName() == "immo") then
 				KeySettings:Add(
 					"keyboard",
 					"F6",
@@ -137,11 +137,11 @@ function Atlantiss.Jobs.Immo.INIT()
 								{},
 								true,
 								function(Hovered, Active, Selected)
-									if (Active and Atlantiss.Player:IsFreezed()) then
-										Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
+									if (Active and Ora.Player:IsFreezed()) then
+										Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
 									end
 									if (Selected) then
-										Atlantiss.Jobs.Immo:ResetCurrent()
+										Ora.Jobs.Immo:ResetCurrent()
 									end
 								end,
 								RMenu:Get("immo", "put_proprio")
@@ -169,7 +169,7 @@ function Atlantiss.Jobs.Immo.INIT()
 								true,
 								function(Hovered, Active, Selected)
 								end,
-								RMenu:Get("Atlantiss:Immo", "List")
+								RMenu:Get("Ora:Immo", "List")
 							)
 
 							RageUI.Button(
@@ -197,11 +197,11 @@ function Atlantiss.Jobs.Immo.INIT()
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							if Atlantiss.Jobs.Immo.Current.ENTRY_POS ~= nil and type(Atlantiss.Jobs.Immo.Current.ENTRY_POS) == "vector3" then
-								DrawMarker( 25, Atlantiss.Jobs.Immo.Current.ENTRY_POS.x, Atlantiss.Jobs.Immo.Current.ENTRY_POS.y, Atlantiss.Jobs.Immo.Current.ENTRY_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 255, 255, 255, 100 )
+							if Ora.Jobs.Immo.Current.ENTRY_POS ~= nil and type(Ora.Jobs.Immo.Current.ENTRY_POS) == "vector3" then
+								DrawMarker( 25, Ora.Jobs.Immo.Current.ENTRY_POS.x, Ora.Jobs.Immo.Current.ENTRY_POS.y, Ora.Jobs.Immo.Current.ENTRY_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 255, 255, 255, 100 )
 
-								if Atlantiss.Jobs.Immo.Current.GARAGE_POS ~= nil and type(Atlantiss.Jobs.Immo.Current.GARAGE_POS) == "vector3" then
-									DrawMarker( 25, Atlantiss.Jobs.Immo.Current.GARAGE_POS.x, Atlantiss.Jobs.Immo.Current.GARAGE_POS.y, Atlantiss.Jobs.Immo.Current.GARAGE_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 125, 0, 0, 100 )
+								if Ora.Jobs.Immo.Current.GARAGE_POS ~= nil and type(Ora.Jobs.Immo.Current.GARAGE_POS) == "vector3" then
+									DrawMarker( 25, Ora.Jobs.Immo.Current.GARAGE_POS.x, Ora.Jobs.Immo.Current.GARAGE_POS.y, Ora.Jobs.Immo.Current.GARAGE_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 125, 0, 0, 100 )
 								end
 							end
 							RageUI.Button(
@@ -212,45 +212,45 @@ function Atlantiss.Jobs.Immo.INIT()
 								function(Hovered, Active, Selected)
 									if Active then
 										coords = LocalPlayer().Pos
-										if Atlantiss.Jobs.Immo.Current.ENTRY_POS == nil then
+										if Ora.Jobs.Immo.Current.ENTRY_POS == nil then
 											DrawMarker(25, coords.x, coords.y, coords.z - 0.95, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 255, 255, 255, 100 )
 										else
-											DrawMarker(25, Atlantiss.Jobs.Immo.Current.ENTRY_POS.x, Atlantiss.Jobs.Immo.Current.ENTRY_POS.y, Atlantiss.Jobs.Immo.Current.ENTRY_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 255, 255, 255, 100 )
+											DrawMarker(25, Ora.Jobs.Immo.Current.ENTRY_POS.x, Ora.Jobs.Immo.Current.ENTRY_POS.y, Ora.Jobs.Immo.Current.ENTRY_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 255, 255, 255, 100 )
 										end
 									end
 									if Selected then
 										coords = LocalPlayer().Pos
-										Atlantiss.Jobs.Immo.Current.ENTRY_POS = vector3(coords.x, coords.y, coords.z - 0.95)
+										Ora.Jobs.Immo.Current.ENTRY_POS = vector3(coords.x, coords.y, coords.z - 0.95)
 									end
 								end,
 								RMenu:Get("immo", "main_second")
 							)
 
-							if Atlantiss.Jobs.Immo.Current.ENTRY_POS ~= nil and type(Atlantiss.Jobs.Immo.Current.ENTRY_POS) == "vector3" then
+							if Ora.Jobs.Immo.Current.ENTRY_POS ~= nil and type(Ora.Jobs.Immo.Current.ENTRY_POS) == "vector3" then
 								RageUI.List(
 									"Capacité du coffre",
-									Atlantiss.Jobs.Immo:GetAvailableWeight(),
-									Atlantiss.Jobs.Immo.Current.SAFE_INDEX,
+									Ora.Jobs.Immo:GetAvailableWeight(),
+									Ora.Jobs.Immo.Current.SAFE_INDEX,
 									nil,
 									{},
 									true,
 									function(Hovered, Active, Selected, Index)
 										if Active then
-											Atlantiss.Jobs.Immo.Current.SAFE_INDEX = Index
+											Ora.Jobs.Immo.Current.SAFE_INDEX = Index
 										end
 									end
 								)
 
 
 								local streetName --[[ Hash ]], crossingRoad --[[ Hash ]] =
-									GetStreetNameAtCoord(Atlantiss.Jobs.Immo.Current.ENTRY_POS.x, Atlantiss.Jobs.Immo.Current.ENTRY_POS.y, Atlantiss.Jobs.Immo.Current.ENTRY_POS.z)
+									GetStreetNameAtCoord(Ora.Jobs.Immo.Current.ENTRY_POS.x, Ora.Jobs.Immo.Current.ENTRY_POS.y, Ora.Jobs.Immo.Current.ENTRY_POS.z)
 								realstreetname = GetStreetNameFromHashKey(streetName)
 
 								RageUI.Button(
 									"Numéro de la propriété",
 									"Indiquez le numéro de la maison",
 									{
-										RightLabel = Atlantiss.Jobs.Immo.Current.HOUSE_NUMBER
+										RightLabel = Ora.Jobs.Immo.Current.HOUSE_NUMBER
 									},
 									true,
 									function(Hovered, Active, Selected)
@@ -264,7 +264,7 @@ function Atlantiss.Jobs.Immo.INIT()
 														if b then
 															ShowNotification("~r~Ce numéro existe déjà dans cette rue.")
 														else
-															Atlantiss.Jobs.Immo.Current.HOUSE_NUMBER = realstreetname .. " #" .. input 
+															Ora.Jobs.Immo.Current.HOUSE_NUMBER = realstreetname .. " #" .. input 
 														end
 													end,
 													realstreetname .. " #" .. input
@@ -276,43 +276,43 @@ function Atlantiss.Jobs.Immo.INIT()
 
 								RageUI.List(
 									"Intérieur",
-									Atlantiss.Jobs.Immo:GetInteriorLabels(),
-									Atlantiss.Jobs.Immo.Current.INTERIOR_INDEX,
+									Ora.Jobs.Immo:GetInteriorLabels(),
+									Ora.Jobs.Immo.Current.INTERIOR_INDEX,
 									nil,
 									{},
 									true,
 									function(Hovered, Active, Selected, Index)
-										Atlantiss.Jobs.Immo.Current.INTERIOR_INDEX = Index
+										Ora.Jobs.Immo.Current.INTERIOR_INDEX = Index
 										if Active and oldIndex ~= Index then
-											Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)
-											Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
-											DestroyCam(Atlantiss.Jobs.Immo.Current.CAMERA, 0)
+											Ora.Player:FreezePlayer(LocalPlayer().Ped, true)
+											Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
+											DestroyCam(Ora.Jobs.Immo.Current.CAMERA, 0)
 											RenderScriptCams(0, 0, 1, 1, 1)
 											ClearTimecycleModifier("scanline_cam_cheap")
 											SetFocusEntity(GetPlayerPed(PlayerId()))
 											oldIndex = Index
-											Atlantiss.Jobs.Immo.Current.INTERIOR_DATA = Atlantiss.Jobs.Immo:GetInteriorById(Index)
-											Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA = Atlantiss.Jobs.Immo.Current.INTERIOR_DATA.coords
-											Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION = Atlantiss.Jobs.Immo.Current.INTERIOR_DATA.r
+											Ora.Jobs.Immo.Current.INTERIOR_DATA = Ora.Jobs.Immo:GetInteriorById(Index)
+											Ora.Jobs.Immo.Current.INTERIOR_CAMERA = Ora.Jobs.Immo.Current.INTERIOR_DATA.coords
+											Ora.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION = Ora.Jobs.Immo.Current.INTERIOR_DATA.r
 
-											local int = GetInteriorAtCoords(Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.x, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.y, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.z)
+											local int = GetInteriorAtCoords(Ora.Jobs.Immo.Current.INTERIOR_CAMERA.x, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.y, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.z)
 											LoadInterior(int)
 											while not IsInteriorReady(int) do
 												Wait(1)
 											end
-											Atlantiss.Jobs.Immo.Current.CAMERA = CreateCam("DEFAULT_SCRIPTED_CAMERA", 2)
-											SetCamCoord(Atlantiss.Jobs.Immo.Current.CAMERA, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.x, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.y, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.z)
-											SetCamRot(Atlantiss.Jobs.Immo.Current.CAMERA, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION.x, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION.y, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION.z, 1)
-											SetFocusArea(Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.x, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.y, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.z, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.x, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.y, Atlantiss.Jobs.Immo.Current.INTERIOR_CAMERA.z)
+											Ora.Jobs.Immo.Current.CAMERA = CreateCam("DEFAULT_SCRIPTED_CAMERA", 2)
+											SetCamCoord(Ora.Jobs.Immo.Current.CAMERA, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.x, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.y, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.z)
+											SetCamRot(Ora.Jobs.Immo.Current.CAMERA, Ora.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION.x, Ora.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION.y, Ora.Jobs.Immo.Current.INTERIOR_CAMERA_ROTATION.z, 1)
+											SetFocusArea(Ora.Jobs.Immo.Current.INTERIOR_CAMERA.x, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.y, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.z, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.x, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.y, Ora.Jobs.Immo.Current.INTERIOR_CAMERA.z)
 											RenderScriptCams(1, 0, 0, 1, 1)
 										elseif not Active then
-											DestroyCam(Atlantiss.Jobs.Immo.Current.CAMERA, 0)
+											DestroyCam(Ora.Jobs.Immo.Current.CAMERA, 0)
 											RenderScriptCams(0, 0, 1, 1, 1)
-											Atlantiss.Jobs.Immo.Current.CAMERA = nil
+											Ora.Jobs.Immo.Current.CAMERA = nil
 											ClearTimecycleModifier("scanline_cam_cheap")
 											SetFocusEntity(GetPlayerPed(PlayerId()))
-											Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
-											Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
+											Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
+											Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
 										end
 									end
 								)
@@ -325,30 +325,30 @@ function Atlantiss.Jobs.Immo.INIT()
 									function(Hovered, Active, Selected)
 										if Active then
 											coords = LocalPlayer().Pos
-											if Atlantiss.Jobs.Immo.Current.GARAGE_POS == nil then
+											if Ora.Jobs.Immo.Current.GARAGE_POS == nil then
 												DrawMarker( 25, coords.x, coords.y, coords.z - 0.95, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 120, 0, 0, 100 )
 											else
-												DrawMarker( 25, Atlantiss.Jobs.Immo.Current.GARAGE_POS.x, Atlantiss.Jobs.Immo.Current.GARAGE_POS.y, Atlantiss.Jobs.Immo.Current.GARAGE_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 120, 0, 0, 100 )
+												DrawMarker( 25, Ora.Jobs.Immo.Current.GARAGE_POS.x, Ora.Jobs.Immo.Current.GARAGE_POS.y, Ora.Jobs.Immo.Current.GARAGE_POS.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 120, 0, 0, 100 )
 											end
 										end
 										if Selected then
 											coords = LocalPlayer().Pos
-											Atlantiss.Jobs.Immo.Current.GARAGE_POS = vector3(coords.x, coords.y, coords.z - 0.95)
+											Ora.Jobs.Immo.Current.GARAGE_POS = vector3(coords.x, coords.y, coords.z - 0.95)
 										end
 									end
 								)
 
-								if Atlantiss.Jobs.Immo.Current.GARAGE_POS ~= nil and type(Atlantiss.Jobs.Immo.Current.GARAGE_POS) == "vector3" then
+								if Ora.Jobs.Immo.Current.GARAGE_POS ~= nil and type(Ora.Jobs.Immo.Current.GARAGE_POS) == "vector3" then
 									RageUI.List(
 										"Nombre de place",
-										Atlantiss.Jobs.Immo:GetAvailableGaragePlaces(),
-										Atlantiss.Jobs.Immo.Current.GARAGE_INDEX,
+										Ora.Jobs.Immo:GetAvailableGaragePlaces(),
+										Ora.Jobs.Immo.Current.GARAGE_INDEX,
 										nil,
 										{},
 										true,
 										function(Hovered, Active, Selected, Index)
 											if Active then
-												Atlantiss.Jobs.Immo.Current.GARAGE_INDEX = Index
+												Ora.Jobs.Immo.Current.GARAGE_INDEX = Index
 											end
 										end
 									)
@@ -358,7 +358,7 @@ function Atlantiss.Jobs.Immo.INIT()
 									"Prix à l'achat",
 									nil,
 									{
-										RightLabel = Atlantiss.Jobs.Immo.Current.PRICE .. "$"
+										RightLabel = Ora.Jobs.Immo.Current.PRICE .. "$"
 									},
 									true,
 									function(Hovered, Active, Selected)
@@ -366,19 +366,19 @@ function Atlantiss.Jobs.Immo.INIT()
 											exports['Snoupinput']:ShowInput("Entrez le prix de la propriété (sans $)", 25, "number", nil, true)
 											local amount = exports['Snoupinput']:GetInput()
 											if (amount ~= false and amount ~= "" and tonumber(amount) ~= nil) then
-												Atlantiss.Jobs.Immo.Current.PRICE = amount
+												Ora.Jobs.Immo.Current.PRICE = amount
 											end
 										end
 									end
 								)
 
-								if Atlantiss.Jobs.Immo.Current.PRICE ~= nil then
+								if Ora.Jobs.Immo.Current.PRICE ~= nil then
 									RageUI.Button(
 										"Prix de la location",
 										"Chaque semaine le client devra payer " ..
-											math.floor(Atlantiss.Jobs.Immo.Current.PRICE / 50) .. "$",
+											math.floor(Ora.Jobs.Immo.Current.PRICE / 50) .. "$",
 										{
-											RightLabel = math.floor(Atlantiss.Jobs.Immo.Current.PRICE / 50) .. "$"
+											RightLabel = math.floor(Ora.Jobs.Immo.Current.PRICE / 50) .. "$"
 										},
 										true,
 										function(Hovered, Active, Selected)
@@ -395,13 +395,13 @@ function Atlantiss.Jobs.Immo.INIT()
 										function(Hovered, Active, Selected)
 											if Selected then
 												RageUI.CloseAll()
-												if Atlantiss.Jobs.Immo:IsNewAppartValid(Atlantiss.Jobs.Immo.Current) then
-													Atlantiss.Jobs.Immo.Current.SAFE_CAPACITY = Atlantiss.Jobs.Immo:GetSafeCapacityForIndex(Atlantiss.Jobs.Immo.Current.SAFE_INDEX)
-													Atlantiss.Jobs.Immo.Current.PARKING_PLACE_COUNT = Atlantiss.Jobs.Immo:GetParkingPlaceCountForIndex(Atlantiss.Jobs.Immo.Current.GARAGE_INDEX)
+												if Ora.Jobs.Immo:IsNewAppartValid(Ora.Jobs.Immo.Current) then
+													Ora.Jobs.Immo.Current.SAFE_CAPACITY = Ora.Jobs.Immo:GetSafeCapacityForIndex(Ora.Jobs.Immo.Current.SAFE_INDEX)
+													Ora.Jobs.Immo.Current.PARKING_PLACE_COUNT = Ora.Jobs.Immo:GetParkingPlaceCountForIndex(Ora.Jobs.Immo.Current.GARAGE_INDEX)
 													ShowNotification(string.format("~b~~h~Patientez :~s~~h~ %s", "Pendant la création de la propriété"))
-													TriggerServerEvent("Atlantiss::SE::Job::Immo:Create", json.encode(Atlantiss.Jobs.Immo.Current))
+													TriggerServerEvent("Ora::SE::Job::Immo:Create", json.encode(Ora.Jobs.Immo.Current))
 												else
-													for key, value in pairs(Atlantiss.Jobs.Immo:GetLastValidationMessages()) do
+													for key, value in pairs(Ora.Jobs.Immo:GetLastValidationMessages()) do
 														ShowNotification(string.format("~r~~h~Erreur :~s~~h~ %s", value))
 													end
 												end
@@ -416,43 +416,43 @@ function Atlantiss.Jobs.Immo.INIT()
 					)
 				end
 
-				if (RageUI.Visible(RMenu:Get("Atlantiss:Immo", "List"))) then
+				if (RageUI.Visible(RMenu:Get("Ora:Immo", "List"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							for id, property in pairs(Atlantiss.World.Appart:GetList()) do
+							for id, property in pairs(Ora.World.Appart:GetList()) do
 								RageUI.Button(
 									property.name,
-									Atlantiss.Jobs.Immo:GetInteriorById(property.indexx).label,
+									Ora.Jobs.Immo:GetInteriorById(property.indexx).label,
 									{},
 									true,
 									function(_, _, Selected)
 										if (Selected) then
-											Atlantiss.Jobs.Immo.SubMenu.SelectedProperty = id
-											Atlantiss.Jobs.Immo.SubMenu.CurrentOwner = ""
-											Atlantiss.Jobs.Immo.SubMenu.CurrentCoowners = {}
+											Ora.Jobs.Immo.SubMenu.SelectedProperty = id
+											Ora.Jobs.Immo.SubMenu.CurrentOwner = ""
+											Ora.Jobs.Immo.SubMenu.CurrentCoowners = {}
 
 											if (type(property.owner) == "string") then
 												TriggerServerCallback(
-													"Atlantiss::SE::Identity:GetFullNameFromUUID",
+													"Ora::SE::Identity:GetFullNameFromUUID",
 													function(fullname)
-														Atlantiss.Jobs.Immo.SubMenu.CurrentOwner = fullname
+														Ora.Jobs.Immo.SubMenu.CurrentOwner = fullname
 													end,
 													property.owner
 												)
 											end
-											if (Atlantiss.Utils:TableLength(property.coowner) ~= 0) then
+											if (Ora.Utils:TableLength(property.coowner) ~= 0) then
 												TriggerServerCallback(
-													"Atlantiss::SE::Identity:GetFullNamesFromUUIDs",
+													"Ora::SE::Identity:GetFullNamesFromUUIDs",
 													function(fullnames)
-														Atlantiss.Jobs.Immo.SubMenu.CurrentCoowners = fullnames
+														Ora.Jobs.Immo.SubMenu.CurrentCoowners = fullnames
 													end,
 													property.coowner
 												)
 											end
 										end
 									end,
-									RMenu:Get("Atlantiss:Immo", "CurrentProperty")
+									RMenu:Get("Ora:Immo", "CurrentProperty")
 								)
 							end
 						end,
@@ -461,65 +461,65 @@ function Atlantiss.Jobs.Immo.INIT()
 					)
 				end
 
-				if (RageUI.Visible(RMenu:Get("Atlantiss:Immo", "CurrentProperty"))) then
+				if (RageUI.Visible(RMenu:Get("Ora:Immo", "CurrentProperty"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							if (Atlantiss.Jobs.Immo.SubMenu.SelectedProperty == nil) then RageUI.GoBack() end
+							if (Ora.Jobs.Immo.SubMenu.SelectedProperty == nil) then RageUI.GoBack() end
 
-							local SelectedProperty = Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty)
+							local SelectedProperty = Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty)
 
-							if (Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos ~= nil and type(Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos) == "vector3") then
-								DrawMarker(25, Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos.x, Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos.y, Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 125, 0, 0, 100)
+							if (Ora.Jobs.Immo.SubMenu.CurrentGaragePos ~= nil and type(Ora.Jobs.Immo.SubMenu.CurrentGaragePos) == "vector3") then
+								DrawMarker(25, Ora.Jobs.Immo.SubMenu.CurrentGaragePos.x, Ora.Jobs.Immo.SubMenu.CurrentGaragePos.y, Ora.Jobs.Immo.SubMenu.CurrentGaragePos.z, nil, nil, nil, nil, nil, nil, 1.0, 1.0, 1.0, 125, 0, 0, 100)
 							end
 
 							RageUI.Button(
 								"Intérieur",
 								"Selectionnez pour modifier",
 								{
-									RightLabel = string.format("~h~~b~%s~h~", Atlantiss.Jobs.Immo:GetInteriorById(SelectedProperty.indexx).label),
-									Color = Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["indexx"] ~= nil and {HightLightColor = {0, 155, 0, 150}} or {}
+									RightLabel = string.format("~h~~b~%s~h~", Ora.Jobs.Immo:GetInteriorById(SelectedProperty.indexx).label),
+									Color = Ora.Jobs.Immo.SubMenu.UpdatedStuff["indexx"] ~= nil and {HightLightColor = {0, 155, 0, 150}} or {}
 								},
 								true,
 								function(_, _, Selected)
 								end,
-								RMenu:Get("Atlantiss:Immo:Update", "Interior")
+								RMenu:Get("Ora:Immo:Update", "Interior")
 							)
 
 							RageUI.List(
 								"Capacité du coffre",
-								Atlantiss.Jobs.Immo:GetAvailableWeight(),
-								Atlantiss.Jobs.Immo.SubMenu.CurrentCapacity,
+								Ora.Jobs.Immo:GetAvailableWeight(),
+								Ora.Jobs.Immo.SubMenu.CurrentCapacity,
 								"Selectionnez pour modifier",
 								{RightLabel = string.format("~h~~b~%s KG~h~", SelectedProperty.capacity)},
 								true,
 								function(Hovered, Active, Selected, Index)
 									if (Active) then
-										Atlantiss.Jobs.Immo.SubMenu.CurrentCapacity = Index
+										Ora.Jobs.Immo.SubMenu.CurrentCapacity = Index
 									end
 									if (Selected) then
-										Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = true
-										Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["capacity"] = Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).capacity
-										Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).capacity = Atlantiss.Jobs.Immo:GetSafeCapacityForIndex(Atlantiss.Jobs.Immo.SubMenu.CurrentCapacity)
+										Ora.Jobs.Immo.SubMenu.HasBeenUpdated = true
+										Ora.Jobs.Immo.SubMenu.UpdatedStuff["capacity"] = Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).capacity
+										Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).capacity = Ora.Jobs.Immo:GetSafeCapacityForIndex(Ora.Jobs.Immo.SubMenu.CurrentCapacity)
 									end
 								end
 							)
 
 							RageUI.List(
 								"Nombre de place",
-								Atlantiss.Jobs.Immo:GetAvailableGaragePlaces(),
-								Atlantiss.Jobs.Immo.SubMenu.CurrentGarageMax,
+								Ora.Jobs.Immo:GetAvailableGaragePlaces(),
+								Ora.Jobs.Immo.SubMenu.CurrentGarageMax,
 								"Selectionnez pour modifier",
 								{RightLabel = string.format("~h~~b~Garage %s places~h~", SelectedProperty.garageMax)},
 								true,
 								function(Hovered, Active, Selected, Index)
 									if (Active) then
-										Atlantiss.Jobs.Immo.SubMenu.CurrentGarageMax = Index
+										Ora.Jobs.Immo.SubMenu.CurrentGarageMax = Index
 									end
 									if (Selected) then
-										Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = true
-										Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["garageMax"] = Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).garageMax
-										Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).garageMax = Atlantiss.Jobs.Immo:GetParkingPlaceCountForIndex(Atlantiss.Jobs.Immo.SubMenu.CurrentGarageMax)
+										Ora.Jobs.Immo.SubMenu.HasBeenUpdated = true
+										Ora.Jobs.Immo.SubMenu.UpdatedStuff["garageMax"] = Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).garageMax
+										Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).garageMax = Ora.Jobs.Immo:GetParkingPlaceCountForIndex(Ora.Jobs.Immo.SubMenu.CurrentGarageMax)
 									end
 								end
 							)
@@ -529,7 +529,7 @@ function Atlantiss.Jobs.Immo.INIT()
 								"Selectionnez pour modifier",
 								{
 									RightLabel = string.format("~h~~b~%s$~h~", SelectedProperty.price),
-									Color = Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["price"] ~= nil and {HightLightColor = {0, 155, 0, 150}} or {}
+									Color = Ora.Jobs.Immo.SubMenu.UpdatedStuff["price"] ~= nil and {HightLightColor = {0, 155, 0, 150}} or {}
 								},
 								true,
 								function(_, Ac, Selected)
@@ -538,9 +538,9 @@ function Atlantiss.Jobs.Immo.INIT()
 										local amount = exports['Snoupinput']:GetInput()
 										print(amount)
 										if (amount ~= false and amount ~= "" and tonumber(amount) ~= nil) then
-											Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = true
-											Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["price"] = Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).price
-											Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).price = amount
+											Ora.Jobs.Immo.SubMenu.HasBeenUpdated = true
+											Ora.Jobs.Immo.SubMenu.UpdatedStuff["price"] = Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).price
+											Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).price = amount
 										end
 									end
 								end
@@ -598,24 +598,24 @@ function Atlantiss.Jobs.Immo.INIT()
 							RageUI.Button(
 								"Changer la position du garage",
 								"Selectionnez pour changer la position",
-								{Color = Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["garagePos"] ~= nil and {HightLightColor = {0, 155, 0, 150}} or {}},
+								{Color = Ora.Jobs.Immo.SubMenu.UpdatedStuff["garagePos"] ~= nil and {HightLightColor = {0, 155, 0, 150}} or {}},
 								true,
 								function(_, Active, Selected)
 									if (Selected) then
-										Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = true
-										Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["garagePos"] = SelectedProperty.garagePos
+										Ora.Jobs.Immo.SubMenu.HasBeenUpdated = true
+										Ora.Jobs.Immo.SubMenu.UpdatedStuff["garagePos"] = SelectedProperty.garagePos
 										Marker:Remove(SelectedProperty.garagePos)
-										SelectedProperty.garagePos = Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos
+										SelectedProperty.garagePos = Ora.Jobs.Immo.SubMenu.CurrentGaragePos
 									end
 
 									if (Active) then
-										if (Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["garagePos"] ~= nil) then
-											Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos = SelectedProperty.garagePos
+										if (Ora.Jobs.Immo.SubMenu.UpdatedStuff["garagePos"] ~= nil) then
+											Ora.Jobs.Immo.SubMenu.CurrentGaragePos = SelectedProperty.garagePos
 										else
-											Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos = vector3(LocalPlayer().Pos.x, LocalPlayer().Pos.y, LocalPlayer().Pos.z - 0.95)
+											Ora.Jobs.Immo.SubMenu.CurrentGaragePos = vector3(LocalPlayer().Pos.x, LocalPlayer().Pos.y, LocalPlayer().Pos.z - 0.95)
 										end
 									else
-										Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos = nil
+										Ora.Jobs.Immo.SubMenu.CurrentGaragePos = nil
 									end
 								end
 							)
@@ -623,7 +623,7 @@ function Atlantiss.Jobs.Immo.INIT()
 							RageUI.Button(
 								"Propriétaire",
 								nil,
-								{RightLabel = string.format("~h~~b~%s~h~", Atlantiss.Jobs.Immo.SubMenu.CurrentOwner ~= "" and Atlantiss.Jobs.Immo.SubMenu.CurrentOwner or "~r~Personne")},
+								{RightLabel = string.format("~h~~b~%s~h~", Ora.Jobs.Immo.SubMenu.CurrentOwner ~= "" and Ora.Jobs.Immo.SubMenu.CurrentOwner or "~r~Personne")},
 								true,
 								function(_, Ac, Selected)
 								end
@@ -636,7 +636,7 @@ function Atlantiss.Jobs.Immo.INIT()
 								true,
 								function(_, Ac, Selected)
 								end,
-								RMenu:Get("Atlantiss:Immo", "Coowners")
+								RMenu:Get("Ora:Immo", "Coowners")
 							)
 
 							RageUI.Button(
@@ -646,31 +646,31 @@ function Atlantiss.Jobs.Immo.INIT()
 								true,
 								function(_, Ac, Selected)
 									if (Selected) then
-										if (Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated == true) then
+										if (Ora.Jobs.Immo.SubMenu.HasBeenUpdated == true) then
 											TriggerServerEvent(
-												"Atlantiss::SE::Job::Immo:Update",
-												Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty),
-												Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff
+												"Ora::SE::Job::Immo:Update",
+												Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty),
+												Ora.Jobs.Immo.SubMenu.UpdatedStuff
 											)
 											TriggerPlayerEvent(
-												"Atlantiss::CE::World:Appart:SyncWithID",
+												"Ora::CE::World:Appart:SyncWithID",
 												-1,
-												Atlantiss.Jobs.Immo.SubMenu.SelectedProperty,
-												Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty)
+												Ora.Jobs.Immo.SubMenu.SelectedProperty,
+												Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty)
 											)
 											TriggerServerEvent(
-												"Atlantiss::SE::World:Appart:LogUpdates",
-												Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff,
-												Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty)
+												"Ora::SE::World:Appart:LogUpdates",
+												Ora.Jobs.Immo.SubMenu.UpdatedStuff,
+												Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty)
 											)
 											RageUI.Popup({message = "~g~Changements effectués"})
 										else
 											RageUI.Popup({message = "~b~Aucun changement n'a été effectué"})
 										end
 
-										Atlantiss.Jobs.Immo.SubMenu.CurrentGaragePos = nil
-										Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = false
-										Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff = {}
+										Ora.Jobs.Immo.SubMenu.CurrentGaragePos = nil
+										Ora.Jobs.Immo.SubMenu.HasBeenUpdated = false
+										Ora.Jobs.Immo.SubMenu.UpdatedStuff = {}
 										RageUI.GoBack()
 									end
 								end
@@ -681,11 +681,11 @@ function Atlantiss.Jobs.Immo.INIT()
 					)
 				end
 
-				if (RageUI.Visible(RMenu:Get("Atlantiss:Immo:Update", "Interior"))) then
+				if (RageUI.Visible(RMenu:Get("Ora:Immo:Update", "Interior"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							for id, label in pairs(Atlantiss.Jobs.Immo:GetInteriorLabels()) do
+							for id, label in pairs(Ora.Jobs.Immo:GetInteriorLabels()) do
 								RageUI.Button(
 									label,
 									"Selectionnez pour changer l'intérieur",
@@ -693,10 +693,10 @@ function Atlantiss.Jobs.Immo.INIT()
 									true,
 									function(_, Active, Selected)
 										if (Selected) then
-											Atlantiss.Jobs.Immo.SubMenu.HasBeenUpdated = true
-											Atlantiss.Jobs.Immo.SubMenu.UpdatedStuff["indexx"] = Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).indexx
-											Atlantiss.World.Appart:GetById(Atlantiss.Jobs.Immo.SubMenu.SelectedProperty).indexx = id
-											TriggerServerEvent("Atlantiss::SE::Job::Immo:Remake:Interior", Atlantiss.World.Appart:GetList()[Atlantiss.Jobs.Immo.SubMenu.SelectedProperty].name, id)
+											Ora.Jobs.Immo.SubMenu.HasBeenUpdated = true
+											Ora.Jobs.Immo.SubMenu.UpdatedStuff["indexx"] = Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).indexx
+											Ora.World.Appart:GetById(Ora.Jobs.Immo.SubMenu.SelectedProperty).indexx = id
+											TriggerServerEvent("Ora::SE::Job::Immo:Remake:Interior", Ora.World.Appart:GetList()[Ora.Jobs.Immo.SubMenu.SelectedProperty].name, id)
 											RageUI.GoBack()
 										end
 									end
@@ -706,12 +706,12 @@ function Atlantiss.Jobs.Immo.INIT()
 					)
 				end
 
-				if (RageUI.Visible(RMenu:Get("Atlantiss:Immo", "Coowners"))) then
+				if (RageUI.Visible(RMenu:Get("Ora:Immo", "Coowners"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							if (Atlantiss.Jobs.Immo.SubMenu.CurrentCoowners ~= "" and Atlantiss.Jobs.Immo.SubMenu.CurrentCoowners ~= {} and Atlantiss.Utils:TableLength(Atlantiss.Jobs.Immo.SubMenu.CurrentCoowners) > 0) then
-								for _, coowner in pairs(Atlantiss.Jobs.Immo.SubMenu.CurrentCoowners) do
+							if (Ora.Jobs.Immo.SubMenu.CurrentCoowners ~= "" and Ora.Jobs.Immo.SubMenu.CurrentCoowners ~= {} and Ora.Utils:TableLength(Ora.Jobs.Immo.SubMenu.CurrentCoowners) > 0) then
+								for _, coowner in pairs(Ora.Jobs.Immo.SubMenu.CurrentCoowners) do
 									RageUI.Button(
 										string.format("~h~~b~%s~h~", coowner),
 										nil,
@@ -737,10 +737,10 @@ function Atlantiss.Jobs.Immo.INIT()
 					)
 				end
 
-				if (Atlantiss.Identity.Job:GetName() == "immo" and Atlantiss.Identity.Job.ChangingJob) then
+				if (Ora.Identity.Job:GetName() == "immo" and Ora.Identity.Job.ChangingJob) then
 					KeySettings:Clear("keyboard", "F6", "immo")
 					break
-				elseif (Atlantiss.Identity.Orga:GetName() == "immo" and Atlantiss.Identity.Orga.ChangingJob) then
+				elseif (Ora.Identity.Orga:GetName() == "immo" and Ora.Identity.Orga.ChangingJob) then
 					KeySettings:Clear("keyboard", "F7", "immo")
 					break
 				end
@@ -750,11 +750,11 @@ function Atlantiss.Jobs.Immo.INIT()
 end
 
 
-RegisterNetEvent("Atlantiss::CE::Job::Immo:GetRaids")
+RegisterNetEvent("Ora::CE::Job::Immo:GetRaids")
 AddEventHandler(
-	"Atlantiss::CE::Job::Immo:GetRaids",
+	"Ora::CE::Job::Immo:GetRaids",
 	function(raids)
-		Atlantiss.Jobs.Immo.Raids = raids
+		Ora.Jobs.Immo.Raids = raids
 	end
 )
 
@@ -763,24 +763,24 @@ Citizen.CreateThread(
     function()
 		local currentRaidID = nil
 
-		while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+		while (Ora.Player.HasLoaded == false) do Wait(500) end
 
 		TriggerServerCallback(
-			"Atlantiss::SVCB::Job::Immo:GetRaids",
+			"Ora::SVCB::Job::Immo:GetRaids",
 			function(raids)
-				Atlantiss.Jobs.Immo.Raids = raids
+				Ora.Jobs.Immo.Raids = raids
 			end
 		)
 
 		while true do
 			Wait(0)
 
-			if (Atlantiss.Identity:GetMyGroup() == "superadmin") then
-				if (RageUI.Visible(RMenu:Get("Atlantiss:Immo", "Raids"))) then
+			if (Ora.Identity:GetMyGroup() == "superadmin") then
+				if (RageUI.Visible(RMenu:Get("Ora:Immo", "Raids"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
-							for id, Raid in ipairs(Atlantiss.Jobs.Immo.Raids) do
+							for id, Raid in ipairs(Ora.Jobs.Immo.Raids) do
 								RageUI.Button(
 									Raid.PropertyName,
 									string.format("[%s] %s", Raid.AuthorID, Raid.AuthorName),
@@ -791,7 +791,7 @@ Citizen.CreateThread(
 											currentRaidID = id
 										end
 									end,
-									RMenu:Get("Atlantiss:Immo", "Raids_confirm")
+									RMenu:Get("Ora:Immo", "Raids_confirm")
 								)
 							end
 						end,
@@ -800,7 +800,7 @@ Citizen.CreateThread(
 					)
 				end
 
-				if (RageUI.Visible(RMenu:Get("Atlantiss:Immo", "Raids_confirm"))) then
+				if (RageUI.Visible(RMenu:Get("Ora:Immo", "Raids_confirm"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
 						function()
@@ -813,9 +813,9 @@ Citizen.CreateThread(
 									if (Selected) then
 										SetEntityCoordsNoOffset(
 											LocalPlayer().Ped,
-											Atlantiss.Jobs.Immo.Raids[currentRaidID].PropertyPos.x,
-											Atlantiss.Jobs.Immo.Raids[currentRaidID].PropertyPos.y,
-											Atlantiss.Jobs.Immo.Raids[currentRaidID].PropertyPos.z + 10.0,
+											Ora.Jobs.Immo.Raids[currentRaidID].PropertyPos.x,
+											Ora.Jobs.Immo.Raids[currentRaidID].PropertyPos.y,
+											Ora.Jobs.Immo.Raids[currentRaidID].PropertyPos.z + 10.0,
 											false,
 											false,
 											false,
@@ -832,8 +832,8 @@ Citizen.CreateThread(
 								true,
 								function(_, _, Selected)
 									if (Selected) then
-										table.remove(Atlantiss.Jobs.Immo.Raids, currentRaidID)
-										TriggerServerEvent("Atlantiss::SE::Job::Immo:RemoveRaid", currentRaidID)
+										table.remove(Ora.Jobs.Immo.Raids, currentRaidID)
+										TriggerServerEvent("Ora::SE::Job::Immo:RemoveRaid", currentRaidID)
 										RageUI.GoBack()
 									end
 								end

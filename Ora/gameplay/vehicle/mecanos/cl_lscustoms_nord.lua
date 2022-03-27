@@ -2778,7 +2778,7 @@ function OpenLSC_NORD()
         RageUI.Visible(RMenu:Get('jobs', 'LSC_NORD_CAT_WHEELS_3')) == true or
         RageUI.Visible(RMenu:Get('jobs', 'LSC_NORD_CAT_COLOR_1')) == true
     ) then
-        return --[[ Atlantiss.Anticheat:ReportCheat(
+        return --[[ Ora.Anticheat:ReportCheat(
             "error",
             "**[USEBUG]** Un employé du Beeker's utilise le glitch du 'klaxon' pour faire des custom gratuites.",
             false

@@ -130,7 +130,7 @@ local function CreateJobBlip(coords, title)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString(title)
   EndTextCommandSetBlipName(blip)
-  table.insert(Atlantiss.Identity.Job:GetName() == 'raffinerie' and Atlantiss.Identity.Job.Data.Blips or Atlantiss.Identity.Orga.Data.Blips, blip)
+  table.insert(Ora.Identity.Job:GetName() == 'raffinerie' and Ora.Identity.Job.Data.Blips or Ora.Identity.Orga.Data.Blips, blip)
   return blip
 end
 
@@ -181,7 +181,7 @@ local function refuel(vehicle, liters, time)
     while not HasModelLoaded(Station.ped.model) do
       Citizen.Wait(100)
     end
-    ped = Atlantiss.World.Ped:Create(5, Station.ped.model, vector3(stationInfo.pedPos.x, stationInfo.pedPos.y, stationInfo.pedPos.z), stationInfo.pedPos.w)
+    ped = Ora.World.Ped:Create(5, Station.ped.model, vector3(stationInfo.pedPos.x, stationInfo.pedPos.y, stationInfo.pedPos.z), stationInfo.pedPos.w)
     pedCoords = GetEntityCoords(ped)
     SetEntityInvincible(ped, true)
     TaskGoToEntity(ped, vehicle, -1, 0.5, 1.40)
@@ -224,7 +224,7 @@ local function refuel(vehicle, liters, time)
       end
       Wait(500)
     end
-    TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = ped, network_id = NetworkGetNetworkIdFromEntity(ped), seconds = 30})
+    TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = ped, network_id = NetworkGetNetworkIdFromEntity(ped), seconds = 30})
     DeletePed(ped)
   end
 end
@@ -380,7 +380,7 @@ RegisterNetEvent("fueler:spawnTanker")
 AddEventHandler("fueler:spawnTanker", function()
   local coords = Station.work.tanker.spawn
   if #vehicleFct.GetVehiclesInArea({x = Station.work.tanker.spawn.x, y = Station.work.tanker.spawn.y, z = Station.work.tanker.spawn.z}, 5.0) == 0 then
-    local tanker = Atlantiss.World.Vehicle:Create("tanker", Station.work.tanker.spawn, Station.work.tanker.spawn.w, {customs = {}, warp_into_vehicle = false, health = {}})
+    local tanker = Ora.World.Vehicle:Create("tanker", Station.work.tanker.spawn, Station.work.tanker.spawn.w, {customs = {}, warp_into_vehicle = false, health = {}})
     --SetEntityInvincible(tanker, true)
   else
     RageUI.Popup({message = "~r~Une citerne est déjà sortie"})
@@ -524,7 +524,7 @@ Citizen.CreateThread(function()
                   sVeh.vehMaxFuel = 60
                 end
                 stationInfo = {id = id, priceL = price, pedPos = pPos, qpl = qtyPerLiter, fuel = nil}
-                if Atlantiss.Identity.Job:GetName() == "raffinerie" or Atlantiss.Identity.Orga:Get().label == "Raffinerie" then
+                if Ora.Identity.Job:GetName() == "raffinerie" or Ora.Identity.Orga:Get().label == "Raffinerie" then
                   local veh = GetVehiclePedIsIn(LocalPlayer().Ped, false)
                   local bool, trailer = GetVehicleTrailerVehicle(veh)
                   if bool then
@@ -637,7 +637,7 @@ Citizen.CreateThread(function()
             end
           end
         end)
-        if stationInfo.id ~= nil and (Atlantiss.Identity.Job:GetName() == "raffinerie" or Atlantiss.Identity.Orga:Get().label == "Raffinerie") then
+        if stationInfo.id ~= nil and (Ora.Identity.Job:GetName() == "raffinerie" or Ora.Identity.Orga:Get().label == "Raffinerie") then
           RageUI.Button("Remplir la station", nil, {Color = {BackgroundColor = {37, 41, 91, 25}}}, true,function()
           end, RMenu:Get("essence", "main_fueler"))
         end

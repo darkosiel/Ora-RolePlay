@@ -245,7 +245,7 @@ AddEventHandler(
                     Identity.origine
                 )
                 InsertJob(UUID, "chomeur", 1)
-                TriggerClientEvent("Atlantiss::CE::Identity:SetUuid", _source, UUID)
+                TriggerClientEvent("Ora::CE::Identity:SetUuid", _source, UUID)
                 UpdateRegisterCharecterCount(_source)
             end
         )
@@ -337,14 +337,14 @@ AddEventHandler(
         AlreadyCoiffed[source] = 1
         MySQL.Sync.execute(
             "UPDATE players_appearance SET face=@face WHERE uuid=@uuid",
-            {["@uuid"] = Atlantiss.Identity:GetUuid(source), ["@face"] = json.encode(skin)}
+            {["@uuid"] = Ora.Identity:GetUuid(source), ["@face"] = json.encode(skin)}
         )
     end
 )
 
-RegisterServerEvent("atlantiss:cutHairs")
+RegisterServerEvent("Ora:cutHairs")
 AddEventHandler(
-    "atlantiss:cutHairs",
+    "Ora:cutHairs",
     function(distantPlayer)
         TriggerClientEvent("getCutCheveux", distantPlayer)
     end
@@ -1224,10 +1224,10 @@ AddEventHandler(
                             ["@itemName"] = itemName
                         },
                         function(insertId)
-                            TriggerClientEvent('Atlantiss::CE::Inventory:AddItems', _source, items)
-                            TriggerClientEvent('atlantiss:refreshStorage', _source)
+                            TriggerClientEvent('Ora::CE::Inventory:AddItems', _source, items)
+                            TriggerClientEvent('Ora:refreshStorage', _source)
                             TriggerClientEvent(
-                                'atlantiss:InvNotification', 
+                                'Ora:InvNotification', 
                                 _source, 
                                 "Vous avez récupéré " ..
                                     #ids .. " x " .. string.lower(Items[itemName].label) .. " depuis le coffre."
@@ -1269,16 +1269,16 @@ AddEventHandler(
         local _source = source
 
         if (storageQueue[storageName] == nil) then
-            return TriggerClientEvent('atlantiss:InvNotification', source, "Erreur, cette queue de traitement (".. storageName ..") n'existe pas.", "error")
+            return TriggerClientEvent('Ora:InvNotification', source, "Erreur, cette queue de traitement (".. storageName ..") n'existe pas.", "error")
         end
 
         if (storageQueue[storageName][itemName] == nil) then
-            return TriggerClientEvent('atlantiss:InvNotification', source, "Erreur, cette queue de traitement (".. storageName ..") ne possède pas l'item " .. itemName, "error")
+            return TriggerClientEvent('Ora:InvNotification', source, "Erreur, cette queue de traitement (".. storageName ..") ne possède pas l'item " .. itemName, "error")
         end
         
         if QueueRunning[storageQueue[storageName]] then
             TriggerClientEvent(
-                'atlantiss:InvNotification',
+                'Ora:InvNotification',
                 _source,
                 "Un dépôt dans ce coffre est déjà en cours, merci de patienter",
                 'warning'
@@ -1324,7 +1324,7 @@ AddEventHandler(
                         },
                         function(insertId)
                             TriggerClientEvent(
-                                'atlantiss:InvNotification',
+                                'Ora:InvNotification',
                                 _source,
                                 "Vous avez envoyé " ..
                                     added ..
@@ -1332,7 +1332,7 @@ AddEventHandler(
                                             Items[itemName].label ..
                                                 " dans votre coffre."
                             )
-                            TriggerClientEvent('atlantiss:refreshStorage', _source)
+                            TriggerClientEvent('Ora:refreshStorage', _source)
                             QueueRunning[storageQueue[storageName]] = nil
                             storageQueue[storageName][itemName] = nil
                             storageQueue[storageName] = nil
@@ -1357,7 +1357,7 @@ AddEventHandler(
                             ["@metadata"] = json.encode(metadata)
                         },
                         function(insertId)
-                            TriggerClientEvent('atlantiss:InvNotification', _source, 'Vous avez envoyé '.. added .. " x " .. Items[itemName].label .. " dans votre coffre.")
+                            TriggerClientEvent('Ora:InvNotification', _source, 'Vous avez envoyé '.. added .. " x " .. Items[itemName].label .. " dans votre coffre.")
                             QueueRunning[storageQueue[storageName]] = nil
                             storageQueue[storageName][itemName] = nil
                             storageQueue[storageName] = nil

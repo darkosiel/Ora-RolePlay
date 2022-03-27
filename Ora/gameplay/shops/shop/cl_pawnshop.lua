@@ -509,7 +509,7 @@ Citizen.CreateThread(
                             if (PawnShops[CurrentZone] ~= nil and PawnShops[CurrentZone].items ~= nil) then
                                 for tmpKey, tmpValue in pairs(PawnShops[CurrentZone].items) do
                                     if (Items[tmpKey] ~= nil) then
-                                        local itemCount = Atlantiss.Inventory:GetItemCount(tmpKey)
+                                        local itemCount = Ora.Inventory:GetItemCount(tmpKey)
                                         if (itemCount > 0) then
                                             local priceRange = ""
                                             local finalPrice = 0
@@ -539,14 +539,14 @@ Citizen.CreateThread(
                                                     if Selected then
                                                         if (PawnShops[CurrentZone].isCasino) then
                                                             TriggerServerCallback(
-                                                                "Atlantiss::SE::Job::Casino::CanBuy",
+                                                                "Ora::SE::Job::Casino::CanBuy",
                                                                 function(bool)
                                                                     if (bool) then
-                                                                        Atlantiss.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
+                                                                        Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
                                                                         
                                                                         
                                                                         TriggerServerCallback(
-                                                                            "Atlantiss::SE::Money:AuthorizePayment", 
+                                                                            "Ora::SE::Money:AuthorizePayment", 
                                                                             function(token)
                                                                                 ShowNotification(
                                                                                     "~h~~b~L'acheteur vous achete ~r~" ..
@@ -555,25 +555,25 @@ Citizen.CreateThread(
                                                                                                 Items[tmpKey].label ..
                                                                                                     "~s~ pour ~g~" .. finalPrice .. "$~s~"
                                                                                 )
-                                                                                TriggerServerEvent("Atlantiss::SE::Receipt:CreateReceipt", {PRICE = finalPrice, PAWNSHOP = PawnShops[CurrentZone]})
-                                                                                TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
+                                                                                TriggerServerEvent("Ora::SE::Receipt:CreateReceipt", {PRICE = finalPrice, PAWNSHOP = PawnShops[CurrentZone]})
+                                                                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
                                                                             end,
                                                                             {}
                                                                         )
                                                                         
 
-                                                                        TriggerServerEvent("Atlantiss:RemoveFromBankAccount", "casino", finalPrice)
+                                                                        TriggerServerEvent("Ora:RemoveFromBankAccount", "casino", finalPrice)
                                                                     else
                                                                         RageUI.Popup({message = "Je vais laisser un autre collègue en service s'occuper de vous."})
                                                                     end
                                                                 end
                                                             )
                                                         else
-                                                            Atlantiss.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
+                                                            Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
                                                             
                                                             
                                                             TriggerServerCallback(
-                                                                tmpValue.illegal and "Atlantiss::SE::Money:Fake:AuthorizePayment" or "Atlantiss::SE::Money:AuthorizePayment", 
+                                                                tmpValue.illegal and "Ora::SE::Money:Fake:AuthorizePayment" or "Ora::SE::Money:AuthorizePayment", 
                                                                 function(token)
                                                                     ShowNotification(
                                                                         "~h~~b~L'acheteur vous achete ~r~" ..
@@ -582,8 +582,8 @@ Citizen.CreateThread(
                                                                                     Items[tmpKey].label ..
                                                                                         "~s~ pour ~g~" .. finalPrice .. "$~s~"
                                                                     )
-                                                                    TriggerServerEvent("Atlantiss::SE::Receipt:CreateReceipt", {PRICE = finalPrice, PAWNSHOP = PawnShops[CurrentZone]})
-                                                                    TriggerServerEvent(tmpValue.illegal and Atlantiss.Payment.Fake:GetServerEventName() or Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
+                                                                    TriggerServerEvent("Ora::SE::Receipt:CreateReceipt", {PRICE = finalPrice, PAWNSHOP = PawnShops[CurrentZone]})
+                                                                    TriggerServerEvent(tmpValue.illegal and Ora.Payment.Fake:GetServerEventName() or Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
                                                                 end,
                                                                 {}
                                                             )
@@ -719,9 +719,9 @@ Citizen.CreateThread(
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Receipt:ShowInformation")
+RegisterNetEvent("Ora::CE::Receipt:ShowInformation")
 AddEventHandler(
-    "Atlantiss::CE::Receipt:ShowInformation",
+    "Ora::CE::Receipt:ShowInformation",
     function(item)
         if item.data == nil then
             ShowNotification("~r~Reçu invalide")

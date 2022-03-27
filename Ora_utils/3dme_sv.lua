@@ -14,7 +14,7 @@ AddEventHandler(
         local ped = GetPlayerPed(player)
         local playerCoords = GetEntityCoords(ped)
         if (GetPlayerRoutingBucket(source) == 0) then
-            TriggerClientEvent("Atlantiss::3dme:shareDisplay", -1, text, source, GetPlayerPed(source), playerCoords)
+            TriggerClientEvent("Ora::3dme:shareDisplay", -1, text, source, GetPlayerPed(source), playerCoords)
         end
     end
 )

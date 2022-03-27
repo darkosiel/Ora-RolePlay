@@ -24,7 +24,7 @@ Citizen.CreateThread(function()
 )
 end)
 
-RegisterServerCallback("Atlantiss::SE::IllegalShop:verifyOrder", 
+RegisterServerCallback("Ora::SE::IllegalShop:verifyOrder", 
   function(source, cb, quoteObject)
       local organisationOrder = MySQL.Sync.fetchAll(
           "SELECT * FROM organisation_shop_limit WHERE organisation_id = @organisationId",
@@ -53,8 +53,8 @@ RegisterServerCallback("Atlantiss::SE::IllegalShop:verifyOrder",
   end
 )
 
-RegisterServerEvent("Atlantiss::SE::IllegalShop:registerOrder")
-AddEventHandler("Atlantiss::SE::IllegalShop:registerOrder",function(quoteObject)
+RegisterServerEvent("Ora::SE::IllegalShop:registerOrder")
+AddEventHandler("Ora::SE::IllegalShop:registerOrder",function(quoteObject)
     local _source = source
     local orderDetails = {}
     local limitation = {}
@@ -85,8 +85,8 @@ AddEventHandler("Atlantiss::SE::IllegalShop:registerOrder",function(quoteObject)
     end
 
     if (canBeOrdered == false) then
-        TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Une erreur s'est produite lors de votre commande. (".. quoteObject.TOTAL_PRICE .. "$)~s~")
-        TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Veuillez ouvrir un ticket~s~")
+        TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Une erreur s'est produite lors de votre commande. (".. quoteObject.TOTAL_PRICE .. "$)~s~")
+        TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Veuillez ouvrir un ticket~s~")
         return 
     end
 
@@ -98,10 +98,10 @@ AddEventHandler("Atlantiss::SE::IllegalShop:registerOrder",function(quoteObject)
         }
     )
 
-    TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~g~Votre commande d'un montant de ~h~".. quoteObject.TOTAL_PRICE .."$~h~ est validée~s~")
-    TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", quoteObject.ORGANISATION.ID, "Votre faction vient d'acheter au dealer du coin pour un montant de ~h~" .. quoteObject.TOTAL_PRICE .. "$~h~.")
-    TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", quoteObject.ORGANISATION.ID)
-    TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, "[" ..  quoteObject.ORGANISATION.NAME .. "]\nAchat au dealer du coin (" .. quoteObject.TOTAL_PRICE .. "$)", "info")
+    TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~g~Votre commande d'un montant de ~h~".. quoteObject.TOTAL_PRICE .."$~h~ est validée~s~")
+    TriggerEvent("Ora::Illegal:sendMessageToOrga", quoteObject.ORGANISATION.ID, "Votre faction vient d'acheter au dealer du coin pour un montant de ~h~" .. quoteObject.TOTAL_PRICE .. "$~h~.")
+    TriggerEvent("Ora::Illegal:updateOrgaForAllClient", quoteObject.ORGANISATION.ID)
+    TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, "[" ..  quoteObject.ORGANISATION.NAME .. "]\nAchat au dealer du coin (" .. quoteObject.TOTAL_PRICE .. "$)", "info")
 
     local deliveryItems = {}
     for index, value in pairs(quoteObject.ITEMS) do
@@ -111,12 +111,12 @@ AddEventHandler("Atlantiss::SE::IllegalShop:registerOrder",function(quoteObject)
         end
     end
 
-  TriggerClientEvent("Atlantiss::CE::Inventory:AddItems", _source, deliveryItems)
+  TriggerClientEvent("Ora::CE::Inventory:AddItems", _source, deliveryItems)
 
 end)
 
 
-RegisterServerCallback("Atlantiss::SE::Illegal:GetGlobalLimitationForOrganisation", 
+RegisterServerCallback("Ora::SE::Illegal:GetGlobalLimitationForOrganisation", 
   function(source, cb, arg)
       local organisationShopLimit = MySQL.Sync.fetchAll(
           "SELECT * FROM organisation_shop_limit WHERE organisation_id = @organisationId",
@@ -143,7 +143,7 @@ RegisterServerCallback("Atlantiss::SE::Illegal:GetGlobalLimitationForOrganisatio
   end
 )
 
-RegisterServerCallback("Atlantiss::SE::Illegal:GetIllegalDealerPosition", 
+RegisterServerCallback("Ora::SE::Illegal:GetIllegalDealerPosition", 
   function(source, cb)
      cb(json.encode(IllegalShops.SERVER.DEFINED_POSITION))
   end

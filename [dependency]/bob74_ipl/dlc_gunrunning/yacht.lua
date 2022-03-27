@@ -36,7 +36,7 @@ GunrunningYacht = {
                         Wait(0)
                     end
 
-                    exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                    exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                         function()
                             local water = CreateObjectNoOffset(GunrunningYacht.Water.modelHash, -1369.0, 6736.0, 5.40, true, true, false)
                             SetEntityAsMissionEntity(water, false, false)

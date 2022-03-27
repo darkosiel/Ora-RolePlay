@@ -702,7 +702,7 @@ Citizen.CreateThread(
                                 for k, v in pairs(GetActivePlayers()) do
                                     local i = v
                                     RageUI.Button(
-                                        Atlantiss.Identity:GetFullname(GetPlayerServerId(i)),
+                                        Ora.Identity:GetFullname(GetPlayerServerId(i)),
                                         nil,
                                         {},
                                         true,
@@ -713,18 +713,18 @@ Citizen.CreateThread(
                                                     function(result)
                                                         amount = result[1].amount
                                                         if (amount - amountVeh >= 0) then
-                                                            local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                                            local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
 
                                                             TriggerServerCallback(
                                                                 "vehicleshop:BuyVehicle",
                                                                 function(_, plate)
                                                                     TriggerServerEvent(
-                                                                        "Atlantiss::SE::Jobs:Jetsam:Order",
+                                                                        "Ora::SE::Jobs:Jetsam:Order",
                                                                         {
                                                                             plate = plate,
                                                                             customs = veh
                                                                         },
-                                                                        Atlantiss.Identity:GetMyUuid(),
+                                                                        Ora.Identity:GetMyUuid(),
                                                                         "concess"
                                                                     )
 
@@ -778,18 +778,18 @@ Citizen.CreateThread(
                                                     function(result)
                                                         amount = result[1].amount
                                                         if (amount - amountVeh >= 0) then
-                                                            local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                                            local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
 
                                                             TriggerServerCallback(
                                                                 "vehicleshop:BuyVehicle",
                                                                 function(_, plate)
                                                                     TriggerServerEvent(
-                                                                        "Atlantiss::SE::Jobs:Jetsam:Order",
+                                                                        "Ora::SE::Jobs:Jetsam:Order",
                                                                         {
                                                                             plate = plate,
                                                                             customs = veh
                                                                         },
-                                                                        Atlantiss.Identity:GetMyUuid(),
+                                                                        Ora.Identity:GetMyUuid(),
                                                                         "concess"
                                                                     )
 
@@ -839,25 +839,25 @@ Citizen.CreateThread(
                                     function(_, Active, Selected)
                                         if (Selected) then
                                             TriggerServerCallback(
-                                                "Atlantiss::SVCB::Jobs:Jetsam:CanOrder",
+                                                "Ora::SVCB::Jobs:Jetsam:CanOrder",
                                                 function(canOrder)
                                                     if (canOrder == true) then
                                                         TriggerServerCallback(
                                                             "getBankingAccountsPly3",
                                                             function(result)
                                                                 if (result[1].amount - amountVeh >= 0) then
-                                                                    local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                                                    local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
                     
                                                                     TriggerServerCallback(
                                                                         "vehicleshop:BuyVehicle",
                                                                         function(_, plate)
                                                                             TriggerServerEvent(
-                                                                                "Atlantiss::SE::Jobs:Jetsam:Order",
+                                                                                "Ora::SE::Jobs:Jetsam:Order",
                                                                                 {
                                                                                     plate = plate,
                                                                                     customs = veh
                                                                                 },
-                                                                                Atlantiss.Identity:GetMyUuid(),
+                                                                                Ora.Identity:GetMyUuid(),
                                                                                 "concess"
                                                                             )
                     
@@ -939,9 +939,9 @@ Citizen.CreateThread(
                                     function(_, Active, Selected)
                                         if Selected then
                                             CloseAllMenus()
-                                            local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                            spawnedVehicle = Atlantiss.World.Vehicle:Create(veh.model, VehShop[CurrentZone].SpawnPos, VehShop[CurrentZone].SpawnPos.h, {})
-                                            Atlantiss.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
+                                            local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                            spawnedVehicle = Ora.World.Vehicle:Create(veh.model, VehShop[CurrentZone].SpawnPos, VehShop[CurrentZone].SpawnPos.h, {})
+                                            Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
                                             SetVehicleNumberPlateText(spawnedVehicle, "CONCESS") 
                                             DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
                                             SetPedIntoVehicle(LocalPlayer().Ped, spawnedVehicle, -1)
@@ -960,7 +960,7 @@ Citizen.CreateThread(
                                 function()
                                     for i = 1, #v, 1 do
                                         p = "~r~MASQUÉ"
-                                        if Atlantiss.Identity:HasAnyJob("concess") then
+                                        if Ora.Identity:HasAnyJob("concess") then
                                             p = v[i].price .. "$"
                                         end
                                         RageUI.Button(
@@ -969,7 +969,7 @@ Citizen.CreateThread(
                                             {RightLabel = p},
                                             true,
                                             function(_, Active, Selected)
-                                                if Atlantiss.Identity:HasAnyJob("concess") then
+                                                if Ora.Identity:HasAnyJob("concess") then
                                                     menu = RMenu:Get("VehShop_sub", "list")
                                                 else
                                                     menu = nil
@@ -996,7 +996,7 @@ Citizen.CreateThread(
                                                 end
 
                                                 if Selected then
-                                                    if Atlantiss.Identity:HasAnyJob("concess") then
+                                                    if Ora.Identity:HasAnyJob("concess") then
                                                         amountVeh = v[i].price
                                                         menu = RMenu:Get("VehShop_sub", "list")
                                                         currentInd = v[i]

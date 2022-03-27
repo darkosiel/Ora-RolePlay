@@ -1,11 +1,11 @@
--- Atlantiss.NpcJobs.DrivingSchool.Enabled = false
+-- Ora.NpcJobs.DrivingSchool.Enabled = false
 
--- RegisterNetEvent("Atlantiss::SE::NpcJobs:DrivingSchool::SetDB")
+-- RegisterNetEvent("Ora::SE::NpcJobs:DrivingSchool::SetDB")
 -- AddEventHandler(
---   "Atlantiss::SE::NpcJobs:DrivingSchool::SetDB",
+--   "Ora::SE::NpcJobs:DrivingSchool::SetDB",
 --   function(bool)
 --     local src = source
---     local UUID = Atlantiss.Identity:GetUuid(src)
+--     local UUID = Ora.Identity:GetUuid(src)
 
 --     MySQL.Async.execute("UPDATE users SET permis = @bool WHERE uuid = @uuid", {["@bool"] = bool, ["@uuid"] = UUID})
 --   end
@@ -13,9 +13,9 @@
 
 
 -- RegisterServerCallback(
---   "Atlantiss::SE::NpcJobs:DrivingSchool::CanPass",
+--   "Ora::SE::NpcJobs:DrivingSchool::CanPass",
 --   function(src, cb)
---     local UUID = Atlantiss.Identity:GetUuid(src)
+--     local UUID = Ora.Identity:GetUuid(src)
 
 --     MySQL.Async.fetchAll(
 --       "SELECT permis FROM users WHERE uuid = @uuid",
@@ -37,9 +37,9 @@
 -- )
 
 -- RegisterServerCallback(
---   "Atlantiss::SE::NpcJobs:DrivingSchool::IsNPCEnabled",
+--   "Ora::SE::NpcJobs:DrivingSchool::IsNPCEnabled",
 --   function(src, cb)
---     cb(Atlantiss.NpcJobs.DrivingSchool.Enabled)
+--     cb(Ora.NpcJobs.DrivingSchool.Enabled)
 --   end
 -- )
 
@@ -48,9 +48,9 @@
 -- 	"EnableDrivingSchoolNPC",
 -- 	function(source)
 -- 		if (source == 0) then
--- 			Atlantiss.NpcJobs.DrivingSchool.Enabled = true
+-- 			Ora.NpcJobs.DrivingSchool.Enabled = true
 -- 			print("^2Driving school NPC enbaled !^0")
--- 			TriggerClientEvent("Atlantiss::CE::NpcJobs:DrivingSchool::Enable", -1)
+-- 			TriggerClientEvent("Ora::CE::NpcJobs:DrivingSchool::Enable", -1)
 -- 		end
 -- 	end,
 -- 	true

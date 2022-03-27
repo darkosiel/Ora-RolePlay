@@ -18,7 +18,7 @@ Citizen.CreateThread(
                     local status, vehicleIdentifier = pcall(getVehicleIdentifier, lastVehicle)
                     if (status == true) then
                         TriggerServerEvent(
-                            "atlantissCar:saveCarPosition",
+                            "OraCar:saveCarPosition",
                             vehicleIdentifier,
                             GetEntityCoords(lastVehicle)
                         )

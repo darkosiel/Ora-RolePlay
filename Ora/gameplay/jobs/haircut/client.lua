@@ -328,7 +328,7 @@ Citizen.CreateThread(
         Wait(500)
 
         hairstyles = {}
-        razorCutsStyles = Atlantiss.Config:GetDataCollection("HaircutTatoos")
+        razorCutsStyles = Ora.Config:GetDataCollection("HaircutTatoos")
         
         razorCutsStyles[#razorCutsStyles + 1] = { Name = "Aucun", library = nil, name = nil}
         for razorKey, razorValue in pairs(razorCutsStyles) do
@@ -357,7 +357,7 @@ Citizen.CreateThread(
                     while not HasModelLoaded(brush) do
                         Wait(100)
                     end
-                    prop = Atlantiss.World.Object:Create(brush, coords, true, true, true)
+                    prop = Ora.World.Object:Create(brush, coords, true, true, true)
                     AttachEntityToEntity(prop, ped, GetPedBoneIndex(ped, 57005), 0.15, 0.04, 0.0, 90.0, 90.0, 210.0, true, true, false, true, 1, true)
                 end
                 DisableControlAction(0, 21, true) -- disable sprint
@@ -485,7 +485,7 @@ Citizen.CreateThread(
                                 if Selected then
                                     hairstyles = {}
                                     local playerPed = GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))
-                                    if Atlantiss.World.Ped:IsPedMale(playerPed) then
+                                    if Ora.World.Ped:IsPedMale(playerPed) then
                                         for i = 0, GetNumberOfPedDrawableVariations(playerPed, 2) - 1, 1 do
                                             local hairLabel = GetLabelText("CC_M_HS_" .. i) == "NULL" and "Coupe #" .. i or GetLabelText("CC_M_HS_" .. i)
                                             table.insert(hairstyles, hairLabel)
@@ -734,7 +734,7 @@ Citizen.CreateThread(
                                                     skins.razorCut.dict = razorCutsStyles[Index].library
                                                     skins.razorCut.hash = razorCutsStyles[Index].name
     
-                                                    Atlantiss.Config:SetDataCollection(
+                                                    Ora.Config:SetDataCollection(
                                                         "AppliedHarcutTatoos",
                                                         {dict = skins.razorCut.dict, hash = skins.razorCut.hash}
                                                     )
@@ -884,17 +884,17 @@ AddEventHandler("skin:GiveBack", function()
         UpdateEntityFace(LocalPlayer().Ped, json.decode(skin))
         if (skin.razorCut ~= nil and skin.razorCut.index ~= nil) then
             if (skin.razorCut.dict ~= nil and skin.razorCut.hash ~= nil) then
-                Atlantiss.Player:RemoveAllTattoos()
-                Atlantiss.Player:ApplyAllSavedTattoos(true)
-                Atlantiss.Player:ApplyTattoo(skin.razorCut.dict, skin.razorCut.hash)
+                Ora.Player:RemoveAllTattoos()
+                Ora.Player:ApplyAllSavedTattoos(true)
+                Ora.Player:ApplyTattoo(skin.razorCut.dict, skin.razorCut.hash)
 
-                Atlantiss.Config:SetDataCollection("AppliedHarcutTatoos", {dict = skin.razorCut.dict, hash = skin.razorCut.hash})
+                Ora.Config:SetDataCollection("AppliedHarcutTatoos", {dict = skin.razorCut.dict, hash = skin.razorCut.hash})
 
                 return true
             end
         end
-        Atlantiss.Player:RemoveAllTattoos()
-        Atlantiss.Player:ApplyAllSavedTattoos(false)
+        Ora.Player:RemoveAllTattoos()
+        Ora.Player:ApplyAllSavedTattoos(false)
         return true
     end)
 end)
@@ -912,7 +912,7 @@ AddEventHandler("save:Skin", function(_PlySkin)
             PlySkin.razorCut = {}
         end
         if (skins.razorCut.dict ~= nil and skins.razorCut.hash ~= nil) then
-            Atlantiss.Config:SetDataCollection(
+            Ora.Config:SetDataCollection(
                 "AppliedHarcutTatoos",
                 {dict = skins.razorCut.dict, hash = skins.razorCut.hash}
             )
@@ -920,7 +920,7 @@ AddEventHandler("save:Skin", function(_PlySkin)
             PlySkin.razorCut.dict = skins.razorCut.dict
             PlySkin.razorCut.hash = skins.razorCut.hash
         else
-            Atlantiss.Config:SetDataCollection(
+            Ora.Config:SetDataCollection(
                 "AppliedHarcutTatoos",
                 {dict = nil, hash = nil}
             )
@@ -959,8 +959,8 @@ AddEventHandler("save:Skin", function(_PlySkin)
     UpdateEntityFace(LocalPlayer().Ped, PlySkin)
     TriggerServerEvent("face:Save", PlySkin)
 
-    Atlantiss.Player:RemoveAllTattoos()
-    Atlantiss.Player:ApplyAllSavedTattoos(false)
+    Ora.Player:RemoveAllTattoos()
+    Ora.Player:ApplyAllSavedTattoos(false)
 end)
 
 updateCheveux = function(skin)
@@ -972,9 +972,9 @@ updateCheveux = function(skin)
 
         if (skins.razorCut ~= nil and skins.razorCut.index ~= nil) then
             if (skins.razorCut.dict ~= nil and skins.razorCut.hash ~= nil) then
-                Atlantiss.Player:RemoveAllTattoos()
-                Atlantiss.Player:ApplyAllSavedTattoos(true)
-                Atlantiss.Player:ApplyTattoo(skins.razorCut.dict, skins.razorCut.hash)
+                Ora.Player:RemoveAllTattoos()
+                Ora.Player:ApplyAllSavedTattoos(true)
+                Ora.Player:ApplyTattoo(skins.razorCut.dict, skins.razorCut.hash)
             end
         end
 

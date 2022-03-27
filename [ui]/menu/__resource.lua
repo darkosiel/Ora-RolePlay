@@ -1,6 +1,6 @@
 -- Manifest Version
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
-client_scripts "@Atlantiss/statics/assets/Items.lua"
+client_scripts "@Ora/statics/assets/Items.lua"
 -- UI
 ui_page "ui/index.html"
 files {

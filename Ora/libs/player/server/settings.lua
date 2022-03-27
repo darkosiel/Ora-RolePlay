@@ -25,7 +25,7 @@ local armeBuyed = {}
 RegisterServerCallback(
     "getArmeblanched",
     function(source, callback)
-        local uuid = Atlantiss.Identity:GetUuid(source)
+        local uuid = Ora.Identity:GetUuid(source)
 
         callback(armeBuyed[uuid] == nil)
     end
@@ -34,7 +34,7 @@ RegisterServerEvent("ArmeBlanche")
 AddEventHandler(
     "ArmeBlanche",
     function()
-        local uuid = Atlantiss.Identity:GetUuid(source)
+        local uuid = Ora.Identity:GetUuid(source)
 
         table.insert(armeBuyed, uuid)
     end
@@ -146,7 +146,7 @@ AddEventHandler(
                     Wait(2000)
                     deferrals.done()
                     TriggerEvent(
-                        "atlantiss:sendToDiscordFromServer",
+                        "Ora:sendToDiscordFromServer",
                         _source,
                         14,
                         string.format(
@@ -163,7 +163,7 @@ AddEventHandler(
                 end
             else
                 TriggerEvent(
-                    "atlantiss:sendToDiscordFromServer",
+                    "Ora:sendToDiscordFromServer",
                     _source,
                     14,
                     string.format(

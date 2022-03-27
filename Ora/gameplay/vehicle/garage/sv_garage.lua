@@ -1,7 +1,7 @@
 RegisterServerCallback(
     "garage:GetVehicle",
     function(s, callback, Garage)
-        local uuid = Atlantiss.Identity:GetUuid(s)
+        local uuid = Ora.Identity:GetUuid(s)
         MySQL.Async.fetchAll(
             "SELECT * FROM players_parking WHERE garage =@name and uuid = @uuid ORDER BY id ASC",
             {
@@ -35,7 +35,7 @@ RegisterServerCallback(
     function(s, callback, garageName, garageLimit, garageType)
         local message = ""
         local numberOfCars = 0
-        local uuid = Atlantiss.Identity:GetUuid(s)
+        local uuid = Ora.Identity:GetUuid(s)
         local searchCriterias = {}
         local sqlQuery = nil
 
@@ -76,7 +76,7 @@ RegisterServerCallback(
 RegisterServerCallback(
     "vehicles:GetOwnedVehicles",
     function(_source, callback)
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
 
         MySQL.Async.fetchAll(
             "SELECT * FROM players_vehicles WHERE uuid =@name",
@@ -95,7 +95,7 @@ AddEventHandler(
     "Garage:StockVehicle",
     function(vehicleData, garage)
         --(source)
-        local uuid = Atlantiss.Identity:GetUuid(source)
+        local uuid = Ora.Identity:GetUuid(source)
 
         MySQL.Async.fetchAll(
             "SELECT count(plate) AS number_of_vehicles FROM players_parking WHERE garage = @garage AND plate = @plate",

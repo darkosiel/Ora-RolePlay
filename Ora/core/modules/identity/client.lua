@@ -1,29 +1,29 @@
-Atlantiss.Identity.List = {}
-Atlantiss.Identity.InitFunctions = nil -- Define table in the thread down below
+Ora.Identity.List = {}
+Ora.Identity.InitFunctions = nil -- Define table in the thread down below
 
 Citizen.CreateThread(
   function()
-    while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
+    while (Ora.Player.HasLoaded == false) do Wait(50) end
 
     Wait(1000)
 
-    Atlantiss.Identity.InitFunctions = {
+    Ora.Identity.InitFunctions = {
       ['raffinerie'] = createFuelerJob,
       ['hacker'] = createHackerMenu,
       ['admin_drug'] = initAdminDrugMenu,
       ['police'] = Police.ON,
       ['lssd'] = Police.ON,
-      ['casino'] = Atlantiss.Jobs.Casino.INIT,
-      ['jetsam'] = Atlantiss.Jobs.Jetsam.INIT,
-      ['immo'] = Atlantiss.Jobs.Immo.INIT,
-      ['bleacher'] = Atlantiss.Jobs.Bleacher.INIT,
-      ['lsfd'] = Atlantiss.Jobs.Firefighter.INIT,
-      ['drivingschool'] = Atlantiss.Jobs.DrivingSchool.INIT,
+      ['casino'] = Ora.Jobs.Casino.INIT,
+      ['jetsam'] = Ora.Jobs.Jetsam.INIT,
+      ['immo'] = Ora.Jobs.Immo.INIT,
+      ['bleacher'] = Ora.Jobs.Bleacher.INIT,
+      ['lsfd'] = Ora.Jobs.Firefighter.INIT,
+      ['drivingschool'] = Ora.Jobs.DrivingSchool.INIT,
     }
   end
 )
 
-function Atlantiss.Identity:GetIdentity(playerId)
+function Ora.Identity:GetIdentity(playerId)
     if playerId == 0 then
       return {uuid = nil, first_name = nil, last_name = nil, group = "user"}
     end
@@ -36,7 +36,7 @@ function Atlantiss.Identity:GetIdentity(playerId)
     local identity = {}
     self:Debug(string.format("Fetching identity for player ^5%s^3", playerId))
 
-    TriggerServerCallback("Atlantiss::SE::Identity:GetIdentity", function(data)
+    TriggerServerCallback("Ora::SE::Identity:GetIdentity", function(data)
       identity = data
       canSend = true
     end, playerId)
@@ -52,52 +52,52 @@ function Atlantiss.Identity:GetIdentity(playerId)
     return self.List[playerId]
 end
 
-function Atlantiss.Identity:GetMyIdentity()
+function Ora.Identity:GetMyIdentity()
     return self:GetIdentity(GetPlayerServerId(PlayerId()))
 end
 
-function Atlantiss.Identity:GetFullname(playerId)
-  local identity = Atlantiss.Identity:GetIdentity(playerId)
+function Ora.Identity:GetFullname(playerId)
+  local identity = Ora.Identity:GetIdentity(playerId)
   if (identity == nil or identity.first_name == nil or identity.last_name == nil) then
     return "Non déterminé"
   end
   return identity.first_name .. " " .. identity.last_name
 end
 
-function Atlantiss.Identity:GetGroup(playerId)
-  local identity = Atlantiss.Identity:GetIdentity(playerId)
+function Ora.Identity:GetGroup(playerId)
+  local identity = Ora.Identity:GetIdentity(playerId)
   return identity.group
 end
 
-function Atlantiss.Identity:GetUuid(playerId)
-  local identity = Atlantiss.Identity:GetIdentity(playerId)
+function Ora.Identity:GetUuid(playerId)
+  local identity = Ora.Identity:GetIdentity(playerId)
   return identity.uuid
 end
 
-function Atlantiss.Identity:GetMyName()
-  local identity = Atlantiss.Identity:GetMyIdentity()
+function Ora.Identity:GetMyName()
+  local identity = Ora.Identity:GetMyIdentity()
   return identity.first_name .. " " .. identity.last_name
 end
 
-function Atlantiss.Identity:GetMyUuid()
-  local identity = Atlantiss.Identity:GetMyIdentity()
+function Ora.Identity:GetMyUuid()
+  local identity = Ora.Identity:GetMyIdentity()
   return identity.uuid
 end
 
-function Atlantiss.Identity:GetMyHealth()
-  local identity = Atlantiss.Identity:GetMyIdentity()
+function Ora.Identity:GetMyHealth()
+  local identity = Ora.Identity:GetMyIdentity()
   return identity.health
 end
 
 
-function Atlantiss.Identity:GetMyGroup()
-  local identity = Atlantiss.Identity:GetMyIdentity()
+function Ora.Identity:GetMyGroup()
+  local identity = Ora.Identity:GetMyIdentity()
   self:Debug(string.format("Retuning group for player ^5%s^3 ^5%s^3", GetPlayerServerId(PlayerId()), identity.group))
   return identity.group
 end
 
 
-function Atlantiss.Identity:HasAnyJob(job)
+function Ora.Identity:HasAnyJob(job)
 	if (job == self.Job:GetName() or job == self.Orga:GetName()) then
 		return true
 	end
@@ -105,9 +105,9 @@ function Atlantiss.Identity:HasAnyJob(job)
   return false
 end
 
-RegisterNetEvent("Atlantiss::CE::Identity:SetUuid")
+RegisterNetEvent("Ora::CE::Identity:SetUuid")
 AddEventHandler(
-  "Atlantiss::CE::Identity:SetUuid",
+  "Ora::CE::Identity:SetUuid",
   function(uuid)
     print("Received my UUID", uuid)
     PlyUuid = uuid

@@ -31,10 +31,10 @@ IllegalShops.SHARED.DELIVERY_POSITIONS = {
 }
 
 IllegalShops.SHARED.PHONES = {
-  { phone = "5006312", event = "Atlantiss::CE::Illegal:GetPosition" },
-  { phone = "5005825", event = "Atlantiss::CE::Illegal:GetPosition" },
-  { phone = "5004780", event = "Atlantiss::CE::Illegal:GetPosition" },
-  { phone = "5008599", event = "Atlantiss::CE::Illegal:GetPosition" }
+  { phone = "5006312", event = "Ora::CE::Illegal:GetPosition" },
+  { phone = "5005825", event = "Ora::CE::Illegal:GetPosition" },
+  { phone = "5004780", event = "Ora::CE::Illegal:GetPosition" },
+  { phone = "5008599", event = "Ora::CE::Illegal:GetPosition" }
 }
 
 IllegalShops.SHARED.PRODUCTS_PRICE = {

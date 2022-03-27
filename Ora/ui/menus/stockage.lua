@@ -79,7 +79,7 @@ function Storage:Visible(bool)
     if bool then
         currentStorage = self
         self:RefreshWeight()
-        TriggerEvent('atlantiss:openInvStorage')
+        TriggerEvent('Ora:openInvStorage')
     end
     Citizen.CreateThread(
         function()
@@ -236,7 +236,7 @@ function Storage:TransferToInventory(count, item)
                     end
                 end
             else
-                TriggerEvent('atlantiss:InvNotification', "Vous n'avez pas assez d'items", 'error')
+                TriggerEvent('Ora:InvNotification', "Vous n'avez pas assez d'items", 'error')
             end
 
             for i = 1, #v do
@@ -250,11 +250,11 @@ function Storage:TransferToInventory(count, item)
     end
 
     if #itemsIds > 0 then
-        --TriggerEvent('atlantiss:InvNotification', 'Récupération du coffre. Veuillez patienter...', 'warning')
+        --TriggerEvent('Ora:InvNotification', 'Récupération du coffre. Veuillez patienter...', 'warning')
         TriggerServerEvent("rage-reborn:TransfertToInventory", itemsIds, item, self.name)
 
         TriggerServerEvent(
-            "atlantiss:sendToDiscord",
+            "Ora:sendToDiscord",
             3,
             "Récupère " .. 
                 count .. " x " .. 
@@ -280,7 +280,7 @@ function Storage:TransferToStorage(count, item)
         self.items[itemName] = {}
     end
 
-    for k, v in pairs(Atlantiss.Inventory.Data) do
+    for k, v in pairs(Ora.Inventory.Data) do
         if k == itemName then
             local itemsLocal = {}
             local tempCount = count
@@ -301,12 +301,12 @@ function Storage:TransferToStorage(count, item)
 
                         if (itemsToStorageVerifyDuplicates[it.id] ~= nil) then
                             TriggerServerEvent(
-                                "atlantiss:sendToDiscord",
+                                "Ora:sendToDiscord",
                                 12,
                                 "Un UUID dupliqué a été repéré lors du transfert de l'item : " .. itemName .." dans le coffre " .. self.name .. " (uuid : " .. it.id .. ")", 
                                 "error"
                             )
-                            TriggerEvent('atlantiss:InvNotification', 'Duplication détectée', "error")
+                            TriggerEvent('Ora:InvNotification', 'Duplication détectée', "error")
                         else
                             itemsToStorageVerifyDuplicates[it.id] = true
                         end
@@ -355,29 +355,29 @@ function Storage:TransferToStorage(count, item)
                             )
                         end
 
-                        for c,x in pairs(Atlantiss.Inventory.Data[itemName]) do
+                        for c,x in pairs(Ora.Inventory.Data[itemName]) do
                             if x.id == it.id then
-                                Atlantiss.Inventory.Data[itemName][c] = nil
+                                Ora.Inventory.Data[itemName][c] = nil
                             end
                         end
                         tempCount = tempCount - 1
                     end
                 end
             else
-                TriggerEvent('atlantiss:InvNotification', "Vous n'avez pas d'items", 'error')
+                TriggerEvent('Ora:InvNotification', "Vous n'avez pas d'items", 'error')
             end
 
             itemsToStorageVerifyDuplicates = nil
 
-            if (Atlantiss.Inventory.Data[itemName] ~= nil) then
-                for kItem, vItem in pairs(Atlantiss.Inventory.Data[itemName]) do
+            if (Ora.Inventory.Data[itemName] ~= nil) then
+                for kItem, vItem in pairs(Ora.Inventory.Data[itemName]) do
                     if vItem ~= nil then
                         table.insert(itemsLocal, vItem)
                     end
                 end
             end
 
-            Atlantiss.Inventory.Data[itemName] = itemsLocal
+            Ora.Inventory.Data[itemName] = itemsLocal
             break
         end
     end
@@ -388,7 +388,7 @@ function Storage:TransferToStorage(count, item)
 
 
     if #itemsToStorage2 > 0 then
-        --TriggerEvent('atlantiss:InvNotification', 'Dépot dans le coffre. Veuillez patienter...', 'warning')
+        --TriggerEvent('Ora:InvNotification', 'Dépot dans le coffre. Veuillez patienter...', 'warning')
 
         local sendItems = {}
         local itemSent = 0
@@ -408,7 +408,7 @@ function Storage:TransferToStorage(count, item)
             TriggerServerEvent("storage:addToQueue", sendItems, itemName, self.name)
         end
         TriggerServerEvent(
-            "atlantiss:sendToDiscord",
+            "Ora:sendToDiscord",
             3,
             "Dépose " .. count .. " x " .. Items[itemName].label .. " dans le coffre " .. self.name, 
             "info"
@@ -423,7 +423,7 @@ function Storage:CanAcceptItem(item, count)
     local tempWeight = currentStorage.Weight
     tempWeight = tempWeight + (Items[item].weight * count)
     if not (tempWeight <= tonumber(currentStorage.maxWeight)) then
-        TriggerEvent('atlantiss:InvNotification', 'Il n\'y a plus de place dans le coffre !', 'error')
+        TriggerEvent('Ora:InvNotification', 'Il n\'y a plus de place dans le coffre !', 'error')
     end
     return tempWeight <= currentStorage.maxWeight
 end

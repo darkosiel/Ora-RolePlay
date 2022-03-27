@@ -49,12 +49,12 @@ local typeColor = {
     ["warning"] =  15105570,
     ["success"] =  3066993,
     ["info"] =  3447003,
-    ["atlantiss"] = 1879160,
+    ["Ora"] = 1879160,
 }
 
-RegisterServerEvent("atlantiss:sendToDiscord")
+RegisterServerEvent("Ora:sendToDiscord")
 AddEventHandler(
-    "atlantiss:sendToDiscord",
+    "Ora:sendToDiscord",
     function(_webhook, message, type)
         local webhook = discordWBK[_webhook]
 
@@ -63,8 +63,8 @@ AddEventHandler(
         -- end
 
         local fullname
-        if (Atlantiss.Identity:HasFullname(source)) then
-            fullname = Atlantiss.Identity:GetFullname(source)
+        if (Ora.Identity:HasFullname(source)) then
+            fullname = Ora.Identity:GetFullname(source)
         end
         if (fullname == nil) then
             fullname = GetPlayerName(source)
@@ -113,9 +113,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("atlantiss:sendToDiscordLSPD")
+RegisterServerEvent("Ora:sendToDiscordLSPD")
 AddEventHandler(
-    "atlantiss:sendToDiscordLSPD",
+    "Ora:sendToDiscordLSPD",
     function(_webhook, message, plate)
         if (plate == nil) then return nil end
 
@@ -145,9 +145,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("atlantiss:sendToDiscordFromServer")
+RegisterServerEvent("Ora:sendToDiscordFromServer")
 AddEventHandler(
-    "atlantiss:sendToDiscordFromServer",
+    "Ora:sendToDiscordFromServer",
     function(source, _webhook, message, type)
         if source == nil or source == 0 then return end
         local webhook = discordWBK[_webhook]
@@ -165,8 +165,8 @@ AddEventHandler(
         if (source ~= 999999) then 
 
             local fullname
-            if (Atlantiss.Identity:HasFullname(source)) then
-                fullname = Atlantiss.Identity:GetFullname(source)
+            if (Ora.Identity:HasFullname(source)) then
+                fullname = Ora.Identity:GetFullname(source)
             end
             if (fullname == nil) then
                 fullname = GetPlayerName(source)

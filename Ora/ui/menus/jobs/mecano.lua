@@ -120,14 +120,14 @@ end
 function Mecano.Repair()
     local vehicle = GetClosestVeh()
 
-    if (vehicle ~= 0 and Atlantiss.Inventory:GetItemCount("repairbox") > 0) then
+    if (vehicle ~= 0 and Ora.Inventory:GetItemCount("repairbox") > 0) then
         local canRepair = false
         local StorageVector
         local GarageVector
 
-        if (Atlantiss.Identity.Job:Get().isMechanics) then
-            StorageVector = vector3(Atlantiss.Identity.Job:Get().Storage[1].Pos.x, Atlantiss.Identity.Job:Get().Storage[1].Pos.y, Atlantiss.Identity.Job:Get().Storage[1].Pos.z)
-            GarageVector = vector3(Atlantiss.Identity.Job:Get().garage.Pos.x, Atlantiss.Identity.Job:Get().garage.Pos.y, Atlantiss.Identity.Job:Get().garage.Pos.z)
+        if (Ora.Identity.Job:Get().isMechanics) then
+            StorageVector = vector3(Ora.Identity.Job:Get().Storage[1].Pos.x, Ora.Identity.Job:Get().Storage[1].Pos.y, Ora.Identity.Job:Get().Storage[1].Pos.z)
+            GarageVector = vector3(Ora.Identity.Job:Get().garage.Pos.x, Ora.Identity.Job:Get().garage.Pos.y, Ora.Identity.Job:Get().garage.Pos.z)
 
             if (
                 #(GetEntityCoords(PlayerPedId()) - GarageVector) < 35.5 or
@@ -148,9 +148,9 @@ function Mecano.Repair()
                     end
                 end
             end
-        elseif (Atlantiss.Identity.Orga:Get().isMechanics) then
-            StorageVector = vector3(Atlantiss.Identity.Orga:Get().Storage[1].Pos.x, Atlantiss.Identity.Orga:Get().Storage[1].Pos.y, Atlantiss.Identity.Orga:Get().Storage[1].Pos.z)
-            GarageVector = vector3(Atlantiss.Identity.Orga:Get().garage.Pos.x, Atlantiss.Identity.Orga:Get().garage.Pos.y, Atlantiss.Identity.Orga:Get().garage.Pos.z)
+        elseif (Ora.Identity.Orga:Get().isMechanics) then
+            StorageVector = vector3(Ora.Identity.Orga:Get().Storage[1].Pos.x, Ora.Identity.Orga:Get().Storage[1].Pos.y, Ora.Identity.Orga:Get().Storage[1].Pos.z)
+            GarageVector = vector3(Ora.Identity.Orga:Get().garage.Pos.x, Ora.Identity.Orga:Get().garage.Pos.y, Ora.Identity.Orga:Get().garage.Pos.z)
 
             if (
                 #(GetEntityCoords(PlayerPedId()) - GarageVector) < 35.5 or
@@ -220,7 +220,7 @@ end
 
 function Mecano.CleanVehicule()
     local vehicle = GetClosestVeh()
-    if vehicle ~= 0 and Atlantiss.Inventory:GetItemCount("lavage") > 0  then
+    if vehicle ~= 0 and Ora.Inventory:GetItemCount("lavage") > 0  then
         TaskStartScenarioInPlace(LocalPlayer().Ped, 'WORLD_HUMAN_MAID_CLEAN', 0, true)
         player = LocalPlayer()
         player.isBusy = true

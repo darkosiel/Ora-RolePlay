@@ -1,6 +1,6 @@
 local function IsOddsAvailable(odds)
-    for i = 1, #Atlantiss.Jobs.Casino.Insidetrack.OddsList, 1 do
-        if Atlantiss.Jobs.Casino.Insidetrack.OddsList[i] == odds then
+    for i = 1, #Ora.Jobs.Casino.Insidetrack.OddsList, 1 do
+        if Ora.Jobs.Casino.Insidetrack.OddsList[i] == odds then
             return false
         end
     end
@@ -10,7 +10,7 @@ end
 local function GenerateOdds(i)
     local odds = tostring(math.random(i*3) + 1)
     if IsOddsAvailable(odds) then
-        table.insert(Atlantiss.Jobs.Casino.Insidetrack.OddsList, odds)
+        table.insert(Ora.Jobs.Casino.Insidetrack.OddsList, odds)
         return odds
     else
         return GenerateOdds(i)
@@ -20,11 +20,11 @@ end
 local function AddHorseOddToRandomPick(horse, odd)
     local chance = math.round((1/math.tointeger(odd))*100, 0)
     for i = 1, chance, 1 do
-        table.insert(Atlantiss.Jobs.Casino.Insidetrack.RandomHorse, horse)
+        table.insert(Ora.Jobs.Casino.Insidetrack.RandomHorse, horse)
     end
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:ShowHorseSelection()
+function Ora.Jobs.Casino.Insidetrack:ShowHorseSelection()
     self.ChooseHorseVisible = true
 
     BeginScaleformMovieMethod(self.Scaleform, 'SHOW_SCREEN')
@@ -32,7 +32,7 @@ function Atlantiss.Jobs.Casino.Insidetrack:ShowHorseSelection()
     EndScaleformMovieMethod()
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:AddHorses(scaleform)
+function Ora.Jobs.Casino.Insidetrack:AddHorses(scaleform)
     self.HorsesList = {}
     self.OddsList = {}
     self.RandomHorse = {}

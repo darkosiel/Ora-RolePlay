@@ -1,6 +1,6 @@
-Atlantiss.Illegal.Gofast = Atlantiss.Illegal.Gofast or {}
+Ora.Illegal.Gofast = Ora.Illegal.Gofast or {}
 
-function Atlantiss.Illegal.Gofast:GetEmptyCurrentObject()
+function Ora.Illegal.Gofast:GetEmptyCurrentObject()
   return {
     VEHICLE = nil,
     STEP = 0,
@@ -26,6 +26,6 @@ function Atlantiss.Illegal.Gofast:GetEmptyCurrentObject()
   }
 end
 
-Atlantiss.Illegal.Gofast.Current = Atlantiss.Illegal.Gofast:GetEmptyCurrentObject()
+Ora.Illegal.Gofast.Current = Ora.Illegal.Gofast:GetEmptyCurrentObject()
 
-Atlantiss.Illegal:Register("Gofast")
+Ora.Illegal:Register("Gofast")

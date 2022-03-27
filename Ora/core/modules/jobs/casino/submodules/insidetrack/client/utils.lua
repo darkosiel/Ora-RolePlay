@@ -1,4 +1,4 @@
-Atlantiss.Jobs.Casino.Insidetrack = {
+Ora.Jobs.Casino.Insidetrack = {
     Scaleform = -1,
     ChooseHorseVisible = false,
     BetVisible = false,
@@ -19,7 +19,7 @@ Atlantiss.Jobs.Casino.Insidetrack = {
     }
 }
 
-function Atlantiss.Jobs.Casino.Insidetrack:GetMouseClickedButton()
+function Ora.Jobs.Casino.Insidetrack:GetMouseClickedButton()
     local returnValue = -1
 
     CallScaleformMovieMethodWithNumber(self.Scaleform, 'SET_INPUT_EVENT', 237.0, -1082130432, -1082130432, -1082130432, -1082130432)
@@ -34,14 +34,14 @@ function Atlantiss.Jobs.Casino.Insidetrack:GetMouseClickedButton()
     return GetScaleformMovieMethodReturnValueInt(returnValue)
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack.GetRandomHorseName()
+function Ora.Jobs.Casino.Insidetrack.GetRandomHorseName()
     local random = math.random(0, 99)
     local randomName = (random < 10) and ('ITH_NAME_00'..random) or ('ITH_NAME_0'..random)
 
     return randomName
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:FindRotation(x1, y1, x2, y2)
+function Ora.Jobs.Casino.Insidetrack:FindRotation(x1, y1, x2, y2)
     local t = -math.deg(math.atan2(x2-x1, y2-y1))
     return t < -180 and t + 180 or t
 end

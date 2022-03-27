@@ -1,6 +1,6 @@
-Atlantiss.Player = {}
+Ora.Player = {}
 
-Atlantiss.Player.SessionDataMapper = {
+Ora.Player.SessionDataMapper = {
   ["SALARY_DETAILS"] = function(value) 
     local message = ""
     message = message .. "\n**DETAIL DES SALAIRES**\n"
@@ -27,7 +27,7 @@ Atlantiss.Player.SessionDataMapper = {
   end
 }
 
-Atlantiss.Player.State = {
+Ora.Player.State = {
   CANT_RUN = false,
   CANT_SHOOT = false,
   FREEZED = false,
@@ -35,14 +35,14 @@ Atlantiss.Player.State = {
   CREATED = false,
 }
 
-function Atlantiss.Player:GetModuleName()
+function Ora.Player:GetModuleName()
   return "Player"
 end
 
-function Atlantiss.Player:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Player:GetModuleName(), message))
+function Ora.Player:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Player:GetModuleName(), message))
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Player:GetModuleName())
+Ora.Modules:Register(Ora.Player:GetModuleName())

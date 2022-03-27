@@ -172,7 +172,7 @@ AddEventHandler(
 RegisterCommand(
 	'remindme',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		local dispatchNumber = tonumber(args[1])
 		if not dispatchNumber then
@@ -180,7 +180,7 @@ RegisterCommand(
 			return
 		end
 
-		local success = Atlantiss.Jobs.Firefighter.Dispatch:remind(dispatchNumber)
+		local success = Ora.Jobs.Firefighter.Dispatch:remind(dispatchNumber)
 
 		if not success then
 			sendMessage("Couldn't find the specified dispatch.")
@@ -193,9 +193,9 @@ RegisterCommand(
 RegisterCommand(
 	'cleardispatch',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
-		Atlantiss.Jobs.Firefighter.Dispatch:clear(tonumber(args[1]))
+		Ora.Jobs.Firefighter.Dispatch:clear(tonumber(args[1]))
 	end,
 	false
 )
@@ -203,7 +203,7 @@ RegisterCommand(
 RegisterCommand(
 	'startfire',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		local maxSpread = tonumber(args[1])
 		local probability = tonumber(args[2])
@@ -223,7 +223,7 @@ RegisterCommand(
 RegisterCommand(
 	'registerscenario',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		local coords = nil
 
@@ -243,7 +243,7 @@ RegisterCommand(
 RegisterCommand(
 	'addflame',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		local registeredFireID = tonumber(args[1])
 		local spread = tonumber(args[2])
@@ -271,7 +271,7 @@ RegisterCommand(
 RegisterCommand(
 	'registerfire',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		ExecuteCommand("registerscenario" .. rawCommand:sub(13))
 	end,
@@ -281,7 +281,7 @@ RegisterCommand(
 RegisterCommand(
 	'removeregisteredfire',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		ExecuteCommand("removescenario" .. rawCommand:sub(21))
 	end,
@@ -291,7 +291,7 @@ RegisterCommand(
 RegisterCommand(
 	'startregisteredfire',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		ExecuteCommand("startscenario" .. rawCommand:sub(20))
 	end,
@@ -301,7 +301,7 @@ RegisterCommand(
 RegisterCommand(
 	'stopregisteredfire',
 	function(source, args, rawCommand)
-		if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then return end
+		if (Ora.Identity:GetMyGroup() ~= "superadmin") then return end
 
 		ExecuteCommand("stopscenario" .. rawCommand:sub(19))
 	end,
@@ -317,11 +317,11 @@ AddEventHandler(
 	'fireClient:synchronizeFlames',
 	function(fires)
 		syncInProgress = true
-		Atlantiss.Jobs.Firefighter.Fire:removeAll(
+		Ora.Jobs.Firefighter.Fire:removeAll(
 			function()
 				for k, v in pairs(fires) do
 					for _k, _v in ipairs(v) do
-						Atlantiss.Jobs.Firefighter.Fire:createFlame(k, _k, _v)
+						Ora.Jobs.Firefighter.Fire:createFlame(k, _k, _v)
 					end
 				end
 				syncInProgress = false
@@ -338,7 +338,7 @@ AddEventHandler(
 			Citizen.Wait(10)
 		end
 		syncInProgress = true
-		Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex)
+		Ora.Jobs.Firefighter.Fire:remove(fireIndex)
 		syncInProgress = false
 	end
 )
@@ -351,7 +351,7 @@ AddEventHandler(
 			Citizen.Wait(10)
 		end
 		syncInProgress = true
-		Atlantiss.Jobs.Firefighter.Fire:removeAll(
+		Ora.Jobs.Firefighter.Fire:removeAll(
 			function()
 				syncInProgress = false
 			end
@@ -367,7 +367,7 @@ AddEventHandler(
 			Citizen.Wait(10)
 		end
 		syncInProgress = true
-		Atlantiss.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
+		Ora.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
 		syncInProgress = false
     end
 )
@@ -380,14 +380,14 @@ AddEventHandler(
 			Citizen.Wait(10)
 		end
 		syncInProgress = true
-		Atlantiss.Jobs.Firefighter.Fire:createFlame(fireIndex, flameIndex, coords)
+		Ora.Jobs.Firefighter.Fire:createFlame(fireIndex, flameIndex, coords)
 		syncInProgress = false
     end
 )
 
 -- Dispatch
 
-if Atlantiss.Jobs.Firefighter.Config.Dispatch.enabled == true then
+if Ora.Jobs.Firefighter.Config.Dispatch.enabled == true then
 	RegisterNetEvent('fd:dispatch')
 	AddEventHandler(
 		'fd:dispatch',
@@ -404,6 +404,6 @@ RegisterNetEvent('fireClient:createDispatch')
 AddEventHandler(
 	'fireClient:createDispatch',
 	function(dispatchNumber, coords)
-		Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
+		Ora.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
 	end
 )

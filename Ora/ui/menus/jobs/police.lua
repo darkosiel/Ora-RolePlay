@@ -40,7 +40,7 @@ function Police.Stup()
         local pedT = GetPlayerPed(player)
 
         TriggerServerCallback(
-            "atlantiss_status:isOnStatus",
+            "Ora_status:isOnStatus",
             function(bool)
                 if bool then
                     ShowNotification("Test Canabinoide : ~g~Positif~s~")
@@ -53,7 +53,7 @@ function Police.Stup()
         )
 
         TriggerServerCallback(
-            "atlantiss_status:isOnStatus",
+            "Ora_status:isOnStatus",
             function(bool)
                 if bool then
                     ShowNotification("Test Meth : ~g~Positif~s~")
@@ -66,7 +66,7 @@ function Police.Stup()
         )
 
         TriggerServerCallback(
-            "atlantiss_status:isOnStatus",
+            "Ora_status:isOnStatus",
             function(bool)
                 if bool then
                     ShowNotification("Test Cocaine : ~g~Positif~s~")
@@ -88,7 +88,7 @@ function Police.Powder()
         local pedT = GetPlayerPed(player)
 
         TriggerServerCallback(
-            "atlantiss_status:isOnStatus",
+            "Ora_status:isOnStatus",
             function(bool)
                 if bool then
                     ShowNotification("Test Poudre : ~g~Positif~s~")
@@ -113,8 +113,8 @@ function Police.Crocheter()
         SetVehicleDoorsLocked(veh, 1)
         SetVehicleDoorsLockedForPlayer(veh, false)
         SetVehicleDoorsLockedForAllPlayers(veh, false)
-        if (Atlantiss.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, veh) end
-        TriggerPlayerEvent("Atlantiss::CE::Carjacking:LockState", -1, veh, 1)
+        if (Ora.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, veh) end
+        TriggerPlayerEvent("Ora::CE::Carjacking:LockState", -1, veh, 1)
         RageUI.Popup({message = "~g~Véhicule déverouillé"})
     end
 end
@@ -124,7 +124,7 @@ function Police.Immobiliser()
     if veh ~= 0 then
         SetVehicleUndriveable(veh, true)
         SetVehicleDoorsLockedForAllPlayers(veh, true)
-        TriggerPlayerEvent("Atlantiss::CE::Carjacking:LockState", -1, veh, 2)
+        TriggerPlayerEvent("Ora::CE::Carjacking:LockState", -1, veh, 2)
         RageUI.Popup({message = "~r~Vous avez immobilisé~s~ le véhicule"})
     end
 end
@@ -168,7 +168,7 @@ function Police.Bracelet()
 end
 InTracking = false
 function Police.ActivateTrack()
-    if Atlantiss.Service:isInService('police') then
+    if Ora.Service:isInService('police') then
         local c = GetVehicleClass(GetVehiclePedIsIn(PlayerPedId()))
         if c == 17 or c == 18 then
             if InTracking then
@@ -190,8 +190,8 @@ RegisterNetEvent("trackingRefresh")
 AddEventHandler(
     "trackingRefresh",
     function(t)
-        if Atlantiss.Service:isInService('police') then
-            if Atlantiss.Identity.Job:GetName() == "police" or Atlantiss.Identity.Job:GetName() == "lssd" then
+        if Ora.Service:isInService('police') then
+            if Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "lssd" then
                 for i = 1, #carBlips, 1 do
                     RemoveBlip(carBlips[i])
                 end
@@ -485,24 +485,24 @@ AddEventHandler("RemoveHandcuffs", function(data)
     local playerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity))
     local item = {name = "menottes", data = {}}
     TriggerServerEvent("player:Handcuff", playerId, false)
-    Atlantiss.Inventory:AddItem(item)
+    Ora.Inventory:AddItem(item)
 end)
 
 RegisterNetEvent("HancuffPlayer")
 AddEventHandler("HancuffPlayer", function(data)
     local playerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity))
-    Atlantiss.Inventory:RemoveFirstItem('menottes')
+    Ora.Inventory:RemoveFirstItem('menottes')
     TriggerServerEvent("player:Handcuff", playerId, true)
 end)
 
 function Police.HandcuffPly()
-    local count = Atlantiss.Inventory:GetItemCount("menottes")
+    local count = Ora.Inventory:GetItemCount("menottes")
     if count > 0 then
         local playerId = GetPlayerServerIdInDirection(5.0)
         if (playerId ~= false) then
             local isHandcuff = IsPlyHandcuff(playerId)
             if not isHandcuff then
-                Atlantiss.Inventory:RemoveFirstItem('menottes')
+                Ora.Inventory:RemoveFirstItem('menottes')
                 TriggerServerEvent("player:Handcuff", playerId, true)
             else
                 RageUI.Popup({message = "~b~Ce joueur est déjà menotté"})
@@ -552,8 +552,8 @@ function Police.AuthorizeLicence()
     local target = GetPlayerServerIdInDirection(5.0)
 
     if (target) then
-        TriggerPlayerEvent("Atlantiss::CE::NpcJobs:DrivingSchool::SetDB", target, 0)
-        RageUI.Popup({message = string.format("~b~Vous avez autorisé un repassage de permis à %s", Atlantiss.Identity:GetFullname(target))})
+        TriggerPlayerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", target, 0)
+        RageUI.Popup({message = string.format("~b~Vous avez autorisé un repassage de permis à %s", Ora.Identity:GetFullname(target))})
     end
 end
 
@@ -604,11 +604,11 @@ function Police.ON()
     Started = true
 
     Citizen.CreateThread(function()
-        while (Atlantiss.Player.HasLoaded == false) do
+        while (Ora.Player.HasLoaded == false) do
             Wait(50)
         end
         
-        if (Atlantiss.Identity:GetMyGroup() ~= "superadmin") then
+        if (Ora.Identity:GetMyGroup() ~= "superadmin") then
             return
         end
 
@@ -672,17 +672,17 @@ function Police.ON()
                         ShowNotification("~b~Photo prise !")
 
                         exports["screenshot-basic"]:requestScreenshotUpload(
-                            "http://picture.atlantiss-rp.com/index.php",
+                            "http://picture.Ora-rp.com/index.php",
                             "identity",
                             function(data)
                                 local resp = json.decode(data)
-                                for i = 1, #Atlantiss.Inventory.Data["identity"], 1 do
-                                    if Atlantiss.Inventory.Data["identity"][i].id == currCarte then
-                                        Atlantiss.Inventory.Data["identity"][i].data.identity.face_picutre = resp.url
-                                        --TriggerServerEvent("inventory:editData",Atlantiss.Inventory.Data["identity"][i].id,Atlantiss.Inventory.Data["identity"][i].data)
+                                for i = 1, #Ora.Inventory.Data["identity"], 1 do
+                                    if Ora.Inventory.Data["identity"][i].id == currCarte then
+                                        Ora.Inventory.Data["identity"][i].data.identity.face_picutre = resp.url
+                                        --TriggerServerEvent("inventory:editData",Ora.Inventory.Data["identity"][i].id,Ora.Inventory.Data["identity"][i].data)
                                         TriggerServerEvent(
                                             "identity:editPic",
-                                            Atlantiss.Inventory.Data["identity"][i].data.identity.uuid,
+                                            Ora.Inventory.Data["identity"][i].data.identity.uuid,
                                             resp.url
                                         )
                                     end
@@ -700,7 +700,7 @@ function Police.ON()
                     RageUI.DrawContent(
                         {header = false, glare = false},
                         function()
-                            if Atlantiss.Inventory.Data["identity"] == nil or #Atlantiss.Inventory.Data["identity"] == 0 then
+                            if Ora.Inventory.Data["identity"] == nil or #Ora.Inventory.Data["identity"] == 0 then
                                 RageUI.Button(
                                     "Vide",
                                     nil,
@@ -712,9 +712,9 @@ function Police.ON()
                                     end
                                 )
                             end
-                            if Atlantiss.Inventory.Data["identity"] ~= nil then
-                                for i = 1, #Atlantiss.Inventory.Data["identity"], 1 do
-                                    local v = Atlantiss.Inventory.Data["identity"][i]
+                            if Ora.Inventory.Data["identity"] ~= nil then
+                                for i = 1, #Ora.Inventory.Data["identity"], 1 do
+                                    local v = Ora.Inventory.Data["identity"][i]
                                     local data = v.data.identity
                                     if data == nil then
                                         data = {}
@@ -865,9 +865,9 @@ function Police.ON()
                         {header = false, glare = false},
                         function()
                             if (
-								(Atlantiss.Inventory.Data["permis-conduire"] == nil or #Atlantiss.Inventory.Data["permis-conduire"] == 0) and
-								(Atlantiss.Inventory.Data["permis-conduire-moto"] == nil or #Atlantiss.Inventory.Data["permis-conduire-moto"] == 0) and
-								(Atlantiss.Inventory.Data["permis-conduire-pl"] == nil or #Atlantiss.Inventory.Data["permis-conduire-pl"] == 0)
+								(Ora.Inventory.Data["permis-conduire"] == nil or #Ora.Inventory.Data["permis-conduire"] == 0) and
+								(Ora.Inventory.Data["permis-conduire-moto"] == nil or #Ora.Inventory.Data["permis-conduire-moto"] == 0) and
+								(Ora.Inventory.Data["permis-conduire-pl"] == nil or #Ora.Inventory.Data["permis-conduire-pl"] == 0)
 							) then
                                 RageUI.Button(
                                     "Vide",
@@ -881,9 +881,9 @@ function Police.ON()
                                 )
                             end
 
-                            if Atlantiss.Inventory.Data["permis-conduire"] ~= nil then
-                                for i = 1, #Atlantiss.Inventory.Data["permis-conduire"], 1 do
-                                    local v = Atlantiss.Inventory.Data["permis-conduire"][i]
+                            if Ora.Inventory.Data["permis-conduire"] ~= nil then
+                                for i = 1, #Ora.Inventory.Data["permis-conduire"], 1 do
+                                    local v = Ora.Inventory.Data["permis-conduire"][i]
                                     local data = v.data
                                     local label = data.identity.first_name.." "..data.identity.last_name
 
@@ -925,9 +925,9 @@ function Police.ON()
                                 end
                             end
 
-                            if Atlantiss.Inventory.Data["permis-conduire-moto"] ~= nil then
-                                for i = 1, #Atlantiss.Inventory.Data["permis-conduire-moto"], 1 do
-                                    local v = Atlantiss.Inventory.Data["permis-conduire-moto"][i]
+                            if Ora.Inventory.Data["permis-conduire-moto"] ~= nil then
+                                for i = 1, #Ora.Inventory.Data["permis-conduire-moto"], 1 do
+                                    local v = Ora.Inventory.Data["permis-conduire-moto"][i]
                                     local data = v.data
                                     local label = data.identity.first_name.." "..data.identity.last_name
                                     
@@ -951,9 +951,9 @@ function Police.ON()
                                 end
                             end
 
-                            if Atlantiss.Inventory.Data["permis-conduire-pl"] ~= nil then
-                                for i = 1, #Atlantiss.Inventory.Data["permis-conduire-pl"], 1 do
-                                    local v = Atlantiss.Inventory.Data["permis-conduire-pl"][i]
+                            if Ora.Inventory.Data["permis-conduire-pl"] ~= nil then
+                                for i = 1, #Ora.Inventory.Data["permis-conduire-pl"], 1 do
+                                    local v = Ora.Inventory.Data["permis-conduire-pl"][i]
                                     local data = v.data
                                     local label = data.identity.first_name.." "..data.identity.last_name
 
@@ -998,7 +998,7 @@ function Police.ON()
                                 if first_name ~= "" and last_name ~= "" then
                                     RageUI.CloseAll()
                                     local items = {name = "hunting_license", label = first_name.." "..last_name, data = {uid = "LS-" .. Random(99999999), identity = {last_name = last_name, first_name = first_name, face_picture = "N/A"}}}
-                                    Atlantiss.Inventory:AddItem(items)
+                                    Ora.Inventory:AddItem(items)
                                 else
                                     ShowNotification("~r~Veuillez remplir tous les champs")
                                 end
@@ -1163,7 +1163,7 @@ function spawnLightbar(lightbarModel)
             Citizen.Wait(100)
         end
         local coords = GetEntityCoords(player)
-        newVeh = Atlantiss.World.Vehicle:Create(vehiclehash1, {x = coords.x, y = coords.y, z = coords.z}, GetEntityHeading(PlayerPedId()))
+        newVeh = Ora.World.Vehicle:Create(vehiclehash1, {x = coords.x, y = coords.y, z = coords.z}, GetEntityHeading(PlayerPedId()))
         --newVeh = CreateVehicle(vehiclehash1, coords.x, coords.y, coords.z, GetEntityHeading(PlayerPedId()), true, 0)
         SetEntityCollision(newVeh, false, false)
         SetVehicleDoorsLocked(newVeh, 2)
@@ -1419,7 +1419,7 @@ function Clef()
                         },
                         label = k
                     }
-                    Atlantiss.Inventory:AddItem(items)
+                    Ora.Inventory:AddItem(items)
                 else
                     ShowNotification("~r~Véhicule inexistant")
                 end
@@ -1443,7 +1443,7 @@ function CarteGrise()
                         x = v.uuid
                     end
                     items = {name = "carte_grise", data = {plate = k, model = _t.label, identity = x}, label = k}
-                    Atlantiss.Inventory:AddItem(items)
+                    Ora.Inventory:AddItem(items)
                 end
             end,
             k
@@ -1469,9 +1469,9 @@ function CGNvxProprioPlyr()
                 if foundPly then
                     if foundPlt then
                         if isUpdated then
-                            Atlantiss.Inventory:AddItem({name = "carte_grise", data = {plate = vhl.plate, model = vhl.label, identity = {first_name = ply.first_name, last_name = ply.last_name}}, label = vhl.plate})
+                            Ora.Inventory:AddItem({name = "carte_grise", data = {plate = vhl.plate, model = vhl.label, identity = {first_name = ply.first_name, last_name = ply.last_name}}, label = vhl.plate})
                             TriggerServerEvent(
-                                "atlantiss:sendToDiscord",
+                                "Ora:sendToDiscord",
                                 36,
                                 string.format("A changé le véhicule %s avec la plaque %s de propriétaire pour %s %s", vhl.label, vhl.plate, ply.first_name, ply.last_name)
                             )
@@ -1497,7 +1497,7 @@ function CGNvxProprioPlyrID(id)
     local plate = tostring(KeyboardInput("Plaque ", nil, 8))
     if (plate ~= nil) then
         TriggerServerCallback(
-            "Atlantiss::SE::Identity:GetIdentity",
+            "Ora::SE::Identity:GetIdentity",
             function(player)
                 if (player.first_name and player.last_name) then
                     TriggerServerCallback(
@@ -1506,9 +1506,9 @@ function CGNvxProprioPlyrID(id)
                             if (foundPly) then
                                 if (foundPlt) then
                                     if (isUpdated) then
-                                        Atlantiss.Inventory:AddItem({name = "carte_grise", data = {plate = vhl.plate, model = vhl.label, identity = {first_name = ply.first_name, last_name = ply.last_name}}, label = vhl.plate})
+                                        Ora.Inventory:AddItem({name = "carte_grise", data = {plate = vhl.plate, model = vhl.label, identity = {first_name = ply.first_name, last_name = ply.last_name}}, label = vhl.plate})
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             36,
                                             string.format("A changé le véhicule %s avec la plaque %s de propriétaire pour %s %s", vhl.label, vhl.plate, ply.first_name, ply.last_name)
                                         )
@@ -1748,9 +1748,9 @@ Citizen.CreateThread(
                                                 function(foundPlt, vhl, isUpdated)
                                                     if foundPlt then
                                                         if isUpdated then
-                                                            Atlantiss.Inventory:AddItem({name = "carte_grise", data = {plate = vhl.plate, model = vhl.label, identity = k}, label = vhl.plate})
+                                                            Ora.Inventory:AddItem({name = "carte_grise", data = {plate = vhl.plate, model = vhl.label, identity = k}, label = vhl.plate})
                                                             TriggerServerEvent(
-                                                                "atlantiss:sendToDiscord",
+                                                                "Ora:sendToDiscord",
                                                                 36,
                                                                 string.format("A changé le véhicule %s avec la plaque %s de propriétaire pour l'entreprise %s", vhl.label, vhl.plate, k)
                                                             )
@@ -1888,9 +1888,9 @@ function Police.CutMenottes()
     if (playerId ~= false) then
         local isHandcuff = IsPlyHandcuff(playerId)
         if isHandcuff then
-            if Atlantiss.Identity.Job:GetName() == "police" or Atlantiss.Identity.Job:GetName() == "lssd" then
+            if Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "lssd" then
                 TriggerServerEvent("player:Handcuff", playerId, false)
-                Atlantiss.Inventory:AddItem(item)
+                Ora.Inventory:AddItem(item)
             else
                 TriggerServerEvent("player:Handcuff", playerId, false)
             end
@@ -1907,7 +1907,7 @@ function Police.PutPortWeapon()
         local txtt = KeyboardInput("Numéro de série", nil, 2)
 
         items = {name = "weapon_licences", data = {serial = txtt}}
-        Atlantiss.Inventory:AddItem(items)
+        Ora.Inventory:AddItem(items)
         ShowNotification("~r~Vous avez créer un permis port d'arme avec le numéro de série ~y~" .. txtt)
     else
         RageUI.Popup({message = "~r~Aucun joueur proche"})

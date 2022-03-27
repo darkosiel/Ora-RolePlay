@@ -72,13 +72,13 @@ Citizen.CreateThread(
                   )
                   local propertyType = value.property_type
 
-                  TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", value.organisation_id, "~h~Commande #" .. value.id .. "~h~ est prête. Rendez vous à votre dépot pour la récupérer")
+                  TriggerEvent("Ora::Illegal:sendMessageToOrga", value.organisation_id, "~h~Commande #" .. value.id .. "~h~ est prête. Rendez vous à votre dépot pour la récupérer")
                   if (IllegalLabsAndWarehouse.IsDrugType(propertyType)) then
-                    TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", value.organisation_id, "~h~LABO DE DROGUE " .. value.property_name .. "~h~")
-                    TriggerEvent("atlantiss:sendToDiscordFromServer", 999999, 21, "[PROPRIETE " .. value.property_name .. "]\nla commande d'ingrédients est prête à être récupérée", "info")
+                    TriggerEvent("Ora::Illegal:sendMessageToOrga", value.organisation_id, "~h~LABO DE DROGUE " .. value.property_name .. "~h~")
+                    TriggerEvent("Ora:sendToDiscordFromServer", 999999, 21, "[PROPRIETE " .. value.property_name .. "]\nla commande d'ingrédients est prête à être récupérée", "info")
                   else
-                    TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", value.organisation_id, "~h~DEPOT D'ARMES " .. value.property_name .. "~h~")
-                    TriggerEvent("atlantiss:sendToDiscordFromServer", 999999, 22, "[PROPRIETE " .. value.property_name .. "]\nla commande d'armes est prête à être récupérée", "info")
+                    TriggerEvent("Ora::Illegal:sendMessageToOrga", value.organisation_id, "~h~DEPOT D'ARMES " .. value.property_name .. "~h~")
+                    TriggerEvent("Ora:sendToDiscordFromServer", 999999, 22, "[PROPRIETE " .. value.property_name .. "]\nla commande d'armes est prête à être récupérée", "info")
                   end
 
               end
@@ -102,7 +102,7 @@ Citizen.CreateThread(
                         ['@updateId'] = value.id
                       }
                   )
-                  TriggerEvent("atlantiss:sendToDiscordFromServer", 999999, 21, "[PROPRIETE " .. value.property_name .. "]\nLa drogue est désormais prête à être récupérée", "info")
+                  TriggerEvent("Ora:sendToDiscordFromServer", 999999, 21, "[PROPRIETE " .. value.property_name .. "]\nLa drogue est désormais prête à être récupérée", "info")
               end
           end
 
@@ -110,9 +110,9 @@ Citizen.CreateThread(
   end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:ChangeOwnerOfProperty")
+RegisterServerEvent("Ora::Illegal:ChangeOwnerOfProperty")
 AddEventHandler(
-    "Atlantiss::Illegal:ChangeOwnerOfProperty",
+    "Ora::Illegal:ChangeOwnerOfProperty",
     function(data)
         local propertyId = data.property_id
         local previousOrganisationId = data.old_owner
@@ -125,19 +125,19 @@ AddEventHandler(
               ['@newOrganisationId'] = newOrganisationId
             },
             function (affectedRows)
-                TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", newOrganisationId, "Vous avez désormais accès a la propriété.")
-                TriggerEvent("Atlantiss::Illegal:setupOrgaForAllClient", previousOrganisationId)
-                TriggerEvent("Atlantiss::Illegal:setupOrgaForAllClient", newOrganisationId)
-                TriggerEvent("atlantiss:sendToDiscordFromServer", 999999, 23, "[PROPRIETE #" .. data.property_id .. "]\nLa propriété a été retiré a la faction " .. data.old_owner .. " et donné à la faction " .. data.new_owner, "info")
+                TriggerEvent("Ora::Illegal:sendMessageToOrga", newOrganisationId, "Vous avez désormais accès a la propriété.")
+                TriggerEvent("Ora::Illegal:setupOrgaForAllClient", previousOrganisationId)
+                TriggerEvent("Ora::Illegal:setupOrgaForAllClient", newOrganisationId)
+                TriggerEvent("Ora:sendToDiscordFromServer", 999999, 23, "[PROPRIETE #" .. data.property_id .. "]\nLa propriété a été retiré a la faction " .. data.old_owner .. " et donné à la faction " .. data.new_owner, "info")
             end
         )
 
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:ChangeOwnerOfPropertyByPolice")
+RegisterServerEvent("Ora::Illegal:ChangeOwnerOfPropertyByPolice")
 AddEventHandler(
-    "Atlantiss::Illegal:ChangeOwnerOfPropertyByPolice",
+    "Ora::Illegal:ChangeOwnerOfPropertyByPolice",
     function(data)
         local propertyId = data.property_id
         local previousOrganisationId = data.old_owner
@@ -150,20 +150,20 @@ AddEventHandler(
               ['@newOrganisationId'] = newOrganisationId
             },
             function (affectedRows)
-                TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", newOrganisationId, "Vous avez enfoncé la porte d'une propriété douteuse.")
-                TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", previousOrganisationId, "Une caméra vous indique que la police perquisitionne une de vos propriété.")
-                TriggerEvent("Atlantiss::Illegal:setupOrgaForAllClient", previousOrganisationId)
-                TriggerEvent("Atlantiss::Illegal:setupOrgaForAllClient", newOrganisationId)
-                TriggerEvent("atlantiss:sendToDiscordFromServer", 999999, 23, "[POLICE - PROPRIETE #" .. data.property_id .. "]\nLa propriété a été retiré a la faction " .. data.old_owner .. " et donné à la faction " .. data.new_owner .. " - Perqusition police", "info")
+                TriggerEvent("Ora::Illegal:sendMessageToOrga", newOrganisationId, "Vous avez enfoncé la porte d'une propriété douteuse.")
+                TriggerEvent("Ora::Illegal:sendMessageToOrga", previousOrganisationId, "Une caméra vous indique que la police perquisitionne une de vos propriété.")
+                TriggerEvent("Ora::Illegal:setupOrgaForAllClient", previousOrganisationId)
+                TriggerEvent("Ora::Illegal:setupOrgaForAllClient", newOrganisationId)
+                TriggerEvent("Ora:sendToDiscordFromServer", 999999, 23, "[POLICE - PROPRIETE #" .. data.property_id .. "]\nLa propriété a été retiré a la faction " .. data.old_owner .. " et donné à la faction " .. data.new_owner .. " - Perqusition police", "info")
             end
         )
 
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:updateProductionLevel")
+RegisterServerEvent("Ora::Illegal:updateProductionLevel")
 AddEventHandler(
-    "Atlantiss::Illegal:updateProductionLevel",
+    "Ora::Illegal:updateProductionLevel",
     function(data)
         local _source = source
         local newLimitations = IllegalLabsAndWarehouse.ApplyProductionToLimitation(data.PROPERTY.business_id, data.PROPERTY.limitation, data.PROPERTY.type, data.LEVEL)
@@ -177,16 +177,16 @@ AddEventHandler(
             }
         )
 
-        TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", data.PROPERTY.organisation_id, "La propriété ~h~" .. data.PROPERTY.name .. "~h~ est désormais en production niveau : ".. data.LEVEL ..".")
-        TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", data.PROPERTY.organisation_id)
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, "[PROPRIETE " .. data.PROPERTY.name .. "]\nLa propriété est passé en production niveau " .. data.LEVEL, "info")
+        TriggerEvent("Ora::Illegal:sendMessageToOrga", data.PROPERTY.organisation_id, "La propriété ~h~" .. data.PROPERTY.name .. "~h~ est désormais en production niveau : ".. data.LEVEL ..".")
+        TriggerEvent("Ora::Illegal:updateOrgaForAllClient", data.PROPERTY.organisation_id)
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, "[PROPRIETE " .. data.PROPERTY.name .. "]\nLa propriété est passé en production niveau " .. data.LEVEL, "info")
 
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:updateSecurityLevel")
+RegisterServerEvent("Ora::Illegal:updateSecurityLevel")
 AddEventHandler(
-    "Atlantiss::Illegal:updateSecurityLevel",
+    "Ora::Illegal:updateSecurityLevel",
     function(data)
         local _source = source
         
@@ -198,14 +198,14 @@ AddEventHandler(
             }
         )
 
-        TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", data.PROPERTY.organisation_id, "La propriété ~h~" .. data.PROPERTY.name .. "~h~ est désormais en sécurité niveau : ".. data.LEVEL ..".")
-        TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", data.PROPERTY.organisation_id)
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 23, "[PROPRIETE " .. data.PROPERTY.name .. "]\nLa propriété est passé en securité niveau " .. data.LEVEL, "info")
+        TriggerEvent("Ora::Illegal:sendMessageToOrga", data.PROPERTY.organisation_id, "La propriété ~h~" .. data.PROPERTY.name .. "~h~ est désormais en sécurité niveau : ".. data.LEVEL ..".")
+        TriggerEvent("Ora::Illegal:updateOrgaForAllClient", data.PROPERTY.organisation_id)
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 23, "[PROPRIETE " .. data.PROPERTY.name .. "]\nLa propriété est passé en securité niveau " .. data.LEVEL, "info")
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:retrieveProductionFromWorkplaceQueue")
-AddEventHandler("Atlantiss::Illegal:retrieveProductionFromWorkplaceQueue",function(propertyWokplaceObjectAsJson)
+RegisterServerEvent("Ora::Illegal:retrieveProductionFromWorkplaceQueue")
+AddEventHandler("Ora::Illegal:retrieveProductionFromWorkplaceQueue",function(propertyWokplaceObjectAsJson)
     local _source = source
     local propertyWokplaceObject = json.decode(propertyWokplaceObjectAsJson)
 
@@ -219,14 +219,14 @@ AddEventHandler("Atlantiss::Illegal:retrieveProductionFromWorkplaceQueue",functi
     )
 
     if (organisationPropertyWorkqueue[1] == nil) then
-        TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Cette production a déjà été recupérée par quelqu'un d'autre.~s~")
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, "[PROPRIETE " .. propertyWokplaceObject.PROPERTY.name .. "]\nTentative de récupération d'un contenu déjà délivré ("..  propertyWokplaceObject.WORKPLACE_ID ..")", "error")
+        TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Cette production a déjà été recupérée par quelqu'un d'autre.~s~")
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, "[PROPRIETE " .. propertyWokplaceObject.PROPERTY.name .. "]\nTentative de récupération d'un contenu déjà délivré ("..  propertyWokplaceObject.WORKPLACE_ID ..")", "error")
     end
 
     if (organisationPropertyWorkqueue[1] ~= nil) then
         if (organisationPropertyWorkqueue[1].status ~= "waiting_delivery") then
-            TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Cette production a déjà été recupérée par quelqu'un d'autre.~s~")
-            TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, "[PROPRIETE " .. propertyWokplaceObject.PROPERTY.name .. "]\nTentative de récupération d'un contenu déjà délivré ("..  propertyWokplaceObject.WORKPLACE_ID ..")", "error")
+            TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Cette production a déjà été recupérée par quelqu'un d'autre.~s~")
+            TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, "[PROPRIETE " .. propertyWokplaceObject.PROPERTY.name .. "]\nTentative de récupération d'un contenu déjà délivré ("..  propertyWokplaceObject.WORKPLACE_ID ..")", "error")
         else
             local production = json.decode(organisationPropertyWorkqueue[1].production)
             MySQL.Async.execute(
@@ -241,9 +241,9 @@ AddEventHandler("Atlantiss::Illegal:retrieveProductionFromWorkplaceQueue",functi
                         )
                     end
 
-                    TriggerClientEvent("Atlantiss::CE::Inventory:AddItems", _source, sendItems)
-                    TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~g~Vous avez récupéré ".. production.count .."x pochons de drogue.~s~")
-                    TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, "[PROPRIETE " .. propertyWokplaceObject.PROPERTY.name .. "]\nRécupération de ".. production.count .."x pochons de drogue", "info")
+                    TriggerClientEvent("Ora::CE::Inventory:AddItems", _source, sendItems)
+                    TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~g~Vous avez récupéré ".. production.count .."x pochons de drogue.~s~")
+                    TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, "[PROPRIETE " .. propertyWokplaceObject.PROPERTY.name .. "]\nRécupération de ".. production.count .."x pochons de drogue", "info")
                 end
             )
         end
@@ -251,8 +251,8 @@ AddEventHandler("Atlantiss::Illegal:retrieveProductionFromWorkplaceQueue",functi
 
 end)
 
-RegisterServerEvent("Atlantiss::Illegal:createPropertyWorkplaceQueue")
-AddEventHandler("Atlantiss::Illegal:createPropertyWorkplaceQueue",function(propertyWokplaceObjectAsJson)
+RegisterServerEvent("Ora::Illegal:createPropertyWorkplaceQueue")
+AddEventHandler("Ora::Illegal:createPropertyWorkplaceQueue",function(propertyWokplaceObjectAsJson)
     local _source = source
     local propertyWokplaceObject = json.decode(propertyWokplaceObjectAsJson)
 
@@ -266,8 +266,8 @@ AddEventHandler("Atlantiss::Illegal:createPropertyWorkplaceQueue",function(prope
 
     if (organisationProperty[1] ~= nil) then
         if (organisationProperty[1].resultsCount > 0) then
-            TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Impossible de lancer la production. Il y a déjà une production en cours~s~")
-            TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, "[PROPRIETE #" .. propertyWokplaceObject.PROPERTY.name .. "]\nTentative de lancement d'une production alors qu'une production est déjà en cours (" .. propertyWokplaceObject.WORKPLACE_ID .. ")", "error")
+            TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Impossible de lancer la production. Il y a déjà une production en cours~s~")
+            TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, "[PROPRIETE #" .. propertyWokplaceObject.PROPERTY.name .. "]\nTentative de lancement d'une production alors qu'une production est déjà en cours (" .. propertyWokplaceObject.WORKPLACE_ID .. ")", "error")
         else
             local newId = MySQL.Sync.insert(
                 "INSERT INTO organisation_property_workqueue (organisation_id, property_id, workplace_id, production, status, created_at, scheduled_at) VALUES (@organisation_id, @property_id, @workplace_id, @production, @status, @created_at, @scheduled_at)",
@@ -283,18 +283,18 @@ AddEventHandler("Atlantiss::Illegal:createPropertyWorkplaceQueue",function(prope
             )
 
             for removeItemIndex, removeItemValue in pairs(propertyWokplaceObject.NEEDED_MATERIALS) do
-                TriggerClientEvent("Atlantiss::CE::Inventory:RemoveAnyItemsWithName", _source, removeItemValue.name, removeItemValue.count)
+                TriggerClientEvent("Ora::CE::Inventory:RemoveAnyItemsWithName", _source, removeItemValue.name, removeItemValue.count)
             end
 
-            TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~g~Production lancée. Fin estimée dans : ".. propertyWokplaceObject.TIME .." minutes~s~")
-            TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, "[PROPRIETE #" .. propertyWokplaceObject.PROPERTY.name .. "]\nLancement d'une production de drogue pour une durée de " ..  propertyWokplaceObject.TIME .. " minutes (" .. propertyWokplaceObject.WORKPLACE_ID .. ")", "info")
+            TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~g~Production lancée. Fin estimée dans : ".. propertyWokplaceObject.TIME .." minutes~s~")
+            TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, "[PROPRIETE #" .. propertyWokplaceObject.PROPERTY.name .. "]\nLancement d'une production de drogue pour une durée de " ..  propertyWokplaceObject.TIME .. " minutes (" .. propertyWokplaceObject.WORKPLACE_ID .. ")", "info")
         end
     end
 
 end)
 
-RegisterServerEvent("Atlantiss:Illegal:registerOrder")
-AddEventHandler("Atlantiss:Illegal:registerOrder",function(quoteObject)
+RegisterServerEvent("Ora:Illegal:registerOrder")
+AddEventHandler("Ora:Illegal:registerOrder",function(quoteObject)
     local _source = source
     local orderDetails = {}
     local organisationProperty = MySQL.Sync.fetchAll(
@@ -325,8 +325,8 @@ AddEventHandler("Atlantiss:Illegal:registerOrder",function(quoteObject)
         end
     
         if (canBeOrdered == false) then
-            TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Une erreur s'est produite lors de votre commande. (".. quoteObject.TOTAL_PRICE .. "$)~s~")
-            TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~r~Veuillez ouvrir un ticket~s~")
+            TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Une erreur s'est produite lors de votre commande. (".. quoteObject.TOTAL_PRICE .. "$)~s~")
+            TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~r~Veuillez ouvrir un ticket~s~")
             return 
         end
     
@@ -358,18 +358,18 @@ AddEventHandler("Atlantiss:Illegal:registerOrder",function(quoteObject)
             }
     )
 
-    TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~g~Votre commande d'un montant de ~h~".. quoteObject.TOTAL_PRICE .."$~h~ est validée~s~")
-    TriggerClientEvent("Atlantiss::Illegal:ShowNotification", _source, "~b~Votre faction sera contactée d'ici les 30 prochaines minutes~s~")
+    TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~g~Votre commande d'un montant de ~h~".. quoteObject.TOTAL_PRICE .."$~h~ est validée~s~")
+    TriggerClientEvent("Ora::Illegal:ShowNotification", _source, "~b~Votre faction sera contactée d'ici les 30 prochaines minutes~s~")
 
     if (IllegalLabsAndWarehouse.IsDrugType(quoteObject.PROPERTY.type)) then
-        TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", quoteObject.PROPERTY.organisation_id, "Commande d'ingrédients d'une valeur de ~h~" .. quoteObject.TOTAL_PRICE .. "$~h~ effectuée.")
+        TriggerEvent("Ora::Illegal:sendMessageToOrga", quoteObject.PROPERTY.organisation_id, "Commande d'ingrédients d'une valeur de ~h~" .. quoteObject.TOTAL_PRICE .. "$~h~ effectuée.")
         local message = "[PROPRIETE #" .. quoteObject.PROPERTY.name .. "]\nLancement d'une commande d'ingrédients de drogue (" .. quoteObject.TOTAL_PRICE .. "$)\n\nDétails commande : "
         for orderDetailIndex, orderDetailValue in pairs(orderDetails) do
             if orderDetailValue.qty > 0 then
                 message = message .. "\n-" ..  orderDetailIndex .. " : " .. orderDetailValue.qty .. "x / " .. orderDetailValue.price .. "$"
             end
         end
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 21, message, "info")
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 21, message, "info")
     else
         local message = "[PROPRIETE #" .. quoteObject.PROPERTY.name .. "]\nLancement d'une commande d'armes (" .. quoteObject.TOTAL_PRICE .. "$)\n\nDétails commande : "
         for orderDetailIndex, orderDetailValue in pairs(orderDetails) do
@@ -377,14 +377,14 @@ AddEventHandler("Atlantiss:Illegal:registerOrder",function(quoteObject)
                 message = message .. "\n-" ..  orderDetailIndex .. " : " .. orderDetailValue.qty .. "x / " .. orderDetailValue.price .. "$"
             end
         end
-        TriggerEvent("Atlantiss::Illegal:sendMessageToOrga", quoteObject.PROPERTY.organisation_id, "Commande d'armes d'une valeur de ~h~" .. quoteObject.TOTAL_PRICE .. "$~h~ effectuée.")
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 22, message, "info")
+        TriggerEvent("Ora::Illegal:sendMessageToOrga", quoteObject.PROPERTY.organisation_id, "Commande d'armes d'une valeur de ~h~" .. quoteObject.TOTAL_PRICE .. "$~h~ effectuée.")
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 22, message, "info")
     end
 
-    TriggerEvent("Atlantiss::Illegal:updateOrgaForAllClient", quoteObject.PROPERTY.organisation_id)
+    TriggerEvent("Ora::Illegal:updateOrgaForAllClient", quoteObject.PROPERTY.organisation_id)
 end)
 
-RegisterServerCallback("Atlantiss:Illegal:GetOrderHistoryByPropertyId", 
+RegisterServerCallback("Ora:Illegal:GetOrderHistoryByPropertyId", 
   function(source, cb, propertyId) 
       local orders = MySQL.Sync.fetchAll(
           "SELECT opo.*, op.type as property_type  FROM organisation_property_order AS opo INNER JOIN organisation_property AS op ON op.id = opo.property_id WHERE property_id = @propertyId ORDER BY id DESC",
@@ -419,7 +419,7 @@ RegisterServerCallback("Atlantiss:Illegal:GetOrderHistoryByPropertyId",
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:OrderCanBeDelivered", 
+RegisterServerCallback("Ora:Illegal:OrderCanBeDelivered", 
   function(source, cb, id) 
     local orders = MySQL.Sync.fetchAll(
         "SELECT * FROM organisation_property_order WHERE id = @id",
@@ -448,7 +448,7 @@ RegisterServerCallback("Atlantiss:Illegal:OrderCanBeDelivered",
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:GetWaitingOrderByPhoneNumber", 
+RegisterServerCallback("Ora:Illegal:GetWaitingOrderByPhoneNumber", 
   function(source, cb, phoneNumber) 
       local orders = MySQL.Sync.fetchAll(
           "SELECT opo.*, op.type as property_type FROM organisation_property_order AS opo INNER JOIN organisation_property AS op ON op.id = opo.property_id WHERE phone = @phoneNumber and status = @status LIMIT 1",
@@ -482,7 +482,7 @@ RegisterServerCallback("Atlantiss:Illegal:GetWaitingOrderByPhoneNumber",
 )
 
 
-RegisterServerCallback("Atlantiss:Illegal:GetPropertyByName", 
+RegisterServerCallback("Ora:Illegal:GetPropertyByName", 
   function(source, cb, name) 
 
     local properties = MySQL.Sync.fetchAll(
@@ -511,7 +511,7 @@ RegisterServerCallback("Atlantiss:Illegal:GetPropertyByName",
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:GetPropertyById", 
+RegisterServerCallback("Ora:Illegal:GetPropertyById", 
   function(source, cb, id) 
 
     local properties = MySQL.Sync.fetchAll(
@@ -540,7 +540,7 @@ RegisterServerCallback("Atlantiss:Illegal:GetPropertyById",
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:GetIllegalProperties", 
+RegisterServerCallback("Ora:Illegal:GetIllegalProperties", 
   function(source, cb) 
         local properties = MySQL.Sync.fetchAll(
             "SELECT * FROM organisation_property",
@@ -573,7 +573,7 @@ RegisterServerCallback("Atlantiss:Illegal:GetIllegalProperties",
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:verifyOrder", 
+RegisterServerCallback("Ora:Illegal:verifyOrder", 
   function(source, cb, quoteObject)
       local organisationProperty = MySQL.Sync.fetchAll(
           "SELECT * FROM organisation_property WHERE id = @propertyId",
@@ -602,7 +602,7 @@ RegisterServerCallback("Atlantiss:Illegal:verifyOrder",
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:GetWorkplaceQueueByPropertyIdAndWorkplaceId", 
+RegisterServerCallback("Ora:Illegal:GetWorkplaceQueueByPropertyIdAndWorkplaceId", 
   function(source, cb, arg)
       local propertyWorkplace = MySQL.Sync.fetchAll(
           "SELECT * FROM organisation_property_workqueue WHERE property_id = @propertyId AND workplace_id = @workplaceId",

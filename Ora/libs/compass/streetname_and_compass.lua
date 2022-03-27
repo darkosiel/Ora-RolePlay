@@ -2,12 +2,12 @@ local displayStreetName = false
 
 Citizen.CreateThread(
     function()
-        while Atlantiss.Player.HasLoaded == false do
+        while Ora.Player.HasLoaded == false do
             Wait(50)
         end
 
         while true do
-            if Atlantiss.Identity.Job:GetName() == "police" or Atlantiss.Identity.Job:GetName() == "lssd" or Atlantiss.Identity.Job:GetName() == "fib" then
+            if Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "lssd" or Ora.Identity.Job:GetName() == "fib" then
                 displayStreetName = true
             else
                 displayStreetName = false

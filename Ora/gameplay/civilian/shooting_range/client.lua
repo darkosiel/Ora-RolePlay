@@ -263,7 +263,7 @@ end
 local function createTarget()
   local rotation = 90
   local rdmTarget = Shooting_range.localization[zone].targetPos[math.random(#Shooting_range.localization[zone].targetPos)]
-  target = Atlantiss.World.Object:Create(Shooting_range.prop.hash, rdmTarget.pos, false, true, true)
+  target = Ora.World.Object:Create(Shooting_range.prop.hash, rdmTarget.pos, false, true, true)
   SetEntityRotation(target, rdmTarget.rotX, rdmTarget.rotY, rdmTarget.rotZ)
   while rotation > 0 and rotation <= 90 do
     rotation = rotation - 3.0

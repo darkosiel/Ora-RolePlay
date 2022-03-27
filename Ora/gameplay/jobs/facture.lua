@@ -58,9 +58,9 @@ AddEventHandler("facture:get", function(_facture)
                     if type == "money" then
                         if __facture.account ~= "gouvernement" and Jobs[__facture.account].isSelf then
                             TriggerServerCallback(
-                                "Atlantiss::SE::Money:AuthorizePayment", 
+                                "Ora::SE::Money:AuthorizePayment", 
                                 function(token)
-                                    TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = __facture.montant, SOURCE = "Paiement liquide Uber", LEGIT = true, ROUTING = __facture.source})
+                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = __facture.montant, SOURCE = "Paiement liquide Uber", LEGIT = true, ROUTING = __facture.source})
                                 end,
                                 {ROUTING = __facture.source}
                             )
@@ -70,13 +70,13 @@ AddEventHandler("facture:get", function(_facture)
                     else
                         if __facture.account ~= "gouvernement" and Jobs[__facture.account].isSelf then
                             TriggerServerCallback(
-                                "Atlantiss:addBankIfExists",
+                                "Ora:addBankIfExists",
                                 function(bool)
                                     if not bool then
                                         TriggerServerCallback(
-                                            "Atlantiss::SE::Money:AuthorizePayment", 
+                                            "Ora::SE::Money:AuthorizePayment", 
                                             function(token)
-                                                TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = __facture.montant, SOURCE = "Paiement transféré en liquide Uber", LEGIT = true, ROUTING = __facture.source})
+                                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = __facture.montant, SOURCE = "Paiement transféré en liquide Uber", LEGIT = true, ROUTING = __facture.source})
                                             end,
                                             {ROUTING = __facture.source}
                                         )
@@ -95,7 +95,7 @@ AddEventHandler("facture:get", function(_facture)
                 local method = type and type == "money" and "En liquide" or "Par CB" or "inconnu"
                 if __facture.source == nil then __facture.source = GetPlayerServerIdInDirection(5.0) end
 
-                TriggerServerEvent('atlantiss:logInvoice', __facture.account, __facture.title, __facture.source, __facture.montant, method)
+                TriggerServerEvent('Ora:logInvoice', __facture.account, __facture.title, __facture.source, __facture.montant, method)
                 TriggerServerEvent("business:SetProductivity", __facture.source, __facture.account, __facture.montant, true)
                 TriggerPlayerEvent("RageUI:Popup", __facture.source, {message="Le citoyen a bien payé la facture"})
                 RageUI.Popup({message="~g~Paiement accepté"})
@@ -103,7 +103,7 @@ AddEventHandler("facture:get", function(_facture)
         }
         KeySettings:Clear("keyboard", "E", "factureX")
 
-        -- if Atlantiss.Inventory.Data["bank_card"] == nil then
+        -- if Ora.Inventory.Data["bank_card"] == nil then
         --     dataonWait = {}
         --     return ShowNotification("~r~Vous n'avez pas de cartes bancaires")
         -- else
@@ -181,11 +181,11 @@ AddEventHandler("fake_facture:get", function(_facture)
             price = __facture.montant,
             account = __facture.account,
             fct = function()
-                TriggerServerEvent('business:AddFromTreasury', __facture.account, math.floor(Atlantiss.Jobs.Bleacher.Tax * __facture.montant))
+                TriggerServerEvent('business:AddFromTreasury', __facture.account, math.floor(Ora.Jobs.Bleacher.Tax * __facture.montant))
 
                 if __facture.source == nil then __facture.source = GetPlayerServerIdInDirection(5.0) end
 
-                TriggerServerEvent('atlantiss:logInvoice', __facture.account, __facture.title, __facture.source, __facture.montant, "En liquide")
+                TriggerServerEvent('Ora:logInvoice', __facture.account, __facture.title, __facture.source, __facture.montant, "En liquide")
                 TriggerServerEvent("business:SetProductivity", __facture.source, __facture.account, __facture.montant, true)
                 TriggerPlayerEvent("RageUI:Popup", __facture.source, {message = "Le citoyen a bien payé la facture"})
                 RageUI.Popup({message = "~g~Paiement accepté"})
@@ -193,7 +193,7 @@ AddEventHandler("fake_facture:get", function(_facture)
         }
         KeySettings:Clear("keyboard", "E", "factureX")
 
-        -- if Atlantiss.Inventory.Data["bank_card"] == nil then
+        -- if Ora.Inventory.Data["bank_card"] == nil then
         --     dataonWait = {}
         --     return ShowNotification("~r~Vous n'avez pas de cartes bancaires")
         -- else

@@ -5,11 +5,11 @@ local currentAppart = nil
 local weekRent = 1
 local realtorOnDuty = 0
 
-AtlantissProperties = AtlantissProperties or {}
-AtlantissProperties.LIST = {LOADED = false}
+OraProperties = OraProperties or {}
+OraProperties.LIST = {LOADED = false}
 local Exist = false
 local PosSS = {}
-local CoordsCamList = Atlantiss.Jobs.Immo:GetInteriors()
+local CoordsCamList = Ora.Jobs.Immo:GetInteriors()
 
 local zoneByGrids = {}
 local MYPOS = {}
@@ -19,8 +19,8 @@ local function EnterProperty()
     local property = CoordsCamList[currentProperty.indexx]
     local x, y, z = table.unpack(LocalPlayer().Pos)
     MYPOS = {x = x, y = y, z = z}
-    Atlantiss.World.Appart.CURRENT.Outside = LocalPlayer().Pos
-    Atlantiss.Player.SavedPos = {
+    Ora.World.Appart.CURRENT.Outside = LocalPlayer().Pos
+    Ora.Player.SavedPos = {
         x = x,
         y = y,
         z = z,
@@ -30,15 +30,15 @@ local function EnterProperty()
     Citizen.CreateThread(
         function()
             DoScreenFadeOut(100)
-            Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)
-            Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
+            Ora.Player:FreezePlayer(LocalPlayer().Ped, true)
+            Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
             while not IsScreenFadedOut() and not IsInteriorReady(GetInteriorAtCoords(property.entry.x, property.entry.y, property.entry.z)) do
                 Citizen.Wait(50)
             end
-            Atlantiss.Core:TeleportEntityTo(playerPed, vector3(property.entry.x, property.entry.y, property.entry.z), true)
+            Ora.Core:TeleportEntityTo(playerPed, vector3(property.entry.x, property.entry.y, property.entry.z), true)
             Wait(100)
-            Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
-            Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
+            Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
+            Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
             DoScreenFadeIn(100)
             DrawSub(propertyX.name, 5000)
             w = propertyX["capacity"]
@@ -48,7 +48,7 @@ end
 local function ExitProperty()
     outside = MYPOS
     local playerPed = LocalPlayer().Ped
-    Atlantiss.Player.SavedPos = {}
+    Ora.Player.SavedPos = {}
 
     if currentProperty ~= nil then
         if (CoordsCamList[currentProperty.indexx] ~= nil) then
@@ -59,29 +59,29 @@ local function ExitProperty()
     Citizen.CreateThread(
         function()
             DoScreenFadeOut(100)
-            Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)
-            Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
+            Ora.Player:FreezePlayer(LocalPlayer().Ped, true)
+            Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
 
             if outside == nil or outside.x == nil or outside.y == nil or outside.z == nil then
                 outside = {x = 254.29, y = -780.99, z = 30.57}
                 ShowNotification("~b~Votre localisation de départ n'a pas été trouvé. Vous serez TP au PC")
             end
             
-            Atlantiss.Core:TeleportEntityTo(playerPed, vector3(outside.x, outside.y, outside.z), true)
+            Ora.Core:TeleportEntityTo(playerPed, vector3(outside.x, outside.y, outside.z), true)
             Wait(100)
-            Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
-            Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
+            Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
+            Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
             DoScreenFadeIn(100)
         end
     )
     currentProperty = nil
-    Atlantiss.World.Appart.CURRENT.Property = nil
-    Atlantiss.VM:Set("CurrentProperty", {})
+    Ora.World.Appart.CURRENT.Property = nil
+    Ora.VM:Set("CurrentProperty", {})
 end
 
 local function Exit22()
     if (currentProperty == nil or currentProperty.name == nil) then
-        TriggerServerCallback("Atlantiss::SE::Instance:LeaveAllInstance", 
+        TriggerServerCallback("Ora::SE::Instance:LeaveAllInstance", 
             function(canLeave)
                 ExitProperty()
                 KeySettings:Clear("keyboard", "E", "Appart_")
@@ -90,7 +90,7 @@ local function Exit22()
             end
         )
     else
-        TriggerServerCallback("Atlantiss::SE::Instance:LeaveInstance", 
+        TriggerServerCallback("Ora::SE::Instance:LeaveInstance", 
             function(canLeave)
                 ExitProperty()
                 KeySettings:Clear("keyboard", "E", "Appart_")
@@ -124,26 +124,26 @@ local function Exit()
         RageUI.CloseAll()
     end
 
-    if (RageUI.Visible(RMenu:Get("appart","atlantiss_jobs_immo_sell"))) then
+    if (RageUI.Visible(RMenu:Get("appart","Ora_jobs_immo_sell"))) then
         RageUI.CloseAll()
     end
 
-    if (RageUI.Visible(RMenu:Get("appart","atlantiss_jobs_immo_information"))) then
+    if (RageUI.Visible(RMenu:Get("appart","Ora_jobs_immo_information"))) then
         RageUI.CloseAll()
     end
-    Atlantiss.Jobs.Immo.Menu.Property = nil
-    Atlantiss.VM:Set("CurrentProperty", nil)
+    Ora.Jobs.Immo.Menu.Property = nil
+    Ora.VM:Set("CurrentProperty", nil)
 end
 
 local function Open()
-    currentProperty = Atlantiss.World.Appart:GetById(currentAppart)
+    currentProperty = Ora.World.Appart:GetById(currentAppart)
     if (currentProperty == nil) then
         ShowNotification(string.format("Debug %s : %s", "Open", "La propriété " .. currentAppart .. " n'existe pas"))
         return
     end
 
-    Atlantiss.World.Appart.CURRENT.Property = currentProperty
-    Atlantiss.Jobs.Immo.Menu.Property = currentProperty
+    Ora.World.Appart.CURRENT.Property = currentProperty
+    Ora.Jobs.Immo.Menu.Property = currentProperty
     RMenu:Get("appart", "main"):SetTitle(currentProperty.name)
     RageUI.Visible(RMenu:Get("appart", "main"), true)
     KeySettings:Clear("keyboard", "E", "Appart")
@@ -172,9 +172,9 @@ local _Marker = {
 function SetupApparts()
     local CanSetup = false
 
-    if (Atlantiss.Identity:GetMyUuid() == nil) then
-        TriggerServerCallback("Atlantiss::SE::Identity:GetMyIdentity", function(data)
-            Atlantiss.Identity.List[GetPlayerServerId(PlayerId())] = data
+    if (Ora.Identity:GetMyUuid() == nil) then
+        TriggerServerCallback("Ora::SE::Identity:GetMyIdentity", function(data)
+            Ora.Identity.List[GetPlayerServerId(PlayerId())] = data
             CanSetup = true
         end)
     else
@@ -183,16 +183,16 @@ function SetupApparts()
 
     while (CanSetup == false) do Wait(0) end
 
-    for propertyKey, propertyValue in pairs(Atlantiss.World.Appart:GetList()) do
+    for propertyKey, propertyValue in pairs(Ora.World.Appart:GetList()) do
         local own = false
 
-        if Atlantiss.Identity:GetMyUuid() == propertyValue.owner then
+        if Ora.Identity:GetMyUuid() == propertyValue.owner then
             own = true
         end
 
         if not own and propertyValue.coowner ~= nil then
             for keyCoowner, valueCoowner in pairs(propertyValue.coowner) do
-                if Atlantiss.Identity:GetMyUuid() == valueCoowner then
+                if Ora.Identity:GetMyUuid() == valueCoowner then
                     own = true
                     break
                 end
@@ -259,13 +259,13 @@ local hasBeenStarted = false
 function refreshCurrentZones()
     local playerPed = LocalPlayer().Ped
     local entityCoords = LocalPlayer().Pos
-    local myZone = Atlantiss.Core:GetGridZoneId(entityCoords.x, entityCoords.y)
+    local myZone = Ora.Core:GetGridZoneId(entityCoords.x, entityCoords.y)
     hasBeenStarted = true
 end
 
 local currentZoneId = nil
 function manageMarkers(zoneId)
-    if (AtlantissProperties.LIST.LOADED == true) then
+    if (OraProperties.LIST.LOADED == true) then
         if (currentZoneId ~= zoneId) then
             currentZoneId = zoneId
 
@@ -306,7 +306,7 @@ Citizen.CreateThread(
             Citizen.Wait(1000 * 2)
             local playerPed = LocalPlayer().Ped
             local entityCoords = LocalPlayer().Pos
-            local gridZoneId = Atlantiss.Core:GetGridZoneId(entityCoords.x, entityCoords.y)
+            local gridZoneId = Ora.Core:GetGridZoneId(entityCoords.x, entityCoords.y)
             hasBeenStarted = true
             manageMarkers(gridZoneId)
         end
@@ -314,12 +314,12 @@ Citizen.CreateThread(
 )
 
 function StartEverything()
-    Atlantiss.Jobs.Immo:CreateExits()
-    Atlantiss.World.Appart:GetList()
-    AtlantissProperties.LIST.LOADED = true
+    Ora.Jobs.Immo:CreateExits()
+    Ora.World.Appart:GetList()
+    OraProperties.LIST.LOADED = true
 
-    for key, value in pairs(Atlantiss.World.Appart:GetList()) do
-        value.zoneId = Atlantiss.Core:GetGridZoneId(value.pos.x, value.pos.y)
+    for key, value in pairs(Ora.World.Appart:GetList()) do
+        value.zoneId = Ora.Core:GetGridZoneId(value.pos.x, value.pos.y)
         if (sectorizedProperties[value.zoneId] == nil) then
             sectorizedProperties[value.zoneId] = {}
         end
@@ -368,7 +368,7 @@ RegisterNetEvent("core:UpdateCoOwner")
 AddEventHandler(
     "core:UpdateCoOwner",
     function(id, uuid)
-        local propertyValue = Atlantiss.World.Appart:GetById(id)
+        local propertyValue = Ora.World.Appart:GetById(id)
         --local oldCoowners = propertyValue.coowner
 
         if (propertyValue == nil) then
@@ -380,7 +380,7 @@ AddEventHandler(
         local own = false
         if propertyValue.coowner ~= nil then
             for coownerId, coownerValue in pairs(propertyValue.coowner) do
-                if Atlantiss.Identity:GetMyUuid() == coownerValue then
+                if Ora.Identity:GetMyUuid() == coownerValue then
                     own = true
                     break
                 end
@@ -389,7 +389,7 @@ AddEventHandler(
 
         -- if oldCoowners ~= nil then
         --     for coownerId, coownerValue in pairs(oldCoowners) do
-        --         if Atlantiss.Identity:GetMyUuid() == coownerValue then
+        --         if Ora.Identity:GetMyUuid() == coownerValue then
         --             -- Delete blip/marker/zone etc
         --             break
         --         end
@@ -450,7 +450,7 @@ RegisterNetEvent("core:UpdateOwner")
 AddEventHandler(
     "core:UpdateOwner",
     function(id, uuid)
-        local propertyValue = Atlantiss.World.Appart:GetById(id)
+        local propertyValue = Ora.World.Appart:GetById(id)
     
         if (propertyValue == nil) then
             ShowNotification(string.format("Debug %s : %s", "core:UpdateOwner", "La propriété " .. id .. " n'existe pas"))
@@ -459,10 +459,10 @@ AddEventHandler(
 
 
         propertyValue.owner = uuid
-        Atlantiss.World.Appart:AddToList(propertyValue)
+        Ora.World.Appart:AddToList(propertyValue)
         local own = false
 
-        if Atlantiss.Identity:GetMyUuid() == propertyValue.owner then
+        if Ora.Identity:GetMyUuid() == propertyValue.owner then
             own = true
         end
 
@@ -518,10 +518,10 @@ RegisterNetEvent("core:updateloc2")
 AddEventHandler(
     "core:updateloc2",
     function(id, time)
-        local propertyValue = Atlantiss.World.Appart:GetById(id)
+        local propertyValue = Ora.World.Appart:GetById(id)
         if (propertyValue ~= nil) then
             propertyValue.time = time  
-            Atlantiss.World.Appart:AddToList(propertyValue)
+            Ora.World.Appart:AddToList(propertyValue)
         end
     end
 )
@@ -529,11 +529,11 @@ RegisterNetEvent("core:updateloc")
 AddEventHandler(
     "core:updateloc",
     function(id, uuid, time)
-        local propertyValue = Atlantiss.World.Appart:GetById(id)
+        local propertyValue = Ora.World.Appart:GetById(id)
         if (propertyValue ~= nil) then
             propertyValue.time = time  
             propertyValue.owner = uuid
-            Atlantiss.World.Appart:AddToList(propertyValue)
+            Ora.World.Appart:AddToList(propertyValue)
         end
     end
 )
@@ -542,7 +542,7 @@ AddEventHandler(
     "add:Appart",
     function(newAddedAppart)
         if (newAddedAppart.id ~= nil) then
-            local appart = Atlantiss.World.Appart:GetById(newAddedAppart.id)
+            local appart = Ora.World.Appart:GetById(newAddedAppart.id)
 
             if (appart == nil) then
                 ShowNotification(string.format("Debug %s : %s", "Open", "La propriété " .. newAddedAppart.id .. " n'existe pas"))
@@ -553,7 +553,7 @@ AddEventHandler(
             local size = 0.6
             local name = appart.name
 
-            if Atlantiss.Identity.Job:GetName() == "immo" or Atlantiss.Identity.Orga:GetName() == "immo" then
+            if Ora.Identity.Job:GetName() == "immo" or Ora.Identity.Orga:GetName() == "immo" then
                 coulour = 55
                 name = nil
                 size = 0.45
@@ -585,15 +585,15 @@ AddEventHandler(
 )
 
 function DeletePropr(id)
-    local propertyValue = Atlantiss.World.Appart:GetById(id)
+    local propertyValue = Ora.World.Appart:GetById(id)
     if (propertyValue ~= nil) then
         RageUI.CloseAll()
-        ShowNotification(string.format("La propriété ~g~%s~s~ a été supprimé", Atlantiss.Jobs.Immo.Menu.Property.name))
+        ShowNotification(string.format("La propriété ~g~%s~s~ a été supprimé", Ora.Jobs.Immo.Menu.Property.name))
         TriggerServerEvent("appart:remove", propertyValue.id)
         Marker:Remove(propertyValue.pos)
         Zone:Remove(propertyValue.pos)
-        Atlantiss.World.Appart:RemoveFromList(id)
-        Atlantiss.Jobs.Immo.Menu.Property = nil
+        Ora.World.Appart:RemoveFromList(id)
+        Ora.Jobs.Immo.Menu.Property = nil
     end
 end
 
@@ -607,8 +607,8 @@ function NoOwnerAppart()
             if Selected then
                 RageUI.CloseAll()
                 MYPOS = currentProperty.pos
-                Atlantiss.World.Appart.CURRENT.Outside = currentProperty.pos
-                TriggerServerCallback("Atlantiss::SE::Instance:EnterInstance", 
+                Ora.World.Appart.CURRENT.Outside = currentProperty.pos
+                TriggerServerCallback("Ora::SE::Instance:EnterInstance", 
                     function(canEnter)
                         EnterProperty()
                     end,
@@ -626,7 +626,7 @@ function NoOwnerAppart()
         function(_, _, Selected)
         end
     )
-    if Atlantiss.Identity.Job:GetName() == "immo" then
+    if Ora.Identity.Job:GetName() == "immo" then
         RageUI.CenterButton(
             "~b~↓↓ ~s~Actions agent immo ~b~↓↓",
             nil,
@@ -639,27 +639,27 @@ function NoOwnerAppart()
         RageUI.Button(
             string.format("Louer/Prolonger"),
             nil,
-            {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Atlantiss.Jobs.Immo.Menu.Property.price/50) .. "$/sem")},
+            {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Ora.Jobs.Immo.Menu.Property.price/50) .. "$/sem")},
             true,
             function(_, Ac, Selected)
                 if (Selected) then
-                    Atlantiss.Jobs.Immo:ResetSellAndRent()
+                    Ora.Jobs.Immo:ResetSellAndRent()
                 end
             end,
-            RMenu:Get("appart", "atlantiss_jobs_immo_rent")
+            RMenu:Get("appart", "Ora_jobs_immo_rent")
         )
 
         RageUI.Button(
             "Vendre",
             nil,
-            {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Atlantiss.Jobs.Immo.Menu.Property.price) .. "$")},
+            {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Ora.Jobs.Immo.Menu.Property.price) .. "$")},
             true,
             function(_, Ac, Selected)
                 if (Selected) then
-                    Atlantiss.Jobs.Immo:ResetSellAndRent()
+                    Ora.Jobs.Immo:ResetSellAndRent()
                 end
             end,
-            RMenu:Get("appart", "atlantiss_jobs_immo_sell")
+            RMenu:Get("appart", "Ora_jobs_immo_sell")
         )
 
         RageUI.CenterButton(
@@ -678,10 +678,10 @@ function NoOwnerAppart()
             true,
             function(_, _, Selected)
                 if Selected then
-                    Atlantiss.Jobs.Immo:GetPropertyOwners(Atlantiss.Jobs.Immo.Menu.Property)
+                    Ora.Jobs.Immo:GetPropertyOwners(Ora.Jobs.Immo.Menu.Property)
                 end
             end,
-            RMenu:Get("appart", "atlantiss_jobs_immo_information")
+            RMenu:Get("appart", "Ora_jobs_immo_information")
         )
 
         -- RageUI.Button(
@@ -691,10 +691,10 @@ function NoOwnerAppart()
         --     true,
         --     function(_, _, Selected)
         --         if (Selected) then
-        --             Atlantiss.Jobs.Immo.Edit:ResetCurrent()
+        --             Ora.Jobs.Immo.Edit:ResetCurrent()
         --         end
         --     end,
-        --     RMenu:Get("appart", "atlantiss_jobs_immo_edit_property")
+        --     RMenu:Get("appart", "Ora_jobs_immo_edit_property")
         -- )
 
         RageUI.Button(
@@ -704,7 +704,7 @@ function NoOwnerAppart()
             true,
             function(_, _, Selected)
                 if Selected then
-                    DeletePropr(Atlantiss.Jobs.Immo.Menu.Property.id)
+                    DeletePropr(Ora.Jobs.Immo.Menu.Property.id)
                 end
             end
         )
@@ -742,8 +742,8 @@ function OwnAppart()
             if Selected then
                 RageUI.CloseAll()
                 MYPOS = currentProperty.pos
-                Atlantiss.World.Appart.CURRENT.Outside = currentProperty.pos
-                TriggerServerCallback("Atlantiss::SE::Instance:EnterInstance", 
+                Ora.World.Appart.CURRENT.Outside = currentProperty.pos
+                TriggerServerCallback("Ora::SE::Instance:EnterInstance", 
                     function(canEnter)
                         EnterProperty()
                         addStorage()
@@ -837,12 +837,12 @@ function OwnAppart()
             true,
             function(_, Ac, Selected)
                 if (Selected) then
-                    Atlantiss.Jobs.Immo:ResetSellAndRent()
-                    Atlantiss.Jobs.Immo.SellAndRent.CLIENT_FULLNAME = Atlantiss.Identity:GetMyName()
-                    Atlantiss.Jobs.Immo.SellAndRent.CLIENT = GetPlayerServerId(PlayerId())
+                    Ora.Jobs.Immo:ResetSellAndRent()
+                    Ora.Jobs.Immo.SellAndRent.CLIENT_FULLNAME = Ora.Identity:GetMyName()
+                    Ora.Jobs.Immo.SellAndRent.CLIENT = GetPlayerServerId(PlayerId())
                 end
             end,
-            RMenu:Get("appart", "atlantiss_jobs_immo_self_rent")
+            RMenu:Get("appart", "Ora_jobs_immo_self_rent")
         )
     end
 end
@@ -870,8 +870,8 @@ function CoOwnAppart()
             if Selected then
                 RageUI.CloseAll()
                 MYPOS = currentProperty.pos
-                Atlantiss.World.Appart.CURRENT.Outside = currentProperty.pos
-                TriggerServerCallback("Atlantiss::SE::Instance:EnterInstance", 
+                Ora.World.Appart.CURRENT.Outside = currentProperty.pos
+                TriggerServerCallback("Ora::SE::Instance:EnterInstance", 
                     function(canEnter)
                         EnterProperty()
                         addStorage()
@@ -913,7 +913,7 @@ function Idontownappart()
             if Selected then
                 RageUI.CloseAll()
                 TriggerServerCallback(
-                    "Atlantiss::SVCB::immo:GetSourcesFromUUID",
+                    "Ora::SVCB::immo:GetSourcesFromUUID",
                     function(src)
                         local _src = GetPlayerServerId(PlayerId())
 
@@ -943,12 +943,12 @@ function Idontownappart()
     )
 
     if (
-        Atlantiss.Identity:HasAnyJob('police') or
-        Atlantiss.Identity:HasAnyJob('lssd')
+        Ora.Identity:HasAnyJob('police') or
+        Ora.Identity:HasAnyJob('lssd')
     ) then
         local isRaided = false
 
-        for id, Raid in ipairs(Atlantiss.Jobs.Immo.Raids) do
+        for id, Raid in ipairs(Ora.Jobs.Immo.Raids) do
             if (Raid.PropertyName == currentProperty.name) then
                 isRaided = true
                 break
@@ -965,8 +965,8 @@ function Idontownappart()
                     if (Selected) then
                         RageUI.CloseAll()
                         MYPOS = currentProperty.pos
-                        Atlantiss.World.Appart.CURRENT.Outside = currentProperty.pos
-                        TriggerServerCallback("Atlantiss::SE::Instance:EnterInstance",
+                        Ora.World.Appart.CURRENT.Outside = currentProperty.pos
+                        TriggerServerCallback("Ora::SE::Instance:EnterInstance",
                             function(canEnter)
                                 EnterProperty()
                                 addStorage()
@@ -985,7 +985,7 @@ function Idontownappart()
                 true,
                 function(_, _, Selected)
                     if (Selected) then
-                        TriggerServerEvent('Atlantiss::SE::Job::Immo:LaunchRaid', currentProperty)
+                        TriggerServerEvent('Ora::SE::Job::Immo:LaunchRaid', currentProperty)
                     end
                 end
             )
@@ -1034,8 +1034,8 @@ AddEventHandler(
     "accept:Appart",
     function()
         MYPOS = currentProperty.pos
-        Atlantiss.World.Appart.CURRENT.Outside = currentProperty.pos
-        TriggerServerCallback("Atlantiss::SE::Instance:EnterInstance", 
+        Ora.World.Appart.CURRENT.Outside = currentProperty.pos
+        TriggerServerCallback("Ora::SE::Instance:EnterInstance", 
             function(canEnter)
                 EnterProperty()
                 addStorage()
@@ -1058,17 +1058,17 @@ Citizen.CreateThread(
                         if currentProperty.owner == nil then
                             NoOwnerAppart()
                         else
-                            if Atlantiss.Identity:GetMyUuid() == currentProperty.owner then
+                            if Ora.Identity:GetMyUuid() == currentProperty.owner then
                                 OwnAppart()
                             else
-                                if isCoOwn(Atlantiss.Identity:GetMyUuid()) then
+                                if isCoOwn(Ora.Identity:GetMyUuid()) then
                                     CoOwnAppart()
                                 else
                                     Idontownappart()
                                 end
                             end
 
-                            if Atlantiss.Identity.Job:GetName() == "immo" then
+                            if Ora.Identity.Job:GetName() == "immo" then
                                 RageUI.CenterButton(
                                     "~b~↓↓ ~s~Action immobilier ~b~↓↓",
                                     nil,
@@ -1081,27 +1081,27 @@ Citizen.CreateThread(
                                 RageUI.Button(
                                     string.format("Louer/Prolonger"),
                                     nil,
-                                    {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Atlantiss.Jobs.Immo.Menu.Property.price/50) .. "$/sem")},
+                                    {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Ora.Jobs.Immo.Menu.Property.price/50) .. "$/sem")},
                                     true,
                                     function(_, Ac, Selected)
                                         if (Selected) then
-                                            Atlantiss.Jobs.Immo:ResetSellAndRent()
+                                            Ora.Jobs.Immo:ResetSellAndRent()
                                         end
                                     end,
-                                    RMenu:Get("appart", "atlantiss_jobs_immo_rent")
+                                    RMenu:Get("appart", "Ora_jobs_immo_rent")
                                 )
                         
                                 RageUI.Button(
                                     string.format("Vendre"),
                                     nil,
-                                    {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Atlantiss.Jobs.Immo.Menu.Property.price) .. "$")},
+                                    {RightLabel = string.format("~h~~b~%s~s~~h~", math.ceil(Ora.Jobs.Immo.Menu.Property.price) .. "$")},
                                     true,
                                     function(_, Ac, Selected)
                                         if (Selected) then
-                                            Atlantiss.Jobs.Immo:ResetSellAndRent()
+                                            Ora.Jobs.Immo:ResetSellAndRent()
                                         end
                                     end,
-                                    RMenu:Get("appart", "atlantiss_jobs_immo_sell")
+                                    RMenu:Get("appart", "Ora_jobs_immo_sell")
                                 )
                         
                                 RageUI.CenterButton(
@@ -1120,10 +1120,10 @@ Citizen.CreateThread(
                                     true,
                                     function(_, _, Selected)
                                         if Selected then
-                                            Atlantiss.Jobs.Immo:GetPropertyOwners(Atlantiss.Jobs.Immo.Menu.Property)
+                                            Ora.Jobs.Immo:GetPropertyOwners(Ora.Jobs.Immo.Menu.Property)
                                         end
                                     end,
-                                    RMenu:Get("appart", "atlantiss_jobs_immo_information")
+                                    RMenu:Get("appart", "Ora_jobs_immo_information")
                                 )
                         
                                 -- RageUI.Button(
@@ -1133,10 +1133,10 @@ Citizen.CreateThread(
                                 --     true,
                                 --     function(_, _, Selected)
                                 --         if (Selected) then
-                                --             Atlantiss.Jobs.Immo.Edit:ResetCurrent()
+                                --             Ora.Jobs.Immo.Edit:ResetCurrent()
                                 --         end
                                 --     end,
-                                --     RMenu:Get("appart", "atlantiss_jobs_immo_edit_property")
+                                --     RMenu:Get("appart", "Ora_jobs_immo_edit_property")
                                 -- )
                         
                                 RageUI.Button(
@@ -1146,7 +1146,7 @@ Citizen.CreateThread(
                                     true,
                                     function(_, _, Selected)
                                         if Selected then
-                                            DeletePropr(Atlantiss.Jobs.Immo.Menu.Property.id)
+                                            DeletePropr(Ora.Jobs.Immo.Menu.Property.id)
                                         end
                                     end
                                 )
@@ -1270,7 +1270,7 @@ Citizen.CreateThread(
 
         while true do
             TriggerServerCallback(
-                "Atlantiss::SE::Service:GetInServiceCount",
+                "Ora::SE::Service:GetInServiceCount",
                 function(count)
                     realtorOnDuty = count
                 end,
@@ -1310,7 +1310,7 @@ Citizen.CreateThread(
                             local targetPos = GetEntityCoords(target2)
                             local dist = GetDistanceBetweenCoords(plyPos, targetPos, true)
                             if dist < (hasSuppressor and 4 or 120) then
-                                if Atlantiss.Identity.Job:GetName() ~= "police" and "lssd" then
+                                if Ora.Identity.Job:GetName() ~= "police" and "lssd" then
                                     Citizen.SetTimeout(
                                         math.random(1000 * 60, 1000 * 120),
                                         function()

@@ -157,7 +157,7 @@ DoomsdayFacility = {
                                 Wait(0)
                             end
                 
-                            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                                 function()
                                     local privacyGlass = CreateObjectNoOffset(DoomsdayFacility.PrivacyGlass.controlModelHash, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.x, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.y, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.z, true, true, false)
                                     SetEntityRotation(privacyGlass, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.x, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.y, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.z, 2, true)
@@ -228,7 +228,7 @@ DoomsdayFacility = {
                                 Wait(0)
                             end
                             
-                            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                                 function()
                                     local privacyGlass = CreateObjectNoOffset(DoomsdayFacility.PrivacyGlass.controlModelHash, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.x, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.y, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.z, true, true, false)
                                     SetEntityRotation(privacyGlass, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.x, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.y, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.z, 2, true)

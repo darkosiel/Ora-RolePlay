@@ -1,27 +1,27 @@
--- Atlantiss.NpcJobs.DrivingSchool.CurrentZone = nil
--- Atlantiss.NpcJobs.DrivingSchool.Blip = nil
--- Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle = nil
--- Atlantiss.NpcJobs.DrivingSchool.AlreadyCreated = false
--- Atlantiss.NpcJobs.DrivingSchool.Config = {
+-- Ora.NpcJobs.DrivingSchool.CurrentZone = nil
+-- Ora.NpcJobs.DrivingSchool.Blip = nil
+-- Ora.NpcJobs.DrivingSchool.CurrentVehicle = nil
+-- Ora.NpcJobs.DrivingSchool.AlreadyCreated = false
+-- Ora.NpcJobs.DrivingSchool.Config = {
 --     ["start"] = {x = 221.49, y = 370.27, z = 105.27, a = 72.21}, -- pos ped
 --     ["end"] = {x = 235.24, y = -1509.56, z = 28.65},
 --     price = 200
 -- }
 
 
--- RegisterNetEvent("Atlantiss::CE::NpcJobs:DrivingSchool::SetDB")
+-- RegisterNetEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB")
 -- AddEventHandler(
--- 	"Atlantiss::CE::NpcJobs:DrivingSchool::SetDB",
+-- 	"Ora::CE::NpcJobs:DrivingSchool::SetDB",
 -- 	function(bool)
--- 		TriggerServerEvent("Atlantiss::SE::NpcJobs:DrivingSchool::SetDB", bool)
+-- 		TriggerServerEvent("Ora::SE::NpcJobs:DrivingSchool::SetDB", bool)
 -- 	end
 -- )
 
--- RegisterNetEvent("Atlantiss::CE::NpcJobs:DrivingSchool::Enable")
+-- RegisterNetEvent("Ora::CE::NpcJobs:DrivingSchool::Enable")
 -- AddEventHandler(
--- 	"Atlantiss::CE::NpcJobs:DrivingSchool::Enable",
+-- 	"Ora::CE::NpcJobs:DrivingSchool::Enable",
 -- 	function()
--- 		Atlantiss.NpcJobs.DrivingSchool.Create()
+-- 		Ora.NpcJobs.DrivingSchool.Create()
 -- 	end
 -- )
 
@@ -29,12 +29,12 @@
 -- local function Enter(arg)
 --     if arg == "start" then
 --         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour commencer le test ~r~(200$)")
---         KeySettings:Add("keyboard", "E", Atlantiss.NpcJobs.DrivingSchool.StartTest, "permis")
---         KeySettings:Add("controller", 46, Atlantiss.NpcJobs.DrivingSchool.StartTest, "permis")
---         Atlantiss.NpcJobs.DrivingSchool.CurrentZone = arg
+--         KeySettings:Add("keyboard", "E", Ora.NpcJobs.DrivingSchool.StartTest, "permis")
+--         KeySettings:Add("controller", 46, Ora.NpcJobs.DrivingSchool.StartTest, "permis")
+--         Ora.NpcJobs.DrivingSchool.CurrentZone = arg
 --     else
---         if Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle ~= nil then
---             Atlantiss.NpcJobs.DrivingSchool.FinishedWell()
+--         if Ora.NpcJobs.DrivingSchool.CurrentVehicle ~= nil then
+--             Ora.NpcJobs.DrivingSchool.FinishedWell()
 --         end
 --     end
 -- end
@@ -46,36 +46,36 @@
 -- end
 
 
--- function Atlantiss.NpcJobs.DrivingSchool.FinishedFailed(reason)
---     DeleteEntity(Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle)
---     Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle = nil
+-- function Ora.NpcJobs.DrivingSchool.FinishedFailed(reason)
+--     DeleteEntity(Ora.NpcJobs.DrivingSchool.CurrentVehicle)
+--     Ora.NpcJobs.DrivingSchool.CurrentVehicle = nil
 --     ClearAllBlipRoutes()
---     RemoveBlip(Atlantiss.NpcJobs.DrivingSchool.Blip)
+--     RemoveBlip(Ora.NpcJobs.DrivingSchool.Blip)
 --     SetEntityCoordsNoOffset(LocalPlayer().Ped, 219.95, 371.27, 106.29, false, false, false, true)
 --     RageUI.Popup({message = "~r~Vous avez échoué\n Raison : " .. reason})
 -- end
 
--- function Atlantiss.NpcJobs.DrivingSchool.FinishedWell()
---     DeleteEntity(Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle)
---     Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle = nil
+-- function Ora.NpcJobs.DrivingSchool.FinishedWell()
+--     DeleteEntity(Ora.NpcJobs.DrivingSchool.CurrentVehicle)
+--     Ora.NpcJobs.DrivingSchool.CurrentVehicle = nil
 --     ClearAllBlipRoutes()
---     RemoveBlip(Atlantiss.NpcJobs.DrivingSchool.Blip)
+--     RemoveBlip(Ora.NpcJobs.DrivingSchool.Blip)
 --     SetEntityCoordsNoOffset(LocalPlayer().Ped, 219.95, 371.27, 106.29, false, false, false, true)
 --     RageUI.Popup({message = "~g~Vous avez réussi votre test"})
 
---     TriggerEvent("Atlantiss::CE::NpcJobs:DrivingSchool::SetDB", 1)
+--     TriggerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", 1)
 
---     Atlantiss.Inventory:AddItem({name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = GetIdentity()}})
+--     Ora.Inventory:AddItem({name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = GetIdentity()}})
 -- end
 
--- function Atlantiss.NpcJobs.DrivingSchool.StartTest()
+-- function Ora.NpcJobs.DrivingSchool.StartTest()
 --     TriggerServerCallback(
---         "Atlantiss::SE::NpcJobs:DrivingSchool::CanPass",
+--         "Ora::SE::NpcJobs:DrivingSchool::CanPass",
 --         function(bool)
 --             if (bool) then
 --                 dataonWait = {
 --                     title = "Permis de conduire",
---                     price = Atlantiss.NpcJobs.DrivingSchool.Config.price,
+--                     price = Ora.NpcJobs.DrivingSchool.Config.price,
 --                     fct = function()
 --                         coords = {x = 213.78, y = 390.19, z = 106.85, a = 173.14}
 --                         local vehArea = vehicleFct.GetVehiclesInArea({x = coords.x, y = coords.y, z = coords.z}, 3.0)
@@ -91,7 +91,7 @@
 --                             coords,
 --                             235.32,
 --                             function(vehicle)
---                               Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle = vehicle
+--                               Ora.NpcJobs.DrivingSchool.CurrentVehicle = vehicle
 --                               SetPedIntoVehicle(LocalPlayer().Ped, vehicle, -1)
 --                               SetVehicleDoorsLocked(vehicle, 4)
 --                               math.randomseed(GetGameTimer())
@@ -101,17 +101,17 @@
 
 --                         RageUI.Popup({message = "Conduisez jusqu'au point."})
 --                         Wait(5)
---                         Atlantiss.NpcJobs.DrivingSchool.Blip = AddBlipForCoord(235.24, -1509.56, 28.65)
---                         SetBlipSprite(Atlantiss.NpcJobs.DrivingSchool.Blip, 1)
---                         SetBlipDisplay(Atlantiss.NpcJobs.DrivingSchool.Blip, 4)
---                         SetBlipScale(Atlantiss.NpcJobs.DrivingSchool.Blip, 1.0)
---                         SetBlipColour(Atlantiss.NpcJobs.DrivingSchool.Blip, 81)
---                         SetBlipAsShortRange(Atlantiss.NpcJobs.DrivingSchool.Blip, true)
+--                         Ora.NpcJobs.DrivingSchool.Blip = AddBlipForCoord(235.24, -1509.56, 28.65)
+--                         SetBlipSprite(Ora.NpcJobs.DrivingSchool.Blip, 1)
+--                         SetBlipDisplay(Ora.NpcJobs.DrivingSchool.Blip, 4)
+--                         SetBlipScale(Ora.NpcJobs.DrivingSchool.Blip, 1.0)
+--                         SetBlipColour(Ora.NpcJobs.DrivingSchool.Blip, 81)
+--                         SetBlipAsShortRange(Ora.NpcJobs.DrivingSchool.Blip, true)
 --                         BeginTextCommandSetBlipName("STRING")
 --                         AddTextComponentString("Destination")
---                         EndTextCommandSetBlipName(Atlantiss.NpcJobs.DrivingSchool.Blip)
---                         SetBlipRouteColour(Atlantiss.NpcJobs.DrivingSchool.Blip, 81)
---                         SetBlipRoute(Atlantiss.NpcJobs.DrivingSchool.Blip, true)
+--                         EndTextCommandSetBlipName(Ora.NpcJobs.DrivingSchool.Blip)
+--                         SetBlipRouteColour(Ora.NpcJobs.DrivingSchool.Blip, 81)
+--                         SetBlipRoute(Ora.NpcJobs.DrivingSchool.Blip, true)
 --                         KeySettings:Clear("keyboard", "E", "permis")
 --                         KeySettings:Clear("controller", 46, "permis")
 --                         Hint:RemoveAll()
@@ -127,10 +127,10 @@
 --     )
 -- end
 
--- function Atlantiss.NpcJobs.DrivingSchool.Create()
--- 	if (Atlantiss.NpcJobs.DrivingSchool.AlreadyCreated == true) then return end
+-- function Ora.NpcJobs.DrivingSchool.Create()
+-- 	if (Ora.NpcJobs.DrivingSchool.AlreadyCreated == true) then return end
 
---     local Pos = Atlantiss.NpcJobs.DrivingSchool.Config["start"]
+--     local Pos = Ora.NpcJobs.DrivingSchool.Config["start"]
 --     local blip = AddBlipForCoord(Pos.x, Pos.y, Pos.z)
 --     SetBlipSprite(blip, 225)
 --     SetBlipDisplay(blip, 4)
@@ -143,25 +143,25 @@
 
 --     Zone:Add(Pos, Enter, Exit, "start", 2.5)
 --     Ped:Add("David", "a_m_y_bevhills_01", Pos, nil)
---     Zone:Add(Atlantiss.NpcJobs.DrivingSchool.Config["end"], Enter, Exit, "end", 2.5)
+--     Zone:Add(Ora.NpcJobs.DrivingSchool.Config["end"], Enter, Exit, "end", 2.5)
 -- end
 
 
 -- Citizen.CreateThread(
 --     function()
--- 		while (Atlantiss.Player.HasLoaded == false) do Wait(100) end
+-- 		while (Ora.Player.HasLoaded == false) do Wait(100) end
 
 --         TriggerServerCallback(
---             "Atlantiss::SE::NpcJobs:DrivingSchool::IsNPCEnabled",
+--             "Ora::SE::NpcJobs:DrivingSchool::IsNPCEnabled",
 --             function(isEnabled)
 --                 if (isEnabled) then
---                     Atlantiss.NpcJobs.DrivingSchool.Create()
---                     Atlantiss.NpcJobs.DrivingSchool.AlreadyCreated = true
+--                     Ora.NpcJobs.DrivingSchool.Create()
+--                     Ora.NpcJobs.DrivingSchool.AlreadyCreated = true
 --                 end
 --             end
 --         )
 
--- 		local Pos = Atlantiss.NpcJobs.DrivingSchool.Config["start"]
+-- 		local Pos = Ora.NpcJobs.DrivingSchool.Config["start"]
 -- 		local blip = AddBlipForCoord(Pos.x, Pos.y, Pos.z)
 -- 		SetBlipSprite(blip, 225)
 -- 		SetBlipDisplay(blip, 4)
@@ -175,12 +175,12 @@
 --         while true do
 --             Wait(1000)
 
---             if Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle ~= nil then
---                 if GetVehicleBodyHealth(Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle) ~= 1000 then
---                     Atlantiss.NpcJobs.DrivingSchool.FinishedFailed("~r~Vous avez endommagé le véhicule")
+--             if Ora.NpcJobs.DrivingSchool.CurrentVehicle ~= nil then
+--                 if GetVehicleBodyHealth(Ora.NpcJobs.DrivingSchool.CurrentVehicle) ~= 1000 then
+--                     Ora.NpcJobs.DrivingSchool.FinishedFailed("~r~Vous avez endommagé le véhicule")
 --                 end
---                 if GetEntitySpeed(Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle) * 3.6 > 100 then
---                     Atlantiss.NpcJobs.DrivingSchool.FinishedFailed("~r~Excès de vitesse (" .. GetEntitySpeed(Atlantiss.NpcJobs.DrivingSchool.CurrentVehicle) * 3.6 .. "km/h)")
+--                 if GetEntitySpeed(Ora.NpcJobs.DrivingSchool.CurrentVehicle) * 3.6 > 100 then
+--                     Ora.NpcJobs.DrivingSchool.FinishedFailed("~r~Excès de vitesse (" .. GetEntitySpeed(Ora.NpcJobs.DrivingSchool.CurrentVehicle) * 3.6 .. "km/h)")
 --                 end
 --             end
 --         end
@@ -198,7 +198,7 @@
 --                     end,
 --                     "spawn"
 --                 )
---                 KeySettings:Add("controller", 46, Atlantiss.NpcJobs.DrivingSchool.StartTest, "spawn")
+--                 KeySettings:Add("controller", 46, Ora.NpcJobs.DrivingSchool.StartTest, "spawn")
 --             end,
 --             function()
 --                 KeySettings:Clear("keyboard", "E", "spawn")
@@ -236,7 +236,7 @@ local function StopVehicule2()
     SetEntityCoordsNoOffset(LocalPlayer().Ped, 219.95, 371.27, 106.29, false, false, false, true)
     RageUI.Popup({message = "~g~Vous avez réussi votre test"})
 
-    Atlantiss.Inventory:AddItem({name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = GetIdentity()}})
+    Ora.Inventory:AddItem({name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = GetIdentity()}})
 end
 
 local function startTest()

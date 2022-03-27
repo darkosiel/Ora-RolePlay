@@ -1,5 +1,5 @@
-Atlantiss.NpcJobs.Wholesaler.E_Thread = false
-Atlantiss.NpcJobs.Wholesaler.Peds = {
+Ora.NpcJobs.Wholesaler.E_Thread = false
+Ora.NpcJobs.Wholesaler.Peds = {
     {
         Name = "Nathan",
         PedModel = "s_m_m_dockwork_01",
@@ -15,17 +15,17 @@ Atlantiss.NpcJobs.Wholesaler.Peds = {
 }
 
 
-function Atlantiss.NpcJobs.Wholesaler.CloseUI()
-    if (not Atlantiss.Inventory.State.IsOpen) then
+function Ora.NpcJobs.Wholesaler.CloseUI()
+    if (not Ora.Inventory.State.IsOpen) then
         SendNUIMessage({eventName = "closeWholesalerMenu"})
         SetNuiFocus(false, false)
     end
 end
 
-function Atlantiss.NpcJobs.Wholesaler.EnterZone()
-    while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
+function Ora.NpcJobs.Wholesaler.EnterZone()
+    while (Ora.Player.HasLoaded == false) do Wait(50) end
     
-    Atlantiss.NpcJobs.Wholesaler.E_Thread = false
+    Ora.NpcJobs.Wholesaler.E_Thread = false
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
 
     Citizen.CreateThread(
@@ -35,15 +35,15 @@ function Atlantiss.NpcJobs.Wholesaler.EnterZone()
                 if (IsControlJustPressed(0, Keys["E"])) then
                     SetNuiFocus(true, true)
                     SendNUIMessage({
-                        eventName = "openWholesalerMenu", JobItems = Atlantiss.NpcJobs.Wholesaler.ItemsPerJob[Atlantiss.Identity.Job:GetName()],
-                        OrgaItems = Atlantiss.NpcJobs.Wholesaler.ItemsPerJob[Atlantiss.Identity.Orga:GetName()],
-                        Job = Atlantiss.Identity.Job:Get().label, Orga = Atlantiss.Identity.Orga:Get().label
+                        eventName = "openWholesalerMenu", JobItems = Ora.NpcJobs.Wholesaler.ItemsPerJob[Ora.Identity.Job:GetName()],
+                        OrgaItems = Ora.NpcJobs.Wholesaler.ItemsPerJob[Ora.Identity.Orga:GetName()],
+                        Job = Ora.Identity.Job:Get().label, Orga = Ora.Identity.Orga:Get().label
                     })
-                    Atlantiss.NpcJobs.Wholesaler.E_Thread = true
+                    Ora.NpcJobs.Wholesaler.E_Thread = true
                 end
 
-                if (Atlantiss.NpcJobs.Wholesaler.E_Thread == true) then
-                    Atlantiss.NpcJobs.Wholesaler.E_Thread = false
+                if (Ora.NpcJobs.Wholesaler.E_Thread == true) then
+                    Ora.NpcJobs.Wholesaler.E_Thread = false
                     break
                 end
             end
@@ -51,21 +51,21 @@ function Atlantiss.NpcJobs.Wholesaler.EnterZone()
     )
 end
 
-function Atlantiss.NpcJobs.Wholesaler.ExitZone()
-    Atlantiss.NpcJobs.Wholesaler.E_Thread = true
-    Atlantiss.NpcJobs.Wholesaler.CloseUI()
+function Ora.NpcJobs.Wholesaler.ExitZone()
+    Ora.NpcJobs.Wholesaler.E_Thread = true
+    Ora.NpcJobs.Wholesaler.CloseUI()
     Hint:RemoveAll()
 end
 
 
-RegisterNUICallback("WholesalerCloseUI", function() Atlantiss.NpcJobs.Wholesaler.CloseUI() end)
+RegisterNUICallback("WholesalerCloseUI", function() Ora.NpcJobs.Wholesaler.CloseUI() end)
 
 RegisterNUICallback(
     "WholeSalerBuy",
     function(data)
-        Atlantiss.NpcJobs.Wholesaler.CloseUI()
+        Ora.NpcJobs.Wholesaler.CloseUI()
 
-        if (not Atlantiss.Inventory:CanReceive(data.item, data.count)) then return end
+        if (not Ora.Inventory:CanReceive(data.item, data.count)) then return end
         
         dataonWait = {
             price = data.price * data.count,
@@ -78,8 +78,8 @@ RegisterNUICallback(
                     table.insert(items, {name = data.item})
                 end
 
-                Atlantiss.Inventory:AddItems(items)
-                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", data.price * data.count, true)
+                Ora.Inventory:AddItems(items)
+                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", data.price * data.count, true)
             end
         }
 
@@ -90,10 +90,10 @@ RegisterNUICallback(
 
 Citizen.CreateThread(
 	function()
-		while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
+		while (Ora.Player.HasLoaded == false) do Wait(50) end
 
-        for _, ped in pairs(Atlantiss.NpcJobs.Wholesaler.Peds) do
-            Zone:Add(ped.Pos, Atlantiss.NpcJobs.Wholesaler.EnterZone, Atlantiss.NpcJobs.Wholesaler.ExitZone, "", 2.5)
+        for _, ped in pairs(Ora.NpcJobs.Wholesaler.Peds) do
+            Zone:Add(ped.Pos, Ora.NpcJobs.Wholesaler.EnterZone, Ora.NpcJobs.Wholesaler.ExitZone, "", 2.5)
             Ped:Add(ped.Name, ped.PedModel, ped.Pos, nil)
 
             local blip = AddBlipForCoord(ped.Pos.x, ped.Pos.y, ped.Pos.z)

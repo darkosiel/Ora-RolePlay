@@ -7,7 +7,7 @@ IllegalLabsAndWarehouse.MENUS = {}
 function IllegalLabsAndWarehouse.RefreshCurrentWorkplaceByPropertyIdAndWorkplaceId(propertyId, workplaceId)
   local canSend = false
   local localWorkplaceQueue = {}
-  TriggerServerCallback("Atlantiss:Illegal:GetWorkplaceQueueByPropertyIdAndWorkplaceId", function(workplaceQueueAsJson)
+  TriggerServerCallback("Ora:Illegal:GetWorkplaceQueueByPropertyIdAndWorkplaceId", function(workplaceQueueAsJson)
     localWorkplaceQueue = json.decode(workplaceQueueAsJson)
     canSend = true
   end, {PROPERTY_ID = propertyId, WORKPLACE_ID = workplaceId})
@@ -21,7 +21,7 @@ end
 
 function IllegalLabsAndWarehouse.RefreshCurrentPropertyByName(propertyName)
     local canSend = false
-    TriggerServerCallback("Atlantiss:Illegal:GetPropertyByName", function(property)
+    TriggerServerCallback("Ora:Illegal:GetPropertyByName", function(property)
       IllegalLabsAndWarehouse.CURRENT_PROPERTY = property
       canSend = true
     end, propertyName)
@@ -43,7 +43,7 @@ end
 
 function IllegalLabsAndWarehouse.RefreshCurrentPropertyById(propertyId)
     local canSend = false
-    TriggerServerCallback("Atlantiss:Illegal:GetPropertyById", function(property)
+    TriggerServerCallback("Ora:Illegal:GetPropertyById", function(property)
       IllegalLabsAndWarehouse.CURRENT_PROPERTY = property
       canSend = true
     end, propertyId)
@@ -99,7 +99,7 @@ end
       IllegalLabsAndWarehouse.CURRENT_PROPERTY = IllegalOrga.GetProperties()[IllegalLabsAndWarehouse.CURRENT_PROPERTY_NAME]
       local interiorCoords = IllegalLabsAndWarehouse.GetInteriorCoordsByBusinessId(IllegalLabsAndWarehouse.CURRENT_PROPERTY.business_id)
 
-      TriggerServerCallback("Atlantiss::SE::Instance:EnterInstance", 
+      TriggerServerCallback("Ora::SE::Instance:EnterInstance", 
           function(canEnter)
             IllegalLabsAndWarehouse.TeleportToInsideDoor()
           end,
@@ -113,13 +113,13 @@ end
     -- Removes storage and management pos.
   function IllegalLabsAndWarehouse.ExitFromInstance()
       if (IllegalLabsAndWarehouse.CURRENT_PROPERTY_NAME == nil) then
-        TriggerServerCallback("Atlantiss::SE::Instance:LeaveAllInstance", 
+        TriggerServerCallback("Ora::SE::Instance:LeaveAllInstance", 
             function(canLeave)
               IllegalLabsAndWarehouse.TeleportToOutsideDoor()
             end
         )
       else
-        TriggerServerCallback("Atlantiss::SE::Instance:LeaveInstance", 
+        TriggerServerCallback("Ora::SE::Instance:LeaveInstance", 
             function(canLeave)
               IllegalLabsAndWarehouse.TeleportToOutsideDoor()
             end,
@@ -129,9 +129,9 @@ end
   end
   
   -- Handler for instance creation. 
-  RegisterNetEvent("Atlantiss::Illegal:ShowNotification")
+  RegisterNetEvent("Ora::Illegal:ShowNotification")
   AddEventHandler(
-      "Atlantiss::Illegal:ShowNotification",
+      "Ora::Illegal:ShowNotification",
       function(message)
           if message ~= nil then
               ShowNotification(message)
@@ -148,20 +148,20 @@ end
 
               local interiorCoords = IllegalLabsAndWarehouse.GetInteriorCoordsByBusinessId(IllegalLabsAndWarehouse.CURRENT_PROPERTY.business_id)
               DoScreenFadeOut(100)
-              Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)
-              Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
+              Ora.Player:FreezePlayer(LocalPlayer().Ped, true)
+              Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
 
               while not IsScreenFadedOut() and
                   not IsInteriorReady(GetInteriorAtCoords(interiorCoords.x, interiorCoords.y, interiorCoords.z)) do
                   Citizen.Wait(50)
               end
   
-              Atlantiss.Core:TeleportEntityTo(playerPed, vector3(interiorCoords.x, interiorCoords.y, interiorCoords.z), true)
+              Ora.Core:TeleportEntityTo(playerPed, vector3(interiorCoords.x, interiorCoords.y, interiorCoords.z), true)
               IllegalLabsAndWarehouse.SetInteriorIPL()
 
               Wait(100)
-              Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
-              Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
+              Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
+              Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
 
               DoScreenFadeIn(100)
               DrawSub(IllegalLabsAndWarehouse.CURRENT_PROPERTY.name, 5000)
@@ -187,8 +187,8 @@ end
     Citizen.CreateThread(
         function()
             DoScreenFadeOut(100)
-            Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, true)
-            Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
+            Ora.Player:FreezePlayer(LocalPlayer().Ped, true)
+            Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, true)
 
               while not IsScreenFadedOut() do
                 Citizen.Wait(50)
@@ -196,13 +196,13 @@ end
 
             if (IllegalLabsAndWarehouse.CURRENT_PROPERTY == nil or IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door == nil) then
                 outside = {x = 254.29, y = -780.99, z = 30.57}
-                Atlantiss.Core:TeleportEntityTo(playerPed, vector3(outside.x, outside.y, outside.z), true)
+                Ora.Core:TeleportEntityTo(playerPed, vector3(outside.x, outside.y, outside.z), true)
                 ShowNotification("~b~Votre localisation de départ n'a pas été trouvé. Vous serez TP au PC")
             else
-              Atlantiss.Core:TeleportEntityTo(playerPed, vector3(IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door.x, IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door.y, IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door.z), true)
+              Ora.Core:TeleportEntityTo(playerPed, vector3(IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door.x, IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door.y, IllegalLabsAndWarehouse.CURRENT_PROPERTY.outside_door.z), true)
               Wait(100)
-              Atlantiss.Player:FreezePlayer(LocalPlayer().Ped, false)
-              Atlantiss.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
+              Ora.Player:FreezePlayer(LocalPlayer().Ped, false)
+              Ora.Player:SetEntityInvicible(PlayerId(), LocalPlayer().Ped, false)
             end
             DoScreenFadeIn(100)
         end

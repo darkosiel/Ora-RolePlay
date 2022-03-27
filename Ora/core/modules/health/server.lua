@@ -1,11 +1,11 @@
-Atlantiss.Health.Dead = {}
+Ora.Health.Dead = {}
 
-RegisterServerEvent("Atlantiss::SE::Player:RegisterHealth")
+RegisterServerEvent("Ora::SE::Player:RegisterHealth")
 AddEventHandler(
-    "Atlantiss::SE::Player:RegisterHealth",
+    "Ora::SE::Player:RegisterHealth",
     function(health)
         local _source = source
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
         local results = MySQL.Sync.fetchAll(
             "SELECT count(uuid) AS result_count FROM players_identity WHERE uuid = @uuid",
             {
@@ -25,28 +25,28 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Health:SetPlayerIsDead")
+RegisterServerEvent("Ora::SE::Health:SetPlayerIsDead")
 AddEventHandler(
-    "Atlantiss::SE::Health:SetPlayerIsDead",
+    "Ora::SE::Health:SetPlayerIsDead",
     function(isDead)
         local _source = source
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
 
-        if (Atlantiss.Health.Dead[uuid] ~= nil) then
-            Atlantiss.Health.Dead[uuid] = nil
+        if (Ora.Health.Dead[uuid] ~= nil) then
+            Ora.Health.Dead[uuid] = nil
         end
 
         if (isDead == false) then return end
       
-        Atlantiss.Health.Dead[uuid] = isDead
+        Ora.Health.Dead[uuid] = isDead
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Health:IsPlayerDead",
+    "Ora::SE::Health:IsPlayerDead",
     function(source, callback)
-        local uuid = Atlantiss.Identity:GetUuid(source)
-        if (Atlantiss.Health.Dead[uuid] ~= nil) then
+        local uuid = Ora.Identity:GetUuid(source)
+        if (Ora.Health.Dead[uuid] ~= nil) then
             callback(true)
         else
             callback(false)

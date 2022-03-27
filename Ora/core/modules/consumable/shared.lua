@@ -1,32 +1,32 @@
-Atlantiss.Consumable = {}
-Atlantiss.Consumable.Submodules = {}
+Ora.Consumable = {}
+Ora.Consumable.Submodules = {}
 
-function Atlantiss.Consumable:GetModuleName()
+function Ora.Consumable:GetModuleName()
   return "Consumable"
 end
 
-function Atlantiss.Consumable:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Consumable:GetModuleName(), message))
+function Ora.Consumable:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Consumable:GetModuleName(), message))
   end
 end
 
-function Atlantiss.Consumable:Initialize()
+function Ora.Consumable:Initialize()
   self:InitializeSubmodules()
 end
 
-function Atlantiss.Consumable:Register(module)
-  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Submodule^7.\n",  Atlantiss:GetServerName(), module))
+function Ora.Consumable:Register(module)
+  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Submodule^7.\n",  Ora:GetServerName(), module))
   self.Submodules[#self.Submodules + 1] = module
 end
 
-function Atlantiss.Consumable:InitializeSubmodules()
+function Ora.Consumable:InitializeSubmodules()
   for _, module in pairs(self.Submodules) do
     if self[module] and self[module]["Initialize"] then
-      Citizen.Trace(string.format("^2[%s] ^3Submodule ^5%s^3 initialized^7.\n", Atlantiss:GetServerName(), module))
+      Citizen.Trace(string.format("^2[%s] ^3Submodule ^5%s^3 initialized^7.\n", Ora:GetServerName(), module))
       self[module]:Initialize()
     end
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Consumable:GetModuleName())
+Ora.Modules:Register(Ora.Consumable:GetModuleName())

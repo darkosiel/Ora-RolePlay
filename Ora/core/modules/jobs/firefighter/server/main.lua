@@ -10,10 +10,10 @@
 
 function onResourceStart(resourceName)
 	if (GetCurrentResourceName() == resourceName) then
-		Atlantiss.Jobs.Firefighter.Whitelist:load()
-		Atlantiss.Jobs.Firefighter.Fire:loadRegistered()
-		if Atlantiss.Jobs.Firefighter.Config.Fire.spawner.enableOnStartup and Atlantiss.Jobs.Firefighter.Config.Fire.spawner.interval then
-			if not Atlantiss.Jobs.Firefighter.Fire:startSpawner() then
+		Ora.Jobs.Firefighter.Whitelist:load()
+		Ora.Jobs.Firefighter.Fire:loadRegistered()
+		if Ora.Jobs.Firefighter.Config.Fire.spawner.enableOnStartup and Ora.Jobs.Firefighter.Config.Fire.spawner.interval then
+			if not Ora.Jobs.Firefighter.Fire:startSpawner() then
 				sendMessage(0, "Couldn't start fire spawner.")
 			end
 		end
@@ -31,8 +31,8 @@ AddEventHandler(
 --================================--
 
 function onPlayerDropped()
-	Atlantiss.Jobs.Firefighter.Whitelist:removePlayer(source)
-	Atlantiss.Jobs.Firefighter.Dispatch:unsubscribe(source)
+	Ora.Jobs.Firefighter.Whitelist:removePlayer(source)
+	Ora.Jobs.Firefighter.Dispatch:unsubscribe(source)
 end
 
 RegisterNetEvent('playerDropped')
@@ -49,34 +49,34 @@ RegisterNetEvent('fireManager:command:startfire')
 AddEventHandler(
 	'fireManager:command:startfire',
 	function(coords, maxSpread, chance, triggerDispatch, dispatchMessage)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.start") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.start") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
 
 		local _source = source
 
-		local maxSpread = (maxSpread ~= nil and tonumber(maxSpread) ~= nil) and tonumber(maxSpread) or Atlantiss.Jobs.Firefighter.Config.Fire.maximumSpreads
-		local chance = (chance ~= nil and tonumber(chance) ~= nil) and tonumber(chance) or Atlantiss.Jobs.Firefighter.Config.Fire.fireSpreadChance
+		local maxSpread = (maxSpread ~= nil and tonumber(maxSpread) ~= nil) and tonumber(maxSpread) or Ora.Jobs.Firefighter.Config.Fire.maximumSpreads
+		local chance = (chance ~= nil and tonumber(chance) ~= nil) and tonumber(chance) or Ora.Jobs.Firefighter.Config.Fire.fireSpreadChance
 
-		local fireIndex = Atlantiss.Jobs.Firefighter.Fire:create(coords, maxSpread, chance)
+		local fireIndex = Ora.Jobs.Firefighter.Fire:create(coords, maxSpread, chance)
 
 		Citizen.SetTimeout(
-			math.random(Atlantiss.Jobs.Firefighter.Config.Fire.selfRemoveMIN, Atlantiss.Jobs.Firefighter.Config.Fire.selfRemoveMAX),
+			math.random(Ora.Jobs.Firefighter.Config.Fire.selfRemoveMIN, Ora.Jobs.Firefighter.Config.Fire.selfRemoveMAX),
 			function()
-				Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex)
+				Ora.Jobs.Firefighter.Fire:remove(fireIndex)
 			end
 		)
 
 		if triggerDispatch then
 			Citizen.SetTimeout(
-				Atlantiss.Jobs.Firefighter.Config.Dispatch.timeout,
+				Ora.Jobs.Firefighter.Config.Dispatch.timeout,
 				function()
-					if Atlantiss.Jobs.Firefighter.Config.Dispatch.enabled and not Atlantiss.Jobs.Firefighter.Config.Dispatch.disableCalls then
+					if Ora.Jobs.Firefighter.Config.Dispatch.enabled and not Ora.Jobs.Firefighter.Config.Dispatch.disableCalls then
 						if dispatchMessage then
-							Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchMessage, coords)
+							Ora.Jobs.Firefighter.Dispatch:create(dispatchMessage, coords)
 						else
-							Atlantiss.Jobs.Firefighter.Dispatch.expectingInfo[_source] = true
+							Ora.Jobs.Firefighter.Dispatch.expectingInfo[_source] = true
 							TriggerClientEvent('fd:dispatch', _source, coords)
 						end
 					end
@@ -90,12 +90,12 @@ RegisterNetEvent('fireManager:command:registerscenario')
 AddEventHandler(
 	'fireManager:command:registerscenario',
 	function(coords)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
 
-		local registeredFireID = Atlantiss.Jobs.Firefighter.Fire:register(coords)
+		local registeredFireID = Ora.Jobs.Firefighter.Fire:register(coords)
 
 		sendMessage(source, "Created scenario #" .. registeredFireID)
 	end
@@ -105,7 +105,7 @@ RegisterNetEvent('fireManager:command:addflame')
 AddEventHandler(
 	'fireManager:command:addflame',
 	function(registeredFireID, coords, spread, chance)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -118,7 +118,7 @@ AddEventHandler(
 			return
 		end
 
-		local flameID = Atlantiss.Jobs.Firefighter.Fire:addFlame(registeredFireID, coords, spread, chance)
+		local flameID = Ora.Jobs.Firefighter.Fire:addFlame(registeredFireID, coords, spread, chance)
 
 		if not flameID then
 			sendMessage(source, "No such scenario.")
@@ -132,7 +132,7 @@ AddEventHandler(
 RegisterCommand(
 	'stopfire',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.stop") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.stop") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -143,7 +143,7 @@ RegisterCommand(
 			return
 		end
 
-		if Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex) then
+		if Ora.Jobs.Firefighter.Fire:remove(fireIndex) then
 			sendMessage(source, "Stopping fire #" .. fireIndex)
 			TriggerClientEvent("pNotify:SendNotification", source, {
 				text = "Fire " .. fireIndex .. " going out...",
@@ -160,12 +160,12 @@ RegisterCommand(
 RegisterCommand(
 	'stopallfires',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.stop") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.stop") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
 
-		Atlantiss.Jobs.Firefighter.Fire:removeAll()
+		Ora.Jobs.Firefighter.Fire:removeAll()
 
 		sendMessage(source, "Stopping fires")
 		TriggerClientEvent("pNotify:SendNotification", source, {
@@ -182,7 +182,7 @@ RegisterCommand(
 RegisterCommand(
 	'removeflame',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -194,7 +194,7 @@ RegisterCommand(
 			return
 		end
 
-		local success = Atlantiss.Jobs.Firefighter.Fire:deleteFlame(registeredFireID, flameID)
+		local success = Ora.Jobs.Firefighter.Fire:deleteFlame(registeredFireID, flameID)
 
 		if not success then
 			sendMessage(source, "No such fire or flame registered.")
@@ -209,7 +209,7 @@ RegisterCommand(
 RegisterCommand(
 	'removescenario',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -218,7 +218,7 @@ RegisterCommand(
 			return
 		end
 
-		local success = Atlantiss.Jobs.Firefighter.Fire:deleteRegistered(registeredFireID)
+		local success = Ora.Jobs.Firefighter.Fire:deleteRegistered(registeredFireID)
 
 		if not success then
 			sendMessage(source, "No such scenario.")
@@ -233,7 +233,7 @@ RegisterCommand(
 RegisterCommand(
 	'startscenario',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.start") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.start") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -245,7 +245,7 @@ RegisterCommand(
 			return
 		end
 
-		local success = Atlantiss.Jobs.Firefighter.Fire:startRegistered(registeredFireID, triggerDispatch, source)
+		local success = Ora.Jobs.Firefighter.Fire:startRegistered(registeredFireID, triggerDispatch, source)
 
 		if not success then
 			sendMessage(source, "No such scenario.")
@@ -260,7 +260,7 @@ RegisterCommand(
 RegisterCommand(
 	'stopscenario',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.stop") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.stop") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -271,7 +271,7 @@ RegisterCommand(
 			return
 		end
 
-		local success = Atlantiss.Jobs.Firefighter.Fire:stopRegistered(registeredFireID)
+		local success = Ora.Jobs.Firefighter.Fire:stopRegistered(registeredFireID)
 
 		if not success then
 			sendMessage(source, "No such scenario active.")
@@ -310,10 +310,10 @@ RegisterCommand(
 		end
 
 		if action == "add" then
-			Atlantiss.Jobs.Firefighter.Whitelist:addPlayer(serverId, identifier)
+			Ora.Jobs.Firefighter.Whitelist:addPlayer(serverId, identifier)
 			sendMessage(source, ("Added %s to the whitelist."):format(GetPlayerName(serverId)))
 		elseif action == "remove" then
-			Atlantiss.Jobs.Firefighter.Whitelist:removePlayer(serverId, identifier)
+			Ora.Jobs.Firefighter.Whitelist:removePlayer(serverId, identifier)
 			sendMessage(source, ("Removed %s from the whitelist."):format(GetPlayerName(serverId)))
 		else
 			sendMessage(source, "Invalid action.")
@@ -325,8 +325,8 @@ RegisterCommand(
 RegisterCommand(
 	'firewlreload',
 	function(source, args, rawCommand)
-		Atlantiss.Jobs.Firefighter.Whitelist:load()
-		sendMessage(source, "Reloaded whitelist from Atlantiss.Jobs.Firefighter.Config.")
+		Ora.Jobs.Firefighter.Whitelist:load()
+		sendMessage(source, "Reloaded whitelist from Ora.Jobs.Firefighter.Config.")
 	end,
 	true
 )
@@ -334,7 +334,7 @@ RegisterCommand(
 RegisterCommand(
 	'firewlsave',
 	function(source, args, rawCommand)
-		Atlantiss.Jobs.Firefighter.Whitelist:save()
+		Ora.Jobs.Firefighter.Whitelist:save()
 		sendMessage(source, "Saved whitelist.")
 	end,
 	true
@@ -352,7 +352,7 @@ RegisterCommand(
 		end
 
 		if action == "scenario" then
-			if not Atlantiss.Jobs.Firefighter.Fire.registered[serverId] then
+			if not Ora.Jobs.Firefighter.Fire.registered[serverId] then
 				sendMessage(source, "The specified scenario hasn't been found.")
 				return
 			end
@@ -360,8 +360,8 @@ RegisterCommand(
 			table.remove(args, 1)
 			table.remove(args, 1)
 
-			Atlantiss.Jobs.Firefighter.Fire.registered[serverId].message = next(args) and table.concat(args, " ") or nil
-			Atlantiss.Jobs.Firefighter.Fire:saveRegistered()
+			Ora.Jobs.Firefighter.Fire.registered[serverId].message = next(args) and table.concat(args, " ") or nil
+			Ora.Jobs.Firefighter.Fire:saveRegistered()
 			sendMessage(source, ("Changed scenario's (#%s) dispatch message."):format(serverId))
 		else
 			local identifier = GetPlayerIdentifier(serverId, 0)
@@ -372,10 +372,10 @@ RegisterCommand(
 			end
 
 			if action == "add" then
-				Atlantiss.Jobs.Firefighter.Dispatch:subscribe(serverId, (not args[3] or args[3] ~= "false"))
+				Ora.Jobs.Firefighter.Dispatch:subscribe(serverId, (not args[3] or args[3] ~= "false"))
 				sendMessage(source, ("Subscribed %s to dispatch."):format(GetPlayerName(serverId)))
 			elseif action == "remove" then
-				Atlantiss.Jobs.Firefighter.Dispatch:unsubscribe(serverId, identifier)
+				Ora.Jobs.Firefighter.Dispatch:unsubscribe(serverId, identifier)
 				sendMessage(source, ("Unsubscribed %s from the dispatch."):format(GetPlayerName(serverId)))
 			else
 				sendMessage(source, "Invalid action.")
@@ -388,7 +388,7 @@ RegisterCommand(
 RegisterCommand(
 	'randomfires',
 	function(source, args, rawCommand)
-		if not Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
+		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.manage") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end
@@ -406,20 +406,20 @@ RegisterCommand(
 				sendMessage(source, "Invalid argument (2).")
 				return
 			end
-			Atlantiss.Jobs.Firefighter.Fire:setRandom(registeredFireID, true)
+			Ora.Jobs.Firefighter.Fire:setRandom(registeredFireID, true)
 			sendMessage(source, ("Set scenario #%s to start randomly."):format(registeredFireID))
 		elseif action == "remove" then
 			if not registeredFireID then
 				sendMessage(source, "Invalid argument (2).")
 				return
 			end
-			Atlantiss.Jobs.Firefighter.Fire:setRandom(registeredFireID, false)
+			Ora.Jobs.Firefighter.Fire:setRandom(registeredFireID, false)
 			sendMessage(source, ("Set scenario #%s not to start randomly."):format(registeredFireID))
 		elseif action == "disable" then
-			Atlantiss.Jobs.Firefighter.Fire:stopSpawner()
+			Ora.Jobs.Firefighter.Fire:stopSpawner()
 			sendMessage(source, "Disabled random fire spawn.")
 		elseif action == "enable" then
-			Atlantiss.Jobs.Firefighter.Fire:startSpawner()
+			Ora.Jobs.Firefighter.Fire:startSpawner()
 			sendMessage(source, "Enabled random fire spawn.")
 		else
 			sendMessage(source, "Invalid action.")
@@ -437,7 +437,7 @@ AddEventHandler(
 	'fireManager:requestSync',
 	function()
 		if source > 0 then
-			TriggerClientEvent('fireClient:synchronizeFlames', source, Atlantiss.Jobs.Firefighter.Fire.active)
+			TriggerClientEvent('fireClient:synchronizeFlames', source, Ora.Jobs.Firefighter.Fire.active)
 		end
 	end
 )
@@ -446,7 +446,7 @@ RegisterNetEvent('fireManager:createFlame')
 AddEventHandler(
 	'fireManager:createFlame',
 	function(fireIndex, coords)
-		Atlantiss.Jobs.Firefighter.Fire:createFlame(fireIndex, coords)
+		Ora.Jobs.Firefighter.Fire:createFlame(fireIndex, coords)
 	end
 )
 
@@ -454,7 +454,7 @@ RegisterNetEvent('fireManager:createFire')
 AddEventHandler(
 	'fireManager:createFire',
 	function()
-		Atlantiss.Jobs.Firefighter.Fire:create(coords, maximumSpread, spreadChance)
+		Ora.Jobs.Firefighter.Fire:create(coords, maximumSpread, spreadChance)
 	end
 )
 
@@ -462,7 +462,7 @@ RegisterNetEvent('fireManager:removeFire')
 AddEventHandler(
 	'fireManager:removeFire',
 	function(fireIndex)
-		Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex)
+		Ora.Jobs.Firefighter.Fire:remove(fireIndex)
 	end
 )
 
@@ -470,7 +470,7 @@ RegisterNetEvent('fireManager:removeAllFires')
 AddEventHandler(
 	'fireManager:removeAllFires',
 	function()
-		Atlantiss.Jobs.Firefighter.Fire:removeAll()
+		Ora.Jobs.Firefighter.Fire:removeAll()
 	end
 )
 
@@ -478,7 +478,7 @@ RegisterNetEvent('fireManager:removeFlame')
 AddEventHandler(
 	'fireManager:removeFlame',
 	function(fireIndex, flameIndex)
-		Atlantiss.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
+		Ora.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
 	end
 )
 
@@ -496,7 +496,7 @@ AddEventHandler(
 			return
 		end
 
-		Atlantiss.Jobs.Firefighter.Dispatch:subscribe(playerSource, not (isFirefighter))
+		Ora.Jobs.Firefighter.Dispatch:subscribe(playerSource, not (isFirefighter))
 	end
 )
 
@@ -510,7 +510,7 @@ AddEventHandler(
 			return
 		end
 
-		Atlantiss.Jobs.Firefighter.Dispatch:subscribe(playerSource)
+		Ora.Jobs.Firefighter.Dispatch:subscribe(playerSource)
 	end
 )
 
@@ -518,10 +518,10 @@ RegisterNetEvent('fireDispatch:create')
 AddEventHandler(
 	'fireDispatch:create',
 	function(text, coords)
-		if Atlantiss.Service.Jobs["lsfd"][source] ~= nil and (source < 1 or Atlantiss.Jobs.Firefighter.Dispatch.expectingInfo[source]) then
-			Atlantiss.Jobs.Firefighter.Dispatch:create(text, coords)
+		if Ora.Service.Jobs["lsfd"][source] ~= nil and (source < 1 or Ora.Jobs.Firefighter.Dispatch.expectingInfo[source]) then
+			Ora.Jobs.Firefighter.Dispatch:create(text, coords)
 			if source > 0 then
-				Atlantiss.Jobs.Firefighter.Dispatch.expectingInfo[source] = nil
+				Ora.Jobs.Firefighter.Dispatch.expectingInfo[source] = nil
 			end
 		end
 	end
@@ -539,6 +539,6 @@ AddEventHandler(
 			source = tonumber(serverId) or source
 		end
 
-		Atlantiss.Jobs.Firefighter.Whitelist:check(source)
+		Ora.Jobs.Firefighter.Whitelist:check(source)
 	end
 )

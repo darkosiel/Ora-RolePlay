@@ -13,7 +13,7 @@ function OpenCar()
             if vehicle == 0 then veh = closestvehicle else veh = vehicle end
             local playerPed = LocalPlayer().Ped
             local x, y, z = table.unpack(LocalPlayer().Pos)
-            propBox1 = Atlantiss.World.Object:Create(GetHashKey(prop_name), x, y, z + 0.1, true, true, true)
+            propBox1 = Ora.World.Object:Create(GetHashKey(prop_name), x, y, z + 0.1, true, true, true)
             AttachEntityToEntity(propBox1, playerPed, GetPedBoneIndex(playerPed, 58866), 0.080, 0.012, 0.050, 0.0, 100.0, 300.0, true, false, false, true, 1, true)
             RequestAnimDict("anim@mp_player_intmenu@key_fob@")
             while not HasAnimDictLoaded("anim@mp_player_intmenu@key_fob@") do
@@ -24,9 +24,9 @@ function OpenCar()
             local plate = GetVehicleNumberPlateText(veh)
             --(json.encode(vehicles.data))
         
-            if Atlantiss.Inventory.Data["key"] ~= nil then
-                for i = 1 , #Atlantiss.Inventory.Data["key"] , 1 do 
-                    local v = Atlantiss.Inventory.Data["key"][i]
+            if Ora.Inventory.Data["key"] ~= nil then
+                for i = 1 , #Ora.Inventory.Data["key"] , 1 do 
+                    local v = Ora.Inventory.Data["key"][i]
                     --print(plate)
                     
                     if plate == v.data.plate then

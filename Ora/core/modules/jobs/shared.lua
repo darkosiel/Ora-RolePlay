@@ -1,38 +1,38 @@
-Atlantiss.Jobs = {}
+Ora.Jobs = {}
 
-Atlantiss.Jobs.List = {}
+Ora.Jobs.List = {}
 
-Atlantiss.Jobs.Deactivated = {
+Ora.Jobs.Deactivated = {
   ["immo"] = false
 }
 
 
-function Atlantiss.Jobs:GetModuleName()
+function Ora.Jobs:GetModuleName()
   return "Jobs"
 end
 
-function Atlantiss.Jobs:Initialize()
+function Ora.Jobs:Initialize()
   self:InitializeJobs()
 end
 
-function Atlantiss.Jobs:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Jobs:GetModuleName(), message))
+function Ora.Jobs:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Jobs:GetModuleName(), message))
   end
 end
 
-function Atlantiss.Jobs:Register(jobName)
-  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Job^7.\n",  Atlantiss:GetServerName(), jobName))
+function Ora.Jobs:Register(jobName)
+  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Job^7.\n",  Ora:GetServerName(), jobName))
 	self.List[#self.List + 1] = jobName
 end
 
-function Atlantiss.Jobs:InitializeJobs()
+function Ora.Jobs:InitializeJobs()
 	for _, job in pairs(self.List) do
     if self[job] and self[job]["Initialize"] then
-      Citizen.Trace(string.format("^2[%s] ^3Job ^5%s^3 initialized^7.\n", Atlantiss:GetServerName(), job))
+      Citizen.Trace(string.format("^2[%s] ^3Job ^5%s^3 initialized^7.\n", Ora:GetServerName(), job))
       self[job]:Initialize()
     end
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Jobs:GetModuleName())
+Ora.Modules:Register(Ora.Jobs:GetModuleName())

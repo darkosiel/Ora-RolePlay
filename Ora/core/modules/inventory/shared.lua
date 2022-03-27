@@ -1,13 +1,13 @@
-Atlantiss.Inventory = {}
+Ora.Inventory = {}
 
-function Atlantiss.Inventory:GetModuleName()
+function Ora.Inventory:GetModuleName()
   return "Inventory"
 end
 
-function Atlantiss.Inventory:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Inventory:GetModuleName(), message))
+function Ora.Inventory:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Inventory:GetModuleName(), message))
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Inventory:GetModuleName())
+Ora.Modules:Register(Ora.Inventory:GetModuleName())

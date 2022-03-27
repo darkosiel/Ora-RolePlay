@@ -1,5 +1,5 @@
 -- ALTER TABLE `players_parking` ADD `health` LONGTEXT NULL AFTER `vehicles`;
-Atlantiss.World.Vehicle.ExistingPlates = {}
+Ora.World.Vehicle.ExistingPlates = {}
 
 MySQL.ready(
     function()
@@ -8,14 +8,14 @@ MySQL.ready(
             {},
             function(result)
                 for _, veh in pairs(result) do
-                    table.insert(Atlantiss.World.Vehicle.ExistingPlates, veh.plate)
+                    table.insert(Ora.World.Vehicle.ExistingPlates, veh.plate)
                 end
             end
         )
     end
 )
 
-function Atlantiss.World.Vehicle:IsVehicleBelongsToAnyPlayer(vehicleIdentifier)
+function Ora.World.Vehicle:IsVehicleBelongsToAnyPlayer(vehicleIdentifier)
     results = MySQL.Sync.fetchAll(
         "SELECT count(plate) AS number_of_vehicles FROM players_vehicles WHERE plate_identifier = @vehicleIdentifier",
         {
@@ -32,7 +32,7 @@ function Atlantiss.World.Vehicle:IsVehicleBelongsToAnyPlayer(vehicleIdentifier)
     return false
 end
 
-function Atlantiss.World.Vehicle:IsVehicleInParking(vehicleIdentifier)
+function Ora.World.Vehicle:IsVehicleInParking(vehicleIdentifier)
     results = MySQL.Sync.fetchAll(
         "SELECT count(plate) AS number_of_vehicles FROM players_parking WHERE plate = @plate",
         {
@@ -49,7 +49,7 @@ function Atlantiss.World.Vehicle:IsVehicleInParking(vehicleIdentifier)
     return false
 end
 
-function Atlantiss.World.Vehicle:SetVehicleToPound(vehicleIdentifier)
+function Ora.World.Vehicle:SetVehicleToPound(vehicleIdentifier)
     MySQL.Sync.insert(
         "UPDATE players_vehicles SET pound = 1 WHERE plate_identifier = @vehicleIdentifier",
         {
@@ -59,12 +59,12 @@ function Atlantiss.World.Vehicle:SetVehicleToPound(vehicleIdentifier)
 end
 
 
-RegisterServerEvent("Atlantiss::SE::World:Garage:StoreVehicle")
+RegisterServerEvent("Ora::SE::World:Garage:StoreVehicle")
 AddEventHandler(
-    "Atlantiss::SE::World:Garage:StoreVehicle",
+    "Ora::SE::World:Garage:StoreVehicle",
     function(vehicleData, vehicleHealthData, garage, plate)
         --(source)
-        local uuid = Atlantiss.Identity:GetUuid(source)
+        local uuid = Ora.Identity:GetUuid(source)
 
         MySQL.Async.fetchAll(
             "SELECT count(plate) AS number_of_vehicles FROM players_parking WHERE garage = @garage AND plate = @plate",
@@ -96,7 +96,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::World:Garage:IsVehicleStored",
+    "Ora::SE::World:Garage:IsVehicleStored",
     function(source, callback, garageName, vehicleIdentifier, removeFromStorage)
         removeFromStorage = removeFromStorage or false
         MySQL.Async.fetchAll(
@@ -126,9 +126,9 @@ RegisterServerCallback(
 )
 
 
-RegisterServerEvent("Atlantiss::SE::World:Vehicle:RemoveAllItemsNameFromTrunk")
+RegisterServerEvent("Ora::SE::World:Vehicle:RemoveAllItemsNameFromTrunk")
 AddEventHandler(
-    "Atlantiss::SE::World:Vehicle:RemoveAllItemsNameFromTrunk",
+    "Ora::SE::World:Vehicle:RemoveAllItemsNameFromTrunk",
     function(vehicleIdentifier, itemName)
         MySQL.Async.execute(
             "DELETE FROM storages_inventory_items2 WHERE item_name = @item_name AND storage_name = @storage_name",
@@ -140,9 +140,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::World:Vehicle:SaveHandling")
+RegisterServerEvent("Ora::SE::World:Vehicle:SaveHandling")
 AddEventHandler(
-    "Atlantiss::SE::World:Vehicle:SaveHandling",
+    "Ora::SE::World:Vehicle:SaveHandling",
     function(plateID, data)
         local src = source
         local vdata = json.encode(data)
@@ -174,7 +174,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::World:Vehicle:GetHandling",
+    "Ora::SE::World:Vehicle:GetHandling",
     function(source, callback, plateID)
         MySQL.Async.fetchAll(
             "SELECT data FROM players_vehicles WHERE plate_identifier = @pid",
@@ -193,8 +193,8 @@ RegisterServerCallback(
 )
 
 RegisterServerCallback(
-    "Atlantiss::SVCB::World:Vehicle:GetExistingPlates",
+    "Ora::SVCB::World:Vehicle:GetExistingPlates",
     function(source, callback)
-        callback(Atlantiss.World.Vehicle.ExistingPlates)
+        callback(Ora.World.Vehicle.ExistingPlates)
     end
 )

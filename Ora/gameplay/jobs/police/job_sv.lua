@@ -86,7 +86,7 @@ AddEventHandler("police:AddUnit", function(tble, police, unit, matricule, sector
   if tble == "current" then
     local newUnit = {matricule = matricule, sector = sector, status = "", desc = {time = "", zone = "", street = ""}}
     table.insert(allUnits[police][unit], newUnit)
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:AddUnit", player, tble, police, unit, newUnit)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -96,7 +96,7 @@ AddEventHandler("police:AddUnit", function(tble, police, unit, matricule, sector
   else
     local newUnit = {matricule = matricule, sector = sector, status = "", desc = {time = "", zone = "", street = ""}}
     table.insert(allUnitsDispatch[police][unit], newUnit)
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:AddUnit", player, tble, police, unit, newUnit)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -110,7 +110,7 @@ RegisterServerEvent("police:DeleteUnit")
 AddEventHandler("police:DeleteUnit", function(tble, police, unit, index)
   if tble == "current" then
     table.remove(allUnits[police][unit], index)
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:DeleteUnit", player, tble, police, unit, index)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -119,7 +119,7 @@ AddEventHandler("police:DeleteUnit", function(tble, police, unit, index)
     SaveResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json", json.encode(extract, {indent=true}), -1) 
   else
     table.remove(allUnitsDispatch[police][unit], index)
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:DeleteUnit", player, tble, police, unit, index)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -139,7 +139,7 @@ AddEventHandler("police:Reset", function(tble, police)
         allUnits[police][k] = {}
       end
     end
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:Reset", player, tble, police)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -154,7 +154,7 @@ AddEventHandler("police:Reset", function(tble, police)
         allUnitsDispatch[police][k] = {}
       end
     end
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:Reset", player, tble, police)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -168,7 +168,7 @@ RegisterServerEvent("police:ChangeChief")
 AddEventHandler("police:ChangeChief", function(tble, police, chief, name)
   if tble == "current" then
     allUnits[police][chief] = name
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:ChangeChief", player, tble, police, chief, name)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -177,7 +177,7 @@ AddEventHandler("police:ChangeChief", function(tble, police, chief, name)
     SaveResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json", json.encode(extract, {indent=true}), -1) 
   else
     allUnitsDispatch[police][chief] = name
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:ChangeChief", player, tble, police, chief, name)
     end
     local loadFile = LoadResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json")
@@ -192,7 +192,7 @@ AddEventHandler("police:ChangeStatus", function(police, unit, index, status, des
   allUnits[police][unit][index].status = status
   allUnits[police][unit][index].desc = desc
   allUnits[police][unit][index].desc.time = os.date("%X")
-  for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+  for _, player in pairs(Ora.Service:GetJobService(police)) do
     TriggerClientEvent("police:ChangeStatus", player, police, unit, index, status, desc)
   end
 end)
@@ -205,7 +205,7 @@ AddEventHandler("police:ChangeSector", function(tble, police, unit, index, secto
     local extract = json.decode(loadFile)
     extract.allUnits[police][unit][index].sector = sector
     SaveResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json", json.encode(extract, {indent=true}), -1) 
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:ChangeSector", player, tble, police, unit, index, sector)
     end
   else
@@ -214,7 +214,7 @@ AddEventHandler("police:ChangeSector", function(tble, police, unit, index, secto
     local extract = json.decode(loadFile)
     extract.allUnitsDispatch[police][unit][index].sector = sector
     SaveResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json", json.encode(extract, {indent=true}), -1) 
-    for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+    for _, player in pairs(Ora.Service:GetJobService(police)) do
       TriggerClientEvent("police:ChangeSector", player, tble, police, unit, index, sector)
     end
   end
@@ -273,7 +273,7 @@ AddEventHandler("police:PostDispatch", function(police)
   extract.allUnits = allUnits
   SaveResourceFile(GetCurrentResourceName(), "./gameplay/jobs/police/dispatch.json", json.encode(extract, {indent=true}), -1) 
 
-  for _, player in pairs(Atlantiss.Service:GetJobService(police)) do
+  for _, player in pairs(Ora.Service:GetJobService(police)) do
     TriggerClientEvent("police:PostDispatch", player, police, allUnits[police])
   end
   local dispatch = {}

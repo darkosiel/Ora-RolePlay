@@ -173,7 +173,7 @@ function GiveClothes()
     item.data = data
     item.label = "Tenues d'arrivé en ville"
     RageUI.Popup({message = "Vous avez reçu une nouvelle tenue dans votre inventaire !"})
-    Atlantiss.Inventory:AddItem(item)
+    Ora.Inventory:AddItem(item)
     item = {}
 
     local data = {battery = 99, num = GeneratePhoneNumber()}
@@ -181,13 +181,13 @@ function GiveClothes()
     item.name = "tel"
     item.data = data
     RageUI.Popup({message = "Vous avez reçu un téléphone dans votre inventaire !"})
-    Atlantiss.Inventory:AddItem(item)
+    Ora.Inventory:AddItem(item)
     item = {}
     TriggerServerCallback(
-        "Atlantiss::SE::Money:AuthorizePayment", 
+        "Ora::SE::Money:AuthorizePayment", 
         function(token)
-            TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = startMoney, SOURCE = "Argent de départ", LEGIT = false})
-            TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
+            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = startMoney, SOURCE = "Argent de départ", LEGIT = false})
+            TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
         end,
         {}
     )
@@ -1304,7 +1304,7 @@ Citizen.CreateThread(
                             "Point d'arrivée",
                             spawnPoint.data,
                             spawnPoint.index,
-                            "Le lieu sur lequel vous allez faire vos premiers pas sur Atlantiss.",
+                            "Le lieu sur lequel vous allez faire vos premiers pas sur Ora.",
                             {},
                             true,
                             function(Hovered, Active, Selected, Index)
@@ -1332,10 +1332,10 @@ Citizen.CreateThread(
                                         (createPlayer[createPlayer.Model].Identity.origine ~= nil and createPlayer[createPlayer.Model].Identity.origine ~= "")
                                     )
                                     then
-                                        Atlantiss.Inventory:Load()
+                                        Ora.Inventory:Load()
                                         Wait(500)
                                         GiveClothes()
-                                        Atlantiss.Inventory:Save()
+                                        Ora.Inventory:Save()
                                         CloseCreatorMenu()
                                         local ModelSelected = createPlayer[createPlayer.Model]
                                         if ModelSelected.Identity == nil then
@@ -1370,7 +1370,7 @@ Citizen.CreateThread(
                                         endcreated = true
                                         RageUI.GoBack()
                                         DoScreenFadeOut(10)
-                                        Atlantiss.Inventory:Save()
+                                        Ora.Inventory:Save()
                                         TriggerEvent("mugroom:Finish", spawnPoint)
                                     else
                                         RageUI.Popup(
@@ -1408,8 +1408,8 @@ Citizen.CreateThread(
                                 if Selected then
                                     CloseAllMenus()
                                     ShowNotification("~g~Veuillez réessayer maintenant~s~")
-                                    Atlantiss.Health:Revive(false)
-                                    Atlantiss.Health:SetMyHealthPercent(100)
+                                    Ora.Health:Revive(false)
+                                    Ora.Health:SetMyHealthPercent(100)
                                     Creator.LoadContent()
                                 end
                             end

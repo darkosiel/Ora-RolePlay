@@ -28,12 +28,12 @@ local function loadBigScreen()
     EndScaleformMovieMethod()
     SetScaleformFitRendertarget(bigScreenScaleform, true)
 
-    Atlantiss.Jobs.Casino.Insidetrack:AddHorses(bigScreenScaleform)
+    Ora.Jobs.Casino.Insidetrack:AddHorses(bigScreenScaleform)
 
     isBigScreenLoaded = true
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:HandleBigScreen()
+function Ora.Jobs.Casino.Insidetrack:HandleBigScreen()
     CreateThread(function()
         while not self.InsideTrackActive do
             Wait(0)
@@ -69,9 +69,9 @@ function Atlantiss.Jobs.Casino.Insidetrack:HandleBigScreen()
 end
 
 do
-    if not Atlantiss.Jobs.Casino.Insidetrack.BigScreen.enable then
+    if not Ora.Jobs.Casino.Insidetrack.BigScreen.enable then
         return
     end
 
-    Atlantiss.Jobs.Casino.Insidetrack:HandleBigScreen()
+    Ora.Jobs.Casino.Insidetrack:HandleBigScreen()
 end

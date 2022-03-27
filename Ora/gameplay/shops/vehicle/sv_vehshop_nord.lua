@@ -72,9 +72,9 @@ RegisterServerCallback(
     "autoshop:BuyVehicle",
     function(source, callback, price, targetSource, vehicle)
         local vehicleOptions = json.encode(vehicle)
-        local seller = Atlantiss.Identity:GetUuid(source)
-        while (Atlantiss.Utils:HasValue(Atlantiss.World.Vehicle.ExistingPlates, vehicle.plate)) do
-            vehicle.plate = Atlantiss.World.Vehicle:GenerateRandomPlate()
+        local seller = Ora.Identity:GetUuid(source)
+        while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
+            vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
         end
         insertNewVehicleIntoDatabase(seller, "jetsam", vehicleOptions, vehicle.plate, vehicle.label, price)
         callback(true, vehicle.plate)
@@ -85,9 +85,9 @@ RegisterServerCallback(
     "autoshop:BuyVehicleForCompany",
     function(source, callback, price, company, vehicle)
         local vehicleOptions = json.encode(vehicle)
-        local seller = Atlantiss.Identity:GetUuid(source)
-        while (Atlantiss.Utils:HasValue(Atlantiss.World.Vehicle.ExistingPlates, vehicle.plate)) do
-            vehicle.plate = Atlantiss.World.Vehicle:GenerateRandomPlate()
+        local seller = Ora.Identity:GetUuid(source)
+        while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
+            vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
         end
         insertNewVehicleIntoDatabase(seller, company, vehicleOptions, vehicle.plate, vehicle.label, price)
         callback(true, vehicle.plate)

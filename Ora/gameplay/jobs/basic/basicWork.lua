@@ -32,7 +32,7 @@ local worksP = {
         fct = function()
             found = false
             if type(data.required) ~= "table" then
-                if Atlantiss.Inventory:GetItemCount(data.required) <= 0 then
+                if Ora.Inventory:GetItemCount(data.required) <= 0 then
                     ShowNotification("~r~Pas assez de " .. Items[data.required].label)
                     StopCurrentWork()
                     return
@@ -41,7 +41,7 @@ local worksP = {
                 end
             else
                 for i = 1, #data.required, 1 do
-                    if Atlantiss.Inventory:GetItemCount(data.required[i].name) - data.required[i].count <= 0 then
+                    if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count <= 0 then
                         ShowNotification("~r~Pas assez de " .. Items[data.required[i].name].label)
                         StopCurrentWork()
                         return
@@ -81,7 +81,7 @@ local worksP = {
         fct = function()
             found = false
             if type(data.required) ~= "table" then
-                if Atlantiss.Inventory:GetItemCount(data.required) <= 0 then
+                if Ora.Inventory:GetItemCount(data.required) <= 0 then
                     ShowNotification("~r~Pas assez de " .. Items[data.required].label)
                     StopCurrentWork()
                     return
@@ -90,7 +90,7 @@ local worksP = {
                 end
             else
                 for i = 1, #data.required, 1 do
-                    if Atlantiss.Inventory:GetItemCount(data.required[i].name) - data.required[i].count <= 0 then
+                    if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count <= 0 then
                         ShowNotification("~r~Pas assez de " .. Items[data.required[i].name].label)
                         StopCurrentWork()
                         break
@@ -182,13 +182,13 @@ function StartRecolte(_type)
     if works == 0 then
         Hint:RemoveAll()
         if _type == "Jobs" then
-            KeySettings:Clear("keyboard", "E", Atlantiss.Identity.Job.CurrentAction)
-            KeySettings:Clear("controller", 46, Atlantiss.Identity.Job.CurrentAction)
-            KeySettings:Add("keyboard", "E", StopCurrentWork, Atlantiss.Identity.Job.CurrentAction)
+            KeySettings:Clear("keyboard", "E", Ora.Identity.Job.CurrentAction)
+            KeySettings:Clear("controller", 46, Ora.Identity.Job.CurrentAction)
+            KeySettings:Add("keyboard", "E", StopCurrentWork, Ora.Identity.Job.CurrentAction)
         else
-            KeySettings:Clear("keyboard", "E", Atlantiss.Identity.Orga.CurrentAction)
-            KeySettings:Clear("controller", 46, Atlantiss.Identity.Orga.CurrentAction)
-            KeySettings:Add("keyboard", "E", StopCurrentWork, Atlantiss.Identity.Orga.CurrentAction)
+            KeySettings:Clear("keyboard", "E", Ora.Identity.Orga.CurrentAction)
+            KeySettings:Clear("controller", 46, Ora.Identity.Orga.CurrentAction)
+            KeySettings:Add("keyboard", "E", StopCurrentWork, Ora.Identity.Orga.CurrentAction)
         end
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ~r~stopper~s~ l'action")
 
@@ -197,19 +197,19 @@ function StartRecolte(_type)
             works = 1
             -- indexation du job (si farm orga ou pas)
             if _type == "Jobs" then
-                data = Atlantiss.Identity.Job.Data.work[Atlantiss.Identity.Job.CurrentAction]
+                data = Ora.Identity.Job.Data.work[Ora.Identity.Job.CurrentAction]
             else
-                data = Atlantiss.Identity.Orga.Data.work[Atlantiss.Identity.Orga.CurrentAction]
+                data = Ora.Identity.Orga.Data.work[Ora.Identity.Orga.CurrentAction]
             end
             Player = LocalPlayer()
-            CurrentAction6 = Atlantiss.Identity.Job.CurrentAction
+            CurrentAction6 = Ora.Identity.Job.CurrentAction
             Citizen.CreateThread(
                 function()
                     -- check si on a de la place
                     if data ~= nil then
                         if data.giveitem ~= nil then
                             if type(data.giveitem) ~= "table" then
-                                if not Atlantiss.Inventory:CanReceive(data.giveitem, 1) then
+                                if not Ora.Inventory:CanReceive(data.giveitem, 1) then
                                     StopCurrentWork()
                                     return
                                 end
@@ -219,7 +219,7 @@ function StartRecolte(_type)
                                         data.giveitem[hh].count =
                                             math.random(data.giveitem[hh].count[1], data.giveitem[hh].count[2])
                                     end
-                                    if not Atlantiss.Inventory:CanReceive(data.giveitem[hh].name, data.giveitem[hh].count) then
+                                    if not Ora.Inventory:CanReceive(data.giveitem[hh].name, data.giveitem[hh].count) then
                                         StopCurrentWork()
                                         return
                                     end
@@ -240,7 +240,7 @@ function StartRecolte(_type)
                                 if data.giveitemType == nil or data.giveitemType == 0 then
                                     if type(data.giveitem) ~= "table" then
                                         item = {name = data.giveitem}
-                                        Atlantiss.Inventory:AddItem(item)
+                                        Ora.Inventory:AddItem(item)
                                     else
                                         for hh = 1, #data.giveitem, 1 do
                                             if type(data.giveitem[hh].count) == "table" then
@@ -249,7 +249,7 @@ function StartRecolte(_type)
                                             end
                                             for i = 1, data.giveitem[hh].count, 1 do
                                                 item = {name = data.giveitem[hh].name}
-                                                Atlantiss.Inventory:AddItem(item)
+                                                Ora.Inventory:AddItem(item)
                                             end
                                         end
                                     end
@@ -268,7 +268,7 @@ function StartRecolte(_type)
                                     end
                                     for i = 1, give.count, 1 do
                                         item = {name = give.name}
-                                        Atlantiss.Inventory:AddItem(item)
+                                        Ora.Inventory:AddItem(item)
                                     end
                                 elseif data.giveitemType == 2 then
                                     local dropElement = nil
@@ -280,7 +280,7 @@ function StartRecolte(_type)
                                     local itemDropValue = 1000 - itemDrop.drop * 10
 
                                     if (dropElement > itemDropValue) then
-                                        Atlantiss.Inventory:AddItem({name = itemDrop.name})
+                                        Ora.Inventory:AddItem({name = itemDrop.name})
                                         math.randomseed(GetGameTimer())
                                         ShowNotification(
                                             "[" ..
@@ -299,14 +299,14 @@ function StartRecolte(_type)
                             if data.required ~= nil then
                                 if type(data.required) ~= "table" then
                                     -- supprime un objet aléatoire
-                                    Atlantiss.Inventory:RemoveAnyItemsFromName(data.required, 1)
+                                    Ora.Inventory:RemoveAnyItemsFromName(data.required, 1)
                                 else
                                     for hh = 1, #data.required, 1 do
-                                        for k, v in pairs(Atlantiss.Inventory.Data) do
+                                        for k, v in pairs(Ora.Inventory.Data) do
                                             if k == data.required[hh].name then
                                                 for cc = 1, data.required[hh].count, 1 do
                                                     --TriggerServerEvent("inventory:RemoveItem",v[1].id,data.required[hh].name)
-                                                    Atlantiss.Inventory:RemoveItem({id = v[1].id, name = data.required[hh].name})
+                                                    Ora.Inventory:RemoveItem({id = v[1].id, name = data.required[hh].name})
                                                 end
                                                 break
                                             end
@@ -316,22 +316,22 @@ function StartRecolte(_type)
                             end
                             -- Give d'argent
                             if data.price ~= nil then
-                                if Atlantiss.Identity.Job.Data.FreeAccess then
+                                if Ora.Identity.Job.Data.FreeAccess then
                                     TriggerServerCallback(
-                                        "Atlantiss::SE::Money:AuthorizePayment", 
+                                        "Ora::SE::Money:AuthorizePayment", 
                                         function(token)
-                                            TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = data.price, SOURCE = "Farm Job non WL", LEGIT = true})
-                                            TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", data.price, false)
+                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = data.price, SOURCE = "Farm Job non WL", LEGIT = true})
+                                            TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", data.price, false)
                                         end,
                                         {}
                                     )
                                 else
                                     if _type == "Jobs" then
-                                        TriggerServerEvent("business:AddFromTreasury", Atlantiss.Identity.Job:GetName(), data.price)
-                                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), Atlantiss.Identity.Job:GetName(), data.price, true)
+                                        TriggerServerEvent("business:AddFromTreasury", Ora.Identity.Job:GetName(), data.price)
+                                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), Ora.Identity.Job:GetName(), data.price, true)
                                     else
-                                        TriggerServerEvent("business:AddFromTreasury", Atlantiss.Identity.Orga:GetName(), data.price)
-                                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), Atlantiss.Identity.Orga:GetName(), data.price, true)
+                                        TriggerServerEvent("business:AddFromTreasury", Ora.Identity.Orga:GetName(), data.price)
+                                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), Ora.Identity.Orga:GetName(), data.price, true)
                                     end
                                 end
                             end
@@ -364,8 +364,8 @@ function StopCurrentWork(bool)
     if bool == nil then
         Hint:RemoveAll()
         --     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour interagir")
-        KeySettings:Clear("keyboard", "E", Atlantiss.Identity.Job.CurrentAction)
-        KeySettings:Clear("controller", 46, Atlantiss.Identity.Job.CurrentAction)
+        KeySettings:Clear("keyboard", "E", Ora.Identity.Job.CurrentAction)
+        KeySettings:Clear("controller", 46, Ora.Identity.Job.CurrentAction)
     end
 end
 

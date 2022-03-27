@@ -4,7 +4,7 @@
 --      License: GNU GPL 3.0      --
 --================================--
 
-Atlantiss.Jobs.Firefighter.Dispatch = {
+Ora.Jobs.Firefighter.Dispatch = {
 	lastCall = nil,
 	blips = {},
 	__index = self,
@@ -16,7 +16,7 @@ Atlantiss.Jobs.Firefighter.Dispatch = {
 	end
 }
 
-function Atlantiss.Jobs.Firefighter.Dispatch:renderRoute(coords)
+function Ora.Jobs.Firefighter.Dispatch:renderRoute(coords)
 	ClearGpsMultiRoute()
 
     StartGpsMultiRoute(6, true, true)
@@ -24,7 +24,7 @@ function Atlantiss.Jobs.Firefighter.Dispatch:renderRoute(coords)
     SetGpsMultiRouteRender(true)
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
+function Ora.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
 	if not (dispatchNumber and coords) then
 		return
 	end
@@ -47,7 +47,7 @@ function Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
 
     self:renderRoute(coords)
     
-    if Atlantiss.Jobs.Firefighter.Config.Dispatch.playSound then
+    if Ora.Jobs.Firefighter.Config.Dispatch.playSound then
         Citizen.CreateThread(
             function()
                 for i = 1, 3 do
@@ -61,7 +61,7 @@ function Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
 	FlashMinimapDisplay()
 
 	Citizen.SetTimeout(
-		Atlantiss.Jobs.Firefighter.Config.Dispatch.removeBlipTimeout,
+		Ora.Jobs.Firefighter.Config.Dispatch.removeBlipTimeout,
 		function()
 			if self.blips[dispatchNumber] and self.blips[dispatchNumber].blip then
 				RemoveBlip(blip)
@@ -73,8 +73,8 @@ function Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
 		end
 	)
 
-	-- Only store the last 'Atlantiss.Jobs.Firefighter.Config.Dispatch.storeLast' dispatches' data.
-	if countElements(self.blips) > Atlantiss.Jobs.Firefighter.Config.Dispatch.storeLast then
+	-- Only store the last 'Ora.Jobs.Firefighter.Config.Dispatch.storeLast' dispatches' data.
+	if countElements(self.blips) > Ora.Jobs.Firefighter.Config.Dispatch.storeLast then
 		local order = {}
 
 		for k, v in pairs(self.blips) do
@@ -88,7 +88,7 @@ function Atlantiss.Jobs.Firefighter.Dispatch:create(dispatchNumber, coords)
 	self.lastCall = dispatchNumber
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:clear(dispatchNumber)
+function Ora.Jobs.Firefighter.Dispatch:clear(dispatchNumber)
 	ClearGpsMultiRoute()
 
 	if dispatchNumber and self.blips[dispatchNumber] and self.blips[dispatchNumber].blip then
@@ -104,7 +104,7 @@ function Atlantiss.Jobs.Firefighter.Dispatch:clear(dispatchNumber)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:remind(dispatchNumber)
+function Ora.Jobs.Firefighter.Dispatch:remind(dispatchNumber)
 	if self.blips[dispatchNumber] then
 		SetNewWaypoint(table.unpack(self.blips[dispatchNumber].coords.xy))
 		return true
@@ -117,12 +117,12 @@ end
 --     DISPATCH ROUTE REMOVAL     --
 --================================--
 
-if Atlantiss.Jobs.Firefighter.Config.Dispatch.clearGpsRadius and tonumber(Atlantiss.Jobs.Firefighter.Config.Dispatch.clearGpsRadius) then
+if Ora.Jobs.Firefighter.Config.Dispatch.clearGpsRadius and tonumber(Ora.Jobs.Firefighter.Config.Dispatch.clearGpsRadius) then
 	Citizen.CreateThread(
 		function()
 			while true do
 				Citizen.Wait(5000)
-				if Atlantiss.Jobs.Firefighter.Dispatch.lastCall and Atlantiss.Jobs.Firefighter.Dispatch.blips[Atlantiss.Jobs.Firefighter.Dispatch.lastCall] and Atlantiss.Jobs.Firefighter.Dispatch.blips[Atlantiss.Jobs.Firefighter.Dispatch.lastCall].blip and #(Atlantiss.Jobs.Firefighter.Dispatch.blips[Atlantiss.Jobs.Firefighter.Dispatch.lastCall].coords - GetEntityCoords(GetPlayerPed(-1))) < Atlantiss.Jobs.Firefighter.Config.Dispatch.clearGpsRadius then
+				if Ora.Jobs.Firefighter.Dispatch.lastCall and Ora.Jobs.Firefighter.Dispatch.blips[Ora.Jobs.Firefighter.Dispatch.lastCall] and Ora.Jobs.Firefighter.Dispatch.blips[Ora.Jobs.Firefighter.Dispatch.lastCall].blip and #(Ora.Jobs.Firefighter.Dispatch.blips[Ora.Jobs.Firefighter.Dispatch.lastCall].coords - GetEntityCoords(GetPlayerPed(-1))) < Ora.Jobs.Firefighter.Config.Dispatch.clearGpsRadius then
 					ClearGpsMultiRoute()
 				end
 			end

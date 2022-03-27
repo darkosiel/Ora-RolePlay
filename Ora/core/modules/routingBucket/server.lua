@@ -1,5 +1,5 @@
 
-function Atlantiss.RoutingBucket:Initialize()
+function Ora.RoutingBucket:Initialize()
     local maxBucket = 63
     for i = 1, maxBucket, 1 do
       self.List[i] = true
@@ -7,20 +7,20 @@ function Atlantiss.RoutingBucket:Initialize()
     end
 end
 
-function Atlantiss.RoutingBucket:SetPlayerToRoutingBucket(playerId, routingBucket)
+function Ora.RoutingBucket:SetPlayerToRoutingBucket(playerId, routingBucket)
   SetEntityRoutingBucket(GetPlayerPed(playerId), routingBucket)
   SetPlayerRoutingBucket(playerId, routingBucket)
   self:Debug(string.format("Adding player ^5%s^3 to routing bucket ^5%s^3", playerId, routingBucket))
 end
 
-function Atlantiss.RoutingBucket:AddPlayerToAnyAvailableRoutingBucket(playerId)
+function Ora.RoutingBucket:AddPlayerToAnyAvailableRoutingBucket(playerId)
     local availableRoutingBucket = self:ReserveAvailableRoutingBucket()
     SetEntityRoutingBucket(GetPlayerPed(playerId), availableRoutingBucket)
     SetPlayerRoutingBucket(playerId, availableRoutingBucket)
     self:Debug(string.format("Adding player ^5%s^3 to routing bucket ^5%s^3", playerId, availableRoutingBucket))
 end
 
-function Atlantiss.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(playerId)
+function Ora.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(playerId)
   local routingBucketEntity = GetEntityRoutingBucket(GetPlayerPed(playerId))
   local routingBucketPlayer = GetPlayerRoutingBucket(playerId)
 
@@ -40,7 +40,7 @@ function Atlantiss.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(playerId)
   self:Debug(string.format("Removing player ^5%s^3 from routing bucket ^5%s^3 / ^5%s^3", playerId, routingBucketEntity, routingBucketPlayer))
 end
 
-function Atlantiss.RoutingBucket:ReserveAvailableRoutingBucket()
+function Ora.RoutingBucket:ReserveAvailableRoutingBucket()
   for key, value in pairs(self.List) do
     if (value == true) then
       self:Debug(string.format("Routing bucket ^5%s is now %s^3", value, "busy"))
@@ -50,22 +50,22 @@ function Atlantiss.RoutingBucket:ReserveAvailableRoutingBucket()
   end
 end
 
-RegisterServerEvent("Atlantiss::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket")
+RegisterServerEvent("Ora::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket")
 AddEventHandler(
-    "Atlantiss::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket",
+    "Ora::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket",
     function()
         local _source = source
-        Atlantiss.RoutingBucket:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Atlantiss::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket"))
-        Atlantiss.RoutingBucket:AddPlayerToAnyAvailableRoutingBucket(_source)
+        Ora.RoutingBucket:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Ora::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket"))
+        Ora.RoutingBucket:AddPlayerToAnyAvailableRoutingBucket(_source)
     end
 )
-RegisterServerEvent("Atlantiss::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
+RegisterServerEvent("Ora::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
 AddEventHandler(
-    "Atlantiss::SE::RoutingBucket:SwitchToDefaultRoutingBucket",
+    "Ora::SE::RoutingBucket:SwitchToDefaultRoutingBucket",
     function()
         local _source = source
-        Atlantiss.RoutingBucket:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Atlantiss::SE::RoutingBucket:SwitchToDefaultRoutingBucket"))
-        Atlantiss.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(_source)
+        Ora.RoutingBucket:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Ora::SE::RoutingBucket:SwitchToDefaultRoutingBucket"))
+        Ora.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(_source)
     end
 )
 
@@ -73,6 +73,6 @@ AddEventHandler(
     "playerDropped",
     function(reason)
       local _source = source
-      Atlantiss.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(_source)
+      Ora.RoutingBucket:RemovePlayerFromAssignedRoutingBucket(_source)
     end
 )

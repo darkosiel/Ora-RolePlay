@@ -4,7 +4,7 @@
 --      License: GNU GPL 3.0      --
 --================================--
 
-Atlantiss.Jobs.Firefighter.Dispatch = {
+Ora.Jobs.Firefighter.Dispatch = {
 	_players = {},
 	_firefighters = {},
 	lastNumber = 0,
@@ -17,7 +17,7 @@ Atlantiss.Jobs.Firefighter.Dispatch = {
 	end
 }
 
-function Atlantiss.Jobs.Firefighter.Dispatch:create(text, coords)
+function Ora.Jobs.Firefighter.Dispatch:create(text, coords)
 	text = tostring(text)
 
 	if not (text and coords) then
@@ -32,7 +32,7 @@ function Atlantiss.Jobs.Firefighter.Dispatch:create(text, coords)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:subscribe(serverId, isFirefighter)
+function Ora.Jobs.Firefighter.Dispatch:subscribe(serverId, isFirefighter)
 	serverId = tonumber(serverId)
 	self._players[serverId] = true
 	if isFirefighter then
@@ -40,31 +40,31 @@ function Atlantiss.Jobs.Firefighter.Dispatch:subscribe(serverId, isFirefighter)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:unsubscribe(serverId)
+function Ora.Jobs.Firefighter.Dispatch:unsubscribe(serverId)
 	serverId = tonumber(serverId)
 	self._players[serverId] = nil
 	self:removeFirefighter(serverId)
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:addFirefighter(serverId)
+function Ora.Jobs.Firefighter.Dispatch:addFirefighter(serverId)
 	serverId = tonumber(serverId)
 	self._firefighters[serverId] = true
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:removeFirefighter(serverId)
+function Ora.Jobs.Firefighter.Dispatch:removeFirefighter(serverId)
 	serverId = tonumber(serverId)
 	self._firefighters[serverId] = nil
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:firefighters()
+function Ora.Jobs.Firefighter.Dispatch:firefighters()
 	return table.length(self._firefighters)
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:players()
+function Ora.Jobs.Firefighter.Dispatch:players()
 	return table.length(self._players)
 end
 
-function Atlantiss.Jobs.Firefighter.Dispatch:getRandomPlayer()
+function Ora.Jobs.Firefighter.Dispatch:getRandomPlayer()
 	if not next(self._players) then
 		return false
 	end

@@ -1,6 +1,6 @@
 ConfigTax = 21
 function GeneratePhoneNumber()
-   return Atlantiss.Player:GenerateNewPhoneNumber()
+   return Ora.Player:GenerateNewPhoneNumber()
 end
 
 function GeneratePoliceSerial()
@@ -11,14 +11,14 @@ function GeneratePoliceSerial()
 end
 
 local function isPolice()
-    if Atlantiss.Identity.Job:GetName() == "police" or Atlantiss.Identity.Job:GetName() == "lssd" then
+    if Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "lssd" then
         return true
     end
     return false
 end
 
 local function isSAMS()
-    if Atlantiss.Identity.Job:GetName() == "lsms" then
+    if Ora.Identity.Job:GetName() == "lsms" then
         return true
     end
     return false
@@ -27,7 +27,7 @@ end
 function HasNoLtdSouth()
     local result = nil
     TriggerServerCallback(
-        "Atlantiss::SE::Service:GetInServiceCount",
+        "Ora::SE::Service:GetInServiceCount",
         function(nb)
             if nb == 0 then
                 result = true
@@ -49,7 +49,7 @@ end
 function HasNoLtdNorth()
     local result = nil
     TriggerServerCallback(
-        "Atlantiss::SE::Service:GetInServiceCount",
+        "Ora::SE::Service:GetInServiceCount",
         function(nb)
             if nb == 0 then
                 result = true
@@ -374,7 +374,7 @@ local LittleSeoulShop = {
 local _identity = {}
 function SetMyIdentity(id)
     id[1].serial = math.random(111111111, 9999999999)
-    id[1].male = Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) and "M" or "F"
+    id[1].male = Ora.World.Ped:IsPedMale(LocalPlayer().Ped) and "M" or "F"
     _identity = id[1]
 end
 function GetIdentity()
@@ -388,13 +388,13 @@ end
 function HasNoMedic()
     local result = nil
 
-    TriggerServerCallback("Atlantiss::SE::Service:GetInServiceCount", 
+    TriggerServerCallback("Ora::SE::Service:GetInServiceCount", 
         function(nb)
             if nb == 0 then
                 RageUI.Popup({message = "~g~Mes collègues ne sont pas en service, je vais m'occuper de vous après paiement"})
                 result = true
             else
-                TriggerServerCallback("Atlantiss::SE::Job::Ambulance:IsAllowedNPCAmbulance", 
+                TriggerServerCallback("Ora::SE::Job::Ambulance:IsAllowedNPCAmbulance", 
                     function(isAllowed)
                         if (isAllowed) then
                             RageUI.Popup({message = "~g~Mes collègues m'ont autorisé a soigner, je vais m'occuper de vous après paiement"})
@@ -422,7 +422,7 @@ function HealPlayerFromMedic(item)
     local timeATA = 1000 * 60 * 2
     LoadingPrompt("Veuillez patienter pendant que je vous soigne... (" .. math.ceil((timeATA / 1000) / 60) .. " minutes)", 4)
     local playerPed = LocalPlayer().Ped
-    TriggerServerEvent("atlantiss:sendToDiscord", 16, "S'est heal avec Doug à l'accueil. Vie: "..GetEntityHealth(playerPed).."/"..GetEntityMaxHealth(playerPed), "info")
+    TriggerServerEvent("Ora:sendToDiscord", 16, "S'est heal avec Doug à l'accueil. Vie: "..GetEntityHealth(playerPed).."/"..GetEntityMaxHealth(playerPed), "info")
     RequestAnimDict("amb@medic@standing@timeofdeath@idle_a")
     local j = 0
     while not HasAnimDictLoaded("amb@medic@standing@timeofdeath@idle_a") and j <= 50 do
@@ -441,9 +441,9 @@ function HealPlayerFromMedic(item)
     FreezeEntityPosition(playerPed, false)
     RemoveLoadingPrompt()
     ClearPedTasks(LocalPlayer().Ped)
-    Atlantiss.Health:SetMyHealthPercent(70)
+    Ora.Health:SetMyHealthPercent(70)
     ClearPedBloodDamage(playerPed)
-    Atlantiss.Health:RemoveInjuredEffects()
+    Ora.Health:RemoveInjuredEffects()
     RageUI.Popup({message = "~g~Vous êtes soigné à 70% !\n~y~Pensez à appliquer les ATA~w~"})
     TriggerServerEvent("entreprise:Add", "lsms", 500)
 end
@@ -451,10 +451,10 @@ end
 function ReviveAndHealPlayerFromMedic(item)
     local timeATA = 1000 * 60 * 5
     TriggerEvent("player:Revive")
-    Atlantiss.Health:SetIsDead(false)
+    Ora.Health:SetIsDead(false)
     LoadingPrompt("Veuillez patienter pendant que je vous soigne... (" .. math.ceil((timeATA / 1000) / 60) .. " minutes)", 4)
     local playerPed = LocalPlayer().Ped
-    TriggerServerEvent("atlantiss:sendToDiscord", 16, "S'est revive avec Doug à l'accueil. Vie: "..GetEntityHealth(playerPed).."/"..GetEntityMaxHealth(playerPed), "info")
+    TriggerServerEvent("Ora:sendToDiscord", 16, "S'est revive avec Doug à l'accueil. Vie: "..GetEntityHealth(playerPed).."/"..GetEntityMaxHealth(playerPed), "info")
     RequestAnimDict("amb@medic@standing@timeofdeath@idle_a")
     local j = 0
     while not HasAnimDictLoaded("amb@medic@standing@timeofdeath@idle_a") and j <= 50 do
@@ -472,9 +472,9 @@ function ReviveAndHealPlayerFromMedic(item)
     Wait(timeATA)
     FreezeEntityPosition(playerPed, false)
     RemoveLoadingPrompt()
-    Atlantiss.Health:SetMyHealthPercent(70)
+    Ora.Health:SetMyHealthPercent(70)
     ClearPedBloodDamage(playerPed)
-    Atlantiss.Health:RemoveInjuredEffects()
+    Ora.Health:RemoveInjuredEffects()
     RageUI.Popup({message = "~g~Vous êtes soigné à 70% !\n~y~Pensez à appliquer les ATA~w~"})
     TriggerServerEvent("entreprise:Add", "lsms", 1000)
 end
@@ -499,7 +499,7 @@ function SpawnBike(item)
                 TaskWarpPedIntoVehicle(LocalPlayer().Ped, vehicle, -1)
                 SetFuel(vehicle, tankV)
                 local entityIdentifier = GetEntityModel(vehicle) .. "|" .. GetVehicleNumberPlateText(vehicle)
-                TriggerServerEvent("atlantiss_rental:addVehicle", entityIdentifier, itemPrice)
+                TriggerServerEvent("Ora_rental:addVehicle", entityIdentifier, itemPrice)
             end
         )
     end
@@ -516,7 +516,7 @@ function UnspawnRental(item)
         else
             local entityIdentifier = GetEntityModel(vehicle) .. "|" .. GetVehicleNumberPlateText(vehicle)
             TriggerServerCallback(
-                "atlantiss_rental:getRentalPrice",
+                "Ora_rental:getRentalPrice",
                 function(price)
                     if (price == false) then
                         ShowNotification("~w~Veuillez ramener un véhicule ~y~que je vous ai loué~s~")
@@ -526,9 +526,9 @@ function UnspawnRental(item)
                         DeleteEntity(vehicle)
 
                         TriggerServerCallback(
-                            "Atlantiss::SE::Money:AuthorizePayment", 
+                            "Ora::SE::Money:AuthorizePayment", 
                             function(token)
-                                TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Location", LEGIT = true})
+                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Location", LEGIT = true})
                             end,
                             {}
                         )
@@ -4862,20 +4862,20 @@ end
 
 -- end)
 function Shops.EnterZone(zone)
-    while Atlantiss.Player.HasLoaded == false do
+    while Ora.Player.HasLoaded == false do
         Wait(50)
     end
-    local jobname = Atlantiss.Identity.Job:GetName()
+    local jobname = Ora.Identity.Job:GetName()
     local jobgrade = nil
-    if Atlantiss.Identity.Job:Get().grade[Atlantiss.Identity.Job:Get().gradenum] ~= nil then
-        jobgrade = Atlantiss.Identity.Job:Get().grade[Atlantiss.Identity.Job:Get().gradenum].name
+    if Ora.Identity.Job:Get().grade[Ora.Identity.Job:Get().gradenum] ~= nil then
+        jobgrade = Ora.Identity.Job:Get().grade[Ora.Identity.Job:Get().gradenum].name
     end
     local orgagrade = nil
     local organame = ""
-    if (Atlantiss.Identity.Orga:Get().label ~= "👤 Citoyen") then
-        organame = Atlantiss.Identity.Orga:GetName()
-        if Atlantiss.Identity.Orga:Get().grade[Atlantiss.Identity.Orga:Get().gradenum] ~= nil then
-            orgagrade = Atlantiss.Identity.Orga:Get().grade[Atlantiss.Identity.Orga:Get().gradenum].name
+    if (Ora.Identity.Orga:Get().label ~= "👤 Citoyen") then
+        organame = Ora.Identity.Orga:GetName()
+        if Ora.Identity.Orga:Get().grade[Ora.Identity.Orga:Get().gradenum] ~= nil then
+            orgagrade = Ora.Identity.Orga:Get().grade[Ora.Identity.Orga:Get().gradenum].name
         end
     end
     local found1 = false
@@ -4987,7 +4987,7 @@ Citizen.CreateThread(
                                                 count ~= nil and
                                                 count > 0 and
                                                 (
-                                                    Atlantiss.Inventory:CanReceive(Shops[CurrentZone].Items[i].name, count) or
+                                                    Ora.Inventory:CanReceive(Shops[CurrentZone].Items[i].name, count) or
                                                     (Shops[CurrentZone].Items[i].noItem ~= nil and Shops[CurrentZone].Items[i].noItem == true)
                                                 )
                                             ) then
@@ -5017,7 +5017,7 @@ Citizen.CreateThread(
 
                                                 if (Shops[CurrentZone].isCasino) then
                                                     TriggerServerCallback(
-                                                        "Atlantiss::SE::Job::Casino::CanBuy",
+                                                        "Ora::SE::Job::Casino::CanBuy",
                                                         function(bool)
                                                             if (bool) then
                                                                 dataonWait = {
@@ -5032,13 +5032,13 @@ Citizen.CreateThread(
                                                                 }
 
                                                                 if Shops[CurrentZone].Items[i].name == "casinopiece" then
-                                                                    exports['Snoupinput']:ShowInput("Type de paiement (propre ou sale) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Atlantiss.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
+                                                                    exports['Snoupinput']:ShowInput("Type de paiement (propre ou sale) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Ora.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
                                                                     local type = exports['Snoupinput']:GetInput()
                 
                                                                     if (type and type == "propre") then
                                                                         TriggerEvent("payWith?")
                                                                     elseif (type and type == "sale") then
-                                                                        dataonWait.price = math.floor(dataonWait.price * Atlantiss.Illegal.FakeMoneyTax)
+                                                                        dataonWait.price = math.floor(dataonWait.price * Ora.Illegal.FakeMoneyTax)
                                                                         TriggerEvent("payByFakeCash")
                                                                     elseif (type ~= false) then
                                                                         RageUI.Popup({message = '~r~Vous devez simplement mettre "sale" ou "propre" sans les guillemets'})
@@ -5070,13 +5070,13 @@ Citizen.CreateThread(
                                                     }
 
                                                     if Shops[CurrentZone].Items[i].name == "casinopiece" then
-                                                        exports['Snoupinput']:ShowInput("Type de paiement (propre ou sale) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Atlantiss.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
+                                                        exports['Snoupinput']:ShowInput("Type de paiement (propre ou sale) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Ora.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
                                                         local type = exports['Snoupinput']:GetInput()
     
                                                         if (type and type == "propre") then
                                                             TriggerEvent("payWith?")
                                                         elseif (type and type == "sale") then
-                                                            dataonWait.price = math.floor(dataonWait.price * Atlantiss.Illegal.FakeMoneyTax)
+                                                            dataonWait.price = math.floor(dataonWait.price * Ora.Illegal.FakeMoneyTax)
                                                             TriggerEvent("payByFakeCash")
                                                         elseif (type ~= false) then
                                                             RageUI.Popup({message = '~r~Vous devez simplement mettre "sale" ou "propre" sans les guillemets'})
@@ -5112,9 +5112,9 @@ Citizen.CreateThread(
                                     function(_, _, Selected)
                                         if Selected then
                                             if Shops[CurrentZone].bzone ~= "all" then
-                                                TriggerServerCallback("Atlantiss::SE::Service:GetInServiceCount", 
+                                                TriggerServerCallback("Ora::SE::Service:GetInServiceCount", 
                                                     function(nb)
-                                                        if nb >= Atlantiss.Illegal:GetCopsRequired("roberry") then
+                                                        if nb >= Ora.Illegal:GetCopsRequired("roberry") then
                                                             TriggerServerCallback(
                                                                 "braquage:canHoldup",
                                                                 function(bool)
@@ -5151,9 +5151,9 @@ Citizen.CreateThread(
                                                 )
                                             else
                                                 TriggerServerCallback(
-                                                    "Atlantiss::SE::Service:GetTotalServiceCountForJobs",
+                                                    "Ora::SE::Service:GetTotalServiceCountForJobs",
                                                     function(allcount)
-                                                        if allcount >= Atlantiss.Illegal:GetCopsRequired("roberry") then
+                                                        if allcount >= Ora.Illegal:GetCopsRequired("roberry") then
                                                             TriggerServerCallback(
                                                                 "braquage:Get",
                                                                 function(bool)
@@ -5282,11 +5282,11 @@ end
 
 local function Refresh()
     for k, v in pairs(m) do
-        if Atlantiss.Inventory.Data[k] ~= nil then
+        if Ora.Inventory.Data[k] ~= nil then
             v.visible = true
-            v.total = #Atlantiss.Inventory.Data[k]
+            v.total = #Ora.Inventory.Data[k]
             v.label = {0}
-            for i = 0, #Atlantiss.Inventory.Data[k], 1 do
+            for i = 0, #Ora.Inventory.Data[k], 1 do
                 v.label[i + 1] = i
             end
             v.index = 1
@@ -5299,11 +5299,11 @@ end
 
 local function RefreshFake()
     for k, v in pairs(fakeMoney) do
-        if Atlantiss.Inventory.Data[k] ~= nil then
+        if Ora.Inventory.Data[k] ~= nil then
             v.visible = true
-            v.total = #Atlantiss.Inventory.Data[k]
+            v.total = #Ora.Inventory.Data[k]
             v.label = {0}
-            for i = 0, #Atlantiss.Inventory.Data[k], 1 do
+            for i = 0, #Ora.Inventory.Data[k], 1 do
                 v.label[i + 1] = i
             end
             v.index = 1
@@ -5317,7 +5317,7 @@ end
 AddEventHandler(
     "payByCard",
     function()
-        if Atlantiss.Inventory:GetItemCount("bank_card") < 1 then
+        if Ora.Inventory:GetItemCount("bank_card") < 1 then
             if dataonWait.no ~= nil then
                 dataonWait.no()
             end
@@ -5338,7 +5338,7 @@ AddEventHandler(
             end
             dataonWait = {}
             return ShowNotification("~r~Vous ne pouvez pas payer plus de 10 000$ en liquide")
-        else ]]if Atlantiss.Payment:GetTotalCash() < dataonWait.price then
+        else ]]if Ora.Payment:GetTotalCash() < dataonWait.price then
             if dataonWait.no ~= nil then
                 dataonWait.no()
             end
@@ -5355,7 +5355,7 @@ AddEventHandler(
 AddEventHandler(
     "payByFakeCash",
     function()
-        if (Atlantiss.Payment.Fake:GetTotalFakeCash() < dataonWait.price) then
+        if (Ora.Payment.Fake:GetTotalFakeCash() < dataonWait.price) then
             dataonWait = {}
             return ShowNotification("~r~Vous n'avez pas assez d'argent sale")
         else
@@ -5365,9 +5365,9 @@ AddEventHandler(
     end
 )
 
-RMenu.Add("personnal", "choose_card", RageUI.CreateMenu("Atlantiss", "Cartes bancaire disponibles", 10, 200))
-RMenu.Add("personnal", "choose_money", RageUI.CreateMenu("Atlantiss", "Billets disponibles", 10, 200))
-RMenu.Add("personnal", "choose_fake_money", RageUI.CreateMenu("Atlantiss", "Faux billets disponibles", 10, 200))
+RMenu.Add("personnal", "choose_card", RageUI.CreateMenu("Ora", "Cartes bancaire disponibles", 10, 200))
+RMenu.Add("personnal", "choose_money", RageUI.CreateMenu("Ora", "Billets disponibles", 10, 200))
+RMenu.Add("personnal", "choose_fake_money", RageUI.CreateMenu("Ora", "Faux billets disponibles", 10, 200))
 Citizen.CreateThread(
     function()
         while true do
@@ -5429,16 +5429,16 @@ Citizen.CreateThread(
                                                 t[k] = v
                                             end
                                         end
-                                        TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentFakeMoneySelected(), true)
-                                        Atlantiss.Payment:PayMoney(t)
+                                        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentFakeMoneySelected(), true)
+                                        Ora.Payment:PayMoney(t)
                                         
                                         if m ~= 0 then
                                             ShowNotification("~y~Le vendeur vous rend " .. -mT .. "$")
                                             TriggerServerCallback(
-                                                "Atlantiss::SE::Money:AuthorizePayment", 
+                                                "Ora::SE::Money:AuthorizePayment", 
                                                 function(token)
-                                                    TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
-                                                    TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
+                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
+                                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
                                                 end,
                                                 {}
                                             )
@@ -5463,7 +5463,7 @@ Citizen.CreateThread(
                                                     }
                                                 )
                                             end
-                                            Atlantiss.Inventory:AddItems(localItems)
+                                            Ora.Inventory:AddItems(localItems)
                                         end
 
                                         if dataonWait.fct ~= nil then
@@ -5486,16 +5486,16 @@ Citizen.CreateThread(
                                                 t[k] = v
                                             end
                                         end
-                                        TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentFakeMoneySelected(), true)
-                                        Atlantiss.Payment:PayMoney(t)
+                                        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentFakeMoneySelected(), true)
+                                        Ora.Payment:PayMoney(t)
 
                                         if m ~= 0 then
                                             ShowNotification("~y~Le vendeur vous rend " .. -mT .. "$")
                                             TriggerServerCallback(
-                                                "Atlantiss::SE::Money:AuthorizePayment", 
+                                                "Ora::SE::Money:AuthorizePayment", 
                                                 function(token)
-                                                    TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
-                                                    TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
+                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
+                                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
                                                 end,
                                                 {}
                                             )
@@ -5520,7 +5520,7 @@ Citizen.CreateThread(
                                                     }
                                                 )
                                             end
-                                            Atlantiss.Inventory:AddItems(localItems)
+                                            Ora.Inventory:AddItems(localItems)
                                         end
                                         if dataonWait.fct ~= nil then
                                             dataonWait.fct("money")
@@ -5609,16 +5609,16 @@ Citizen.CreateThread(
                                             end
                                             --v.index = 1
                                         end
-                                        TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentMoneySelected(), true)
-                                        Atlantiss.Payment:PayMoney(t)
+                                        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentMoneySelected(), true)
+                                        Ora.Payment:PayMoney(t)
 
                                         if m ~= 0 then
                                             ShowNotification("~y~Le vendeur vous rend " .. -mT .. "$")
                                             TriggerServerCallback(
-                                                "Atlantiss::SE::Money:AuthorizePayment", 
+                                                "Ora::SE::Money:AuthorizePayment", 
                                                 function(token)
-                                                    TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
-                                                    TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
+                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
+                                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
                                                 end,
                                                 {}
                                             )
@@ -5643,7 +5643,7 @@ Citizen.CreateThread(
                                                     }
                                                 )
                                             end
-                                            Atlantiss.Inventory:AddItems(localItems)
+                                            Ora.Inventory:AddItems(localItems)
                                         end
                                         if dataonWait.fct ~= nil then
                                             dataonWait.fct("money")
@@ -5666,16 +5666,16 @@ Citizen.CreateThread(
                                             end
                                             --v.index = 1
                                         end
-                                        TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentMoneySelected(), true)
-                                        Atlantiss.Payment:PayMoney(t)
+                                        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentMoneySelected(), true)
+                                        Ora.Payment:PayMoney(t)
 
                                         if m ~= 0 then
                                             ShowNotification("~y~Le vendeur vous rend " .. -mT .. "$")
                                             TriggerServerCallback(
-                                                "Atlantiss::SE::Money:AuthorizePayment", 
+                                                "Ora::SE::Money:AuthorizePayment", 
                                                 function(token)
-                                                    TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
-                                                    TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
+                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
+                                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
                                                 end,
                                                 {}
                                             )
@@ -5700,7 +5700,7 @@ Citizen.CreateThread(
                                                     }
                                                 )
                                             end
-                                            Atlantiss.Inventory:AddItems(localItems)
+                                            Ora.Inventory:AddItems(localItems)
                                         end
                                         if dataonWait.fct ~= nil then
                                             dataonWait.fct("money")
@@ -5734,15 +5734,15 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = false, glare = false},
                     function()
-                        for i = 1, #Atlantiss.Inventory.Data["bank_card"], 1 do
+                        for i = 1, #Ora.Inventory.Data["bank_card"], 1 do
                             RageUI.Button(
-                                Items["bank_card"].label .. " #" .. Atlantiss.Inventory.Data["bank_card"][i].data.number,
+                                Items["bank_card"].label .. " #" .. Ora.Inventory.Data["bank_card"][i].data.number,
                                 nil,
                                 {},
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        local param = Atlantiss.Inventory.Data["bank_card"][i].data
+                                        local param = Ora.Inventory.Data["bank_card"][i].data
                                         local code = KeyboardInput("Veuillez entrer le code", nil, 4)
                                         code = tonumber(code)
                                         if code ~= nil then
@@ -5798,7 +5798,7 @@ Citizen.CreateThread(
                                                                             }
                                                                         )
                                                                     end
-                                                                    Atlantiss.Inventory:AddItems(localItems)
+                                                                    Ora.Inventory:AddItems(localItems)
                                                                 end
                                                             end
 

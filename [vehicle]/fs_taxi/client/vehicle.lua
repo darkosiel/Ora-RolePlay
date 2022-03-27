@@ -28,7 +28,7 @@ function CreateTaxiPed(vehicle)
 			canSend = false
 			local ped = nil
 
-			exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPed", 
+			exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
 					function()
 						ped = CreatePedInsideVehicle(vehicle, 26, model, -1, true, false)
 						SetAmbientVoiceName(ped, "A_M_M_EASTSA_02_LATINO_FULL_01")	
@@ -74,7 +74,7 @@ function CreateTaxi(x, y, z)
 				taxiVeh = nil
 				canSend = false
 
-				exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterVehicle", 
+				exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterVehicle", 
 						function()
 								taxiVeh = CreateVehicle(taxiModel, sX, sY, sZ, 0, true, false)
 								canSend = true

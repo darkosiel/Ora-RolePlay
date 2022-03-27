@@ -75,18 +75,18 @@ function EquipKev()
         if kevEquiped ~= nil then
             SetPedComponentVariation(ped, 9, kevEquiped.data.ind, kevEquiped.data.var, 2)
             SetPedArmour(LocalPlayer().Ped, kevEquiped.data.status)
-            TriggerEvent('atlantiss:InvNotification', 'Kevlar équipé !')
+            TriggerEvent('Ora:InvNotification', 'Kevlar équipé !')
         else
             isKevEquiped = false
             SetPedArmour(LocalPlayer().Ped, 0)
             SetPedComponentVariation(ped, 9, 1, 5)
-            TriggerEvent('atlantiss:InvNotification', 'Kevlar retiré !')
+            TriggerEvent('Ora:InvNotification', 'Kevlar retiré !')
         end
     else
         kevEquiped = nil
         SetPedArmour(LocalPlayer().Ped, 0)
         SetPedComponentVariation(ped, 9, 1, 5)
-        TriggerEvent('atlantiss:InvNotification', 'Kevlar retiré !')
+        TriggerEvent('Ora:InvNotification', 'Kevlar retiré !')
     end
 end
 Citizen.CreateThread(function()
@@ -95,7 +95,7 @@ Citizen.CreateThread(function()
         if isKevEquiped and kevEquiped ~= nil and not kevIsUnbreakable(kevEquiped.data.ind) then
             kevEquiped.data.status = GetPedArmour(Player.Ped)
             if kevEquiped.data.status == 0 then
-                Atlantiss.Inventory:RemoveItem(kevEquiped)
+                Ora.Inventory:RemoveItem(kevEquiped)
                 EquipKev()
                 --SetPedToRagdoll(Player.Ped, 1000, 1000, 0, 0, 0, 0)
                 RageUI.Popup({message = '~r~Kevlar cassé !~s~'})
@@ -110,7 +110,7 @@ function EquipTenue()
             local data = item.data
             local ped = LocalPlayer().Ped
             if data.equiped then
-                local male = Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped)
+                local male = Ora.World.Ped:IsPedMale(LocalPlayer().Ped)
                 if not male then
                     SetPedComponentVariation(ped, 8, 15, 0, 2)
                     Wait(700)
@@ -196,7 +196,7 @@ function EquipTenue()
         end
     )
     local anim = {}
-    if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+    if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
         anim = {
             animDict = "clothingshirt",
             anim = "try_shirt_positive_d",
@@ -236,7 +236,7 @@ visor = false
 local sac = nil
 function EquipClothes()
     local item = SelectedItem
-    local male = Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped)
+    local male = Ora.World.Ped:IsPedMale(LocalPlayer().Ped)
 
     if male then
         if item.data.component == 5 then
@@ -276,8 +276,8 @@ function EquipClothes()
         end
     end
 
-    for i = 1, #Atlantiss.Inventory.Data[SelectedItem.name] do
-        local p = Atlantiss.Inventory.Data[SelectedItem.name][i]
+    for i = 1, #Ora.Inventory.Data[SelectedItem.name] do
+        local p = Ora.Inventory.Data[SelectedItem.name][i]
         if p.data.component == SelectedItem.data.commponent then
             if p.id ~= SelectedItem.id then
                 p.data.equiped = false
@@ -440,7 +440,7 @@ function EquipMasks()
                             SetPedFaceFeature(playerPed, 19, skin.facial.features.neck.thickness)
                         end
 
-                        Atlantiss.Core:Debug(string.format("User is putting off mask ^5%s^3", item.data.var))
+                        Ora.Core:Debug(string.format("User is putting off mask ^5%s^3", item.data.var))
                         if (removeHair ~= nil and removeHair[item.data.var] ~= nil and removeHair[item.data.var] == true) then
                             local hairId = 0
                             SetPedComponentVariation(playerPed, 2, skin.hair.style, 0, 0)
@@ -484,7 +484,7 @@ function EquipMasks()
         -- Getting Skin back to set back the head
 
         if (doNotChangeFace ~= nil and doNotChangeFace[item.data.var] ~= nil and doNotChangeFace[item.data.var] == true) then
-            Atlantiss.Core:Debug(string.format("Aborting changing face for ^5%s^3", item.data.var))
+            Ora.Core:Debug(string.format("Aborting changing face for ^5%s^3", item.data.var))
             TaskPlayAnim(myPed, dict, animation, 8.0, -8.0, -1, 50, 0, false, false, false)
             Citizen.Wait(1000)
             SetEntityCollision(LocalPlayer().Ped, true, true)
@@ -577,7 +577,7 @@ function EquipMasks()
                                 SetPedFaceFeature(playerPed, 18, 0)
                                 SetPedFaceFeature(playerPed, 19, 0)
                             end
-                            Atlantiss.Core:Debug(string.format("User is putting on mask ^5%s^3", item.data.var))
+                            Ora.Core:Debug(string.format("User is putting on mask ^5%s^3", item.data.var))
 
                             if (removeHair ~= nil and removeHair[item.data.var] ~= nil and removeHair[item.data.var] == true) then
                                 local hairId = 0
@@ -701,14 +701,14 @@ ItemsFunction = {
         if MyNumber == nil or MyNumber == 0 then
             RageUI.Popup({message = "~r~Vous n'avez pas de téléphone actif"})
         else
-            --Atlantiss.Inventory:RemoveItem()
+            --Ora.Inventory:RemoveItem()
             MyBattery = MyBattery + 50
             if MyBattery > 100 then
                 MyBattery = MyBattery - (MyBattery - 100)
             end
-            for i = 1, #Atlantiss.Inventory.Data["tel"] do
-                if Atlantiss.Inventory.Data["tel"][i].data.num == MyNumber then
-                    Atlantiss.Inventory.Data["tel"][i].data.battery = MyBattery
+            for i = 1, #Ora.Inventory.Data["tel"] do
+                if Ora.Inventory.Data["tel"][i].data.num == MyNumber then
+                    Ora.Inventory.Data["tel"][i].data.battery = MyBattery
                     break
                 end
             end
@@ -716,7 +716,7 @@ ItemsFunction = {
         end
     end,
 --[[     blocnote = function()
-        local item = Atlantiss.Inventory.SelectedItem
+        local item = Ora.Inventory.SelectedItem
         local data = item.data
         data = json.decode(data)
         if type(data) ~= "table" then
@@ -735,7 +735,7 @@ ItemsFunction = {
     end,
     weed_pot = function(i)
         if i then
-            Atlantiss.Inventory:RemoveItem(i)
+            Ora.Inventory:RemoveItem(i)
             exports["weed"]:createProps()
         end
     end,
@@ -744,9 +744,9 @@ ItemsFunction = {
     end,
     mask = function(item)
         if item then
-            for i = 1, #Atlantiss.Inventory.Data[item.name] do
-                if Atlantiss.Inventory.Data[item.name][i].id == item.id then
-                    SelectedItem = Atlantiss.Inventory.Data[item.name][i]
+            for i = 1, #Ora.Inventory.Data[item.name] do
+                if Ora.Inventory.Data[item.name][i].id == item.id then
+                    SelectedItem = Ora.Inventory.Data[item.name][i]
                 end
             end
             Wait(50)
@@ -755,9 +755,9 @@ ItemsFunction = {
     end,
     kevlar = function(item)
         if item then
-            for i = 1, #Atlantiss.Inventory.Data['kevlar'] do
-                if Atlantiss.Inventory.Data['kevlar'][i].id == item.id then
-                    kevEquiped = Atlantiss.Inventory.Data['kevlar'][i]
+            for i = 1, #Ora.Inventory.Data['kevlar'] do
+                if Ora.Inventory.Data['kevlar'][i].id == item.id then
+                    kevEquiped = Ora.Inventory.Data['kevlar'][i]
                 end
             end
             Wait(50)
@@ -766,9 +766,9 @@ ItemsFunction = {
     end,
     clothe = function(item)
         if item then
-            for i = 1, #Atlantiss.Inventory.Data[item.name] do
-                if Atlantiss.Inventory.Data[item.name][i].id == item.id then
-                    SelectedItem = Atlantiss.Inventory.Data[item.name][i]
+            for i = 1, #Ora.Inventory.Data[item.name] do
+                if Ora.Inventory.Data[item.name][i].id == item.id then
+                    SelectedItem = Ora.Inventory.Data[item.name][i]
                 end
             end
             Wait(50)
@@ -778,9 +778,9 @@ ItemsFunction = {
     radio = EquipRadio,
     tenue = function(item)
         if item then
-            for i = 1, #Atlantiss.Inventory.Data[item.name] do
-                if Atlantiss.Inventory.Data[item.name][i].id == item.id then
-                    SelectedItem = Atlantiss.Inventory.Data[item.name][i]
+            for i = 1, #Ora.Inventory.Data[item.name] do
+                if Ora.Inventory.Data[item.name][i].id == item.id then
+                    SelectedItem = Ora.Inventory.Data[item.name][i]
                 end
             end
             Wait(50)
@@ -791,9 +791,9 @@ ItemsFunction = {
     pinces = Police.CutMenottes,
     access = function(item)
         if item then
-            for i = 1, #Atlantiss.Inventory.Data[item.name] do
-                if Atlantiss.Inventory.Data[item.name][i].id == item.id then
-                    SelectedItem = Atlantiss.Inventory.Data[item.name][i]
+            for i = 1, #Ora.Inventory.Data[item.name] do
+                if Ora.Inventory.Data[item.name][i].id == item.id then
+                    SelectedItem = Ora.Inventory.Data[item.name][i]
                 end
             end
             Wait(50)
@@ -802,30 +802,30 @@ ItemsFunction = {
     end,
     bank_card = function(item)
         if item then
-            for i = 1, #Atlantiss.Inventory.Data[item.name] do
-                if Atlantiss.Inventory.Data[item.name][i].id == item.id then
-                    SelectedItem = Atlantiss.Inventory.Data[item.name][i]
-                    Atlantiss.Inventory.SelectedItem = SelectedItem
+            for i = 1, #Ora.Inventory.Data[item.name] do
+                if Ora.Inventory.Data[item.name][i].id == item.id then
+                    SelectedItem = Ora.Inventory.Data[item.name][i]
+                    Ora.Inventory.SelectedItem = SelectedItem
                 end
             end
             UseBankCard()
         end
     end,
     speaker = function()
-        Atlantiss.Inventory:RemoveAnyItemsFromName("speaker", 1)
-        TriggerEvent("atlantiss:hideInventory")
+        Ora.Inventory:RemoveAnyItemsFromName("speaker", 1)
+        TriggerEvent("Ora:hideInventory")
         ExecuteCommand("toggleSpeaker")
         TriggerEvent("xradio:menuOpened", "ground")
-        Atlantiss.Player.Speaker.IsUsing = true
-        Atlantiss.Player.Speaker.Pos = GetEntityCoords(PlayerPedId()) + GetEntityForwardVector(PlayerPedId())
+        Ora.Player.Speaker.IsUsing = true
+        Ora.Player.Speaker.Pos = GetEntityCoords(PlayerPedId()) + GetEntityForwardVector(PlayerPedId())
     end,
     allumette = function()
         Citizen.CreateThread(
             function()
                 local animDict = "move_crouch_proto"
                 
-                Atlantiss.Inventory:RemoveFirstItem("allumette")
-                TriggerEvent("atlantiss:hideInventory")
+                Ora.Inventory:RemoveFirstItem("allumette")
+                TriggerEvent("Ora:hideInventory")
                 RequestAnimDict(animDict)
                 while not HasAnimDictLoaded(animDict) do Wait(100) end
         
@@ -842,8 +842,8 @@ ItemsFunction = {
             function()
                 local animDict = "cover@first_person@weapon@grenade"
                 
-                Atlantiss.Inventory:RemoveFirstItem("molotovartisanal")
-                TriggerEvent("atlantiss:hideInventory")
+                Ora.Inventory:RemoveFirstItem("molotovartisanal")
+                TriggerEvent("Ora:hideInventory")
                 RequestAnimDict(animDict)
                 while not HasAnimDictLoaded(animDict) do Wait(100) end
         
@@ -864,8 +864,8 @@ ItemsFunction = {
                 if (veh ~= 0 and GetVehiclePedIsIn(LocalPlayer().Ped, false) == 0) then
                     if (not DecorGetBool(veh, "drifttyres")) then
                         exports['Ora_utils']:sendME("* L'individu change les roues du véhicule *")
-                        Atlantiss.Inventory:RemoveFirstItem("driftwheels")
-                        TriggerEvent("atlantiss:hideInventory")
+                        Ora.Inventory:RemoveFirstItem("driftwheels")
+                        TriggerEvent("Ora:hideInventory")
 
                         RequestAnimDict(animDict)
                         while not HasAnimDictLoaded(animDict) do Wait(100) end
@@ -887,7 +887,7 @@ ItemsFunction = {
                             },
                             function()
                                 SetDriftTyresEnabled(veh, true)
-                                Atlantiss.Inventory:AddItem({name = "roadwheels"})
+                                Ora.Inventory:AddItem({name = "roadwheels"})
                                 RageUI.Popup({message = "~g~Vous installé les roues de drift"})
                                 DecorSetBool(veh, "drifttyres", true)
                             end
@@ -911,8 +911,8 @@ ItemsFunction = {
                     if (DecorGetBool(veh, "drifttyres") or GetDriftTyresEnabled(veh, true)) then
                         exports['Ora_utils']:sendME("* L'individu change les roues du véhicule *")
 
-                        Atlantiss.Inventory:RemoveFirstItem("roadwheels")
-                        TriggerEvent("atlantiss:hideInventory")
+                        Ora.Inventory:RemoveFirstItem("roadwheels")
+                        TriggerEvent("Ora:hideInventory")
 
                         RequestAnimDict(animDict)
                         while not HasAnimDictLoaded(animDict) do Wait(100) end
@@ -934,7 +934,7 @@ ItemsFunction = {
                             },
                             function()
                                 SetDriftTyresEnabled(veh, false)
-                                Atlantiss.Inventory:AddItem({name = "driftwheels"})
+                                Ora.Inventory:AddItem({name = "driftwheels"})
                                 RageUI.Popup({message = "~g~Vous installé les roues de route"})
                                 DecorSetBool(veh, "drifttyres", false)
                             end
@@ -958,11 +958,11 @@ ItemsFunction = {
     mdma = eatMdma,
     repairbox2 = function(item)
         if item then
-            TriggerServerCallback("Atlantiss::SE::Service:GetInServiceCount", 
+            TriggerServerCallback("Ora::SE::Service:GetInServiceCount", 
                 function(numberOfMecanosOnline)
                     if numberOfMecanosOnline == 0 then
                         local vehicle = ClosestVeh()
-                        Atlantiss.Inventory:RemoveItem(item)
+                        Ora.Inventory:RemoveItem(item)
                         if vehicle ~= 0 then
                             TaskStartScenarioInPlace(LocalPlayer().Ped, "PROP_HUMAN_BUM_BIN", 0, true)
                             player = LocalPlayer()
@@ -978,15 +978,15 @@ ItemsFunction = {
                                     ClearPedTasksImmediately(LocalPlayer().Ped)
 
                                     RageUI.Popup({message = "Véhicule ~g~réparé"})
-                                    TriggerEvent('atlantiss:InvNotification', "Véhicule réparé", 'success')
+                                    TriggerEvent('Ora:InvNotification', "Véhicule réparé", 'success')
                                     player.isBusy = false
                                 end
                             )
                         else
-                            TriggerEvent('atlantiss:InvNotification', "Aucun véhicule", 'warning')
+                            TriggerEvent('Ora:InvNotification', "Aucun véhicule", 'warning')
                         end
                     else
-                        TriggerEvent('atlantiss:InvNotification', "Vous n'avez pas assez d'énergie pour faire ceci. (mécano(s) en service)", 'warning')
+                        TriggerEvent('Ora:InvNotification', "Vous n'avez pas assez d'énergie pour faire ceci. (mécano(s) en service)", 'warning')
                     end
                 end,
                 "mecano"
@@ -1061,13 +1061,13 @@ ItemsFunction = {
     medikit = function(i)
         if i then
             SetEntityHealth(LocalPlayer().Ped, GetEntityMaxHealth(LocalPlayer().Ped))
-            Atlantiss.Inventory:RemoveItem(i)
+            Ora.Inventory:RemoveItem(i)
         end
     end,
     mec = function(i)
         if i then
             SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 50.0)
-            Atlantiss.Inventory:RemoveItem(i)
+            Ora.Inventory:RemoveItem(i)
         end
     end,
     moteur = RepairMotor,
@@ -1093,9 +1093,9 @@ ItemsFunction = {
                         player.isBusy = false
                     end
                 )
-                Atlantiss.Inventory:RemoveItem(item)
+                Ora.Inventory:RemoveItem(item)
             else
-                TriggerEvent('atlantiss:InvNotification', "Aucun véhicule", 'warning')
+                TriggerEvent('Ora:InvNotification', "Aucun véhicule", 'warning')
             end
         end
     end,
@@ -1104,7 +1104,7 @@ ItemsFunction = {
             local clsPly = GetPlayerServerIdInDirection(8.0)
             if clsPly then
                 TriggerPlayerEvent("player:Revive", clsPly)
-                Atlantiss.Inventory:RemoveItem(i)
+                Ora.Inventory:RemoveItem(i)
             else
                 RageUI.Popup({message = "Aucun joueur à proximité"})
             end
@@ -1118,7 +1118,7 @@ ItemsFunction = {
                 Wait(5000)
                 TriggerPlayerEvent("player:Heal", clsPly, GetEntityMaxHealth(clsPly))
                 ClearPedTasksImmediately(LocalPlayer().Ped)
-                Atlantiss.Inventory:RemoveItem(i)
+                Ora.Inventory:RemoveItem(i)
             else
                 RageUI.Popup({message = "Aucun joueur à proximité"})
             end
@@ -1126,7 +1126,7 @@ ItemsFunction = {
     end,
     makeup = function()
         Citizen.SetTimeout(500, function()
-            TriggerEvent('atlantiss:hideInventory')
+            TriggerEvent('Ora:hideInventory')
             RageUI.Visible(RMenu:Get('makeup', "main"), true)
         end)
     end
@@ -1134,7 +1134,7 @@ ItemsFunction = {
 function ppppp(objectData)
     local ped = LocalPlayer().Ped
     if decorObject == nil then
-        decorObject = Atlantiss.World.Object:Create(GetHashKey(objectData.prop), plyPos, true, true, true)
+        decorObject = Ora.World.Object:Create(GetHashKey(objectData.prop), plyPos, true, true, true)
         SetPedKeepTask(ped, true)
         doAnim(objectData.anim, nil, objectData.flag)
         local a, b, c, d, e, f = table.unpack(objectData.pos)
@@ -1177,7 +1177,7 @@ function toggleObject(_, n)
     if hasObject and objectInfo then
         ClearAreaOfObjects(plyPos, 3.0)
 
-        decorObject = Atlantiss.World.Object:Create(GetHashKey(objectInfo.prop), plyPos, true, 0, 0)
+        decorObject = Ora.World.Object:Create(GetHashKey(objectInfo.prop), plyPos, true, 0, 0)
         SetPedKeepTask(ped, true)
         doAnim(objectInfo.anim, nil, objectInfo.flag)
         local a, b, c, d, e, f = table.unpack(objectInfo.pos)
@@ -1265,26 +1265,26 @@ function EquipWeapon(weapon)
 
         if (cp == "gascan") then
             SetPedAmmo(LocalPlayer().Ped, GetHashKey(name), 1600)
-            Atlantiss.Inventory.CurrentAmmo = 1600
+            Ora.Inventory.CurrentAmmo = 1600
         elseif (cp == "fire_extinguisher") then
             SetPedAmmo(LocalPlayer().Ped, GetHashKey(name), 9999)
-            Atlantiss.Inventory.CurrentAmmo = 9999
+            Ora.Inventory.CurrentAmmo = 9999
         else
-            for k, v in pairs(Atlantiss.Inventory.Data) do
+            for k, v in pairs(Ora.Inventory.Data) do
                 if k == weapon_munition[cp] then
                     SetPedAmmo(LocalPlayer().Ped, GetHashKey(name), #v)
-                    Atlantiss.Inventory.CurrentAmmo = #v
+                    Ora.Inventory.CurrentAmmo = #v
                     break
                 else
-                    Atlantiss.Inventory.CurrentAmmo = 0
+                    Ora.Inventory.CurrentAmmo = 0
                 end
             end
         end
 
-        Atlantiss.Inventory.CurrentWeapon.Name = GetHashKey(name)
-        Atlantiss.Inventory.CurrentWeapon.Label = name
-        Atlantiss.Inventory.CurrentMunition = weapon_munition[cp]
-        Atlantiss.Inventory.IsArmed = true
+        Ora.Inventory.CurrentWeapon.Name = GetHashKey(name)
+        Ora.Inventory.CurrentWeapon.Label = name
+        Ora.Inventory.CurrentMunition = weapon_munition[cp]
+        Ora.Inventory.IsArmed = true
     end
 end
 DecorRegister("powder", 2)
@@ -1350,7 +1350,7 @@ Citizen.CreateThread(
                                     "~r~~h~ESSENCE~h~~w~: Vous ajoutez 10 Litres d'essence, veuillez patienter."
                                 )
                                 Wait(1000 * 10)
-                                Atlantiss.Inventory:RemoveFirstItem("gascan")
+                                Ora.Inventory:RemoveFirstItem("gascan")
                                 Wait(1000 * 5)
                                 ClearPedTasksImmediately(LocalPlayer().Ped)
                                 RemoveAnimDict("timetable@gardener@filling_can")
@@ -1369,41 +1369,41 @@ Citizen.CreateThread(
             if IsPedShooting(playerPed) and not onShooting then
                 if IsARealWeapon(currentWeapon) then
                     DecorSetBool(playerPed, "powder", true)
-                    TriggerServerEvent("atlantiss_status:addOn", "powder")
+                    TriggerServerEvent("Ora_status:addOn", "powder")
                 end
 
                 -- Jerrican
                 if (currentWeapon == 883325847) then
-                    local gascan = Atlantiss.Inventory.Data["gascan"][1]
+                    local gascan = Ora.Inventory.Data["gascan"][1]
                     if (gascan.data == nil or gascan.data.useTime == nil) then
                         gascan.data = {useTime = 0}
                     end
                     gascan.data.useTime = gascan.data.useTime + 1
 
                     if (gascan.data.useTime > 1500) then
-                        Atlantiss.Inventory:RemoveFirstItem("gascan")
+                        Ora.Inventory:RemoveFirstItem("gascan")
                     end
                 end
 
                 if (currentWeapon == 101631238) then
-                    local extinguisher = Atlantiss.Inventory.Data["fire_extinguisher"][1]
+                    local extinguisher = Ora.Inventory.Data["fire_extinguisher"][1]
                     if (extinguisher.data == nil or extinguisher.data.useTime == nil) then
                         extinguisher.data = {useTime = 0}
                     end
                     extinguisher.data.useTime = extinguisher.data.useTime + 1
 
                     if (extinguisher.data.useTime > 6000) then
-                        Atlantiss.Inventory:RemoveFirstItem("fire_extinguisher")
+                        Ora.Inventory:RemoveFirstItem("fire_extinguisher")
                         RageUI.Popup({message = "~r~Votre extincteur est vide"})
                         EquipWeapon({name = "fire_extinguisher"})
-                        TriggerEvent("atlantiss:inventory:deleteIfWeapon", extinguisher)
+                        TriggerEvent("Ora:inventory:deleteIfWeapon", extinguisher)
                     end
                 end
 
-                if Atlantiss.Inventory.Data[Atlantiss.Inventory.CurrentMunition] ~= nil then
-                    item = Atlantiss.Inventory.Data[Atlantiss.Inventory.CurrentMunition][1].id
-                    Atlantiss.Inventory.CurrentAmmo = Atlantiss.Inventory.CurrentAmmo - 1
-                    Atlantiss.Inventory:RemoveFirstItem(Atlantiss.Inventory.CurrentMunition)
+                if Ora.Inventory.Data[Ora.Inventory.CurrentMunition] ~= nil then
+                    item = Ora.Inventory.Data[Ora.Inventory.CurrentMunition][1].id
+                    Ora.Inventory.CurrentAmmo = Ora.Inventory.CurrentAmmo - 1
+                    Ora.Inventory:RemoveFirstItem(Ora.Inventory.CurrentMunition)
                 end
             end
         end
@@ -1575,8 +1575,8 @@ function toggleGloves()
     local Player = LocalPlayer()
     local ped, plyPos = Player.Ped, Player.Pos
 
-    local firstGlove = Atlantiss.World.Object:Create(gloveModel, plyPos, 1, 0, 0)
-    local secondGlove = Atlantiss.World.Object:Create(gloveModel, plyPos, 1, 0, 0)
+    local firstGlove = Ora.World.Object:Create(gloveModel, plyPos, 1, 0, 0)
+    local secondGlove = Ora.World.Object:Create(gloveModel, plyPos, 1, 0, 0)
     table.insert(gloves, firstGlove)
     table.insert(gloves, secondGlove)
 
@@ -1612,7 +1612,7 @@ function toggleGloves()
         1
     )
     ShowNotification("Vous avez équipé ~g~vos gants~w~.")
-    TriggerEvent('atlantiss:InvNotification', 'Vous avez équipé vos gants.')
+    TriggerEvent('Ora:InvNotification', 'Vous avez équipé vos gants.')
 end
 SpawnObject = function(model, coords, cb)
     local model = (type(model) == "number" and model or GetHashKey(model))
@@ -1625,7 +1625,7 @@ SpawnObject = function(model, coords, cb)
                 Citizen.Wait(0)
             end
 
-            local obj = Atlantiss.World.Object:Create(model, coords.x, coords.y, coords.z, true, true, true)
+            local obj = Ora.World.Object:Create(model, coords.x, coords.y, coords.z, true, true, true)
 
             if cb ~= nil then
                 cb(obj)
@@ -1648,7 +1648,7 @@ function useHerse()
 end
 
 function useCommode()
-    --Atlantiss.Inventory:RemoveItem()
+    --Ora.Inventory:RemoveItem()
     local playerPed = LocalPlayer().Ped
     local coords, forward = LocalPlayer().Pos, GetEntityForwardVector(playerPed)
     local objectCoords = (coords + forward * 1.0)
@@ -1663,7 +1663,7 @@ function useCommode()
 end
 
 function useTablefbi()
-    --Atlantiss.Inventory:RemoveItem()
+    --Ora.Inventory:RemoveItem()
     local playerPed = LocalPlayer().Ped
     local coords, forward = LocalPlayer().Pos, GetEntityForwardVector(playerPed)
     local objectCoords = (coords + forward * 1.0)
@@ -1678,7 +1678,7 @@ function useTablefbi()
 end
 
 function useArmoire()
-    --Atlantiss.Inventory:RemoveItem()
+    --Ora.Inventory:RemoveItem()
     local playerPed = LocalPlayer().Ped
     local coords, forward = LocalPlayer().Pos, GetEntityForwardVector(playerPed)
     local objectCoords = (coords + forward * 1.0)
@@ -1694,7 +1694,7 @@ function useArmoire()
 end
 
 function useFauteuil()
-    --Atlantiss.Inventory:RemoveItem()
+    --Ora.Inventory:RemoveItem()
     local playerPed = LocalPlayer().Ped
     local coords, forward = LocalPlayer().Pos, GetEntityForwardVector(playerPed)
     local objectCoords = (coords + forward * 1.0)
@@ -1710,7 +1710,7 @@ function useFauteuil()
 end
 
 function useChaise(i)
-    Atlantiss.Inventory:RemoveItem(i)
+    Ora.Inventory:RemoveItem(i)
     SpawnObject(
         "prop_wheelchair_01",
         LocalPlayer().Pos,
@@ -1822,7 +1822,7 @@ function EnableShield()
         Citizen.Wait(100)
     end
 
-    local shield = Atlantiss.World.Object:Create(GetHashKey(prop), pedPos.x, pedPos.y, pedPos.z, 1, 1, 1)
+    local shield = Ora.World.Object:Create(GetHashKey(prop), pedPos.x, pedPos.y, pedPos.z, 1, 1, 1)
     shieldEntity = shield
     AttachEntityToEntity(
         shieldEntity,
@@ -2061,7 +2061,7 @@ AddEventHandler(
         SetCurrentPedWeapon(LocalPlayer().Ped, 0xA2719263)
         local bone = GetPedBoneIndex(LocalPlayer().Ped, boneNumberSent)
         local coords = GetEntityCoords(LocalPlayer().Ped)
-        closestEntity = Atlantiss.World.Object:Create(attachModelSent, coords.x, coords.y, coords.z, true, true, false)
+        closestEntity = Ora.World.Object:Create(attachModelSent, coords.x, coords.y, coords.z, true, true, false)
         for i = 1, #attachPropList, 1 do
             if (attachPropList[i].model == attachModelSent) and (attachPropList[i].anim == "hold") then
                 holdAnim()
@@ -2514,17 +2514,17 @@ exports(
                         player.isBusy = false
                     end
                 )
-                Atlantiss.Inventory:RemoveItem(item)
+                Ora.Inventory:RemoveItem(item)
             else
                 RageUI.Popup({message = "~r~Aucun véhicule"})
-                TriggerEvent('atlantiss:InvNotification', "Aucun véhicule", 'warning')
+                TriggerEvent('Ora:InvNotification', "Aucun véhicule", 'warning')
             end
         else
-            if #Atlantiss.Inventory.Data["lavage"] > 0 then
+            if #Ora.Inventory.Data["lavage"] > 0 then
                 local lavage = nil
-                for i = 1, #Atlantiss.Inventory.Data["lavage"] do
-                    if Atlantiss.Inventory.Data["lavage"][i].id == item.id then
-                        lavage = Atlantiss.Inventory.Data["lavage"][i]
+                for i = 1, #Ora.Inventory.Data["lavage"] do
+                    if Ora.Inventory.Data["lavage"][i].id == item.id then
+                        lavage = Ora.Inventory.Data["lavage"][i]
                     end
                 end
                 Wait(50)
@@ -2545,12 +2545,12 @@ exports(
                             player.isBusy = false
                         end
                     )
-                    Atlantiss.Inventory:RemoveItem({id = lavage.id, name = lavage.name})
+                    Ora.Inventory:RemoveItem({id = lavage.id, name = lavage.name})
                 else
-                    TriggerEvent('atlantiss:InvNotification', "Aucun véhicule", 'warning')
+                    TriggerEvent('Ora:InvNotification', "Aucun véhicule", 'warning')
                 end
             else
-                TriggerEvent('atlantiss:InvNotification', "Vous n'avez aucun Kit de lavage sur vous", 'error')
+                TriggerEvent('Ora:InvNotification', "Vous n'avez aucun Kit de lavage sur vous", 'error')
             end
         end
     end
@@ -2565,13 +2565,13 @@ exports(
 exports(
     "Repair",
     function()
-        if Atlantiss.Inventory:GetItemCount("repairbox2") > 0 then
+        if Ora.Inventory:GetItemCount("repairbox2") > 0 then
 
-            TriggerServerCallback("Atlantiss::SE::Service:GetInServiceCount", 
+            TriggerServerCallback("Ora::SE::Service:GetInServiceCount", 
                 function(nb)
                     if nb == 0 then
                         local vehicle = ClosestVeh()
-                        Atlantiss.Inventory:RemoveFirstItem("repairbox2")
+                        Ora.Inventory:RemoveFirstItem("repairbox2")
                         if vehicle ~= 0 then
                             TaskStartScenarioInPlace(LocalPlayer().Ped, "PROP_HUMAN_BUM_BIN", 0, true)
                             player = LocalPlayer()
@@ -2595,29 +2595,29 @@ exports(
                         end
                     else
                         ShowNotification("~r~Vous n'avez pas assez d'énergie pour faire ceci\n~y~(mécano(s) en service)")
-                        TriggerEvent('atlantiss:InvNotification', "Vous n'avez pas assez d'énergie pour faire ceci. (mécano(s) en service)", 'error')
+                        TriggerEvent('Ora:InvNotification', "Vous n'avez pas assez d'énergie pour faire ceci. (mécano(s) en service)", 'error')
                     end
                 end,
                 "mecano"
             )
         else
-            TriggerEvent('atlantiss:InvNotification', "Vous n'avez pas de " .. Items["repairbox2"].label .. " !", 'error')
+            TriggerEvent('Ora:InvNotification', "Vous n'avez pas de " .. Items["repairbox2"].label .. " !", 'error')
         end
     end
 )
 function LockPickVehicle(item)
-    if (Atlantiss.Inventory:GetItemCount("crochetage") == 0) then
+    if (Ora.Inventory:GetItemCount("crochetage") == 0) then
         ShowNotification("~r~Vous n'avez pas d'outil de crochetage !")
-        TriggerEvent('atlantiss:InvNotification', "Vous n'avez pas d'outil de crochetage !", 'error')
+        TriggerEvent('Ora:InvNotification', "Vous n'avez pas d'outil de crochetage !", 'error')
         return
     end
 
     if (item == nil) then
-        Atlantiss.Inventory:RemoveFirstItem("crochetage")
+        Ora.Inventory:RemoveFirstItem("crochetage")
     else
-        Atlantiss.Inventory:RemoveItem(item)
+        Ora.Inventory:RemoveItem(item)
     end
-    TriggerEvent("atlantiss:hideInventory")
+    TriggerEvent("Ora:hideInventory")
 
     local plyPos = LocalPlayer().Pos
     local veh = GetVehicleInDirection(5.0)
@@ -2672,8 +2672,8 @@ function LockPickVehicle(item)
                     Citizen.Wait(0)
                 end
 
-                if (Atlantiss.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, veh) end
-                if (Atlantiss.Illegal.CarRoberry:IsMissionRunning()) then Atlantiss.Illegal.CarRoberry.Current.STOLEN_VEHICLE = veh end
+                if (Ora.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, veh) end
+                if (Ora.Illegal.CarRoberry:IsMissionRunning()) then Ora.Illegal.CarRoberry.Current.STOLEN_VEHICLE = veh end
                 
                 ShowNotification("Vous avez ~g~déverrouillé~w~ le véhicule.")
                 --SetEntityAsMissionEntity(veh, true, true)
@@ -2694,7 +2694,7 @@ function attachObjectPedHand(stringProp, intWait, boolRelative, rightBone, boolL
         DeleteEntity(objectHandle)
     end
 
-    objectHandle = Atlantiss.World.Object:Create(GetHashKey(stringProp), LocalPlayer().Pos, not boolLocal)
+    objectHandle = Ora.World.Object:Create(GetHashKey(stringProp), LocalPlayer().Pos, not boolLocal)
     AttachEntityToEntity(
         objectHandle,
         ped,
@@ -2729,7 +2729,7 @@ function CutChev()
     local ped = LocalPlayer().Ped
     FreezeEntityPosition(ped, true)
     local player = GetPlayerServerIdInDirection(5.0)
-    TriggerServerEvent("atlantiss:cutHairs", player)
+    TriggerServerEvent("Ora:cutHairs", player)
     local victimePed = GetPlayerPed(GetPlayerFromServerId(player))
     if not victimePed or not DoesEntityExist(victimePed) or victimePed == ped then
         ShowNotification("~r~ERREUR.")
@@ -2757,7 +2757,7 @@ function CutChev()
 
     FreezeEntityPosition(ped, false)
     ShowNotification("Vous avez ~r~coupé les cheveux~w~ de votre cible.")
-    TriggerEvent('atlantiss:InvNotification', 'Vous avez coupé les cheveux de la cible.', 'success')
+    TriggerEvent('Ora:InvNotification', 'Vous avez coupé les cheveux de la cible.', 'success')
 end
 function SetPedHairs(ped, hairID, colorID, secondID)
     SetPedComponentVariation(ped, 2, hairID, 0, 2)
@@ -2822,7 +2822,7 @@ AddEventHandler(
 
                 FreezeEntityPosition(ped, false)
                 ShowNotification("Vos cheveux ont été ~r~coupés~w~.")
-                TriggerEvent('atlantiss:InvNotification', 'Vos cheveux ont été coupés.')
+                TriggerEvent('Ora:InvNotification', 'Vos cheveux ont été coupés.')
             end
         )
     end
@@ -2855,8 +2855,8 @@ Citizen.CreateThread(
 
 			if (RageUI.Visible(RMenu:Get("xRadio", "main"))) then
 				RageUI.DrawContent({ header = true, glare = false }, function()
-                    if (Atlantiss.Player.Speaker.IsUsing == false) then RageUI.GoBack() end
-                    Atlantiss.Player.Speaker.IsOnShoulder = radioType ~= "ground"
+                    if (Ora.Player.Speaker.IsUsing == false) then RageUI.GoBack() end
+                    Ora.Player.Speaker.IsOnShoulder = radioType ~= "ground"
 
                     if (radioType == "shoulder") then
                         RageUI.Button(
@@ -2879,10 +2879,10 @@ Citizen.CreateThread(
                             function(_, _, Selected)
                                 if (Selected) then
                                     TriggerEvent("xradio:hideShoulderRadio") -- will remove the radio from user shoulder
-                                    Atlantiss.Inventory:AddItem({name = "speaker"})
+                                    Ora.Inventory:AddItem({name = "speaker"})
                                     RageUI.Visible(RMenu:Get("xRadio", "main"), false)
-                                    Atlantiss.Player.Speaker.IsUsing = false
-                                    Atlantiss.Player.Speaker.Pos = vector3(0,0,0)
+                                    Ora.Player.Speaker.IsUsing = false
+                                    Ora.Player.Speaker.Pos = vector3(0,0,0)
                                 end
                             end
                         )
@@ -2896,7 +2896,7 @@ Citizen.CreateThread(
                                 if (Selected) then
                                     TriggerEvent("xradio:putRadioBackGround") -- will put radio back to the ground
                                     radioType = "ground"
-                                    Atlantiss.Player.Speaker.Pos = GetEntityCoords(PlayerPedId()) + GetEntityForwardVector(PlayerPedId())
+                                    Ora.Player.Speaker.Pos = GetEntityCoords(PlayerPedId()) + GetEntityForwardVector(PlayerPedId())
                                 end
                             end
                         )
@@ -2922,10 +2922,10 @@ Citizen.CreateThread(
                             function(_, _, Selected)
                                 if (Selected) then
                                     TriggerEvent("xradio:deleteRadioOnGround") -- will remove the radio from ground
-                                    Atlantiss.Inventory:AddItem({name = "speaker"})
+                                    Ora.Inventory:AddItem({name = "speaker"})
                                     RageUI.Visible(RMenu:Get("xRadio", "main"), false)
-                                    Atlantiss.Player.Speaker.IsUsing = false
-                                    Atlantiss.Player.Speaker.Pos = vector3(0,0,0)
+                                    Ora.Player.Speaker.IsUsing = false
+                                    Ora.Player.Speaker.Pos = vector3(0,0,0)
                                 end
                             end
                         )

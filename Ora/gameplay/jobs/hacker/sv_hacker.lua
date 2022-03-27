@@ -18,7 +18,7 @@ RegisterServerCallback("hacker:getNum", function(source, callback, target)
 end)
 
 RegisterServerCallback("hacker:getIdentity", function(source, callback, target)
-  local uuid = Atlantiss.Identity:GetUuid(target)
+  local uuid = Ora.Identity:GetUuid(target)
   
   MySQL.Async.fetchAll("SELECT first_name, last_name FROM players_identity WHERE uuid = @uuid",
     {

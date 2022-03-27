@@ -179,7 +179,7 @@ end)
 -- RegisterNetEvent('StreetRaces:sendWinMoney')
 -- AddEventHandler('StreetRaces:sendWinMoney', 
 --     function(montant) 
---         TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {AMOUNT = montant, SOURCE = "Courses de rue", LEGIT = true})
+--         TriggerServerEvent(Ora.Payment:GetServerEventName(), {AMOUNT = montant, SOURCE = "Courses de rue", LEGIT = true})
 --     end
 -- )
 
@@ -219,9 +219,9 @@ Citizen.CreateThread(function()
                                 'StreetRaces:finishedRace_sv',
                                 function(prize)
                                     TriggerServerCallback(
-                                        "Atlantiss::SE::Money:AuthorizePayment", 
+                                        "Ora::SE::Money:AuthorizePayment", 
                                         function(token)
-                                            TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = prize, SOURCE = "Courses de rue", LEGIT = true})
+                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = prize, SOURCE = "Courses de rue", LEGIT = true})
                                         end,
                                         {}
                                     )
@@ -265,9 +265,9 @@ Citizen.CreateThread(function()
                         cleanupRace()
                         TriggerServerEvent('StreetRaces:leaveRace_sv', raceStatus.index)
                         TriggerServerCallback(
-                            "Atlantiss::SE::Money:AuthorizePayment", 
+                            "Ora::SE::Money:AuthorizePayment", 
                             function(token)
-                                TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = race.amount, SOURCE = "Courses de rue", LEGIT = true})
+                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = race.amount, SOURCE = "Courses de rue", LEGIT = true})
                             end,
                             {}
                         )

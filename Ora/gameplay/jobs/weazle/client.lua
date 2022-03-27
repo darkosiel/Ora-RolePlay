@@ -35,7 +35,7 @@ AddEventHandler(
             end
 
             local plyCoords = GetOffsetFromEntityInWorldCoords(LocalPlayer().Ped, 0.0, 0.0, -5.0)
-            local camspawned = Atlantiss.World.Object:Create(GetHashKey(camModel), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
+            local camspawned = Ora.World.Object:Create(GetHashKey(camModel), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
             Citizen.Wait(1000)
             local netid = ObjToNet(camspawned)
             SetNetworkIdExistsOnAllMachines(netid, true)
@@ -378,7 +378,7 @@ AddEventHandler(
             end
 
             local plyCoords = GetOffsetFromEntityInWorldCoords(LocalPlayer().Ped, 0.0, 0.0, -5.0)
-            local micspawned = Atlantiss.World.Object:Create(GetHashKey(micModel), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
+            local micspawned = Ora.World.Object:Create(GetHashKey(micModel), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
             Citizen.Wait(1000)
             local netid = ObjToNet(micspawned)
             SetNetworkIdExistsOnAllMachines(netid, true)
@@ -431,7 +431,7 @@ AddEventHandler(
 
             local plyCoords = GetOffsetFromEntityInWorldCoords(LocalPlayer().Ped, 0.0, 0.0, -5.0)
             local bmicspawned =
-            Atlantiss.World.Object:Create(GetHashKey(bmicModel), plyCoords.x, plyCoords.y, plyCoords.z, true, true, false)
+            Ora.World.Object:Create(GetHashKey(bmicModel), plyCoords.x, plyCoords.y, plyCoords.z, true, true, false)
             Citizen.Wait(1000)
             local netid = ObjToNet(bmicspawned)
             SetNetworkIdExistsOnAllMachines(netid, true)

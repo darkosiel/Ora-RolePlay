@@ -611,12 +611,12 @@ function craftWeapon(data)
     local hasOneMissing = false
 
     for i = 1, #data.required, 1 do
-        if Atlantiss.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
+        if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
             ShowNotification(
                 "~b~" ..
                     Items[data.required[i].name].label ..
                         "~s~ : ~r~" ..
-                            Atlantiss.Inventory:GetItemCount(data.required[i].name) .. "/" .. data.required[i].count .. "~s~"
+                            Ora.Inventory:GetItemCount(data.required[i].name) .. "/" .. data.required[i].count .. "~s~"
             )
             hasOneMissing = true
         else
@@ -624,7 +624,7 @@ function craftWeapon(data)
                 "~b~" ..
                     Items[data.required[i].name].label ..
                         "~s~ : ~g~" ..
-                            Atlantiss.Inventory:GetItemCount(data.required[i].name) .. "/" .. data.required[i].count .. "~s~"
+                            Ora.Inventory:GetItemCount(data.required[i].name) .. "/" .. data.required[i].count .. "~s~"
             )
         end
     end
@@ -636,7 +636,7 @@ function craftWeapon(data)
             showMessageInformation("~b~Création de l'arme en cours (" .. timeWait .. " minute(s))...", data.time)
 
             for i = 1, #data.required, 1 do
-                Atlantiss.Inventory:RemoveFirstItem(data.required[i].name)
+                Ora.Inventory:RemoveFirstItem(data.required[i].name)
             end
 
             local playerPed = LocalPlayer().Ped
@@ -701,16 +701,16 @@ function craftWeapon(data)
 
             ClearPedTasksImmediately(LocalPlayer().Ped)
             serial = GenerateAmmunationSerial()
-            Atlantiss.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
+            Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
             TriggerServerEvent(
-                "atlantiss:sendToDiscordLSPD",
+                "Ora:sendToDiscordLSPD",
                 1,
                 "[" ..
                     data.label ..
                         " " ..
                             serial ..
                                 "]\n\n" ..
-                                Atlantiss.Identity:GetMyName() ..
+                                Ora.Identity:GetMyName() ..
                                         " certifie la confection d'une arme\n\n* Type d'arme : " ..
                                             data.label .. "\n* Numéro de série : " .. serial
             )

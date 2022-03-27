@@ -10,13 +10,13 @@ RMenu.Add(
     RageUI.CreateMenu("ORA", "Actions disponibles", 10, 200, nil, nil, 52, 177, 74, 1.0)
 )
 
---RMenu.Add('personnal', 'inventory', RageUI.CreateMenu("atlantiss", "Actions disponibles"))
+--RMenu.Add('personnal', 'inventory', RageUI.CreateMenu("Ora", "Actions disponibles"))
 
---RMenu.Add('personnal', 'inventory', RageUI.CreateMenu("atlantiss", "Actions disponibles"))
+--RMenu.Add('personnal', 'inventory', RageUI.CreateMenu("Ora", "Actions disponibles"))
 
 Citizen.CreateThread(
     function()
-        local myGroup = Atlantiss.Identity:GetMyGroup()
+        local myGroup = Ora.Identity:GetMyGroup()
         while true do
             Wait(1)
 
@@ -120,7 +120,7 @@ Citizen.CreateThread(
 )
 
 function GetGroup()
-    return Atlantiss.Identity:GetMyGroup()
+    return Ora.Identity:GetMyGroup()
 end
 
 function OpenPersonnalMenu()

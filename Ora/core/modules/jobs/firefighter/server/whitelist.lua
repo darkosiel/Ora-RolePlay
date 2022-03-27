@@ -4,7 +4,7 @@
 --      License: GNU GPL 3.0      --
 --================================--
 
-Atlantiss.Jobs.Firefighter.Whitelist = {
+Ora.Jobs.Firefighter.Whitelist = {
 	players = {},
 	config = {},
 	__index = self,
@@ -15,7 +15,7 @@ Atlantiss.Jobs.Firefighter.Whitelist = {
 	end
 }
 
-function Atlantiss.Jobs.Firefighter.Whitelist:check(serverId)
+function Ora.Jobs.Firefighter.Whitelist:check(serverId)
 	if serverId > 0 then
 		local steamID = GetPlayerIdentifier(serverId, 0)
 		if self.config[steamID] == true or IsPlayerAceAllowed(serverId, "firescript.all") then
@@ -26,12 +26,12 @@ function Atlantiss.Jobs.Firefighter.Whitelist:check(serverId)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Whitelist:isWhitelisted(serverId, ace)
+function Ora.Jobs.Firefighter.Whitelist:isWhitelisted(serverId, ace)
 	ace = tostring(ace)
 	return (serverId > 0 and (self.players[serverId] == true or (ace and IsPlayerAceAllowed(serverId, ace))))
 end
 
-function Atlantiss.Jobs.Firefighter.Whitelist:addPlayer(serverId, steamId)
+function Ora.Jobs.Firefighter.Whitelist:addPlayer(serverId, steamId)
 	if steamId then
 		self.config[steamId] = true
 		self:save()
@@ -41,7 +41,7 @@ function Atlantiss.Jobs.Firefighter.Whitelist:addPlayer(serverId, steamId)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Whitelist:removePlayer(serverId, steamId)
+function Ora.Jobs.Firefighter.Whitelist:removePlayer(serverId, steamId)
 	if steamId then
 		self.config[steamId] = nil
 		self:save()
@@ -51,7 +51,7 @@ function Atlantiss.Jobs.Firefighter.Whitelist:removePlayer(serverId, steamId)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Whitelist:load()
+function Ora.Jobs.Firefighter.Whitelist:load()
 	local whitelistFile = loadData("whitelist")
 	if whitelistFile ~= nil then
 		self.config = whitelistFile
@@ -63,6 +63,6 @@ function Atlantiss.Jobs.Firefighter.Whitelist:load()
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Whitelist:save()
+function Ora.Jobs.Firefighter.Whitelist:save()
 	saveData(self.config, "whitelist")
 end

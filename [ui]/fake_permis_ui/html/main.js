@@ -16,7 +16,7 @@ $(function () {
 				$('.pic'). attr("src", event.data.data.data.identity.face_picutre);
 
 
-				$('.im'). attr("src", "https://atlantiss-rp.com/prodImages/fakeDriver.png");
+				$('.im'). attr("src", "https://Ora-rp.com/prodImages/fakeDriver.png");
 				break
 			case 'hide':
 				$('body').css('opacity', '0.0')

@@ -27,5 +27,5 @@ end
 
 RegisterCommand('me', function(source, args)
     local text = "* the person" .. TableToString(args) .. " *"
-    TriggerClientEvent('Atlantiss::3dme:shareDisplay', -1, text, source)
+    TriggerClientEvent('Ora::3dme:shareDisplay', -1, text, source)
 end)

@@ -1,4 +1,4 @@
-Atlantiss.Jobs.Casino.Insidetrack.HorseStyles = {
+Ora.Jobs.Casino.Insidetrack.HorseStyles = {
     {15553363,5474797,9858144,4671302},
     {16724530,3684408,14807026,16777215},
     {13560920,15582764,16770746,7500402},

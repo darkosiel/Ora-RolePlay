@@ -1,11 +1,11 @@
-Atlantiss.Identity.Job.Data = {}
-Atlantiss.Identity.Job.Data.Blips = {}
-Atlantiss.Identity.Job.isOnDuty = false
-Atlantiss.Identity.Job.CurrentZone = nil
-Atlantiss.Identity.Job.CurrentAction = nil
-Atlantiss.Identity.Job.ChangingJob = false
+Ora.Identity.Job.Data = {}
+Ora.Identity.Job.Data.Blips = {}
+Ora.Identity.Job.isOnDuty = false
+Ora.Identity.Job.CurrentZone = nil
+Ora.Identity.Job.CurrentAction = nil
+Ora.Identity.Job.ChangingJob = false
 
-function Atlantiss.Identity.Job:Fetch(playerId)
+function Ora.Identity.Job:Fetch(playerId)
   local hasId = playerId ~= nil and true or false
   local paramId = playerId or GetPlayerServerId(PlayerId())
   local result = nil
@@ -13,7 +13,7 @@ function Atlantiss.Identity.Job:Fetch(playerId)
   self:Debug(string.format("Fetching Job Array with SV CB ^5%s^3, the fetch fct has id ? ^5%s^3 playerID: ^5%s^3", "...:Job:Get", hasId, paramId))
 
   TriggerServerCallback(
-    "Atlantiss::SVCB::Identity:Job:Get",
+    "Ora::SVCB::Identity:Job:Get",
     function(job)
       if (job ~= false and job ~= nil) then
         self:Debug(string.format("Received Job Array from SV CB ^5%s^3 with playerID: ^5%s^3. Fetch function has playerID param ? ^5%s^3. Job name ^5%s^3, job rank ^5%s^3", "...:Job:Get", paramId, hasId, job.name, job.rank))
@@ -24,7 +24,7 @@ function Atlantiss.Identity.Job:Fetch(playerId)
             result[i] = value
           end
         else
-          if (Atlantiss.Utils:TableLength(self.Data) == 0) then 
+          if (Ora.Utils:TableLength(self.Data) == 0) then 
             self:Set(job.name, job.rank)
           else
             for i, value in pairs(job) do
@@ -50,7 +50,7 @@ function Atlantiss.Identity.Job:Fetch(playerId)
   return result
 end
 
-function Atlantiss.Identity.Job:Init(job)
+function Ora.Identity.Job:Init(job)
   self:Debug(string.format("Initializing %s, type: Jobs", job))
   v = job
   local t = v.Menu
@@ -61,9 +61,9 @@ function Atlantiss.Identity.Job:Init(job)
 
   self.ChangingJob = true
   Citizen.SetTimeout(2000, function()
-    Atlantiss.Identity.Job.ChangingJob = false
-    while (Atlantiss.Identity.InitFunctions == nil) do Wait(50) end
-    if (Atlantiss.Identity.InitFunctions[Atlantiss.Identity.Job:GetName()]) then Atlantiss.Identity.InitFunctions[Atlantiss.Identity.Job:GetName()]() end
+    Ora.Identity.Job.ChangingJob = false
+    while (Ora.Identity.InitFunctions == nil) do Wait(50) end
+    if (Ora.Identity.InitFunctions[Ora.Identity.Job:GetName()]) then Ora.Identity.InitFunctions[Ora.Identity.Job:GetName()]() end
   end)
 
   if v.garage ~= nil then
@@ -168,8 +168,8 @@ function Atlantiss.Identity.Job:Init(job)
         v.Pos,
         function()
           Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour interagir")
-          KeySettings:Add("keyboard", "E", Atlantiss.Identity.Job.StartAct, k)
-          KeySettings:Add("controller", 46, Atlantiss.Identity.Job.StartAct, k)
+          KeySettings:Add("keyboard", "E", Ora.Identity.Job.StartAct, k)
+          KeySettings:Add("controller", 46, Ora.Identity.Job.StartAct, k)
           self.CurrentZone = "Jobs"
         end,
         function()
@@ -192,8 +192,8 @@ end
 -- Getters
 
 
-function Atlantiss.Identity.Job:Get()
-  if (Atlantiss.Utils:TableLength(self.Data) == 0) then
+function Ora.Identity.Job:Get()
+  if (Ora.Utils:TableLength(self.Data) == 0) then
     return self:Fetch()
   end
 
@@ -210,7 +210,7 @@ function Atlantiss.Identity.Job:Get()
   end
 end
 
-function Atlantiss.Identity.Job:GetName()
+function Ora.Identity.Job:GetName()
   if not self.Data.name then
     return self:Fetch().name
   end
@@ -218,7 +218,7 @@ function Atlantiss.Identity.Job:GetName()
 	return self.Data.name
 end
 
-function Atlantiss.Identity.Job:GetRank()
+function Ora.Identity.Job:GetRank()
   if not self.Data.rank then
     return self:Fetch().rank
   end
@@ -226,23 +226,23 @@ function Atlantiss.Identity.Job:GetRank()
 	return self.Data.rank
 end
 
-function Atlantiss.Identity.Job:IsBoss()
-  if (Atlantiss.Utils:TableLength(self.Data.grades) == self.Data.gradenum and self.Data.name ~= "chomeur") then
+function Ora.Identity.Job:IsBoss()
+  if (Ora.Utils:TableLength(self.Data.grades) == self.Data.gradenum and self.Data.name ~= "chomeur") then
     return true
   else
     return false
   end
 end
 
-function Atlantiss.Identity.Job:IsCoBoss()
-  if (Atlantiss.Utils:TableLength(self.Data.grades) - 1 == self.Data.gradenum) then
+function Ora.Identity.Job:IsCoBoss()
+  if (Ora.Utils:TableLength(self.Data.grades) - 1 == self.Data.gradenum) then
     return true
   else
     return false
   end
 end
 
-function Atlantiss.Identity.Job:GetSalary()
+function Ora.Identity.Job:GetSalary()
   return self.Data.grades[self.Data.gradenum].salary
 end
 
@@ -250,7 +250,7 @@ end
 -- Setters
 
 
-function Atlantiss.Identity.Job:Set(name, rank)
+function Ora.Identity.Job:Set(name, rank)
   self:Debug(string.format("^1Trying to set job to %s rank %s", name, rank))
   if Jobs[name] == nil then
     return error(string.format("Job incorrect ! %s", name))
@@ -268,7 +268,7 @@ function Atlantiss.Identity.Job:Set(name, rank)
 
   if self.Data.Blips == nil then self.Data.Blips = {} end
 
-  for i = 1, Atlantiss.Utils:TableLength(self.Data.Blips), 1 do
+  for i = 1, Ora.Utils:TableLength(self.Data.Blips), 1 do
     if self.Data.Blips[i] then
       RemoveBlip(self.Data.Blips[i])
       table.remove(self.Data.Blips, i)
@@ -279,25 +279,25 @@ function Atlantiss.Identity.Job:Set(name, rank)
 
   self:Debug(string.format("Job set, going to init Job properties with theses parameters: (%s, %s) then saving SV side with (%s, %s)", Jobs[name], "Jobs", self.Data.name, self.Data.rank))
   self:Init(Jobs[name], "Jobs")
-  TriggerServerEvent("Atlantiss::SE::Identity:Job:Save", self.Data.name, self.Data.rank)
+  TriggerServerEvent("Ora::SE::Identity:Job:Save", self.Data.name, self.Data.rank)
 end
 
 
 -- Events
 
 
-RegisterNetEvent("Atlantiss::CE::Identity:Job:Set")
+RegisterNetEvent("Ora::CE::Identity:Job:Set")
 AddEventHandler(
-  "Atlantiss::CE::Identity:Job:Set",
+  "Ora::CE::Identity:Job:Set",
   function(name, rank, force)
     if (
-      (Atlantiss.Identity.Job:GetName() == "chomeur" and Atlantiss.Identity.Orga:GetName() ~= name) or
+      (Ora.Identity.Job:GetName() == "chomeur" and Ora.Identity.Orga:GetName() ~= name) or
       force
     ) then
-      Atlantiss.Identity.Job:Set(name, rank)
-    elseif (Atlantiss.Identity.Orga:GetName() == name) then
-      Atlantiss.Identity.Orga:Set("chomeur", 1)
-      Atlantiss.Identity.Job:Set(name, rank)
+      Ora.Identity.Job:Set(name, rank)
+    elseif (Ora.Identity.Orga:GetName() == name) then
+      Ora.Identity.Orga:Set("chomeur", 1)
+      Ora.Identity.Job:Set(name, rank)
     else
       RageUI.Popup({message = "~r~Vous avez déjà un travail primaire."})
     end
@@ -309,9 +309,9 @@ AddEventHandler(
 
 
 exports(
-  'AtlantissGetJob',
+  'OraGetJob',
   function()
-    return Atlantiss.Identity.Job:Get()
+    return Ora.Identity.Job:Get()
   end
 )
 
@@ -319,11 +319,11 @@ exports(
 -- Shitty functions
 
 
-function Atlantiss.Identity.Job.StartAct(action)
-  Atlantiss.Identity.Job.CurrentAction = action
+function Ora.Identity.Job.StartAct(action)
+  Ora.Identity.Job.CurrentAction = action
   if action == "vestiaire" then
-    OpenClotheRoom(Atlantiss.Identity.Job.CurrentZone)
+    OpenClotheRoom(Ora.Identity.Job.CurrentZone)
   else
-    StartRecolte(Atlantiss.Identity.Job.CurrentZone)
+    StartRecolte(Ora.Identity.Job.CurrentZone)
   end
 end

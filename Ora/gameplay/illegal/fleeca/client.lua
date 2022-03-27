@@ -344,8 +344,8 @@ AddEventHandler(
             function()
                 while true do
                     if (
-                        (Atlantiss.Identity.Job:Get() ~= nil and Atlantiss.Identity.Job:GetName() ~= nil) and
-                        (Atlantiss.Identity.Job:GetName() == "police" or Atlantiss.Identity.Job:GetName() == "lssd") and
+                        (Ora.Identity.Job:Get() ~= nil and Ora.Identity.Job:GetName() ~= nil) and
+                        (Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "lssd") and
                         not dooruse
                     ) then
                         local pcoords = LocalPlayer().Pos
@@ -586,7 +586,7 @@ AddEventHandler(
         )
         SetEntityHeading(ped, data.doors.startloc.animcoords.h)
         local pedco = LocalPlayer().Pos
-        IdProp = Atlantiss.World.Object:Create(GetHashKey("p_ld_id_card_01"), pedco, 1, 1, 0)
+        IdProp = Ora.World.Object:Create(GetHashKey("p_ld_id_card_01"), pedco, 1, 1, 0)
         local boneIndex = GetPedBoneIndex(LocalPlayer().Ped, 28422)
 
         AttachEntityToEntity(
@@ -692,7 +692,7 @@ function SecondDoor(data, key)
     )
     SetEntityHeading(ped, data.doors.secondloc.animcoords.h)
     local pedco = LocalPlayer().Pos
-    IdProp2 = Atlantiss.World.Object:Create(GetHashKey("p_ld_id_card_01"), pedco, 1, 1, 0)
+    IdProp2 = Ora.World.Object:Create(GetHashKey("p_ld_id_card_01"), pedco, 1, 1, 0)
     local boneIndex = GetPedBoneIndex(LocalPlayer().Ped, 28422)
 
     AttachEntityToEntity(
@@ -799,7 +799,7 @@ function SpawnTrolleys(data, name)
         Citizen.Wait(1)
     end
     Trolley1 =
-    Atlantiss.World.Object:Create(
+    Ora.World.Object:Create(
         GetHashKey("hei_prop_hei_cash_trolly_01"),
         data.trolley1.x,
         data.trolley1.y,
@@ -809,7 +809,7 @@ function SpawnTrolleys(data, name)
         0
     )
     Trolley2 =
-    Atlantiss.World.Object:Create(
+    Ora.World.Object:Create(
         GetHashKey("hei_prop_hei_cash_trolly_01"),
         data.trolley2.x,
         data.trolley2.y,
@@ -819,7 +819,7 @@ function SpawnTrolleys(data, name)
         0
     )
     Trolley3 =
-    Atlantiss.World.Object:Create(
+    Ora.World.Object:Create(
         GetHashKey("hei_prop_hei_cash_trolly_01"),
         data.trolley3.x,
         data.trolley3.y,
@@ -870,7 +870,7 @@ function StartGrab(name)
         while not HasModelLoaded(grabmodel) do
             Citizen.Wait(100)
         end
-        local grabobj = Atlantiss.World.Object:Create(grabmodel, pedCoords, true)
+        local grabobj = Ora.World.Object:Create(grabmodel, pedCoords, true)
 
         FreezeEntityPosition(grabobj, true)
         SetEntityInvincible(grabobj, true)
@@ -935,7 +935,7 @@ function StartGrab(name)
         Citizen.Wait(1)
         NetworkRequestControlOfEntity(trollyobj)
     end
-    local bag = Atlantiss.World.Object:Create(GetHashKey("hei_p_m_bag_var22_arm_s"), LocalPlayer().Pos, true, false, false)
+    local bag = Ora.World.Object:Create(GetHashKey("hei_p_m_bag_var22_arm_s"), LocalPlayer().Pos, true, false, false)
     local scene1 =
         NetworkCreateSynchronisedScene(
         GetEntityCoords(trollyobj),
@@ -1027,7 +1027,7 @@ function StartGrab(name)
     )
     NetworkAddEntityToSynchronisedScene(bag, scene3, "anim@heists@ornate_bank@grab_cash", "bag_exit", 4.0, -8.0, 1)
     NetworkStartSynchronisedScene(scene3)
-    NewTrolley = Atlantiss.World.Object:Create(emptyobj, GetEntityCoords(trollyobj) + vector3(0.0, 0.0, -0.985), true)
+    NewTrolley = Ora.World.Object:Create(emptyobj, GetEntityCoords(trollyobj) + vector3(0.0, 0.0, -0.985), true)
     --TriggerServerEvent("utk_fh:updateObj", name, NewTrolley, 2)
     SetEntityRotation(NewTrolley, GetEntityRotation(trollyobj))
     while not NetworkHasControlOfEntity(trollyobj) do
@@ -1217,8 +1217,8 @@ Citizen.CreateThread(
                     if dst <= 5 and not Check[k] then
                         inBank = true
                         if (
-                            (Atlantiss.Identity.Job:Get() ~= nil and Atlantiss.Identity.Job:GetName() ~= nil) and
-                            (Atlantiss.Identity.Job:GetName() ~= "police" and Atlantiss.Identity.Job:GetName() ~= "lssd") and
+                            (Ora.Identity.Job:Get() ~= nil and Ora.Identity.Job:GetName() ~= nil) and
+                            (Ora.Identity.Job:GetName() ~= "police" and Ora.Identity.Job:GetName() ~= "lssd") and
                             not dooruse
                         ) then
                             DrawText3D(
@@ -1229,12 +1229,12 @@ Citizen.CreateThread(
                                 0.40
                             )
                             if dst <= 1 and IsControlJustReleased(0, 38) then
-                                local count = Atlantiss.Inventory:GetItemCount("darknet")
+                                local count = Ora.Inventory:GetItemCount("darknet")
                                 if (count > 0) then
 
-                                    TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+                                    TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
                                         function(allcount)
-                                            if allcount >= Atlantiss.Illegal:GetCopsRequired("fleeca") then
+                                            if allcount >= Ora.Illegal:GetCopsRequired("fleeca") then
                                                 local entityZoneName =
                                                     GetNameOfZone(
                                                     LocalPlayer().Pos.x,
@@ -1243,7 +1243,7 @@ Citizen.CreateThread(
                                                 )
 
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     8,
                                                     "[" ..
                                                         entityZoneName ..

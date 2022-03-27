@@ -38,6 +38,6 @@ RegisterNUICallback(
         SendNUIMessage({show = false})
         PhonePlayOut()
         cb()
-        TriggerEvent("Atlantiss:EditTel")
+        TriggerEvent("Ora:EditTel")
     end
 )

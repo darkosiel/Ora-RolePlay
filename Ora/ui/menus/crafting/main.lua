@@ -148,11 +148,11 @@ Citizen.CreateThread(function()
                                 CurrentRecipe.ingredient = {{}}
                                 RMenu:Get('craft', 'main').Index = 1
                                 items = {name=k,data=v.data}
-                                Atlantiss.Inventory:AddItem(items)
+                                Ora.Inventory:AddItem(items)
                                 Citizen.CreateThread(function()
                                     for px=1,#v.ingredient,1 do
                                         for it = 1 , itemToRemove[v.ingredient[px].name] ,1 do
-                                            Atlantiss.Inventory:RemoveFirstItem(v.ingredient[px].name)
+                                            Ora.Inventory:RemoveFirstItem(v.ingredient[px].name)
                                         end
                                     end
                                 end)
@@ -178,11 +178,11 @@ Citizen.CreateThread(function()
 
         if RageUI.Visible(RMenu:Get('craft', 'select_anitem')) then
             RageUI.DrawContent({ header = false, glare = false }, function()
-                if tableCount(Atlantiss.Inventory:GetInventory()) == 0 then
+                if tableCount(Ora.Inventory:GetInventory()) == 0 then
                     RageUI.Button("Vide", nil, {}, true, function(_, _, _)
                     end)
                 else
-                    for k, v in pairs(Atlantiss.Inventory:GetInventory()) do
+                    for k, v in pairs(Ora.Inventory:GetInventory()) do
 
                             RageUI.Button(Items[k].label, nil, { RightLabel = #v }, true, function(_, _, Selected)
                                 if Selected then

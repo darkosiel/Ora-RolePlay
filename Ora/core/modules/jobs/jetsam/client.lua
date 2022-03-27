@@ -1,24 +1,24 @@
-Atlantiss.Jobs.Jetsam.E_Thread = false
-Atlantiss.Jobs.Jetsam.Trailer = nil
-Atlantiss.Jobs.Jetsam.VehAttached = {}
+Ora.Jobs.Jetsam.E_Thread = false
+Ora.Jobs.Jetsam.Trailer = nil
+Ora.Jobs.Jetsam.VehAttached = {}
 
 
 RMenu.Add("Jetsam", "main", RageUI.CreateMenu("Jetsam ", "Actions disponibles", 10, 100))
 
 
-function Atlantiss.Jobs.Jetsam.CloseUI()
-    if (not Atlantiss.Inventory.State.IsOpen) then
+function Ora.Jobs.Jetsam.CloseUI()
+    if (not Ora.Inventory.State.IsOpen) then
         SendNUIMessage({eventName = "closeJetsamMenu"})
         SetNuiFocus(false, false)
     end
 end
 
-function Atlantiss.Jobs.Jetsam.EnterZone()
-    while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
+function Ora.Jobs.Jetsam.EnterZone()
+    while (Ora.Player.HasLoaded == false) do Wait(50) end
 
-	if (not Atlantiss.Identity:HasAnyJob("jetsam")) then return end
+	if (not Ora.Identity:HasAnyJob("jetsam")) then return end
     
-    Atlantiss.Jobs.Jetsam.E_Thread = false
+    Ora.Jobs.Jetsam.E_Thread = false
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir l'ordinateur")
 
     Citizen.CreateThread(
@@ -27,12 +27,12 @@ function Atlantiss.Jobs.Jetsam.EnterZone()
                 Wait(0)
                 if (IsControlJustPressed(0, Keys["E"])) then
 					TriggerServerCallback(
-						"Atlantiss::SVCB::Jobs:Jetsam:RequestOpenMenu",
+						"Ora::SVCB::Jobs:Jetsam:RequestOpenMenu",
 						function(bool)
 							if (not bool) then return RageUI.Popup({message = "~r~Quelqu'un utilise déjà cet ordinateur"}) end
 
 							TriggerServerCallback(
-								"Atlantiss::SVCB::Jobs:Jetsam:GetOrders",
+								"Ora::SVCB::Jobs:Jetsam:GetOrders",
 								function(commandes)
 									local cmds = commandes
 									local uuids = {}
@@ -43,7 +43,7 @@ function Atlantiss.Jobs.Jetsam.EnterZone()
 												cmds[id]["owner"] = Jobs[value].label or value
 											--[[ elseif (key == "uuid") then
 												TriggerServerCallback(
-													"Atlantiss::SE::Identity:GetFullNameFromUUID",
+													"Ora::SE::Identity:GetFullNameFromUUID",
 													function(name)
 														if (name ~= nil) then
 															cmds[id]["uuid"] = name
@@ -58,7 +58,7 @@ function Atlantiss.Jobs.Jetsam.EnterZone()
 									end
 
 									TriggerServerCallback(
-										"Atlantiss::SE::Identity:GetFullNamesFromUUIDs",
+										"Ora::SE::Identity:GetFullNamesFromUUIDs",
 										function(fullnames)
 											for uuid, fullname in pairs(fullnames) do
 												for id, _ in pairs(cmds) do
@@ -75,13 +75,13 @@ function Atlantiss.Jobs.Jetsam.EnterZone()
 									)
 								end
 							)
-							Atlantiss.Jobs.Jetsam.E_Thread = true
+							Ora.Jobs.Jetsam.E_Thread = true
 						end
 					)
                 end
 
-                if (Atlantiss.Jobs.Jetsam.E_Thread == true) then
-                    Atlantiss.Jobs.Jetsam.E_Thread = false
+                if (Ora.Jobs.Jetsam.E_Thread == true) then
+                    Ora.Jobs.Jetsam.E_Thread = false
                     break
                 end
             end
@@ -89,20 +89,20 @@ function Atlantiss.Jobs.Jetsam.EnterZone()
     )
 end
 
-function Atlantiss.Jobs.Jetsam.ExitZone()
-    Atlantiss.Jobs.Jetsam.E_Thread = true
-    Atlantiss.Jobs.Jetsam.CloseUI()
+function Ora.Jobs.Jetsam.ExitZone()
+    Ora.Jobs.Jetsam.E_Thread = true
+    Ora.Jobs.Jetsam.CloseUI()
     Hint:RemoveAll()
 
-	TriggerServerEvent("Atlantiss::SE::Jobs:Jetsam:ClosedMenu")
+	TriggerServerEvent("Ora::SE::Jobs:Jetsam:ClosedMenu")
 end
 
-function Atlantiss.Jobs.Jetsam.INIT()
+function Ora.Jobs.Jetsam.INIT()
 	Citizen.CreateThread(
 		function()
-			while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+			while (Ora.Player.HasLoaded == false) do Wait(500) end
 	
-			Zone:Add({x = 819.37, y = -2986.64, z = 6.02 - 0.98, a = 304.70}, Atlantiss.Jobs.Jetsam.EnterZone, Atlantiss.Jobs.Jetsam.ExitZone, "", 3.5)
+			Zone:Add({x = 819.37, y = -2986.64, z = 6.02 - 0.98, a = 304.70}, Ora.Jobs.Jetsam.EnterZone, Ora.Jobs.Jetsam.ExitZone, "", 3.5)
 			
 			local blip = AddBlipForCoord(819.37, -2986.64, 6.02)
 			SetBlipSprite(blip, 521)
@@ -114,7 +114,7 @@ function Atlantiss.Jobs.Jetsam.INIT()
 			AddTextComponentString("Jetsam - Réception des commandes")
 			EndTextCommandSetBlipName(blip)
 
-			if (Atlantiss.Identity.Job:GetName() == "jetsam") then
+			if (Ora.Identity.Job:GetName() == "jetsam") then
 				KeySettings:Add(
 					"keyboard",
 					"F6",
@@ -123,7 +123,7 @@ function Atlantiss.Jobs.Jetsam.INIT()
 					end,
 					"jetsam"
 				)
-			elseif (Atlantiss.Identity.Orga:GetName() == "jetsam") then
+			elseif (Ora.Identity.Orga:GetName() == "jetsam") then
 				KeySettings:Add(
 					"keyboard",
 					"F7",
@@ -163,7 +163,7 @@ function Atlantiss.Jobs.Jetsam.INIT()
 								true,
 								function(_, _, Selected)
 									if (Selected) then
-										Atlantiss.Jobs.Jetsam.Trailer = Atlantiss.World.Vehicle:Create("tr2", {x = 827.43, y = -2944.47, z = 5.90}, 180.49, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
+										Ora.Jobs.Jetsam.Trailer = Ora.World.Vehicle:Create("tr2", {x = 827.43, y = -2944.47, z = 5.90}, 180.49, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
 										SetNewWaypoint(827.43, -2944.47)
 										RageUI.Popup({message = "~b~Votre remorque est sortie ici, ~h~attachez-là à votre camion avant de la remplir~h~"})
 									end
@@ -181,9 +181,9 @@ function Atlantiss.Jobs.Jetsam.INIT()
 											return RageUI.Popup({message = "~r~Vous êtes trop loin du garage entreprise"})
 										end
 
-										if (Atlantiss.Jobs.Jetsam.Trailer ~= nil and GetVehicleInDirection(15.0) == Atlantiss.Jobs.Jetsam.Trailer) then
-											DeleteEntity(Atlantiss.Jobs.Jetsam.Trailer)
-											Atlantiss.Jobs.Jetsam.Trailer = nil
+										if (Ora.Jobs.Jetsam.Trailer ~= nil and GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
+											DeleteEntity(Ora.Jobs.Jetsam.Trailer)
+											Ora.Jobs.Jetsam.Trailer = nil
 											RageUI.Popup({message = "~b~Vous avez rangé votre remorque"})
 										else
 											RageUI.Popup({message = "~r~Vous n'avez pas sorti de remorque vous-même ou alors elle n'est pas en face de vous"})
@@ -199,7 +199,7 @@ function Atlantiss.Jobs.Jetsam.INIT()
 								true,
 								function(_, _, Selected)
 									if (Selected) then
-										if (Atlantiss.Jobs.Jetsam.Trailer == nil) then
+										if (Ora.Jobs.Jetsam.Trailer == nil) then
 											return RageUI.Popup({message = "~r~Vous n'avez pas sorti de remorque vous-même"})
 										end
 
@@ -214,7 +214,7 @@ function Atlantiss.Jobs.Jetsam.INIT()
 										rotz = rotz - 180.0
 
 										local vehRotation = vector3(rotx, roty, rotz)
-										local vehConfig = Atlantiss.Jobs.Jetsam.TrailerConfig[GetEntityModel(veh)]
+										local vehConfig = Ora.Jobs.Jetsam.TrailerConfig[GetEntityModel(veh)]
 
 										if (vehConfig ~= nil) then
 											local x, y, z = table.unpack(vehCoords)
@@ -223,10 +223,10 @@ function Atlantiss.Jobs.Jetsam.INIT()
 											vehCoords = vector3(x, y, z)
 										end
 
-										AttachVehicleOnToTrailer(veh, Atlantiss.Jobs.Jetsam.Trailer, 0.0, 0.0, 0.0, GetOffsetFromEntityGivenWorldCoords(Atlantiss.Jobs.Jetsam.Trailer, vehCoords), vehRotation, false)
+										AttachVehicleOnToTrailer(veh, Ora.Jobs.Jetsam.Trailer, 0.0, 0.0, 0.0, GetOffsetFromEntityGivenWorldCoords(Ora.Jobs.Jetsam.Trailer, vehCoords), vehRotation, false)
 										SetEntityCollision(veh, false, true)
 
-										table.insert(Atlantiss.Jobs.Jetsam.VehAttached, veh)
+										table.insert(Ora.Jobs.Jetsam.VehAttached, veh)
 
 										RageUI.Popup({message = "~b~Véhicule attaché à la remorque"})
 									end
@@ -241,7 +241,7 @@ function Atlantiss.Jobs.Jetsam.INIT()
 								function(_, _, Selected)
 									if (Selected) then
 										local veh = ClosestVeh()
-										local vehIndex = Atlantiss.Utils:IndexOf(Atlantiss.Jobs.Jetsam.VehAttached, veh)
+										local vehIndex = Ora.Utils:IndexOf(Ora.Jobs.Jetsam.VehAttached, veh)
 
 										if (veh == 0) then
 											return RageUI.Popup({message = "~r~Il n'y a pas de véhicule devant vous"})
@@ -249,9 +249,9 @@ function Atlantiss.Jobs.Jetsam.INIT()
 
 										if (vehIndex == 0) then return end
 
-										DetachEntity(Atlantiss.Jobs.Jetsam.VehAttached[vehIndex], true, false)
-										SetEntityCollision(Atlantiss.Jobs.Jetsam.VehAttached[vehIndex], true, true)
-										table.remove(Atlantiss.Jobs.Jetsam.VehAttached, vehIndex)
+										DetachEntity(Ora.Jobs.Jetsam.VehAttached[vehIndex], true, false)
+										SetEntityCollision(Ora.Jobs.Jetsam.VehAttached[vehIndex], true, true)
+										table.remove(Ora.Jobs.Jetsam.VehAttached, vehIndex)
 									end
 								end
 							)
@@ -263,12 +263,12 @@ function Atlantiss.Jobs.Jetsam.INIT()
 								true,
 								function(_, _, Selected)
 									if (Selected) then
-										for i = 1, #(Atlantiss.Jobs.Jetsam.VehAttached) do
-											DetachEntity(Atlantiss.Jobs.Jetsam.VehAttached[i], true, false)
-											SetEntityCollision(Atlantiss.Jobs.Jetsam.VehAttached[i], true, true)
+										for i = 1, #(Ora.Jobs.Jetsam.VehAttached) do
+											DetachEntity(Ora.Jobs.Jetsam.VehAttached[i], true, false)
+											SetEntityCollision(Ora.Jobs.Jetsam.VehAttached[i], true, true)
 										end
 
-										Atlantiss.Jobs.Jetsam.VehAttached = {}
+										Ora.Jobs.Jetsam.VehAttached = {}
 									end
 								end
 							)
@@ -279,10 +279,10 @@ function Atlantiss.Jobs.Jetsam.INIT()
 				end
 
 
-				if (Atlantiss.Identity.Job:GetName() == "jetsam" and Atlantiss.Identity.Job.ChangingJob) then
+				if (Ora.Identity.Job:GetName() == "jetsam" and Ora.Identity.Job.ChangingJob) then
 					KeySettings:Clear("keyboard", "F6", "jetsam")
 					break
-				elseif (Atlantiss.Identity.Orga:GetName() == "jetsam" and Atlantiss.Identity.Orga.ChangingJob) then
+				elseif (Ora.Identity.Orga:GetName() == "jetsam" and Ora.Identity.Orga.ChangingJob) then
 					KeySettings:Clear("keyboard", "F7", "jetsam")
 					break
 				end
@@ -292,18 +292,18 @@ function Atlantiss.Jobs.Jetsam.INIT()
 end
 
 
-RegisterNUICallback("JetsamCloseUI", function() Atlantiss.Jobs.Jetsam.CloseUI() end)
+RegisterNUICallback("JetsamCloseUI", function() Ora.Jobs.Jetsam.CloseUI() end)
 
 RegisterNUICallback(
     "JetsamRetreiveOrder",
     function(data)
-        Atlantiss.Jobs.Jetsam.CloseUI()
+        Ora.Jobs.Jetsam.CloseUI()
 
 		TriggerServerCallback(
-			"Atlantiss::SVCB::Jobs:Jetsam:ArchiveOrder",
+			"Ora::SVCB::Jobs:Jetsam:ArchiveOrder",
 			function(order)
 				if (order == nil) then
-					error(string.format("(order id: %s) 'Atlantiss::SVCB::Jobs:Jetsam:ArchiveOrder', contactez un développeur via ticket.", data.id))
+					error(string.format("(order id: %s) 'Ora::SVCB::Jobs:Jetsam:ArchiveOrder', contactez un développeur via ticket.", data.id))
 					return RageUI.Popup({message = "~r~ERREUR~s~\nContactez le responsable"})
 				end
 
@@ -313,19 +313,19 @@ RegisterNUICallback(
 				local plate = vehdata.plate
 				local spawnedVehicle = nil
 				
-				spawnedVehicle = Atlantiss.World.Vehicle:Create(veh.model, {x = 827.94, y = -2924.32, z = 5.88 - 0.80}, 180.49, {})
+				spawnedVehicle = Ora.World.Vehicle:Create(veh.model, {x = 827.94, y = -2924.32, z = 5.88 - 0.80}, 180.49, {})
 				
 				while (spawnedVehicle == nil) do
 					Wait(100)
 				end
 
-				Atlantiss.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
+				Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
 		
 				if (GetVehicleNumberPlateText(spawnedVehicle) ~= plate) then 
 					SetVehicleNumberPlateText(spawnedVehicle, plate)
 				end
 		
-				Atlantiss.Inventory:AddItems(
+				Ora.Inventory:AddItems(
 					{
 						{
 							name = "key",

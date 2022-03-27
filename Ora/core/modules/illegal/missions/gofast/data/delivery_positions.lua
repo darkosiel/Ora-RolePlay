@@ -1,4 +1,4 @@
-Atlantiss.Illegal.Gofast.DeliveryPositions = {
+Ora.Illegal.Gofast.DeliveryPositions = {
   {
     pos = vector3(824.64, -2355.46, 30.33 - 0.98),
     ped = vector3(823.02, -2338.77, 30.33 - 0.98),

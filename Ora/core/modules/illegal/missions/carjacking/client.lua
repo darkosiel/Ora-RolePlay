@@ -1,5 +1,5 @@
-Atlantiss.Illegal.Carjacking = Atlantiss.Illegal.Carjacking or {}
-Atlantiss.Illegal.Carjacking.Current = {
+Ora.Illegal.Carjacking = Ora.Illegal.Carjacking or {}
+Ora.Illegal.Carjacking.Current = {
   VEHICLE = nil,
   STEP = 0,
   BLIP = nil,
@@ -19,53 +19,53 @@ Atlantiss.Illegal.Carjacking.Current = {
   CURRENT_MISSION = {}
 }
 
-Atlantiss.Illegal:Register("Carjacking")
+Ora.Illegal:Register("Carjacking")
 
-function Atlantiss.Illegal.Carjacking:Initialize()
+function Ora.Illegal.Carjacking:Initialize()
   self:InitializeConfig()
 end
 
-function Atlantiss.Illegal.Carjacking:SetStartPosition(position)
+function Ora.Illegal.Carjacking:SetStartPosition(position)
   self.Current.START_POSITION = position
 end
 
-function Atlantiss.Illegal.Carjacking:SetEndPosition(position)
+function Ora.Illegal.Carjacking:SetEndPosition(position)
   self.Current.END_POSITION = position
 end
 
-function Atlantiss.Illegal.Carjacking:SetVehiclePosition(position)
+function Ora.Illegal.Carjacking:SetVehiclePosition(position)
   self.Current.VEHICLE_POSITION = position
 end
 
-function Atlantiss.Illegal.Carjacking:SetVehicleModel(vehicleModel)
+function Ora.Illegal.Carjacking:SetVehicleModel(vehicleModel)
   self.Current.VEHICLE_MODEL = vehicleModel
 end
 
-function Atlantiss.Illegal.Carjacking:SetMissionLevel(missionLevel)
+function Ora.Illegal.Carjacking:SetMissionLevel(missionLevel)
   self.Current.MISSION_LEVEL = missionLevel
 end
 
-function Atlantiss.Illegal.Carjacking:SetMissionId(missionId)
+function Ora.Illegal.Carjacking:SetMissionId(missionId)
   self.Current.MISSION_ID = missionId
 end
 
-function Atlantiss.Illegal.Carjacking:GetMissionVehicle()
+function Ora.Illegal.Carjacking:GetMissionVehicle()
   return self.Current.VEHICLE
 end
 
-function Atlantiss.Illegal.Carjacking:IsMissionRunning()
+function Ora.Illegal.Carjacking:IsMissionRunning()
   return self.Current.RUNNING == true
 end
 
-function Atlantiss.Illegal.Carjacking:SetMissionObject(mission)
+function Ora.Illegal.Carjacking:SetMissionObject(mission)
   self.Current.CURRENT_MISSION = mission
 end
 
-function Atlantiss.Illegal.Carjacking:GetMissionObject()
+function Ora.Illegal.Carjacking:GetMissionObject()
   return self.Current.CURRENT_MISSION
 end
 
-function Atlantiss.Illegal.Carjacking:GetStartPosition()
+function Ora.Illegal.Carjacking:GetStartPosition()
   if (self.Current.START_POSITION == nil or self.Current.START_POSITION.pos == nil or self.Current.START_POSITION.pos == vector3(0,0,0)) then
     self:SetStartPosition(self:GetRandomStartPosition())
   end
@@ -73,37 +73,37 @@ function Atlantiss.Illegal.Carjacking:GetStartPosition()
   return self.Current.START_POSITION
 end
 
-function Atlantiss.Illegal.Carjacking:GetEndPosition()
+function Ora.Illegal.Carjacking:GetEndPosition()
   return self.Current.END_POSITION
 end
 
-function Atlantiss.Illegal.Carjacking:GetVehiclePosition()
+function Ora.Illegal.Carjacking:GetVehiclePosition()
   return self.Current.VEHICLE_POSITION
 end
 
-function Atlantiss.Illegal.Carjacking:GetMissionLevel()
+function Ora.Illegal.Carjacking:GetMissionLevel()
   return self.Current.MISSION_LEVEL
 end
 
-function Atlantiss.Illegal.Carjacking:GetMissionId()
+function Ora.Illegal.Carjacking:GetMissionId()
   return self.Current.MISSION_ID
 end
 
-function Atlantiss.Illegal.Carjacking:GetVehicleModel()
+function Ora.Illegal.Carjacking:GetVehicleModel()
   return self.Current.VEHICLE_MODEL
 end
 
-function Atlantiss.Illegal.Carjacking:GetRandomStartPosition()
+function Ora.Illegal.Carjacking:GetRandomStartPosition()
     local config = self:GetConfig()
     return config.START_POSITIONS[math.random(1, #config.START_POSITIONS)]
 end
 
-function Atlantiss.Illegal.Carjacking:GetRandomEndPosition()
+function Ora.Illegal.Carjacking:GetRandomEndPosition()
   local config = self:GetConfig()
   return config.END_POSITIONS[math.random(1, #config.END_POSITIONS)]
 end
 
-function Atlantiss.Illegal.Carjacking:GetDefautVehicleModel()
+function Ora.Illegal.Carjacking:GetDefautVehicleModel()
   return {
     'brioso',
     'blista',
@@ -113,7 +113,7 @@ function Atlantiss.Illegal.Carjacking:GetDefautVehicleModel()
   }
 end
 
-function Atlantiss.Illegal.Carjacking:GetRandomVehicleModelForMissionLevel()
+function Ora.Illegal.Carjacking:GetRandomVehicleModelForMissionLevel()
   local config = self:GetConfig()
   local missionLevel = self:GetMissionLevel()
   local vehicleList = {}
@@ -127,18 +127,18 @@ function Atlantiss.Illegal.Carjacking:GetRandomVehicleModelForMissionLevel()
 end
 
 
-function Atlantiss.Illegal.Carjacking:GetRandomDriverModel()
+function Ora.Illegal.Carjacking:GetRandomDriverModel()
   local config = self:GetConfig()
   return config.PEDS[math.random(1, #config.PEDS)]
 end
 
-function Atlantiss.Illegal.Carjacking:CanStart()
+function Ora.Illegal.Carjacking:CanStart()
   return self.Current.RUNNING == false
 end
 
-function Atlantiss.Illegal.Carjacking:StartCarjacking()
-  if (Atlantiss.Illegal.Carjacking:CanStart() == false) then
-    Atlantiss.Illegal.Carjacking:StopCarjacking()
+function Ora.Illegal.Carjacking:StartCarjacking()
+  if (Ora.Illegal.Carjacking:CanStart() == false) then
+    Ora.Illegal.Carjacking:StopCarjacking()
   end
   self.Current.RUNNING = true
   self:SetStartPosition(self:GetRandomStartPosition())
@@ -148,7 +148,7 @@ function Atlantiss.Illegal.Carjacking:StartCarjacking()
   self:SetMissionId(GetGameTimer())
 
   TriggerServerEvent(
-      "atlantiss:sendToDiscord", 7,
+      "Ora:sendToDiscord", 7,
       string.format("[%s] Lance une mission Carjack", self:GetMissionId()), 
       "info"
   )
@@ -167,8 +167,8 @@ function Atlantiss.Illegal.Carjacking:StartCarjacking()
   self:StartVehicleSpawnerThread()
 end
 
-function Atlantiss.Illegal.Carjacking:CallPolice(message)
-  local vehicle = Atlantiss.Illegal.Carjacking.Current.VEHICLE
+function Ora.Illegal.Carjacking:CallPolice(message)
+  local vehicle = Ora.Illegal.Carjacking.Current.VEHICLE
   local vehiclePosition = GetEntityCoords(vehicle)
   TriggerServerEvent(
       "call:makeCall2",
@@ -185,11 +185,11 @@ function Atlantiss.Illegal.Carjacking:CallPolice(message)
   )
 end
 
-function Atlantiss.Illegal.Carjacking:GetMaxTimeForMission()
+function Ora.Illegal.Carjacking:GetMaxTimeForMission()
   return 15
 end
 
-function Atlantiss.Illegal.Carjacking:StartVehicleSpawnerThread()
+function Ora.Illegal.Carjacking:StartVehicleSpawnerThread()
   Citizen.CreateThread(function()
     while self.Current.VEHICLE_SPAWNED == false and self:GetStartPosition() ~= nil do
       Citizen.Wait(1000)
@@ -200,9 +200,9 @@ function Atlantiss.Illegal.Carjacking:StartVehicleSpawnerThread()
         ClearAreaOfVehicles(self:GetStartPosition().pos.x, self:GetStartPosition().pos.y, self:GetStartPosition().pos.z, 10.0, false, false, false, false, false)
         Citizen.Wait(100)
         local vehicleModel = self:GetVehicleModel()
-        TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterVehicle", 
+        TriggerServerCallback("Ora::SE::Anticheat:RegisterVehicle", 
           function()
-            spawnedVehicle = Atlantiss.World.Vehicle:Create(vehicleModel,  self:GetStartPosition().pos, self:GetStartPosition().heading, {customs = {}, warp_into_vehicle = false, health = {}})
+            spawnedVehicle = Ora.World.Vehicle:Create(vehicleModel,  self:GetStartPosition().pos, self:GetStartPosition().heading, {customs = {}, warp_into_vehicle = false, health = {}})
             Citizen.Wait(250)
             if (DoesEntityExist(spawnedVehicle)) then
               self.Current.VEHICLE_SPAWNED = true
@@ -211,7 +211,7 @@ function Atlantiss.Illegal.Carjacking:StartVehicleSpawnerThread()
               SetVehicleOnGroundProperly(self.Current.VEHICLE)
               Citizen.InvokeNative(0x06FAACD625D80CAA, self.Current.VEHICLE)
               pedModel = self:GetRandomDriverModel()
-              self.Current.DRIVER = Atlantiss.World.Ped:Create(5, pedModel, vector3(self:GetStartPosition().pos.x + 0.5, self:GetStartPosition().pos.y, self:GetStartPosition().pos.z), 0.0)
+              self.Current.DRIVER = Ora.World.Ped:Create(5, pedModel, vector3(self:GetStartPosition().pos.x + 0.5, self:GetStartPosition().pos.y, self:GetStartPosition().pos.z), 0.0)
               SetPedIntoVehicle(self.Current.DRIVER, self.Current.VEHICLE, -1)
               TaskVehicleDriveWander(self.Current.DRIVER, self.Current.VEHICLE, 35.0, 536871311)
               SetPedRelationshipGroupHash(self.Current.DRIVER, GetHashKey("CarjackVehicle"))
@@ -237,7 +237,7 @@ function Atlantiss.Illegal.Carjacking:StartVehicleSpawnerThread()
   end)
 end
 
-function Atlantiss.Illegal.Carjacking:StartVehicleTrackingThread()
+function Ora.Illegal.Carjacking:StartVehicleTrackingThread()
   Citizen.CreateThread(function()
     while self.Current.PLAYER_HAS_CARJACKED == false do
       Citizen.Wait(1000)
@@ -254,7 +254,7 @@ function Atlantiss.Illegal.Carjacking:StartVehicleTrackingThread()
   end)
 end
 
-function Atlantiss.Illegal.Carjacking:StartCarjackingThread()
+function Ora.Illegal.Carjacking:StartCarjackingThread()
   Citizen.CreateThread(function()
     while self.Current.PLAYER_HAS_CARJACKED == false do
       Citizen.Wait(200)
@@ -288,7 +288,7 @@ function Atlantiss.Illegal.Carjacking:StartCarjackingThread()
           TaskHandsUp(self.Current.DRIVER, 2000, -1, -1, false)
           Wait(2000)
           TaskCombatPed(self.Current.DRIVER, myPed, 0, 16)
-          TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = self.Current.DRIVER, network_id = NetworkGetNetworkIdFromEntity(self.Current.DRIVER), seconds = 30})
+          TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = self.Current.DRIVER, network_id = NetworkGetNetworkIdFromEntity(self.Current.DRIVER), seconds = 30})
           self.Current.DRIVER = nil
           self:StartDeliveryThread()
           self:StartDrivingMonitoring()
@@ -314,7 +314,7 @@ function Atlantiss.Illegal.Carjacking:StartCarjackingThread()
           TaskHandsUp(self.Current.DRIVER, 2000, -1, -1, false)
           Wait(2000)
           TaskCombatPed(self.Current.DRIVER, myPed, 0, 16)
-          TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = self.Current.DRIVER, network_id = NetworkGetNetworkIdFromEntity(self.Current.DRIVER), seconds = 30})
+          TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = self.Current.DRIVER, network_id = NetworkGetNetworkIdFromEntity(self.Current.DRIVER), seconds = 30})
           self.Current.DRIVER = nil
           self:StartDeliveryThread()
           self:StartDrivingMonitoring()
@@ -324,7 +324,7 @@ function Atlantiss.Illegal.Carjacking:StartCarjackingThread()
 end
 
 
-function Atlantiss.Illegal.Carjacking:StartDrivingMonitoring()
+function Ora.Illegal.Carjacking:StartDrivingMonitoring()
   Citizen.CreateThread(function()
     while self.Current.RUNNING == true do
       Citizen.Wait(math.random(1000 * 60, 1000 * 120))
@@ -338,7 +338,7 @@ function Atlantiss.Illegal.Carjacking:StartDrivingMonitoring()
   end)
 end
 
-function Atlantiss.Illegal.Carjacking:StartDeliveryThread()
+function Ora.Illegal.Carjacking:StartDeliveryThread()
   Citizen.CreateThread(function()
     while self.Current.FINAL_DIRECTION_SHOWED == false do
       Citizen.Wait(100)
@@ -354,7 +354,7 @@ function Atlantiss.Illegal.Carjacking:StartDeliveryThread()
             if vehicle and DoesEntityExist(vehicle) and GetDistanceBetweenCoords(GetEntityCoords(vehicle), GetEntityCoords(self.Current.VEHICLE), true) < 75.0 then
               local pedDriving = GetPedInVehicleSeat(vehicle, -1)
               if (pedDriving and DoesEntityExist(pedDriving) and not IsPedAPlayer(pedDriving)) then
-                Atlantiss.Illegal:Debug(string.format("Found a ped to make a pursuit"))
+                Ora.Illegal:Debug(string.format("Found a ped to make a pursuit"))
                 TaskVehicleChase(pedDriving, LocalPlayer().Ped)
                 break
               end
@@ -379,16 +379,16 @@ function Atlantiss.Illegal.Carjacking:StartDeliveryThread()
   end)
 end
 
-function Atlantiss.Illegal.Carjacking:StopCarjacking()
-  if Atlantiss.Illegal.Carjacking.Current.BLIP ~= nil then
-    RemoveBlip(Atlantiss.Illegal.Carjacking.Current.BLIP)
+function Ora.Illegal.Carjacking:StopCarjacking()
+  if Ora.Illegal.Carjacking.Current.BLIP ~= nil then
+    RemoveBlip(Ora.Illegal.Carjacking.Current.BLIP)
   end
 
-  if Atlantiss.Illegal.Carjacking.Current.VEHICLE ~= nil and DoesEntityExist(Atlantiss.Illegal.Carjacking.Current.VEHICLE) then
-    DeleteEntity(Atlantiss.Illegal.Carjacking.Current.VEHICLE)
+  if Ora.Illegal.Carjacking.Current.VEHICLE ~= nil and DoesEntityExist(Ora.Illegal.Carjacking.Current.VEHICLE) then
+    DeleteEntity(Ora.Illegal.Carjacking.Current.VEHICLE)
   end
   
-  Atlantiss.Illegal.Carjacking.Current = {
+  Ora.Illegal.Carjacking.Current = {
     VEHICLE = nil,
     STEP = 0,
     BLIP = nil,

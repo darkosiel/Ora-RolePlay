@@ -1,3 +1,3 @@
-Atlantiss.Consumable.Drink = {}
-Atlantiss.Consumable.Drink.List = {}
-Atlantiss.Consumable:Register("Drink")
+Ora.Consumable.Drink = {}
+Ora.Consumable.Drink.List = {}
+Ora.Consumable:Register("Drink")

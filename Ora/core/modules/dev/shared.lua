@@ -1,2 +1,2 @@
-Atlantiss.Dev = {}
-Atlantiss.Modules:Register("Dev")
+Ora.Dev = {}
+Ora.Modules:Register("Dev")

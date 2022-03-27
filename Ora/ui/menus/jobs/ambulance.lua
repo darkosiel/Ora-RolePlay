@@ -72,7 +72,7 @@ function Ambulance.Heal(m)
 end
 
 function Ambulance.AllowNpcAmbulance(isAllowed)
-    TriggerServerEvent("Atlantiss::SE::Job::Ambulance:AllowNPCAmbulance", {IS_ALLOWED = isAllowed})
+    TriggerServerEvent("Ora::SE::Job::Ambulance:AllowNPCAmbulance", {IS_ALLOWED = isAllowed})
     ShowNotification(string.format("Les PNJ medecins sont désormais : %s", isAllowed == true and "~g~Activé~s~" or "~r~Désactivé~s~"))
 end
 
@@ -121,7 +121,7 @@ function Ambulance.GetOffStretcher()
             end
         end
         
-        local stretcher = Atlantiss.World.Object:Create(stretcherHash, behind, true, true, true)
+        local stretcher = Ora.World.Object:Create(stretcherHash, behind, true, true, true)
         SetEntityHeading(stretcher, GetEntityHeading(veh))
         PlaceObjectOnGroundProperly(stretcher)
         FreezeEntityPosition(stretcher, true)
@@ -224,7 +224,7 @@ function Ambulance.Tattoo()
         RageUI.CloseAll()
 
         TriggerServerCallback(
-            'Atlantiss::SCB::Player:GetTattoos',
+            'Ora::SCB::Player:GetTattoos',
             function(res)
                 if (res ~= false) then
                     Tattoos = res
@@ -249,7 +249,7 @@ Citizen.CreateThread(
                     {header = true, glare = false},
                     function()
                         for i, v in ipairs(Tattoos) do
-                            fileLoaded = json.decode(LoadResourceFile("Atlantiss", "statics/data/" .. v.dict .. ".json"))
+                            fileLoaded = json.decode(LoadResourceFile("Ora", "statics/data/" .. v.dict .. ".json"))
                             local labelTattoo = GetLabelText(fileLoaded[GetArrayKey(fileLoaded, v.hash)].Name)
                             if labelTattoo == "NULL" then
                                 labelTattoo = fileLoaded[GetArrayKey(fileLoaded, v.hash)].LocalizedName
@@ -278,7 +278,7 @@ Citizen.CreateThread(
                                             function(cancelled)
                                                 if not cancelled then
                                                     table.remove(Tattoos, i)
-                                                    TriggerServerEvent('Atlantiss::SE::Player:SetTattoo', targetPly, Tattoos)
+                                                    TriggerServerEvent('Ora::SE::Player:SetTattoo', targetPly, Tattoos)
                                                     ClearPedDecorations(GetPlayerPed(GetPlayerFromServerId(targetPly)))
                                                     for j = 1, #Tattoos, 1 do
                                                         if Tattoos[j] ~= nil then
@@ -315,13 +315,13 @@ AddEventHandler('player:Heal',function(m)
     local PlayerPed = LocalPlayer().Ped
     if m ~= nil then
         SetEntityHealth(PlayerPed,GetEntityHealth(PlayerPed)+m)
-        Atlantiss.Health:RemoveInjuredEffects()
+        Ora.Health:RemoveInjuredEffects()
     else
-        Atlantiss.Health:SetMyHealthPercent(100)
-        Atlantiss.Health:RemoveInjuredEffects()
+        Ora.Health:SetMyHealthPercent(100)
+        Ora.Health:RemoveInjuredEffects()
     end
 
-    Atlantiss.Player.State.IS_WOUNDED = false
+    Ora.Player.State.IS_WOUNDED = false
 end)
 
 RegisterNetEvent("Ambulance:PutOnStretcher")

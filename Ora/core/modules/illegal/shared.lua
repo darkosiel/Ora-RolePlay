@@ -1,9 +1,9 @@
-Atlantiss.Illegal = {}
-Atlantiss.Illegal.FakeMoneyTax = 1.5
-Atlantiss.Illegal.FakeMoneyBleaching = 1.2
-Atlantiss.Illegal.List = {}
+Ora.Illegal = {}
+Ora.Illegal.FakeMoneyTax = 1.5
+Ora.Illegal.FakeMoneyBleaching = 1.2
+Ora.Illegal.List = {}
 
-Atlantiss.Illegal.DeactivatedMissions = {
+Ora.Illegal.DeactivatedMissions = {
   ['burglary'] = true,
   ['drugselling'] = true,
   ['roberry'] = true,
@@ -19,7 +19,7 @@ Atlantiss.Illegal.DeactivatedMissions = {
 }
 
 
-Atlantiss.Illegal.CopsLimitation = {
+Ora.Illegal.CopsLimitation = {
     ['default'] = 2,
     ['burglary'] = 2,
     ['drugselling'] = 2,
@@ -35,7 +35,7 @@ Atlantiss.Illegal.CopsLimitation = {
     ['jewelry'] = 8,
 }
 
-function Atlantiss.Illegal:GetCopsRequired(missionName)
+function Ora.Illegal:GetCopsRequired(missionName)
 	if (self.CopsLimitation[missionName]) then
       return self.CopsLimitation[missionName]
   end
@@ -44,11 +44,11 @@ function Atlantiss.Illegal:GetCopsRequired(missionName)
 end
 
 
-function Atlantiss.Illegal:IsAvailable(mission)
+function Ora.Illegal:IsAvailable(mission)
 
 end
 
-function Atlantiss.Illegal:IsDeactivated(mission)
+function Ora.Illegal:IsDeactivated(mission)
   if (self.DeactivatedMissions[mission] ~= nil) then
     return self.DeactivatedMissions[mission]
   end
@@ -56,34 +56,34 @@ function Atlantiss.Illegal:IsDeactivated(mission)
   return false
 end
 
-function Atlantiss.Illegal:GetModuleName()
+function Ora.Illegal:GetModuleName()
   return "Illegal"
 end
 
-function Atlantiss.Illegal:Initialize()
+function Ora.Illegal:Initialize()
   self:InitializeMissions()
 end
 
-function Atlantiss.Illegal:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Illegal:GetModuleName(), message))
+function Ora.Illegal:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Illegal:GetModuleName(), message))
   end
 end
 
-function Atlantiss.Illegal:Register(missionName)
+function Ora.Illegal:Register(missionName)
   if (not self:IsDeactivated(mission)) then
-    Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Illegal Mission ^7.\n",  Atlantiss:GetServerName(), missionName))
+    Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 Illegal Mission ^7.\n",  Ora:GetServerName(), missionName))
     self.List[#self.List + 1] = missionName
   end
 end
 
-function Atlantiss.Illegal:InitializeMissions()
+function Ora.Illegal:InitializeMissions()
 	for _, mission in pairs(self.List) do
     if self[mission] and not self:IsDeactivated(mission) and self[mission]["Initialize"] then
-      Citizen.Trace(string.format("^2[%s] ^3Mission ^5%s^3 initialized^7.\n", Atlantiss:GetServerName(), mission))
+      Citizen.Trace(string.format("^2[%s] ^3Mission ^5%s^3 initialized^7.\n", Ora:GetServerName(), mission))
       self[mission]:Initialize()
     end
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Illegal:GetModuleName())
+Ora.Modules:Register(Ora.Illegal:GetModuleName())

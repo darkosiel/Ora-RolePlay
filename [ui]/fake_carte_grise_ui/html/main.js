@@ -11,7 +11,7 @@ $(function () {
 				$(".name").last().html( event.data.data.data.identity);
 				$(".model").last().html( event.data.data.data.model);
 				$(".plate").last().html( event.data.data.data.plate);
-				$('.im'). attr("src", "https://atlantiss-rp.com/prodImages/fakeImmat.png");
+				$('.im'). attr("src", "https://Ora-rp.com/prodImages/fakeImmat.png");
 				break
 			case 'hide':
 				$('body').css('opacity', '0.0')

@@ -3,12 +3,12 @@ RMenu.Add("Firefighter", "stretcher", RageUI.CreateSubMenu(RMenu:Get("Firefighte
 RMenu.Add("Firefighter", "vehicle", RageUI.CreateSubMenu(RMenu:Get("Firefighter", "main"), "Actions véhicule ", "Actions disponibles", 10, 100))
 RMenu.Add("Firefighter", "object", RageUI.CreateSubMenu(RMenu:Get("Firefighter", "main"), "Actions objets ", "Actions disponibles", 10, 100))
 
-function Atlantiss.Jobs.Firefighter.INIT()
+function Ora.Jobs.Firefighter.INIT()
 	Citizen.CreateThread(
 		function()
-			while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+			while (Ora.Player.HasLoaded == false) do Wait(500) end
 
-			if (Atlantiss.Identity.Job:GetName() == "lsfd") then
+			if (Ora.Identity.Job:GetName() == "lsfd") then
 				KeySettings:Add(
 					"keyboard",
 					"F6",
@@ -17,7 +17,7 @@ function Atlantiss.Jobs.Firefighter.INIT()
 					end,
 					"lsfd"
 				)
-			elseif (Atlantiss.Identity.Orga:GetName() == "lsfd") then
+			elseif (Ora.Identity.Orga:GetName() == "lsfd") then
 				KeySettings:Add(
 					"keyboard",
 					"F7",
@@ -102,7 +102,7 @@ function Atlantiss.Jobs.Firefighter.INIT()
 								true,
 								function(_, _, Selected)
 									if (Selected) then
-										TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "lsfd")
+										TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "lsfd")
 									end
 								end
               )
@@ -145,7 +145,7 @@ function Atlantiss.Jobs.Firefighter.INIT()
                 true,
                 function(_, _, Selected)
                   if (Selected) then
-                    Atlantiss.Jobs.Firefighter.Dispatch:clear(0)
+                    Ora.Jobs.Firefighter.Dispatch:clear(0)
                   end
                 end
               )
@@ -386,10 +386,10 @@ function Atlantiss.Jobs.Firefighter.INIT()
         end
 
 
-				if (Atlantiss.Identity.Job:GetName() == "lsfd" and Atlantiss.Identity.Job.ChangingJob) then
+				if (Ora.Identity.Job:GetName() == "lsfd" and Ora.Identity.Job.ChangingJob) then
 					KeySettings:Clear("keyboard", "F6", "lsfd")
 					break
-				elseif (Atlantiss.Identity.Orga:GetName() == "lsfd" and Atlantiss.Identity.Orga.ChangingJob) then
+				elseif (Ora.Identity.Orga:GetName() == "lsfd" and Ora.Identity.Orga.ChangingJob) then
 					KeySettings:Clear("keyboard", "F7", "lsfd")
 					break
 				end

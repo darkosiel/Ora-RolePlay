@@ -10,7 +10,7 @@ $(function() {
 
    document.onkeyup = function (data) {
       if (data.which == 27) { // Escape key
-         $.post('http://mdt_atlantiss/escape', JSON.stringify({}));
+         $.post('http://mdt_Ora/escape', JSON.stringify({}));
          $('body').hide();
       }
       else if (data.which == 37) {

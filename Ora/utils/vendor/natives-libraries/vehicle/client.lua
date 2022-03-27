@@ -55,7 +55,7 @@ vehicle.SpawnVehicle = function(modelName, coords, heading, cb)
     local model = (type(modelName) == "number" and modelName or GetHashKey(modelName))
     Citizen.CreateThread(
         function()
-            local vehicle = Atlantiss.World.Vehicle:Create(modelName, coords, heading, {customs = {}, warp_into_vehicle = false, health = {}})            
+            local vehicle = Ora.World.Vehicle:Create(modelName, coords, heading, {customs = {}, warp_into_vehicle = false, health = {}})            
             if cb ~= nil then
                 cb(vehicle)
             end
@@ -89,7 +89,7 @@ vehicle.SpawnLocalVehicle = function(modelName, coords, heading, cb)
             end
 
             SetVehRadioStation(vehicle, "OFF")
-            Atlantiss.World.Vehicle:AddSpawnedVehicle(VehToNet(vehicle), PlayerPedId())
+            Ora.World.Vehicle:AddSpawnedVehicle(VehToNet(vehicle), PlayerPedId())
             if cb ~= nil then
                 cb(vehicle)
             end

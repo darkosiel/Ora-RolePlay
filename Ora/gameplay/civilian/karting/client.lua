@@ -118,7 +118,7 @@ function Karting:StartRace(index)
   while not HasModelLoaded(self.vehicle) do
     Wait(100)
   end
-  self.veh = Atlantiss.World.Vehicle:Create(self.vehicle, self.spawn[index], self.spawn[index].w, {warp_into_vehicle = true, maxFuel = true})
+  self.veh = Ora.World.Vehicle:Create(self.vehicle, self.spawn[index], self.spawn[index].w, {warp_into_vehicle = true, maxFuel = true})
   SetEntityInvincible(self.veh, true)
   FreezeEntityPosition(self.veh, true)
   TriggerServerEvent("karting:RegisterVehicle", NetworkGetNetworkIdFromEntity(self.veh))

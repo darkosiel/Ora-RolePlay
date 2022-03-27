@@ -7,9 +7,9 @@ AddEventHandler(
         local entityCoords = GetEntityCoords(entity)
 
         if (GetEntityType(entity) == 2 and GetEntityPopulationType(entity) ~= 7 and GetEntityPopulationType(entity) ~= 5) then
-          for key, value in pairs(Atlantiss.World.VehicleGeneratorRemoved) do
-            local gridZoneId = Atlantiss.Core:GetGridZoneIdForRadius(entityCoords.x, entityCoords.y, value.r) 
-            local generatorGridZoneId = Atlantiss.Core:GetGridZoneIdForRadius(value.x, value.y, value.r) 
+          for key, value in pairs(Ora.World.VehicleGeneratorRemoved) do
+            local gridZoneId = Ora.Core:GetGridZoneIdForRadius(entityCoords.x, entityCoords.y, value.r) 
+            local generatorGridZoneId = Ora.Core:GetGridZoneIdForRadius(value.x, value.y, value.r) 
             if (gridZoneId == generatorGridZoneId) then
               CancelEvent()
             end
@@ -19,7 +19,7 @@ AddEventHandler(
   end
 )
 
-Atlantiss.World.Entity = {
+Ora.World.Entity = {
   ListToDelete = {}
 }
 
@@ -27,24 +27,24 @@ Citizen.CreateThread(function()
   while true do
     Citizen.Wait(1000 * 10)
     local currentTime = os.time()
-    for key, value in pairs(Atlantiss.World.Entity.ListToDelete) do
+    for key, value in pairs(Ora.World.Entity.ListToDelete) do
     if (value ~= nil) then
         local entity = NetworkGetEntityFromNetworkId(value.network_id)
         if value.time_delete < currentTime and DoesEntityExist(entity) then
-          Atlantiss.World:Debug(string.format("Entity with handle : ^5%s^3 (network id : ^5%s^3) has been deleted", value.handle, value.network_id))
+          Ora.World:Debug(string.format("Entity with handle : ^5%s^3 (network id : ^5%s^3) has been deleted", value.handle, value.network_id))
           DeleteEntity(entity)
-          Atlantiss.World.Entity.ListToDelete[key] = nil
+          Ora.World.Entity.ListToDelete[key] = nil
         end
       end
     end
   end
 end)
 
-RegisterServerEvent("Atlantiss::SE::World:Entity:Delete")
+RegisterServerEvent("Ora::SE::World:Entity:Delete")
 AddEventHandler(
-    "Atlantiss::SE::World:Entity:Delete",
+    "Ora::SE::World:Entity:Delete",
     function(data)
-      Atlantiss.World:Debug(string.format("Entity with handle : ^5%s^3 (network id : ^5%s^3) will be deleted at ^5%s^3", data.handle, data.network_id,  os.date("%Y-%m-%d %H:%M", os.time() + data.seconds)))
-      table.insert(Atlantiss.World.Entity.ListToDelete, {network_id = data.network_id, time_delete = os.time() + data.seconds, handle = data.handle})
+      Ora.World:Debug(string.format("Entity with handle : ^5%s^3 (network id : ^5%s^3) will be deleted at ^5%s^3", data.handle, data.network_id,  os.date("%Y-%m-%d %H:%M", os.time() + data.seconds)))
+      table.insert(Ora.World.Entity.ListToDelete, {network_id = data.network_id, time_delete = os.time() + data.seconds, handle = data.handle})
     end
 )

@@ -1,7 +1,7 @@
 IllegalOrga = IllegalOrga or {}
 
 local function getPlayerUuid(source)
-  return Atlantiss.Identity:GetUuid(source)
+  return Ora.Identity:GetUuid(source)
 end
 
 Citizen.CreateThread(function()
@@ -28,7 +28,7 @@ Citizen.CreateThread(function()
 end)
 
 function IllegalOrga.GetPlayerUuid(playerId) 
-    return Atlantiss.Identity:GetUuid(playerId)
+    return Ora.Identity:GetUuid(playerId)
 end
 
 -- Get CURRENT_ORGA object for organisation id
@@ -141,7 +141,7 @@ local function updateOrganisationToAllClient(organisationId)
     for _, playerId in ipairs(GetPlayers()) do
         local playerUuid = getPlayerUuid(playerId)
         if (usersUuid[playerUuid] ~= nil and usersUuid[playerUuid] == true) then
-            TriggerClientEvent("Atlantiss::Illegal:setOrgaObject", playerId, tmpOrga)
+            TriggerClientEvent("Ora::Illegal:setOrgaObject", playerId, tmpOrga)
         end
     end
 end
@@ -157,7 +157,7 @@ local function setupOrganisationToAllClient(organisationId)
   for _, playerId in ipairs(GetPlayers()) do
       local playerUuid = getPlayerUuid(playerId)
       if (usersUuid[playerUuid] ~= nil and usersUuid[playerUuid] == true) then
-          TriggerClientEvent("Atlantiss::Illegal:setOrgaObject", playerId, tmpOrga)
+          TriggerClientEvent("Ora::Illegal:setOrgaObject", playerId, tmpOrga)
       end
   end
 end
@@ -257,7 +257,7 @@ local function setCoordsToOnlineMembers(organisationId, coords)
   for _, playerId in ipairs(GetPlayers()) do
       local playerUuid = getPlayerUuid(playerId)
       if (usersUuid[playerUuid] ~= nil) then
-        TriggerClientEvent("Atlantiss:Illegal:OrganisationSetCoords", playerId, coords)
+        TriggerClientEvent("Ora:Illegal:OrganisationSetCoords", playerId, coords)
       end
   end
 end
@@ -273,7 +273,7 @@ local function deleteOrganisationFromAllClient(organisation)
   for _, playerId in ipairs(GetPlayers()) do
       local playerUuid = getPlayerUuid(playerId)
       if (usersUuid[playerUuid] ~= nil and usersUuid[playerUuid] == true) then
-        TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", playerId, IllegalOrga.GetEmptyOrga())
+        TriggerClientEvent("Ora::Illegal:updateCurrentOrga", playerId, IllegalOrga.GetEmptyOrga())
         TriggerClientEvent("RageUI:Popup", playerId, {message = "~h~".. tmpOrga.LABEL .."~h~: La faction vient d'être supprimée"})
       end
   end
@@ -328,13 +328,13 @@ ALTER TABLE `organisation` ADD `label` VARCHAR(4) NOT NULL AFTER `name`;
 ALTER TABLE `organisation_rank` ADD `can_receive_notif` TINYINT NOT NULL DEFAULT '1' AFTER `can_delete_orga`, ADD `can_enter_lab` TINYINT NOT NULL DEFAULT '1' AFTER `can_receive_notif`;
 ]]--
 
-RegisterServerEvent("Atlantiss::Illegal:createOrg")
+RegisterServerEvent("Ora::Illegal:createOrg")
 AddEventHandler(
-    "Atlantiss::Illegal:createOrg",
+    "Ora::Illegal:createOrg",
     function(organisation)
         local _source = source
         local now = os.time()
-        local uuid = Atlantiss.Identity:GetUuid(_source)
+        local uuid = Ora.Identity:GetUuid(_source)
 
         local newlyCreatedOrg = {
           NAME = organisation.NAME,
@@ -392,14 +392,14 @@ AddEventHandler(
         newlyCreatedOrg.PROPERTIES = {}
 
         TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Votre faction est créée~s~"})
-        TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", _source, newlyCreatedOrg)
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a créé la faction " .. newlyCreatedOrg.NAME .. " (".. newlyCreatedOrg.LABEL ..")", "info")
+        TriggerClientEvent("Ora::Illegal:updateCurrentOrga", _source, newlyCreatedOrg)
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a créé la faction " .. newlyCreatedOrg.NAME .. " (".. newlyCreatedOrg.LABEL ..")", "info")
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:deleteOrg")
+RegisterServerEvent("Ora::Illegal:deleteOrg")
 AddEventHandler(
-    "Atlantiss::Illegal:deleteOrg",
+    "Ora::Illegal:deleteOrg",
     function(organisation)
         local _source = source
         local _organisation = organisation
@@ -415,7 +415,7 @@ AddEventHandler(
             if (affectedRows > 0) then
                   deleteOrganisationFromAllClient(_organisation)
                   TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Votre faction est désormais supprimée~s~"})
-                  TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a supprimé la faction " .. organisation.NAME .. " (".. organisation.LABEL ..")", "info")
+                  TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a supprimé la faction " .. organisation.NAME .. " (".. organisation.LABEL ..")", "info")
 
                 else
                   TriggerClientEvent("RageUI:Popup", _source, {message = "~r~~h~Une erreur empeche la suppression de votre faction~s~"})
@@ -426,9 +426,9 @@ AddEventHandler(
 )
 
 
-RegisterServerEvent("Atlantiss::Illegal:deletePlayerFromOrgByPlayerServerId")
+RegisterServerEvent("Ora::Illegal:deletePlayerFromOrgByPlayerServerId")
 AddEventHandler(
-    "Atlantiss::Illegal:deletePlayerFromOrgByPlayerServerId",
+    "Ora::Illegal:deletePlayerFromOrgByPlayerServerId",
     function(organisation, playerId)
       local _source = source
       local uuid = getPlayerUuid(playerId)
@@ -453,16 +453,16 @@ AddEventHandler(
           TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Vous avez exclu un membre~s~"})
           TriggerClientEvent("RageUI:Popup", playerId, {message = "~g~Vous avez été exclu de la faction ~h~" .. organisation.NAME .."~h~~s~"})
           updateOrganisationToAllClient(organisation.ID)
-          TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", playerId, IllegalOrga.GetEmptyOrga())
-          TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a exclu ".. Atlantiss.Identity:GetFullname(playerId) .." de la faction " .. organisation.NAME .. " (".. organisation.LABEL ..")", "info")
+          TriggerClientEvent("Ora::Illegal:updateCurrentOrga", playerId, IllegalOrga.GetEmptyOrga())
+          TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a exclu ".. Ora.Identity:GetFullname(playerId) .." de la faction " .. organisation.NAME .. " (".. organisation.LABEL ..")", "info")
       end
 
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:addPlayerToOrg")
+RegisterServerEvent("Ora::Illegal:addPlayerToOrg")
 AddEventHandler(
-    "Atlantiss::Illegal:addPlayerToOrg",
+    "Ora::Illegal:addPlayerToOrg",
     function(organisation, playerId, roleId)
         local _source = source
         local uuid = getPlayerUuid(playerId)
@@ -487,15 +487,15 @@ AddEventHandler(
           TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Vous avez recruté un nouveau membre~s~"})
           TriggerClientEvent("RageUI:Popup", playerId, {message = "~g~Vous avez été recruté dans la faction ~h~" .. organisation.NAME .."~h~~s~"})
           updateOrganisationToAllClient(organisation.ID)
-          TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a recruté ".. Atlantiss.Identity:GetFullname(playerId) .." dans la faction " .. organisation.NAME .. " (".. organisation.LABEL ..")", "info")
+          TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a recruté ".. Ora.Identity:GetFullname(playerId) .." dans la faction " .. organisation.NAME .. " (".. organisation.LABEL ..")", "info")
 
         end
     end
   )
 
-RegisterServerEvent("Atlantiss::Illegal:updateOrgPlayer")
+RegisterServerEvent("Ora::Illegal:updateOrgPlayer")
 AddEventHandler(
-    "Atlantiss::Illegal:updateOrgPlayer",
+    "Ora::Illegal:updateOrgPlayer",
     function(organisationId, currentPlayer)
         local _source = source
         if (currentPlayer.NEW_VALUES ~= nil) then
@@ -514,7 +514,7 @@ AddEventHandler(
                     if (affectedRows > 0) then
                         updateOrganisationToAllClient(organisationId)
                         TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Le membre ~h~".. currentPlayer.fullname .."~h~ a été mis à jour~s~"})
-                        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a mis à jour ".. currentPlayer.fullname .." dans la faction id " .. organisationId, "info")
+                        TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a mis à jour ".. currentPlayer.fullname .." dans la faction id " .. organisationId, "info")
                     else
                       TriggerClientEvent("RageUI:Popup", _source, {message = "~r~Une erreur a empeché la mise à jour~s~"})
                     end
@@ -524,9 +524,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:deleteOrgPlayer")
+RegisterServerEvent("Ora::Illegal:deleteOrgPlayer")
 AddEventHandler(
-    "Atlantiss::Illegal:deleteOrgPlayer",
+    "Ora::Illegal:deleteOrgPlayer",
     function(organisation, currentPlayer)
         local _source = source
 
@@ -548,17 +548,17 @@ AddEventHandler(
               local onlinePlayer = getOnlinePlayerByUuid(currentPlayer.uuid)
               if (onlinePlayer ~= nil) then
                   TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Vous avez été ~h~exclu~h~ de la faction " .. organisation.NAME .. "~s~"})
-                  TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", onlinePlayer, IllegalOrga.GetEmptyOrga())
-                  TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a exclu ".. currentPlayer.fullname .." dans la faction  " .. organisation.NAME .. " (".. organisation.LABEL .. ")", "info")
+                  TriggerClientEvent("Ora::Illegal:updateCurrentOrga", onlinePlayer, IllegalOrga.GetEmptyOrga())
+                  TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a exclu ".. currentPlayer.fullname .." dans la faction  " .. organisation.NAME .. " (".. organisation.LABEL .. ")", "info")
               end
             end
         end
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:createOrgRank")
+RegisterServerEvent("Ora::Illegal:createOrgRank")
 AddEventHandler(
-    "Atlantiss::Illegal:createOrgRank",
+    "Ora::Illegal:createOrgRank",
     function(organisationId, currentRank)
         local _source = source
 
@@ -595,13 +595,13 @@ AddEventHandler(
       
         TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Le grade ~h~".. currentRank.NEW_VALUES.name .. "~h~ a été créé.~s~"})
         updateOrganisationToAllClient(organisationId)
-        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a créé le grade ".. currentRank.NEW_VALUES.name .." dans la faction  " .. organisationId, "info")
+        TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a créé le grade ".. currentRank.NEW_VALUES.name .." dans la faction  " .. organisationId, "info")
       end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:deleteOrgRank")
+RegisterServerEvent("Ora::Illegal:deleteOrgRank")
 AddEventHandler(
-    "Atlantiss::Illegal:deleteOrgRank",
+    "Ora::Illegal:deleteOrgRank",
     function(organisationId, currentRank)
         local _source = source
         local members = MySQL.Sync.fetchAll(
@@ -625,7 +625,7 @@ AddEventHandler(
                     if (affectedRows > 0) then
                         TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Vous avez supprimé le grade ~h~" .. currentRank.name .."~h~.~s~"})
                         updateOrganisationToAllClient(organisationId)
-                        TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a supprimé le grade ".. currentRank.name .." dans la faction  " .. organisationId, "info")
+                        TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a supprimé le grade ".. currentRank.name .." dans la faction  " .. organisationId, "info")
                     else
                       TriggerClientEvent("RageUI:Popup", _source, {message = "~r~Une erreur s'est produite. Impossible de supprimer le grade.~s~"})
                     end
@@ -635,9 +635,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:updateOrgRank")
+RegisterServerEvent("Ora::Illegal:updateOrgRank")
 AddEventHandler(
-    "Atlantiss::Illegal:updateOrgRank",
+    "Ora::Illegal:updateOrgRank",
     function(organisationId, currentRank)
       local _source = source
       if (currentRank.NEW_VALUES ~= nil) then
@@ -668,7 +668,7 @@ AddEventHandler(
               function (affectedRows)
                   if (affectedRows > 0) then
                       updateOrganisationToAllClient(organisationId)
-                      TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a mis à jour le grade ".. currentRank.name .." dans la faction  " .. organisationId, "info")
+                      TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a mis à jour le grade ".. currentRank.name .." dans la faction  " .. organisationId, "info")
                   end
               end
           )
@@ -676,18 +676,18 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:updateOrgForPlayer")
+RegisterServerEvent("Ora::Illegal:updateOrgForPlayer")
 AddEventHandler(
-    "Atlantiss::Illegal:updateOrgForPlayer",
+    "Ora::Illegal:updateOrgForPlayer",
     function()
         local _source = source
-        TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", _source, organisation)
+        TriggerClientEvent("Ora::Illegal:updateCurrentOrga", _source, organisation)
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:leaveOrg")
+RegisterServerEvent("Ora::Illegal:leaveOrg")
 AddEventHandler(
-    "Atlantiss::Illegal:leaveOrg",
+    "Ora::Illegal:leaveOrg",
     function(organisation)
         local _source = source
         local myUuid = getPlayerUuid(_source)
@@ -704,9 +704,9 @@ AddEventHandler(
               function (affectedRows)
                   if (affectedRows > 0) then
                     TriggerClientEvent("RageUI:Popup", _source, {message = "~g~Vous avez quitté l'organisation ~h~" .. organisation.NAME .."~h~.~s~"})
-                      TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", _source, IllegalOrga.GetEmptyOrga())
+                      TriggerClientEvent("Ora::Illegal:updateCurrentOrga", _source, IllegalOrga.GetEmptyOrga())
                       updateOrganisationToAllClient(organisation.ID)
-                      TriggerEvent("atlantiss:sendToDiscordFromServer", _source, 20, Atlantiss.Identity:GetFullname(_source) .. " a quitté la faction ".. organisation.NAME .." (" .. organisation.LABEL ..")", "info")
+                      TriggerEvent("Ora:sendToDiscordFromServer", _source, 20, Ora.Identity:GetFullname(_source) .. " a quitté la faction ".. organisation.NAME .." (" .. organisation.LABEL ..")", "info")
 
                   else
                     TriggerClientEvent("RageUI:Popup", _source, {message = "~r~Une erreur s'est produite lors de votre départ de la faction.~s~"})
@@ -717,74 +717,74 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::PlayerLoaded")
+RegisterServerEvent("Ora::PlayerLoaded")
 AddEventHandler(
-    "Atlantiss::PlayerLoaded",
+    "Ora::PlayerLoaded",
     function(uuid)
         local _source = source
         local orga = getOrgaForUuid(uuid)
-        TriggerClientEvent("Atlantiss::Illegal:updateCurrentOrga", _source, orga)
+        TriggerClientEvent("Ora::Illegal:updateCurrentOrga", _source, orga)
     end
 )
 
-RegisterServerEvent("Atlantiss::ServerSidePlayerLoaded")
+RegisterServerEvent("Ora::ServerSidePlayerLoaded")
 AddEventHandler(
-    "Atlantiss::ServerSidePlayerLoaded",
+    "Ora::ServerSidePlayerLoaded",
     function(source, uuid)
         local _source = source
         local orga = getOrgaForUuid(uuid)
-        TriggerClientEvent("Atlantiss::Illegal:setOrgaObject", _source, orga)
+        TriggerClientEvent("Ora::Illegal:setOrgaObject", _source, orga)
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:updateOrgaForAllClient")
+RegisterServerEvent("Ora::Illegal:updateOrgaForAllClient")
 AddEventHandler(
-    "Atlantiss::Illegal:updateOrgaForAllClient",
+    "Ora::Illegal:updateOrgaForAllClient",
     function(organisationId)
         updateOrganisationToAllClient(organisationId)
     end
 )
 
 
-RegisterServerEvent("Atlantiss::Illegal:setupOrgaForAllClient")
+RegisterServerEvent("Ora::Illegal:setupOrgaForAllClient")
 AddEventHandler(
-    "Atlantiss::Illegal:setupOrgaForAllClient",
+    "Ora::Illegal:setupOrgaForAllClient",
     function(organisationId)
         setupOrganisationToAllClient(organisationId)
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:sendMessageToOrga")
+RegisterServerEvent("Ora::Illegal:sendMessageToOrga")
 AddEventHandler(
-    "Atlantiss::Illegal:sendMessageToOrga",
+    "Ora::Illegal:sendMessageToOrga",
     function(organisationId, message)
         sendMessageToOnlineMembers(organisationId, message)
     end
 )
 
-RegisterServerEvent("Atlantiss::Illegal:setCoordsToOrga")
+RegisterServerEvent("Ora::Illegal:setCoordsToOrga")
 AddEventHandler(
-    "Atlantiss::Illegal:setCoordsToOrga",
+    "Ora::Illegal:setCoordsToOrga",
     function(organisationId, coords)
         setCoordsToOnlineMembers(organisationId, coords)
     end
 )
 
-RegisterServerCallback("Atlantiss:getMyUuid", 
+RegisterServerCallback("Ora:getMyUuid", 
   function(source, cb)
     local playerUuid = getPlayerUuid(source)
     cb(playerUuid)
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:GetOnlinePlayersCountForFaction", 
+RegisterServerCallback("Ora:Illegal:GetOnlinePlayersCountForFaction", 
   function(source, cb, organisationId)
     local organisationOnlineMember = getOrganisationOnlineMembers(organisationId)
     cb(#organisationOnlineMember)
   end
 )
 
-RegisterServerCallback("Atlantiss:Illegal:getAllOrga", 
+RegisterServerCallback("Ora:Illegal:getAllOrga", 
   function(source, cb)
     local organisations = MySQL.Sync.fetchAll(
         "SELECT * FROM organisation ORDER BY label ASC",

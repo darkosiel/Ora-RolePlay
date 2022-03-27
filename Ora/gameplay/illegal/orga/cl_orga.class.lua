@@ -47,7 +47,7 @@ end
 function IllegalOrga.GetMyUuid()
   if (IllegalOrga.CURRENT_ORGA.MY_UUID == nil) then
     local canSend = false
-    TriggerServerCallback("Atlantiss:getMyUuid", function(myUuid)
+    TriggerServerCallback("Ora:getMyUuid", function(myUuid)
       IllegalOrga.CURRENT_ORGA.MY_UUID = myUuid
       canSend = true
     end)
@@ -66,7 +66,7 @@ end
 -- @returns table
 function IllegalOrga.GetAllFactions()
   if (IllegalOrga.FACTIONS.LOADED == false) then
-    TriggerServerCallback("Atlantiss:Illegal:getAllOrga", 
+    TriggerServerCallback("Ora:Illegal:getAllOrga", 
         function(orgasAsJson)
             IllegalOrga.FACTIONS.LIST = json.decode(orgasAsJson)
             IllegalOrga.FACTIONS.LOADED = true
@@ -155,8 +155,8 @@ function IllegalOrga.GetProperties()
 end
 
  -- Event handler used to "update" the current organisation ()
-RegisterNetEvent("Atlantiss::Illegal:updateCurrentOrga")
-AddEventHandler("Atlantiss::Illegal:updateCurrentOrga", function(organisation)
+RegisterNetEvent("Ora::Illegal:updateCurrentOrga")
+AddEventHandler("Ora::Illegal:updateCurrentOrga", function(organisation)
     IllegalOrga.CURRENT_ORGA = organisation
     IllegalOrga.MY_ORGA = IllegalOrga.CURRENT_ORGA.NAME
     IllegalOrga.MENU.RANKS_AS_LIST = nil
@@ -164,17 +164,17 @@ AddEventHandler("Atlantiss::Illegal:updateCurrentOrga", function(organisation)
 end)
 
 -- Handler for Coords 
-RegisterNetEvent("Atlantiss:Illegal:OrganisationSetCoords")
+RegisterNetEvent("Ora:Illegal:OrganisationSetCoords")
 AddEventHandler(
-    "Atlantiss:Illegal:OrganisationSetCoords",
+    "Ora:Illegal:OrganisationSetCoords",
     function(coords)
         SetNewWaypoint(coords.x, coords.y)
     end
 )
 
  -- Event handler used to "update" the current organisation and add blips issued from organisation properties
-RegisterNetEvent("Atlantiss::Illegal:setOrgaObject")
-AddEventHandler("Atlantiss::Illegal:setOrgaObject", function(organisation)
+RegisterNetEvent("Ora::Illegal:setOrgaObject")
+AddEventHandler("Ora::Illegal:setOrgaObject", function(organisation)
     IllegalOrga.CURRENT_ORGA = organisation
     IllegalOrga.MY_ORGA = IllegalOrga.CURRENT_ORGA.NAME
     IllegalOrga.MY_RANK = nil

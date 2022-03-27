@@ -1,25 +1,25 @@
-AtlantissAppartment = AtlantissAppartment or  {}
+OraAppartment = OraAppartment or  {}
 
-AtlantissAppartment.USERS_LIST_LOADED = false
-AtlantissAppartment.USERS_LIST = {}
+OraAppartment.USERS_LIST_LOADED = false
+OraAppartment.USERS_LIST = {}
 
-function AtlantissAppartment.GetOnlineUsers()
+function OraAppartment.GetOnlineUsers()
 
-    if (AtlantissAppartment.USERS_LIST_LOADED) then
+    if (OraAppartment.USERS_LIST_LOADED) then
         TriggerServerCallback(
             "onlinePlayers:list",
             function(users)
-                AtlantissAppartment.USERS_LIST = users
-                AtlantissAppartment.USERS_LIST_LOADED = true
+                OraAppartment.USERS_LIST = users
+                OraAppartment.USERS_LIST_LOADED = true
             end
         )
         
-        while (AtlantissAppartment.USERS_LIST_LOADED == false) do
+        while (OraAppartment.USERS_LIST_LOADED == false) do
             Wait(10)
         end        
     end
 
-    return AtlantissAppartment.USERS_LIST
+    return OraAppartment.USERS_LIST
 end
 
 local instance, instancedPlayers, registeredInstanceTypes, playersToHide = {}, {}, {}, {}

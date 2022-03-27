@@ -99,8 +99,8 @@ end
 -- Event
 -- --------------------------------------------
 
-RegisterNetEvent('Atlantiss::3dme:shareDisplay')
-AddEventHandler('Atlantiss::3dme:shareDisplay', function(text, serverId)
+RegisterNetEvent('Ora::3dme:shareDisplay')
+AddEventHandler('Ora::3dme:shareDisplay', function(text, serverId)
     local ped = GetPlayerPed(GetPlayerFromServerId(serverId))
     Display(ped, text)
 end)

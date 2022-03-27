@@ -391,7 +391,7 @@
 --                                 for k, v in pairs(GetActivePlayers()) do
 --                                     local i = v
 --                                     RageUI.Button(
---                                         Atlantiss.Identity:GetFullname(GetPlayerServerId(i)),
+--                                         Ora.Identity:GetFullname(GetPlayerServerId(i)),
 --                                         nil,
 --                                         {},
 --                                         true,
@@ -402,7 +402,7 @@
 --                                                     function(result)
 --                                                         amount = result[1].amount
 --                                                         if amount - amountVeh >= 0 then
---                                                             local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+--                                                             local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
                                                             
 --                                                             TriggerServerCallback(
 --                                                                 "autoshop:BuyVehicle",
@@ -416,8 +416,8 @@
 --                                                                             "autoshop",
 --                                                                             amountVeh
 --                                                                         )
---                                                                         spawnedVehicle = Atlantiss.World.Vehicle:Create(veh.model, autoshop[CurrentZone].SpawnPos, autoshop[CurrentZone].SpawnPos.h, {})
---                                                                         Atlantiss.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
+--                                                                         spawnedVehicle = Ora.World.Vehicle:Create(veh.model, autoshop[CurrentZone].SpawnPos, autoshop[CurrentZone].SpawnPos.h, {})
+--                                                                         Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
 --                                                                         if GetVehicleNumberPlateText(spawnedVehicle) ~= plate then 
 --                                                                             SetVehicleNumberPlateText(spawnedVehicle, plate) 
 --                                                                         end
@@ -437,7 +437,7 @@
 --                                                                         },
 --                                                                         label = veh.plate
 --                                                                     }
---                                                                     Atlantiss.Inventory:AddItem(items)
+--                                                                     Ora.Inventory:AddItem(items)
 --                                                                     CloseAllMenus()
 --                                                                 end,
 --                                                                 currentInd.price,
@@ -480,7 +480,7 @@
 --                                                     function(result)
 --                                                         amount = result[1].amount
 --                                                         if amount - amountVeh >= 0 then
---                                                             local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+--                                                             local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
 
 --                                                             TriggerServerCallback(
 --                                                                 "autoshop:BuyVehicleForCompany",
@@ -494,8 +494,8 @@
 --                                                                             "autoshop",
 --                                                                             amountVeh
 --                                                                         )
---                                                                         spawnedVehicle = Atlantiss.World.Vehicle:Create(veh.model, autoshop[CurrentZone].SpawnPos, autoshop[CurrentZone].SpawnPos.h, {})
---                                                                         Atlantiss.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
+--                                                                         spawnedVehicle = Ora.World.Vehicle:Create(veh.model, autoshop[CurrentZone].SpawnPos, autoshop[CurrentZone].SpawnPos.h, {})
+--                                                                         Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
 --                                                                         if GetVehicleNumberPlateText(spawnedVehicle) ~= plate then 
 --                                                                             SetVehicleNumberPlateText(spawnedVehicle, plate) 
 --                                                                         end
@@ -515,7 +515,7 @@
 --                                                                         },
 --                                                                         label = veh.plate
 --                                                                     }
---                                                                     Atlantiss.Inventory:AddItem(items)
+--                                                                     Ora.Inventory:AddItem(items)
 --                                                                     -- SetEntityVisible(LocalPlayer().Ped,true)
 --                                                                     CloseAllMenus()
 --                                                                 end,
@@ -555,25 +555,25 @@
 --                                     function(_, Active, Selected)
 --                                         if (Selected) then
 --                                             TriggerServerCallback(
---                                                 "Atlantiss::SVCB::Jobs:Jetsam:CanOrder",
+--                                                 "Ora::SVCB::Jobs:Jetsam:CanOrder",
 --                                                 function(canOrder)
 --                                                     if (canOrder == true) then
 --                                                         TriggerServerCallback(
 --                                                             "getBankingAccountsPly3",
 --                                                             function(result)
 --                                                                 if (result[1].amount - amountVeh >= 0) then
---                                                                     local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+--                                                                     local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
                     
 --                                                                     TriggerServerCallback(
 --                                                                         "autoshop:BuyVehicle",
 --                                                                         function(_, plate)
 --                                                                             TriggerServerEvent(
---                                                                                 "Atlantiss::SE::Jobs:Jetsam:Order",
+--                                                                                 "Ora::SE::Jobs:Jetsam:Order",
 --                                                                                 {
 --                                                                                     plate = plate,
 --                                                                                     customs = veh
 --                                                                                 },
---                                                                                 Atlantiss.Identity:GetMyUuid(),
+--                                                                                 Ora.Identity:GetMyUuid(),
 --                                                                                 "autoshop"
 --                                                                             )
                     
@@ -655,9 +655,9 @@
 --                                     function(_, Active, Selected)
 --                                         if Selected then
 --                                             CloseAllMenus()
---                                             local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
---                                             spawnedVehicle = Atlantiss.World.Vehicle:Create(veh.model, autoshop[CurrentZone].SpawnPos, autoshop[CurrentZone].SpawnPos.h, {})
---                                             Atlantiss.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
+--                                             local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+--                                             spawnedVehicle = Ora.World.Vehicle:Create(veh.model, autoshop[CurrentZone].SpawnPos, autoshop[CurrentZone].SpawnPos.h, {})
+--                                             Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
 --                                             SetVehicleNumberPlateText(spawnedVehicle, "CONCESS") 
 --                                             DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
 --                                             SetPedIntoVehicle(LocalPlayer().Ped, _veh, -1)
@@ -676,7 +676,7 @@
 --                                 function()
 --                                     for i = 1, #v, 1 do
 --                                         p = "~r~MASQUÉ"
---                                         if Atlantiss.Identity:HasAnyJob("autoshop") then
+--                                         if Ora.Identity:HasAnyJob("autoshop") then
 --                                             p = v[i].price .. "$"
 --                                         end
 --                                         RageUI.Button(
@@ -685,7 +685,7 @@
 --                                             {RightLabel = p},
 --                                             true,
 --                                             function(_, Active, Selected)
---                                                 if Atlantiss.Identity:HasAnyJob("autoshop") then
+--                                                 if Ora.Identity:HasAnyJob("autoshop") then
 --                                                     menu = RMenu:Get("autoshop_sub", "list")
 --                                                 else
 --                                                     menu = nil
@@ -711,7 +711,7 @@
 --                                                 end
 
 --                                                 if Selected then
---                                                     if Atlantiss.Identity:HasAnyJob("autoshop") then
+--                                                     if Ora.Identity:HasAnyJob("autoshop") then
 --                                                         amountVeh = v[i].price
 --                                                         menu = RMenu:Get("autoshop_sub", "list")
 --                                                         currentInd = v[i]

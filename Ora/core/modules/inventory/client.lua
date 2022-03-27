@@ -1,17 +1,17 @@
----@class Atlantiss.Inventory : Atlantiss
-Atlantiss.Inventory.Data = Atlantiss.Inventory.Data or {}
-Atlantiss.Inventory.State = {
+---@class Ora.Inventory : Ora
+Ora.Inventory.Data = Ora.Inventory.Data or {}
+Ora.Inventory.State = {
     IsOpen = false
 }
-Atlantiss.Inventory.Weight = 0
-Atlantiss.Inventory.MaxWeight = 40
-Atlantiss.Inventory.LastSave = 0
-Atlantiss.Inventory.CurrentWeapon = {
+Ora.Inventory.Weight = 0
+Ora.Inventory.MaxWeight = 40
+Ora.Inventory.LastSave = 0
+Ora.Inventory.CurrentWeapon = {
     Label = nil,
     Name = nil,
     id = nil
 }
-Atlantiss.Inventory.SelectedItem = nil
+Ora.Inventory.SelectedItem = nil
 local selectedItem = nil
 local oldTableLength = 0
 local Infos = {
@@ -28,7 +28,7 @@ local Infos = {
         TriggerEvent("ShowFakePermis", selectedItem)
     end,
     ["kevlar"] = function()
-        Atlantiss.Inventory:ShowMessage('Status du kevlar: '.. selectedItem.data.status.."%")
+        Ora.Inventory:ShowMessage('Status du kevlar: '.. selectedItem.data.status.."%")
     end,
     ["identity"] = function()
         TriggerEvent("ShowPicture", selectedItem)
@@ -119,10 +119,10 @@ end
 
 function RefreshClothes()
     visor = false
-    local clothesIn = Atlantiss.Inventory.Data ~= nil and Atlantiss.Inventory.Data["clothe"] or nil
-    local accessIn = Atlantiss.Inventory.Data ~= nil and Atlantiss.Inventory.Data["access"] or nil
+    local clothesIn = Ora.Inventory.Data ~= nil and Ora.Inventory.Data["clothe"] or nil
+    local accessIn = Ora.Inventory.Data ~= nil and Ora.Inventory.Data["access"] or nil
     local Clothes = {}
-    if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+    if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
         Clothes = GetNuMale()
     else
         Clothes = GetNuFemale()
@@ -172,10 +172,10 @@ end
 ]]
 
 
-function Atlantiss.Inventory:Load()
-    self:Debug(string.format('Loading inventory with uuid %s', Atlantiss.Identity:GetMyUuid()))
+function Ora.Inventory:Load()
+    self:Debug(string.format('Loading inventory with uuid %s', Ora.Identity:GetMyUuid()))
     TriggerServerCallback(
-        "Atlantiss::SCB::Inventory:GetInventory",
+        "Ora::SCB::Inventory:GetInventory",
         function(Data)
             if type(Data) ~= "table" then
                 self.Data = Data == nil and {} or json.decode(Data)
@@ -203,8 +203,8 @@ function Atlantiss.Inventory:Load()
 end
 
 ---@param force Boolean optionnal
-function Atlantiss.Inventory:Save(force)
-    local uuid = Atlantiss.Identity:GetMyUuid()
+function Ora.Inventory:Save(force)
+    local uuid = Ora.Identity:GetMyUuid()
     if self.Data == nil or self.Data == {} or self.Data == '{}' then
         self:Load()
     end
@@ -212,25 +212,25 @@ function Atlantiss.Inventory:Save(force)
     if (
         (force == true) or
         (
-            --(Atlantiss.Inventory.LastSave - GetGameTimer() <= 0) and
+            --(Ora.Inventory.LastSave - GetGameTimer() <= 0) and
             #jsonInv ~= oldTableLength and #jsonInv ~= #json.encode({})
         )
     ) then
-        Atlantiss.Inventory.LastSave = GetGameTimer() + 10000 -- 10s
+        Ora.Inventory.LastSave = GetGameTimer() + 10000 -- 10s
         self:Debug(string.format('Saving inventory with uuid %s. Inventory weight: %s', uuid, self.Weight))
         oldTableLength = #jsonInv
-        TriggerServerEvent("Atlantiss::SE::Inventory:SaveInventory", jsonInv, uuid)
+        TriggerServerEvent("Ora::SE::Inventory:SaveInventory", jsonInv, uuid)
     end
 end
 
-function Atlantiss.Inventory:RefreshWeight()
+function Ora.Inventory:RefreshWeight()
     self.Weight = 0
     if self.Data ~= nil then
         for itemName, item in pairs(self.Data) do
             if item[1] ~= nil then
                 p = self.Data[itemName]
                 if Items[item[1].name] == nil then
-                    Atlantiss.Inventory:RemoveAnyItemsFromName(itemName, 100)
+                    Ora.Inventory:RemoveAnyItemsFromName(itemName, 100)
                     self:Debug(string.format('Removed item with name ^5%s^3 cause it does not exist in Items.', itemName))
                 else
                     self.Weight = self.Weight + (Items[item[1].name].weight * #item)
@@ -242,7 +242,7 @@ end
 
 ---@param weapon itemObject weapon item
 ---@param number Integer
-function Atlantiss.Inventory:SetWeapon(weapon, number)
+function Ora.Inventory:SetWeapon(weapon, number)
     if number ~= nil and type(number) == "number" and number <= 3 and number > 0 then
         if number == 1 then
             self.weaponONE = weapon
@@ -269,7 +269,7 @@ function Atlantiss.Inventory:SetWeapon(weapon, number)
 end
 
 ---@return Table of player weapons
-function Atlantiss.Inventory:GetWeapons()
+function Ora.Inventory:GetWeapons()
     return {
         self.weaponONE or nil,
         self.weaponTWO or nil,
@@ -277,14 +277,14 @@ function Atlantiss.Inventory:GetWeapons()
     }
 end
 
----@return Atlantiss.Inventory.Data
-function Atlantiss.Inventory:GetInventory()
+---@return Ora.Inventory.Data
+function Ora.Inventory:GetInventory()
     return self.Data
 end
 
 ---@param itemName String
 ---@return Integer
-function Atlantiss.Inventory:GetItemCount(itemName)
+function Ora.Inventory:GetItemCount(itemName)
     found = 0
     if self.Data ~= nil then
         for k, v in pairs(self.Data) do
@@ -302,7 +302,7 @@ end
 
 ---@param item itemObject at least name & id
 ---@param notrefreshing Boolean optionnal
-function Atlantiss.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
+function Ora.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
     local isntRefreshing = notrefreshing or false
     local itemName = item.name
     for k, px in pairs(self.Data) do
@@ -334,7 +334,7 @@ end
 ---@param items Array of itemObject
 ---@param qty Number quantity
 ---@param notrefreshing Boolean optionnal
-function Atlantiss.Inventory:RemoveAnyItemsFromName(itemName, qty, notrefreshing)
+function Ora.Inventory:RemoveAnyItemsFromName(itemName, qty, notrefreshing)
     local isntRefreshing = notrefreshing or false
     local itemsToDelete = {}
     
@@ -350,7 +350,7 @@ end
 ---@param items Array of itemObject
 ---@param notrefreshing Boolean optionnal
 ---@param takesTheLabel Boolean optional
-function Atlantiss.Inventory:RemoveItems(items, notrefreshing, takesTheLabel)
+function Ora.Inventory:RemoveItems(items, notrefreshing, takesTheLabel)
     local itemName = items[1].name
     local itemLabel = items[1].label
     local isntRefreshing = notrefreshing or false
@@ -381,7 +381,7 @@ function Atlantiss.Inventory:RemoveItems(items, notrefreshing, takesTheLabel)
 end
 
 ---@param itemName String
-function Atlantiss.Inventory:RemoveFirstItem(itemName)
+function Ora.Inventory:RemoveFirstItem(itemName)
     local inv = self.Data[itemName]
     local _i = nil
     for i = 1, #inv, 1 do
@@ -393,7 +393,7 @@ end
 
 ---@param item itemObject at least name
 ---@param notrefreshing Boolean optionnal
-function Atlantiss.Inventory:AddItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
+function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
     local isntRefreshing = notrefreshing or false
     self:Debug(string.format("Adding one %s id: %s", item.name, item.id))
     if item.id == nil then
@@ -424,7 +424,7 @@ function Atlantiss.Inventory:AddItem(item, notrefreshing) -- if you don't want t
 end
 
 ---@param items Array of itemObject
-function Atlantiss.Inventory:AddItems(items)
+function Ora.Inventory:AddItems(items)
     for itemKey, itemValue in pairs(items) do
         if itemValue.id == nil then
             itemValue.id = generateUUIDV2()
@@ -436,28 +436,28 @@ end
 
 ---@param message String
 ---@param type String optional => 'white' or 'warning' -> yellow or 'error' -> red or nothing -> black
-function Atlantiss.Inventory:ShowMessage(message, type)
+function Ora.Inventory:ShowMessage(message, type)
     if message ~= "" and message ~= nil then
         SendNUIMessage({eventName = "showNotification", eventData = {message, type}})
     end
 end
 
-function Atlantiss.Inventory:StealFromPlayer(playerId, item, amount)
-    if (Atlantiss.Player:IsStealing()) then
+function Ora.Inventory:StealFromPlayer(playerId, item, amount)
+    if (Ora.Player:IsStealing()) then
         ShowNotification("Vous êtes ~r~déjà~s~ en train de récupérer un item")
-        Atlantiss.Inventory:ShowMessage("Vous êtes déjà en train de récupérer un item. Patientez", "error")
+        Ora.Inventory:ShowMessage("Vous êtes déjà en train de récupérer un item. Patientez", "error")
         return
     end
 
-    Atlantiss.Player:SetStealing(true)
+    Ora.Player:SetStealing(true)
     local canSend = false
     local hasBeenStolen = false
 
     self:Debug(string.format("^5%s^3 Trying to steal ^5%d^3 x ^5%s^3 from ^5%s^3", GetPlayerServerId(PlayerId()), amount, item.name, playerId))     
     TriggerServerCallback(
-        "Atlantiss::SE::Inventory:StealIfAvailable",
+        "Ora::SE::Inventory:StealIfAvailable",
         function(hasBeenStolenResponse)
-            self:Debug(string.format("Received response from event ^5%s^3 for player ^5%s^3 and response is ^5%s^3", "Atlantiss::SE::Inventory:StealIfAvailable", GetPlayerServerId(PlayerId()), playerId, hasBeenStolenResponse))     
+            self:Debug(string.format("Received response from event ^5%s^3 for player ^5%s^3 and response is ^5%s^3", "Ora::SE::Inventory:StealIfAvailable", GetPlayerServerId(PlayerId()), playerId, hasBeenStolenResponse))     
             hasBeenStolen = hasBeenStolenResponse
             canSend = true
         end,
@@ -467,12 +467,12 @@ function Atlantiss.Inventory:StealFromPlayer(playerId, item, amount)
     )
     
     while (canSend == false) do
-        self:Debug(string.format("Waiting pulling data from event ^5%s^3 for player ^5%s^3", "Atlantiss::SE::Inventory:StealIfAvailable", GetPlayerServerId(PlayerId())))     
+        self:Debug(string.format("Waiting pulling data from event ^5%s^3 for player ^5%s^3", "Ora::SE::Inventory:StealIfAvailable", GetPlayerServerId(PlayerId())))     
         Wait(200)      
     end
 
     self:Debug(string.format("Player ^5%s^3 received response : steal ^5%s^3 of ^5%d^3 x ^5%s^3 is ^5%s^3", GetPlayerServerId(PlayerId()), playerId, amount, item.name, hasBeenStolen))     
-    Atlantiss.Player:SetStealing(false)
+    Ora.Player:SetStealing(false)
     return hasBeenStolen
 end
 
@@ -480,15 +480,15 @@ end
 ---@param item itemObject
 ---@param amount Integer
 ---@return Boolean
-function Atlantiss.Inventory:CanStealFromPlayer(playerId, item, amount)
+function Ora.Inventory:CanStealFromPlayer(playerId, item, amount)
     local canSend = false
     local canSteal = false
 
     self:Debug(string.format("Fetching if player ^5%s^3 can steal ^5%d^3 x ^5%s^3 from ^5%s^3", GetPlayerServerId(PlayerId()), amount, item, playerId))     
     TriggerServerCallback(
-        "Atlantiss::SE::Inventory:CanSteal",
+        "Ora::SE::Inventory:CanSteal",
         function(canStealItems)
-            self:Debug(string.format("Received response from event ^5%s^3 for player ^5%s^3 and response is ^5%s^3", "Atlantiss::SE::Inventory:CanSteal", GetPlayerServerId(PlayerId()), playerId, canStealItems))     
+            self:Debug(string.format("Received response from event ^5%s^3 for player ^5%s^3 and response is ^5%s^3", "Ora::SE::Inventory:CanSteal", GetPlayerServerId(PlayerId()), playerId, canStealItems))     
             canSteal = canStealItems
             canSend = true
         end,
@@ -498,7 +498,7 @@ function Atlantiss.Inventory:CanStealFromPlayer(playerId, item, amount)
     )
     
     while (canSend == false) do
-        self:Debug(string.format("Waiting pulling data from event ^5%s^3 for player ^5%s^3", "Atlantiss::SE::Inventory:CanSteal", GetPlayerServerId(PlayerId())))     
+        self:Debug(string.format("Waiting pulling data from event ^5%s^3 for player ^5%s^3", "Ora::SE::Inventory:CanSteal", GetPlayerServerId(PlayerId())))     
         Wait(200)      
     end
 
@@ -506,12 +506,12 @@ function Atlantiss.Inventory:CanStealFromPlayer(playerId, item, amount)
     return canSteal
 end
 
-function Atlantiss.Inventory:CanGiveToPlayer(playerId, item, amount)
+function Ora.Inventory:CanGiveToPlayer(playerId, item, amount)
 
 end
 
 ---@param item itemObject
-function Atlantiss.Inventory:Infos(item)
+function Ora.Inventory:Infos(item)
     selectedItem = item
     if item.label then
         self:ShowMessage(string.format("Label de l'item: %s", item.label))
@@ -553,7 +553,7 @@ function Atlantiss.Inventory:Infos(item)
         if (item.data.vehicleIdentifier == nil and item.data.plate ~= nil) then
             local vehicleIdentifier = item.data.plate
             TriggerServerCallback(
-                "atlantissCar:getCarPositionWithoutModel",
+                "OraCar:getCarPositionWithoutModel",
                 function(type, localisation)
                     if (type == "outside") then
                         ShowAdvancedNotification(
@@ -566,7 +566,7 @@ function Atlantiss.Inventory:Infos(item)
 
                         ClearGpsPlayerWaypoint()
                         SetNewWaypoint(localisation.x, localisation.y)
-                        --TriggerServerEvent("atlantissCar:poundVehicle", vehicleIdentifier)
+                        --TriggerServerEvent("OraCar:poundVehicle", vehicleIdentifier)
                     elseif (type == "parked") then
                         ShowAdvancedNotification(
                             "SERVICE DES PLAQUES",
@@ -590,7 +590,7 @@ function Atlantiss.Inventory:Infos(item)
         elseif (item.data.vehicleIdentifier ~= nil) then
             local vehicleIdentifier = item.data.vehicleIdentifier
             TriggerServerCallback(
-                "atlantissCar:getCarPosition",
+                "OraCar:getCarPosition",
                 function(type, localisation)
                     local explodedIdentifier = explode(vehicleIdentifier)
                     if (type == "outside") then
@@ -605,7 +605,7 @@ function Atlantiss.Inventory:Infos(item)
                         ClearGpsPlayerWaypoint()
                         SetNewWaypoint(localisation.x, localisation.y)
 
-                        TriggerServerEvent("atlantissCar:poundVehicle", vehicleIdentifier)
+                        TriggerServerEvent("OraCar:poundVehicle", vehicleIdentifier)
                     elseif (type == "parked") then
                         ShowAdvancedNotification(
                             "SERVICE DES PLAQUES",
@@ -640,7 +640,7 @@ function Atlantiss.Inventory:Infos(item)
 end
 
 ---@param item itemObject
-function Atlantiss.Inventory:UseItem(item)
+function Ora.Inventory:UseItem(item)
     if Items[item.name].category == "weapon" then
         EquipWeapon(item)
     elseif Items[item.name].type == "props" then
@@ -673,7 +673,7 @@ end
 ---@param name itemName 
 ---@param amount Integer
 ---@return Boolean
-function Atlantiss.Inventory:CanReceive(name, amount)
+function Ora.Inventory:CanReceive(name, amount)
     self:RefreshWeight()
     local tempWeight = self.Weight
     if Items[name] == nil then
@@ -692,7 +692,7 @@ function Atlantiss.Inventory:CanReceive(name, amount)
 end
 
 ---@param item itemObject
-function Atlantiss.Inventory:Rename(item)
+function Ora.Inventory:Rename(item)
     exports['Snoupinput']:ShowInput("Renommer l'item", 25, "text", item.label and item.label or nil)
     local label = exports['Snoupinput']:GetInput()
     self:Debug(string.format('Trying to rename one %s, result: %s', item.name, label))
@@ -710,7 +710,7 @@ function Atlantiss.Inventory:Rename(item)
 end
 
 ---@param item itemObject
-function Atlantiss.Inventory:RenameAll(item)
+function Ora.Inventory:RenameAll(item)
     exports['Snoupinput']:ShowInput("Renommer les items en", 25, "text")
     local newLabel = exports['Snoupinput']:GetInput()
     exports['Snoupinput']:ShowInput("Renommer tous les "..Items[item.name].label.." ? (o/n)", 25, "text")
@@ -733,7 +733,7 @@ end
 ---@param _player PlayerServerId
 ---@param item itemObject
 ---@param amount Integer
-function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
+function Ora.Inventory:GiveItemToPlayer(_player, item, amount)
     local player = GetPlayerServerId(_player)
     local responseLoaded = false
     local isAbleToSendItems = false
@@ -745,7 +745,7 @@ function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
 
             for i = 1, #giveTable, 1 do
                 if self:GetItemCount(item.name) >= count then
-                    TriggerServerCallback("Atlantiss::SE::Inventory:CanReceive",
+                    TriggerServerCallback("Ora::SE::Inventory:CanReceive",
                         function(canSend) 
                             responseLoaded = true
                             isAbleToSendItems = canSend
@@ -763,12 +763,12 @@ function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
 
                     if (isAbleToSendItems == true) then
                         self:RemoveItem(giveTable[i])
-                        TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", player, {giveTable[i]})
+                        TriggerPlayerEvent("Ora::CE::Inventory:AddItems", player, {giveTable[i]})
                         TriggerServerEvent(
-                            "atlantiss:sendToDiscord",
+                            "Ora:sendToDiscord",
                             2,
                             "Donne 1x " ..
-                                Items[giveTable[i].name].label .. " à " .. Atlantiss.Identity:GetFullname(player)
+                                Items[giveTable[i].name].label .. " à " .. Ora.Identity:GetFullname(player)
                         )
                         self:ShowMessage("Vous avez donné " .. count .. " x " .. Items[item.name].label)
                     else
@@ -783,7 +783,7 @@ function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
 
                 local responseLoaded = false
                 local isAbleToSendItems = false
-                TriggerServerCallback("Atlantiss::SE::Inventory:CanReceive",
+                TriggerServerCallback("Ora::SE::Inventory:CanReceive",
                     function(canSend) 
                         responseLoaded = true
                         isAbleToSendItems = canSend
@@ -870,7 +870,7 @@ function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
                         self:RemoveAnyItemsFromName(deleteKey, deleteValue)
                     end
     
-                    TriggerPlayerEvent("Atlantiss::CE::Inventory:AddItems", player, sendItems)
+                    TriggerPlayerEvent("Ora::CE::Inventory:AddItems", player, sendItems)
                     
                     TriggerPlayerEvent(
                         "RageUI:Popup",
@@ -878,16 +878,16 @@ function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
                         {message = "~b~Vous avez reçu : " .. count .. "x " .. item.name}
                     )
 
-                    TriggerPlayerEvent('atlantiss:InvNotification', player, "Vous avez reçu : " .. count .. " x " .. item.name)
+                    TriggerPlayerEvent('Ora:InvNotification', player, "Vous avez reçu : " .. count .. " x " .. item.name)
     
                     TriggerServerEvent(
-                        "atlantiss:sendToDiscord",
+                        "Ora:sendToDiscord",
                         2,
                         "Donne " ..
                             count ..
                                 " x " ..
                                     Items[item.name].label ..
-                                        " à " .. Atlantiss.Identity:GetFullname(player)
+                                        " à " .. Ora.Identity:GetFullname(player)
                     )
 
                     self:ShowMessage("Vous avez donné " .. count .. " x " .. Items[item.name].label)
@@ -906,7 +906,7 @@ function Atlantiss.Inventory:GiveItemToPlayer(_player, item, amount)
 end
 
 ---@param target Array Player Inventory
-function Atlantiss.Inventory:GetTargetWeight(target)
+function Ora.Inventory:GetTargetWeight(target)
     local targetweight = 0
     for k,v in pairs(target) do
         if #v == 0 then goto continue end
@@ -919,7 +919,7 @@ function Atlantiss.Inventory:GetTargetWeight(target)
 end
 
 ---@param items Array of itemObject
-function Atlantiss.Inventory:Throw(items)
+function Ora.Inventory:Throw(items)
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local forward = GetEntityForwardVector(ped)
@@ -936,12 +936,12 @@ function Atlantiss.Inventory:Throw(items)
 end
 
 
-function Atlantiss.Inventory:AddPlayerLookingIntoStorage(storageName)
-    TriggerServerEvent("Atlantiss::SE::Inventory:AddPlayerToStorage", storageName)
+function Ora.Inventory:AddPlayerLookingIntoStorage(storageName)
+    TriggerServerEvent("Ora::SE::Inventory:AddPlayerToStorage", storageName)
 end
 
-function Atlantiss.Inventory:RemovePlayerLookingFromStorage(storageName)
-    TriggerServerEvent("Atlantiss::SE::Inventory:RemovePlayerFromStorage", storageName)
+function Ora.Inventory:RemovePlayerLookingFromStorage(storageName)
+    TriggerServerEvent("Ora::SE::Inventory:RemovePlayerFromStorage", storageName)
 end
 
 
@@ -954,86 +954,86 @@ end
 ]]
 
 
-RegisterNetEvent("Atlantiss::CE::Inventory:CanReceive")
+RegisterNetEvent("Ora::CE::Inventory:CanReceive")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:CanReceive",
+    "Ora::CE::Inventory:CanReceive",
     function(itemName, qty, giver)
-        local canReceive = Atlantiss.Inventory:CanReceive(itemName, qty)
-        Atlantiss.Inventory:Debug(string.format("Fetching if player ^5%s^3 can receive ^5%d^3 x ^5%s^3 from ^5%s^3 and response is ^5%s^3", GetPlayerServerId(PlayerId()), qty, itemName, giver, canReceive))     
-        TriggerServerEvent("Atlantiss::SE::Inventory:PopulateCanReceiveResult", canReceive, giver)
+        local canReceive = Ora.Inventory:CanReceive(itemName, qty)
+        Ora.Inventory:Debug(string.format("Fetching if player ^5%s^3 can receive ^5%d^3 x ^5%s^3 from ^5%s^3 and response is ^5%s^3", GetPlayerServerId(PlayerId()), qty, itemName, giver, canReceive))     
+        TriggerServerEvent("Ora::SE::Inventory:PopulateCanReceiveResult", canReceive, giver)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:StealIfAvailable")
+RegisterNetEvent("Ora::CE::Inventory:StealIfAvailable")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:StealIfAvailable",
+    "Ora::CE::Inventory:StealIfAvailable",
     function(item, qty, giver)
-        local itemCount = Atlantiss.Inventory:GetItemCount(item.name)
+        local itemCount = Ora.Inventory:GetItemCount(item.name)
         local canSteal = false
         if (math.tointeger(itemCount) >= math.tointeger(qty)) then
           canSteal = true
         end
-        Atlantiss.Inventory:Debug(string.format("Player ^5%s^3 is stolen of ^5%d^3 x ^5%s^3 from ^5%s^3 and response is ^5%s^3", GetPlayerServerId(PlayerId()), qty, item.name, giver, canSteal))     
-        Atlantiss.Inventory:RemoveItem(item)
-        TriggerEvent('atlantiss:inventory:deleteIfWeapon', item)
-        Atlantiss.Inventory:Save()
-        ShowNotification(string.format("Une personne vous a volé : ~g~%s~s~ x ~g~%s~s~", qty, Atlantiss.Core:GetItemLabel(item.name)))
-        TriggerServerEvent("Atlantiss::SE::Inventory:PopulateCanStealResult", canSteal, giver)
+        Ora.Inventory:Debug(string.format("Player ^5%s^3 is stolen of ^5%d^3 x ^5%s^3 from ^5%s^3 and response is ^5%s^3", GetPlayerServerId(PlayerId()), qty, item.name, giver, canSteal))     
+        Ora.Inventory:RemoveItem(item)
+        TriggerEvent('Ora:inventory:deleteIfWeapon', item)
+        Ora.Inventory:Save()
+        ShowNotification(string.format("Une personne vous a volé : ~g~%s~s~ x ~g~%s~s~", qty, Ora.Core:GetItemLabel(item.name)))
+        TriggerServerEvent("Ora::SE::Inventory:PopulateCanStealResult", canSteal, giver)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:CanBeStealed")
+RegisterNetEvent("Ora::CE::Inventory:CanBeStealed")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:CanBeStealed",
+    "Ora::CE::Inventory:CanBeStealed",
     function(itemName, qty, giver)
-        local itemCount = Atlantiss.Inventory:GetItemCount(itemName)
+        local itemCount = Ora.Inventory:GetItemCount(itemName)
         local canSteal = false
         if (math.tointeger(itemCount) >= math.tointeger(qty)) then
           canSteal = true
         end
-        Atlantiss.Inventory:Debug(string.format("Fetching if player ^5%s^3 can be stolen of ^5%d^3 x ^5%s^3 from ^5%s^3 and response is ^5%s^3", GetPlayerServerId(PlayerId()), qty, itemName, giver, canSteal))     
-        TriggerServerEvent("Atlantiss::SE::Inventory:PopulateCanStealResult", canSteal, giver)
+        Ora.Inventory:Debug(string.format("Fetching if player ^5%s^3 can be stolen of ^5%d^3 x ^5%s^3 from ^5%s^3 and response is ^5%s^3", GetPlayerServerId(PlayerId()), qty, itemName, giver, canSteal))     
+        TriggerServerEvent("Ora::SE::Inventory:PopulateCanStealResult", canSteal, giver)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:RefreshStorage")
+RegisterNetEvent("Ora::CE::Inventory:RefreshStorage")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:RefreshStorage",
+    "Ora::CE::Inventory:RefreshStorage",
     function(data)
         local storageName = data.STORAGE_NAME
         --
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:AddItems")
+RegisterNetEvent("Ora::CE::Inventory:AddItems")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:AddItems",
+    "Ora::CE::Inventory:AddItems",
     function(items)
-        Atlantiss.Inventory:AddItems(items)
+        Ora.Inventory:AddItems(items)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:RemoveItem")
+RegisterNetEvent("Ora::CE::Inventory:RemoveItem")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:RemoveItem",
+    "Ora::CE::Inventory:RemoveItem",
     function(items)
-        Atlantiss.Inventory:RemoveItem(items)
+        Ora.Inventory:RemoveItem(items)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:RemoveItems")
+RegisterNetEvent("Ora::CE::Inventory:RemoveItems")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:RemoveItems",
+    "Ora::CE::Inventory:RemoveItems",
     function(items)
-        Atlantiss.Inventory:RemoveItems(items)
+        Ora.Inventory:RemoveItems(items)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Inventory:RemoveAnyItemsWithName")
+RegisterNetEvent("Ora::CE::Inventory:RemoveAnyItemsWithName")
 AddEventHandler(
-    "Atlantiss::CE::Inventory:RemoveAnyItemsWithName",
+    "Ora::CE::Inventory:RemoveAnyItemsWithName",
     function(itemName, qty)
-        Atlantiss.Inventory:RemoveAnyItemsFromName(itemName, qty)
+        Ora.Inventory:RemoveAnyItemsFromName(itemName, qty)
     end
 )
 
@@ -1051,28 +1051,28 @@ AddEventHandler(
 exports(
     "AddItem",
     function(item, refresh)
-        Atlantiss.Inventory:AddItem(item, refresh)
+        Ora.Inventory:AddItem(item, refresh)
     end
 )
 
 exports(
     "CanReceive",
     function(itemName, qty)
-        return Atlantiss.Inventory:CanReceive(itemName, qty)
+        return Ora.Inventory:CanReceive(itemName, qty)
     end
 )
 
 exports(
     "RemoveFirstItem",
     function(itemName)
-        Atlantiss.Inventory:RemoveFirstItem(itemName)
+        Ora.Inventory:RemoveFirstItem(itemName)
     end
 )
 
 exports(
     "GetItemCount",
     function(itemName)
-        return Atlantiss.Inventory:GetItemCount(itemName)
+        return Ora.Inventory:GetItemCount(itemName)
     end
 )
 
@@ -1088,12 +1088,12 @@ exports(
 
 Citizen.CreateThread(
     function()
-        while (Atlantiss.Player.HasLoaded == false) do Wait(50) end
-        Atlantiss.Inventory:Debug('First loading of player inventory')
-        Atlantiss.Inventory:Load()
+        while (Ora.Player.HasLoaded == false) do Wait(50) end
+        Ora.Inventory:Debug('First loading of player inventory')
+        Ora.Inventory:Load()
         while true do
             Wait(5000)
-            Atlantiss.Inventory:Save()
+            Ora.Inventory:Save()
         end
     end
 )

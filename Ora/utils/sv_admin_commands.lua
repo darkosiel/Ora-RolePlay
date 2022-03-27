@@ -28,7 +28,7 @@ TriggerEvent(
       function(err, text, headers)
       end,
       "POST",
-      json.encode({username = "Atlantiss Report", embeds = embeds}),
+      json.encode({username = "Ora Report", embeds = embeds}),
       {["Content-Type"] = "application/json"}
     )
 

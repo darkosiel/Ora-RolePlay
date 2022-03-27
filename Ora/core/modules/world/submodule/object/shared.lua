@@ -1,4 +1,4 @@
-Atlantiss.World.Object = {}
-Atlantiss.World.Object.List = {}
-Atlantiss.World:Register("Object")
+Ora.World.Object = {}
+Ora.World.Object.List = {}
+Ora.World:Register("Object")
 

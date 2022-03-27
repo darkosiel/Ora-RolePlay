@@ -66,26 +66,26 @@ Citizen.CreateThread(
     function()
         local jobsFctPublique = {"police", "sams", "lssd", "lsfd"}
 
-        while Atlantiss.Player.HasLoaded == false do
+        while Ora.Player.HasLoaded == false do
             Wait(50)
         end
 
         while true do
             Wait(20 * 60000)
-            if Atlantiss.Service:isInService(Atlantiss.Identity.Job:GetName()) then
-                if (Atlantiss.Identity.Job:GetSalary() >= 50) then
-                    ShowNotification("Voici votre salaire : ~b~" .. Atlantiss.Identity.Job:GetSalary() .. "$")
-                    TriggerServerEvent("atlantiss:sendToDiscord", 30, Atlantiss.Identity.Job:GetSalary() .. "$ pour le métier " .. Atlantiss.Identity.Job:GetName(), "info")
-                    TriggerServerEvent("Atlantiss::SE::Player:AddToSessionData", "SALARY_DETAILS", Atlantiss.Identity.Job:GetSalary() .. "$ pour le métier " .. Atlantiss.Identity.Job:GetName())
-                    TriggerServerEvent("Atlantiss::SE::Player:AddToSessionData", "SALARY_TOTAL", math.tointeger(Atlantiss.Identity.Job:GetSalary()))
+            if Ora.Service:isInService(Ora.Identity.Job:GetName()) then
+                if (Ora.Identity.Job:GetSalary() >= 50) then
+                    ShowNotification("Voici votre salaire : ~b~" .. Ora.Identity.Job:GetSalary() .. "$")
+                    TriggerServerEvent("Ora:sendToDiscord", 30, Ora.Identity.Job:GetSalary() .. "$ pour le métier " .. Ora.Identity.Job:GetName(), "info")
+                    TriggerServerEvent("Ora::SE::Player:AddToSessionData", "SALARY_DETAILS", Ora.Identity.Job:GetSalary() .. "$ pour le métier " .. Ora.Identity.Job:GetName())
+                    TriggerServerEvent("Ora::SE::Player:AddToSessionData", "SALARY_TOTAL", math.tointeger(Ora.Identity.Job:GetSalary()))
                 end
                 TriggerServerCallback(
-                    "Atlantiss::SE::Money:AuthorizePayment",
+                    "Ora::SE::Money:AuthorizePayment",
                     function(token)
-                        TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = Atlantiss.Identity.Job:GetSalary(), SOURCE = "Salaire JOB", LEGIT = true})
+                        TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = Ora.Identity.Job:GetSalary(), SOURCE = "Salaire JOB", LEGIT = true})
                         for i = 1, #jobsFctPublique do
-                            if (Atlantiss.Identity.Job:GetName() == jobsFctPublique[i]) then
-                                TriggerServerEvent("Atlantiss:RemoveFromBankAccount", "gouvernement", Atlantiss.Identity.Job:GetSalary())
+                            if (Ora.Identity.Job:GetName() == jobsFctPublique[i]) then
+                                TriggerServerEvent("Ora:RemoveFromBankAccount", "gouvernement", Ora.Identity.Job:GetSalary())
                                 break
                             end
                         end
@@ -93,20 +93,20 @@ Citizen.CreateThread(
                     {}
                 )
             end
-            if Atlantiss.Identity.Orga:GetName() ~= "chomeur" and Atlantiss.Service:isInService(Atlantiss.Identity.Orga:GetName()) then
-                if (Atlantiss.Identity.Orga:GetSalary() >= 50) then
-                    ShowNotification("Voici votre salaire : ~b~" .. Atlantiss.Identity.Orga:GetSalary() .. "$")
-                    TriggerServerEvent("atlantiss:sendToDiscord", 30, Atlantiss.Identity.Orga:GetSalary() .. "$ pour le métier " .. Atlantiss.Identity.Orga:GetName(), "info")
-                    TriggerServerEvent("Atlantiss::SE::Player:AddToSessionData", "SALARY_DETAILS", Atlantiss.Identity.Orga:GetSalary() .. "$ pour le métier " .. Atlantiss.Identity.Orga:GetName())
-                    TriggerServerEvent("Atlantiss::SE::Player:AddToSessionData", "SALARY_TOTAL", math.tointeger(Atlantiss.Identity.Orga:GetSalary()))
+            if Ora.Identity.Orga:GetName() ~= "chomeur" and Ora.Service:isInService(Ora.Identity.Orga:GetName()) then
+                if (Ora.Identity.Orga:GetSalary() >= 50) then
+                    ShowNotification("Voici votre salaire : ~b~" .. Ora.Identity.Orga:GetSalary() .. "$")
+                    TriggerServerEvent("Ora:sendToDiscord", 30, Ora.Identity.Orga:GetSalary() .. "$ pour le métier " .. Ora.Identity.Orga:GetName(), "info")
+                    TriggerServerEvent("Ora::SE::Player:AddToSessionData", "SALARY_DETAILS", Ora.Identity.Orga:GetSalary() .. "$ pour le métier " .. Ora.Identity.Orga:GetName())
+                    TriggerServerEvent("Ora::SE::Player:AddToSessionData", "SALARY_TOTAL", math.tointeger(Ora.Identity.Orga:GetSalary()))
                 end
                 TriggerServerCallback(
-                    "Atlantiss::SE::Money:AuthorizePayment", 
+                    "Ora::SE::Money:AuthorizePayment", 
                     function(token)
-                        TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = Atlantiss.Identity.Orga:GetSalary(), SOURCE = "Salaire ORGA", LEGIT = true})
+                        TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = Ora.Identity.Orga:GetSalary(), SOURCE = "Salaire ORGA", LEGIT = true})
                         for i = 1, #jobsFctPublique do
-                            if (Atlantiss.Identity.Orga:GetName() == jobsFctPublique[i]) then
-                                TriggerServerEvent("Atlantiss:RemoveFromBankAccount", "gouvernement", Atlantiss.Identity.Orga:GetSalary())
+                            if (Ora.Identity.Orga:GetName() == jobsFctPublique[i]) then
+                                TriggerServerEvent("Ora:RemoveFromBankAccount", "gouvernement", Ora.Identity.Orga:GetSalary())
                                 break
                             end
                         end
@@ -185,7 +185,7 @@ local worksP = {
         fct = function()
             found = false
             if _type(data.required) ~= "table" then
-                if Atlantiss.Inventory:GetItemCount(data.required) <= 0 then
+                if Ora.Inventory:GetItemCount(data.required) <= 0 then
                     ShowNotification("~r~Pas assez de " .. Items[data.required].label)
                     StopCurrentWork()
                     return
@@ -194,7 +194,7 @@ local worksP = {
                 end
             else
                 for i = 1, #data.required, 1 do
-                    if Atlantiss.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
+                    if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
                         ShowNotification("~r~Pas assez de " .. Items[data.required[i].name].label)
                         StopCurrentWork()
                         return
@@ -223,7 +223,7 @@ local worksP = {
         fct = function()
             found = false
             if _type(data.required) ~= "table" then
-                if Atlantiss.Inventory:GetItemCount(data.required) <= 0 then
+                if Ora.Inventory:GetItemCount(data.required) <= 0 then
                     ShowNotification("~r~Pas assez de " .. Items[data.required].label)
                     StopCurrentWork()
                     return
@@ -232,7 +232,7 @@ local worksP = {
                 end
             else
                 for i = 1, #data.required, 1 do
-                    if Atlantiss.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
+                    if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
                         ShowNotification("~r~Pas assez de " .. Items[data.required[i].name].label)
                         StopCurrentWork()
                         break
@@ -372,7 +372,7 @@ function startworkInternal(type)
                         if isWorking and not wannaSTOP then
                             if
                                 data.giveitemType ~= 2 and data.giveitem ~= nil and
-                                not Atlantiss.Inventory:CanReceive(data.giveitem, 1)
+                                not Ora.Inventory:CanReceive(data.giveitem, 1)
                              then
                                 StopCurrentWork2()
                                 ClearPedTasks(LocalPlayer().Ped)
@@ -384,8 +384,8 @@ function startworkInternal(type)
                                 end
                                 if data.required ~= nil then
                                     if _type(data.required) ~= "table" then
-                                        if Atlantiss.Inventory:GetItemCount(data.required) > 0 then
-                                            Atlantiss.Inventory:RemoveFirstItem(data.required)
+                                        if Ora.Inventory:GetItemCount(data.required) > 0 then
+                                            Ora.Inventory:RemoveFirstItem(data.required)
                                         else
                                             ShowNotification("~r~Pas assez de " .. Items[data.required].label .. "~s~")
                                             return
@@ -394,7 +394,7 @@ function startworkInternal(type)
                                         local stopProcess = false
                                         for verificationIterate = 1, #data.required, 1 do
                                             if
-                                            Atlantiss.Inventory:GetItemCount(data.required[verificationIterate].name) -
+                                            Ora.Inventory:GetItemCount(data.required[verificationIterate].name) -
                                                     data.required[verificationIterate].count <
                                                     0
                                              then
@@ -412,7 +412,7 @@ function startworkInternal(type)
 
                                         for hh = 1, #data.required, 1 do
                                             for cc = 1, data.required[hh].count, 1 do
-                                                Atlantiss.Inventory:RemoveFirstItem(data.required[hh].name)
+                                                Ora.Inventory:RemoveFirstItem(data.required[hh].name)
                                             end
                                         end
                                     end
@@ -427,7 +427,7 @@ function startworkInternal(type)
                                         local itemDrop = data.giveitem[math.random(itemsCount)]
                                         local itemDropValue = 1000 - itemDrop.drop * 10
                                         if (dropChance > itemDropValue) then
-                                            Atlantiss.Inventory:AddItem({name = itemDrop.name})
+                                            Ora.Inventory:AddItem({name = itemDrop.name})
                                             math.randomseed(GetGameTimer() * math.random(1000))
                                             ShowNotification(
                                                 "[" ..
@@ -447,7 +447,7 @@ function startworkInternal(type)
                                             if (data.copsQuality == true) then
 
                                                 TriggerServerCallback(
-                                                    "Atlantiss::SE::Service:GetTotalServiceCountForJobs",
+                                                    "Ora::SE::Service:GetTotalServiceCountForJobs",
                                                     function(allcount)
                                                         if allcount == 2 then
                                                             item["data"] = {quality = 35}
@@ -468,13 +468,13 @@ function startworkInternal(type)
                                                             item["data"] = {quality = 10}
                                                             item["label"] = "Qualité merdique"
                                                         end
-                                                        Atlantiss.Inventory:AddItem(item)
+                                                        Ora.Inventory:AddItem(item)
                                                     end,
                                                     {"police", "lssd"}
                                                 )
                                             end
                                         else
-                                            Atlantiss.Inventory:AddItem(item)
+                                            Ora.Inventory:AddItem(item)
                                             math.randomseed(GetGameTimer() * math.random(1000))
                                             ShowNotification(
                                                 "[" ..
@@ -486,10 +486,10 @@ function startworkInternal(type)
                                 end
                                 if data.price ~= nil then
                                     TriggerServerCallback(
-                                        "Atlantiss::SE::Money:AuthorizePayment", 
+                                        "Ora::SE::Money:AuthorizePayment", 
                                         function(token)
-                                            TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = data.price, SOURCE = "Farm", LEGIT = true})
-                                            TriggerServerEvent("Atlantiss:RemoveFromBankAccount", "centralbank", data.price, false)
+                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = data.price, SOURCE = "Farm", LEGIT = true})
+                                            TriggerServerEvent("Ora:RemoveFromBankAccount", "centralbank", data.price, false)
                                         end,
                                         {}
                                     )

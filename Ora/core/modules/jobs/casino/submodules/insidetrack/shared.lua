@@ -1,1 +1,1 @@
-Atlantiss.Jobs.Casino:Register("InsideTrack")
+Ora.Jobs.Casino:Register("InsideTrack")

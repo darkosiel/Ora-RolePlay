@@ -1,17 +1,17 @@
-function Atlantiss.Identity.Orga:Fetch(playerId)
-  local uuid = Atlantiss.Identity:GetUuid(playerId)
+function Ora.Identity.Orga:Fetch(playerId)
+  local uuid = Ora.Identity:GetUuid(playerId)
   local returning = nil
-  Atlantiss.Identity.Orga:Debug(string.format("^5%s^3 fetching to get his orga table", uuid))
+  Ora.Identity.Orga:Debug(string.format("^5%s^3 fetching to get his orga table", uuid))
 
   MySQL.Async.fetchAll(
     "SELECT orga as name, orga_rank as rank FROM players_jobs WHERE uuid = @uuid",
     {['@uuid'] = uuid},
     function(result)
       if (result[1]) then
-        Atlantiss.Identity.Orga:Debug(string.format("^5%s^3 received orga name ^5%s^3 orga rank ^5%s^3", uuid, result[1].name, result[1].rank))
+        Ora.Identity.Orga:Debug(string.format("^5%s^3 received orga name ^5%s^3 orga rank ^5%s^3", uuid, result[1].name, result[1].rank))
         returning = result[1]
       else
-        Atlantiss.Identity.Orga:Debug(string.format("^5%s^3 received nothing (false)", uuid))
+        Ora.Identity.Orga:Debug(string.format("^5%s^3 received nothing (false)", uuid))
         returning = false
       end
     end
@@ -26,15 +26,15 @@ end
 
 
 RegisterServerCallback(
-  "Atlantiss::SVCB::Identity:Orga:Get",
+  "Ora::SVCB::Identity:Orga:Get",
   function(source, callback, playerId)
-    Atlantiss.Identity.Orga:Debug(string.format("^5%s^3 triggered ServerCallback : Atlantiss::SVCB::Identity:Orga:Get to retrieve orga table for playerID: ^5%s^3", source, playerId))
-    callback(Atlantiss.Identity.Orga:Fetch(playerId))
+    Ora.Identity.Orga:Debug(string.format("^5%s^3 triggered ServerCallback : Ora::SVCB::Identity:Orga:Get to retrieve orga table for playerID: ^5%s^3", source, playerId))
+    callback(Ora.Identity.Orga:Fetch(playerId))
   end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SVCB::Identity:Orga:GetEmployees",
+    "Ora::SVCB::Identity:Orga:GetEmployees",
     function(source, callback, orga)
         MySQL.Async.fetchAll(
             "SELECT first_name, last_name, name, rank, orga, orga_rank, players_jobs.uuid AS uuid "..
@@ -55,21 +55,21 @@ RegisterServerCallback(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Identity:Orga:Save")
+RegisterServerEvent("Ora::SE::Identity:Orga:Save")
 AddEventHandler(
-  "Atlantiss::SE::Identity:Orga:Save",
+  "Ora::SE::Identity:Orga:Save",
   function(name, rank, _uuid)
     local src = source
-    local uuid = _uuid or Atlantiss.Identity:GetUuid(src)
+    local uuid = _uuid or Ora.Identity:GetUuid(src)
     
     if (
-      Atlantiss.Jobs.Firefighter.Config.Dispatch.enabled and
-      Atlantiss.Jobs.Firefighter.Config.Fire.spawner.firefighterJobs[name] ~= nil
+      Ora.Jobs.Firefighter.Config.Dispatch.enabled and
+      Ora.Jobs.Firefighter.Config.Fire.spawner.firefighterJobs[name] ~= nil
     ) then
-      Atlantiss.Jobs.Firefighter.Dispatch:subscribe(src, true)
+      Ora.Jobs.Firefighter.Dispatch:subscribe(src, true)
     end
 
-    Atlantiss.Identity.Orga:Debug(string.format("Saving user orga (name: %s, rank: %s) for player id ^5%s^3 uuid ^5%s^3", name, rank, src, uuid))
+    Ora.Identity.Orga:Debug(string.format("Saving user orga (name: %s, rank: %s) for player id ^5%s^3 uuid ^5%s^3", name, rank, src, uuid))
     MySQL.Async.execute(
       "UPDATE players_jobs SET orga = @name, orga_rank = @rank WHERE uuid = @uuid",
       {

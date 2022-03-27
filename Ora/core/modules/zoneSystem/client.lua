@@ -2,7 +2,7 @@
   function()
     while true do
       Wait(0)
-      for _, bar in pairs(Atlantiss.ZoneSystem.Bars) do
+      for _, bar in pairs(Ora.ZoneSystem.Bars) do
         local x, y, z = table.unpack(bar.Pos)
 
         DrawMarker(

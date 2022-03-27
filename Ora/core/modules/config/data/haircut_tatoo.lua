@@ -1,4 +1,4 @@
-Atlantiss.Config:SetDataCollection(
+Ora.Config:SetDataCollection(
   "HaircutTatoos",
    {
     [1] = { library = 'mpbusiness_overlays', name = 'FM_Bus_M_Hair_000_a' },

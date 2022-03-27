@@ -199,7 +199,7 @@ function Radio:Toggle(toggle)
         end
         local boneId = self.Bone
 
-        exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+        exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
             function()
                 local ped = PlayerPedId()
                 local x,y,z = table.unpack(GetEntityCoords(ped))

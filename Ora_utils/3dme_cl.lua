@@ -77,9 +77,9 @@ local function Display(playerServerId, ped, playerCoords, text)
     end
 end
 
-RegisterNetEvent("Atlantiss::3dme:shareDisplay")
+RegisterNetEvent("Ora::3dme:shareDisplay")
 AddEventHandler(
-    "Atlantiss::3dme:shareDisplay",
+    "Ora::3dme:shareDisplay",
     function(text, serverId, playerPed, playerCoords)
         Display(serverId, playerPed, playerCoords, text)
     end
@@ -98,7 +98,7 @@ RegisterCommand(
     function(_, args)
         local text = "* L'individu" .. TableToString(args) .. " *"
         TriggerServerEvent("sendMe", text)
-        TriggerServerEvent("atlantiss:sendToDiscord", 35, text)
+        TriggerServerEvent("Ora:sendToDiscord", 35, text)
     end,
     false
 )
@@ -108,7 +108,7 @@ exports(
     function(text)
         if text then
             TriggerServerEvent('sendMe', text)
-            TriggerServerEvent("atlantiss:sendToDiscord", 35, text)
+            TriggerServerEvent("Ora:sendToDiscord", 35, text)
         end
     end
 )

@@ -1,6 +1,6 @@
-RegisterServerEvent("Atlantiss::SE::Dev:RegisterPosition")
+RegisterServerEvent("Ora::SE::Dev:RegisterPosition")
 AddEventHandler(
-    "Atlantiss::SE::Dev:RegisterPosition",
+    "Ora::SE::Dev:RegisterPosition",
     function(data)
         local _source = source
         

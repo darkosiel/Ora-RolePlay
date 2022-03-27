@@ -1,19 +1,19 @@
-Atlantiss.Jobs.Immo.Info = {
+Ora.Jobs.Immo.Info = {
 	Owner = "",
 	Coowners = {}
 }
 
-RMenu.Add("appart", "atlantiss_jobs_immo_information", RageUI.CreateSubMenu(RMenu:Get("appart", "main"), "Informations", "Informations"))
-RMenu.Add("appart", "coowners", RageUI.CreateSubMenu(RMenu:Get("appart", "atlantiss_jobs_immo_information"), "Co-propriétaire(s)", "Co-propriétaire(s)"))
+RMenu.Add("appart", "Ora_jobs_immo_information", RageUI.CreateSubMenu(RMenu:Get("appart", "main"), "Informations", "Informations"))
+RMenu.Add("appart", "coowners", RageUI.CreateSubMenu(RMenu:Get("appart", "Ora_jobs_immo_information"), "Co-propriétaire(s)", "Co-propriétaire(s)"))
 
 Citizen.CreateThread(
 	function()
 		while true do 
 			Wait(0)
 
-			if RageUI.Visible(RMenu:Get("appart","atlantiss_jobs_immo_information")) then
+			if RageUI.Visible(RMenu:Get("appart","Ora_jobs_immo_information")) then
 				RageUI.DrawContent({ header = true, glare = true }, function()
-					if (Atlantiss.Jobs.Immo.Menu == nil or Atlantiss.Jobs.Immo.Menu.Property == nil) then
+					if (Ora.Jobs.Immo.Menu == nil or Ora.Jobs.Immo.Menu.Property == nil) then
 						RageUI.Button(
 							"~r~Aucune propriété selectionnée pour le moment",
 							nil,
@@ -23,16 +23,16 @@ Citizen.CreateThread(
 							end
 						)
 					else
-						if (Atlantiss.Jobs.Immo.Info.PAYMENT_PROCESS == true) then
+						if (Ora.Jobs.Immo.Info.PAYMENT_PROCESS == true) then
 							RageUI.CloseAll()
 						else
-							local buyPrice = Atlantiss.Jobs.Immo.Menu.Property.price .. "$"
-							local rentPrice = math.ceil(Atlantiss.Jobs.Immo.Menu.Property.price / 50) .. "$"
+							local buyPrice = Ora.Jobs.Immo.Menu.Property.price .. "$"
+							local rentPrice = math.ceil(Ora.Jobs.Immo.Menu.Property.price / 50) .. "$"
 							
 							RageUI.Button(
 								"Intérieur",
 								nil,
-								{RightLabel = "~h~~b~" .. Atlantiss.Jobs.Immo:GetInteriorById(Atlantiss.Jobs.Immo.Menu.Property.indexx).label .. "~h~"},
+								{RightLabel = "~h~~b~" .. Ora.Jobs.Immo:GetInteriorById(Ora.Jobs.Immo.Menu.Property.indexx).label .. "~h~"},
 								true,
 								function(_, _, Selected)
 								end
@@ -41,17 +41,17 @@ Citizen.CreateThread(
 							RageUI.Button(
 								"Capacité du coffre",
 								nil,
-								{RightLabel = "~h~~b~" .. Atlantiss.Jobs.Immo.Menu.Property.capacity .. " KG" .. "~h~"},
+								{RightLabel = "~h~~b~" .. Ora.Jobs.Immo.Menu.Property.capacity .. " KG" .. "~h~"},
 								true,
 								function(_, _, Selected)
 								end
 							)
 
-							if (Atlantiss.Jobs.Immo.Menu.Property.garageMax ~= nil) then
+							if (Ora.Jobs.Immo.Menu.Property.garageMax ~= nil) then
 								RageUI.Button(
 									"Capacité garage",
 									nil,
-									{RightLabel = "~h~~b~" .. Atlantiss.Jobs.Immo.Menu.Property.garageMax .. " Véhicules" .. "~h~"},
+									{RightLabel = "~h~~b~" .. Ora.Jobs.Immo.Menu.Property.garageMax .. " Véhicules" .. "~h~"},
 									true,
 									function(_, _, Selected)
 									end
@@ -70,7 +70,7 @@ Citizen.CreateThread(
 							RageUI.Button(
 								"Fin du bail",
 								nil,
-								{RightLabel = string.format("~h~~b~%s~h~", Atlantiss.Jobs.Immo.Menu.Property.time == nil and "Propriétaire" or Atlantiss.Jobs.Immo.Menu.Property.time)},
+								{RightLabel = string.format("~h~~b~%s~h~", Ora.Jobs.Immo.Menu.Property.time == nil and "Propriétaire" or Ora.Jobs.Immo.Menu.Property.time)},
 								true,
 								function(_, Ac, Selected)
 								end
@@ -88,7 +88,7 @@ Citizen.CreateThread(
 							RageUI.Button(
 								"Propriétaire",
 								nil,
-								{RightLabel = string.format("~h~~b~%s~h~", Atlantiss.Jobs.Immo.Info.Owner ~= "" and Atlantiss.Jobs.Immo.Info.Owner or "~r~Personne")},
+								{RightLabel = string.format("~h~~b~%s~h~", Ora.Jobs.Immo.Info.Owner ~= "" and Ora.Jobs.Immo.Info.Owner or "~r~Personne")},
 								true,
 								function(_, Ac, Selected)
 								end
@@ -110,8 +110,8 @@ Citizen.CreateThread(
 
 			if RageUI.Visible(RMenu:Get("appart", "coowners")) then
 				RageUI.DrawContent({ header = true, glare = true }, function()
-					if (Atlantiss.Jobs.Immo.Info.Coowners ~= "" and Atlantiss.Jobs.Immo.Info.Coowners ~= {} and Atlantiss.Utils:TableLength(Atlantiss.Jobs.Immo.Info.Coowners) > 0) then
-						for _, coowner in pairs(Atlantiss.Jobs.Immo.Info.Coowners) do
+					if (Ora.Jobs.Immo.Info.Coowners ~= "" and Ora.Jobs.Immo.Info.Coowners ~= {} and Ora.Utils:TableLength(Ora.Jobs.Immo.Info.Coowners) > 0) then
+						for _, coowner in pairs(Ora.Jobs.Immo.Info.Coowners) do
 							RageUI.Button(
 								string.format("~h~~b~%s~h~", coowner),
 								nil,
@@ -137,27 +137,27 @@ Citizen.CreateThread(
 	end
 )
 
-RMenu:Get("appart","atlantiss_jobs_immo_information").Closed = function()
-  Atlantiss.Jobs.Immo.Info.Owner = ""
-  Atlantiss.Jobs.Immo.Info.Coowners = ""
+RMenu:Get("appart","Ora_jobs_immo_information").Closed = function()
+  Ora.Jobs.Immo.Info.Owner = ""
+  Ora.Jobs.Immo.Info.Coowners = ""
 end
 
-function Atlantiss.Jobs.Immo:GetPropertyOwners(property)
+function Ora.Jobs.Immo:GetPropertyOwners(property)
   for key, value in pairs(property) do
     if (key == "owner") then
       TriggerServerCallback(
-        "Atlantiss::SE::Identity:GetFullNameFromUUID",
+        "Ora::SE::Identity:GetFullNameFromUUID",
         function(fullname)
-					Atlantiss.Jobs.Immo.Info.Owner = fullname
+					Ora.Jobs.Immo.Info.Owner = fullname
         end,
         value
       )
     elseif (key == "coowner") then
-			if (Atlantiss.Utils:TableLength(value) ~= 0) then
+			if (Ora.Utils:TableLength(value) ~= 0) then
 				TriggerServerCallback(
-					"Atlantiss::SE::Identity:GetFullNamesFromUUIDs",
+					"Ora::SE::Identity:GetFullNamesFromUUIDs",
 					function(fullnames)
-						Atlantiss.Jobs.Immo.Info.Coowners = fullnames
+						Ora.Jobs.Immo.Info.Coowners = fullnames
 					end,
 					value
 				)

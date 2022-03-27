@@ -1,3 +1,3 @@
-Atlantiss.Consumable.Drugs = {}
-Atlantiss.Consumable.Drugs.List = {}
-Atlantiss.Consumable:Register("Drugs")
+Ora.Consumable.Drugs = {}
+Ora.Consumable.Drugs.List = {}
+Ora.Consumable:Register("Drugs")

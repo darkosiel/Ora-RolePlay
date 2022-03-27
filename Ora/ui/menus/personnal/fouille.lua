@@ -24,8 +24,8 @@ AddEventHandler("SearchPlayer", function(data)
         exports["Ora_utils"]:sendME("* L'individu fouille quelqu'un *")
         TriggerServerCallback("getInventoryOtherPPL", function(Inv, Money, black_money)
             currPlayerInv = json.decode(Inv)
-            TriggerEvent('atlantiss:inventoryFouille', currPlayerInv)
-            TriggerServerEvent("atlantiss:sendToDiscord", 4, "Fouille " .. Atlantiss.Identity:GetFullname(playerId))
+            TriggerEvent('Ora:inventoryFouille', currPlayerInv)
+            TriggerServerEvent("Ora:sendToDiscord", 4, "Fouille " .. Ora.Identity:GetFullname(playerId))
         end, playerId)
     end
 end)
@@ -40,7 +40,7 @@ exports.qtarget:Player({
             label = "Fouiller",
             canInteract = function(entity)
                 local playerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))
-                if exports.Atlantiss:CanSearchPlayer(entity, playerId) then
+                if exports.Ora:CanSearchPlayer(entity, playerId) then
                     return true
                 else
                     return false
@@ -64,11 +64,11 @@ local function Fouiller()
                 "getInventoryOtherPPL",
                 function(Inv, Money, black_money)
                     currPlayerInv = json.decode(Inv)
-                    TriggerEvent('atlantiss:inventoryFouille', currPlayerInv)
+                    TriggerEvent('Ora:inventoryFouille', currPlayerInv)
                     TriggerServerEvent(
-                        "atlantiss:sendToDiscord",
+                        "Ora:sendToDiscord",
                         4,
-                        "Fouille " .. Atlantiss.Identity:GetFullname(closestPly)
+                        "Fouille " .. Ora.Identity:GetFullname(closestPly)
                     )
                 end,
                 closestPly
@@ -88,9 +88,9 @@ function FouilleAdmin(id)
             function(Inv, Money, black_money)
                 currPlayerInv = json.decode(Inv)
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     4,
-                    "Fouille " .. Atlantiss.Identity:GetFullname(closestPly)
+                    "Fouille " .. Ora.Identity:GetFullname(closestPly)
                 )
                 RageUI.Visible(RMenu:Get("storage", "fouiller_joueur"), true)
             end,
@@ -143,22 +143,22 @@ Citizen.CreateThread(
                                             local count = KeyboardInput("Combien?")
                                             if
                                                 tonumber(count) ~= nil and tonumber(count) <= #v and
-                                                Atlantiss.Inventory:CanReceive(k, tonumber(count))
+                                                Ora.Inventory:CanReceive(k, tonumber(count))
                                              then
                                                 TriggerServerEvent(
-                                                    "atlantiss:sendToDiscord",
+                                                    "Ora:sendToDiscord",
                                                     4,
                                                     "Vole " ..
                                                         count ..
                                                             "x " ..
                                                                 Items[v[1].name].label ..
                                                                     " à " ..
-                                                                    Atlantiss.Identity:GetFullname(targetInv)
+                                                                    Ora.Identity:GetFullname(targetInv)
                                                 )
                                                 for i = 1, count, 1 do
                                                     items = v[i]
-                                                    Atlantiss.Inventory:AddItem(items)
-                                                    TriggerPlayerEvent("Atlantiss::CE::Inventory:RemoveItem", targetInv, {id = v[i].id, name = k})
+                                                    Ora.Inventory:AddItem(items)
+                                                    TriggerPlayerEvent("Ora::CE::Inventory:RemoveItem", targetInv, {id = v[i].id, name = k})
                                                     RageUI.Visible(RMenu:Get("storage", "fouiller_joueur"), false)
                                                 end
                                             end

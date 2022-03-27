@@ -1,4 +1,4 @@
-function Atlantiss.Jobs.Casino.Insidetrack:ShowBetScreen(horse)
+function Ora.Jobs.Casino.Insidetrack:ShowBetScreen(horse)
     self:UpdateBetValues(horse, self.CurrentBet, self.PlayerBalance, self.CurrentGain)
 
     BeginScaleformMovieMethod(self.Scaleform, 'SHOW_SCREEN')
@@ -12,7 +12,7 @@ function Atlantiss.Jobs.Casino.Insidetrack:ShowBetScreen(horse)
     self.BetVisible = true
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:UpdateBetValues(horse, bet, balance, gain)
+function Ora.Jobs.Casino.Insidetrack:UpdateBetValues(horse, bet, balance, gain)
     BeginScaleformMovieMethod(self.Scaleform, 'SET_BETTING_VALUES')
     ScaleformMovieMethodAddParamInt(horse) -- Horse index
 

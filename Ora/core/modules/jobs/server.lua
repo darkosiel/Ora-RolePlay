@@ -1,19 +1,19 @@
-Atlantiss.Jobs.RefreshTimeout = {}
-Atlantiss.Jobs.DrinksStored = {}
+Ora.Jobs.RefreshTimeout = {}
+Ora.Jobs.DrinksStored = {}
 
 
-function Atlantiss.Jobs.RefreshDrinksStored(storage, job, src, force)
+function Ora.Jobs.RefreshDrinksStored(storage, job, src, force)
   local advertize = true
 
-  if (Atlantiss.Jobs.RefreshTimeout[job] == nil) then
-    Atlantiss.Jobs.RefreshTimeout[job] = 0
+  if (Ora.Jobs.RefreshTimeout[job] == nil) then
+    Ora.Jobs.RefreshTimeout[job] = 0
   end
 
-  if (Atlantiss.Jobs.DrinksStored[job] == nil) then
-    Atlantiss.Jobs.DrinksStored[job] = {}
+  if (Ora.Jobs.DrinksStored[job] == nil) then
+    Ora.Jobs.DrinksStored[job] = {}
   end
 
-  if (Atlantiss.Jobs.RefreshTimeout[job] - GetGameTimer() <= 0) then
+  if (Ora.Jobs.RefreshTimeout[job] - GetGameTimer() <= 0) then
     MySQL.Async.fetchAll(
       "SELECT * FROM storages_inventory_items2 WHERE storage_name = @name",
       {["@name"] = storage.."_storage"},
@@ -29,7 +29,7 @@ function Atlantiss.Jobs.RefreshDrinksStored(storage, job, src, force)
             end
 
             if (Items[result[i].item_name].category == "bspecial" and howmuch > 0) then
-              Atlantiss.Jobs.DrinksStored[job][result[i].item_name] = howmuch
+              Ora.Jobs.DrinksStored[job][result[i].item_name] = howmuch
             end
           end
 
@@ -37,14 +37,14 @@ function Atlantiss.Jobs.RefreshDrinksStored(storage, job, src, force)
             TriggerClientEvent("RageUI:Popup", src, {message = "~r~Je n'ai plus rien en stock, repassez plus tard."})
           end
         else
-          if (#(Atlantiss.Jobs.DrinksStored[job]) == 0) then
+          if (#(Ora.Jobs.DrinksStored[job]) == 0) then
             TriggerClientEvent("RageUI:Popup", src, {message = "~r~Je n'ai plus rien en stock, repassez plus tard."})
           end
         end
       end
     )
     
-    Atlantiss.Jobs.RefreshTimeout[job] = GetGameTimer() + 60000 -- 1 min
+    Ora.Jobs.RefreshTimeout[job] = GetGameTimer() + 60000 -- 1 min
   else
     if (force) then
       TriggerClientEvent("RageUI:Popup", src, {message = "~r~J'ai d'autres clients, merci de repasser dans quelques minutes."})

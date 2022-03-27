@@ -4,7 +4,7 @@
 --      License: GNU GPL 3.0      --
 --================================--
 
-Atlantiss.Jobs.Firefighter.Fire = {
+Ora.Jobs.Firefighter.Fire = {
 	registered = {},
 	random = {},
 	active = {},
@@ -19,9 +19,9 @@ Atlantiss.Jobs.Firefighter.Fire = {
 	end
 }
 
-function Atlantiss.Jobs.Firefighter.Fire:create(coords, maximumSpread, spreadChance)
-	maximumSpread = maximumSpread and maximumSpread or Atlantiss.Jobs.Firefighter.Config.Fire.maximumSpreads
-	spreadChance = spreadChance and spreadChance or Atlantiss.Jobs.Firefighter.Config.Fire.fireSpreadChance
+function Ora.Jobs.Firefighter.Fire:create(coords, maximumSpread, spreadChance)
+	maximumSpread = maximumSpread and maximumSpread or Ora.Jobs.Firefighter.Config.Fire.maximumSpreads
+	spreadChance = spreadChance and spreadChance or Ora.Jobs.Firefighter.Config.Fire.fireSpreadChance
 
 	local fireIndex = highestIndex(self.active)
 	fireIndex = fireIndex + 1
@@ -75,13 +75,13 @@ function Atlantiss.Jobs.Firefighter.Fire:create(coords, maximumSpread, spreadCha
 	return fireIndex
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:createFlame(fireIndex, coords)
+function Ora.Jobs.Firefighter.Fire:createFlame(fireIndex, coords)
 	local flameIndex = highestIndex(self.active, fireIndex) + 1
 	self.active[fireIndex][flameIndex] = coords
 	TriggerClientEvent('fireClient:createFlame', -1, fireIndex, flameIndex, coords)
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex)
+function Ora.Jobs.Firefighter.Fire:remove(fireIndex)
 	if not (self.active[fireIndex] and next(self.active[fireIndex])) then
 		return false
 	end
@@ -101,7 +101,7 @@ function Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex)
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
+function Ora.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
 	if self.active[fireIndex] and self.active[fireIndex][flameIndex] then
 		self.active[fireIndex][flameIndex] = nil
 		if type(next(self.active[fireIndex])) == "string" then
@@ -111,7 +111,7 @@ function Atlantiss.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
 	TriggerClientEvent('fireClient:removeFlame', -1, fireIndex, flameIndex)
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:removeAll()
+function Ora.Jobs.Firefighter.Fire:removeAll()
 	TriggerClientEvent('fireClient:removeAllFires', -1)
 	for k, v in pairs(self.active) do
 		if v.stopSpread then
@@ -124,7 +124,7 @@ function Atlantiss.Jobs.Firefighter.Fire:removeAll()
 	self.currentRandom = nil
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:register(coords)
+function Ora.Jobs.Firefighter.Fire:register(coords)
 	local registeredFireID = highestIndex(self.registered) + 1
 
 	self.registered[registeredFireID] = {
@@ -140,7 +140,7 @@ function Atlantiss.Jobs.Firefighter.Fire:register(coords)
 	return registeredFireID
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:startRegistered(registeredFireID, triggerDispatch, dispatchPlayer)
+function Ora.Jobs.Firefighter.Fire:startRegistered(registeredFireID, triggerDispatch, dispatchPlayer)
 	if not self.registered[registeredFireID] then
 		return false
 	end
@@ -150,7 +150,7 @@ function Atlantiss.Jobs.Firefighter.Fire:startRegistered(registeredFireID, trigg
 	end
 
 	for k, v in pairs(self.registered[registeredFireID].flames) do
-		local fireID = Atlantiss.Jobs.Firefighter.Fire:create(v.coords, v.spread, v.chance)
+		local fireID = Ora.Jobs.Firefighter.Fire:create(v.coords, v.spread, v.chance)
 		self.binds[registeredFireID][fireID] = true
 		self.activeBinds[fireID] = registeredFireID
 		Citizen.Wait(10)
@@ -159,13 +159,13 @@ function Atlantiss.Jobs.Firefighter.Fire:startRegistered(registeredFireID, trigg
 	if self.registered[registeredFireID].dispatchCoords and triggerDispatch and dispatchPlayer then
 		local dispatchCoords = self.registered[registeredFireID].dispatchCoords
 		Citizen.SetTimeout(
-			Atlantiss.Jobs.Firefighter.Config.Dispatch.timeout,
+			Ora.Jobs.Firefighter.Config.Dispatch.timeout,
 			function()
-				if Atlantiss.Jobs.Firefighter.Config.Dispatch.enabled then
+				if Ora.Jobs.Firefighter.Config.Dispatch.enabled then
 					if self.registered[registeredFireID].message ~= nil then
-						Atlantiss.Jobs.Firefighter.Dispatch:create(self.registered[registeredFireID].message, dispatchCoords)
+						Ora.Jobs.Firefighter.Dispatch:create(self.registered[registeredFireID].message, dispatchCoords)
 					else
-						Atlantiss.Jobs.Firefighter.Dispatch.expectingInfo[dispatchPlayer] = true
+						Ora.Jobs.Firefighter.Dispatch.expectingInfo[dispatchPlayer] = true
 						TriggerClientEvent('fd:dispatch', dispatchPlayer, dispatchCoords)
 					end
 				end
@@ -176,14 +176,14 @@ function Atlantiss.Jobs.Firefighter.Fire:startRegistered(registeredFireID, trigg
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:stopRegistered(registeredFireID)
+function Ora.Jobs.Firefighter.Fire:stopRegistered(registeredFireID)
 	if not self.binds[registeredFireID] then
 		return false
 	end
 
 	for k, v in pairs(self.binds[registeredFireID]) do
 		self.activeBinds[k] = nil
-		Atlantiss.Jobs.Firefighter.Fire:remove(k)
+		Ora.Jobs.Firefighter.Fire:remove(k)
 		Citizen.Wait(10)
 	end
 
@@ -196,7 +196,7 @@ function Atlantiss.Jobs.Firefighter.Fire:stopRegistered(registeredFireID)
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:deleteRegistered(registeredFireID)
+function Ora.Jobs.Firefighter.Fire:deleteRegistered(registeredFireID)
 	if not self.registered[registeredFireID] then
 		return false
 	end
@@ -212,7 +212,7 @@ function Atlantiss.Jobs.Firefighter.Fire:deleteRegistered(registeredFireID)
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:addFlame(registeredFireID, coords, spread, chance)
+function Ora.Jobs.Firefighter.Fire:addFlame(registeredFireID, coords, spread, chance)
 	if not (registeredFireID and coords and spread and chance and self.registered[registeredFireID]) then
 		return false
 	end
@@ -229,7 +229,7 @@ function Atlantiss.Jobs.Firefighter.Fire:addFlame(registeredFireID, coords, spre
 	return flameID
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:deleteFlame(registeredFireID, flameID)
+function Ora.Jobs.Firefighter.Fire:deleteFlame(registeredFireID, flameID)
 	if not (self.registered[registeredFireID] and self.registered[registeredFireID].flames[flameID]) then
 		return false
 	end
@@ -241,7 +241,7 @@ function Atlantiss.Jobs.Firefighter.Fire:deleteFlame(registeredFireID, flameID)
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:setRandom(registeredFireID, random)
+function Ora.Jobs.Firefighter.Fire:setRandom(registeredFireID, random)
 	random = random or nil
 	registeredFireID = tonumber(registeredFireID)
 
@@ -257,9 +257,9 @@ function Atlantiss.Jobs.Firefighter.Fire:setRandom(registeredFireID, random)
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:startSpawner(frequency, chance)
-	frequency = tonumber(frequency) or Atlantiss.Jobs.Firefighter.Config.Fire.spawner.interval
-	chance = tonumber(chance) or Atlantiss.Jobs.Firefighter.Config.Fire.spawner.chance
+function Ora.Jobs.Firefighter.Fire:startSpawner(frequency, chance)
+	frequency = tonumber(frequency) or Ora.Jobs.Firefighter.Config.Fire.spawner.interval
+	chance = tonumber(chance) or Ora.Jobs.Firefighter.Config.Fire.spawner.chance
 
 	if self._stopSpawner or not self.random or not frequency then
 		return false
@@ -274,10 +274,10 @@ function Atlantiss.Jobs.Firefighter.Fire:startSpawner(frequency, chance)
 	Citizen.CreateThread(
 		function()
 			while spawnerActive do
-				if next(self.random) and not self.currentRandom and Atlantiss.Jobs.Firefighter.Dispatch:firefighters() >= Atlantiss.Jobs.Firefighter.Config.Fire.spawner.players then
+				if next(self.random) and not self.currentRandom and Ora.Jobs.Firefighter.Dispatch:firefighters() >= Ora.Jobs.Firefighter.Config.Fire.spawner.players then
 					if math.random(100) < chance then
 						local randomRegisteredFireID = table.random(self.random)
-						local randomPlayer = Atlantiss.Jobs.Firefighter.Dispatch:getRandomPlayer()
+						local randomPlayer = Ora.Jobs.Firefighter.Dispatch:getRandomPlayer()
 
 						if randomRegisteredFireID and randomPlayer then
 							if self:startRegistered(randomRegisteredFireID, true, randomPlayer) then
@@ -295,7 +295,7 @@ function Atlantiss.Jobs.Firefighter.Fire:startSpawner(frequency, chance)
 	return true
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:stopSpawner()
+function Ora.Jobs.Firefighter.Fire:stopSpawner()
 	if self._stopSpawner then
 		self._stopSpawner()
 		self._stopSpawner = nil
@@ -304,11 +304,11 @@ end
 
 -- Saving registered fires
 
-function Atlantiss.Jobs.Firefighter.Fire:saveRegistered()
+function Ora.Jobs.Firefighter.Fire:saveRegistered()
 	saveData(self.registered, "fires")
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:loadRegistered()
+function Ora.Jobs.Firefighter.Fire:loadRegistered()
 	local firesFile = loadData("fires")
 	if firesFile ~= nil then
 		for index, fire in pairs(firesFile) do
@@ -326,7 +326,7 @@ function Atlantiss.Jobs.Firefighter.Fire:loadRegistered()
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:updateRandom() -- Creates a table containing all fires with random flag enabled
+function Ora.Jobs.Firefighter.Fire:updateRandom() -- Creates a table containing all fires with random flag enabled
 	self.random = {}
 	if not (self.registered and next(self.registered) ~= nil) then
 		return

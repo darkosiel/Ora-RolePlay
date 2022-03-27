@@ -1,6 +1,6 @@
 BurglaryConfig = {}
 
-BurglaryConfig.minCops = Atlantiss.Illegal:GetCopsRequired("roberry")
+BurglaryConfig.minCops = Ora.Illegal:GetCopsRequired("roberry")
 BurglaryConfig.startHour = 20
 BurglaryConfig.stopHour = 19
 

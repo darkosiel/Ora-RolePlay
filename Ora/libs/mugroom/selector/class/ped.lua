@@ -131,8 +131,8 @@ function attachBoardToPed(Entity, FirstName, LastName, Jobs, BankAmount, Index)
     local pedPos, overlayModel =
         GetEntityCoords(Entity),
         not Index and GetHashKey("prop_police_id_text") or GetHashKey("prop_police_id_text_02")
-    local board = Atlantiss.World.Object:Create(prop_id_board, pedPos, false, true, false)
-    local overlay = Atlantiss.World.Object:Create(overlayModel, pedPos, false, true, false)
+    local board = Ora.World.Object:Create(prop_id_board, pedPos, false, true, false)
+    local overlay = Ora.World.Object:Create(overlayModel, pedPos, false, true, false)
     AttachEntityToEntity(overlay, board, -1, 4103, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
     SetModelAsNoLongerNeeded(prop_id_board)
     SetModelAsNoLongerNeeded(overlayModel)

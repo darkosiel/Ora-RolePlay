@@ -334,67 +334,67 @@ Items = {
     whisky = {
         label = "Bouteille de whisky",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     vodka = {
         label = "Bouteille de vodka",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     cognac = {
         label = "Bouteille de cognac",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     rhum = {
         label = "Bouteille de rhum",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     tequila = {
         label = "Bouteille de tequila",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     red_wine = {
         label = "Bouteille de vin rouge",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     high_quality_wine = {
         label = "Bouteille de grand cru",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     white_wine = {
         label = "Bouteille de vin blanc",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     beer = {
         label = "Bière",
         weight = 0.2,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     beer2 = {
         label = "Bière sans alcool",
         weight = 0.2,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     bong = {
         label = "Bang",
         weight = 0.5,
-        actionCl = "Atlantiss::CE::Consumable::Alcohol::SpawnProp",
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
     milk = {
@@ -2020,7 +2020,7 @@ Items = {
         label = "Reçu",
         weight = 0.001,
         category = "proof",
-        actionCl = "Atlantiss::CE::Receipt:ShowInformation"
+        actionCl = "Ora::CE::Receipt:ShowInformation"
     },
     goldpepite1 = {
         label = "Pepite d'or 0.1 gramme",

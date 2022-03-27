@@ -70,7 +70,7 @@ Citizen.CreateThread(
                     local pedsToSpawn = 10 - currentPrisonner
                     for i = 1, pedsToSpawn, 1 do
                         local prisonnerPosition = prisonnerCoords[i]
-                        local prisonnerPed = Atlantiss.World.Ped:Create(5, "s_m_y_prisoner_01", vector3(prisonnerPosition.position.x, prisonnerPosition.position.y, prisonnerPosition.position.z),  prisonnerPosition.heading)
+                        local prisonnerPed = Ora.World.Ped:Create(5, "s_m_y_prisoner_01", vector3(prisonnerPosition.position.x, prisonnerPosition.position.y, prisonnerPosition.position.z),  prisonnerPosition.heading)
                         TaskWanderInArea(prisonnerPed, prisonnerPosition.position.x, prisonnerPosition.position.y, prisonnerPosition.position.z, 150.0, 20.0, 25000.0)
                     end
                 end
@@ -133,7 +133,7 @@ Citizen.CreateThread(
                             table.insert(huntedPeds, ent)
                             SetEntityAsNoLongerNeeded(ent)
                             doAdmin = true
-                            TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = ent, network_id = NetworkGetNetworkIdFromEntity(ent), seconds = 30})
+                            TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = ent, network_id = NetworkGetNetworkIdFromEntity(ent), seconds = 30})
                         end
                     end
 
@@ -148,39 +148,39 @@ Citizen.CreateThread(
                         if (chanceToFind > 3) then
                             local whatToFind = math.random(1, 100)
                             if (whatToFind < 60) then
-                                Atlantiss.Inventory:AddItem({name = "info"})
+                                Ora.Inventory:AddItem({name = "info"})
                             elseif (whatToFind < 75) then
-                                Atlantiss.Inventory:AddItem({name = "info2"})
+                                Ora.Inventory:AddItem({name = "info2"})
                             elseif (whatToFind < 90) then
-                                Atlantiss.Inventory:AddItem({name = "info3"})
+                                Ora.Inventory:AddItem({name = "info3"})
                             elseif (whatToFind < 95) then
-                                Atlantiss.Inventory:AddItem({name = "info4"})
+                                Ora.Inventory:AddItem({name = "info4"})
                             elseif (whatToFind < 98) then
-                                Atlantiss.Inventory:AddItem({name = "chocolat"})
+                                Ora.Inventory:AddItem({name = "chocolat"})
                             elseif (whatToFind < 99) then
-                                Atlantiss.Inventory:AddItem({name = "cigarette"})
+                                Ora.Inventory:AddItem({name = "cigarette"})
                             else
                                 math.randomseed(GetGameTimer() * math.random(5000, 10000))
                                 local chanceToFind2 = math.random(1, 10)
 
                                 if (chanceToFind2 == 6) then
-                                    Atlantiss.Inventory:AddItem({name = "beer"})
+                                    Ora.Inventory:AddItem({name = "beer"})
                                 end
 
                                 if (chanceToFind2 == 7) then
-                                    Atlantiss.Inventory:AddItem({name = "weed_pooch"})
+                                    Ora.Inventory:AddItem({name = "weed_pooch"})
                                 end
 
                                 if (chanceToFind2 == 8) then
-                                    Atlantiss.Inventory:AddItem({name = "meth"})
+                                    Ora.Inventory:AddItem({name = "meth"})
                                 end
 
                                 if (chanceToFind2 == 9) then
-                                    Atlantiss.Inventory:AddItem({name = "coke1"})
+                                    Ora.Inventory:AddItem({name = "coke1"})
                                 end
 
                                 if (chanceToFind2 == 10) then
-                                    Atlantiss.Inventory:AddItem({name = "tel", data = {num = 777 .. math.random(1111, 9999)}})
+                                    Ora.Inventory:AddItem({name = "tel", data = {num = 777 .. math.random(1111, 9999)}})
                                 end
                             end
                         else

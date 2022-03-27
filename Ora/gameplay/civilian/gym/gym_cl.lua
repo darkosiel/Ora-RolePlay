@@ -141,7 +141,7 @@ function startExercise(animInfo, pos)
                             RageUI.Popup({message = "💪 ~b~Salle de Gym~s~"})
                             RageUI.Popup({message = "~r~Tu as annulé ton entraînement~s~"})
                             TriggerServerCallback(
-                                "atlantiss:getStrength",
+                                "Ora:getStrength",
                                 function(strength, isFull)
                                     LocalPlayer().Strength = strength * 10
                                     RageUI.Popup({message = "~b~Progression actuelle ~g~+" .. strength .. "/100%~s~"})
@@ -159,7 +159,7 @@ function startExercise(animInfo, pos)
                         RageUI.Popup({message = "~b~Tu viens de gagner ~g~+" .. newStrength .. "%~b~ de force~s~"})
 
                         TriggerServerCallback(
-                            "atlantiss:getStrength",
+                            "Ora:getStrength",
                             function(strength, isFull)
                                 LocalPlayer().Strength = strength * 10
                                 if (isFull == true) then

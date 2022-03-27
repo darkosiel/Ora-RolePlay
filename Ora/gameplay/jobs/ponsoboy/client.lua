@@ -58,7 +58,7 @@ local function spawnManequin()
     while (not HasAnimDictLoaded("random@mugging3")) do 
         Citizen.Wait(1)
     end
-    pedPrev[manqidx] = Atlantiss.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
+    pedPrev[manqidx] = Ora.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
     SetPedFleeAttributes(pedPrev[manqidx], 0, 0)
     SetPedKeepTask(pedPrev[manqidx], true)
     SetBlockingOfNonTemporaryEvents(pedPrev[manqidx], true)
@@ -74,7 +74,7 @@ end
 local function respawnSkin()
     local p = pedPrev[manqidx]
 
-    pedPrev[manqidx] = Atlantiss.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
+    pedPrev[manqidx] = Ora.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
     NetworkRequestControlOfEntity(p)
     DeleteEntity(p)
     TriggerPlayerEvent("ENTI:DeletePed",-1)
@@ -102,7 +102,7 @@ RMenu:Get("ponsonbys","main").Closed = function()
 end
 Citizen.CreateThread(function()
     Wait(500)
-    while Atlantiss.Player.HasLoaded == false do Wait(500) end
+    while Ora.Player.HasLoaded == false do Wait(500) end
 
     
     while true do
@@ -140,10 +140,10 @@ Citizen.CreateThread(function()
 
                 if pedPrev[manqidx] == nil then
                     local isAbleTo = false
-                    if Atlantiss.Identity.Job:GetName() == "ponsonbys" then
-                        isAbleTo = (Atlantiss.Identity.Job:IsCoBoss() or Atlantiss.Identity.Job:IsBoss())
+                    if Ora.Identity.Job:GetName() == "ponsonbys" then
+                        isAbleTo = (Ora.Identity.Job:IsCoBoss() or Ora.Identity.Job:IsBoss())
                     else
-                        isAbleTo = (Atlantiss.Identity.Orga:IsCoBoss() or Atlantiss.Identity.Orga:IsBoss())
+                        isAbleTo = (Ora.Identity.Orga:IsCoBoss() or Ora.Identity.Orga:IsBoss())
                     end
 
                     if isAbleTo then
@@ -388,7 +388,7 @@ Citizen.CreateThread(function()
                                     ShowNotification("~g~Tenue créée ! ")
                                     for i = 1 , count , 1 do
                                         item.id = generateUUIDV2()
-                                        Atlantiss.Inventory:AddItem(item)
+                                        Ora.Inventory:AddItem(item)
                                     end
                                 else
                                     ShowNotification("~r~Nombre invalide")

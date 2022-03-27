@@ -28,7 +28,7 @@ local filter = {"dollar1", "dollar5", "dollar10", "dollar50", "dollar100", "doll
 local am = {1, 5, 10, 50, 100, 500}
 function GetTotalMoney()
     local amount = 0
-    for k, v in pairs(Atlantiss.Inventory:GetInventory()) do
+    for k, v in pairs(Ora.Inventory:GetInventory()) do
         for i = 1, #filter, 1 do
             if k == filter[i] then
                 amount = amount + (am[i] * #v)
@@ -44,12 +44,12 @@ function GiveMoneyy(tablee, player)
 
         for i = 1, v.index - 1, 1 do
             itemSent = itemSent + 1
-            table.insert(sendItems, {name = Atlantiss.Inventory:GetInventory()[k][1].name})
+            table.insert(sendItems, {name = Ora.Inventory:GetInventory()[k][1].name})
 
             if (itemSent >= 150) then
                 math.randomseed(GetGameTimer())
-                TriggerPlayerEvent("atlantiss:inventory:addItems", player, sendItems)
-                RemoveItemsFromInv(Atlantiss.Inventory:GetInventory()[k][1].name, itemSent)
+                TriggerPlayerEvent("Ora:inventory:addItems", player, sendItems)
+                RemoveItemsFromInv(Ora.Inventory:GetInventory()[k][1].name, itemSent)
                 sendItems = {}
                 itemSent = 0
                 Wait(100)
@@ -58,8 +58,8 @@ function GiveMoneyy(tablee, player)
 
         if (itemSent > 0) then
             math.randomseed(GetGameTimer())
-            TriggerPlayerEvent("atlantiss:inventory:addItems", player, sendItems)
-            RemoveItemsFromInv(Atlantiss.Inventory:GetInventory()[k][1].name, itemSent)
+            TriggerPlayerEvent("Ora:inventory:addItems", player, sendItems)
+            RemoveItemsFromInv(Ora.Inventory:GetInventory()[k][1].name, itemSent)
             sendItems = {}
             itemSent = 0
             Wait(100)
@@ -70,14 +70,14 @@ function PayMoney(tablee)
     for k, v in pairs(tablee) do
         print(k, v.index)
         for i = 1, v.index - 1, 1 do
-            -- print(Atlantiss.Inventory:GetInventory()[k])
+            -- print(Ora.Inventory:GetInventory()[k])
             local t = 0
-            while Atlantiss.Inventory:GetInventory()[k][t] == nil do
+            while Ora.Inventory:GetInventory()[k][t] == nil do
                 t = t + 1
                 Wait(0)
             end
-            if Atlantiss.Inventory:GetInventory()[k] ~= nil then
-                Atlantiss.Inventory:RemoveItem(Atlantiss.Inventory:GetInventory()[k][t], true)
+            if Ora.Inventory:GetInventory()[k] ~= nil then
+                Ora.Inventory:RemoveItem(Ora.Inventory:GetInventory()[k][t], true)
             end
         end
     end
@@ -85,7 +85,7 @@ end
 function AddMoney(_am)
     ShowNotification("~r~Veuillez reessayer. Merci")
     TriggerServerEvent(
-        "atlantiss:sendToDiscord",
+        "Ora:sendToDiscord",
         26,
         "[ERREUR] Appel d'une fonction désactivée.", 
         "error"
@@ -136,10 +136,10 @@ end
 
 local function Refresh()
     for k, v in pairs(m) do
-        if Atlantiss.Inventory:GetInventory()[k] ~= nil then
+        if Ora.Inventory:GetInventory()[k] ~= nil then
             v.visible = true
-            v.total = #Atlantiss.Inventory:GetInventory()[k]
-            for i = 0, #Atlantiss.Inventory:GetInventory()[k], 1 do
+            v.total = #Ora.Inventory:GetInventory()[k]
+            for i = 0, #Ora.Inventory:GetInventory()[k], 1 do
                 v.label[i + 1] = i
             end
         else
@@ -168,7 +168,7 @@ Citizen.CreateThread(
                             end
                         )
 
-                        for k, v in pairs(Atlantiss.Inventory:GetInventory()) do
+                        for k, v in pairs(Ora.Inventory:GetInventory()) do
                             for i = 1, #filter, 1 do
                                 if k == filter[i] then
                                     local m = nil
@@ -236,7 +236,7 @@ Citizen.CreateThread(
                                     }
                                     local item = {currentDollar}
                                     TriggerPlayerEvent("newProps", -1, item, coords)
-                                    Atlantiss.Inventory:RemoveItem(currentDollar, true)
+                                    Ora.Inventory:RemoveItem(currentDollar, true)
                                     RageUI.CloseAll()
                                 end
                             end

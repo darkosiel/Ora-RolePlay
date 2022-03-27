@@ -72,18 +72,18 @@ local function drinkBeer(bottle, alcohol)
   end)
 end
 
-RegisterNetEvent("Atlantiss::CE::Consumable::Alcohol::SpawnProp")
-AddEventHandler("Atlantiss::CE::Consumable::Alcohol::SpawnProp", function(item)
-  TriggerEvent('atlantiss:hideInventory')
+RegisterNetEvent("Ora::CE::Consumable::Alcohol::SpawnProp")
+AddEventHandler("Ora::CE::Consumable::Alcohol::SpawnProp", function(item)
+  TriggerEvent('Ora:hideInventory')
   local bottleHash, bottle, bottleCoords
   local ped = PlayerPedId()
   local forward, right, up, pos = GetEntityMatrix(ped)
   local pedForward = GetEntityCoords(ped) + forward
   local move_speed = 0.01
-  local alcohol = Atlantiss.Consumable.Alcohol.Bottles[item.name]
+  local alcohol = Ora.Consumable.Alcohol.Bottles[item.name]
 
   if alcohol then
-    TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", function()
+    TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", function()
       RequestModel(alcohol.bottle)
       while not HasModelLoaded(alcohol.bottle) do
         Wait(100)
@@ -121,13 +121,13 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::SpawnProp", function(item)
       bottleCoords = GetEntityCoords(bottle)
     elseif IsControlJustPressed(1, 176) then -- finish
       DeleteObject(bottle)
-      TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", function()
+      TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", function()
         bottle = CreateObject(bottleHash, bottleCoords, true, true, true)
         SetEntityCoords(bottle, bottleCoords)
         FreezeEntityPosition(bottle, true)
         SetModelAsNoLongerNeeded(bottleHash)
         local count = item.data and item.data.count or alcohol.count
-        TriggerServerEvent("Atlantiss::SE::Consumable::Alcohol::AddNewBottle", NetworkGetNetworkIdFromEntity(bottle), item.name, count)
+        TriggerServerEvent("Ora::SE::Consumable::Alcohol::AddNewBottle", NetworkGetNetworkIdFromEntity(bottle), item.name, count)
       end, bottleHash)
       break
     end
@@ -136,14 +136,14 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::SpawnProp", function(item)
   end
 end)
 
-RegisterNetEvent("Atlantiss::CE::Consumable::Alcohol::AddNewBottle")
-AddEventHandler("Atlantiss::CE::Consumable::Alcohol::AddNewBottle", function(bottle)
+RegisterNetEvent("Ora::CE::Consumable::Alcohol::AddNewBottle")
+AddEventHandler("Ora::CE::Consumable::Alcohol::AddNewBottle", function(bottle)
   local entity = NetworkGetEntityFromNetworkId(bottle.id)
-  exports["qtarget"]:AddTargetEntity(entity, Atlantiss.Consumable.Alcohol.Settings[Atlantiss.Consumable.Alcohol.Bottles[bottle.alcohol].settings])
+  exports["qtarget"]:AddTargetEntity(entity, Ora.Consumable.Alcohol.Settings[Ora.Consumable.Alcohol.Bottles[bottle.alcohol].settings])
 end)
 
-RegisterNetEvent("Atlantiss::CE::Consumable::Alcohol::Drink")
-AddEventHandler("Atlantiss::CE::Consumable::Alcohol::Drink", function(data)
+RegisterNetEvent("Ora::CE::Consumable::Alcohol::Drink")
+AddEventHandler("Ora::CE::Consumable::Alcohol::Drink", function(data)
   local bottle = data.entity
   if not IsEntityAttached(bottle) then
     local alcohol, glass
@@ -152,9 +152,9 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::Drink", function(data)
     local ped = PlayerPedId()
     local pedCoords, pedRotation = GetEntityCoords(ped), GetEntityRotation(ped, 2)
 
-    for k, v in pairs(Atlantiss.Consumable.Alcohol.Bottles) do
+    for k, v in pairs(Ora.Consumable.Alcohol.Bottles) do
       if v.bottle and GetHashKey(v.bottle) == bottleModel then
-        alcohol = Atlantiss.Consumable.Alcohol.Bottles[k]
+        alcohol = Ora.Consumable.Alcohol.Bottles[k]
         break
       end
     end
@@ -183,7 +183,7 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::Drink", function(data)
       while not HasModelLoaded(glassHash) do
         Wait(100)
       end
-      TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", function()
+      TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", function()
         glass = CreateObject(glassHash, pedCoords, true, true, false)
         SetModelAsNoLongerNeeded(glassHash)
       end, glassHash)
@@ -205,7 +205,7 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::Drink", function(data)
       SetEntityCoords(bottle, bottleCoords)
       SetEntityRotation(bottle, bottleRotation)
       DeleteEntity(glass)
-      TriggerServerEvent("Atlantiss::SE::Consumable::Alcohol::Drink", NetworkGetNetworkIdFromEntity(bottle))
+      TriggerServerEvent("Ora::SE::Consumable::Alcohol::Drink", NetworkGetNetworkIdFromEntity(bottle))
     else
       local rightHand = GetPedBoneIndex(ped, 57005)
       NetworkRequestControlOfEntity(bottle)
@@ -220,14 +220,14 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::Drink", function(data)
   end
 end)
 
-RegisterNetEvent("Atlantiss::CE::Consumable::Alcohol::StoreIntoInventory")
-AddEventHandler("Atlantiss::CE::Consumable::Alcohol::StoreIntoInventory", function(data)
-  TriggerServerCallback("Atlantiss::SE::Consumable::Alcohol::GetCount", function(count)
+RegisterNetEvent("Ora::CE::Consumable::Alcohol::StoreIntoInventory")
+AddEventHandler("Ora::CE::Consumable::Alcohol::StoreIntoInventory", function(data)
+  TriggerServerCallback("Ora::SE::Consumable::Alcohol::GetCount", function(count)
     local entityModel = GetEntityModel(data.entity)
-    for k, v in pairs(Atlantiss.Consumable.Alcohol.Bottles) do
+    for k, v in pairs(Ora.Consumable.Alcohol.Bottles) do
       if v.bottle and GetHashKey(v.bottle) == entityModel then
         local item = {name = k, label = count, data = {count = count}}
-        Atlantiss.Inventory:AddItem(item)
+        Ora.Inventory:AddItem(item)
         DeleteEntity(data.entity)
         break
       end
@@ -235,10 +235,10 @@ AddEventHandler("Atlantiss::CE::Consumable::Alcohol::StoreIntoInventory", functi
   end, NetworkGetNetworkIdFromEntity(data.entity))
 end)
 
-function Atlantiss.Consumable.Alcohol:Initialize()
-  TriggerServerCallback("Atlantiss::SE::Consumable::Alcohol::Initialize", function(bottles)
+function Ora.Consumable.Alcohol:Initialize()
+  TriggerServerCallback("Ora::SE::Consumable::Alcohol::Initialize", function(bottles)
     for k, v in ipairs(bottles) do
-      exports["qtarget"]:AddTargetEntity(NetworkGetEntityFromNetworkId(v.id), Atlantiss.Consumable.Alcohol.Settings[Atlantiss.Consumable.Alcohol.Bottles[v.alcohol].settings])
+      exports["qtarget"]:AddTargetEntity(NetworkGetEntityFromNetworkId(v.id), Ora.Consumable.Alcohol.Settings[Ora.Consumable.Alcohol.Bottles[v.alcohol].settings])
     end
   end)
 end

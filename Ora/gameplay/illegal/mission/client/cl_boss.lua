@@ -142,20 +142,20 @@ Citizen.CreateThread(
                             function(_, _, Selected)
                                 if Selected then
                                     local veh = ClosestVeh()
-                                    if (Atlantiss.Illegal.CarRoberry:IsMissionRunning()) then
-                                        if (veh == Atlantiss.Illegal.CarRoberry:GetMissionVehicle()) then
+                                    if (Ora.Illegal.CarRoberry:IsMissionRunning()) then
+                                        if (veh == Ora.Illegal.CarRoberry:GetMissionVehicle()) then
 
-                                            if (Atlantiss.Illegal.CarRoberry:VehicleHasBeenSprayed() == false) then
-                                                Atlantiss.Illegal.CarRoberry:ShowAdvancedNotification("NON NON NON! LA VOITURE EST PAS REPEINTE ! TU M'AS CRAME !")
+                                            if (Ora.Illegal.CarRoberry:VehicleHasBeenSprayed() == false) then
+                                                Ora.Illegal.CarRoberry:ShowAdvancedNotification("NON NON NON! LA VOITURE EST PAS REPEINTE ! TU M'AS CRAME !")
 
-                                                TriggerServerCallback("Atlantiss::SE::RetrieveMissionById", function(mission)
+                                                TriggerServerCallback("Ora::SE::RetrieveMissionById", function(mission)
                                                     currentMission = mission
-                                                    Atlantiss.Illegal.CarRoberry:LogToDiscord("[USEBUG] A tenté de rendre une voiture sans repeindre", "warning")
-                                                    TriggerEvent("Atlantiss:illegal:counterStop")
+                                                    Ora.Illegal.CarRoberry:LogToDiscord("[USEBUG] A tenté de rendre une voiture sans repeindre", "warning")
+                                                    TriggerEvent("Ora:illegal:counterStop")
                                                     local playerCoords = LocalPlayer().Pos
                                                     TriggerServerEvent("MissionFinished", currentMission)
                                                     inMission = false
-                                                    Atlantiss.Illegal.CarRoberry:Finish()
+                                                    Ora.Illegal.CarRoberry:Finish()
     
                                                     if currentMission.blip ~= nil then
                                                         RemoveBlip(currentMission.blip)
@@ -164,21 +164,21 @@ Citizen.CreateThread(
                                                     TriggerServerEvent("missionEnd", currentMission)
                                                     currentMission = {}
                                                     end,
-                                                    Atlantiss.Illegal.CarRoberry:GetMissionId()
+                                                    Ora.Illegal.CarRoberry:GetMissionId()
                                                 ) 
 
                                                 return false
                                             end
 
-                                            TriggerServerCallback("Atlantiss::SE::RetrieveMissionById", function(mission)
+                                            TriggerServerCallback("Ora::SE::RetrieveMissionById", function(mission)
                                                 currentMission = mission
-                                                TriggerEvent("Atlantiss:illegal:counterStop")
+                                                TriggerEvent("Ora:illegal:counterStop")
                                                 local playerCoords = LocalPlayer().Pos
                                                 TriggerServerEvent("MissionFinished", currentMission)
                                                 DeleteEntity(veh)
                                                 inMission = false
-                                                Atlantiss.Illegal.CarRoberry:ShowAdvancedNotification("Bon boulot!")
-                                                Atlantiss.Illegal.CarRoberry:Finish()
+                                                Ora.Illegal.CarRoberry:ShowAdvancedNotification("Bon boulot!")
+                                                Ora.Illegal.CarRoberry:Finish()
 
                                                 if currentMission.blip ~= nil then
                                                     RemoveBlip(currentMission.blip)
@@ -215,10 +215,10 @@ Citizen.CreateThread(
                                                         math.randomseed(GetGameTimer())
                                                         local r = math.random(v.amount[1], v.amount[2])
                                                         TriggerServerCallback(
-                                                            "Atlantiss::SE::Money:Fake:AuthorizePayment", 
+                                                            "Ora::SE::Money:Fake:AuthorizePayment", 
                                                             function(token)
-                                                                TriggerServerEvent(Atlantiss.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Vol véhicule", LEGIT = false})
-                                                                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
+                                                                TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Vol véhicule", LEGIT = false})
+                                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
                                                             end,
                                                             {}
                                                         )
@@ -226,7 +226,7 @@ Citizen.CreateThread(
                                                     end
 
                                                     if k == "items" then
-                                                        Atlantiss.Inventory:AddItems(v)
+                                                        Ora.Inventory:AddItems(v)
                                                     end
                                                 end
                                                 TriggerServerEvent("missionEnd", currentMission)
@@ -234,13 +234,13 @@ Citizen.CreateThread(
                                                 currentMission = {}
 
                                                 end,
-                                                Atlantiss.Illegal.CarRoberry:GetMissionId()
+                                                Ora.Illegal.CarRoberry:GetMissionId()
                                             ) 
                                         else
-                                            Atlantiss.Illegal.CarRoberry:ShowAdvancedNotification("C'est pas la voiture que j'ai demandé!")
+                                            Ora.Illegal.CarRoberry:ShowAdvancedNotification("C'est pas la voiture que j'ai demandé!")
                                         end
                                     else
-                                        Atlantiss.Illegal.CarRoberry:ShowAdvancedNotification("Dégage d'ici avant que je te goume!")
+                                        Ora.Illegal.CarRoberry:ShowAdvancedNotification("Dégage d'ici avant que je te goume!")
                                     end
                                 end
                             end
@@ -261,11 +261,11 @@ Citizen.CreateThread(
                             function(_, _, Selected)
                                 if Selected then
                                     local veh = ClosestVeh()
-                                    if (Atlantiss.Illegal.Carjacking:IsMissionRunning()) then
-                                        if (veh == Atlantiss.Illegal.Carjacking:GetMissionVehicle()) then
-                                            TriggerServerCallback("Atlantiss::SE::RetrieveMissionById", function(mission)
+                                    if (Ora.Illegal.Carjacking:IsMissionRunning()) then
+                                        if (veh == Ora.Illegal.Carjacking:GetMissionVehicle()) then
+                                            TriggerServerCallback("Ora::SE::RetrieveMissionById", function(mission)
                                                 currentMission = mission
-                                                TriggerEvent("Atlantiss:illegal:counterStop")
+                                                TriggerEvent("Ora:illegal:counterStop")
                                                 local playerCoords = LocalPlayer().Pos
                                                 TriggerServerEvent("MissionFinished", currentMission)
                                                 DeleteEntity(veh)
@@ -278,7 +278,7 @@ Citizen.CreateThread(
                                                     1
                                                 )
                                                 
-                                                Atlantiss.Illegal.Carjacking:StopCarjacking()
+                                                Ora.Illegal.Carjacking:StopCarjacking()
 
                                                 if currentMission.blip ~= nil then
                                                     RemoveBlip(currentMission.blip)
@@ -315,10 +315,10 @@ Citizen.CreateThread(
                                                         math.randomseed(GetGameTimer())
                                                         local r = math.random(v.amount[1], v.amount[2])
                                                         TriggerServerCallback(
-                                                            "Atlantiss::SE::Money:Fake:AuthorizePayment", 
+                                                            "Ora::SE::Money:Fake:AuthorizePayment", 
                                                             function(token)
-                                                                TriggerServerEvent(Atlantiss.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Carjacking", LEGIT = false})
-                                                                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
+                                                                TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Carjacking", LEGIT = false})
+                                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
                                                             end,
                                                             {}
                                                         )
@@ -327,7 +327,7 @@ Citizen.CreateThread(
                                                     end
 
                                                     if k == "items" then
-                                                        Atlantiss.Inventory:AddItems(v)
+                                                        Ora.Inventory:AddItems(v)
                                                     end
                                                 end
                                                 TriggerServerEvent("missionEnd", currentMission)
@@ -335,7 +335,7 @@ Citizen.CreateThread(
                                                 currentMission = {}
 
                                                 end,
-                                                Atlantiss.Illegal.Carjacking:GetMissionId()
+                                                Ora.Illegal.Carjacking:GetMissionId()
                                             )
                                         else 
                                             ShowAdvancedNotification(

@@ -1,11 +1,11 @@
-Atlantiss.World.Vehicle.JackedVehicles = {}
+Ora.World.Vehicle.JackedVehicles = {}
 
 
 DecorRegister("drifttyres", 2)
 DecorRegister("hydraulicSystem", 2)
 
 
-function Atlantiss.World.Vehicle:Create(model, position, heading, options)
+function Ora.World.Vehicle:Create(model, position, heading, options)
     options = options or {}
     heading = heading or GetEntityHeading(LocalPlayer().Ped)
     local playerPed = LocalPlayer().Ped
@@ -15,17 +15,17 @@ function Atlantiss.World.Vehicle:Create(model, position, heading, options)
         return
     end
 
-    Atlantiss.Utils:RequestAndWAitForModel(model)
+    Ora.Utils:RequestAndWAitForModel(model)
     SetVehRadioStation(vehicle, "OFF")
   
     local canSend = false
     local vehicle = nil
-    Atlantiss.World:Debug(string.format("Vehicle ^5%s^3 will be registered as a legit vehicle", model))
-    TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterVehicle", 
+    Ora.World:Debug(string.format("Vehicle ^5%s^3 will be registered as a legit vehicle", model))
+    TriggerServerCallback("Ora::SE::Anticheat:RegisterVehicle", 
         function()
             vehicle = CreateVehicle(model, position.x, position.y, position.z, heading + 0.0, true, true)
-            Atlantiss.World:Debug(string.format("Vehicle ^5%s^3 is now created at position ^5%s %s %s^3", model, position.x, position.y, position.z))
-            Atlantiss.World.Vehicle:AddSpawnedVehicle(VehToNet(vehicle), LocalPlayer().Ped)
+            Ora.World:Debug(string.format("Vehicle ^5%s^3 is now created at position ^5%s %s %s^3", model, position.x, position.y, position.z))
+            Ora.World.Vehicle:AddSpawnedVehicle(VehToNet(vehicle), LocalPlayer().Ped)
             canSend = true
         end,
         modelHash
@@ -34,7 +34,7 @@ function Atlantiss.World.Vehicle:Create(model, position, heading, options)
     local localTime = GetGameTimer()
    
     while (canSend == false and localTime + 5000 > GetGameTimer()) do
-        Atlantiss.World:Debug(string.format("Vehicle ^5%s^3 is waiting callback from anticheat", model))
+        Ora.World:Debug(string.format("Vehicle ^5%s^3 is waiting callback from anticheat", model))
         Wait(100)
     end
 
@@ -79,7 +79,7 @@ function Atlantiss.World.Vehicle:Create(model, position, heading, options)
     self:ApplyDamagesToVehicle(vehicle, options.health)
   
     TriggerServerCallback(
-        'Atlantiss::SE::World:Vehicle:GetHandling',
+        'Ora::SE::World:Vehicle:GetHandling',
         function(status, res)
             if (status == true) then
                 for _, val in pairs(res) do
@@ -98,15 +98,15 @@ function Atlantiss.World.Vehicle:Create(model, position, heading, options)
           vehicleNetworkId = NetworkGetNetworkIdFromEntity(vehicle)
           while (not vehicleNetworkId or not NetworkDoesNetworkIdExist(vehicle)) and localTime + 5000 > GetGameTimer() and DoesEntityExist(vehicle) do
               Citizen.Wait(500)
-              Atlantiss.World:Debug(string.format("waiting for network entity id"))
+              Ora.World:Debug(string.format("waiting for network entity id"))
               NetworkRegisterEntityAsNetworked(vehicle)
               vehicleNetworkId = NetworkGetNetworkIdFromEntity(vehicle)
           end
           if not vehicleNetworkId then
-              Atlantiss.World:Debug(string.format("Cannot retrieve netid for vehicle entity ^5%s^3", vehicle))
+              Ora.World:Debug(string.format("Cannot retrieve netid for vehicle entity ^5%s^3", vehicle))
               return
           end
-          Atlantiss.World:Debug(string.format("Vehicle network id is ^5%s^3", vehicleNetworkId))
+          Ora.World:Debug(string.format("Vehicle network id is ^5%s^3", vehicleNetworkId))
           SetNetworkIdExistsOnAllMachines(vehicleNetworkId, true)
       end
     end)
@@ -115,7 +115,7 @@ function Atlantiss.World.Vehicle:Create(model, position, heading, options)
   -- Logic to create vehicle
 end
 
-function Atlantiss.World.Vehicle:ApplyCustomsToVehicle(vehicle, props)
+function Ora.World.Vehicle:ApplyCustomsToVehicle(vehicle, props)
   props = props or {}
     SetVehicleModKit(vehicle, 0)
 
@@ -412,7 +412,7 @@ function Atlantiss.World.Vehicle:ApplyCustomsToVehicle(vehicle, props)
     end
 end
 
-function Atlantiss.World.Vehicle:ApplyDamagesToVehicle(vehicle, health)
+function Ora.World.Vehicle:ApplyDamagesToVehicle(vehicle, health)
   health = health or {}
 
   health.tires = health.tires or {}
@@ -450,7 +450,7 @@ function Atlantiss.World.Vehicle:ApplyDamagesToVehicle(vehicle, health)
   end
 end
 
-function Atlantiss.World.Vehicle:AddItemIntoTrunk(vehicle, itemName)
+function Ora.World.Vehicle:AddItemIntoTrunk(vehicle, itemName)
   local vehicleStorageName = self:GetIdentifier(vehicle)
   local items = {
     {id = generateUUIDV2(), name = itemName, metadata = {}, label = nil}
@@ -459,12 +459,12 @@ function Atlantiss.World.Vehicle:AddItemIntoTrunk(vehicle, itemName)
   TriggerServerEvent("rage-reborn:TransfertToStorage", items, itemName, vehicleStorageName)
 end
 
-function Atlantiss.World.Vehicle:RemoveAllItemsNameFromTrunk(vehicle, itemName)
+function Ora.World.Vehicle:RemoveAllItemsNameFromTrunk(vehicle, itemName)
   local vehicleStorageName = self:GetIdentifier(vehicle)
-  TriggerServerEvent("Atlantiss::SE::World:Vehicle:RemoveAllItemsNameFromTrunk", vehicleStorageName, itemName)
+  TriggerServerEvent("Ora::SE::World:Vehicle:RemoveAllItemsNameFromTrunk", vehicleStorageName, itemName)
 end
 
-function Atlantiss.World.Vehicle:GetVehicleCustoms(vehicle)
+function Ora.World.Vehicle:GetVehicleCustoms(vehicle)
 	local color1, color2 = GetVehicleColours(vehicle)
   local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
 
@@ -583,7 +583,7 @@ function Atlantiss.World.Vehicle:GetVehicleCustoms(vehicle)
   }
 end
 
-function Atlantiss.World.Vehicle:GetVehicleHealth(vehicle)
+function Ora.World.Vehicle:GetVehicleHealth(vehicle)
 	if not vehicle or not DoesEntityExist(vehicle) then return {} end
 	local vehicleHealth = { doors = {}, tires = {}, windows = {}, body = GetVehicleBodyHealth(vehicle), engine = GetVehicleEngineHealth(vehicle), fuel = GetVehicleFuelLevel(vehicle)}
 
@@ -610,7 +610,7 @@ function Atlantiss.World.Vehicle:GetVehicleHealth(vehicle)
 	return vehicleHealth
 end
 
-function Atlantiss.World.Vehicle:GetIdentifier(vehicle)
+function Ora.World.Vehicle:GetIdentifier(vehicle)
   local status, vehicleIdentifier = pcall(
     function(vehicle) 
       if (DoesEntityExist(vehicle)) then
@@ -627,16 +627,16 @@ function Atlantiss.World.Vehicle:GetIdentifier(vehicle)
   end
 end
 
-function Atlantiss.World.Vehicle:SetFuel(vehicle, value)
+function Ora.World.Vehicle:SetFuel(vehicle, value)
     if type(value) == 'number' and value >= 0.0 and value <= 100.0 then
 		SetVehicleFuelLevel(vehicle, value + 0.0)
         DecorSetFloat(vehicle, "FUEL_LEVEL", GetVehicleFuelLevel(vehicle))
 	end
 end
 
-function Atlantiss.World.Vehicle:ApplyVisualDamages(vehicle, damageLevel)
+function Ora.World.Vehicle:ApplyVisualDamages(vehicle, damageLevel)
     local currentDamageLevel
-    for bodyHealth, damage in pairs(Atlantiss.World.Vehicle.DataDamagesLevelMapper) do
+    for bodyHealth, damage in pairs(Ora.World.Vehicle.DataDamagesLevelMapper) do
         if bodyHealth >= damageLevel and (not currentDamageLevel or currentDamageLevel >= bodyHealth) then
           currentDamageLevel = bodyHealth
         end
@@ -644,7 +644,7 @@ function Atlantiss.World.Vehicle:ApplyVisualDamages(vehicle, damageLevel)
     if not currentDamageLevel then
       return
     end
-    local dammageMapperValue = Atlantiss.World.Vehicle.DataDamagesLevelMapper[currentDamageLevel]
+    local dammageMapperValue = Ora.World.Vehicle.DataDamagesLevelMapper[currentDamageLevel]
     local damageIndicator = 0
     for damageFactorX = 0, 4 do
         local xOffset = -.5 + .5 * damageFactorX
@@ -658,7 +658,7 @@ function Atlantiss.World.Vehicle:ApplyVisualDamages(vehicle, damageLevel)
     end
 end
 
-function Atlantiss.World.Vehicle:Delete(entity)
+function Ora.World.Vehicle:Delete(entity)
   -- Logic to delete vehicle  
   if DoesEntityExist(entity) then
     DeleteEntity(entity)
@@ -667,28 +667,28 @@ function Atlantiss.World.Vehicle:Delete(entity)
 
 end
 
-function Atlantiss.World.Vehicle:SetVehicleHasBeenOwnedByPlayer(vehicle)
+function Ora.World.Vehicle:SetVehicleHasBeenOwnedByPlayer(vehicle)
   -- Logic to make a vehicle owned by a player
   if not HasVehicleBeenOwnedByPlayer(vehicle) then
     SetVehicleHasBeenOwnedByPlayer(vehicle, true)
   end
 end
 
-function Atlantiss.World.Vehicle:HasBeenOwnedByPlayer(vehicle)
+function Ora.World.Vehicle:HasBeenOwnedByPlayer(vehicle)
   return HasVehicleBeenOwnedByPlayer(vehicle)
 end
 
-function Atlantiss.World.Vehicle:SetPedAsDriver(vehicle, ped)
+function Ora.World.Vehicle:SetPedAsDriver(vehicle, ped)
   -- Teleport the ped in the vehicle and set him at the driver seat
     TaskWarpPedIntoVehicle(ped, vehicle, -1)
 end
 
-function Atlantiss.World.Vehicle:SetPedAsPassenger(vehicle, ped, seat)
+function Ora.World.Vehicle:SetPedAsPassenger(vehicle, ped, seat)
     -- Teleport the ped in the vehicle and set him at the driver seat
     TaskWarpPedIntoVehicle(ped, vehicle, seat)
 end
 
-function Atlantiss.World.Vehicle:GetNPCVehicleAround(position, radius, specificModel)
+function Ora.World.Vehicle:GetNPCVehicleAround(position, radius, specificModel)
   -- Return a NPC vehicle around for a given radius
   for vehicle in EnumerateVehicles() do
     if vehicle and DoesEntityExist(vehicle) and GetDistanceBetweenCoords(GetEntityCoords(vehicle), position, true) < (radius + 0.0) then
@@ -702,20 +702,20 @@ function Atlantiss.World.Vehicle:GetNPCVehicleAround(position, radius, specificM
   return false
 end
 
-function Atlantiss.World.Vehicle:AddDriver(vehicle, pedModel)
-    local driverPed = Atlantiss.World.Ped:Create(5, pedModel, GetEntityCoords(vehicle), 0.0)
+function Ora.World.Vehicle:AddDriver(vehicle, pedModel)
+    local driverPed = Ora.World.Ped:Create(5, pedModel, GetEntityCoords(vehicle), 0.0)
     self:SetPedAsDriver(vehicle, driverPed)
     return driverPed
 end
 
-function Atlantiss.World.Vehicle:AddPassenger(vehicle, pedModel, seat)
-    local passengerPed = Atlantiss.World.Ped:Create(5, pedModel, GetEntityCoords(vehicle), 0.0)
+function Ora.World.Vehicle:AddPassenger(vehicle, pedModel, seat)
+    local passengerPed = Ora.World.Ped:Create(5, pedModel, GetEntityCoords(vehicle), 0.0)
     self:SetPedAsPassenger(vehicle, passengerPed, seat)
 
     return passengerPed
 end
 
-function Atlantiss.World.Vehicle:IsPlayerInAnyVehicle(playerPed, returnEntity)
+function Ora.World.Vehicle:IsPlayerInAnyVehicle(playerPed, returnEntity)
   returnEntity = returnEntity or false
   if (returnEntity == false) then
     return IsPedInAnyVehicle(playerPed, false)
@@ -729,7 +729,7 @@ function Atlantiss.World.Vehicle:IsPlayerInAnyVehicle(playerPed, returnEntity)
   -- Returns true or false wether the player ped is in vehicle, and if returnEntity is true, it returns the vehicle
 end
 
-function Atlantiss.World.Vehicle:IsPlayerInVehicle(playerPed, vehicle, returnEntity)
+function Ora.World.Vehicle:IsPlayerInVehicle(playerPed, vehicle, returnEntity)
   returnEntity = returnEntity or false
   if (returnEntity == false) then
     return IsPedInVehicle(playerPed, vehicle, false)
@@ -860,7 +860,7 @@ local handlingData = {
 }
 
 -- sets the vehicle handling data, useful for setting single values
-function Atlantiss.World.Vehicle:SetVehicleHandlingData(Vehicle, Data, Value)
+function Ora.World.Vehicle:SetVehicleHandlingData(Vehicle, Data, Value)
     if DoesEntityExist(Vehicle) and Data and Value then
         for theKey, property in pairs(handlingData) do 
             if property == Data then
@@ -888,7 +888,7 @@ function Atlantiss.World.Vehicle:SetVehicleHandlingData(Vehicle, Data, Value)
 end
 
 -- this returns the data that, although not necesarilly needed, useful if you just want to get the value of one single property property
-function Atlantiss.World.Vehicle:GetVehicleHandlingData(Vehicle, Data)
+function Ora.World.Vehicle:GetVehicleHandlingData(Vehicle, Data)
     if DoesEntityExist(Vehicle) then
         for theKey, property in pairs(handlingData) do 
             if property == Data then
@@ -912,7 +912,7 @@ function Atlantiss.World.Vehicle:GetVehicleHandlingData(Vehicle, Data)
 end
 
 -- this returns **all** handling properties and their values in a table, the table will have following contents: "name" = the name of the property, "value" = a number, string or vector3, "type" = the type, int, float or vector3
-function Atlantiss.World.Vehicle:GetAllVehicleHandlingData(Vehicle)
+function Ora.World.Vehicle:GetAllVehicleHandlingData(Vehicle)
     local VehicleHandlingData = {}
     if DoesEntityExist(Vehicle) then
         for i, theData in pairs(handlingData) do 

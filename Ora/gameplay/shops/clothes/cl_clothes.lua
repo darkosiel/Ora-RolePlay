@@ -894,7 +894,7 @@ Citizen.CreateThread(
                                             tempData.data.bras = braseditInd - 1
                                             tempData.data.h = tshirt1 - 1
                                             tempData.data.hV = tshirt2 - 1
-                                            Atlantiss.Inventory:AddItem(tempData)
+                                            Ora.Inventory:AddItem(tempData)
                                         end
                                     }
                                     CloseAllMenus()
@@ -914,7 +914,7 @@ Citizen.CreateThread(
                             local amount = {}
                             local blackListedClothes = {}
 
-                            if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                            if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
                                 blackListedClothes = Clothes.remM
                             else
                                 blackListedClothes = Clothes.remF
@@ -1033,7 +1033,7 @@ Citizen.CreateThread(
                                         if Selected then
                                             local uuu = label
                                             if Clothes.type == 0 then
-                                                if Atlantiss.Inventory:CanReceive("clothe", 1) then
+                                                if Ora.Inventory:CanReceive("clothe", 1) then
                                                     if Clothes.component == 11 then
                                                         tempData = {
                                                             name = "clothe",
@@ -1056,7 +1056,7 @@ Citizen.CreateThread(
                                                             price = Clothes.pricePerClothes,
                                                             fct = function()
                                                                 local m = "female"
-                                                                if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                                                                if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
                                                                     m = "male"
                                                                 end
                                                                 items = {
@@ -1074,7 +1074,7 @@ Citizen.CreateThread(
                                                                     },
                                                                     label = clotheValue.LIST_RAW[clotheKeyInteger][clotheValue.CURRENT].Label
                                                                 }
-                                                                Atlantiss.Inventory:AddItem(items)
+                                                                Ora.Inventory:AddItem(items)
                                                             end
                                                         }
                                                         CloseAllMenus()
@@ -1082,13 +1082,13 @@ Citizen.CreateThread(
                                                     end
                                                 end
                                             else
-                                                if Atlantiss.Inventory:CanReceive("access", 1) then
+                                                if Ora.Inventory:CanReceive("access", 1) then
                                                     dataonWait = {
                                                         title = "Achat accessoires",
                                                         price = Clothes.pricePerClothes,
                                                         fct = function()
                                                             local m = "female"
-                                                            if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                                                            if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
                                                                 m = "male"
                                                             end
                                                             items = {
@@ -1103,7 +1103,7 @@ Citizen.CreateThread(
                                                                 },
                                                                 label = clotheValue.LIST_RAW[clotheKeyInteger][clotheValue.CURRENT].Label
                                                             }
-                                                            Atlantiss.Inventory:AddItem(items)
+                                                            Ora.Inventory:AddItem(items)
                                                         end
                                                     }
                                                     CloseAllMenus()
@@ -1344,7 +1344,7 @@ Citizen.CreateThread(
                                                         Clothes.component
                                                     )
                                                 end
-                                                if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                                                if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
                                                     Clothes.static = Clothes.category[i].staticM
                                                 else
                                                     Clothes.static = Clothes.category[i].staticF
@@ -1458,9 +1458,9 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, S)
                                     if S then
-                                        Atlantiss.Inventory.Data["clothe"][ixixi].data.bras = braseditInd - 1
-                                        Atlantiss.Inventory.Data["clothe"][ixixi].data.h = tshirt1 - 1
-                                        Atlantiss.Inventory.Data["clothe"][ixixi].data.hV = tshirt2 - 1
+                                        Ora.Inventory.Data["clothe"][ixixi].data.bras = braseditInd - 1
+                                        Ora.Inventory.Data["clothe"][ixixi].data.h = tshirt1 - 1
+                                        Ora.Inventory.Data["clothe"][ixixi].data.hV = tshirt2 - 1
                                     end
                                 end
                             )
@@ -1474,7 +1474,7 @@ Citizen.CreateThread(
                         {header = true, glare = false},
                         function()
                             local count = 0
-                            if tableCount(Atlantiss.Inventory:GetInventory()) == 0 then
+                            if tableCount(Ora.Inventory:GetInventory()) == 0 then
                                 RageUI.Button(
                                     "Vide",
                                     nil,
@@ -1484,7 +1484,7 @@ Citizen.CreateThread(
                                     end
                                 )
                             else
-                                for k, v in pairs(Atlantiss.Inventory:GetInventory()) do
+                                for k, v in pairs(Ora.Inventory:GetInventory()) do
                                     if k == "clothe" then
                                         for i = 1, #v, 1 do
                                             if v[i].label == nil then
@@ -1627,7 +1627,7 @@ Citizen.CreateThread(
                                         end
                                         if Selected then
                                             local ppp = label
-                                            if Atlantiss.Inventory:CanReceive("mask", 1) then
+                                            if Ora.Inventory:CanReceive("mask", 1) then
                                                 dataonWait = {
                                                     title = "Achat masque",
                                                     price = masks.price,
@@ -1642,7 +1642,7 @@ Citizen.CreateThread(
                                                             },
                                                             label = ppp
                                                         }
-                                                        Atlantiss.Inventory:AddItem(items)
+                                                        Ora.Inventory:AddItem(items)
                                                     end
                                                 }
 

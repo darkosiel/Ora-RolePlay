@@ -304,7 +304,7 @@ local function SeatTatoueur()
 
         local objloc = GetEntityCoords(object)
         local sitData = {x = objloc.x, y = objloc.y, z = objloc.z - .15, a = GetEntityHeading(object) + 180.0}
-        fakeEnt = Atlantiss.World.Object:Create(GetEntityModel(object), objloc, true, 0, 0)
+        fakeEnt = Ora.World.Object:Create(GetEntityModel(object), objloc, true, 0, 0)
         --PlaceObjectOnGroundProperly(fakeEnt)
         FreezeEntityPosition(fakeEnt, true)
         SetEntityHeading(fakeEnt, sitData.a - 180.0)
@@ -317,7 +317,7 @@ local function SeatTatoueur()
 
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
 
-        fpxm = Atlantiss.World.Object:Create(1334823285, LocalPlayer().Pos, true, 0, 0)
+        fpxm = Ora.World.Object:Create(1334823285, LocalPlayer().Pos, true, 0, 0)
         AttachEntityToEntity(fpxm,LocalPlayer().Ped,GetPedBoneIndex(LocalPlayer().Ped, 57005),vector3(0.15, 0.02, 0.02),vector3(-200.0, 0.0, -0.0),0,0,0,0,0,1)
     end
     TattoJob.Tatoueur = not TattoJob.Tatoueur
@@ -350,7 +350,7 @@ local function SeatTatoueur2()
 
         local objloc = GetEntityCoords(object)
         local sitData = {x = objloc.x, y = objloc.y, z = objloc.z - .15, a = GetEntityHeading(object) + 180.0}
-        fakeEnt = Atlantiss.World.Object:Create(GetEntityModel(object), objloc, true, 0, 0)
+        fakeEnt = Ora.World.Object:Create(GetEntityModel(object), objloc, true, 0, 0)
         --PlaceObjectOnGroundProperly(fakeEnt)
         FreezeEntityPosition(fakeEnt, true)
         SetEntityHeading(fakeEnt, sitData.a - 180.0)
@@ -363,7 +363,7 @@ local function SeatTatoueur2()
 
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
 
-        fpxm = Atlantiss.World.Object:Create(1334823285, LocalPlayer().Pos, true, 0, 0)
+        fpxm = Ora.World.Object:Create(1334823285, LocalPlayer().Pos, true, 0, 0)
         AttachEntityToEntity(fpxm,LocalPlayer().Ped,GetPedBoneIndex(LocalPlayer().Ped, 57005),vector3(0.15, 0.02, 0.02),vector3(-200.0, 0.0, -0.0),0,0,0,0,0,1)
     end
     TattoJob2.Tatoueur = not TattoJob2.Tatoueur
@@ -494,7 +494,7 @@ local function spawnManequin()
     while (not HasAnimDictLoaded("random@mugging3")) do
         Citizen.Wait(1)
     end
-    pedPrev = Atlantiss.World.Ped:Create(5, skinLIST[skinIndex], LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped))
+    pedPrev = Ora.World.Ped:Create(5, skinLIST[skinIndex], LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped))
     SetPedFleeAttributes(pedPrev, 0, 0)
     SetPedKeepTask(pedPrev, true)
     SetBlockingOfNonTemporaryEvents(pedPrev, true)
@@ -521,7 +521,7 @@ local function spawnManequin()
 end
 local function respawnSkin()
     local p = pedPrev
-    pedPrev = Atlantiss.World.Ped:Create(5, skinLIST[skinIndex], GetEntityCoords(p), GetEntityHeading(p))
+    pedPrev = Ora.World.Ped:Create(5, skinLIST[skinIndex], GetEntityCoords(p), GetEntityHeading(p))
     DeleteEntity(p)
     SetPedFleeAttributes(pedPrev, 0, 0)
     SetPedKeepTask(pedPrev, true)
@@ -595,7 +595,7 @@ AddEventHandler(
     function(tatoo)
         -- drawTattoo(tatoo[1],tatoo[2])
         ClearPedDecorations(LocalPlayer().Ped)
-        Atlantiss.Player:ApplyAllSavedTattoos(false)
+        Ora.Player:ApplyAllSavedTattoos(false)
         AddPedDecorationFromHashes(LocalPlayer().Ped, tatoo[1], tatoo[2])
     end
 )
@@ -605,7 +605,7 @@ AddEventHandler(
     "sendTatoo:Data3",
     function(tatoo)
         ClearPedDecorations(LocalPlayer().Ped)
-        Atlantiss.Player:ApplyAllSavedTattoos(false)
+        Ora.Player:ApplyAllSavedTattoos(false)
     end
 )
 RegisterNetEvent("sendTatoo:Data4")
@@ -615,8 +615,8 @@ AddEventHandler(
         table.insert(currentTattoos, {hash = tatoo[1], dict = tatoo[2]})
         ClearPedDecorations(LocalPlayer().Ped)
         TriggerServerEvent("tatoo:add", currentTattoos)
-        Atlantiss.Config:SetDataCollection("PlayerTattoos", currentTattoos)
-        Atlantiss.Player:ApplyAllSavedTattoos(false)
+        Ora.Config:SetDataCollection("PlayerTattoos", currentTattoos)
+        Ora.Player:ApplyAllSavedTattoos(false)
     end
 )
 
@@ -679,7 +679,7 @@ Citizen.CreateThread(function()
                             local tattooGunProp = "v_ilev_ta_tatgun"
                             local ped = LocalPlayer().Ped
                             local coords = GetEntityCoords(ped)
-                            tattooGun = Atlantiss.World.Object:Create(tattooGunProp, coords, true, true, true)
+                            tattooGun = Ora.World.Object:Create(tattooGunProp, coords, true, true, true)
                             AttachEntityToEntity(tattooGun, ped, GetPedBoneIndex(ped, 18905), 0.15, 0.04, 0.0, 215.0, 0.0, 0.0, true, true, false, true, 1, true)
                         else
                             if DoesEntityExist(tattooGun) then

@@ -113,9 +113,9 @@ Citizen.CreateThread(
                 for k, v in pairs(weapon_name) do
                     Wait(200)
                     if GetHashKey(v) == pp then
-                        if Atlantiss.Inventory.Data[k] ~= nil and #Atlantiss.Inventory.Data[k] == 0 and not onShooting then
+                        if Ora.Inventory.Data[k] ~= nil and #Ora.Inventory.Data[k] == 0 and not onShooting then
                             RemoveWeaponFromPed(LocalPlayer().Ped, pp)
-                        elseif Atlantiss.Inventory.Data[k] == nil and not onShooting then
+                        elseif Ora.Inventory.Data[k] == nil and not onShooting then
                             RemoveWeaponFromPed(LocalPlayer().Ped, pp)
                         end
                     end
@@ -130,13 +130,13 @@ Citizen.CreateThread(
 )
 
 AddEventHandler(
-    "Atlantiss:EditTel",
+    "Ora:EditTel",
     function()
         RageUI.Visible(RMenu:Get("phone", "choose_card"), true)
     end
 )
 
-RMenu.Add("phone", "choose_card", RageUI.CreateMenu("Atlantiss", "Cartes bancaire disponibles", 10, 200))
+RMenu.Add("phone", "choose_card", RageUI.CreateMenu("Ora", "Cartes bancaire disponibles", 10, 200))
 
 Citizen.CreateThread(
     function()
@@ -149,9 +149,9 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = false, glare = false},
                     function()
-                        for __i = 1, #Atlantiss.Inventory.Data["bank_card"], 1 do
+                        for __i = 1, #Ora.Inventory.Data["bank_card"], 1 do
                             RageUI.Button(
-                                Items["bank_card"].label .. " #" .. Atlantiss.Inventory.Data["bank_card"][__i].data.number,
+                                Items["bank_card"].label .. " #" .. Ora.Inventory.Data["bank_card"][__i].data.number,
                                 nil,
                                 {},
                                 true,
@@ -160,9 +160,9 @@ Citizen.CreateThread(
                                         local code = KeyboardInput("Veuillez entrer le code", nil, 4)
                                         code = tonumber(code)
                                         if code ~= nil then
-                                            if code == Atlantiss.Inventory.Data["bank_card"][__i].data.code then
-                                                for _i = 1, #Atlantiss.Inventory.Data["tel"], 1 do
-                                                    local x = Atlantiss.Inventory.Data["tel"][_i]
+                                            if code == Ora.Inventory.Data["bank_card"][__i].data.code then
+                                                for _i = 1, #Ora.Inventory.Data["tel"], 1 do
+                                                    local x = Ora.Inventory.Data["tel"][_i]
                                                     if x.id == currPh then
                                                         if x.data.accounts == nil then
                                                             x.data.accounts = {}
@@ -171,18 +171,18 @@ Citizen.CreateThread(
                                                         for i = 1, #x.data.accounts, 1 do
                                                             if
                                                                 x.data.accounts[i].account ==
-                                                                    Atlantiss.Inventory.Data["bank_card"][__i].data.account
+                                                                    Ora.Inventory.Data["bank_card"][__i].data.account
                                                              then
                                                                 f = true
-                                                                TriggerEvent('atlantiss:InvNotification', "Carte déjà liée", "error")
+                                                                TriggerEvent('Ora:InvNotification', "Carte déjà liée", "error")
                                                             end
                                                         end
                                                         if not f then
                                                             table.insert(
                                                                 x.data.accounts,
-                                                                Atlantiss.Inventory.Data["bank_card"][__i].data
+                                                                Ora.Inventory.Data["bank_card"][__i].data
                                                             )
-                                                            TriggerEvent('atlantiss:InvNotification', "Carte liée")
+                                                            TriggerEvent('Ora:InvNotification', "Carte liée")
                                                         end
 
                                                         CloseAllMenus()
@@ -190,7 +190,7 @@ Citizen.CreateThread(
                                                     end
                                                 end
                                             else
-                                                TriggerEvent('atlantiss:InvNotification', "Code incorrect", "error")
+                                                TriggerEvent('Ora:InvNotification', "Code incorrect", "error")
                                             end
                                         end
                                     end
@@ -207,8 +207,8 @@ Citizen.CreateThread(
 exports(
     "getCurrentTel",
     function()
-        for i = 1, #Atlantiss.Inventory.Data["tel"], 1 do
-            local x = Atlantiss.Inventory.Data["tel"][i]
+        for i = 1, #Ora.Inventory.Data["tel"], 1 do
+            local x = Ora.Inventory.Data["tel"][i]
             if x.id == currPh then
                 if x.data.accounts == nil then
                     x.data.accounts = {}
@@ -223,8 +223,8 @@ RegisterNetEvent("DeleteCard")
 AddEventHandler(
     "DeleteCard",
     function(id)
-        for i = 1, #Atlantiss.Inventory.Data["tel"], 1 do
-            local x = Atlantiss.Inventory.Data["tel"][i]
+        for i = 1, #Ora.Inventory.Data["tel"], 1 do
+            local x = Ora.Inventory.Data["tel"][i]
             if x.id == currPh then
                 table.remove(x.data.accounts, id + 1)
             end

@@ -1,7 +1,7 @@
-Atlantiss.ZoneSystem = {}
-Atlantiss.ZoneSystem.WaitTime = 3600000 -- 1 hour
-Atlantiss.ZoneSystem.PrintStuff = true
-Atlantiss.ZoneSystem.OpenHours = {
+Ora.ZoneSystem = {}
+Ora.ZoneSystem.WaitTime = 3600000 -- 1 hour
+Ora.ZoneSystem.PrintStuff = true
+Ora.ZoneSystem.OpenHours = {
   22,
   23,
   0,
@@ -9,7 +9,7 @@ Atlantiss.ZoneSystem.OpenHours = {
   2,
   3,
 }
-Atlantiss.ZoneSystem.Bars = {
+Ora.ZoneSystem.Bars = {
   ["Unicorn"] = { Pos = vector3(121.03, -1288.75, 28.26), JobName = "unicorn", MoneyPerHour = 500, MaxDistance = 20.0 },
   ["Tequilala"] = { Pos = vector3(-560.29, 286.08, 82.17), JobName = "tequilala", MoneyPerHour = 500, MaxDistance = 15.0 },
   ["Galaxy"] = { Pos = vector3(-1593.92, -3012.15, -79.0), JobName = "night", MoneyPerHour = 500, MaxDistance = 20.0 },
@@ -20,14 +20,14 @@ Atlantiss.ZoneSystem.Bars = {
   ["8 Billards"] = { Pos = vector3(-1586.14, -995.74, 12.08), JobName = "billards", MoneyPerHour = 500, MaxDistance = 20.0 },
 }
 
-function Atlantiss.ZoneSystem:GetModuleName()
+function Ora.ZoneSystem:GetModuleName()
   return "ZoneSystem"
 end
 
-function Atlantiss.ZoneSystem:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.ZoneSystem:GetModuleName(), message))
+function Ora.ZoneSystem:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.ZoneSystem:GetModuleName(), message))
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.ZoneSystem:GetModuleName())
+Ora.Modules:Register(Ora.ZoneSystem:GetModuleName())

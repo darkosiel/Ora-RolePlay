@@ -1,8 +1,8 @@
 local isWeaponBanned = false
 
-RegisterNetEvent("Atlantiss::Player:banWeapon")
+RegisterNetEvent("Ora::Player:banWeapon")
 AddEventHandler(
-    "Atlantiss::Player:banWeapon",
+    "Ora::Player:banWeapon",
     function(weaponBanFlag)
       isWeaponBanned = weaponBanFlag
     end

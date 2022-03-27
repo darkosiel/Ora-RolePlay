@@ -1,7 +1,7 @@
-Atlantiss.World.Appart = {}
+Ora.World.Appart = {}
 
 RegisterServerCallback(
-    "Atlantiss::SE::World:Appart:GetAll",
+    "Ora::SE::World:Appart:GetAll",
     function(source, callback)
         local results = MySQL.Sync.fetchAll(
             "SELECT * FROM `players_appartement` ORDER BY id ASC",
@@ -24,7 +24,7 @@ RegisterServerCallback(
               value.coowner = json.decode(value.coowner)
             end
 
-            value.zoneId = Atlantiss.Core:GetGridZoneId(value.pos.x, value.pos.y)
+            value.zoneId = Ora.Core:GetGridZoneId(value.pos.x, value.pos.y)
             
             if (value.capacity == nil) then
               value.capacity = "200KG"
@@ -43,7 +43,7 @@ RegisterServerCallback(
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::World:Appart:GetById",
+    "Ora::SE::World:Appart:GetById",
     function(source, callback, id)
       local results = MySQL.Sync.fetchAll(
         "SELECT * FROM `players_appartement` WHERE id = @id",
@@ -66,7 +66,7 @@ RegisterServerCallback(
           value.coowner = json.decode(value.coowner)
         end
 
-        value.zoneId = Atlantiss.Core:GetGridZoneId(value.pos.x, value.pos.y)
+        value.zoneId = Ora.Core:GetGridZoneId(value.pos.x, value.pos.y)
         
         if (value.capacity == nil) then
           value.capacity = "200KG"
@@ -82,9 +82,9 @@ RegisterServerCallback(
 )
 
 
-RegisterServerEvent("Atlantiss::SE::World:Appart:LogUpdates")
+RegisterServerEvent("Ora::SE::World:Appart:LogUpdates")
 AddEventHandler(
-  "Atlantiss::SE::World:Appart:LogUpdates",
+  "Ora::SE::World:Appart:LogUpdates",
   function(OldConfig, UpdatedProperty)
     local src = source
     local Args = {string.format("Changements immobiliers sur la propriété `%s`\n", UpdatedProperty["name"])}
@@ -106,14 +106,14 @@ AddEventHandler(
           string.format(
             "- %s **%s** en **%s**",
             Translate[key] or key,
-            key == "indexx" and Atlantiss.Jobs.Immo:GetInteriorById(value).label or value,
-            key == "indexx" and Atlantiss.Jobs.Immo:GetInteriorById(UpdatedProperty[key]).label or UpdatedProperty[key]
+            key == "indexx" and Ora.Jobs.Immo:GetInteriorById(value).label or value,
+            key == "indexx" and Ora.Jobs.Immo:GetInteriorById(UpdatedProperty[key]).label or UpdatedProperty[key]
           )
         )
       end
     end
     
-    TriggerEvent("atlantiss:sendToDiscordFromServer", src, 38, table.concat(Args, "\n"), "info")
+    TriggerEvent("Ora:sendToDiscordFromServer", src, 38, table.concat(Args, "\n"), "info")
   end
 )
 

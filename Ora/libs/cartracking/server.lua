@@ -1,8 +1,8 @@
 local vehiclesLocalisation = {}
 
-RegisterServerEvent("atlantissCar:saveCarPosition")
+RegisterServerEvent("OraCar:saveCarPosition")
 AddEventHandler(
-    "atlantissCar:saveCarPosition",
+    "OraCar:saveCarPosition",
     function(carIdentifier, position)
         if (carIdentifier ~= nil) then
             vehiclesLocalisation[carIdentifier] = position
@@ -10,9 +10,9 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("atlantissCar:poundVehicle")
+RegisterServerEvent("OraCar:poundVehicle")
 AddEventHandler(
-    "atlantissCar:poundVehicle",
+    "OraCar:poundVehicle",
     function(carIdentifier)
         local explodedPlate = explode(carIdentifier, "|")
 
@@ -26,7 +26,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "atlantissCar:getCarPositionWithoutModel",
+    "OraCar:getCarPositionWithoutModel",
     function(source, callback, carIdentifier)
         local vehicleModel = nil
         print(carIdentifier)
@@ -100,7 +100,7 @@ RegisterServerCallback(
 )
 
 RegisterServerCallback(
-    "atlantissCar:getCarPosition",
+    "OraCar:getCarPosition",
     function(source, callback, carIdentifier)
         local carIdentifierPlate = nil
         if (vehiclesLocalisation[carIdentifier] ~= nil) then

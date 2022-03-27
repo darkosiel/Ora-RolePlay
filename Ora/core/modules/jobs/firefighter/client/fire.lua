@@ -4,7 +4,7 @@
 --      License: GNU GPL 3.0      --
 --================================--
 
-Atlantiss.Jobs.Firefighter.Fire = {
+Ora.Jobs.Firefighter.Fire = {
 	active = {},
 	removed = {},
 	__index = self,
@@ -16,7 +16,7 @@ Atlantiss.Jobs.Firefighter.Fire = {
 	end
 }
 
-function Atlantiss.Jobs.Firefighter.Fire:createFlame(fireIndex, flameIndex, coords)
+function Ora.Jobs.Firefighter.Fire:createFlame(fireIndex, flameIndex, coords)
 	if not self.removed[fireIndex] then
 		if self.active[fireIndex] == nil then
 			self.active[fireIndex] = {
@@ -30,7 +30,7 @@ function Atlantiss.Jobs.Firefighter.Fire:createFlame(fireIndex, flameIndex, coor
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
+function Ora.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
 	if not (fireIndex and flameIndex and self.active[fireIndex]) then
 		return
 	end
@@ -72,7 +72,7 @@ function Atlantiss.Jobs.Firefighter.Fire:removeFlame(fireIndex, flameIndex)
 	end
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex, callback)
+function Ora.Jobs.Firefighter.Fire:remove(fireIndex, callback)
 	if not (self.active[fireIndex] and self.active[fireIndex].particles) then
 		return
 	end
@@ -95,7 +95,7 @@ function Atlantiss.Jobs.Firefighter.Fire:remove(fireIndex, callback)
 	)
 end
 
-function Atlantiss.Jobs.Firefighter.Fire:removeAll(callback)
+function Ora.Jobs.Firefighter.Fire:removeAll(callback)
 	for k, v in pairs(self.active) do
 		self:remove(k)
         Citizen.Wait(20)
@@ -131,7 +131,7 @@ Citizen.CreateThread(
 		
 		while true do
 			Citizen.Wait(1500)
-			for fireIndex, v in pairs(Atlantiss.Jobs.Firefighter.Fire.active) do
+			for fireIndex, v in pairs(Ora.Jobs.Firefighter.Fire.active) do
 				if countElements(v.particles) ~= 0 then
 					for flameIndex, _v in pairs(v.particles) do
 						if v.flameCoords[flameIndex] ~= nil then
@@ -156,14 +156,14 @@ Citizen.CreateThread(
 	function()
 		while true do
 			local pedCoords = GetEntityCoords(GetPlayerPed(-1))
-			for fireIndex, v in pairs(Atlantiss.Jobs.Firefighter.Fire.active) do
-				for flameIndex, coords in pairs(Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords) do
+			for fireIndex, v in pairs(Ora.Jobs.Firefighter.Fire.active) do
+				for flameIndex, coords in pairs(Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords) do
 					Citizen.Wait(10)
 					while syncInProgress do
 						Citizen.Wait(10)
 					end
 					syncInProgress = true
-					if Atlantiss.Jobs.Firefighter.Fire.active[fireIndex] and Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex] and not Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].particles[flameIndex] and #(coords - pedCoords) < 300.0 then
+					if Ora.Jobs.Firefighter.Fire.active[fireIndex] and Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex] and not Ora.Jobs.Firefighter.Fire.active[fireIndex].particles[flameIndex] and #(coords - pedCoords) < 300.0 then
 						local z = coords.z
 		
 						repeat
@@ -175,18 +175,18 @@ Citizen.CreateThread(
 						until ground
 						z = newZ
 	
-						Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flames[flameIndex] = StartScriptFire(coords.x, coords.y, z, 0, false)
+						Ora.Jobs.Firefighter.Fire.active[fireIndex].flames[flameIndex] = StartScriptFire(coords.x, coords.y, z, 0, false)
 
-						if Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flames[flameIndex] then -- Make sure the fire has been spawned properly
-							Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex] = vector3(coords.x, coords.y, z)
+						if Ora.Jobs.Firefighter.Fire.active[fireIndex].flames[flameIndex] then -- Make sure the fire has been spawned properly
+							Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex] = vector3(coords.x, coords.y, z)
 		
 							SetPtfxAssetNextCall("scr_agencyheistb")
 							
-							Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].particles[flameIndex] = StartParticleFxLoopedAtCoord(
+							Ora.Jobs.Firefighter.Fire.active[fireIndex].particles[flameIndex] = StartParticleFxLoopedAtCoord(
 								"scr_env_agency3b_smoke",
-								Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].x,
-								Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].y,
-								Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].z + 1.0,
+								Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].x,
+								Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].y,
+								Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].z + 1.0,
 								0.0,
 								0.0,
 								0.0,
@@ -199,11 +199,11 @@ Citizen.CreateThread(
 						
 							SetPtfxAssetNextCall("scr_trevor3")
 						
-							Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameParticles[flameIndex] = StartParticleFxLoopedAtCoord(
+							Ora.Jobs.Firefighter.Fire.active[fireIndex].flameParticles[flameIndex] = StartParticleFxLoopedAtCoord(
 								"scr_trev3_trailer_plume",
-								Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].x,
-								Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].y,
-								Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].z + 1.2,
+								Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].x,
+								Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].y,
+								Ora.Jobs.Firefighter.Fire.active[fireIndex].flameCoords[flameIndex].z + 1.2,
 								0.0,
 								0.0,
 								0.0,
@@ -215,7 +215,7 @@ Citizen.CreateThread(
 							)
 	
 						else
-							Atlantiss.Jobs.Firefighter.Fire.active[fireIndex].flames[flameIndex] = nil
+							Ora.Jobs.Firefighter.Fire.active[fireIndex].flames[flameIndex] = nil
 						end
 					end
 					syncInProgress = false

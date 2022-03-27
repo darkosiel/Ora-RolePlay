@@ -1,8 +1,8 @@
-function Atlantiss.Instance:Initialize()
+function Ora.Instance:Initialize()
 
 end
 
-function Atlantiss.Instance:GetIdForCoords(x, y, z)
+function Ora.Instance:GetIdForCoords(x, y, z)
   if (type(x) == "table") then
     local zFromTable = x.z
     if (FromTable == 0) then
@@ -19,7 +19,7 @@ function Atlantiss.Instance:GetIdForCoords(x, y, z)
   return (x * y * z) / z 
 end
 
-function Atlantiss.Instance:HasPropertyRoutingBucket(propertyName)
+function Ora.Instance:HasPropertyRoutingBucket(propertyName)
   if (self.PropertiesToBucket[propertyName] ~= nil) then
       return true
   end
@@ -27,7 +27,7 @@ function Atlantiss.Instance:HasPropertyRoutingBucket(propertyName)
   return false
 end
 
-function Atlantiss.Instance:GenerateNewBucketList()
+function Ora.Instance:GenerateNewBucketList()
   local minBucket = 1  
   local maxBucket = 63
   local newBuckets = {}
@@ -38,8 +38,8 @@ function Atlantiss.Instance:GenerateNewBucketList()
   return newBuckets
 end
 
-function Atlantiss.Instance:RegisterRoutingBucketForProperty(propertyId, propertyName, propertyData)
-  Atlantiss.Instance:Debug(string.format("Registering new instance ^5%s^3 with property id ^5%s^3.", propertyName, propertyId))
+function Ora.Instance:RegisterRoutingBucketForProperty(propertyId, propertyName, propertyData)
+  Ora.Instance:Debug(string.format("Registering new instance ^5%s^3 with property id ^5%s^3.", propertyName, propertyId))
 
     if self.PropertyIdsToBucket[propertyId] == nil then
       self.PropertyIdsToBucket[propertyId] = self:GenerateNewBucketList()
@@ -60,42 +60,42 @@ function Atlantiss.Instance:RegisterRoutingBucketForProperty(propertyId, propert
             self.Properties[propertyName][dataKey] = dataValue
           end
 
-          Atlantiss.Instance:Debug(string.format("Routing bucket assigned to instance ^5%s^3 is ^5%s^3.", propertyName, key))
+          Ora.Instance:Debug(string.format("Routing bucket assigned to instance ^5%s^3 is ^5%s^3.", propertyName, key))
           return key
         end
     end
 end
 
-function Atlantiss.Instance:GetPropertyData(propertyName)
+function Ora.Instance:GetPropertyData(propertyName)
   if self.Properties[propertyName] == nil then
-    Atlantiss.Instance:Debug(string.format("Instance ^5%s^3 has no property data. Returning empty object", propertyName))
+    Ora.Instance:Debug(string.format("Instance ^5%s^3 has no property data. Returning empty object", propertyName))
     return {}
   end
 
-  Atlantiss.Instance:Debug(string.format("Returning instance ^5%s^3 property data.", propertyName))
+  Ora.Instance:Debug(string.format("Returning instance ^5%s^3 property data.", propertyName))
   return self.Properties[propertyName]
 end
 
-function Atlantiss.Instance:AddPlayerToInstance(propertyName, playerId)
+function Ora.Instance:AddPlayerToInstance(propertyName, playerId)
   if (self:IsInstanceCreated(propertyName) == false) then
     self:Debug(string.format("Property ^5%s^3 does not exists", propertyName))
-    TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", playerId, string.format("La propriété ~b~%s~s~ n'est pas enregistrée", propertyName))
+    TriggerClientEvent("Ora::CE::Core:ShowNotification", playerId, string.format("La propriété ~b~%s~s~ n'est pas enregistrée", propertyName))
     return false
   end
 
   if self.Properties[propertyName] == nil then
     self:Debug(string.format("Instance ^5%s^3 has no property data.", propertyName))
-    TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", playerId, string.format("La propriété ~b~%s~s~ n'est pas enregistrée", propertyName))
+    TriggerClientEvent("Ora::CE::Core:ShowNotification", playerId, string.format("La propriété ~b~%s~s~ n'est pas enregistrée", propertyName))
     return false
   end
 
   self.Properties[propertyName].members[playerId] = true
   self.PlayerToProperties[playerId] = propertyName
-  Atlantiss.RoutingBucket:SetPlayerToRoutingBucket(playerId, self.Properties[propertyName].bucket_id)
+  Ora.RoutingBucket:SetPlayerToRoutingBucket(playerId, self.Properties[propertyName].bucket_id)
   self:Debug(string.format("Player ^5%s^3 has been added to property ^5%s^3 in bucket id ^5%s^3", playerId, propertyName, self.Properties[propertyName].bucket_id))
 end
 
-function Atlantiss.Instance:CanInstanceBeRemoved(propertyName)
+function Ora.Instance:CanInstanceBeRemoved(propertyName)
   self:Debug(string.format("Verifying if instance ^5%s^3 can be removed", propertyName))
   local propertyData = self:GetPropertyData(propertyName)
 
@@ -119,10 +119,10 @@ function Atlantiss.Instance:CanInstanceBeRemoved(propertyName)
   return true
 end
 
-function Atlantiss.Instance:RemovePlayerFromInstance(propertyName, playerId)
+function Ora.Instance:RemovePlayerFromInstance(propertyName, playerId)
   if (self:IsInstanceCreated(propertyName) == false) then
     self:Debug(string.format("Property ^5%s^3 does not exists", propertyName))
-    TriggerClientEvent("Atlantiss::CE::Core:ShowNotification", playerId, string.format("La propriété ~b~%s~s~ n'est pas enregistrée", propertyName))
+    TriggerClientEvent("Ora::CE::Core:ShowNotification", playerId, string.format("La propriété ~b~%s~s~ n'est pas enregistrée", propertyName))
     return false
   end
 
@@ -130,7 +130,7 @@ function Atlantiss.Instance:RemovePlayerFromInstance(propertyName, playerId)
   if (propertyData.members ~= nil and propertyData.members[playerId] ~= nil) then
     propertyData.members[playerId] = nil
     self.PlayerToProperties[playerId] = nil
-    Atlantiss.RoutingBucket:SetPlayerToRoutingBucket(playerId, Atlantiss.RoutingBucket:GetDefaultSharedBucket())
+    Ora.RoutingBucket:SetPlayerToRoutingBucket(playerId, Ora.RoutingBucket:GetDefaultSharedBucket())
     self:Debug(string.format("Player ^5%s^3 has been removed from property ^5%s^3 in bucket id ^5%s^3", playerId, propertyName, propertyData.bucket_id))
   end
 
@@ -139,12 +139,12 @@ function Atlantiss.Instance:RemovePlayerFromInstance(propertyName, playerId)
   end
 end
 
-function Atlantiss.Instance:RemovePlayerFromInstanceBecauseOfDrop(playerId)
+function Ora.Instance:RemovePlayerFromInstanceBecauseOfDrop(playerId)
   local propertyName = nil
   if (self.PlayerToProperties[playerId] ~= nil) then
     propertyName = self.PlayerToProperties[playerId]
     self:RemovePlayerFromInstance(propertyName, playerId)
-    Atlantiss.Instance:Debug(string.format("Player ^5%s^3 removed from instance ^5%s^3", playerId, propertyName))
+    Ora.Instance:Debug(string.format("Player ^5%s^3 removed from instance ^5%s^3", playerId, propertyName))
   end
   
   self:Debug(string.format("Player ^5%s^3 has not been removed from because he is not registered in a property", playerId))
@@ -157,13 +157,13 @@ function Atlantiss.Instance:RemovePlayerFromInstanceBecauseOfDrop(playerId)
 
 end
 
-function Atlantiss.Instance:RemoveInstance(propertyName)
+function Ora.Instance:RemoveInstance(propertyName)
   self:DestroyRoutingBucketForProperty(propertyName)
   self.Properties[propertyName] = nil
-  Atlantiss.Instance:Debug(string.format("Removing instance ^5%s^3", propertyName))
+  Ora.Instance:Debug(string.format("Removing instance ^5%s^3", propertyName))
 end
 
-function Atlantiss.Instance:IsInstanceCreated(propertyName)
+function Ora.Instance:IsInstanceCreated(propertyName)
     if (self.Properties[propertyName] ~= nil) then
       return true
     end
@@ -171,85 +171,85 @@ function Atlantiss.Instance:IsInstanceCreated(propertyName)
     return false
 end
 
-function Atlantiss.Instance:CreateInstance(propertyName, propertyData)
+function Ora.Instance:CreateInstance(propertyName, propertyData)
   local propertyId = self:GetIdForCoords(propertyData.inside.x, propertyData.inside.y, propertyData.inside.z)
   self:RegisterRoutingBucketForProperty(propertyId, propertyName, propertyData)
-  Atlantiss.Instance:Debug(string.format("Creating instance ^5%s^3 with property id ^5%s^3.", propertyName, propertyId))
+  Ora.Instance:Debug(string.format("Creating instance ^5%s^3 with property id ^5%s^3.", propertyName, propertyId))
 end
 
-function Atlantiss.Instance:DestroyRoutingBucketForProperty(propertyName)
-  Atlantiss.Instance:Debug(string.format("Removing routing bucket for instance ^5%s^3", propertyName))
+function Ora.Instance:DestroyRoutingBucketForProperty(propertyName)
+  Ora.Instance:Debug(string.format("Removing routing bucket for instance ^5%s^3", propertyName))
 
   if self.Properties[propertyName] == nil then
-    Atlantiss.Instance:Debug(string.format("Instance ^5%s^3 does not exists in Properties. not removing.", propertyName))
+    Ora.Instance:Debug(string.format("Instance ^5%s^3 does not exists in Properties. not removing.", propertyName))
     return true
   end
 
   local propertyData = self:GetPropertyData(propertyName)
   if (propertyData.bucket_id ~= nil and self.BucketToProperties[propertyData.bucket_id][propertyName] ~= nil) then
-    Atlantiss.Instance:Debug(string.format("Destroy instance ^5%s^3 removing bucket to properties.", propertyName))
+    Ora.Instance:Debug(string.format("Destroy instance ^5%s^3 removing bucket to properties.", propertyName))
     self.BucketToProperties[propertyData.bucket_id][propertyName] = nil
   end
 
   if (propertyData.property_id ~= nil and self.PropertyIdsToBucket[propertyData.property_id] ~= nil and propertyData.bucket_id ~= nil and self.PropertyIdsToBucket[propertyData.property_id][propertyData.bucket_id]) then
-    Atlantiss.Instance:Debug(string.format("Destroy instance ^5%s^3 removing property ids to bucket.", propertyName))
+    Ora.Instance:Debug(string.format("Destroy instance ^5%s^3 removing property ids to bucket.", propertyName))
     self.PropertyIdsToBucket[propertyData.property_id][propertyData.bucket_id] = false
   end
 
-  Atlantiss.Instance:Debug(string.format("Destroy instance ^5%s^3 removing property to bucket.", propertyName))
+  Ora.Instance:Debug(string.format("Destroy instance ^5%s^3 removing property to bucket.", propertyName))
   self.PropertiesToBucket[propertyName] = nil
 
   return true
 end
 
 
-function Atlantiss.Instance:GetRoutingBucketForProperty(propertyName)
+function Ora.Instance:GetRoutingBucketForProperty(propertyName)
     if (self:HasPropertyRoutingBucket(propertyName)) then
-      Atlantiss.Instance:Debug(string.format("Returning routing bucket ^5%s^3 for instance ^5%s^3", self.PropertiesToBucket[propertyName], propertyName))
+      Ora.Instance:Debug(string.format("Returning routing bucket ^5%s^3 for instance ^5%s^3", self.PropertiesToBucket[propertyName], propertyName))
       return self.PropertiesToBucket[propertyName]
     end
 
-    Atlantiss.Instance:Debug(string.format("Returning routing bucket ^5%s^3 for instance ^5%s^3", false, propertyName))
+    Ora.Instance:Debug(string.format("Returning routing bucket ^5%s^3 for instance ^5%s^3", false, propertyName))
     return false
 end
 
 
 RegisterServerCallback(
-    "Atlantiss::SE::Instance:EnterInstance",
+    "Ora::SE::Instance:EnterInstance",
     function(source, callback, propertyName, propertyData)
       local _source = source
-      Atlantiss.Instance:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Atlantiss::SE::Instance:EnterInstance"))
-      if (Atlantiss.Instance:IsInstanceCreated(propertyName) == false) then
-        Atlantiss.Instance:CreateInstance(propertyName, propertyData)
+      Ora.Instance:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Ora::SE::Instance:EnterInstance"))
+      if (Ora.Instance:IsInstanceCreated(propertyName) == false) then
+        Ora.Instance:CreateInstance(propertyName, propertyData)
       end
 
-      Atlantiss.Instance:AddPlayerToInstance(propertyName, _source)
+      Ora.Instance:AddPlayerToInstance(propertyName, _source)
       callback(true)
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Instance:LeaveInstance",
+    "Ora::SE::Instance:LeaveInstance",
     function(source, callback, propertyName)
       local _source = source
-        Atlantiss.Instance:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Atlantiss::SE::Instance:LeaveInstance"))
-        if (Atlantiss.Instance:IsInstanceCreated(propertyName) == true) then
-          Atlantiss.Instance:RemovePlayerFromInstance(propertyName, _source)
-          Atlantiss.Instance:Debug(string.format("Player ^5%s^3 is now removed from instance ^5%s", _source, propertyName))
+        Ora.Instance:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Ora::SE::Instance:LeaveInstance"))
+        if (Ora.Instance:IsInstanceCreated(propertyName) == true) then
+          Ora.Instance:RemovePlayerFromInstance(propertyName, _source)
+          Ora.Instance:Debug(string.format("Player ^5%s^3 is now removed from instance ^5%s", _source, propertyName))
           callback(true)
         else
-          Atlantiss.Instance:Debug(string.format("Player ^5%s^3 is not removed from instance ^5%s because it does not exist", _source, propertyName))
+          Ora.Instance:Debug(string.format("Player ^5%s^3 is not removed from instance ^5%s because it does not exist", _source, propertyName))
           callback(false)
       end
     end
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::Instance:LeaveAllInstance",
+    "Ora::SE::Instance:LeaveAllInstance",
     function(source, callback)
       local _source = source
-      Atlantiss.Instance:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Atlantiss::SE::Instance:LeaveAllInstance"))
-      Atlantiss.Instance:RemovePlayerFromInstanceBecauseOfDrop(_source)
+      Ora.Instance:Debug(string.format("Player ^5%s^3 sended event ^5%s", _source, "Ora::SE::Instance:LeaveAllInstance"))
+      Ora.Instance:RemovePlayerFromInstanceBecauseOfDrop(_source)
       callback(true)
     end
 )
@@ -258,6 +258,6 @@ AddEventHandler(
     "playerDropped",
     function(reason)
       local _source = source
-      Atlantiss.Instance:RemovePlayerFromInstanceBecauseOfDrop(_source)
+      Ora.Instance:RemovePlayerFromInstanceBecauseOfDrop(_source)
     end
 )

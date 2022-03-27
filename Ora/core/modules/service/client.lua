@@ -1,12 +1,12 @@
-function Atlantiss.Service:isInService(jobname)
-	if (jobname == Atlantiss.Identity.Job:GetName()) then
-		if (Atlantiss.Identity.Job.isOnDuty == true) then
+function Ora.Service:isInService(jobname)
+	if (jobname == Ora.Identity.Job:GetName()) then
+		if (Ora.Identity.Job.isOnDuty == true) then
 			return true
 		else
 			return false
 		end
-	elseif (jobname == Atlantiss.Identity.Orga:GetName()) then
-		if (Atlantiss.Identity.Orga.isOnDuty == true) then
+	elseif (jobname == Ora.Identity.Orga:GetName()) then
+		if (Ora.Identity.Orga.isOnDuty == true) then
 			return true
 		else
 			return false
@@ -17,28 +17,28 @@ function Atlantiss.Service:isInService(jobname)
 	return false
 end
 
-function Atlantiss.Service:UpdateService(jobType)
+function Ora.Service:UpdateService(jobType)
 	if jobType == 'job' then
-		if Atlantiss.Identity.Job.isOnDuty == true and Atlantiss.Identity.Orga.isOnDuty == true then
-			Atlantiss.Identity.Orga.isOnDuty = false
-			TriggerServerEvent("Atlantiss::SE::Service:RemovePlayerFromService", Atlantiss.Identity.Orga:GetName())
+		if Ora.Identity.Job.isOnDuty == true and Ora.Identity.Orga.isOnDuty == true then
+			Ora.Identity.Orga.isOnDuty = false
+			TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", Ora.Identity.Orga:GetName())
 		end
 
-		if Atlantiss.Identity.Job.isOnDuty == true then
-			TriggerServerEvent("Atlantiss::SE::Service:SetPlayerInService", Atlantiss.Identity.Job:GetName())
+		if Ora.Identity.Job.isOnDuty == true then
+			TriggerServerEvent("Ora::SE::Service:SetPlayerInService", Ora.Identity.Job:GetName())
 		else
-			TriggerServerEvent("Atlantiss::SE::Service:RemovePlayerFromService", Atlantiss.Identity.Job:GetName())
+			TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", Ora.Identity.Job:GetName())
 		end
 	elseif jobType == 'orga' then
-		if Atlantiss.Identity.Orga.isOnDuty == true and Atlantiss.Identity.Job.isOnDuty == true then
-			Atlantiss.Identity.Job.isOnDuty = false
-			TriggerServerEvent("Atlantiss::SE::Service:RemovePlayerFromService", Atlantiss.Identity.Job:GetName())
+		if Ora.Identity.Orga.isOnDuty == true and Ora.Identity.Job.isOnDuty == true then
+			Ora.Identity.Job.isOnDuty = false
+			TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", Ora.Identity.Job:GetName())
 		end
 
-		if Atlantiss.Identity.Orga.isOnDuty == true then
-			TriggerServerEvent("Atlantiss::SE::Service:SetPlayerInService", Atlantiss.Identity.Orga:GetName())
+		if Ora.Identity.Orga.isOnDuty == true then
+			TriggerServerEvent("Ora::SE::Service:SetPlayerInService", Ora.Identity.Orga:GetName())
 		else
-			TriggerServerEvent("Atlantiss::SE::Service:RemovePlayerFromService", Atlantiss.Identity.Orga:GetName())
+			TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", Ora.Identity.Orga:GetName())
 		end
 	end
 end

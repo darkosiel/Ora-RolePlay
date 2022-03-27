@@ -5,7 +5,7 @@ ATMRobberyConfig = {
     },
     ["xp"] = {1300, 2600},
     itemRequired = "stickybomb",
-    policeRequired = Atlantiss.Illegal:GetCopsRequired("atm"),
+    policeRequired = Ora.Illegal:GetCopsRequired("atm"),
     policeType = {"police", "lssd"}
 }
     

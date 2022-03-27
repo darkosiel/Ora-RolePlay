@@ -104,7 +104,7 @@ local function CheckBin(prop)
                 local random2 = math.random(1,10)
                 if random2 > 2 then
                     if (chanceTable[random] ~= nil) then
-                        if Atlantiss.Inventory:CanReceive(chanceTable[random].item, 1) then
+                        if Ora.Inventory:CanReceive(chanceTable[random].item, 1) then
                             local itemName = chanceTable[random].item
                             local itemLabel = chanceTable[random].item
 
@@ -114,7 +114,7 @@ local function CheckBin(prop)
 
                             ShowNotification(string.format("Vous avez trouvé ~b~%s~s~ x ~g~%s~s~", 1, itemLabel))
                             local items = {name = chanceTable[random].item, data = chanceTable[random].data}
-                            Atlantiss.Inventory:AddItem(items)
+                            Ora.Inventory:AddItem(items)
                         else
                             ShowNotification("Vous n'avez rien trouvé")
                         end
@@ -170,15 +170,15 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        if Atlantiss.Inventory:CanReceive(itemsToBuy[i].name, 1) then
+                                        if Ora.Inventory:CanReceive(itemsToBuy[i].name, 1) then
                                             dataonWait = {
                                                 title = "Achat "..itemsToBuy[i].name,
                                                 price = itemsToBuy[i].price,
                                                 fct = function()
                                                     loadAnimDict("amb@prop_human_atm@male@enter")
                                                     TaskPlayAnim(LocalPlayer().Ped, "amb@prop_human_atm@male@enter", "enter", 3.0, 1.0, 0.8, 48, 0.0, 0, 0, 0)
-                                                    Atlantiss.Inventory:AddItem({name = itemsToBuy[i].name})
-                                                    TriggerServerEvent('atlantiss_bank:addMoneyToBankAccount', "gouvernement", itemsToBuy[i].price)
+                                                    Ora.Inventory:AddItem({name = itemsToBuy[i].name})
+                                                    TriggerServerEvent('Ora_bank:addMoneyToBankAccount', "gouvernement", itemsToBuy[i].price)
                                                     itemsToBuy = {}
                                                 end
                                             }

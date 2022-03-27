@@ -93,17 +93,17 @@ Citizen.CreateThread(
                 local ped = LocalPlayer().Ped
                 if not IsPedInAnyVehicle(ped) and not IsPedDeadOrDying(ped) then
                     for item, v in pairs(DrugSellPos) do
-                        if Atlantiss == nil or Atlantiss.Inventory == nil or Atlantiss.Inventory["GetInventory"] == nil then
+                        if Ora == nil or Ora.Inventory == nil or Ora.Inventory["GetInventory"] == nil then
                             print("WAIT")
                             goto continue
                         end
 
-                        local count = Atlantiss.Inventory:GetItemCount(item)
+                        local count = Ora.Inventory:GetItemCount(item)
                         if count ~= nil and count > 0 and inCorrectStreet(item) then
 
-                            TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+                            TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
                                 function(allcount)
-                                    if allcount >= Atlantiss.Illegal:GetCopsRequired("drugselling") then
+                                    if allcount >= Ora.Illegal:GetCopsRequired("drugselling") then
                                         DrugNPC.selling = true
                                         DrugNPC.CurrentDrug = item
                                         DrugNPC.Count = count
@@ -188,7 +188,7 @@ Citizen.CreateThread(
             end
 
             if DrugNPC.selling then
-                DrugNPC.Count = Atlantiss.Inventory:GetItemCount(DrugNPC.CurrentDrug)
+                DrugNPC.Count = Ora.Inventory:GetItemCount(DrugNPC.CurrentDrug)
 
                 if DrugNPC.Count == 0 then
                     DrugNPC.Sub = "~r~Vous n'avez plus assez de marchandise !"
@@ -206,9 +206,9 @@ Citizen.CreateThread(
             Wait(5000)
             if DrugNPC.selling then
 
-                TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+                TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
                     function(allcount)
-                        if allcount < Atlantiss.Illegal:GetCopsRequired("drugselling") then
+                        if allcount < Ora.Illegal:GetCopsRequired("drugselling") then
                             DrugNPC = {
                                 selling = false,
                                 CurrentDrug = nil,
@@ -325,7 +325,7 @@ Citizen.CreateThread(
                             local xp = math.random(10, 25)
                             math.randomseed(GetGameTimer())
 
-                            local dataDrug = Atlantiss.Inventory.Data[DrugNPC.CurrentDrug][1].data
+                            local dataDrug = Ora.Inventory.Data[DrugNPC.CurrentDrug][1].data
                             local quality = 10
                             local typeQuality = "~r~Merdique~w~"
 
@@ -377,13 +377,13 @@ Citizen.CreateThread(
                             ClearPedSecondaryTask(DrugNPC.CurrentNPC)
                             ClearPedTasks(DrugNPC.CurrentNPC)
                             Wait(800)
-                            Atlantiss.Inventory:RemoveItem(Atlantiss.Inventory.Data[DrugNPC.CurrentDrug][1])
+                            Ora.Inventory:RemoveItem(Ora.Inventory.Data[DrugNPC.CurrentDrug][1])
 
                             TriggerServerCallback(
-                                "Atlantiss::SE::Money:Fake:AuthorizePayment", 
+                                "Ora::SE::Money:Fake:AuthorizePayment", 
                                 function(token)
-                                    TriggerServerEvent(Atlantiss.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
-                                    TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
+                                    TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
+                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
                                 end,
                                 {}
                             )

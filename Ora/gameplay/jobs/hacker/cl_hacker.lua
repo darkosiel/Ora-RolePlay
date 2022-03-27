@@ -80,7 +80,7 @@ local function attachPhone()
   while not HasModelLoaded(phoneModel) do
       Citizen.Wait(1)
   end
-  phoneProp = Atlantiss.World.Object:Create(phoneModel, 1.0, 1.0, 1.0, 1, 1, 0)
+  phoneProp = Ora.World.Object:Create(phoneModel, 1.0, 1.0, 1.0, 1, 1, 0)
   local bone = GetPedBoneIndex(LocalPlayer().Ped, 28422)
   AttachEntityToEntity(phoneProp, LocalPlayer().Ped, bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 0, 2, 1)
 end
@@ -181,7 +181,7 @@ local function successInfo(info, target)
     end, target)
   elseif info == "clone" then
     TriggerServerCallback("hacker:clonePhone", function(tnumber, snumber)
-      for k, v in pairs(Atlantiss.Inventory:GetInventory()) do
+      for k, v in pairs(Ora.Inventory:GetInventory()) do
         if k == "tel" then
           for i, u in ipairs(v) do
             if u.data.num == snumber then
@@ -240,7 +240,7 @@ end
 
 function createHackerMenu()
   Citizen.CreateThread(function()
-    local jobType = Atlantiss.Identity.Job:GetName() == "hacker" and "job" or "orga"
+    local jobType = Ora.Identity.Job:GetName() == "hacker" and "job" or "orga"
     KeySettings:Add(
       "keyboard",
       jobType == "job" and "F6" or "F7",
@@ -250,7 +250,7 @@ function createHackerMenu()
       "hackeur"
     )
 
-    while (Atlantiss.Identity.Job.ChangingJob == true or Atlantiss.Identity.Orga.ChangingJob == true) do
+    while (Ora.Identity.Job.ChangingJob == true or Ora.Identity.Orga.ChangingJob == true) do
       Wait(50)
     end
 
@@ -258,9 +258,9 @@ function createHackerMenu()
       Wait(0)
 
       if (jobType == "job") then
-        if (Atlantiss.Identity.Job.ChangingJob == true) then KeySettings:Clear("keyboard", "F6", "hackeur") end
+        if (Ora.Identity.Job.ChangingJob == true) then KeySettings:Clear("keyboard", "F6", "hackeur") end
       elseif (jobType == "orga") then
-        if (Atlantiss.Identity.Orga.ChangingJob == true) then KeySettings:Clear("keyboard", "F7", "hackeur") end
+        if (Ora.Identity.Orga.ChangingJob == true) then KeySettings:Clear("keyboard", "F7", "hackeur") end
       end
 
       if RageUI.Visible(RMenu:Get("hacker", "main")) then
@@ -329,7 +329,7 @@ function createHackerMenu()
             if Selected then
               local serial = math.random(111111111, 9999999999)
               local items = {name = "fake_identity", label = i_firstName.." "..i_lastName, data = {identity = {last_name = i_lastName, first_name = i_firstName, birth_date = i_dBirth, origine = i_origin, male = i_sex, serial = serial, face_picture = "N/A"}}}
-              Atlantiss.Inventory:AddItem(items)
+              Ora.Inventory:AddItem(items)
               RageUI.GoBack()
               i_lastName, i_firstName, i_dBirth, i_origin, i_sex = nil, nil, nil, nil, nil
             end
@@ -358,7 +358,7 @@ function createHackerMenu()
             if Selected then
               local serial = math.random(111111111, 9999999999)
               local items = {name = "fake-permis-conduire", label = l_firstName.." "..l_lastName, data = {points = 12, uid = "LS-" .. Random(99999999), identity = {last_name = l_lastName, first_name = l_firstName, birth_date = l_dBirth, serial = serial, face_picture = "N/A"}}}
-              Atlantiss.Inventory:AddItem(items)
+              Ora.Inventory:AddItem(items)
               RageUI.GoBack()
               l_lastName, l_firstName, l_dBirth = nil, nil, nil
             end
@@ -391,7 +391,7 @@ function createHackerMenu()
           RageUI.Button("Crée la carte grise", nil, {Color = {BackgroundColor = { 0, 100, 0, 25 }}}, true, function(_, _, Selected)
             if Selected then
               local items = {name = "fake_carte_grise", data = {plate = c_plate, model = c_model, identity = {last_name = c_lastName, first_name = c_firstName}}, label = plate}
-              Atlantiss.Inventory:AddItem(items)
+              Ora.Inventory:AddItem(items)
               RageUI.GoBack()
               c_plate, c_model, c_lastName, c_firstName = nil, nil, nil, nil
             end
@@ -428,7 +428,7 @@ function createHackerMenu()
                           if found then
                               Citizen.CreateThread(function()
                                   local timing = 0
-                                  Atlantiss.Anticheat.Alert.BLIPS = false
+                                  Ora.Anticheat.Alert.BLIPS = false
                                   while pPed ~= nil do
                                       local blip = GetBlipFromEntity(pPed)
                                       if not DoesBlipExist(blip) then
@@ -442,7 +442,7 @@ function createHackerMenu()
                                       end
                                       Wait(0)
                                   end
-                                  Atlantiss.Anticheat.Alert.BLIPS = true
+                                  Ora.Anticheat.Alert.BLIPS = true
                               end)
                           else
                               ShowNotification("~r~Erreur!~s~~n~Impossible de localiser le téléphone!")
@@ -487,7 +487,7 @@ function createHackerMenu()
           RageUI.Button("Récupérer le numéro de téléphone", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 8
                     getTelInfo(sPlayer, "num")
@@ -504,7 +504,7 @@ function createHackerMenu()
           RageUI.Button("Récupérer l'identité de la personne", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 15
                     getTelInfo(sPlayer, "identity")
@@ -521,7 +521,7 @@ function createHackerMenu()
           RageUI.Button("Récupérer les derniers messages", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 20
                     getTelInfo(sPlayer, "message")
@@ -538,7 +538,7 @@ function createHackerMenu()
           RageUI.Button("Récupérer l'historique des appels", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 20
                     getTelInfo(sPlayer, "calls")
@@ -555,7 +555,7 @@ function createHackerMenu()
           RageUI.Button("Récupérer la listes des contacts", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 15
                     getTelInfo(sPlayer, "contacts")
@@ -572,7 +572,7 @@ function createHackerMenu()
           RageUI.Button("Cloner le téléphone", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 60
                     getTelInfo(sPlayer, "clone")
@@ -589,7 +589,7 @@ function createHackerMenu()
           RageUI.Button("Formater le téléphone", nil, {}, true, function(_, _, Selected)
             if Selected then
               if not busyHacker then
-                TriggerServerCallback("Atlantiss::SE::Inventory:GetItemCount", function(count)
+                TriggerServerCallback("Ora::SE::Inventory:GetItemCount", function(count)
                   if count >= 1 then
                     timeGetInfo = 90
                     getTelInfo(sPlayer, "deleteAll")

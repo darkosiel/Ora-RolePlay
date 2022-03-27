@@ -1,6 +1,6 @@
-Atlantiss.Jobs.Firefighter = {}
-Atlantiss.Jobs.Firefighter.Config = {}
-Atlantiss.Jobs.Firefighter.Config.Fire = {
+Ora.Jobs.Firefighter = {}
+Ora.Jobs.Firefighter.Config = {}
+Ora.Jobs.Firefighter.Config.Fire = {
     fireSpreadChance = 5, -- Out of 100 chances, how many lead to fire spreading? (not exactly percents)
     maximumSpreads = 8,
     selfRemoveMIN = 2700000, -- in ms, 45min, the min time a fire can burn (random between min and max)
@@ -15,7 +15,7 @@ Atlantiss.Jobs.Firefighter.Config.Fire = {
         }
     }
 }
-Atlantiss.Jobs.Firefighter.Config.Dispatch = {
+Ora.Jobs.Firefighter.Config.Dispatch = {
     enabled = true, -- Set this to false if you don't want to use the default dispatch system
     timeout = 15000, -- The amount of time in ms to delay the dispatch after the fire has been created
     storeLast = 5, -- The client will store the last five dispatch coordinates for use with /remindme <dispatchNumber>
@@ -25,14 +25,14 @@ Atlantiss.Jobs.Firefighter.Config.Dispatch = {
 }
 
 
-function Atlantiss.Jobs.Firefighter:GetJobName()
+function Ora.Jobs.Firefighter:GetJobName()
   return "Firefighter"
 end
 
-function Atlantiss.Jobs.Firefighter:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Atlantiss.Jobs:GetModuleName(), Atlantiss.Jobs.Firefighter:GetJobName(), message))
+function Ora.Jobs.Firefighter:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Ora.Jobs:GetModuleName(), Ora.Jobs.Firefighter:GetJobName(), message))
   end
 end
 
-Atlantiss.Jobs:Register(Atlantiss.Jobs.Firefighter:GetJobName())
+Ora.Jobs:Register(Ora.Jobs.Firefighter:GetJobName())

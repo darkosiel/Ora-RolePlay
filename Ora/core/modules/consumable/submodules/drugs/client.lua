@@ -12,7 +12,7 @@ AddEventHandler(
             StartScreenEffect("Rampage", 1000 * 60 * 5, true)
 
             local playerPed = PlayerPedId()
-            TriggerServerEvent("atlantiss_status:addOn", "coke")
+            TriggerServerEvent("Ora_status:addOn", "coke")
 
             StatSetInt(GetHashKey("MP0_STAMINA"), 30, true)
             StatSetInt(GetHashKey("MP0_STRENGTH"), 30, true)
@@ -54,7 +54,7 @@ AddEventHandler(
                 "~g~Vous avez consommé de la meth ! Vous êtes moins sensible a la douleur pendant 3 minutes~w~"
             )
             local playerPed = PlayerPedId()
-            TriggerServerEvent("atlantiss_status:addOn", "meth")
+            TriggerServerEvent("Ora_status:addOn", "meth")
             StatSetInt(GetHashKey("MP0_STAMINA"), 20, true)
             StatSetInt(GetHashKey("MP0_STRENGTH"), 20, true)
             SetRunSprintMultiplierForPlayer(playerPed, 1.1)
@@ -93,7 +93,7 @@ AddEventHandler(
         StartScreenEffect("DrugsMichaelAliensFight", 1000 * 60 * 5, true)
 
         if (alreadyOnWeed == false) then
-            TriggerServerEvent("atlantiss_status:addOn", "weed")
+            TriggerServerEvent("Ora_status:addOn", "weed")
 
             ShowNotification("~g~Vous avez consommé de la weed !~w~")
             ShowNotification(

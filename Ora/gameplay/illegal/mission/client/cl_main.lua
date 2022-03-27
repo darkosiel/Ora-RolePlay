@@ -3,15 +3,15 @@ currentMission = {}
 function StartIllegalMission(mission, k)
     local lvl = GetPlyLevel()
 
-    TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+    TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
         function(allcount)
             if allcount >= mission.policeRequired then
                 if mission.levelRequired <= lvl then
                     TriggerServerCallback(
-                        "Atlantiss::illegal:canDoIllegalMission",
+                        "Ora::illegal:canDoIllegalMission",
                         function(bool)
                             if (bool == true) then
-                                TriggerServerEvent("Atlantiss::illegal:addCount", mission.scenarioType)
+                                TriggerServerEvent("Ora::illegal:addCount", mission.scenarioType)
                                 mission.label = k
                                 currentMission = mission
                                 illegalscenario[mission.scenarioIndex](mission.scenarioSettings)

@@ -6,17 +6,17 @@ local animDict, animClip
 local chairCoords, chairRotation
 
 local function OpenInsideTrack()
-    Atlantiss.Jobs.Casino.Insidetrack.CurrentBet = 100
-    if Atlantiss.Jobs.Casino.Insidetrack.InsideTrackActive then
+    Ora.Jobs.Casino.Insidetrack.CurrentBet = 100
+    if Ora.Jobs.Casino.Insidetrack.InsideTrackActive then
         return
     end
 
-    Atlantiss.Jobs.Casino.Insidetrack.InsideTrackActive = true
+    Ora.Jobs.Casino.Insidetrack.InsideTrackActive = true
 
     -- Scaleform
-    Atlantiss.Jobs.Casino.Insidetrack.Scaleform = RequestScaleformMovie('HORSE_RACING_CONSOLE')
+    Ora.Jobs.Casino.Insidetrack.Scaleform = RequestScaleformMovie('HORSE_RACING_CONSOLE')
 
-    while not HasScaleformMovieLoaded(Atlantiss.Jobs.Casino.Insidetrack.Scaleform) do
+    while not HasScaleformMovieLoaded(Ora.Jobs.Casino.Insidetrack.Scaleform) do
         Wait(0)
     end
 
@@ -27,23 +27,23 @@ local function OpenInsideTrack()
         Wait(0)
     end
 
-    Atlantiss.Jobs.Casino.Insidetrack:ShowMainScreen()
-    Atlantiss.Jobs.Casino.Insidetrack:SetMainScreenCooldown(cooldown)
+    Ora.Jobs.Casino.Insidetrack:ShowMainScreen()
+    Ora.Jobs.Casino.Insidetrack:SetMainScreenCooldown(cooldown)
 
     -- Add horses
-    Atlantiss.Jobs.Casino.Insidetrack:AddHorses(Atlantiss.Jobs.Casino.Insidetrack.Scaleform)
+    Ora.Jobs.Casino.Insidetrack:AddHorses(Ora.Jobs.Casino.Insidetrack.Scaleform)
 
-    Atlantiss.Jobs.Casino.Insidetrack:DrawInsideTrack()
-    Atlantiss.Jobs.Casino.Insidetrack:HandleControls()
+    Ora.Jobs.Casino.Insidetrack:DrawInsideTrack()
+    Ora.Jobs.Casino.Insidetrack:HandleControls()
 end
 
 local function LeaveInsideTrack()
-    Atlantiss.Jobs.Casino.Insidetrack.InsideTrackActive = false
+    Ora.Jobs.Casino.Insidetrack.InsideTrackActive = false
     DisplayHud(true)
     SetPlayerControl(PlayerId(), true, 0)
-    SetScaleformMovieAsNoLongerNeeded(Atlantiss.Jobs.Casino.Insidetrack.Scaleform)
+    SetScaleformMovieAsNoLongerNeeded(Ora.Jobs.Casino.Insidetrack.Scaleform)
     ReleaseNamedScriptAudioBank(casinoAudioBank)
-    Atlantiss.Jobs.Casino.Insidetrack.Scaleform = -1
+    Ora.Jobs.Casino.Insidetrack.Scaleform = -1
 
     local ped = LocalPlayer().Ped
     local animClip = (animClip == "enter_left_readyidle" and "exit_left") or "exit_right"
@@ -54,7 +54,7 @@ local function LeaveInsideTrack()
     NetworkStopSynchronisedScene(scene)
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:DrawInsideTrack()
+function Ora.Jobs.Casino.Insidetrack:DrawInsideTrack()
     Citizen.CreateThread(function()
         while self.InsideTrackActive do
             Wait(0)
@@ -87,7 +87,7 @@ function Atlantiss.Jobs.Casino.Insidetrack:DrawInsideTrack()
     end)
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:HandleControls()
+function Ora.Jobs.Casino.Insidetrack:HandleControls()
     Citizen.CreateThread(function()
         while self.InsideTrackActive do
             Wait(0)
@@ -141,8 +141,8 @@ function Atlantiss.Jobs.Casino.Insidetrack:HandleControls()
                 if (clickedButton == 10) then
                     self.CurrentSoundId = GetSoundId()
                     PlaySoundFrontend(self.CurrentSoundId, 'race_loop', 'dlc_vw_casino_inside_track_betting_single_event_sounds')
-                    Atlantiss.Inventory:RemoveAnyItemsFromName("casinopiece", self.CurrentBet)
-                    TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "casino", self.CurrentBet * 10, true)
+                    Ora.Inventory:RemoveAnyItemsFromName("casinopiece", self.CurrentBet)
+                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "casino", self.CurrentBet * 10, true)
                     self:StartRace()
                     checkRaceStatus = true
                 end
@@ -187,8 +187,8 @@ function Atlantiss.Jobs.Casino.Insidetrack:HandleControls()
                             for i = 1, self.CurrentGain, 1 do
                                 table.insert(givetable, {name = "casinopiece", data = {}})
                             end
-                            Atlantiss.Inventory:AddItems(givetable)
-                            TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "casino", self.CurrentGain * 10, false)
+                            Ora.Inventory:AddItems(givetable)
+                            TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "casino", self.CurrentGain * 10, false)
 
                             -- Refresh player balance
                             self.PlayerBalance = (self.PlayerBalance + self.CurrentGain)
@@ -211,16 +211,16 @@ function Atlantiss.Jobs.Casino.Insidetrack:HandleControls()
     end)
 end
 
-RegisterNetEvent("Atlantiss::CE::Jobs::Casino::Insidetrack::Seatchair")
-AddEventHandler("Atlantiss::CE::Jobs::Casino::Insidetrack::Seatchair", function(data)
+RegisterNetEvent("Ora::CE::Jobs::Casino::Insidetrack::Seatchair")
+AddEventHandler("Ora::CE::Jobs::Casino::Insidetrack::Seatchair", function(data)
     local ped = LocalPlayer().Ped
     local pCoords = GetEntityCoords(ped)
     chairCoords, chairRotation = GetEntityCoords(data.entity), GetEntityRotation(data.entity) 
-    local angle = chairRotation.z - Atlantiss.Jobs.Casino.Insidetrack:FindRotation(chairCoords.x, chairCoords.y, pCoords.x, pCoords.y) + 90.0
+    local angle = chairRotation.z - Ora.Jobs.Casino.Insidetrack:FindRotation(chairCoords.x, chairCoords.y, pCoords.x, pCoords.y) + 90.0
     local anim = "anim_casino_a@amb@casino@games@insidetrack@"
-    animDict = (Atlantiss.World.Ped:IsPedMale(ped) and anim.."male") or anim.."female"
+    animDict = (Ora.World.Ped:IsPedMale(ped) and anim.."male") or anim.."female"
     animClip = angle < 0 and "enter_left_readyidle" or "enter_right_readyidle"
-    Atlantiss.Jobs.Casino.Insidetrack.PlayerBalance = Atlantiss.Inventory:GetItemCount("casinopiece")
+    Ora.Jobs.Casino.Insidetrack.PlayerBalance = Ora.Inventory:GetItemCount("casinopiece")
 
 
     RequestAnimDict(animDict)
@@ -237,7 +237,7 @@ end)
 exports.qtarget:AddTargetModel({-1005355458}, {
     options = {
         {
-            event = "Atlantiss::CE::Jobs::Casino::Insidetrack::Seatchair",
+            event = "Ora::CE::Jobs::Casino::Insidetrack::Seatchair",
             icon = "fas fa-chair",
             label = "S'asseoir pour parier"
         }

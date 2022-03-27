@@ -1491,8 +1491,8 @@ function UseBankCard()
     print(coords)
     print(heading)
     if bool then
-        TriggerEvent('atlantiss:hideInventory')
-        fpxm = Atlantiss.World.Object:Create(GetHashKey("prop_cs_credit_card"), LocalPlayer().Pos, true, 0, 0)
+        TriggerEvent('Ora:hideInventory')
+        fpxm = Ora.World.Object:Create(GetHashKey("prop_cs_credit_card"), LocalPlayer().Pos, true, 0, 0)
         AttachEntityToEntity(
             fpxm,
             LocalPlayer().Ped,
@@ -1513,10 +1513,10 @@ function UseBankCard()
                 DeleteEntity(fpxm)
             end
         )
-        local currCARD = Atlantiss.Inventory.SelectedItem.data
+        local currCARD = Ora.Inventory.SelectedItem.data
         ATM.Open(currCARD)
     else
-        TriggerEvent('atlantiss:InvNotification', "Vous n'êtes pas près d'un ATM", 'error')
+        TriggerEvent('Ora:InvNotification', "Vous n'êtes pas près d'un ATM", 'error')
     end
 end
 
@@ -1528,7 +1528,7 @@ local Atm = {
 }
 
 function IsNearATM()
-   return Atlantiss.World.Object:GetNearestAtm(1.8)
+   return Ora.World.Object:GetNearestAtm(1.8)
 end
 
 function getCompanyLabel(account)
@@ -1576,7 +1576,7 @@ function ATM.Open(param)
                                             return ShowNotification("~r~Le compte est bloqué")
                                         end
 
-                                        ATM.Accounts.todayratio = Atlantiss.Inventory.SelectedItem.data.current_ratio
+                                        ATM.Accounts.todayratio = Ora.Inventory.SelectedItem.data.current_ratio
 
                                         for i = 1, 10, 1 do
                                             Wait(1)
@@ -1606,7 +1606,7 @@ function ATM.Open(param)
                 if param.essai == 0 then
                     ShowNotification("~r~Code incorrect \n~o~La carte à été avalée")
                     TriggerServerEvent("mail:AddMail", "banker", "Carte N°" .. param.number .. " avalés", "ATM")
-                    Atlantiss.Inventory:RemoveItem(Atlantiss.Inventory.SelectedItem)
+                    Ora.Inventory:RemoveItem(Ora.Inventory.SelectedItem)
 
                     RageUI.GoBack()
                     RageUI.Refresh()
@@ -1662,11 +1662,11 @@ end
 
 local function Refresh()
     for k, v in pairs(m) do
-        if Atlantiss.Inventory.Data[k] ~= nil then
+        if Ora.Inventory.Data[k] ~= nil then
             v.visible = true
-            v.total = #Atlantiss.Inventory.Data[k]
+            v.total = #Ora.Inventory.Data[k]
             v.label = {0}
-            for i = 0, #Atlantiss.Inventory.Data[k], 1 do
+            for i = 0, #Ora.Inventory.Data[k], 1 do
                 v.label[i + 1] = i
             end
         else
@@ -1777,7 +1777,7 @@ Citizen.CreateThread(
                                             )
     
                                             TriggerServerCallback(
-                                                "atlantiss_banking:getRatiosForCard",
+                                                "Ora_banking:getRatiosForCard",
                                                 function(
                                                     cardExist,
                                                     maxDeposit,
@@ -1808,7 +1808,7 @@ Citizen.CreateThread(
                                                                 ATM.Selected.label .. " " .. ATM.Selected.amount .. "$"
     
                                                             TriggerServerEvent(
-                                                                "atlantiss_bank:addMoneyToBankAccount",
+                                                                "Ora_bank:addMoneyToBankAccount",
                                                                 ATM.Selected.iban,
                                                                 amount
                                                             )
@@ -1843,7 +1843,7 @@ Citizen.CreateThread(
                                                             end
 
                                                             TriggerServerEvent(
-                                                                'atlantiss:sendToDiscord',
+                                                                'Ora:sendToDiscord',
                                                                 25,
                                                                 "Dépôt ATM de $"
                                                                     ..amount
@@ -1860,7 +1860,7 @@ Citizen.CreateThread(
                                                                     t[k] = v
                                                                 end
                                                             end
-                                                            Atlantiss.Payment:PayMoney(t)
+                                                            Ora.Payment:PayMoney(t)
     
                                                             for k, v in pairs(m) do
                                                                 v.index = 1
@@ -1982,7 +1982,7 @@ Citizen.CreateThread(
                                                 )
 
                                                 TriggerServerCallback(
-                                                    "atlantiss_banking:getRatiosForCard",
+                                                    "Ora_banking:getRatiosForCard",
                                                     function(
                                                         cardExist,
                                                         maxDeposit,
@@ -2013,7 +2013,7 @@ Citizen.CreateThread(
                                                                 )
 
                                                                 TriggerServerEvent(
-                                                                    "atlantiss_bank:removeMoneyFromBankAccount",
+                                                                    "Ora_bank:removeMoneyFromBankAccount",
                                                                     ATM.Selected.iban,
                                                                     amount
                                                                 )
@@ -2049,7 +2049,7 @@ Citizen.CreateThread(
                                                                 end
 
                                                                 TriggerServerEvent(
-                                                                    'atlantiss:sendToDiscord',
+                                                                    'Ora:sendToDiscord',
                                                                     25,
                                                                     "Retrait ATM de $"
                                                                         ..amount
@@ -2107,8 +2107,8 @@ Citizen.CreateThread(
                                         )
                                         TriggerServerEvent("gcPhone:allUpdate")
                                         RageUI.Popup({message = "Réception du ~g~nouveau code~s~ sur votre télephone"})
-                                        TriggerServerEvent("newCode", newCode, Atlantiss.Inventory.SelectedItem.data.number)
-                                        Atlantiss.Inventory.SelectedItem.data.code = newCode
+                                        TriggerServerEvent("newCode", newCode, Ora.Inventory.SelectedItem.data.number)
+                                        Ora.Inventory.SelectedItem.data.code = newCode
                                     end
                                 end
                             )

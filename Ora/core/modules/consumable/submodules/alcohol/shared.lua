@@ -1,17 +1,17 @@
-Atlantiss.Consumable:Register("Alcohol")
+Ora.Consumable:Register("Alcohol")
 
-Atlantiss.Consumable.Alcohol = {
+Ora.Consumable.Alcohol = {
   Object = {},
   Settings = {
     [1] = { -- Bottles
       options = {
         {
-          event = "Atlantiss::CE::Consumable::Alcohol::Drink",
+          event = "Ora::CE::Consumable::Alcohol::Drink",
           icon = "fas fa-beer",
           label = "Boire"
         },
         {
-          event = "Atlantiss::CE::Consumable::Alcohol::StoreIntoInventory",
+          event = "Ora::CE::Consumable::Alcohol::StoreIntoInventory",
           icon = "fas fa-hand-lizard",
           label = "Ranger"
         }
@@ -21,7 +21,7 @@ Atlantiss.Consumable.Alcohol = {
     [2] = { -- Beer
       options = {
         {
-          event = "Atlantiss::CE::Consumable::Alcohol::Drink",
+          event = "Ora::CE::Consumable::Alcohol::Drink",
           icon = "fas fa-beer",
           label = "Prendre"
         }
@@ -31,7 +31,7 @@ Atlantiss.Consumable.Alcohol = {
     [3] = { -- Bong
       options = {
         {
-          event = "Atlantiss::CE::Consumable::Alcohol::Drink",
+          event = "Ora::CE::Consumable::Alcohol::Drink",
           icon = "fas fa-bong",
           label = "Fumer"
         },

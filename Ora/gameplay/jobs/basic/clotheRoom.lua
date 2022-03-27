@@ -3,19 +3,19 @@ local ClotheTenues = {}
 function OpenClotheRoom(type)
     --print(type)
     if type == "Job" or type == "Jobs" or type == nil then
-        ClotheTenues = Atlantiss.Identity.Job.Data.work.vestiaire.Tenues
+        ClotheTenues = Ora.Identity.Job.Data.work.vestiaire.Tenues
 
-        if Atlantiss.Identity.Job:GetName() == "police" then
+        if Ora.Identity.Job:GetName() == "police" then
             ClotheTenues = TenueLSPD
-        elseif Atlantiss.Identity.Job:GetName() == "lssd" then
+        elseif Ora.Identity.Job:GetName() == "lssd" then
             ClotheTenues = TenueLSSD
         end
     else
-        ClotheTenues = Atlantiss.Identity.Orga.Data.work.vestiaire.Tenues
+        ClotheTenues = Ora.Identity.Orga.Data.work.vestiaire.Tenues
 
-        if Atlantiss.Identity.Orga:GetName() == "police" then
+        if Ora.Identity.Orga:GetName() == "police" then
             ClotheTenues = TenueLSPD
-        elseif Atlantiss.Identity.Orga:GetName() == "lssd" then
+        elseif Ora.Identity.Orga:GetName() == "lssd" then
             ClotheTenues = TenueLSSD
         end
     end
@@ -46,8 +46,8 @@ Citizen.CreateThread(
                                 true,
                                 function(_, Active, Selected)
                                     if Selected then
-                                        if Atlantiss.Inventory:CanReceive("tenue", 1) then
-                                            if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                                        if Ora.Inventory:CanReceive("tenue", 1) then
+                                            if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
                                                 local data = {
                                                     torso = v.male["arms"],
                                                     pant = v.male["pants_1"],
@@ -77,7 +77,7 @@ Citizen.CreateThread(
                                                 item.name = "tenue"
                                                 item.data = data
                                                 item.label = k
-                                                Atlantiss.Inventory:AddItem(item)
+                                                Ora.Inventory:AddItem(item)
                                                 item = {}
                                             else
                                                 local data = {
@@ -109,7 +109,7 @@ Citizen.CreateThread(
                                                 item.name = "tenue"
                                                 item.data = data
                                                 item.label = k
-                                                Atlantiss.Inventory:AddItem(item)
+                                                Ora.Inventory:AddItem(item)
                                                 item = {}
                                             end
                                             RageUI.Popup({message = "Vous avez reçu une nouvelle tenue"})
@@ -121,7 +121,7 @@ Citizen.CreateThread(
                                         ClearPedProp(ped, 1)
                                         ClearPedProp(ped, 0)
                                         RefreshClothes()
-                                        if not Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                                        if not Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
                                             data = {
                                                 torso = v.female["arms"],
                                                 pant = v.female["pants_1"],

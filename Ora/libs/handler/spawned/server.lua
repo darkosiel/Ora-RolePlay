@@ -168,7 +168,7 @@ RegisterServerCallback('spawned:requestData', function(source, Callback)
             Query:GetSelectedCharacter(source, identifier, function(Active, Table)
                 if (Active) then
                     
-                    Atlantiss:InitializeCharacter(source)
+                    Ora:InitializeCharacter(source)
                     -- TODO Rework sa j'ai la flemme si tu veux
                     Query:GetAllCharacter(source, identifier, function(Skins)
                         Query:GetAllCharacterIdentity(source, identifier, function(Identity)
@@ -180,7 +180,7 @@ RegisterServerCallback('spawned:requestData', function(source, Callback)
                         end)
                     end)
                 else
-                    Atlantiss:InitializeCharacter(source)
+                    Ora:InitializeCharacter(source)
 
                     -- TODO Rework sa j'ai la flemme si tu veux
                     Query:GetAllCharacter(source, identifier, function(Skins)

@@ -57,8 +57,8 @@ AddEventHandler("fake_facture:send",function(_facture)
     TriggerClientEvent("fake_facture:get", _facture.playerId, _facture)
 end)
 
-RegisterServerEvent('atlantiss:logInvoice')
-AddEventHandler('atlantiss:logInvoice', function(company, reason, src, amount, method)
+RegisterServerEvent('Ora:logInvoice')
+AddEventHandler('Ora:logInvoice', function(company, reason, src, amount, method)
     local _source = source
     MySQL.Async.fetchAll(
         'INSERT INTO invoices (company, reason, method, src, dest, amount, time) VALUES(@company, @reason, @method, @src, @dest, @amount, NOW())',
@@ -66,8 +66,8 @@ AddEventHandler('atlantiss:logInvoice', function(company, reason, src, amount, m
             ["@company"] = company,
             ["@reason"] = reason,
             ["@method"] = method,
-            ["@src"] =  Atlantiss.Identity:GetUuid(src),
-            ["@dest"] = Atlantiss.Identity:GetUuid(_source),
+            ["@src"] =  Ora.Identity:GetUuid(src),
+            ["@dest"] = Ora.Identity:GetUuid(_source),
             ["@amount"] = amount
         }
     )

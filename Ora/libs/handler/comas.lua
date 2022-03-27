@@ -183,8 +183,8 @@ Citizen.CreateThread(
                         if not cancelled then
                             ko = false
                             Player.KO = false
-                            Atlantiss.Health:SetKO(false)
-                            Atlantiss.Health:SetMyHealthPercent(15)
+                            Ora.Health:SetKO(false)
+                            Ora.Health:SetMyHealthPercent(15)
                             wait = false
                             Citizen.CreateThread(
                                 function()
@@ -205,7 +205,7 @@ Citizen.CreateThread(
             end
             if dead then
                 local ped = PlayerPedId()
-                Atlantiss.Health:SetIsDead(true)
+                Ora.Health:SetIsDead(true)
                 ShakeGameplayCam("DEATH_FAIL_IN_EFFECT_SHAKE", 1.0)
                 SetTimecycleModifier("rply_vignette")
 
@@ -234,13 +234,13 @@ Citizen.CreateThread(
                         drawTxt(.38, .52, .4, "Appuyez sur Y pour être TP à PillBox Hill", 4, nil, nil, 100)
                         if (IsControlJustPressed(1, Keys["Y"])) then
                             local ped = PlayerPedId()
-                            Atlantiss.Core:TeleportEntityTo(ped, vector3(306.47, -595.02, 43.28), true)
+                            Ora.Core:TeleportEntityTo(ped, vector3(306.47, -595.02, 43.28), true)
                             ClearPedBloodDamage(ped)
-                            Atlantiss.Health:Revive()
-                            Atlantiss.Health:SetIsDead(false)
-                            Atlantiss.Health:SetMyHealthPercent(20)
+                            Ora.Health:Revive()
+                            Ora.Health:SetIsDead(false)
+                            Ora.Health:SetMyHealthPercent(20)
                             dead = false
-                            Atlantiss.Health:SetIsDead(false)
+                            Ora.Health:SetIsDead(false)
                             ShowNotification({message = "~g~Vous avez été transporté à l'hopital"})
                         end
                     end
@@ -286,10 +286,10 @@ function RevivePlayer()
         NetworkResurrectLocalPlayer(GetEntityCoords(ped), 0, true, true, false)
     end
 
-    Atlantiss.Health:SetIsDead(false)
+    Ora.Health:SetIsDead(false)
     SetEntityInvincible(ped, false)
-    Atlantiss.Health:SetMyHealthPercent(15)
-    TriggerServerEvent("Atlantiss::SE::Player:RegisterHealth", GetEntityHealth(ped))
+    Ora.Health:SetMyHealthPercent(15)
+    TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(ped))
     canRemoveStrength = true
 end
 
@@ -350,11 +350,11 @@ AddEventHandler(
         if firstSpawn then
             firstSpawn = false
             TriggerServerCallback(
-                "Atlantiss::SE::Health:IsPlayerDead",
+                "Ora::SE::Health:IsPlayerDead",
                 function(bool)
                     --print("mort status ", bool)
                     if bool then
-                        Atlantiss.Health:Slay()
+                        Ora.Health:Slay()
                     end
                 end
             )
@@ -423,20 +423,20 @@ AddEventHandler(
 
             if DeathReason == "committed suicide" or DeathReason == "died" then
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     5,
-                    "[SUICIDE] " .. Atlantiss.Identity:GetFullname(GetPlayerServerId(PlayerId())) .. " " .. DeathReason .. ".",
+                    "[SUICIDE] " .. Ora.Identity:GetFullname(GetPlayerServerId(PlayerId())) .. " " .. DeathReason .. ".",
                     "info"
                 )
             else
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     5,
                     "[MORT] " ..
                     GetPlayerServerId(Killer) ..
                             " | " ..
-                            Atlantiss.Identity:GetFullname(GetPlayerServerId(Killer)) ..
-                                    " " .. DeathReason .. " " .. Atlantiss.Identity:GetFullname(GetPlayerServerId(PlayerId())) .. "." .. " " .. Weapon,
+                            Ora.Identity:GetFullname(GetPlayerServerId(Killer)) ..
+                                    " " .. DeathReason .. " " .. Ora.Identity:GetFullname(GetPlayerServerId(PlayerId())) .. "." .. " " .. Weapon,
                     "info"
                 )
             end
@@ -456,11 +456,11 @@ AddEventHandler(
                 NetworkResurrectLocalPlayer(GetEntityCoords(ped).x, GetEntityCoords(ped).y, GetEntityCoords(ped).z, GetEntityHeading(ped), true, false) 
             end
 
-            Atlantiss.Health:Revive()
+            Ora.Health:Revive()
             SetEntityVisible(ped, true)
             SetPedToRagdoll(ped, 1000, 1000, 0, 1, 1, 0)
-            TriggerServerEvent("Atlantiss::Illegal:PlayerIsDead", true)
-            Atlantiss.Health:SetIsDead(true)
+            TriggerServerEvent("Ora::Illegal:PlayerIsDead", true)
+            Ora.Health:SetIsDead(true)
             ClearAreaOfPeds(GetEntityCoords(PlayerPedId()), 10.0, 1)
         end
     end
@@ -470,8 +470,8 @@ AddEventHandler(
     function(_, killer)
         local Player = LocalPlayer()
         Player.KO = true
-        Atlantiss.Health:SetKO(true)
-        Atlantiss.Health:Revive()
+        Ora.Health:SetKO(true)
+        Ora.Health:Revive()
         local ped = PlayerPedId()
         SetPedToRagdoll(ped, 1000, 1000, 0, 1, 1, 0)
         ClearAreaOfPeds(GetEntityCoords(PlayerPedId()), 10.0, 1)
@@ -502,15 +502,15 @@ AddEventHandler(
                 return
             end
             
-            Atlantiss.Core:Debug(string.format("victimEnt : ^5%s^3\nattackEnt : ^5%s^3\nx1 : ^5%s^3\nx2 : ^5%s^3\nx3 : ^5%s^3\nfatalBool : ^5%s^3\nweaponUsed : ^5%s^3\nx4 : ^5%s^3\nx5 : ^5%s^3\nx6 : ^5%s^3\nx7 : ^5%s^3\nx8 : ^5%s^3\nentityType : ^5%s^3", victimEntity, attackEntity, x1, x2, x3, fatalBool, weaponUsed, x4, x5, x6, x7, x8, entityType))
+            Ora.Core:Debug(string.format("victimEnt : ^5%s^3\nattackEnt : ^5%s^3\nx1 : ^5%s^3\nx2 : ^5%s^3\nx3 : ^5%s^3\nfatalBool : ^5%s^3\nweaponUsed : ^5%s^3\nx4 : ^5%s^3\nx5 : ^5%s^3\nx6 : ^5%s^3\nx7 : ^5%s^3\nx8 : ^5%s^3\nentityType : ^5%s^3", victimEntity, attackEntity, x1, x2, x3, fatalBool, weaponUsed, x4, x5, x6, x7, x8, entityType))
             local IsKO = fatalBool ~= 0 and (IsPedArmed(attackEntity, 1) or tableHasValue(KOWeapons, weaponUsed))
             eventName = IsKO and "EntityKO" or fatalBool ~= 0 and "EntityDeath" or "EntityTakeDamage"
 
-            TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPed", 
+            TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
                 function()
-                    Atlantiss.Health:SetCurrentRegisteredHealth(GetEntityHealth(PlayerPedId()))
+                    Ora.Health:SetCurrentRegisteredHealth(GetEntityHealth(PlayerPedId()))
                     TriggerEvent(eventName, victimEntity, attackEntity, weaponUsed)
-                    TriggerServerEvent("Atlantiss::SE::Player:RegisterHealth", GetEntityHealth(LocalPlayer().Ped))
+                    TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(LocalPlayer().Ped))
                     if
                         victimEntity == ped and GetPedArmour(ped) <= 0 and IsEntityAPed(attackEntity) and
                             IsPedAPlayer(attackEntity) and
@@ -619,18 +619,18 @@ AddEventHandler(
     "player:Revive",
     function()
         playerCoords = {}
-        Atlantiss.Health:Revive()
+        Ora.Health:Revive()
         playerPed = PlayerPedId()
         local coords = GetEntityCoords(playerPed)
         coords = {["x"] = coords.x, ["y"] = coords.y, ["z"] = coords.z}
         local Player = LocalPlayer()
         dead = false
         Player.KO = false
-        Atlantiss.Health:SetIsDead(false)
-        Atlantiss.Health:SetKO(false)
+        Ora.Health:SetIsDead(false)
+        Ora.Health:SetKO(false)
 
         local ped = PlayerPedId()
-        Atlantiss.Health:SetIsDead(false)
+        Ora.Health:SetIsDead(false)
         RageUI.Popup({message = "~g~Réanimation\n~w~Vous venez d'être réanimé, ~r~~r~vous êtes blessé."})
         ClearTimecycleModifier()
         ClearPedBloodDamage(ped)
@@ -638,7 +638,7 @@ AddEventHandler(
         Player.isDead = false
         Player.KO = false
         setSobre()
-        TriggerServerEvent("Atlantiss::SE::Player:RegisterHealth", GetEntityHealth(LocalPlayer().Ped))
+        TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(LocalPlayer().Ped))
     end
 )
 ClearTimecycleModifier()

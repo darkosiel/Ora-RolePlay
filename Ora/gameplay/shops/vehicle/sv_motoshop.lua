@@ -2,10 +2,10 @@
 
 
 RegisterServerCallback("bikershop:BuyVehicle", function(source, callback,price,targetSource,vehicle)
-    local pUUID = Atlantiss.Identity:GetUuid(source)
+    local pUUID = Ora.Identity:GetUuid(source)
     local uuid = "jetsam"
-    while (Atlantiss.Utils:HasValue(Atlantiss.World.Vehicle.ExistingPlates, vehicle.plate)) do
-        vehicle.plate = Atlantiss.World.Vehicle:GenerateRandomPlate()
+    while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
+        vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
     end
     local _veh = json.encode(vehicle)
 

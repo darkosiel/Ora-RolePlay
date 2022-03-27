@@ -1,10 +1,10 @@
-function Atlantiss.World.Ped:CreatePedInsideVehicle(vehicle, pedType, modelHash, seat, isNetwork, netMissionEntity)
+function Ora.World.Ped:CreatePedInsideVehicle(vehicle, pedType, modelHash, seat, isNetwork, netMissionEntity)
   local canSend = false
   local ped = nil
 
-  Atlantiss.Utils:RequestAndWAitForModel(modelHash)
-  Atlantiss.World:Debug(string.format("Ped ^5%s^3 will be registered as a legit ped", modelHash))
-  TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPed", 
+  Ora.Utils:RequestAndWAitForModel(modelHash)
+  Ora.World:Debug(string.format("Ped ^5%s^3 will be registered as a legit ped", modelHash))
+  TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
       function()
         ped = CreatePedInsideVehicle(vehicle, pedType, modelHash, seat, isNetwork, netMissionEntity)
         canSend = true
@@ -15,7 +15,7 @@ function Atlantiss.World.Ped:CreatePedInsideVehicle(vehicle, pedType, modelHash,
   local localTime = GetGameTimer()
    
   while (canSend == false and localTime + 5000 > GetGameTimer()) do
-      Atlantiss.World:Debug(string.format("Ped ^5%s^3 is waiting callback from anticheat", model))
+      Ora.World:Debug(string.format("Ped ^5%s^3 is waiting callback from anticheat", model))
       Wait(100)
   end
 
@@ -23,7 +23,7 @@ function Atlantiss.World.Ped:CreatePedInsideVehicle(vehicle, pedType, modelHash,
 
 end
 
-function Atlantiss.World.Ped:Create(pedType, model, position, heading)
+function Ora.World.Ped:Create(pedType, model, position, heading)
   pedType = pedType or 5
   model = model or "a_m_m_prolhost_01"
   position = position or LocalPlayer().Pos
@@ -32,9 +32,9 @@ function Atlantiss.World.Ped:Create(pedType, model, position, heading)
   local canSend = false
   local ped = nil
 
-  Atlantiss.Utils:RequestAndWAitForModel(modelHash)
-  Atlantiss.World:Debug(string.format("Ped ^5%s^3 will be registered as a legit ped", model))
-  TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPed",
+  Ora.Utils:RequestAndWAitForModel(modelHash)
+  Ora.World:Debug(string.format("Ped ^5%s^3 will be registered as a legit ped", model))
+  TriggerServerCallback("Ora::SE::Anticheat:RegisterPed",
       function()
         ped = CreatePed(pedType, modelHash, position.x, position.y, position.z, heading, true, false)
         SetModelAsNoLongerNeeded(modelHash)
@@ -46,14 +46,14 @@ function Atlantiss.World.Ped:Create(pedType, model, position, heading)
   local localTime = GetGameTimer()
    
   while (canSend == false and localTime + 5000 > GetGameTimer()) do
-      Atlantiss.World:Debug(string.format("Ped ^5%s^3 is waiting callback from anticheat", model))
+      Ora.World:Debug(string.format("Ped ^5%s^3 is waiting callback from anticheat", model))
       Wait(100)
   end
 
   return ped
 end
 
-function Atlantiss.World.Ped:GetRandomNPCAroundPosition(position, radius)
+function Ora.World.Ped:GetRandomNPCAroundPosition(position, radius)
   radius = radius + 0.0 or 50.0
 
   for outdoorPed in EnumeratePeds() do
@@ -70,6 +70,6 @@ function Atlantiss.World.Ped:GetRandomNPCAroundPosition(position, radius)
 end
 
 
-function Atlantiss.World.Ped:MakePedCallPoliceAnimation(ped)
+function Ora.World.Ped:MakePedCallPoliceAnimation(ped)
   forceAnim({"missfbi3_steve_phone", "steve_phone_idle_b"}, 49, {time = 4000, ped = ped})
 end

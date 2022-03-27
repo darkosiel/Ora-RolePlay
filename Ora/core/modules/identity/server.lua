@@ -1,17 +1,17 @@
 -- ALTER TABLE `players_identity` ADD `health` INT NOT NULL DEFAULT '200' AFTER `origine`;
 
-Atlantiss.Identity.List = {}
+Ora.Identity.List = {}
 
-RegisterServerEvent("Atlantiss::SE::Identity:Loaded")
+RegisterServerEvent("Ora::SE::Identity:Loaded")
 AddEventHandler(
-    "Atlantiss::SE::Identity:Loaded",
+    "Ora::SE::Identity:Loaded",
     function(source, data)
-      Atlantiss.Identity:Debug(string.format("Added user data for player id ^5%s^3", source))
-      Atlantiss.Identity.List[source] = data
+      Ora.Identity:Debug(string.format("Added user data for player id ^5%s^3", source))
+      Ora.Identity.List[source] = data
     end
 )
 
-function Atlantiss.Identity:GetIdentity(playerId)
+function Ora.Identity:GetIdentity(playerId)
   if (self.List[playerId] ~= nil and self.List[playerId].uuid ~= nil and self.List[playerId].last_name ~= "" and self.List[playerId].first_name ~= "" and self.List[playerId].group ~= nil) then
       self:Debug(string.format("Sending data for player id ^5%s^3", playerId))
       return self.List[playerId]
@@ -28,7 +28,7 @@ function Atlantiss.Identity:GetIdentity(playerId)
   return self.List[playerId]
 end
 
-function Atlantiss.Identity:GetFullname(playerId)
+function Ora.Identity:GetFullname(playerId)
     local playerIdentity = self:GetIdentity(playerId)
     
     if (playerIdentity.first_name == nil or playerIdentity.last_name == nil) then
@@ -39,7 +39,7 @@ function Atlantiss.Identity:GetFullname(playerId)
     return playerIdentity.first_name .. " " .. playerIdentity.last_name
 end
 
-function Atlantiss.Identity:HasFullname(playerId)
+function Ora.Identity:HasFullname(playerId)
     local playerIdentity = self:GetIdentity(playerId)
     local hasFullname = true
     if ((playerIdentity.first_name == nil or playerIdentity.first_name == "") and (playerIdentity.last_name == nil or playerIdentity.last_name == "")) then
@@ -50,29 +50,29 @@ function Atlantiss.Identity:HasFullname(playerId)
     return hasFullname
 end
 
-function Atlantiss.Identity:GetUuid(playerId)
+function Ora.Identity:GetUuid(playerId)
   local playerIdentity = self:GetIdentity(playerId)
   self:Debug(string.format("Sending uuid for player id ^5%s^3 (^5%s^3)", playerId, playerIdentity.uuid))
   return playerIdentity.uuid
 end
 
-function Atlantiss.Identity:GetGroup(playerId)
+function Ora.Identity:GetGroup(playerId)
   local playerIdentity = self:GetIdentity(playerId)
   self:Debug(string.format("Sending group for player id ^5%s^3 (^5%s^3)", playerId, playerIdentity.group))
   return playerIdentity.group
 end
 
-function Atlantiss.Identity:AddPlayer(playerId, data)
+function Ora.Identity:AddPlayer(playerId, data)
   self:Debug(string.format("Adding player id ^5%s^3", playerId))
   self.List[playerId] = data
 end
 
-function Atlantiss.Identity:RemovePlayer(playerId)
+function Ora.Identity:RemovePlayer(playerId)
   self:Debug(string.format("Removing player id ^5%s^3", playerId))
   self.List[playerId] = nil
 end
 
-function Atlantiss.Identity:GetIdentifiers(playerId)
+function Ora.Identity:GetIdentifiers(playerId)
   self:Debug(string.format("Retrieving identifiers for player id ^5%s^3", playerId))
   local identifiers = {}
   local playerIdentifiers = GetPlayerIdentifiers(playerId)
@@ -85,7 +85,7 @@ function Atlantiss.Identity:GetIdentifiers(playerId)
   return identifiers
 end
 
-function Atlantiss.Identity:FetchPlayerIdentity(playerId)
+function Ora.Identity:FetchPlayerIdentity(playerId)
   local results = MySQL.Sync.fetchAll(
       "SELECT pi.*, u.group FROM `users` as u INNER JOIN `players_identity` as pi ON u.uuid = pi.uuid WHERE u.`identifier` = @identifier",
       {
@@ -115,31 +115,31 @@ function Atlantiss.Identity:FetchPlayerIdentity(playerId)
 end
 
 RegisterServerCallback(
-    "Atlantiss::SE::Identity:GetIdentity",
+    "Ora::SE::Identity:GetIdentity",
     function(source, callback, playerServerId)
-      Atlantiss.Identity:Debug(string.format("^5%s^3 triggered ServerEventCallback : Atlantiss::SE::Identity:GetIdentity to retrieve identity of ^5%s^3", source, playerServerId))
-      local playerIdentity = Atlantiss.Identity:GetIdentity(playerServerId)
+      Ora.Identity:Debug(string.format("^5%s^3 triggered ServerEventCallback : Ora::SE::Identity:GetIdentity to retrieve identity of ^5%s^3", source, playerServerId))
+      local playerIdentity = Ora.Identity:GetIdentity(playerServerId)
       callback(playerIdentity)
     end
 )
 
 
 RegisterServerCallback(
-    "Atlantiss::SE::Identity:GetMyIdentity",
+    "Ora::SE::Identity:GetMyIdentity",
     function(source, callback)
-      Atlantiss.Identity:Debug(string.format("^5%s^3 triggered ServerEventCallback : Atlantiss::SE::Identity:GetMyIdentity to retrieve identity of ^5%s^3", source, source))
-      local myIdentity = Atlantiss.Identity:GetIdentity(source)
+      Ora.Identity:Debug(string.format("^5%s^3 triggered ServerEventCallback : Ora::SE::Identity:GetMyIdentity to retrieve identity of ^5%s^3", source, source))
+      local myIdentity = Ora.Identity:GetIdentity(source)
       callback(myIdentity)
     end
 )
 
 RegisterServerCallback(
-	"Atlantiss::SE::Identity:GetFullNameFromUUID",
+	"Ora::SE::Identity:GetFullNameFromUUID",
 	function(source, callback, uuid)
 		local fullname = nil
-		Atlantiss.Identity:Debug(string.format("^5%s^3 triggered ServerEventCallback : Atlantiss::SE::Identity:GetFullNameFromUUID to retrieve full name of ^5%s^3", source, uuid))
+		Ora.Identity:Debug(string.format("^5%s^3 triggered ServerEventCallback : Ora::SE::Identity:GetFullNameFromUUID to retrieve full name of ^5%s^3", source, uuid))
 
-		for _, data in pairs(Atlantiss.Identity.List) do
+		for _, data in pairs(Ora.Identity.List) do
 			for k, v in pairs(data) do
 				if (k == "uuid" and v == uuid) then
 					fullname = string.format("%s %s", data.first_name, data.last_name)
@@ -155,7 +155,7 @@ RegisterServerCallback(
 				"SELECT first_name, last_name FROM players_identity as pi JOIN users ON users.uuid = pi.uuid WHERE users.uuid = @uuid",
 				{["@uuid"] = uuid},
 				function(result)
-					if (not result[1]) then return error("Error MySQL query Atlantiss::SE::Identity:GetFullNameFromUUID") end
+					if (not result[1]) then return error("Error MySQL query Ora::SE::Identity:GetFullNameFromUUID") end
 
 					callback(string.format("%s %s", result[1].first_name, result[1].last_name))
 				end
@@ -167,7 +167,7 @@ RegisterServerCallback(
 )
 
 RegisterServerCallback(
-	"Atlantiss::SE::Identity:GetFullNamesFromUUIDs",
+	"Ora::SE::Identity:GetFullNamesFromUUIDs",
 	function(source, callback, uuids)
 		local fullnames = {}
 		local query = string.format("SELECT first_name, last_name, uuid FROM players_identity WHERE uuid = '%s'", table.concat(uuids, "' OR uuid = '"))
@@ -176,7 +176,7 @@ RegisterServerCallback(
 			fullnames[uuids[i]] = "Nom non trouvé"
 		end
 
-		Atlantiss.Identity:Debug(string.format("^5%s^3 triggered ServerCallback : Identity:GetFullNamesFromUUIDs to retrieve full names of ^5%s^3", source, table.unpack(uuids)))
+		Ora.Identity:Debug(string.format("^5%s^3 triggered ServerCallback : Identity:GetFullNamesFromUUIDs to retrieve full names of ^5%s^3", source, table.unpack(uuids)))
 
 		MySQL.Async.fetchAll(query, {}, function(results)
 			if (not results[1]) then return callback(fullnames) end

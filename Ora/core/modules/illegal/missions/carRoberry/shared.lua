@@ -1,6 +1,6 @@
-Atlantiss.Illegal.CarRoberry = {}
+Ora.Illegal.CarRoberry = {}
 
-Atlantiss.Illegal.CarRoberry.CarPositions = {
+Ora.Illegal.CarRoberry.CarPositions = {
   {pos = vector3(2658.97, 1703.95, 24.49), a = 263.2},
   {pos = vector3(-89.01, 93.41, 72.32), a = 154.96},
   {pos = vector3(-252.18, 201.51, 84.33), a = 270.76},
@@ -47,16 +47,16 @@ Atlantiss.Illegal.CarRoberry.CarPositions = {
   {pos = vector3(-965.17, -1481.35, 4.93), a = 108.78}
 }
 
-Atlantiss.Illegal.CarRoberry.PaintingBoothPositions = {
+Ora.Illegal.CarRoberry.PaintingBoothPositions = {
   {pos = vector3(735.75, -1072.73, 22.17), a = 0.07},
   {pos = vector3(-1166.49, -2013.52, 13.23), a = 140.72},
 }
 
-Atlantiss.Illegal.CarRoberry.FinalPositions = {
+Ora.Illegal.CarRoberry.FinalPositions = {
   {pos = vector3(978.15, -1721.89, 31.12), a = 31.09}
 }
 
-Atlantiss.Illegal.CarRoberry.MissionConfig = {
+Ora.Illegal.CarRoberry.MissionConfig = {
   ["Récupération de véhicule Compacts"] = {
       cars = {"brioso", "asbo", "kanjo", "rhapsody", "prairie", "club"},
       minutes = 15
@@ -79,7 +79,7 @@ Atlantiss.Illegal.CarRoberry.MissionConfig = {
   }
 }
 
-function Atlantiss.Illegal.CarRoberry:ShowAdvancedNotification(message)
+function Ora.Illegal.CarRoberry:ShowAdvancedNotification(message)
   ShowAdvancedNotification(
       self:GetCharacterName(),
       "~h~Vol de véhicule~h~",
@@ -89,19 +89,19 @@ function Atlantiss.Illegal.CarRoberry:ShowAdvancedNotification(message)
   )
 end
 
-function Atlantiss.Illegal.CarRoberry:GetMaxTimeForMission()
+function Ora.Illegal.CarRoberry:GetMaxTimeForMission()
   return 20
 end
 
-function Atlantiss.Illegal.CarRoberry:GetDefaultVehicle()
+function Ora.Illegal.CarRoberry:GetDefaultVehicle()
   return "blista"
 end
 
-function Atlantiss.Illegal.CarRoberry:GetCharacterName()
+function Ora.Illegal.CarRoberry:GetCharacterName()
   return "Bob Lee"
 end
 
-function Atlantiss.Illegal.CarRoberry:GetEmptyCurrentObject()
+function Ora.Illegal.CarRoberry:GetEmptyCurrentObject()
   return {
     STOLEN_VEHICLE = nil,
     RUNNING = false,
@@ -119,5 +119,5 @@ function Atlantiss.Illegal.CarRoberry:GetEmptyCurrentObject()
   }
 end
 
-Atlantiss.Illegal.CarRoberry.Current = Atlantiss.Illegal.CarRoberry:GetEmptyCurrentObject()
-Atlantiss.Illegal:Register("CarRoberry")
+Ora.Illegal.CarRoberry.Current = Ora.Illegal.CarRoberry:GetEmptyCurrentObject()
+Ora.Illegal:Register("CarRoberry")

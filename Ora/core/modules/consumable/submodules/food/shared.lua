@@ -1,3 +1,3 @@
-Atlantiss.Consumable.Food = {}
-Atlantiss.Consumable.Food.List = {}
-Atlantiss.Consumable:Register("Food")
+Ora.Consumable.Food = {}
+Ora.Consumable.Food.List = {}
+Ora.Consumable:Register("Food")

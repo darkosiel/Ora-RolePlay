@@ -9,7 +9,7 @@
 -- 7 = results
 -- 8 = same as main but a bit different
 -- 9 = rules
-function Atlantiss.Jobs.Casino.Insidetrack:ShowMainScreen()
+function Ora.Jobs.Casino.Insidetrack:ShowMainScreen()
     BeginScaleformMovieMethod(self.Scaleform, 'SHOW_SCREEN')
     ScaleformMovieMethodAddParamInt(0)
     EndScaleformMovieMethod()
@@ -24,13 +24,13 @@ end
 
 ---@param cooldown integer
 ---(in seconds).
-function Atlantiss.Jobs.Casino.Insidetrack:SetMainScreenCooldown(cooldown)
+function Ora.Jobs.Casino.Insidetrack:SetMainScreenCooldown(cooldown)
     BeginScaleformMovieMethod(self.Scaleform, 'SET_COUNTDOWN')
     ScaleformMovieMethodAddParamInt(cooldown)
     EndScaleformMovieMethod()
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:SetNotAvailable()
+function Ora.Jobs.Casino.Insidetrack:SetNotAvailable()
     BeginScaleformMovieMethod(self.Scaleform, 'SHOW_ERROR')
 
     BeginTextCommandScaleformString('IT_ERROR_TITLE')

@@ -1,6 +1,6 @@
-Atlantiss.Health = {}
+Ora.Health = {}
 
-Atlantiss.Health.State = {
+Ora.Health.State = {
   CANT_RUN = false,
   CANT_SHOOT = false,
   IS_DEAD = false,
@@ -8,14 +8,14 @@ Atlantiss.Health.State = {
   CURRENT_HEALTH = nil
 }
 
-function Atlantiss.Health:GetModuleName()
+function Ora.Health:GetModuleName()
   return "Health"
 end
 
-function Atlantiss.Health:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Health:GetModuleName(), message))
+function Ora.Health:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Health:GetModuleName(), message))
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Health:GetModuleName())
+Ora.Modules:Register(Ora.Health:GetModuleName())

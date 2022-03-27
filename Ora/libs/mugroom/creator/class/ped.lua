@@ -37,8 +37,8 @@ local _Substring, _FooterString, _Rank = nil
 function AttachBoardToEntity(Entity, HeaderString, Substring, FooterString, Rank)
     prop_id_board = GetHashKey("prop_police_id_board")
     pedPos, overlayModel = GetEntityCoords(Entity), GetHashKey("prop_police_id_text")
-    board = Atlantiss.World.Object:Create(prop_id_board, pedPos, false, true, false)
-    overlay = Atlantiss.World.Object:Create(overlayModel, pedPos, false, true, false)
+    board = Ora.World.Object:Create(prop_id_board, pedPos, false, true, false)
+    overlay = Ora.World.Object:Create(overlayModel, pedPos, false, true, false)
     _Substring = Substring
     _FooterString = FooterString
     _Rank = Rank
@@ -139,7 +139,7 @@ function TakePictureAndExit()
     Citizen.Wait(2000)
 
     exports["screenshot-basic"]:requestScreenshotUpload(
-        "http://picture.atlantiss-rp.com/index.php",
+        "http://picture.Ora-rp.com/index.php",
         "creation",
         function(data)
             --print(data)

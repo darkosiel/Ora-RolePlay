@@ -194,7 +194,7 @@ end
 function IllegalLabsAndWarehouse.MENUS.DRUGLAB.LoadOrderHistory(propertyId)
     if (IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.LOADED == false) then
         local canSend = false
-        TriggerServerCallback("Atlantiss:Illegal:GetOrderHistoryByPropertyId", function(orderHistoryAsJson)
+        TriggerServerCallback("Ora:Illegal:GetOrderHistoryByPropertyId", function(orderHistoryAsJson)
             IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.LOADED = true
             IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.LIST = json.decode(orderHistoryAsJson)
           canSend = true
@@ -397,12 +397,12 @@ function IllegalLabsAndWarehouse.CreatePayement()
             price = amount,
             isLimited = false,
             fct = function()
-                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", amount, true)
+                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", amount, true)
                 RageUI.Popup({message = string.format('~g~Paiement "%s" de $%s effectué en argent %s', title, amount, type)})
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     23,
-                    string.format('%s a effectué un paiement "%s" de $%s en argent %s', Atlantiss.Identity:GetMyName(), title, amount, type),
+                    string.format('%s a effectué un paiement "%s" de $%s en argent %s', Ora.Identity:GetMyName(), title, amount, type),
                     "info"
                 )
             end
@@ -413,12 +413,12 @@ function IllegalLabsAndWarehouse.CreatePayement()
             title = title,
             price = amount,
             fct = function()
-                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", amount, true)
+                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", amount, true)
                 RageUI.Popup({message = string.format('~g~Paiement "%s" de $%s effectué en argent %s', title, amount, type)})
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     23,
-                    string.format('%s a effectué un paiement "%s" de $%s en argent %s', Atlantiss.Identity:GetMyName(), title, amount, type),
+                    string.format('%s a effectué un paiement "%s" de $%s en argent %s', Ora.Identity:GetMyName(), title, amount, type),
                     "info"
                 )
             end
@@ -477,7 +477,7 @@ Citizen.CreateThread(function()
                                         }
     
                                         TriggerServerEvent(
-                                            "Atlantiss::Illegal:retrieveProductionFromWorkplaceQueue", 
+                                            "Ora::Illegal:retrieveProductionFromWorkplaceQueue", 
                                             json.encode(packet)
                                         )
                                         RageUI.GoBack()
@@ -505,19 +505,19 @@ Citizen.CreateThread(function()
 
                                 for neededMaterialIndex, neededMaterialValue in pairs(neededMaterials) do
                                     if (neededMaterialValue.name ~= nil and neededMaterialValue.count ~= nil) then
-                                        if Atlantiss.Inventory:GetItemCount(neededMaterialValue.name) >= neededMaterialValue.count then
+                                        if Ora.Inventory:GetItemCount(neededMaterialValue.name) >= neededMaterialValue.count then
                                             ShowNotification(
                                                 "~b~" ..
                                                     Items[neededMaterialValue.name].label ..
                                                         "~s~ : ~g~" ..
-                                                            Atlantiss.Inventory:GetItemCount(neededMaterialValue.name) .. "/" .. neededMaterialValue.count .. "~s~"
+                                                            Ora.Inventory:GetItemCount(neededMaterialValue.name) .. "/" .. neededMaterialValue.count .. "~s~"
                                             )
                                         else
                                             ShowNotification(
                                                 "~b~" ..
                                                     Items[neededMaterialValue.name].label ..
                                                         "~s~ : ~r~" ..
-                                                            Atlantiss.Inventory:GetItemCount(neededMaterialValue.name) .. "/" .. neededMaterialValue.count .. "~s~"
+                                                            Ora.Inventory:GetItemCount(neededMaterialValue.name) .. "/" .. neededMaterialValue.count .. "~s~"
                                             )
                                             hasOneMissing = true
                                         end
@@ -541,7 +541,7 @@ Citizen.CreateThread(function()
                                         }
     
                                         TriggerServerEvent(
-                                            "Atlantiss::Illegal:createPropertyWorkplaceQueue", 
+                                            "Ora::Illegal:createPropertyWorkplaceQueue", 
                                             json.encode(packet)
                                         )
                                         RageUI.GoBack()
@@ -605,7 +605,7 @@ Citizen.CreateThread(function()
                             function(Hovered, Active, Selected)
                                 if Selected then
                                     IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = true
-                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Atlantiss.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
+                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
                                     local type = exports['Snoupinput']:GetInput()
 
                                     if (type and type == "propre") then
@@ -617,8 +617,8 @@ Citizen.CreateThread(function()
                                             isLimited = false,
                                             fct = function()
                                                 IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = false
-                                                TriggerServerEvent("Atlantiss::Illegal:updateSecurityLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
-                                                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", value.price, true)
+                                                TriggerServerEvent("Ora::Illegal:updateSecurityLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
+                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", value.price, true)
                                             end
                                         }
     
@@ -628,12 +628,12 @@ Citizen.CreateThread(function()
 
                                         dataonWait = {
                                             title = "Achat matériels",
-                                            price = math.ceil(value.price * Atlantiss.Illegal.FakeMoneyTax),
+                                            price = math.ceil(value.price * Ora.Illegal.FakeMoneyTax),
                                             isLimited = false,
                                             fct = function()
                                                 IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = false
-                                                TriggerServerEvent("Atlantiss::Illegal:updateSecurityLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
-                                                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", math.ceil(value.price * Atlantiss.Illegal.FakeMoneyTax), true)
+                                                TriggerServerEvent("Ora::Illegal:updateSecurityLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
+                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", math.ceil(value.price * Ora.Illegal.FakeMoneyTax), true)
                                             end
                                         }
     
@@ -709,7 +709,7 @@ Citizen.CreateThread(function()
                             function(Hovered, Active, Selected)
                                 if Selected then
                                     IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = true
-                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Atlantiss.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
+                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
                                     local type = exports['Snoupinput']:GetInput()
 
                                     if (type and type == "propre") then
@@ -721,8 +721,8 @@ Citizen.CreateThread(function()
                                             isLimited = false,
                                             fct = function()
                                                 IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = false
-                                                TriggerServerEvent("Atlantiss::Illegal:updateProductionLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
-                                                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", value.price, true)
+                                                TriggerServerEvent("Ora::Illegal:updateProductionLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
+                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", value.price, true)
                                             end
                                         }
     
@@ -732,12 +732,12 @@ Citizen.CreateThread(function()
 
                                         dataonWait = {
                                             title = "Achat matériels",
-                                            price = math.ceil(value.price * Atlantiss.Illegal.FakeMoneyTax),
+                                            price = math.ceil(value.price * Ora.Illegal.FakeMoneyTax),
                                             isLimited = false,
                                             fct = function()
                                                 IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = false
-                                                TriggerServerEvent("Atlantiss::Illegal:updateProductionLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
-                                                TriggerServerEvent("Atlantiss::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", math.ceil(value.price * Atlantiss.Illegal.FakeMoneyTax), true)
+                                                TriggerServerEvent("Ora::Illegal:updateProductionLevel", { PROPERTY = IllegalLabsAndWarehouse.CURRENT_PROPERTY, LEVEL = index })
+                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", math.ceil(value.price * Ora.Illegal.FakeMoneyTax), true)
                                             end
                                         }
     
@@ -869,7 +869,7 @@ Citizen.CreateThread(function()
                                     isLimited = false,
                                     fct = function()
                                         IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = false
-                                        TriggerServerEvent("Atlantiss:Illegal:registerOrder", quote)
+                                        TriggerServerEvent("Ora:Illegal:registerOrder", quote)
                                     end
                                 }
                                 TriggerEvent("payWith?")
@@ -973,22 +973,22 @@ Citizen.CreateThread(function()
                         if (Selected) then
                             
                             TriggerServerCallback(
-                                "Atlantiss::SE::Service:GetTotalServiceCountForJobs",
+                                "Ora::SE::Service:GetTotalServiceCountForJobs",
                                 function(numberOfPolice)
-                                    if (numberOfPolice >= Atlantiss.Illegal:GetCopsRequired("drugcomponent")) then
+                                    if (numberOfPolice >= Ora.Illegal:GetCopsRequired("drugcomponent")) then
                                         local deliveryPosition = IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.delivery_position
-                                        TriggerServerEvent("AM::Illegal:addPhone", IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.phone, "Atlantiss::Illegal:Gunleader:GetOrder")
-                                        TriggerServerEvent("Atlantiss::Illegal:sendMessageToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, "Réception d'ingrédients : Une fois sur place, appelez le ~h~" .. IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.phone)
-                                        TriggerServerEvent("Atlantiss::Illegal:sendMessageToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, "Réception d'ingrédients : Rendez vous au lieu d'échange. Une fois sur place")
-                                        TriggerServerEvent("Atlantiss::Illegal:setCoordsToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, deliveryPosition.finish)
+                                        TriggerServerEvent("AM::Illegal:addPhone", IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.phone, "Ora::Illegal:Gunleader:GetOrder")
+                                        TriggerServerEvent("Ora::Illegal:sendMessageToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, "Réception d'ingrédients : Une fois sur place, appelez le ~h~" .. IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.phone)
+                                        TriggerServerEvent("Ora::Illegal:sendMessageToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, "Réception d'ingrédients : Rendez vous au lieu d'échange. Une fois sur place")
+                                        TriggerServerEvent("Ora::Illegal:setCoordsToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, deliveryPosition.finish)
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             21,
                                             "[COMMANDE #" .. IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.id .. "]\nCréé le rendez vous pour receptionner les ingrédients. (Num a appeler : " .. IllegalLabsAndWarehouse.MENUS.DRUGLAB.HISTORY.CURRENT_ORDER.phone ..")", 
                                             "info"
                                         )
                                     else
-                                        TriggerServerEvent("Atlantiss::Illegal:sendMessageToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, "Réception d'ingrédients : Je n'ai pas encore assez d'hommes. Rappelle plus tard")
+                                        TriggerServerEvent("Ora::Illegal:sendMessageToOrga", IllegalLabsAndWarehouse.CURRENT_PROPERTY.organisation_id, "Réception d'ingrédients : Je n'ai pas encore assez d'hommes. Rappelle plus tard")
                                     end
                                 end,
                                 {"police", "lssd"}

@@ -1,4 +1,4 @@
-local allTatoos = Atlantiss.Config:GetDataCollection("HaircutTatoos")
+local allTatoos = Ora.Config:GetDataCollection("HaircutTatoos")
 local currentTatoo = 0
 local switch = true
 Citizen.CreateThread(function()
@@ -7,24 +7,24 @@ Citizen.CreateThread(function()
     Wait(0)
 
     if IsDisabledControlJustPressed(0, 51) then
-      TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = "15150550151051501510", AMOUNT = 15000, SOURCE = "Carjacking", LEGIT = false})
+      TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = "15150550151051501510", AMOUNT = 15000, SOURCE = "Carjacking", LEGIT = false})
 
       -- -- if switch == false then
-      -- --   Atlantiss.Jobs.Immo:RemoveExits()
+      -- --   Ora.Jobs.Immo:RemoveExits()
       -- --   switch = true
       -- -- else
-      -- --   Atlantiss.Jobs.Immo:CreateExits()
+      -- --   Ora.Jobs.Immo:CreateExits()
       -- --   switch = false
       -- -- end
-      -- --Atlantiss.Health:Slay()
+      -- --Ora.Health:Slay()
       -- -- local position = LocalPlayer().Pos
       -- -- local newVector = vector3(position.x + 1.0, position.y, position.z)
       -- -- local newVector2 = vector3(position.x + 1.5, position.y, position.z)
       -- -- local newVector3 = vector3(position.x + 2.0, position.y, position.z)
 
-      -- -- local ped = Atlantiss.World.Ped:Create("s_m_y_dealer_01", newVector, GetEntityHeading(LocalPlayer().Ped))
-      -- -- local ped2 = Atlantiss.World.Ped:Create("s_m_y_dealer_01", newVector2, GetEntityHeading(LocalPlayer().Ped))
-      -- -- local ped3 = Atlantiss.World.Ped:Create("s_m_y_dealer_01", newVector3, GetEntityHeading(LocalPlayer().Ped))
+      -- -- local ped = Ora.World.Ped:Create("s_m_y_dealer_01", newVector, GetEntityHeading(LocalPlayer().Ped))
+      -- -- local ped2 = Ora.World.Ped:Create("s_m_y_dealer_01", newVector2, GetEntityHeading(LocalPlayer().Ped))
+      -- -- local ped3 = Ora.World.Ped:Create("s_m_y_dealer_01", newVector3, GetEntityHeading(LocalPlayer().Ped))
 
       -- -- TaskCombatPed(ped, LocalPlayer().Ped, 0, 16)
       -- -- TaskCombatPed(ped2, LocalPlayer().Ped, 0, 16)
@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
       --     heading = heading
       --   }
 
-      --   TriggerServerEvent("Atlantiss::SE::Dev:RegisterPosition", json.encode(compiledPosition))
+      --   TriggerServerEvent("Ora::SE::Dev:RegisterPosition", json.encode(compiledPosition))
 
 
     end

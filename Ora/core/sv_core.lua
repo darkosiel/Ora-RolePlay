@@ -1,16 +1,16 @@
 -- ALTER TABLE `users` ADD COLUMN `last_connected_at` DATETIME NULL AFTER `hud`;
 
-Atlantiss.PlayersData = {}
-Atlantiss.DisableCheckup = false
+Ora.PlayersData = {}
+Ora.DisableCheckup = false
 
 local function IsYetRegistered(licence, steam, initSrc)
     local res = {}
 	
-	if (Atlantiss.DisableCheckup == true) then
+	if (Ora.DisableCheckup == true) then
 		return res
 	end
 
-    for src, ids in pairs(Atlantiss.PlayersData) do
+    for src, ids in pairs(Ora.PlayersData) do
         local l, s = ids[1], ids[2]
 
         if (licence == l or steam == s) then
@@ -18,12 +18,12 @@ local function IsYetRegistered(licence, steam, initSrc)
                 "[%s & %s] %s s'est connecté avec plusieurs clients au même compte steam.\n\n[HEX] : **%s**\n[LICENCE] : **%s**",
                 initSrc,
                 src,
-                Atlantiss.Identity:GetFullname(src) ~= "" and Atlantiss.Identity:GetFullname(src) or GetPlayerName(src),
+                Ora.Identity:GetFullname(src) ~= "" and Ora.Identity:GetFullname(src) or GetPlayerName(src),
                 s,
                 l 
             )
 
-            TriggerEvent("atlantiss:sendToDiscordFromServer", src, 12, hook, "error")
+            TriggerEvent("Ora:sendToDiscordFromServer", src, 12, hook, "error")
             table.insert(res, src)
         end
     end
@@ -33,7 +33,7 @@ local function IsYetRegistered(licence, steam, initSrc)
 end
 
 AddEventHandler(
-  "Atlantiss::SE::PlayerLoaded",
+  "Ora::SE::PlayerLoaded",
   function(source)
 	local steam
 
@@ -44,15 +44,15 @@ AddEventHandler(
         end
     end
 
-	Atlantiss.Jobs.Firefighter.Whitelist:addPlayer(source, steam)
-	TriggerClientEvent("Atlantiss::CE::PlayerLoaded", source)
+	Ora.Jobs.Firefighter.Whitelist:addPlayer(source, steam)
+	TriggerClientEvent("Ora::CE::PlayerLoaded", source)
   end
 )
 
-function Atlantiss:InitializeCharacter(source)
-    local playerUuid = Atlantiss.Identity:GetUuid(source)
-    TriggerEvent("Atlantiss::ServerSidePlayerLoaded", source, playerUuid)
-    TriggerClientEvent("Atlantiss::PlayerLoaded", source, playerUuid)
+function Ora:InitializeCharacter(source)
+    local playerUuid = Ora.Identity:GetUuid(source)
+    TriggerEvent("Ora::ServerSidePlayerLoaded", source, playerUuid)
+    TriggerClientEvent("Ora::PlayerLoaded", source, playerUuid)
 
     if (playerUuid ~= nil) then
         MySQL.Async.fetchAll(
@@ -63,7 +63,7 @@ function Atlantiss:InitializeCharacter(source)
             function(identityResults)
                 if (identityResults ~= nil and identityResults[1] ~= nil) then
                     TriggerEvent(
-                        "Atlantiss::SE::Identity:Loaded", 
+                        "Ora::SE::Identity:Loaded", 
                         source, 
                         {
                             last_name = identityResults[1].last_name,
@@ -86,7 +86,7 @@ function Atlantiss:InitializeCharacter(source)
                 local now = os.time()
                 if (resultsPlayerBan[1].expires_at ~= nil and now > math.tointeger(resultsPlayerBan[1].expires_at)) then
                     TriggerClientEvent("RageUI:Popup", source, {message = "~h~~g~~h~Votre ban armes est supprimé~s~"})
-                    TriggerClientEvent("Atlantiss::Player:banWeapon", source, false)
+                    TriggerClientEvent("Ora::Player:banWeapon", source, false)
                     MySQL.Sync.execute(
                         "DELETE FROM player_ban_weapon WHERE uuid = @uuid",
                         {
@@ -95,14 +95,14 @@ function Atlantiss:InitializeCharacter(source)
                     )
                 else
                     TriggerClientEvent("RageUI:Popup", source, {message = "~h~~r~Rappel:~h~ Vous êtes ban armes~s~"})
-                    TriggerClientEvent("Atlantiss::Player:banWeapon", source, true)
+                    TriggerClientEvent("Ora::Player:banWeapon", source, true)
                 end
             end
         end
     )
 
-    AtlantissAdmin.AddPlayer(source, Atlantiss.Identity:GetUuid(source), Atlantiss.Identity:GetGroup(source), "["..source.."] " .. Atlantiss.Identity:GetFullname(source))
-    TriggerEvent("Atlantiss::SE::PlayerLoaded", source)
+    OraAdmin.AddPlayer(source, Ora.Identity:GetUuid(source), Ora.Identity:GetGroup(source), "["..source.."] " .. Ora.Identity:GetFullname(source))
+    TriggerEvent("Ora::SE::PlayerLoaded", source)
 end
 
 Citizen.CreateThread(
@@ -111,7 +111,7 @@ Citizen.CreateThread(
             Wait(100)
         end
 
-        Atlantiss:InitializeModules()
+        Ora:InitializeModules()
     end
 )
 
@@ -119,8 +119,8 @@ RegisterCommand(
     "emptyPlayersTable",
     function(source)
         if (source == 0) then
-            Atlantiss.PlayersData = {}
-            TriggerClientEvent("Atlantiss::CE::Core:SendClientInfos", -1)
+            Ora.PlayersData = {}
+            TriggerClientEvent("Ora::CE::Core:SendClientInfos", -1)
             print("^2Player's table cleaned !^0")
         end
     end,
@@ -131,8 +131,8 @@ RegisterCommand(
     "toggleSteamCheck",
     function(source)
         if (source == 0) then
-            Atlantiss.DisableCheckup = not Atlantiss.DisableCheckup
-			if (Atlantiss.DisableCheckup == true) then
+            Ora.DisableCheckup = not Ora.DisableCheckup
+			if (Ora.DisableCheckup == true) then
 				print("^2Steam & Licence check disabled !^0")
 			else
 				print("^2Steam & Licence check enbaled !^0")
@@ -142,9 +142,9 @@ RegisterCommand(
     true
 )
 
-RegisterNetEvent("Atlantiss::SE::Core:SendClientInfos")
+RegisterNetEvent("Ora::SE::Core:SendClientInfos")
 AddEventHandler(
-  "Atlantiss::SE::Core:SendClientInfos",
+  "Ora::SE::Core:SendClientInfos",
   function()
     local src = source
     local licence, steam
@@ -164,12 +164,12 @@ AddEventHandler(
         local hook = string.format(
             "[%s] %s s'est connecté avec plusieurs clients au même compte steam ou rockstar.\n\n[HEX] : **%s**\n[LICENCE] : **%s**",
             src,
-            Atlantiss.Identity:GetFullname(src) ~= "" and Atlantiss.Identity:GetFullname(src) or GetPlayerName(src),
+            Ora.Identity:GetFullname(src) ~= "" and Ora.Identity:GetFullname(src) or GetPlayerName(src),
             steam,
             licence
         )
 
-        TriggerEvent("atlantiss:sendToDiscordFromServer", src, 12, hook, "error")
+        TriggerEvent("Ora:sendToDiscordFromServer", src, 12, hook, "error")
 
         for i = 1, #regSrcs do
             DropPlayer(regSrcs[i], message)
@@ -180,7 +180,7 @@ AddEventHandler(
         return
     end
 
-    Atlantiss.PlayersData[src] = {licence, steam}
+    Ora.PlayersData[src] = {licence, steam}
   end
 )
 
@@ -189,7 +189,7 @@ AddEventHandler(
     function(reason)
         local src = source
         local playerPing = GetPlayerPing(src)
-        local playerUUID = Atlantiss.Identity:GetUuid(src)
+        local playerUUID = Ora.Identity:GetUuid(src)
 		local steam
 
 		for _, foundID in ipairs(GetPlayerIdentifiers(src)) do
@@ -200,19 +200,19 @@ AddEventHandler(
 		end
 
         TriggerEvent(
-            "atlantiss:sendToDiscordFromServer",
+            "Ora:sendToDiscordFromServer",
             src,
             14,
-            Atlantiss.Identity:GetFullname(src) .. " se deconnecte\n\n* Ping : " .. playerPing .. "ms\n* Raison : " .. reason,
+            Ora.Identity:GetFullname(src) .. " se deconnecte\n\n* Ping : " .. playerPing .. "ms\n* Raison : " .. reason,
             "info"
         )
 
         MySQL.Async.execute("UPDATE users SET last_connected_at = current_timestamp() WHERE uuid = @uuid", {["@uuid"] = playerUUID})
 
-		if (src and Atlantiss.PlayersData[src]) then
-			Atlantiss.PlayersData[src] = nil
+		if (src and Ora.PlayersData[src]) then
+			Ora.PlayersData[src] = nil
 		end
 
-		Atlantiss.Jobs.Firefighter.Whitelist:removePlayer(src, steam)
+		Ora.Jobs.Firefighter.Whitelist:removePlayer(src, steam)
     end
 )

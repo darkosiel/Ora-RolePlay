@@ -6,7 +6,7 @@ end
 function generateUuid()
     local uuid = ""
     TriggerEvent(
-        "atlantiss:generateUuid",
+        "Ora:generateUuid",
         function(localUuid)
             uuid = localUuid
         end
@@ -335,7 +335,7 @@ function ShowAboveRadarMessage(message, back)
 end
 
 function ifModuleLoaded(moduleName)
-    if (Atlantiss ~= nil and Atlantiss[moduleName] ~= nil) then
+    if (Ora ~= nil and Ora[moduleName] ~= nil) then
         return true
     end
 
@@ -403,7 +403,7 @@ end
 
 function TakePictureForAnticheat()
     exports["screenshot-basic"]:requestScreenshotUpload(
-        "http://picture.atlantiss-rp.com/index.php",
+        "http://picture.Ora-rp.com/index.php",
         "anticheat",
         function(data)
           

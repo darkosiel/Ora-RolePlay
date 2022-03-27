@@ -3,12 +3,12 @@ Marker.Data = {}
 Marker.ListByZone = {}
 
 function Marker:Add(Pos,Data)
-		local gridZoneId = Atlantiss.Core:GetGridZoneId(Pos.x, Pos.y)
+		local gridZoneId = Ora.Core:GetGridZoneId(Pos.x, Pos.y)
     table.insert( self.Data, {pos=Pos,data=Data, gridZoneId = gridZoneId})
 		if (self.ListByZone[gridZoneId] == nil) then
 			self.ListByZone[gridZoneId] = {}
 		end
-		Atlantiss.Core:Debug(string.format("Added marker ^5%s %s %s^3 for zone ^5%s^3", Pos.x, Pos.y, Pos.z, gridZoneId))
+		Ora.Core:Debug(string.format("Added marker ^5%s %s %s^3 for zone ^5%s^3", Pos.x, Pos.y, Pos.z, gridZoneId))
 		table.insert(self.ListByZone[gridZoneId], {pos=Pos,data=Data,gridZoneId = gridZoneId})
 end
 function Marker:Visible(Pos,Visible)
@@ -27,7 +27,7 @@ function Marker:Remove(Pos)
 			if (gridZoneForMarker ~= nil and self.ListByZone[gridZoneForMarker] ~= nil and type(self.ListByZone[gridZoneForMarker]) == "table") then
 				for key, value in pairs(self.ListByZone[gridZoneForMarker]) do
 					if value.pos == Pos then
-						Atlantiss.Core:Debug(string.format("Removed marker ^5%s %s %s^3 for zone ^5%s^3", value.pos.x, value.pos.y, value.pos.z, gridZoneForMarker))
+						Ora.Core:Debug(string.format("Removed marker ^5%s %s %s^3 for zone ^5%s^3", value.pos.x, value.pos.y, value.pos.z, gridZoneForMarker))
 						table.remove(self.ListByZone[gridZoneForMarker], key)
 						break
 					end
@@ -63,9 +63,9 @@ Citizen.CreateThread(function()
 		Wait(500)
 		local previousZoneId = currentZoneId
 		local t = LocalPlayer().Pos
-		currentZoneId = Atlantiss.Core:GetGridZoneId(t.x, t.y)
+		currentZoneId = Ora.Core:GetGridZoneId(t.x, t.y)
 		if (previousZoneId ~= currentZoneId) then
-			Atlantiss.Core:Debug(string.format("^5MARKERS^3 : Current zone id is now ^5%s^3", currentZoneId))
+			Ora.Core:Debug(string.format("^5MARKERS^3 : Current zone id is now ^5%s^3", currentZoneId))
 		end
 	end
 end)

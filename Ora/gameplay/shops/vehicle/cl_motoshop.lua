@@ -245,7 +245,7 @@
 --                                 for k, v in pairs(GetActivePlayers()) do
 --                                     local i = v
 --                                     RageUI.Button(
---                                         Atlantiss.Identity:GetFullname(GetPlayerServerId(i)),
+--                                         Ora.Identity:GetFullname(GetPlayerServerId(i)),
 --                                         nil,
 --                                         {},
 --                                         true,
@@ -327,7 +327,7 @@
 --                                                                         },
 --                                                                         label = veh.plate
 --                                                                     }
---                                                                     Atlantiss.Inventory:AddItem(items)
+--                                                                     Ora.Inventory:AddItem(items)
 --                                                                     CloseAllMenus()
 --                                                                 end,
 --                                                                 currentInd.price,
@@ -424,7 +424,7 @@
 --                                                                         data = {plate = veh.plate},
 --                                                                         label = veh.plate
 --                                                                     }
---                                                                     Atlantiss.Inventory:AddItem(items)
+--                                                                     Ora.Inventory:AddItem(items)
 --                                                                     -- SetEntityVisible(LocalPlayer().Ped,true)
 --                                                                     CloseAllMenus()
 --                                                                 end,
@@ -464,25 +464,25 @@
 --                                     function(_, Active, Selected)
 --                                         if (Selected) then
 --                                             TriggerServerCallback(
---                                                 "Atlantiss::SVCB::Jobs:Jetsam:CanOrder",
+--                                                 "Ora::SVCB::Jobs:Jetsam:CanOrder",
 --                                                 function(canOrder)
 --                                                     if (canOrder == true) then
 --                                                         TriggerServerCallback(
 --                                                             "getBankingAccountsPly3",
 --                                                             function(result)
 --                                                                 if (result[1].amount - amountVeh >= 0) then
---                                                                     local veh = Atlantiss.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+--                                                                     local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
                     
 --                                                                     TriggerServerCallback(
 --                                                                         "bikershop:BuyVehicle",
 --                                                                         function(_, plate)
 --                                                                             TriggerServerEvent(
---                                                                                 "Atlantiss::SE::Jobs:Jetsam:Order",
+--                                                                                 "Ora::SE::Jobs:Jetsam:Order",
 --                                                                                 {
 --                                                                                     plate = plate,
 --                                                                                     customs = veh
 --                                                                                 },
---                                                                                 Atlantiss.Identity:GetMyUuid(),
+--                                                                                 Ora.Identity:GetMyUuid(),
 --                                                                                 "bikershop"
 --                                                                             )
                     
@@ -597,7 +597,7 @@
 --                                 function()
 --                                     for i = 1, #v, 1 do
 --                                         p = "~r~MASQUÉ"
---                                         if Atlantiss.Identity:HasAnyJob("bikershop") then
+--                                         if Ora.Identity:HasAnyJob("bikershop") then
 --                                             p = v[i].price .. "$"
 --                                         end
 --                                         RageUI.Button(
@@ -606,7 +606,7 @@
 --                                             {RightLabel = p},
 --                                             true,
 --                                             function(_, Active, Selected)
---                                                 if Atlantiss.Identity:HasAnyJob("bikershop") then
+--                                                 if Ora.Identity:HasAnyJob("bikershop") then
 --                                                     menu = RMenu:Get("bikershop_sub", "list")
 --                                                 else
 --                                                     menu = nil
@@ -627,7 +627,7 @@
 --                                                 end
 
 --                                                 if Selected then
---                                                     if Atlantiss.Identity:HasAnyJob("bikershop") then
+--                                                     if Ora.Identity:HasAnyJob("bikershop") then
 --                                                         amountVeh = v[i].price
 --                                                         menu = RMenu:Get("bikershop_sub", "list")
 --                                                         currentInd = v[i]

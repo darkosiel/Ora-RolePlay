@@ -17,11 +17,11 @@ Citizen.CreateThread(function()
     Wait(100)
   end
   Config()
-  while Atlantiss.Player.HasLoaded == false do
+  while Ora.Player.HasLoaded == false do
     Wait(100)
   end
   for k, v in pairs(speaker) do
-    if Atlantiss.Identity.Job:GetName() == v.name or Atlantiss.Identity.Orga:Get().label == v.label then
+    if Ora.Identity.Job:GetName() == v.name or Ora.Identity.Orga:Get().label == v.label then
       job = k
       club = v.name
       createSpeakerMenu()

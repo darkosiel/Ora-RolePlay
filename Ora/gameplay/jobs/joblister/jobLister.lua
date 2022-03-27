@@ -8,7 +8,7 @@ function JobListing.EnterZone()
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour parler au conseiller")
     KeySettings:Add("keyboard","E",JobListing.Open,"Shop")
     KeySettings:Add("controller",46,JobListing.Open,"Shop")
-    while Atlantiss.Player.HasLoaded == false do 
+    while Ora.Player.HasLoaded == false do 
         Wait(50)
     end
     TriggerServerCallback('joblisting:RequestData', function(data1, data2)
@@ -16,7 +16,7 @@ function JobListing.EnterZone()
         if data2 ~= nil then
             myJobAnnounce = data2
         end
-    end, Atlantiss.Identity.Job:GetName())
+    end, Ora.Identity.Job:GetName())
 end
 
 function JobListing.ExitZone()
@@ -110,8 +110,8 @@ Citizen.CreateThread(function()
                             local salary = KeyboardInput("Salaire","",3)
 
                             if tostring(desc) ~= nil and tonumber(salary) ~= nil then
-                                table.insert( myJobAnnounce, {job=Atlantiss.Identity.Job:GetName(),salary=salary,desc=desc})
-                                table.insert( JobAnnounce, {job=Atlantiss.Identity.Job:GetName(),salary=salary,desc=desc})
+                                table.insert( myJobAnnounce, {job=Ora.Identity.Job:GetName(),salary=salary,desc=desc})
+                                table.insert( JobAnnounce, {job=Ora.Identity.Job:GetName(),salary=salary,desc=desc})
                                 RageUI.Popup({message="~g~Votre annonce à été ajouté avec succès"})
                                 JobListing.SyncMyJobAnnounce()
                             end
@@ -126,7 +126,7 @@ Citizen.CreateThread(function()
                         if v.FreeAccess then
                             RageUI.Button(v.label2,"Salaire de ~g~" .. v.grade[1].salary .."$",{},true,function(_,_,Selected)
                                 if Selected then
-                                    Atlantiss.Identity.Job:Set(k, 1)
+                                    Ora.Identity.Job:Set(k, 1)
                                 end
                             end)
                         end
@@ -142,7 +142,7 @@ Citizen.CreateThread(function()
                             end
                         end)
                     end
-                    if Atlantiss.Identity.Job:IsBoss() then
+                    if Ora.Identity.Job:IsBoss() then
                         RageUI.Button("Mes annonces",nil,{},true,function(_,_,_)
                         end,RMenu:Get('joblisting',"main_boss"))
                     end
@@ -154,7 +154,7 @@ Citizen.CreateThread(function()
 end)
 
 function JobListing.SyncMyJobAnnounce() 
-    TriggerServerEvent("joblisting:SyncMyJobAnnounce",Atlantiss.Identity.Job:GetName(),myJobAnnounce,JobAnnounce)
+    TriggerServerEvent("joblisting:SyncMyJobAnnounce",Ora.Identity.Job:GetName(),myJobAnnounce,JobAnnounce)
 end
 
 

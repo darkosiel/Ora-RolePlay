@@ -22,7 +22,7 @@ Citizen.CreateThread(
             if IsControlJustPressed(1, 246) and callActive then
                 if isCall == false then
                     if work == "uber" then
-                        TriggerServerCallback('Atlantiss:call:uber:isTaken', function(taken)
+                        TriggerServerCallback('Ora:call:uber:isTaken', function(taken)
                             if taken then
                                 SendNotification("~r~L'appel a déjà été prit par un autre chauffeur Uber.")
                             else
@@ -59,7 +59,7 @@ Citizen.CreateThread(
                 end
             elseif IsControlJustPressed(1, 303) and callActive then
                 if work == "uber" then
-                    TriggerServerCallback('Atlantiss:call:uber:isTaken', function(taken)
+                    TriggerServerCallback('Ora:call:uber:isTaken', function(taken)
                         if taken then
                             SendNotification("~r~L'appel a déjà été prit par un autre chauffeur Uber.")
                         else

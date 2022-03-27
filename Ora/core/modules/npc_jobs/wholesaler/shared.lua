@@ -1,5 +1,5 @@
-Atlantiss.NpcJobs.Wholesaler = {}
-Atlantiss.NpcJobs.Wholesaler.ItemsPerJob = {
+Ora.NpcJobs.Wholesaler = {}
+Ora.NpcJobs.Wholesaler.ItemsPerJob = {
   ammunation = {
     ["metalpiece11"] = {"Chassis de Tazer", 250},
     ["metalpiece1"] = {"Chassis de pistolet", 1250},
@@ -261,14 +261,14 @@ Atlantiss.NpcJobs.Wholesaler.ItemsPerJob = {
   -- [""] = {},
 }
 
-function Atlantiss.NpcJobs.Wholesaler:GetJobName()
+function Ora.NpcJobs.Wholesaler:GetJobName()
   return "Wholesaler"
 end
 
-function Atlantiss.NpcJobs.Wholesaler:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Atlantiss.NpcJobs:GetModuleName(), Atlantiss.NpcJobs.Wholesaler:GetJobName(), message))
+function Ora.NpcJobs.Wholesaler:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Ora.NpcJobs:GetModuleName(), Ora.NpcJobs.Wholesaler:GetJobName(), message))
   end
 end
 
-Atlantiss.NpcJobs:Register(Atlantiss.NpcJobs.Wholesaler:GetJobName())
+Ora.NpcJobs:Register(Ora.NpcJobs.Wholesaler:GetJobName())

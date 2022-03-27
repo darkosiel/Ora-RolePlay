@@ -1,6 +1,6 @@
-Atlantiss.NpcJobs.Bank = {}
+Ora.NpcJobs.Bank = {}
 
-Atlantiss.NpcJobs.Bank.Positions = {
+Ora.NpcJobs.Bank.Positions = {
   -- Los Santos
   { name = "Juan", pos = vector3(243.63, 226.23, 106.29 - 0.98), heading = 158.23},
   { name = "Albert", pos = vector3(248.95, 224.3, 106.29 - 0.98), heading = 158.63 },
@@ -9,7 +9,7 @@ Atlantiss.NpcJobs.Bank.Positions = {
   { name = "Claytus", pos = vector3(-112.23, 6471.17, 31.63 - 0.98), heading = 131.86},
 }
 
-Atlantiss.NpcJobs.Bank.AvailablePeds = {
+Ora.NpcJobs.Bank.AvailablePeds = {
   "u_m_m_bankman",
   "u_m_o_finguru_01",
   "u_m_y_gunvend_01",
@@ -17,7 +17,7 @@ Atlantiss.NpcJobs.Bank.AvailablePeds = {
   "u_m_m_vince"
 }
 
-Atlantiss.NpcJobs.Bank.Zones = {
+Ora.NpcJobs.Bank.Zones = {
   -- Los Santos
   { pos = vector3(243.12, 224.75, 106.29 - 0.95), heading = 336.37, name = "bank_ls1"},
   { pos = vector3(248.33, 222.75, 106.29 - 0.95), heading = 334.05, name = "bank_ls2" },
@@ -26,35 +26,35 @@ Atlantiss.NpcJobs.Bank.Zones = {
   { pos = vector3(-113.13, 6470.08, 31.63 - 0.95), heading = 310.58, name = "bank_pal1"},
 }
 
-Atlantiss.NpcJobs.Bank.CardLabels = {
+Ora.NpcJobs.Bank.CardLabels = {
   [1] = "Classic", 
   [2] = "Gold", 
   [3] = "Platinium", 
   [4] = "Blackcard"
 }
 
-Atlantiss.NpcJobs.Bank.Card = {
+Ora.NpcJobs.Bank.Card = {
   [1] = "classic",
   [2] = "gold",
   [3] = "platinium",
   [4] = "blackcard"
 }
 
-Atlantiss.NpcJobs.Bank.CardPrices = {
+Ora.NpcJobs.Bank.CardPrices = {
   [1] = 5000,
   [2] = 15000,
   [3] = 30000,
   [4] = 45000
 }
 
-Atlantiss.NpcJobs.Bank.CardRatios = {
+Ora.NpcJobs.Bank.CardRatios = {
   [1] = {maxDeposit = 5000, maxRemove = 5000, deposit = 0, remove = 0},
   [2] = {maxDeposit = 15000, maxRemove = 15000, deposit = 0, remove = 0},
   [3] = {maxDeposit = 50000, maxRemove = 50000, deposit = 0, remove = 0},
   [4] = {maxDeposit = 250000, maxRemove = 250000, deposit = 0, remove = 0}
 }
 
-function Atlantiss.NpcJobs.Bank:GetCardPriceByName(name)
+function Ora.NpcJobs.Bank:GetCardPriceByName(name)
   for key, value in pairs(self.CardLabels) do
       if (value == name) then
         return self:GetCardPriceById(key)
@@ -64,7 +64,7 @@ function Atlantiss.NpcJobs.Bank:GetCardPriceByName(name)
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:GetCardCodeByName(name)
+function Ora.NpcJobs.Bank:GetCardCodeByName(name)
   for key, value in pairs(self.CardLabels) do
       if (value == name) then
         return self:GetCardCodeById(key)
@@ -74,7 +74,7 @@ function Atlantiss.NpcJobs.Bank:GetCardCodeByName(name)
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:GetCardIdByName(name)
+function Ora.NpcJobs.Bank:GetCardIdByName(name)
   for key, value in pairs(self.CardLabels) do
       if (value == name) then
         return key
@@ -84,51 +84,51 @@ function Atlantiss.NpcJobs.Bank:GetCardIdByName(name)
   return false
 end
 
-function Atlantiss.NpcJobs.Bank:GetCardPriceById(id)
+function Ora.NpcJobs.Bank:GetCardPriceById(id)
   return self.CardPrices[id]
 end
 
-function Atlantiss.NpcJobs.Bank:GetCardCodeById(id)
+function Ora.NpcJobs.Bank:GetCardCodeById(id)
   return self.Card[id]
 end
 
-function Atlantiss.NpcJobs.Bank:GetCardLabelById(id)
+function Ora.NpcJobs.Bank:GetCardLabelById(id)
   return self.CardLabels[id]
 end
 
-function Atlantiss.NpcJobs.Bank:GetCardRatioById(id)
+function Ora.NpcJobs.Bank:GetCardRatioById(id)
   return self.CardRatios[id]
 end
 
-function Atlantiss.NpcJobs.Bank:GetDefaultAmountForCompanyAccount()
+function Ora.NpcJobs.Bank:GetDefaultAmountForCompanyAccount()
   return 50000
 end
 
-function Atlantiss.NpcJobs.Bank:GetJobName()
+function Ora.NpcJobs.Bank:GetJobName()
   return "Bank"
 end
 
-function Atlantiss.NpcJobs.Bank:GetPedPositions()
+function Ora.NpcJobs.Bank:GetPedPositions()
   return self.Positions
 end
 
-function Atlantiss.NpcJobs.Bank:GetZones()
+function Ora.NpcJobs.Bank:GetZones()
   return self.Zones
 end
 
-function Atlantiss.NpcJobs.Bank:GetPedsModels()
+function Ora.NpcJobs.Bank:GetPedsModels()
   return self.AvailablePeds
 end
 
-function Atlantiss.NpcJobs.Bank:GetRandomPed()
+function Ora.NpcJobs.Bank:GetRandomPed()
   return self.AvailablePeds[math.random(1, #self.AvailablePeds)]
 end
 
 
-function Atlantiss.NpcJobs.Bank:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Atlantiss.NpcJobs:GetModuleName(), Atlantiss.NpcJobs.Bank:GetJobName(), message))
+function Ora.NpcJobs.Bank:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[Job %s / %s] ^3%s^7.\n",  Ora.NpcJobs:GetModuleName(), Ora.NpcJobs.Bank:GetJobName(), message))
   end
 end
 
-Atlantiss.NpcJobs:Register(Atlantiss.NpcJobs.Bank:GetJobName())
+Ora.NpcJobs:Register(Ora.NpcJobs.Bank:GetJobName())

@@ -110,7 +110,7 @@ Citizen.CreateThread(
             SetPedSuffersCriticalHits(Player.Ped, false)
 
             if (IsPedFalling(Player.Ped) or IsPedInParachuteFreeFall(Player.Ped)) then
-                if (Atlantiss.Inventory:GetItemCount("parachute") > 0) then
+                if (Ora.Inventory:GetItemCount("parachute") > 0) then
                     GiveWeaponToPed(Player.Ped, GetHashKey("GADGET_PARACHUTE"), true)
                     SetCurrentPedWeapon(Player.Ped, GetHashKey("GADGET_PARACHUTE"), true)
                     SetPlayerHasReserveParachute(PlayerId())

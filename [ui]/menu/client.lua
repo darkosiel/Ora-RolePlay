@@ -175,7 +175,7 @@ SpawnObject = function(model, coords, cb)
                 Citizen.Wait(0)
             end
 
-            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                 function()
                     local obj = CreateObject(model, coords.x, coords.y, coords.z, false, true, false)
 
@@ -523,7 +523,7 @@ RegisterNUICallback(
             local _props = props[item.name] == nil and "hei_prop_heist_box" or props[item.name]
             local model = (type(_props) == "number" and _props or GetHashKey(_props))
 
-            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                 function()
                     obX = CreateObject(model, GetEntityCoords(PlayerPedId()), true, true, true)
                     AttachEntityToEntity(

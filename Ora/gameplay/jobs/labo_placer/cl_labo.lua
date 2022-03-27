@@ -32,27 +32,27 @@ RMenu.Add("illeg_admin_menuproperty", "illeg_admin_menuproperty_assign", RageUI.
 
 function initAdminDrugMenu()
   Citizen.CreateThread(function()
-    if Atlantiss.Identity.Orga:Get().label == "Référent Illégal" then
+    if Ora.Identity.Orga:Get().label == "Référent Illégal" then
       KeySettings:Add("keyboard","F7",function()
         RageUI.Visible(RMenu:Get("illeg_admin_menuperso", "main"), true)
       end,"admin_drug")
     end
 
-    if Atlantiss.Identity.Job:Get().label == "Référent Illégal" then
+    if Ora.Identity.Job:Get().label == "Référent Illégal" then
       KeySettings:Add("keyboard","F6",function()
         RageUI.Visible(RMenu:Get("illeg_admin_menuperso", "main"), true)
       end,"admin_drug")
     end
   end)
 
-  TriggerServerEvent("Atlantiss:Illegal:SyncProperties")
+  TriggerServerEvent("Ora:Illegal:SyncProperties")
 end
 
 function IllegalAdminMenu.PopulateCurrentEditProperty(propertyName)
   if (#IllegalAdminMenu.CURRENT_PROPERTY_EDIT == 0) then
     local canSend = false
     
-    TriggerServerCallback("Atlantiss:Illegal:getPropertyByName", 
+    TriggerServerCallback("Ora:Illegal:getPropertyByName", 
         function(property)
             IllegalAdminMenu.CURRENT_PROPERTY_EDIT = property
             canSend = true
@@ -139,7 +139,7 @@ Citizen.CreateThread(function()
             
             RageUI.Button("Actualiser les propriétés", "Actualiser la liste des propriétés", {}, true, function(Hovered, Active, Selected)
               if Selected then
-                TriggerServerEvent("Atlantiss:Illegal:SyncProperties")
+                TriggerServerEvent("Ora:Illegal:SyncProperties")
                 ShowNotification("~g~Liste des propriétés ~h~illégales~h~ mises à jours~s~")
               end
             end
@@ -218,7 +218,7 @@ Citizen.CreateThread(function()
                     else
                       ShowNotification("~h~~g~Succès!~h~~s~\n~g~Laboratoire de drogue créé.~s~")
                       ShowNotification("~h~~b~Info :~h~~s~\n~b~Utilisez Gérer les labo pour affecter une faction.~s~")
-                      TriggerServerEvent("Atlantiss:Illegal:createProperty", "drug", IllegalAdminMenu.CURRENT_PROPERTY_CONFIGURATION)
+                      TriggerServerEvent("Ora:Illegal:createProperty", "drug", IllegalAdminMenu.CURRENT_PROPERTY_CONFIGURATION)
                     end
                 end
             end)
@@ -290,7 +290,7 @@ Citizen.CreateThread(function()
                       else
                           ShowNotification("~h~~g~Succès!~h~\n~g~Laboratoire dépot d'arme créé.~s~")
                           ShowNotification("~h~~b~Info :~h~\n~b~Utilisez Gérer les dépots pour affecter une faction.~s~")
-                          TriggerServerEvent("Atlantiss:Illegal:createProperty", "weapon", IllegalAdminMenu.CURRENT_PROPERTY_CONFIGURATION)
+                          TriggerServerEvent("Ora:Illegal:createProperty", "weapon", IllegalAdminMenu.CURRENT_PROPERTY_CONFIGURATION)
                       end
                   end
               end)
@@ -483,7 +483,7 @@ Citizen.CreateThread(function()
                         true,
                         function(_, _, Selected)
                             if Selected then
-                                TriggerServerEvent("Atlantiss:Illegal:DeleteFactionFromProperty", IllegalAdminMenu.CURRENT_PROPERTY_EDIT)
+                                TriggerServerEvent("Ora:Illegal:DeleteFactionFromProperty", IllegalAdminMenu.CURRENT_PROPERTY_EDIT)
                             end
                         end
                     )
@@ -496,7 +496,7 @@ Citizen.CreateThread(function()
                     true,
                     function(_, _, Selected)
                         if Selected then
-                            TriggerServerEvent("Atlantiss:Illegal:DeleteProperty", IllegalAdminMenu.CURRENT_PROPERTY_EDIT)
+                            TriggerServerEvent("Ora:Illegal:DeleteProperty", IllegalAdminMenu.CURRENT_PROPERTY_EDIT)
                             Wait(10)
                             RageUI.GoBack()
                         end
@@ -521,7 +521,7 @@ Citizen.CreateThread(function()
                             true,
                             function(_, _, Selected)
                                 if Selected then
-                                    TriggerServerEvent("Atlantiss:Illegal:AssignProperty", IllegalAdminMenu.CURRENT_PROPERTY_EDIT, value)
+                                    TriggerServerEvent("Ora:Illegal:AssignProperty", IllegalAdminMenu.CURRENT_PROPERTY_EDIT, value)
                                     Wait(10)
                                     RageUI.GoBack()
                                 end
@@ -535,18 +535,18 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent("Atlantiss::Illegal:populateIllegalPropertyList")
-AddEventHandler("Atlantiss::Illegal:populateIllegalPropertyList", function(propertyListAsJson)
+RegisterNetEvent("Ora::Illegal:populateIllegalPropertyList")
+AddEventHandler("Ora::Illegal:populateIllegalPropertyList", function(propertyListAsJson)
     local canDisplay = false
-    while Atlantiss.Player.HasLoaded == false do
+    while Ora.Player.HasLoaded == false do
       Wait(100)
     end
 
-    if Atlantiss.Identity.Orga:Get().label == "Référent Illégal" then
+    if Ora.Identity.Orga:Get().label == "Référent Illégal" then
       canDisplay = true
     end
 
-    if Atlantiss.Identity.Job:Get().label == "Référent Illégal" then
+    if Ora.Identity.Job:Get().label == "Référent Illégal" then
       canDisplay = true
     end
 

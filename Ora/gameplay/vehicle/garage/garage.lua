@@ -51,8 +51,8 @@ function Garage:Refresh()
         if #t > 0 then
             RageUI.Popup({message = "~r~La zone est occupée"})
         else
-            local vehicle = Atlantiss.World.Vehicle:Create(self.properties.vehicles[i].name, self.properties.spawnpos, self.properties.spawnpos.h, {warp_into_vehicle = true, maxFuel = true})
-            Atlantiss.World.Vehicle:ApplyCustomsToVehicle(vehicle, currentSelf.properties.vehicles[i].tuning)
+            local vehicle = Ora.World.Vehicle:Create(self.properties.vehicles[i].name, self.properties.spawnpos, self.properties.spawnpos.h, {warp_into_vehicle = true, maxFuel = true})
+            Ora.World.Vehicle:ApplyCustomsToVehicle(vehicle, currentSelf.properties.vehicles[i].tuning)
             CloseAllMenus()
         end
     else
@@ -95,7 +95,7 @@ function Garage:Refresh()
                             return
                         end
 
-                        TriggerServerEvent("Atlantiss::SE::World:Garage:StoreVehicle", Atlantiss.World.Vehicle:GetVehicleCustoms(veh), Atlantiss.World.Vehicle:GetVehicleHealth(veh), garageName, plate)
+                        TriggerServerEvent("Ora::SE::World:Garage:StoreVehicle", Ora.World.Vehicle:GetVehicleCustoms(veh), Ora.World.Vehicle:GetVehicleHealth(veh), garageName, plate)
                         DeleteEntity(veh)
                         currentVehicleEntering = nil
                     else
@@ -286,10 +286,10 @@ Citizen.CreateThread(
                                                     SetEntityCoords(LocalPlayer().Ped, tempPos)
                                                     Wait(math.random(50,200))
                                                     TriggerServerCallback(
-                                                        "Atlantiss::SE::World:Garage:IsVehicleStored",
+                                                        "Ora::SE::World:Garage:IsVehicleStored",
                                                         function(isStored, errorMessage)
                                                             if (isStored == true) then
-                                                                vehicle = Atlantiss.World.Vehicle:Create(m, tempPos, pHeading, {customs = p, plate = p.plate, warp_into_vehicle = true, health = health})
+                                                                vehicle = Ora.World.Vehicle:Create(m, tempPos, pHeading, {customs = p, plate = p.plate, warp_into_vehicle = true, health = health})
                                                             else
                                                                 ShowNotification(string.format("~h~~r~Erreur :~s~~h~ %s", errorMessage))
                                                             end

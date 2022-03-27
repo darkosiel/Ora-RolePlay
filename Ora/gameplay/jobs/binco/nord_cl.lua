@@ -56,7 +56,7 @@ local function spawnManequin()
     while (not HasAnimDictLoaded("random@mugging3")) do 
         Citizen.Wait(1)
     end
-    pedPrev[manqidx] = Atlantiss.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
+    pedPrev[manqidx] = Ora.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
     
     SetPedFleeAttributes(pedPrev[manqidx], 0, 0)
     SetPedKeepTask(pedPrev[manqidx], true)
@@ -73,7 +73,7 @@ end
 
 local function respawnSkin()
     local p = pedPrev[manqidx]
-    pedPrev[manqidx] = Atlantiss.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
+    pedPrev[manqidx] = Ora.World.Ped:Create(5, skinLIST[skinIndex], vector3(manPos[manqidx][1], manPos[manqidx][2], manPos[manqidx][3]), manPos[manqidx][4])
     NetworkRequestControlOfEntity(p)
     DeleteEntity(p)
     TriggerPlayerEvent("ENTI:DeletePed2",-1)
@@ -102,7 +102,7 @@ RMenu:Get("bincoN","main").Closed = function()
 end
 
 Citizen.CreateThread(function()
-    while Atlantiss.Player.HasLoaded == false do Wait(50) end
+    while Ora.Player.HasLoaded == false do Wait(50) end
     while true do
         Wait(1)
 
@@ -359,7 +359,7 @@ Citizen.CreateThread(function()
                                     ShowNotification("~g~Tenue créée ! ")
                                     for i = 1 , count , 1 do
                                         item.id = generateUUIDV2()
-                                        Atlantiss.Inventory:AddItem(item)
+                                        Ora.Inventory:AddItem(item)
                                     end
                                 else
                                     ShowNotification("~r~Nombre invalide")

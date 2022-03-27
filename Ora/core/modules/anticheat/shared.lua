@@ -1,16 +1,16 @@
-Atlantiss.Anticheat = {}
-Atlantiss.Anticheat.GroupsWhitelist = {
+Ora.Anticheat = {}
+Ora.Anticheat.GroupsWhitelist = {
   ["superadmin"] = true,
   ["animator"] = true,
   ["user"] = false,
 }
 
-Atlantiss.Anticheat.Alert = {
+Ora.Anticheat.Alert = {
   HEALTH_ALERT = false,
   BLIPS = true
 }
 
-Atlantiss.Anticheat.ObjectWhitelist = {
+Ora.Anticheat.ObjectWhitelist = {
   [`prop_juicestand`] = true,
   [`p_parachute1_sp_dec`] = true,
   [`prop_v_parachute`] = true,
@@ -41,7 +41,7 @@ Atlantiss.Anticheat.ObjectWhitelist = {
   [1262298127] = true, -- wheelchair
 }
 
-Atlantiss.Anticheat.WeaponBlacklist = {
+Ora.Anticheat.WeaponBlacklist = {
   [`WEAPON_PISTOL_MK2`] = "WEAPON_PISTOL_MK2",
   [`WEAPON_APPISTOL`] = "WEAPON_APPISTOL",
   [`WEAPON_FLAREGUN`] = "WEAPON_FLAREGUN",
@@ -86,8 +86,8 @@ Atlantiss.Anticheat.WeaponBlacklist = {
   [`WEAPON_CERAMICPISTOL`] = "WEAPON_CERAMICPISTOL"
 }
 
-function Atlantiss.Anticheat:IsAnticheatWhitelist()
-  local myGroup = Atlantiss.Identity:GetMyGroup()
+function Ora.Anticheat:IsAnticheatWhitelist()
+  local myGroup = Ora.Identity:GetMyGroup()
   if (self.GroupsWhitelist[myGroup] ~= nil) then
     return self.GroupsWhitelist[myGroup]
   end
@@ -95,27 +95,27 @@ function Atlantiss.Anticheat:IsAnticheatWhitelist()
   return false
 end
 
-function Atlantiss.Anticheat:GetModuleName()
+function Ora.Anticheat:GetModuleName()
   return "Anticheat"
 end
 
-function Atlantiss.Anticheat:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Anticheat:GetModuleName(), message))
+function Ora.Anticheat:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Anticheat:GetModuleName(), message))
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.Anticheat:GetModuleName())
+Ora.Modules:Register(Ora.Anticheat:GetModuleName())
 
 
-Atlantiss.Anticheat.DisabledExplosion = {7, 9, 31}
+Ora.Anticheat.DisabledExplosion = {7, 9, 31}
 
-Atlantiss.Anticheat.ServerSideDisabledVehicles = {
+Ora.Anticheat.ServerSideDisabledVehicles = {
   LIST = {},
   HAS_BEEN_POPULATED = false
 }
 
-Atlantiss.Anticheat.NoRandomSpawnVehicle = {
+Ora.Anticheat.NoRandomSpawnVehicle = {
     `SHAMAL`, -- They spawn on LSIA and try to take off
     `LUXOR`, -- They spawn on LSIA and try to take off
     `LUXOR2`, -- They spawn on LSIA and try to take off
@@ -206,7 +206,7 @@ Atlantiss.Anticheat.NoRandomSpawnVehicle = {
 }
 
 
-Atlantiss.Anticheat.HashToName = {
+Ora.Anticheat.HashToName = {
   [`dinghy`] = "dinghy",
   [`dinghy2`] = "dinghy2",
   [`dinghy3`] = "dinghy3",
@@ -932,7 +932,7 @@ Atlantiss.Anticheat.HashToName = {
   [`youga3`] = "youga3",
 }
 
-Atlantiss.Config:SetDataCollection(
+Ora.Config:SetDataCollection(
     "Anticheat:ServerSideEvents",
     {
       "8321hiue89js",

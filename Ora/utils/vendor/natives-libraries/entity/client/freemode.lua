@@ -35,7 +35,7 @@ function UpdateEntityFace(Ped, Table)
 
     if (Table.razorCut ~= nil and Table.razorCut.index ~= nil) then
         if (Table.razorCut.dict ~= nil and Table.razorCut.hash ~= nil) then
-            Atlantiss.Config:SetDataCollection(
+            Ora.Config:SetDataCollection(
                 "AppliedHarcutTatoos",
                 {dict = Table.razorCut.dict, hash = Table.razorCut.hash}
             )

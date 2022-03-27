@@ -8,9 +8,9 @@ local illegalMissionsMax = {
     migrantsmuggler = 3
 }
 
-RegisterServerEvent("Atlantiss::illegal:addCount")
+RegisterServerEvent("Ora::illegal:addCount")
 AddEventHandler(
-    "Atlantiss::illegal:addCount",
+    "Ora::illegal:addCount",
     function(missionName)
         local steam64 = GetPlayerIdentifiers(source)[1]
 
@@ -27,7 +27,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "Atlantiss::illegal:canDoIllegalMission",
+    "Ora::illegal:canDoIllegalMission",
     function(source, callback, missionName)
         local steam64 = GetPlayerIdentifiers(source)[1]
         local max = 5
@@ -73,7 +73,7 @@ AddEventHandler(
 )
 
 RegisterServerCallback(
-    "Atlantiss::SE::RetrieveMissionById",
+    "Ora::SE::RetrieveMissionById",
     function(source, callback, id)
         --print(plates)
         local f = false

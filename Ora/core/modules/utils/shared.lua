@@ -1,15 +1,15 @@
-Atlantiss.Utils = {}
+Ora.Utils = {}
 
-function Atlantiss.Utils:GetModuleName()
+function Ora.Utils:GetModuleName()
   return "Utils"
 end
 
-function Atlantiss.Utils:GetRandomValueFromDropTable(randomItems)
+function Ora.Utils:GetRandomValueFromDropTable(randomItems)
   local items = {}
   local currentItemKey = 0
   for key, value in pairs(randomItems) do
     if (type(value) ~= "table") then
-      Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Utils:GetModuleName(), "Not well formated randomItems table"))
+      Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Utils:GetModuleName(), "Not well formated randomItems table"))
       return nil
     end 
 
@@ -26,7 +26,7 @@ function Atlantiss.Utils:GetRandomValueFromDropTable(randomItems)
   return items[math.random(1, #items)]
 end
 
-function Atlantiss.Utils:TableClone(t)
+function Ora.Utils:TableClone(t)
   if type(t) ~= 'table' then return t end
 
 	local meta = getmetatable(t)
@@ -34,7 +34,7 @@ function Atlantiss.Utils:TableClone(t)
 
 	for k, v in pairs(t) do
 		if type(v) == 'table' then
-			target[k] = Atlantiss.Utils:TableClone(v)
+			target[k] = Ora.Utils:TableClone(v)
 		else
 			target[k] = v
 		end
@@ -45,7 +45,7 @@ function Atlantiss.Utils:TableClone(t)
 	return target
 end
 
-function Atlantiss.Utils:GetRandomString(allowNumber, allowCaps, allowLower, length)
+function Ora.Utils:GetRandomString(allowNumber, allowCaps, allowLower, length)
 
   local charset = {}
 
@@ -74,7 +74,7 @@ function Atlantiss.Utils:GetRandomString(allowNumber, allowCaps, allowLower, len
 
 end
 
-function Atlantiss.Utils:HasValue(table, value)
+function Ora.Utils:HasValue(table, value)
 	for _, v in pairs(table) do
 		if (v == value) then
 			return true
@@ -84,14 +84,14 @@ function Atlantiss.Utils:HasValue(table, value)
 	return false
 end
 
-function Atlantiss.Utils:TableLength(table)
+function Ora.Utils:TableLength(table)
   local count = 0
   for _ in pairs(table) do count = count + 1 end
 
   return count
 end
 
-function Atlantiss.Utils:IndexOf(table, value)
+function Ora.Utils:IndexOf(table, value)
   local res = 0
 
   for _, v in pairs(table) do
@@ -104,7 +104,7 @@ function Atlantiss.Utils:IndexOf(table, value)
   return res
 end
 
-function Atlantiss.Utils:IsTableLengthSuperiorTo(table, int) -- avoid iterate through the whole table
+function Ora.Utils:IsTableLengthSuperiorTo(table, int) -- avoid iterate through the whole table
   if (int == 0) then
     error('You cannot use this method "IsTableLengthSuperiorTo" with a 0 as "int" parameter')
     return false
@@ -119,14 +119,14 @@ function Atlantiss.Utils:IsTableLengthSuperiorTo(table, int) -- avoid iterate th
   return false
 end
 
-function Atlantiss.Utils:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Utils:GetModuleName(), message))
+function Ora.Utils:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Utils:GetModuleName(), message))
   end
 end
 
-function Atlantiss.Utils:RandomFloat(lower, upper)
+function Ora.Utils:RandomFloat(lower, upper)
   return lower + (math.random() * (upper - lower))
 end
 
-Atlantiss.Modules:Register(Atlantiss.Utils:GetModuleName())
+Ora.Modules:Register(Ora.Utils:GetModuleName())

@@ -66,11 +66,11 @@ function Settings:Format()
 end
 
 function Settings:CanOpenRadioMenu()
-    if (Atlantiss.Player.Speaker.IsOnShoulder) then
+    if (Ora.Player.Speaker.IsOnShoulder) then
         return true
     end
 
-    if (#(Atlantiss.Player.Speaker.Pos - GetEntityCoords(PlayerPedId())) > 5.0) then
+    if (#(Ora.Player.Speaker.Pos - GetEntityCoords(PlayerPedId())) > 5.0) then
         return true
     else
         return false
@@ -348,7 +348,7 @@ local srcc = nil
 local oldSave = 0
 Citizen.CreateThread(
     function()
-        AddTextEntry("PM_PANE_CFX", "Atlantiss")
+        AddTextEntry("PM_PANE_CFX", "Ora")
         while true do
             Wait(1)
             --    print(GetGameTimer())
@@ -369,13 +369,13 @@ Citizen.CreateThread(
                                 end
                             end
                         )
-                        if Atlantiss.Identity.Job:Get().label ~= "👤 Citoyen" then
+                        if Ora.Identity.Job:Get().label ~= "👤 Citoyen" then
                             RageUI.Button(
                                 "Métier",
                                 nil,
                                 {
-                                    RightLabel = Atlantiss.Identity.Job:Get().label ..
-                                        " | " .. Jobs[Atlantiss.Identity.Job:GetName()].grade[Atlantiss.Identity.Job:Get().gradenum].label
+                                    RightLabel = Ora.Identity.Job:Get().label ..
+                                        " | " .. Jobs[Ora.Identity.Job:GetName()].grade[Ora.Identity.Job:Get().gradenum].label
                                 },
                                 true,
                                 function(_, _, Selected)
@@ -385,13 +385,13 @@ Citizen.CreateThread(
                             )
                         end
 
-                        if Atlantiss.Identity.Orga:Get().label ~= "👤 Citoyen" then
+                        if Ora.Identity.Orga:Get().label ~= "👤 Citoyen" then
                             RageUI.Button(
                                 "Métier 2",
                                 nil,
                                 {
-                                    RightLabel = Atlantiss.Identity.Orga:Get().label ..
-                                        " | " .. Jobs[Atlantiss.Identity.Orga:GetName()].grade[Atlantiss.Identity.Orga:Get().gradenum].label
+                                    RightLabel = Ora.Identity.Orga:Get().label ..
+                                        " | " .. Jobs[Ora.Identity.Orga:GetName()].grade[Ora.Identity.Orga:Get().gradenum].label
                                 },
                                 true,
                                 function(_, _, Selected)
@@ -465,7 +465,7 @@ Citizen.CreateThread(
                             )
                         end
 
-                        if (Atlantiss.Player.Speaker.IsUsing == true) then
+                        if (Ora.Player.Speaker.IsUsing == true) then
                             RageUI.Button(
                                 "Gérer mon enceinte",
                                 nil,
@@ -483,9 +483,9 @@ Citizen.CreateThread(
 
                                             while true do
                                                 Wait(2000)
-                                                if (timeout == 5 or not Atlantiss.Player.Speaker.IsUsing or Atlantiss.Player.Speaker.IsOnShoulder) then break end
+                                                if (timeout == 5 or not Ora.Player.Speaker.IsUsing or Ora.Player.Speaker.IsOnShoulder) then break end
 
-                                                if (not Atlantiss.Player.Speaker.IsOnShoulder or #(Atlantiss.Player.Speaker.Pos - GetEntityCoords(PlayerPedId())) > 5.0) then
+                                                if (not Ora.Player.Speaker.IsOnShoulder or #(Ora.Player.Speaker.Pos - GetEntityCoords(PlayerPedId())) > 5.0) then
                                                     RageUI.GoBack()
                                                     break
                                                 end
@@ -509,10 +509,10 @@ Citizen.CreateThread(
                                     oldSave = 0
                                 end
                                 if (Selected and oldSave - GetGameTimer() <= 0) then
-                                    Atlantiss.Inventory:Save(true)
-                                    Atlantiss.Player:SavePosition()
-                                    if (GetEntityHealth(LocalPlayer().Ped) ~= Atlantiss.Health:GetCurrentRegisteredHealth()) then
-                                        Atlantiss.Health:SetMyHealth(GetEntityHealth(LocalPlayer().Ped))
+                                    Ora.Inventory:Save(true)
+                                    Ora.Player:SavePosition()
+                                    if (GetEntityHealth(LocalPlayer().Ped) ~= Ora.Health:GetCurrentRegisteredHealth()) then
+                                        Ora.Health:SetMyHealth(GetEntityHealth(LocalPlayer().Ped))
                                     end
                                     RageUI.Popup(
                                         {
@@ -712,14 +712,14 @@ Citizen.CreateThread(
                         )
 
                         RageUI.Checkbox(
-                            "Service " .. Atlantiss.Identity.Job:Get().label,
+                            "Service " .. Ora.Identity.Job:Get().label,
                             "Permet d'activer/désactiver ~o~votre service",
-                            Atlantiss.Identity.Job.isOnDuty,
+                            Ora.Identity.Job.isOnDuty,
                             {},
                             function(Hovered, Ative, Selected, Checked)
-                                Atlantiss.Identity.Job.isOnDuty = Checked
+                                Ora.Identity.Job.isOnDuty = Checked
                                 if Selected then
-                                    Atlantiss.Service:UpdateService('job')
+                                    Ora.Service:UpdateService('job')
                                     RageUI.Popup(
                                         {
                                             message = Checked and "Vous avez ~g~activé~s~ votre service" or
@@ -743,14 +743,14 @@ Citizen.CreateThread(
                         )
 
                         RageUI.Checkbox(
-                            "Service " .. Atlantiss.Identity.Orga:Get().label,
+                            "Service " .. Ora.Identity.Orga:Get().label,
                             "Permet d'activer/désactiver ~o~votre service",
-                            Atlantiss.Identity.Orga.isOnDuty,
+                            Ora.Identity.Orga.isOnDuty,
                             {},
                             function(Hovered, Ative, Selected, Checked)
-                                Atlantiss.Identity.Orga.isOnDuty = Checked
+                                Ora.Identity.Orga.isOnDuty = Checked
                                 if Selected then
-                                    Atlantiss.Service:UpdateService('orga')
+                                    Ora.Service:UpdateService('orga')
                                     RageUI.Popup(
                                         {
                                             message = Checked and "Vous avez ~g~activé~s~ votre service" or
@@ -775,7 +775,7 @@ Citizen.CreateThread(
                             end
                         )
 
-                        if (Atlantiss.DrugDealing:ImDealing()) then
+                        if (Ora.DrugDealing:ImDealing()) then
                             RageUI.Button(
                                 "Arreter de dealer",
                                 "Arret du mode ~o~dealer~s~",
@@ -783,7 +783,7 @@ Citizen.CreateThread(
                                 true,
                                 function(_, _, Selected)
                                     if (Selected) then
-                                        Atlantiss.DrugDealing:StopDealing()
+                                        Ora.DrugDealing:StopDealing()
                                         Wait(10)
                                         RageUI.GoBack()
                                     end
@@ -956,12 +956,12 @@ Citizen.CreateThread(
             if RageUI.Visible(RMenu:Get("personnal", "dealer_mode")) then
                 RageUI.DrawContent({header = true, glare = true},
                     function()
-                        Atlantiss.DrugDealing:AllowRefreshOfZones(true)
-                        local zones = Atlantiss.DrugDealing:GetZones()
+                        Ora.DrugDealing:AllowRefreshOfZones(true)
+                        local zones = Ora.DrugDealing:GetZones()
                         for key, value in ipairs(zones) do
                             local boostedMessage = ""
                             if (value.isBoosted == true) then
-                                Atlantiss.DrugDealing:SetBoostedZoneId(key)
+                                Ora.DrugDealing:SetBoostedZoneId(key)
                                 boostedMessage = " ~h~~g~Boost (+5$)~h~~s~"
                             end
                             if (value.isFull == true) then
@@ -996,10 +996,10 @@ Citizen.CreateThread(
                                     false,
                                     function(_, _, Selected)
                                         if (Selected) then
-                                            if not Atlantiss.DrugDealing:ImDealing() then
+                                            if not Ora.DrugDealing:ImDealing() then
                                                 ShowNotification("Vérification que vous pouvez dealer. Patientez")
                                                 Wait(math.random(100, 900))
-                                                Atlantiss.DrugDealing:CanStartDealingAt(key)
+                                                Ora.DrugDealing:CanStartDealingAt(key)
                                                 Wait(10)
                                                 RageUI.GoBack()
                                             else
@@ -1013,7 +1013,7 @@ Citizen.CreateThread(
                     end
                 )
             else
-                Atlantiss.DrugDealing:AllowRefreshOfZones(false)
+                Ora.DrugDealing:AllowRefreshOfZones(false)
             end
 
             if RageUI.Visible(RMenu:Get("personnal", "settings_customColor")) then
@@ -1276,7 +1276,7 @@ Citizen.CreateThread(
                                 if Selected then
                                     RageUI.GoBack()
                                     Wait(10)
-                                    TriggerServerEvent("Atlantiss::Illegal:updateOrgPlayer", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_PLAYER)
+                                    TriggerServerEvent("Ora::Illegal:updateOrgPlayer", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_PLAYER)
                                     IllegalOrga.MENU.CURRENT_PLAYER = {}
                                 end
                             end
@@ -1300,7 +1300,7 @@ Citizen.CreateThread(
                                 if Selected then
                                     RageUI.GoBack()
                                     Wait(10)
-                                    TriggerServerEvent("Atlantiss::Illegal:deleteOrgPlayer", IllegalOrga.CURRENT_ORGA , IllegalOrga.MENU.CURRENT_PLAYER)
+                                    TriggerServerEvent("Ora::Illegal:deleteOrgPlayer", IllegalOrga.CURRENT_ORGA , IllegalOrga.MENU.CURRENT_PLAYER)
                                 end
                             end
                         ) 
@@ -1541,7 +1541,7 @@ Citizen.CreateThread(
                             if Selected then
                                 RageUI.GoBack()
                                 Wait(10)
-                                TriggerServerEvent("Atlantiss::Illegal:createOrgRank", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_RANK)
+                                TriggerServerEvent("Ora::Illegal:createOrgRank", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_RANK)
                             end
                         end
                     ) 
@@ -1733,7 +1733,7 @@ Citizen.CreateThread(
                                     RageUI.GoBack()
                                     Wait(10)
                                     ShowNotification("~g~Edition du grade ~h~".. IllegalOrga.MENU.CURRENT_RANK.name .."~h~ réalisée")
-                                    TriggerServerEvent("Atlantiss::Illegal:updateOrgRank", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_RANK)
+                                    TriggerServerEvent("Ora::Illegal:updateOrgRank", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_RANK)
                                 end
                             end
                         ) 
@@ -1756,7 +1756,7 @@ Citizen.CreateThread(
                                 if Selected then
                                     RageUI.GoBack()
                                     Wait(10)
-                                    TriggerServerEvent("Atlantiss::Illegal:deleteOrgRank", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_RANK)
+                                    TriggerServerEvent("Ora::Illegal:deleteOrgRank", IllegalOrga.CURRENT_ORGA.ID ,IllegalOrga.MENU.CURRENT_RANK)
                                 end
                             end
                         ) 
@@ -1814,7 +1814,7 @@ Citizen.CreateThread(
                                                 local playerId = GetPlayerServerIdInDirection(8.0)
                                                 
                                                 if (playerId ~= false) then
-                                                    TriggerServerEvent("Atlantiss::Illegal:addPlayerToOrg", IllegalOrga.CURRENT_ORGA, playerId, IllegalOrga.GetRankIdByName(IllegalOrga.GetOrgaRanksAsList()[IllegalOrga.MENU.INDEX_ORGA_RANKS]))
+                                                    TriggerServerEvent("Ora::Illegal:addPlayerToOrg", IllegalOrga.CURRENT_ORGA, playerId, IllegalOrga.GetRankIdByName(IllegalOrga.GetOrgaRanksAsList()[IllegalOrga.MENU.INDEX_ORGA_RANKS]))
                                                     RageUI.GoBack()
                                                 else
                                                     ShowNotification("~r~Personne n'est a proximité~s~")
@@ -1839,7 +1839,7 @@ Citizen.CreateThread(
                                                 local playerId = GetPlayerServerIdInDirection(8.0)
 
                                                 if (playerId ~= false) then
-                                                    TriggerServerEvent("Atlantiss::Illegal:deletePlayerFromOrgByPlayerServerId", IllegalOrga.CURRENT_ORGA, playerId)
+                                                    TriggerServerEvent("Ora::Illegal:deletePlayerFromOrgByPlayerServerId", IllegalOrga.CURRENT_ORGA, playerId)
                                                     RageUI.GoBack()
                                                 else
                                                     ShowNotification("~r~Personne n'est a proximité~s~")
@@ -1908,7 +1908,7 @@ Citizen.CreateThread(
                                         if Selected then
                                             RageUI.GoBack()
                                             Wait(10)
-                                            TriggerServerEvent("Atlantiss::Illegal:leaveOrg", IllegalOrga.CURRENT_ORGA)
+                                            TriggerServerEvent("Ora::Illegal:leaveOrg", IllegalOrga.CURRENT_ORGA)
                                         end
                                     end
                                 )
@@ -1931,7 +1931,7 @@ Citizen.CreateThread(
                                             if Selected then
                                                 RageUI.GoBack()
                                                 Wait(10)
-                                                TriggerServerEvent("Atlantiss::Illegal:deleteOrg", IllegalOrga.CURRENT_ORGA)
+                                                TriggerServerEvent("Ora::Illegal:deleteOrg", IllegalOrga.CURRENT_ORGA)
                                             end
                                         end
                                     )
@@ -1989,7 +1989,7 @@ Citizen.CreateThread(
                                             if (canSave == true) then
                                                 RageUI.GoBack()
                                                 Wait(10)
-                                                TriggerServerEvent("Atlantiss::Illegal:createOrg", IllegalOrga.CURRENT_ORGA)
+                                                TriggerServerEvent("Ora::Illegal:createOrg", IllegalOrga.CURRENT_ORGA)
                                             end
                                         end
                                     end

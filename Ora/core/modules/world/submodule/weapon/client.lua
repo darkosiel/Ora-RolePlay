@@ -2,7 +2,7 @@ local holstered = true
 local canFire = true
 local currWeapon = `WEAPON_UNARMED`
 
-function Atlantiss.World.Weapon:PlayAnimationForWeapon(weaponHash)
+function Ora.World.Weapon:PlayAnimationForWeapon(weaponHash)
   if (self.Animation[weaponHash] ~= nil) then
     if DoesEntityExist(LocalPlayer().Ped) and not IsEntityDead(LocalPlayer().Ped) and not IsPedInAnyVehicle(LocalPlayer().Ped, true) then
 			Citizen.CreateThread(
@@ -90,7 +90,7 @@ function Atlantiss.World.Weapon:PlayAnimationForWeapon(weaponHash)
 end
 
 function CheckWeapon(newWeap)
-  return Atlantiss.World.Weapon.Animation[newWeap] ~= nil
+  return Ora.World.Weapon.Animation[newWeap] ~= nil
 end
 
 function loadAnimDict(dict)

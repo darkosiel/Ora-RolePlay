@@ -76,7 +76,7 @@ local function DoGiveMoneyAnim(apuEntity)
 
     local localEntity, netScene = NetworkGetEntityIsLocal(apuEntity)
     local b =
-    Atlantiss.World.Object:CreateObjectNoOffset(
+    Ora.World.Object:CreateObjectNoOffset(
         GetHashKey("bkr_prop_money_wrapped_01"),
         GetEntityCoords(apuEntity),
         not localEntity,
@@ -198,9 +198,9 @@ local function CreateRobberyThread(apuEntity)
                         ShowNotification("~g~+" .. t .. "$")
 
                         TriggerServerCallback(
-                            "Atlantiss::SE::Money:AuthorizePayment", 
+                            "Ora::SE::Money:AuthorizePayment", 
                             function(token)
-                              TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Braquage Superette", LEGIT = false})
+                              TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Braquage Superette", LEGIT = false})
                             end,
                             {}
                           )
@@ -264,7 +264,7 @@ local function startRobberyFunc(apuEntity)
     )
 
     TriggerServerEvent(
-        "atlantiss:sendToDiscord",
+        "Ora:sendToDiscord",
         6,
         "[" .. entityZoneName .. "] Lance un braquage de superette à : " .. GetZoneLabelTextFromZoneCode(entityZoneName),
         "info"
@@ -291,11 +291,11 @@ local function startRobberyFunc(apuEntity)
 
     animData = {pos = tillPos, a = tillHeading - 180.0}
 
-    local till = Atlantiss.World.Object:Create(GetHashKey("p_till_01_s"), tillPos, not localEntity, not localEntity, true)
+    local till = Ora.World.Object:Create(GetHashKey("p_till_01_s"), tillPos, not localEntity, not localEntity, true)
     SetEntityHeading(till, tillHeading)
     FreezeEntityPosition(till, true)
 
-    local pickup = Atlantiss.World.Object:Create(GetHashKey("p_poly_bag_01_s"), tillPos, not localEntity, not localEntity, true)
+    local pickup = Ora.World.Object:Create(GetHashKey("p_poly_bag_01_s"), tillPos, not localEntity, not localEntity, true)
     SetEntityRotation(pickup, 5.0, .0, tillHeading, 2, 1)
     SetEntityVisible(pickup, false, false)
 
@@ -436,9 +436,9 @@ local function startRobberyFunc(apuEntity)
 
     ShowNotification("~g~+" .. t .. "$")
     TriggerServerCallback(
-        "Atlantiss::SE::Money:AuthorizePayment", 
+        "Ora::SE::Money:AuthorizePayment", 
         function(token)
-            TriggerServerEvent(Atlantiss.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Braquage Superette", LEGIT = false})
+            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Braquage Superette", LEGIT = false})
         end,
         {}
     )

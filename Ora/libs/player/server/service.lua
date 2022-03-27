@@ -32,7 +32,7 @@ AddEventHandler(
         callActive[job].target = source
         callActive[job].taken = true
  
-        for _, player in pairs(Atlantiss.Service:GetJobService(job)) do
+        for _, player in pairs(Ora.Service:GetJobService(job)) do
             TriggerClientEvent("call:callIncoming2", player, job, pos, message, author)
         end
         -- Say to the target after 'timing' seconds that nobody will come
@@ -67,11 +67,11 @@ AddEventHandler(
         callActive[job].target = source
         callActive[job].taken = true
   
-        for _, player in pairs(Atlantiss.Service:GetJobService(job)) do
+        for _, player in pairs(Ora.Service:GetJobService(job)) do
             TriggerClientEvent("call:callIncoming", player, job, pos, message, author)
         end
 
-        if job == "taxi" and Atlantiss.Service:GetTotalServiceCountForJob(job) == 0 then
+        if job == "taxi" and Ora.Service:GetTotalServiceCountForJob(job) == 0 then
             TriggerClientEvent("gcphone:taxicall", source)
         end
 
@@ -86,7 +86,7 @@ AddEventHandler(
                     callActive[job].taken = false
                 end
             )
-        elseif job == "taxi" and Atlantiss.Service:GetTotalServiceCountForJob(job) ~= 0 then
+        elseif job == "taxi" and Ora.Service:GetTotalServiceCountForJob(job) ~= 0 then
             SetTimeout(
                 timing,
                 function()
@@ -106,9 +106,9 @@ AddEventHandler(
     function(job)
         callActive[job].taken = false
         -- Say to other in service people that the call is taken
-        for _, player in pairs(Atlantiss.Service:GetJobService(job)) do
+        for _, player in pairs(Ora.Service:GetJobService(job)) do
             if player ~= source then
-                TriggerClientEvent("call:taken", player, Atlantiss.Identity:GetFullname(source))
+                TriggerClientEvent("call:taken", player, Ora.Identity:GetFullname(source))
             end
         end
         -- Say to a target that someone come
@@ -123,9 +123,9 @@ AddEventHandler(
     function(job, y)
         callActive[job].taken = false
         -- Say to other in service people that the call is taken
-        for _, player in pairs(Atlantiss.Service:GetJobService(job)) do
+        for _, player in pairs(Ora.Service:GetJobService(job)) do
             if player ~= source then
-                TriggerClientEvent("call:taken", player, Atlantiss.Identity:GetFullname(source))
+                TriggerClientEvent("call:taken", player, Ora.Identity:GetFullname(source))
             end
         end
         -- Say to a target that someone come
@@ -135,7 +135,7 @@ AddEventHandler(
     end
 )
 
-RegisterServerCallback('Atlantiss:call:uber:isTaken', function(src, cb) cb(not callActive["uber"].taken and true or false) end)
+RegisterServerCallback('Ora:call:uber:isTaken', function(src, cb) cb(not callActive["uber"].taken and true or false) end)
 
 
 local mmm = {}
@@ -204,17 +204,17 @@ RegisterServerEvent('Job:Annonce')
 AddEventHandler('Job:Annonce', function(society, title, text, icon, icont, societyLabel2)
     if societyLabel2 and jobTimeout[societyLabel2] - GetGameTimer() <= 0 then
         TriggerClientEvent('Job:Annonce', -1, society, title, text, icon, icont)
-        local titre = society == "Atlantiss" and "Annonce staff" or society
+        local titre = society == "Ora" and "Annonce staff" or society
         if titre ~= "Annonce staff" then
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 source,
                 33,
                 titre.."\n"..text,
-                "atlantiss"
+                "Ora"
             )
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 source,
                 1, 
                 titre.."\n"..text, 
@@ -222,7 +222,7 @@ AddEventHandler('Job:Annonce', function(society, title, text, icon, icont, socie
             )
         else
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 source,
                 1, 
                 titre.."\n"..text, 
@@ -232,17 +232,17 @@ AddEventHandler('Job:Annonce', function(society, title, text, icon, icont, socie
         jobTimeout[societyLabel2] = GetGameTimer() + 300000 -- 5min
     elseif societyLabel2 == nil then
         TriggerClientEvent('Job:Annonce', -1, society, title, text, icon, icont)
-        local titre = society == "Atlantiss" and "Annonce staff" or society
+        local titre = society == "Ora" and "Annonce staff" or society
         if titre ~= "Annonce staff" then
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 source,
                 33,
                 titre.."\n"..text,
-                "atlantiss"
+                "Ora"
             )
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 source,
                 1, 
                 titre.."\n"..text, 
@@ -250,7 +250,7 @@ AddEventHandler('Job:Annonce', function(society, title, text, icon, icont, socie
             )
         else
             TriggerEvent(
-                "atlantiss:sendToDiscordFromServer",
+                "Ora:sendToDiscordFromServer",
                 source,
                 1, 
                 titre.."\n"..text, 

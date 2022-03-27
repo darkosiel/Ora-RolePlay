@@ -1,10 +1,10 @@
-AtlantissAdmin = AtlantissAdmin or {}
-AtlantissAdmin.DISPLAY_NAMES = false
-AtlantissAdmin.PLAYERS_TAG = {}
-AtlantissAdmin.UUIDS_DISPLAYED = {}
-AtlantissAdmin.PLAYERS = {}
+OraAdmin = OraAdmin or {}
+OraAdmin.DISPLAY_NAMES = false
+OraAdmin.PLAYERS_TAG = {}
+OraAdmin.UUIDS_DISPLAYED = {}
+OraAdmin.PLAYERS = {}
 
-AtlantissAdmin.TAGS = {
+OraAdmin.TAGS = {
     GAMER_NAME = 0,
     CREW_TAG = 1,
     healthArmour = 2,
@@ -29,14 +29,14 @@ TagColors = {
     ["superadmin"] = 18
 }
 
-TriggerServerCallback("Atlantiss::SE:Admin:AmIAdmin?", 
+TriggerServerCallback("Ora::SE:Admin:AmIAdmin?", 
     function(bool, baseUsersAsJson) 
         if (bool) then
 
             local baseUsers = json.decode(baseUsersAsJson)
 
             for index, value in pairs(baseUsers) do
-                AtlantissAdmin.PLAYERS[tostring(value.id)] = value
+                OraAdmin.PLAYERS[tostring(value.id)] = value
             end
         end
     end,
@@ -44,19 +44,19 @@ TriggerServerCallback("Atlantiss::SE:Admin:AmIAdmin?",
 )
 
 
-function AtlantissAdmin.GetPlayerInfoByServerId(playerId)
+function OraAdmin.GetPlayerInfoByServerId(playerId)
 
-    if (AtlantissAdmin.PLAYERS[playerId] ~= nil) then
-        return AtlantissAdmin.PLAYERS[tostring(playerId)]
+    if (OraAdmin.PLAYERS[playerId] ~= nil) then
+        return OraAdmin.PLAYERS[tostring(playerId)]
     end
 
     return false
 end
 
-function AtlantissAdmin.DisplayPlayerNames()
+function OraAdmin.DisplayPlayerNames()
     local playerPosition = GetEntityCoords(PlayerPedId())
-    AtlantissAdmin.UUIDS_DISPLAYED = {}
-    AtlantissAdmin.NO_INFOS = {}
+    OraAdmin.UUIDS_DISPLAYED = {}
+    OraAdmin.NO_INFOS = {}
     
     for index, userId in pairs(GetActivePlayers()) do 
         local playerServerId = GetPlayerServerId(userId)
@@ -64,13 +64,13 @@ function AtlantissAdmin.DisplayPlayerNames()
 
         if playerServerIdToString ~= tostring(GetPlayerServerId(PlayerId())) then
             local otherPlayerPed = GetPlayerPed(userId)
-            local playerInformation = AtlantissAdmin.GetPlayerInfoByServerId(playerServerIdToString)
+            local playerInformation = OraAdmin.GetPlayerInfoByServerId(playerServerIdToString)
             if (playerInformation == false or playerInformation == nil or playerInformation.uuid == nil) then
                 print("No Player Information, nor UUID")
-                table.insert(AtlantissAdmin.NO_INFOS, playerServerId)
+                table.insert(OraAdmin.NO_INFOS, playerServerId)
             else
-                local gamerTag = AtlantissAdmin.PLAYERS_TAG[playerInformation.uuid]
-                AtlantissAdmin.UUIDS_DISPLAYED[playerInformation.uuid] = true
+                local gamerTag = OraAdmin.PLAYERS_TAG[playerInformation.uuid]
+                OraAdmin.UUIDS_DISPLAYED[playerInformation.uuid] = true
 
                 if (otherPlayerPed ~= 0) then
                     if not gamerTag or (gamerTag.tag and not IsMpGamerTagActive(gamerTag.tag)) then
@@ -87,14 +87,14 @@ function AtlantissAdmin.DisplayPlayerNames()
                             "",
                             0
                         )
-                        SetMpGamerTagVisibility(gamerTagLocal, AtlantissAdmin.TAGS.GAMER_NAME, true)
-                        SetMpGamerTagVisibility(gamerTagLocal, AtlantissAdmin.TAGS.healthArmour, true)
+                        SetMpGamerTagVisibility(gamerTagLocal, OraAdmin.TAGS.GAMER_NAME, true)
+                        SetMpGamerTagVisibility(gamerTagLocal, OraAdmin.TAGS.healthArmour, true)
         
                         if playerInformation and playerInformation.group and playerInformation.group ~= "user" then
                             SetMpGamerTagColour(gamerTagLocal, 0, TagColors[playerInformation.group])
                         end
-                        SetMpGamerTagAlpha(gamerTagLocal, AtlantissAdmin.TAGS.healthArmour, 255)
-                        AtlantissAdmin.PLAYERS_TAG[playerInformation.uuid] = {tag = gamerTagLocal, ped = otherPlayerPed}
+                        SetMpGamerTagAlpha(gamerTagLocal, OraAdmin.TAGS.healthArmour, 255)
+                        OraAdmin.PLAYERS_TAG[playerInformation.uuid] = {tag = gamerTagLocal, ped = otherPlayerPed}
                     else
                         local gamerTagLocal = gamerTag.tag
                         if playerInformation and playerInformation.name then
@@ -104,7 +104,7 @@ function AtlantissAdmin.DisplayPlayerNames()
                 else
                     if (gamerTag ~= nil and gamerTag.tag ~= nil) then
                         RemoveMpGamerTag(gamerTag.tag)
-                        AtlantissAdmin.PLAYERS_TAG[playerInformation.uuid] = nil
+                        OraAdmin.PLAYERS_TAG[playerInformation.uuid] = nil
                     end
                 end
             end
@@ -112,21 +112,21 @@ function AtlantissAdmin.DisplayPlayerNames()
     end
 
     -- Find batched identities
-    AtlantissAdmin.RetrieveMissingTags(AtlantissAdmin.NO_INFOS)
+    OraAdmin.RetrieveMissingTags(OraAdmin.NO_INFOS)
 
-    for uuidIndex, uuidValue in pairs(AtlantissAdmin.PLAYERS_TAG) do
-        if (AtlantissAdmin.UUIDS_DISPLAYED[uuidIndex] == nil) then
+    for uuidIndex, uuidValue in pairs(OraAdmin.PLAYERS_TAG) do
+        if (OraAdmin.UUIDS_DISPLAYED[uuidIndex] == nil) then
             RemoveMpGamerTag(uuidValue.tag)
-            AtlantissAdmin.PLAYERS_TAG[uuidIndex] = nil
+            OraAdmin.PLAYERS_TAG[uuidIndex] = nil
         end
     end
 end
 
-function AtlantissAdmin.RetrieveMissingTags(playersIds)
+function OraAdmin.RetrieveMissingTags(playersIds)
     local canSend = false
     local identities = {}
 
-    TriggerServerCallback("Atlantiss::SE::Admin:GetMpTagsIdentityForPlayers", function(dataAsJson)
+    TriggerServerCallback("Ora::SE::Admin:GetMpTagsIdentityForPlayers", function(dataAsJson)
       identities = json.decode(dataAsJson)
       canSend = true
     end, playersIds)
@@ -136,25 +136,25 @@ function AtlantissAdmin.RetrieveMissingTags(playersIds)
     end
 
     for key, value in pairs(identities) do
-        AtlantissAdmin.PLAYERS[tostring(value.id)] = value
+        OraAdmin.PLAYERS[tostring(value.id)] = value
     end
 end
 
-function AtlantissAdmin.HandlePlayersNames()
-    if AtlantissAdmin.DISPLAY_NAMES then
+function OraAdmin.HandlePlayersNames()
+    if OraAdmin.DISPLAY_NAMES then
         CreateThread(
             function()
-                while AtlantissAdmin.DISPLAY_NAMES do
-                    AtlantissAdmin.DisplayPlayerNames()
+                while OraAdmin.DISPLAY_NAMES do
+                    OraAdmin.DisplayPlayerNames()
                     Wait(5000)
                 end
             end
         )
     else
-        for index, value in pairs(AtlantissAdmin.PLAYERS_TAG) do
+        for index, value in pairs(OraAdmin.PLAYERS_TAG) do
             RemoveMpGamerTag(value.tag)
         end
-        AtlantissAdmin.DISPLAY_NAMES = false
-        AtlantissAdmin.PLAYERS_TAG = {}
+        OraAdmin.DISPLAY_NAMES = false
+        OraAdmin.PLAYERS_TAG = {}
     end
 end

@@ -1,6 +1,6 @@
 local function IsPositionAvailable(horse)
-    for i = 1, #Atlantiss.Jobs.Casino.Insidetrack.HorsesPositions do
-        if (Atlantiss.Jobs.Casino.Insidetrack.HorsesPositions[i] == horse) then
+    for i = 1, #Ora.Jobs.Casino.Insidetrack.HorsesPositions do
+        if (Ora.Jobs.Casino.Insidetrack.HorsesPositions[i] == horse) then
             return false
         end
     end
@@ -8,18 +8,18 @@ local function IsPositionAvailable(horse)
 end
 
 local function GenerateHorsesOrder()
-    while (#Atlantiss.Jobs.Casino.Insidetrack.HorsesPositions < 6) do
+    while (#Ora.Jobs.Casino.Insidetrack.HorsesPositions < 6) do
         Wait(0)
         for i = 1, 6 do
-            local horse = Atlantiss.Jobs.Casino.Insidetrack.RandomHorse[math.random(#Atlantiss.Jobs.Casino.Insidetrack.RandomHorse)]    
+            local horse = Ora.Jobs.Casino.Insidetrack.RandomHorse[math.random(#Ora.Jobs.Casino.Insidetrack.RandomHorse)]    
             if IsPositionAvailable(horse) then
-                table.insert(Atlantiss.Jobs.Casino.Insidetrack.HorsesPositions, horse)
+                table.insert(Ora.Jobs.Casino.Insidetrack.HorsesPositions, horse)
             end
         end
     end
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:StartRace()
+function Ora.Jobs.Casino.Insidetrack:StartRace()
     GenerateHorsesOrder()
 
     self.CurrentWinner = self.HorsesPositions[1]
@@ -41,7 +41,7 @@ function Atlantiss.Jobs.Casino.Insidetrack:StartRace()
     EndScaleformMovieMethod()
 end
 
-function Atlantiss.Jobs.Casino.Insidetrack:IsRaceFinished()
+function Ora.Jobs.Casino.Insidetrack:IsRaceFinished()
     BeginScaleformMovieMethod(self.Scaleform, 'GET_RACE_IS_COMPLETE')
 
     local raceReturnValue = EndScaleformMovieMethodReturnValue()

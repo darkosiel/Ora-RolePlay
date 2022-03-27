@@ -64,8 +64,8 @@ function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeadin
            AddRelationshipGroup("GunleaderDelivery")
            SetRelationshipBetweenGroups(0, GetHashKey("GunleaderDelivery"), 0xA49E591C)
            SetRelationshipBetweenGroups(0, 0xA49E591C, GetHashKey("GunleaderDelivery"))
-           IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER = Atlantiss.World.Ped:Create(5, "s_m_y_blackops_01", vector3(positionStart.x + 1.0, positionStart.y + 1.0, positionStart.z), 0.0)
-           IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER = Atlantiss.World.Ped:Create(5, "s_m_y_blackops_02", vector3(positionStart.x + 1.0, positionStart.y + 1.0, positionStart.z), 0.0)
+           IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER = Ora.World.Ped:Create(5, "s_m_y_blackops_01", vector3(positionStart.x + 1.0, positionStart.y + 1.0, positionStart.z), 0.0)
+           IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER = Ora.World.Ped:Create(5, "s_m_y_blackops_02", vector3(positionStart.x + 1.0, positionStart.y + 1.0, positionStart.z), 0.0)
            SetPedIntoVehicle(IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER, IllegalGunleadDelivery.DELIVERY.TRUCK_VEHICLE, -1)
            SetPedIntoVehicle(IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER, IllegalGunleadDelivery.DELIVERY.TRUCK_VEHICLE, 0)
 
@@ -77,7 +77,7 @@ function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeadin
             positionStartHeading,
             function(vehicle)
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     discordChannel,
                     "[COMMANDE #" .. order.id .. "]\nLe véhicule a été créé.", 
                     "info"
@@ -93,8 +93,8 @@ function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeadin
                ToggleVehicleMod(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, 18, 1)
                ToggleVehicleMod(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, 22, 1)
                Citizen.InvokeNative(0x06FAACD625D80CAA, IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE)
-               IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER = Atlantiss.World.Ped:Create(5, "s_m_y_blackops_01", vector3(otherCarPosition.x + 1.0, otherCarPosition.y + 1.0, otherCarPosition.z), 0.0)
-               IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER = Atlantiss.World.Ped:Create(5, "s_m_y_blackops_02", vector3(otherCarPosition.x + 1.0, otherCarPosition.y + 1.0, otherCarPosition.z), 0.0)
+               IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER = Ora.World.Ped:Create(5, "s_m_y_blackops_01", vector3(otherCarPosition.x + 1.0, otherCarPosition.y + 1.0, otherCarPosition.z), 0.0)
+               IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER = Ora.World.Ped:Create(5, "s_m_y_blackops_02", vector3(otherCarPosition.x + 1.0, otherCarPosition.y + 1.0, otherCarPosition.z), 0.0)
                SetPedIntoVehicle(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER, IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, -1)
                SetPedIntoVehicle(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER, IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, 0)
             end)    
@@ -151,7 +151,7 @@ function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeadin
                         
                         if distanceToTarget < 20.0 then
                             TriggerServerEvent(
-                                "atlantiss:sendToDiscord",
+                                "Ora:sendToDiscord",
                                 discordChannel,
                                 "[COMMANDE #" .. order.id .. "]\nLe véhicule est arrivé à bon port.", 
                                 "success"
@@ -170,11 +170,11 @@ function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeadin
                             Wait(5000)
                             TaskVehicleDriveWander(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER, IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, 17.0, 786603)
                             
-                            TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER), seconds = 30})
-                            TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER), seconds = 30})
-                            TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER), seconds = 30})
-                            TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER), seconds = 30})
-                            TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE), seconds = 30})
+                            TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_DRIVER), seconds = 30})
+                            TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE_PASSENGER), seconds = 30})
+                            TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.TRUCK_DRIVER), seconds = 30})
+                            TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.TRUCK_PASSENGER), seconds = 30})
+                            TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE, network_id = NetworkGetNetworkIdFromEntity(IllegalGunleadDelivery.DELIVERY.FLEE_VEHICLE), seconds = 30})
                         end
                     end
                 end
@@ -187,13 +187,13 @@ function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeadin
 end
 
 -- Handler for instance creation. 
-RegisterNetEvent("Atlantiss::Illegal:Gunleader:GetOrder")
+RegisterNetEvent("Ora::Illegal:Gunleader:GetOrder")
 AddEventHandler(
-    "Atlantiss::Illegal:Gunleader:GetOrder",
+    "Ora::Illegal:Gunleader:GetOrder",
     function(phoneNumber)
         IllegalGunleadDelivery.LOADED = false
 
-        TriggerServerCallback("Atlantiss:Illegal:GetWaitingOrderByPhoneNumber", function(order)
+        TriggerServerCallback("Ora:Illegal:GetWaitingOrderByPhoneNumber", function(order)
             local localOrder =  json.decode(order)
             IllegalGunleadDelivery.CAN_SHIP = true 
             if (localOrder.id == nil) then 
@@ -207,7 +207,7 @@ AddEventHandler(
                 )  
                 IllegalGunleadDelivery.CAN_SHIP = false
                 TriggerServerEvent(
-                    "atlantiss:sendToDiscord",
+                    "Ora:sendToDiscord",
                     22,
                     "A tenté d'appeler un numéro où la commande est déjà en livraison ou livré.", 
                     "error"
@@ -218,7 +218,7 @@ AddEventHandler(
                     ShowNotification("~r~Erreur #2 : Point de livraison manquant. Veuillez faire un ticket~s~")
                     IllegalGunleadDelivery.CAN_SHIP = false
                     TriggerServerEvent(
-                        "atlantiss:sendToDiscord",
+                        "Ora:sendToDiscord",
                         22,
                         "[ERROR] aucun point de livraison défini pour cette commande. Il faut rembourser.", 
                         "error"
@@ -230,7 +230,7 @@ AddEventHandler(
                     ShowNotification("~r~Erreur #3 : Détails de la commande manquant. Veuillez faire un ticket~s~")
                     IllegalGunleadDelivery.CAN_SHIP = false
                     TriggerServerEvent(
-                        "atlantiss:sendToDiscord",
+                        "Ora:sendToDiscord",
                         22,
                         "[ERROR] Le détail de la commande n'existe pas. Il faut rembourser.", 
                         "error"
@@ -274,7 +274,7 @@ AddEventHandler(
                 local endPosition = vector3(IllegalGunleadDelivery.ORDER.delivery_position.finish.x, IllegalGunleadDelivery.ORDER.delivery_position.finish.y, IllegalGunleadDelivery.ORDER.delivery_position.finish.z)
     
                 IllegalGunleadDelivery.CAN_START = nil
-                TriggerServerCallback("Atlantiss:Illegal:OrderCanBeDelivered", function(canDeliver)
+                TriggerServerCallback("Ora:Illegal:OrderCanBeDelivered", function(canDeliver)
                     IllegalGunleadDelivery.CAN_START = canDeliver
                 end, IllegalGunleadDelivery.ORDER.id)
         
@@ -289,7 +289,7 @@ AddEventHandler(
 
                 if (IllegalGunleadDelivery.CAN_START == true) then
                     TriggerServerEvent(
-                        "atlantiss:sendToDiscord",
+                        "Ora:sendToDiscord",
                         discordChannel,
                         "[COMMANDE #".. IllegalGunleadDelivery.ORDER.id .."]\nLancement de la livraison.", 
                         "info"
@@ -297,7 +297,7 @@ AddEventHandler(
                     IllegalGunleadDelivery.startDelivery(startPosition, IllegalGunleadDelivery.ORDER.delivery_position.startHeading, endPosition, IllegalGunleadDelivery.ORDER)
                 else
                     TriggerServerEvent(
-                        "atlantiss:sendToDiscord",
+                        "Ora:sendToDiscord",
                         discordChannel,
                         "[WARNING][COMMANDE #".. IllegalGunleadDelivery.ORDER.id .."]\nSuspicion de tentative de multiple appel en même temps.", 
                         "error"

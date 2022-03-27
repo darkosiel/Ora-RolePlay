@@ -1,20 +1,20 @@
-Atlantiss.RoutingBucket = {}
+Ora.RoutingBucket = {}
 
-Atlantiss.RoutingBucket.List = {}
-Atlantiss.RoutingBucket.DefaultBucket = 0
+Ora.RoutingBucket.List = {}
+Ora.RoutingBucket.DefaultBucket = 0
 
-function Atlantiss.RoutingBucket:GetDefaultSharedBucket()
+function Ora.RoutingBucket:GetDefaultSharedBucket()
   return self.DefaultBucket
 end
 
-function Atlantiss.RoutingBucket:GetModuleName()
+function Ora.RoutingBucket:GetModuleName()
   return "RoutingBucket"
 end
 
-function Atlantiss.RoutingBucket:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.RoutingBucket:GetModuleName(), message))
+function Ora.RoutingBucket:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.RoutingBucket:GetModuleName(), message))
   end
 end
 
-Atlantiss.Modules:Register(Atlantiss.RoutingBucket:GetModuleName())
+Ora.Modules:Register(Ora.RoutingBucket:GetModuleName())

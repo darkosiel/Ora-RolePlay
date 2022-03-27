@@ -55,7 +55,7 @@ function CreatePlane(x, y, z, heading, x2, y2, z2, model)
     if HasModelLoaded(modelHash) and HasModelLoaded(pilotModel) then
         ClearAreaOfEverything(x, y, z, 1500, false, false, false, false, false)
 
-        local AirPlane = Atlantiss.World.Vehicle:Create(model, vector3(x,y,z), heading, {customs = {}, warp_into_vehicle = false, health = {}})
+        local AirPlane = Ora.World.Vehicle:Create(model, vector3(x,y,z), heading, {customs = {}, warp_into_vehicle = false, health = {}})
 
         TriggerMusicEvent("GLOBAL_KILL_MUSIC")
 

@@ -49,8 +49,8 @@ function Creator.LoadContent()
         Citizen.Wait(10)
     end
     RemoveLoadingPrompt()
-    Atlantiss.Health:Revive(false)
-    Atlantiss.Health:SetMyHealthPercent(100)
+    Ora.Health:Revive(false)
+    Ora.Health:SetMyHealthPercent(100)
     Stage_01(_Cam)
     Stage_01_A(_Cam)
     RenderScriptCams(true, false, 3000, 1, 0, 0)
@@ -81,16 +81,16 @@ AddEventHandler(
                 SetMyIdentity(Identity)
                 setOldF(Users[1].limit_farm)
                 PlyUuid = Users[1].uuid
-                Atlantiss.Player.HasLoaded = true
+                Ora.Player.HasLoaded = true
                 SetFarmLimit(Users[1].limit_farm)
                 SetPlayerInventoryPrefix(Users[1].id)
                 LocalPlayer().InventoryPrefix = Users[1].id
-                Atlantiss.Identity.Job:Set(Jobs[1].name, Jobs[1].rank)
-                Atlantiss.Identity.Orga:Set(Jobs[1].orga, Jobs[1].orga_rank)
+                Ora.Identity.Job:Set(Jobs[1].name, Jobs[1].rank)
+                Ora.Identity.Orga:Set(Jobs[1].orga, Jobs[1].orga_rank)
                 XNL_SetInitialXPLevels(tonumber(Users[1].xp))
                 StartEverything()
                 if (ifModuleLoaded("Player")) then
-                    Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
+                    Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
                 end
             end
         )

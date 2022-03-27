@@ -284,7 +284,7 @@ end)
 
 -- 	BLIMP.scaleform = LoadScaleForm(BLIMP.scaleform_name)
 -- 	BLIMP.rendertarget = CreateNamedRenderTargetForModel(BLIMP.rendertarget_name, BLIMP.model)
--- 	BLIMP.SetMessage("Atlantiss V2, c'est pour bientôt")
+-- 	BLIMP.SetMessage("Ora V2, c'est pour bientôt")
 -- 	BLIMP.SetColor(1)
 -- 	BLIMP.SetScrollSpeed(5.0)
 

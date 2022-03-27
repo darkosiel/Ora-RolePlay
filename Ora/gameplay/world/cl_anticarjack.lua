@@ -238,7 +238,7 @@ function SendDiscordWebHook(tryVehicle, vehCoords, haskilled)
 
     if (vehPlate ~= nil) then
         TriggerServerEvent(
-            "atlantiss:sendToDiscordLSPD",
+            "Ora:sendToDiscordLSPD",
             2,
             "Couleur:\n"..
             vehColor..
@@ -303,15 +303,15 @@ function getVehicleType(vehicle)
 end
 
 
-RegisterNetEvent("Atlantiss::CE::Carjacking:LockState")
+RegisterNetEvent("Ora::CE::Carjacking:LockState")
 AddEventHandler(
-    "Atlantiss::CE::Carjacking:LockState",
+    "Ora::CE::Carjacking:LockState",
     function(veh, state)
         if (state == 1) then
-            if (Atlantiss.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, veh) end
+            if (Ora.World.Vehicle.JackedVehicles[veh] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, veh) end
         elseif (state == 2) then
-            if (Atlantiss.Utils:HasValue(Atlantiss.World.Vehicle.JackedVehicles, veh)) then
-                table.remove(Atlantiss.World.Vehicle.JackedVehicles, Atlantiss.Utils:IndexOf(Atlantiss.World.Vehicle.JackedVehicles, veh))
+            if (Ora.Utils:HasValue(Ora.World.Vehicle.JackedVehicles, veh)) then
+                table.remove(Ora.World.Vehicle.JackedVehicles, Ora.Utils:IndexOf(Ora.World.Vehicle.JackedVehicles, veh))
             end
         end
 
@@ -321,21 +321,21 @@ AddEventHandler(
 
 
 Citizen.CreateThread(function()
-    while (not Atlantiss.Player.HasLoaded) do Wait(500) end
+    while (not Ora.Player.HasLoaded) do Wait(500) end
 
 	while true do
         Wait(0)
         local FoundEntity, AimedEntity = GetEntityPlayerIsFreeAimingAt(PlayerId())
 
 		if (
-            not Atlantiss.Identity:HasAnyJob("police") and not Atlantiss.Identity:HasAnyJob("lssd") and
+            not Ora.Identity:HasAnyJob("police") and not Ora.Identity:HasAnyJob("lssd") and
             FoundEntity and LastEntity ~= AimedEntity and
             IsPedInAnyVehicle(AimedEntity, false) and
             IsPedArmed(PlayerPedId(), 7) and
             GetPedInVehicleSeat(GetVehiclePedIsIn(AimedEntity, false), -1) == AimedEntity and
             #(GetEntityCoords(AimedEntity) - GetEntityCoords(GetPlayerPed(-1))) < 12.0
         ) then
-            local aimedPedIsAGangster = Atlantiss.World.Ped:IsPedAGangster(AimedEntity)
+            local aimedPedIsAGangster = Ora.World.Ped:IsPedAGangster(AimedEntity)
             local _, UsedWeapon = GetCurrentPedWeapon(PlayerPedId(), 1)
             local chanceCheck = nil
             local timeout = 0
@@ -379,7 +379,7 @@ Citizen.CreateThread(function()
 
                             if (IsEntityDead(AimedEntity)) then
                                 RageUI.Popup({message = "~g~Vous avez récupéré les clés"})
-                                Atlantiss.Inventory:AddItem({
+                                Ora.Inventory:AddItem({
                                     name = "key",
                                     data = {
                                         plate = GetVehicleNumberPlateText(LastVehicle),
@@ -391,7 +391,7 @@ Citizen.CreateThread(function()
                                 HasKilled = true
 
                                 SetVehicleDoorsLocked(LastVehicle, 1)
-                                if (Atlantiss.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, LastVehicle) end
+                                if (Ora.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, LastVehicle) end
                                 callCopsForVehicle(LastVehicle, GetEntityCoords(LastVehicle), HasKilled)
                                 SendDiscordWebHook(LastVehicle, GetEntityCoords(LastVehicle), HasKilled)
                                 break
@@ -493,10 +493,10 @@ Citizen.CreateThread(function()
                                 HasKeys = true
                                 HasKilled = true
 
-                                if (Atlantiss.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, LastVehicle) end
+                                if (Ora.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, LastVehicle) end
                                 
                                 RageUI.Popup({message = "~g~Vous avez récupéré les clés"})
-                                Atlantiss.Inventory:AddItem({
+                                Ora.Inventory:AddItem({
                                     name = "key",
                                     data = {
                                         plate = GetVehicleNumberPlateText(LastVehicle),
@@ -569,7 +569,7 @@ Citizen.CreateThread(function()
 
 				if (math.random() >= ChanceToGiveKeys) then
                     RageUI.Popup({message = "~g~La personne vous cède les clés"})
-                    Atlantiss.Inventory:AddItem({
+                    Ora.Inventory:AddItem({
                         name = "key",
                         data = {
                             plate = GetVehicleNumberPlateText(LastVehicle),
@@ -580,7 +580,7 @@ Citizen.CreateThread(function()
 					HasKeys = true
 
                     SetVehicleDoorsLocked(LastVehicle, 1)
-                    if (Atlantiss.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, LastVehicle) end
+                    if (Ora.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, LastVehicle) end
                     callCopsForVehicle(LastVehicle, GetEntityCoords(LastVehicle), HasKilled)
                     SendDiscordWebHook(LastVehicle, GetEntityCoords(LastVehicle), HasKilled)
 				else
@@ -596,7 +596,7 @@ Citizen.CreateThread(function()
 
                             if (DoesEntityExist(LastEntity) and IsEntityDead(LastEntity)) then
                                 RageUI.Popup({message = "~g~Vous avez récupéré les clés"})
-                                Atlantiss.Inventory:AddItem({
+                                Ora.Inventory:AddItem({
                                     name = "key",
                                     data = {
                                         plate = GetVehicleNumberPlateText(LastVehicle),
@@ -608,7 +608,7 @@ Citizen.CreateThread(function()
                                 HasKilled = true
                                 
                                 SetVehicleDoorsLocked(LastVehicle, 1)
-                                if (Atlantiss.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Atlantiss.World.Vehicle.JackedVehicles, LastVehicle) end
+                                if (Ora.World.Vehicle.JackedVehicles[LastVehicle] == nil) then table.insert(Ora.World.Vehicle.JackedVehicles, LastVehicle) end
                                 callCopsForVehicle(LastVehicle, GetEntityCoords(LastVehicle), HasKilled)
                                 SendDiscordWebHook(LastVehicle, GetEntityCoords(LastVehicle), HasKilled)
                                 break
@@ -661,12 +661,12 @@ end)
 
 Citizen.CreateThread(
     function()
-        while (Atlantiss.Player.HasLoaded == false) do Wait(500) end
+        while (Ora.Player.HasLoaded == false) do Wait(500) end
 
         local WaitTime = 1250
 
         while true do
-            if (Atlantiss.Illegal.CarRoberry:IsMissionRunning() and Atlantiss.Illegal.CarRoberry.Current.STOLEN_VEHICLE == nil) then
+            if (Ora.Illegal.CarRoberry:IsMissionRunning() and Ora.Illegal.CarRoberry.Current.STOLEN_VEHICLE == nil) then
                 WaitTime = 250
             else
                 WaitTime = 1250
@@ -682,32 +682,32 @@ Citizen.CreateThread(
                 local vehPlate = GetVehicleNumberPlateText(veh)
 
                 if (
-                    (veh == Atlantiss.Illegal.CarRoberry.Current.STOLEN_VEHICLE) or
+                    (veh == Ora.Illegal.CarRoberry.Current.STOLEN_VEHICLE) or
                     (
                         not IsEntityAMissionEntity(veh) and
-                        not Atlantiss.World.Vehicle:IsSpawnedVehicle(netID) and
+                        not Ora.World.Vehicle:IsSpawnedVehicle(netID) and
                         (IsThisModelACar(mdl) or IsThisModelABike(mdl) or IsThisModelAHeli(mdl) or IsThisModelAPlane(mdl)) and
                         not IsThisModelABicycle(mdl)
                     )
                 ) then
                     SetPedCanSmashGlass(LocalPlayer().Ped, false, false)
 
-                    if (Atlantiss.Utils:HasValue(Atlantiss.World.Vehicle.JackedVehicles, veh)) then
+                    if (Ora.Utils:HasValue(Ora.World.Vehicle.JackedVehicles, veh)) then
                         SetVehicleDoorsLockedForAllPlayers(veh, false)
                         SetVehicleDoorsLocked(veh, 1)
-                        TriggerPlayerEvent("Atlantiss::CE::Carjacking:LockState", -1, veh, 1)
+                        TriggerPlayerEvent("Ora::CE::Carjacking:LockState", -1, veh, 1)
                         TriggerServerCallback(
-                            "Atlantiss::SVCB::World:Vehicle:GetExistingPlates",
+                            "Ora::SVCB::World:Vehicle:GetExistingPlates",
                             function(existingPlates)
                                 if (vehPlate ~= nil) then
-                                    while (Atlantiss.Utils:HasValue(existingPlates, vehPlate)) do
-                                        vehPlate = Atlantiss.World.Vehicle:GenerateRandomPlate()
+                                    while (Ora.Utils:HasValue(existingPlates, vehPlate)) do
+                                        vehPlate = Ora.World.Vehicle:GenerateRandomPlate()
                                     end
 
                                     SetVehicleNumberPlateText(veh, vehPlate)
 
-                                    if (Atlantiss.Illegal.CarRoberry:IsMissionRunning() and Atlantiss.Illegal.CarRoberry.Current.STOLEN_VEHICLE == veh) then
-                                        Atlantiss.Illegal.CarRoberry.Current.VEHICLE_PLATE = vehPlate
+                                    if (Ora.Illegal.CarRoberry:IsMissionRunning() and Ora.Illegal.CarRoberry.Current.STOLEN_VEHICLE == veh) then
+                                        Ora.Illegal.CarRoberry.Current.VEHICLE_PLATE = vehPlate
                                     end
                                 end
                             end

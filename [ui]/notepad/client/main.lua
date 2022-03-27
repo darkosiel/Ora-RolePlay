@@ -88,7 +88,7 @@ AddEventHandler('lkrp_notepad:note', function()
         else
             local x,y,z = table.unpack(GetEntityCoords(player))
             
-            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                 function()
                     prop = CreateObject(GetHashKey(prop_name), x, y, z+0.2,  true,  true, true)
                     AttachEntityToEntity(prop, player, GetPedBoneIndex(player, 18905), 0.1, 0.02, 0.05, 10.0, 0.0, 0.0, true, true, false, true, 1, true) -- lkrp_notepadpad
@@ -96,7 +96,7 @@ AddEventHandler('lkrp_notepad:note', function()
                 GetHashKey(prop_name)
             )
 
-            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                 function()
                     secondaryprop = CreateObject(GetHashKey(secondaryprop_name), x, y, z+0.2,  true,  true, true)
                     AttachEntityToEntity(secondaryprop, player, GetPedBoneIndex(player, 58866), 0.12, 0.0, 0.001, -150.0, 0.0, 0.0, true, true, false, true, 1, true) -- pencil
@@ -112,7 +112,7 @@ end)
 RegisterNetEvent('lkrp_notepad:openG')
 AddEventHandler('lkrp_notepad:openG', function()
     Citizen.SetTimeout(500, function()
-        TriggerEvent('atlantiss:hideInventory')
+        TriggerEvent('Ora:hideInventory')
         local player = PlayerPedId()
         local ad = "missheistdockssetup1clipboard@base"
                     
@@ -132,7 +132,7 @@ AddEventHandler('lkrp_notepad:openG', function()
             else
                 local x,y,z = table.unpack(GetEntityCoords(player))
 
-                exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                     function()
                         prop = CreateObject(GetHashKey(prop_name), x, y, z+0.2,  true,  true, true)
                         AttachEntityToEntity(prop, player, GetPedBoneIndex(player, 18905), 0.1, 0.02, 0.05, 10.0, 0.0, 0.0, true, true, false, true, 1, true) -- lkrp_notepadpad
@@ -140,7 +140,7 @@ AddEventHandler('lkrp_notepad:openG', function()
                     GetHashKey(prop_name)
                 )
 
-                exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+                exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                     function()
                         secondaryprop = CreateObject(GetHashKey(secondaryprop_name), x, y, z+0.2,  true,  true, true)
                         AttachEntityToEntity(secondaryprop, player, GetPedBoneIndex(player, 58866), 0.12, 0.0, 0.001, -150.0, 0.0, 0.0, true, true, false, true, 1, true) -- pencil

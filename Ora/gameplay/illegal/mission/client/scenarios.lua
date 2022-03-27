@@ -52,7 +52,7 @@ local function startTimeCounter(illegalMission)
                 if timeleft > 0 then
                     DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
                 else
-                    TriggerEvent("Atlantiss:illegal:failCurrentMission", illegalMission)
+                    TriggerEvent("Ora:illegal:failCurrentMission", illegalMission)
                 end
             end
 
@@ -63,13 +63,13 @@ local function startTimeCounter(illegalMission)
     end)
 end
 
-RegisterNetEvent("Atlantiss:illegal:counterStop")
-AddEventHandler("Atlantiss:illegal:counterStop", function()
+RegisterNetEvent("Ora:illegal:counterStop")
+AddEventHandler("Ora:illegal:counterStop", function()
     counterStarted = false
 end)
 
-RegisterNetEvent("Atlantiss:illegal:failCurrentMission")
-AddEventHandler("Atlantiss:illegal:failCurrentMission", function(mission)
+RegisterNetEvent("Ora:illegal:failCurrentMission")
+AddEventHandler("Ora:illegal:failCurrentMission", function(mission)
     for k, v in pairs(mission.rewards) do
         if k == "xp" then
             math.randomseed(GetGameTimer())
@@ -91,28 +91,28 @@ AddEventHandler("Atlantiss:illegal:failCurrentMission", function(mission)
     end
 
     if (mission.type == "carjacking") then
-        Atlantiss.Illegal.Carjacking:StopCarjacking()
+        Ora.Illegal.Carjacking:StopCarjacking()
     end
 
     if (mission.type == "gofast") then
-        Atlantiss.Illegal.Gofast:Finish()
+        Ora.Illegal.Gofast:Finish()
     end
 
     if (mission.type == "carroberry") then
-        Atlantiss.Illegal.CarRoberry:Finish()
+        Ora.Illegal.CarRoberry:Finish()
     end
 
     TriggerServerEvent("missionEnd", mission)
     ShowNotification("~r~~h~Mission échouée~h~\nVous êtes arrivé trop tard.~s~")
 end)
 
-RegisterNetEvent("Atlantiss:illegal:successCurrentMission")
-AddEventHandler("Atlantiss:illegal:successCurrentMission", function(currentMission)
+RegisterNetEvent("Ora:illegal:successCurrentMission")
+AddEventHandler("Ora:illegal:successCurrentMission", function(currentMission)
     if currentMission.blip ~= nil then
         RemoveBlip(currentMission.blip)
         currentMission.blip = nil
     end
-    TriggerEvent("Atlantiss:illegal:counterStop")
+    TriggerEvent("Ora:illegal:counterStop")
     local f = false
     for i = 1, #currentMission.participant, 1 do
         if
@@ -147,7 +147,7 @@ AddEventHandler("Atlantiss:illegal:successCurrentMission", function(currentMissi
         end
 
         if k == "items" then
-            Atlantiss.Inventory:AddItems(v)
+            Ora.Inventory:AddItems(v)
         end
     end
     currentMission = {}
@@ -192,12 +192,12 @@ end
 
 illegalscenario = {
     [1] = function(param)
-        if (Atlantiss.Illegal.CarRoberry:CanStart()) then
-            Atlantiss.Illegal.CarRoberry:Start(currentMission.label)
+        if (Ora.Illegal.CarRoberry:CanStart()) then
+            Ora.Illegal.CarRoberry:Start(currentMission.label)
             currentMission.finished = false
             currentMission.participant = {GetPlayerServerId(PlayerId())}
-            currentMission.id = Atlantiss.Illegal.CarRoberry:GetMissionId()
-            currentMission.timeLeft = (Atlantiss.Illegal.CarRoberry:GetMaxTimeForMission() * 60 * 1000) + GetGameTimer()
+            currentMission.id = Ora.Illegal.CarRoberry:GetMissionId()
+            currentMission.timeLeft = (Ora.Illegal.CarRoberry:GetMaxTimeForMission() * 60 * 1000) + GetGameTimer()
             currentMission.type = "carroberry"
             TriggerServerEvent("startIllegalMission", currentMission)
             startTimeCounter(currentMission)
@@ -206,27 +206,27 @@ illegalscenario = {
     end,
     [2] = function(param)
         local configStart = param.configStart
-        Atlantiss.Illegal.Gofast:SetMissionLevel(currentMission.label)
-        if (Atlantiss.Illegal.Gofast:CanStart()) then
-            Atlantiss.Illegal.Gofast:Start()
-            Atlantiss.Illegal.Gofast:SetItemToPutInTrunk(configStart.itemInTrunk)
+        Ora.Illegal.Gofast:SetMissionLevel(currentMission.label)
+        if (Ora.Illegal.Gofast:CanStart()) then
+            Ora.Illegal.Gofast:Start()
+            Ora.Illegal.Gofast:SetItemToPutInTrunk(configStart.itemInTrunk)
             currentMission.finished = false
             currentMission.participant = {GetPlayerServerId(PlayerId())}
-            currentMission.id = Atlantiss.Illegal.Gofast:GetMissionId()
-            currentMission.timeLeft = (Atlantiss.Illegal.Gofast:GetMaxTimeForMission() * 60 * 1000) + GetGameTimer()
+            currentMission.id = Ora.Illegal.Gofast:GetMissionId()
+            currentMission.timeLeft = (Ora.Illegal.Gofast:GetMaxTimeForMission() * 60 * 1000) + GetGameTimer()
             currentMission.type = "gofast"
             TriggerServerEvent("startIllegalMission", currentMission)
             startTimeCounter(currentMission)
         end
     end,
     [3] = function(param)
-        Atlantiss.Illegal.Carjacking:SetMissionLevel(currentMission.label)
-        if (Atlantiss.Illegal.Carjacking:CanStart() == true) then
-            Atlantiss.Illegal.Carjacking:StartCarjacking()
+        Ora.Illegal.Carjacking:SetMissionLevel(currentMission.label)
+        if (Ora.Illegal.Carjacking:CanStart() == true) then
+            Ora.Illegal.Carjacking:StartCarjacking()
             currentMission.finished = false
             currentMission.participant = {GetPlayerServerId(PlayerId())}
-            currentMission.id = Atlantiss.Illegal.Carjacking:GetMissionId()
-            currentMission.timeLeft = (Atlantiss.Illegal.Carjacking:GetMaxTimeForMission() * 60 * 1000) + GetGameTimer()
+            currentMission.id = Ora.Illegal.Carjacking:GetMissionId()
+            currentMission.timeLeft = (Ora.Illegal.Carjacking:GetMaxTimeForMission() * 60 * 1000) + GetGameTimer()
             currentMission.type = "carjacking"
             TriggerServerEvent("startIllegalMission", currentMission)
             startTimeCounter(currentMission)
@@ -265,7 +265,7 @@ illegalscenario = {
         )
 
         TriggerServerEvent(
-            "atlantiss:sendToDiscord",
+            "Ora:sendToDiscord",
             18,
             "[MISSION #"..currentMission.id.."]\nLance une mission passage de migrants", 
             "info"
@@ -307,7 +307,7 @@ illegalscenario = {
                         positionStart.headingTruck,
                         function(vehicle)
                             TriggerServerEvent(
-                                "atlantiss:sendToDiscord",
+                                "Ora:sendToDiscord",
                                 18,
                                 "[MISSION #"..currentMission.id.."]\nVéhicule créé : {x = " .. positionStart.truckPos.x .. ", y = " .. positionStart.truckPos.y .. ", z = " .. positionStart.truckPos.z .. "}", 
                                 "info"
@@ -328,9 +328,9 @@ illegalscenario = {
                             if IsEntityAVehicle(v) then
                                 local coords = GetEntityCoords(v)
                                 local driverModel = currentMission.scenarioSettings.truckers[math.random(#currentMission.scenarioSettings.truckers)]
-                                driver = Atlantiss.World.Ped:Create(5, driverModel, vector3(positionStart.truckPos.x + 1.0, positionStart.truckPos.y + 1.0, positionStart.truckPos.z), 0.0)
+                                driver = Ora.World.Ped:Create(5, driverModel, vector3(positionStart.truckPos.x + 1.0, positionStart.truckPos.y + 1.0, positionStart.truckPos.z), 0.0)
                                 local passengerModel = currentMission.scenarioSettings.truckers[math.random(#currentMission.scenarioSettings.truckers)]
-                                passenger = Atlantiss.World.Ped:Create(5, passengerModel, vector3(positionStart.truckPos.x + 1.0, positionStart.truckPos.y + 1.0, positionStart.truckPos.z), 0.0)
+                                passenger = Ora.World.Ped:Create(5, passengerModel, vector3(positionStart.truckPos.x + 1.0, positionStart.truckPos.y + 1.0, positionStart.truckPos.z), 0.0)
                                 SetPedIntoVehicle(driver, vehicle, -1)
                                 SetPedIntoVehicle(passenger, vehicle, 2)
                             
@@ -351,7 +351,7 @@ illegalscenario = {
                                    
                                     if distanceToTarget < 20 then
                                         TriggerServerEvent(
-                                            "atlantiss:sendToDiscord",
+                                            "Ora:sendToDiscord",
                                             18,
                                             "[MISSION #"..currentMission.id.."]\nVéhicule arrivé sur place", 
                                             "success"
@@ -371,7 +371,7 @@ illegalscenario = {
 
                                         TaskWanderStandard(driver, 10.0, 10)
                                         startDropOff = true
-                                        TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = driver, network_id = NetworkGetNetworkIdFromEntity(driver), seconds = 30})
+                                        TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = driver, network_id = NetworkGetNetworkIdFromEntity(driver), seconds = 30})
                                     end
                                 end
                                 
@@ -480,7 +480,7 @@ illegalscenario = {
                                         local plate = GetVehicleNumberPlateText(spawnedVehicle)
                                         TriggerServerEvent("call:makeCall2", "police", LocalPlayer().Pos, "Un passeur en van a taper un migrant devant moi. La plaque commence par " .. plate:sub(1, 4), "Citoyen")
                                         TriggerServerEvent("call:makeCall2", "lssd", LocalPlayer().Pos, "Un passeur en van a taper un migrant devant moi. La plaque commence par " .. plate:sub(1, 4), "Citoyen")
-                                        TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
+                                        TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
 
                                     else
                                         ShowAdvancedNotification(
@@ -493,11 +493,11 @@ illegalscenario = {
                                         local plate = GetVehicleNumberPlateText(spawnedVehicle)
                                         TriggerServerEvent("call:makeCall2", "police", LocalPlayer().Pos, "Une personne dans un van gris semble transporter des migrants. La plaque commence par " .. plate:sub(1, 4), "Citoyen")
                                         TriggerServerEvent("call:makeCall2", "lssd", LocalPlayer().Pos, "Une personne dans un van gris semble transporter des migrants. La plaque commence par " .. plate:sub(1, 4), "Citoyen")
-                                        TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
+                                        TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
                                     end
 
                                     if (oldPassenger ~= nil) then 
-                                        TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = oldPassenger, network_id = NetworkGetNetworkIdFromEntity(oldPassenger), seconds = 30})
+                                        TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = oldPassenger, network_id = NetworkGetNetworkIdFromEntity(oldPassenger), seconds = 30})
                                         oldPassenger = nil
                                     end
                                 else
@@ -511,10 +511,10 @@ illegalscenario = {
                                     TriggerServerEvent("black_money:Add", r)
                                     TaskLeaveVehicle(passenger)
                                     TaskWanderStandard(passenger, 10.0, 10)
-                                    TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
+                                    TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
 
                                     if (oldPassenger ~= nil) then
-                                        TriggerServerEvent("Atlantiss::SE::World:Entity:Delete", {handle = oldPassenger, network_id = NetworkGetNetworkIdFromEntity(oldPassenger), seconds = 30})
+                                        TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = oldPassenger, network_id = NetworkGetNetworkIdFromEntity(oldPassenger), seconds = 30})
                                         oldPassenger = nil
                                     end
                                 end
@@ -524,7 +524,7 @@ illegalscenario = {
                                     local migrantModel = currentMission.scenarioSettings.migrants[math.random(#currentMission.scenarioSettings.migrants)]
                                     local vehicleLocation = GetEntityCoords(spawnedVehicle)
                                     oldPassenger = passenger
-                                    passenger = Atlantiss.World.Ped:Create(5, migrantModel, vector3(vehicleLocation.x + 2.0, vehicleLocation.y + 2.0, vehicleLocation.z), 0.0)
+                                    passenger = Ora.World.Ped:Create(5, migrantModel, vector3(vehicleLocation.x + 2.0, vehicleLocation.y + 2.0, vehicleLocation.z), 0.0)
                                     TaskEnterVehicle(passenger, spawnedVehicle, 2000, 2, 2.0, 16, 0)
                                 end
                             end
@@ -548,13 +548,13 @@ illegalscenario = {
                             1
                         )
                         TriggerServerEvent(
-                            "atlantiss:sendToDiscord",
+                            "Ora:sendToDiscord",
                             18,
                             "[MISSION #"..currentMission.id.."]\nMission terminée", 
                             "info"
                         )
 
-                        TriggerEvent("Atlantiss:illegal:successCurrentMission", currentMission)
+                        TriggerEvent("Ora:illegal:successCurrentMission", currentMission)
 
                         if (spawnedVehicle ~= nil and DoesEntityExist(spawnedVehicle)) then 
                             DeleteEntity(spawnedVehicle)
@@ -665,7 +665,7 @@ function AddPropIntoTrunk(model, vehicle)
                     Citizen.Wait(1)
                 end
             end
-            local obj = Atlantiss.World.Object:Create(modelHash, coords.x, coords.y, coords.z - 0.3, true, false, true)
+            local obj = Ora.World.Object:Create(modelHash, coords.x, coords.y, coords.z - 0.3, true, false, true)
             SetModelAsNoLongerNeeded(modelHash)
             SetEntityHeading(obj, GetEntityHeading(vehicle))
 

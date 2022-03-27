@@ -45,13 +45,13 @@ AddEventHandler(
                 local loadedCharacter = false
                 local selectedModel = _Generating.Model
 
-                TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPed", 
+                TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
                     function()
                     end,
                     GetEntityModel(PlayerPedId())
                 )
 
-                TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterPed", 
+                TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
                     function()
                     end,
                     selectedModel
@@ -98,7 +98,7 @@ AddEventHandler(
         Citizen.CreateThread(
             function()
                 if (ifModuleLoaded("Player")) then
-                    Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
+                    Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
                 end
                 LoadingPrompt("Chargement du personnage...", 4)
                 SetMyIdentity(Identity)
@@ -117,10 +117,10 @@ AddEventHandler(
                 end
 
                 if (tattoosHasToBeFixed == true) then
-                    Atlantiss.Player:UpdateTattoos(fixTatoos)
+                    Ora.Player:UpdateTattoos(fixTatoos)
                 end
 
-                Atlantiss.Config:SetDataCollection("PlayerTattoos", fixTatoos)
+                Ora.Config:SetDataCollection("PlayerTattoos", fixTatoos)
                 loadedCharacter =
                     UpdatePlayerPedFreemodeCharacter(
                     PlayerPed,
@@ -142,8 +142,8 @@ AddEventHandler(
                 TriggerEvent("es:activateMoney", Users[1].money)
                 TriggerEvent("es:activateBlackMoney", Users[1].black_money)
                 XNL_SetInitialXPLevels(tonumber(Users[1].xp))
-                Atlantiss.Identity.Job:Set(Jobs[1].name, Jobs[1].rank)
-                Atlantiss.Identity.Orga:Set(Jobs[1].orga, Jobs[1].orga_rank)
+                Ora.Identity.Job:Set(Jobs[1].name, Jobs[1].rank)
+                Ora.Identity.Orga:Set(Jobs[1].orga, Jobs[1].orga_rank)
                 setOldF(Users[1].limit_farm)
                 PlyUuid = Users[1].uuid
                 --  SetFarmLimit(Users[1].limit_farm)
@@ -162,7 +162,7 @@ AddEventHandler(
                 FreezeEntityPosition(PlayerPedId(), false)
                 
                 --position.a = position.heading
-                --Atlantiss.Core:TeleportEntityTo(PlayerPedId(), position, false)
+                --Ora.Core:TeleportEntityTo(PlayerPedId(), position, false)
                 StartEverything()
                 PlaySoundFrontend(-1, "CHARACTER_SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0)
                 RageUI.Popup(
@@ -171,10 +171,10 @@ AddEventHandler(
                     }
                 )
                 
-                Atlantiss.Player:ApplyTattoos(Atlantiss.Config:GetDataCollection("PlayerTattoos"))
-                Atlantiss.Player:ApplyHairsTattoos()
+                Ora.Player:ApplyTattoos(Ora.Config:GetDataCollection("PlayerTattoos"))
+                Ora.Player:ApplyHairsTattoos()
                 if (ifModuleLoaded("Player")) then
-                    Atlantiss.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
+                    Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
                 end
             end
         )
@@ -186,6 +186,6 @@ AddEventHandler(
         Citizen.Wait(5000)
         RemoveLoadingPrompt()
 
-        Atlantiss.Player.HasLoaded = true
+        Ora.Player.HasLoaded = true
     end
 )

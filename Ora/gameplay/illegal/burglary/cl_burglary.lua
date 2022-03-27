@@ -3,8 +3,8 @@ Citizen.CreateThread(
         while (GetResourceState("gcphone") ~= "started") do
             Wait(1000)
         end
-        TriggerServerEvent("AM::Illegal:addPhone", "5005245", "Atlantiss::Illegal:StartBurglaryNorth")
-        TriggerServerEvent("AM::Illegal:addPhone", "5006318", "Atlantiss::Illegal:StartBurglarySouth")
+        TriggerServerEvent("AM::Illegal:addPhone", "5005245", "Ora::Illegal:StartBurglaryNorth")
+        TriggerServerEvent("AM::Illegal:addPhone", "5006318", "Ora::Illegal:StartBurglarySouth")
     end
 )
 
@@ -116,7 +116,7 @@ local function RobItem(K, i1)
     table.insert(burglaryManager.ENTITY_DESTROYED, {ent = i1.entity, pos = i1.pos, model = GetEntityModel(i1.entity)})
     PlaySimpleForceAnim({"anim@heists@box_carry@", "idle"}, 49)
 
-    burglaryManager.BOX = Atlantiss.World.Object:CreateObjectNoOffset(GetHashKey(propId), GetEntityCoords(K), true, true, false)
+    burglaryManager.BOX = Ora.World.Object:CreateObjectNoOffset(GetHashKey(propId), GetEntityCoords(K), true, true, false)
     AttachEntityToEntity(
         burglaryManager.BOX,
         K,
@@ -227,7 +227,7 @@ function StartBurglary(type, policeCount)
     if (policeCount >= BurglaryConfig.minCops)  then
 
         TriggerServerEvent(
-            "atlantiss:sendToDiscord",
+            "Ora:sendToDiscord",
             19,
             "Lance une mission cambriolage",
             "info"
@@ -310,10 +310,10 @@ function StartBurglary(type, policeCount)
                     if IsDisabledControlJustPressed(0, 51) then
                         local canStart = false
                         if (burglaryManager.STATE == 0) then 
-                            if (Atlantiss.Inventory:GetItemCount("crochetage") == 0) then
+                            if (Ora.Inventory:GetItemCount("crochetage") == 0) then
                                 ShowNotification("~r~Vous n'avez pas de kit de crochetage pour la porte~s~")
                             else
-                                Atlantiss.Core:Debug(string.format("Starting lockpicking the door for burglary"))
+                                Ora.Core:Debug(string.format("Starting lockpicking the door for burglary"))
                                 exports["mythic_progbar"]:Progress(
                                     {
                                         name = "lockpick",
@@ -348,20 +348,20 @@ function StartBurglary(type, policeCount)
                             burglaryManager.ENTRY_TIME = GetGameTimer()
                         
                             DoScreenFadeOut(100)
-                            TriggerServerEvent("Atlantiss::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket")
-                            Atlantiss.Core:Debug(string.format("Adding Freeze for player"))
+                            TriggerServerEvent("Ora::SE::RoutingBucket:SwitchToAnyAvailableRoutingBucket")
+                            Ora.Core:Debug(string.format("Adding Freeze for player"))
                             local interiorAtCoords = GetInteriorAtCoords(burglaryManager.PROPERTY.pos.x, burglaryManager.PROPERTY.pos.y, burglaryManager.PROPERTY.pos.z)
                             if not IsValidInterior(interiorAtCoords) then
-                                Atlantiss.Core:Debug(string.format("Interior id ^5%s^3 does not exist", interiorAtCoords))
+                                Ora.Core:Debug(string.format("Interior id ^5%s^3 does not exist", interiorAtCoords))
                                 interiorAtCoords = "NOTFOUND"
                             else
-                                Atlantiss.Core:Debug(string.format("Interior id ^5%s^3 will now be loaded", interiorAtCoords))
+                                Ora.Core:Debug(string.format("Interior id ^5%s^3 will now be loaded", interiorAtCoords))
                                 PinInteriorInMemory(interiorAtCoords)
                             end
-                            Atlantiss.Jobs.Immo:RemoveExits()
+                            Ora.Jobs.Immo:RemoveExits()
                             FreezeEntityPosition(LocalPlayer().Ped, true)
                             Wait(500)
-                            Atlantiss.Core:TeleportEntityTo(LocalPlayer().Ped, vector3(burglaryManager.PROPERTY.pos.x,  burglaryManager.PROPERTY.pos.y,  burglaryManager.PROPERTY.pos.z), true)
+                            Ora.Core:TeleportEntityTo(LocalPlayer().Ped, vector3(burglaryManager.PROPERTY.pos.x,  burglaryManager.PROPERTY.pos.y,  burglaryManager.PROPERTY.pos.z), true)
                             if (sound > 0.5) then
                                 sound = 0.35
                             end
@@ -371,13 +371,13 @@ function StartBurglary(type, policeCount)
                                 interiorId = GetInteriorFromEntity(LocalPlayer().Ped)
                                 Citizen.Wait(75)
                                 if (currentTry > maxTry) then
-                                    Atlantiss.Core:Debug(string.format("Interior cannot be loaded for position ^5%s %s %s^3", burglaryManager.PROPERTY.pos.x, burglaryManager.PROPERTY.pos.y, burglaryManager.PROPERTY.pos.z))
+                                    Ora.Core:Debug(string.format("Interior cannot be loaded for position ^5%s %s %s^3", burglaryManager.PROPERTY.pos.x, burglaryManager.PROPERTY.pos.y, burglaryManager.PROPERTY.pos.z))
                                     interiorId = "NOTFOUND"
                                     break
                                 end
                                 currentTry = currentTry + 1
                             end
-                            Atlantiss.Core:Debug(string.format("Removing Freeze for player"))
+                            Ora.Core:Debug(string.format("Removing Freeze for player"))
                             FreezeEntityPosition(LocalPlayer().Ped, false)
                             DoScreenFadeIn(500)
                             
@@ -414,20 +414,20 @@ function StartBurglary(type, policeCount)
                         if ((GetGameTimer() - burglaryManager.ENTRY_TIME) / 1000 > 15) then
                             local typeOfBust = math.random(1,10)
                             if (typeOfBust > 5) then
-                                Atlantiss.Core:Debug(string.format("Player busted, cops called"))
+                                Ora.Core:Debug(string.format("Player busted, cops called"))
                                 burglaryManager.CALLED = true
                                 local message = "J'entends des pas chez mon voisin du dessus alors qu'il est en vacances!"
                                 local burglaryCoords = vector3(burglaryManager.STREET.pos.x, burglaryManager.STREET.pos.y, burglaryManager.STREET.pos.z)
                                 TriggerServerEvent("call:makeCall2", "police", burglaryCoords, message, "Voisin")
                             else
-                                Atlantiss.Core:Debug(string.format("Owner is here, now waking up"))
+                                Ora.Core:Debug(string.format("Owner is here, now waking up"))
                                 burglaryManager.CALLED = true
                                 npcSpawnPosition = burglaryManager.PROPERTY.g
                                 burglaryManager.NPC = {} 
                                 
-                                owner1 = Atlantiss.World.Ped:Create(5, "u_m_y_fibmugger_01", vector3(npcSpawnPosition.x, npcSpawnPosition.y, npcSpawnPosition.z), 0.0)
-                                owner2 = Atlantiss.World.Ped:Create(5, "a_m_m_fatlatin_01", vector3(npcSpawnPosition.x + 0.5, npcSpawnPosition.y, npcSpawnPosition.z), 0.0)
-                                owner3 = Atlantiss.World.Ped:Create(5, "a_f_y_fitness_02", vector3(npcSpawnPosition.x + 0.75, npcSpawnPosition.y, npcSpawnPosition.z), 0.0)
+                                owner1 = Ora.World.Ped:Create(5, "u_m_y_fibmugger_01", vector3(npcSpawnPosition.x, npcSpawnPosition.y, npcSpawnPosition.z), 0.0)
+                                owner2 = Ora.World.Ped:Create(5, "a_m_m_fatlatin_01", vector3(npcSpawnPosition.x + 0.5, npcSpawnPosition.y, npcSpawnPosition.z), 0.0)
+                                owner3 = Ora.World.Ped:Create(5, "a_f_y_fitness_02", vector3(npcSpawnPosition.x + 0.75, npcSpawnPosition.y, npcSpawnPosition.z), 0.0)
 
                                 TaskCombatPed(owner1, LocalPlayer().Ped, 0, 16)
                                 TaskCombatPed(owner2, LocalPlayer().Ped, 0, 16)
@@ -502,7 +502,7 @@ function StartBurglary(type, policeCount)
                         if GetDistanceBetweenCoords(elementValue.pos, playerPosition) <= 1.5 and elementValue.entity and burglaryManager.STATE == 1 then
                             DrawTopNotification("Appuyez sur ~INPUT_REPLAY_SHOWHOTKEY~ pour voler.")
                             if IsDisabledControlJustPressed(0, 311) and burglaryManager.STATE == 1 then
-                                Atlantiss.Core:Debug(string.format("Item has been stolen"))
+                                Ora.Core:Debug(string.format("Item has been stolen"))
                                 burglaryManager.STOLEN_ITEM = elementValue
                                 RobItem(LocalPlayer().Ped, elementValue)
                             end
@@ -535,32 +535,32 @@ function StartBurglary(type, policeCount)
                         DrawTopNotification("Appuyez sur ~INPUT_CONTEXT~ sortir de la maison.")
                         if IsDisabledControlJustPressed(0, 51) then
                             DoScreenFadeOut(100)
-                            TriggerServerEvent("Atlantiss::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
-                            Atlantiss.Core:Debug(string.format("Added Freeze on player"))
+                            TriggerServerEvent("Ora::SE::RoutingBucket:SwitchToDefaultRoutingBucket")
+                            Ora.Core:Debug(string.format("Added Freeze on player"))
                             FreezeEntityPosition(LocalPlayer().Ped, true)
-                            Atlantiss.Core:TeleportEntityTo(LocalPlayer().Ped, vector3(burglaryManager.INITIAL_POSITION.x,  burglaryManager.INITIAL_POSITION.y,  burglaryManager.INITIAL_POSITION.z), true)                                        
+                            Ora.Core:TeleportEntityTo(LocalPlayer().Ped, vector3(burglaryManager.INITIAL_POSITION.x,  burglaryManager.INITIAL_POSITION.y,  burglaryManager.INITIAL_POSITION.z), true)                                        
                             local maxTryOut = 100
                             local currentTryOut = 0
                             while interiorId ~= 0 do
                                 interiorId = GetInteriorFromEntity(LocalPlayer().Ped)
                                 Citizen.Wait(75)
                                 if (currentTryOut > maxTryOut) then
-                                    Atlantiss.Core:Debug(string.format("Exterior cannot be loaded for position ^5%s %s %s^3", burglaryManager.INITIAL_POSITION.x, burglaryManager.INITIAL_POSITION.y, burglaryManager.INITIAL_POSITION.z))
+                                    Ora.Core:Debug(string.format("Exterior cannot be loaded for position ^5%s %s %s^3", burglaryManager.INITIAL_POSITION.x, burglaryManager.INITIAL_POSITION.y, burglaryManager.INITIAL_POSITION.z))
                                     interiorId = 0
-                                    Atlantiss.Core:Debug(string.format("Removed Freeze on player"))
+                                    Ora.Core:Debug(string.format("Removed Freeze on player"))
                                     break
                                 end
                                 currentTryOut = currentTryOut + 1
                             end
                             FreezeEntityPosition(LocalPlayer().Ped, false)
-                            Atlantiss.Core:Debug(string.format("Removed Freeze on player"))
+                            Ora.Core:Debug(string.format("Removed Freeze on player"))
                             DoScreenFadeIn(500)
                             disableLight(false)
-                            Atlantiss.Jobs.Immo:CreateExits()
+                            Ora.Jobs.Immo:CreateExits()
                             if (burglaryManager.STATE == 3 and burglaryManager.NPC ~= nil) then
                                 for npcKey, npcValue in pairs(burglaryManager.NPC) do
                                     if DoesEntityExist(npcValue) then
-                                        Atlantiss.Core:Debug(string.format("Removed spawned NPC ^5%s^3", npcValue))
+                                        Ora.Core:Debug(string.format("Removed spawned NPC ^5%s^3", npcValue))
                                         DeleteEntity(npcValue)
                                     end
                                 end
@@ -583,7 +583,7 @@ function StartBurglary(type, policeCount)
                                 -- Add item to inventory
                                 local itemName = getItemFromItemModel(burglaryManager.STOLEN_ITEM.model)
                                 ShowNotification(string.format("Votre objet volé a été placé dans le coffre ~h~%s~h~", GetVehicleNumberPlateText(vehicle)))
-                                Atlantiss.World.Vehicle:AddItemIntoTrunk(vehicle, itemName)
+                                Ora.World.Vehicle:AddItemIntoTrunk(vehicle, itemName)
                                 TriggerPlayerEvent("XNL_NET:AddPlayerXP", GetPlayerServerId(PlayerId()), 150)
                                 burglaryManager.STATE = 1
                                 burglaryManager.STOLEN_ITEM = nil
@@ -644,9 +644,9 @@ function StartBurglary(type, policeCount)
 
 end
 
-RegisterNetEvent("Atlantiss::Illegal:StartBurglaryNorth")
+RegisterNetEvent("Ora::Illegal:StartBurglaryNorth")
 AddEventHandler(
-    "Atlantiss::Illegal:StartBurglaryNorth",
+    "Ora::Illegal:StartBurglaryNorth",
     function()
         if burglaryManager.STATE > 0 then
             ShowAdvancedNotification(
@@ -670,7 +670,7 @@ AddEventHandler(
             return
         end
 
-        TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+        TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
             function(availablePlayers) 
                 StartBurglary("north", availablePlayers)
             end,
@@ -680,9 +680,9 @@ AddEventHandler(
 )
 
 -- Event called when the player make a Phonecall.
-RegisterNetEvent("Atlantiss::Illegal:StartBurglarySouth")
+RegisterNetEvent("Ora::Illegal:StartBurglarySouth")
 AddEventHandler(
-    "Atlantiss::Illegal:StartBurglarySouth",
+    "Ora::Illegal:StartBurglarySouth",
     function()
         if burglaryManager.STATE > 0 then
             ShowAdvancedNotification(
@@ -706,7 +706,7 @@ AddEventHandler(
             return
         end
 
-        TriggerServerCallback("Atlantiss::SE::Service:GetTotalServiceCountForJobs", 
+        TriggerServerCallback("Ora::SE::Service:GetTotalServiceCountForJobs", 
             function(availablePlayers) 
                 StartBurglary("south", availablePlayers)
             end,

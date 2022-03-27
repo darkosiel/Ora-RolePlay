@@ -1,6 +1,6 @@
-Atlantiss.Player.HasLoaded = false
-Atlantiss.Player.SavedPos = nil
-Atlantiss.Player.Speaker = {
+Ora.Player.HasLoaded = false
+Ora.Player.SavedPos = nil
+Ora.Player.Speaker = {
   IsUsing = false,
   Pos = vector3(0,0,0),
   IsOnShoulder = false
@@ -16,36 +16,36 @@ Atlantiss.Player.Speaker = {
 ]]
 
 
-function Atlantiss.Player:SetCantRun(cantRun)
+function Ora.Player:SetCantRun(cantRun)
   self.State.CANT_RUN = cantRun
 end
 
-function Atlantiss.Player:SetCantShoot(cantShoot)
+function Ora.Player:SetCantShoot(cantShoot)
   self.State.CANT_SHOOT = cantShoot
 end
 
-function Atlantiss.Player:GetCantRun()
+function Ora.Player:GetCantRun()
   return self.State.CANT_RUN
 end
 
-function Atlantiss.Player:GetCantShoot()
+function Ora.Player:GetCantShoot()
   return self.State.CANT_SHOOT
 end
 
-function Atlantiss.Player:IsPlayerWounded()
+function Ora.Player:IsPlayerWounded()
   return self.State.IS_WOUNDED
 end
 
-function Atlantiss.Player:SetStealing(switch)
+function Ora.Player:SetStealing(switch)
   self.State.STEALING = switch
 end
 
-function Atlantiss.Player:IsStealing()
+function Ora.Player:IsStealing()
   return self.State.STEALING
 end
 
 
-function Atlantiss.Player:SetPlayerWounded(mstimeWounded)
+function Ora.Player:SetPlayerWounded(mstimeWounded)
   -- local playerPed = PlayerPedId()
   -- local noLimit = false
   -- self:SetCantRun(true)
@@ -53,7 +53,7 @@ function Atlantiss.Player:SetPlayerWounded(mstimeWounded)
   -- self.State.IS_WOUNDED = true
   -- RemoveAllPedWeapons(playerPed)
   -- ResetPedMovementClipset(playerPed, 0)
-  -- Atlantiss.Utils:RequestAndWaitSet("move_m@injured")
+  -- Ora.Utils:RequestAndWaitSet("move_m@injured")
   -- SetPedMovementClipset(playerPed, "move_m@injured", 0)
 
   -- local endTime = GetGameTimer()
@@ -84,11 +84,11 @@ function Atlantiss.Player:SetPlayerWounded(mstimeWounded)
 end
 
 
-function Atlantiss.Player:GenerateNewPhoneNumber()
+function Ora.Player:GenerateNewPhoneNumber()
     local canSend = false
     local phoneNumber = nil
 
-    TriggerServerCallback("Atlantiss::SE::Player:Phone:GetNewPhoneNumber", function(newPhoneNumber)
+    TriggerServerCallback("Ora::SE::Player:Phone:GetNewPhoneNumber", function(newPhoneNumber)
       phoneNumber = newPhoneNumber
       canSend = true
     end)
@@ -102,7 +102,7 @@ function Atlantiss.Player:GenerateNewPhoneNumber()
   return phoneNumber
 end
 
-function Atlantiss.Player:ApplyTattoos(tattoosList)
+function Ora.Player:ApplyTattoos(tattoosList)
   if (type(tattoosList) == "table" and #tattoosList > 0) then
     ClearPedDecorations(LocalPlayer().Ped)
     for i = 1, #tattoosList, 1 do
@@ -115,8 +115,8 @@ function Atlantiss.Player:ApplyTattoos(tattoosList)
   self:Debug(string.format("Applied ^5%s^3 tattoos to player ^5%s^3", #tattoosList, GetPlayerServerId(PlayerId())))
 end
 
-function Atlantiss.Player:ApplyHairsTattoos()
-  local headTattoos = Atlantiss.Config:GetDataCollection("AppliedHarcutTatoos")
+function Ora.Player:ApplyHairsTattoos()
+  local headTattoos = Ora.Config:GetDataCollection("AppliedHarcutTatoos")
   if (headTattoos ~= nil and headTattoos.dict ~= nil and headTattoos.hash ~= nil) then
     self:ApplyTattoo(headTattoos.dict, headTattoos.hash)
   end
@@ -124,23 +124,23 @@ function Atlantiss.Player:ApplyHairsTattoos()
   self:Debug(string.format("Applied ^5%s^3 tattoos hairs to player ^5%s^3", #headTattoos, GetPlayerServerId(PlayerId())))
 end
 
-function Atlantiss.Player:RemoveAllTattoos()
+function Ora.Player:RemoveAllTattoos()
   ClearPedDecorations(LocalPlayer().Ped)
   self:Debug(string.format("Removed tattoos from player ^5%s^3", GetPlayerServerId(PlayerId())))
 end
 
-function Atlantiss.Player:ApplyTattoo(dict, hash)
+function Ora.Player:ApplyTattoo(dict, hash)
   AddPedDecorationFromHashes(LocalPlayer().Ped, dict, hash)
   self:Debug(string.format("Applied ^5%s %s^3 tattoo to player ^5%s^3", dict, hash, GetPlayerServerId(PlayerId())))
 end
 
-function Atlantiss.Player:ApplyAllSavedTattoos(withoutHairs)
+function Ora.Player:ApplyAllSavedTattoos(withoutHairs)
   ClearPedDecorations(LocalPlayer().Ped)
-  local currentTattoos = Atlantiss.Config:GetDataCollection("PlayerTattoos")
-  Atlantiss.Player:ApplyTattoos(currentTattoos)
+  local currentTattoos = Ora.Config:GetDataCollection("PlayerTattoos")
+  Ora.Player:ApplyTattoos(currentTattoos)
 
   if (withoutHairs ~= true) then
-    local headTattoos = Atlantiss.Config:GetDataCollection("AppliedHarcutTatoos")
+    local headTattoos = Ora.Config:GetDataCollection("AppliedHarcutTatoos")
     if (headTattoos ~= nil and headTattoos.dict ~= nil and headTattoos.hash ~= nil) then
       self:ApplyTattoo(headTattoos.dict, headTattoos.hash)
     end
@@ -149,7 +149,7 @@ function Atlantiss.Player:ApplyAllSavedTattoos(withoutHairs)
   self:Debug(string.format("Applied ^5%s^3 tattoos to player ^5%s^3", #currentTattoos, GetPlayerServerId(PlayerId())))
 end
 
-function Atlantiss.Player:FreezePlayer(playerPed, switch)
+function Ora.Player:FreezePlayer(playerPed, switch)
   if (playerPed == LocalPlayer().Ped) then
     self.State.FREEZED = switch
     self:Debug(string.format("Player ^5%s^3 freeze is ^5%s^3", GetPlayerServerId(PlayerId()), switch))
@@ -158,11 +158,11 @@ function Atlantiss.Player:FreezePlayer(playerPed, switch)
   FreezeEntityPosition(playerPed, switch)
 end
 
-function Atlantiss.Player:IsFreezed()
+function Ora.Player:IsFreezed()
   return self.State.FREEZED
 end
 
-function Atlantiss.Player:SetEntityInvicible(player, playerPed, switch)
+function Ora.Player:SetEntityInvicible(player, playerPed, switch)
   if (switch == true) then
     SetEntityInvincible(playerPed, true)
     SetPlayerInvincible(player, true)
@@ -186,21 +186,21 @@ function Atlantiss.Player:SetEntityInvicible(player, playerPed, switch)
   end
 end
 
-function Atlantiss.Player:SetIsCreated(switch)
+function Ora.Player:SetIsCreated(switch)
   self.State.CREATED = switch
 end
 
-function Atlantiss.Player:IsCreated()
+function Ora.Player:IsCreated()
   return self.State.CREATED
 end
 
-function Atlantiss.Player:UpdateTattoos(tattoosListFixed)
+function Ora.Player:UpdateTattoos(tattoosListFixed)
   self:Debug(string.format("Players tatoos need to be fixed ^5%s^3", GetPlayerServerId(PlayerId())))
-  TriggerServerEvent("Atlantiss::SE::Player:UpdateTattoos", tattoosListFixed)
+  TriggerServerEvent("Ora::SE::Player:UpdateTattoos", tattoosListFixed)
 end
 
-function Atlantiss.Player:SavePosition()
-  if (self.SavedPos == nil or (type(self.SavedPos) == 'table' and Atlantiss.Utils:TableLength(self.SavedPos) == 0)) then
+function Ora.Player:SavePosition()
+  if (self.SavedPos == nil or (type(self.SavedPos) == 'table' and Ora.Utils:TableLength(self.SavedPos) == 0)) then
     TriggerServerEvent('handler:savePosition', EntityGetCoords(LocalPlayer().Ped))
   else
     TriggerServerEvent('handler:savePosition', self.SavedPos)
@@ -217,39 +217,39 @@ end
 ]]
 
 
-RegisterNetEvent("Atlantiss::CE::PlayerLoaded")
+RegisterNetEvent("Ora::CE::PlayerLoaded")
 AddEventHandler(
-    "Atlantiss::CE::PlayerLoaded",
+    "Ora::CE::PlayerLoaded",
     function()
-      Atlantiss.Player:SetIsCreated(true)
+      Ora.Player:SetIsCreated(true)
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Player:RemoveTattoos")
+RegisterNetEvent("Ora::CE::Player:RemoveTattoos")
 AddEventHandler(
-    "Atlantiss::CE::Player:RemoveTattoos",
+    "Ora::CE::Player:RemoveTattoos",
     function(player)
-        Atlantiss.Player:Debug(string.format("Received a request from player ^5%s^3 to remove all my tattoos", player)) 
-        Atlantiss.Player:RemoveAllTattoos()  
+        Ora.Player:Debug(string.format("Received a request from player ^5%s^3 to remove all my tattoos", player)) 
+        Ora.Player:RemoveAllTattoos()  
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Player:ApplyTattoo")
+RegisterNetEvent("Ora::CE::Player:ApplyTattoo")
 AddEventHandler(
-    "Atlantiss::CE::Player:ApplyTattoo",
+    "Ora::CE::Player:ApplyTattoo",
     function(player, dict, hash)
-        Atlantiss.Player:Debug(string.format("Received a request from player ^5%s^3 to add tattoo : ^5%s^3 ^5%s^3 ", player, dict, hash)) 
-        Atlantiss.Player:ApplyTatto(dict, hash)  
+        Ora.Player:Debug(string.format("Received a request from player ^5%s^3 to add tattoo : ^5%s^3 ^5%s^3 ", player, dict, hash)) 
+        Ora.Player:ApplyTatto(dict, hash)  
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Player:ApplySavedTattoos")
+RegisterNetEvent("Ora::CE::Player:ApplySavedTattoos")
 AddEventHandler(
-    "Atlantiss::CE::Player:ApplySavedTattoos",
+    "Ora::CE::Player:ApplySavedTattoos",
     function(player)
-        Atlantiss.Player:Debug(string.format("Received a request from player ^5%s^3 to reset all my tattoos ", player)) 
-        local currentTattoos = Atlantiss.Config:GetDataCollection("PlayerTattoos")
-        Atlantiss.Player:ApplyTattoos(currentTattoos)
+        Ora.Player:Debug(string.format("Received a request from player ^5%s^3 to reset all my tattoos ", player)) 
+        local currentTattoos = Ora.Config:GetDataCollection("PlayerTattoos")
+        Ora.Player:ApplyTattoos(currentTattoos)
     end
 )
 
@@ -265,9 +265,9 @@ AddEventHandler(
 
 
 exports(
-  'AtlantissPlayerHasLoaded',
+  'OraPlayerHasLoaded',
   function()
-    return Atlantiss.Player.HasLoaded
+    return Ora.Player.HasLoaded
   end
 )
 
@@ -276,12 +276,12 @@ Citizen.CreateThread(
     function()
         while true do
             Wait(1000 * 300)
-            if (Atlantiss.Player.HasLoaded == true) then
-                Atlantiss.Inventory:Save(true)
-                if (GetEntityHealth(LocalPlayer().Ped) ~= Atlantiss.Health:GetCurrentRegisteredHealth()) then
-                  Atlantiss.Health:SetMyHealth(GetEntityHealth(LocalPlayer().Ped))
+            if (Ora.Player.HasLoaded == true) then
+                Ora.Inventory:Save(true)
+                if (GetEntityHealth(LocalPlayer().Ped) ~= Ora.Health:GetCurrentRegisteredHealth()) then
+                  Ora.Health:SetMyHealth(GetEntityHealth(LocalPlayer().Ped))
                 end
-                Atlantiss.Player:SavePosition()
+                Ora.Player:SavePosition()
                 RageUI.Popup({
                     message = "✅ Personnage synchronisé.",
                     colors = 20

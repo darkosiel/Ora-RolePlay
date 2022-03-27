@@ -1,4 +1,4 @@
-function Atlantiss.Utils:RequestAndWAitForModel(modelHash)
+function Ora.Utils:RequestAndWAitForModel(modelHash)
     if modelHash and IsModelInCdimage(modelHash) and not HasModelLoaded(modelHash) then
       RequestModel(modelHash)
       while not HasModelLoaded(modelHash) do Citizen.Wait(100) end
@@ -6,7 +6,7 @@ function Atlantiss.Utils:RequestAndWAitForModel(modelHash)
 end
 
 
-function Atlantiss.Utils:RequestAndWaitSet(setName)
+function Ora.Utils:RequestAndWaitSet(setName)
 	if setName and not HasAnimSetLoaded(setName) then
 		RequestAnimSet(setName)
 

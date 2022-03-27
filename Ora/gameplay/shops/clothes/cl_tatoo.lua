@@ -1,6 +1,6 @@
 local Config = {}
 function j(d)
-    return json.decode(LoadResourceFile("Atlantiss", "statics/data/" .. d .. ".json"))
+    return json.decode(LoadResourceFile("Ora", "statics/data/" .. d .. ".json"))
 end
 
 local IndexName = {}
@@ -61,7 +61,7 @@ local zone = false
 currentTattoos = {}
 local function Open()
     local Clothes = {}
-    if Atlantiss.World.Ped:IsPedMale(LocalPlayer().Ped) then
+    if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
         Clothes = GetNuMale()
     else
         Clothes = GetNuFemale()

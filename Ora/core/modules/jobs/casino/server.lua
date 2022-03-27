@@ -1,17 +1,17 @@
 RegisterServerCallback(
-  "Atlantiss::SE::Job::Casino::GetDrinksStored",
+  "Ora::SE::Job::Casino::GetDrinksStored",
   function(src, cb, force)
-    Atlantiss.Jobs.RefreshDrinksStored("coffre_casino", "casino", src, force)
+    Ora.Jobs.RefreshDrinksStored("coffre_casino", "casino", src, force)
     Wait(2500)
 
-    cb(Atlantiss.Jobs.DrinksStored['casino'])
+    cb(Ora.Jobs.DrinksStored['casino'])
   end
 )
 
 RegisterServerCallback(
-  "Atlantiss::SE::Job::Casino::CanBuy",
+  "Ora::SE::Job::Casino::CanBuy",
   function(src, cb)
-    if (Atlantiss.Service:GetTotalServiceCountForJob('casino') == 0) then
+    if (Ora.Service:GetTotalServiceCountForJob('casino') == 0) then
       cb(true)
     else
       cb(false)
@@ -20,14 +20,14 @@ RegisterServerCallback(
 )
 
 
-RegisterNetEvent("Atlantiss::SE::Job::Casino::RemoveFromStorage")
+RegisterNetEvent("Ora::SE::Job::Casino::RemoveFromStorage")
 AddEventHandler(
-  "Atlantiss::SE::Job::Casino::RemoveFromStorage",
+  "Ora::SE::Job::Casino::RemoveFromStorage",
   function(item, count)
-    if (Atlantiss.Jobs.DrinksStored['casino'][item] - count <= 0) then
-      Atlantiss.Jobs.DrinksStored['casino'][item] = nil
+    if (Ora.Jobs.DrinksStored['casino'][item] - count <= 0) then
+      Ora.Jobs.DrinksStored['casino'][item] = nil
     else
-      Atlantiss.Jobs.DrinksStored['casino'][item] = Atlantiss.Jobs.DrinksStored['casino'][item] - count
+      Ora.Jobs.DrinksStored['casino'][item] = Ora.Jobs.DrinksStored['casino'][item] - count
     end
 
     MySQL.Async.fetchAll(

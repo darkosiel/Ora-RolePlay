@@ -1,6 +1,6 @@
-Atlantiss.World.Weapon = {}
+Ora.World.Weapon = {}
 
-Atlantiss.World.Weapon.Animation = {
+Ora.World.Weapon.Animation = {
   [`WEAPON_KNIFE`] = true,
 	[`WEAPON_PISTOL`] = true,
 	--`WEAPON_COMBATPISTOL`,
@@ -15,4 +15,4 @@ Atlantiss.World.Weapon.Animation = {
 	[`WEAPON_MINISMG`]  = true,
 }
 
-Atlantiss.World:Register("Weapon")
+Ora.World:Register("Weapon")

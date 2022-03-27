@@ -1,39 +1,39 @@
-Atlantiss.Anticheat.AllowedVehicles = {}
-Atlantiss.Anticheat.AllowedNPCs = {}
-Atlantiss.Anticheat.AllowedObjects = {}
+Ora.Anticheat.AllowedVehicles = {}
+Ora.Anticheat.AllowedNPCs = {}
+Ora.Anticheat.AllowedObjects = {}
 
 Citizen.CreateThread(function()
   while true do
     Citizen.Wait(1000 * 120)
     local currentTime = os.time()
-    for key, value in pairs(Atlantiss.Anticheat.AllowedVehicles) do
+    for key, value in pairs(Ora.Anticheat.AllowedVehicles) do
       if (type(value) == "table") then
         for entityModel, timeValue in pairs(value) do
           if timeValue.authorized_at + 120 < currentTime then
-            Atlantiss.Anticheat:Debug(string.format("Removed vehicle entity ^5%s^3 as whitelist for user ^5%s^3 time is over", entityModel, key))
-            Atlantiss.Anticheat.AllowedVehicles[key][entityModel] = nil
+            Ora.Anticheat:Debug(string.format("Removed vehicle entity ^5%s^3 as whitelist for user ^5%s^3 time is over", entityModel, key))
+            Ora.Anticheat.AllowedVehicles[key][entityModel] = nil
           end
         end
       end
     end
 
-    for key, value in pairs(Atlantiss.Anticheat.AllowedNPCs) do
+    for key, value in pairs(Ora.Anticheat.AllowedNPCs) do
       if (type(value) == "table") then
         for entityModel, timeValue in pairs(value) do
           if timeValue.authorized_at + 120 < currentTime then
-            Atlantiss.Anticheat:Debug(string.format("Removed NPC entity ^5%s^3 as whitelist for user ^5%s^3 time is over", entityModel, key))
-            Atlantiss.Anticheat.AllowedNPCs[key][entityModel] = nil
+            Ora.Anticheat:Debug(string.format("Removed NPC entity ^5%s^3 as whitelist for user ^5%s^3 time is over", entityModel, key))
+            Ora.Anticheat.AllowedNPCs[key][entityModel] = nil
           end
         end
       end
     end
 
-    for key, value in pairs(Atlantiss.Anticheat.AllowedObjects) do
+    for key, value in pairs(Ora.Anticheat.AllowedObjects) do
       if (type(value) == "table") then
         for entityModel, timeValue in pairs(value) do
           if timeValue.authorized_at + 120 < currentTime then
-            Atlantiss.Anticheat:Debug(string.format("Removed Object entity ^5%s^3 as whitelist for user ^5%s^3 time is over", entityModel, key))
-            Atlantiss.Anticheat.AllowedObjects[key][entityModel] = nil
+            Ora.Anticheat:Debug(string.format("Removed Object entity ^5%s^3 as whitelist for user ^5%s^3 time is over", entityModel, key))
+            Ora.Anticheat.AllowedObjects[key][entityModel] = nil
           end
         end
       end
@@ -41,39 +41,39 @@ Citizen.CreateThread(function()
 
     if collectgarbage("count") > 13000 then
         collectgarbage()
-        Atlantiss.Anticheat:Debug(string.format("Running garbage collector as it stores more than ^5%s^3 KB", collectgarbage("count")))
+        Ora.Anticheat:Debug(string.format("Running garbage collector as it stores more than ^5%s^3 KB", collectgarbage("count")))
     end
   end
 end)
 
-function Atlantiss.Anticheat:Initialize()
-  local serverEvents = Atlantiss.Config:GetDataCollection("Anticheat:ServerSideEvents")
+function Ora.Anticheat:Initialize()
+  local serverEvents = Ora.Config:GetDataCollection("Anticheat:ServerSideEvents")
 
   for i, eventName in ipairs(serverEvents) do
-    Atlantiss.Anticheat:Debug(string.format("Registering ^5%s^3 as Honey Pot event", eventName))
+    Ora.Anticheat:Debug(string.format("Registering ^5%s^3 as Honey Pot event", eventName))
     RegisterNetEvent(eventName)
     AddEventHandler(
         eventName,
         function()
             local _source = source
-            Atlantiss.Anticheat:YieldInvalidEventDetected(eventName, _source)
+            Ora.Anticheat:YieldInvalidEventDetected(eventName, _source)
         end
     )
   end
 end
 
-function Atlantiss.Anticheat:TakeScreenshot()
+function Ora.Anticheat:TakeScreenshot()
 
 end
 
-function Atlantiss.Anticheat:RegisterVehicleCreation(playerId, entityModel)
+function Ora.Anticheat:RegisterVehicleCreation(playerId, entityModel)
   if (self.AllowedVehicles[playerId] == nil) then
     self.AllowedVehicles[playerId] = {}
   end
   self.AllowedVehicles[playerId][entityModel] = {authorized_at = os.time()}
 end
 
-function Atlantiss.Anticheat:IsVehicleAllowed(entity, owner)
+function Ora.Anticheat:IsVehicleAllowed(entity, owner)
   if (entity == nil or entity == 0) then
     return true
   end
@@ -111,7 +111,7 @@ function Atlantiss.Anticheat:IsVehicleAllowed(entity, owner)
   return false
 end
 
-function Atlantiss.Anticheat:RegisterObjectCreation(playerId, entityModel)
+function Ora.Anticheat:RegisterObjectCreation(playerId, entityModel)
   if (self.AllowedObjects[playerId] == nil) then
     self.AllowedObjects[playerId] = {}
   end
@@ -119,7 +119,7 @@ function Atlantiss.Anticheat:RegisterObjectCreation(playerId, entityModel)
 end
 
 
-function Atlantiss.Anticheat:IsObjectAllowed(entity, owner)
+function Ora.Anticheat:IsObjectAllowed(entity, owner)
   if (entity == nil or entity == 0) then
     return true
   end
@@ -158,7 +158,7 @@ function Atlantiss.Anticheat:IsObjectAllowed(entity, owner)
   return false
 end
 
-function Atlantiss.Anticheat:RegisterNPCCreation(playerId, entityModel)
+function Ora.Anticheat:RegisterNPCCreation(playerId, entityModel)
   if (self.AllowedNPCs[playerId] == nil) then
     self.AllowedNPCs[playerId] = {}
   end
@@ -166,7 +166,7 @@ function Atlantiss.Anticheat:RegisterNPCCreation(playerId, entityModel)
 end
 
 
-function Atlantiss.Anticheat:IsNPCAllowed(entity, owner)
+function Ora.Anticheat:IsNPCAllowed(entity, owner)
   if (entity == nil or entity == 0) then
     return true
   end
@@ -204,8 +204,8 @@ function Atlantiss.Anticheat:IsNPCAllowed(entity, owner)
   return false
 end
 
-function Atlantiss.Anticheat:GetIdentifiersAsString(source)
-  local identifiers = Atlantiss.Identity:GetIdentifiers(source)
+function Ora.Anticheat:GetIdentifiersAsString(source)
+  local identifiers = Ora.Identity:GetIdentifiers(source)
   local identifiersMessage = ""
   for key, value in pairs(identifiers) do
     identifiersMessage = identifiersMessage .. "\n* " .. key .. " = " .. value 
@@ -214,66 +214,66 @@ function Atlantiss.Anticheat:GetIdentifiersAsString(source)
   return identifiersMessage
 end
 
-function Atlantiss.Anticheat:IsObjectWhitelist(entityModel)
-  if (Atlantiss.Anticheat.ObjectWhitelist[entityModel] ~= nil and Atlantiss.Anticheat.ObjectWhitelist[entityModel] == true) then
+function Ora.Anticheat:IsObjectWhitelist(entityModel)
+  if (Ora.Anticheat.ObjectWhitelist[entityModel] ~= nil and Ora.Anticheat.ObjectWhitelist[entityModel] == true) then
     return true
   end
   
   return false
 end
 
-function Atlantiss.Anticheat:YieldResourceIsStopped(resourceName, _source)
+function Ora.Anticheat:YieldResourceIsStopped(resourceName, _source)
   TriggerEvent(
-      "atlantiss:sendToDiscordFromServer",
+      "Ora:sendToDiscordFromServer",
       _source,
       12,
-      string.format("La ressource : %s semble avoir été stoppée côté client\n%s", resourceName, Atlantiss.Anticheat:GetIdentifiersAsString(_source)),
+      string.format("La ressource : %s semble avoir été stoppée côté client\n%s", resourceName, Ora.Anticheat:GetIdentifiersAsString(_source)),
       "error"
   )
 end
 
-function Atlantiss.Anticheat:YieldGenericMessage(message, _source, takeScreenshot)
+function Ora.Anticheat:YieldGenericMessage(message, _source, takeScreenshot)
   takeScreenshot = takeScreenshot or false
   if (takeScreenshot == true) then
-    TriggerClientEvent("Atlantiss::CE::General:Snap", _source, {TOKEN = message, SERVER_EVENT = "Atlantiss::SE::Anticheat:ScreenshotProof"})
+    TriggerClientEvent("Ora::CE::General:Snap", _source, {TOKEN = message, SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotProof"})
   end
 
   TriggerEvent(
-      "atlantiss:sendToDiscordFromServer",
+      "Ora:sendToDiscordFromServer",
       _source,
       12,
-      message .. Atlantiss.Anticheat:GetIdentifiersAsString(_source),
+      message .. Ora.Anticheat:GetIdentifiersAsString(_source),
       "error"
   )
 end
 
-function Atlantiss.Anticheat:YieldInvalidEventDetected(eventName, _source)
-  TriggerClientEvent("Atlantiss::CE::General:Snap", _source, {TOKEN = eventName, SERVER_EVENT = "Atlantiss::SE::Anticheat:Detected"})
+function Ora.Anticheat:YieldInvalidEventDetected(eventName, _source)
+  TriggerClientEvent("Ora::CE::General:Snap", _source, {TOKEN = eventName, SERVER_EVENT = "Ora::SE::Anticheat:Detected"})
   TriggerEvent(
-      "atlantiss:sendToDiscordFromServer",
+      "Ora:sendToDiscordFromServer",
       _source,
       12,
-      "Execution d'un evenement qui n'existe pas : CHEAT\n\nLe client à lancé l'evenement : " .. eventName .. Atlantiss.Anticheat:GetIdentifiersAsString(_source),
+      "Execution d'un evenement qui n'existe pas : CHEAT\n\nLe client à lancé l'evenement : " .. eventName .. Ora.Anticheat:GetIdentifiersAsString(_source),
       "error"
   )
 end
 
-RegisterServerEvent("Atlantiss::SE::Anticheat:ResourceStopped")
+RegisterServerEvent("Ora::SE::Anticheat:ResourceStopped")
 AddEventHandler(
-    "Atlantiss::SE::Anticheat:ResourceStopped",
+    "Ora::SE::Anticheat:ResourceStopped",
     function(resourceName)
         local _source = source
-        Atlantiss.Anticheat:YieldResourceIsStopped(resourceName, _source)
+        Ora.Anticheat:YieldResourceIsStopped(resourceName, _source)
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Anticheat:Detected")
+RegisterServerEvent("Ora::SE::Anticheat:Detected")
 AddEventHandler(
-    "Atlantiss::SE::Anticheat:Detected",
+    "Ora::SE::Anticheat:Detected",
     function(data)
         local _source = source
             TriggerEvent(
-                  "atlantiss:sendToDiscordFromServer",
+                  "Ora:sendToDiscordFromServer",
                   _source,
                   12,
                   data.TOKEN .. "\nExecution d'un event non connu : [Voir le screenshot](".. data.PICTURE_URL ..")",
@@ -282,13 +282,13 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Anticheat:ScreenshotTaken")
+RegisterServerEvent("Ora::SE::Anticheat:ScreenshotTaken")
 AddEventHandler(
-    "Atlantiss::SE::Anticheat:ScreenshotTaken",
+    "Ora::SE::Anticheat:ScreenshotTaken",
     function(data)
         local _source = source
             TriggerEvent(
-                  "atlantiss:sendToDiscordFromServer",
+                  "Ora:sendToDiscordFromServer",
                   _source,
                   31,
                   data.TOKEN .. "\n[Voir le screenshot](".. data.PICTURE_URL ..")",
@@ -297,13 +297,13 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Anticheat:ScreenshotProof")
+RegisterServerEvent("Ora::SE::Anticheat:ScreenshotProof")
 AddEventHandler(
-    "Atlantiss::SE::Anticheat:ScreenshotProof",
+    "Ora::SE::Anticheat:ScreenshotProof",
     function(data)
         local _source = source
             TriggerEvent(
-                  "atlantiss:sendToDiscordFromServer",
+                  "Ora:sendToDiscordFromServer",
                   _source,
                   12,
                   data.TOKEN .. "\n[Voir le screenshot](".. data.PICTURE_URL ..")",
@@ -312,13 +312,13 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("Atlantiss::SE::Anticheat:ReportMessage")
+RegisterServerEvent("Ora::SE::Anticheat:ReportMessage")
 AddEventHandler(
-    "Atlantiss::SE::Anticheat:ReportMessage",
+    "Ora::SE::Anticheat:ReportMessage",
     function(type,  message, needScreenshot)
         local _source = source
             TriggerEvent(
-                  "atlantiss:sendToDiscordFromServer",
+                  "Ora:sendToDiscordFromServer",
                   _source,
                   12,
                   message,
@@ -326,37 +326,37 @@ AddEventHandler(
             )
 
             if (needScreenshot ~= nil and needScreenshot == true) then
-              TriggerClientEvent("Atlantiss::CE::General:Snap", _source, {TOKEN = message, SERVER_EVENT = "Atlantiss::SE::Anticheat:ScreenshotProof"})
+              TriggerClientEvent("Ora::CE::General:Snap", _source, {TOKEN = message, SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotProof"})
             end
     end
 )
 
-RegisterServerCallback("Atlantiss::SE::Anticheat:RegisterVehicle", function(source, callback, entityModel)
-  Atlantiss.Anticheat:RegisterVehicleCreation(source, entityModel)
+RegisterServerCallback("Ora::SE::Anticheat:RegisterVehicle", function(source, callback, entityModel)
+  Ora.Anticheat:RegisterVehicleCreation(source, entityModel)
   callback()
 end)
 
-RegisterServerCallback("Atlantiss::SE::Anticheat:RegisterPed", function(source, callback, entityModel)
-  Atlantiss.Anticheat:RegisterNPCCreation(source, entityModel)
+RegisterServerCallback("Ora::SE::Anticheat:RegisterPed", function(source, callback, entityModel)
+  Ora.Anticheat:RegisterNPCCreation(source, entityModel)
   callback()
 end)
 
-RegisterServerCallback("Atlantiss::SE::Anticheat:RegisterPeds", function(source, callback, entityModels)
+RegisterServerCallback("Ora::SE::Anticheat:RegisterPeds", function(source, callback, entityModels)
   for key, value in pairs(entityModels) do
-    Atlantiss.Anticheat:RegisterNPCCreation(source, value)
+    Ora.Anticheat:RegisterNPCCreation(source, value)
   end
   callback()
 end)
 
-RegisterServerCallback("Atlantiss::SE::Anticheat:RegisterObject", function(source, callback, entityModel)
-  Atlantiss.Anticheat:RegisterObjectCreation(source, entityModel)
+RegisterServerCallback("Ora::SE::Anticheat:RegisterObject", function(source, callback, entityModel)
+  Ora.Anticheat:RegisterObjectCreation(source, entityModel)
   callback()
 end)
 
 AddEventHandler(
     "explosionEvent",
     function(sender, ev)
-        for _, v in ipairs(Atlantiss.Anticheat.DisabledExplosion) do
+        for _, v in ipairs(Ora.Anticheat.DisabledExplosion) do
             if ev.explosionType == v then
                 CancelEvent()
             end
@@ -371,14 +371,14 @@ AddEventHandler(
           local model = GetEntityModel(entity)
 
           if (GetEntityType(entity) == 2 and GetEntityPopulationType(entity) ~= 7) then
-            if (Atlantiss.Anticheat.ServerSideDisabledVehicles.HAS_BEEN_POPULATED == false) then
-              for i = 1, #Atlantiss.Anticheat.NoRandomSpawnVehicle, 1 do
-                Atlantiss.Anticheat.ServerSideDisabledVehicles.LIST[Atlantiss.Anticheat.NoRandomSpawnVehicle[i]] = true
+            if (Ora.Anticheat.ServerSideDisabledVehicles.HAS_BEEN_POPULATED == false) then
+              for i = 1, #Ora.Anticheat.NoRandomSpawnVehicle, 1 do
+                Ora.Anticheat.ServerSideDisabledVehicles.LIST[Ora.Anticheat.NoRandomSpawnVehicle[i]] = true
               end
-              Atlantiss.Anticheat.ServerSideDisabledVehicles.HAS_BEEN_POPULATED = true
+              Ora.Anticheat.ServerSideDisabledVehicles.HAS_BEEN_POPULATED = true
             end
       
-            if not Atlantiss.Anticheat.ServerSideDisabledVehicles.LIST[model] then
+            if not Ora.Anticheat.ServerSideDisabledVehicles.LIST[model] then
                 return
             end
             CancelEvent()
@@ -387,8 +387,8 @@ AddEventHandler(
           -- Object spawned by user
           if (GetEntityType(entity) == 3 and GetEntityPopulationType(entity) == 0) then
             local entityModel = GetEntityModel(entity)
-            if (not Atlantiss.Anticheat:IsObjectWhitelist(GetEntityModel(entity)) and not Atlantiss.Anticheat:IsObjectAllowed(entity, NetworkGetEntityOwner(entity))) then
-              Atlantiss.Anticheat:YieldGenericMessage(
+            if (not Ora.Anticheat:IsObjectWhitelist(GetEntityModel(entity)) and not Ora.Anticheat:IsObjectAllowed(entity, NetworkGetEntityOwner(entity))) then
+              Ora.Anticheat:YieldGenericMessage(
                 "Tentative de création d'un objet (" .. entityModel ..")\n\nLe client souhaite créer un objet non déclaré dans l'anticheat.",
                 NetworkGetEntityOwner(entity),
                 true
@@ -399,8 +399,8 @@ AddEventHandler(
 
            -- NPC spawned by user
            if (GetEntityType(entity) == 1 and GetEntityPopulationType(entity) == 7) then
-            if (not Atlantiss.Anticheat:IsNPCAllowed(entity, NetworkGetEntityOwner(entity))) then
-              Atlantiss.Anticheat:YieldGenericMessage(
+            if (not Ora.Anticheat:IsNPCAllowed(entity, NetworkGetEntityOwner(entity))) then
+              Ora.Anticheat:YieldGenericMessage(
                 "Tentative de création d'un ped \n\nLe client souhaite créer un ped non déclaré dans l'anticheat.",
                 NetworkGetEntityOwner(entity),
                 true
@@ -411,13 +411,13 @@ AddEventHandler(
 
           -- Vehicle spawned by user
           if (HasVehicleBeenOwnedByPlayer(entity) ~= false and GetEntityType(entity) == 2 and GetEntityPopulationType(entity) == 7) then
-              if (not Atlantiss.Anticheat:IsVehicleAllowed(entity, NetworkGetEntityOwner(entity))) then
+              if (not Ora.Anticheat:IsVehicleAllowed(entity, NetworkGetEntityOwner(entity))) then
                 local modelName = "Modèle inconnu"
-                if (Atlantiss.Anticheat.HashToName[model] ~= nil) then
-                  modelName = Atlantiss.Anticheat.HashToName[model]
+                if (Ora.Anticheat.HashToName[model] ~= nil) then
+                  modelName = Ora.Anticheat.HashToName[model]
                 end
 
-                Atlantiss.Anticheat:YieldGenericMessage(
+                Ora.Anticheat:YieldGenericMessage(
                   "Tentative de création d'un véhicule (".. modelName .. ") \n\nLe client souhaite créer un véhicule non déclaré dans l'anticheat.",
                   NetworkGetEntityOwner(entity),
                   true

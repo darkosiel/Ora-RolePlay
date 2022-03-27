@@ -142,12 +142,12 @@ end
 
 Citizen.CreateThread(function()
 	Wait(1000)
-	local HasLoaded = exports["Ora"]:AtlantissPlayerHasLoaded()
+	local HasLoaded = exports["Ora"]:OraPlayerHasLoaded()
 	while HasLoaded == false do
 		Wait(1000)
-		HasLoaded = exports["Ora"]:AtlantissPlayerHasLoaded()
+		HasLoaded = exports["Ora"]:OraPlayerHasLoaded()
 	end
-	local job, orga = exports["Ora"]:AtlantissGetJob(), exports["Ora"]:AtlantissGetOrga()
+	local job, orga = exports["Ora"]:OraGetJob(), exports["Ora"]:OraGetOrga()
 	if job.name == "police" or job.name == "lssd" or orga.name == "police" or orga.name == "lssd" then
 		RegisterKeyBinds()
 		LoadUISettings()

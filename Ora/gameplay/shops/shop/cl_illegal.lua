@@ -20,9 +20,9 @@ Citizen.CreateThread(
     end
 )
 
-RegisterNetEvent("Atlantiss::CE::Illegal:GetPosition")
+RegisterNetEvent("Ora::CE::Illegal:GetPosition")
 AddEventHandler(
-    "Atlantiss::CE::Illegal:GetPosition",
+    "Ora::CE::Illegal:GetPosition",
     function(phoneNumber)
         if (IllegalOrga.CURRENT_ORGA.ID == nil) then 
           ShowAdvancedNotification(
@@ -35,8 +35,8 @@ AddEventHandler(
       else
           local illegalShopLocation = IllegalShops.CLIENTSIDE.GetIllegalShopCoords()
           print(IllegalOrga.GetId())
-          TriggerServerEvent("Atlantiss::Illegal:sendMessageToOrga", IllegalOrga.GetId(), "Rendez vous au point indiqué sur votre GPS pour me voir.")
-          TriggerServerEvent("Atlantiss::Illegal:setCoordsToOrga", IllegalOrga.GetId(), vector3(illegalShopLocation.pos.x,illegalShopLocation.pos.y,illegalShopLocation.pos.z))
+          TriggerServerEvent("Ora::Illegal:sendMessageToOrga", IllegalOrga.GetId(), "Rendez vous au point indiqué sur votre GPS pour me voir.")
+          TriggerServerEvent("Ora::Illegal:setCoordsToOrga", IllegalOrga.GetId(), vector3(illegalShopLocation.pos.x,illegalShopLocation.pos.y,illegalShopLocation.pos.z))
         end
     end
 )
@@ -46,7 +46,7 @@ RMenu.Add("illeg_shop_main", "main", RageUI.CreateMenu("Dealer du coin", "Action
 function IllegalShops.CLIENTSIDE.GetIllegalShopCoords()
     if IllegalShops.CLIENTSIDE.ILLEGAL_SHOP_LOADED == false then
       local canSend = false
-      TriggerServerCallback("Atlantiss::SE::Illegal:GetIllegalDealerPosition", function(shopPositionAsJson)
+      TriggerServerCallback("Ora::SE::Illegal:GetIllegalDealerPosition", function(shopPositionAsJson)
           IllegalShops.CLIENTSIDE.ILLEGAL_SHOP_LOADED = true
           IllegalShops.CLIENTSIDE.ILLEGAL_SHOP = json.decode(shopPositionAsJson)
         canSend = true
@@ -134,7 +134,7 @@ end
 function IllegalShops.CLIENTSIDE.RefreshCurrentLimit(organisationId, force)
   if IllegalShops.CLIENTSIDE.LIMIT_LOADED == false or force == true then
     local canSend = false
-    TriggerServerCallback("Atlantiss::SE::Illegal:GetGlobalLimitationForOrganisation", function(shopLimitationAsJson)
+    TriggerServerCallback("Ora::SE::Illegal:GetGlobalLimitationForOrganisation", function(shopLimitationAsJson)
         IllegalShops.CLIENTSIDE.ILLEGAL_SHOP_LOADED = true
         IllegalShops.CLIENTSIDE.LIMIT_LOADED = true
         IllegalShops.CLIENTSIDE.ILLEGAL_SHOP_LIMITATION = json.decode(shopLimitationAsJson)
@@ -280,7 +280,7 @@ Citizen.CreateThread(function()
                                     local result = nil
                                     
                                     TriggerServerCallback(
-                                        "Atlantiss::SE::IllegalShop:verifyOrder",
+                                        "Ora::SE::IllegalShop:verifyOrder",
                                         function(isValid)
                                             if isValid == true then
                                                 ShowNotification("~g~Votre commande est ~h~acceptée~h~ par le dealer.~s~")
@@ -298,7 +298,7 @@ Citizen.CreateThread(function()
                                     end
 
                                     if (result == true) then
-                                        TriggerServerEvent("Atlantiss::SE::IllegalShop:registerOrder", quote)
+                                        TriggerServerEvent("Ora::SE::IllegalShop:registerOrder", quote)
                                     else
                                         ShowNotification("~r~Commande est ~h~refusée~h~ remboursement effectué.~s~")
                                         TriggerServerEvent("money:Add", quote.TOTAL_PRICE)

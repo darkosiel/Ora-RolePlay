@@ -1542,7 +1542,7 @@ Jobs = {
                 {
                     label = "Employés en service",
                     onSelected = function()
-                        TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "taxi")
+                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "taxi")
                     end
                 },
                 {
@@ -3530,24 +3530,24 @@ Jobs = {
                             {
                                 label = "Sherifs en service",
                                 onSelected = function()
-                                    TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "lssd")
+                                    TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "lssd")
                                 end
                             },
                             {
                                 label = "[COOP] Agents LSPD en service",
                                 onSelected = function()
-                                    TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "police")
+                                    TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "police")
                                 end
                             },
                             {
                                 label = "Recevoir/Ne plus recevoir les appels LSPD",
                                 onSelected = function()
                                     if not getOtherPoliceCalls then
-                                        TriggerServerEvent("Atlantiss::SE::Service:SetPlayerInService", "police")
+                                        TriggerServerEvent("Ora::SE::Service:SetPlayerInService", "police")
                                         RageUI.Popup({message = "~g~Vous recevez désormais les appels LSPD"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     else
-                                        TriggerServerEvent("Atlantiss::SE::Service:RemovePlayerFromService", "police")
+                                        TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", "police")
                                         RageUI.Popup({message = "~r~Vous ne recevez plus désormais les appels LSPD"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     end
@@ -3687,7 +3687,7 @@ Jobs = {
                             if policeMatricule == nil or policeMatricule == "" or policeMatricule ~= policeMatricule2 then
                                 policeMatricule = nil
                             else
-                                policeType, policeGrade = Atlantiss.Identity.Job:GetName(), Atlantiss.Identity.Job:Get().gradenum
+                                policeType, policeGrade = Ora.Identity.Job:GetName(), Ora.Identity.Job:Get().gradenum
                                 RageUI.CloseAll()
                                 Wait(100)
                                 RageUI.Visible(RMenu:Get("jobs", "police_supervisor"), true)
@@ -4101,7 +4101,7 @@ Jobs = {
                             {
                                 label = "Placer une sirène",
                                 onSelected = function()
-                                    if (Atlantiss.Identity:GetMyGroup() == "superadmin") then
+                                    if (Ora.Identity:GetMyGroup() == "superadmin") then
                                         Police.Sirens()
                                     else
                                         RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
@@ -4165,24 +4165,24 @@ Jobs = {
                             {
                                 label = "Agents LSPD en service",
                                 onSelected = function()
-                                    TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "police")
+                                    TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "police")
                                 end
                             },
                             {
                                 label = "[COOP] Sherifs en service",
                                 onSelected = function()
-                                    TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "lssd")
+                                    TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "lssd")
                                 end
                             },
                             {
                                 label = "Recevoir/Ne plus recevoir les appels LSSD",
                                 onSelected = function()
                                     if not getOtherPoliceCalls then
-                                        TriggerServerEvent("Atlantiss::SE::Service:SetPlayerInService", "lssd")
+                                        TriggerServerEvent("Ora::SE::Service:SetPlayerInService", "lssd")
                                         RageUI.Popup({message = "~g~Vous recevez désormais les appels LSSD"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     else
-                                        TriggerServerEvent("Atlantiss::SE::Service:RemovePlayerFromService", "lssd")
+                                        TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", "lssd")
                                         RageUI.Popup({message = "~r~Vous ne recevez plus désormais les appels LSSD"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     end
@@ -4277,7 +4277,7 @@ Jobs = {
                             if policeMatricule == nil or policeMatricule == "" or policeMatricule ~= policeMatricule2 then
                                 policeMatricule = nil
                             else
-                                policeType, policeGrade = Atlantiss.Identity.Job:GetName(), Atlantiss.Identity.Job:Get().gradenum
+                                policeType, policeGrade = Ora.Identity.Job:GetName(), Ora.Identity.Job:Get().gradenum
                                 RageUI.CloseAll()
                                 Wait(100)
                                 RageUI.Visible(RMenu:Get("jobs", "police_supervisor"), true)
@@ -4723,13 +4723,13 @@ Jobs = {
                 {
                     label = "Informations effectifs",
                     onSelected = function()
-                        TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "usms")                    
+                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "usms")                    
                     end
                 },
                 {
                     label = "Actions Directeur",
                     onSelected = function()
-                        if Atlantiss.Identity.Job:GetName() == "usms" and Atlantiss.Identity.Job:Get().gradenum == 6 then
+                        if Ora.Identity.Job:GetName() == "usms" and Ora.Identity.Job:Get().gradenum == 6 then
                             RageUI.CloseAll()
                             Wait(100)
                             RageUI.Visible(RMenu:Get("jobs", "usms_director"), true)
@@ -6061,7 +6061,7 @@ Jobs = {
                 {
                     label = "Informations effectifs",
                     onSelected = function()
-                        TriggerServerEvent("Atlantiss::SE::Service:ShowOnDutyPlayers", "lsms")
+                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "lsms")
                     end
                 },
                 {
@@ -6071,9 +6071,9 @@ Jobs = {
                         local number = exports['Snoupinput']:GetInput()
                         local playerID = GetPlayerServerIdInDirection(5.0)
                         if number ~= false and number ~= "" and math.tointeger(number) > 0 and math.tointeger(number) <= 10 and playerID ~= false then
-                            local targetName = Atlantiss.Identity:GetFullname(playerID)
-                            TriggerServerEvent("Atlantiss:PlayerClass:RemoveStrength", playerID, math.tointeger(number))
-                            TriggerServerEvent("atlantiss:sendToDiscord", 5, string.format('A appliqué %s ATA à %s', math.tointeger(number), targetName), "info")
+                            local targetName = Ora.Identity:GetFullname(playerID)
+                            TriggerServerEvent("Ora:PlayerClass:RemoveStrength", playerID, math.tointeger(number))
+                            TriggerServerEvent("Ora:sendToDiscord", 5, string.format('A appliqué %s ATA à %s', math.tointeger(number), targetName), "info")
                             RageUI.Popup({message = string.format('~g~Vous avez appliqué ~y~%s~g~ ATA à ~y~%s~g~', math.tointeger(number), targetName)})
                         end
                     end,
@@ -8545,7 +8545,7 @@ Jobs = {
                                         while not HasAnimDictLoaded(v.animation) do
                                             Wait(1)
                                         end
-                                        local storePed = Atlantiss.World.Ped:Create(5, v.model, vector3(v.x, v.y, v.z), v.a)
+                                        local storePed = Ora.World.Ped:Create(5, v.model, vector3(v.x, v.y, v.z), v.a)
                                         SetBlockingOfNonTemporaryEvents(storePed, false)
                                         SetPedFleeAttributes(storePed, 0, 0)
                                         SetPedArmour(storePed, 100)

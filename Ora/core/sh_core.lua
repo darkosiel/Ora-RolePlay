@@ -1,34 +1,34 @@
-Atlantiss = Atlantiss or {}
+Ora = Ora or {}
 
-Atlantiss.ServerName = "Ora"
-Atlantiss.Debug = false
+Ora.ServerName = "Ora"
+Ora.Debug = false
 
 -- Module Manager
-Atlantiss.Modules = {}
-Atlantiss.Modules.List = {}
-Atlantiss.Modules.Config = {}
+Ora.Modules = {}
+Ora.Modules.List = {}
+Ora.Modules.Config = {}
 
-Atlantiss.State = {}
-Atlantiss.State.Initializing = true
+Ora.State = {}
+Ora.State.Initializing = true
 
-function Atlantiss:GetServerName()
+function Ora:GetServerName()
   return self.ServerName
 end
 
-function Atlantiss:IsDebug()
+function Ora:IsDebug()
   return self.Debug
 end
 
-function Atlantiss:SetDebug(debug)
+function Ora:SetDebug(debug)
   self.Debug = debug
 end
 
-function Atlantiss.Modules:Register(moduleName)
-  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 module^7.\n",  Atlantiss:GetServerName(), moduleName))
+function Ora.Modules:Register(moduleName)
+  Citizen.Trace(string.format("^2[%s] ^3Registering ^5%s^3 module^7.\n",  Ora:GetServerName(), moduleName))
 	self.List[#self.List + 1] = moduleName
 end
 
-function Atlantiss:InitializeModules()
+function Ora:InitializeModules()
 	for _, moduleName in pairs(self.Modules.List) do
     if self[moduleName] and self[moduleName]["Initialize"] then
       Citizen.Trace(string.format("^2[%s] ^3Module ^5%s^3 initialized^7.\n", self.ServerName, moduleName))
@@ -39,10 +39,10 @@ end
 
 
 -- Var Manager
-Atlantiss.VM = {}
-Atlantiss.VM.Registry = {}
+Ora.VM = {}
+Ora.VM.Registry = {}
 
-function Atlantiss.VM:Get(varName)
+function Ora.VM:Get(varName)
 	if (self.Registry[varName]) then
       return self.Registry[varName]
   end
@@ -50,48 +50,48 @@ function Atlantiss.VM:Get(varName)
   return false
 end
 
-function Atlantiss.VM:Set(varName, varValue)
+function Ora.VM:Set(varName, varValue)
     self.Registry[varName] = varValue
 end
 
-Atlantiss.Core = {}
-Atlantiss.Core.InternalConfig = {}
+Ora.Core = {}
+Ora.Core.InternalConfig = {}
 
-function Atlantiss.Core:GetModuleName()
+function Ora.Core:GetModuleName()
   return "Core"
 end
 
-function Atlantiss.Core:GetGridZoneRadius()
+function Ora.Core:GetGridZoneRadius()
     return 128
 end
 
-function Atlantiss.Core:GetGridZoneId(posX, posY)
+function Ora.Core:GetGridZoneId(posX, posY)
     return 100 + math.ceil((posX + posY) / (self:GetGridZoneRadius() * 2))
 end
 
-function Atlantiss.Core:GetIdentifierForCoords(position)
+function Ora.Core:GetIdentifierForCoords(position)
 	return string.format("%4.2f-%4.2f", position.x, position.y, position.z)
 end
 
 
-function Atlantiss.Core:GetGridZoneIdForRadius(posX, posY, radius)
+function Ora.Core:GetGridZoneIdForRadius(posX, posY, radius)
 	return 100 + math.ceil((posX + posY) / (radius * 2))
 end
 
 
-function Atlantiss.Core:Debug(message)
-  if (Atlantiss:IsDebug()) then
-    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Atlantiss:GetServerName(), Atlantiss.Core:GetModuleName(), message))
+function Ora.Core:Debug(message)
+  if (Ora:IsDebug()) then
+    Citizen.Trace(string.format("^2[%s / %s] ^3%s^7.\n",  Ora:GetServerName(), Ora.Core:GetModuleName(), message))
   end
 end
 
 
-function Atlantiss.Core:TeleportEntityTo(entity, position, floorDeterminedPosition)
-  Atlantiss.Core:Debug(string.format("Teleporting user ^5%s^3 to position ^5%s %s %s^3 and position is trusted ^5%s^3", GetPlayerServerId(PlayerId()), position.x, position.y, position.z, floorDeterminedPosition))
+function Ora.Core:TeleportEntityTo(entity, position, floorDeterminedPosition)
+  Ora.Core:Debug(string.format("Teleporting user ^5%s^3 to position ^5%s %s %s^3 and position is trusted ^5%s^3", GetPlayerServerId(PlayerId()), position.x, position.y, position.z, floorDeterminedPosition))
 	done = true
 	DoScreenFadeOut(100)
 	Citizen.Wait(100)
-	done = Atlantiss.Core:TeleportAndRequestCollision(position, entity, floorDeterminedPosition)
+	done = Ora.Core:TeleportAndRequestCollision(position, entity, floorDeterminedPosition)
 	local tempTimer = GetGameTimer()
 	while not done do
 		Citizen.Wait(0)
@@ -102,7 +102,7 @@ function Atlantiss.Core:TeleportEntityTo(entity, position, floorDeterminedPositi
 	DoScreenFadeIn(100)
 end
 
-function Atlantiss.Core:TeleportAndRequestCollision(pos, ent, floorDeterminedPosition)
+function Ora.Core:TeleportAndRequestCollision(pos, ent, floorDeterminedPosition)
 	if not pos or not pos.x or not pos.y or not pos.z or (ent and not DoesEntityExist(ent)) then return true end
 	local x, y, z = pos.x, pos.y, pos.z + 1.0
 	ent = ent or GetPlayerPed(-1)
@@ -111,7 +111,7 @@ function Atlantiss.Core:TeleportAndRequestCollision(pos, ent, floorDeterminedPos
   NewLoadSceneStart(x, y, z, x, y, z, 50.0, 0)
   local tempTimer = GetGameTimer()
   while not IsNewLoadSceneLoaded() do
-    Atlantiss.Core:Debug(string.format("Teleporting user ^5%s^3 waiting Scene Zone Load", GetPlayerServerId(PlayerId())))
+    Ora.Core:Debug(string.format("Teleporting user ^5%s^3 waiting Scene Zone Load", GetPlayerServerId(PlayerId())))
     if GetGameTimer() - tempTimer > 3000 then
       break
     end
@@ -122,7 +122,7 @@ function Atlantiss.Core:TeleportAndRequestCollision(pos, ent, floorDeterminedPos
 	SetEntityCoordsNoOffset(ent, x, y, z)
 	local tempTimer = GetGameTimer()
 	while not HasCollisionLoadedAroundEntity(ent) do
-    Atlantiss.Core:Debug(string.format("Teleporting user ^5%s^3 waiting collision load", GetPlayerServerId(PlayerId())))
+    Ora.Core:Debug(string.format("Teleporting user ^5%s^3 waiting collision load", GetPlayerServerId(PlayerId())))
 		if GetGameTimer() - tempTimer > 3000 then
 			break
 		end
@@ -135,7 +135,7 @@ function Atlantiss.Core:TeleportAndRequestCollision(pos, ent, floorDeterminedPos
 		floorHasBeenFound, floorPosition = GetGroundZAndNormalFor_3dCoord(x, y, z)
 		tempTimer = GetGameTimer()
 		while not floorHasBeenFound do
-      Atlantiss.Core:Debug(string.format("Teleporting user ^5%s^3 waiting floor detection", GetPlayerServerId(PlayerId())))
+      Ora.Core:Debug(string.format("Teleporting user ^5%s^3 waiting floor detection", GetPlayerServerId(PlayerId())))
 			z = z + 10.0
 			floorHasBeenFound, floorPosition = GetGroundZAndNormalFor_3dCoord(x, y, z)
 			Wait(0)
@@ -146,7 +146,7 @@ function Atlantiss.Core:TeleportAndRequestCollision(pos, ent, floorDeterminedPos
 		end
 	end
 
-  Atlantiss.Core:Debug(string.format("Finaly teleporting user ^5%s^3", GetPlayerServerId(PlayerId())))
+  Ora.Core:Debug(string.format("Finaly teleporting user ^5%s^3", GetPlayerServerId(PlayerId())))
 	SetEntityCoordsNoOffset(ent, x, y, floorHasBeenFound and floorPosition or z)
   NewLoadSceneStop()
 	if type(pos) ~= "vector3" and pos.a then SetEntityHeading(ent, pos.a) end

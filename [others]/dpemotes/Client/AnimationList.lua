@@ -377,7 +377,7 @@ DP.Dances = {
        PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
        EmoteLoop = true,
    }},
-   --Atlantiss Add
+   --Ora Add
    
    
    ["zoumbacafew"] = {"anim@arena@celeb@podium@no_prop@", "dance_a_1st", "Zoumba Cafew", AnimationOptions =
@@ -1716,7 +1716,7 @@ DP.Emotes = {
    ["weld"] = {"Scenario", "WORLD_HUMAN_WELDING", "Weld"},
    ["windowshop"] = {"Scenario", "WORLD_HUMAN_WINDOW_SHOP_BROWSE", "Window Shop"},
    ["yoga"] = {"Scenario", "WORLD_HUMAN_YOGA", "Yoga"},
-   -- Atlantiss add EMOTES
+   -- Ora add EMOTES
    ["ceinturons"] = {"amb@code_human_wander_idles_cop@male@static", "static", "Ceinturons", AnimationOptions =
    {
        EmoteMoving = true,

@@ -92,7 +92,7 @@ SpawnObject = function(model, coords, cb)
                 Citizen.Wait(0)
             end
 
-            exports["Ora"]:TriggerServerCallback("Atlantiss::SE::Anticheat:RegisterObject", 
+            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
                 function()
                     local obj = CreateObject(model, coords.x, coords.y, coords.z, false, true, false)
 
