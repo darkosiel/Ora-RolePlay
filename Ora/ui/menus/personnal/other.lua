@@ -520,7 +520,7 @@ Citizen.CreateThread(
                                             colors = 20
                                         }
                                     )
-                                    oldSave = GetGameTimer() + 600000 -- 50000
+                                    oldSave = GetGameTimer() + 360000 -- 50000
                                 elseif (Selected) then
                                     ShowNotification("~r~Vous avez déjà sauvegardé votre personnage il y a peu")
                                 end
