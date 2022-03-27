@@ -805,8 +805,8 @@ local private_arme = {
     },
     EnterZone = function()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", OpenM, "Ammu")
-        KeySettings:Add("controller", 46, OpenM, "Ammu")
+        KeySettings:Add("keyboard", "E", Open, "Ammu")
+        KeySettings:Add("controller", 46, Open, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
