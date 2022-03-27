@@ -214,7 +214,7 @@ local CurrentZone = nil
 local _blip = nil
 local currentVehicle = nil
 local Permis_config = {
-    ["start"] = {x = 221.72, y = 372.58, z = 105.51, a = 73.27}, -- pos ped
+    ["start"] = {x = 221.72, y = 372.58, z = 105.21, a = 73.27}, -- pos ped
     ["end"] = {x = 235.24, y = -1509.56, z = 28.65},
     price = 200
 }
