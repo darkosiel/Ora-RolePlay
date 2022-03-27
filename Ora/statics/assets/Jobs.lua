@@ -9134,52 +9134,52 @@ Jobs = {
                 Name = "Coffre Jetsam"
             }
         }
-    },
-    drivingschool = {
-        label = "🚦 Auto school",
-        label2 = "Auto school",
-        iban = "drivingschool",
-        grade = {
-            {
-                label = "Moniteur",
-                salary = 0,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 0,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 0,
-                name = "boss",
-                show = true
-            }
-        },
-        garage = {
-            Name = "Garage Auto school",
-            Pos = {x = 232.67, y = 385.44, z = 106.42},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = 232.67, y = 385.44, z = 106.42, h = 76.92}
-            },
-            Blipdata = {
-                Pos = {x = 232.67, y = 385.44, z = 106.42},
-                Blipcolor = 5,
-                Blipname = "Garage Auto school"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = 813.4, y = -2982.56, z = 6.02 - 0.9},
-                Limit = 100,
-                Name = "Coffre Auto school"
-            }
-        }
     }
+    -- drivingschool = {
+    --     label = "🚦 Auto school",
+    --     label2 = "Auto school",
+    --     iban = "drivingschool",
+    --     grade = {
+    --         {
+    --             label = "Moniteur",
+    --             salary = 0,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 0,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 0,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Auto school",
+    --         Pos = {x = 232.67, y = 385.44, z = 106.42},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = 232.67, y = 385.44, z = 106.42, h = 76.92}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = 232.67, y = 385.44, z = 106.42},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage Auto school"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = 813.4, y = -2982.56, z = 6.02 - 0.9},
+    --             Limit = 100,
+    --             Name = "Coffre Auto school"
+    --         }
+    --     }
+    -- }
 }
