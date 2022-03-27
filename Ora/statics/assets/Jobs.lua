@@ -3266,7 +3266,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "polmav",
+                        name = "as350",
                         label = "Helicoptere de police",
                         job = true,
                         tuning = {
@@ -3880,7 +3880,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "polmav",
+                        name = "as350",
                         label = "Helicoptere de police",
                         job = true,
                         tuning = {
