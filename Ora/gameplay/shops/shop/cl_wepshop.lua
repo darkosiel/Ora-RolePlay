@@ -498,7 +498,7 @@ local Open = function()
 end
 
 local OpenM = function()
-    RageUI.Visible(RMenu:Get("ammunation", "main"), true)
+    RageUI.Visible(RMenu:Get("ammunation", "weapons"), true)
     playerPed = LocalPlayer().Ped
     for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
         Indexes2[i] = 1
