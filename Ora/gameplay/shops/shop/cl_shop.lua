@@ -3975,7 +3975,7 @@ local Shops =
         {
             Title = "Fournisseur munitions",
             Hidden = true,
-            Pos = {x = 247.52, y = -44.30, z = 69.94, a = 159.56}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Pos = {x = 247.14, y = -43.92, z = 69.94, a = 159.56}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
             Blips = {
                 sprite = 478,
                 Enabled = false, -- Image off
@@ -3983,7 +3983,7 @@ local Shops =
                 name = "Police"
             },
             Ped = {
-                model = "s_m_m_lathandy_01",
+                model = "a_m_y_yoga_01",
                 name = "Samuel"
             },
             Menus = {
@@ -3994,26 +3994,6 @@ local Shops =
             Items = {
                 {
                     name = "mm9",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "cab",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "cab2",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "calibre12",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "acp45",
                     price = 2,
                     data = {}
                 }
