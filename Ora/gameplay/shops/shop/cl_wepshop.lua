@@ -738,7 +738,7 @@ local private_conf = {
     Ped = {
         Pos = {x = 250.1571, y = -51.6418, z = 68.9411, a = 23.3754},
         model = "s_m_y_ammucity_01",
-        name = "Bébèrt"
+        name = "Thomas"
     },
     EnterZone = function()
         local isAuth = false
