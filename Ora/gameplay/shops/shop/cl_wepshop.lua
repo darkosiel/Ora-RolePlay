@@ -496,15 +496,6 @@ local Open = function()
         Indexes2[i] = 1
     end
 end
-
-local OpenM = function()
-    RageUI.Visible(RMenu:Get("ammunation-weapons", "achats"), true)
-    playerPed = LocalPlayer().Ped
-    for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
-        Indexes2[i] = 1
-    end
-end
-
 local OpenP = function()
     RageUI.Visible(RMenu:Get("ammunation privé", "main private"), true)
     playerPed = LocalPlayer().Ped
@@ -804,9 +795,9 @@ local private_arme = {
         name = "Matthieu"
     },
     EnterZone = function()
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", OpenM, "Ammu")
-        KeySettings:Add("controller", 46, OpenM, "Ammu")
+         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", Open, "Ammu")
+        KeySettings:Add("controller", 46, Open, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
@@ -847,9 +838,9 @@ local function build()
         EndTextCommandSetBlipName(blip)
     end
     Zone:Add(v.Pos, v.EnterZone, v.ExitZone, i, 2.5)
+    Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
     Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
     Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
-    Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
     RMenu.Add(
         "ammunation",
         "main",
@@ -927,44 +918,6 @@ local function build()
             RMenu:Get("ammunation privé", "main private"),
             nil,
             "Kevlars disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-
-    RMenu.Add(
-        "ammunation-weapons",
-        "main",
-        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    )
-
-    RMenu.Add(
-        "ammunation-weapons",
-        "achats",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "blanches"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        ),
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "pistol"),
-            nil,
-            "Armes de poings disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        ),
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "munitions"),
-            nil,
-            "Munitions disponibles",
             10,
             100,
             "shopui_title_gunclub",
@@ -1087,6 +1040,25 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
+                        --[[ RageUI.Button(
+                            "Armes",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation", "weapons")
+                        )
+                        RageUI.Button(
+                            "Armes blanches",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation", "blanches")
+                        ) ]]
+                        -- RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
                         RageUI.Button(
                             "Mes armes",
                             nil,
@@ -1318,7 +1290,7 @@ Citizen.CreateThread(
                 )
             end
 
-            if RageUI.Visible(RMenu:Get("ammunation", "pistol")) then
+            if RageUI.Visible(RMenu:Get("ammunation", "weapons")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
@@ -1330,25 +1302,6 @@ Citizen.CreateThread(
                                 {RightLabel = c[3] .. "$"},
                                 true,
                                 function(_, _, Selected)
-                                    -- RageUI.Button(
-                                    --     "Armes",
-                                    --     nil,
-                                    --     {},
-                                    --     true,
-                                    --     function()
-                                    --     end,
-                                    --     RMenu:Get("ammunation", "weapons")
-                                    -- )
-                                    -- RageUI.Button(
-                                    --     "Armes blanches",
-                                    --     nil,
-                                    --     {},
-                                    --     true,
-                                    --     function()
-                                    --     end,
-                                    --     RMenu:Get("ammunation", "blanches")
-                                    -- )
-                                --  RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
                                     if Selected then
                                         for m1, m3 in pairs(weapon_name) do
                                             if m3 == c[1] then
