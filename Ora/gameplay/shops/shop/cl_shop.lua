@@ -3973,6 +3973,53 @@ local Shops =
             }
         },
         {
+            Title = "Fournisseur munitions",
+            Hidden = true,
+            Pos = {x = 247.52, y = -44.30, z = 69.94, a = 159.56}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "s_m_m_lathandy_01",
+                name = "Samuel"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                },
+                {
+                    name = "cab",
+                    price = 2,
+                    data = {}
+                },
+                {
+                    name = "cab2",
+                    price = 2,
+                    data = {}
+                },
+                {
+                    name = "calibre12",
+                    price = 2,
+                    data = {}
+                },
+                {
+                    name = "acp45",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
             Title = "Fournisseur USMS",
             Hidden = true,
             RestrictedJob = {"usms"},
