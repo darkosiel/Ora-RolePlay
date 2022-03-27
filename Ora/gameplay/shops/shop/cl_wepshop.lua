@@ -709,7 +709,7 @@ local weapon_config = {
     Ped = {
         Pos = {x = 250.45, y = -45.27, z = 68.94, a = 146.59},
         model = "s_m_y_ammucity_01",
-        name = "Freddy"
+        name = "Paolo"
     },
     Blips = {
         sprite = 313,
