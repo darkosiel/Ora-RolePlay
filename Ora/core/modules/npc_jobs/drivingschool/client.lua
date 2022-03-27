@@ -225,7 +225,7 @@ local function StopVehicule(reason)
     ClearAllBlipRoutes()
     RemoveBlip(_blip)
     SetEntityCoordsNoOffset(LocalPlayer().Ped, 219.95, 371.27, 106.29, false, false, false, true)
-    ShowNotification("~r~Vous avez échoué\n Raison : " .. reason)
+    RageUI.Popup({message = "~r~Vous avez échoué\n Raison : " .. reason})
 end
 
 local function StopVehicule2()
@@ -234,7 +234,7 @@ local function StopVehicule2()
     ClearAllBlipRoutes()
     RemoveBlip(_blip)
     SetEntityCoordsNoOffset(LocalPlayer().Ped, 219.95, 371.27, 106.29, false, false, false, true)
-    ShowNotification("~g~Vous avez réussi votre test")
+    RageUI.Popup({message = "~g~Vous avez réussi votre test"})
 
     Atlantiss.Inventory:AddItem({name = "permis-conduire", data = {points = 12, uid = "LS-" .. Random(99999999), identity = GetIdentity()}})
 end
@@ -255,7 +255,7 @@ local function startTest()
                     SetVehicleNumberPlateText(vehicle, "PERMIS")
                 end
             )
-            ShowNotification("Conduisez jusqu'au point.")
+            RageUI.Popup({message = "Conduisez jusqu'au point."})
             Wait(5)
             _blip = AddBlipForCoord(235.24, -1509.56, 28.65)
             SetBlipSprite(_blip, 1)
