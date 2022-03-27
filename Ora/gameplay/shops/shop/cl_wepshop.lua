@@ -707,7 +707,7 @@ local weapon_arme = {
     Blips = {
         sprite = 313,
         color = 1,
-        name = "Armurerie"
+        name = "Armurerie - Accessoires d'armes"
     },
     EnterZone = function()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -732,6 +732,11 @@ local weapon_config = {
         Pos = {x = 250.45, y = -45.27, z = 68.94, a = 146.59},
         model = "s_m_y_ammucity_01",
         name = "Freddy"
+    },
+    Blips = {
+        sprite = 313,
+        color = 1,
+        name = "Armurerie"
     },
     EnterZone = function()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
