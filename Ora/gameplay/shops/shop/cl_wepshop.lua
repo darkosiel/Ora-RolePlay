@@ -695,37 +695,6 @@ local kevlarConfig = {
     },
 }
 
-
-
-local weapon_arme = {
-    Pos = {x = 250.45, y = -45.27, z = 68.94},
-    Ped = {
-        Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
-        model = "mp_m_exarmy_01",
-        name = "Matthieu"
-    },
-    Blips = {
-        sprite = 313,
-        color = 1,
-        name = "Armurerie - Accessoires d'armes"
-    },
-    EnterZone = function()
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", Open, "Ammu")
-        KeySettings:Add("controller", 46, Open, "Ammu")
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
-
 local weapon_config = {
     Pos = {x = 250.45, y = -45.27, z = 68.94},
     Ped = {
@@ -736,7 +705,7 @@ local weapon_config = {
     Blips = {
         sprite = 313,
         color = 1,
-        name = "Armurerie"
+        name = "Armurerie - Accessoires d'armes"
     },
     EnterZone = function()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -817,6 +786,38 @@ local private_conf_paleto = {
     end
 }
 
+
+local private_arme = {
+    Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
+    Ped = {
+        Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
+        model = "s_m_y_ammucity_01",
+        name = "Matthieu"
+    },
+    EnterZone = function()
+        local isAuth = false
+        for i=1, #restrictedJob do
+            if restrictedJob[i] == Atlantiss.Identity.Job:GetName() then isAuth = true end
+            if restrictedJob[i] == Atlantiss.Identity.Orga:GetName() then isAuth = true end
+        end
+        if isAuth then
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
+            KeySettings:Add("controller", 46, OpenP, "Ammu")
+        end
+    end,
+    ExitZone = function()
+        KeySettings:Clear("keyboard", "E", "Ammu")
+        KeySettings:Clear("controller", 46, "Ammu")
+        Hint:RemoveAll()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+    end
+}
+
 local globalWeaponTable = {
     blanc = {
         -- {"WEAPON_KNUCKLE", "Poing Americain", 300},
@@ -829,9 +830,9 @@ local globalWeaponTable = {
 local munition_index = 1
 local function build()
     v = weapon_config
-    x = weapon_arme
     k = private_conf
     y = private_conf_paleto
+    x = private_arme
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
         SetBlipSprite(blip, v.Blips.sprite)
