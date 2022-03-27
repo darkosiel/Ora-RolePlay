@@ -496,6 +496,15 @@ local Open = function()
         Indexes2[i] = 1
     end
 end
+
+local OpenM = function()
+    RageUI.Visible(RMenu:Get("ammunation", "main"), true)
+    playerPed = LocalPlayer().Ped
+    for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
+        Indexes2[i] = 1
+    end
+end
+
 local OpenP = function()
     RageUI.Visible(RMenu:Get("ammunation privé", "main private"), true)
     playerPed = LocalPlayer().Ped
@@ -796,8 +805,8 @@ local private_arme = {
     },
     EnterZone = function()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", OpenP, "Ammu")
-        KeySettings:Add("controller", 46, OpenP, "Ammu")
+        KeySettings:Add("keyboard", "E", OpenM, "Ammu")
+        KeySettings:Add("controller", 46, OpenM, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
