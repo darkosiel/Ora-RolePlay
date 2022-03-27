@@ -846,6 +846,7 @@ local function build()
     end
     Zone:Add(v.Pos, v.EnterZone, v.ExitZone, i, 2.5)
     Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
+    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
     RMenu.Add(
         "ammunation",
         "main",
