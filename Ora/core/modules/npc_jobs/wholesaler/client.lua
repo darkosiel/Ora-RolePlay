@@ -1,7 +1,7 @@
 Atlantiss.NpcJobs.Wholesaler.E_Thread = false
 Atlantiss.NpcJobs.Wholesaler.Peds = {
     {
-        Name = "Hank",
+        Name = "Nathan",
         PedModel = "s_m_m_dockwork_01",
         Pos = {x = 1221.03, y = -2991.73, z = 5.86 - 0.98, a = 90.04},
         Blip = {name = "Grossiste Général SUD", color = 47, size = 0.8, sprite = 52}
