@@ -695,17 +695,43 @@ local kevlarConfig = {
     },
 }
 
+
+
+local weapon_arme = {
+    Pos = {x = 250.45, y = -45.27, z = 68.94},
+    Ped = {
+        Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
+        model = "mp_m_exarmy_01",
+        name = "Matthieu"
+    },
+    Blips = {
+        sprite = 313,
+        color = 1,
+        name = "Armurerie"
+    },
+    EnterZone = function()
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", Open, "Ammu")
+        KeySettings:Add("controller", 46, Open, "Ammu")
+    end,
+    ExitZone = function()
+        KeySettings:Clear("keyboard", "E", "Ammu")
+        KeySettings:Clear("controller", 46, "Ammu")
+        Hint:RemoveAll()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+    end
+}
+
 local weapon_config = {
     Pos = {x = 250.45, y = -45.27, z = 68.94},
     Ped = {
         Pos = {x = 250.45, y = -45.27, z = 68.94, a = 146.59},
         model = "s_m_y_ammucity_01",
         name = "Freddy"
-    },
-    Blips = {
-        sprite = 313,
-        color = 1,
-        name = "Armurerie - Accessoires d'armes"
     },
     EnterZone = function()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -798,6 +824,7 @@ local globalWeaponTable = {
 local munition_index = 1
 local function build()
     v = weapon_config
+    x = weapon_arme
     k = private_conf
     y = private_conf_paleto
     if not v.Hidden then
