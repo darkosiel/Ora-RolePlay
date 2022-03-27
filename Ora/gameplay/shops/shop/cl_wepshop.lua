@@ -497,16 +497,16 @@ local Open = function()
     end
 end
 
-local OpenP = function()
-    RageUI.Visible(RMenu:Get("ammunation privé", "main private"), true)
+local OpenM = function()
+    RageUI.Visible(RMenu:Get("ammunation", "main"), true)
     playerPed = LocalPlayer().Ped
     for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
         Indexes2[i] = 1
     end
 end
 
-local OpenS = function()
-    RageUI.Visible(RMenu:Get("ammunation public", "main public"), true)
+local OpenP = function()
+    RageUI.Visible(RMenu:Get("ammunation privé", "main private"), true)
     playerPed = LocalPlayer().Ped
     for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
         Indexes2[i] = 1
@@ -804,9 +804,9 @@ local private_arme = {
         name = "Matthieu"
     },
     EnterZone = function()
-         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", OpenS, "Ammu")
-        KeySettings:Add("controller", 46, OpenS, "Ammu")
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", OpenM, "Ammu")
+        KeySettings:Add("controller", 46, OpenM, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
@@ -822,17 +822,12 @@ local private_arme = {
 
 local globalWeaponTable = {
     blanc = {
-        {"WEAPON_KNUCKLE", "Poing Americain", 300},
-        {"WEAPON_HAMMER", "Marteau", 250},
-        {"WEAPON_BAT", "Batte", 300},
-        {"WEAPON_CROWBAR", "Pied de biche", 400},
-        {"WEAPON_KNIFE", "Couteau", 250},
-        {"WEAPON_KNIFE1", "Cran d'arrêt", 300},
-        {"WEAPON_DAGGER", "Dague", 400}
+        -- {"WEAPON_KNUCKLE", "Poing Americain", 300},
+        -- {"WEAPON_HAMMER", "Marteau", 250},
+        -- {"WEAPON_BAT", "Batte", 300},
+        -- {"WEAPON_CROWBAR", "Pied de biche", 400}
     },
-    pistol ={
-    {"WEAPON_PISTOL", "Pistolet", 300}
-    }
+    pistol = {}
 }
 local munition_index = 1
 local function build()
@@ -853,7 +848,6 @@ local function build()
     end
     Zone:Add(v.Pos, v.EnterZone, v.ExitZone, i, 2.5)
     Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
-
     RMenu.Add(
         "ammunation",
         "main",
@@ -938,46 +932,7 @@ local function build()
         )
     )
 
-    -- Vendeur armes
-
-    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
-    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
-
-    RMenu.Add(
-        "ammunation public",
-        "main public",
-        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    )
-
-    RMenu.Add(
-        "ammunation public",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation public",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
     
-    -- ----------------------
-
     Zone:Add(y.Pos, y.EnterZone, y.ExitZone, i, 2.5)
     Ped:Add(y.Ped.name, y.Ped.model, y.Ped.Pos, nil)
     RMenu.Add(
@@ -1088,33 +1043,6 @@ Citizen.CreateThread(
             --if IsControlJustPressed(0, Keys["E"]) then
             --end
             --end
-            if RageUI.Visible(RMenu:Get("ammunation public", "main public")) then
-                RageUI.DrawContent(
-                    {header = true, glare = false},
-                    function()
-                        RageUI.Button(
-                            "Armes",
-                            nil,
-                            {},
-                            true,
-                            function()
-                            end,
-                            RMenu:Get("ammunation", "weapons")
-                        )
-                        RageUI.Button(
-                            "Armes blanches",
-                            nil,
-                            {},
-                            true,
-                            function()
-                            end,
-                            RMenu:Get("ammunation", "blanches")
-                        )
-                    end,
-                    function()
-                    end
-                )
-            end
             if RageUI.Visible(RMenu:Get("ammunation", "main")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
