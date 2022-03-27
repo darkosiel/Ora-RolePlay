@@ -847,7 +847,9 @@ local function build()
         EndTextCommandSetBlipName(blip)
     end
     Zone:Add(v.Pos, v.EnterZone, v.ExitZone, i, 2.5)
+    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
     Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+    Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
     RMenu.Add(
         "ammunation",
         "main",
