@@ -135,7 +135,7 @@ function Ambulance.PutStretcherOnVehicle()
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
     if stretcher and GetEntityAttachedTo(stretcher) == ped then
         local veh = GetVehicleInDirection()
-        if veh ~= 0 and GetEntityModel(veh) == GetHashKey("lsfd3") then
+        if veh ~= 0 and GetEntityModel(veh) == GetHashKey("ambulance") then
             DetachEntity(stretcher)
             AttachEntityToEntity(stretcher, veh, 0.0, 0.0, -2.0, 0.8, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
             FreezeEntityPosition(stretcher, true)
