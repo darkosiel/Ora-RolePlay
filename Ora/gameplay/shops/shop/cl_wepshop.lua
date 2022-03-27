@@ -825,9 +825,14 @@ local globalWeaponTable = {
         {"WEAPON_KNUCKLE", "Poing Americain", 300},
         {"WEAPON_HAMMER", "Marteau", 250},
         {"WEAPON_BAT", "Batte", 300},
-        {"WEAPON_CROWBAR", "Pied de biche", 400}
+        {"WEAPON_CROWBAR", "Pied de biche", 400},
+        {"WEAPON_KNIFE", "Couteau", 250},
+        {"WEAPON_KNIFE1", "Cran d'arrêt", 300},
+        {"WEAPON_DAGGER", "Dague", 400}
     },
-    pistol = {}
+    pistol ={
+    {"WEAPON_PISTOL", "Pistolet", 300}
+    }
 }
 local munition_index = 1
 local function build()
