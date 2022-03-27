@@ -763,16 +763,9 @@ local private_conf_paleto = {
         name = "Smith"
     },
     EnterZone = function()
-        local isAuth = false
-        for i=1, #restrictedJob do
-            if restrictedJob[i] == Atlantiss.Identity.Job:GetName() then isAuth = true end
-            if restrictedJob[i] == Atlantiss.Identity.Orga:GetName() then isAuth = true end
-        end
-        if isAuth then
-            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
-            KeySettings:Add("controller", 46, OpenP, "Ammu")
-        end
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", OpenP, "Ammu")
+        KeySettings:Add("controller", 46, OpenP, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
