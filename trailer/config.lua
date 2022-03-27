@@ -1,0 +1,26 @@
+-- Config.Trucktrailer = {
+--     VoitureAvantBas = {
+--         [-1216765807] = {xpos = -0.6, ypos = 13.0, zpos = 1.0}
+--      --adder
+--     },
+--     VoitureMilieuBas = {
+--         [-1216765807] = {xpos = -0.6, ypos = 7.5, zpos = 1.0}
+--      --adder
+--     },
+--     VoitureArriereBas = {
+--         [-1216765807] = {xpos = -0.6, ypos = 2.5, zpos = 1.0}
+--      --adder
+--     },
+--     VoitureAvantHaut = {
+--         [-1216765807] = {xpos = -0.6, ypos = 13.0, zpos = 3.0}
+--      --adder
+--     },
+--     VoitureMilieuHaut = {
+--         [-1216765807] = {xpos = -0.6, ypos = 7.5, zpos = 3.0}
+--      --adder
+--     },
+--     VoitureArriereHaut = {
+--         [-1216765807] = {xpos = -0.6, ypos = 2.5, zpos = 3.0}
+--      --adder
+--     }
+-- }
