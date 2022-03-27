@@ -3975,7 +3975,7 @@ local Shops =
         {
             Title = "Fournisseur munitions",
             Hidden = true,
-            Pos = {x = 247.14, y = -43.92, z = 69.94, a = 159.56}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Pos = {x = 247.14, y = -43.92, z = 68.94, a = 159.56}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
             Blips = {
                 sprite = 478,
                 Enabled = false, -- Image off
