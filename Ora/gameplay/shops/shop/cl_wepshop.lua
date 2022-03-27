@@ -764,6 +764,11 @@ local private_conf_paleto = {
     },
     EnterZone = function()
         local isAuth = false
+        for i=1, #restrictedJob do
+            if restrictedJob[i] == Atlantiss.Identity.Job:GetName() then isAuth = true end
+            if restrictedJob[i] == Atlantiss.Identity.Orga:GetName() then isAuth = true end
+        end
+        if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
             KeySettings:Add("keyboard", "E", OpenP, "Ammu")
             KeySettings:Add("controller", 46, OpenP, "Ammu")
