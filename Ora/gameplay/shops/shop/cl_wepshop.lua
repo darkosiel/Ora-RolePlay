@@ -955,8 +955,9 @@ local function build()
             100,
             "shopui_title_gunclub",
             "shopui_title_gunclub"
-        ),
-        RMenu.Add(
+        )
+    )
+    RMenu.Add(
         "ammunation public",
         "weapons",
         RageUI.CreateSubMenu(
@@ -967,8 +968,9 @@ local function build()
             100,
             "shopui_title_gunclub",
             "shopui_title_gunclub"
-        ),
-        RMenu.Add(
+        )
+    )
+    RMenu.Add(
         "ammunation public",
         "munitions",
         RageUI.CreateSubMenu(
