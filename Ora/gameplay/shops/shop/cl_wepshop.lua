@@ -496,8 +496,17 @@ local Open = function()
         Indexes2[i] = 1
     end
 end
+
 local OpenP = function()
     RageUI.Visible(RMenu:Get("ammunation privé", "main private"), true)
+    playerPed = LocalPlayer().Ped
+    for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
+        Indexes2[i] = 1
+    end
+end
+
+local OpenS = function()
+    RageUI.Visible(RMenu:Get("ammunation public", "main public"), true)
     playerPed = LocalPlayer().Ped
     for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
         Indexes2[i] = 1
@@ -796,8 +805,8 @@ local private_arme = {
     },
     EnterZone = function()
          Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", Open, "Ammu")
-        KeySettings:Add("controller", 46, Open, "Ammu")
+        KeySettings:Add("keyboard", "E", OpenS, "Ammu")
+        KeySettings:Add("controller", 46, OpenS, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
@@ -839,8 +848,7 @@ local function build()
     end
     Zone:Add(v.Pos, v.EnterZone, v.ExitZone, i, 2.5)
     Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
-    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
-    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+
     RMenu.Add(
         "ammunation",
         "main",
@@ -925,7 +933,33 @@ local function build()
         )
     )
 
+    -- Vendeur armes
+
+    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
+    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+
+    RMenu.Add(
+        "ammunation public",
+        "main public",
+        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    )
+
+    RMenu.Add(
+        "ammunation public",
+        "blanches",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation public", "main public"),
+            nil,
+            "Armes blanches disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
     
+    -- ----------------------
+
     Zone:Add(y.Pos, y.EnterZone, y.ExitZone, i, 2.5)
     Ped:Add(y.Ped.name, y.Ped.model, y.Ped.Pos, nil)
     RMenu.Add(
