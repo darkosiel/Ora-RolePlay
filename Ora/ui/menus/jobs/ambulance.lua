@@ -107,7 +107,7 @@ end
 function Ambulance.GetOffStretcher()
     local stretcherHash = `prop_ld_binbag_01`
     local veh = GetVehicleInDirection()
-    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("lsfd3") then
+    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("ambulance") then
         local vehCoords = GetEntityCoords(veh)
         local forward = GetEntityForwardVector(veh)
         local behind = vehCoords - (forward * 6.0)
