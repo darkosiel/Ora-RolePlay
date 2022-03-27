@@ -1125,6 +1125,34 @@ Citizen.CreateThread(
                     end
                 )
             end
+            if RageUI.Visible(RMenu:Get("ammunation public", "main public")) then
+                RageUI.DrawContent(
+                    {header = true, glare = false},
+                    function()
+                        RageUI.Button(
+                            "Armes",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation", "weapons")
+                        )
+                        RageUI.Button(
+                            "Armes blanches",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation", "blanches")
+                        )
+                        RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
+                    end,
+                    function()
+                    end
+                )
+            end
             if RageUI.Visible(RMenu:Get("ammunation", "my_weap_1")) then
                 local CurrentWeapon = myweapIn
                 RageUI.DrawContent(
