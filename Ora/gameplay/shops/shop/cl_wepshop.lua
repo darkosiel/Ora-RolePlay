@@ -763,9 +763,11 @@ local private_conf_paleto = {
         name = "Smith"
     },
     EnterZone = function()
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", OpenP, "Ammu")
-        KeySettings:Add("controller", 46, OpenP, "Ammu")
+        local isAuth = false
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
+            KeySettings:Add("controller", 46, OpenP, "Ammu")
+        end
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
@@ -788,16 +790,9 @@ local private_arme = {
         name = "Matthieu"
     },
     EnterZone = function()
-        local isAuth = false
-        for i=1, #restrictedJob do
-            if restrictedJob[i] == Atlantiss.Identity.Job:GetName() then isAuth = true end
-            if restrictedJob[i] == Atlantiss.Identity.Orga:GetName() then isAuth = true end
-        end
-        if isAuth then
-            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
-            KeySettings:Add("controller", 46, OpenP, "Ammu")
-        end
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", OpenP, "Ammu")
+        KeySettings:Add("controller", 46, OpenP, "Ammu")
     end,
     ExitZone = function()
         KeySettings:Clear("keyboard", "E", "Ammu")
@@ -839,7 +834,6 @@ local function build()
     end
     Zone:Add(v.Pos, v.EnterZone, v.ExitZone, i, 2.5)
     Ped:Add(v.Ped.name, v.Ped.model, v.Ped.Pos, nil)
-    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
     RMenu.Add(
         "ammunation",
         "main",
