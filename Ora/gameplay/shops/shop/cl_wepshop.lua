@@ -1110,7 +1110,6 @@ Citizen.CreateThread(
                             end,
                             RMenu:Get("ammunation", "blanches")
                         )
-                        RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
                     end,
                     function()
                     end
