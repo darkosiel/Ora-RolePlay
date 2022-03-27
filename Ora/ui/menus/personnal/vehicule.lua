@@ -255,18 +255,6 @@ Citizen.CreateThread(
                         )
 
                         RageUI.Button(
-                            "Nombre de KM du Véhicule",
-                            nil,
-                            {},
-                            true,
-                            function(Hovered, Ative, Selected, Checked)
-                                if Selected then
-                                    TriggerEvent('kmveh:ShowHUD')
-                                end
-                            end
-                        )
-
-                        RageUI.Button(
                             "Créer une course",
                             nil,
                             {},
