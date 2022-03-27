@@ -498,7 +498,7 @@ local Open = function()
 end
 
 local OpenM = function()
-    RageUI.Visible(RMenu:Get("ammunation", "weapons"), true)
+    RageUI.Visible(RMenu:Get("ammunation-weapons", "achats"), true)
     playerPed = LocalPlayer().Ped
     for i = 0, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
         Indexes2[i] = 1
@@ -934,6 +934,38 @@ local function build()
         )
     )
 
+    RMenu.Add(
+        "ammunation-weapons",
+        "achats",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "blanches"),
+            nil,
+            "Armes blanches disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        ),
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "pistol"),
+            nil,
+            "Armes de poings disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        ),
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "munitions"),
+            nil,
+            "Munitions disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
     
     Zone:Add(y.Pos, y.EnterZone, y.ExitZone, i, 2.5)
     Ped:Add(y.Ped.name, y.Ped.model, y.Ped.Pos, nil)
@@ -1280,12 +1312,12 @@ Citizen.CreateThread(
                 )
             end
 
-            if RageUI.Visible(RMenu:Get("ammunation", "weapons")) then
+            if RageUI.Visible(RMenu:Get("ammunation", "pistol")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
-                        for i = 1, #globalWeaponTable.blanc, 1 do
-                            local c = globalWeaponTable.blanc[i]
+                        for i = 1, #globalWeaponTable.pistol, 1 do
+                            local c = globalWeaponTable.pistol[i]
                             RageUI.Button(
                                 c[2],
                                 nil,
