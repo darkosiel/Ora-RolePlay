@@ -1301,16 +1301,16 @@ Citizen.CreateThread(
                                     --     end,
                                     --     RMenu:Get("ammunation", "weapons")
                                     -- )
-                                    RageUI.Button(
-                                        "Armes blanches",
-                                        nil,
-                                        {},
-                                        true,
-                                        function()
-                                        end,
-                                        RMenu:Get("ammunation", "blanches")
-                                    )
-                                 RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
+                                    -- RageUI.Button(
+                                    --     "Armes blanches",
+                                    --     nil,
+                                    --     {},
+                                    --     true,
+                                    --     function()
+                                    --     end,
+                                    --     RMenu:Get("ammunation", "blanches")
+                                    -- )
+                                --  RageUI.Button("Munitions",nil,{},true,function() end,RMenu:Get('ammunation', "munitions"))
                                     if Selected then
                                         for m1, m3 in pairs(weapon_name) do
                                             if m3 == c[1] then
