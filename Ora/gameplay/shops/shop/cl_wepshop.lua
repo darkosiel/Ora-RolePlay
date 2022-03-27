@@ -822,10 +822,10 @@ local private_arme = {
 
 local globalWeaponTable = {
     blanc = {
-        -- {"WEAPON_KNUCKLE", "Poing Americain", 300},
-        -- {"WEAPON_HAMMER", "Marteau", 250},
-        -- {"WEAPON_BAT", "Batte", 300},
-        -- {"WEAPON_CROWBAR", "Pied de biche", 400}
+        {"WEAPON_KNUCKLE", "Poing Americain", 300},
+        {"WEAPON_HAMMER", "Marteau", 250},
+        {"WEAPON_BAT", "Batte", 300},
+        {"WEAPON_CROWBAR", "Pied de biche", 400}
     },
     pistol = {}
 }
@@ -1284,23 +1284,23 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
-                        for i = 1, #globalWeaponTable.pistol, 1 do
-                            local c = globalWeaponTable.pistol[i]
+                        for i = 1, #globalWeaponTable.blanc, 1 do
+                            local c = globalWeaponTable.blanc[i]
                             RageUI.Button(
                                 c[2],
                                 nil,
                                 {RightLabel = c[3] .. "$"},
                                 true,
                                 function(_, _, Selected)
-                                    RageUI.Button(
-                                        "Armes",
-                                        nil,
-                                        {},
-                                        true,
-                                        function()
-                                        end,
-                                        RMenu:Get("ammunation", "weapons")
-                                    )
+                                    -- RageUI.Button(
+                                    --     "Armes",
+                                    --     nil,
+                                    --     {},
+                                    --     true,
+                                    --     function()
+                                    --     end,
+                                    --     RMenu:Get("ammunation", "weapons")
+                                    -- )
                                     RageUI.Button(
                                         "Armes blanches",
                                         nil,
