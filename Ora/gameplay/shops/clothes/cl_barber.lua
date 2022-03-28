@@ -1,6 +1,6 @@
 local Shops_Barber = {
      Pos = {
-         {x = -814.308,  y = -183.823,  z = 36.568},
+    --     {x = -814.308,  y = -183.823,  z = 36.568},
     --     {x = 136.826,   y = -1708.373, z = 28.291},
     --     {x = -1282.604, y = -1116.757, z = 5.990},
     --     {x = 1931.513,  y = 3729.671,  z = 31.844},
@@ -243,26 +243,26 @@ function GetOldChev()
 end
 
 local function Build()
-    for i = 1 , #Shops_Barber.Pos , 1 do
-        local v = Shops_Barber.Pos[i]
-        local blip = AddBlipForCoord(v.x, v.y, v.z)
-        SetBlipSprite (blip, 71)
-        SetBlipDisplay(blip, 4)
-        SetBlipScale  (blip, 0.8)
-        SetBlipColour (blip, 59)
-        SetBlipAsShortRange(blip, true)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString("Coiffeur")
-        EndTextCommandSetBlipName(blip)
+    -- for i = 1 , #Shops_Barber.Pos , 1 do
+    --     local v = Shops_Barber.Pos[i]
+    --     local blip = AddBlipForCoord(v.x, v.y, v.z)
+    --     SetBlipSprite (blip, 71)
+    --     SetBlipDisplay(blip, 4)
+    --     SetBlipScale  (blip, 0.8)
+    --     SetBlipColour (blip, 59)
+    --     SetBlipAsShortRange(blip, true)
+    --     BeginTextCommandSetBlipName("STRING")
+    --     AddTextComponentString("Coiffeur")
+    --     EndTextCommandSetBlipName(blip)
 
-        Zone:Add(v,EnterZone,ExitZone,i,2.5)
+    --     Zone:Add(v,EnterZone,ExitZone,i,2.5)
 
-    end
-    RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
-    RMenu:Get('barberDhop', "main").EnableMouse = true
-    RMenu:Get('barberDhop', "main").Closed = function()
-        GetOldChev()
-    end
+    -- end
+    -- RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
+    -- RMenu:Get('barberDhop', "main").EnableMouse = true
+    -- RMenu:Get('barberDhop', "main").Closed = function()
+    --     GetOldChev()
+    -- end
 end
 
 Citizen.CreateThread(function()
