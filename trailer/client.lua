@@ -9,8 +9,6 @@ RegisterCommand('deployramp', function ()
         vehicle = getClosestVehicle(playerCoords)
         local vehicleName = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 
-        drawNotification("Trying to deploy a ramp for: " .. vehicleName)
-
         if contains(vehicleName, Config.whitelist) then
             local vehicleCoords = GetEntityCoords(vehicle)
 
@@ -20,11 +18,8 @@ RegisterCommand('deployramp', function ()
                     AttachEntityToEntity(ramp, vehicle, GetEntityBoneIndexByName(vehicle, 'chassis'), value.offset.x, value.offset.y, value.offset.z , 180.0, 180.0, 0.0, 0, 0, 1, 0, 0, 1)
                 end
             end
-
-            drawNotification("Ramp has been deployed.")
             return
         end
-        drawNotification("You can't deploy a ramp for this vehicle.")
         return
     end
 end)
@@ -38,12 +33,9 @@ RegisterCommand('ramprm', function()
     if not IsPedInAnyVehicle(player, false) then
         if GetHashKey(RampHash) == GetEntityModel(object) then
             DeleteObject(object)
-            drawNotification("Ramp removed successfully.")
             return
         end
     end
-
-    drawNotification("Get out of your vehicle or get closer to the ramp.")
 end)
 
 RegisterCommand('attach', function()
@@ -68,15 +60,15 @@ RegisterCommand('attach', function()
             if contains(vehicleBelowName, Config.whitelist) then
                 if not IsEntityAttached(vehicle) then
                     AttachEntityToEntity(vehicle, belowEntity, GetEntityBoneIndexByName(belowEntity, 'chassis'), vehiclesOffset, vehiclePitch, 0.0, vehicleYaw, false, false, true, false, 0, true)
-                    return drawNotification('Vehicle attached properly.')
+                    return drawNotification('Vehicule bien attaché')
                 end
-                return drawNotification('Vehicle already attached.')
+                return drawNotification('Vehicule bien attaché')
             end
-            return drawNotification('Can\'t attach to this entity: ' .. vehicleBelowName)
+            return drawNotification('Vous ne pouvez pas attacher : ' .. vehicleBelowName)
         end
-        return drawNotification('Not in driver seat.')
+        return drawNotification('Vous n\'êtes pas conducteur')
     end
-    drawNotification('You\'re not in a vehicle.')
+    drawNotification('Vous n\'êtes pas dans un véhicule')
 end)
 
 RegisterCommand('detach', function()
@@ -88,15 +80,15 @@ RegisterCommand('detach', function()
         if GetPedInVehicleSeat(vehicle, -1) == player then
             if IsEntityAttached(vehicle) then
                 DetachEntity(vehicle, false, true)
-                return drawNotification('The vehicle has been successfully detached.')
+                return drawNotification('Véhicule bien détaché')
             else
-                return drawNotification('The vehicle isn\'t attached to anything.')
+                return drawNotification('Véhicule pas attaché)
             end
         else
-            return drawNotification('You are not in the driver seat.')
+            return drawNotification('Vous n\'êtes pas conducteur')
         end
     else
-        return drawNotification('You are not in a vehicle.')
+        return drawNotification('Vous n\'êtes pas dans un véhicule')
     end
 end)
 
