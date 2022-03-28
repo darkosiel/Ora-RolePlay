@@ -7801,7 +7801,7 @@ Jobs = {
                     label = "Rendre véhicule de test",
                     onSelected = function()
                         local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
-                        local plate = GetVehiclePlateType(veh)
+                        local plate = GetVehicleNumberPlateText(veh)
                         print(veh)
                         print(plate)
                         if plate == "CONCESS" then
