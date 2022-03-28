@@ -3,12 +3,12 @@ local VehShop =
     {
         -- veh
         {
-            Pos = {x = -44.08, y = -1097.99, z = 25.42, a = 67.85},
-            SpawnPos = {x = -16.38, y = -1083.92, z = 26.88, h = 76.68},
+            Pos = {x = -36.84, y = -1093.46, z = 27.10, a = 15.64},
+            SpawnPos = {x = -23.09, y = -1093.42, z = 27.30, h = 338.02},
             Blips = {
                 sprite = 523,
                 color = 84,
-                name = "Concessionnaire voiture"
+                name = "Concessionnaire"
             },
             Menus = {
                 Sprite = "shopui_title_ie_modgarage",
