@@ -7798,6 +7798,18 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Rendre véhicule de test",
+                    onSelected = function()
+                        local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
+                        local plate = GetVehiclePlateType(veh)
+                        if plate == "CONCESS" then
+                            DeleteEntity(veh)
+                        else
+                            ShowNotification("~r~Ce véhicule n'appartient pas à la concession.")
+                        end
+                    end
+                },
+                {
                     label = "Rentrer véhicule",
                     onSelected = function()
                         RentrerVeh()
