@@ -7574,13 +7574,13 @@ Jobs = {
                     end
                 },
                 {
-                    
                     label = "Annonce",
                     onSelected = function()
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                        TriggerServerEvent("Job:Annonce", "Uber", "Annonce", "Chauffeur privé Uber disponible sur appel.", "CHAR_UBER", 8, "Uber")
+                            TriggerServerEvent("Job:Annonce", "LS Custom", "Annonce", text, "CHAR_LSCUSTOM", 8, "Mécano Sud")
+                        end
                     end
                 },
                 {
