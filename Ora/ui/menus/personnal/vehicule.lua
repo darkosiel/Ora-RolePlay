@@ -301,19 +301,6 @@ Citizen.CreateThread(
                             end
                         )
 
-                        RageUI.Button(
-                            "Gérer la radio",
-                            nil,
-                            {},
-                            true,
-                            function(Hovered, Active, Selected, Index)
-                                if (Selected) then
-                                    ExecuteCommand('radiocar')
-                                    RageUI.Visible(RMenu:Get("personnal", "vehicule"), false)
-                                end
-                            end
-                        )
-
                         if (DecorGetBool(veh, "hydraulicSystem")) then
                             RageUI.Button(
                                 hydraulicMode == true and "Hydraulique: Abaisser le véhicule" or "Hydraulique: Remonter le véhicule",
