@@ -193,7 +193,7 @@ AmmunationCrafts["hunting"] = {
             {name = "woodpiece3", count = 1}
         },
         selected = function()
-            ShowNotification("~b~Vérification de la disponibilité des pieces necessaires~s~")
+            ShowNotification("~b~Vérification de la disponibilité des pièces necessaires~s~")
             found = false
             local data = AmmunationCrafts["hunting"]["musket"]
             craftWeapon(data)
