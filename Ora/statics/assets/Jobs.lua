@@ -1,6 +1,6 @@
 Jobs = {
     chomeur = {
-        label = "👤 Citoyen",
+        label = "Citoyen",
         grade = {
             {
                 label = "",
@@ -18,7 +18,7 @@ Jobs = {
         }
     },
     bleacher = {
-        label = "💸 Blanchisseur",
+        label = "Blanchisseur",
         label2 = "Blanchisseur",
         grade = {
             {
@@ -31,7 +31,7 @@ Jobs = {
     },
  
     mecano2 = {
-        label = "🔧 Beeker's Garage",
+        label = "Beeker's Garage",
         label2 = "Beekers Garage",
         iban = "mecano2",
         isMechanics = true,
@@ -505,7 +505,7 @@ Jobs = {
         }
     },
     ammunation = {
-        label = "🔫 Ammunation",
+        label = "Ammunation",
         label2 = "Ammunation",
         iban = "ammunation",
         grade = {
@@ -651,7 +651,7 @@ Jobs = {
         }
     },
     ammunationnord = {
-        label = "🔫 Ammunation Nord",
+        label = "Ammunation Nord",
         label2 = "Ammunation Nord",
         iban = "ammunationnord",
         grade = {
@@ -1315,7 +1315,7 @@ Jobs = {
         }
     },
     -- fujiwaratofu = {
-    --     label = "🍙 Fujiwara Tofu",
+    --     label = "Fujiwara Tofu",
     --     label2 = "Fujiwara Tofu",
     --     iban = "fujiwaratofu",
     --     FreeAccess = false,
@@ -1495,7 +1495,7 @@ Jobs = {
     --     }
     -- },
     taxi = {
-        label = "🚕 Taxi",
+        label = "Taxi",
         label2 = "Taxi",
         iban = "taxi",
         FreeAccess = false,
@@ -1909,7 +1909,7 @@ Jobs = {
         -- }
     },
     burgershot = {
-        label = "🍖 Burger Shot",
+        label = "Burger Shot",
         label2 = "burger shot",
         iban = "burgershot",
         FreeAccess = false,
@@ -2854,7 +2854,7 @@ Jobs = {
     --     }
     -- },
     distillerie = {
-        label = "🍹 Distillerie",
+        label = "Distillerie",
         label2 = "Distillerie",
         iban = "distillerie",
         FreeAccess = false,
@@ -3181,7 +3181,7 @@ Jobs = {
         }
     },
     lssd = {
-        label = "👮🏼 LSSD",
+        label = "LSSD",
         label2 = "LSSD",
         iban = "lssd",
         -- radios = {1,2},
@@ -3779,7 +3779,7 @@ Jobs = {
         }
     },
     police = {
-        label = "👮🏼 LSPD",
+        label = "LSPD",
         label2 = "LSPD",
         iban = "police",
         radios = {1, 2},
@@ -4357,7 +4357,7 @@ Jobs = {
         }
     },
     -- usms = {
-    --     label = "👮🏼 US MARSHALS",
+    --     label = "US MARSHALS",
     --     label2 = "US MARSHALS",
     --     iban = "usms",
     --     -- radios = {1,2},
@@ -4767,7 +4767,7 @@ Jobs = {
     --     }
     -- },
     -- merryweather = {
-    --     label = "👁‍🗨 Merry Weather",
+    --     label = "👁Merry Weather",
     --     label2 = "Merry Weather",
     --     grade = {
     --         {
@@ -4902,7 +4902,7 @@ Jobs = {
     --     }
     -- },
     banker = {
-        label = "💰 Banquier",
+        label = "Banquier",
         label2 = "Banquier",
         iban = "banker",
         grade = {
@@ -5370,7 +5370,7 @@ Jobs = {
 
     },
     -- psychologue = {
-    --     label = "🤓 Psychologue",
+    --     label = "Psychologue",
     --     label2 = "Psychologue",
     --     iban = "psychologue",
     --     grade = {
@@ -5457,7 +5457,7 @@ Jobs = {
     --     }
     -- },
     binco = {
-        label = "💼 Binco",
+        label = "Binco",
         label2 = "Binco",
         iban = "Binco",
         grade = {
@@ -5561,7 +5561,7 @@ Jobs = {
         }
     },
     binconord = {
-        label = "💼 Binco Nord",
+        label = "Binco Nord",
         label2 = "Binco Nord",
         iban = "binconord",
         grade = {
@@ -5658,7 +5658,7 @@ Jobs = {
         }
     },
     ponsonbys = {
-        label = "💼 Ponsonbys",
+        label = "Ponsonbys",
         label2 = "Ponsonbys",
         iban = "ponsonbys",
         grade = {
@@ -6311,7 +6311,7 @@ Jobs = {
     },
 
     lsfd = {
-        label = "🚒 LSFD",
+        label = "LSFD",
         label2 = "LSFD",
         iban = "lsfd",
         grade = {
@@ -7026,7 +7026,7 @@ Jobs = {
     },
 
     bennys = {
-        label = "🔧 Benny's",
+        label = "Benny's",
         label2 = "Benny's",
         iban = "bennys",
         isMechanics = true,
@@ -7286,7 +7286,7 @@ Jobs = {
         }
     },
     mecano = {
-        label = "🔧 Mécano Sud",
+        label = "Mécano Sud",
         label2 = "Mécano Sud",
         iban = "mecano",
         isMechanics = true,
@@ -7545,7 +7545,7 @@ Jobs = {
         }
     },
     uber = {
-        label = "🚘 Uber",
+        label = "Uber",
         label2 = "Uber",
         iban = "uber",
         isSelf = true,
@@ -7740,7 +7740,7 @@ Jobs = {
     -- },
 
     concess = {
-        label = "🚗 Concessionnaire",
+        label = "Concessionnaire",
         label2 = "Concessionnaire",
         iban = "concess",
         grade = {
@@ -7900,7 +7900,7 @@ Jobs = {
         }
     },
     bikershop = {
-        label = "🛵 Concessionnaire Moto",
+        label = "Concessionnaire Moto",
         label2 = "Concessionnaire Moto",
         iban = "bikershop",
         grade = {
@@ -8048,7 +8048,7 @@ Jobs = {
         }
     },
     autoshop = {
-        label = "🚗 Concessionnaire Nord",
+        label = "Concessionnaire Nord",
         label2 = "Concessionnaire Nord",
         iban = "autoshop",
         grade = {
@@ -8235,7 +8235,7 @@ Jobs = {
         }
     },
     casino = {
-        label = "💎 Casino",
+        label = "Casino",
         label2 = "Casino",
         iban = "casino",
         grade = {
@@ -8382,7 +8382,7 @@ Jobs = {
     -- },
 
     immo = {
-        label = "🏡 Agent Immobilier",
+        label = "Agent Immobilier",
         label2 = "Agent Immobilier",
         iban = "immo",
         grade = {
@@ -9094,7 +9094,7 @@ Jobs = {
     --     }
     -- },
     jetsam = {
-        label = "⚓ Jetsam",
+        label = "Jetsam",
         label2 = "Jetsam",
         iban = "jetsam",
         grade = {
@@ -9153,7 +9153,7 @@ Jobs = {
         }
     }
     -- drivingschool = {
-    --     label = "🚦 Auto school",
+    --     label = "Auto school",
     --     label2 = "Auto school",
     --     iban = "drivingschool",
     --     grade = {
