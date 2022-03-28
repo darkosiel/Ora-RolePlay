@@ -45,9 +45,9 @@ local function makeAnim()
     TaskPlayAnim(pedPrev[manqidx], "random@mugging3", "handsup_standing_base", 2.0, 2.5, -1, 49, 0, 0, 0, 0 )
 end
 local manPos = {
-    {614.08, 2768.76, 41.08, 207.15},
+    {613.19, 2761.65, 42.08, 274.49},
     {614.00, 2748.08, 41.08, 342.78},
-    {622.54, 2748.74, 41.08, 15.93}
+    {621.22, 2765.78, 42.08, 121.69}
 }
 
 local function spawnManequin()
