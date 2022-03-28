@@ -7574,8 +7574,12 @@ Jobs = {
                     end
                 },
                 {
+                    
                     label = "Annonce",
                     onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
                         TriggerServerEvent("Job:Annonce", "Uber", "Annonce", "Chauffeur privé Uber disponible sur appel.", "CHAR_UBER", 8, "Uber")
                     end
                 },
@@ -8354,8 +8358,9 @@ Jobs = {
                 {
                 label = "Annonce",
                 onSelected = function()
-                    local text = KeyboardInput("Texte de l'annonce", nil, 255)
-                    if text ~= nil and text ~= "" then
+                    exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                    local text = exports['Snoupinput']:GetInput()
+                    if text ~= false and text ~= "" then
                         TriggerServerEvent("Job:Annonce", "Pegasus", "Annonce", text, "CHAR_PEGASUS", 8, "Pegasus")
                     end
                 end
