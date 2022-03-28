@@ -107,7 +107,7 @@ function Ora.NpcJobs.Bank:GenerateNewCardNumber()
 end
 
 function Ora.NpcJobs.Bank:GenerateNewIban()
-  local newIban = "LS-" .. math.random(100000,999999)
+  local newIban = "SA-" .. math.random(100000,999999)
   local isValid = false
 
   while (isValid == false) do
@@ -120,7 +120,7 @@ function Ora.NpcJobs.Bank:GenerateNewIban()
     )
 
     if (results ~= nil and results[1] ~= nil) then
-      newIban = "LS-" .. math.random(100000,999999)
+      newIban = "SA-" .. math.random(100000,999999)
     else 
       isValid = true
     end
