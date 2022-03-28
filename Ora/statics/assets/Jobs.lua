@@ -8402,23 +8402,23 @@ Jobs = {
         },
         garage = {
             Name = "Garage Immobilier",
-            Pos = {x = -1552.04, y = -578.52, z = 25.31},
+            Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1552.04, y = -578.52, z = 25.71, h = 300.49}
+                spawnpos = {x = -760.303405, y = 276.9277, z = 84.7320, h = 7.31228637}
             },
             Blipdata = {
-                Pos = {x = -1552.04, y = -578.52, z = 25.71},
+                Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
                 Blipcolor = 5,
                 Blipname = "Garage Immobilier"
             }
         },
         Storage = {
             {
-                Pos = {x = -1561.43, y = -572.04, z = 107.52},
-                Limit = 100,
+                Pos = {x = -717.8853, y = 260.5183105, z = 83.1377},
+                Limit = 300,
                 Name = "Coffre Immobilier"
             }
         }
