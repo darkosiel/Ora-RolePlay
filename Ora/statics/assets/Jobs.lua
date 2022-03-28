@@ -7804,7 +7804,7 @@ Jobs = {
                         local plate = GetVehicleNumberPlateText(veh)
                         print(veh)
                         print(plate)
-                        if plate == "CONCESS" then
+                        if plate == "CONCESS " then
                             DeleteEntity(veh)
                         else
                             ShowNotification("~r~Ce véhicule n'appartient pas à la concession.")
