@@ -38,7 +38,7 @@ Citizen.CreateThread(
                         RageUI.Button(
                             "Animations",
                             nil,
-                            {},
+                            {RightBadge = RageUI.BadgeStyle.Danse},
                             true,
                             function(_, _, Selected)
                                 if Selected then
@@ -54,7 +54,7 @@ Citizen.CreateThread(
                         RageUI.Button(
                             "Actions",
                             nil,
-                            {},
+                            {RightBadge = RageUI.BadgeStyle.Chapeau},
                             true,
                             function(_, _, Selected)
                                 if Selected then
@@ -70,7 +70,7 @@ Citizen.CreateThread(
                         RageUI.Button(
                             "Informations",
                             nil,
-                            {},
+                            {RightBadge = RageUI.BadgeStyle.Question},
                             true,
                             function(_, _, Selected)
                                 if Selected then
@@ -82,7 +82,7 @@ Citizen.CreateThread(
                         RageUI.Button(
                             "Paramètres",
                             nil,
-                            {},
+                            {RightBadge = RageUI.BadgeStyle.Molette},
                             true,
                             function(_, _, Selected)
                             end,
@@ -92,7 +92,7 @@ Citizen.CreateThread(
                             RageUI.Button(
                                 "Véhicule",
                                 nil,
-                                {},
+                                {RightBadge = RageUI.BadgeStyle.Voiture},
                                 true,
                                 function(_, _, Selected)
                                 end,
@@ -103,7 +103,7 @@ Citizen.CreateThread(
                             RageUI.Button(
                                 myGroup == "superadmin" and "Administration" or "Droits d'animation",
                                 nil,
-                                {},
+                                {RightBadge = RageUI.BadgeStyle.Police},
                                 true,
                                 function(_, _, Selected)
                                 end,
