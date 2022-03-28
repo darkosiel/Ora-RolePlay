@@ -1314,186 +1314,186 @@ Jobs = {
             }
         }
     },
-    fujiwaratofu = {
-        label = "🍙 Fujiwara Tofu",
-        label2 = "Fujiwara Tofu",
-        iban = "fujiwaratofu",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Fujiwara Tofu",
-                subtitle = "Actions disponibles",
-                name = "fujiwaratofu_menuperso"
-            },
-            buttons = {
-                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("fujiwaratofu")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Fujiwara Tofu", "Annonce", text, "CHAR_OSAKA", 8, "Fujiwara Tofu")
-                        end
-                    end
-                }
-            }
-        },
-        garage = {
-            Name = "Garage fujiwara tofu",
-            Pos = {x = -202.76, y = 310.14, z = 95.95},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -202.76, y = 310.14, z = 95.95, h = 285.33}
-            },
-            Blipdata = {
-                Pos = {x = -202.76, y = 310.14, z = 95.95, h = 285.33},
-                Blipcolor = 5,
-                Blipname = "Garage"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -178.94, y = 305.7, z = 96.46},
-                Limit = 500,
-                Name = "coffre_fujiwaratofu"
-            },
-            {
-                Pos = {x = -172.53, y = 308.16, z = 96.99},
-                Limit = 500,
-                Name = "coffre_fujiwaratofu_bouteilles"
-            },
-            {
-                Pos = {x = -138.46, y = 299.05, z = 97.88},
-                Limit = 200,
-                Name = "coffre_fujiwaratofu_bureau"
-            }
-        },
-        requiredService = false,
-        work = {
-            traitement2 = {
-                --tonkatsu
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -175.45, y = 301.44, z = 96.46},
-                required = "filet",
-                giveitem = "tonkatsu",
-                RemoveItem = "filet",
-                add = "~p~+ 1  Tonkatsu"
-            },
-            traitement = {
-                --Ramen
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -178.2, y = 301.4, z = 96.46},
-                required = {
-                    {name = "bouillon", count = 1},
-                    {name = "noddle", count = 1}
-                },
-                giveitem = "ramen",
-                RemoveItem = {
-                    {name = "bouillon", count = 1},
-                    {name = "noddle", count = 1}
-                },
-                add = "~p~+ 1  Ramen"
-            },
-            traitement5 = {
-                --Milkshake
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement milkshack",
-                Pos = {x = -176.58, y = 308.93, z = 96.99},
-                required = "milk",
-                giveitem = "milkshack",
-                RemoveItem = "milk",
-                add = "~p~+ 1  Milkshake"
-            },
-            traitement3 = {
-                --Onigiri
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -174.89, y = 304.67, z = 96.46},
-                required = {
-                    {name = "rice", count = 1},
-                    {name = "feuillenori", count = 1}
-                },
-                giveitem = "onigiri",
-                RemoveItem = {
-                    {name = "rice", count = 1},
-                    {name = "feuillenori", count = 1}
-                },
-                add = "~p~+ 1  Onigiri"
-            },
-            traitement4 = {
-                --sushi
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -172.2, y = 301.53, z = 96.46},
-                required = {
-                    {name = "rice", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                giveitem = "sushi",
-                RemoveItem = {
-                    {name = "rice", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                add = "~p~+ 1  Sushi"
-            }
-        }
-    },
+    -- fujiwaratofu = {
+    --     label = "🍙 Fujiwara Tofu",
+    --     label2 = "Fujiwara Tofu",
+    --     iban = "fujiwaratofu",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Fujiwara Tofu",
+    --             subtitle = "Actions disponibles",
+    --             name = "fujiwaratofu_menuperso"
+    --         },
+    --         buttons = {
+    --             -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("fujiwaratofu")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Fujiwara Tofu", "Annonce", text, "CHAR_OSAKA", 8, "Fujiwara Tofu")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage fujiwara tofu",
+    --         Pos = {x = -202.76, y = 310.14, z = 95.95},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -202.76, y = 310.14, z = 95.95, h = 285.33}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -202.76, y = 310.14, z = 95.95, h = 285.33},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -178.94, y = 305.7, z = 96.46},
+    --             Limit = 500,
+    --             Name = "coffre_fujiwaratofu"
+    --         },
+    --         {
+    --             Pos = {x = -172.53, y = 308.16, z = 96.99},
+    --             Limit = 500,
+    --             Name = "coffre_fujiwaratofu_bouteilles"
+    --         },
+    --         {
+    --             Pos = {x = -138.46, y = 299.05, z = 97.88},
+    --             Limit = 200,
+    --             Name = "coffre_fujiwaratofu_bureau"
+    --         }
+    --     },
+    --     requiredService = false,
+    --     work = {
+    --         traitement2 = {
+    --             --tonkatsu
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "planche",
+    --             Pos = {x = -175.45, y = 301.44, z = 96.46},
+    --             required = "filet",
+    --             giveitem = "tonkatsu",
+    --             RemoveItem = "filet",
+    --             add = "~p~+ 1  Tonkatsu"
+    --         },
+    --         traitement = {
+    --             --Ramen
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "planche",
+    --             Pos = {x = -178.2, y = 301.4, z = 96.46},
+    --             required = {
+    --                 {name = "bouillon", count = 1},
+    --                 {name = "noddle", count = 1}
+    --             },
+    --             giveitem = "ramen",
+    --             RemoveItem = {
+    --                 {name = "bouillon", count = 1},
+    --                 {name = "noddle", count = 1}
+    --             },
+    --             add = "~p~+ 1  Ramen"
+    --         },
+    --         traitement5 = {
+    --             --Milkshake
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "Traitement milkshack",
+    --             Pos = {x = -176.58, y = 308.93, z = 96.99},
+    --             required = "milk",
+    --             giveitem = "milkshack",
+    --             RemoveItem = "milk",
+    --             add = "~p~+ 1  Milkshake"
+    --         },
+    --         traitement3 = {
+    --             --Onigiri
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "planche",
+    --             Pos = {x = -174.89, y = 304.67, z = 96.46},
+    --             required = {
+    --                 {name = "rice", count = 1},
+    --                 {name = "feuillenori", count = 1}
+    --             },
+    --             giveitem = "onigiri",
+    --             RemoveItem = {
+    --                 {name = "rice", count = 1},
+    --                 {name = "feuillenori", count = 1}
+    --             },
+    --             add = "~p~+ 1  Onigiri"
+    --         },
+    --         traitement4 = {
+    --             --sushi
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "planche",
+    --             Pos = {x = -172.2, y = 301.53, z = 96.46},
+    --             required = {
+    --                 {name = "rice", count = 1},
+    --                 {name = "fish12", count = 1}
+    --             },
+    --             giveitem = "sushi",
+    --             RemoveItem = {
+    --                 {name = "rice", count = 1},
+    --                 {name = "fish12", count = 1}
+    --             },
+    --             add = "~p~+ 1  Sushi"
+    --         }
+    --     }
+    -- },
     taxi = {
         label = "🚕 Taxi",
         label2 = "Taxi",
@@ -2289,166 +2289,166 @@ Jobs = {
             }
         },
     },
-    avocat = {
-        label = "Cabinet Blue Dragon",
-        label2 = "Cabinet Blue Dragon",
-        iban = "avocat",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "AVOCAT",
-                salary = 150,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "ASSOCIE",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Avocat",
-                subtitle = "Actions",
-                name = "avocat_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("avocat")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Cabinet Blue Dragon", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet Blue Dragon")
-                        end
-                    end
-                }
-            }
-        },
-    },
-    avocatn = {
-        label = "Cabinet Nemesis Associate",
-        label2 = "Cabinet Nemesis Associate",
-        iban = "avocatn",
-        grade = {
-            {
-                label = "AVOCAT",
-                salary = 150,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "ASSOCIE",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Avocat",
-                subtitle = "Actions",
-                name = "avocat_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("avocatn")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Cabinet Nemesis Associate", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet Nemesis Associate")
-                        end
-                    end
-                }
-            }
-        },
-    },
-    avocatj = {
-        label = "Cabinet F&K",
-        label2 = "Cabinet F&K",
-        iban = "avocatj",
-        grade = {
-            {
-                label = "AVOCAT",
-                salary = 150,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "ASSOCIE",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Avocat",
-                subtitle = "Actions",
-                name = "avocatj_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("avocatj")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Cabinet F&K", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet F&K")
-                        end
-                    end
-                }
-            }
-        },
-    },
+    -- avocat = {
+    --     label = "Cabinet Blue Dragon",
+    --     label2 = "Cabinet Blue Dragon",
+    --     iban = "avocat",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "AVOCAT",
+    --             salary = 150,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "ASSOCIE",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Avocat",
+    --             subtitle = "Actions",
+    --             name = "avocat_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("avocat")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Cabinet Blue Dragon", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet Blue Dragon")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    -- },
+    -- avocatn = {
+    --     label = "Cabinet Nemesis Associate",
+    --     label2 = "Cabinet Nemesis Associate",
+    --     iban = "avocatn",
+    --     grade = {
+    --         {
+    --             label = "AVOCAT",
+    --             salary = 150,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "ASSOCIE",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Avocat",
+    --             subtitle = "Actions",
+    --             name = "avocat_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("avocatn")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Cabinet Nemesis Associate", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet Nemesis Associate")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    -- },
+    -- avocatj = {
+    --     label = "Cabinet F&K",
+    --     label2 = "Cabinet F&K",
+    --     iban = "avocatj",
+    --     grade = {
+    --         {
+    --             label = "AVOCAT",
+    --             salary = 150,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "ASSOCIE",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Avocat",
+    --             subtitle = "Actions",
+    --             name = "avocatj_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("avocatj")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Cabinet F&K", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet F&K")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    -- },
     night = {
         label = "Night-Club",
         label2 = "Night-Club",
@@ -4356,416 +4356,416 @@ Jobs = {
             }
         }
     },
-    usms = {
-        label = "👮🏼 US MARSHALS",
-        label2 = "US MARSHALS",
-        iban = "usms",
-        -- radios = {1,2},
-        grade = {
-            {
-                label = "candidat",
-                salary = 325,
-                name = "recrue"
-            },
-            {
-                label = "US Marshal",
-                salary = 340,
-                name = "marshal"
-            },
-            {
-                label = "Superviseur",
-                salary = 340,
-                name = "marshal2"
-            },
-            {
-                label = "Commandant de secteur",
-                salary = 360,
-                name = "marshal3"
-            },
-            {
-                label = "Assistant chef",
-                salary = 390,
-                name = "drh"
-            },
-            {
-                label = "Chef",
-                salary = 430,
-                name = "boss"
-            }
-        },
-        garage = {
-            Name = "Garage usms",
-            Pos = {x = 452.60, y = -987.21, z = 25.69},
-            Properties = {
-                type = 3,
-                Limit = 64,
-                vehicles = {},
-                spawnpos = {x = 452.15, y = -982.06, z = 25.69, h = 88.97}
-            },
-            Blipdata = {
-                Pos = {x = 452.60, y = -987.21, z = 25.69},
-                Blipcolor = 5,
-                Blipname = "Garage USMS"
-            }
-        },
-        garage2 = {
-            Name = "Helipad USMS",
-            Pos = {x = 449.92, y = -981.35, z = 43.69},
-            Properties = {
-                type = 2,
-                Limit = 10,
-                zonesize = 1.5,
-                vehicles = {
-                    {
-                        name = "annihilator",
-                        label = "Helicoptere USMS",
-                        job = true,
-                        tuning = {
-                            modXenon = false,
-                            modLivery = 0
-                        }
-                    }
-                },
-                spawnpos = {x = 449.92, y = -981.35, z = 43.69, h = 87.53}
-            },
-            Blipdata = {
-                Pos = {x = 449.92, y = -981.35, z = 43.69},
-                Blipcolor = 5,
-                Blipname = "USMS - Helipad"
-            }
-        },
-        garage3 = {
-            Name = "Garage 2 USMS",
-            Pos = {x = 436.00, y = -986.44, z = 25.69},
-            Properties = {
-                type = 3,
-                Limit = 64,
-                vehicles = {},
-                spawnpos = {x = 432.49, y = -984.28, z = 25.69, h = 175.82}
-            },
-            Blipdata = {
-                Pos = {x = 436.00, y = -986.44, z = 25.69},
-                Blipcolor = 5,
-                Blipname = "Garage 2 USMS"
-            }
-        },
-        Menu = {
-            menu = {
-                title = "USMS",
-                subtitle = "Actions disponibles",
-                name = "police_menuperso"
-            },
-            submenus = {
-                ["Actions citoyen"] = {
-                    submenu = "police_menuperso",
-                    title = "Actions citoyen",
-                    menus = {
-                        buttons = {
-                            {
-                                label = "Menotter",
-                                onSelected = function()
-                                    Police.HandcuffPly()
-                                end,
-                                ActiveFct = function()
-                                    HoverPlayer()
-                                end
-                            },
-                            {
-                                label = "Démenotter",
-                                onSelected = function()
-                                    Police.CutMenottes()
-                                end,
-                                ActiveFct = function()
-                                    HoverPlayer()
-                                end
-                            },
-                            {
-                                label = "Amendes",
-                                onSelected = function()
-                                    CreateFacture("usms")
-                                end
-                            },
-                            {
-                                label = "Test poudre à feu",
-                                onSelected = function()
-                                    Police.Powder()
-                                end
-                            },
-                            {
-                                label = "Test stupéfiant",
-                                onSelected = function()
-                                    Police.Stup()
-                                end
-                            },
-                            {
-                                label = "Photo d'identité",
-                                onSelected = function()
-                                    Police.PhotoIdent()
-                                end
-                            },
-                            {
-                                label = "Mettre dans le véhicule",
-                                onSelected = function()
-                                    Police.PutInVeh()
-                                end,
-                                ActiveFct = function()
-                                    HoverPlayer()
-                                end
-                            },
-                            {
-                                label = "Sortir du véhicule",
-                                onSelected = function()
-                                    Police.SortirVeh()
-                                end,
-                                ActiveFct = function()
-                                    HoverPlayer()
-                                end
-                            },
-                            {
-                                label = "Bracelet électronique",
-                                onSelected = function()
-                                    Police.Bracelet()
-                                end,
-                                ActiveFct = function()
-                                    HoverPlayer()
-                                end
-                            }
-                        },
-                        submenus = {}
-                    }
-                },
-                ["Actions traffic"] = {
-                    submenu = "police_menuperso",
-                    title = "Actions traffic",
-                    menus = {
-                        buttons = {
-                            {
-                                label = "Modifier la zone",
-                                onSelected = function()
-                                    Police.EditZone()
-                                end
-                            },
-                            {
-                                label = "Changer la vitesse de la zone",
-                                desc = "0 pour que les véhicules soient immobiles",
-                                onSelected = function()
-                                    Police.ChangeZone()
-                                end
-                            },
-                            {
-                                label = "Supprimer la limite de vitesse",
-                                onSelected = function()
-                                    Police.RemoveZone()
-                                end
-                            },
-                            {
-                                label = "Afficher la zone",
-                                onSelected = function()
-                                end,
-                                ActiveFct = function()
-                                    Police.ShowZone()
-                                end
-                            }
-                        },
-                        submenus = {}
-                    }
-                },
-                ["Actions véhicule"] = {
-                    submenu = "police_menuperso",
-                    title = "Actions véhicule",
-                    menus = {
-                        buttons = {
-                            {
-                                label = "Inspecter la plaque",
-                                onSelected = function()
-                                    Police.PlateCheck()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Crocheter",
-                                onSelected = function()
-                                    Police.Crocheter()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Immobiliser",
-                                onSelected = function()
-                                    Police.Immobiliser()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Désimmobiliser",
-                                onSelected = function()
-                                    Police.Desimmobiliser()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            }
-                        },
-                        submenus = {}
-                    }
-                },
-                ["Action objets"] = {
-                    submenu = "police_menuperso",
-                    title = "Placer objets",
-                    menus = {
-                        buttons = {
-                            {
-                                label = "Mettre une herse",
-                                onSelected = function()
-                                    useHerse()
-                                end
-                            },
-                            {
-                                label = "Mettre un cone",
-                                onSelected = function()
-                                    useCone()
-                                end
-                            },
-                            {
-                                label = "Mettre une barriere",
-                                onSelected = function()
-                                    useBarrier()
-                                end
-                            },
-                            {
-                                label = "Supprimer herse",
-                                onSelected = function()
-                                    DeleteHerse()
-                                end
-                            },
-                            {
-                                label = "Supprimer un cone",
-                                onSelected = function()
-                                    DeleteCone()
-                                end
-                            },
-                            {
-                                label = "Supprimer une barriere",
-                                onSelected = function()
-                                    DeleteBarrier()
-                                end
-                            }
-                        },
-                        submenu = {}
-                    }
-                },
-                ["Action renforts"] = {
-                    submenu = "police_menuperso",
-                    title = "Renforts",
-                    menus = {
-                        buttons = {
-                            {
-                                label = "Renforts",
-                                onSelected = function()
-                                    local plyCoords = GetEntityCoords(PlayerPedId())
-                                    local x, y, z = table.unpack(plyCoords)
-                                    TriggerServerEvent(
-                                        "call:makeCall",
-                                        "usms",
-                                        {x = x, y = y, z = z},
-                                        "Besoin de renforts\n~b~Code : ~s~2 \n~b~Importance : ~s~Légère"
-                                    )
-                                end,
-                                ActiveFct = function()
-                                end
-                            },
-                            {
-                                label = "Renforts ~o~important",
-                                onSelected = function()
-                                    local plyCoords = GetEntityCoords(PlayerPedId())
-                                    local x, y, z = table.unpack(plyCoords)
-                                    TriggerServerEvent(
-                                        "call:makeCall",
-                                        "usms",
-                                        {x = x, y = y, z = z},
-                                        "Besoin de renforts\n~b~Code : ~s~3 \n~b~Importance : ~o~Importante"
-                                    )
-                                end,
-                                ActiveFct = function()
-                                end
-                            },
-                            {
-                                label = "Renforts ~r~~h~urgent",
-                                onSelected = function()
-                                    local plyCoords = GetEntityCoords(PlayerPedId())
-                                    local x, y, z = table.unpack(plyCoords)
-                                    TriggerServerEvent(
-                                        "call:makeCall",
-                                        "usms",
-                                        {x = x, y = y, z = z},
-                                        "Besoin de renforts\n~b~Code : ~s~99 \n~b~Importance : ~r~~h~URGENTE"
-                                    )
-                                    Police.code99()
-                                end,
-                                ActiveFct = function()
-                                end
-                            }
-                        },
-                        submenu = {}
-                    }
-                }
-            },
-            buttons = {
-                -- {label="Activer/Désactiver le tracking",onSelected=function()
-                --     Police.ActivateTrack()
-                -- end},
-                {
-                    label = "Informations effectifs",
-                    onSelected = function()
-                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "usms")                    
-                    end
-                },
-                {
-                    label = "Actions Directeur",
-                    onSelected = function()
-                        if Ora.Identity.Job:GetName() == "usms" and Ora.Identity.Job:Get().gradenum == 6 then
-                            RageUI.CloseAll()
-                            Wait(100)
-                            RageUI.Visible(RMenu:Get("jobs", "usms_director"), true)
-                        end
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "USMS", "Annonce", text, "CHAR_FIB", 8)
-                        end
-                    end
-                }
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = 485.58, y = -996.10, z = 29.68},
-                Limit = 99999999,
-                Name = "coffre USMS"
-            },
-            {
-                Pos = {x = 462.46, y = -980.89, z = 29.68},
-                Limit = 99999999,
-                Name = "coffre cuisine"
-            },
-            {
-                Pos = {x = 474.83, y = -995.82, z = 25.27},
-                Limit = 99999999,
-                Name = "coffre USMS Saisies"
-            }
-        }
-    },
+    -- usms = {
+    --     label = "👮🏼 US MARSHALS",
+    --     label2 = "US MARSHALS",
+    --     iban = "usms",
+    --     -- radios = {1,2},
+    --     grade = {
+    --         {
+    --             label = "candidat",
+    --             salary = 325,
+    --             name = "recrue"
+    --         },
+    --         {
+    --             label = "US Marshal",
+    --             salary = 340,
+    --             name = "marshal"
+    --         },
+    --         {
+    --             label = "Superviseur",
+    --             salary = 340,
+    --             name = "marshal2"
+    --         },
+    --         {
+    --             label = "Commandant de secteur",
+    --             salary = 360,
+    --             name = "marshal3"
+    --         },
+    --         {
+    --             label = "Assistant chef",
+    --             salary = 390,
+    --             name = "drh"
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 430,
+    --             name = "boss"
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage usms",
+    --         Pos = {x = 452.60, y = -987.21, z = 25.69},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 64,
+    --             vehicles = {},
+    --             spawnpos = {x = 452.15, y = -982.06, z = 25.69, h = 88.97}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = 452.60, y = -987.21, z = 25.69},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage USMS"
+    --         }
+    --     },
+    --     garage2 = {
+    --         Name = "Helipad USMS",
+    --         Pos = {x = 449.92, y = -981.35, z = 43.69},
+    --         Properties = {
+    --             type = 2,
+    --             Limit = 10,
+    --             zonesize = 1.5,
+    --             vehicles = {
+    --                 {
+    --                     name = "annihilator",
+    --                     label = "Helicoptere USMS",
+    --                     job = true,
+    --                     tuning = {
+    --                         modXenon = false,
+    --                         modLivery = 0
+    --                     }
+    --                 }
+    --             },
+    --             spawnpos = {x = 449.92, y = -981.35, z = 43.69, h = 87.53}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = 449.92, y = -981.35, z = 43.69},
+    --             Blipcolor = 5,
+    --             Blipname = "USMS - Helipad"
+    --         }
+    --     },
+    --     garage3 = {
+    --         Name = "Garage 2 USMS",
+    --         Pos = {x = 436.00, y = -986.44, z = 25.69},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 64,
+    --             vehicles = {},
+    --             spawnpos = {x = 432.49, y = -984.28, z = 25.69, h = 175.82}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = 436.00, y = -986.44, z = 25.69},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage 2 USMS"
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "USMS",
+    --             subtitle = "Actions disponibles",
+    --             name = "police_menuperso"
+    --         },
+    --         submenus = {
+    --             ["Actions citoyen"] = {
+    --                 submenu = "police_menuperso",
+    --                 title = "Actions citoyen",
+    --                 menus = {
+    --                     buttons = {
+    --                         {
+    --                             label = "Menotter",
+    --                             onSelected = function()
+    --                                 Police.HandcuffPly()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 HoverPlayer()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Démenotter",
+    --                             onSelected = function()
+    --                                 Police.CutMenottes()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 HoverPlayer()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Amendes",
+    --                             onSelected = function()
+    --                                 CreateFacture("usms")
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Test poudre à feu",
+    --                             onSelected = function()
+    --                                 Police.Powder()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Test stupéfiant",
+    --                             onSelected = function()
+    --                                 Police.Stup()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Photo d'identité",
+    --                             onSelected = function()
+    --                                 Police.PhotoIdent()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Mettre dans le véhicule",
+    --                             onSelected = function()
+    --                                 Police.PutInVeh()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 HoverPlayer()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Sortir du véhicule",
+    --                             onSelected = function()
+    --                                 Police.SortirVeh()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 HoverPlayer()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Bracelet électronique",
+    --                             onSelected = function()
+    --                                 Police.Bracelet()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 HoverPlayer()
+    --                             end
+    --                         }
+    --                     },
+    --                     submenus = {}
+    --                 }
+    --             },
+    --             ["Actions traffic"] = {
+    --                 submenu = "police_menuperso",
+    --                 title = "Actions traffic",
+    --                 menus = {
+    --                     buttons = {
+    --                         {
+    --                             label = "Modifier la zone",
+    --                             onSelected = function()
+    --                                 Police.EditZone()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Changer la vitesse de la zone",
+    --                             desc = "0 pour que les véhicules soient immobiles",
+    --                             onSelected = function()
+    --                                 Police.ChangeZone()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Supprimer la limite de vitesse",
+    --                             onSelected = function()
+    --                                 Police.RemoveZone()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Afficher la zone",
+    --                             onSelected = function()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 Police.ShowZone()
+    --                             end
+    --                         }
+    --                     },
+    --                     submenus = {}
+    --                 }
+    --             },
+    --             ["Actions véhicule"] = {
+    --                 submenu = "police_menuperso",
+    --                 title = "Actions véhicule",
+    --                 menus = {
+    --                     buttons = {
+    --                         {
+    --                             label = "Inspecter la plaque",
+    --                             onSelected = function()
+    --                                 Police.PlateCheck()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 Mecano.ShowMarker()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Crocheter",
+    --                             onSelected = function()
+    --                                 Police.Crocheter()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 Mecano.ShowMarker()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Immobiliser",
+    --                             onSelected = function()
+    --                                 Police.Immobiliser()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 Mecano.ShowMarker()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Désimmobiliser",
+    --                             onSelected = function()
+    --                                 Police.Desimmobiliser()
+    --                             end,
+    --                             ActiveFct = function()
+    --                                 Mecano.ShowMarker()
+    --                             end
+    --                         }
+    --                     },
+    --                     submenus = {}
+    --                 }
+    --             },
+    --             ["Action objets"] = {
+    --                 submenu = "police_menuperso",
+    --                 title = "Placer objets",
+    --                 menus = {
+    --                     buttons = {
+    --                         {
+    --                             label = "Mettre une herse",
+    --                             onSelected = function()
+    --                                 useHerse()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Mettre un cone",
+    --                             onSelected = function()
+    --                                 useCone()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Mettre une barriere",
+    --                             onSelected = function()
+    --                                 useBarrier()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Supprimer herse",
+    --                             onSelected = function()
+    --                                 DeleteHerse()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Supprimer un cone",
+    --                             onSelected = function()
+    --                                 DeleteCone()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Supprimer une barriere",
+    --                             onSelected = function()
+    --                                 DeleteBarrier()
+    --                             end
+    --                         }
+    --                     },
+    --                     submenu = {}
+    --                 }
+    --             },
+    --             ["Action renforts"] = {
+    --                 submenu = "police_menuperso",
+    --                 title = "Renforts",
+    --                 menus = {
+    --                     buttons = {
+    --                         {
+    --                             label = "Renforts",
+    --                             onSelected = function()
+    --                                 local plyCoords = GetEntityCoords(PlayerPedId())
+    --                                 local x, y, z = table.unpack(plyCoords)
+    --                                 TriggerServerEvent(
+    --                                     "call:makeCall",
+    --                                     "usms",
+    --                                     {x = x, y = y, z = z},
+    --                                     "Besoin de renforts\n~b~Code : ~s~2 \n~b~Importance : ~s~Légère"
+    --                                 )
+    --                             end,
+    --                             ActiveFct = function()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Renforts ~o~important",
+    --                             onSelected = function()
+    --                                 local plyCoords = GetEntityCoords(PlayerPedId())
+    --                                 local x, y, z = table.unpack(plyCoords)
+    --                                 TriggerServerEvent(
+    --                                     "call:makeCall",
+    --                                     "usms",
+    --                                     {x = x, y = y, z = z},
+    --                                     "Besoin de renforts\n~b~Code : ~s~3 \n~b~Importance : ~o~Importante"
+    --                                 )
+    --                             end,
+    --                             ActiveFct = function()
+    --                             end
+    --                         },
+    --                         {
+    --                             label = "Renforts ~r~~h~urgent",
+    --                             onSelected = function()
+    --                                 local plyCoords = GetEntityCoords(PlayerPedId())
+    --                                 local x, y, z = table.unpack(plyCoords)
+    --                                 TriggerServerEvent(
+    --                                     "call:makeCall",
+    --                                     "usms",
+    --                                     {x = x, y = y, z = z},
+    --                                     "Besoin de renforts\n~b~Code : ~s~99 \n~b~Importance : ~r~~h~URGENTE"
+    --                                 )
+    --                                 Police.code99()
+    --                             end,
+    --                             ActiveFct = function()
+    --                             end
+    --                         }
+    --                     },
+    --                     submenu = {}
+    --                 }
+    --             }
+    --         },
+    --         buttons = {
+    --             -- {label="Activer/Désactiver le tracking",onSelected=function()
+    --             --     Police.ActivateTrack()
+    --             -- end},
+    --             {
+    --                 label = "Informations effectifs",
+    --                 onSelected = function()
+    --                     TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "usms")                    
+    --                 end
+    --             },
+    --             {
+    --                 label = "Actions Directeur",
+    --                 onSelected = function()
+    --                     if Ora.Identity.Job:GetName() == "usms" and Ora.Identity.Job:Get().gradenum == 6 then
+    --                         RageUI.CloseAll()
+    --                         Wait(100)
+    --                         RageUI.Visible(RMenu:Get("jobs", "usms_director"), true)
+    --                     end
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "USMS", "Annonce", text, "CHAR_FIB", 8)
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = 485.58, y = -996.10, z = 29.68},
+    --             Limit = 99999999,
+    --             Name = "coffre USMS"
+    --         },
+    --         {
+    --             Pos = {x = 462.46, y = -980.89, z = 29.68},
+    --             Limit = 99999999,
+    --             Name = "coffre cuisine"
+    --         },
+    --         {
+    --             Pos = {x = 474.83, y = -995.82, z = 25.27},
+    --             Limit = 99999999,
+    --             Name = "coffre USMS Saisies"
+    --         }
+    --     }
+    -- },
     -- merryweather = {
     --     label = "👁‍🗨 Merry Weather",
     --     label2 = "Merry Weather",
@@ -5369,93 +5369,93 @@ Jobs = {
         }
 
     },
-    psychologue = {
-        label = "🤓 Psychologue",
-        label2 = "Psychologue",
-        iban = "psychologue",
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        -- Storage = {
-        --     {
-        --         Pos = {x = -1904.99, y = -570.9, z = 18.1},
-        --         Limit = 200,
-        --         Name = "coffre_psycho"
-        --     }
-        -- },
-        -- garage = {
-        --     Name = "Garage Psychologue",
-        --     Pos = {x = -1010.35, y = 510.64, z = 78.57},
-        --     Properties = {
-        --         type = 3,
-        --         Limit = 20,
-        --         vehicles = {},
-        --         spawnpos = {x = -1010.35, y = 510.64, z = 78.57, h = 189.36}
-        --     },
-        --     Blipdata = {
-        --         Pos = {x = -1010.35, y = 510.64, z = 78.57},
-        --         Blipcolor = 7,
-        --         Blipname = "Garage Psychologue"
-        --     }
-        -- },
-        Menu = {
-            menu = {
-                title = "Psychologue",
-                subtitle = "Action",
-                name = "psycho_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("psychologue")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Psychologue", "Annonce", text, "CHAR_PSYCHO", 8, "Psychologue")
-                        end
-                    end
-                }
-            }
-        }
-    },
+    -- psychologue = {
+    --     label = "🤓 Psychologue",
+    --     label2 = "Psychologue",
+    --     iban = "psychologue",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     -- Storage = {
+    --     --     {
+    --     --         Pos = {x = -1904.99, y = -570.9, z = 18.1},
+    --     --         Limit = 200,
+    --     --         Name = "coffre_psycho"
+    --     --     }
+    --     -- },
+    --     -- garage = {
+    --     --     Name = "Garage Psychologue",
+    --     --     Pos = {x = -1010.35, y = 510.64, z = 78.57},
+    --     --     Properties = {
+    --     --         type = 3,
+    --     --         Limit = 20,
+    --     --         vehicles = {},
+    --     --         spawnpos = {x = -1010.35, y = 510.64, z = 78.57, h = 189.36}
+    --     --     },
+    --     --     Blipdata = {
+    --     --         Pos = {x = -1010.35, y = 510.64, z = 78.57},
+    --     --         Blipcolor = 7,
+    --     --         Blipname = "Garage Psychologue"
+    --     --     }
+    --     -- },
+    --     Menu = {
+    --         menu = {
+    --             title = "Psychologue",
+    --             subtitle = "Action",
+    --             name = "psycho_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("psychologue")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Psychologue", "Annonce", text, "CHAR_PSYCHO", 8, "Psychologue")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     }
+    -- },
     binco = {
         label = "💼 Binco",
         label2 = "Binco",
@@ -7592,61 +7592,61 @@ Jobs = {
             }
         },
     },
-    soinsnaturels = {
-        label = "Soins Naturels",
-        label2 = "soins naturels",
-        iban = "soinsnaturels",
-        grade = {
-            {
-                label = "CDD",
-                salary = 0,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 0,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 0,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 0,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 0,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Soins Naturels Gaël",
-                subtitle = "Action",
-                name = "Sng_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("sngael")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                }
-            }
-        },
-    },
+    -- soinsnaturels = {
+    --     label = "Soins Naturels",
+    --     label2 = "soins naturels",
+    --     iban = "soinsnaturels",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 0,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 0,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 0,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 0,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 0,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Soins Naturels Gaël",
+    --             subtitle = "Action",
+    --             name = "Sng_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("sngael")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             }
+    --         }
+    --     },
+    -- },
     -- ltd = {
     --     label = "🍕 Épicier",
     --     label2 = "Épicier",
@@ -8281,93 +8281,93 @@ Jobs = {
             }
         }
     },
-    pegasus = {
-        label = "Pegasus",
-        label2 = "Pegasus",
-        iban = "pegasus",
-        grade = {
-            {
-                label = "CDD",
-                salary = 0,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 0,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 0,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 0,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 0,
-                name = "boss",
-                show = true
-            }
-        },
-        garage = {
-            Name = "Garage Pegasus",
-            Pos = {x = -1661.75, y = -3159.05, z = 13.99},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -1661.75, y = -3159.05, z = 13.99, h = 329.37}
-            },
-            Blipdata = {
-                Pos = {x = -1661.75, y = -3159.05, z = 13.99},
-                Blipcolor = 5,
-                Blipname = "Garage Pegasus"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -1631.18, y = -3163.04, z = 12.99},
-                Limit = 500,
-                Name = "coffre pegasus"
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Pegasus",
-                subtitle = "Actions disponibles",
-                name = "pegasus_menuperso"
-            },
-            buttons = {
-                {
-                label = "Facture",
-                onSelected = function()
-                    CreateFacture("pegasus")
-                end,
-                ActiveFct = function()
-                    HoverPlayer()
-                end
-                },
-                {
-                label = "Annonce",
-                onSelected = function()
-                    exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                    local text = exports['Snoupinput']:GetInput()
-                    if text ~= false and text ~= "" then
-                        TriggerServerEvent("Job:Annonce", "Pegasus", "Annonce", text, "CHAR_PEGASUS", 8, "Pegasus")
-                    end
-                end
-                }
-            }    
-        }    
-    },
+    -- pegasus = {
+    --     label = "Pegasus",
+    --     label2 = "Pegasus",
+    --     iban = "pegasus",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 0,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 0,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 0,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 0,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 0,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Pegasus",
+    --         Pos = {x = -1661.75, y = -3159.05, z = 13.99},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -1661.75, y = -3159.05, z = 13.99, h = 329.37}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -1661.75, y = -3159.05, z = 13.99},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage Pegasus"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -1631.18, y = -3163.04, z = 12.99},
+    --             Limit = 500,
+    --             Name = "coffre pegasus"
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Pegasus",
+    --             subtitle = "Actions disponibles",
+    --             name = "pegasus_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --             label = "Facture",
+    --             onSelected = function()
+    --                 CreateFacture("pegasus")
+    --             end,
+    --             ActiveFct = function()
+    --                 HoverPlayer()
+    --             end
+    --             },
+    --             {
+    --             label = "Annonce",
+    --             onSelected = function()
+    --                 exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                 local text = exports['Snoupinput']:GetInput()
+    --                 if text ~= false and text ~= "" then
+    --                     TriggerServerEvent("Job:Annonce", "Pegasus", "Annonce", text, "CHAR_PEGASUS", 8, "Pegasus")
+    --                 end
+    --             end
+    --             }
+    --         }    
+    --     }    
+    -- },
 
     immo = {
         label = "🏡 Agent Immobilier",
@@ -8571,98 +8571,98 @@ Jobs = {
             }
         }
     },
-    billards = {
-        label = "8 Billards",
-        label2 = "Billards",
-        iban = "billards",
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        garage = {
-            Name = "Garage 8 billards",
-            Pos = {x = -1591.84, y = -1013.39, z = 12.02},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -1591.84, y = -1013.39, z = 12.02, h = 123.53}
-            },
-            Blipdata = {
-                Pos = {x = -1591.84, y = -1013.39, z = 12.02},
-                Blipcolor = 5,
-                Blipname = "Garage 8 billards"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -1586.14, y = -995.74, z = 12.08},
-                Limit = 1000,
-                Name = "Frigo 8 billards"
-            },
-            {
-                Pos = {x = -1574.76, y = -982.47, z = 12.08},
-                Limit = 100,
-                Name = "Coffre Patron"
-            }
-        },
-        Menu = {
-            menu = {
-                title = "8 Billards",
-                subtitle = "Actions disponibles",
-                name = "billards_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facture",
-                    onSelected = function()
-                        CreateFacture("billards")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "8 Billards", "Annonce", text, "CHAR_BILLARDS", 8, "8 Billards")
-                        end
-                    end
-                }
-            }
-        }
-    },
+    -- billards = {
+    --     label = "8 Billards",
+    --     label2 = "Billards",
+    --     iban = "billards",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage 8 billards",
+    --         Pos = {x = -1591.84, y = -1013.39, z = 12.02},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -1591.84, y = -1013.39, z = 12.02, h = 123.53}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -1591.84, y = -1013.39, z = 12.02},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage 8 billards"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -1586.14, y = -995.74, z = 12.08},
+    --             Limit = 1000,
+    --             Name = "Frigo 8 billards"
+    --         },
+    --         {
+    --             Pos = {x = -1574.76, y = -982.47, z = 12.08},
+    --             Limit = 100,
+    --             Name = "Coffre Patron"
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "8 Billards",
+    --             subtitle = "Actions disponibles",
+    --             name = "billards_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facture",
+    --                 onSelected = function()
+    --                     CreateFacture("billards")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "8 Billards", "Annonce", text, "CHAR_BILLARDS", 8, "8 Billards")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     }
+    -- },
     bahamas = {
         label = "Bahamas",
         label2 = "Bahamas",
@@ -8939,148 +8939,148 @@ Jobs = {
             }
         }
     },
-    henhouse = {
-        label = "The Hen House",
-        label2 = "The Hen House",
-        iban = "henhouse",
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        garage = {
-            Name = "Garage The Hen House",
-            Pos = {x = -313.14, y = 6275.55, z = 30.50},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -313.14, y = 6275.55, z = 30.50, h = 140.74}
-            },
-            Blipdata = {
-                Pos = {x = -313.14, y = 6275.55, z = 30.50},
-                Blipcolor = 5,
-                Blipname = "Garage The Hen House"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -294.92, y = 6264.51, z = 30.48},
-                Limit = 800,
-                Name = "Bar Hen House"
-            },
-            {
-                Pos = {x = -300.56, y = 6272.43, z = 30.48},
-                Limit = 800,
-                Name = "frigo2 Hen House"
-            },
-            {
-                Pos = {x = -292.31, y = 6265.57, z = 33.80},
-                Limit = 100,
-                Name = "Coffre Boss Hen House"
-            }
-        },
-        requiredService = false,
-        work = {
-            traitement = {
-                --Coktail
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "cocktail",
-                Pos = {x = -297.18, y = 6261.88, z = 31.48},
-                required = {
-                    {name = "vodka", count = 1},
-                    {name = "milk", count = 3}
-                },
-                giveitem = "boissonhenhouse",
-                RemoveItem = {
-                    {name = "vodka", count = 1},
-                    {name = "milk", count = 3}
-                },
-                add = "~p~+ 1  Coktail HenHouse"
-            },
-            traitement2 = {
-                --Saucisse
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement Saucisse",
-                Pos = {x = -303.70, y = 6265.58, z = 31.48},
-                required = "meat2",
-                giveitem = "saucisse",
-                RemoveItem = "chicken",
-                add = "~p~+ 1  Saucisse fumée"
-            },
-            traitement3 = {
-                --assiete de gibier
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "cuisson",
-                Pos = {x = -297.96, y = 6271.77, z = 31.48},
-                required = "meat1",
-                giveitem = "plathenhouse",
-                RemoveItem = "meat1",
-                add = "~p~+ 1  Assiete de Gibier"
-            }
-        },
-        Menu = {
-            menu = {
-                title = "TheHenHouse",
-                subtitle = "Actions disponibles",
-                name = "henhouse_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facture",
-                    onSelected = function()
-                        CreateFacture("henhouse")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "The Hen House", "Annonce", text, "CHAR_HENHOUSE", 8, "The Hen House")
-                        end
-                    end
-                }
-            }
-        }
-    },
+    -- henhouse = {
+    --     label = "The Hen House",
+    --     label2 = "The Hen House",
+    --     iban = "henhouse",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage The Hen House",
+    --         Pos = {x = -313.14, y = 6275.55, z = 30.50},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -313.14, y = 6275.55, z = 30.50, h = 140.74}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -313.14, y = 6275.55, z = 30.50},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage The Hen House"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -294.92, y = 6264.51, z = 30.48},
+    --             Limit = 800,
+    --             Name = "Bar Hen House"
+    --         },
+    --         {
+    --             Pos = {x = -300.56, y = 6272.43, z = 30.48},
+    --             Limit = 800,
+    --             Name = "frigo2 Hen House"
+    --         },
+    --         {
+    --             Pos = {x = -292.31, y = 6265.57, z = 33.80},
+    --             Limit = 100,
+    --             Name = "Coffre Boss Hen House"
+    --         }
+    --     },
+    --     requiredService = false,
+    --     work = {
+    --         traitement = {
+    --             --Coktail
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "cocktail",
+    --             Pos = {x = -297.18, y = 6261.88, z = 31.48},
+    --             required = {
+    --                 {name = "vodka", count = 1},
+    --                 {name = "milk", count = 3}
+    --             },
+    --             giveitem = "boissonhenhouse",
+    --             RemoveItem = {
+    --                 {name = "vodka", count = 1},
+    --                 {name = "milk", count = 3}
+    --             },
+    --             add = "~p~+ 1  Coktail HenHouse"
+    --         },
+    --         traitement2 = {
+    --             --Saucisse
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "Traitement Saucisse",
+    --             Pos = {x = -303.70, y = 6265.58, z = 31.48},
+    --             required = "meat2",
+    --             giveitem = "saucisse",
+    --             RemoveItem = "chicken",
+    --             add = "~p~+ 1  Saucisse fumée"
+    --         },
+    --         traitement3 = {
+    --             --assiete de gibier
+    --             type = "traitement",
+    --             workSize = 1.20,
+    --             blipcolor = 7,
+    --             blipname = "cuisson",
+    --             Pos = {x = -297.96, y = 6271.77, z = 31.48},
+    --             required = "meat1",
+    --             giveitem = "plathenhouse",
+    --             RemoveItem = "meat1",
+    --             add = "~p~+ 1  Assiete de Gibier"
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "TheHenHouse",
+    --             subtitle = "Actions disponibles",
+    --             name = "henhouse_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facture",
+    --                 onSelected = function()
+    --                     CreateFacture("henhouse")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "The Hen House", "Annonce", text, "CHAR_HENHOUSE", 8, "The Hen House")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     }
+    -- },
     jetsam = {
         label = "⚓ Jetsam",
         label2 = "Jetsam",
