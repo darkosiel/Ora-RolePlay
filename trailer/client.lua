@@ -82,7 +82,7 @@ RegisterCommand('detach', function()
                 DetachEntity(vehicle, false, true)
                 return drawNotification('Véhicule bien détaché')
             else
-                return drawNotification('Véhicule pas attaché)
+                return drawNotification('Véhicule pas attaché')
             end
         else
             return drawNotification('Vous n\'êtes pas conducteur')
