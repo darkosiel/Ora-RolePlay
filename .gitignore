@@ -12,3 +12,5 @@ rcore_radiocar/config.lua
 rcore_television/config.lua
 xradio/config.lua
 .idea/
+Ora/gameplay/shops/clothes/cl_barber.lua
+*.lua
