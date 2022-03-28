@@ -22,6 +22,7 @@ Ora.Anticheat.ObjectWhitelist = {
   [`xm_prop_x17_tool_draw_01a`] = true,
   [974883178] = true,
   [-303457828] = true,
+  [-901038522] = true,
   [1463746489] = true,
   [977923025] = true,
   [1760825203] = true,
