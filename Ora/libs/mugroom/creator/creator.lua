@@ -76,7 +76,7 @@ AddEventHandler(
             "spawned:requestData",
             function(ActiveCharacter, ActionID, Table, Identity, Jobs, Users)
                 TriggerEvent("es:activateMoney", Users[1].money)
-                TriggerEvent("es:activateBlackMoney", Users[1].black_money)
+                --TriggerEvent("es:activateBlackMoney", Users[1].black_money)
                 player_group = Users[1].group
                 SetMyIdentity(Identity)
                 setOldF(Users[1].limit_farm)

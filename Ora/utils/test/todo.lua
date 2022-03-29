@@ -1,5 +1,5 @@
 TriggerEvent("es:activateMoney",0)
-TriggerEvent("es:activateBlackMoney",0)
+--TriggerEvent("es:activateBlackMoney",0)
 TriggerEvent("es:activateJob","👻 Police")
 TriggerEvent("es:activateJob2","👁 Families")
 
