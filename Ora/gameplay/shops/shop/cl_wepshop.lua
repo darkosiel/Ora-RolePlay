@@ -765,9 +765,9 @@ local private_conf = {
 }
 
 local private_confrancho = {
-    Pos = {x = 821.3031, y = -2156.0778, z = 29.6191, a = 355.9076},
+    Pos = {x = 821.3031, y = -2156.0778, z = 29.6191, a = 354.9076},
     Ped = {
-        Pos = {x = 821.3031, y = -2156.0778, z = 29.6191, a = 355.9076},
+        Pos = {x = 821.3031, y = -2156.0778, z = 29.6191, a = 354.9076},
         model = "s_m_y_ammucity_01",
         name = "John"
     },
@@ -870,7 +870,7 @@ local function build()
     v = weapon_config
     k = private_conf
     y = private_conf_paleto
-    x = private_arme
+    -- x = private_arme
     b = private_confrancho
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
@@ -993,41 +993,41 @@ local function build()
     )
     -- Vendeur armes
 
-    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
-    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+    -- Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
+    -- Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
 
-    RMenu.Add(
-        "ammunation public",
-        "main public",
-        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    )
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "main public",
+    --     RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    -- )
 
-    RMenu.Add(
-        "ammunation public",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation public",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "blanches",
+    --     RageUI.CreateSubMenu(
+    --         RMenu:Get("ammunation public", "main public"),
+    --         nil,
+    --         "Armes blanches disponibles",
+    --         10,
+    --         100,
+    --         "shopui_title_gunclub",
+    --         "shopui_title_gunclub"
+    --     )
+    -- )
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "weapons",
+    --     RageUI.CreateSubMenu(
+    --         RMenu:Get("ammunation public", "main public"),
+    --         nil,
+    --         "Armes disponibles",
+    --         10,
+    --         100,
+    --         "shopui_title_gunclub",
+    --         "shopui_title_gunclub"
+    --     )
+    -- )
     
     -- ----------------------
 
