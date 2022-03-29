@@ -1024,7 +1024,7 @@ local function build()
     d = weapon_configsandy
     e = private_confsandy
     f = weapon_configcentre
-    d = private_confcentre
+    g = private_confcentre
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
         SetBlipSprite(blip, v.Blips.sprite)
@@ -1335,8 +1335,8 @@ local function build()
         )
     )
 
-    Zone:Add(f.Pos, f.EnterZone, f.ExitZone, i, 2.5)
-    Ped:Add(f.Ped.name, f.Ped.model, f.Ped.Pos, nil)
+    Zone:Add(g.Pos, g.EnterZone, g.ExitZone, i, 2.5)
+    Ped:Add(g.Ped.name, g.Ped.model, g.Ped.Pos, nil)
     RMenu.Add(
         "ammunation privé",
         "main private",
