@@ -4027,6 +4027,60 @@ local Shops =
             }
         },
         {
+            Title = "Fournisseur munitions Sandy",
+            Hidden = true,
+            Pos = {x = 1695.6730, y = 3759.4860, z = 33.7053, a = 138.7242}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "a_m_y_yoga_01",
+                name = "Mike"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Fournisseur munitions Center",
+            Hidden = true,
+            Pos = {x = 8.1553, y = -1109.7742, z = 28.7972, a = 349.1873}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "a_m_y_yoga_01",
+                name = "Mike"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
             Title = "Fournisseur USMS",
             Hidden = true,
             RestrictedJob = {"usms"},
