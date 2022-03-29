@@ -254,7 +254,7 @@ function Player.CreatePlayer(_source)
     -- TODO Fix
 
     MySQL.Async.fetchAll(
-        "SELECT `uuid`,`money`,`black_money`,`xp`,`group`, `strength` FROM `users` WHERE `identifier` = @identifiers",
+        "SELECT `uuid`,`money`,`xp`,`group`, `strength` FROM `users` WHERE `identifier` = @identifiers",
         {
             ["@identifiers"] = FLT.identifers.steam
         },
@@ -262,11 +262,11 @@ function Player.CreatePlayer(_source)
             if result[1] ~= nil then
                 FLT.uuid = result[1].uuid
                 FLT.money = result[1].money
-                FLT.black_money = result[1].black_money
+                --FLT.black_money = result[1].black_money
                 FLT.group = result[1].group
                 FLT.xp = tonumber(result[1].xp)
                 FLT.strength = math.tointeger(result[1].strength)
-                TriggerClientEvent("es:activateBlackMoney", self.source, self.black_money)
+                --TriggerClientEvent("es:activateBlackMoney", self.source, self.black_money)
                 TriggerClientEvent("es:activateMoney", self.source, self.money)
                 
             end
@@ -351,7 +351,7 @@ function Player.CreatePlayer(_source)
         )
     end
 
-    FLT.removeBlackMoney = function(m)
+--[[    FLT.removeBlackMoney = function(m)
         if m ~= nil then
             if m < 0 then
                 TriggerEvent("banImACheater", FLT.source)
@@ -364,7 +364,7 @@ function Player.CreatePlayer(_source)
                 TriggerClientEvent("es:removedBlackMoney", FLT.source, m, false, FLT.black_money)
             end
         end
-    end
+    end]]
 
     FLT.removeMoney = function(m)
         if m ~= nil then
@@ -393,7 +393,7 @@ function Player.CreatePlayer(_source)
         end
     end
 
-    FLT.addBlackMoney = function(m)
+    --[[FLT.addBlackMoney = function(m)
         if m ~= nil then
             if m < 0 then
                 TriggerEvent("banImACheater", FLT.source)
@@ -405,15 +405,15 @@ function Player.CreatePlayer(_source)
                 TriggerEvent(Ora.Payment.Fake:GetServerEventName() .. ":SERVERSIDE", FLT.source, {AMOUNT = m, SOURCE = "player.addBlackMoney", LEGIT = true})
             end
         end
-    end
+    end]]
 
     FLT.getMoney = function(m)
         return FLT.money
     end
 
-    FLT.getBlackMoney = function(m)
+    --[[FLT.getBlackMoney = function(m)
         return FLT.black_money
-    end
+    end]]
 
     return FLT
 end
@@ -496,14 +496,14 @@ AddEventHandler(
         player.addMoney(price)
     end
 )
-RegisterServerEvent("black_money:Pay22")
+--[[RegisterServerEvent("black_money:Pay22")
 AddEventHandler(
     "black_money:Pay22",
     function(price, s)
         local player = Player.GetPlayer(s)
         player.addBlackMoney(price)
     end
-)
+)]]
 function Player.Save()
     for k, v in pairs(Users) do
         MySQL.Async.execute(
@@ -555,7 +555,7 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("black_money:Add2")
+--[[RegisterServerEvent("black_money:Add2")
 AddEventHandler(
     "black_money:Add2",
     function(price, xxxx)
@@ -569,7 +569,7 @@ AddEventHandler(
         end
         player.addBlackMoney(price)
     end
-)
+)]]
 
 RegisterServerEvent("money:Remove2")
 AddEventHandler(
@@ -580,32 +580,32 @@ AddEventHandler(
     end
 )
 
-RegisterServerEvent("black_money:Add")
+--[[RegisterServerEvent("black_money:Add")
 AddEventHandler(
     "black_money:Add",
     function(price)
         local player = Player.GetPlayer(source)
         player.addBlackMoney(price)
     end
-)
+)]]
 
-RegisterServerEvent("black_money:Pay")
+--[[RegisterServerEvent("black_money:Pay")
 AddEventHandler(
     "black_money:Pay",
     function(price)
         local player = Player.GetPlayer(source)
         player.removeBlackMoney(price)
     end
-)
+)]]
 
-RegisterServerEvent("black_money:Pay2")
+--[[RegisterServerEvent("black_money:Pay2")
 AddEventHandler(
     "black_money:Pay2",
     function(price, xxxx)
         local player = Player.GetPlayer(xxxx)
         player.removeBlackMoney(price)
     end
-)
+)]]
 RegisterServerEvent("money:Remove2")
 AddEventHandler(
     "money:Remove2",
@@ -623,13 +623,13 @@ AddEventHandler(
         if (Users[Source]) then
             TriggerEvent("es:playerDropped", Users[Source])
             money = Users[Source].getMoney()
-            black_money = Users[Source].getBlackMoney()
+            --black_money = Users[Source].getBlackMoney()
             MySQL.Async.execute(
-                "UPDATE users SET money=@money, black_money = @black_money where uuid=@id",
+                "UPDATE users SET money=@money where uuid=@id",
                 {
                     ["@id"] = Users[Source].uuid,
                     ["@money"] = Users[Source].money,
-                    ["@black_money"] = Users[Source].black_money
+                   -- ["@black_money"] = Users[Source].black_money
                 }
             )
             Users[Source] = nil

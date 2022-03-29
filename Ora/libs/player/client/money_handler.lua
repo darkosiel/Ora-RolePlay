@@ -10,7 +10,7 @@ function Money:CanBuy(price)
     end
 end
 
-BlackMoney = setmetatable({}, Money)
+--[[BlackMoney = setmetatable({}, Money)
 BlackMoney.amount = 5000
 function BlackMoney:CanBuy(price)
     if price > self.amount then
@@ -19,7 +19,7 @@ function BlackMoney:CanBuy(price)
     else
         return true
     end
-end
+end]]
 
 
 RegisterNetEvent('es:activateMoney')
@@ -34,7 +34,7 @@ AddEventHandler("es:removedMoney", function(m, native, current)
 end)
 
 
-RegisterNetEvent('es:activateBlackMoney')
+--[[RegisterNetEvent('es:activateBlackMoney')
 AddEventHandler('es:activateBlackMoney', function(e)
 	BlackMoney.amount = e
 end)
@@ -44,4 +44,4 @@ RegisterNetEvent("es:removedBlackMoney")
 AddEventHandler("es:removedBlackMoney", function(m, native, current)
     BlackMoney.amount = BlackMoney.amount- m
     TriggerEvent("es:activateBlackMoney'", BlackMoney.amount)
-end)
+end)]]

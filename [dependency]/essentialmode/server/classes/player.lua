@@ -44,7 +44,7 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 			--'ES_ERROR: There seems to be an issue while setting money, something else then a number was entered.')
 		end
 	end
-	rTable.setBlackMoney = function(m)
+	--[[rTable.setBlackMoney = function(m)
 		if type(m) == "number" then
 			local prevMoney = self.black_money
 			local newMoney = m
@@ -64,13 +64,13 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 			log('ES_ERROR: There seems to be an issue while setting money, something else then a number was entered.')
 			--'ES_ERROR: There seems to be an issue while setting money, something else then a number was entered.')
 		end
-	end
+	end]]
 	rTable.getMoney = function()
 		return self.money
 	end
-	rTable.getBlackMoney = function()
+--[[	rTable.getBlackMoney = function()
 		return self.black_money
-	end
+	end]]
 	rTable.setBankBalance = function(m)
 		if type(m) == "number" then
 			TriggerEvent("es:setPlayerData", self.source, "bank", m, function(response, success)
@@ -113,7 +113,7 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 		end
 	end
 
-	rTable.addBlackMoney = function(m)
+	--[[rTable.addBlackMoney = function(m)
 		if type(m) == "number" then
 			local newMoney = self.black_money + m
 
@@ -128,8 +128,8 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 			log('ES_ERROR: There seems to be an issue while adding money, a different type then number was trying to be added.')
 			--'ES_ERROR: There seems to be an issue while adding money, a different type then number was trying to be added.')
 		end
-	end
-	rTable.removeBlackMoney = function(m)
+	end]]
+--[[	rTable.removeBlackMoney = function(m)
 		if type(m) == "number" then
 			local newMoney = self.black_money - m
 
@@ -144,7 +144,7 @@ function CreatePlayer(source, permission_level, money, bank, identifier, license
 			log('ES_ERROR: There seems to be an issue while removing money, a different type then number was trying to be removed.')
 			--'ES_ERROR: There seems to be an issue while removing money, a different type then number was trying to be removed.')
 		end
-	end
+	end]]
 	rTable.removeMoney = function(m)
 		if m ~= nil then
 			if m < 0 then
