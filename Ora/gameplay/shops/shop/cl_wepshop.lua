@@ -1378,43 +1378,43 @@ local function build()
             "shopui_title_gunclub"
         )
     )
-    -- Vendeur armes
+    Vendeur armes
 
-    -- Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
-    -- Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
+    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
 
-    -- RMenu.Add(
-    --     "ammunation public",
-    --     "main public",
-    --     RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    -- )
+    RMenu.Add(
+        "ammunation public",
+        "main public",
+        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    )
 
-    -- RMenu.Add(
-    --     "ammunation public",
-    --     "blanches",
-    --     RageUI.CreateSubMenu(
-    --         RMenu:Get("ammunation public", "main public"),
-    --         nil,
-    --         "Armes blanches disponibles",
-    --         10,
-    --         100,
-    --         "shopui_title_gunclub",
-    --         "shopui_title_gunclub"
-    --     )
-    -- )
-    -- RMenu.Add(
-    --     "ammunation public",
-    --     "weapons",
-    --     RageUI.CreateSubMenu(
-    --         RMenu:Get("ammunation public", "main public"),
-    --         nil,
-    --         "Armes disponibles",
-    --         10,
-    --         100,
-    --         "shopui_title_gunclub",
-    --         "shopui_title_gunclub"
-    --     )
-    -- )
+    RMenu.Add(
+        "ammunation public",
+        "blanches",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation public", "main public"),
+            nil,
+            "Armes blanches disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+    RMenu.Add(
+        "ammunation public",
+        "weapons",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation public", "main public"),
+            nil,
+            "Armes disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
     
     -- ----------------------
 
