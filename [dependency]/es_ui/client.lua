@@ -37,7 +37,7 @@ AddEventHandler('es:activateJob2', function(e)
 		job2 = e
 	})
 end)
-RegisterNetEvent('es:activateBlackMoney')
+--[[RegisterNetEvent('es:activateBlackMoney')
 AddEventHandler('es:activateBlackMoney', function(e)
 	SendNUIMessage({
 		setblack= true,
@@ -54,7 +54,7 @@ end)
 RegisterNetEvent("es:removedBlackMoney")
 AddEventHandler("es:removedBlackMoney", function(m, native, current)
 
-end)
+end)]]
 RegisterNetEvent("es:addedMoney")
 AddEventHandler("es:addedMoney", function(m, native, current)
 

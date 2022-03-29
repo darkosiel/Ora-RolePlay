@@ -16,7 +16,7 @@ AddEventHandler('playerDropped', function()
 	if(Users[Source])then
 		TriggerEvent("es:playerDropped", Users[Source])
 		--Users[Source].getMoney())
-		db.updateUser(Users[Source].get('identifier'), {money = Users[Source].getMoney(), bank = Users[Source].getBank(),black_money=Users[Source].getBlackMoney()})
+		db.updateUser(Users[Source].get('identifier'), {money = Users[Source].getMoney(), bank = Users[Source].getBank()})
 		log('User (' .. Users[Source].get(Users[Source].getSessionVar('idType')).. ') saved and unloaded')
 		Users[Source] = nil
 	end

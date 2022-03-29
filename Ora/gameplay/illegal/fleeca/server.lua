@@ -179,7 +179,7 @@ AddEventHandler(
         )
 
         local player = Player.GetPlayer(source)
-        player.addBlackMoney(amount)
+        player.addMoney(amount)
         TriggerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", amount, false)
     end
 )

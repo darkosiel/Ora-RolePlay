@@ -140,7 +140,7 @@ AddEventHandler(
                 PlyGroup = Users[1].group
                 PlyUUID = Users[1].uuid
                 TriggerEvent("es:activateMoney", Users[1].money)
-                TriggerEvent("es:activateBlackMoney", Users[1].black_money)
+               -- TriggerEvent("es:activateBlackMoney", Users[1].black_money)
                 XNL_SetInitialXPLevels(tonumber(Users[1].xp))
                 Ora.Identity.Job:Set(Jobs[1].name, Jobs[1].rank)
                 Ora.Identity.Orga:Set(Jobs[1].orga, Jobs[1].orga_rank)
