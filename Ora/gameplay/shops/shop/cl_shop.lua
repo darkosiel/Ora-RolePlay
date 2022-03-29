@@ -570,8 +570,8 @@ local Shops =
                 name = "Préfecture"
             },
             Ped = {
-                model = "u_f_y_comjane",
-                name = "Jane"
+                model = "a_f_y_femaleagent",
+                name = "Linda"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",
