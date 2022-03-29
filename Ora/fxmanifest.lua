@@ -243,6 +243,7 @@ client_script {
     "core/modules/jobs/casino/submodules/insidetrack/client/bigScreen.lua",
     "core/modules/jobs/casino/submodules/insidetrack/client/screens/*.lua",
     "core/modules/jobs/jetsam/shared.lua",
+    "core/modules/jobs/jetsam/config.lua",
     "core/modules/jobs/jetsam/client.lua",
     "core/modules/jobs/firefighter/shared.lua",
     "core/modules/jobs/firefighter/client.lua",

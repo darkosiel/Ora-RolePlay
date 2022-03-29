@@ -2,35 +2,6 @@ Ora.Jobs.Jetsam.E_Thread = false
 Ora.Jobs.Jetsam.Trailer = nil
 Ora.Jobs.Jetsam.VehAttached = {}
 
-Config = {}
-
-Config.whitelist = { -- when adding add-on cars simply use their spawn name
-    'FLATBED',
-    'BENSON',
-    'WASTLNDR', -- WASTELANDER
-    'MULE',
-    'MULE2',
-    'MULE3',
-    'MULE4',
-    'TRAILER', -- TRFLAT
-    'ARMYTRAILER',
-    'BOATTRAILER',
-}
-
-Config.offsets = { -- when adding add-on cars simply use their spawn name
-    {model = 'FLATBED', offset = {x = 0.0, y = -9.0, z = -1.25}},
-    {model = 'BENSON', offset = {x = 0.0, y = 0.0, z = -1.25}},
-    {model = 'WASTLNDR', offset = {x = 0.0, y = -7.2, z = -0.9}},
-    {model = 'MULE', offset = {x = 0.0, y = -7.0, z = -1.75}},
-    {model = 'MULE2', offset = {x = 0.0, y = -7.0, z = -1.75}},
-    {model = 'MULE3', offset = {x = 0.0, y = -7.0, z = -1.75}},
-    {model = 'MULE4', offset = {x = 0.0, y = -7.0, z = -1.75}},
-    {model = 'TRAILER', offset = {x = 0.0, y = -9.0, z = -1.25}},
-    {model = 'ARMYTRAILER', offset = {x = 0.0, y = -9.5, z = -3.0}},
-}
-
-RampHash = 'imp_prop_flatbed_ramp'
-
 function getClosestVehicle(coords)
     local ped = PlayerPedId()
     local vehicles = GetGamePool('CVehicle')
@@ -245,7 +216,7 @@ function Ora.Jobs.Jetsam.INIT()
 											return RageUI.Popup({message = "~r~Vous êtes trop loin du garage entreprise"})
 										end
 
-										if (Ora.Jobs.Jetsam.Trailer ~= nil and GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
+										if (GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
 											DeleteEntity(Ora.Jobs.Jetsam.Trailer)
 											Ora.Jobs.Jetsam.Trailer = nil
 											RageUI.Popup({message = "~b~Vous avez rangé votre remorque"})
