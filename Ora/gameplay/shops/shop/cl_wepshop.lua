@@ -1378,7 +1378,6 @@ local function build()
             "shopui_title_gunclub"
         )
     )
-    Vendeur armes
 
     Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
     Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
