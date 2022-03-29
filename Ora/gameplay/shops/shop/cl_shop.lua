@@ -3983,7 +3983,7 @@ local Shops =
                 name = "Police"
             },
             Ped = {
-                model = "a_m_y_yoga_01",
+                model = "cs_russiandrunk",  
                 name = "Mike"
             },
             Menus = {
@@ -4010,8 +4010,8 @@ local Shops =
                 name = "Police"
             },
             Ped = {
-                model = "a_m_y_yoga_01",
-                name = "Mike"
+                model = "ig_oneil",
+                name = "Olen"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",
@@ -4037,8 +4037,8 @@ local Shops =
                 name = "Police"
             },
             Ped = {
-                model = "a_m_y_yoga_01",
-                name = "Mike"
+                model = "cs_old_man1a",
+                name = "Jason"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",
@@ -4064,8 +4064,8 @@ local Shops =
                 name = "Police"
             },
             Ped = {
-                model = "a_m_y_yoga_01",
-                name = "Mike"
+                model = "u_m_o_taphillbilly",
+                name = "Andrew"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",
