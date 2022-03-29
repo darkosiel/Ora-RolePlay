@@ -35,10 +35,16 @@ local VehShop =
                     {name = "lsfdtruck3", price = 60000},
                     {name = "safeteam", price = 50000},
                     {name = "beachp", price = 50000},
+                    {name = "poleveron", price = 20000},
+                    {name = "polalamo", price = 20000},
+                    {name = "polriot", price = 20000},
                     {name = "police", price = 20000},
-                    {name = "lspd2", price = 30000},
+                    {name = "police2", price = 20000},
+                    {name = "police2new", price = 20000},
+                    {name = "pdumkbuffalo", price = 20000},
                     {name = "police3slick", price = 40000},
                     {name = "pscout", price = 50000},
+                    {name = "pscoutnew", price = 50000},
                     {name = "polraiden", price = 60000},
                     {name = "newsvan", price = 30000},
                     {name = "taxi", price = 20000},
@@ -52,7 +58,10 @@ local VehShop =
                     {name = "policeslick", price = 20000},
                     {name = "police3", price = 40000},
                     {name = "sheriffscoutnew", price = 50000},
-                    {name = "police42", price = 30000},
+                    {name = "police42old", price = 30000},
+                    {name = "polspeedo", price = 30000},
+                    {name = "lspdb", price = 2800},
+                    {name = "umkgrangerrto", price = 60000},
                     {name = "halfback", price = 60000},
                     {name = "roadrunner", price = 60000},
                     {name = "usssvan", price = 20000},
@@ -401,7 +410,6 @@ local VehShop =
                     {name = "verus", price = 5500}
                 },
                 ["Police"] = {
-                    {name = "lspdb", price = 2800},
                     {name = "sheriffb3", price = 2500}
                 },
                 ["Vans"] = {
