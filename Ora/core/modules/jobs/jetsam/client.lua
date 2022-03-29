@@ -312,6 +312,7 @@ function Ora.Jobs.Jetsam.INIT()
 											end
 											RageUI.Popup({message = "~r~Vous devez être sur la rampe."})
 										end
+									end
 								end
 							)
 
@@ -352,6 +353,7 @@ function Ora.Jobs.Jetsam.INIT()
 											return RageUI.Popup({message = "~r~Vous devez être conducteur."})
 										end
 										RageUI.Popup({message = "~r~Vous devez être dans un véhicule."})
+									end
 								end
 							)
 
@@ -380,86 +382,6 @@ function Ora.Jobs.Jetsam.INIT()
 										else
 											return RageUI.Popup({message = "~r~Vous devez être dans un véhicule."})
 										end
-								end
-							)
-
-							RageUI.Button(
-								"Attacher le véhicule à la remoque à voitures",
-								nil,
-								{},
-								true,
-								function(_, _, Selected)
-									if (Selected) then
-										if (Ora.Jobs.Jetsam.Trailer == nil) then
-											return RageUI.Popup({message = "~r~Vous n'avez pas sorti de remorque vous-même"})
-										end
-
-										local veh = GetVehiclePedIsIn(PlayerPedId(), false)
-
-										if (veh == 0) then
-											return RageUI.Popup({message = "~r~Vous n'êtes pas dans un véhicule"})
-										end
-
-										local vehCoords = GetEntityCoords(veh)
-										local rotx, roty, rotz = table.unpack(GetEntityRotation(veh))
-										rotz = rotz - 180.0
-
-										local vehRotation = vector3(rotx, roty, rotz)
-										local vehConfig = Ora.Jobs.Jetsam.TrailerConfig[GetEntityModel(veh)]
-
-										if (vehConfig ~= nil) then
-											local x, y, z = table.unpack(vehCoords)
-											y = y - vehConfig.y
-											z = z - vehConfig.z
-											vehCoords = vector3(x, y, z)
-										end
-
-										AttachVehicleOnToTrailer(veh, Ora.Jobs.Jetsam.Trailer, 0.0, 0.0, 0.0, GetOffsetFromEntityGivenWorldCoords(Ora.Jobs.Jetsam.Trailer, vehCoords), vehRotation, false)
-										SetEntityCollision(veh, false, true)
-
-										table.insert(Ora.Jobs.Jetsam.VehAttached, veh)
-
-										RageUI.Popup({message = "~b~Véhicule attaché à la remorque"})
-									end
-								end
-							)
-
-							RageUI.Button(
-								"Détacher la voiture de la remoque à voitures",
-								nil,
-								{},
-								true,
-								function(_, _, Selected)
-									if (Selected) then
-										local veh = ClosestVeh()
-										local vehIndex = Ora.Utils:IndexOf(Ora.Jobs.Jetsam.VehAttached, veh)
-
-										if (veh == 0) then
-											return RageUI.Popup({message = "~r~Il n'y a pas de véhicule devant vous"})
-										end
-
-										if (vehIndex == 0) then return end
-
-										DetachEntity(Ora.Jobs.Jetsam.VehAttached[vehIndex], true, false)
-										SetEntityCollision(Ora.Jobs.Jetsam.VehAttached[vehIndex], true, true)
-										table.remove(Ora.Jobs.Jetsam.VehAttached, vehIndex)
-									end
-								end
-							)
-
-							RageUI.Button(
-								"Détacher toutes les véhicules de la remoque à voitures",
-								nil,
-								{},
-								true,
-								function(_, _, Selected)
-									if (Selected) then
-										for i = 1, #(Ora.Jobs.Jetsam.VehAttached) do
-											DetachEntity(Ora.Jobs.Jetsam.VehAttached[i], true, false)
-											SetEntityCollision(Ora.Jobs.Jetsam.VehAttached[i], true, true)
-										end
-
-										Ora.Jobs.Jetsam.VehAttached = {}
 									end
 								end
 							)
