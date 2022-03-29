@@ -705,11 +705,11 @@ local kevlarConfig = {
 }
 
 local weapon_config = {
-    Pos = {x = 250.45, y = -45.27, z = 68.94},
+    Pos = {x = 247.3191, y = -51.47, z = 69.94},
     Ped = {
-        Pos = {x = 250.45, y = -45.27, z = 68.94, a = 146.59},
+        Pos = {x = 247.3191, y = -51.4727, z = 69.9412, a = 343.7510},
         model = "s_m_y_ammucity_01",
-        name = "Paolo"
+        name = "Alex"
     },
     Blips = {
         sprite = 313,
@@ -734,11 +734,42 @@ local weapon_config = {
 }
 
 local private_conf = {
-    Pos = {x = 250.1571, y = -51.6418, z = 68.9411, a = 23.3754},
+    Pos = {x = 249.6309, y = -52.3128, z = 69.9412, a = 339.3597},
     Ped = {
-        Pos = {x = 250.1571, y = -51.6418, z = 68.9411, a = 23.3754},
+        Pos = {x = 249.6309, y = -52.3128, z = 69.9412, a = 339.3597},
         model = "s_m_y_ammucity_01",
-        name = "Thomas"
+        name = "Tom"
+    },
+    EnterZone = function()
+        local isAuth = false
+        for i=1, #restrictedJob do
+            if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
+            if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
+        end
+        if isAuth then
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
+            KeySettings:Add("controller", 46, OpenP, "Ammu")
+        end
+    end,
+    ExitZone = function()
+        KeySettings:Clear("keyboard", "E", "Ammu")
+        KeySettings:Clear("controller", 46, "Ammu")
+        Hint:RemoveAll()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+    end
+}
+
+local private_confrancho = {
+    Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
+    Ped = {
+        Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
+        model = "s_m_y_ammucity_01",
+        name = "John"
     },
     EnterZone = function()
         local isAuth = false
@@ -796,29 +827,29 @@ local private_conf_paleto = {
 }
 
 
-local private_arme = {
-    Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
-    Ped = {
-        Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
-        model = "s_m_y_ammucity_01",
-        name = "Matthieu"
-    },
-    EnterZone = function()
-         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", OpenS, "Ammu")
-        KeySettings:Add("controller", 46, OpenS, "Ammu")
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
+--local private_arme = {
+--    Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
+--    Ped = {
+--        Pos = {x = 254.0569, y = -50.17169, z = 68.9410629, a = 70.3039016},
+--        model = "s_m_y_ammucity_01",
+--        name = "Matthieu"
+--    },
+--    EnterZone = function()
+--         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+--        KeySettings:Add("keyboard", "E", OpenS, "Ammu")
+--        KeySettings:Add("controller", 46, OpenS, "Ammu")
+--    end,
+--    ExitZone = function()
+--        KeySettings:Clear("keyboard", "E", "Ammu")
+--        KeySettings:Clear("controller", 46, "Ammu")
+--        Hint:RemoveAll()
+--        RageUI.GoBack()
+--        RageUI.GoBack()
+--        RageUI.GoBack()
+--        RageUI.GoBack()
+--        RageUI.GoBack()
+--    end
+--}
 
 local globalWeaponTable = {
     blanc = {
@@ -839,7 +870,8 @@ local function build()
     v = weapon_config
     k = private_conf
     y = private_conf_paleto
-    x = private_arme
+    -- x = private_arme
+    b = private_confrancho
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
         SetBlipSprite(blip, v.Blips.sprite)
@@ -938,43 +970,64 @@ local function build()
         )
     )
 
-    -- Vendeur armes
-
-    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
-    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
-
+    Zone:Add(b.Pos, b.EnterZone, b.ExitZone, i, 2.5)
+    Ped:Add(b.Ped.name, b.Ped.model, b.Ped.Pos, nil)
     RMenu.Add(
-        "ammunation public",
-        "main public",
+        "ammunation privé",
+        "main private",
         RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
     )
 
     RMenu.Add(
-        "ammunation public",
-        "blanches",
+        "ammunation privé",
+        "kevlars",
         RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
+            RMenu:Get("ammunation privé", "main private"),
             nil,
-            "Armes blanches disponibles",
+            "Kevlars disponibles",
             10,
             100,
             "shopui_title_gunclub",
             "shopui_title_gunclub"
         )
     )
-    RMenu.Add(
-        "ammunation public",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
+    -- Vendeur armes
+
+    -- Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
+    -- Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "main public",
+    --     RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    -- )
+
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "blanches",
+    --     RageUI.CreateSubMenu(
+    --         RMenu:Get("ammunation public", "main public"),
+    --         nil,
+    --         "Armes blanches disponibles",
+    --         10,
+    --         100,
+    --         "shopui_title_gunclub",
+    --         "shopui_title_gunclub"
+    --     )
+    -- )
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "weapons",
+    --     RageUI.CreateSubMenu(
+    --         RMenu:Get("ammunation public", "main public"),
+    --         nil,
+    --         "Armes disponibles",
+    --         10,
+    --         100,
+    --         "shopui_title_gunclub",
+    --         "shopui_title_gunclub"
+    --     )
+    -- )
     
     -- ----------------------
 
