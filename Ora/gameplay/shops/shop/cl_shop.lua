@@ -3975,7 +3975,7 @@ local Shops =
         {
             Title = "Fournisseur munitions",
             Hidden = true,
-            Pos = {x = 247.14, y = -43.92, z = 68.94, a = 159.56}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Pos = {x = 254.1989, y = -49.8555, z = 68.9412, a = 70.7560}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
             Blips = {
                 sprite = 478,
                 Enabled = false, -- Image off
@@ -3984,7 +3984,34 @@ local Shops =
             },
             Ped = {
                 model = "a_m_y_yoga_01",
-                name = "Samuel"
+                name = "Mike"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Fournisseur munitions Rancho",
+            Hidden = true,
+            Pos = {x = 822.4161, y = -2150.1813, z = 28.6191, a = 179.6899}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "a_m_y_yoga_01",
+                name = "Mike"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",
