@@ -215,7 +215,7 @@ Citizen.CreateThread(
                                                         math.randomseed(GetGameTimer())
                                                         local r = math.random(v.amount[1], v.amount[2])
                                                         TriggerServerCallback(
-                                                            "Ora::SE::Money:Fake:AuthorizePayment", 
+                                                            "Ora::SE::Money:AuthorizePayment", 
                                                             function(token)
                                                                 TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Vol véhicule", LEGIT = false})
                                                                 TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
@@ -315,7 +315,7 @@ Citizen.CreateThread(
                                                         math.randomseed(GetGameTimer())
                                                         local r = math.random(v.amount[1], v.amount[2])
                                                         TriggerServerCallback(
-                                                            "Ora::SE::Money:Fake:AuthorizePayment", 
+                                                            "Ora::SE::Money:AuthorizePayment", 
                                                             function(token)
                                                                 TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Carjacking", LEGIT = false})
                                                                 TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)

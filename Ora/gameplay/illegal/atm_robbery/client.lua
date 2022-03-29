@@ -402,7 +402,7 @@ function startRobbery()
                                                 ShowNotification("~g~+" .. t .. "$")
                                                 
                                                 TriggerServerCallback(
-                                                    "Ora::SE::Money:Fake:AuthorizePayment",
+                                                    "Ora::SE::Money:AuthorizePayment",
                                                     function(token)
                                                       TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = t, SOURCE = "Explosion ATM", LEGIT = false})
                                                       TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", t, false)

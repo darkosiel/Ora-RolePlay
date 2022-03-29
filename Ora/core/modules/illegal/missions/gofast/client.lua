@@ -376,7 +376,7 @@ function Ora.Illegal.Gofast:GetRewards()
                     Ora.Illegal.Gofast:LogToDiscord("Gain de " .. r .. "$", "success")
 
                     TriggerServerCallback(
-                      "Ora::SE::Money:Fake:AuthorizePayment", 
+                      "Ora::SE::Money:AuthorizePayment", 
                       function(token)
                         TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Gofast", LEGIT = false})
                         TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
