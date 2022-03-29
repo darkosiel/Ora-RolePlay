@@ -244,10 +244,9 @@ function Ora.Jobs.Jetsam.INIT()
 											vehicle = getClosestVehicle(playerCoords)
 											local vehicleName = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 									
-											if contains(vehicleName, Config.whitelist) then
 												local vehicleCoords = GetEntityCoords(vehicle)
 									
-												for _, value in pairs(Config.offsets) do
+												for _, value do
 													if vehicleName == value.model then
 														local ramp = CreateObject(RampHash, vector3(value.offset.x, value.offset.y, value.offset.z), true, false, false)
 														AttachEntityToEntity(ramp, vehicle, GetEntityBoneIndexByName(vehicle, 'chassis'), value.offset.x, value.offset.y, value.offset.z , 180.0, 180.0, 0.0, 0, 0, 1, 0, 0, 1)
@@ -255,7 +254,6 @@ function Ora.Jobs.Jetsam.INIT()
 													end
 												end
 												return
-											end
 											return
 											RageUI.Popup({message = "~r~Vous devez être sur la remorque."})
 										end
@@ -312,14 +310,11 @@ function Ora.Jobs.Jetsam.INIT()
 												local vehiclePitch = vehicleRotation.x - vehicleBelowRotation.x
 												local vehicleYaw = vehicleRotation.z - vehicleBelowRotation.z
 									
-												if contains(vehicleBelowName, Config.whitelist) then
 													if not IsEntityAttached(vehicle) then
 														AttachEntityToEntity(vehicle, belowEntity, GetEntityBoneIndexByName(belowEntity, 'chassis'), vehiclesOffset, vehiclePitch, 0.0, vehicleYaw, false, false, true, false, 0, true)
 														return RageUI.Popup({message = "~g~Véhicule bien attaché."})
 													end
 													return RageUI.Popup({message = "~g~Véhicule bien attaché."})
-												end
-												return RageUI.Popup({message = 'Vous ne pouvez pas attacher : ' .. vehicleBelowName})
 											end
 											return RageUI.Popup({message = "~r~Vous devez être conducteur."})
 										end
