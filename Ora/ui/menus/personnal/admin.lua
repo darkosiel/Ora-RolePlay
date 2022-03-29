@@ -541,7 +541,7 @@ Citizen.CreateThread(
                                                 "Ora RP",
                                                 "~g~Annonce",
                                                 text,
-                                                "CHAR_PSYCHO",
+                                                "char_ora",
                                                 1
                                             )
                                         end
