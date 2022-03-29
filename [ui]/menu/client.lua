@@ -329,8 +329,8 @@ Citizen.CreateThread(
                 -- /!\ If not working, check that you have added "target" folder to resources and server.cfg
                 local Entity, farCoordsX, farCoordsY, farCoordsZ = Target(6.0, Ped)
                 local EntityType = GetEntityType(Entity)
-                --    Crosshair(true)
-                -- If EntityType is Vehicle
+                    Crosshair(true)
+                If EntityType is Vehicle
                 local found = false
                 for k, v in pairs(obj) do
                     if Entity == v.obj then
