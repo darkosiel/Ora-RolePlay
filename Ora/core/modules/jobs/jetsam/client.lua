@@ -2,9 +2,8 @@ Ora.Jobs.Jetsam.E_Thread = false
 Ora.Jobs.Jetsam.Trailer = nil
 Ora.Jobs.Jetsam.VehAttached = {}
 
-Config = {}
 
-Config.whitelist = { -- when adding add-on cars simply use their spawn name
+whitelist = { -- when adding add-on cars simply use their spawn name
     'FLATBED',
     'BENSON',
     'WASTLNDR', -- WASTELANDER
@@ -17,7 +16,7 @@ Config.whitelist = { -- when adding add-on cars simply use their spawn name
     'BOATTRAILER',
 }
 
-Config.offsets = { -- when adding add-on cars simply use their spawn name
+offsets = { -- when adding add-on cars simply use their spawn name
     {model = 'FLATBED', offset = {x = 0.0, y = -9.0, z = -1.25}},
     {model = 'BENSON', offset = {x = 0.0, y = 0.0, z = -1.25}},
     {model = 'WASTLNDR', offset = {x = 0.0, y = -7.2, z = -0.9}},
@@ -245,7 +244,7 @@ function Ora.Jobs.Jetsam.INIT()
 											return RageUI.Popup({message = "~r~Vous êtes trop loin du garage entreprise"})
 										end
 
-										if (Ora.Jobs.Jetsam.Trailer ~= nil and GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
+										if (GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
 											DeleteEntity(Ora.Jobs.Jetsam.Trailer)
 											Ora.Jobs.Jetsam.Trailer = nil
 											RageUI.Popup({message = "~b~Vous avez rangé votre remorque"})
@@ -273,10 +272,10 @@ function Ora.Jobs.Jetsam.INIT()
 											vehicle = getClosestVehicle(playerCoords)
 											local vehicleName = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
 									
-											if contains(vehicleName, Config.whitelist) then
+											if contains(vehicleName, whitelist) then
 												local vehicleCoords = GetEntityCoords(vehicle)
 									
-												for _, value in pairs(Config.offsets) do
+												for _, value in pairs(offsets) do
 													if vehicleName == value.model then
 														local ramp = CreateObject(RampHash, vector3(value.offset.x, value.offset.y, value.offset.z), true, false, false)
 														AttachEntityToEntity(ramp, vehicle, GetEntityBoneIndexByName(vehicle, 'chassis'), value.offset.x, value.offset.y, value.offset.z , 180.0, 180.0, 0.0, 0, 0, 1, 0, 0, 1)
@@ -341,7 +340,7 @@ function Ora.Jobs.Jetsam.INIT()
 												local vehiclePitch = vehicleRotation.x - vehicleBelowRotation.x
 												local vehicleYaw = vehicleRotation.z - vehicleBelowRotation.z
 									
-												if contains(vehicleBelowName, Config.whitelist) then
+												if contains(vehicleBelowName, whitelist) then
 													if not IsEntityAttached(vehicle) then
 														AttachEntityToEntity(vehicle, belowEntity, GetEntityBoneIndexByName(belowEntity, 'chassis'), vehiclesOffset, vehiclePitch, 0.0, vehicleYaw, false, false, true, false, 0, true)
 														return RageUI.Popup({message = "~g~Véhicule bien attaché."})

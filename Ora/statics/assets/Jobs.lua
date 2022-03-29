@@ -5762,7 +5762,7 @@ Jobs = {
         }
     },
     lsms = {
-        label = "💉 SAMS",
+        label = "SAMS",
         label2 = "SAMS",
         iban = "lsms",
         grade = {
