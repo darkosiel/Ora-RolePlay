@@ -1825,6 +1825,7 @@ Citizen.CreateThread(
                                         "Ora::SE::NpcJobs:DrivingSchool::CanPass",
                                         function(bool)
                                         if (bool) then
+                                            CloseAllMenus()
                                             for m1, m3 in pairs(weapon_name) do
                                                 if m3 == c[1] then
                                                     local receive = Ora.Inventory:CanReceive(m1, 1)
@@ -1847,7 +1848,6 @@ Citizen.CreateThread(
                                                 end
                                             end
                                             RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
-                                            break
                                         end
                                         )
                                     end
