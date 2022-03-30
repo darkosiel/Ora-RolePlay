@@ -3986,6 +3986,7 @@ Jobs = {
                                 label = "Délivrer le port d'arme",
                                 onSelected = function()
                                     Police.PutPortWeapon()
+                                    Police.AutorizePpa()
                                 end,
                                 ActiveFct = function()
                                     HoverPlayer()
