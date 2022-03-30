@@ -1839,6 +1839,7 @@ Citizen.CreateThread(
                                                                         TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
                                                                     end
                                                                 }
+                                                                CloseAllMenus()
                                                                 TriggerEvent("payWith?")
                                                             end
                                                             break
@@ -1854,6 +1855,7 @@ Citizen.CreateThread(
                                 RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
                                 CloseAllMenus()
                             end
+                            break
                     end,
                     function()
                     end
