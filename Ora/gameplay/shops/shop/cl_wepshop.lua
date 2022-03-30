@@ -1853,6 +1853,7 @@ Citizen.CreateThread(
                                                                                     TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
                                                                                 end
                                                                             }
+                                                                            CloseAllMenus()
                                                                             TriggerEvent("payWith?")
                                                                         end
                                                                         break
