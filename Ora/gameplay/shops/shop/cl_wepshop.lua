@@ -1087,6 +1087,20 @@ local function build()
 
     RMenu.Add(
         "ammunation",
+        "blanches",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "main"),
+            nil,
+            "Armes blanches disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
+    RMenu.Add(
+        "ammunation",
         "my_weap_1",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation", "my_weap"),
@@ -1819,38 +1833,41 @@ Citizen.CreateThread(
                                         nil,
                                         {RightLabel = c[3] .. "$"},
                                         true,
-                                        TriggerServerCallback(
-                                            "Ora::SE::NpcJobs:DrivingSchool::CanPass",
-                                            function(bool)
-                                            if not (bool) then
-                                                function(_, _, Selected)
-                                                    if Selected then
-                                                        for m1, m3 in pairs(weapon_name) do
-                                                            if m3 == c[1] then
-                                                                local receive = Ora.Inventory:CanReceive(m1, 1)
-                                                                if receive then
-                                                                    dataonWait = {
-                                                                        title = "Achat arme à feu",
-                                                                        price = c[3],
-                                                                        fct = function()
-                                                                            local data = {serial = math.random(111111111, 999999999)}
-                                                                            items = {name = m1, data = data}
-                                                                            Ora.Inventory:AddItem(items)
-                                                                            TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
-                                                                        end
-                                                                    }
-                                                                    TriggerEvent("payWith?")
-                                                                end
-                                                                break
+                                            function(_, _, Selected)
+                                                TriggerServerCallback(
+                                                    "Ora::SE::NpcJobs:DrivingSchool::CanPass",
+                                                    function(bool)
+                                                    if not (bool) then
+                                            if Selected then
+                                                    for m1, m3 in pairs(weapon_name) do
+                                                        if m3 == c[1] then
+                                                            local receive = Ora.Inventory:CanReceive(m1, 1)
+                                                            if receive then
+                                                                dataonWait = {
+                                                                    title = "Achat arme à feu",
+                                                                    price = c[3],
+                                                                    fct = function()
+                                                                        local data = {serial = math.random(111111111, 999999999)}
+                                                                        items = {name = m1, data = data}
+                                                                        Ora.Inventory:AddItem(items)
+                                                                        TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
+                                                                    end
+                                                                }
+                                                                TriggerEvent("payWith?")
                                                             end
+                                                            break
                                                         end
                                                     end
+                                                
                                                 end
+                                            
                                             end
-                                        end
+                                        
+                                    end
                                     )
-                            )
-                        end
+                                end
+                                )
+                            end
                     end,
                     function()
                     end
