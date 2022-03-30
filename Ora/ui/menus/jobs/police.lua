@@ -552,7 +552,6 @@ function Police.AuthorizeLicence()
     local target = GetPlayerServerIdInDirection(5.0)
 
     if (target) then
-        TriggerPlayerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", target, 0)
         RageUI.Popup({message = string.format("~b~Vous avez autorisé un repassage de permis à %s", Ora.Identity:GetFullname(target))})
     end
 end
@@ -1916,7 +1915,10 @@ end
 
 function Police.AutorizePpa()
     local target = GetPlayerServerIdInDirection(5.0)
-    TriggerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", target, 1)
+    if (target) then
+        TriggerPlayerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", target, 1)
+        RageUI.Popup({message = string.format("~b~Vous avez donné le PPA à %s", Ora.Identity:GetFullname(target))})
+    end
 end
 -- function ListesVentesnord() -- (autoshop nord)
 --     Citizen.CreateThread(function()
