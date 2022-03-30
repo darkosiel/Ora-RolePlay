@@ -1909,10 +1909,14 @@ function Police.PutPortWeapon()
         items = {name = "weapon_licences", data = {serial = txtt}}
         Ora.Inventory:AddItem(items)
         ShowNotification("~r~Vous avez créer un permis port d'arme avec le numéro de série ~y~" .. txtt)
-        TriggerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", playerId, 1)
     else
         RageUI.Popup({message = "~r~Aucun joueur proche"})
     end
+end
+
+function Police.AutorizePpa()
+    local target = GetPlayerServerIdInDirection(5.0)
+    TriggerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", target, 1)
 end
 -- function ListesVentesnord() -- (autoshop nord)
 --     Citizen.CreateThread(function()
