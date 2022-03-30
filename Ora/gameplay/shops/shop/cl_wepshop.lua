@@ -1812,7 +1812,7 @@ Citizen.CreateThread(
                 TriggerServerCallback(
                     "Ora::SE::NpcJobs:DrivingSchool::CanPass",
                     function(bool)
-                    if (bool) then
+                    if not (bool) then
                         RageUI.DrawContent(
                         {header = true, glare = false},
                             function()
@@ -1851,6 +1851,7 @@ Citizen.CreateThread(
                                     end
                                 end
                                 )
+                            else
                                 RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
                                 CloseAllMenus()
                             end
