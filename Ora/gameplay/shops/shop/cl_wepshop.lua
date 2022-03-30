@@ -1809,10 +1809,6 @@ Citizen.CreateThread(
             end
 
             if RageUI.Visible(RMenu:Get("ammunation", "weapons")) then
-                TriggerServerCallback(
-                    "Ora::SE::NpcJobs:DrivingSchool::CanPass",
-                    function(bool)
-                    if not (bool) then
                         RageUI.DrawContent(
                         {header = true, glare = false},
                             function()
@@ -1823,37 +1819,38 @@ Citizen.CreateThread(
                                         nil,
                                         {RightLabel = c[3] .. "$"},
                                         true,
-                                            function(_, _, Selected)
-                                            if Selected then
-                                                    for m1, m3 in pairs(weapon_name) do
-                                                        if m3 == c[1] then
-                                                            local receive = Ora.Inventory:CanReceive(m1, 1)
-                                                            if receive then
-                                                                dataonWait = {
-                                                                    title = "Achat arme à feu",
-                                                                    price = c[3],
-                                                                    fct = function()
-                                                                        local data = {serial = math.random(111111111, 999999999)}
-                                                                        items = {name = m1, data = data}
-                                                                        Ora.Inventory:AddItem(items)
-                                                                        TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
-                                                                    end
-                                                                }
-                                                                TriggerEvent("payWith?")
+                                        TriggerServerCallback(
+                                            "Ora::SE::NpcJobs:DrivingSchool::CanPass",
+                                            function(bool)
+                                            if not (bool) then
+                                                function(_, _, Selected)
+                                                    if Selected then
+                                                        for m1, m3 in pairs(weapon_name) do
+                                                            if m3 == c[1] then
+                                                                local receive = Ora.Inventory:CanReceive(m1, 1)
+                                                                if receive then
+                                                                    dataonWait = {
+                                                                        title = "Achat arme à feu",
+                                                                        price = c[3],
+                                                                        fct = function()
+                                                                            local data = {serial = math.random(111111111, 999999999)}
+                                                                            items = {name = m1, data = data}
+                                                                            Ora.Inventory:AddItem(items)
+                                                                            TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
+                                                                        end
+                                                                    }
+                                                                    TriggerEvent("payWith?")
+                                                                end
+                                                                break
                                                             end
-                                                            break
                                                         end
                                                     end
                                                 end
                                             end
-                                        )
-                                    end
-                                end
-                                )
-                            else
-                                RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
-                                CloseAllMenus()
-                            end
+                                        end
+                                    )
+                            )
+                        end
                     end,
                     function()
                     end
