@@ -49,7 +49,7 @@ RegisterServerCallback(
       {["@uuid"] = UUID},
       function(res)
         if (res[1] and res[1].permis2) then
-          if (res[1].permis2 == 0) then
+          if (res[1].permis2 == 1) then
             cb(true)
           else
             cb(false)
