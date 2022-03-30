@@ -1087,20 +1087,6 @@ local function build()
 
     RMenu.Add(
         "ammunation",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-
-    RMenu.Add(
-        "ammunation",
         "my_weap_1",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation", "my_weap"),
