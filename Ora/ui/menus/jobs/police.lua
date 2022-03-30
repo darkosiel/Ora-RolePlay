@@ -1920,6 +1920,14 @@ function Police.AutorizePpa()
         RageUI.Popup({message = string.format("~b~Vous avez donné le PPA à %s", Ora.Identity:GetFullname(target))})
     end
 end
+
+function Police.RetirePpa()
+    local target = GetPlayerServerIdInDirection(5.0)
+    if (target) then
+        TriggerPlayerEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB", target, 0)
+        RageUI.Popup({message = string.format("~b~Vous avez retiré le PPA à %s", Ora.Identity:GetFullname(target))})
+    end
+end
 -- function ListesVentesnord() -- (autoshop nord)
 --     Citizen.CreateThread(function()
 --         RageUI.GoBack()

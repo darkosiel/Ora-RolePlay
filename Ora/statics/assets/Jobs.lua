@@ -3993,6 +3993,15 @@ Jobs = {
                                 end
                             },
                             {
+                                label = "Retirer le port d'arme",
+                                onSelected = function()
+                                    Police.RetirePpa()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
                                 label = "Mettre dans le véhicule",
                                 onSelected = function()
                                     Police.PutInVeh()
