@@ -48,16 +48,11 @@ RegisterServerCallback(
       "SELECT permis2 FROM users WHERE uuid = @uuid",
       {["@uuid"] = UUID},
       function(res)
-        if (res[1] and res[1].permis2) then
-          if (res[1].permis2 == 1) then
+          if (res[1].permis2 == 0) then
             cb(true)
           else
             cb(false)
           end
-        else
-          print(string.format("~r~Cannot retreive permis status from id: %s, uuid: %s", src, UUID))
-          cb(false)
-        end
       end
     )
   end
