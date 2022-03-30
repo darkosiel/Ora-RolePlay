@@ -1824,7 +1824,7 @@ Citizen.CreateThread(
                                         TriggerServerCallback(
                                         "Ora::SE::NpcJobs:DrivingSchool::CanPass",
                                         function(bool)
-                                            if (bool) then
+                                        if (bool) then
                                             for m1, m3 in pairs(weapon_name) do
                                                 if m3 == c[1] then
                                                     local receive = Ora.Inventory:CanReceive(m1, 1)
@@ -1837,16 +1837,17 @@ Citizen.CreateThread(
                                                                 items = {name = m1, data = data}
                                                                 Ora.Inventory:AddItem(items)
                                                                 TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
-                                                             end
+                                                            end
                                                         }
                                                         CloseAllMenus()
                                                         TriggerEvent("payWith?")
+                                                        end
+                                                        break
                                                     end
-                                                 break
-                                                 end
+                                                end
                                             end
-                                            RageUI.Popup({message = "~r~Vous n'avez pas de PPA."})
                                         end
+                                        )
                                     end
                                 end
                             )
