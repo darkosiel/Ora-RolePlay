@@ -1021,7 +1021,7 @@ local function build()
     x = private_arme
     b = private_confrancho
     c = weapon_configrancho
-    d = weapon_configsandy
+    dx = weapon_configsandy
     e = private_confsandy
     f = weapon_configcentre
     g = private_confcentre
@@ -1163,8 +1163,8 @@ local function build()
         )
     )
 
-    Zone:Add(d.Pos, d.EnterZone, d.ExitZone, i, 2.5)
-    Ped:Add(d.Ped.name, d.Ped.model, d.Ped.Pos, nil)
+    Zone:Add(dx.Pos, dx.EnterZone, dx.ExitZone, i, 2.5)
+    Ped:Add(dx.Ped.name, dx.Ped.model, dx.Ped.Pos, nil)
 
     RMenu.Add(
         "ammunation",
