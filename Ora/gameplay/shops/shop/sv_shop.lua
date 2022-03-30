@@ -39,3 +39,27 @@ RegisterServerCallback("Ora:getNewNumber", function(source, callback)
     end)
 end)
 
+RegisterServerCallback(
+  "Ora::SE::NpcJobs:DrivingSchool::CanPass",
+  function(src, cb)
+    local UUID = Ora.Identity:GetUuid(src)
+
+    MySQL.Async.fetchAll(
+      "SELECT permis2 FROM users WHERE uuid = @uuid",
+      {["@uuid"] = UUID},
+      function(res)
+        if (res[1] and res[1].permis2) then
+          if (res[1].permis2 == 0) then
+            cb(true)
+          else
+            cb(false)
+          end
+        else
+          print(string.format("~r~Cannot retreive permis status from id: %s, uuid: %s", src, UUID))
+          cb(false)
+        end
+      end
+    )
+  end
+)
+

@@ -179,6 +179,14 @@ AddEventHandler("police:DeleteUnit", function(tble, police, unit, index)
     end
 end)
 
+RegisterNetEvent("Ora::CE::NpcJobs:DrivingSchool::SetDB")
+AddEventHandler(
+	"Ora::CE::NpcJobs:DrivingSchool::SetDB",
+	function(bool)
+		TriggerServerEvent("Ora::SE::NpcJobs:DrivingSchool::SetDB", bool)
+	end
+)
+
 RegisterNetEvent("police:Reset")
 AddEventHandler("police:Reset", function(tble, police)
     if tble == "current" then

@@ -1,17 +1,5 @@
 -- Ora.NpcJobs.DrivingSchool.Enabled = false
 
--- RegisterNetEvent("Ora::SE::NpcJobs:DrivingSchool::SetDB")
--- AddEventHandler(
---   "Ora::SE::NpcJobs:DrivingSchool::SetDB",
---   function(bool)
---     local src = source
---     local UUID = Ora.Identity:GetUuid(src)
-
---     MySQL.Async.execute("UPDATE users SET permis = @bool WHERE uuid = @uuid", {["@bool"] = bool, ["@uuid"] = UUID})
---   end
--- )
-
-
 -- RegisterServerCallback(
 --   "Ora::SE::NpcJobs:DrivingSchool::CanPass",
 --   function(src, cb)

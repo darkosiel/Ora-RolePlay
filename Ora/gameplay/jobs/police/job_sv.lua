@@ -81,6 +81,17 @@ RegisterServerCallback("police:GetAllUnits", function(source, callback, tble)
   end
 end)
 
+RegisterNetEvent("Ora::SE::NpcJobs:DrivingSchool::SetDB")
+AddEventHandler(
+  "Ora::SE::NpcJobs:DrivingSchool::SetDB",
+  function(bool)
+    local src = source
+    local UUID = Ora.Identity:GetUuid(src)
+
+    MySQL.Async.execute("UPDATE users SET permis2 = @bool WHERE uuid = @uuid", {["@bool"] = bool, ["@uuid"] = UUID})
+  end
+)
+
 RegisterServerEvent("police:AddUnit")
 AddEventHandler("police:AddUnit", function(tble, police, unit, matricule, sector)
   if tble == "current" then
