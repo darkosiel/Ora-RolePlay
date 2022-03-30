@@ -1853,6 +1853,7 @@ Citizen.CreateThread(
                                 )
                             end
                             RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
+                            CloseAllMenus()
                     end,
                     function()
                     end
