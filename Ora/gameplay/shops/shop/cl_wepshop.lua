@@ -1838,30 +1838,31 @@ Citizen.CreateThread(
                                                     "Ora::SE::NpcJobs:DrivingSchool::CanPass",
                                                     function(bool)
                                                     if not (bool) then
-                                            if Selected then
-                                                    for m1, m3 in pairs(weapon_name) do
-                                                        if m3 == c[1] then
-                                                            local receive = Ora.Inventory:CanReceive(m1, 1)
-                                                            if receive then
-                                                                dataonWait = {
-                                                                    title = "Achat arme à feu",
-                                                                    price = c[3],
-                                                                    fct = function()
-                                                                        local data = {serial = math.random(111111111, 999999999)}
-                                                                        items = {name = m1, data = data}
-                                                                        Ora.Inventory:AddItem(items)
-                                                                        TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
+                                                        if Selected then
+                                                                for m1, m3 in pairs(weapon_name) do
+                                                                    if m3 == c[1] then
+                                                                        local receive = Ora.Inventory:CanReceive(m1, 1)
+                                                                        if receive then
+                                                                            dataonWait = {
+                                                                                title = "Achat arme à feu",
+                                                                                price = c[3],
+                                                                                fct = function()
+                                                                                    local data = {serial = math.random(111111111, 999999999)}
+                                                                                    items = {name = m1, data = data}
+                                                                                    Ora.Inventory:AddItem(items)
+                                                                                    TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
+                                                                                end
+                                                                            }
+                                                                            TriggerEvent("payWith?")
+                                                                        end
+                                                                        break
                                                                     end
-                                                                }
-                                                                TriggerEvent("payWith?")
-                                                            end
-                                                            break
+                                                                end
+                                                            
                                                         end
+                                                    else
+                                                        RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
                                                     end
-                                                
-                                                end
-                                            
-                                            end
                                         
                                     end
                                     )
