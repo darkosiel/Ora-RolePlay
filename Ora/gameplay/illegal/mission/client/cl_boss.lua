@@ -217,7 +217,7 @@ Citizen.CreateThread(
                                                         TriggerServerCallback(
                                                             "Ora::SE::Money:AuthorizePayment", 
                                                             function(token)
-                                                                TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Vol véhicule", LEGIT = false})
+                                                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Vol véhicule", LEGIT = false})
                                                                 TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
                                                             end,
                                                             {}
@@ -317,7 +317,7 @@ Citizen.CreateThread(
                                                         TriggerServerCallback(
                                                             "Ora::SE::Money:AuthorizePayment", 
                                                             function(token)
-                                                                TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Carjacking", LEGIT = false})
+                                                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Carjacking", LEGIT = false})
                                                                 TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", r, false)
                                                             end,
                                                             {}

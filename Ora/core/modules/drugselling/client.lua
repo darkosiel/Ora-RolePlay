@@ -654,7 +654,7 @@ function Ora.DrugDealing:StartDealerThread()
                                       TriggerServerCallback(
                                         "Ora::SE::Money:AuthorizePayment", 
                                         function(token)
-                                          TriggerServerEvent(Ora.Payment.Fake:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
+                                          TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
                                           TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
                                         end,
                                         {}
