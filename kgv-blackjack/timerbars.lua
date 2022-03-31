@@ -40,7 +40,7 @@ function DrawTimerProgressBar(idx, title, progress, titleColor, fgColor, bgColor
         until HasStreamedTextureDictLoaded(timerBar.txtDict) or (GetGameTimer() > t)
     end
 
-    DrawSprite(timerBar.txtDict, timerBar.txtName, timerBar.baseX - safeZone, yOffset, timerBar.baseWidth, timerBar.baseHeight, 0.0, 255, 255, 255, 160)
+    DrawSprite(timerBar.txtDict, timerBar.txtName, 0.0-1.0, yOffset, timerBar.baseWidth, timerBar.baseHeight, 0.0, 255, 255, 255, 160)
 
     BeginTextCommandDisplayText("CELL_EMAIL_BCON")
     SetTextFont(titleFont)
@@ -87,7 +87,7 @@ function DrawTimerBar(idx, title, text, titleColor, textColor, usePlayerStyle)
         until HasStreamedTextureDictLoaded(timerBar.txtDict) or (GetGameTimer() > t)
     end
 
-    DrawSprite(timerBar.txtDict, timerBar.txtName, timerBar.baseX - safeZone, yOffset, timerBar.baseWidth, timerBar.baseHeight, 0.0, 255, 255, 255, 160)
+    DrawSprite(timerBar.txtDict, timerBar.txtName, 0.0-1.0, yOffset, timerBar.baseWidth, timerBar.baseHeight, 0.0, 255, 255, 255, 160)
 
     BeginTextCommandDisplayText("CELL_EMAIL_BCON")
     SetTextFont(titleFont)
