@@ -583,7 +583,7 @@ Citizen.CreateThread(
                                                                                         "~s~ pour ~g~" .. finalPrice .. "$~s~"
                                                                     )
                                                                     TriggerServerEvent("Ora::SE::Receipt:CreateReceipt", {PRICE = finalPrice, PAWNSHOP = PawnShops[CurrentZone]})
-                                                                    TriggerServerEvent(tmpValue.illegal and Ora.Payment.Fake:GetServerEventName() or Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
+                                                                    TriggerServerEvent(tmpValue.illegal and Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
                                                                 end,
                                                                 {}
                                                             )

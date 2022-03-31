@@ -116,7 +116,15 @@ function Ora.DrugDealing:StartTimebar()
 
             if Ora.DrugDealing.System.COUNTER_STARTED == true and timeleft ~= nil then
                 if timeleft > 0 then
-                    DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
+                    -- DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
+                    DrawNiceText(
+                      hPQ,
+                      R1FIoQI - .05,
+                      .5,
+                      string.format("TEMPS RESTANT", s2m(timeleft)),
+                      4,
+                      0
+                  )
                 else
                     ShowNotification("~r~Vous n'avez pas été assez rapide pour vendre.~s~")
                     Ora.DrugDealing:StopDealing()

@@ -50,7 +50,15 @@ local function startTimeCounter(illegalMission)
 
             if counterStarted == true and timeleft ~= nil then
                 if timeleft > 0 then
-                    DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
+                    -- DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
+                    DrawNiceText(
+                        hPQ,
+                        R1FIoQI - .05,
+                        .5,
+                        string.format("TEMPS RESTANT", s2m(timeleft)),
+                        4,
+                        0
+                    )
                 else
                     TriggerEvent("Ora:illegal:failCurrentMission", illegalMission)
                 end
