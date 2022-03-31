@@ -105,6 +105,8 @@ function Ora.DrugDealing:StartTimebar()
 
     Citizen.CreateThread(function()
         scaleform = RequestScaleformMovie_2("INSTRUCTIONAL_BUTTONS")
+        local hPQ, R1FIoQI, NsoTwDs, HGli = .925, .975, .14, .03
+        local iy = {".", "..", "...", ""}
         repeat Wait(0) until HasScaleformMovieLoaded(scaleform)
 
         while true do Wait(0)
