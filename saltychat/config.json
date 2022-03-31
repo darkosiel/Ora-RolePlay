@@ -1,12 +1,12 @@
 {
   // Variables Guide: https://github.com/saltminede/saltychat-docs/blob/master/setup.md#config-variables
   "VoiceEnabled": true,
-  "ServerUniqueIdentifier": "NhvSiBGj1RqvqS/lPJVrw8IqhU4=",
+  "ServerUniqueIdentifier": "wp3jTxKFMlYcTSHzmNNqpEPP964=",
   "MinimumPluginVersion": "2.2.0",
   "SoundPack": "default",
-  "IngameChannelId": 6,
-  "IngameChannelPassword": "f450w48a",
-  "SwissChannelIds": [ 10, 9 ],
+  "IngameChannelId": 1,
+  "IngameChannelPassword": "ora2022",
+  "SwissChannelIds": [ 4, 5 ],
   "VoiceRanges": [ 2, 5, 8, 15 ],
   "MegaphoneRange": 120.0,
   "NamePattern": "[{serverid}] {guid}",
