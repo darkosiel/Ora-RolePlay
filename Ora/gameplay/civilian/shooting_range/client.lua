@@ -447,14 +447,21 @@ Citizen.CreateThread(function()
 end) 
 
 Citizen.CreateThread(function()
+  local hPQ, R1FIoQI, NsoTwDs, HGli = .925, .975, .14, .03
+  local iy = {".", "..", "...", ""}
   while true do
     local wait = 0
     if onShooting then
       local barCount= {1}
       if timeLeft > 5 then
-        DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeLeft))
-      else
-        DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeLeft), {255, 0, 0, 200}, {255, 0, 0, 200})
+        DrawNiceText(
+          hPQ,
+          R1FIoQI - .05,
+          .5,
+          string.format("TEMPS RESTANT : "..s2m(timeleft)),
+          4,
+          0
+      )
       end
       DrawTimerBar(barCount, "TON SCORE", score)
       DrawTimerBar2(barCount, "MULTIPLICATEUR", nMultiplier.."x", cMultiplier)

@@ -91,10 +91,26 @@ function Karting:TimerCount()
     end
   end)
   Citizen.CreateThread(function()
+    local hPQ, R1FIoQI, NsoTwDs, HGli = .925, .975, .14, .03
+    local iy = {".", "..", "...", ""}
     while self.inRace do
       local barCount = {1}
-      DrawTimerBar(barCount, "TEMPS", s2m(self.time))
-      DrawTimerBar(barCount, "TOUR", (self.laps + 1).."/"..self.maxLaps)
+      DrawNiceText(
+        hPQ,
+        R1FIoQI - .05,
+        .5,
+        string.format("TEMPS : "..s2m(self.time)),
+        4,
+        0
+    )
+      DrawNiceText(
+        hPQ,
+        R1FIoQI - .05,
+        .5,
+        string.format("TOUR : "..(self.laps + 1).."/"..self.maxLaps),
+        4,
+        0
+    )
       DisableControlAction(0, 75, true)
       Wait(0)
     end

@@ -105,6 +105,8 @@ function LabsAndWarehouseAttack.StartTimeBar(currentAttack)
   if (LabsAndWarehouseAttack.CURRENT_ATTACK_DISPLAY.TIMEBARS_DISPLAYED == false) then
       Citizen.CreateThread(function()
           scaleform = RequestScaleformMovie_2("INSTRUCTIONAL_BUTTONS")
+          local hPQ, R1FIoQI, NsoTwDs, HGli = .925, .975, .14, .03
+          local iy = {".", "..", "...", ""}
           repeat Wait(0) until HasScaleformMovieLoaded(scaleform)
 
           while true do Wait(0)
@@ -129,7 +131,14 @@ function LabsAndWarehouseAttack.StartTimeBar(currentAttack)
                             ),
                             0
                       )
-                      DrawTimerBar(barCount, "TEMPS RESTANT", s2m(timeleft))
+                      DrawNiceText(
+                        hPQ,
+                        R1FIoQI - .05,
+                        .5,
+                        string.format("TEMPS RESTANT : "..s2m(timeleft)),
+                        4,
+                        0
+                    )
                   end
               end
 

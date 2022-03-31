@@ -123,7 +123,7 @@ function Ora.DrugDealing:StartTimebar()
                       hPQ,
                       R1FIoQI - .05,
                       .5,
-                      string.format("TEMPS RESTANT : %02d", s2m(timeleft)),
+                      string.format("TEMPS RESTANT : "..s2m(timeleft)),
                       4,
                       0
                   )
