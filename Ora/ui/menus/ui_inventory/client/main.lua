@@ -463,9 +463,9 @@ Citizen.CreateThread(function()
         if (Ora.Inventory.State.IsOpen) then
 			DisableControlAction(0, 24, true)
 			DisableControlAction(0, 25, true)
-			--for i = 0, 5 do
-			--	DisableControlAction(0, i, true)
-			--end
+			for i = 0, 5 do
+				DisableControlAction(0, i, true)
+			end
             HideHudAndRadarThisFrame()
         else
             if GetVehiclePedIsIn(LocalPlayer().Ped) ~= 0 then
