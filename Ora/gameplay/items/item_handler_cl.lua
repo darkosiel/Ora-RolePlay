@@ -824,6 +824,7 @@ ItemsFunction = {
             function()
                 local animDict = "move_crouch_proto"
                 local dispatchMessage = "Un fou viens de mettre le feu ici, venez vite !"
+                local _source = source
                 
                 Ora.Inventory:RemoveFirstItem("allumette")
                 TriggerEvent("Ora:hideInventory")
@@ -834,7 +835,7 @@ ItemsFunction = {
 
                 Wait(2000)
                 TriggerServerEvent('fireManager:command:startfire', GetEntityCoords(LocalPlayer().Ped) + GetEntityForwardVector(LocalPlayer().Ped), 2, 75, true, nil)
-                TriggerServerEvent("Ora.Jobs.Firefighter.Dispatch:create", dispatchMessage, GetEntityCoords(LocalPlayer().Ped))
+                TriggerEvent('fd:dispatch', _source, GetEntityCoords(LocalPlayer().Ped))
                 RageUI.Popup({message = "~r~Vous avez allumé un feu espèce de pyromane !"})
             end
         )
@@ -844,6 +845,7 @@ ItemsFunction = {
             function()
                 local animDict = "cover@first_person@weapon@grenade"
                 local dispatchMessage = "Un fou viens de mettre le feu ici, venez vite !"
+                local _source = source
                 
                 Ora.Inventory:RemoveFirstItem("molotovartisanal")
                 TriggerEvent("Ora:hideInventory")
@@ -854,7 +856,7 @@ ItemsFunction = {
 
                 Wait(2000)
                 TriggerServerEvent('fireManager:command:startfire', GetEntityCoords(LocalPlayer().Ped) + (GetEntityForwardVector(LocalPlayer().Ped) * 5), 5, 90, true, nil)
-                TriggerServerEvent("Ora.Jobs.Firefighter.Dispatch:create", dispatchMessage, GetEntityCoords(LocalPlayer().Ped))
+                TriggerEvent('fd:dispatch', _source, GetEntityCoords(LocalPlayer().Ped))
                 RageUI.Popup({message = "~r~Vous avez allumé un feu espèce de pyromane !"})
             end
         )
