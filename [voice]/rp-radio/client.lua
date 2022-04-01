@@ -282,7 +282,7 @@ end
 -- Remove player from radio channel
 function Radio:Remove()
     if (lastRadioId ~= nil) then
-        exports["Ora"]:ShowNotification("~r~Fréquence :~s~ ~o~" .. id .. "~s~ MHz")
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~ ~o~" .. lastRadioId .. "~s~ MHz")
         TriggerServerEvent("rp-radio:removePlayerRadioChannel", lastRadioId)
         exports.saltychat:SetRadioChannel("", false)
     else
