@@ -77,6 +77,7 @@ function nearAccessPoint(k, v, ped, pedCoords)
         if config.main.developerMode then
             print("[Smart Signs] - Data for Sign ID: "..k.." sent to server")
         end
+        print(exports["Ora"]:OraGetJob())
         TriggerServerEvent("SmartSigns:updateSign", k, inputs, tostring(streetName), exports["Ora"]:OraGetJob())
         ClearPedTasks(ped)
         if config.main.soundEffect.enabled then
