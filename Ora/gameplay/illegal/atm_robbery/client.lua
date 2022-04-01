@@ -313,7 +313,7 @@ function startRobbery()
                                 true
                             )
                             RemoveLoadingPrompt()
-                            RageUI.Popup({message = "~g~Jolie casse ! Maintenant recupérer votre argent~s~"})
+                            RageUI.Popup({message = "~g~Joli casse ! Maintenant, récupérez votre argent~s~"})
 
                             math.randomseed(GetGameTimer())
                             loopCounter = math.random(9, 14)
