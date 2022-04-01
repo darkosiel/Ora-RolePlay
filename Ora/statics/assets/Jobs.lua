@@ -1976,22 +1976,22 @@ Jobs = {
         },
         garage = {
             Name = "Garage burgershot",
-            Pos = {x = -1171.12, y = -891.42, z = 13.93},
+            Pos = {x = -1242.4321, y = -333.9221, z = 68.0821},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1171.12, y = -891.42, z = 13.93, h = 28.85}
+                spawnpos = {x = -1242.4321, y = -333.9221, z = 68.0821, h = 28.85}
             },
             Blipdata = {
-                Pos = {x = -1171.12, y = -891.42, z = 13.93, h = 28.85},
+                Pos = {x = -1242.4321, y = -333.9221, z = 68.0821, h = 28.85},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = -1204.72, y = -892.71, z = 12.99},
+                Pos = {x = 1246.4328, y = -352.0784, z = 69.1846},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
@@ -2004,7 +2004,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 5,
                 blipname = "Friteuse",
-                Pos = {x = -1201.48, y = -897.85, z = 12.99},
+                Pos = {x = 1249.9007, y = -352.7587, z = 69.1846},
                 required = "pommeterre",
                 giveitem = "frites",
                 noFarm = true,
@@ -2017,7 +2017,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
-                Pos = {x = -1198.65, y = -895.58, z = 12.99},
+                Pos = {x = 1251.9968, y = -358.9071, z = 69.1846},
                 required = "milk",
                 giveitem = {
                     {name = "milkshack", count = 5},
@@ -2033,7 +2033,7 @@ Jobs = {
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
-                Pos = {x = -1197.93, y = -892.60, z = 12.99},
+                Pos = {x = 1249.9069, y = -356.2945, z = 69.1846},
                 required = {
                     {name = "bread", count = 1},
                     {name = "chicken", count = 1}
@@ -2052,7 +2052,7 @@ Jobs = {
                 blipcolor = 8,
                 noFarm = true,
                 blipname = "Grill Burger Healthy",
-                Pos = {x = -1198.83, y = -902.08, z = 12.99},
+                Pos = {x = 1253.2602, y = -9353.9359, z = 69.1846},
                 required = {
                     {name = "bread", count = 1},
                     {name = "meat", count = 1}
