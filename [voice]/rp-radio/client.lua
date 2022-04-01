@@ -37,13 +37,13 @@ Radio.Labels = {
                     radioConfig.Controls.Toggle.Name ..
                         "~ pour ~g~allumer~s~ la radio.~n~~" ..
                             radioConfig.Controls.Decrease.Name ..
-                                "~ or ~" ..
+                                "~ ou ~" ..
                                     radioConfig.Controls.Increase.Name ..
                                         "~ pour changer de fréquence~n~~" ..
                                             radioConfig.Controls.Input.Name ..
                                                 "~ pour choisir une fréquence~n~~" ..
                                                 radioConfig.Controls.vIncrease.Name ..
-                                                "~ or ~" ..
+                                                "~ ou ~" ..
                                                     radioConfig.Controls.vDecrease.Name ..
                                                         "~ pour modifier le volume~n~~" ..
                                                             radioConfig.Controls.ToggleClicks.Name ..
@@ -61,7 +61,7 @@ Radio.Labels = {
                             radioConfig.Controls.Broadcast.Name .. 
                             "~ pour émettre.~n~~"..
                                 radioConfig.Controls.vIncrease.Name ..
-                                    "~ or ~" ..
+                                    "~ ou ~" ..
                                         radioConfig.Controls.vDecrease.Name ..
                                             "~ pour modifier le volume~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
