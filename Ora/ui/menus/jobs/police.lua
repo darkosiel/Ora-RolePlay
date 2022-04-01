@@ -1913,7 +1913,7 @@ function Police.PutPortWeapon()
     end
 end
 
-function Police.GetHose()
+function Police.GetHose(source)
     TriggerEvent("Client:HoseCommand", source, true)
 end
 
