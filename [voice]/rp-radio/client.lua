@@ -65,7 +65,7 @@ Radio.Labels = {
                                         radioConfig.Controls.vDecrease.Name ..
                                             "~ pour modifier le volume~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
-    {"FRZL_RADIO_INPUT", "Entrez la fréquence"}
+    {"FRZL_RADIO_INPUT", "Entrez la fréquence (de 137 à 850 MHz)"}
 }
 Radio.Commands = {
     {

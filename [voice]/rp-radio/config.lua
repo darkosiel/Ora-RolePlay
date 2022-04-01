@@ -57,7 +57,7 @@ radioConfig = {
     },
     Frequency = {
         Private = {}, -- List of private frequencies
-        Current = 1, -- Don't touch
+        Current = 137, -- Don't touch
         CurrentIndex = 1, -- Don't touch
         Min = 137, -- Minimum frequency
         Max = 850, -- Max number of frequencies
