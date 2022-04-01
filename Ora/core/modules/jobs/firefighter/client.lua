@@ -150,6 +150,18 @@ function Ora.Jobs.Firefighter.INIT()
                 end
               )
 
+			  RageUI.Button(
+                "Sortir la lance",
+                nil,
+                {},
+                true,
+                function(_, _, Selected)
+                  if (Selected) then
+                    Police.GetHose()
+                  end
+                end
+              )
+
               RageUI.Button(
                 "Annuler l'appel en cours",
                 nil,

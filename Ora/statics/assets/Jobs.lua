@@ -6369,32 +6369,17 @@ Jobs = {
                 show = true
             }
         },
-        garage = {
-            Name = "Garage LSFD 3",
-            Pos = {x = 211.80, y = -1637.76, z = 29.63},
-            Properties = {
-                type = 3,
-                Limit = 64,
-                vehicles = {},
-                spawnpos = {x = 211.80, y = -1637.76, z = 29.63, h = 320.56}
-            },
-            Blipdata = {
-                Pos = {x = 211.80, y = -1637.76, z = 29.63},
-                Blipcolor = 7,
-                Blipname = "LSFD - Garage 3"
-            }
-        },
         garage2 = {
             Name = "Garage LSFD 1",
-            Pos = {x = 218.16, y = -1642.16, z = 29.61},
+            Pos = {x = 1208.38, y = -1504.45, z = 34.69 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 218.16, y = -1642.16, z = 29.61, h = 319.49}
+                spawnpos = {x = 1208.38, y = -1504.45, z = 34.69 - 0.98, h = 98.28}
             },
             Blipdata = {
-                Pos = {x = 218.16, y = -1642.16, z = 29.61},
+                Pos = {x = 1208.38, y = -1504.45, z = 34.69 - 0.98},
                 Blipcolor = 7,
                 Blipname = "LSFD - Garage 1"
             }
@@ -6402,41 +6387,9 @@ Jobs = {
         Storage = {
             -- Garage
             {
-                Pos = {x = 208.25, y = -1658.62, z = 28.80},
+                Pos = {x = 1211.65, y = -1487.35, z = 34.69 - 0.90},
                 Limit = 9999,
                 Name = "Coffre LSFD"
-            },
-            -- cuisine
-            {
-                Pos = {x = 204.47, y = -1638.50, z = 32.37},
-                Limit = 500,
-                Name = "Coffre LSFD Cuisine"
-            }
-        },
-        garage3 = {
-            Name = "Helipad LSFD",
-            Pos = {x = -700.53, y = -1447.51, z = 5.00},
-            Properties = {
-                type = 2,
-                Limit = 10,
-                zonesize = 1.5,
-                vehicles = {
-                    {
-                        name = "medevac",
-                        label = "Helicoptere de secours",
-                        job = true,
-                        tuning = {
-                            modXenon = false,
-                            modLivery = 0
-                        }
-                    }
-                },
-                spawnpos = {x = -700.53, y = -1447.51, z = 5.00, h = 48.53}
-            },
-            Blipdata = {
-                Pos = {x = -700.53, y = -1447.51, z = 5.00},
-                Blipcolor = 5,
-                Blipname = "LSFD - Helipad"
             }
         },
         garage4 = {
@@ -6469,7 +6422,7 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 219.76, y = -1651.97, z = 29.80},
+                Pos = {x = 1226.83, y = -1490.88, z = 34.69 - 0.98},
                 Tenues = {
                     ["EMT manches courtes"] = {
                         male = {
