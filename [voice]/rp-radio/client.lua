@@ -269,7 +269,7 @@ end
 function Radio:Add(id)
     if lastRadioId ~= id then
         lastRadioId = id
-        exports["Ora"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~" .. id .. "~s~")
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~  ~o~" .. id .. "~s~ MHz")
         exports.saltychat:SetRadioChannel(id, false)
         TriggerServerEvent("rp-radio:setPlayerRadioChannel", id, false)
     else
@@ -282,7 +282,7 @@ end
 -- Remove player from radio channel
 function Radio:Remove()
     if (lastRadioId ~= nil) then
-        exports["Ora"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~Aucun~s~")
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~  ~o~" .. id .. "~s~ MHz")
         TriggerServerEvent("rp-radio:removePlayerRadioChannel", lastRadioId)
         exports.saltychat:SetRadioChannel("", false)
     else
