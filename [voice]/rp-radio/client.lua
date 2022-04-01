@@ -33,21 +33,21 @@ Radio.Labels = {
             (radioConfig.Controls.Secondary.Enabled and
                 "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or
                 "~" .. radioConfig.Controls.Activator.Name .. "~") ..
-                " to hide.~n~~" ..
+                " pour cacher.~n~~" ..
                     radioConfig.Controls.Toggle.Name ..
-                        "~ to turn radio ~g~on~s~.~n~~" ..
+                        "~ pour ~g~allumer~s~ la radio.~n~~" ..
                             radioConfig.Controls.Decrease.Name ..
                                 "~ or ~" ..
                                     radioConfig.Controls.Increase.Name ..
-                                        "~ to switch frequency~n~~" ..
+                                        "~ pour changer de fréquence~n~~" ..
                                             radioConfig.Controls.Input.Name ..
-                                                "~ to choose frequency~n~~" ..
+                                                "~ pour choisir une fréquence~n~~" ..
                                                 radioConfig.Controls.vIncrease.Name ..
                                                 "~ or ~" ..
                                                     radioConfig.Controls.vDecrease.Name ..
-                                                        "~ to switch volume~n~~" ..
+                                                        "~ pour modifier le volume~n~~" ..
                                                             radioConfig.Controls.ToggleClicks.Name ..
-                                                                "~ to ~a~ mic clicks~n~Frequency: ~1~ MHz~n~Volume: ~1~ %"
+                                                                "~ to ~a~ mic clicks~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
     {
         "FRZL_RADIO_HELP2",
@@ -55,17 +55,17 @@ Radio.Labels = {
             (radioConfig.Controls.Secondary.Enabled and
                 "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or
                 "~" .. radioConfig.Controls.Activator.Name .. "~") ..
-                " to hide.~n~~" ..
+                " pour cacher.~n~~" ..
                     radioConfig.Controls.Toggle.Name ..
-                        "~ to turn radio ~r~off~s~.~n~~" ..
+                        "~ pour ~r~éteindre~s~ la radio.~n~~" ..
                             radioConfig.Controls.Broadcast.Name .. 
-                            "~ to broadcast.~n~~"..
+                            "~ pour émettre.~n~~"..
                                 radioConfig.Controls.vIncrease.Name ..
                                     "~ or ~" ..
                                         radioConfig.Controls.vDecrease.Name ..
-                                            "~ to switch volume~n~Frequency: ~1~ MHz~n~Volume: ~1~ %"
+                                            "~ pour modifier le volume~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
-    {"FRZL_RADIO_INPUT", "Entrez la fréquence (de 1 a 999)"}
+    {"FRZL_RADIO_INPUT", "Entrez la fréquence"}
 }
 Radio.Commands = {
     {
