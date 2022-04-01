@@ -18,7 +18,7 @@ if config.main.acePermissions.enabled then
 end
 
 RegisterNetEvent("SmartSigns:updateSign")
-AddEventHandler("SmartSigns:updateSign", function(signId, text, streetName)
+AddEventHandler("SmartSigns:updateSign", function(signId, text, streetName, job)
     local source = source
     local permission = config.main.disablePermissions
     -- Add any additional permission checks here.
@@ -61,8 +61,16 @@ AddEventHandler("SmartSigns:updateSign", function(signId, text, streetName)
             permission = true
         end
     end
+
+    if job == 'police' then
+        permission = true
+    else
+        permission = false
+    end
     
-    if permission then processSign(source, signId, text, streetName) end
+    if permission
+        then processSign(source, signId, text, streetName)
+    end
 end)
 
 -- We do not recommend editing below here:
