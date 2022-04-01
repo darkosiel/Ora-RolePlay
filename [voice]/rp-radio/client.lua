@@ -93,9 +93,9 @@ Radio.Commands = {
     {
         Enabled = true, -- Add a command to choose radio frequency
         Name = "frequency", -- Command name
-        Help = "Entrez la fréquence (de 1 a 999)", -- Command help shown in chatbox when typing the command
+        Help = "Entrez la fréquence (de 137 à 850 MHz)", -- Command help shown in chatbox when typing the command
         Params = {
-            {name = "number", "Entrez la fréquence (de 1 a 999)"}
+            {name = "number", "Entrez la fréquence (de 137 à 850 MHz)"}
         },
         Handler = function(src, args, raw)
             if Radio.Has then
