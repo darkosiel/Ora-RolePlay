@@ -49,7 +49,16 @@ local snd_airmanu = {}
 
 -- these models will use their real wail siren, as determined by their assigned audio hash in vehicles.meta
 local eModelsWithFireSrn = {
-    "FIRETRUK"
+    "FIRETRUK",
+    "LSFD",
+    "LSFD2",
+    "LSFD3",
+    "LSFD4",
+    "LSFD5",
+    "LSFDTRUCK",
+    "LSFDTRUCK2",
+    "LSFDTRUCK3"
+
 }
 
 -- models listed below will use AMBULANCE_WARNING as auxiliary siren
@@ -57,7 +66,15 @@ local eModelsWithFireSrn = {
 local eModelsWithPcall = {
     "AMBULANCE",
     "FIRETRUK",
-    "LGUARD"
+    "LGUARD",
+    "LSFD",
+    "LSFD2",
+    "LSFD3",
+    "LSFD4",
+    "LSFD5",
+    "LSFDTRUCK",
+    "LSFDTRUCK2",
+    "LSFDTRUCK3"
 }
 
 ---------------------------------------------------------------------
