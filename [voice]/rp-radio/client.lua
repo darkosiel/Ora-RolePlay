@@ -33,21 +33,21 @@ Radio.Labels = {
             (radioConfig.Controls.Secondary.Enabled and
                 "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or
                 "~" .. radioConfig.Controls.Activator.Name .. "~") ..
-                " to hide.~n~~" ..
+                " pour cacher.~n~~" ..
                     radioConfig.Controls.Toggle.Name ..
-                        "~ to turn radio ~g~on~s~.~n~~" ..
+                        "~ pour ~g~allumer~s~ la radio.~n~~" ..
                             radioConfig.Controls.Decrease.Name ..
-                                "~ or ~" ..
+                                "~ ou ~" ..
                                     radioConfig.Controls.Increase.Name ..
-                                        "~ to switch frequency~n~~" ..
+                                        "~ pour changer de fréquence~n~~" ..
                                             radioConfig.Controls.Input.Name ..
-                                                "~ to choose frequency~n~~" ..
+                                                "~ pour choisir une fréquence~n~~" ..
                                                 radioConfig.Controls.vIncrease.Name ..
-                                                "~ or ~" ..
+                                                "~ ou ~" ..
                                                     radioConfig.Controls.vDecrease.Name ..
-                                                        "~ to switch volume~n~~" ..
+                                                        "~ pour modifier le volume~n~~" ..
                                                             radioConfig.Controls.ToggleClicks.Name ..
-                                                                "~ to ~a~ mic clicks~n~Frequency: ~1~ MHz~n~Volume: ~1~ %"
+                                                                "~ to ~a~ mic clicks~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
     {
         "FRZL_RADIO_HELP2",
@@ -55,17 +55,17 @@ Radio.Labels = {
             (radioConfig.Controls.Secondary.Enabled and
                 "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or
                 "~" .. radioConfig.Controls.Activator.Name .. "~") ..
-                " to hide.~n~~" ..
+                " pour cacher.~n~~" ..
                     radioConfig.Controls.Toggle.Name ..
-                        "~ to turn radio ~r~off~s~.~n~~" ..
+                        "~ pour ~r~éteindre~s~ la radio.~n~~" ..
                             radioConfig.Controls.Broadcast.Name .. 
-                            "~ to broadcast.~n~~"..
+                            "~ pour émettre.~n~~"..
                                 radioConfig.Controls.vIncrease.Name ..
-                                    "~ or ~" ..
+                                    "~ ou ~" ..
                                         radioConfig.Controls.vDecrease.Name ..
-                                            "~ to switch volume~n~Frequency: ~1~ MHz~n~Volume: ~1~ %"
+                                            "~ pour modifier le volume~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
-    {"FRZL_RADIO_INPUT", "Entrez la fréquence (de 1 a 999)"}
+    {"FRZL_RADIO_INPUT", "Entrez la fréquence (de 137 à 850 MHz)"}
 }
 Radio.Commands = {
     {
@@ -93,9 +93,9 @@ Radio.Commands = {
     {
         Enabled = true, -- Add a command to choose radio frequency
         Name = "frequency", -- Command name
-        Help = "Entrez la fréquence (de 1 a 999)", -- Command help shown in chatbox when typing the command
+        Help = "Entrez la fréquence (de 137 à 850 MHz)", -- Command help shown in chatbox when typing the command
         Params = {
-            {name = "number", "Entrez la fréquence (de 1 a 999)"}
+            {name = "number", "Entrez la fréquence (de 137 à 850 MHz)"}
         },
         Handler = function(src, args, raw)
             if Radio.Has then
@@ -269,7 +269,7 @@ end
 function Radio:Add(id)
     if lastRadioId ~= id then
         lastRadioId = id
-        exports["Ora"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~" .. id .. "~s~")
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~ ~o~" .. id .. "~s~ MHz")
         exports.saltychat:SetRadioChannel(id, false)
         TriggerServerEvent("rp-radio:setPlayerRadioChannel", id, false)
     else
@@ -282,7 +282,7 @@ end
 -- Remove player from radio channel
 function Radio:Remove()
     if (lastRadioId ~= nil) then
-        exports["Ora"]:ShowNotification("~r~CHANNEL RADIO:~s~  ~o~Aucun~s~")
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~ ~o~" .. lastRadioId .. "~s~ MHz")
         TriggerServerEvent("rp-radio:removePlayerRadioChannel", lastRadioId)
         exports.saltychat:SetRadioChannel("", false)
     else

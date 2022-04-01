@@ -57,10 +57,10 @@ radioConfig = {
     },
     Frequency = {
         Private = {}, -- List of private frequencies
-        Current = 1, -- Don't touch
+        Current = 137, -- Don't touch
         CurrentIndex = 1, -- Don't touch
-        Min = 1, -- Minimum frequency
-        Max = 1200, -- Max number of frequencies
+        Min = 137, -- Minimum frequency
+        Max = 850, -- Max number of frequencies
         List = {}, -- Frequency list, Don't touch
         Access = {} -- List of freqencies a player has access to
     },

@@ -1913,6 +1913,10 @@ function Police.PutPortWeapon()
     end
 end
 
+function Police.GetHose(source)
+    TriggerEvent("Client:HoseCommand", source, true)
+end
+
 function Police.AutorizePpa()
     local target = GetPlayerServerIdInDirection(5.0)
     if (target) then
