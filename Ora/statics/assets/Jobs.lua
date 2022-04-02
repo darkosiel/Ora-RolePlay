@@ -4319,7 +4319,7 @@ Jobs = {
                 Name = "coffre personnel"
             },
             {
-                Pos = {x = 379.5462, y = -1609.8751, z = 30.2027,
+                Pos = {x = 379.5462, y = -1609.8751, z = 30.2027},
                 Limit = 2000,
                 Name = "coffre Saisies DB"
             },
