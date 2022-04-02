@@ -590,7 +590,7 @@ local Shops =
         },
         {
             Title = "Préfecture",
-            Pos = {x = 837.0891, y = -1288.6243, z = 28.2449, a = 175.3310},
+            Pos = {x = 837.0891, y = -1288.6243, z = 28.2449 - 0.98, a = 175.3310},
             Blips = {
                 sprite = nil,
                 color = 17,
@@ -617,7 +617,7 @@ local Shops =
         },
         {
             Title = "Préfecture",
-            Pos = {x = 382.4895, y = -1596.7879, z = 30.0513, a = 49.95},
+            Pos = {x = 382.4895, y = -1596.7879, z = 30.0513 - 0.98, a = 49.95},
             Blips = {
                 sprite = nil,
                 color = 17,
