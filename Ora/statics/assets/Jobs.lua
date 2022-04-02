@@ -1221,39 +1221,39 @@ Jobs = {
         },
         garage = {
             Name = "Garage restaurant",
-            Pos = {x = -1318.7956, y = -1134.5275, z = 4.5778},
+            Pos = {x = -1796.88, y = -1180.76, z = 12.31},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1318.7956, y = -1134.5275, z = 4.5778, h = 318.24}
+                spawnpos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24}
             },
             Blipdata = {
-                Pos = {x = -1318.7956, y = -1134.5275, z = 4.5778, h = 318.24},
+                Pos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = -1351.1121, y = -1071.5447, z = 6.98},
-                Limit = 1000,
+                Pos = {x = -1839.74, y = -1189.69, z = 13.32},
+                Limit = 500,
                 Name = "coffre_restaurant"
             },
             {
-                Pos = {x = -1352.4573, y = -1054.8375, z = 3.5130},
+                Pos = {x = -1855.52, y = -1195.06, z = 12.10},
                 Limit = 500,
                 Name = "coffre_caveresto"
             },
             {
-                Pos = {x = -1352.2672, y = -1064.0411, z = 11.4667},
+                Pos = {x = -1840.72, y = -1183.35, z = 18.20},
                 Limit = 500,
                 Name = "coffre_pearls_club"
             },
             {
                 Pos = {x = -1836.73, y = -1176.40, z = 18.20},
                 Limit = 200,
-                Name = "coffre_pearls_bureau" --non utilisé
+                Name = "coffre_pearls_bureau"
             }
         },
         requiredService = false,
@@ -1264,7 +1264,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "planche",
-                Pos = {x = -1339.2752, y = -1069.6248, z = 6.9877},
+                Pos = {x = -1842.25, y = -1185.11, z = 13.33},
                 required = "fish6",
                 giveitem = "filetdaurade",
                 RemoveItem = "fish6",
@@ -1276,7 +1276,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Traitement milkshack",
-                Pos = {x = -1342.3371, y = -1068.9543, z = 6.9864},
+                Pos = {x = -1838.36, y = -1183.82, z = 13.33},
                 required = "milk",
                 giveitem = "milkshack",
                 RemoveItem = "milk",
@@ -1288,7 +1288,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "four",
-                Pos = {x = -1351.5434, y = -1066.4296, z = 6.9856},
+                Pos = {x = -1836.62, y = -1184.59, z = 13.33},
                 required = {
                     {name = "bread", count = 1},
                     {name = "fish12", count = 1}
@@ -1306,7 +1306,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Traitement Cupcake",
-                Pos = {x = -1341.1522, y = -1071.9404, z = 6.9866},
+                Pos = {x = -1837.41, y = -1186.21, z = 13.33},
                 required = "bread",
                 giveitem = "cupcake",
                 RemoveItem = "bread",
