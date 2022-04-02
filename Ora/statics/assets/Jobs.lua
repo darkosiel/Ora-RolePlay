@@ -4310,13 +4310,18 @@ Jobs = {
             },
             {
                 Pos = {x = -1078.51, y = -815.81, z = 10.04},
-                Limit = 99999999,
+                Limit = 5000,
                 Name = "coffre des saisies"
             },
             {
                 Pos = {x = -1099.21, y = -830.74, z = 13.28},
                 Limit = 99999999,
                 Name = "coffre personnel"
+            },
+            {
+                Pos = {x = 379.5462, y = -1609.8751, z = 30.2027,
+                Limit = 2000,
+                Name = "coffre Saisies DB"
             },
             {
                 Pos = {x = -1079.99, y = -823.06, z = 13.88},

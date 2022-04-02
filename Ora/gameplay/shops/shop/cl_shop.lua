@@ -589,6 +589,60 @@ local Shops =
             }
         },
         {
+            Title = "Préfecture",
+            Pos = {x = 837.0891, y = -1288.6243, z = 28.2449, a = 175.3310},
+            Blips = {
+                sprite = nil,
+                color = 17,
+                name = "Préfecture"
+            },
+            Ped = {
+                model = "a_f_y_femaleagent",
+                name = "Brenda"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "identity",
+                    price = 15,
+                    data = {},
+                    type = "identity",
+                    fct = GetIdentity
+                }
+            }
+        },
+        {
+            Title = "Préfecture",
+            Pos = {x = 382.4895, y = -1596.7879, z = 30.0513, a = 49.95},
+            Blips = {
+                sprite = nil,
+                color = 17,
+                name = "Préfecture"
+            },
+            Ped = {
+                model = "u_m_m_fibarchitect",
+                name = "Michel"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "identity",
+                    price = 15,
+                    data = {},
+                    type = "identity",
+                    fct = GetIdentity
+                }
+            }
+        },
+        {
             Title = "Medecin de garde",
             Pos = {x = 308.32, y = -595.39, z = 42.26, a = 62.72},
             Blips = {
