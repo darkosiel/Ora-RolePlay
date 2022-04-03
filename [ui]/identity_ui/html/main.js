@@ -18,7 +18,7 @@ $(function () {
 				$('.pic'). attr("src", event.data.data.data.identity.face_picutre);
 
 
-				$('.im'). attr("src", "https://i.ibb.co/qy52CMy/identity.png");
+				$('.im'). attr("src", "https://i.ibb.co/6RtLnFy/id.png");
 				break
 			case 'hide':
 				$('body').css('opacity', '0.0')
