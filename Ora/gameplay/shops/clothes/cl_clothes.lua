@@ -1344,15 +1344,15 @@ Citizen.CreateThread(
                                                         Clothes.component
                                                     )
                                                 end
-                                                if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
-                                                    Clothes.static = Clothes.category[i].staticM
-                                                else
-                                                    Clothes.static = Clothes.category[i].staticF
-                                                end
-                                                Clothes.Indexes = {}
-                                                for ia = 0, #Clothes.static, 1 do
-                                                    Clothes.Indexes[ia] = 1
-                                                end
+                                                -- if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
+                                                --     Clothes.static = Clothes.category[i].staticM
+                                                -- else
+                                                --     Clothes.static = Clothes.category[i].staticF
+                                                -- end
+                                                -- Clothes.Indexes = {}
+                                                -- for i = 0, #Clothes.static, 1 do
+                                                --     Clothes.Indexes[i] = 1
+                                                -- end
                                             end
                                         end,
                                         RMenu:Get("clothesSHOP", "clothes_chooser_" .. CurrentZone)
