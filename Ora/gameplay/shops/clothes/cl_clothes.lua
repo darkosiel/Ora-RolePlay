@@ -1345,13 +1345,13 @@ Citizen.CreateThread(
                                                     )
                                                 end
                                                 if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
-                                                   Clothes.static = Clothes.category[i].remM
+                                                   Clothes.static = Clothes.category[i].staticM
                                                 else
-                                                   Clothes.static = Clothes.category[i].remF
+                                                   Clothes.static = Clothes.category[i].staticF
                                                 end
                                                 Clothes.Indexes = {}
                                                 for i = 0, #Clothes.static, 1 do
-                                                    Clothes.static[i] = 1
+                                                    Clothes.Indexes[i] = 1
                                                 end
                                             end
                                         end,
