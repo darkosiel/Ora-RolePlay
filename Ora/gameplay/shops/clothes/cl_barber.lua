@@ -193,14 +193,15 @@ local locked_Blush = true
 local locked_rouge = true
 local function Open()
 
-    --("open")
+    -- ("open")
+    hrtfgdhdfhgc = PlySkin
     skins.hair = PlySkin.hair
     skins.facialHair = PlySkin.facial.hair
     skins.makeup = PlySkin.makeup
     skins.blush = Plyskin.blush
     skins.lipstick = PlySkin.lipstick
-    --(PlySkin.hair.style)
-    --(skins.hair.style)
+    -- (PlySkin.hair.style)
+    -- (skins.hair.style)
     RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
 end
 
@@ -270,8 +271,8 @@ Citizen.CreateThread(function()
         Wait(1)
         
         if RageUI.Visible(RMenu:Get('barberDhop', "main")) then
-     --       --(json.encode(skins.hair.style .. " $"))
-       --     --(json.encode((PlySkin.hair.style)))
+           (json.encode(skins.hair.style .. " $"))
+           (json.encode((PlySkin.hair.style)))
             RageUI.DrawContent({ header = true, glare = false}, function()    
                 hairstyles = {} 
                 if Ora.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
@@ -344,7 +345,7 @@ Citizen.CreateThread(function()
                             skins.facialHair.beard.opacity = Percent
                         end)
     
-                        --updateCheveux(skin)
+                        updateCheveux(skin)
                     end
                     
                     if Selected and not barbe then
@@ -371,7 +372,7 @@ Citizen.CreateThread(function()
                             skins.lipstick.color[1] = CurrentIndex - 1
                         end)
     
---updateCheveux(skin)
+updateCheveux(skin)
                     end
                     
                     if Selected and not rouge then
@@ -402,7 +403,7 @@ Citizen.CreateThread(function()
                             colour_table8[2] = CurrentIndex
                             skins.makeup.color[2] = CurrentIndex - 1
                         end)
-                     --   updateCheveux(skin)
+                       updateCheveux(skin)
                     end
                     if Selected and not Maquillage then
                         locked_Maquillage = false
@@ -432,7 +433,7 @@ Citizen.CreateThread(function()
                             colour_table10[2] = CurrentIndex
                             skins.blush.color[2] = CurrentIndex - 1
                         end)
-                     --   updateCheveux(skin)
+                       updateCheveux(skin)
                     end
                     if Selected and not Blush then
                         locked_Blush = false
