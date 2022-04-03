@@ -734,8 +734,8 @@ local private_conf = {
     EnterZone = function()
         local isAuth = false
         for i=1, #restrictedJob do
-            if restrictedJob[i] == Atlantiss.Identity.Job:GetName() then isAuth = true end
-            if restrictedJob[i] == Atlantiss.Identity.Orga:GetName() then isAuth = true end
+            if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
+            if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
         end
         if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -765,8 +765,8 @@ local private_conf_paleto = {
     EnterZone = function()
         local isAuth = false
         for i=1, #restrictedJob do
-            if restrictedJob[i] == Atlantiss.Identity.Job:GetName() then isAuth = true end
-            if restrictedJob[i] == Atlantiss.Identity.Orga:GetName() then isAuth = true end
+            if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
+            if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
         end
         if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -1075,7 +1075,7 @@ Citizen.CreateThread(
                             true,
                             function(_, _, Selected)
                                 if Selected then
-                                    TriggerEvent('atlantiss:inventory:deleteIfWeapon', CurrentWeapon)
+                                    TriggerEvent('Ora:inventory:deleteIfWeapon', CurrentWeapon)
                                     if DoesEntityExist(wObj) then
                                         DeleteEntity(wObj)
                                     end
@@ -1104,7 +1104,7 @@ Citizen.CreateThread(
                                     end
                                 end
                                 if Selected then
-                                    TriggerEvent('atlantiss:inventory:deleteIfWeapon', CurrentWeapon)
+                                    TriggerEvent('Ora:inventory:deleteIfWeapon', CurrentWeapon)
                                     if DoesEntityExist(wObj) then
                                         DeleteObject(wObj)
                                     end
@@ -1120,7 +1120,7 @@ Citizen.CreateThread(
                                                 }
                                             )
                                             CurrentWeapon.data["tint"] = Index - 1
-                                            Atlantiss.Inventory.Data[inv_name][inv_index].data = CurrentWeapon.data
+                                            Ora.Inventory.Data[inv_name][inv_index].data = CurrentWeapon.data
                                             --TriggerServerEvent("inventory:editData",CurrentWeapon.id,CurrentWeapon.data)
                                             if
                                                 HasPedGotWeapon(
@@ -1176,7 +1176,7 @@ Citizen.CreateThread(
                                             end
                                         end
                                         if Selected then
-                                            TriggerEvent('atlantiss:inventory:deleteIfWeapon', CurrentWeapon)
+                                            TriggerEvent('Ora:inventory:deleteIfWeapon', CurrentWeapon)
                                             if DoesEntityExist(wObj) then
                                                 DeleteObject(wObj)
                                             end
@@ -1189,7 +1189,7 @@ Citizen.CreateThread(
                                                         CurrentWeapon.data["access"] = {}
                                                     end
                                                     table.insert(CurrentWeapon.data["access"], attachmentObject[1])
-                                                    Atlantiss.Inventory.Data[inv_name][inv_index].data = CurrentWeapon.data
+                                                    Ora.Inventory.Data[inv_name][inv_index].data = CurrentWeapon.data
                                                     --TriggerServerEvent("inventory:editData",CurrentWeapon.id,CurrentWeapon.data)
 
                                                     if
@@ -1223,7 +1223,7 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
-                        for k, v in pairs(Atlantiss.Inventory.Data) do
+                        for k, v in pairs(Ora.Inventory.Data) do
                             if Items[k] then
                                 if Items[k].category == "weapon" then
                                     for i = 1, #v, 1 do
@@ -1277,7 +1277,7 @@ Citizen.CreateThread(
                                     if Selected then
                                         for m1, m3 in pairs(weapon_name) do
                                             if m3 == c[1] then
-                                                local receive = Atlantiss.Inventory:CanReceive(m1, 1)
+                                                local receive = Ora.Inventory:CanReceive(m1, 1)
                                                 if receive then
                                                     dataonWait = {
                                                         title = "Achat arme à feu",
@@ -1285,7 +1285,7 @@ Citizen.CreateThread(
                                                         fct = function()
                                                             local data = {serial = math.random(111111111, 999999999)}
                                                             items = {name = m1, data = data}
-                                                            Atlantiss.Inventory:AddItem(items)
+                                                            Ora.Inventory:AddItem(items)
                                                             TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
                                                         end
                                                     }
@@ -1324,20 +1324,20 @@ Citizen.CreateThread(
                                                 if Data then
                                                     for m1, m3 in pairs(weapon_name) do
                                                         if m3 == c[1] then
-                                                            local receive = Atlantiss.Inventory:CanReceive(m1, 1)
+                                                            local receive = Ora.Inventory:CanReceive(m1, 1)
                                                             if receive then
                                                                 dataonWait = {
                                                                     title = "Achat arme blanche",
                                                                     price = c[3],
                                                                     fct = function()
                                                                         for m1, m3 in pairs(weapon_name) do
-                                                                            local receive = Atlantiss.Inventory:CanReceive(m1, 1)
+                                                                            local receive = Ora.Inventory:CanReceive(m1, 1)
                                                                             if m3 == c[1] and receive then
                                                                                 local data = {
                                                                                     serial = math.random(111111111, 999999999)
                                                                                 }
                                                                                 items = {name = m1, data = data}
-                                                                                Atlantiss.Inventory:AddItem(items)
+                                                                                Ora.Inventory:AddItem(items)
                                                                                 TriggerServerEvent(
                                                                                     "BuyNewWeapon",
                                                                                     data,
@@ -1400,7 +1400,7 @@ Citizen.CreateThread(
                                         SetPedComponentVariation(playerPed, 9, i, Index - 1, 2)
                                     end
                                     if Selected then
-                                        local receive = Atlantiss.Inventory:CanReceive("kevlar", 1)
+                                        local receive = Ora.Inventory:CanReceive("kevlar", 1)
                                         if receive then
                                             local kevlarLevel = 10
                                             local kevlarLabel = "Kevlar"
@@ -1422,7 +1422,7 @@ Citizen.CreateThread(
                                                             status = kevlarLevel
                                                         }
                                                     }
-                                                    Atlantiss.Inventory:AddItem(items)
+                                                    Ora.Inventory:AddItem(items)
                                                 end
                                             }
                                             CloseAllMenus()
@@ -1477,14 +1477,14 @@ Citizen.CreateThread(
                             true,
                             function(_, _, Selected)
                                 if Selected then
-                                    local receive = Atlantiss.Inventory:CanReceive("mm9", amount_index)
+                                    local receive = Ora.Inventory:CanReceive("mm9", amount_index)
                                     if receive then
                                         dataonWait = {
                                             title = "Achat munitions",
                                             price = amount_index * 2,
                                             fct = function()
                                                 for i = 1, amount_index, 1 do
-                                                    Atlantiss.Inventory:AddItem(munition_name[munition_index])
+                                                    Ora.Inventory:AddItem(munition_name[munition_index])
                                                 end
                                                 --				TriggerServerEvent("core:buymunition",amount_index,munition_name[munition_index])
                                             end
