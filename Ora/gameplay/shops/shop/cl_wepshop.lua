@@ -2691,4 +2691,5 @@ Citizen.CreateThread(
             return fakeWeapon
         end
     end
-)
+    )
+end
