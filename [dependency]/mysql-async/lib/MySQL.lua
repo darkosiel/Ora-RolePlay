@@ -223,6 +223,6 @@ function MySQL.ready (callback)
         while not exports['mysql-async']:is_ready() do
             Citizen.Wait(0)
         end
-        -- callback()
+        callback()
     end)
 end
