@@ -822,12 +822,6 @@ local weapon_configcentre = {
 
 local private_conf = {
     Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
-<<<<<<< HEAD
-    Ped = {
-        Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
-        model = "s_m_y_ammucity_01",
-        name = "Tom"
-=======
     Ped = {
         Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
         model = "s_m_y_ammucity_01",
@@ -863,47 +857,12 @@ local private_confrancho = {
         Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
         model = "s_m_y_ammucity_01",
         name = "John"
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
     },
     EnterZone = function()
         local isAuth = false
         for i=1, #restrictedJob do
             if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
             if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
-<<<<<<< HEAD
-        end
-        if isAuth then
-            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
-            KeySettings:Add("controller", 46, OpenP, "Ammu")
-        end
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
-
-local private_confrancho = {
-    Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
-    Ped = {
-        Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
-        model = "s_m_y_ammucity_01",
-        name = "John"
-    },
-    EnterZone = function()
-        local isAuth = false
-        for i=1, #restrictedJob do
-            if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
-            if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
-=======
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
         end
         if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
