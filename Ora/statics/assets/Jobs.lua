@@ -244,204 +244,204 @@ Jobs = {
             }
         }
     },
-    -- coiffeur = {
-    --     label = "Coiffeur",
-    --     label2 = "Coiffeur",
-    --     iban = "coiffeur",
-    --     grade = {
-    --         {
-    --             label = "CDD",
-    --             salary = 150,
-    --             name = "cdd",
-    --             show = true
-    --         },
-    --         {
-    --             label = "CDI",
-    --             salary = 160,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "Chef",
-    --             salary = 170,
-    --             name = "chef",
-    --             show = true
-    --         },
-    --         {
-    --             label = "DRH",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = -808.87, y = -179.8, z = 36.57},
-    --             Limit = 100,
-    --             Name = "coffre_coiffeur"
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage Coiffeur",
-    --         Pos = {x = -794.15, y = -172.96, z = 36.29},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {
-    --                 {}
-    --             },
-    --             spawnpos = {x = -794.15, y = -172.96, z = 36.29, h = 26.32}
-    --         },
-    --         Blipdata = {
-    --             Pos = {},
-    --             Blipcolor = 7,
-    --             Blipname = "Garage - coiffeur"
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "coiffeur",
-    --             subtitle = "Action",
-    --             name = "coiffeur_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("coiffeur")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Coiffure",
-    --                 onSelected = function()
-    --                     for i = 1, 10, 1 do
-    --                         Wait(1)
-    --                         RageUI.GoBack()
-    --                     end
-    --                     RageUI.Visible(RMenu:Get("haircuts", "main"), true)
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "Coiffeur Sud", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     }
-    -- },
-    -- coiffeurnord = {
-    --     label = "Coiffeur Nord",
-    --     label2 = "Coiffeur Nord",
-    --     iban = "coiffeurnord",
-    --     grade = {
-    --         {
-    --             label = "CDD",
-    --             salary = 150,
-    --             name = "cdd",
-    --             show = true
-    --         },
-    --         {
-    --             label = "CDI",
-    --             salary = 160,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "Chef",
-    --             salary = 170,
-    --             name = "chef",
-    --             show = true
-    --         },
-    --         {
-    --             label = "DRH",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = -276.76, y = 6224.07, z = 30.70},
-    --             Limit = 100,
-    --             Name = "coffre_coiffeur_nord"
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage Coiffeur Nord",
-    --         Pos = {x = -243.98, y = 6237.29, z = 31.48},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 10,
-    --             vehicles = {
-    --                 {}
-    --             },
-    --             spawnpos = {x = -243.98, y = 6237.29, z = 31.48, h = 226.59}
-    --         },
-    --         Blipdata = {
-    --             Pos = {},
-    --             Blipcolor = 7,
-    --             Blipname = "Garage Coiffeur Nord"
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "Coiffeur Nord",
-    --             subtitle = "Action",
-    --             name = "coiffeur_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("coiffeurnord")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Coiffure",
-    --                 onSelected = function()
-    --                     for i = 1, 10, 1 do
-    --                         Wait(1)
-    --                         RageUI.GoBack()
-    --                     end
-    --                     RageUI.Visible(RMenu:Get("haircuts", "main"), true)
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "Coiffeur Nord", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur Nord")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     }
-    -- },
+    coiffeur = {
+        label = "Coiffeur",
+        label2 = "Coiffeur",
+        iban = "coiffeur",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -808.87, y = -179.8, z = 36.57},
+                Limit = 100,
+                Name = "coffre_coiffeur"
+            }
+        },
+        garage = {
+            Name = "Garage Coiffeur",
+            Pos = {x = -794.15, y = -172.96, z = 36.29},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -794.15, y = -172.96, z = 36.29, h = 26.32}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage - coiffeur"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "coiffeur",
+                subtitle = "Action",
+                name = "coiffeur_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("coiffeur")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Coiffure",
+                    onSelected = function()
+                        for i = 1, 10, 1 do
+                            Wait(1)
+                            RageUI.GoBack()
+                        end
+                        RageUI.Visible(RMenu:Get("haircuts", "main"), true)
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Sud", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur")
+                        end
+                    end
+                }
+            }
+        }
+    },
+    coiffeurnord = {
+        label = "Coiffeur Nord",
+        label2 = "Coiffeur Nord",
+        iban = "coiffeurnord",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -276.76, y = 6224.07, z = 30.70},
+                Limit = 100,
+                Name = "coffre_coiffeur_nord"
+            }
+        },
+        garage = {
+            Name = "Garage Coiffeur Nord",
+            Pos = {x = -243.98, y = 6237.29, z = 31.48},
+            Properties = {
+                type = 3,
+                Limit = 10,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -243.98, y = 6237.29, z = 31.48, h = 226.59}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage Coiffeur Nord"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Coiffeur Nord",
+                subtitle = "Action",
+                name = "coiffeur_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("coiffeurnord")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Coiffure",
+                    onSelected = function()
+                        for i = 1, 10, 1 do
+                            Wait(1)
+                            RageUI.GoBack()
+                        end
+                        RageUI.Visible(RMenu:Get("haircuts", "main"), true)
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Nord", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur Nord")
+                        end
+                    end
+                }
+            }
+        }
+    },
     carwash = {
         label = "Car Wash",
         label2 = "Car Wash",
