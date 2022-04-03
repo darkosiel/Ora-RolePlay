@@ -1351,7 +1351,7 @@ Citizen.CreateThread(
                                                 end
                                                 Clothes.Indexes = {}
                                                 for i = 0, #Clothes.static, 1 do
-                                                    Clothes.Indexes[i] = 1
+                                                    Clothes.static[i] = 1
                                                 end
                                             end
                                         end,
