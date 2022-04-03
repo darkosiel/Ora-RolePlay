@@ -1005,7 +1005,7 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
-                            RageUI.Button(
+--[[                            RageUI.Button(
                                 "Give argent sale",
                                 nil,
                                 {},
@@ -1031,7 +1031,7 @@ Citizen.CreateThread(
 										end
                                     end
                                 end
-                            )
+                            )]]
                             RageUI.Button(
                                 "Donner Item",
                                 nil,
@@ -1713,7 +1713,7 @@ Citizen.CreateThread(
                                 end
                             )
 
-                            RageUI.Button(
+--[[                            RageUI.Button(
                                 "Donner argent sale",
                                 nil,
                                 {},
@@ -1738,7 +1738,7 @@ Citizen.CreateThread(
 										end
                                     end
                                 end
-                            )
+                            )]]
 
                             RageUI.Button(
                                 "Donner de l'XP illégal",
