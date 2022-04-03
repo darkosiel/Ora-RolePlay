@@ -425,7 +425,7 @@ AddEventHandler(
                 "Centrale",
                 "~b~Appel",
                 "~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_IMMO",
+                "CHAR_LSFD",
                 1
             )
         end
