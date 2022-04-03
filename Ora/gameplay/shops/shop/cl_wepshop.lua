@@ -1961,7 +1961,7 @@ Citizen.CreateThread(
                     end
                 )
         end
-
+    },
             if RageUI.Visible(RMenu:Get("ammunation", "blanches")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
