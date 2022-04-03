@@ -1037,7 +1037,6 @@ local private_confcentre = {
     end
 }
 
-)
 local private_arme = {
    Pos = {x = 814.7973, y = -2155.2089, z = 28.6191, a = 7.0176},
    Ped = {
