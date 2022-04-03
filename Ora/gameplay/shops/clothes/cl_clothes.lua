@@ -759,7 +759,7 @@ function Clothes.CreateShops()
             RageUI.CreateSubMenu(RMenu:Get("clothesSHOP", i), nil, "Changer mes accessoires")
         )
         RMenu:Get("clothesSHOP", i).Closed = function()
-            local Clothes.static = {}
+            Clothes.static = {}
             RefreshClothes()
         end
     end
