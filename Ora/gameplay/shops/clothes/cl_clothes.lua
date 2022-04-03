@@ -1,5 +1,5 @@
-local function j(t)
-    return json.decode(LoadResourceFile("Ora", "statics/data/" .. t .. ".json"))
+function j(t)
+    return json.decode(t)
 end
 local male_torso = {
     [0] = 0,
