@@ -99,6 +99,14 @@ function Karting:TimerCount()
         hPQ,
         R1FIoQI - .05,
         .5,
+        string.format("TEMPS : "..s2m(self.time)),
+        4,
+        0
+    )
+      DrawNiceText(
+        hPQ,
+        R1FIoQI - .05,
+        .5,
         string.format("TOUR : "..(self.laps + 1).."/"..self.maxLaps),
         4,
         0
