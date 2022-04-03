@@ -894,10 +894,6 @@ local private_conf_paleto = {
         for i=1, #restrictedJob do
             if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
             if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
         end
         if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -960,7 +956,6 @@ local private_confcentre = {
         for i=1, #restrictedJob do
             if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
             if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
         end
         if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -980,7 +975,6 @@ local private_confcentre = {
     end
 }
 
-<<<<<<< HEAD
 local private_confsandy = {
     Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
     Ped = {
@@ -1024,7 +1018,6 @@ local private_confcentre = {
         for i=1, #restrictedJob do
             if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
             if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
         end
         if isAuth then
             Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -1044,8 +1037,7 @@ local private_confcentre = {
     end
 }
 
-=======
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
+)
 local private_arme = {
    Pos = {x = 814.7973, y = -2155.2089, z = 28.6191, a = 7.0176},
    Ped = {
@@ -1894,8 +1886,6 @@ Citizen.CreateThread(
             end
 
             if RageUI.Visible(RMenu:Get("ammunation", "weapons")) then
-<<<<<<< HEAD
-<<<<<<< HEAD
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
@@ -1920,9 +1910,6 @@ Citizen.CreateThread(
                                                             items = {name = m1, data = data}
                                                             Ora.Inventory:AddItem(items)
                                                             TriggerServerEvent("BuyNewWeapon", data, Items[m1].label)
-=======
-=======
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
                         RageUI.DrawContent(
                         {header = true, glare = false},
                             function()
@@ -1960,10 +1947,6 @@ Citizen.CreateThread(
                                                                     end
                                                                 end
                                                             
-<<<<<<< HEAD
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
-=======
->>>>>>> parent of a6702e1 (Update cl_wepshop.lua)
                                                         end
                                                     else
                                                         RageUI.Popup({message = "~r~Vous n'avez pas votre PPA."})
