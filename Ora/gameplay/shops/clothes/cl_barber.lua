@@ -233,7 +233,6 @@ function GetOldChev()
 
 
     TriggerServerCallback("core:GetSKin",function(skin)
-        (dump(skin))
         UpdateEntityFace(LocalPlayer().Ped, json.decode(skin))
 
     end)
