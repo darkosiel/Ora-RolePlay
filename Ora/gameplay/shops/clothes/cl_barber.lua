@@ -1,12 +1,12 @@
 local Shops_Barber = {
      Pos = {
-    --     {x = -814.308,  y = -183.823,  z = 36.568},
-    --     {x = 136.826,   y = -1708.373, z = 28.291},
-    --     {x = -1282.604, y = -1116.757, z = 5.990},
-    --     {x = 1931.513,  y = 3729.671,  z = 31.844},
-    --     {x = 1212.840,  y = -473.921,  z = 65.450},
-    --     {x = -32.885,   y = -152.319,  z = 56.076},
-    --     {x = -278.077,  y = 6228.463,  z = 30.695},
+        {x = -814.308,  y = -183.823,  z = 36.568},
+        {x = 136.826,   y = -1708.373, z = 28.291},
+        {x = -1282.604, y = -1116.757, z = 5.990},
+        {x = 1931.513,  y = 3729.671,  z = 31.844},
+        {x = 1212.840,  y = -473.921,  z = 65.450},
+        {x = -32.885,   y = -152.319,  z = 56.076},
+        {x = -278.077,  y = 6228.463,  z = 30.695},
      }
 }
 Colors = {
@@ -193,14 +193,14 @@ local locked_Blush = true
 local locked_rouge = true
 local function Open()
 
-    --("open")
+    ("open")
     skins.hair = PlySkin.hair
     skins.facialHair = PlySkin.facial.hair
     skins.makeup = PlySkin.makeup
     skins.blush = Plyskin.blush
     skins.lipstick = PlySkin.lipstick
-    --(PlySkin.hair.style)
-    --(skins.hair.style)
+    (PlySkin.hair.style)
+    (skins.hair.style)
     RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
 end
 
@@ -228,41 +228,41 @@ end
 
 function GetOldChev()
     Wait(500)
-    --("CHANGED")
-    --(PlySkin.hair.style)
-    --(hrtfgdhdfhgc.hair.style)
+    ("CHANGED")
+    (PlySkin.hair.style)
+    (hrtfgdhdfhgc.hair.style)
 
     UpdateEntityFace(LocalPlayer().Ped, hrtfgdhdfhgc)
 
 
     TriggerServerCallback("core:GetSKin",function(skin)
-        --(dump(skin))
+        (dump(skin))
         UpdateEntityFace(LocalPlayer().Ped, json.decode(skin))
 
     end)
 end
 
 local function Build()
-    -- for i = 1 , #Shops_Barber.Pos , 1 do
-    --     local v = Shops_Barber.Pos[i]
-    --     local blip = AddBlipForCoord(v.x, v.y, v.z)
-    --     SetBlipSprite (blip, 71)
-    --     SetBlipDisplay(blip, 4)
-    --     SetBlipScale  (blip, 0.8)
-    --     SetBlipColour (blip, 59)
-    --     SetBlipAsShortRange(blip, true)
-    --     BeginTextCommandSetBlipName("STRING")
-    --     AddTextComponentString("Coiffeur")
-    --     EndTextCommandSetBlipName(blip)
+    for i = 1 , #Shops_Barber.Pos , 1 do
+        local v = Shops_Barber.Pos[i]
+        local blip = AddBlipForCoord(v.x, v.y, v.z)
+        SetBlipSprite (blip, 71)
+        SetBlipDisplay(blip, 4)
+        SetBlipScale  (blip, 0.8)
+        SetBlipColour (blip, 59)
+        SetBlipAsShortRange(blip, true)
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentString("Coiffeur")
+        EndTextCommandSetBlipName(blip)
 
-    --     Zone:Add(v,EnterZone,ExitZone,i,2.5)
+        Zone:Add(v,EnterZone,ExitZone,i,2.5)
 
-    -- end
-    -- RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
-    -- RMenu:Get('barberDhop', "main").EnableMouse = true
-    -- RMenu:Get('barberDhop', "main").Closed = function()
-    --     GetOldChev()
-    -- end
+    end
+    RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
+    RMenu:Get('barberDhop', "main").EnableMouse = true
+    RMenu:Get('barberDhop', "main").Closed = function()
+        GetOldChev()
+    end
 end
 
 Citizen.CreateThread(function()
@@ -270,8 +270,8 @@ Citizen.CreateThread(function()
         Wait(1)
         
         if RageUI.Visible(RMenu:Get('barberDhop', "main")) then
-     --       --(json.encode(skins.hair.style .. " $"))
-       --     --(json.encode((PlySkin.hair.style)))
+           (json.encode(skins.hair.style .. " $"))
+           (json.encode((PlySkin.hair.style)))
             RageUI.DrawContent({ header = true, glare = false}, function()    
                 hairstyles = {} 
                 if Ora.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
@@ -344,7 +344,7 @@ Citizen.CreateThread(function()
                             skins.facialHair.beard.opacity = Percent
                         end)
     
-                        --updateCheveux(skin)
+                        updateCheveux(skin)
                     end
                     
                     if Selected and not barbe then
@@ -371,7 +371,7 @@ Citizen.CreateThread(function()
                             skins.lipstick.color[1] = CurrentIndex - 1
                         end)
     
---updateCheveux(skin)
+updateCheveux(skin)
                     end
                     
                     if Selected and not rouge then
@@ -402,7 +402,7 @@ Citizen.CreateThread(function()
                             colour_table8[2] = CurrentIndex
                             skins.makeup.color[2] = CurrentIndex - 1
                         end)
-                     --   updateCheveux(skin)
+                       updateCheveux(skin)
                     end
                     if Selected and not Maquillage then
                         locked_Maquillage = false
@@ -432,7 +432,7 @@ Citizen.CreateThread(function()
                             colour_table10[2] = CurrentIndex
                             skins.blush.color[2] = CurrentIndex - 1
                         end)
-                     --   updateCheveux(skin)
+                       updateCheveux(skin)
                     end
                     if Selected and not Blush then
                         locked_Blush = false
@@ -444,7 +444,7 @@ Citizen.CreateThread(function()
     
                 RageUI.Button("~g~Acheter", nil, { RightLabel = "~g~"..price.."$" }, true, function(Hovered, Active, Selected)
                     if Selected then
-                        --('o')
+                        ('o')
                         if Money:CanBuy(price) then
                                 if cheveux then
                                     TriggerServerCallback('isAlreadyCoiffed', function(bool)
@@ -452,7 +452,7 @@ Citizen.CreateThread(function()
                                             PlySkin.hair.style = skins.hair.style
                                             PlySkin.hair.color[1] = skins.hair.color[1]
                                             PlySkin.hair.color[2] = skins.hair.color[2] 
-                                            --("achat")
+                                            ("achat")
                                             UpdateEntityFace(LocalPlayer().Ped,PlySkin)
                                         else
                                             ShowNotification("~r~Votre coiffure ne sera pas prise en compte. Vous vous êtes déjà coiffé aujourd'hui")
