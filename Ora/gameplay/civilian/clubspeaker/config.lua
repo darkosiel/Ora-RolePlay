@@ -33,8 +33,8 @@ function Config()
       canOpen = false,
       inclub = false,
       play = false,
-      pos = vector3(-1831.436, -1190.354, 19.88),
-      soundpos = vector3(-1823.167, -1186.24, 21.60)
+      pos = vector3(-1297.02, -1036.78, 13.16 - 0.98),
+      soundpos = vector3(-1297.02, -1036.78, 13.16 - 0.98)
     }
   }
 end

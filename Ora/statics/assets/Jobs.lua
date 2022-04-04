@@ -1154,8 +1154,8 @@ Jobs = {
         }
     },
     restaurant = {
-        label = "Restaurant",
-        label2 = "Restaurant",
+        label = "Mirror",
+        label2 = "Mirror",
         iban = "restaurant",
         FreeAccess = false,
         grade = {
@@ -1192,7 +1192,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Restaurant",
+                title = "Mirror",
                 subtitle = "Actions disponibles",
                 name = "restaurant_menuperso"
             },
@@ -1213,47 +1213,42 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Pearls", "Annonce", text, "CHAR_PEARLS", 8, "Restaurant")
+                            TriggerServerEvent("Job:Annonce", "Mirror", "Annonce", text, "CHAR_PEARLS", 8, "Mirror")
                         end
                     end
                 }
             }
         },
         garage = {
-            Name = "Garage restaurant",
-            Pos = {x = -1796.88, y = -1180.76, z = 12.31},
+            Name = "Garage Mirror",
+            Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24}
+                spawnpos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64}
             },
             Blipdata = {
-                Pos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24},
+                Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = -1839.74, y = -1189.69, z = 13.32},
+                Pos = {x = -1338.05, y = -1072.20, z = 6.98 - 0.98},
                 Limit = 500,
                 Name = "coffre_restaurant"
             },
             {
-                Pos = {x = -1855.52, y = -1195.06, z = 12.10},
+                Pos = {x = -1353.03, y = -1055.21, z = 3.51 - 0.98},
                 Limit = 500,
                 Name = "coffre_caveresto"
             },
             {
-                Pos = {x = -1840.72, y = -1183.35, z = 18.20},
+                Pos = {x = -1351.72, y = -1064.70, z = 11.46 - 0.98},
                 Limit = 500,
-                Name = "coffre_pearls_club"
-            },
-            {
-                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
-                Limit = 200,
-                Name = "coffre_pearls_bureau"
+                Name = "coffre_Mirror_club"
             }
         },
         requiredService = false,
@@ -1264,7 +1259,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "planche",
-                Pos = {x = -1842.25, y = -1185.11, z = 13.33},
+                Pos = {x = -1352.45, y = -1068.95, z = 6.98},
                 required = "fish6",
                 giveitem = "filetdaurade",
                 RemoveItem = "fish6",
@@ -1276,7 +1271,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Traitement milkshack",
-                Pos = {x = -1838.36, y = -1183.82, z = 13.33},
+                Pos = {x = -1343.49, y = -1061.64, z = 6.98},
                 required = "milk",
                 giveitem = "milkshack",
                 RemoveItem = "milk",
@@ -1288,7 +1283,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "four",
-                Pos = {x = -1836.62, y = -1184.59, z = 13.33},
+                Pos = {x = -1341.67, y = -1069.72, z = 6.98},
                 required = {
                     {name = "bread", count = 1},
                     {name = "fish12", count = 1}
@@ -1306,7 +1301,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Traitement Cupcake",
-                Pos = {x = -1837.41, y = -1186.21, z = 13.33},
+                Pos = {x = -1350.88, y = -1072.00, z = 6.98},
                 required = "bread",
                 giveitem = "cupcake",
                 RemoveItem = "bread",
@@ -1909,8 +1904,8 @@ Jobs = {
         -- }
     },
     burgershot = {
-        label = "Burger Shot",
-        label2 = "burger shot",
+        label = "Wing Stop",
+        label2 = "wing stop",
         iban = "burgershot",
         FreeAccess = false,
         grade = {
@@ -1947,7 +1942,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Burger Shot",
+                title = "Wing Stop",
                 subtitle = "Actions disponibles",
                 name = "burgershot_menuperso"
             },
@@ -1968,30 +1963,30 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Burgershot", "Annonce", text, "CHAR_BURGERSHOT", 8, "burger shot")
+                            TriggerServerEvent("Job:Annonce", "Wing Stop", "Annonce", text, "CHAR_BURGERSHOT", 8, "wing stop")
                         end
                     end
                 }
             }
         },
         garage = {
-            Name = "Garage burgershot",
-            Pos = {x = -1242.4321, y = -333.9221, z = 68.0821},
+            Name = "Garage wing stop",
+            Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1242.4321, y = -333.9221, z = 68.0821, h = 28.85}
+                spawnpos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27}
             },
             Blipdata = {
-                Pos = {x = -1242.4321, y = -333.9221, z = 68.0821, h = 28.85},
+                Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = 1246.4328, y = -352.0784, z = 69.1846},
+                Pos = {x = 1244.16, y = -350.88, z = 69.1846 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
