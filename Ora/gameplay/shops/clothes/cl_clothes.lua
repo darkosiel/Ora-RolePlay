@@ -650,8 +650,8 @@ local Clothes = {
             label = "Haut",
             component = 11,
             type = 0,
-            staticM = json.decode(Config.Haut),
-            staticF = json.decode(Config.HautF),
+            staticM = j(Config.Haut),
+            staticF = j(Config.HautF),
             remM = topToRemoveMale,
             remF = topToRemoveFemale
         },
@@ -659,8 +659,8 @@ local Clothes = {
             label = "Pantalon",
             component = 4,
             type = 0,
-            staticM = json.decode(Config.Pant),
-            staticF = json.decode(Config.PantF),
+            staticM = j(Config.Pant),
+            staticF = j(Config.PantF),
             remM = botToRemoveMale,
             remF = botToRemoveFemale
         },
@@ -668,8 +668,8 @@ local Clothes = {
             label = "Chaussures",
             component = 6,
             type = 0,
-            staticM = json.decode(Config.Shoes),
-            staticF = json.decode(Config.ShoesF),
+            staticM = j(Config.Shoes),
+            staticF = j(Config.ShoesF),
             remM = chaussureToRemoveMale,
             remF = chaussureToRemoveFemale
         },
@@ -677,8 +677,8 @@ local Clothes = {
             label = "Accessoires",
             component = 7,
             type = 0,
-            staticM = json.decode(Config.Accessories),
-            staticF = json.decode(Config.AccessoriesF),
+            staticM = j(Config.Accessories),
+            staticF = j(Config.AccessoriesF),
             remM = accessToRemoveMale,
             remF = accessToRemoveFemale
         },
@@ -1349,7 +1349,7 @@ Citizen.CreateThread(
                                                     Clothes.static = Clothes.category[i].staticF
                                                 end
                                                 Clothes.Indexes = {}
-                                                for i = 1, #Clothes.amount, 1 do
+                                                for i = 1, #Clothes.static, 1 do
                                                     Clothes.Indexes[i] = 1
                                                 end
                                             end
