@@ -650,7 +650,7 @@ local Clothes = {
             label = "Haut",
             component = 11,
             type = 0,
-            staticM = {},
+            staticM = j(Config.Haut),
             staticF = j(Config.HautF),
             remM = topToRemoveMale,
             remF = topToRemoveFemale
@@ -659,7 +659,7 @@ local Clothes = {
             label = "Pantalon",
             component = 4,
             type = 0,
-            staticM = {},
+            staticM = j(Config.Pant),
             staticF = j(Config.PantF),
             remM = botToRemoveMale,
             remF = botToRemoveFemale
@@ -668,7 +668,7 @@ local Clothes = {
             label = "Chaussures",
             component = 6,
             type = 0,
-            staticM = {},
+            staticM = j(Config.Shoes),
             staticF = j(Config.ShoesF),
             remM = chaussureToRemoveMale,
             remF = chaussureToRemoveFemale
@@ -677,7 +677,7 @@ local Clothes = {
             label = "Accessoires",
             component = 7,
             type = 0,
-            staticM = {},
+            staticM = j(Config.Accessories),
             staticF = j(Config.AccessoriesF),
             remM = accessToRemoveMale,
             remF = accessToRemoveFemale
@@ -691,7 +691,7 @@ local Clothes = {
             remM = chapeauToRemoveMale,
             remF = chapeauToRemoveFemale
         },
-        {label = "Lunettes", component = 1, type = 1, staticM = {}, staticF = j(Config.GlassesF)},
+        {label = "Lunettes", component = 1, type = 1, staticM = j(Config.Glasses), staticF = j(Config.GlassesF)},
         {
             label = "Oreilles",
             component = 2,
