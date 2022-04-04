@@ -1909,8 +1909,8 @@ Jobs = {
         -- }
     },
     burgershot = {
-        label = "Burger Shot",
-        label2 = "burger shot",
+        label = "Wing Stop",
+        label2 = "wing stop",
         iban = "burgershot",
         FreeAccess = false,
         grade = {
@@ -1947,7 +1947,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Burger Shot",
+                title = "Wing Stop",
                 subtitle = "Actions disponibles",
                 name = "burgershot_menuperso"
             },
@@ -1968,30 +1968,30 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Burgershot", "Annonce", text, "CHAR_BURGERSHOT", 8, "burger shot")
+                            TriggerServerEvent("Job:Annonce", "Wing Stop", "Annonce", text, "CHAR_BURGERSHOT", 8, "wing stop")
                         end
                     end
                 }
             }
         },
         garage = {
-            Name = "Garage burgershot",
-            Pos = {x = -1242.4321, y = -333.9221, z = 68.0821},
+            Name = "Garage wing stop",
+            Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1242.4321, y = -333.9221, z = 68.0821, h = 28.85}
+                spawnpos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27}
             },
             Blipdata = {
-                Pos = {x = -1242.4321, y = -333.9221, z = 68.0821, h = 28.85},
+                Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = 1246.4328, y = -352.0784, z = 69.1846},
+                Pos = {x = 1244.16, y = -350.88, z = 69.1846 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
