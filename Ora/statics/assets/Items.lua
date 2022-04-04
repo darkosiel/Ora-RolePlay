@@ -1593,12 +1593,6 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
-    weapon_hose = {
-        label = "Lance incendie",
-        weight = 1.0,
-        actionCl = "weapon:Equip",
-        category = "weapon"
-    },
     stungun = {
         label = "Tazer",
         weight = 1.0,
