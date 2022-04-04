@@ -1329,7 +1329,6 @@ Citizen.CreateThread(
                                                 Clothes.type = Clothes.category[i].type
                                                 Clothes.remM = Clothes.category[i].remM
                                                 Clothes.remF = Clothes.category[i].remF
-                                                i = 0
                                                 Clothes.listLabel = {}
                                                 if Clothes.type == 0 then
                                                     Clothes.amount =
@@ -1350,7 +1349,7 @@ Citizen.CreateThread(
                                                     Clothes.static = Clothes.category[i].staticF
                                                 end
                                                 Clothes.Indexes = {}
-                                                for i in ipairs(Clothes.static) do
+                                                for i = 1, #Clothes.static, 1 do
                                                     Clothes.Indexes[i] = 1
                                                 end
                                             end
