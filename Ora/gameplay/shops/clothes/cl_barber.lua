@@ -226,6 +226,7 @@ end
 
 function GetOldChev()
     Wait(500)
+    hrtfgdhdfhgc = PlySkin
     (PlySkin.hair.style)
     (hrtfgdhdfhgc.hair.style)
 
