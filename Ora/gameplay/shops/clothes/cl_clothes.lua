@@ -706,7 +706,7 @@ local Clothes = {
             staticM = json.decode(Config.Watches),
             staticF = json.decode(Config.WatchesF)
         },]]
-        {label = "Montres", component = 5, type = 0, staticM = {}, staticF = {}},
+        {label = "Montres", component = 6, type = 0, staticM = {}, staticF = {}},
         {label = "Sac", component = 5, type = 0, staticM = {}, staticF = {}}
     }
 }
