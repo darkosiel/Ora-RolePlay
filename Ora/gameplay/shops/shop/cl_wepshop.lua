@@ -1967,7 +1967,7 @@ Citizen.CreateThread(
         end
     end
 )
-local xp = {}
+
 local CurrentWeapon = nil
 
 local Indexes = 1
@@ -1976,17 +1976,6 @@ gilItem = {}
 amount = {}
 local kx = 20
 local price = 0
-function indexOf(t, object)
-    if type(t) ~= "table" then
-        error("table expected, got " .. type(t), 2)
-    end
-
-    for i, v in pairs(t) do
-        if object == v then
-            return i
-        end
-    end
-end
 local cam = nil
 function DeleteAmmunation()
     RenderScriptCams(false, true, 10, true, true)
@@ -2076,4 +2065,4 @@ Citizen.CreateThread(
         end
     end
     )
-end)
+end
