@@ -549,7 +549,7 @@ RegisterServerCallback("Ora:Illegal:GetIllegalProperties",
 
         local propertiesResult = {}
 
-        for index, value in (properties) do
+        for index, value in ipairs(properties) do
             table.insert(
                 propertiesResult, 
                 {
