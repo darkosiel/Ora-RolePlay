@@ -436,6 +436,8 @@ client_script {
     "gameplay/world/cl_anticarjack.lua",
     --"gameplay/civilian/treasurehunt/config.lua",
     --"gameplay/civilian/treasurehunt/client.lua",
+    "gameplay/civilian/editor/config.lua",
+    "gameplay/civilian/editor/client.lua",
     "gameplay/civilian/gym/gym_cfg.lua",
     "gameplay/civilian/gym/gym_cl.lua",
     "gameplay/civilian/fishing/fishing_cfg.lua",
