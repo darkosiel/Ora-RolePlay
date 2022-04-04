@@ -6,7 +6,7 @@ Citizen.CreateThread(function()
   local id = GetPlayerServerId(PlayerId())
   while true do
     exports["Ora"]:TriggerServerCallback("onlinePlayers:list",function(users)
-      AddTextEntry('FE_THDR_GTAO', '~g~Ora RP ~w~| https://discord.gg/orarp | ID : ~r~'..id.."~s~| ~b~".. #users .. "~w~/~b~128 ~w~joueurs ~b~en ligne")
+      AddTextEntry('FE_THDR_GTAO', '~g~Ora RP ~w~| https://discord.gg/orarp | ID : ~r~'..id.."~s~| ~r~".. #users .. "~w~/~r~128 ~w~joueurs ~b~en ligne")
       AddTextEntry('PM_PANE_LEAVE', 'RETOURNER SUR LA LISTE DES SERVEURS')
       AddTextEntry('PM_PANE_QUIT', 'QUITTER')
       AddTextEntry('PM_SCR_RPL', 'SOCIAL CLUB')
