@@ -699,14 +699,13 @@ local Clothes = {
             staticM = json.decode(Config.Ears),
             staticF = json.decode(Config.EarsF)
         },
---[[        {
+        {
             label = "Montres",
             component = 6,
             type = 1,
             staticM = json.decode(Config.Watches),
             staticF = json.decode(Config.WatchesF)
-        },]]
-        {label = "Montres", component = 6, type = 1, staticM = {}, staticF = {}},
+        },
         {label = "Sac", component = 5, type = 0, staticM = {}, staticF = {}}
     }
 }
