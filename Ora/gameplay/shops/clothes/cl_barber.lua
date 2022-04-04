@@ -192,8 +192,6 @@ local locked_Maquillage = true
 local locked_Blush = true
 local locked_rouge = true
 local function Open()
-
-    ("open")
     skins.hair = PlySkin.hair
     skins.facialHair = PlySkin.facial.hair
     skins.makeup = PlySkin.makeup
@@ -228,7 +226,6 @@ end
 
 function GetOldChev()
     Wait(500)
-    ("CHANGED")
     (PlySkin.hair.style)
     (hrtfgdhdfhgc.hair.style)
 
@@ -444,7 +441,6 @@ updateCheveux(skin)
     
                 RageUI.Button("~g~Acheter", nil, { RightLabel = "~g~"..price.."$" }, true, function(Hovered, Active, Selected)
                     if Selected then
-                        ('o')
                         if Money:CanBuy(price) then
                                 if cheveux then
                                     TriggerServerCallback('isAlreadyCoiffed', function(bool)
