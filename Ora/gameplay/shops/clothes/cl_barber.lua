@@ -226,12 +226,6 @@ end
 
 function GetOldChev()
     Wait(500)
-    hrtfgdhdfhgc = PlySkin
-    (PlySkin.hair.style)
-    (hrtfgdhdfhgc.hair.style)
-
-    UpdateEntityFace(LocalPlayer().Ped, hrtfgdhdfhgc)
-
 
     TriggerServerCallback("core:GetSKin",function(skin)
         UpdateEntityFace(LocalPlayer().Ped, json.decode(skin))
