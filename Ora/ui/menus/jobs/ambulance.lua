@@ -53,6 +53,7 @@ function Ambulance.Revive()
         TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, 0, 0, 0.0, false, false, false)
         local playerPed = PlayerPedId()
         Wait(5000)
+        ExecuteCommand("e cpr")
         TriggerPlayerEvent("player:Revive",playerId)
     else
         ShowNotification("~r~Aucun joueur proche")
