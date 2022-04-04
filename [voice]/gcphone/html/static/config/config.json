@@ -231,19 +231,6 @@
       ]
     },
     {
-      "display": "Uber",
-      "icon": "/html/static/img/contact/uber.png",
-      "subMenu": [
-        {
-          "title": "Commander un Uber",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "uber"
-          }
-        }
-      ]
-    },
-    {
       "display": "LTD Nord",
       "icon": "/html/static/img/contact/ltd.png",
       "subMenu": [
@@ -268,19 +255,6 @@
           }
         }
       ]
-    },
-    {
-      "display": "Gouvernement",
-      "icon": "/html/static/img/contact/state.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "gouvernement"
-          }
-        }
-      ]
     }
   ],
 
@@ -297,7 +271,7 @@
     },
     {
       "number": "lssd",
-      "display": "Sherif",
+      "display": "Sheriff",
       "icon": "/html/static/img/contact/lssd.png"
     },
     {
@@ -309,17 +283,12 @@
       "number": "mecano",
       "display": "Ls Customs",
       "icon": "/html/static/img/contact/lscustoms.png"
-    },
-    {
-      "number": "mecano2",
-      "display": "FlyWheel Garage",
-      "icon": "/html/static/img/contact/flywheelsatl.png"
     }
   ],
 
   "apps": [
     {
-      "name": "Mobilphone",
+      "name": "Téléphone",
       "fr_FR__name": "Téléphone",
       "cs_CZ__name": "Telefon",
       "en_US__name": "Phone",
@@ -356,7 +325,7 @@
       "inHomePage": true
     },
     {
-      "name": "Settings",
+      "name": "Paramètres",
       "fr_FR__name": "Paramètres",
       "en_US__name": "System",
       "cs_CZ__name": "Nastavení",
@@ -371,7 +340,7 @@
       "name": "Camera",
       "fr_FR__name": "Photo",
       "cs_CZ__name": "Fotoaparát",
-      "en_US__name": "Camera",
+      "en_US__name": "Caméra",
       "de_DE__name": "Kamera",
       "pl_PL__name": "Kamera",
       "es_ES__name": "Cámara",
@@ -403,7 +372,7 @@
   "language": {
     "fr_FR": {
       "NAME": "Français",
-      "PHONE_WARNING_MESSAGE": "Saturation mémoires !",
+      "PHONE_WARNING_MESSAGE": "Saturation mémoire !",
       "PHONE_WARNING_MESSAGE_MESS": "messages",
       "CONFIRM": "Accepter",
       "CANCEL": "Annuler",
