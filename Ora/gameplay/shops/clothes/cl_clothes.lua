@@ -1350,7 +1350,7 @@ Citizen.CreateThread(
                                                     Clothes.static = Clothes.category[i].staticF
                                                 end
                                                 Clothes.Indexes = {}
-                                                for i = 0, #Clothes.static, 1 do
+                                                for i = 0 in ipairs(Clothes.static) do
                                                     Clothes.Indexes[i] = 1
                                                 end
                                             end
