@@ -705,6 +705,7 @@ local kevlarConfig = {
 }
 
 local weapon_config = {
+    Pos = {x = 246.5348, y = -51.9893, z = 68.9412},
     Ped = {
         Pos = {x = 246.5348, y = -51.9893, z = 68.9412, a = 72.9102},
         model = "s_m_y_ammucity_01",
@@ -761,35 +762,6 @@ local weapon_configrancho = {
     end
 }
 
-local weapon_configcentre = {
-    Pos = {x = 13.8605, y = -1111.6655, z = 28.7972},
-    Ped = {
-        Pos = {x = 13.8605, y = -1111.6655, z = 28.7972, a = 343.1783},
-        model = "s_m_y_ammucity_01",
-        name = "Jerry"
-    },
-    Blips = {
-        sprite = 313,
-        color = 1,
-        name = "Armurerie - Accessoires d'armes"
-    },
-    EnterZone = function()
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", Open, "Ammu")
-        KeySettings:Add("controller", 46, Open, "Ammu")
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
-
 local weapon_configsandy = {
     Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053},
     Ped = {
@@ -819,6 +791,34 @@ local weapon_configsandy = {
     end
 }
 
+local weapon_configcentre = {
+    Pos = {x = 13.8605, y = -1111.6655, z = 28.7972},
+    Ped = {
+        Pos = {x = 13.8605, y = -1111.6655, z = 28.7972, a = 343.1783},
+        model = "s_m_y_ammucity_01",
+        name = "Jerry"
+    },
+    Blips = {
+        sprite = 313,
+        color = 1,
+        name = "Armurerie - Accessoires d'armes"
+    },
+    EnterZone = function()
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", Open, "Ammu")
+        KeySettings:Add("controller", 46, Open, "Ammu")
+    end,
+    ExitZone = function()
+        KeySettings:Clear("keyboard", "E", "Ammu")
+        KeySettings:Clear("controller", 46, "Ammu")
+        Hint:RemoveAll()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+    end
+}
 
 local private_conf = {
     Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
@@ -1243,6 +1243,112 @@ local function build()
     Zone:Add(f.Pos, f.EnterZone, f.ExitZone, i, 2.5)
     Ped:Add(f.Ped.name, f.Ped.model, f.Ped.Pos, nil)
 
+    RMenu.Add(
+        "ammunation",
+        "main",
+        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    )
+    RMenu.Add(
+        "ammunation",
+        "weapons",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "main"),
+            nil,
+            "Armes disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+    RMenu.Add(
+        "ammunation",
+        "blanches",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "main"),
+            nil,
+            "Armes blanches disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+    -- RMenu.Add('ammunation', "munitions", RageUI.CreateSubMenu(RMenu:Get('ammunation', "main"), nil, "Munitions disponibles",10,100,"shopui_title_gunclub","shopui_title_gunclub"))
+    RMenu.Add(
+        "ammunation",
+        "my_weap",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "main"),
+            nil,
+            "Armes disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
+    RMenu.Add(
+        "ammunation",
+        "my_weap_1",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation", "my_weap"),
+            nil,
+            "Options disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
+    -- Private menu
+
+    Zone:Add(k.Pos, k.EnterZone, k.ExitZone, i, 2.5)
+    Ped:Add(k.Ped.name, k.Ped.model, k.Ped.Pos, nil)
+    RMenu.Add(
+        "ammunation privé",
+        "main private",
+        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    )
+
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
+    Zone:Add(e.Pos, e.EnterZone, e.ExitZone, i, 2.5)
+    Ped:Add(e.Ped.name, e.Ped.model, e.Ped.Pos, nil)
+    RMenu.Add(
+        "ammunation privé",
+        "main private",
+        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    )
+
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
     Zone:Add(g.Pos, g.EnterZone, g.ExitZone, i, 2.5)
     Ped:Add(g.Ped.name, g.Ped.model, g.Ped.Pos, nil)
     RMenu.Add(
@@ -1323,7 +1429,7 @@ local function build()
         )
     )
     
---     -- ----------------------
+    -- ----------------------
 
     Zone:Add(y.Pos, y.EnterZone, y.ExitZone, i, 2.5)
     Ped:Add(y.Ped.name, y.Ped.model, y.Ped.Pos, nil)
@@ -1769,6 +1875,7 @@ Citizen.CreateThread(
                     end
                 )
         end
+
             if RageUI.Visible(RMenu:Get("ammunation", "blanches")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
@@ -2075,5 +2182,4 @@ Citizen.CreateThread(
             return fakeWeapon
         end
     end
-    )
-end)
+)

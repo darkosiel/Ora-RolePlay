@@ -192,11 +192,10 @@ local locked_Maquillage = true
 local locked_Blush = true
 local locked_rouge = true
 local function Open()
-    hrtfgdhdfhgc = PlySkin
     skins.hair = PlySkin.hair
     skins.facialHair = PlySkin.facial.hair
     skins.makeup = PlySkin.makeup
-    skins.blush = Plyskin.blush
+    skins.blush = PlySkin.blush
     skins.lipstick = PlySkin.lipstick
     (PlySkin.hair.style)
     (skins.hair.style)
@@ -227,11 +226,6 @@ end
 
 function GetOldChev()
     Wait(500)
-    (PlySkin.hair.style)
-    (hrtfgdhdfhgc.hair.style)
-
-    UpdateEntityFace(LocalPlayer().Ped, hrtfgdhdfhgc)
-
 
     TriggerServerCallback("core:GetSKin",function(skin)
         UpdateEntityFace(LocalPlayer().Ped, json.decode(skin))
