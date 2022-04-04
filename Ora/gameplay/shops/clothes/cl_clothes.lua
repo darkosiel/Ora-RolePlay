@@ -691,7 +691,7 @@ local Clothes = {
             remM = chapeauToRemoveMale,
             remF = chapeauToRemoveFemale
         },
-        {label = "Lunettes", component = 1, type = 1, staticM = j(Config.Glasses), staticF = j(Config.GlassesF)},
+        {label = "Lunettes", component = 1, type = 1, staticM = {},, staticF = {}},
         {
             label = "Oreilles",
             component = 2,
