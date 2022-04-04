@@ -65,16 +65,6 @@ local eModelsWithFireSrn = {
 -- unlisted models will instead use the default wail as the auxiliary siren
 local eModelsWithPcall = {
     "AMBULANCE",
-    "FIRETRUK",
-    "LGUARD",
-    "LSFD",
-    "LSFD2",
-    "LSFD3",
-    "LSFD4",
-    "LSFD5",
-    "LSFDTRUCK",
-    "LSFDTRUCK2",
-    "LSFDTRUCK3"
 }
 
 ---------------------------------------------------------------------
