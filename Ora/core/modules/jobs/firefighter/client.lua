@@ -36,21 +36,6 @@ function Ora.Jobs.Firefighter.INIT()
 						{header = true, glare = false},
 						function()
 							RageUI.Button(
-								"Facturation",
-								nil,
-								{},
-								true,
-								function(_, Active, Selected)
-									if (Selected) then
-										CreateFacture("lsfd")
-									end
-									if (Active) then
-										HoverPlayer()
-									end
-								end
-							)
-
-							RageUI.Button(
 								"Actions véhicule",
 								nil,
 								{},
@@ -106,23 +91,6 @@ function Ora.Jobs.Firefighter.INIT()
 									end
 								end
               )
-              
-							RageUI.Button(
-                "Annonce",
-								nil,
-								{},
-								true,
-								function(_, _, Selected)
-									if (Selected) then
-										exports['Snoupinput']:ShowInput("Texte de l'annonce", 90)
-                    local text = exports['Snoupinput']:GetInput()
-                    if (text ~= false and text ~= "") then
-                        TriggerServerEvent("Job:Annonce", "LSFD", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
-                    end
-									end
-								end
-              )
-
               RageUI.Button(
                 "Réanimation",
                 nil,
@@ -161,19 +129,6 @@ function Ora.Jobs.Firefighter.INIT()
                   end
                 end
               )
-
-              RageUI.Button(
-                "Annuler l'appel en cours",
-                nil,
-                {},
-                true,
-                function(_, _, Selected)
-                  if (Selected) then
-                    TriggerEvent("call:cancelCall")
-                  end
-                end
-              )
-                
 						end,
 						function()
 						end

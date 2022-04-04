@@ -6384,6 +6384,8 @@ Jobs = {
                 Blipname = "LSFD - Garage 1"
             }
         },
+
+        
         Storage = {
             -- Garage
             {
@@ -6392,6 +6394,35 @@ Jobs = {
                 Name = "Coffre LSFD"
             }
         },
+
+        buttons = {
+            {
+                label = "Annonce",
+                onSelected = function()
+                    exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                    local text = exports['Snoupinput']:GetInput()
+                    if text ~= false and text ~= "" then
+                        TriggerServerEvent("Job:Annonce", "Beeker's", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
+                    end
+                end
+            },
+            {
+                label = "Facturation",
+                onSelected = function()
+                    CreateFacture("lsfd")
+                end,
+                ActiveFct = function()
+                    HoverPlayer()
+                end
+            },
+            {
+                label = "Annuler l'appel en cours",
+                onSelected = function()
+                    TriggerEvent("call:cancelCall")
+                end
+            }
+        },
+
         garage4 = {
             Name = "Bateau LSFD",
             Pos = {x = -806.34, y = -1497.43, z = 1.59},
