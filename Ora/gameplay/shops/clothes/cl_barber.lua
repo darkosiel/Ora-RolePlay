@@ -1,12 +1,12 @@
 local Shops_Barber = {
     Pos = {
-       {x = -814.308,  y = -183.823,  z = 36.568},
-       {x = 136.826,   y = -1708.373, z = 28.291},
-       {x = -1282.604, y = -1116.757, z = 5.990},
-       {x = 1931.513,  y = 3729.671,  z = 31.844},
-       {x = 1212.840,  y = -473.921,  z = 65.450},
-       {x = -32.885,   y = -152.319,  z = 56.076},
-       {x = -278.077,  y = 6228.463,  z = 30.695},
+   --     {x = -814.308,  y = -183.823,  z = 36.568},
+   --     {x = 136.826,   y = -1708.373, z = 28.291},
+   --     {x = -1282.604, y = -1116.757, z = 5.990},
+   --     {x = 1931.513,  y = 3729.671,  z = 31.844},
+   --     {x = 1212.840,  y = -473.921,  z = 65.450},
+   --     {x = -32.885,   y = -152.319,  z = 56.076},
+   --     {x = -278.077,  y = 6228.463,  z = 30.695},
     }
 }
 Colors = {
@@ -194,8 +194,6 @@ local locked_rouge = true
 local function Open()
 
    --("open")
-   -- ("open")
-   hrtfgdhdfhgc = PlySkin
    skins.hair = PlySkin.hair
    skins.facialHair = PlySkin.facial.hair
    skins.makeup = PlySkin.makeup
@@ -203,8 +201,6 @@ local function Open()
    skins.lipstick = PlySkin.lipstick
    --(PlySkin.hair.style)
    --(skins.hair.style)
-   -- (PlySkin.hair.style)
-   -- (skins.hair.style)
    RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
 end
 
@@ -247,26 +243,26 @@ function GetOldChev()
 end
 
 local function Build()
---    for i = 1 , #Shops_Barber.Pos , 1 do
---        local v = Shops_Barber.Pos[i]
---        local blip = AddBlipForCoord(v.x, v.y, v.z)
---        SetBlipSprite (blip, 71)
---        SetBlipDisplay(blip, 4)
---        SetBlipScale  (blip, 0.8)
---        SetBlipColour (blip, 59)
---        SetBlipAsShortRange(blip, true)
---        BeginTextCommandSetBlipName("STRING")
---        AddTextComponentString("Coiffeur")
---        EndTextCommandSetBlipName(blip)
+   -- for i = 1 , #Shops_Barber.Pos , 1 do
+   --     local v = Shops_Barber.Pos[i]
+   --     local blip = AddBlipForCoord(v.x, v.y, v.z)
+   --     SetBlipSprite (blip, 71)
+   --     SetBlipDisplay(blip, 4)
+   --     SetBlipScale  (blip, 0.8)
+   --     SetBlipColour (blip, 59)
+   --     SetBlipAsShortRange(blip, true)
+   --     BeginTextCommandSetBlipName("STRING")
+   --     AddTextComponentString("Coiffeur")
+   --     EndTextCommandSetBlipName(blip)
 
---        Zone:Add(v,EnterZone,ExitZone,i,2.5)
+   --     Zone:Add(v,EnterZone,ExitZone,i,2.5)
 
-   end
-   RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
-   RMenu:Get('barberDhop', "main").EnableMouse = true
-   RMenu:Get('barberDhop', "main").Closed = function()
-       GetOldChev()
-   end
+   -- end
+   -- RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
+   -- RMenu:Get('barberDhop', "main").EnableMouse = true
+   -- RMenu:Get('barberDhop', "main").Closed = function()
+   --     GetOldChev()
+   -- end
 end
 
 Citizen.CreateThread(function()
@@ -278,7 +274,7 @@ Citizen.CreateThread(function()
       --     --(json.encode((PlySkin.hair.style)))
            RageUI.DrawContent({ header = true, glare = false}, function()    
                hairstyles = {} 
-               if Ora.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
+               if Atlantiss.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
                    for i = 1, 23,1 do
                        hairstyles[i] = GetLabelText("CC_M_HS_"..i-1) 
                    end
