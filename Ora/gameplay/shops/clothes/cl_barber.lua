@@ -201,6 +201,7 @@ local function SeatChair()
         SetEntityCollision(ped, true)
         HairCutJob.Seated = not HairCutJob.Seated
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
+        RageUI.Visible(RMenu:Get("haircuts", "main"), true)
     else
         SetEntityCoordsNoOffset(ped, -816.23, -182.96, 37.61)
         SetEntityHeading(ped, 30.0)
@@ -221,6 +222,7 @@ local function SeatChair2()
         SetEntityCollision(ped, true)
         HairCutJob2.Seated = not HairCutJob2.Seated
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
+        RageUI.Visible(RMenu:Get("haircuts", "main"), true)
     else
         SetEntityCoordsNoOffset(ped, HairCutJob2.posChair.x, HairCutJob2.posChair.y, HairCutJob2.posChair.z)
         SetEntityHeading(ped, 135.17)
@@ -247,7 +249,6 @@ Citizen.CreateThread(
                 Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
                 KeySettings:Add("keyboard", "E", SeatChair, "PosChair")
                 KeySettings:Add("controller", 46, SeatChair, "PosChair")
-                RageUI.Visible(RMenu:Get("haircuts", "cut_main"), true)
             end,
             function()
                 Hint:RemoveAll()
@@ -263,7 +264,6 @@ Citizen.CreateThread(
                 Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
                 KeySettings:Add("keyboard", "E", SeatChair2, "PosChair")
                 KeySettings:Add("controller", 46, SeatChair2, "PosChair")
-                RageUI.Visible(RMenu:Get("haircuts", "main"), true)
             end,
             function()
                 Hint:RemoveAll()
@@ -386,7 +386,7 @@ Citizen.CreateThread(
                 DisableControlAction(0, 142, true) -- disable melee
                 DisableControlAction(0, 143, true) -- disable melee
                 RageUI.DrawContent({header = true, glare = false}, function()
-                    local ply = GetPlayerServerId(PlayerId())
+                    local ply = PlayerPedId()
                     if skins == nil then
                         TriggerPlayerEvent("getSkin", ply, GetPlayerServerId(PlayerId()))
                         Wait(1000)
@@ -558,7 +558,7 @@ Citizen.CreateThread(
                             end
                         )
 
-                        local ply = GetPlayerServerIdInDirection(5.0)
+                        local ply = PlayerPedId()
                         HoverPlayer()
 
                         if skins == nil and ply ~= false then
