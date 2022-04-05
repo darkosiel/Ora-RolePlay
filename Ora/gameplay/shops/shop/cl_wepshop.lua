@@ -527,7 +527,7 @@ local kevlarConfig = {
         name = "Kevlar lourd LSSD"
     },
     [4] = {
-        status = 50,
+        status = 100,
         name = "Kevlar detective"
     },
     [5] = {
@@ -555,15 +555,15 @@ local kevlarConfig = {
         name = "Radio"
     },
     [16] = {
-        status = 75,
-        name = "Metro"
+        status = 0,
+        name = "Bodycam"
     },
     [17] = {
         status = 50,
         name = "Sous pull kevlar"
     },
     [18] = {
-        status = 50,
+        status = 100,
         name = "Kevlar LSPD / LSSD"
     },
     [19] = {
@@ -572,23 +572,19 @@ local kevlarConfig = {
     },
     [21] = {
         status = 0,
-        name = "Carte"
+        name = "Gilet Jaune"
     },
     [22] = {
         status = 0,
         name = "Badge"
-    },
-    [23] = {
-        status = 75,
-        name = "Metro"
     },
     [24] = {
         status = 0,
         name = "Badge"
     },
     [25] = {
-        status = 25,
-        name = "Gilet de sauvetage"
+        status = 100,
+        name = "Gilet Lourd"
     },
     [26] = {
         status = 25,
