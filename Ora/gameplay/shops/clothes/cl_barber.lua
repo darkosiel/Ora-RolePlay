@@ -194,6 +194,7 @@ local locked_rouge = true
 local function Open()
 
    --("open")
+   -- ("open")
    hrtfgdhdfhgc = PlySkin
    skins.hair = PlySkin.hair
    skins.facialHair = PlySkin.facial.hair
@@ -202,6 +203,8 @@ local function Open()
    skins.lipstick = PlySkin.lipstick
    --(PlySkin.hair.style)
    --(skins.hair.style)
+   -- (PlySkin.hair.style)
+   -- (skins.hair.style)
    RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
 end
 
@@ -244,19 +247,19 @@ function GetOldChev()
 end
 
 local function Build()
-   for i = 1 , #Shops_Barber.Pos , 1 do
-       local v = Shops_Barber.Pos[i]
-       local blip = AddBlipForCoord(v.x, v.y, v.z)
-       SetBlipSprite (blip, 71)
-       SetBlipDisplay(blip, 4)
-       SetBlipScale  (blip, 0.8)
-       SetBlipColour (blip, 59)
-       SetBlipAsShortRange(blip, true)
-       BeginTextCommandSetBlipName("STRING")
-       AddTextComponentString("Coiffeur")
-       EndTextCommandSetBlipName(blip)
+--    for i = 1 , #Shops_Barber.Pos , 1 do
+--        local v = Shops_Barber.Pos[i]
+--        local blip = AddBlipForCoord(v.x, v.y, v.z)
+--        SetBlipSprite (blip, 71)
+--        SetBlipDisplay(blip, 4)
+--        SetBlipScale  (blip, 0.8)
+--        SetBlipColour (blip, 59)
+--        SetBlipAsShortRange(blip, true)
+--        BeginTextCommandSetBlipName("STRING")
+--        AddTextComponentString("Coiffeur")
+--        EndTextCommandSetBlipName(blip)
 
-       Zone:Add(v,EnterZone,ExitZone,i,2.5)
+--        Zone:Add(v,EnterZone,ExitZone,i,2.5)
 
    end
    RMenu.Add('barberDhop', "main", RageUI.CreateMenu("", "Coiffeur", 15, 250,"shopui_title_barber3","shopui_title_barber3"))
@@ -271,8 +274,8 @@ Citizen.CreateThread(function()
        Wait(1)
        
        if RageUI.Visible(RMenu:Get('barberDhop', "main")) then
-          (json.encode(skins.hair.style .. " $"))
-          (json.encode((PlySkin.hair.style)))
+    --       --(json.encode(skins.hair.style .. " $"))
+      --     --(json.encode((PlySkin.hair.style)))
            RageUI.DrawContent({ header = true, glare = false}, function()    
                hairstyles = {} 
                if Ora.World.Ped:IsPedMale(GetPlayerPed(GetPlayerFromServerId(GetPlayerServerIdInDirection(5.0)))) then
@@ -346,7 +349,6 @@ Citizen.CreateThread(function()
                        end)
    
                        --updateCheveux(skin)
-                       updateCheveux(skin)
                    end
                    
                    if Selected and not barbe then
@@ -374,7 +376,6 @@ Citizen.CreateThread(function()
                        end)
    
 --updateCheveux(skin)
-updateCheveux(skin)
                    end
                    
                    if Selected and not rouge then
@@ -406,7 +407,6 @@ updateCheveux(skin)
                            skins.makeup.color[2] = CurrentIndex - 1
                        end)
                     --   updateCheveux(skin)
-                      updateCheveux(skin)
                    end
                    if Selected and not Maquillage then
                        locked_Maquillage = false
@@ -437,7 +437,6 @@ updateCheveux(skin)
                            skins.blush.color[2] = CurrentIndex - 1
                        end)
                     --   updateCheveux(skin)
-                      updateCheveux(skin)
                    end
                    if Selected and not Blush then
                        locked_Blush = false
