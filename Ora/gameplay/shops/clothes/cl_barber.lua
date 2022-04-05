@@ -191,16 +191,17 @@ local cheveux = false
 local locked_Maquillage = true
 local locked_Blush = true
 local locked_rouge = true
-PlySkin = TriggerPlayerEvent("getSkin", GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
-local PlySkin = TriggerPlayerEvent("getSkin", GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
 local function Open()
+
+   --("open")
+   hrtfgdhdfhgc = PlySkin
    skins.hair = PlySkin.hair
    skins.facialHair = PlySkin.facial.hair
    skins.makeup = PlySkin.makeup
-   skins.blush = PlySkin.blush
+   skins.blush = Plyskin.blush
    skins.lipstick = PlySkin.lipstick
-   (PlySkin.hair.style)
-   (skins.hair.style)
+   --(PlySkin.hair.style)
+   --(skins.hair.style)
    RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
 end
 
@@ -228,8 +229,15 @@ end
 
 function GetOldChev()
    Wait(500)
+   --("CHANGED")
+   --(PlySkin.hair.style)
+   --(hrtfgdhdfhgc.hair.style)
+
+   UpdateEntityFace(LocalPlayer().Ped, hrtfgdhdfhgc)
+
 
    TriggerServerCallback("core:GetSKin",function(skin)
+       --(dump(skin))
        UpdateEntityFace(LocalPlayer().Ped, json.decode(skin))
 
    end)
@@ -337,6 +345,7 @@ Citizen.CreateThread(function()
                            skins.facialHair.beard.opacity = Percent
                        end)
    
+                       --updateCheveux(skin)
                        updateCheveux(skin)
                    end
                    
@@ -364,6 +373,7 @@ Citizen.CreateThread(function()
                            skins.lipstick.color[1] = CurrentIndex - 1
                        end)
    
+--updateCheveux(skin)
 updateCheveux(skin)
                    end
                    
@@ -395,6 +405,7 @@ updateCheveux(skin)
                            colour_table8[2] = CurrentIndex
                            skins.makeup.color[2] = CurrentIndex - 1
                        end)
+                    --   updateCheveux(skin)
                       updateCheveux(skin)
                    end
                    if Selected and not Maquillage then
@@ -425,6 +436,7 @@ updateCheveux(skin)
                            colour_table10[2] = CurrentIndex
                            skins.blush.color[2] = CurrentIndex - 1
                        end)
+                    --   updateCheveux(skin)
                       updateCheveux(skin)
                    end
                    if Selected and not Blush then
@@ -437,6 +449,7 @@ updateCheveux(skin)
    
                RageUI.Button("~g~Acheter", nil, { RightLabel = "~g~"..price.."$" }, true, function(Hovered, Active, Selected)
                    if Selected then
+                       --('o')
                        if Money:CanBuy(price) then
                                if cheveux then
                                    TriggerServerCallback('isAlreadyCoiffed', function(bool)
@@ -444,7 +457,7 @@ updateCheveux(skin)
                                            PlySkin.hair.style = skins.hair.style
                                            PlySkin.hair.color[1] = skins.hair.color[1]
                                            PlySkin.hair.color[2] = skins.hair.color[2] 
-                                           ("achat")
+                                           --("achat")
                                            UpdateEntityFace(LocalPlayer().Ped,PlySkin)
                                        else
                                            ShowNotification("~r~Votre coiffure ne sera pas prise en compte. Vous vous êtes déjà coiffé aujourd'hui")
