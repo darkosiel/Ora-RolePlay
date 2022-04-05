@@ -24,7 +24,6 @@
   "background": {
     "Calvin & Hobbes": "back001.jpg",
     "Destiny": "back002.jpg",
-    "Blue Line": "blueline.jpg",
     "stormtrooper": "back003.jpg",
     "Couple plage": "back004.jpg",
     "Girl Weed": "back005.jpg",
@@ -54,6 +53,7 @@
     "grey": "back029.jpg",
     "Wolf": "back030.jpg",
     "Gang": "back031.jpg",
+    "Blue Line": "back032.jpg",
 
     "Custom URL": "URL"
   },
