@@ -182,31 +182,6 @@
   ],
 
   "defaultContacts": [
-    {
-      "number": "lsfd",
-      "display": "Pompiers",
-      "icon": "/html/static/img/contact/lsfd.png"
-    },
-    {
-      "number": "lspd",
-      "display": "Police",
-      "icon": "/html/static/img/contact/lspd.png"
-    },
-    {
-      "number": "lssd",
-      "display": "Sheriff",
-      "icon": "/html/static/img/contact/lssd.png"
-    },
-    {
-      "number": "bennys",
-      "display": "Benny's",
-      "icon": "/html/static/img/contact/bennys.png"
-    },
-    {
-      "number": "mecano",
-      "display": "Ls Customs",
-      "icon": "/html/static/img/contact/lscustoms.png"
-    }
   ],
 
   "apps": [
