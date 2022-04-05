@@ -63,7 +63,7 @@ local Blips = {
     {name = "Binco", color = 64, sprite = 366, Pos = {x = -829.413, y = -1073.710, z = 10.328}},
     {name = "Agence immobilière", color = 64, sprite = 492, Pos = {x = -707.79388, y = 269.2157, z = 94.2941}},
     {name = "Le Pearls", color = 3, sprite = 267, Pos = {x = -1825.48, y = -1190.6, z = 14.44}},
-    {name = "Burger Shot", color = 75, sprite = 106, Pos = {x = -1182.10, y = -883.58, z = 13.78}},
+    {name = "Wing Stop", color = 2, sprite = 304, Pos = {x = 1242.4, y = -358.42, z = 69.18}},
     {name = "LTD Sud", color = 3, sprite = 59, Pos = {x = 30.42, y = -1345.17, z = 29.5}},           
     {name = "LTD Nord", color = 3, sprite = 59, Pos = {x = 161.89, y = 6642.98, z = 31.70}},
     {name = "Galaxy Club", color = 83, sprite = 614, Pos = {x = 356.18, y = 304.66, z = 103.72}},
