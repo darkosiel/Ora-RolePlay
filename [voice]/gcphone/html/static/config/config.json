@@ -24,6 +24,7 @@
   "background": {
     "Calvin & Hobbes": "back001.jpg",
     "Destiny": "back002.jpg",
+    "Blue Line": "blueline.jpg",
     "stormtrooper": "back003.jpg",
     "Couple plage": "back004.jpg",
     "Girl Weed": "back005.jpg",
@@ -84,19 +85,6 @@
       ]
     },
     {
-      "display": "Sherif",
-      "icon": "/html/static/img/contact/lssd.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "lssd"
-          }
-        }
-      ]
-    },
-    {
       "display": "Pompiers",
       "icon": "/html/static/img/contact/lsfd.png",
       "subMenu": [
@@ -110,7 +98,7 @@
       ]
     },
     {
-      "display": "Hôpital",
+      "display": "Hôpital LS",
       "icon": "/html/static/img/contact/lsms.png",
       "subMenu": [
         {
@@ -118,19 +106,6 @@
           "eventName": "esx_addons_gcphone:call",
           "type": {
             "number": "lsms"
-          }
-        }
-      ]
-    },
-    {
-      "display": "US Marshals",
-      "icon": "/html/static/img/contact/fib.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "marshals"
           }
         }
       ]
@@ -149,19 +124,6 @@
       ]
     },
     {
-      "display": "Benny's",
-      "icon": "/html/static/img/contact/bennys.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "bennys"
-          }
-        }
-      ]
-    },
-    {
       "display": "Ls Customs",
       "icon": "/html/static/img/contact/lscustoms.png",
       "subMenu": [
@@ -170,32 +132,6 @@
           "eventName": "esx_addons_gcphone:call",
           "type": {
             "number": "mecano"
-          }
-        }
-      ]
-    },
-    {
-      "display": "Beeker's Garage",
-      "icon": "/html/static/img/contact/flywheelsatl.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "mecano2"
-          }
-        }
-      ]
-    },
-    {
-      "display": "Larry's",
-      "icon": "/html/static/img/contact/larrys.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "caroccasions"
           }
         }
       ]
@@ -231,20 +167,7 @@
       ]
     },
     {
-      "display": "LTD Nord",
-      "icon": "/html/static/img/contact/ltd.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "ltdnord"
-          }
-        }
-      ]
-    },
-    {
-      "display": "24/7 - Strawberry",
+      "display": "LTD Sud",
       "icon": "/html/static/img/contact/ltd.png",
       "subMenu": [
         {
