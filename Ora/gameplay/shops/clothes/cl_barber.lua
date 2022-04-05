@@ -192,7 +192,6 @@ local locked_Maquillage = true
 local locked_Blush = true
 local locked_rouge = true
 local function Open()
-    local PlySkin = TriggerPlayerEvent("getSkin", GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
     skin = json.decode(skin)
     skins.hair = PlySkin.hair
     skins.facialHair = PlySkin.facial.hair
