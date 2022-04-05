@@ -2060,6 +2060,40 @@ local Shops =
             braquable = false,
             Items = {
                 {
+                    name = "radio",
+                    price = 80,
+                    data = {}
+                },
+                {
+                    name = "parapluie",
+                    price = 10,
+                    data = {}
+                },
+                {
+                    name = "ciseaux",
+                    price = 10,
+                    data = {}
+                },
+                {
+                    name = "binoculars",
+                    price = 100,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Haziel",
+            Pos = {x = -1486.71, y = -908.35, z = 10.02 - 0.98, a = 225.68},
+            Ped = {
+                model = "u_m_y_proldriver_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
                     name = "pinces",
                     price = 15,
                     data = {}
@@ -2077,11 +2111,6 @@ local Shops =
                 {
                     name = "crochetage",
                     price = 20,
-                    data = {}
-                },
-                {
-                    name = "parapluie",
-                    price = 10,
                     data = {}
                 },
                 {
@@ -2122,11 +2151,6 @@ local Shops =
                 {
                     name = "darknet",
                     price = 500,
-                    data = {}
-                },
-                {
-                    name = "binoculars",
-                    price = 100,
                     data = {}
                 },
                 {
