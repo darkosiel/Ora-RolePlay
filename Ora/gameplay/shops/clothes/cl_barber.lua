@@ -247,7 +247,7 @@ Citizen.CreateThread(
                 Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
                 KeySettings:Add("keyboard", "E", SeatChair, "PosChair")
                 KeySettings:Add("controller", 46, SeatChair, "PosChair")
-                RageUI.Visible(RMenu:Get("haircuts", "main"), true)
+                RageUI.Visible(RMenu:Get("haircuts", "cut_main"), true)
             end,
             function()
                 Hint:RemoveAll()
