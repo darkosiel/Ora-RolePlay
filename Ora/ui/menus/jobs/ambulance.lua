@@ -50,8 +50,8 @@ function Ambulance.Revive()
 
         RequestAnimDict(lib)
         while (not HasAnimDictLoaded(lib)) do Citizen.Wait(0) end
-        TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, 0, 0, 0.0, false, false, false)
-        local playerPed = PlayerPedId()
+        local playerPed = PlayerPedId(
+        TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, 0, 0, 0.0, false, false, false))
         Wait(5000)
         TriggerPlayerEvent("player:Revive",playerId)
     else
