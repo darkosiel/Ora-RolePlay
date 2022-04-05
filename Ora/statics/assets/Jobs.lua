@@ -7405,11 +7405,12 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                    {x = -376.76, y = -105.69, z = 37.7}
+                   -- {x = -376.76, y = -105.69, z = 37.7}
+                    {x = -1071.99, y = -868.38, z = 4.87}
                 },
                 Enter = EnterZoneTow,
                 Exit = ExitZoneTow,
-                zonesize = 5.5,
+                zonesize = 3,
                 Blips = {
                     sprite = 473,
                     color = 81,
