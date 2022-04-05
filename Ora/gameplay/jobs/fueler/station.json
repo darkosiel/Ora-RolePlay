@@ -1,35 +1,35 @@
 [
     {
-        "stock": 31.5
+        "stock": 0.5
     },
     {
-        "stock": 34.5
+        "stock": 3.5
     },
     {
-        "stock": 31
+        "stock": 2.0
     },
     {
-        "stock": 13
+        "stock": 1
     },
     {
         "stock": 3
     },
     {
-        "stock": 20
+        "stock": 6
     },
     {
-        "stock": 34
+        "stock": 10
     },
     {
-        "stock": 44
-    },
-    {
-        "stock": 9.0
-    },
-    {
-        "stock": 16
+        "stock": 5
     },
     {
         "stock": 9.0
+    },
+    {
+        "stock": 4
+    },
+    {
+        "stock": 1.0
     }
 ]
