@@ -2084,6 +2084,11 @@ local Shops =
         {
             Title = "Haziel",
             Pos = {x = -1486.71, y = -908.35, z = 10.02 - 0.98, a = 225.68},
+            Blips = {
+                sprite = 1,
+                color = 6,
+                name = "Haziel"
+            },
             Ped = {
                 model = "u_m_y_proldriver_01"
             },
