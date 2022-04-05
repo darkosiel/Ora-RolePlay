@@ -113,7 +113,7 @@ CONFIG.menuDefaults =
 
 	-- The speed unit used in conversions
 	-- Options: mph or kmh
-	["speedType"] = "mph",
+	["speedType"] = "kmh",
 
 	-- The state for automatic speed locking. This requires CONFIG.allow_fast_limit to be true.
 	-- Options: true or false
