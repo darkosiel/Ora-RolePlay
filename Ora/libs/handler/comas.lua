@@ -436,7 +436,7 @@ AddEventHandler(
                     GetPlayerServerId(Killer) ..
                             " | " ..
                             Ora.Identity:GetFullname(GetPlayerServerId(Killer)) ..
-                                    " " .. DeathReason .. " " .. Ora.Identity:GetFullname(GetPlayerServerId(PlayerId())) .. "." .. " " .. Weapon,
+                                    " " .. DeathReason .. " " .. Ora.Identity:GetFullname(GetPlayerServerId(PlayerId())) .. "." ..,
                     "info"
                 )
             end
