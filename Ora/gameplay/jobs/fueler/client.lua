@@ -381,7 +381,7 @@ AddEventHandler("fueler:spawnTanker", function()
   local coords = Station.work.tanker.spawn
   if #vehicleFct.GetVehiclesInArea({x = Station.work.tanker.spawn.x, y = Station.work.tanker.spawn.y, z = Station.work.tanker.spawn.z}, 5.0) == 0 then
     local tanker = Ora.World.Vehicle:Create("tanker", Station.work.tanker.spawn, Station.work.tanker.spawn.w, {customs = {}, warp_into_vehicle = false, health = {}})
-    --SetEntityInvincible(tanker, true)
+    SetEntityInvincible(tanker, true)
   else
     RageUI.Popup({message = "~r~Une citerne est déjà sortie"})
   end
