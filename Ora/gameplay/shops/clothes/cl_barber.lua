@@ -192,15 +192,17 @@ local locked_Maquillage = true
 local locked_Blush = true
 local locked_rouge = true
 local function Open()
-    skin = json.decode(skin)
-    skins.hair = PlySkin.hair
-    skins.facialHair = PlySkin.facial.hair
-    skins.makeup = PlySkin.makeup
-    skins.blush = PlySkin.blush
-    skins.lipstick = PlySkin.lipstick
-    (PlySkin.hair.style)
-    (skins.hair.style)
-    RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
+    TriggerServerCallback("core:GetSKin", function(skin)
+        skins = {}
+        skins.hair = PlySkin.hair
+        skins.facialHair = PlySkin.facial.hair
+        skins.makeup = PlySkin.makeup
+        skins.blush = PlySkin.blush
+        skins.lipstick = PlySkin.lipstick
+        (PlySkin.hair.style)
+        (skins.hair.style)
+        RageUI.Visible(RMenu:Get('barberDhop', "main"),true)
+    end)
 end
 
 local function EnterZone(zone)
