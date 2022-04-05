@@ -47,7 +47,7 @@ function Ambulance.Revive()
     local playerId = GetPlayerServerIdInDirection(5.0)
     if (playerId ~= false) then
         local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
-        ExecuteCommand("e cpr")
+
         RequestAnimDict(lib)
         while (not HasAnimDictLoaded(lib)) do Citizen.Wait(0) end
         TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, 0, 0, 0.0, false, false, false)
