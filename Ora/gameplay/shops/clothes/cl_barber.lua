@@ -191,7 +191,7 @@ local cheveux = false
 local locked_Maquillage = true
 local locked_Blush = true
 local locked_rouge = true
-PlySkin = TriggerPlayerEvent("getSkin", GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
+local PlySkin = TriggerPlayerEvent("getSkin", GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
 local function Open()
     skins.hair = PlySkin.hair
     skins.facialHair = PlySkin.facial.hair
