@@ -25,6 +25,7 @@ local VehShop =
             },
             Vehicles = {
                 ["Entreprise"] = {
+                    {name = "newsvan", price = 30000},
                     {name = "emsnspeedo", price = 30000},
                     {name = "emsroamer", price = 30000},
                     {name = "corspeedo", price = 30000},
