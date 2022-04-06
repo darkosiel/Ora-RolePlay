@@ -64,6 +64,7 @@ server_scripts {
 
 client_scripts {
     "utils/sha1.lua",
+    "utils/car_names.lua",
     "utils/vendor/rageui/rageui/RageUI.lua",
     "utils/vendor/rageui/rageui/Menu.lua",
     "utils/vendor/rageui/rageui/MenuController.lua",
