@@ -3134,8 +3134,8 @@ Jobs = {
                             local veh = GetVehiclePedIsIn(ped, false)
                             local bool, trailer = GetVehicleTrailerVehicle(veh)
                             if bool then
-                                if DecorExistOn(trailer, "FUEL_TR") then
-                                    ShowNotification("~b~Quantité d'essence :~w~"..DecorGetFloat(trailer, "FUEL_TR"))
+                                if DecorExistOn(trailer, "tanker") then
+                                    ShowNotification("~b~Quantité d'essence :~w~"..DecorGetFloat(trailer, "tanker"))
                                 end
                             else
                                 ShowNotification("~r~Aucune citerne attelé")

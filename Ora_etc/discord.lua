@@ -15,7 +15,7 @@ Citizen.CreateThread(
             exports["Ora"]:TriggerServerCallback(
                 "onlinePlayers:list",
                 function(users)
-                    SetRichPresence(GetPlayerName(PlayerId()) .. " 👥 " .. #users .. "/512")
+                    SetRichPresence(GetPlayerName(PlayerId()) .. " 👥 " .. #users .. "/128")
                 end
             )
 

@@ -1,7 +1,3 @@
------------------------------------------------------------------
---TakeHostage by Robbster, do not redistrbute without permission--
-------------------------------------------------------------------
-
 local hostageAllowedWeapons = {
 	"WEAPON_PISTOL",
 	"WEAPON_COMBATPISTOL",

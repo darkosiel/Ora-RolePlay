@@ -31,7 +31,7 @@ Station = {
       },
       radius = 5.00,
       action = "fueler:harvest",
-      time = 600, --secondes / temps approximatif
+      time = 400, --secondes / temps approximatif
       qty = 2500.0
     },
     treatment = {
@@ -43,7 +43,7 @@ Station = {
       },
       radius = 3.00,
       action = "fueler:treatment",
-      time = 600, --secondes / temps approximatif
+      time = 400, --secondes / temps approximatif
    }
   },
 
