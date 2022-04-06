@@ -109,14 +109,14 @@ ConfigGym.Locations = {
         ["y"] = -838.35,
         ["z"] = 26.82 - 0.98,
         ["h"] = 119.41,
-        ["exercise"] = "Abdos"
+        ["exercise"] = "Tractions"
     },
     {
         ["x"] = -1105.12,
         ["y"] = -836.96,
         ["z"] = 26.82 - 0.98,
         ["h"] = 163.9164,
-        ["exercise"] = "Abdos"
+        ["exercise"] = "Tractions"
     },
     {
         ["x"] = 233.2097,
