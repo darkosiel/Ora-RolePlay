@@ -22,4 +22,5 @@ Citizen.CreateThread(function()
     --SAMS
     AddTextEntry("EMSPEEDO", "Speedo SAMS")
     AddTextEntry("EMSROAM", "Roamer SAMS")
+    AddTextEntry("CORSPEEDO", "Speedo Coroner")
 end)
