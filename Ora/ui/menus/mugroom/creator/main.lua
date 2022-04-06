@@ -54,7 +54,7 @@ AddEventHandler(
     end
 )
 
-RMenu.Add("mugshot", "creator", RageUI.CreateMenu("Personnage", "~b~NOUVEAUX PERSONNAGE"))
+RMenu.Add("mugshot", "creator", RageUI.CreateMenu("Personnage", "~b~NOUVEAU PERSONNAGE"))
 RMenu:Get("mugshot", "creator").Closable = false
 
 RMenu.Add("mugshot", "heritage", RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~HÉRÉDITÉ"))
