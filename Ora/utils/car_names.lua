@@ -1,4 +1,5 @@
 Citizen.CreateThread(function()
+    --POLICE
     AddTextEntry("PSCOUT", "Scout 2014 LSPD")
     AddTextEntry("PSCOUTNEW", "Scout 2016 LSPD")
     AddTextEntry("POLICE", "Stanier LSPD")
@@ -18,4 +19,7 @@ Citizen.CreateThread(function()
     AddTextEntry("UMKSCOUT", "Scout UMK LSPD")
     AddTextEntry("SUPPRESSOR", "Suppressor LSPD")
     AddTextEntry("POLICE8", "Ranger Retro UMK LSPD")
+    --SAMS
+    AddTextEntry("EMSPEEDO", "Speedo SAMS")
+    AddTextEntry("EMSROAM", "Roamer SAMS")
 end)
