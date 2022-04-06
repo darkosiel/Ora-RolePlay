@@ -34,4 +34,5 @@ Citizen.CreateThread(function()
     AddTextEntry("LSFD5", "Bison LSFD")
     --WEAZEL
     AddTextEntry("NEWSVAN", "Rumpo News")
+    AddTextEntry("NEWSMAV", "Maverick News")
 end)
