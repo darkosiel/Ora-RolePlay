@@ -2259,7 +2259,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "newsheli",
+                        name = "newsmav",
                         label = "Helicoptere Weazel",
                         job = true,
                         tuning = {
