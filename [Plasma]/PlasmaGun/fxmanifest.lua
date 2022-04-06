@@ -21,7 +21,7 @@ files {
 
 
 client_scripts {
-	'WeaponData/weaponnames.lua'
+	'WeaponData/weapon_names.lua'
 }
 
 data_file 'WEAPON_METADATA_FILE'   'WeaponData/weaponarchetypesSPR.meta'
