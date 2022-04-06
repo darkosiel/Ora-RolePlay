@@ -375,7 +375,7 @@ local VehShop =
                     {name = "police", price = 5000},
                     {name = "policeslick", price = 5000},
                     {name = "police2", price = 5000},
-                    {name = "policenew", price = 5000},
+                    {name = "police2new", price = 5000},
                     {name = "pdumkbuffalo", price = 5000},
                     {name = "police3", price = 5000},
                     {name = "police3slick", price = 5000},
