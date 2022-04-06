@@ -43,20 +43,20 @@ local defaulClothestvalue = {
 
 local function kevIsUnbreakable(index)
     local kevInd = {
-        10,
-        13,
-        14,
-        15,
-        19,
-        21,
-        22,
-        24,
-        25,
-        26,
-        28,
-        37,
+        54,
+        53,
+        52,
+        43,
         42,
-        55
+        41,
+        40,
+        39,
+        38,
+        35,
+        28,
+        24,
+        23,
+        22
     }
     for _, v in ipairs(kevInd) do
         if v == index then
