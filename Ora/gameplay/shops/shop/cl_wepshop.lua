@@ -514,72 +514,72 @@ local OpenS = function()
 end
 
 local kevlarConfig = {
-    [1] = {
-        status = 50,
-        name = "Kevlar anti-riot"
-    },
     [2] = {
         status = 50,
-        name = "Kevlar"
+        name = "Kevlar sécurité"
     },
     [3] = {
         status = 100,
-        name = "Kevlar lourd LSSD"
+        name = "Kevlar medic / presse"
     },
     [4] = {
         status = 100,
-        name = "Kevlar detective"
+        name = "Kevlar léger"
     },
     [5] = {
-        status = 50,
-        name = "Kevlar sheriff"
+        status = 100,
+        name = "Kevlar anti-riot"
     },
-    [10] = {
+    [8] = {
         status = 0,
-        name = "Gilet Jaune"
+        name = "Gilet de sauvetage"
+    },
+    [11] = {
+        status = 0,
+        name = "Sous-veste EMT"
     },
     [12] = {
-        status = 100,
-        name = "Kevlar SWAT"
+        status = 50,
+        name = "Sous-veste col ouvert"
     },
     [13] = {
-        status = 25,
-        name = "Radio"
+        status = 50,
+        name = "Radio déportée 1"
     },
     [14] = {
-        status = 25,
-        name = "Radio"
+        status = 50,
+        name = "Radio déportée 2"
     },
     [15] = {
         status = 25,
         name = "Radio"
     },
-    [16] = {
-        status = 0,
-        name = "Bodycam"
-    },
     [17] = {
-        status = 50,
-        name = "Sous pull kevlar"
+        status = 100,
+        name = "Gilet sous-veste"
     },
     [18] = {
         status = 100,
-        name = "Kevlar LSPD / LSSD"
+        name = "Kevlar moyen"
     },
     [19] = {
-        status = 0,
-        name = "Radio SAMS"
+        status = 50,
+        name = "Sous-veste cravate"
     },
     [21] = {
-        status = 0,
-        name = "Gilet Jaune"
+        status = 50,
+        name = "Gilet jaune"
     },
     [22] = {
-        status = 0,
-        name = "Badge"
+        status = 50,
+        name = "Plaque agent fédéral"
+    },
+    [23] = {
+        status = 50,
+        name = "Plaque étoilée"
     },
     [24] = {
-        status = 0,
+        status = 50,
         name = "Badge"
     },
     [25] = {
@@ -587,116 +587,24 @@ local kevlarConfig = {
         name = "Gilet Lourd"
     },
     [26] = {
-        status = 25,
-        name = "Sous pull"
+        status = 50,
+        name = "Col roulé"
+    },
+    [27] = {
+        status = 100,
+        name = "Gilet Lourd 2"
     },
     [28] = {
-        status = 25,
-        name = "Sous pull 2"
-    },
-    [29] = {
-        status = 100,
-        name = "SRT LSSD"
-    },
-    [30] = {
-        status = 0,
-        name = "Rien"
-    },
-    [31] = {
-        status = 0,
-        name = "Rien"
-    },
-    [32] = {
-        status = 0,
-        name = "Rien"
-    },
-    [33] = {
-        status = 0,
-        name = "Rien"
-    },
-    [34] = {
-        status = 0,
-        name = "Rien"
-    },
-    [35] = {
-        status = 0,
-        name = "Rien"
-    },
-    [36] = {
-        status = 0,
-        name = "Rien"
+        status = 50,
+        name = "Sous veste col ouvert"
     },
     [37] = {
-        status = 25,
-        name = "Radio"
-    },
-    [38] = {
-        status = 0,
-        name = "Rien"
-    },
-    [39] = {
-        status = 0,
-        name = "Rien"
-    },
-    [40] = {
         status = 50,
-        name = "Rien"
+        name = "Radio déportée 3"
     },
-    [41] = {
+    [54] = {
         status = 0,
-        name = "Rien"
-    },
-    [42] = {
-        status = 0,
-        name = "Badge"
-    },
-    [43] = {
-        status = 100,
-        name = "Kevlar FIB"
-    },
-    [44] = {
-        status = 100,
-        name = "Rien"
-    },
-    [45] = {
-        status = 50,
-        name = "Kevlar police"
-    },
-    [46] = {
-        status = 50,
-        name = "Kevlar FIB"
-    },
-    [47] = {
-        status = 0,
-        name = "Rien"
-    },
-    [48] = {
-        status = 0,
-        name = "Rien"
-    },
-    [49] = {
-        status = 0,
-        name = "Rien"
-    },
-    [50] = {
-        status = 0,
-        name = "Rien"
-    },
-    [51] = {
-        status = 0,
-        name = "Rien"
-    },
-    [52] = {
-        status = 0,
-        name = "Rien"
-    },
-    [53] = {
-        status = 100,
-        name = "Kevlar lourd LSPD"
-    },
-    [55] = {
-        status = 0,
-        name = "Carte FIB"
+        name = "Carte de presse"
     },
 }
 
