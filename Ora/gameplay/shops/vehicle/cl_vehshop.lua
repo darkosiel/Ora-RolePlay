@@ -372,7 +372,26 @@ local VehShop =
                     {name = "verus", price = 5500}
                 },
                 ["Police"] = {
-                    {name = "sheriffb3", price = 2500}
+                    {name = "police", price = 5000},
+                    {name = "policeslick", price = 5000},
+                    {name = "police2", price = 5000},
+                    {name = "policenew", price = 5000},
+                    {name = "pdumkbuffalo", price = 5000},
+                    {name = "police3", price = 5000},
+                    {name = "police3slick", price = 5000},
+                    {name = "police3umk", price = 5000},
+                    {name = "police4", price = 5000},
+                    {name = "police42old", price = 5000},
+                    {name = "pscout", price = 5000},
+                    {name = "pscoutnew", price = 5000},
+                    {name = "umkscout", price = 5000},
+                    {name = "lspdb", price = 5000},
+                    {name = "poleveron", price = 5000},
+                    {name = "polalamo", price = 5000},
+                    {name = "polriot", price = 5000},
+                    {name = "polspeedo", price = 5000},
+                    {name = "polraiden", price = 50000},
+                    {name = "umkgrangerrto", price = 5000},
                 },
                 ["Vans"] = {
                     {name = "minivan", price = 9100},
