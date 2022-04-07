@@ -5265,14 +5265,14 @@ Jobs = {
         },
         garage = {
             Name = "Garage gouvernement",
-            Pos = {x = -549.45, y = -158.33, z = 38.25},
+            Pos = {x = -570.89, y = -143.61, z = 37.50},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = -558.6, y = -162.17, z = 38.16, h = 292.43}
+                spawnpos = {x = -569.42, y = -147.34, z = 37.63, h = 201.32}
             },
             Blipdata = {
                 Pos = {},
