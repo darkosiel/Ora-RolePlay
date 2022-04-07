@@ -92,6 +92,11 @@ function Ora.Identity.Job:Init(job)
     garage:Setup()
   end
 
+  if v.garage6 ~= nil then
+    local garage = Garage.New(v.garage6.Name, v.garage6.Pos, v.garage6.Properties, v.garage6.Blipdata)
+    garage:Setup()
+  end
+
   if Storages then
     for _, storage in pairs(Storages) do
       self:Debug(string.format("Initializing Storage ^5%s^3, limit: ^5%s^3, pos: ^5%s^3", storage.Name, storage.Limit, vector3(storage.Pos.x, storage.Pos.y, storage.Pos.z)))
