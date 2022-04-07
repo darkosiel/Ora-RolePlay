@@ -34,6 +34,7 @@ local VehShop =
                     {name = "lsfd2", price = 30000},
                     {name = "lsfd3", price = 30000},
                     {name = "lsfd5", price = 45000},
+                    {name = "lsfdtruck", price = 50000},
                     {name = "lsfdtruck2", price = 50000},
                     {name = "lsfdtruck3", price = 60000},
                     {name = "taxi", price = 20000},
