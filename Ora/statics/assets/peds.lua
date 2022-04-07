@@ -10,6 +10,7 @@ Citizen.CreateThread(
         Ped:Add("Alissa", "s_f_y_cop_01", {x = -861.34, y = -1333.99, z = 0.6, a = 286.73}, nil)
         Ped:Add("Tyler", "cs_casey", {x = 258.75, y = 219.15, z = 105.29, a = 171.52}, nil)
         Ped:Add("Sven", "a_m_m_rurmeth_01", {x = 1713.21, y = 3600.36, z = 34.2, a = 179.19}, nil)
+        Ped:Add("Richard", "s_m_y_cop_01", {x = 378.5736, y = -1606.9127, z = 30.1976 -0.98, a = 58.5412}, nil)
         --   QG MAFIA ITALIEN --
         -- Ped:Add("Vito", "s_m_m_highsec_02", {x = -133.25, y = 968.17, z = 234.70, a = 100.37}, nil)
         -- Ped:Add("Antonio", "s_m_m_highsec_01", {x = -60.94, y = 997.98, z = 233.4, a = 322.07}, nil)
