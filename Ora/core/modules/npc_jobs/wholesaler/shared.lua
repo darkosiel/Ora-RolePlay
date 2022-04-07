@@ -150,7 +150,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["tatakithon"] = {"Tataki de thon", 20},
     ["milk"] = {"Lait", 20},
     ["fish12"] = {"Saumon", 100},
-    ["fish6"] = {"Dorade", 20},
+    ["fish6"] = {"Daurade", 20},
   },
   ltdsud = {
     ["pinces"] = {"Pinces", 5},
