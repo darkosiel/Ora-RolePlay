@@ -20,19 +20,19 @@ Ora.Illegal.DeactivatedMissions = {
 
 
 Ora.Illegal.CopsLimitation = {
-    ['default'] = 0, --2
-    ['burglary'] = 0, --2
-    ['drugselling'] = 0, --2
-    ['roberry'] = 0, --2
-    ['carjacking'] = 0, --3
-    ['carroberry'] = 0, --3
-    ['gofast'] = 0, --4
-    ['migrantsmuggling'] = 0, --2
-    ['gundelivery'] = 0, --3
-    ['drugcomponent'] = 0, --3
-    ['atm'] = 0, --6
-    ['fleeca'] = 0, --8
-    ['jewelry'] = 0, --8
+    ['default'] = 2, --2
+    ['burglary'] = 2, --2
+    ['drugselling'] = 2, --2
+    ['roberry'] = 2, --2
+    ['carjacking'] = 3, --3
+    ['carroberry'] = 3, --3
+    ['gofast'] = 4, --4
+    ['migrantsmuggling'] = 2, --2
+    ['gundelivery'] = 3, --3
+    ['drugcomponent'] = 3, --3
+    ['atm'] = 6, --6
+    ['fleeca'] = 8, --8
+    ['jewelry'] = 8, --8
 } 
 
 function Ora.Illegal:GetCopsRequired(missionName)
