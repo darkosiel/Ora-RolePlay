@@ -3851,6 +3851,21 @@ Jobs = {
                 Blipname = "LSPD - Garage"
             }
         },
+        garage6 = {
+            Name = "Garage police6",
+            Pos = {x = 385.2411, y = -1633.9290, z = 29.2920},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = -385.5842, y = -1618.1795, z = 29.2920, h = 234.81}
+            },
+            Blipdata = {
+                Pos = {x = 385.2411, y = -1633.9290, z = 29.2920},
+                Blipcolor = 5,
+                Blipname = "LSPD - Garage"
+            }
+        },
         garage3 = {
             Name = "GarageLSBateau",
             Pos = {x = -800.45, y = -1514.03, z = 1.6},

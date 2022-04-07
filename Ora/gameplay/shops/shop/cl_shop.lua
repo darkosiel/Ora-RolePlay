@@ -624,8 +624,8 @@ local Shops =
                 name = "Préfecture"
             },
             Ped = {
-                model = "u_m_m_fibarchitect",
-                name = "Michel"
+                model = "csb_mrs_r",
+                name = "Michelle"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",
