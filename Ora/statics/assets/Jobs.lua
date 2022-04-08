@@ -143,33 +143,6 @@ Jobs = {
                                 end
                             },
                             {
-                                label = "Sortir/Ranger l'écarteur hydraulique",
-                                onSelected = function()
-                                    ExecuteCommand("spreaders script")
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Sortir les pistons hydrauliques",
-                                onSelected = function()
-                                    ExecuteCommand("stabilisers setup script")
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Ranger les pistons hydrauliques",
-                                onSelected = function()
-                                    ExecuteCommand("stabilisers remove script")
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
                                 label = "Mise en fourière",
                                 onSelected = function()
                                     Mecano.Fouriere()
@@ -6548,6 +6521,7 @@ Jobs = {
                                     HoverPlayer()
                                 end
                             },
+                            
                             {
                                 label = "Sortir du véhicule",
                                 onSelected = function()
@@ -6584,6 +6558,24 @@ Jobs = {
                                 end
                             },
                             {
+                                label = "Sortir/Ranger l'écarteur hydraulique",
+                                onSelected = function()
+                                    ExecuteCommand("spreaders script")
+                                end
+                            },
+                            {
+                                label = "Sortir les pistons hydrauliques",
+                                onSelected = function()
+                                    ExecuteCommand("stabilisers setup script")
+                                end
+                            },
+                            {
+                                label = "Sortir les pistons hydrauliques",
+                                onSelected = function()
+                                    ExecuteCommand("stabilisers remove script")
+                                end
+                            },
+                            {
                                 label = "Supprimer un cone",
                                 onSelected = function()
                                     DeleteCone()
@@ -6604,7 +6596,7 @@ Jobs = {
                                     Pompier.GetOffStretcher()
                                 end,
                                 ActiveFct = function()
-                                    Ambulance.DrawMarkerVehicle()
+                                    Pompier.DrawMarkerVehicle()
                                 end
                             },
                             {
@@ -6684,6 +6676,12 @@ Jobs = {
                             TriggerServerEvent("Job:Annonce", "LSFD", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
                             --TriggerServerEvent("Job:Annonce", "LSFD", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
                         end
+                    end
+                },
+                {
+                    label = "Bipeur: Supprimer les interventions",
+                    onSelected = function()
+                        Ora.Jobs.Firefighter.Dispatch:clear(0)
                     end
                 },
                 {
