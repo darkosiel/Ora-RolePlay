@@ -1,4 +1,4 @@
-RMenu.Add("Firefighter", "main", RageUI.CreateMenu("Pompier ", "Actions disponibles", 10, 100))
+--[[RMenu.Add("Firefighter", "main", RageUI.CreateMenu("Pompier ", "Actions disponibles", 10, 100))
 RMenu.Add("Firefighter", "stretcher", RageUI.CreateSubMenu(RMenu:Get("Firefighter", "main"), "Actions brancard ", "Actions disponibles", 10, 100))
 RMenu.Add("Firefighter", "vehicle", RageUI.CreateSubMenu(RMenu:Get("Firefighter", "main"), "Actions véhicule ", "Actions disponibles", 10, 100))
 RMenu.Add("Firefighter", "object", RageUI.CreateSubMenu(RMenu:Get("Firefighter", "main"), "Actions objets ", "Actions disponibles", 10, 100))
@@ -410,3 +410,4 @@ function Ora.Jobs.Firefighter.INIT()
 	)
 end
 
+]]

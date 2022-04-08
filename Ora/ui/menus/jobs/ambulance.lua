@@ -84,7 +84,26 @@ function Ambulance.DrawMarkerVehicle()
     end
 end
 
+
+function Pompier.DrawMarkerVehicle()
+    local vehicle = GetVehicleInDirection()
+    if vehicle ~= 0 and (GetEntityModel(vehicle) == GetHashKey("emsnspeedo")) then
+        local vehCoords = GetEntityCoords(vehicle)
+        DrawMarker(2, vehCoords.x, vehCoords.y, vehCoords.z + 2.5, 0, 0, 0, 180.0, nil, nil, 0.5, 0.5, 0.5, 100, 165, 225, 255, false, true, 2, true)
+    end
+end
+
 function Ambulance.DrawMarkerStretcher(restriction)
+    local stretcherHash = `prop_ld_binbag_01`
+    local coords = GetEntityCoords(LocalPlayer().Ped)
+    local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
+    if (restriction and stretcher ~= 0 and GetEntityAttachedTo(stretcher) == 0) or not restriction then
+        local stretcherCoords = GetEntityCoords(stretcher)
+        DrawMarker(2, stretcherCoords.x, stretcherCoords.y, stretcherCoords.z + 1.0, 0, 0, 0, 180.0, nil, nil, 0.5, 0.5, 0.5, 100, 165, 225, 255, false, true, 2, true)
+    end
+end
+
+function Pompier.DrawMarkerStretcher(restriction)
     local stretcherHash = `prop_ld_binbag_01`
     local coords = GetEntityCoords(LocalPlayer().Ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
@@ -104,7 +123,41 @@ function Ambulance.DrawMarkerOnPed()
     end
 end
 
+function Pompier.DrawMarkerOnPed()
+    local targetId = GetPlayerServerIdInDirection(4.0)
+    if targetId ~= false then
+        local targetPlayer = GetPlayerFromServerId(targetId)
+        local targetPed = GetPlayerPed(targetPlayer)
+        local targetCoords = GetEntityCoords(targetPed)
+        DrawMarker(2, targetCoords.x, targetCoords.y, targetCoords.z + 1.5, 0, 0, 0, 180.0, nil, nil, 0.5, 0.5, 0.5, 52, 177, 74, 255, false, true, 2, true)
+    end
+end
+
 function Ambulance.GetOffStretcher()
+    local stretcherHash = `prop_ld_binbag_01`
+    local veh = GetVehicleInDirection()
+    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("emsnspeedo") then
+        local vehCoords = GetEntityCoords(veh)
+        local forward = GetEntityForwardVector(veh)
+        local behind = vehCoords - (forward * 6.0)
+        for object in EnumerateObjects() do
+            if GetEntityModel(object) == stretcherHash and GetEntityAttachedTo(object) == veh then
+                DetachEntity(object)
+                SetEntityCoords(object, behind)
+                PlaceObjectOnGroundProperly(object)
+                SetEntityCollision(object, true, true)
+                return
+            end
+        end
+        
+        local stretcher = Ora.World.Object:Create(stretcherHash, behind, true, true, true)
+        SetEntityHeading(stretcher, GetEntityHeading(veh))
+        PlaceObjectOnGroundProperly(stretcher)
+        FreezeEntityPosition(stretcher, true)
+    end
+end
+
+function Pompier.GetOffStretcher()
     local stretcherHash = `prop_ld_binbag_01`
     local veh = GetVehicleInDirection()
     if veh ~= 0 and GetEntityModel(veh) == GetHashKey("emsnspeedo") then
@@ -196,6 +249,57 @@ function Ambulance.PickPutStretcher()
     end
 end
 
+function Pompier.PickPutStretcher()
+    local stretcherHash = `prop_ld_binbag_01`
+    local ped = LocalPlayer().Ped
+    local coords = GetEntityCoords(ped)
+    local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
+    if not pickStretcher then
+        if stretcher ~= 0 and GetEntityAttachedTo(stretcher) == 0 then
+            local dict = "anim@heists@box_carry@"
+            RequestAnimDict(dict)
+            while not HasAnimDictLoaded(dict) do
+                Wait(100)
+            end
+            
+            TaskPlayAnim(ped, dict, "idle", 8.0, 8.0, -1, 50, 0, false, false, false)
+            NetworkRequestControlOfEntity(stretcher)
+            while not NetworkHasControlOfEntity(stretcher) do
+                Wait(0)
+            end
+            SetEntityAsMissionEntity(stretcher, true, true)
+            while not IsEntityAMissionEntity(stretcher) do
+                Wait(0)
+            end
+            SetEntityCollision(stretcher, false, false)
+            FreezeEntityPosition(stretcher, false)
+            AttachEntityToEntity(stretcher, ped,  GetPedBoneIndex(ped, 10706), 0.0, 1.5, -0.62, 0.0, 15.0, 185.0, 0.0, true, true, false, false, 1, false)
+            while not IsEntityAttachedToEntity(stretcher, ped) do
+                AttachEntityToEntity(stretcher, ped,  GetPedBoneIndex(ped, 10706), 0.0, 1.5, -0.62, 0.0, 15.0, 185.0, 0.0, true, true, false, false, 1, false)
+                Wait(100)
+            end
+            pickStretcher = true
+            Citizen.CreateThread(function()
+                while pickStretcher do
+                    if not IsEntityPlayingAnim(ped, dict, "idle", 3) then
+                        TaskPlayAnim(ped, dict, "idle", 8.0, 8.0, -1, 50, 0, false, false, false)
+                    end
+                    Wait(500)
+                end
+            end)
+        end
+    else
+        if stretcher ~= 0 and GetEntityAttachedTo(stretcher) == ped then
+            pickStretcher = false
+            DetachEntity(stretcher, true, true)
+            SetEntityCollision(stretcher, true, true)
+            PlaceObjectOnGroundProperly(stretcher)
+            FreezeEntityPosition(stretcher, true)
+            ClearPedTasks(ped)
+        end
+    end
+end
+
 function Ambulance.PutOnStretcher()
     local stretcherHash = `prop_ld_binbag_01`
     local ped = LocalPlayer().Ped
@@ -208,7 +312,31 @@ function Ambulance.PutOnStretcher()
     end
 end
 
+
+function Pompier.PutOnStretcher()
+    local stretcherHash = `prop_ld_binbag_01`
+    local ped = LocalPlayer().Ped
+    local coords = GetEntityCoords(ped)
+    local targetId = GetPlayerServerIdInDirection(4.0)
+    local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
+    if stretcher ~= 0 and targetId ~= false then
+        local stretcherId = NetworkGetNetworkIdFromEntity(stretcher)
+        TriggerPlayerEvent("Ambulance:PutOnStretcher", targetId, stretcherId)
+    end
+end
+
 function Ambulance.RemoveStretcher()
+    local stretcherHash = `prop_ld_binbag_01`
+    local ped = LocalPlayer().Ped
+    local coords = GetEntityCoords(ped)
+    local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
+    if stretcher ~= 0 then
+        DeleteEntity(stretcher)
+    end
+end
+
+
+function Pompier.RemoveStretcher()
     local stretcherHash = `prop_ld_binbag_01`
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)

@@ -6465,6 +6465,174 @@ Jobs = {
                 Blipname = "LSFD - Port"
             }
         },
+        Menu = {
+            menu = {
+                title = "Pompier",
+                subtitle = "Actions disponibles",
+                name = "pompier_menuperso"
+            },
+            submenus = {
+                ["Soins"] = {
+                    submenu = "pompier_menuperso",
+                    title = "Soins",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Petite blessure",
+                                onSelected = function()
+                                    Ambulance.Heal(25)
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Blessure grave",
+                                onSelected = function()
+                                    Ambulance.Heal(200)
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Réanimation",
+                                onSelected = function()
+                                    Ambulance.Revive()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            }
+                        }
+                    }
+                },
+                ["Actions véhicule"] = {
+                    submenu = "ambulance_menuperso",
+                    title = "Actions véhicule",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Mettre dans le véhicule",
+                                onSelected = function()
+                                    Police.PutInVeh()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Sortir du véhicule",
+                                onSelected = function()
+                                    Police.SortirVeh()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            }
+                        }
+                    }
+                },
+                ["Actions brancard"] = {
+                    submenu = "ambulance_menuperso",
+                    title = "Actions brancard",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Sortir le brancard de l'ambulance",
+                                onSelected = function()
+                                    Pompier.GetOffStretcher()
+                                end,
+                                ActiveFct = function()
+                                    Ambulance.DrawMarkerVehicle()
+                                end
+                            },
+                            {
+                                label = "Mettre le brancard dans l'ambulance",
+                                onSelected = function()
+                                    Ambulance.PutStretcherOnVehicle()
+                                end,
+                                ActiveFct = function()
+                                    Pompier.DrawMarkerVehicle()
+                                end
+                            },
+                            {
+                                label = "Prendre/Déposer le brancard",
+                                onSelected = function()
+                                    Pompier.PickPutStretcher()
+                                end,
+                                ActiveFct = function()
+                                    if not pickStretcher then
+                                        Pompier.DrawMarkerStretcher(true)
+                                    end
+                                end
+                            },
+                            {
+                                label = "Mettre/Descendre la personne du brancard",
+                                onSelected = function()
+                                    Pompier.PutOnStretcher()
+                                end,
+                                ActiveFct = function()
+                                    Pompier.DrawMarkerStretcher(false)
+                                    Pompier.DrawMarkerOnPed()
+                                end
+                            },
+                            {
+                                label = "Ranger le brancard",
+                                onSelected = function()
+                                    Pompier.RemoveStretcher()
+                                end,
+                                ActiveFct = function()
+                                    Pompier.DrawMarkerStretcher(true)
+                                end
+                            }
+                        }
+                    }
+                }
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("lsfd")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Test stupéfiant",
+                    onSelected = function()
+                        Police.Stup()
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Informations effectifs",
+                    onSelected = function()
+                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "lsfd")
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "LSFD", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
+                        end
+                    end
+                },
+                {
+                    label = "Annuler l'appel en cours",
+                    onSelected = function()
+                        TriggerEvent("call:cancelCall")
+                    end
+                }
+            }
+        },
         work = {
             vestiaire = {
                 type = "Vestiaire",
