@@ -170,7 +170,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["ricemilk"] = {"Lait de riz", 2},
     ["chips"] = {"Chips", 5},
     ["fishingrod"] = {"Cannes à pêche", 25},
-    ["speaker"] = {"Radio portative", 350},
+    -- ["speaker"] = {"Radio portative", 350},
   },
   ltdnord = {
     ["pinces"] = {"Pinces", 5},
@@ -190,7 +190,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["ricemilk"] = {"Lait de riz", 2},
     ["chips"] = {"Chips", 5},
     ["fishingrod"] = {"Cannes à pêche", 25},
-    ["speaker"] = {"Radio portative", 350},
+    -- ["speaker"] = {"Radio portative", 350},
   },
   yellowjack = {
     ["whisky"] = {"Bouteille de whisky", 100},

@@ -167,14 +167,14 @@ local BasicShopsNorth = {
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
-    },
-    {
-        name = "speaker",
-        price = 1000,
-        data = {},
-        beforePayment = HasNoLtdNorth,
-        tax = 1.00
     }
+    -- {
+    --     name = "speaker",
+    --     price = 1000,
+    --     data = {},
+    --     beforePayment = HasNoLtdNorth,
+    --     tax = 1.00
+    -- }
 
     -- {
     --     name = "biere",
@@ -275,14 +275,14 @@ local BasicShopsSouth = {
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
-    },
-    {
-        name = "speaker",
-        price = 1000,
-        data = {},
-        beforePayment = HasNoLtdNorth,
-        tax = 1.00
     }
+    -- {
+    --     name = "speaker",
+    --     price = 1000,
+    --     data = {},
+    --     beforePayment = HasNoLtdNorth,
+    --     tax = 1.00
+    -- }
 
     -- {
     --     name = "biere",
@@ -356,14 +356,14 @@ local LittleSeoulShop = {
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
-    },
-    {
-        name = "speaker",
-        price = 1000,
-        data = {},
-        beforePayment = HasNoLtdNorth,
-        tax = 1.00
     }
+    -- {
+    --     name = "speaker",
+    --     price = 1000,
+    --     data = {},
+    --     beforePayment = HasNoLtdNorth,
+    --     tax = 1.00
+    -- }
 
     -- {
     --     name = "biere",
