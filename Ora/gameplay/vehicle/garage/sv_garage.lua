@@ -137,6 +137,20 @@ AddEventHandler(
     end
 )
 
+RegisterServerEvent("Garage:UpdateCarLabel")
+AddEventHandler(
+        "Garage:UpdateCarLabel",
+        function(plate, label)
+            MySQL.Async.execute(
+                    "UPDATE players_vehicles SET label = @label where plate = @plate",
+                    {
+                        ["@plate"] = plate,
+                        ["@label"] = label
+                    }
+            )
+        end
+)
+
 RegisterServerEvent("vehicle:PreterCle")
 AddEventHandler(
     "vehicle:PreterCle",

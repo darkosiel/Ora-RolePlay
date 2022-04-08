@@ -268,6 +268,20 @@ Citizen.CreateThread(
                             end
                         )
 
+                        RageUI.Button(
+                                "Renommer le véhicule",
+                                nil,
+                                {},
+                                true,
+                                function(Hovered, Ative, Selected, Checked)
+                                    if Selected then
+                                        TriggerServerEvent("Garage:UpdateCarLabel", GetVehicleNumberPlateText(veh), 'TEST VHL')
+                                        RageUI.GoBack()
+                                        RageUI.Visible(RMenu:Get("personnal", "vehicule"), false)
+                                    end
+                                end
+                        )
+
                         RageUI.List(
                             "Clignotants",
                             cligno,
