@@ -6550,7 +6550,7 @@ Jobs = {
                             {
                                 label = "Mettre le brancard dans l'ambulance",
                                 onSelected = function()
-                                    Ambulance.PutStretcherOnVehicle()
+                                    Pompier.PutStretcherOnVehicle()
                                 end,
                                 ActiveFct = function()
                                     Pompier.DrawMarkerVehicle()
@@ -6622,6 +6622,7 @@ Jobs = {
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
                             TriggerServerEvent("Job:Annonce", "LSFD", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
+                            --TriggerServerEvent("Job:Annonce", "LSFD", "Annonce", text, "CHAR_CALL911", 8, "LSFD")
                         end
                     end
                 },

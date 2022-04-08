@@ -199,6 +199,23 @@ function Ambulance.PutStretcherOnVehicle()
     end
 end
 
+function Pompier.PutStretcherOnVehicle()
+    local ped = LocalPlayer().Ped
+    local coords = GetEntityCoords(ped)
+    local stretcherHash = `prop_ld_binbag_01`
+    local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
+    if stretcher and GetEntityAttachedTo(stretcher) == ped then
+        local veh = GetVehicleInDirection()
+        if veh ~= 0 and GetEntityModel(veh) == GetHashKey("lsfd4") then
+            DetachEntity(stretcher)
+            AttachEntityToEntity(stretcher, veh, 0.0, 0.0, -2.0, 0.8, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
+            FreezeEntityPosition(stretcher, true)
+            ClearPedTasks(ped)
+            pickStretcher = false
+        end
+    end
+end
+
 function Ambulance.PickPutStretcher()
     local stretcherHash = `prop_ld_binbag_01`
     local ped = LocalPlayer().Ped
