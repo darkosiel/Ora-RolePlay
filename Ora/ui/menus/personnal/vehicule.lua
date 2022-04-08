@@ -278,6 +278,7 @@ Citizen.CreateThread(
                                         exports['Snoupinput']:ShowInput("Nouveau nom", 25, "text", "", true)
                                         local text = exports['Snoupinput']:GetInput()
                                         TriggerServerEvent("Garage:UpdateCarLabel", GetVehicleNumberPlateText(veh), text)
+                                        veh.label = text
                                         RageUI.Popup({message = "~g~Nouveau nom~b~\n".. text})
                                         RageUI.GoBack()
                                         RageUI.Visible(RMenu:Get("personnal", "vehicule"), false)
