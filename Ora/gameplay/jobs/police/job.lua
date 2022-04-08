@@ -123,7 +123,25 @@ function EnterExtraPoliceVehicleZone()
     KeySettings:Add("controller", 46, OpenLspdExtraMenu, "LSPDEXTRA")
 end
 
+function EnterExtraPompierVehicleZone()
+    Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour gérer les extras")
+    KeySettings:Add("keyboard", "E", OpenLspdExtraMenu, "LSPDEXTRA")
+    KeySettings:Add("controller", 46, OpenLspdExtraMenu, "LSPDEXTRA")
+end
+
 function ExitExtraPoliceVehicleZone()
+    Hint:RemoveAll()
+    KeySettings:Clear("keyboard", "E", "LSPDEXTRA")
+    KeySettings:Clear("controller", "E", "LSPDEXTRA")
+    RageUI.GoBack()
+    RageUI.GoBack()
+    RageUI.GoBack()
+    RageUI.GoBack()
+    RageUI.GoBack()
+    RageUI.GoBack()
+end
+
+function ExitExtraPompierVehicleZone()
     Hint:RemoveAll()
     KeySettings:Clear("keyboard", "E", "LSPDEXTRA")
     KeySettings:Clear("controller", "E", "LSPDEXTRA")
