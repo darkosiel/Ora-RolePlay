@@ -177,9 +177,9 @@ Jobs = {
                     end
                 },
                 {
-                    label = "Annuler l'appel en cours",
+                    label = "Supprimer les intervention",
                     onSelected = function()
-                        TriggerEvent("call:cancelCall")
+                        Ora.Jobs.Firefighter.Dispatch:clear(0)
                     end
                 }
             }
@@ -6531,6 +6531,39 @@ Jobs = {
                                 end
                             }
                         }
+                    }
+                },
+                ["Action objets"] = {
+                    submenu = "pompier_menuperso",
+                    title = "Placer objets",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Mettre un cone",
+                                onSelected = function()
+                                    useCone()
+                                end
+                            },
+                            {
+                                label = "Mettre une barriere",
+                                onSelected = function()
+                                    useBarrier()
+                                end
+                            },
+                            {
+                                label = "Supprimer herse",
+                                onSelected = function()
+                                    DeleteHerse()
+                                end
+                            },
+                            {
+                                label = "Supprimer un cone",
+                                onSelected = function()
+                                    DeleteCone()
+                                end
+                            }
+                        },
+                        submenu = {}
                     }
                 },
                 ["Actions brancard"] = {
