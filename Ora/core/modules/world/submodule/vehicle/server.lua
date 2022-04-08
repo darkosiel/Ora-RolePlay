@@ -68,8 +68,8 @@ AddEventHandler(
         local customlabel = nil
 
         MySQL.Async.fetchAll('SELECT * FROM players_vehicles WHERE plate = @plate', { ['@plate'] = plate }, function(result)
-            if result[1].label ~= nil then
-                print(result[1])
+            if result ~= nil then
+                print(result[1].label)
             end
         end)
 
