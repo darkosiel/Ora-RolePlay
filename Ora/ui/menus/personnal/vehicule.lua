@@ -4,10 +4,10 @@ RMenu.Add(
     RageUI.CreateSubMenu(RMenu:Get("personnal", "main"), "Véhicule", "Actions disponibles")
 )
 local pos = {
-    {name = "Poste de police Central", pos = {x = 409.93, y = -985.60, z = 28.26}},
-    {name = "Hopital Central", pos = {x = 363.05, y = -591.44, z = 28.68}},
+    {name = "Poste de police - Vespucci", pos = {x = 409.93, y = -985.60, z = 28.26}},
+    {name = "Hopital LS", pos = {x = 363.05, y = -591.44, z = 28.68}},
     {name = "Gouvernement", pos = {x = -542.13, y = -209.36, z = 36.65}},
-    {name = "Banque Centrale", pos = {x = 238.11, y = 196.64, z = 105.13}},
+    {name = "Pacific Bank", pos = {x = 238.11, y = 196.64, z = 105.13}},
     {name = "Supprimer", pos = false}
 }
 local Ind = 1
