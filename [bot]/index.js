@@ -44,8 +44,8 @@ client.on("message", async message => {
   console.log(command)
   console.log(command == "wl")
   console.log(message.channel.id)
-    if (message.channel.id != "712409515924127754") {
-        return};
+    if (message.channel.id != "962003138905264169") {
+        return}
     if (command == "wl") {
         console.log(args)
         if (args[0] !== undefined) {
