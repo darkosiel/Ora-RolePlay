@@ -3838,15 +3838,15 @@ Jobs = {
         },
         garage2 = {
             Name = "Garage police2",
-            Pos = {x = -1068.78, y = -852.61, z = 4.87},
+            Pos = {x = -1068.0742, y = -853.01617, z = 4.87},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = -1068.78, y = -852.61, z = 4.87, h = 221.91}
+                spawnpos = {x = -1068.0742, y = -853.01617, z = 4.87, h = 221.91}
             },
             Blipdata = {
-                Pos = {x = -1068.78, y = -852.61, z = 4.87},
+                Pos = {x = -1068.0742, y = -853.01617, z = 4.87},
                 Blipcolor = 5,
                 Blipname = "LSPD - Garage"
             }
