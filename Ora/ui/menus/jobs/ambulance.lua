@@ -1,4 +1,5 @@
 Ambulance = {}
+Pompier = {}
 local fileLoaded = nil
 local targetPly = false
 local Tattoos = {}
