@@ -6679,6 +6679,12 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Bipeur: Supprimer les interventions",
+                    onSelected = function()
+                        Ora.Jobs.Firefighter.Dispatch:clear(0)
+                    end
+                },
+                {
                     label = "Annuler l'appel en cours",
                     onSelected = function()
                         TriggerEvent("call:cancelCall")
