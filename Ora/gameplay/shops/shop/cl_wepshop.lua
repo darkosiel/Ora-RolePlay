@@ -910,7 +910,6 @@ local globalWeaponTable = {
         {"WEAPON_BAT", "Batte", 300},
         {"WEAPON_CROWBAR", "Pied de biche", 400},
         {"WEAPON_KNIFE", "Couteau", 250},
-        {"WEAPON_KNIFE1", "Cran d'arrêt", 300},
         {"WEAPON_DAGGER", "Dague", 400}
     },
     pistol ={
