@@ -1,6 +1,7 @@
 // Load up the discord.js library
 const Discord = require("discord.js");
 const mysql = require("mysql");
+import { pass } from './secret.js'
 
 // This is your client. Some people call it `bot`, some people call it `self`, 
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
@@ -8,9 +9,9 @@ const mysql = require("mysql");
 const client = new Discord.Client();
 var con = mysql.createConnection({
     host: "localhost",
-    user: "corev2",
-    password: "@7kgYG36@",
-    database: "corev2"
+    user: "orarp",
+    password: pass,
+    database: "orarp"
   });
 // Here we load the config.json file that contains our token and our prefix values. 
 const config = require("./config.json");
