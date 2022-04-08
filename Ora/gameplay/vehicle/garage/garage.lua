@@ -189,7 +189,7 @@ function Garage:Setup()
     end
     
     local markerPos = self.pos
-    markerPos.z = markerPos.z - 1
+    markerPos.z = markerPos.z - 0.98
     
     Marker:Add(
         markerPos,
