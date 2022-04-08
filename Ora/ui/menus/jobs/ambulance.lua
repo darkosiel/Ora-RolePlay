@@ -161,7 +161,7 @@ end
 function Pompier.GetOffStretcher()
     local stretcherHash = `prop_ld_binbag_01`
     local veh = GetVehicleInDirection()
-    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("emsnspeedo") then
+    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("lsfd4") then
         local vehCoords = GetEntityCoords(veh)
         local forward = GetEntityForwardVector(veh)
         local behind = vehCoords - (forward * 6.0)
