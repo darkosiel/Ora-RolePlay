@@ -65,6 +65,11 @@ AddEventHandler(
     function(vehicleData, vehicleHealthData, garage, plate)
         --(source)
         local uuid = Ora.Identity:GetUuid(source)
+        local customlabel = nil
+
+        MySQL.Async.fetchAll('SELECT * FROM players_vehicles WHERE plate = @plate', { ['@plate'] = plate }, function(result)
+            print(result[1].label)
+        end)
 
         MySQL.Async.fetchAll(
             "SELECT count(plate) AS number_of_vehicles FROM players_parking WHERE garage = @garage AND plate = @plate",

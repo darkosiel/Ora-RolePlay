@@ -3,8 +3,6 @@ Ora.World.Vehicle.DataDamagesLevelMapper = {[800] = 50, [600] = 150, [400] = 250
 
 Ora.World.Vehicle.List = {}
 
-Ora.World.Vehicle.Label = "NULL"
-
 function Ora.World.Vehicle:IsSpawnedVehicle(vehicle)
   if (self.List[vehicle] ~= nil) then
     return true
