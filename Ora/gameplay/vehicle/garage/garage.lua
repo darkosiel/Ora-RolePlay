@@ -377,9 +377,9 @@ function Garage:Selfservice()
                                         end
                                     )
                                     TriggerServerEvent("Garage:SortirVehicule", self.properties.vehicles[i].id)
-                                    --Ora.World.Vehicle.Current.Label = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(veh)))
                                     RageUI.GoBack()
                                     Wait(200)
+                                    Ora.World.Vehicle.Label = veh.label
                                     self:Refresh()
                                 end
                             end
