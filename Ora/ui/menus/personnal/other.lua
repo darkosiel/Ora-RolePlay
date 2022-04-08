@@ -650,7 +650,7 @@ Citizen.CreateThread(
         local HUDsIdx = 1
 
         Settings:Load()
-        RMenu:Get("personnal", "settings").CinemaMode = false
+        --RMenu:Get("personnal", "settings").CinemaMode = false
         RMenu:Get("personnal", "settings").Hud = true
 
         RMenu:Get("personnal", "settings_bindAnim").ArrayTouches = {
