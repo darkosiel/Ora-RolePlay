@@ -147,17 +147,26 @@ Jobs = {
                                 onSelected = function()
                                     ExecuteCommand("spreaders script")
                                 end
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
                             },
                             {
                                 label = "Sortir les pistons hydrauliques",
                                 onSelected = function()
                                     ExecuteCommand("stabilisers setup script")
                                 end
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
                             },
                             {
                                 label = "Ranger les pistons hydrauliques",
                                 onSelected = function()
                                     ExecuteCommand("stabilisers remove script")
+                                end
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
                                 end
                             },
                             {
