@@ -1,0 +1,18 @@
+{
+    "communityID": "W1L5HTN",
+    "apiKey": "5CAEC0F-7A6F-406D-93",
+    "mode": "production",
+    "postTime": 5000,
+    "serverId": "1",
+    "primaryIdentifier": "steam",
+    "apiSendEnabled": true,
+    "debugMode": false,
+    "updateBranch": "master",
+    "statusLabels": ["UNAVAILABLE", "BUSY", "AVAILABLE", "ENROUTE", "ON_SCENE"],
+    "allowAutoUpdate": true,
+    "autoUpdateUrl": "https://raw.githubusercontent.com/Sonoran-Software/SonoranCADLuaIntegration/{branch}/sonorancad/version.json",
+    "allowUpdateWithPlayers": false,
+    "noUnitTimer": false,
+    "enableCanary": false,
+    "forceSetApiId": false
+}
