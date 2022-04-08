@@ -578,7 +578,7 @@ function Ora.World.Vehicle:GetVehicleCustoms(vehicle)
       modWindows = GetVehicleMod(vehicle, 46),
       modLivery = GetVehicleMod(vehicle, 48),
       --label = GetLabelText(GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))),
-      label = Ora.World.Vehicle.Current.Label,
+      label = Ora.World.Vehicle.Label,
       hasDriftTyres = DecorGetBool(vehicle, "drifttyres") or false,
       hasHydraulic = DecorGetBool(vehicle, "hydraulicSystem") or false
   }
