@@ -143,6 +143,24 @@ Jobs = {
                                 end
                             },
                             {
+                                label = "Sortir/Ranger l'écarteur hydraulique",
+                                onSelected = function()
+                                    ExecuteCommand("spreaders script")
+                                end
+                            },
+                            {
+                                label = "Sortir les pistons hydrauliques",
+                                onSelected = function()
+                                    ExecuteCommand("stabilisers setup script")
+                                end
+                            },
+                            {
+                                label = "Ranger les pistons hydrauliques",
+                                onSelected = function()
+                                    ExecuteCommand("stabilisers remove script")
+                                end
+                            },
+                            {
                                 label = "Mise en fourière",
                                 onSelected = function()
                                     Mecano.Fouriere()
