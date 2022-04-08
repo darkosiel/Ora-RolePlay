@@ -3868,12 +3868,12 @@ Jobs = {
         },
         garage7 = {
             Name = "Garage policeacademy",
-            Pos = {x = -1645.1019, y = 269.5713, z = 58.57},
+            Pos = {x = -1645.1019, y = 269.5713, z = 59.55},
             Properties = {
                 type = 3,
                 Limit = 30,
                 vehicles = {},
-                spawnpos = {x = -1645.1019, y = 269.5713, z = 58.57, h = 25.345}
+                spawnpos = {x = -1645.1019, y = 269.5713, z = 59.55, h = 25.345}
             },
             Blipdata = {
                 Pos = {x = -1645.1019, y = 269.5713, z = 58.57},
