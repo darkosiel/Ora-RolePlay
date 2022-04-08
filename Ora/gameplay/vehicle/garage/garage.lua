@@ -380,6 +380,7 @@ function Garage:Selfservice()
                                     RageUI.GoBack()
                                     Wait(200)
                                     Ora.World.Vehicle.Label = veh.label
+                                    print(veh.label)
                                     self:Refresh()
                                 end
                             end
