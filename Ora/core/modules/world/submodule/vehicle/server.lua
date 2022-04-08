@@ -101,7 +101,7 @@ AddEventHandler(
                             ["@vehicleData"] = json.encode(vehicleData),
                             ["@healthData"] = json.encode(vehicleHealthData),
                             ["@garage"] = garage,
-                            ["@label"] = customlabel,
+                            ["@label"] = vehicleData.label,
                             ["@name"] = uuid,
                             ["@plate"] = vehicleData.model .. "|" .. plate
                             }
