@@ -191,7 +191,7 @@ local function SeatChair()
         HairCutJob.Seated = not HairCutJob.Seated
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
     else
-        SetEntityCoordsNoOffset(ped, -816.23, -182.96, 37.61)
+        SetEntityCoordsNoOffset(ped, 138.95, -1709.70, 29.00)
         SetEntityHeading(ped, 30.0)
         FreezeEntityPosition(ped, true)
         SetEntityCollision(ped, false)
