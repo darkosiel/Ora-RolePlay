@@ -160,8 +160,8 @@ local function Enter(z)
 end
 
 local _Marker = {
-    type = 25,
-    scale = {x = 1.5, y = 1.5, z = 0.2},
+    type = 23,
+    scale = {x = 1.0, y = 1.0, z = 0.2},
     color = {r = 255, g = 255, b = 255, a = 120},
     Up = false,
     Cam = false,
