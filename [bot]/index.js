@@ -1,7 +1,7 @@
 // Load up the discord.js library
 const Discord = require("discord.js");
 const mysql = require("mysql");
-import { pass } from './secret.js'
+const { pass } = require('./secret.js')
 
 // This is your client. Some people call it `bot`, some people call it `self`, 
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
