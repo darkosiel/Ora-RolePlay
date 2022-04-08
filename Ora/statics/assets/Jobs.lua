@@ -5311,7 +5311,24 @@ Jobs = {
                 Blipcolor = 7,
                 Blipname = "Garage Gouvernement Saisies"
             }
-        }
+        },
+        garage = {
+            Name = "Garage USSS",
+            Pos = {x = 2521.420, y = -311.329, z = 92.99},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = 2520.2285, y = -310.5325, z = 92.686, h = 89.453}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage USSS"
+            }
+        },
 
     },
     doj = {
