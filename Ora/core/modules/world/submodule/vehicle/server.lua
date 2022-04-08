@@ -69,7 +69,7 @@ AddEventHandler(
 
         MySQL.Async.fetchAll('SELECT * FROM players_vehicles WHERE plate = @plate', { ['@plate'] = plate }, function(result)
             if result[1] ~= nil then
-                print(result[1])
+                print(result[1].label)
             end
         end)
 
