@@ -5312,7 +5312,7 @@ Jobs = {
                 Blipname = "Garage Gouvernement Saisies"
             }
         },
-        garage = {
+        garage3 = {
             Name = "Garage USSS",
             Pos = {x = 2521.420, y = -311.329, z = 92.99},
             Properties = {
