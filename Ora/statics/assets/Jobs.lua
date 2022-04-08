@@ -146,7 +146,7 @@ Jobs = {
                                 label = "Sortir/Ranger l'écarteur hydraulique",
                                 onSelected = function()
                                     ExecuteCommand("spreaders script")
-                                end
+                                end,
                                 ActiveFct = function()
                                     Mecano.ShowMarker()
                                 end
@@ -155,7 +155,7 @@ Jobs = {
                                 label = "Sortir les pistons hydrauliques",
                                 onSelected = function()
                                     ExecuteCommand("stabilisers setup script")
-                                end
+                                end,
                                 ActiveFct = function()
                                     Mecano.ShowMarker()
                                 end
@@ -164,7 +164,7 @@ Jobs = {
                                 label = "Ranger les pistons hydrauliques",
                                 onSelected = function()
                                     ExecuteCommand("stabilisers remove script")
-                                end
+                                end,
                                 ActiveFct = function()
                                     Mecano.ShowMarker()
                                 end
