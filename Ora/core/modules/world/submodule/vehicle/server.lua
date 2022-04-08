@@ -70,6 +70,7 @@ AddEventHandler(
         MySQL.Async.fetchAll('SELECT * FROM players_vehicles WHERE plate = @plate', { ['@plate'] = plate }, function(result)
             if result[1] ~= nil then
                 print(result[1].label)
+                customlabel = result[1].label
             end
         end)
 
@@ -81,23 +82,35 @@ AddEventHandler(
             },
             function(results)
                 if results ~= nil and results[1] ~= nil then
-                    if (results[1].number_of_vehicles == 0) then
+                    if (results[1].number_of_vehicles == 0 and customlabel ~= nil) then
                         MySQL.Sync.insert(
                             "INSERT INTO players_parking (vehicles,health,garage,label,uuid,plate) VALUES (@vehicleData,@healthData, @garage,@label,@name,@plate)",
                             {
                                 ["@vehicleData"] = json.encode(vehicleData),
                                 ["@healthData"] = json.encode(vehicleHealthData),
                                 ["@garage"] = garage,
-                                ["@label"] = vehicleData.label,
+                                ["@label"] = customlabel,
                                 ["@name"] = uuid,
                                 ["@plate"] = vehicleData.model .. "|" .. plate
+                            }
+                        )
+                    elseif (results[1].number_of_vehicles == 0) then
+                        MySQL.Sync.insert(
+                            "INSERT INTO players_parking (vehicles,health,garage,label,uuid,plate) VALUES (@vehicleData,@healthData, @garage,@label,@name,@plate)",
+                            {
+                            ["@vehicleData"] = json.encode(vehicleData),
+                            ["@healthData"] = json.encode(vehicleHealthData),
+                            ["@garage"] = garage,
+                            ["@label"] = customlabel,
+                            ["@name"] = uuid,
+                            ["@plate"] = vehicleData.model .. "|" .. plate
                             }
                         )
                     end
                 end
             end
         )
-
+        customlabel = nil
         
     end
 )
