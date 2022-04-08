@@ -6508,7 +6508,7 @@ Jobs = {
                     }
                 },
                 ["Actions véhicule"] = {
-                    submenu = "ambulance_menuperso",
+                    submenu = "pompier_menuperso",
                     title = "Actions véhicule",
                     menus = {
                         buttons = {
@@ -6534,7 +6534,7 @@ Jobs = {
                     }
                 },
                 ["Actions brancard"] = {
-                    submenu = "ambulance_menuperso",
+                    submenu = "pompier_menuperso",
                     title = "Actions brancard",
                     menus = {
                         buttons = {
