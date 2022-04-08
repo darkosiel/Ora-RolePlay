@@ -474,7 +474,7 @@ server_scripts {
     "gameplay/illegal/clown/sv_central.lua",
     "gameplay/illegal/mission/config.lua",
     "gameplay/illegal/mission/server/*.lua",
-    "gameplay/illegal/status/sv_persistantStatus.lua",
+    "gameplay/illegal/status/sv_persistantS'tatus.lua",
     "gameplay/jobs/banking/banking_class.lua",
     "gameplay/jobs/basic/sv_farming.lua",
     "gameplay/jobs/immo/sv_immo.lua",
