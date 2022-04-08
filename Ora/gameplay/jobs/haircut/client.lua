@@ -191,8 +191,8 @@ local function SeatChair()
         HairCutJob.Seated = not HairCutJob.Seated
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
     else
-        SetEntityCoordsNoOffset(ped, 138.95, -1709.70, 29.00)
-        SetEntityHeading(ped, 30.0)
+        SetEntityCoordsNoOffset(ped, 138.76, -1709.57, 29.40)
+        SetEntityHeading(ped, 228.0)
         FreezeEntityPosition(ped, true)
         SetEntityCollision(ped, false)
         doAnim({"misshair_shop@hair_dressers", "player_base"}, nil, 1)
