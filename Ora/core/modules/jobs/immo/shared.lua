@@ -318,12 +318,12 @@ function Ora.Jobs.Immo:IsNewAppartValid(data)
         table.insert(errorMessages, "Nom de la propriété non défini")
     end
 
-    if (data.GARAGE_POS == nil or type(data.GARAGE_POS) ~= "vector3") then
-        isValid = false
-        table.insert(errorMessages, "Garage de la propriété non défini")
-    end
+    --if (data.GARAGE_POS == nil or type(data.GARAGE_POS) ~= "vector3") then
+    --    isValid = false
+    --    table.insert(errorMessages, "Garage de la propriété non défini")
+    --end
 
-    if (data.GARAGE_INDEX == nil) then
+    if (data.GARAGE_POS ~= nil and data.GARAGE_INDEX == nil) then
         isValid = false
         table.insert(errorMessages, "Type de garage non défini")
     end
