@@ -27,7 +27,8 @@ local updateModelActive = false
 local spawnPoint = {
     data = {
         "Aeroport de los santos",
-        "Aeroport de sandy shore"
+        "Aeroport de sandy shore",
+        "Vinewood"
     },
     index = 1
 }

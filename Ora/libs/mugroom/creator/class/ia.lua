@@ -10,7 +10,7 @@ local pilot = nil
 local spawnTable = {}
 local rdy = false
 function DESERT()
-    CreatePlane(397, 2871.52, 173.25, 283.67, 1072.73, 307.13, 40.83, "cuban800")
+    --CreatePlane(397, 2871.52, 173.25, 283.67, 1072.73, 307.13, 40.83, "cuban800")
     --planeDest = "DESRT"
     spawnTable = {x = 1765.02, y = 3307.69, z = 41.17, heading = 41.17}
     TriggerServerEvent("handler:savePosition", spawnTable)
@@ -22,7 +22,16 @@ end
 function LOSSANTOS()
     --CreatePlane(-3509.98, -2402.41, 233.99, 245.26, 1072.73, 307.13, 40.83, "Luxor")
     --planeDest = "AIRP"
-    spawnTable = {x = -1042.48, y = -2745.32, z = 21.36, heading = 336.6}
+    spawnTable = {x = -1037.6147, y = -2737.6708, z = 13.7888, heading = 337.2996}
+    TriggerServerEvent("handler:savePosition", spawnTable)
+    SetCoords(PlayerPedId(), spawnTable)
+    DoScreenFadeIn(2000)
+end
+
+function CENTREVILLE()
+    --CreatePlane(-3509.98, -2402.41, 233.99, 245.26, 1072.73, 307.13, 40.83, "Luxor")
+    --planeDest = "AIRP"
+    spawnTable = {x = -601.1240, y = -115.0777, z = 41.7347, heading = 161.4208}
     TriggerServerEvent("handler:savePosition", spawnTable)
     SetCoords(PlayerPedId(), spawnTable)
     DoScreenFadeIn(2000)

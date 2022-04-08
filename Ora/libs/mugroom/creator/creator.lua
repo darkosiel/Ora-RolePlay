@@ -70,6 +70,8 @@ AddEventHandler(
             LOSSANTOS()
         elseif (SpawnLocation.index == 2) then
             DESERT()
+        elseif (SpawnLocation.index == 3) then
+            CENTREVILLE()
         end
 
         TriggerServerCallback(
