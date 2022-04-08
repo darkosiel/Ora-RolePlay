@@ -7,7 +7,7 @@
 RMenu.Add(
     "personnal",
     "main",
-    RageUI.CreateMenu("ORA", "Actions disponibles", 10, 200, nil, nil, 52, 177, 74, 1.0)
+    RageUI.CreateMenu((GetPlayerName(PlayerId()), "Actions disponibles", 10, 200, nil, nil, 52, 177, 74, 1.0)
 )
 
 --RMenu.Add('personnal', 'inventory', RageUI.CreateMenu("Ora", "Actions disponibles"))
