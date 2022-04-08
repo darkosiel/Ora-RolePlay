@@ -91,8 +91,8 @@ end
 
 
 function getInput(i)
-    AddTextEntry('FMMC_MPM_NA', "Saisir le texte de la ligne " .. i)
-    DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "Saisir le texte de la ligne" .. i, "", "", "", "", 14)
+    AddTextEntry('FMMC_MPM_NA', "Enter text for line " .. i)
+    DisplayOnscreenKeyboard(1, "FMMC_MPM_NA", "Enter text for line" .. i, "", "", "", "", 14)
     while (UpdateOnscreenKeyboard() == 0) do
         DisableAllControlActions(0);
         Wait(0)
