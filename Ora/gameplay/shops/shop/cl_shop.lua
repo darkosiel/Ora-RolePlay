@@ -5221,16 +5221,13 @@ Citizen.CreateThread(
                                                                 }
 
                                                                 if Shops[CurrentZone].Items[i].name == "casinopiece" then
-                                                                    exports['Snoupinput']:ShowInput("Type de paiement (propre ou sale) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Ora.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
+                                                                    exports['Snoupinput']:ShowInput("Type de paiement (propre) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Ora.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
                                                                     local type = exports['Snoupinput']:GetInput()
                 
                                                                     if (type and type == "propre") then
                                                                         TriggerEvent("payWith?")
-                                                                    elseif (type and type == "sale") then
-                                                                        dataonWait.price = math.floor(dataonWait.price * Ora.Illegal.FakeMoneyTax)
-                                                                        TriggerEvent("payByFakeCash")
                                                                     elseif (type ~= false) then
-                                                                        RageUI.Popup({message = '~r~Vous devez simplement mettre "sale" ou "propre" sans les guillemets'})
+                                                                        RageUI.Popup({message = '~r~Vous devez simplement mettre "propre" sans les guillemets'})
                                                                     end
                                                                 else
                                                                     TriggerEvent("payWith?")
@@ -5259,16 +5256,13 @@ Citizen.CreateThread(
                                                     }
 
                                                     if Shops[CurrentZone].Items[i].name == "casinopiece" then
-                                                        exports['Snoupinput']:ShowInput("Type de paiement (propre ou sale) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Ora.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
+                                                        exports['Snoupinput']:ShowInput("Type de paiement (propre) | $" .. (Shops[CurrentZone].Items[i].price * count) .. " ou $" .. math.floor(Ora.Illegal.FakeMoneyTax * (Shops[CurrentZone].Items[i].price * count)) .. " en argent sale", 30, "text", "propre", true)
                                                         local type = exports['Snoupinput']:GetInput()
     
                                                         if (type and type == "propre") then
                                                             TriggerEvent("payWith?")
-                                                        elseif (type and type == "sale") then
-                                                            dataonWait.price = math.floor(dataonWait.price * Ora.Illegal.FakeMoneyTax)
-                                                            TriggerEvent("payByFakeCash")
                                                         elseif (type ~= false) then
-                                                            RageUI.Popup({message = '~r~Vous devez simplement mettre "sale" ou "propre" sans les guillemets'})
+                                                            RageUI.Popup({message = '~r~Vous devez simplement mettre "propre" sans les guillemets'})
                                                         end
                                                     else
                                                         TriggerEvent("payWith?")
@@ -5416,32 +5410,6 @@ local m = {
         label = {0}
     }
 }
-local fakeMoney = {
-    fakedollar1 = {
-        index = 1,
-        label = {0}
-    },
-    fakedollar5 = {
-        index = 1,
-        label = {0}
-    },
-    fakedollar10 = {
-        index = 1,
-        label = {0}
-    },
-    fakedollar50 = {
-        index = 1,
-        label = {0}
-    },
-    fakedollar100 = {
-        index = 1,
-        label = {0}
-    },
-    fakedollar500 = {
-        index = 1,
-        label = {0}
-    }
-}
 
 local function GetCurrentMoneySelected()
     local mo = 0
@@ -5456,38 +5424,8 @@ local function GetCurrentMoneySelected()
     return mo
 end
 
-local function GetCurrentFakeMoneySelected()
-    local mo = 0
-    for k, v in pairs(fakeMoney) do
-        if v.visible then
-            local p = string.gsub(tostring(k), "fakedollar", "")
-            p = tonumber(p)
-            mo = mo + (p * (v.index - 1))
-        end
-    end
-
-    return mo
-end
-
 local function Refresh()
     for k, v in pairs(m) do
-        if Ora.Inventory.Data[k] ~= nil then
-            v.visible = true
-            v.total = #Ora.Inventory.Data[k]
-            v.label = {0}
-            for i = 0, #Ora.Inventory.Data[k], 1 do
-                v.label[i + 1] = i
-            end
-            v.index = 1
-        else
-            v.total = 0
-            v.visible = false
-        end
-    end
-end
-
-local function RefreshFake()
-    for k, v in pairs(fakeMoney) do
         if Ora.Inventory.Data[k] ~= nil then
             v.visible = true
             v.total = #Ora.Inventory.Data[k]
@@ -5541,205 +5479,26 @@ AddEventHandler(
     end
 )
 
-AddEventHandler(
-    "payByFakeCash",
-    function()
-        if (Ora.Payment.Fake:GetTotalFakeCash() < dataonWait.price) then
-            dataonWait = {}
-            return ShowNotification("~r~Vous n'avez pas assez d'argent sale")
-        else
-            RefreshFake()
-            RageUI.Visible(RMenu:Get("personnal", "choose_fake_money"), true)
-        end
-    end
-)
+-- AddEventHandler(
+--     "payByFakeCash",
+--     function()
+--         if (Ora.Payment.Fake:GetTotalFakeCash() < dataonWait.price) then
+--             dataonWait = {}
+--             return ShowNotification("~r~Vous n'avez pas assez d'argent sale")
+--         else
+--             RefreshFake()
+--             RageUI.Visible(RMenu:Get("personnal", "choose_fake_money"), true)
+--         end
+--     end
+-- )
 
 RMenu.Add("personnal", "choose_card", RageUI.CreateMenu("Ora", "Cartes bancaire disponibles", 10, 200))
 RMenu.Add("personnal", "choose_money", RageUI.CreateMenu("Ora", "Billets disponibles", 10, 200))
-RMenu.Add("personnal", "choose_fake_money", RageUI.CreateMenu("Ora", "Faux billets disponibles", 10, 200))
+-- RMenu.Add("personnal", "choose_fake_money", RageUI.CreateMenu("Ora", "Faux billets disponibles", 10, 200))
 Citizen.CreateThread(
     function()
         while true do
             Wait(1)
-            if (RageUI.Visible(RMenu:Get("personnal", "choose_fake_money"))) then
-                RageUI.DrawContent(
-                    {header = false, glare = false},
-                    function()
-                        for k, v in pairs(fakeMoney) do
-                            if v.total > 0 then
-                                RageUI.List(
-                                    Items[k].label .. " (" .. v.total .. "x)",
-                                    v.label,
-                                    v.index,
-                                    nil,
-                                    {},
-                                    v.visible,
-                                    function(_, Active, Selected, Index)
-                                        v.index = Index
-                                        if Selected then
-                                            exports['Snoupinput']:ShowInput("Combien ? (MAX " .. v.total .. ")", 10, "number", nil, true)
-                                            local ask = exports['Snoupinput']:GetInput()
-
-                                            if (ask ~= false and ask ~= nil) then
-                                                ask = tonumber(ask)
-                                                if (ask <= v.total) then
-                                                    v.index = ask + 1
-                                                end
-                                            end
-                                        end
-                                    end
-                                )
-                            else
-                                v.index = 1
-                            end
-                        end
-
-                        RageUI.Button(
-                            "Payer ",
-                            nil,
-                            {
-                                RightLabel = "~g~(" ..
-                                    dataonWait.price ..
-                                        "$)~s~-" ..
-                                            GetCurrentFakeMoneySelected() ..
-                                                "$ = " ..
-                                                    math.floor(dataonWait.price - GetCurrentFakeMoneySelected()) .. "$"
-                            },
-                            true,
-                            function(_, H, S)
-                                if S then
-                                    local mT = math.floor(dataonWait.price - GetCurrentFakeMoneySelected())
-                                    if (mT <= 0) and ((GetCurrentFakeMoneySelected() <= (0.5 * dataonWait.price + dataonWait.price)) or GetCurrentFakeMoneySelected() <= 500) then
-                                        RageUI.GoBack()
-                                        ShowNotification("~b~Paiement effectué")
-                                        local t = {}
-                                        for k, v in pairs(fakeMoney) do
-                                            if #v.label > 1 then
-                                                t[k] = v
-                                            end
-                                        end
-                                        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentFakeMoneySelected(), true)
-                                        Ora.Payment:PayMoney(t)
-                                        
-                                        if m ~= 0 then
-                                            ShowNotification("~y~Le vendeur vous rend " .. -mT .. "$")
-                                            TriggerServerCallback(
-                                                "Ora::SE::Money:AuthorizePayment", 
-                                                function(token)
-                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
-                                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
-                                                end,
-                                                {}
-                                            )
-                                        end
-                                        if
-                                            dataonWait.count ~= nil and dataonWait.item ~= nil and
-                                                dataonWait.item.noItem ~= true
-                                        then
-                                            local localItems = {}
-                                            for i = 1, dataonWait.count, 1 do
-                                                local currentLabel = nil
-                                                if (dataonWait.item.data ~= nil and dataonWait.item.data.label ~= nil) then
-                                                    currentLabel = dataonWait.item.data.label
-                                                end
-                                                table.insert(
-                                                    localItems,
-                                                    {
-                                                        id = nil,
-                                                        name = dataonWait.item.name,
-                                                        label = currentLabel,
-                                                        data = dataonWait.item.data
-                                                    }
-                                                )
-                                            end
-                                            Ora.Inventory:AddItems(localItems)
-                                        end
-
-                                        if dataonWait.fct ~= nil then
-                                            dataonWait.fct("money")
-                                        end
-
-                                        if dataonWait.tax ~= nil then
-                                            sendTax(dataonWait.price * dataonWait.tax)
-                                        end
-
-                                        if dataonWait.item ~= nil and dataonWait.item.afterPayment ~= nil then
-                                            dataonWait.item.afterPayment(dataonWait.item)
-                                        end
-                                    elseif dataonWait.price < 500 and GetCurrentFakeMoneySelected() == 500 then
-                                        RageUI.GoBack()
-                                        ShowNotification("~b~Paiement effectué")
-                                        local t = {}
-                                        for k, v in pairs(m) do
-                                            if #v.label > 1 then
-                                                t[k] = v
-                                            end
-                                        end
-                                        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", GetCurrentFakeMoneySelected(), true)
-                                        Ora.Payment:PayMoney(t)
-
-                                        if m ~= 0 then
-                                            ShowNotification("~y~Le vendeur vous rend " .. -mT .. "$")
-                                            TriggerServerCallback(
-                                                "Ora::SE::Money:AuthorizePayment", 
-                                                function(token)
-                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = -mT, SOURCE = "Rendu monnaie", LEGIT = true})
-                                                    TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", -mT, false)
-                                                end,
-                                                {}
-                                            )
-                                        end
-                                        if
-                                            dataonWait.count ~= nil and dataonWait.item ~= nil and
-                                                dataonWait.item.noItem ~= true
-                                         then
-                                            local localItems = {}
-                                            for i = 1, dataonWait.count, 1 do
-                                                local currentLabel = nil
-                                                if (dataonWait.item.data ~= nil and dataonWait.item.data.label ~= nil) then
-                                                    currentLabel = dataonWait.item.data.label
-                                                end
-                                                table.insert(
-                                                    localItems,
-                                                    {
-                                                        id = nil,
-                                                        name = dataonWait.item.name,
-                                                        label = currentLabel,
-                                                        data = dataonWait.item.data
-                                                    }
-                                                )
-                                            end
-                                            Ora.Inventory:AddItems(localItems)
-                                        end
-                                        if dataonWait.fct ~= nil then
-                                            dataonWait.fct("money")
-                                        end
-
-                                        if dataonWait.tax ~= nil then
-                                            sendTax(dataonWait.price * dataonWait.tax)
-                                        end
-
-                                        if dataonWait.item ~= nil and dataonWait.item.afterPayment ~= nil then
-                                            dataonWait.item.afterPayment(dataonWait.item)
-                                        end
-                                    elseif GetCurrentFakeMoneySelected() > (0.5 * dataonWait.price + dataonWait.price) then
-                                        ShowNotification("~r~T'es un malade ou quoi ? Tu crois que je suis là pour te faire des petites coupures ?!")
-                                        if dataonWait.no ~= nil then
-                                            dataonWait.no()
-                                        end
-                                    else
-                                        ShowNotification("~r~Vous n'avez pas donné assez d'argent")
-                                        if dataonWait.no ~= nil then
-                                            dataonWait.no()
-                                        end
-                                    end
-                                end
-                            end
-                        )
-                    end
-                )
-            end
-
             if RageUI.Visible(RMenu:Get("personnal", "choose_money")) then
                 RageUI.DrawContent(
                     {header = false, glare = false},
