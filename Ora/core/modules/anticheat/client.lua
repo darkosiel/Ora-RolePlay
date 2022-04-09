@@ -4,7 +4,7 @@ AddEventHandler(
     function(eventData)
         if GetResourceState("screenshot-basic") == "started" then
             exports["screenshot-basic"]:requestScreenshotUpload(
-                "https://api.imgur.com/3/upload",
+                "https://pictures.orarp.com/upload.php",
                 "anticheat",
                 function(data)
                     local resp = json.decode(data)
