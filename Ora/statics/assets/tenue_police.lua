@@ -256,13 +256,12 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
     },
-
     ["Officier II - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
             ['decals_1'] = 0,   ['decals_2'] = 0,
-            ['arms'] = 6,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -275,9 +274,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
             ['decals_1'] = 0,   ['decals_2'] = 0,
-            ['arms'] = 14,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -484,9 +483,9 @@ TenueLSPD = {
     ["Officier III - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 12,   ['decals_2'] = 0,
-            ['arms'] = 6,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
+            ['decals_1'] = 15,   ['decals_2'] = 0,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -499,9 +498,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 11,   ['decals_2'] = 0,
-            ['arms'] = 14,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
+            ['decals_1'] = 14,   ['decals_2'] = 0,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -708,9 +707,9 @@ TenueLSPD = {
     ["Senior Lead Officer - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 12,   ['decals_2'] = 1,
-            ['arms'] = 6,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
+            ['decals_1'] = 15,   ['decals_2'] = 1,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -723,9 +722,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 11,   ['decals_2'] = 1,
-            ['arms'] = 14,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
+            ['decals_1'] = 14,   ['decals_2'] = 1,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -1412,9 +1411,9 @@ TenueLSPD = {
     ["Sergent - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 12,   ['decals_2'] = 2,
-            ['arms'] = 6,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
+            ['decals_1'] = 15,   ['decals_2'] = 2,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -1427,9 +1426,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 11,   ['decals_2'] = 2,
-            ['arms'] = 14,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
+            ['decals_1'] = 14,   ['decals_2'] = 2,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -1508,7 +1507,7 @@ TenueLSPD = {
     ["Sergent II - Cérémonie"] = {
         male = {
             ['tshirt_1'] = 104,  ['tshirt_2'] = 0,
-            ['torso_1'] = 255,   ['torso_2'] = 2,
+            ['torso_1'] = 255,   ['torso_2'] = 3,
             ['decals_1'] = 12,   ['decals_2'] = 3,
             ['arms'] = 75,
             ['pants_1'] = 35,   ['pants_2'] = 0,
@@ -1523,7 +1522,7 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 264,   ['torso_2'] = 2,
+            ['torso_1'] = 264,   ['torso_2'] = 3,
             ['decals_1'] = 11,   ['decals_2'] = 3,
             ['arms'] = 88,
             ['pants_1'] = 34,   ['pants_2'] = 0,
@@ -1636,9 +1635,9 @@ TenueLSPD = {
     ["Sergent II - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 12,   ['decals_2'] = 3,
-            ['arms'] = 6,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
+            ['decals_1'] = 15,   ['decals_2'] = 3,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -1651,9 +1650,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 11,   ['decals_2'] = 3,
-            ['arms'] = 14,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
+            ['decals_1'] = 14,   ['decals_2'] = 3,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -1860,9 +1859,9 @@ TenueLSPD = {
     ["Lieutenant - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 45,   ['decals_2'] = 0,
-            ['arms'] = 6,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
+            ['decals_1'] = 44,   ['decals_2'] = 0,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -1875,9 +1874,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 53,   ['decals_2'] = 0,
-            ['arms'] = 14,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
+            ['decals_1'] = 52,   ['decals_2'] = 1,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -2084,9 +2083,9 @@ TenueLSPD = {
     ["Capitaine - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 45,   ['decals_2'] = 1,
-            ['arms'] = 6,
+            ['torso_1'] = 190,   ['torso_2'] = 1,
+            ['decals_1'] = 44,   ['decals_2'] = 1,
+            ['arms'] = 26,
             ['pants_1'] = 32,   ['pants_2'] = 1,
             ['shoes_1'] = 13,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
@@ -2099,9 +2098,9 @@ TenueLSPD = {
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 53,   ['decals_2'] = 1,
-            ['arms'] = 14,
+            ['torso_1'] = 192,   ['torso_2'] = 1,
+            ['decals_1'] = 52,   ['decals_2'] = 1,
+            ['arms'] = 28,
             ['pants_1'] = 31,   ['pants_2'] = 1,
             ['shoes_1'] = 9,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 1,
