@@ -2080,27 +2080,27 @@ local Shops =
                     data = {}
                 },
                 {
-                    name = "WEAPON_KNUCKLE",
+                    name = "knuckle",
                     price = 250,
                     data = {}
                 },
                 {
-                    name = "WEAPON_HAMMER",
+                    name = "hammer",
                     price = 300,
                     data = {}
                 },
                 {
-                    name = "WEAPON_BAT",
+                    name = "batte",
                     price = 250,
                     data = {}
                 },
                 {
-                    name = "WEAPON_KNIFE",
+                    name = "knife",
                     price = 220,
                     data = {}
                 },
                 {
-                    name = "WEAPON_DAGGER",
+                    name = "dagger",
                     price = 250,
                     data = {}
                 }
