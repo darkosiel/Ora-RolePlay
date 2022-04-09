@@ -5523,7 +5523,7 @@ Citizen.CreateThread(
                                                 if (ask <= v.total) then
                                                     v.index = ask + 1
                                                 end
-                                            elseif (ask == nil) then
+                                            elseif (ask == nil or ask == false) then
                                                 ShowNotification("~r~Il faut indiquer un chiffre")
                                             end
                                         end
