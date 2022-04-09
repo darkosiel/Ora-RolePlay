@@ -1183,11 +1183,11 @@ local function build()
     Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
     Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
 
-    RMenu.Add(
-        "ammunation public",
-        "main public",
-        RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    )
+    -- RMenu.Add(
+    --     "ammunation public",
+    --     "main public",
+    --     RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
+    -- )
     
     -- ----------------------
 
