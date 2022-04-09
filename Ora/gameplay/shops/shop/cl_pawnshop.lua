@@ -573,7 +573,7 @@ Citizen.CreateThread(
                                                             
                                                             
                                                             TriggerServerCallback(
-                                                                tmpValue.illegal and "Ora::SE::Money:AuthorizePayment", 
+                                                                "Ora::SE::Money:AuthorizePayment", 
                                                                 function(token)
                                                                     ShowNotification(
                                                                         "~h~~b~L'acheteur vous achete ~r~" ..
