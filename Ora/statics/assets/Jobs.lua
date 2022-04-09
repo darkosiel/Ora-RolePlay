@@ -6647,7 +6647,7 @@ Jobs = {
                     Pos = {
                         {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
                     },
-                    restricted = {1, 2, 3, 4, 5, 6, 7, 8},
+                    restricted = {1, 2, 3, 4, 5, 6, 7},
                     Enter = function()
                         EnterExtraPompierVehicleZone()
                     end,
