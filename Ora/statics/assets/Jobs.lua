@@ -5127,14 +5127,24 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -574.84, y = -198.57, z = 41.70},
-                Limit = 200,
+                Pos = {x = -2513.32, y = -342.71, z = 94.09 - 0.98},
+                Limit = 500,
                 Name = "coffre_gouvernement"
             },
             {
-                Pos = {x = -539.94, y = -176.78, z = 41.70},
-                Limit = 200,
-                Name = "coffre_gouvernement"
+                Pos = {x = -534.46, y = -193.16, z = 47.54 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement2"
+            },
+            {
+                Pos = {x = 2521.34, y = -336.70, z = 101.89 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement3"
+            },
+            {
+                Pos = {x = 2525.34, y = -317.72, z = 101.89 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement4"
             }
         },
         work = {
