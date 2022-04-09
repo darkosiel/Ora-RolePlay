@@ -2078,6 +2078,31 @@ local Shops =
                     name = "binoculars",
                     price = 100,
                     data = {}
+                },
+                {
+                    name = "WEAPON_KNUCKLE",
+                    price = 250,
+                    data = {}
+                },
+                {
+                    name = "WEAPON_HAMMER",
+                    price = 300,
+                    data = {}
+                },
+                {
+                    name = "WEAPON_BAT",
+                    price = 250,
+                    data = {}
+                },
+                {
+                    name = "WEAPON_KNIFE",
+                    price = 220,
+                    data = {}
+                },
+                {
+                    name = "WEAPON_DAGGER",
+                    price = 250,
+                    data = {}
                 }
             }
         },
