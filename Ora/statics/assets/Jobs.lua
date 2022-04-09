@@ -1830,7 +1830,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 30.76, y = -1340.13, z = 28.5},
+                Pos = {x = 26.69, y = -1339.10, z = 29.49 - 0.98},
                 Limit = 2000,
                 Name = "coffre_ltdsud"
             }
