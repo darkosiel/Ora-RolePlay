@@ -1,21 +1,12 @@
-resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
+resource_manifest_version '77731fab-63ca-442c-a67b-abc70f28dfa5'
 
 files {
-    'loadscreen.html',
-
-    'css/loadscreen.css',
-
-    'img/cursor.png',
-    'img/logo.png',
-    'img/logonoel.png',
-    'img/colorLayer.png',
-    'img/unmute.png',
-    'img/mute.png',
-
-    'medias/music.mp3',
-    'medias/video.mp4',
-
-    'js/loadscreen.js'
+    'index.html',
+    'keks.css',
+    'centurygothic.ttf',
+    'backup.jpg',
+    'config.js'
 }
 
-loadscreen 'loadscreen.html'
+loadscreen 'index.html'
+
