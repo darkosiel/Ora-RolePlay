@@ -6645,7 +6645,7 @@ Jobs = {
             Extrapos = {
                 ExtraVehicle = {
                     Pos = {
-                        {x = 1864.83, y = 3700.57, z = 32.55}
+                        {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
                     },
                     restricted = {1, 2, 3, 4, 5, 6, 7, 8},
                     Enter = function()
@@ -6658,7 +6658,7 @@ Jobs = {
                     Blips = {
                         sprite = 402,
                         color = 81,
-                        name = "LSPD - Extras"
+                        name = "LSFD - Extras"
                     },
                     Marker = {
                         type = 1,
