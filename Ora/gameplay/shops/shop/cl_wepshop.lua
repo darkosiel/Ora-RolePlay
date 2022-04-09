@@ -1180,8 +1180,8 @@ local function build()
         )
     )
 
-    Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
-    Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
+    -- Zone:Add(x.Pos, x.EnterZone, x.ExitZone, i, 2.5)
+    -- Ped:Add(x.Ped.name, x.Ped.model, x.Ped.Pos, nil)
 
     -- RMenu.Add(
     --     "ammunation public",
