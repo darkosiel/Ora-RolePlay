@@ -139,7 +139,7 @@ function TakePictureAndExit()
     Citizen.Wait(2000)
 
     exports["screenshot-basic"]:requestScreenshotUpload(
-        "http://picture.Ora-rp.com/index.php",
+        "https://pictures.orarp.com/upload.php",
         "creation",
         function(data)
             --print(data)

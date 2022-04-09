@@ -18,7 +18,7 @@
   },
 
   "enableTakePhoto": true,
-  "fileUploadService_Url": "http://picture.Ora-rp.com/index.php",
+  "fileUploadService_Url": "https://pictures.orarp.com/upload.php",
   "fileUploadService_Field": "phone",
 
   "background": {
