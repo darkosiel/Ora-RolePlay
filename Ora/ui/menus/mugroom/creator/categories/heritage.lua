@@ -4,8 +4,8 @@
 --- DateTime: 02/09/2019 15:01
 ---
 
-local fathers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 42, 43, 44}
-local mothers = {21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 45}
+local fathers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45}
+local mothers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45}
 
 local fatherNames = {
     "Benjamin",
@@ -31,9 +31,54 @@ local fatherNames = {
     "Anthony",
     "Claude",
     "Niko",
-    "John"
+    "John",
+    "Hannah",
+    "Aubrey",
+    "Jasmine",
+    "Gisele",
+    "Amelia",
+    "Isabella",
+    "Zoe",
+    "Ava",
+    "Camila",
+    "Violet",
+    "Sophia",
+    "Evelyn",
+    "Nicole",
+    "Ashley",
+    "Gracie",
+    "Brianna",
+    "Natalie",
+    "Olivia",
+    "Elizabeth",
+    "Charlotte",
+    "Emma",
+    "Misty",
 }
 local motherNames = {
+    "Benjamin",
+    "Daniel",
+    "Joshua",
+    "Noah",
+    "Andrew",
+    "Juan",
+    "Alex",
+    "Isaac",
+    "Evan",
+    "Ethan",
+    "Vincent",
+    "Angel",
+    "Diego",
+    "Adrian",
+    "Gabriel",
+    "Michael",
+    "Santiago",
+    "Kevin",
+    "Louis",
+    "Samuel",
+    "Anthony",
+    "Claude",
+    "Niko",
     "Hannah",
     "Aubrey",
     "Jasmine",
