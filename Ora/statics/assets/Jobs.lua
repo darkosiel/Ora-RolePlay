@@ -6725,7 +6725,7 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x =  1226.83, y = -1490.88, z = 34.69 - 0.98},
+                Pos = {x = 219.76, y = -1651.97, z = 29.80},
                 Tenues = {
                     ["Batallion chief chemise"] = {
                         male = {
@@ -7284,7 +7284,7 @@ Jobs = {
                             ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 3,
+                            ["arms"] = 9,
                             ["pants_1"] = 105,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 52,
@@ -7807,7 +7807,7 @@ Jobs = {
                             ["tshirt_1"] = 6,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 224,
-                            ["torso_2"] = 14,
+                            ["torso_2"] = 21,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
                             ["arms"] = 109,
@@ -7880,7 +7880,7 @@ Jobs = {
                             ["tshirt_1"] = 68,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 73,
-                            ["torso_2"] = 21,
+                            ["torso_2"] = 14,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
                             ["arms"] = 171,
@@ -7921,46 +7921,6 @@ Jobs = {
                             ["bags_2"] = 0,
                             ["mask_1"] = 0,
                             ["mask_2"] = 0
-                        }
-                    },
-                    ["lsfd Cérémonie"] = {
-                        male = {
-                            ["tshirt_1"] = 15,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 118,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 12,
-                            ["pants_1"] = 10,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 10,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = -1,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 0,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = -1,
-                            ["ears_2"] = -1
-                        },
-                        female = {
-                            ["tshirt_1"] = 6,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 26,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 99,
-                            ["pants_1"] = 34,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = -1,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 96,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = 0,
-                            ["ears_2"] = 0
                         }
                     },
                 }
