@@ -8,7 +8,6 @@
   "SwissChannelIds": [ 4, 5 ],
   "VoiceRanges": [ 2, 5, 8, 15 ],
   "EnableVoiceRangeNotification": true,
-  "VoiceRangeNotification": "La portée est maintenant de {voicerange} mètres.",
   "IgnoreInvisiblePlayers": false,
   "RadioType": 4,
   "EnableRadioHardcoreMode": false,
