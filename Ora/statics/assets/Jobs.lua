@@ -999,7 +999,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 2317.07, y = 4896.36, z = 40.81},
+                Pos = {x = 2030.2197, y = 4980.3559, z = 42.09},
                 Limit = 500,
                 Name = "coffre_fermier"
             }
@@ -1101,15 +1101,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Fermier",
-            Pos = {x = 2306.05, y = 4894.52, z = 41.71},
+            Pos = {x = 2022.3651, y = 4973.0253, z = 41.269},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 2306.05, y = 4894.52, z = 41.71, h = 333.27}
+                spawnpos = {x = 2022.3651, y = 4973.0253, z = 41.269, h = 221.53}
             },
             Blipdata = {
-                Pos = {x = 2306.05, y = 4894.52, z = 41.71},
+                Pos = {x = 2022.3651, y = 4973.0253, z = 41.269},
                 Blipcolor = 5,
                 Blipname = "Garage Fermier"
             }
@@ -1146,7 +1146,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Ferme", "Annonce", text, "CHAR_FERME", 8, "Fermier")
+                            TriggerServerEvent("Job:Annonce", "Union Farm", "Annonce", text, "CHAR_FERME", 8, "Fermier")
                         end
                     end
                 }
