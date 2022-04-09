@@ -947,32 +947,7 @@ local function build()
         "main",
         RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
     )
-    RMenu.Add(
-        "ammunation",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
+
     -- RMenu.Add('ammunation', "munitions", RageUI.CreateSubMenu(RMenu:Get('ammunation', "main"), nil, "Munitions disponibles",10,100,"shopui_title_gunclub","shopui_title_gunclub"))
     RMenu.Add(
         "ammunation",
@@ -981,20 +956,6 @@ local function build()
             RMenu:Get("ammunation", "main"),
             nil,
             "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-
-    RMenu.Add(
-        "ammunation",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes blanches disponibles",
             10,
             100,
             "shopui_title_gunclub",
@@ -1025,32 +986,7 @@ local function build()
         "main",
         RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
     )
-    RMenu.Add(
-        "ammunation",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
+
     -- RMenu.Add('ammunation', "munitions", RageUI.CreateSubMenu(RMenu:Get('ammunation', "main"), nil, "Munitions disponibles",10,100,"shopui_title_gunclub","shopui_title_gunclub"))
     RMenu.Add(
         "ammunation",
@@ -1088,32 +1024,6 @@ local function build()
         "main",
         RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
     )
-    RMenu.Add(
-        "ammunation",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
     -- RMenu.Add('ammunation', "munitions", RageUI.CreateSubMenu(RMenu:Get('ammunation', "main"), nil, "Munitions disponibles",10,100,"shopui_title_gunclub","shopui_title_gunclub"))
     RMenu.Add(
         "ammunation",
@@ -1150,32 +1060,6 @@ local function build()
         "ammunation",
         "main",
         RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    )
-    RMenu.Add(
-        "ammunation",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation", "main"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
     )
     -- RMenu.Add('ammunation', "munitions", RageUI.CreateSubMenu(RMenu:Get('ammunation', "main"), nil, "Munitions disponibles",10,100,"shopui_title_gunclub","shopui_title_gunclub"))
     RMenu.Add(
@@ -1303,33 +1187,6 @@ local function build()
         "ammunation public",
         "main public",
         RageUI.CreateMenu(nil, "Catégories disponibles", 10, 100, "shopui_title_gunclub", "shopui_title_gunclub")
-    )
-
-    RMenu.Add(
-        "ammunation public",
-        "blanches",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes blanches disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation public",
-        "weapons",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation public", "main public"),
-            nil,
-            "Armes disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
     )
     
     -- ----------------------
