@@ -64,7 +64,7 @@ ss_weather_timer = 30
 ss_reduce_rain_chance = true
 
 -- Weather timeout for rain (in minutes). This means it can only rain once every X minutes - Default: 60 minutes)
-ss_rain_timeout = 130
+ss_rain_timeout = 240
 
 -- Weather transitions are configured here, pay attention to the example.
 -- Example: ["CurrentWeather"] = {"Next Possible Weather 1", "Next Possible Weather 2"}
