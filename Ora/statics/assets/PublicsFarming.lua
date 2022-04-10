@@ -192,10 +192,10 @@ PublicFarm = {
                 anim = "pickup_snowball"
             },
             closedHours = {
+                19,
                 20,
                 21,
-                22,
-                23
+                22
             },
             closedHoursMessage = "La mine est fermée de 20h00 a 00h00. Allez recontrer des gens."
         },
