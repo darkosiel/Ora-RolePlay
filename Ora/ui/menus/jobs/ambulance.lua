@@ -88,7 +88,7 @@ end
 
 function Pompier.DrawMarkerVehicle()
     local vehicle = GetVehicleInDirection()
-    if vehicle ~= 0 and (GetEntityModel(vehicle) == GetHashKey("lsfd3")) then
+    if vehicle ~= 0 and (GetEntityModel(vehicle) == GetHashKey("lsfd4")) then
         local vehCoords = GetEntityCoords(vehicle)
         DrawMarker(2, vehCoords.x, vehCoords.y, vehCoords.z + 2.5, 0, 0, 0, 180.0, nil, nil, 0.5, 0.5, 0.5, 100, 165, 225, 255, false, true, 2, true)
     end
