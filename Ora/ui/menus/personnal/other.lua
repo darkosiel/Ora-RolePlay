@@ -527,7 +527,7 @@ Citizen.CreateThread(
                             end
                         )
 
-                        RageUI.Separator("Rockstard Editor")
+                        RageUI.Separator("Rockstar Editor")
 
                         RageUI.Button("Record ","Permet de lancer le record d'un clip.",{},true,
                             function(_, _, Selected)
