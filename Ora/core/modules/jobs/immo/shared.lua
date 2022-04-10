@@ -95,7 +95,7 @@ Ora.Jobs.Immo.Interiors = {
     {
         coords = {x = -9.49, y = -1441.55, z = 32.10},
         r = {x = -190.0, y = -180.0, z = 160.44},
-        entry = {x = -14.13, y = -1440.57, z = 31.1},
+        entry = {x = -14.4482, y = -1438.788, z = 31.1},
         coffre = {x = -18.29, y = -1438.79, z = 31.1},
         activated = true,
         label = "Maison de Franklin",
