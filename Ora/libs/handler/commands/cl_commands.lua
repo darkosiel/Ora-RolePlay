@@ -76,6 +76,13 @@ local commands = {
         end
     },
     {
+        text = "setjob",
+        fct = function(args)
+            TriggerServerEvent("Ora::SE::Identity:Job:Save", args[2], args[3], args[1])
+            TriggerPlayerEvent("Ora::CE::Identity:Job:Set", args[1], args[2], args[3])
+        end
+    },
+    {
         text = "clear",
         fct = function()
             TriggerServerEvent('chat:clearall')
