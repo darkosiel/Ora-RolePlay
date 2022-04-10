@@ -57,6 +57,16 @@ client.on("message", async message => {
             });
         }
     }
+    if (command == "tow") {
+        console.log(args)
+        if (args[0] !== undefined) {
+            var sql = "UPDATE players_wehicles SET pound = '1' WHERE players_vehicles.plate = (identifier) VALUES ('"+args[0]+"')";
+            con.query(sql, function (err, result) {
+                if (err) console.log(err);
+                message.channel.send("Plaque ("+args[0]+") envoyée en fourrière !")
+            });
+        }
+    }
     if (command == "unwl") {
         if (args[0] != undefined) {
             var sql = "DELETE FROM whitelist WHERE identifier ='"+args[0]+"'";
