@@ -1,55 +1,55 @@
-local ObjArray = {
-    ["prop_dumpster_01a"] = {},
-	["prop_dumpster_02a"] = {},
-	["prop_dumpster_02b"] = {},
-	["prop_dumpster_4a"] = {},
-    ["prop_burgerstand_01"] = {
-        {name = "icecream", price = 10},
-        {name = "burger", price = 50},
-    },
-    ["prop_hotdogstand_01"] = {
-        {name = "icecream", price = 10},
-        {name = "Hhotdog", price = 20},
-    },
-    ["prop_vend_coffe_01"] = {
-        {name = "cafe", price = 3},
-        {name = "thevert", price = 3},
-    },
-    ["p_ld_coffee_vend_01"] = {
-        {name = "cafe", price = 3},
-        {name = "thevert", price = 3},
-    },
-	["prop_vend_soda_01"] = {
-        {name = "cola", price = 10},
-    },
-	["prop_vend_soda_02"] = {
-        {name = "cola", price = 10},
-    },
-	["prop_vend_fridge01"] = {
-        {name = "cola", price = 10},
-    },
-	["prop_watercooler"] = {
-        {name = "water", price = 50},
-    },
-    ["prop_vend_water_01"] = {
-        {name = "water", price = 50},
-    },
-    ["prop_watercooler_dark"] = {
-        {name = "water", price = 50},
-    },
-    ["prop_vend_snak_01"] = {
-        {name = "chips", price = 20},
-        {name = "mentos", price = 2},
-    },
-    ["prop_vend_snak_01_tu"] = {
-        {name = "chips", price = 20},
-        {name = "mentos", price = 2},
-    },
-}
+-- local ObjArray = {
+--     ["prop_dumpster_01a"] = {},
+-- 	["prop_dumpster_02a"] = {},
+-- 	["prop_dumpster_02b"] = {},
+-- 	["prop_dumpster_4a"] = {},
+--     ["prop_burgerstand_01"] = {
+--         {name = "icecream", price = 10},
+--         {name = "burger", price = 50},
+--     },
+--     ["prop_hotdogstand_01"] = {
+--         {name = "icecream", price = 10},
+--         {name = "Hhotdog", price = 20},
+--     },
+--     ["prop_vend_coffe_01"] = {
+--         {name = "cafe", price = 3},
+--         {name = "thevert", price = 3},
+--     },
+--     ["p_ld_coffee_vend_01"] = {
+--         {name = "cafe", price = 3},
+--         {name = "thevert", price = 3},
+--     },
+-- 	["prop_vend_soda_01"] = {
+--         {name = "cola", price = 10},
+--     },
+-- 	["prop_vend_soda_02"] = {
+--         {name = "cola", price = 10},
+--     },
+-- 	["prop_vend_fridge01"] = {
+--         {name = "cola", price = 10},
+--     },
+-- 	["prop_watercooler"] = {
+--         {name = "water", price = 50},
+--     },
+--     ["prop_vend_water_01"] = {
+--         {name = "water", price = 50},
+--     },
+--     ["prop_watercooler_dark"] = {
+--         {name = "water", price = 50},
+--     },
+--     ["prop_vend_snak_01"] = {
+--         {name = "chips", price = 20},
+--         {name = "mentos", price = 2},
+--     },
+--     ["prop_vend_snak_01_tu"] = {
+--         {name = "chips", price = 20},
+--         {name = "mentos", price = 2},
+--     },
+-- }
 local ItemsToFind = {
     {item = "bread", chance = 25},
     {item = "water", chance = 25},
-    {item = "can", chance = 46},
+    -- {item = "can", chance = 46},
     {item = "hammer", data = {serial=math.random(111111111,999999999)}, chance = 2},
     {item = "bottle", data = {serial=math.random(111111111,999999999)}, chance = 2},
 }
@@ -131,28 +131,28 @@ local function CheckBin(prop)
     )
 end
 
-local function isNearAnyObject()
-    local plyPos = LocalPlayer().Pos
+-- local function isNearAnyObject()
+--     local plyPos = LocalPlayer().Pos
 
-    if GetVehiclePedIsIn(GetPlayerPed(-1), false) ~= 0 then return end
+--     if GetVehiclePedIsIn(GetPlayerPed(-1), false) ~= 0 then return end
 
-    for k, v in pairs(ObjArray) do
-        local obj = GetClosestObjectOfType(plyPos, 3.0, GetHashKey(k), false, true, true)
-        if obj and DoesEntityExist(obj) and GetDistanceBetweenCoords(plyPos, GetEntityCoords(obj), true) < 2.0 then -- 2.8
-            if string.match(k, "dump") ~= nil then -- Bin
-                return CheckBin(obj)
-            elseif string.match(k, "stand") ~= nil then -- Stand
-                itemsToBuy = v
-                RageUI.Visible(RMenu:Get("lilshop", "main"), true)
-                return
-            else -- Dispenser
-                itemsToBuy = v
-                RageUI.Visible(RMenu:Get("lilshop", "main"), true)
-                return
-            end
-        end
-    end
-end
+--     for k, v in pairs(ObjArray) do
+--         local obj = GetClosestObjectOfType(plyPos, 3.0, GetHashKey(k), false, true, true)
+--         if obj and DoesEntityExist(obj) and GetDistanceBetweenCoords(plyPos, GetEntityCoords(obj), true) < 2.0 then -- 2.8
+--             if string.match(k, "dump") ~= nil then -- Bin
+--                 return CheckBin(obj)
+--             elseif string.match(k, "stand") ~= nil then -- Stand
+--                 itemsToBuy = v
+--                 RageUI.Visible(RMenu:Get("lilshop", "main"), true)
+--                 return
+--             else -- Dispenser
+--                 itemsToBuy = v
+--                 RageUI.Visible(RMenu:Get("lilshop", "main"), true)
+--                 return
+--             end
+--         end
+--     end
+-- end
 
 Citizen.CreateThread(
     function()
@@ -197,4 +197,4 @@ Citizen.CreateThread(
     end
 )
 
-KeySettings:Add("keyboard", "E", isNearAnyObject, "CheckObject")
+-- KeySettings:Add("keyboard", "E", isNearAnyObject, "CheckObject")
