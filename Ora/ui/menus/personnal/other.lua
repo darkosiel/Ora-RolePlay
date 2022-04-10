@@ -526,6 +526,30 @@ Citizen.CreateThread(
                                 end
                             end
                         )
+
+                        RageUI.Separator("Rockstard Editor")
+
+                        RageUI.Button("Record ","Permet de lancer le record d'un clip.",{},true,
+                            function(_, _, Selected)
+                                StartRecording(1)
+                                ShowNotification("~r~Vous avez déjà sauvegardé votre personnage il y a peu")
+                            end
+                        )
+
+                        RageUI.Button("Sauvegarder et arrêter","Permet d'enregister et d'arrêter le clip.",{},true,
+                            function(_, _, Selected)
+                                StopRecordingAndSaveClip(1)
+                                ShowNotification("Sauvegarde et arrêt du record")
+                            end
+                        )
+
+                        RageUI.Button("Ouvrir Rockstar Editor","Permet de quitter le serveur et d'ouvrir Rockstar Editor.",{},true,
+                            function(_, _, Selected)
+                                NetworkSessionLeaveSinglePlayer()
+            		            ActivateRockstarEditor()
+                                ShowNotification("Ouverture de Rockstar Editor.")
+                            end
+                        )
                     end,
                     function()
                     end
