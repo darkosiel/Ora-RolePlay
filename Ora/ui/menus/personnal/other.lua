@@ -527,21 +527,9 @@ Citizen.CreateThread(
                             end
                         )
 
-                        
-                        RageUI.CenterButton(
-                                "~b~↓↓↓ ~s~Rockstard Editor ~b~↓↓↓",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                end
-                            )
+                        RageUI.Separator("Rockstard Editor")
 
-                        RageUI.Button(
-                            "Record ",
-                            "Permet de lancer le record d'un clip.",
-                            {},
-                            true,
+                        RageUI.Button("Record ","Permet de lancer le record d'un clip.",{},true,
                             function(_, _, Selected)
                                 if Selected then
                                     StartRecording(1)
