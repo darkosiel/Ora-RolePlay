@@ -527,7 +527,15 @@ Citizen.CreateThread(
                             end
                         )
 
-                        RageUI.Separator("Rockstard Editor")
+                        
+                        RageUI.CenterButton(
+                                "~b~↓↓↓ ~s~Rockstard Editor ~b~↓↓↓",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                end
+                            )
 
                         RageUI.Button(
                             "Record ",
@@ -542,20 +550,24 @@ Citizen.CreateThread(
                             end
                         )
 
-                        --[[RageUI.Button("Sauvegarder et arrêter","Permet d'enregister et d'arrêter le clip.",{},true,
+                        RageUI.Button("Sauvegarder et arrêter","Permet d'enregister et d'arrêter le clip.",{},true,
                             function(_, _, Selected)
-                                StopRecordingAndSaveClip(1)
-                                ShowNotification("Sauvegarde et arrêt du record")
+                                if Selected then
+                                    StopRecordingAndSaveClip(1)
+                                    ShowNotification("Sauvegarde et arrêt du record")
+                                end
                             end
                         )
 
                         RageUI.Button("Ouvrir Rockstar Editor","Permet de quitter le serveur et d'ouvrir Rockstar Editor.",{},true,
                             function(_, _, Selected)
-                                NetworkSessionLeaveSinglePlayer()
-            		            ActivateRockstarEditor()
-                                ShowNotification("Ouverture de Rockstar Editor.")
+                                if Selected then
+                                    NetworkSessionLeaveSinglePlayer()
+            		                ActivateRockstarEditor()
+                                    ShowNotification("Ouverture de Rockstar Editor.")
+                                end    
                             end
-                        )]]
+                        )
                     end,
                     function()
                     end
