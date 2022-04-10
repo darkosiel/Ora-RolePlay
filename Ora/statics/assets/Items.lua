@@ -822,6 +822,14 @@ Items = {
         label = "Engrais",
         weight = 1.0
     },
+    graincafe1 = {
+        label = "Graine de café",
+        weight = 0.5
+    },
+    graincafe2 = {
+        label = "Café en poudre",
+        weight = 0.5
+    },
     sac = {
         label = "Sac",
         weight = 0.0,

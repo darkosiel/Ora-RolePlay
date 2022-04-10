@@ -9498,6 +9498,55 @@ Jobs = {
                 }
             }
         }
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Unicorn - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            traitement = {
+                --Poudre café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Unicorn - Traitement Café",
+                Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
+                required = "graincafe1",
+                giveitem = "graincafe2",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Poudre de café"
+            },
+            traitement2 = {
+                --Café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Unicorn - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe2",
+                giveitem = "cafe",
+                RemoveItem = "graincafe2",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Unicorn - Vente",
+                Pos = {x = 1093.24, y = -364.12, z = 67.04 - 0.98},
+                required = "cafe",
+                price = math.random(18, 25),
+                add = "~p~- 1 Café"
+            }
+        },
     },
     -- billards = {
     --     label = "8 Billards",
