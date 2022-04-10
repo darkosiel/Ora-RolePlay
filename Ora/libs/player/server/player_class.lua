@@ -134,7 +134,7 @@ RegisterServerCallback(
                         StrengthDiffByUser[playerUuid] = 0
                     end
 
-                    if (StrengthDiffByUser[playerUuid] > 3.1) then
+                    if (StrengthDiffByUser[playerUuid] > 3.0) then
                         isFull = true
                     end
 
