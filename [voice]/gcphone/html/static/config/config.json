@@ -150,6 +150,19 @@
       ]
     },
     {
+      "display": "Wing stop",
+      "icon": "/html/static/img/contact/burgershot.png",
+      "subMenu": [
+        {
+          "title": "Envoyer un message",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "burgershot"
+          }
+        }
+      ]
+    },
+    {
       "display": "Taxi",
       "icon": "/html/static/img/contact/taxi.png",
       "subMenu": [
