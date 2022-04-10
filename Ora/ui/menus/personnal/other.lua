@@ -535,8 +535,10 @@ Citizen.CreateThread(
                             {},
                             true,
                             function(_, _, Selected)
-                                StartRecording(1)
-                                ShowNotification("~r~Vous avez déjà sauvegardé votre personnage il y a peu")
+                                if Selected then
+                                    StartRecording(1)
+                                    ShowNotification("~r~Vous avez déjà sauvegardé votre personnage il y a peu")
+                                end    
                             end
                         )
 
