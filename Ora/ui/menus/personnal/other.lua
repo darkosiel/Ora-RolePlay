@@ -529,7 +529,7 @@ Citizen.CreateThread(
 
                         RageUI.Separator("Rockstard Editor")
 
-                        RageUI.Button("Record ","Permet de lancer le record d'un clip.",{},true,
+                        --[[RageUI.Button("Record ","Permet de lancer le record d'un clip.",{},true,
                             function(_, _, Selected)
                                 StartRecording(1)
                                 ShowNotification("~r~Vous avez déjà sauvegardé votre personnage il y a peu")
@@ -549,7 +549,7 @@ Citizen.CreateThread(
             		            ActivateRockstarEditor()
                                 ShowNotification("Ouverture de Rockstar Editor.")
                             end
-                        )
+                        )]]
                     end,
                     function()
                     end
