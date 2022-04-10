@@ -2066,11 +2066,6 @@ Jobs = {
                     {name = "meat", count = 1}
                 },
                 giveitem = "burgerhealthy",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "meat", count = 1}
-                },
-                add = "~p~+ 1  Hamburger Healthy"
             },
             traitement6 = {
                 --Poudre café
