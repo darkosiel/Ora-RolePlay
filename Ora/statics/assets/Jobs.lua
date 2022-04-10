@@ -1999,7 +1999,7 @@ Jobs = {
                 Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
-                blipname = "Wing Stop - Récolte du café",
+                blipname = "Unicorn - Récolte du café",
                 add = "~p~+ 1 Graine de Café",
                 anim = {
                     lib = "anim@mp_snowball",
@@ -2066,6 +2066,11 @@ Jobs = {
                     {name = "meat", count = 1}
                 },
                 giveitem = "burgerhealthy",
+                RemoveItem = {
+                    {name = "bread", count = 1},
+                    {name = "meat", count = 1}
+                },
+                add = "~p~+ 1  Hamburger Healthy"
             },
             traitement6 = {
                 --Poudre café
@@ -2084,7 +2089,7 @@ Jobs = {
                 type = "traitement",
                 workSize = 1.20,
                 blipcolor = 7,
-                blipname = "ing Stop - Traitement Café",
+                blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
                 required = "graincafe2",
                 giveitem = "cafe",
@@ -2098,7 +2103,7 @@ Jobs = {
                 blipname = "Wing Stop - Vente",
                 Pos = {x = 1093.24, y = -364.12, z = 67.04 - 0.98},
                 required = "cafe",
-                price = math.random(20, 30),
+                price = math.random(20,30),
                 add = "~p~- 1 Café"
             }
         }
