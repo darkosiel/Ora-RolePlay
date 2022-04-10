@@ -9497,7 +9497,7 @@ Jobs = {
                     end
                 }
             }
-        }
+        },
         requiredService = false,
         work = {
             recolte = {
