@@ -442,6 +442,7 @@ client_script {
     "gameplay/civilian/gym/gym_cl.lua",
     "gameplay/civilian/fishing/fishing_cfg.lua",
     "gameplay/civilian/fishing/fishing_cl.lua",
+    "gameplay/civilian/figure/client.lua",
     "gameplay/civilian/clubspeaker/config.lua",
     "gameplay/civilian/clubspeaker/client/main.lua",
     "gameplay/civilian/shooting_range/config.lua",
