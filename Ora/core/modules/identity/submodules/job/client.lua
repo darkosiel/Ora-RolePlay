@@ -301,7 +301,7 @@ AddEventHandler(
   "Ora::CE::Identity:Job:Set",
   function(name, rank, force)
     if (
-      (Ora.Identity.Job:GetName() == "chomeur" and Ora.Identity.Orga:GetName() ~= name) or
+      (Ora.Identity.Orga:GetName() ~= name) or
       force
     ) then
       Ora.Identity.Job:Set(name, rank)
