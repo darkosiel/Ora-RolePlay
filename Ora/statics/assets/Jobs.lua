@@ -9512,6 +9512,7 @@ Jobs = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
                 }
+            },
             traitement = {
                 --Poudre café
                 type = "traitement",
