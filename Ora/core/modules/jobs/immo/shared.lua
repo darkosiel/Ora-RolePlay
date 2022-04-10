@@ -174,7 +174,7 @@ Ora.Jobs.Immo.Interiors = {
         id = "appart13"
     },
     {
-        coords = {x = -142.22, y = -646.72, z = 169.95}, --Business - Modern
+        coords = {x = -142.22, y = -646.72, z = 169.95}, --Business Moderne
         r = {x = -190.0, y = -180.0, z = -140.43},
         entry = {x = -140.3246, y = -623.086, z = 168.820},
         coffre = {x = -127.63, y = -634.04, z = 167.84},
