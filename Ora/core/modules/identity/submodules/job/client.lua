@@ -263,10 +263,10 @@ end
 function Ora.Identity.Job:Set(name, rank)
   self:Debug(string.format("^1Trying to set job to %s rank %s", name, rank))
   if Jobs[name] == nil then
-    return error(string.format("Job incorrect ! %s", name))
+    return error(string.format("Job incorrect ! %s", name)) and ShowNotification("~r~ Job incorrect !")
   end
   if Jobs[name].grade[tonumber(rank)] == nil then
-    return error(string.format("Grade incorrect ! %s", rank))
+    return error(string.format("Grade incorrect ! %s", rank)) and ShowNotification("~r~ Grade incorrect !")
   end
 
   self.Data = Jobs[name]
