@@ -1503,7 +1503,7 @@ Items = {
     },
     weed_pot = {
         label = "Pot graines cannabis",
-        weight = 20.0
+        weight = 1.5
     },
     weed_plant = {
         label = "Feuille de cannabis",
