@@ -2850,18 +2850,18 @@ TenueLSPD = {
     },
     ["Metro officier II"] = {
         male = {
-            ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 102,   ['torso_2'] = 1,
+            ['tshirt_1'] = 257,  ['tshirt_2'] = 0,
+            ['torso_1'] = 389,   ['torso_2'] = 1,
             ['decals_1'] = -1,   ['decals_2'] = 0,
-            ['arms'] = 26,
-            ['pants_1'] = 87,   ['pants_2'] = 12,
-            ['shoes_1'] = 25,   ['shoes_2'] = 0,
+            ['arms'] = 20,
+            ['pants_1'] = 153,   ['pants_2'] = 10,
+            ['shoes_1'] = 98,   ['shoes_2'] = 0,
             ['helmet_1'] = -1,  ['helmet_2'] = 0,
             ['ears_1'] = -1,     ['ears_2'] = 0,
-            ['bproof_1'] = 16,  ['bproof_2'] = 0,
+            ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
-            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['chain_1'] = 158,    ['chain_2'] = 0,
             ['mask_1'] = 0,     ['mask_2'] = 0
         },
         female = {
