@@ -32,31 +32,6 @@ Citizen.CreateThread(
     end
 )
 
-local function Engine()
-    local pPed = PlayerPedId()
-    if IsPedSittingInAnyVehicle(pPed) then
-        local pVeh = GetVehiclePedIsIn(pPed, 0)
-        local vSpeed = GetEntitySpeed(pVeh)
-        if vSpeed == 0.0 then
-            if GetIsVehicleEngineRunning(pVeh) then
-                SetVehicleEngineOn(pVeh, 0, 0, 1)
-            else
-                SetVehicleEngineOn(pVeh, 1, 0, 0)
-            end
-        end
-    end
-end
-
-RegisterCommand(
-    "moteur",
-    function()
-        Engine()
-    end,
-    false
-)
-
-RegisterKeyMapping("moteur", "Allumer/Eteindre moteur", "keyboard", "UP")
-
 local disableShuffle = true
 function disableSeatShuffle(flag)
 	disableShuffle = flag
