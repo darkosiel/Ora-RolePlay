@@ -17,19 +17,19 @@ TenueLSPD = {
             ['mask_1'] = -1, 	['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 0,
+            ['tshirt_1'] = 277,  ['tshirt_2'] = 0,
+            ['torso_1'] = 458,   ['torso_2'] = 0,
             ['decals_1'] = 0,   ['decals_2'] = 0,
-            ['arms'] = 14,
-            ['pants_1'] = 34,   ['pants_2'] = 0,
-            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['arms'] = 3,
+            ['pants_1'] = 154,   ['pants_2'] = 0,
+            ['shoes_1'] = 101,   ['shoes_2'] = 0,
             ['helmet_1'] = -1,  ['helmet_2'] = 0,
             ['ears_1'] = -1,     ['ears_2'] = 0,
-            ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 52,     ['bags_2'] = 0,
-            ['glasses_1'] = 5,  ['glasses_2'] = 0,
-            ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 101,     ['mask_2'] = 0
+            ['bproof_1'] = 0,  ['bproof_2'] = 0,
+            ['bags_1'] = 132,     ['bags_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
+            ['chain_1'] = 126,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Officier - Cérémonie'] = {
