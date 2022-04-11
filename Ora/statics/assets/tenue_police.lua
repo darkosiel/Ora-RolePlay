@@ -2144,38 +2144,6 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
     },
-    ['Trafic division officier - Cravate'] = {
-        male = {
-            ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 200,   ['torso_2'] = 1,
-            ['decals_1'] = 0,   ['decals_2'] = 0,
-            ['arms'] = 6,
-            ['pants_1'] = 35,   ['pants_2'] = 0,
-            ['shoes_1'] = 51,   ['shoes_2'] = 0,
-            ['helmet_1'] = -1,  ['helmet_2'] = 0,
-            ['ears_1'] = -1,     ['ears_2'] = 0,
-            ['bproof_1'] = 13,  ['bproof_2'] = 0,
-            ['bags_1'] = 52,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
-            ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 101,     ['mask_2'] = 0
-        },
-        female = {
-            ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
-            ['torso_1'] = 202,   ['torso_2'] = 1,
-            ['decals_1'] = 0,   ['decals_2'] = 0,
-            ['arms'] = 14,
-            ['pants_1'] = 34,   ['pants_2'] = 0,
-            ['shoes_1'] = 52,   ['shoes_2'] = 0,
-            ['helmet_1'] = -1,  ['helmet_2'] = 0,
-            ['ears_1'] = -1,     ['ears_2'] = 0,
-            ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 52,     ['bags_2'] = 0,
-            ['glasses_1'] = 5,  ['glasses_2'] = 0,
-            ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 101,     ['mask_2'] = 0
-        },
-    },
     ['Trafic division Officier - Longues manches'] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
