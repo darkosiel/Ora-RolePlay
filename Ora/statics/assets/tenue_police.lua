@@ -2146,19 +2146,19 @@ TenueLSPD = {
     },
     ['Trafic division Officier - Longues manches'] = {
         male = {
-            ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 193,   ['torso_2'] = 1,
-            ['decals_1'] = 0,   ['decals_2'] = 0,
-            ['arms'] = 6,
-            ['pants_1'] = 35,   ['pants_2'] = 0,
-            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['torso_1'] = 435,   ['torso_2'] = 1,
+            ['decals_1'] = -1,   ['decals_2'] = 0,
+            ['arms'] = 14,
+            ['pants_1'] = 147,   ['pants_2'] = 0,
+            ['shoes_1'] = 97,   ['shoes_2'] = 0,
             ['helmet_1'] = -1,  ['helmet_2'] = 0,
-            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['ears_1'] = -1, 	['ears_2'] = 0,
             ['bproof_1'] = 13,  ['bproof_2'] = 0,
-            ['bags_1'] = 52,     ['bags_2'] = 0,
+            ['bags_1'] = 138, 	['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
-            ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 101,     ['mask_2'] = 0
+            ['chain_1'] = 157,	['chain_2'] = 0,
+            ['mask_1'] = -1, 	['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
@@ -2178,19 +2178,19 @@ TenueLSPD = {
     },
     ['Trafic division Officier - Manches courtes'] = {
         male = {
-            ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
-            ['torso_1'] = 190,   ['torso_2'] = 1,
-            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['torso_1'] = 434,   ['torso_2'] = 1,
+            ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 11,
-            ['pants_1'] = 35,   ['pants_2'] = 0,
-            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['pants_1'] = 147,   ['pants_2'] = 0,
+            ['shoes_1'] = 97,   ['shoes_2'] = 0,
             ['helmet_1'] = -1,  ['helmet_2'] = 0,
-            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['ears_1'] = -1, 	['ears_2'] = 0,
             ['bproof_1'] = 13,  ['bproof_2'] = 0,
-            ['bags_1'] = 52,     ['bags_2'] = 0,
+            ['bags_1'] = 138, 	['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
-            ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 101,     ['mask_2'] = 0
+            ['chain_1'] = 157,	['chain_2'] = 0,
+            ['mask_1'] = -1, 	['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
