@@ -1501,10 +1501,10 @@ Items = {
         label = "Ciseaux",
         weight = 1.0
     },
-    weed_pot = {
+--[[    weed_pot = {
         label = "Pot graines cannabis",
         weight = 20.0
-    },
+    },]]
     weed_plant = {
         label = "Feuille de cannabis",
         weight = 1.0,

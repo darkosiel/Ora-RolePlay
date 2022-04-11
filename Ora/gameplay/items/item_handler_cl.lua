@@ -733,12 +733,12 @@ ItemsFunction = {
             LockPickVehicle(i)
         end
     end,
-    weed_pot = function(i)
+--[[    weed_pot = function(i)
         if i then
             Ora.Inventory:RemoveItem(i)
             exports["weed"]:createProps()
         end
-    end,
+    end,]]
     ciseaux = function()
         CutChev()
     end,
