@@ -3035,9 +3035,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["Metro officier III longue"] = {
@@ -3067,9 +3067,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["Metro Senior Lead Officer longue"] = {
@@ -3099,9 +3099,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["Metro Sergent I longue"] = {
@@ -3131,9 +3131,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["Metro Sergent II longue"] = {
@@ -3163,9 +3163,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["Metro Lieutenant longue"] = {
@@ -3195,9 +3195,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["Metro Capitaine longue"] = {
@@ -3227,9 +3227,9 @@ TenueLSPD = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 126,    ['chain_2'] = 0,
-            ['mask_1'] = 0,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ["SWAT"] = {
