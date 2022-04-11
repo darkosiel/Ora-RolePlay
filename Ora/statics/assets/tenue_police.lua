@@ -2596,7 +2596,7 @@ TenueLSPD = {
         male = {
             ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
-            ['decals_1'] = 146,   ['decals_2'] = 3,
+            ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 14,
             ['pants_1'] = 147,   ['pants_2'] = 0,
             ['shoes_1'] = 97,   ['shoes_2'] = 0,
