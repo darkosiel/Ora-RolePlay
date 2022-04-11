@@ -2913,19 +2913,19 @@ TenueLSPD = {
         },
     },
     ["Metro Sergent II"] = {
-        female = {
-            ['tshirt_1'] = 277,  ['tshirt_2'] = 0,
-            ['torso_1'] = 405,   ['torso_2'] = 1,
-            ['decals_1'] = 133,   ['decals_2'] = 2,
-            ['arms'] = 27,
-            ['pants_1'] = 135,   ['pants_2'] = 0,
-            ['shoes_1'] = 101,   ['shoes_2'] = 0,
+        male = {
+            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['torso_1'] = 388,   ['torso_2'] = 1,
+            ['decals_1'] = 125,   ['decals_2'] = 4,
+            ['arms'] = 26,
+            ['pants_1'] = 152,   ['pants_2'] = 10,
+            ['shoes_1'] = 97,   ['shoes_2'] = 0,
             ['helmet_1'] = -1,  ['helmet_2'] = 0,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
-            ['chain_1'] = 126,    ['chain_2'] = 0,
+            ['chain_1'] = 157,    ['chain_2'] = 0,
             ['mask_1'] = 0,     ['mask_2'] = 0
         },
         female = {
