@@ -331,7 +331,7 @@ Items = {
         weight = 1.0
         --category = "food"
     },
-    whisky = {
+    --[[whisky = {
         label = "Bouteille de whisky",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
@@ -349,7 +349,7 @@ Items = {
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
---[[    rhum = {
+    rhum = {
         label = "Bouteille de rhum",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
@@ -1188,38 +1188,38 @@ Items = {
         soif = 15,
         category = "food"
     },
-    --[[vodka = {
+    vodka = {
         label = "Vodka",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_vodka_bottle",
         soif = 15,
         category = "food"
-    },]]
-    --[[tequila = {
+    },
+    tequila = {
         label = "Tequila",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_vodka_bottle",
         soif = 15,
         category = "food"
-    },]]
-    --[[champagne = {
+    },
+    champagne = {
         label = "Champagne",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_champ_01a",
         soif = 15,
         category = "food"
-    },]]
-    --[[cognac = {
+    },
+    cognac = {
         label = "Cognac",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_bottle_cognac",
         soif = 15,
         category = "food"
-    },]]
+    },
     -- Items : Distillerie
     c_sucre = {
         label = "Canne a sucre",
