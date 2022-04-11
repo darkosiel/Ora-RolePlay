@@ -2101,7 +2101,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Wing Stop - Vente",
-                Pos = {x = 1093.24, y = -364.12, z = 67.04 - 0.98},
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",
                 price = math.random(20,30),
                 add = "~p~- 1 Café"
