@@ -2144,7 +2144,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
     },
-    ['Trafic division officier II - Cravate'] = {
+    ['Trafic division officier - Cravate'] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
             ['torso_1'] = 200,   ['torso_2'] = 1,
@@ -2176,7 +2176,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
     },
-    ['Trafic division Officier II - Longues manches'] = {
+    ['Trafic division Officier - Longues manches'] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
             ['torso_1'] = 193,   ['torso_2'] = 1,
@@ -2208,7 +2208,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
     },
-    ['Trafic division Officier II - Manches courtes'] = {
+    ['Trafic division Officier - Manches courtes'] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
             ['torso_1'] = 190,   ['torso_2'] = 1,
