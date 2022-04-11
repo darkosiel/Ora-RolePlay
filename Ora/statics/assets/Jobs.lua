@@ -6300,6 +6300,46 @@ Jobs = {
                             ["ears_2"] = 0
                         }
                     },
+                    ["Blouse de service"] = {
+                        male = {
+                            ["tshirt_1"] = 11,
+                            ["tshirt_2"] = 0,
+                            ["torso_1"] = 391,
+                            ["torso_2"] = 0,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 12,
+                            ["pants_1"] = 138,
+                            ["pants_2"] = 0,
+                            ["shoes_1"] = 20,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = -1,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 172,
+                            ["chain_2"] = 6,
+                            ["ears_1"] = -1,
+                            ["ears_2"] = -1
+                        },
+                        female = {
+                            ["tshirt_1"] = 6,
+                            ["tshirt_2"] = 0,
+                            ["torso_1"] = 25,
+                            ["torso_2"] = 6,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 9,
+                            ["pants_1"] = 34,
+                            ["pants_2"] = 0,
+                            ["shoes_1"] = 25,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = -1,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 96,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = 0,
+                            ["ears_2"] = 0
+                        }
+                    },
                     ["Tenue de service chirurgien"] = {
                         male = {
                             ["tshirt_1"] = 15,
