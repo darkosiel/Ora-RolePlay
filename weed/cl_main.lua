@@ -168,13 +168,13 @@ RegisterNetEvent("createWeed")
 AddEventHandler(
     "createWeed",
     function(c, k)
-        --SpawnObject("bkr_prop_weed_01_small_01c",c,function(props)
-        --    --(props)
-        --    FreezeEntityPosition(props, true)
-        --    SetEntityNoCollisionEntity(props, PlayerPedId(), false)
+        SpawnObject("bkr_prop_weed_01_small_01c",c,function(props)
+           --(props)
+           FreezeEntityPosition(props, true)
+           SetEntityNoCollisionEntity(props, PlayerPedId(), false)
 
         weeds[k] = {obj = nil, coords = c, states = 1, water = 10, purety = 50, percent = 0, fertz = 0}
-        --end)
+        end)
     end
 )
 
@@ -206,12 +206,12 @@ AddEventHandler(
             percent = c.percent,
             fertz = c.fertz
         }
-        -- SpawnObject(states[c.states],t,function(props)
-        --     --(props)
-        --     FreezeEntityPosition(props, true)
-        --     SetEntityNoCollisionEntity(props, PlayerPedId(), false)
-        --     weeds[k] = {obj=props,coords=GetEntityCoords(props),states=c.states,water=c.water,purety=c.purety,percent=c.percent,fertz=c.fertz}
-        -- end)
+        SpawnObject(states[c.states],t,function(props)
+            --(props)
+            FreezeEntityPosition(props, true)
+            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
+            weeds[k] = {obj=props,coords=GetEntityCoords(props),states=c.states,water=c.water,purety=c.purety,percent=c.percent,fertz=c.fertz}
+        end)
     end
 )
 local inNUI = false
