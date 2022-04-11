@@ -151,13 +151,26 @@
     },
     {
       "display": "Wing stop",
-      "icon": "/html/static/img/contact/burgershot.png",
+      "icon": "/html/static/img/contact/wing.png",
       "subMenu": [
         {
           "title": "Envoyer un message",
           "eventName": "esx_addons_gcphone:call",
           "type": {
             "number": "burgershot"
+          }
+        }
+      ]
+    },
+    {
+      "display": "Mirror",
+      "icon": "/html/static/img/contact/miror.png",
+      "subMenu": [
+        {
+          "title": "Envoyer un message",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "restaurent"
           }
         }
       ]
