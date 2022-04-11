@@ -355,41 +355,49 @@ Items = {
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },]]
-    tequila = {
+--[[    tequila = {
         label = "Bouteille de tequila",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },
-    red_wine = {
+    },]]
+--[[    red_wine = {
         label = "Bouteille de vin rouge",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },
+    },]]
     high_quality_wine = {
         label = "Bouteille de grand cru",
         weight = 0.5,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
+        actionCl = "miam:Drink",
+        props = "prop_wine_bot_01",
+        soif = 10,
+        category = "food"
     },
     white_wine = {
         label = "Bouteille de vin blanc",
         weight = 0.5,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
+        actionCl = "miam:Drink",
+        props = "prop_wine_bot_01",
+        soif = 10,
+        category = "food"
     },
     beer = {
         label = "Bière",
         weight = 0.2,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
+        actionCl = "miam:Drink",
+        props = "prop_wine_bot_01",
+        soif = 10,
+        category = "food"
     },
     beer2 = {
         label = "Bière sans alcool",
         weight = 0.2,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
+        actionCl = "miam:Drink",
+        props = "prop_wine_bot_01",
+        soif = 10,
+        category = "food"
     },
     bong = {
         label = "Bang",
@@ -1251,22 +1259,22 @@ Items = {
         soif = 10,
         category = "food"
     },
-    --[[bouteille_vinr = {
+    bouteille_vinr = {
         label = "Bouteille de vin rouge",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_wine_red",
         soif = 10,
         category = "food"
-    },]]
-    --[[grand_cru = {
+    },
+    grand_cru = {
         label = "Château de Marlowe 2014",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_wine_bot_01",
         soif = 10,
         category = "food"
-    },]]
+    },
     agave = {
         label = "Agave",
         weight = 1.0
@@ -1503,7 +1511,7 @@ Items = {
     },
     weed_pot = {
         label = "Pot graines cannabis",
-        weight = 1.5
+        weight = 1.0
     },
     weed_plant = {
         label = "Feuille de cannabis",
