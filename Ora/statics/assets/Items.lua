@@ -524,7 +524,7 @@ Items = {
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_cs_burger_01",
-        faim = 40,
+        faim = 20,
         category = "food"
     },
     saucisse = {
