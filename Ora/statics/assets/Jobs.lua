@@ -1995,7 +1995,7 @@ Jobs = {
         work = {
             recolte = {
                 type = "recolte",
-                workSize = 10.0,
+                workSize = 1.0,
                 Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
@@ -2009,7 +2009,7 @@ Jobs = {
             traitement2 = {
                 --frites
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 1.0,
                 blipcolor = 5,
                 blipname = "Friteuse",
                 Pos = {x = 1249.9007, y = -352.7587, z = 69.1846},
@@ -2022,7 +2022,7 @@ Jobs = {
             traitement = {
                 --milkshack
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 1.0,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
                 Pos = {x = 1251.9968, y = -358.9071, z = 69.1846},
@@ -2037,7 +2037,7 @@ Jobs = {
             traitement3 = {
                 --hamburger
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 1.0,
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
@@ -2056,7 +2056,7 @@ Jobs = {
             traitement5 = {
                 --hamburger
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 1.0,
                 blipcolor = 8,
                 noFarm = true,
                 blipname = "Grill Burger Healthy",
@@ -2075,7 +2075,7 @@ Jobs = {
             traitement6 = {
                 --Poudre café
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 1.0,
                 blipcolor = 7,
                 blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
@@ -2087,7 +2087,7 @@ Jobs = {
             traitement7 = {
                 --Café
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 1.0,
                 blipcolor = 7,
                 blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
@@ -2099,7 +2099,7 @@ Jobs = {
             vente = {
                 type = "vente",
                 blipcolor = 7,
-                workSize = 7.45,
+                workSize = 1.0,
                 blipname = "Wing Stop - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",
