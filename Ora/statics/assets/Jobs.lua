@@ -6220,46 +6220,6 @@ Jobs = {
                 workSize = 1.45,
                 Pos = {x = 298.79, y = -598.68, z = 42.28},
                 Tenues = {
-                    ["Tenue de service manches longues"] = {
-                        male = {
-                            ["tshirt_1"] = 54,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 75,
-                            ["torso_2"] = 6,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 94,
-                            ["pants_1"] = 35,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = -1,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 30,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = -1,
-                            ["ears_2"] = -1
-                        },
-                        female = {
-                            ["tshirt_1"] = 6,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 26,
-                            ["torso_2"] = 6,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 99,
-                            ["pants_1"] = 34,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = -1,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 96,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = 0,
-                            ["ears_2"] = 0
-                        }
-                    },
                     ["Tenue ambulancier manches courtes"] = {
                         male = {
                             ["tshirt_1"] = 240,
