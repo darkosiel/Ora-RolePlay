@@ -349,12 +349,12 @@ Items = {
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
-    rhum = {
+--[[    rhum = {
         label = "Bouteille de rhum",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },
+    },]]
     tequila = {
         label = "Bouteille de tequila",
         weight = 0.5,
@@ -1172,14 +1172,14 @@ Items = {
         soif = 15,
         category = "food"
     },]]
-    --[[rhum = {
+    rhum = {
         label = "Rhum",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_drink_whisky",
         soif = 15,
         category = "food"
-    },]]
+    },
     magnum = {
         label = "Bouteille de magnum",
         weight = 0.5,
