@@ -90,6 +90,7 @@ client_scripts {
     "utils/vendor/server-callback/client.lua",
     "utils/vendor/RageIB/client.lua",
     "utils/cl_zoneName.lua",
+    "utils/crouch.lua",
     "utils/cl_deadLog.lua"
 }
 

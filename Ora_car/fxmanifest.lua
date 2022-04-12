@@ -19,5 +19,4 @@ files {
 }
 client_script "cl_car.lua"
 client_script "speedo.lua"
-client_script "drift.lua"
 
