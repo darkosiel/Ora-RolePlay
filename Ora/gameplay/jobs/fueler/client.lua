@@ -291,13 +291,13 @@ local function fuelFill()
             SetFarmLimit(math.floor(Station.limitLiters*missingFuel))
             TriggerServerEvent("fueler:addLiters", stationInfo.id, missingFuel)
             TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "raffinerie", missingFuel*stationInfo.priceL, true)
-            TriggerServerEvent("business:AddFromTreasury", Ora.Identity.Orga:GetName(), missingFuel*stationInfo.priceL)
+            TriggerServerEvent("entreprise:Add", "raffinerie", missingFuel*stationInfo.priceL)
           elseif p == 2 then
             DecorRemove(vehTrailer.trailer, Station.decor_treatment)
             SetFarmLimit(math.floor(Station.limitLiters*vehTrailer.fuel))
             TriggerServerEvent("fueler:addLiters", stationInfo.id, vehTrailer.fuel)
             TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "raffinerie", vehTrailer.fuel*stationInfo.priceL, true)
-            TriggerServerEvent("business:AddFromTreasury", Ora.Identity.Orga:GetName(), vehTrailer.fuel*stationInfo.priceL)
+            TriggerServerEvent("entreprise:Add", "raffinerie", vehTrailer.fuel*stationInfo.priceL)
           elseif p == 3 then
             local limit = 400 - farmLimit
             local liters = vehTrailer.fuel-(limit/Station.limitLiters)
@@ -306,11 +306,11 @@ local function fuelFill()
             if (limit/Station.limitLiters) + stationInfo.fuel > Station.max_fuel then
               TriggerServerEvent("fueler:addLiters", stationInfo.id, missingFuel)
               TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "raffinerie", missingFuel*stationInfo.priceL, true)
-              TriggerServerEvent("business:AddFromTreasury", Ora.Identity.Orga:GetName(), missingFuel*stationInfo.priceL)
+              TriggerServerEvent("entreprise:Add", "raffinerie", missingFuel*stationInfo.priceL)
             else
               TriggerServerEvent("fueler:addLiters", stationInfo.id, limit/Station.limitLiters)
               TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "raffinerie", (limit/Station.limitLiters)*stationInfo.priceL, true)
-              TriggerServerEvent("business:AddFromTreasury", Ora.Identity.Orga:GetName(), (limit/Station.limitLiters)*stationInfo.priceL)
+              TriggerServerEvent("entreprise:Add", "raffinerie", (limit/Station.limitLiters)*stationInfo.priceL)
             end
           end
           FreezeEntityPosition(veh, false)
