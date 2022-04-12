@@ -3040,17 +3040,17 @@ Jobs = {
             },{
                 Pos = {x =-1923.7133, y = 2054.2924, z = 140.8313},
                 Limit = 9999,
-                Name = "coffre_distillerie"
+                Name = "coffre_distillerie1"
             },
             {
                 Pos = {x = -1925.3386, y = 2048.0524, z = 140.8313},
                 Limit = 9999,
-                Name = "coffre_distillerie"
+                Name = "coffre_distillerie2"
             },
             {
                 Pos = {x = -1926.5548, y = 2041.9974, z = 140.8313},
                 Limit = 9999,
-                Name = "coffre_distillerie"
+                Name = "coffre_distillerie3"
             }
         },
         requiredService = false,
