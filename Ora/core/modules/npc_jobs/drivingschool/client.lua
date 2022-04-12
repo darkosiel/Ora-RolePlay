@@ -247,7 +247,7 @@ local function startTest()
             coords = {x = 221.08856, y = 381.79013, z = 106.85, a = 161.9154052}
             vehicleFct.SpawnVehicle("blista2",
                 coords,
-                235.32,
+                161.915,
                 function(vehicle)
                     currentVehicle = vehicle
                     SetPedIntoVehicle(LocalPlayer().Ped, vehicle, -1)
