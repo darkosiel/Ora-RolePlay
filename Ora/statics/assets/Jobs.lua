@@ -2043,7 +2043,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1246.8457, y = -352.2093, z = 69.1846 - 0.98},
+                Pos = {x = 1240.3414, y = -350.66921, z = 69.1846 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
