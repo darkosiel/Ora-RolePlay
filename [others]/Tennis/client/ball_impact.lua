@@ -3,56 +3,56 @@ local CourtHeading = 0
 local Width = 7.98
 local Length = 11.89
 
--- Citizen.CreateThread(function()
---     while true do
---         Wait(0)
+Citizen.CreateThread(function()
+    while true do
+         Wait(0)
 
---         local ped = PlayerPedId()
---         local coords = GetEntityCoords(ped)
+        local ped = PlayerPedId()
+        local coords = GetEntityCoords(ped)
 
---         for _, courtData in pairs(TennisCourts) do
---             GetPointData(courtData.courtCenter, courtData.courtHeading, courtData.courtWidth, courtData.courtLength, coords)
---         end
+        for _, courtData in pairs(TennisCourts) do
+            GetPointData(courtData.courtCenter, courtData.courtHeading, courtData.courtWidth, courtData.courtLength, coords)
+        end
 
---         -- PlayerSettings.courtName
+        PlayerSettings.courtName
 
---         local modifier = 0.2
+    
 
---         if IsDisabledControlPressed(0, 172) then -- up
---             TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
---                 TennisCourts[PlayerSettings.courtName].courtCenter.x,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.y + GetFrameTime() * modifier,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.z
---             )
---         elseif IsDisabledControlPressed(0, 173) then -- down
---             TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
---                 TennisCourts[PlayerSettings.courtName].courtCenter.x,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.y - GetFrameTime() * modifier,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.z
---             )
---         elseif IsDisabledControlPressed(0, 174) then -- left
---             TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
---                 TennisCourts[PlayerSettings.courtName].courtCenter.x - GetFrameTime() * modifier,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.y,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.z
---             )
---         elseif IsDisabledControlPressed(0, 175) then -- right
---             TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
---                 TennisCourts[PlayerSettings.courtName].courtCenter.x + GetFrameTime() * modifier,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.y,
---                 TennisCourts[PlayerSettings.courtName].courtCenter.z
---             )
---         elseif IsDisabledControlPressed(0, 96) then -- minut
---             TennisCourts[PlayerSettings.courtName].courtHeading = TennisCourts[PlayerSettings.courtName].courtHeading - GetFrameTime() * modifier
---         elseif IsDisabledControlPressed(0, 97) then -- plus
---             TennisCourts[PlayerSettings.courtName].courtHeading = TennisCourts[PlayerSettings.courtName].courtHeading + GetFrameTime() * modifier
---         end
+        if IsDisabledControlPressed(0, 172) then  up
+            TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
+                TennisCourts[PlayerSettings.courtName].courtCenter.x,
+                TennisCourts[PlayerSettings.courtName].courtCenter.y + GetFrameTime() * 0.2,
+                TennisCourts[PlayerSettings.courtName].courtCenter.z
+            )
+        elseif IsDisabledControlPressed(0, 173) then  down
+            TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
+                TennisCourts[PlayerSettings.courtName].courtCenter.x,
+                TennisCourts[PlayerSettings.courtName].courtCenter.y - GetFrameTime() * 0.2,
+                TennisCourts[PlayerSettings.courtName].courtCenter.z
+            )
+        elseif IsDisabledControlPressed(0, 174) then  left
+            TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
+                TennisCourts[PlayerSettings.courtName].courtCenter.x - GetFrameTime() * 0.2,
+                TennisCourts[PlayerSettings.courtName].courtCenter.y,
+                TennisCourts[PlayerSettings.courtName].courtCenter.z
+            )
+        elseif IsDisabledControlPressed(0, 175) then  right
+            TennisCourts[PlayerSettings.courtName].courtCenter = vector3(
+                TennisCourts[PlayerSettings.courtName].courtCenter.x + GetFrameTime() * 0.2,
+                TennisCourts[PlayerSettings.courtName].courtCenter.y,
+                TennisCourts[PlayerSettings.courtName].courtCenter.z
+            )
+        elseif IsDisabledControlPressed(0, 96) then  minut
+            TennisCourts[PlayerSettings.courtName].courtHeading = TennisCourts[PlayerSettings.courtName].courtHeading - GetFrameTime() * 0.2
+        elseif IsDisabledControlPressed(0, 97) then  plus
+            TennisCourts[PlayerSettings.courtName].courtHeading = TennisCourts[PlayerSettings.courtName].courtHeading + GetFrameTime() * 0.2
+        end
 
---         print(TennisCourts[PlayerSettings.courtName].courtCenter, TennisCourts[PlayerSettings.courtName].courtHeading)
+        print(TennisCourts[PlayerSettings.courtName].courtCenter, TennisCourts[PlayerSettings.courtName].courtHeading)
 
---         -- print(">>", isInArea and 'ON COURT' or 'OFF COURT', isLeftSide and 'LEFT' or 'RIGHT', isASide and 'A Side' or 'B Side')
---     end
--- end)
+        print(">>", isInArea and 'ON COURT' or 'OFF COURT', isLeftSide and 'LEFT' or 'RIGHT', isASide and 'A Side' or 'B Side')
+     end
+ end)
 
 function GetPointData(courtCenter, courtHeading, courtWidth, courtLength, point)
     local nOrigin = vector3(
@@ -88,7 +88,7 @@ function GetPointData(courtCenter, courtHeading, courtWidth, courtLength, point)
         false
     )
 
-    -- DrawCourtDebug(nOrigin, nExtent, courtWidth, aLeftSide, aRightSide)
+    DrawCourtDebug(nOrigin, nExtent, courtWidth, aLeftSide, aRightSide)
 
     local isLeftSide = ((nOrigin.x - nExtent.x)*(point.y - nExtent.y) - (nOrigin.y - nExtent.y)*(point.x - nExtent.x)) > 0
     local isASide = ((aLeftSide.x - aRightSide.x)*(point.y - aRightSide.y) - (aLeftSide.y - aRightSide.y)*(point.x - aRightSide.x)) > 0

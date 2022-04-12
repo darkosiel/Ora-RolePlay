@@ -404,41 +404,41 @@ function PlayHitBallAnim(ped, name, side, distName, hitType, courtPtr, predicted
     end)
 end
 
--- Citizen.CreateThread(function()
---     FreezeEntityPosition(PlayerPedId(), false)
---     while true do
---         Wait(0)
+Citizen.CreateThread(function()
+    FreezeEntityPosition(PlayerPedId(), false)
+    while true do
+        Wait(0)
 
---         local ped = PlayerPedId()
---         local coords = GetOffsetFromEntityInWorldCoords(ped, 0.5, 0.5, 0.5)
+        local ped = PlayerPedId()
+        local coords = GetOffsetFromEntityInWorldCoords(ped, 0.5, 0.5, 0.5)
 
---         for _, distName in pairs({CONST_DIST_CLOSE, CONST_DIST_NORMAL, CONST_DIST_DIVE}) do
---             local vec = ComputeAfterHitVelocity(distName)
---             local pos = coords
+        for _, distName in pairs({CONST_DIST_CLOSE, CONST_DIST_NORMAL, CONST_DIST_DIVE}) do
+            local vec = ComputeAfterHitVelocity(distName)
+            local pos = coords
 
---             local col = {255, 0, 0}
+            local col = {255, 0, 0}
 
---             if distName == CONST_DIST_NORMAL then
---                 col = {0, 255, 0}
---             elseif distName == CONST_DIST_DIVE then
---                 col = {0, 0, 255}
---             end
+            if distName == CONST_DIST_NORMAL then
+                col = {0, 255, 0}
+            elseif distName == CONST_DIST_DIVE then
+                col = {0, 0, 255}
+            end
 
---             local lastPos = pos
+            local lastPos = pos
 
---             local spin = CONST_HIT_BACKSPIN
+            local spin = CONST_HIT_BACKSPIN
 
---             for i = 1, 200 do
---                 pos, vec, collision = SimulatePhysicsStep(GetFrameTime()*2, spin, pos, vec, TennisCourts.desanta.ballVelocity.z, true, false)
---                 if collision then
---                     spin = CONST_HIT_NORMAL
---                 end
---                 DrawLine(lastPos, pos, col[1], col[2], col[3], 255)
---                 lastPos = pos
---             end
---         end
---     end
--- end)
+            for i = 1, 200 do
+                pos, vec, collision = SimulatePhysicsStep(GetFrameTime()*2, spin, pos, vec, TennisCourts.desanta.ballVelocity.z, true, false)
+                if collision then
+                    spin = CONST_HIT_NORMAL
+                end
+                DrawLine(lastPos, pos, col[1], col[2], col[3], 255)
+                lastPos = pos
+            end
+        end
+    end
+end)
 
 function LoadAnimDict(animDict)
 	while (not HasAnimDictLoaded(animDict)) do
@@ -466,29 +466,28 @@ end
     /anim mini@tennis ready_position_idle_01
 ]]
 
--- Citizen.CreateThread(function()
---     RequestNamedPtfxAsset('scr_minigametennis')
+Citizen.CreateThread(function()
+    RequestNamedPtfxAsset('scr_minigametennis')
 
---     while not HasNamedPtfxAssetLoaded('scr_minigametennis') do Wait(0) end
---     print("has loaded", HasNamedPtfxAssetLoaded('scr_minigametennis'))
---     Wait(100)
---     local coords = vector3(-775.03, 147.25, 68.0)
---         UseParticleFxAssetNextCall('scr_minigametennis')
---         local particle = StartParticleFxLoopedAtCoord("scr_tennis_ball_trail", coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, 1065353216, 0, 0, 0, true)
---         SetParticleFxLoopedColour(particle, 222/255, 198/255, 47/255, false)
---         print(particle)
+    while not HasNamedPtfxAssetLoaded('scr_minigametennis') do Wait(0) end
+    print("has loaded", HasNamedPtfxAssetLoaded('scr_minigametennis'))
+    Wait(100)
+    local coords = vector3(-775.03, 147.25, 68.0)
+        UseParticleFxAssetNextCall('scr_minigametennis')
+        local particle = StartParticleFxLoopedAtCoord("scr_tennis_ball_trail", coords.x, coords.y, coords.z, 0.0, 0.0, 0.0, 1065353216, 0, 0, 0, true)--         SetParticleFxLoopedColour(particle, 222/255, 198/255, 47/255, false)
+         print(particle)
 
---         local x = 0
---         while true do
---             Wait(0)
---             x = x + GetFrameTime()*5
---             local off = vector3(0.1, 0.1, 0.1)
---             local offZ = math.cos(x)
+         local x = 0
+         while true do
+             Wait(0)
+             x = x + GetFrameTime()*5
+             local off = vector3(0.1, 0.1, 0.1)
+             local offZ = math.cos(x)
 
---             SetParticleFxLoopedOffsets(particle, coords.x, coords.y, coords.z+offZ, 0.0, 0.0, 0.0)
---             DrawBox(coords+off+vector3(0.0, 0.0, offZ), coords-off+vector3(0.0, 0.0, offZ), 0, 255, 0, 100)
---         end
+             SetParticleFxLoopedOffsets(particle, coords.x, coords.y, coords.z+offZ, 0.0, 0.0, 0.0)
+             DrawBox(coords+off+vector3(0.0, 0.0, offZ), coords-off+vector3(0.0, 0.0, offZ), 0, 255, 0, 100)
+         end
 
---     Wait(0)
---     print(particle)
--- end)
+     Wait(0)
+     print(particle)
+end)

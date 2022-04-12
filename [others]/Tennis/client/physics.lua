@@ -4,27 +4,26 @@ BallVelocity = nil
 PredictedCollisionCoords = nil
 COLLISION_SHAPETEST_FLAG = 1 + 2 + 4 + 16
 
--- Citizen.CreateThread(function()
+Citizen.CreateThread(function()
 
---     local starts = {
---         vector3(-769.88, 163.03, 67.92),
---         vector3(-772.25, 163.03, 67.98),
---         vector3(-775.28, 163.32, 68.15),
---         vector3(-776.2, 163.3, 68.33),
---     }
+    local starts = {
+        vector3(-769.88, 163.03, 67.92),
+        vector3(-772.25, 163.03, 67.98),
+        vector3(-775.28, 163.32, 68.15),
+        vector3(-776.2, 163.3, 68.33),
+    }
 
---     local ends = {
---         vector3(-776.17, 143.9, 69.170000000001)
---     }
+    local ends = {
+        vector3(-776.17, 143.9, 69.170000000001)
+    }
 
---     if GetPlayerServerId(PlayerId()) == 1 then
---         while true do
---             Wait(6000)
-            
---             TriggerServerEvent('lsrp_tennis:setBallData', 'desanta', CONST_HIT_NORMAL, vector3(-775.96, 165.34, 67.72), vector3(2.0, -15.0, 5.0))
---         end
---     end
--- end)
+    if GetPlayerServerId(PlayerId()) == 1 then
+        while true do
+            Wait(6000)
+            TriggerServerEvent('lsrp_tennis:setBallData', 'desanta', CONST_HIT_NORMAL, vector3(-775.96, 165.34, 67.72), vector3(2.0, -15.0, 5.0))
+        end
+    end
+end)
 
 RegisterNetEvent('lsrp_tennis:setBallData')
 AddEventHandler('lsrp_tennis:setBallData', function(senderServerId, courtName, hitType, pos, velocity)

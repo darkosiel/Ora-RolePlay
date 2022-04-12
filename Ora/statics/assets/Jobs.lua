@@ -999,7 +999,17 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 2030.2197, y = 4980.3559, z = 42.09},
+                Pos = {x = 2030.2197, y = 4980.3559, z = 41.09},
+                Limit = 800,
+                Name = "coffre_fermier"
+            },
+            {
+                Pos = {x = 1982.9498, y = 5029.49121, z = 40.0901},
+                Limit = 500,
+                Name = "coffre_fermier"
+            },
+            {
+                Pos = {x = 1992.7322, y = 5018.8325, z = 40.07768},
                 Limit = 500,
                 Name = "coffre_fermier"
             }
@@ -1256,7 +1266,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Miror - Récolte du café",
@@ -2043,7 +2053,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Wing Stop - Récolte du café",
@@ -9528,7 +9538,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Unicorn - Récolte du café",
