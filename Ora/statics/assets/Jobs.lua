@@ -1000,6 +1000,16 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = 2030.2197, y = 4980.3559, z = 42.09},
+                Limit = 800,
+                Name = "coffre_fermier"
+            },
+            {
+                Pos = {x = 2030.2197, y = 4980.3559, z = 42.09},
+                Limit = 500,
+                Name = "coffre_fermier"
+            },
+            {
+                Pos = {x = 2030.2197, y = 4980.3559, z = 42.09},
                 Limit = 500,
                 Name = "coffre_fermier"
             }
