@@ -1231,7 +1231,7 @@ Jobs = {
         },
         garage = {
             Name = "Garage Mirror",
-            Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98},
+            Pos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
