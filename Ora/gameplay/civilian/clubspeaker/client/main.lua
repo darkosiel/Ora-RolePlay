@@ -309,10 +309,9 @@ AddEventHandler('music:setVolume', function(club, vol)
 end)
 
 RegisterNetEvent('music:getVolumeConnect')
-AddEventHandler('music:getVolumeConnect', function(unicornV, nightV, restaurantV)
+AddEventHandler('music:getVolumeConnect', function(unicornV, nightV)
   speaker.unicorn.volume = unicornV
   speaker.night.volume = nightV
-  speaker.restaurant.volume = restaurantV
 end)
 
 RegisterNetEvent('music:getMusic')
@@ -374,7 +373,6 @@ Citizen.CreateThread(function()
   Wait(3000)
   while true do
     speaker.night.interiorId = GetInteriorAtCoords(speaker.night.soundpos)
-    speaker.restaurant.interiorId = GetInteriorAtCoords(speaker.restaurant.soundpos)
     Wait(10000)
   end
 end)
