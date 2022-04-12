@@ -1,4 +1,4 @@
---[[RacketEntity = nil
+RacketEntity = nil
 
 function EnsureRacketEntity(ped, coords)
     RacketEntity = CreateObject(`prop_tennis_rack_01b`, coords + vector3(0.0, 1.0, 0.0), true, false, false)
@@ -11,4 +11,4 @@ AddEventHandler('onResourceStop', function(resourceName)
     end
 
     DeleteEntity(RacketEntity)
-end)]]
+end)
