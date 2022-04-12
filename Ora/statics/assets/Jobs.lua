@@ -1253,6 +1253,19 @@ Jobs = {
         },
         requiredService = false,
         work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Miror - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
             traitement2 = {
                 --Filet de daurade
                 type = "traitement",
@@ -1306,6 +1319,40 @@ Jobs = {
                 giveitem = "cupcake",
                 RemoveItem = "bread",
                 add = "~p~+ 1  Cupcake"
+            }
+            traitement5 = {
+                --Poudre café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Miror - Traitement Café",
+                Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
+                required = "graincafe1",
+                giveitem = "graincafe2",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Poudre de café"
+            },
+            traitement6 = {
+                --Café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Miror - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe2",
+                giveitem = "cafe",
+                RemoveItem = "graincafe2",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Miror - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cafe",
+                price = math.random(20,30),
+                add = "~p~- 1 Café"
             }
         }
     },
@@ -1999,7 +2046,7 @@ Jobs = {
                 Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
-                blipname = "Unicorn - Récolte du café",
+                blipname = "Wing Stop - Récolte du café",
                 add = "~p~+ 1 Graine de Café",
                 anim = {
                     lib = "anim@mp_snowball",
