@@ -1266,7 +1266,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Miror - Récolte du café",
@@ -2053,7 +2053,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Wing Stop - Récolte du café",
@@ -9538,7 +9538,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Unicorn - Récolte du café",
