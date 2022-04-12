@@ -1006,12 +1006,12 @@ Jobs = {
             {
                 Pos = {x = 1982.9498, y = 5029.49121, z = 40.0901},
                 Limit = 500,
-                Name = "coffre_fermier"
+                Name = "coffre_fermier1"
             },
             {
                 Pos = {x = 1992.7322, y = 5018.8325, z = 40.07768},
                 Limit = 500,
-                Name = "coffre_fermier"
+                Name = "coffre_fermier2"
             }
         },
         requiredService = false,
