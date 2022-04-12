@@ -78,23 +78,3 @@ if Config.SqlKeybinding then
 else
 	print("[dp] ^3Sql Keybinding^7 is turned ^1off^7, if you want to enable /emotebind, import dpkeybinding.sql and set ^3SqlKeybinding = ^2true^7 in config.lua.")
 end
-
-RegisterServerEvent("dp:RemoveKeybind")
-AddEventHandler("dp:RemoveKeybind", function(key)
-	local keybind = {
-		["num4"] = "emote1",
-		["num5"] = "emote2",
-		["num6"] = "emote3",
-		["num7"] = "emote4",
-		["num8"] = "emote5",
-		["num9"] = "emote6"
-	}
-	MySQL.Async.execute("UPDATE dpkeybinds SET "..keybind[key].."=@emote WHERE id=@id", 
-		{
-			["@emote"] = "", 
-			["@id"] = GetPlayerIdentifier(source)
-		},
-	function()
-	end)
-	TriggerClientEvent("dp:ClientKeybindGetOne", source, key, nil)
-end)
