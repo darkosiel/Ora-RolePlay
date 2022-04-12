@@ -4381,6 +4381,11 @@ Jobs = {
                 Name = "coffre"
             },
             {
+                Pos = {x = -1088.27, y = -811.700, z = 5.479},
+                Limit = 1000,
+                Name = "coffre cellules"
+            },
+            {
                 Pos = {x = -1078.51, y = -815.81, z = 10.04},
                 Limit = 5000,
                 Name = "coffre des saisies"

@@ -34,7 +34,7 @@ DoomsdayFacility = {
                 "xm_hatches_terrain_lod",
             },
             Load = function()
-                EnableIpl(DoomsdayFacility.Ipl.Exterior.ipl, true)
+                EnableIpl(DoomsdayFacility.Ipl.Exterior.ipl, false)
             end,
             Remove = function() EnableIpl(DoomsdayFacility.Ipl.Exterior.ipl, false) end
         }

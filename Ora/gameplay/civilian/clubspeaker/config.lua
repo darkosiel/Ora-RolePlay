@@ -23,18 +23,6 @@ function Config()
       play = false,
       pos = vector3(-1603.868, -3012.695, -78.50),
       soundpos = vector3(-1603.868, -3012.695, -78.50)
-    },
-
-    restaurant = {
-      name = "restaurant",
-      label = "Restaurant",
-      interiorId = 121602,
-      playlist = playlist.restaurant,
-      canOpen = false,
-      inclub = false,
-      play = false,
-      pos = vector3(-1297.02, -1036.78, 13.16 - 0.98),
-      soundpos = vector3(-1297.02, -1036.78, 13.16 - 0.98)
     }
   }
 end
