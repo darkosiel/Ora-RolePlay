@@ -273,7 +273,7 @@ RegisterCommand('volume', function(src, args)
     end
 end)
 
-RegisterCommand('destroy', function(src, args)
+RegisterCommand('stop', function(src, args)
     for k, v in pairs(data) do
         if #(GetEntityCoords(PlayerPedId()) - v['Coords']) <= 5.0 then
             TriggerServerEvent('loaf_tv:destroy', k)
