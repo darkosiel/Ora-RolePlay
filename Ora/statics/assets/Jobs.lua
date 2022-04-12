@@ -1226,7 +1226,7 @@ Jobs = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64}
+                spawnpos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98, h = 118.64}
             },
             Blipdata = {
                 Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64},
@@ -2978,7 +2978,21 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -1912.07, y = 2073.65, z = 139.40},
-                Limit = 1000,
+                Limit = 9999,
+                Name = "coffre_distillerie"
+            },{
+                Pos = {x =-1923.7133, y = 2054.2924, z = 140.8313},
+                Limit = 9999,
+                Name = "coffre_distillerie"
+            },
+            {
+                Pos = {x = -1925.3386, y = 2048.0524, z = 140.8313},
+                Limit = 9999,
+                Name = "coffre_distillerie"
+            },
+            {
+                Pos = {x = -1926.5548, y = 2041.9974, z = 140.8313},
+                Limit = 9999,
                 Name = "coffre_distillerie"
             }
         },
