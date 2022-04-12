@@ -1319,7 +1319,7 @@ Jobs = {
                 giveitem = "cupcake",
                 RemoveItem = "bread",
                 add = "~p~+ 1  Cupcake"
-            }
+            },
             traitement5 = {
                 --Poudre café
                 type = "traitement",
