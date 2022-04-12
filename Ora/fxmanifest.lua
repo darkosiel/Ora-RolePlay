@@ -441,8 +441,6 @@ client_script {
     "gameplay/world/cl_anticarjack.lua",
     --"gameplay/civilian/treasurehunt/config.lua",
     --"gameplay/civilian/treasurehunt/client.lua",
-    "gameplay/civilian/tv/client.lua",
-    "gameplay/civilian/tv/config.lua",
     "gameplay/civilian/Carry/cl_carry.lua",
     "gameplay/civilian/gym/gym_cfg.lua",
     "gameplay/civilian/gym/gym_cl.lua",
@@ -466,8 +464,7 @@ server_scripts {
     "gameplay/civilian/casino/server.lua",
     "gameplay/civilian/Carry/sv_carry.lua",
     --"gameplay/civilian/treasurehunt/server.lua",
-    "gameplay/civilian/tv/server.lua",
-    "gameplay/civilian/tv/config.lua",
+
     "gameplay/civilian/shooting_range/server.lua",
     "gameplay/civilian/karting/server.lua",
     "gameplay/illegal/drugs/sv_drugbuyer.lua",
