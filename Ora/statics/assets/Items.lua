@@ -361,12 +361,14 @@ Items = {
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },]]
---[[    red_wine = {
+    red_wine = {
         label = "Bouteille de vin rouge",
         weight = 0.5,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
-    },]]
+        actionCl = "miam:Drink",
+        props = "prop_wine_bot_01",
+        soif = 10,
+        category = "food"
+    },
     high_quality_wine = {
         label = "Bouteille de grand cru",
         weight = 0.5,
