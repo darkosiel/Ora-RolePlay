@@ -10,6 +10,13 @@ function showHelpNotification(message)
     DrawNotification(1, 0)
 end
 
+function showNotification(message)
+    message = message.."."
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(message)
+    DrawNotification(0,1)
+end
+
 local rapport = false
 local accrocher = false
 
