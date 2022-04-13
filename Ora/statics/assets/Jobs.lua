@@ -1088,16 +1088,16 @@ Jobs = {
                 giveitem = "farine",
                 add = "~p~+ 1  Sac de farine"
             },
-            -- traitement3 = {
-            --     type = "traitement",
-            --     workSize = 7.45,
-            --     blipcolor =7,
-            --     blipname = "Traitement de la farine",
-            --     Pos =  {x=2680.62,y=3508.35,z=53.3},
-            --     required = "farine",
-            --     giveitem = "pain",
-            --     add = "~p~+ 1  Pain"
-            -- },
+            traitement3 = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor =7,
+                blipname = "Traitement de la farine",
+                Pos =  {x=2680.62,y=3508.35,z=53.3},
+                required = "farine",
+                giveitem = "pain",
+                add = "~p~+ 1  Pain"
+            },
             vente = {
                 type = "vente",
                 blipcolor = 7,
