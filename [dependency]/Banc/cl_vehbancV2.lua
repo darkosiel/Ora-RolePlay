@@ -10,7 +10,7 @@ function showHelpNotification(message)
     DrawNotification(1, 0)
 end
 
-function showNotification(message)
+function ShowNotification(message)
     message = message.."."
     SetNotificationTextEntry("STRING")
     AddTextComponentString(message)
