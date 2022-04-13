@@ -29,6 +29,14 @@ Citizen.CreateThread(function()
     
     -- FIB lobby: 105.4557, -745.4835, 44.7548
     RequestIpl("FIBlobby")
+
+    -- FIB Roof: 134.33, -745.95, 266.98
+    RequestIpl("atriumglmission")
+
+    -- FIB Fountain 174.184, -667.902, 43.140
+    RemoveIpl('dt1_05_hc_end')
+    RemoveIpl('dt1_05_hc_req')
+    RequestIpl('dt1_05_hc_remove')
         
     -- Billboard: iFruit
     RequestIpl("FruitBB")
@@ -78,7 +86,7 @@ Citizen.CreateThread(function()
     RequestIpl("bh1_47_joshhse_unburnt_lod")
         
     -- Bahama Mamas: -1388.0013, -618.41967, 30.819599
-    --RequestIpl("hei_sm_16_interior_v_bahama_milo_")
+    RequestIpl("hei_sm_16_interior_v_bahama_milo_")
         
     -- Zancudo River (need streamed content): 86.815, 3191.649, 30.463
     RequestIpl("cs3_05_water_grp1")
@@ -90,5 +98,5 @@ Citizen.CreateThread(function()
     RequestIpl("canyonriver01_lod")
 
     -- Ferris wheel
-    --RequestIpl("ferris_finale_anim")
+    RequestIpl("ferris_finale_anim")
 end)
