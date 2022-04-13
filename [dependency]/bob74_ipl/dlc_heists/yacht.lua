@@ -35,15 +35,9 @@ HeistYacht = {
                     while not HasModelLoaded(HeistYacht.Water.modelHash) do
                         Wait(0)
                     end
-                    
-                    exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
-                        function()
-                            local water = CreateObjectNoOffset(HeistYacht.Water.modelHash, -2023.773, -1038.0, 5.40, true, true, false)
-                            SetEntityAsMissionEntity(water, false, false)
-                        end,
-                        HeistYacht.Water.modelHash
-                    )
-
+        
+                    local water = CreateObjectNoOffset(HeistYacht.Water.modelHash, -2023.773, -1038.0, 5.40, false, false, false)
+                    SetEntityAsMissionEntity(water, false, false)
                 end
             else
                 -- Disable

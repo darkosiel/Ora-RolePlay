@@ -5,7 +5,7 @@ end
 Citizen.CreateThread(function()
   local id = GetPlayerServerId(PlayerId())
   while true do
-    exports["Ora"]:TriggerServerCallback("onlinePlayers:list",function(users)
+    TriggerServerCallback("onlinePlayers:list",function(users)
       AddTextEntry('FE_THDR_GTAO', '~y~Ora RP ~w~| ID : ~r~'..id.."~s~ | ~g~".. #users .. "~w~/~g~128 ~w~joueurs ~g~en ligne")
       AddTextEntry('PM_PANE_LEAVE', 'RETOURNER SUR LA LISTE DES SERVEURS')
       AddTextEntry('PM_PANE_QUIT', 'QUITTER')
@@ -21,12 +21,3 @@ Citizen.CreateThread(function()
 end
 end)
 
---[[Citizen.CreateThread(function()
-  local id = GetPlayerServerId(PlayerId())
-  AddTextEntry('FE_THDR_GTAO', '~g~Ora RP ~w~| https://discord.gg/orarp | ~b~ID : '..id)
-  AddTextEntry('PM_PANE_LEAVE', 'Retourner sur la liste des serveurs.')
-  AddTextEntry('PM_PANE_QUIT', 'Quitter')
-  AddTextEntry('PM_SCR_MAP', 'Carte')
-  AddTextEntry('PM_SCR_GAM', 'Prendre l\'avion')
-  AddTextEntry('PM_SCR_INF', 'Logs')
-end)]]

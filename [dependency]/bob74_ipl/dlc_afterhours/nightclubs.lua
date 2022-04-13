@@ -235,9 +235,7 @@ AfterHoursNightclubs = {
             vaultFakeID = "Int01_ba_trophy08",          -- (inside vault) Fake ID
             vaultWeed = "Int01_ba_trophy09",            -- (inside vault) Opened weed bag
             vaultCoke = "Int01_ba_trophy10",            -- (inside vault) Coke doll
-            vaultCash = "Int01_ba_trophy11",            -- (inside vault) Scrunched fake money
-            lightScreen = "Int01_ba_lights_screen",
-            screens = "Int01_ba_Screen",
+            vaultCash = "Int01_ba_trophy11",            -- (inside vault) Scrunched fake money 
             Enable = function (details, state, refresh)
                 SetIplPropState(AfterHoursNightclubs.interiorId, details, state, refresh)
             end
@@ -493,28 +491,17 @@ AfterHoursNightclubs = {
 
         AfterHoursNightclubs.Interior.Security.Set(AfterHoursNightclubs.Interior.Security.on)
         
-        AfterHoursNightclubs.Interior.Turntables.Set(AfterHoursNightclubs.Interior.Turntables.style04)
-        AfterHoursNightclubs.Interior.Lights.Neons.Set(AfterHoursNightclubs.Interior.Lights.Neons.white)
-
-        AfterHoursNightclubs.Interior.Speakers.Set(AfterHoursNightclubs.Interior.Speakers.upgrade)
+        AfterHoursNightclubs.Interior.Turntables.Set(AfterHoursNightclubs.Interior.Turntables.style01)
+        AfterHoursNightclubs.Interior.Lights.Bands.Set(AfterHoursNightclubs.Interior.Lights.Bands.cyan)
 
         AfterHoursNightclubs.Interior.Bar.Enable(true)
 
-        --AfterHoursNightclubs.Interior.Booze.Enable(AfterHoursNightclubs.Interior.Booze, true)
+        AfterHoursNightclubs.Interior.Booze.Enable(AfterHoursNightclubs.Interior.Booze, true)
 
-        --AfterHoursNightclubs.Interior.Trophy.Enable(AfterHoursNightclubs.Interior.Trophy.number1, true, AfterHoursNightclubs.Interior.Trophy.Color.gold)
-
-        AfterHoursNightclubs.Interior.DryIce.Enable(AfterHoursNightclubs.Interior.DryIce, true)
-        
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.dryIce, true)
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.floorTradLights, true)
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.chest, true)
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.vaultAmmunations, true)
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.roofLightsOff, true)
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.lightScreen, true)
-        AfterHoursNightclubs.Interior.Details.Enable(AfterHoursNightclubs.Interior.Details.screens, true)
+        AfterHoursNightclubs.Interior.Trophy.Enable(AfterHoursNightclubs.Interior.Trophy.number1, true, AfterHoursNightclubs.Interior.Trophy.Color.gold)
 
         RefreshInterior(AfterHoursNightclubs.interiorId)
+
 
         -- Exterior IPL
         AfterHoursNightclubs.Mesa.Barrier.Enable(true)
@@ -558,104 +545,3 @@ AfterHoursNightclubs = {
         AfterHoursNightclubs.Vespucci.Posters.Enable(AfterHoursNightclubs.Posters.forSale, false)
     end
 }
-
-local InsidePeds = {
-	["Dancer1"] = {false, 25, "u_f_y_dancerave_01", vec3(-1596.141, -3008.06, -79.25), 201.00},
-	["Dancer2"] = {false, 25, "u_f_y_dancerave_01", vec3(-1598.499, -3015.793, -79.20), 352.0}
-}
-local PedAnims = {
-	["Dancer1"] = {false, "anim@amb@nightclub@dancers@podium_dancers@", "hi_dance_facedj_17_v2_female^2"},
-	["Dancer2"] = {false, "anim@amb@nightclub@dancers@podium_dancers@", "hi_dance_facedj_17_v2_male^5"},
-}
-  
-local function RequestEntModel(model)
-    RequestModel(model)
-    while not HasModelLoaded(model) do Citizen.Wait(0) end
-    SetModelAsNoLongerNeeded(model)
-end
-  
-local function playAnim(ped, animDict, animName)
-    RequestAnimDict(animDict)
-    while not HasAnimDictLoaded(animDict) do Citizen.Wait(0) end
-    TaskPlayAnim(ped, animDict, animName, 1.0, -1.0, -1, 1, 1, false, false, false)
-    RemoveAnimDict(animDict)
-end
-
-local function CreatePeds()
-	for k,v in pairs(InsidePeds) do
-		if not v[1] then
-			RequestEntModel(v[3])
-			v[1] = CreatePed(v[2], v[3], v[4], v[5], false, true)
-			if v[6] ~= nil then
-				TaskStartScenarioAtPosition(v[1], v[6], v[7], v[8], -1, false, true)
-			end
-			DecorSetInt(v[1], "propHack", 74)
-			SetModelAsNoLongerNeeded(v[2])
-		end
-		for i,o in pairs(PedAnims) do
-			if i == k then
-				o[1] = v[1]
-			end
-		end
-		if k == "Dancer1" or k == "Dancer2" then
-			FreezeEntityPosition(v[1], true)
-		end
-		SetPedAsEnemy(v[1], false)
-		SetBlockingOfNonTemporaryEvents(v[1], true)
-		SetPedResetFlag(v[1], 249, true)
-		SetPedConfigFlag(v[1], 185, true)
-		SetPedConfigFlag(v[1], 108, true)
-		SetPedConfigFlag(v[1], 106, true)
-		SetPedCanEvasiveDive(v[1], false)
-		N_0x2f3c3d9f50681de4(v[1], 1)
-		SetPedCanRagdollFromPlayerImpact(v[1], false)
-		SetPedCanRagdoll(v[1], false)
-		SetPedConfigFlag(v[1], 208, true)
-	end
-	for k,v in pairs(PedAnims) do
-		playAnim(v[1], v[2], v[3])
-	end
-end
-
---Render--
-local function CreateNamedRenderTargetForModel(name, model)
-	local handle = 0
-	if not IsNamedRendertargetRegistered(name) then
-		RegisterNamedRendertarget(name, 0)
-	end
-	if not IsNamedRendertargetLinked(model) then
-		LinkNamedRendertarget(model)
-	end
-	if IsNamedRendertargetRegistered(name) then
-		handle = GetNamedRendertargetRenderId(name)
-	end
-
-	return handle
-end
-
---Nightclub Screens--
-Citizen.CreateThread(function ()
-    CreatePeds()
-	local model = GetHashKey("ba_prop_club_screens_01"); -- 1194029334
-	local pos = {x = -1595.578, y = -3011.948, z = -79.00};
-	local entity = GetClosestObjectOfType(pos.x, pos.y, pos.z, 20.0, model, 0, 0, 0)
-	local handle = CreateNamedRenderTargetForModel("club_projector", model)
-
-	RegisterScriptWithAudio(0)
-	SetTvChannel(-1)
-
-	Citizen.InvokeNative(0x9DD5A62390C3B735, 2, "PL_TOU_LSER_GALAXY", 0)
-	SetTvChannel(2)
-	EnableMovieSubtitles(1) 
-
-	while true do
-		SetTvAudioFrontend(0)
-		AttachTvAudioToEntity(entity)
-		SetTextRenderId(handle)
-        Set_2dLayer(4)
-        Citizen.InvokeNative(0x9DD5A62390C3B735, 1)
-        DrawTvChannel(0.5, 0.5, 1.0, 1.0, 0.0, 255, 255, 255, 255)
-		SetTextRenderId(GetDefaultScriptRendertargetRenderId())
-		Citizen.Wait(0)
-	end
-end)

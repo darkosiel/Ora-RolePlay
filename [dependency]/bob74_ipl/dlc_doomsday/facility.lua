@@ -34,7 +34,7 @@ DoomsdayFacility = {
                 "xm_hatches_terrain_lod",
             },
             Load = function()
-                EnableIpl(DoomsdayFacility.Ipl.Exterior.ipl, false)
+                EnableIpl(DoomsdayFacility.Ipl.Exterior.ipl, true)
             end,
             Remove = function() EnableIpl(DoomsdayFacility.Ipl.Exterior.ipl, false) end
         }
@@ -157,15 +157,10 @@ DoomsdayFacility = {
                                 Wait(0)
                             end
                 
-                            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
-                                function()
-                                    local privacyGlass = CreateObjectNoOffset(DoomsdayFacility.PrivacyGlass.controlModelHash, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.x, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.y, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.z, true, true, false)
-                                    SetEntityRotation(privacyGlass, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.x, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.y, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.z, 2, true)
-                                    FreezeEntityPosition(privacyGlass, true)
-                                    SetEntityAsMissionEntity(privacyGlass, false, false)
-                                end,
-                                DoomsdayFacility.PrivacyGlass.controlModelHash
-                            )
+                            local privacyGlass = CreateObjectNoOffset(DoomsdayFacility.PrivacyGlass.controlModelHash, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.x, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.y, DoomsdayFacility.PrivacyGlass.Bedroom.Control.position.z, true, true, false)
+                            SetEntityRotation(privacyGlass, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.x, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.y, DoomsdayFacility.PrivacyGlass.Bedroom.Control.rotation.z, 2, true)
+                            FreezeEntityPosition(privacyGlass, true)
+                            SetEntityAsMissionEntity(privacyGlass, false, false)
                         end
                     else
                         if (handle ~= 0) then
@@ -227,17 +222,11 @@ DoomsdayFacility = {
                             while not HasModelLoaded(DoomsdayFacility.PrivacyGlass.controlModelHash) do
                                 Wait(0)
                             end
-                            
-                            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
-                                function()
-                                    local privacyGlass = CreateObjectNoOffset(DoomsdayFacility.PrivacyGlass.controlModelHash, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.x, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.y, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.z, true, true, false)
-                                    SetEntityRotation(privacyGlass, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.x, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.y, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.z, 2, true)
-                                    FreezeEntityPosition(privacyGlass, true)
-                                    SetEntityAsMissionEntity(privacyGlass, false, false)
-                                end,
-                                DoomsdayFacility.PrivacyGlass.controlModelHash
-                            )
-
+                
+                            local privacyGlass = CreateObjectNoOffset(DoomsdayFacility.PrivacyGlass.controlModelHash, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.x, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.y, DoomsdayFacility.PrivacyGlass.Lounge.Control.position.z, true, true, false)
+                            SetEntityRotation(privacyGlass, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.x, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.y, DoomsdayFacility.PrivacyGlass.Lounge.Control.rotation.z, 2, true)
+                            FreezeEntityPosition(privacyGlass, true)
+                            SetEntityAsMissionEntity(privacyGlass, false, false)
                         end
                     else
                         if (handle ~= 0) then

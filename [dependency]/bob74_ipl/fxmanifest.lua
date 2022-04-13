@@ -1,15 +1,13 @@
 -- Resources:
 -- **********
--- IPL list:			https://wiki.gt-mp.net/index.php/Online_Interiors_and_locations
--- Props list:			https://wiki.gt-mp.net/index.php/InteriorPropList
--- Interior ID list : 	https://wiki.gt-mp.net/index.php/InteriorIDList
+-- IPL list: https://wiki.rage.mp/index.php?title=Interiors_and_Locations
 
-fx_version 'bodacious'
-games { 'gta5' }
+fx_version 'cerulean'
+game 'gta5'
 
 author 'Bob_74'
 description 'Load and customize your map'
-version '2.0.9a'
+version '2.0.13a'
 
 client_scripts {
 	"lib/common.lua"
@@ -25,6 +23,7 @@ client_scripts {
 	, "gtav/franklin.lua"
 	, "gtav/franklin_aunt.lua"
 	, "gtav/graffitis.lua"
+	, "gtav/pillbox_hospital.lua"
 	, "gtav/lester_factory.lua"
 	, "gtav/michael.lua"
 	, "gtav/north_yankton.lua"
@@ -102,7 +101,23 @@ client_scripts {
 
 	-- DLC After Hours
 	, "dlc_afterhours/nightclubs.lua"
+	
+	-- DLC Diamond Casino (Requires forced build 2060 or higher)
+	, "dlc_casino/casino.lua"
+	, "dlc_casino/penthouse.lua"
 
-	-- Cayo Perico map
-	,	"cayo_perico.lua"
+	-- DLC Tuners (Requires forced build 2372 or higher)
+	, "dlc_tuner/garage.lua"
+	, "dlc_tuner/meetup.lua"
+	, "dlc_tuner/methlab.lua"
+	
+	-- DLC The Contract (Requires forced build 2545 or higher)
+	, "dlc_security/studio.lua"
+	, "dlc_security/billboards.lua"
+	, "dlc_security/musicrooftop.lua"
+	, "dlc_security/garage.lua"
+	, "dlc_security/office1.lua"
+	, "dlc_security/office2.lua"
+	, "dlc_security/office3.lua"
+	, "dlc_security/office4.lua"
 }
