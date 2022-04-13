@@ -175,7 +175,7 @@ AddEventHandler(
                 deferrals.done()
             end
         else
-            deferrals.done("Vous n'êtes pas whitelist !")
+            deferrals.done("Vous n'êtes pas whitelist ou Steam n'est pas ouvert.")
         end
     end
 )
