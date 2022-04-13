@@ -126,11 +126,11 @@ Citizen.CreateThread(function()
                         PlaySoundFrontend(-1, "RACE_PLACED", "HUD_AWARDS", true)
                         DoScreenFadeIn(1000) -- Ecran Noir
                         Visual.Subtitle('~h~~r~Mise en place du véhicule sur le banc...', 8100)
-                        DoScreenFadeOut(3000)  -- Ecran Noir
+                       -- DoScreenFadeOut(3000)  -- Ecran Noir
                         Citizen.Wait(3000)
-                        DoScreenFadeIn(1000) -- Ecran Noir
-                        SetEntityCoords(vehicle, 819.9, -918.64, 25.76, true, true, true, false)
-                        SetEntityHeading(vehicle, 178.9)
+                        --DoScreenFadeIn(1000) -- Ecran Noir
+                        SetEntityCoords(vehicle, -325.8390, -113.135, 37.5877, true, true, true, false)
+                        SetEntityHeading(vehicle, 159.14585)
                         OpenLBanc()
                     end  
                     end
