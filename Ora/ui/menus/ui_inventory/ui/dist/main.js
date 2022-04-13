@@ -3871,7 +3871,7 @@
                                     l.createElement(
                                         "p",
                                         { className: "name" },
-                                        "Vêtement" == this.getItemName || "Tenue" == this.getItemName ? this.props.data.label : this.props.data.label
+                                        "Vêtement" == this.getItemName || "Tenue" == this.getItemName ? this.getItemName : this.props.data.label
                                     )
                                 )
                             );
