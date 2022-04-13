@@ -1910,7 +1910,7 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
-    beanbag = {
+    lesslethal = {
         label = "Fusil Beanbag",
         weight = 3.0,
         actionCl = "weapon:Equip",

@@ -226,9 +226,9 @@ AmmunationCrafts["shotgun"] = {
     -- },
     beanbag = {
         title = "Beanbag",
-        item = "beanbag",
+        item = "lesslethal",
         requiredBullet = "Calibre 12",
-        label = "BEANBAG",
+        label = "LESSLETHAL",
         time = 240000,
         required = {
             {name = "metalpiece3", count = 1},
