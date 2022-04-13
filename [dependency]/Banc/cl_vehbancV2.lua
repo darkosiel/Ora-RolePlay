@@ -23,7 +23,6 @@ local accrocher = false
 local open = false
 local LBanc = RageUI.CreateMenu("Banc de puissance", "Choisissez...")
 local LPerf = RageUI.CreateSubMenu(LBanc, "Banc de puissance", "Choisissez...")
-local LAmelioration = RageUI.CreateSubMenu(LBanc, "Banc de puissance", "Choisissez...")
 LBanc.Display.Header = true 
 LBanc:DisplayPageCounter(false)
 LBanc.Closed = function()
@@ -89,12 +88,6 @@ function OpenLBanc()
                             RageUI.CloseAll()
                         end
                     })
-
-                    RageUI.Button('⚙️ Améliorez les performances', "Améliore le moteur -> ~r~ Nv 2 ~n~~s~Améliore les freins -> ~r~ Nv 2 ~n~~s~Améliore la transmission -> ~r~ Nv 2 ~n~~s~Installe un turbo", {RightLabel = "~h~>>"}, true, {
-                        onSelected = function()
-
-                        end
-                    }, LAmelioration) 
                 end
 			end)
             
@@ -111,70 +104,6 @@ function OpenLBanc()
                 RageUI.Button("|  ~r~" ..turbo.. "~s~| Bar |" , nil, {}, true, {onSelected = function()end})
 
 			end)
-
-            RageUI.IsVisible(LAmelioration, function()
-                RageUI.Separator("↓↓ Moteur : ↓↓")                              
-                RageUI.Button('LV1', "Moteur 2", {RightLabel = "~h~>>"}, true, {
-                    onSelected = function()
-                        SetVehicleDoorOpen(GetVehiclePedIsUsing(PlayerPedId()), 4, true, true)
-                        --PlaySoundFrontend(-1, "SultanRS_Upgrade", "JA16_Super_Mod_Garage_Sounds", true)
-                        rapport = false
-                        Wait(1000)
-                        local plyVeh = GetVehiclePedIsUsing(PlayerPedId())
-                        --local vehicleProps = ESX.Game.GetVehicleProperties(plyVeh)
-                        vehicleProps.modEngine = 2
-                        vehicleFct.SetVehicleProperties(_veh,vehicleData)
-                        --ESX.Game.SetVehicleProperties(plyVeh, vehicleProps)
-                        ShowNotification("Le véhicule vient d'etre mit ~r~moteur2~s~. ~n~Passez le au banc pour constater l'amélioration")
-                    end
-                }) 
-                RageUI.Button('LV2', "Moteur 3", {RightLabel = "~h~>>"}, true, {
-                    onSelected = function()
-                        SetVehicleDoorOpen(GetVehiclePedIsUsing(PlayerPedId()), 4, true, true)
-                        --PlaySoundFrontend(-1, "SultanRS_Upgrade", "JA16_Super_Mod_Garage_Sounds", true)
-                        rapport = false
-                        Wait(1000)
-                        local plyVeh = GetVehiclePedIsUsing(PlayerPedId())
-                        --local vehicleProps = ESX.Game.GetVehicleProperties(plyVeh)
-                        vehicleProps.modEngine = 3
-                        vehicleFct.SetVehicleProperties(_veh,vehicleData)
-                       --ESX.Game.SetVehicleProperties(plyVeh, vehicleProps)
-                        ESX.ShowNotification("Le véhicule vient d'etre mit ~r~moteur3~s~. ~n~Passez le au banc pour constater l'amélioration")
-                    end
-                }) 
-                RageUI.Button('LV3', "Moteur 4", {RightLabel = "~h~>>"}, true, {
-                    onSelected = function()
-                        SetVehicleDoorOpen(GetVehiclePedIsUsing(PlayerPedId()), 4, true, true)
-                        --PlaySoundFrontend(-1, "SultanRS_Upgrade", "JA16_Super_Mod_Garage_Sounds", true)
-                        rapport = false
-                        Wait(1000)
-                        local plyVeh = GetVehiclePedIsUsing(PlayerPedId())
-                       -- local vehicleProps = ESX.Game.GetVehicleProperties(plyVeh)
-                        vehicleProps.modEngine = 4
-                        vehicleFct.SetVehicleProperties(_veh,vehicleData)
-                        --ESX.Game.SetVehicleProperties(plyVeh, vehicleProps)
-                        ShowNotification("Le véhicule vient d'etre mit ~r~moteur4~s~. ~n~Passez le au banc pour constater l'amélioration")
-                    end
-                }) 
-
-                RageUI.Separator("↓↓ Turbo : ↓↓")   
-                RageUI.Button('Installer', "", {RightLabel = "~h~>>"}, true, {
-                    onSelected = function()
-                        SetVehicleDoorOpen(GetVehiclePedIsUsing(PlayerPedId()), 4, true, true)
-                        --PlaySoundFrontend(-1, "SultanRS_Upgrade", "JA16_Super_Mod_Garage_Sounds", true)
-                        rapport = false
-                        Wait(1000)
-                        local plyVeh = GetVehiclePedIsUsing(PlayerPedId())
-                        local vehicleProps = ESX.Game.GetVehicleProperties(plyVeh)
-                        vehicleProps.modTurbo = true
-                        vehicleFct.SetVehicleProperties(_veh,vehicleData)
-                        --ESX.Game.SetVehicleProperties(plyVeh, vehicleProps)
-                        ShowNotification("Le véhicule vient d'etre mit ~r~turbo~s~. ~n~Passez le au banc pour constater l'amélioration")
-                    end
-                }) 
-               
-			end)
-            
             Wait(0)
 		end
 	 end)
@@ -189,8 +118,6 @@ Citizen.CreateThread(function()
             local plyCoords = GetEntityCoords(GetPlayerPed(-1), false)
             local dist = Vdist(plyCoords.x, plyCoords.y, plyCoords.z, menu[k].x, menu[k].y, menu[k].z)
             if dist <= 2.0 then
-                --if ESX.PlayerData.job and ESX.PlayerData.job.name == 'JOBNAME' then 
-                
                     local playerPed = PlayerPedId()
                     local vehicle = GetVehiclePedIsIn(playerPed, false)
                     if IsPedInAnyVehicle(playerPed) then
@@ -207,7 +134,6 @@ Citizen.CreateThread(function()
                         OpenLBanc()
                     end  
                     end
-                --end
             end
         end
     end
