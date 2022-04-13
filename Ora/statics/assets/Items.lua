@@ -1991,7 +1991,7 @@ Items = {
         weight = 0.001
     },
     dollar5 = {
-        label = "Billet de 5 dollar",
+        label = "Billet de 5 dollars",
         weight = 0.001
     },
     dollar10 = {
