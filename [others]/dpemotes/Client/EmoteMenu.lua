@@ -24,7 +24,7 @@ else
 end
 
 _menuPool = NativeUI.CreatePool()
-mainMenu = NativeUI.CreateMenu("Ora", "", menuPosition["x"], menuPosition["y"], Menuthing, Menuthing)
+mainMenu = NativeUI.CreateMenu("dp Emotes", "", menuPosition["x"], menuPosition["y"], Menuthing, Menuthing)
 _menuPool:Add(mainMenu)
 
 function ShowNotification(text)
@@ -253,6 +253,25 @@ function AddFaceMenu(menu)
     end
 end
 
+function AddInfoMenu(menu)
+    if not UpdateAvailable then
+      infomenu = _menuPool:AddSubMenu(menu, Config.Languages[lang]['infoupdate'], "(1.7.3)", "", Menuthing, Menuthing)
+    else
+      infomenu = _menuPool:AddSubMenu(menu, Config.Languages[lang]['infoupdateav'], Config.Languages[lang]['infoupdateavtext'], "", Menuthing, Menuthing)
+    end
+    contact = NativeUI.CreateItem(Config.Languages[lang]['suggestions'], Config.Languages[lang]['suggestionsinfo'])
+    u170 = NativeUI.CreateItem("1.7.0", "Added /emotebind [key] [emote]!")
+    u165 = NativeUI.CreateItem("1.6.5", "Updated camera/phone/pee/beg, added makeitrain/dance(glowstick/horse).")
+    u160 = NativeUI.CreateItem("1.6.0", "Added shared emotes /nearby, or in menu, also fixed some emotes!")
+    u151 = NativeUI.CreateItem("1.5.1", "Added /walk and /walks, for walking styles without menu")
+    u150 = NativeUI.CreateItem("1.5.0", "Added Facial Expressions menu (if enabled by server owner)")
+    infomenu:AddItem(contact)
+    infomenu:AddItem(u170)
+    infomenu:AddItem(u165)
+    infomenu:AddItem(u160)
+    infomenu:AddItem(u151)
+    infomenu:AddItem(u150)
+end
 
 function OpenEmoteMenu()
     mainMenu:Visible(not mainMenu:Visible())
@@ -280,7 +299,12 @@ Citizen.CreateThread(function()
     end
 end)
 
-
+RegisterNetEvent("dp:Update")
+AddEventHandler("dp:Update", function(state)
+    UpdateAvailable = state
+    AddInfoMenu(mainMenu)
+    _menuPool:RefreshIndex()
+end)
 
 RegisterNetEvent("dp:RecieveMenu") -- For opening the emote menu from another resource.
 AddEventHandler("dp:RecieveMenu", function()

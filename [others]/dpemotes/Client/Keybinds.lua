@@ -19,7 +19,10 @@ local Initialized = false
 
 Citizen.CreateThread(function()
   while true do
-
+    local isSittingInVehicle = IsPedSittingInAnyVehicle(PlayerPedId())
+    local currentVehicle = nil
+    local isMotorcycle = false
+    
     if NetworkIsPlayerActive(PlayerId()) and not Initialized then
         if not Initialized then
             TriggerServerEvent("dp:ServerKeybindExist")
@@ -27,19 +30,39 @@ Citizen.CreateThread(function()
         end
     end
 
-    if not IsPedSittingInAnyVehicle(PlayerPedId()) then
+    local disableEmotes = false
+    if (isSittingInVehicle) then 
+        currentVehicle = GetVehiclePedIsIn(PlayerPedId(), false)
+        if (GetVehicleClass(currentVehicle) ~= 8) then
+            disableEmotes = true
+        else
+            isMotorcycle = true
+        end
+    end
+
+    if IsPedInParachuteFreeFall(PlayerPedId()) or GetPedParachuteState(PlayerPedId()) == 2 then
+        disableEmotes = true
+    end
+
+    --if not IsPedSittingInAnyVehicle(PlayerPedId()) then
+    if (disableEmotes == false) then
         for k, v in pairs(Config.KeybindKeys) do
             if IsControlJustReleased(0, v) then
-                if k == keyb1 then if emob1 ~= "" then EmoteCommandStart(nil,{emob1, 0}) end end
-                if k == keyb2 then if emob2 ~= "" then EmoteCommandStart(nil,{emob2, 0}) end end
-                if k == keyb3 then if emob3 ~= "" then EmoteCommandStart(nil,{emob3, 0}) end end
-                if k == keyb4 then if emob4 ~= "" then EmoteCommandStart(nil,{emob4, 0}) end end
-                if k == keyb5 then if emob5 ~= "" then EmoteCommandStart(nil,{emob5, 0}) end end
-                if k == keyb6 then if emob6 ~= "" then EmoteCommandStart(nil,{emob6, 0}) end end
-                Wait(1000)
+                if (k == "num5" or k == "num8" and isSittingInVehicle and isMotorcycle) then 
+                    Wait(1000)
+                else
+                    if k == keyb1 then if emob1 ~= "" then EmoteCommandStart(nil,{emob1, 0}) end end
+                    if k == keyb2 then if emob2 ~= "" then EmoteCommandStart(nil,{emob2, 0}) end end
+                    if k == keyb3 then if emob3 ~= "" then EmoteCommandStart(nil,{emob3, 0}) end end
+                    if k == keyb4 then if emob4 ~= "" then EmoteCommandStart(nil,{emob4, 0}) end end
+                    if k == keyb5 then if emob5 ~= "" then EmoteCommandStart(nil,{emob5, 0}) end end
+                    if k == keyb6 then if emob6 ~= "" then EmoteCommandStart(nil,{emob6, 0}) end end
+                    Wait(1000)
+                end
             end
         end
     end
+    --end
     Citizen.Wait(1)
   end
 end)
@@ -61,8 +84,59 @@ end)
 
 RegisterNetEvent("dp:ClientKeybindGetOne")
 AddEventHandler("dp:ClientKeybindGetOne", function(key, e)
-    SimpleNotify(Config.Languages[lang]['bound'].."~y~"..e.."~w~ "..Config.Languages[lang]['to'].." ~g~"..firstToUpper(key).."~w~")
-	if key == "num4" then emob1 = e keyb1 = "num4" elseif key == "num5" then emob2 = e keyb2 = "num5" elseif key == "num6" then emob3 = e keyb3 = "num6" elseif key == "num7" then emob4 = e keyb4 = "num7" elseif key == "num8" then emob5 = e keyb5 = "num8" elseif key == "num9" then emob6 = e keyb6 = "num9" end
+    if e ~= nil then
+        SimpleNotify(Config.Languages[lang]['bound'].."~y~"..e.."~w~ "..Config.Languages[lang]['to'].." ~g~"..firstToUpper(key).."~w~")
+        if key == "num4" then 
+            emob1 = e 
+            keyb1 = "num4" 
+        elseif key == "num5" then 
+            emob2 = e 
+            keyb2 = "num5" 
+        elseif key == "num6" then 
+            emob3 = e 
+            keyb3 = "num6" 
+        elseif key == "num7" then 
+            emob4 = e 
+            keyb4 = "num7" 
+        elseif key == "num8" then 
+            emob5 = e 
+            keyb5 = "num8" 
+        elseif key == "num9" then 
+            emob6 = e 
+            keyb6 = "num9" 
+        end
+    else
+        local keybind = {
+            ["num4"] = emob1,
+            ["num5"] = emob2,
+            ["num6"] = emob3,
+            ["num7"] = emob4,
+            ["num8"] = emob5,
+            ["num9"] = emob6
+        }
+        if keybind[key] ~= nil and keybind[key] ~= "" then
+            SimpleNotify("Emote ~y~"..keybind[key].."~w~ retiré à ~g~"..key)
+            if key == "num4" then 
+                emob1 = e 
+                keyb1 = "num4" 
+            elseif key == "num5" then 
+                emob2 = e 
+                keyb2 = "num5" 
+            elseif key == "num6" then 
+                emob3 = e 
+                keyb3 = "num6" 
+            elseif key == "num7" then 
+                emob4 = e 
+                keyb4 = "num7" 
+            elseif key == "num8" then 
+                emob5 = e 
+                keyb5 = "num8" 
+            elseif key == "num9" then 
+                emob6 = e 
+                keyb6 = "num9" 
+            end
+        end
+    end
 end)
 
 -----------------------------------------------------------------------------------------------------
