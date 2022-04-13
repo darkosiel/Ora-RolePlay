@@ -120,6 +120,7 @@ Citizen.CreateThread(function()
     -- =------------------------ [DLC: Gunrunning] -----------------------=
     -- ====================================================================
     GunrunningBunker.LoadDefault()  -- 892.6384, -3245.8664, -98.2645
+    GunrunningBunker.Ipl.Exterior.Remove()
     GunrunningYacht.LoadDefault()   -- -1363.724, 6734.108, 2.44598
     
     -- ====================================================================
