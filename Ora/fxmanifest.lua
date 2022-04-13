@@ -90,6 +90,7 @@ client_scripts {
     "utils/vendor/server-callback/client.lua",
     "utils/vendor/RageIB/client.lua",
     "utils/cl_zoneName.lua",
+    "utils/crouch.lua",
     "utils/cl_deadLog.lua"
 }
 
@@ -430,7 +431,9 @@ client_script {
     "gameplay/vehicle/cl_coffre.lua",
     "gameplay/vehicle/cl_permis.lua",
     "gameplay/vehicle/garage/garage.lua",
+    "gameplay/vehicle/chopper_cam/heli_client.lua",
     "gameplay/vehicle/lock/*.lua",
+    "gameplay/vehicle/sirene/client.lua",
     "gameplay/vehicle/mecanos/*.lua",
     "gameplay/vehicle/mecanos/tow/cl_tow.lua",
     "gameplay/world/cl_appart.lua",
@@ -461,6 +464,7 @@ server_scripts {
     "gameplay/civilian/casino/server.lua",
     "gameplay/civilian/Carry/sv_carry.lua",
     --"gameplay/civilian/treasurehunt/server.lua",
+
     "gameplay/civilian/shooting_range/server.lua",
     "gameplay/civilian/karting/server.lua",
     "gameplay/illegal/drugs/sv_drugbuyer.lua",
@@ -490,6 +494,8 @@ server_scripts {
     "gameplay/shops/vehicle/sv_vehshop_nord.lua",
     "gameplay/shops/vehicle/sv_motoshop.lua",
     "gameplay/vehicle/garage/sv_garage.lua",
+    "gameplay/vehicle/sirene/server.lua",
+    "gameplay/vehicle/chopper_cam/heli_server.lua",
     "gameplay/vehicle/mecanos/tow/sv_tow.lua",
     "gameplay/world/sv_computer.lua",
     "gameplay/world/sv_banweapon.lua",

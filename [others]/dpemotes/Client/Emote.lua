@@ -53,7 +53,6 @@ Citizen.CreateThread(function()
     if Config.SqlKeybinding then
       TriggerEvent('chat:addSuggestion', '/emotebind', 'Bind an emote', {{ name="key", help="num4, num5, num6, num7. num8, num9. Numpad 4-9!"}, { name="emotename", help="dance, camera, sit or any valid emote."}})
       TriggerEvent('chat:addSuggestion', '/emotebinds', 'Check your currently bound emotes.')
-      TriggerEvent("chat:addSuggestion", "/emoteremove", "Retirer un bind", {{name = "key", help = "num4, num5, num6, num7. num8, num9. Numpad 4-9!"}})
     end
     TriggerEvent('chat:addSuggestion', '/emotemenu', 'Open dpemotes menu (F3) by default.')
     TriggerEvent('chat:addSuggestion', '/emotes', 'List available emotes.')
@@ -66,7 +65,6 @@ RegisterCommand('emote', function(source, args, raw) EmoteCommandStart(source, a
 if Config.SqlKeybinding then
   RegisterCommand('emotebind', function(source, args, raw) EmoteBindStart(source, args, raw) end)
   RegisterCommand('emotebinds', function(source, args, raw) EmoteBindsStart(source, args, raw) end)
-  RegisterCommand("emoteremove", function(source, args, raw) TriggerServerEvent("dp:RemoveKeybind", args[1]) end)
 end
 RegisterCommand('emotemenu', function(source, args, raw) OpenEmoteMenu() end)
 RegisterCommand('emotes', function(source, args, raw) EmotesOnCommand() end)
@@ -258,16 +256,11 @@ function AddPropToPlayer(prop1, bone, off1, off2, off3, rot1, rot2, rot3)
     LoadPropDict(prop1)
   end
 
-  exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
-    function()
-        prop = CreateObject(GetHashKey(prop1), x, y, z+0.2,  true,  true, true)
-        AttachEntityToEntity(prop, Player, GetPedBoneIndex(Player, bone), off1, off2, off3, rot1, rot2, rot3, true, true, false, true, 1, true)
-        table.insert(PlayerProps, prop)
-        PlayerHasProp = true
-        SetModelAsNoLongerNeeded(prop1)
-    end,
-    GetHashKey(prop1)
-  )
+  prop = CreateObject(GetHashKey(prop1), x, y, z+0.2,  true,  true, true)
+  AttachEntityToEntity(prop, Player, GetPedBoneIndex(Player, bone), off1, off2, off3, rot1, rot2, rot3, true, true, false, true, 1, true)
+  table.insert(PlayerProps, prop)
+  PlayerHasProp = true
+  SetModelAsNoLongerNeeded(prop1)
 end
 
 -----------------------------------------------------------------------------------------------------
@@ -369,9 +362,9 @@ function OnEmotePlay(EmoteName)
     MovementType = 0
   end
 
-  --[[ if InVehicle == 1 then
+  if InVehicle == 1 then
     MovementType = 51
-  end ]]
+  end
 
   if EmoteName.AnimationOptions then
     if EmoteName.AnimationOptions.EmoteDuration == nil then 

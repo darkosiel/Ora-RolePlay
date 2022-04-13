@@ -170,7 +170,7 @@
           "title": "Envoyer un message",
           "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "restaurent"
+            "number": "restaurant"
           }
         }
       ]

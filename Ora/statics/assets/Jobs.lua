@@ -999,9 +999,19 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 2030.2197, y = 4980.3559, z = 42.09},
-                Limit = 500,
+                Pos = {x = 2030.2197, y = 4980.3559, z = 41.09},
+                Limit = 800,
                 Name = "coffre_fermier"
+            },
+            {
+                Pos = {x = 1982.9498, y = 5029.49121, z = 40.0901},
+                Limit = 500,
+                Name = "coffre_fermier1"
+            },
+            {
+                Pos = {x = 1992.7322, y = 5018.8325, z = 40.07768},
+                Limit = 500,
+                Name = "coffre_fermier2"
             }
         },
         requiredService = false,
@@ -1221,12 +1231,12 @@ Jobs = {
         },
         garage = {
             Name = "Garage Mirror",
-            Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98},
+            Pos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64}
+                spawnpos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98, h = 118.64}
             },
             Blipdata = {
                 Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64},
@@ -1253,6 +1263,19 @@ Jobs = {
         },
         requiredService = false,
         work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Miror - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
             traitement2 = {
                 --Filet de daurade
                 type = "traitement",
@@ -1306,6 +1329,40 @@ Jobs = {
                 giveitem = "cupcake",
                 RemoveItem = "bread",
                 add = "~p~+ 1  Cupcake"
+            },
+            traitement5 = {
+                --Poudre café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Miror - Traitement Café",
+                Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
+                required = "graincafe1",
+                giveitem = "graincafe2",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Poudre de café"
+            },
+            traitement6 = {
+                --Café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Miror - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe2",
+                giveitem = "cafe",
+                RemoveItem = "graincafe2",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Miror - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cafe",
+                price = math.random(20,30),
+                add = "~p~- 1 Café"
             }
         }
     },
@@ -1986,7 +2043,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1246.8457, y = -352.2093, z = 69.1846 - 0.98},
+                Pos = {x = 1240.3414, y = -350.66921, z = 69.1846 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
@@ -1995,11 +2052,11 @@ Jobs = {
         work = {
             recolte = {
                 type = "recolte",
-                workSize = 1.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
-                blipname = "Unicorn - Récolte du café",
+                blipname = "Wing Stop - Récolte du café",
                 add = "~p~+ 1 Graine de Café",
                 anim = {
                     lib = "anim@mp_snowball",
@@ -2009,7 +2066,7 @@ Jobs = {
             traitement2 = {
                 --frites
                 type = "traitement",
-                workSize = 1.0,
+                workSize = 1.20,
                 blipcolor = 5,
                 blipname = "Friteuse",
                 Pos = {x = 1249.9007, y = -352.7587, z = 69.1846},
@@ -2022,7 +2079,7 @@ Jobs = {
             traitement = {
                 --milkshack
                 type = "traitement",
-                workSize = 1.0,
+                workSize = 1.20,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
                 Pos = {x = 1251.9968, y = -358.9071, z = 69.1846},
@@ -2037,7 +2094,7 @@ Jobs = {
             traitement3 = {
                 --hamburger
                 type = "traitement",
-                workSize = 1.0,
+                workSize = 1.20,
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
@@ -2056,7 +2113,7 @@ Jobs = {
             traitement5 = {
                 --hamburger
                 type = "traitement",
-                workSize = 1.0,
+                workSize = 1.20,
                 blipcolor = 8,
                 noFarm = true,
                 blipname = "Grill Burger Healthy",
@@ -2075,7 +2132,7 @@ Jobs = {
             traitement6 = {
                 --Poudre café
                 type = "traitement",
-                workSize = 1.0,
+                workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
@@ -2087,7 +2144,7 @@ Jobs = {
             traitement7 = {
                 --Café
                 type = "traitement",
-                workSize = 1.0,
+                workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
@@ -2099,7 +2156,7 @@ Jobs = {
             vente = {
                 type = "vente",
                 blipcolor = 7,
-                workSize = 1.0,
+                workSize = 7.45,
                 blipname = "Wing Stop - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",
@@ -2978,8 +3035,22 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -1912.07, y = 2073.65, z = 139.40},
-                Limit = 1000,
+                Limit = 9999,
                 Name = "coffre_distillerie"
+            },{
+                Pos = {x =-1923.7133, y = 2054.2924, z = 140.8313},
+                Limit = 9999,
+                Name = "coffre_distillerie1"
+            },
+            {
+                Pos = {x = -1925.3386, y = 2048.0524, z = 140.8313},
+                Limit = 9999,
+                Name = "coffre_distillerie2"
+            },
+            {
+                Pos = {x = -1926.5548, y = 2041.9974, z = 140.8313},
+                Limit = 9999,
+                Name = "coffre_distillerie3"
             }
         },
         requiredService = false,
@@ -6842,7 +6913,7 @@ Jobs = {
                             ["tshirt_1"] = 219,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 444,
-                            ["torso_2"] = 0,
+                            ["torso_2"] = 1,
                             ["decals_1"] = 137,
                             ["decals_2"] = 0,
                             ["arms"] = 4,
@@ -6886,8 +6957,8 @@ Jobs = {
                             ["tshirt_1"] = 219,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 443,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 135,
+                            ["torso_2"] = 1,
+                            ["decals_1"] = 137,
                             ["decals_2"] = 0,
                             ["arms"] = 11,
                             ["pants_1"] = 10,
@@ -6974,7 +7045,7 @@ Jobs = {
                             ["tshirt_1"] = 219,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 444,
-                            ["torso_2"] = 0,
+                            ["torso_2"] = 1,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
                             ["arms"] = 4,
@@ -7018,7 +7089,7 @@ Jobs = {
                             ["tshirt_1"] = 219,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 443,
-                            ["torso_2"] = 0,
+                            ["torso_2"] = 1,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
                             ["arms"] = 11,
@@ -7282,7 +7353,7 @@ Jobs = {
                             ["tshirt_1"] = 228,
                             ["tshirt_2"] = 0,
                             ["torso_1"] = 443,
-                            ["torso_2"] = 1,
+                            ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
                             ["arms"] = 11,
@@ -7342,7 +7413,7 @@ Jobs = {
                             ["ears_2"] = -1,
                             ["bags_1"] = 0,
                             ["bags_2"] = 0,
-                            ["mask_1"] = 28,
+                            ["mask_1"] = 195,
                             ["mask_2"] = 0
                         },
                         female = {
@@ -7390,7 +7461,7 @@ Jobs = {
                             ["ears_2"] = -1,
                             ["bags_1"] = 0,
                             ["bags_2"] = 0,
-                            ["mask_1"] = 28,
+                            ["mask_1"] = 195,
                             ["mask_2"] = 0
                         },
                         female = {
@@ -7438,7 +7509,7 @@ Jobs = {
                             ["ears_2"] = -1,
                             ["bags_1"] = 0,
                             ["bags_2"] = 0,
-                            ["mask_1"] = 28,
+                            ["mask_1"] = 195,
                             ["mask_2"] = 0
                         },
                         female = {
@@ -7486,7 +7557,7 @@ Jobs = {
                             ["ears_2"] = -1,
                             ["bags_1"] = 0,
                             ["bags_2"] = 0,
-                            ["mask_1"] = 28,
+                            ["mask_1"] = 195,
                             ["mask_2"] = 0
                         },
                         female = {
@@ -7534,7 +7605,7 @@ Jobs = {
                             ["ears_2"] = -1,
                             ["bags_1"] = 0,
                             ["bags_2"] = 0,
-                            ["mask_1"] = 28,
+                            ["mask_1"] = 195,
                             ["mask_2"] = 0
                         },
                         female = {
@@ -7576,7 +7647,7 @@ Jobs = {
                             ["shoes_2"] = 0,
                             ["helmet_1"] = -1,
                             ["helmet_2"] = 0,
-                            ["chain_1"] = 0,
+                            ["chain_1"] = 169,
                             ["chain_2"] = 0,
                             ["ears_1"] = -1,
                             ["ears_2"] = -1,
@@ -7665,12 +7736,12 @@ Jobs = {
                             ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 0,
-                            ["pants_1"] = 101,
+                            ["arms"] = 86,
+                            ["pants_1"] = 150,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 51,
                             ["shoes_2"] = 0,
-                            ["helmet_1"] = 137,
+                            ["helmet_1"] = 185,
                             ["helmet_2"] = 0,
                             ["chain_1"] = 0,
                             ["chain_2"] = 0,
@@ -7705,150 +7776,150 @@ Jobs = {
                             ["mask_2"] = 0
                         }
                     },
-                    -- ["Tenue Fire Investigator"] = {
-                    --     male = {
-                    --         ["tshirt_1"] = 28,
-                    --         ["tshirt_2"] = 3,
-                    --         ["torso_1"] = 307,
-                    --         ["torso_2"] = 21,
-                    --         ["decals_1"] = 0,
-                    --         ["decals_2"] = 0,
-                    --         ["arms"] = 0,
-                    --         ["pants_1"] = 86,
-                    --         ["pants_2"] = 6,
-                    --         ["shoes_1"] = 51,
-                    --         ["shoes_2"] = 0,
-                    --         ["helmet_1"] = 138,
-                    --         ["helmet_2"] = 0,
-                    --         ["chain_1"] = 0,
-                    --         ["chain_2"] = 0,
-                    --         ["ears_1"] = -1,
-                    --         ["ears_2"] = -1,
-                    --         ["bags_1"] = 58,
-                    --         ["bags_2"] = 9,
-                    --         ["mask_1"] = 0,
-                    --         ["mask_2"] = 0
-                    --     },
-                    --     female = {
-                    --         ["tshirt_1"] = 23,
-                    --         ["tshirt_2"] = 3,
-                    --         ["torso_1"] = 318,
-                    --         ["torso_2"] = 21,
-                    --         ["decals_1"] = 0,
-                    --         ["decals_2"] = 0,
-                    --         ["arms"] = 104,
-                    --         ["pants_1"] = 90,
-                    --         ["pants_2"] = 6,
-                    --         ["shoes_1"] = 25,
-                    --         ["shoes_2"] = 0,
-                    --         ["helmet_1"] = 137,
-                    --         ["helmet_2"] = 0,
-                    --         ["chain_1"] = 0,
-                    --         ["chain_2"] = 0,
-                    --         ["ears_1"] = 0,
-                    --         ["ears_2"] = 0,
-                    --         ["bags_1"] = 58,
-                    --         ["bags_2"] = 9,
-                    --         ["mask_1"] = 0,
-                    --         ["mask_2"] = 0
-                    --     }
-                    -- },
-                    -- ["Tenue Air Operations"] = {
-                    --     male = {
-                    --         ["tshirt_1"] = 15,
-                    --         ["tshirt_2"] = 0,
-                    --         ["torso_1"] = 108,
-                    --         ["torso_2"] = 5,
-                    --         ["decals_1"] = 0,
-                    --         ["decals_2"] = 0,
-                    --         ["arms"] = 4,
-                    --         ["pants_1"] = 64,
-                    --         ["pants_2"] = 2,
-                    --         ["shoes_1"] = 25,
-                    --         ["shoes_2"] = 0,
-                    --         ["helmet_1"] = 78,
-                    --         ["helmet_2"] = 0,
-                    --         ["chain_1"] = 0,
-                    --         ["chain_2"] = 0,
-                    --         ["ears_1"] = -1,
-                    --         ["ears_2"] = -1,
-                    --         ["bags_1"] = 0,
-                    --         ["bags_2"] = 0,
-                    --         ["mask_1"] = 0,
-                    --         ["mask_2"] = 0
-                    --     },
-                    --     female = {
-                    --         ["tshirt_1"] = 14,
-                    --         ["tshirt_2"] = 0,
-                    --         ["torso_1"] = 99,
-                    --         ["torso_2"] = 5,
-                    --         ["decals_1"] = 0,
-                    --         ["decals_2"] = 0,
-                    --         ["arms"] = 3,
-                    --         ["pants_1"] = 66,
-                    --         ["pants_2"] = 2,
-                    --         ["shoes_1"] = 24,
-                    --         ["shoes_2"] = 0,
-                    --         ["helmet_1"] = 78,
-                    --         ["helmet_2"] = 0,
-                    --         ["chain_1"] = 0,
-                    --         ["chain_2"] = 0,
-                    --         ["ears_1"] = 0,
-                    --         ["ears_2"] = 0,
-                    --         ["bags_1"] = 0,
-                    --         ["bags_2"] = 0,
-                    --         ["mask_1"] = 0,
-                    --         ["mask_2"] = 0
-                    --     }
-                    -- },
-                    -- ["Tenue t-shirt"] = {
-                    --     male = {
-                    --         ["tshirt_1"] = 87,
-                    --         ["tshirt_2"] = 0,
-                    --         ["torso_1"] = 73,
-                    --         ["torso_2"] = 14,
-                    --         ["decals_1"] = 0,
-                    --         ["decals_2"] = 0,
-                    --         ["arms"] = 85,
-                    --         ["pants_1"] = 101,
-                    --         ["pants_2"] = 0,
-                    --         ["shoes_1"] = 51,
-                    --         ["shoes_2"] = 0,
-                    --         ["helmet_1"] = -1,
-                    --         ["helmet_2"] = 0,
-                    --         ["chain_1"] = 0,
-                    --         ["chain_2"] = 0,
-                    --         ["ears_1"] = -1,
-                    --         ["ears_2"] = -1,
-                    --         ["bags_1"] = 0,
-                    --         ["bags_2"] = 0,
-                    --         ["mask_1"] = 0,
-                    --         ["mask_2"] = 0
-                    --     },
-                    --     female = {
-                    --         ["tshirt_1"] = 6,
-                    --         ["tshirt_2"] = 0,
-                    --         ["torso_1"] = 224,
-                    --         ["torso_2"] = 21,
-                    --         ["decals_1"] = 0,
-                    --         ["decals_2"] = 0,
-                    --         ["arms"] = 109,
-                    --         ["pants_1"] = 105,
-                    --         ["pants_2"] = 0,
-                    --         ["shoes_1"] = 52,
-                    --         ["shoes_2"] = 0,
-                    --         ["helmet_1"] = -1,
-                    --         ["helmet_2"] = 0,
-                    --         ["chain_1"] = 0,
-                    --         ["chain_2"] = 0,
-                    --         ["ears_1"] = 0,
-                    --         ["ears_2"] = 0,
-                    --         ["bags_1"] = 0,
-                    --         ["bags_2"] = 0,
-                    --         ["mask_1"] = 0,
-                    --         ["mask_2"] = 0
-                    --     }
-                    -- },
+                    ["Tenue Fire Investigator"] = {
+                        male = {
+                            ["tshirt_1"] = 178,
+                            ["tshirt_2"] = 3,
+                            ["torso_1"] = 431,
+                            ["torso_2"] = 21,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 88,
+                            ["pants_1"] = 47,
+                            ["pants_2"] = 0,
+                            ["shoes_1"] = 51,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = 185,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 0,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = -1,
+                            ["ears_2"] = -1,
+                            ["bags_1"] = 144,
+                            ["bags_2"] = 9,
+                            ["mask_1"] = 0,
+                            ["mask_2"] = 0
+                        },
+                        female = {
+                            ["tshirt_1"] = 23,
+                            ["tshirt_2"] = 3,
+                            ["torso_1"] = 318,
+                            ["torso_2"] = 21,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 104,
+                            ["pants_1"] = 90,
+                            ["pants_2"] = 6,
+                            ["shoes_1"] = 25,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = 137,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 0,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = 0,
+                            ["ears_2"] = 0,
+                            ["bags_1"] = 58,
+                            ["bags_2"] = 9,
+                            ["mask_1"] = 0,
+                            ["mask_2"] = 0
+                        }
+                    },
+                    ["Tenue Air Operations"] = {
+                        male = {
+                            ["tshirt_1"] = 15,
+                            ["tshirt_2"] = 0,
+                            ["torso_1"] = 108,
+                            ["torso_2"] = 5,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 4,
+                            ["pants_1"] = 64,
+                            ["pants_2"] = 2,
+                            ["shoes_1"] = 25,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = 78,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 0,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = -1,
+                            ["ears_2"] = -1,
+                            ["bags_1"] = 0,
+                            ["bags_2"] = 0,
+                            ["mask_1"] = 0,
+                            ["mask_2"] = 0
+                        },
+                        female = {
+                            ["tshirt_1"] = 14,
+                            ["tshirt_2"] = 0,
+                            ["torso_1"] = 99,
+                            ["torso_2"] = 5,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 3,
+                            ["pants_1"] = 66,
+                            ["pants_2"] = 2,
+                            ["shoes_1"] = 24,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = 78,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 0,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = 0,
+                            ["ears_2"] = 0,
+                            ["bags_1"] = 0,
+                            ["bags_2"] = 0,
+                            ["mask_1"] = 0,
+                            ["mask_2"] = 0
+                        }
+                    },
+                    ["Tenue t-shirt"] = {
+                        male = {
+                            ["tshirt_1"] = 85,
+                            ["tshirt_2"] = 0,
+                            ["torso_1"] = 442,
+                            ["torso_2"] = 14,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 85,
+                            ["pants_1"] = 147,
+                            ["pants_2"] = 0,
+                            ["shoes_1"] = 97,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = -1,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 0,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = -1,
+                            ["ears_2"] = -1,
+                            ["bags_1"] = 0,
+                            ["bags_2"] = 0,
+                            ["mask_1"] = 0,
+                            ["mask_2"] = 0
+                        },
+                        female = {
+                            ["tshirt_1"] = 6,
+                            ["tshirt_2"] = 0,
+                            ["torso_1"] = 224,
+                            ["torso_2"] = 21,
+                            ["decals_1"] = 0,
+                            ["decals_2"] = 0,
+                            ["arms"] = 109,
+                            ["pants_1"] = 105,
+                            ["pants_2"] = 0,
+                            ["shoes_1"] = 52,
+                            ["shoes_2"] = 0,
+                            ["helmet_1"] = -1,
+                            ["helmet_2"] = 0,
+                            ["chain_1"] = 0,
+                            ["chain_2"] = 0,
+                            ["ears_1"] = 0,
+                            ["ears_2"] = 0,
+                            ["bags_1"] = 0,
+                            ["bags_2"] = 0,
+                            ["mask_1"] = 0,
+                            ["mask_2"] = 0
+                        }
+                    },
                     ["Tenue USAR"] = {
                         male = {
                             ["tshirt_1"] = 15,
@@ -7868,7 +7939,7 @@ Jobs = {
                             ["chain_2"] = 0,
                             ["ears_1"] = -1,
                             ["ears_2"] = -1,
-                            ["bags_1"] = 0,
+                            ["bags_1"] = 106,
                             ["bags_2"] = 0,
                             ["mask_1"] = 0,
                             ["mask_2"] = 0
@@ -9467,7 +9538,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 805.75, y = 2177.82, z = 52.27 - 0.98},
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
                 blipname = "Unicorn - Récolte du café",

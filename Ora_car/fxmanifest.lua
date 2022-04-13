@@ -19,9 +19,4 @@ files {
 }
 client_script "cl_car.lua"
 client_script "speedo.lua"
-client_script "drift.lua"
-client_script "chopper_cam/heli_client.lua"
-server_script "chopper_cam/heli_server.lua"
 
-client_script "sirene/client.lua"
-server_script "sirene/server.lua"
