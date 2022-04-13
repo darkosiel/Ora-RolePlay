@@ -1487,75 +1487,7 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
-
-                            RageUI.List(
-                                "Téléportation",
-                                {
-                                    "Sur le joueur",
-                                    "Sur vous",
-                                    "Sur le marqueur",
-                                    "Location - Los Santos",
-                                    "Location - Sandy Shore"
-                                },
-                                indexTP,
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected, Index)
-                                    indexTP = Index
-                                    if Selected then
-                                        if Index == 1 then
-											ShowNotification(string.format('~g~Vous avez été TP à ~s~%s', CurrentPlayer.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp2",
-                                                CurrentPlayer.serverId,
-                                                GetPlayerServerId(PlayerId())
-                                            )
-                                        elseif Index == 2 then
-											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à vous', CurrentPlayer.name))
-                                            TriggerPlayerEvent("admin:tp", CurrentPlayer.serverId, LocalPlayer().Pos)
-                                        elseif Index == 3 then
-                                            local blipCoord = GetBlipCoords(GetFirstBlipInfoId(8))
-                                            local foundGround, zCoords, zPos = false, -500.0, 0.0
-                                            while not foundGround do
-                                                zCoords = zCoords + 10.0
-                                                RequestCollisionAtCoord(blipCoord.x, blipCoord.y, zCoords)
-                                                foundGround, zPos =
-                                                    GetGroundZFor_3dCoord(blipCoord.x, blipCoord.y, zCoords)
-                                                if not foundGround and zCoords >= 2000.0 then
-                                                    foundGround = true
-                                                end
-                                                Wait(0)
-                                            end
-                                            if blipCoord ~= nil and blipCoord ~= vector3(0, 0, 0) then
-												ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à la position du marqueur', CurrentPlayer.name))
-                                                TriggerPlayerEvent(
-                                                    "admin:tp",
-                                                    CurrentPlayer.serverId,
-                                                    vector3(blipCoord.x, blipCoord.y, zPos)
-                                                )
-                                            else
-                                                ShowNotification("~r~Aucun marqueur")
-                                            end
-                                        elseif Index == 4 then
-											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Los Santos', CurrentPlayer.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp",
-                                                CurrentPlayer.serverId,
-                                                vector3(-274.11, -904.78, 31.22)
-                                            )
-                                        elseif Index == 5 then
-                                            ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Sandy Shores', CurrentPlayer.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp",
-                                                CurrentPlayer.serverId,
-                                                vector3(1709.4, 3595.95, 35.42)
-                                            )
-                                        end
-                                    end
-                                end
-                            )
-
+                            
                             RageUI.Button(
                                 "Changer en Ped",
                                 nil,
