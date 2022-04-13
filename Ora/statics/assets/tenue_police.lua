@@ -2,7 +2,7 @@
 TenueLSPD = {
     ['Rookie - Cravate'] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = -1,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -66,7 +66,7 @@ TenueLSPD = {
     },
     ['Officier - Longues manches'] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -98,7 +98,7 @@ TenueLSPD = {
     },
     ['Officier - Manches courtes'] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 0,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 11,
@@ -226,7 +226,7 @@ TenueLSPD = {
     },
     ["Officier III - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -290,7 +290,7 @@ TenueLSPD = {
     },
     ["Officier III - longues manches"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -322,7 +322,7 @@ TenueLSPD = {
     },
     ["Officier III - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 0,
             ['decals_1'] = 125,   ['decals_2'] = 0,
             ['arms'] = 11,
@@ -450,7 +450,7 @@ TenueLSPD = {
     },
     ["Senior Lead Officer - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -514,7 +514,7 @@ TenueLSPD = {
     },
     ["Senior Lead Officer - longues manches"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -546,7 +546,7 @@ TenueLSPD = {
     },
     ["Senior Lead Officer - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 0,
             ['decals_1'] = 125,   ['decals_2'] = 1,
             ['arms'] = 11,
@@ -1154,7 +1154,7 @@ TenueLSPD = {
     },
     ["Sergent - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 2,
             ['arms'] = 14,
@@ -1218,7 +1218,7 @@ TenueLSPD = {
     },
     ["Sergent - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 2,
             ['arms'] = 14,
@@ -1250,7 +1250,7 @@ TenueLSPD = {
     },
     ["Sergent - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 0,
             ['decals_1'] = 125,   ['decals_2'] = 2,
             ['arms'] = 11,
@@ -1378,7 +1378,7 @@ TenueLSPD = {
     },
     ["Sergent II - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 3,
             ['arms'] = 14,
@@ -1442,7 +1442,7 @@ TenueLSPD = {
     },
     ["Sergent II - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = 155,   ['decals_2'] = 3,
             ['arms'] = 14,
@@ -1474,7 +1474,7 @@ TenueLSPD = {
     },
     ["Sergent II - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 0,
             ['decals_1'] = 125,   ['decals_2'] = 3,
             ['arms'] = 11,
@@ -1602,7 +1602,7 @@ TenueLSPD = {
     },
     ["Lieutenant - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -1666,7 +1666,7 @@ TenueLSPD = {
     },
     ["Lieutenant - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -1698,7 +1698,7 @@ TenueLSPD = {
     },
     ["Lieutenant - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 0,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 11,
@@ -1826,7 +1826,7 @@ TenueLSPD = {
     },
     ["Capitaine - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 0,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -1890,7 +1890,7 @@ TenueLSPD = {
     },
     ["Capitaine - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 0,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -1922,7 +1922,7 @@ TenueLSPD = {
     },
     ["Capitaine - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 11,
@@ -2050,7 +2050,7 @@ TenueLSPD = {
     },
     ['Trafic division Officier - Longues manches'] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -2082,7 +2082,7 @@ TenueLSPD = {
     },
     ['Trafic division Officier - Manches courtes'] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 11,
@@ -2114,7 +2114,7 @@ TenueLSPD = {
     },
     ["Trafic division Officier III - longues manches"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -2146,7 +2146,7 @@ TenueLSPD = {
     },
     ["Trafic division Officier III - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 0,
             ['arms'] = 11,
@@ -2178,7 +2178,7 @@ TenueLSPD = {
     },
     ["Trafic division SLO - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -2210,7 +2210,7 @@ TenueLSPD = {
     },
     ["Trafic division SLO - longues manches"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -2242,7 +2242,7 @@ TenueLSPD = {
     },
     ["Trafic division SLO - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 1,
             ['arms'] = 11,
@@ -2274,7 +2274,7 @@ TenueLSPD = {
     },
     ["Trafic division Sergent - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 2,
             ['arms'] = 14,
@@ -2306,7 +2306,7 @@ TenueLSPD = {
     },
     ["Trafic division Sergent - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 2,
             ['arms'] = 14,
@@ -2338,7 +2338,7 @@ TenueLSPD = {
     },
     ["Trafic division Sergent - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 2,
             ['arms'] = 11,
@@ -2370,7 +2370,7 @@ TenueLSPD = {
     },
     ["Trafic division Sergent II - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 3,
             ['arms'] = 14,
@@ -2402,7 +2402,7 @@ TenueLSPD = {
     },
     ["Trafic division Sergent II - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 3,
             ['arms'] = 14,
@@ -2434,7 +2434,7 @@ TenueLSPD = {
     },
     ["Trafic division Sergent II - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 3,
             ['arms'] = 11,
@@ -2466,7 +2466,7 @@ TenueLSPD = {
     },
     ["Trafic division Lieutenant - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -2498,7 +2498,7 @@ TenueLSPD = {
     },
     ["Trafic division Lieutenant - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 14,
@@ -2530,7 +2530,7 @@ TenueLSPD = {
     },
     ["Trafic division Lieutenant - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 11,
@@ -2562,7 +2562,7 @@ TenueLSPD = {
     },
     ["Trafic division Capitaine - Cravate"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 437,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -2594,7 +2594,7 @@ TenueLSPD = {
     },
     ["Trafic division Capitaine - Manches longues"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 435,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 14,
@@ -2626,7 +2626,7 @@ TenueLSPD = {
     },
     ["Trafic division Capitaine - Manches courtes"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 434,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 11,
@@ -2690,7 +2690,7 @@ TenueLSPD = {
     },
     ["Metro officier II"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 26,
@@ -2722,7 +2722,7 @@ TenueLSPD = {
     },
     ["Metro officier III"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 0,
             ['arms'] = 26,
@@ -2754,7 +2754,7 @@ TenueLSPD = {
     },
     ["Metro Senior Lead Officer"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 1,
             ['arms'] = 26,
@@ -2786,7 +2786,7 @@ TenueLSPD = {
     },
     ["Metro Sergent I"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 2,
             ['arms'] = 26,
@@ -2818,7 +2818,7 @@ TenueLSPD = {
     },
     ["Metro Sergent II"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = 125,   ['decals_2'] = 3,
             ['arms'] = 26,
@@ -2850,7 +2850,7 @@ TenueLSPD = {
     },
     ["Metro Lieutenant"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 26,
@@ -2882,7 +2882,7 @@ TenueLSPD = {
     },
     ["Metro Capitaine"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 388,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 26,
@@ -2914,7 +2914,7 @@ TenueLSPD = {
     },
     ["Metro officier II longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 24,
@@ -2946,7 +2946,7 @@ TenueLSPD = {
     },
     ["Metro officier III longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 0,
             ['arms'] = 22,
@@ -2978,7 +2978,7 @@ TenueLSPD = {
     },
     ["Metro Senior Lead Officer longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 1,
             ['arms'] = 22,
@@ -3010,7 +3010,7 @@ TenueLSPD = {
     },
     ["Metro Sergent I longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 2,
             ['arms'] = 22,
@@ -3042,7 +3042,7 @@ TenueLSPD = {
     },
     ["Metro Sergent II longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = 155,   ['decals_2'] = 3,
             ['arms'] = 22,
@@ -3074,7 +3074,7 @@ TenueLSPD = {
     },
     ["Metro Lieutenant longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 0,
             ['arms'] = 22,
@@ -3106,7 +3106,7 @@ TenueLSPD = {
     },
     ["Metro Capitaine longue"] = {
         male = {
-            ['tshirt_1'] = 256,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 210,  ['tshirt_2'] = 0,
             ['torso_1'] = 387,   ['torso_2'] = 1,
             ['decals_1'] = 146,   ['decals_2'] = 1,
             ['arms'] = 22,
