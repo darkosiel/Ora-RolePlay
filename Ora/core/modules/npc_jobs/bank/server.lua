@@ -284,7 +284,7 @@ AddEventHandler(
               current_ratio = Ora.NpcJobs.Bank:GetCardRatioById(2),
               code = cardCode
           },
-          label = "Carte bancaire " + tostring(bankAccountId)
+          label = "Carte bancaire " .. tostring(bankAccountId)
       }
 
       TriggerClientEvent("Ora::CE::Inventory:AddItems", _source, {items})
