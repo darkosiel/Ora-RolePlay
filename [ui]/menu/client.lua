@@ -247,6 +247,7 @@ local props = {
     ["sniperrifle"] = "w_sr_sniperrifle",
     ["pistoldouble"] = "w_sg_pumpshotgun",
     ["shootgun"] = "w_sg_sawnoff",
+    ["lesslethal"] = "w_sg_lessletha",
     ["bullpupshootgun"] = "w_sg_bullpupshotgun",
     ["dollar1"] = "p_banknote_onedollar_s",
     ["dollar5"] = "p_banknote_onedollar_s",
