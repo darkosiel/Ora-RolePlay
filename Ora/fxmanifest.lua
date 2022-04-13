@@ -91,6 +91,9 @@ client_scripts {
     "utils/vendor/RageIB/client.lua",
     "utils/cl_zoneName.lua",
     "utils/crouch.lua",
+    "utils/discord.lua",
+    "utils/cl_drop.lua",
+    "utils/dlarme_cl.lua",
     "utils/cl_deadLog.lua"
 }
 
@@ -103,6 +106,7 @@ server_scripts {
     "libs/helper/uuid.lua",
     "utils/sv_users.lua",
     "utils/sv_admin_commands.lua",
+    "utils/dlarme_sv.lua",
     "utils/sv_discord_webhooks.lua"
 }
 

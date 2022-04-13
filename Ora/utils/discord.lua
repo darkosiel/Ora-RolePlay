@@ -12,7 +12,7 @@ Citizen.CreateThread(
             SetDiscordRichPresenceAsset("logoora")
             SetDiscordRichPresenceAssetText("https://discord.gg/orarp")
 
-            exports["Ora"]:TriggerServerCallback(
+            TriggerServerCallback(
                 "onlinePlayers:list",
                 function(users)
                     SetRichPresence(GetPlayerName(PlayerId()) .. " 👥 " .. #users .. "/128")
