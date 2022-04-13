@@ -3331,10 +3331,10 @@ TenueLSPD = {
     ["ASD"] = {
         male = {
             ['tshirt_1'] = 246,  ['tshirt_2'] = 0,
-            ['torso_1'] = 390,   ['torso_2'] = 2,
+            ['torso_1'] = 390,   ['torso_2'] = 0,
             ['decals_1'] = -1,   ['decals_2'] = 0,
             ['arms'] = 12,
-            ['pants_1'] = 157,   ['pants_2'] = 1,
+            ['pants_1'] = 151,   ['pants_2'] = 0,
             ['shoes_1'] = 97,   ['shoes_2'] = 0,
             ['helmet_1'] = 193,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
