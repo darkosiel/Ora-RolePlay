@@ -2,7 +2,7 @@
 ---<MENU BANC>---
 
 local menu = {
-    {x = 819.9, y = -918.64, z= 25.76}
+    {x = -325.8390, y = -113.135, z= 37.5877}
 } 
 function showHelpNotification(message)
     SetNotificationTextEntry('STRING')
@@ -142,7 +142,7 @@ end)
 ---<MENU RAPPORT>---
 
 local banc = {
-    {x = 835.8, y = -921.55, z= 26.04}    
+    {x = -347.247100, y = -127.971488, z= 38.0096}    
 } 
 
 local open = false
