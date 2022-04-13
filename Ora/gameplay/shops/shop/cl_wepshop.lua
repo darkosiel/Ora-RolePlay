@@ -216,7 +216,7 @@ weapon_munition = {
     --- calibre 12
     shootgun = "calibre12",
     shootguncompact = "calibre12",
-    beanbag = "calibre12",
+    lesslethal = "calibre12",
     bullpupshootgun = "calibre12",
     dbshotgun = "calibre12"
 }
