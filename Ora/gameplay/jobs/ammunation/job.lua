@@ -224,7 +224,7 @@ AmmunationCrafts["shotgun"] = {
     --         craftWeapon(data)
     --     end
     -- },
-    beanbag = {
+    lesslethal = {
         title = "Beanbag",
         item = "lesslethal",
         requiredBullet = "Calibre 12",
