@@ -61,6 +61,7 @@ DP.Walks = {
   ["Gangster4"] = {"move_m@gangster@var_f"},
   ["Gangster5"] = {"move_m@gangster@var_i"},
   ["Grooving"] = {"anim@move_m@grooving@"},
+  ["Grooving2"] = {"anim@move_m@grooving@slow@"},
   ["Guard"] = {"move_m@prison_gaurd"},
   ["Handcuffs"] = {"move_m@prisoner_cuffed"},
   ["Heels"] = {"move_f@heels@c"},
@@ -97,6 +98,12 @@ DP.Walks = {
   ["Trash2"] = {"missfbi4prepp1_garbageman"},
   ["Trevor"] = {"move_p_m_two"},
   ["Wide"] = {"move_m@bag"},
+  ["Musclé"] = {"move_m@tool_belt@a"},
+  ["Stylé"] = {"move_m@swagger@b"},
+  ["Déterminer"] = {"move_m@fire"},
+  ["Sombre"] = {"move_m@leaf_blower"},
+  ["Jogging2"] = {"move_m@jog@"},
+  ["Gros"] = {"move_m@fat@a"},
   -- I cant get these to work for some reason, if anyone knows a fix lmk
   --["Caution"] = {"move_m@caution"},
   --["Chubby"] = {"anim@move_m@chubby@a"},
@@ -370,6 +377,69 @@ DP.Dances = {
        PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
        EmoteLoop = true,
    }},
+   --Atlantiss Add
+   
+   
+   ["zoumbacafew"] = {"anim@arena@celeb@podium@no_prop@", "dance_a_1st", "Zoumba Cafew", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["pistoletdroite"] = {"anim@amb@nightclub@mini@dance@dance_solo@male@var_b@", "med_left", "Pistolet Droite", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["slowcalme"] = {"anim@amb@nightclub@mini@dance@dance_solo@male@var_b@", "low_right_down", "Slow Calme", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["Egyptiennemeuf"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_b@", "med_right_up", "Égyptienne Meuf", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["zoukmeuf"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_b@", "med_center_down", "Zouk Meuf", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["ambiancemeuf"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_a@", "med_center_down", "Ambiance Meuf", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["dehanchemeufhautdroite"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_a@", "low_right_up", "Déhanché Meuf Haut Droite", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["dehanchemeufbasgauche"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_a@", "low_left_down", "Déhanché Meuf Bas Gauche", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["dehanchemeufbasdroite"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_a@", "low_right", "Déhanché Meuf Bas Droite", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["dehanchemeufhautgauche"] = {"anim@amb@nightclub@mini@dance@dance_solo@female@var_a@", "low_left_up", "Déhanché Meuf Haut Gauche", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["hole"] = {"anim@amb@nightclub@lazlow@hi_podium@", "danceidle_hi17_smackthat_laz", "Holé", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["robotarticule"] = {"anim@amb@nightclub@lazlow@hi_podium@", "danceidle_hi_15_crazyrobot_laz", "Robot Articulé", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["festival1"] = {"anim@amb@nightclub@lazlow@hi_podium@", "danceidle_hi_11_turnaround_laz", "Festival 1", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["danceapplaudit"] = {"anim@amb@nightclub@djs@black_madonna@", "dance_b_idle_d_blamadon", "Dance Applaudit", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["simplemeuf"] = {"anim@amb@nightclub@dancers@tale_of_us_entourage@", "mi_dance_crowd_13_v2_female^4", "Simple Meuf", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
 }
 
 DP.Emotes = {
@@ -508,6 +578,51 @@ DP.Emotes = {
    ["crossarms"] = {"amb@world_human_hang_out_street@female_arms_crossed@idle_a", "idle_a", "Crossarms", AnimationOptions =
    {
        EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["strangulate"] = {"mini@prostitutes@sexlow_veh", "low_car_sex_loop_player", "Strangulate", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["pls"] = {"timetable@tracy@sleep@", "idle_c", "PLS", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = false,
+   }},
+   ["families"] = {"amb@code_human_in_car_mp_actions@gang_sign_b@low@ps@base", "idle_a", "Gang Sign Families", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = true,
+   }},
+   ["vagos"] = {"amb@code_human_in_car_mp_actions@v_sign@std@rds@base", "idle_a", "Gang Sign Vagos", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = true,
+   }},
+   ["ballas"] = {"mp_player_int_uppergang_sign_b", "mp_player_int_gang_sign_b", "Gang Sign Ballas", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = true,
+   }},
+   ["mara"] = {"mp_player_int_uppergang_sign_a", "mp_player_int_gang_sign_a", "Gang Sign Mara", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = true,
+   }},
+   ["celeste"] = {"amb@code_human_in_car_mp_actions@gang_sign_b@low@ds@base", "idle_a", "Gang Sign Celeste", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = true,
+   }},
+   ["celeste2"] = {"anim@gangops@facility@servers@", "hotwire", "Magical", AnimationOptions =
+   {
+       EmoteLoop = false,
+       EmoteMoving = true,
+   }},
+   ["morgue"] = {"anim@gangops@morgue@table@", "body_search", "Morgue", AnimationOptions =
+   {
+       EmoteLoop = false,
        EmoteMoving = true,
    }},
    ["crossarms2"] = {"amb@world_human_hang_out_street@male_c@idle_a", "idle_b", "Crossarms 2", AnimationOptions =
@@ -1601,6 +1716,22 @@ DP.Emotes = {
    ["weld"] = {"Scenario", "WORLD_HUMAN_WELDING", "Weld"},
    ["windowshop"] = {"Scenario", "WORLD_HUMAN_WINDOW_SHOP_BROWSE", "Window Shop"},
    ["yoga"] = {"Scenario", "WORLD_HUMAN_YOGA", "Yoga"},
+   -- Atlantiss add EMOTES
+   ["ceinturons"] = {"amb@code_human_wander_idles_cop@male@static", "static", "Ceinturons", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteDuration = 400000
+   }},
+   ["brasdansledos"] = {"anim@miss@low@fin@vagos@", "idle_ped06", "Bras dans le dos", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["brasdevant"] = {"anim@miss@low@fin@vagos@", "idle_ped05", "Bras devant", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
    -- CASINO DLC EMOTES (STREAMED)
    ["karate"] = {"anim@mp_player_intcelebrationfemale@karate_chops", "karate_chops", "Karate"},
    ["karate2"] = {"anim@mp_player_intcelebrationmale@karate_chops", "karate_chops", "Karate 2"},
@@ -1631,6 +1762,12 @@ DP.Emotes = {
        EmoteMoving = true,
        EmoteLoop = true
    }},
+
+   ["bike1"] = {"rcmextreme2atv", "idle_e", "Moto - Debout"},
+   ["bike2"] = {"rcmextreme2atv", "idle_d", "Moto - Droite et Gauche"},
+   ["bike3"] = {"rcmextreme2atv", "idle_c", "Moto - Jambe gauche"},
+   ["bike4"] = {"rcmextreme2atv", "idle_b", "Moto - Jambe droite"},
+   
    ["think4"] = {"anim@amb@casino@hangout@ped_male@stand@02b@idles", "idle_a", "Think 4", AnimationOptions =
    {
        EmoteLoop = true,
