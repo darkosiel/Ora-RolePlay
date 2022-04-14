@@ -5,25 +5,6 @@ local menu = {
     {x = -325.8390, y = -113.135, z= 37.5877}
 } 
 
-ShowHelpNotification = function(msg, thisFrame, beep, duration)
-	AddTextEntry('esxHelpNotification', msg)
-
-	if thisFrame then
-		DisplayHelpTextThisFrame('esxHelpNotification', false)
-	else
-		if beep == nil then beep = true end
-		BeginTextCommandDisplayHelp('esxHelpNotification')
-		EndTextCommandDisplayHelp(0, false, beep, duration or -1)
-	end
-end
-
-function ShowNotification(message)
-    message = message.."."
-    SetNotificationTextEntry("STRING")
-    AddTextComponentString(message)
-    DrawNotification(0,1)
-end
-
 local rapport = false
 local accrocher = false
 
@@ -59,7 +40,7 @@ function OpenLBanc()
                         end
                     })
                 elseif accrocher == true then
-                    RageUI.Button('🎚 Passer au banc', false , {RightLabel = "~h~>>"} , true , {
+                    RageUI.Button('Passer au banc', false , {RightLabel = "~h~>>"} , true , {
                         onSelected = function()
                             local temp = GetVehicleEngineTemperature(GetVehiclePedIsIn(GetPlayerPed(-1), false))
                             PlaySoundFrontend(-1, "On_Call_Player_Join", "DLC_HEISTS_GENERAL_FRONTEND_SOUNDS", true)
@@ -84,7 +65,7 @@ function OpenLBanc()
                             end
                         end
                     }, LPerf)
-                    RageUI.Button('🔓 Décrochez le véhicule du banc', false , {RightLabel = "~h~>>"} , true , {
+                    RageUI.Button('Décrochez le véhicule du banc', false , {RightLabel = "~h~>>"} , true , {
                         onSelected = function()
                             PlaySoundFrontend(-1, "Drill_Pin_Break", "DLC_HEIST_FLEECA_SOUNDSET", true)
                             local playerPed = PlayerPedId()
@@ -250,55 +231,8 @@ Citizen.CreateThread(function()
     end
 end)
 
-function DrawTexts(x, y, text, center, scale, rgb, font, justify)
-    SetTextFont(font)
-    SetTextScale(scale, scale)
-    SetTextColour(rgb[1], rgb[2], rgb[3], rgb[4])
-    SetTextEntry("STRING")
-    SetTextCentre(center)
-    AddTextComponentString(text)
-    EndTextCommandDisplayText(x,y)
-end
-
-function draw2dText(text, pos)
-	SetTextFont(4)
-	SetTextProportional(1)
-	SetTextScale(0.45, 0.45)
-	SetTextColour(255, 255, 255, 255)
-	SetTextDropShadow(0, 0, 0, 0, 255)
-	SetTextEdge(1, 0, 0, 0, 255)
-	SetTextDropShadow()
-	SetTextOutline()
-
-	BeginTextCommandDisplayText('STRING')
-	AddTextComponentSubstringPlayerName(text)
-	EndTextCommandDisplayText(table.unpack(pos))
-end
 
 local v1 = vector3(823.18, -885.25, 25.84)
-function Draw3DText(x, y, z, text)
-    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
-    local p = GetGameplayCamCoords()
-    local distance = GetDistanceBetweenCoords(p.x, p.y, p.z, x, y, z, 1)
-    local scale = (1 / distance) * 2
-    local fov = (1 / GetGameplayCamFov()) * 100
-    local scale = scale * fov
-    if onScreen then
-        SetTextScale(0.0, 0.35)
-        SetTextFont(0)
-        SetTextProportional(1)
-        SetTextColour(255, 255, 255, 255)
-        SetTextDropshadow(0, 0, 0, 0, 255)
-        SetTextEdge(2, 0, 0, 0, 150)
-        SetTextDropShadow()
-        SetTextOutline()
-        SetTextEntry("STRING")
-        SetTextCentre(1)
-        AddTextComponentString(text)
-        DrawText(_x,_y)
-    end
-end
-
 local distance = 30
 
 Citizen.CreateThread(function()

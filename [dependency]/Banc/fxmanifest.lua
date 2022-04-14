@@ -19,10 +19,15 @@ client_scripts {
 
     "src/menu/panels/*.lua",
     "src/menu/windows/*.lua",
+    'Client/function.lua'
+    "config.lua",
+    "Menu/Menu.lua",
 
 }
 
-client_script "cl_vehbancV2.lua"
-client_script 'config.lua'
-server_script'config.lua'
+
+server_scripts {
+    "config.lua"
+}
+
 
