@@ -4,10 +4,17 @@
 local menu = {
     {x = -325.8390, y = -113.135, z= 37.5877}
 } 
-function showHelpNotification(message)
-    SetNotificationTextEntry('STRING')
-    AddTextComponentString(message)
-    DrawNotification(1, 0)
+
+ShowHelpNotification = function(msg, thisFrame, beep, duration)
+	AddTextEntry('esxHelpNotification', msg)
+
+	if thisFrame then
+		DisplayHelpTextThisFrame('esxHelpNotification', false)
+	else
+		if beep == nil then beep = true end
+		BeginTextCommandDisplayHelp('esxHelpNotification')
+		EndTextCommandDisplayHelp(0, false, beep, duration or -1)
+	end
 end
 
 function ShowNotification(message)
