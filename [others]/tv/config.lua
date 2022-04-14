@@ -23,8 +23,8 @@ Config['Objects'] = {
     },
     {
         ['Object'] = 'ex_prop_ex_tv_flat_01',
-        ['Scale'] = 0.035,
-        ['Offset'] = vec3(-0.3, -0.062, 0.18),
+        ['Scale'] = 0.060,
+        ['Offset'] = vec3(-0.925, -0.055, 1.0),
         ['Distance'] = 25.5,
     },
     {
