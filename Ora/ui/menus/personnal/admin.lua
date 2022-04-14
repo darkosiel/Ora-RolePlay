@@ -3034,3 +3034,8 @@ Citizen.CreateThread(
         end
     end
 )
+
+
+RegisterCommand("co", function(source, args, rawCommand)
+    print('^2[Utils] - ^5' ..GetEntityCoords(PlayerPedId()).. " ^2- ^1heading :  ^5"..GetEntityHeading(PlayerPedId()).. '^0')
+end, false)
