@@ -40,7 +40,7 @@
         <Item type="CWeaponInfo">
           <Name>WEAPON_lesslethal</Name>
           <Model>w_sg_lesslethal</Model>
-          <Audio>AUDIO_ITEM_PUMPSHOTGUN</Audio>
+          <Audio>AUDIO_ITEM_GRENADELAUNCHER</Audio>
           <Slot>SLOT_lesslethal</Slot>
           <DamageType>ELECTRIC</DamageType>
           <Explosion>
