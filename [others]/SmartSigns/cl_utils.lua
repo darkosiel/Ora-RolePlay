@@ -74,10 +74,10 @@ function nearAccessPoint(k, v, ped, pedCoords)
             print("[Smart Signs] - Street Hash: "..tostring(streetHash))
             print("[Smart Signs] - Street Name: "..tostring(streetName))
         end
-        if config.main.developerMode then
-            print("[Smart Signs] - Data for Sign ID: "..k.." sent to server")
-        end
         for i = 1, 39 do
+            if config.main.developerMode then
+                print("[Smart Signs] - Data for Sign ID: "..i.." sent to server")
+            end
             TriggerServerEvent("SmartSigns:updateSign", i, inputs, tostring(streetName), exports["Ora"]:OraGetJob().name)
         end
         ClearPedTasks(ped)
