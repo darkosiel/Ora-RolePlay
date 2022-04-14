@@ -28,7 +28,7 @@ config = {
         
         -- This will change whether users can use /newsign to get the coordinates and rotation for configuring new signs
         -- This will also enable debug printing on both the client and the server. This should be set to false most of the time.
-        developerMode = false,
+        developerMode = true,
         
         -- Here you can define a list of words which cannot be placed on signs.
         -- These are automatically removed and replaced with blank text
