@@ -1057,6 +1057,70 @@ Citizen.CreateThread(
                                 RMenu:Get("personnal", "admin_reportitemdrug")
                             )
 
+                            RageUI.List(
+                                "Téléportation",
+                                {
+                                    "Sur le joueur",
+                                    "Sur vous",
+                                    "Sur le marqueur",
+                                    "Location - Los Santos",
+                                    "Location - Sandy Shore"
+                                },
+                                indexTP,
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected, Index)
+                                    indexTP = Index
+                                    if Selected then
+                                        if Index == 1 then
+											ShowNotification(string.format('~g~Vous vous êtes TP à ~s~%s', ReportPly.name))
+                                            TriggerPlayerEvent("admin:tp2", ReportPly.id, GetPlayerServerId(PlayerId()))
+                                        elseif (Index == 2) then
+                                            TriggerPlayerEvent("admin:tp", ReportPly.id, LocalPlayer().Pos)
+											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à vous', ReportPly.name))
+                                        elseif (Index == 3) then
+                                            local blipCoord = GetBlipCoords(GetFirstBlipInfoId(8))
+                                            local foundGround, zCoords, zPos = false, -500.0, 0.0
+                                            while not foundGround do
+                                                zCoords = zCoords + 10.0
+                                                RequestCollisionAtCoord(blipCoord.x, blipCoord.y, zCoords)
+                                                foundGround, zPos =
+                                                    GetGroundZFor_3dCoord(blipCoord.x, blipCoord.y, zCoords)
+                                                if not foundGround and zCoords >= 2000.0 then
+                                                    foundGround = true
+                                                end
+                                                Wait(0)
+                                            end
+                                            if blipCoord ~= nil and blipCoord ~= vector3(0, 0, 0) then
+												ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à la position de votre marqueur', ReportPly.name))
+                                                TriggerPlayerEvent(
+                                                    "admin:tp",
+                                                    ReportPly.id,
+                                                    vector3(blipCoord.x, blipCoord.y, zPos)
+                                                )
+                                            else
+                                                ShowNotification("~r~Aucun marqueur")
+                                            end
+                                        elseif (Index == 4) then
+											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Los Santos', ReportPly.name))
+                                            TriggerPlayerEvent(
+                                                "admin:tp",
+                                                ReportPly.id,
+                                                vector3(-274.11, -904.78, 31.22)
+                                            )
+                                        elseif (Index == 5) then
+                                            ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Sandy Shores', ReportPly.name))
+                                            TriggerPlayerEvent(
+                                                "admin:tp",
+                                                ReportPly.id,
+                                                vector3(1709.4, 3595.95, 35.42)
+                                            )
+                                        end
+                                    end
+                                end
+                            )
+
                             local rightlbl = ReportPly.job and ReportPly.job.label .. " | " .. Jobs[ReportPly.job.name].grade[ReportPly.job.gradenum].label or nil
                             local rightlbl2 = ReportPly.orga and ReportPly.orga.label .. " | " .. Jobs[ReportPly.orga.name].grade[ReportPly.orga.gradenum].label or nil
 
@@ -1377,70 +1441,6 @@ Citizen.CreateThread(
                                 {},
                                 true,
                                 function(_, _, _)
-                                end
-                            )
-
-                            RageUI.List(
-                                "Téléportation",
-                                {
-                                    "Sur le joueur",
-                                    "Sur vous",
-                                    "Sur le marqueur",
-                                    "Location - Los Santos",
-                                    "Location - Sandy Shore"
-                                },
-                                indexTP,
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected, Index)
-                                    indexTP = Index
-                                    if Selected then
-                                        if Index == 1 then
-											ShowNotification(string.format('~g~Vous vous êtes TP à ~s~%s', ReportPly.name))
-                                            TriggerPlayerEvent("admin:tp2", ReportPly.id, GetPlayerServerId(PlayerId()))
-                                        elseif (Index == 2) then
-                                            TriggerPlayerEvent("admin:tp", ReportPly.id, LocalPlayer().Pos)
-											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à vous', ReportPly.name))
-                                        elseif (Index == 3) then
-                                            local blipCoord = GetBlipCoords(GetFirstBlipInfoId(8))
-                                            local foundGround, zCoords, zPos = false, -500.0, 0.0
-                                            while not foundGround do
-                                                zCoords = zCoords + 10.0
-                                                RequestCollisionAtCoord(blipCoord.x, blipCoord.y, zCoords)
-                                                foundGround, zPos =
-                                                    GetGroundZFor_3dCoord(blipCoord.x, blipCoord.y, zCoords)
-                                                if not foundGround and zCoords >= 2000.0 then
-                                                    foundGround = true
-                                                end
-                                                Wait(0)
-                                            end
-                                            if blipCoord ~= nil and blipCoord ~= vector3(0, 0, 0) then
-												ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à la position de votre marqueur', ReportPly.name))
-                                                TriggerPlayerEvent(
-                                                    "admin:tp",
-                                                    ReportPly.id,
-                                                    vector3(blipCoord.x, blipCoord.y, zPos)
-                                                )
-                                            else
-                                                ShowNotification("~r~Aucun marqueur")
-                                            end
-                                        elseif (Index == 4) then
-											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Los Santos', ReportPly.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp",
-                                                ReportPly.id,
-                                                vector3(-274.11, -904.78, 31.22)
-                                            )
-                                        elseif (Index == 5) then
-                                            ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Sandy Shores', ReportPly.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp",
-                                                ReportPly.id,
-                                                vector3(1709.4, 3595.95, 35.42)
-                                            )
-                                        end
-                                    end
                                 end
                             )
 
