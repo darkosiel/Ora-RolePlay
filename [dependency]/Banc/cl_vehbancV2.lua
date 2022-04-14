@@ -128,7 +128,7 @@ Citizen.CreateThread(function()
                     local playerPed = PlayerPedId()
                     local vehicle = GetVehiclePedIsIn(playerPed, false)
                     if IsPedInAnyVehicle(playerPed) then
-                    showHelpNotification("Appuyez sur ~b~E~w~ pour passez le véhicule au banc")
+                    ShowHelpNotification("Appuyez sur ~b~E~w~ pour passez le véhicule au banc")
                     if IsControlJustPressed(1,51) then
                         PlaySoundFrontend(-1, "RACE_PLACED", "HUD_AWARDS", true)
                         DoScreenFadeIn(1000) -- Ecran Noir
@@ -232,7 +232,7 @@ Citizen.CreateThread(function()
                 DrawMarker(22, 826.75, -880.66, 25.25, 0.0, 0.0, 0.0, 0.0,0.0,0.0, 0.3, 0.3, 0.3, 0, 81, 255 , 255, true, true, p19, true)  
                 if dist <= 1.0 then
         
-                        showHelpNotification("Appuyez sur ~b~E~w~ pour regarder le résultat du banc")
+                        ShowHelpNotification("Appuyez sur ~b~E~w~ pour regarder le résultat du banc")
                             if IsControlJustPressed(1,51) then
                                 PlaySoundFrontend(-1, "Start", "DLC_HEIST_HACKING_SNAKE_SOUNDS", true)
                                 DoScreenFadeIn(1000) -- Ecran Noir
