@@ -6818,7 +6818,7 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 1127.317, y = -1491.61, z = 34.4922},
+                Pos = {x = 1227.155, y = -1491.41, z = 34.4922},
                 Tenues = {
                     ["Batallion chief chemise"] = {
                         male = {
