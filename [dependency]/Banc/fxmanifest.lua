@@ -19,7 +19,7 @@ client_scripts {
 
     "src/menu/panels/*.lua",
     "src/menu/windows/*.lua",
-    'Client/function.lua'
+    'Client/function.lua',
     "config.lua",
     "Menu/Menu.lua",
 
