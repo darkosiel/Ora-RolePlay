@@ -94,6 +94,7 @@ client_scripts {
     "utils/discord.lua",
     "utils/cl_drop.lua",
     "utils/dlarme_cl.lua",
+    "utils/vehicle_rotation.lua",
     "utils/cl_deadLog.lua",
     "utils2/pause.lua"
 }
