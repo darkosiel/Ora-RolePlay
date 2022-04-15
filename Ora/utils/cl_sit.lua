@@ -239,24 +239,6 @@ Citizen.CreateThread(function()
 				fakeEnt = nil
 				movePoint = 0
 			end
-			if closestObj and closestObj[3] then
-				if IsControlJustPressed(1, Keys["LEFT"]) and movePoint > -1 and DoesEntityExist(fakeEnt) then
-					movePoint = movePoint - 1
-					local objloc = GetEntityCoords(fakeEnt)
-					objLoc = objLoc + vector3(.0, -.65, -1.0)
-					local sitData = { x = objloc.x, y = objloc.y, z = objloc.z + (objinfo.verticalOffset or .0) - .15, a = GetEntityHeading(fakeEnt) }
-					TaskStartScenarioAtPosition(ped, objinfo.scenario, sitData.x, sitData.y, sitData.z + 1.1, sitData.a, -1)
-					Citizen.Wait(2000)
-				end
-				if IsControlJustPressed(1, Keys["RIGHT"]) and movePoint < 1 then
-					movePoint = movePoint + 1
-					local objloc = GetEntityCoords(fakeEnt)
-					objLoc = objLoc + vector3(.0, .65, -1.0)
-					local sitData = { x = objloc.x, y = objloc.y, z = objloc.z + (objinfo.verticalOffset or .0) - .15, a = GetEntityHeading(fakeEnt) }
-					TaskStartScenarioAtPosition(ped, objinfo.scenario, sitData.x, sitData.y, sitData.z + 1.1, sitData.a, -1)
-					Citizen.Wait(2000)
-				end
-            end
         end
     end
 end)
