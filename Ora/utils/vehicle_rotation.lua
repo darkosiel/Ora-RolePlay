@@ -17,7 +17,7 @@ Citizen.CreateThread(function()
                 local props = vehicleFct.GetVehicleProperties(currentvehicle)
                 props['wheelColor'] = 147
                 props['plate'] = "Expo" --Changer nom de la plaque
-                vehicleFct.SetVehicleProperties(vehicle, veh)
+                vehicleFct.SetVehicleProperties(vehicle, props)
             else
                 SetEntityHeading(vehicle, heading)
                 heading = heading+0.1
