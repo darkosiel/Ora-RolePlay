@@ -1174,14 +1174,14 @@ Items = {
     },
     -- Items : Alcool
 
-    --[[whisky = {
+    whisky = {
         label = "Whisky",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_drink_whisky",
         soif = 15,
         category = "food"
-    },]]
+    },
     rhum = {
         label = "Rhum",
         weight = 1.0,
