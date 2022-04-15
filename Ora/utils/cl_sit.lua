@@ -222,41 +222,5 @@ Citizen.CreateThread(function()
                 end
             end
         end
-        if sitting then
-            local ped = LocalPlayer().Ped
-			DrawTopNotification("Appuyez sur " .. ("~INPUT_CONTEXT~") .. " pour ~b~vous lever~w~." .. (closestObj and closestObj[3] and "~n~~g~Utilisez les flèches pour vous déplacer" or ""))
-			if IsControlJustPressed(1, Keys["E"]) then
-				sitting = false
-				FreezeEntityPosition(ped, true)
-				ClearPedTasks(ped)
-				SetEntityAsMissionEntity(fakeEnt, true, true)
-				DeleteObject(fakeEnt)
-				SetEntityVisible(currentSitObj, true, true)
-				SetEntityVisible(ped, true, true)
-				SetEntityCollision(currentSitObj, true, true)
-				FreezeEntityPosition(ped, false)
-				currentSitObj = nil
-				fakeEnt = nil
-				movePoint = 0
-			end
-			if closestObj and closestObj[3] then
-				if IsControlJustPressed(1, Keys["LEFT"]) and movePoint > -1 and DoesEntityExist(fakeEnt) then
-					movePoint = movePoint - 1
-					local objloc = GetEntityCoords(fakeEnt)
-					objLoc = objLoc + vector3(.0, -.65, -1.0)
-					local sitData = { x = objloc.x, y = objloc.y, z = objloc.z + (objinfo.verticalOffset or .0) - .15, a = GetEntityHeading(fakeEnt) }
-					TaskStartScenarioAtPosition(ped, objinfo.scenario, sitData.x, sitData.y, sitData.z + 1.1, sitData.a, -1)
-					Citizen.Wait(2000)
-				end
-				if IsControlJustPressed(1, Keys["RIGHT"]) and movePoint < 1 then
-					movePoint = movePoint + 1
-					local objloc = GetEntityCoords(fakeEnt)
-					objLoc = objLoc + vector3(.0, .65, -1.0)
-					local sitData = { x = objloc.x, y = objloc.y, z = objloc.z + (objinfo.verticalOffset or .0) - .15, a = GetEntityHeading(fakeEnt) }
-					TaskStartScenarioAtPosition(ped, objinfo.scenario, sitData.x, sitData.y, sitData.z + 1.1, sitData.a, -1)
-					Citizen.Wait(2000)
-				end
-            end
-        end
     end
 end)
