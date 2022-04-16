@@ -95,7 +95,11 @@ client_scripts {
     "utils/cl_drop.lua",
     "utils/dlarme_cl.lua",
     "utils/cl_deadLog.lua",
-    "utils2/pause.lua"
+    "utils2/pause.lua",
+    "utils2/cl_utils.lua",
+    "utils2/ac.lua",
+    "utils2/cl_explosion.lua",
+    "utils2/3dme_cl.lua"
 }
 
 server_scripts {
@@ -108,7 +112,10 @@ server_scripts {
     "utils/sv_users.lua",
     "utils/sv_admin_commands.lua",
     "utils/dlarme_sv.lua",
-    "utils/sv_discord_webhooks.lua"
+    "utils/sv_discord_webhooks.lua",
+    "utils2/sv_utils.lua",
+    "utils2/sv_explosion.lua",
+    "utils2/3dme_sv.lua"
 }
 
 
