@@ -9,6 +9,26 @@ Citizen.CreateThread(
             local Ped, waitTime = PlayerPedId(), 1000
             local PedCar = GetVehiclePedIsIn(Ped)
 
+            _,feuPosition,feuRoute = GetVehicleLightsState(PedCar)
+            if(feuPosition == 1 and feuRoute == 0) then
+                SendNUIMessage({
+                    feuPosition = true
+                })
+            else
+                SendNUIMessage({
+                    feuPosition = false
+                })
+            end
+            if(feuPosition == 1 and feuRoute == 1) then
+                SendNUIMessage({
+                    feuRoute = true
+                })
+            else
+                SendNUIMessage({
+                    feuRoute = false
+                })
+            end
+
             if PedCar ~= 0 and  GetIsVehicleEngineRunning(PedCar) and display then
                 waitTime = 100
                 if PedCar then
