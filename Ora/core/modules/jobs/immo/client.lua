@@ -431,15 +431,18 @@ function Ora.Jobs.Immo.INIT()
 											Ora.Jobs.Immo.SubMenu.SelectedProperty = id
 											Ora.Jobs.Immo.SubMenu.CurrentOwner = ""
 											Ora.Jobs.Immo.SubMenu.CurrentCoowners = {}
-
 											if (type(property.owner) == "string") then
-												TriggerServerCallback(
-													"Ora::SE::Identity:GetFullNameFromUUID",
-													function(fullname)
-														Ora.Jobs.Immo.SubMenu.CurrentOwner = fullname
-													end,
-													property.owner
-												)
+												if property.owner:len() < 25 then -- Vérifie si le proprio est un job
+													Ora.Jobs.Immo.SubMenu.CurrentOwner = property.owner
+												else
+													TriggerServerCallback(
+															"Ora::SE::Identity:GetFullNameFromUUID",
+															function(fullname)
+																Ora.Jobs.Immo.SubMenu.CurrentOwner = fullname
+															end,
+															property.owner
+													)
+												end
 											end
 											if (Ora.Utils:TableLength(property.coowner) ~= 0) then
 												TriggerServerCallback(

@@ -462,7 +462,7 @@ AddEventHandler(
         Ora.World.Appart:AddToList(propertyValue)
         local own = false
 
-        if Ora.Identity:GetMyUuid() == propertyValue.owner then
+        if Ora.Identity:GetMyUuid() == propertyValue.owner or Ora.Identity.Job:GetName() == propertyValue.owner then
             own = true
         end
 
@@ -480,37 +480,42 @@ AddEventHandler(
             AddTextComponentString(name)
             EndTextCommandSetBlipName(blip)
 
-            if (type(propertyValue.garagePos) == "string") then
-                propertyValue.garagePos = json.decode(propertyValue.garagePos)
-            else
-                propertyValue.garagePos = propertyValue.garagePos
+            if propertyValue.garagePos ~= nil then
+                if (type(propertyValue.garagePos) == "string") then
+                    propertyValue.garagePos = json.decode(propertyValue.garagePos)
+                else
+                    propertyValue.garagePos = propertyValue.garagePos
+                end
+
+                Properties = {
+                    type = 0,
+                    spawnpos = propertyValue.garagePos,
+                    Limit = propertyValue.garageMax
+                }
+
+                Blipdata = {
+                    Pos = propertyValue.garagePos,
+                    Blipcolor = 2,
+                    Blipname = "Garage " .. propertyValue.name,
+                    size = 0.6
+                }
+
+                local garage = Garage.New(propertyValue.name, propertyValue.garagePos, Properties, Blipdata)
+                garage:Setup()
+                __Marker = {
+                    type = 25,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 125, g = 0, b = 0, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+                propertyValue.garagePos.z = propertyValue.garagePos.z + 1.0
+                Marker:Add(propertyValue.garagePos, __Marker)
             end
 
-            Properties = {
-                type = 0,
-                spawnpos = propertyValue.garagePos,
-                Limit = propertyValue.garageMax
-            }
-            Blipdata = {
-                Pos = propertyValue.garagePos,
-                Blipcolor = 2,
-                Blipname = "Garage " .. propertyValue.name,
-                size = 0.6
-            }
 
-            local garage = Garage.New(propertyValue.name, propertyValue.garagePos, Properties, Blipdata)
-            garage:Setup()
-            __Marker = {
-                type = 25,
-                scale = {x = 1.5, y = 1.5, z = 0.2},
-                color = {r = 125, g = 0, b = 0, a = 120},
-                Up = false,
-                Cam = false,
-                Rotate = false,
-                visible = true
-            }
-            propertyValue.garagePos.z = propertyValue.garagePos.z + 1.0
-            Marker:Add(propertyValue.garagePos, __Marker)
         end
     end
 )
@@ -817,6 +822,22 @@ function OwnAppart()
         end
     )
 
+    if currentProperty.owner ~= Ora.Identity.Job:GetName() or Ora.Identity.Job:GetName() == "chomeur" then
+        RageUI.Button(
+                "Donner à l'entreprise",
+                nil,
+                {},
+                true,
+                function(_, _, Selected)
+                    if Selected then
+                        local pedId = -1
+                        TriggerServerEvent("appart:updateownentreprise", pedId, currentProperty.id, Ora.Identity.Job:GetName())
+                        ShowNotification(string.format("Vous avez défini votre ~b~entreprise~s~ comme propriétaire"))
+                    end
+                end
+        )
+    end
+
     RageUI.Button(
         "Changer de serrure",
         nil,
@@ -825,6 +846,7 @@ function OwnAppart()
         function(_, Ac, Selected)
             if Selected then
                 TriggerServerEvent("core:RemoveAll", currentProperty.id)
+                ShowNotification(string.format("Vous avez changé la ~b~serrure~s~"))
             end
         end
     )
@@ -935,6 +957,8 @@ function Idontownappart()
                             )
                             TriggerPlayerEvent("newAppartRequest", src[i], _src)
                         end
+
+
                     end,
                     currentProperty
                 )
@@ -1058,7 +1082,7 @@ Citizen.CreateThread(
                         if currentProperty.owner == nil then
                             NoOwnerAppart()
                         else
-                            if Ora.Identity:GetMyUuid() == currentProperty.owner then
+                            if Ora.Identity:GetMyUuid() == currentProperty.owner or Ora.Identity.Job:Get().name == currentProperty.owner then
                                 OwnAppart()
                             else
                                 if isCoOwn(Ora.Identity:GetMyUuid()) then

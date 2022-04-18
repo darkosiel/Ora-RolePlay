@@ -145,13 +145,17 @@ end
 function Ora.Jobs.Immo:GetPropertyOwners(property)
   for key, value in pairs(property) do
     if (key == "owner") then
-      TriggerServerCallback(
-        "Ora::SE::Identity:GetFullNameFromUUID",
-        function(fullname)
-					Ora.Jobs.Immo.Info.Owner = fullname
-        end,
-        value
-      )
+		if value:len() < 25 then -- Vérifie si le proprio est un job
+			Ora.Jobs.Immo.Info.Owner = value
+		else
+			TriggerServerCallback(
+					"Ora::SE::Identity:GetFullNameFromUUID",
+					function(fullname)
+						Ora.Jobs.Immo.Info.Owner = fullname
+					end,
+					value
+			)
+		end
     elseif (key == "coowner") then
 			if (Ora.Utils:TableLength(value) ~= 0) then
 				TriggerServerCallback(

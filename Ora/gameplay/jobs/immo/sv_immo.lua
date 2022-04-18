@@ -84,6 +84,23 @@ AddEventHandler(
         TriggerClientEvent("core:UpdateOwner", -1, id, uuid)
     end
 )
+
+RegisterServerEvent("appart:updateownentreprise")
+AddEventHandler(
+        "appart:updateownentreprise",
+        function(targetSrc, id, job)
+            MySQL.Async.execute(
+                    "UPDATE players_appartement SET owner=@owner where id=@id",
+                    {
+                        ["@id"] = id,
+                        ["@owner"] = job,
+                        ["@time"] = nil
+                    }
+            )
+            TriggerClientEvent("core:UpdateOwner", -1, id, job)
+        end
+)
+
 RegisterServerEvent("appart:updateownLoc")
 AddEventHandler(
     "appart:updateownLoc",
@@ -233,6 +250,13 @@ RegisterServerCallback('Ora::SVCB::immo:GetSourcesFromUUID', function(source, ca
                 if v.uuid == currentProperty.coowner[i] then
                     table.insert(result, k)
                 end
+            end
+        end
+
+        if currentProperty.owner:len() < 25 then --si le proprio est un job alors on call tous les gens en service
+            for _, player in pairs(Ora.Service:GetJobService(currentProperty.owner)) do
+                print(player)
+                table.insert(result, player)
             end
         end
     end
