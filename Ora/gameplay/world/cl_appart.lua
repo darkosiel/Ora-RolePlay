@@ -186,7 +186,7 @@ function SetupApparts()
     for propertyKey, propertyValue in pairs(Ora.World.Appart:GetList()) do
         local own = false
 
-        if Ora.Identity:GetMyUuid() == propertyValue.owner then
+        if Ora.Identity:GetMyUuid() == propertyValue.owner or Ora.Identity.Job:GetName() == propertyValue.owner then
             own = true
         end
 
