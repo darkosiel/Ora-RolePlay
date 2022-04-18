@@ -98,7 +98,7 @@ local Elevator = {
 local elevator, lpos, msg, menu, tp
 local canOpen = false
 
-RMenu.Add("elevator", "main", RageUI.CreateMenu("ASCENSEUR", "Actions disponibles", 10, 100))
+RMenu.Add("elevator", "main", RageUI.CreateMenu("Ascenseur", "Actions disponibles", 10, 100))
 
 local function Interact(msg)
   if not IsHelpMessageOnScreen() then
