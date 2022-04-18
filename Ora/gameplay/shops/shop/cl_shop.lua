@@ -578,60 +578,7 @@ local Shops =
                 Enabled = false
             },
             braquable = false,
-            Items = {
-                {
-                    name = "identity",
-                    price = 15,
-                    data = {},
-                    type = "identity",
-                    fct = GetIdentity
-                }
-            }
-        },
-        {
-            Title = "Préfecture",
-            Pos = {x = 837.0891, y = -1288.6243, z = 28.2449 - 0.98, a = 175.3310},
-            Blips = {
-                sprite = nil,
-                color = 17,
-                name = "Préfecture"
-            },
-            Ped = {
-                model = "a_f_y_femaleagent",
-                name = "Brenda"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = false
-            },
-            braquable = false,
-            Items = {
-                {
-                    name = "identity",
-                    price = 15,
-                    data = {},
-                    type = "identity",
-                    fct = GetIdentity
-                }
-            }
-        },
-        {
-            Title = "Préfecture",
-            Pos = {x = 382.4895, y = -1596.7879, z = 30.0513 - 0.98, a = 49.95},
-            Blips = {
-                sprite = nil,
-                color = 17,
-                name = "Préfecture"
-            },
-            Ped = {
-                model = "csb_mrs_r",
-                name = "Michelle"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = false
-            },
-            braquable = false,
+            Hidden = true,
             Items = {
                 {
                     name = "identity",
@@ -1986,6 +1933,7 @@ local Shops =
                 Enabled = false
             },
             braquable = false,
+            Hidden = true,
             Items = {
                 {
                     name = "identity",
@@ -2013,6 +1961,7 @@ local Shops =
                 Enabled = false
             },
             braquable = false,
+            Hidden = true,
             Items = {
                 {
                     name = "identity",
