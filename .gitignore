@@ -18,3 +18,4 @@ map/
 [bot]/secret.js
 Ora/statics/assets/Jobs.lua
 */node_modules
+/node_modules
