@@ -29,7 +29,7 @@ Jobs = {
             }
         }
     },
- 
+
     mecano2 = {
         label = "Beeker's Garage",
         label2 = "Beekers Garage",
@@ -220,12 +220,12 @@ Jobs = {
                     ExitZoneLSC_NORD()
                 end,
                 zonesize = 3.0,
-                Blips = {--[[ 
+                Blips = {--[[
                     sprite = 72,
                     color = 81,
                     name = "LSCustom"
                  ]]},
-                Marker = {--[[ 
+                Marker = {--[[
                     type = 23,
                     scale = {x = 4.5, y = 4.5, z = 0.6},
                     color = {r = 100, g = 255, b = 255, a = 120},
@@ -490,7 +490,7 @@ Jobs = {
                         HoverPlayer()
                     end
                 },
-                
+
                 {
                     label = "Annonce",
                     onSelected = function()
@@ -2717,7 +2717,7 @@ Jobs = {
                     label = "Changer un propriétaire de véhicule - Personne en face",
                     onSelected = function()
                         local playerID = GetPlayerServerIdInDirection(5.0)
-                        
+
                         if (playerID and playerID ~= false) then
                             CGNvxProprioPlyrID(playerID)
                         end
@@ -4875,7 +4875,7 @@ Jobs = {
     --             {
     --                 label = "Informations effectifs",
     --                 onSelected = function()
-    --                     TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "usms")                    
+    --                     TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "usms")
     --                 end
     --             },
     --             {
@@ -6284,19 +6284,19 @@ Jobs = {
                 workSize = 1.45,
                 Pos = {x = 298.79, y = -598.68, z = 42.28},
                 Tenues = {
-                    ["Tenue ambulancier manches courtes"] = {
+                    ["Resident MC"] = {
                         male = {
-                            ["tshirt_1"] = 240,
+                            ["tshirt_1"] = 193,
                             ["tshirt_2"] = 0,
-                            ["torso_1"] = 425,
-                            ["torso_2"] = 6,
-                            ["decals_1"] = 0,
+                            ["torso_1"] = 397,
+                            ["torso_2"] = 1,
+                            ["decals_1"] = -1,
                             ["decals_2"] = 0,
-                            ["arms"] = 11,
-                            ["pants_1"] = 150,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 97,
-                            ["shoes_2"] = 0,
+                            ["arms"] = 0,
+                            ["pants_1"] = 45,
+                            ["pants_2"] = 1,
+                            ["shoes_1"] = 76,
+                            ["shoes_2"] = 1,
                             ["helmet_1"] = -1,
                             ["helmet_2"] = 0,
                             ["chain_1"] = 172,
@@ -6324,19 +6324,19 @@ Jobs = {
                             ["ears_2"] = 0
                         }
                     },
-                    ["Tenue ambulancier manches longues"] = {
+                    ["Resident ML"] = {
                         male = {
-                            ["tshirt_1"] = 240,
+                            ["tshirt_1"] = 193,
                             ["tshirt_2"] = 0,
-                            ["torso_1"] = 426,
-                            ["torso_2"] = 6,
-                            ["decals_1"] = 0,
+                            ["torso_1"] = 396,
+                            ["torso_2"] = 1,
+                            ["decals_1"] = -1,
                             ["decals_2"] = 0,
-                            ["arms"] = 6,
-                            ["pants_1"] = 150,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 97,
-                            ["shoes_2"] = 0,
+                            ["arms"] = 1,
+                            ["pants_1"] = 45,
+                            ["pants_2"] = 1,
+                            ["shoes_1"] = 76,
+                            ["shoes_2"] = 1,
                             ["helmet_1"] = -1,
                             ["helmet_2"] = 0,
                             ["chain_1"] = 172,
@@ -6364,19 +6364,19 @@ Jobs = {
                             ["ears_2"] = 0
                         }
                     },
-                    ["Blouse de service"] = {
+                    ["Medical doctor (blouse)"] = {
                         male = {
-                            ["tshirt_1"] = 11,
-                            ["tshirt_2"] = 0,
+                            ["tshirt_1"] = 193,
+                            ["tshirt_2"] = 3,
                             ["torso_1"] = 391,
                             ["torso_2"] = 0,
-                            ["decals_1"] = 0,
+                            ["decals_1"] = -1,
                             ["decals_2"] = 0,
-                            ["arms"] = 12,
-                            ["pants_1"] = 10,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 20,
-                            ["shoes_2"] = 0,
+                            ["arms"] = 1,
+                            ["pants_1"] = 45,
+                            ["pants_2"] = 6,
+                            ["shoes_1"] = 76,
+                            ["shoes_2"] = 1,
                             ["helmet_1"] = -1,
                             ["helmet_2"] = 0,
                             ["chain_1"] = 172,
@@ -6404,23 +6404,23 @@ Jobs = {
                             ["ears_2"] = 0
                         }
                     },
-                    ["Tenue de service chirurgien"] = {
+                    ["Medical Doctor (sans blouse)"] = {
                         male = {
-                            ["tshirt_1"] = 15,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 396,
-                            ["torso_2"] = 2,
-                            ["decals_1"] = 0,
+                            ["tshirt_1"] = 193,
+                            ["tshirt_2"] = 3,
+                            ["torso_1"] = 397,
+                            ["torso_2"] = 5,
+                            ["decals_1"] = -1,
                             ["decals_2"] = 0,
-                            ["arms"] = 6,
-                            ["pants_1"] = 138,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 97,
-                            ["shoes_2"] = 0,
+                            ["arms"] = 0,
+                            ["pants_1"] = 45,
+                            ["pants_2"] = 6,
+                            ["shoes_1"] = 76,
+                            ["shoes_2"] = 1,
                             ["helmet_1"] = -1,
                             ["helmet_2"] = 0,
-                            ["chain_1"] = 173,
-                            ["chain_2"] = 9,
+                            ["chain_1"] = 172,
+                            ["chain_2"] = 6,
                             ["ears_1"] = -1,
                             ["ears_2"] = -1
                         },
@@ -6442,6 +6442,166 @@ Jobs = {
                             ["chain_2"] = 0,
                             ["ears_1"] = 0,
                             ["ears_2"] = 0
+                        },
+                        ["Medical Doctor (blouse civile)"] = {
+                            male = {
+                                ["tshirt_1"] = 255,
+                                ["tshirt_2"] = 6,
+                                ["torso_1"] = 391,
+                                ["torso_2"] = 0,
+                                ["decals_1"] = -1,
+                                ["decals_2"] = 0,
+                                ["arms"] = 0,
+                                ["pants_1"] = 10,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 20,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 172,
+                                ["chain_2"] = 6,
+                                ["ears_1"] = -1,
+                                ["ears_2"] = -1
+                            },
+                            female = {
+                                ["tshirt_1"] = 6,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 25,
+                                ["torso_2"] = 6,
+                                ["decals_1"] = 0,
+                                ["decals_2"] = 0,
+                                ["arms"] = 9,
+                                ["pants_1"] = 34,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 25,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 96,
+                                ["chain_2"] = 0,
+                                ["ears_1"] = 0,
+                                ["ears_2"] = 0
+                            }
+                        },
+                        ["Surgery"] = {
+                            male = {
+                                ["tshirt_1"] = 193,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 397,
+                                ["torso_2"] = 1,
+                                ["decals_1"] = -1,
+                                ["decals_2"] = 0,
+                                ["arms"] = 85,
+                                ["pants_1"] = 45,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 42,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 172,
+                                ["chain_2"] = 6,
+                                ["ears_1"] = -1,
+                                ["ears_2"] = -1
+                            },
+                            female = {
+                                ["tshirt_1"] = 6,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 25,
+                                ["torso_2"] = 6,
+                                ["decals_1"] = 0,
+                                ["decals_2"] = 0,
+                                ["arms"] = 9,
+                                ["pants_1"] = 34,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 25,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 96,
+                                ["chain_2"] = 0,
+                                ["ears_1"] = 0,
+                                ["ears_2"] = 0
+                            }
+                        },
+                        ["EMT"] = {
+                            male = {
+                                ["tshirt_1"] = 240,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 425,
+                                ["torso_2"] = 6,
+                                ["decals_1"] = -1,
+                                ["decals_2"] = 0,
+                                ["arms"] = 11,
+                                ["pants_1"] = 150,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 25,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 172,
+                                ["chain_2"] = 6,
+                                ["ears_1"] = -1,
+                                ["ears_2"] = -1
+                            },
+                            female = {
+                                ["tshirt_1"] = 6,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 25,
+                                ["torso_2"] = 6,
+                                ["decals_1"] = 0,
+                                ["decals_2"] = 0,
+                                ["arms"] = 9,
+                                ["pants_1"] = 34,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 25,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 96,
+                                ["chain_2"] = 0,
+                                ["ears_1"] = 0,
+                                ["ears_2"] = 0
+                            }
+                        },
+                        ["Utility Coroner"] = {
+                            male = {
+                                ["tshirt_1"] = 240,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 443,
+                                ["torso_2"] = 8,
+                                ["decals_1"] = -1,
+                                ["decals_2"] = 0,
+                                ["arms"] = 85,
+                                ["pants_1"] = 150,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 25,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = -1,
+                                ["chain_2"] = 0,
+                                ["ears_1"] = -1,
+                                ["ears_2"] = -1
+                            },
+                            female = {
+                                ["tshirt_1"] = 6,
+                                ["tshirt_2"] = 0,
+                                ["torso_1"] = 25,
+                                ["torso_2"] = 6,
+                                ["decals_1"] = 0,
+                                ["decals_2"] = 0,
+                                ["arms"] = 9,
+                                ["pants_1"] = 34,
+                                ["pants_2"] = 0,
+                                ["shoes_1"] = 25,
+                                ["shoes_2"] = 0,
+                                ["helmet_1"] = -1,
+                                ["helmet_2"] = 0,
+                                ["chain_1"] = 96,
+                                ["chain_2"] = 0,
+                                ["ears_1"] = 0,
+                                ["ears_2"] = 0
+                            }
                         }
                     }
                 }
@@ -6602,7 +6762,7 @@ Jobs = {
                                     HoverPlayer()
                                 end
                             },
-                            
+
                             {
                                 label = "Sortir du véhicule",
                                 onSelected = function()
@@ -9325,8 +9485,8 @@ Jobs = {
     --                 end
     --             end
     --             }
-    --         }    
-    --     }    
+    --         }
+    --     }
     -- },
 
     immo = {
@@ -9517,7 +9677,7 @@ Jobs = {
                                         SetPedMaxHealth(storePed, 100)
                                         SetPedDiesWhenInjured(storePed, false)
                                         SetAmbientVoiceName(storePed, v.voice)
-                        
+
                                         TaskPlayAnim(storePed, v.animation, v.animationName, 8.0, 0.0, -1, 1, 0, 0, 0, 0)
                                         SetModelAsNoLongerNeeded(GetHashKey(v.model))
                                         table.insert(spawnedPeds, NetworkGetNetworkIdFromEntity(storePed))
