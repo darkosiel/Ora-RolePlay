@@ -2043,7 +2043,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1240.3414, y = -350.66921, z = 69.1846 - 0.98},
+                Pos = {x = 1242.5872, y = -350.809, z = 69.184 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
@@ -2066,7 +2066,7 @@ Jobs = {
             traitement2 = {
                 --frites
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 0.5,
                 blipcolor = 5,
                 blipname = "Friteuse",
                 Pos = {x = 1249.9007, y = -352.7587, z = 69.1846},
@@ -2079,7 +2079,7 @@ Jobs = {
             traitement = {
                 --milkshack
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 0.5,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
                 Pos = {x = 1251.9968, y = -358.9071, z = 69.1846},
@@ -2094,18 +2094,18 @@ Jobs = {
             traitement3 = {
                 --hamburger
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 0.5,
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
                 Pos = {x = 1249.9069, y = -356.2945, z = 69.1846},
                 required = {
-                    {name = "bread", count = 1},
+                    {name = "pain", count = 1},
                     {name = "chicken", count = 1}
                 },
                 giveitem = "burger",
                 RemoveItem = {
-                    {name = "bread", count = 1},
+                    {name = "pain", count = 1},
                     {name = "chicken", count = 1}
                 },
                 add = "~p~+ 1  Hamburger poulet"
@@ -2113,50 +2113,38 @@ Jobs = {
             traitement5 = {
                 --hamburger
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 0.5,
                 blipcolor = 8,
                 noFarm = true,
                 blipname = "Grill Burger Healthy",
                 Pos = {x = 1253.5775, y = -354.3818, z = 69.1846},
                 required = {
-                    {name = "bread", count = 1},
+                    {name = "pain", count = 1},
                     {name = "meat", count = 1}
                 },
                 giveitem = "burgerhealthy",
                 RemoveItem = {
-                    {name = "bread", count = 1},
+                    {name = "pain", count = 1},
                     {name = "meat", count = 1}
                 },
                 add = "~p~+ 1  Hamburger Healthy"
             },
-            traitement6 = {
-                --Poudre café
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Wing Stop - Traitement Café",
-                Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
-                required = "graincafe1",
-                giveitem = "graincafe2",
-                RemoveItem = "graincafe1",
-                add = "~p~+ 1  Poudre de café"
-            },
             traitement7 = {
                 --Café
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 10.0,
                 blipcolor = 7,
                 blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
-                required = "graincafe2",
+                required = "graincafe1",
                 giveitem = "cafe",
-                RemoveItem = "graincafe2",
+                RemoveItem = "graincafe1",
                 add = "~p~+ 1  Café"
             },
             vente = {
                 type = "vente",
                 blipcolor = 7,
-                workSize = 7.45,
+                workSize = 1.2,
                 blipname = "Wing Stop - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",

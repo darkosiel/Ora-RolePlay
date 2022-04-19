@@ -146,7 +146,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["jus_raisin"] = {"Jus de raisin", 40},
   },
   restaurant = {
-    ["bread"] = {"Pain", 25},
+    ["pain"] = {"Pain", 25},
     ["aperitif"] = {"Apéritif", 5},
     ["entreepearl"] = {"Tartare de thon-rouge", 5},
     ["entreepearl2"] = {"Carpaccio de bar", 5},
@@ -227,7 +227,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
   burgershot = {
     ["milk"] = {"Lait", 30},
     ["chicken"] = {"Poulet", 50},
-    ["bread"] = {"Pain", 25},
+    ["pain"] = {"Pain", 25},
     ["pommeterre"] = {"Pomme de terre", 45},
     ["meat"] = {"Viande Crue", 5},
     ["jus_raisin"] = {"Jus de raisin", 40},
