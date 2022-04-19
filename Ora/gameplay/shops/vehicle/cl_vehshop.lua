@@ -328,7 +328,6 @@ local VehShop =
                     {name = "hakuchou2", price = 25000},
                     {name = "hexer", price = 4800},
                     {name = "innovation", price = 8000},
-                    {name = "lectro", price = 3300},
                     {name = "nemesis", price = 3000},
                     {name = "nightblade", price = 8600},
                     {name = "manchez", price = 3000},
