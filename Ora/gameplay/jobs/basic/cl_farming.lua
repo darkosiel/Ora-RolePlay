@@ -378,7 +378,7 @@ function startworkInternal(type)
                                 ClearPedTasks(LocalPlayer().Ped)
                             end
                             if isWorking and not wannaSTOP then
-                                if LocalPlayer().FarmLimit >= 400 and tostring(CurrentAction) ~= "vente" then
+                                if LocalPlayer().FarmLimit >= 600 and tostring(CurrentAction) ~= "vente" then
                                     StopCurrentWork2()
                                     return ShowNotification("~r~Vous avez atteint votre limite journalière")
                                 end

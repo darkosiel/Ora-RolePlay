@@ -629,7 +629,7 @@ function craftWeapon(data)
         end
     end
 
-    if GetFarmLimit() <= 400 then
+    if GetFarmLimit() <= 600 then
         if not hasOneMissing then
             SetFarmLimit(1)
             local timeWait = (data.time / 1000) / 60

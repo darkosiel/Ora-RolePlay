@@ -230,7 +230,7 @@ function StartRecolte(_type)
                         if data.anim ~= nil then
                             animsAction(data.anim)
                         end
-                        if LocalPlayer().FarmLimit >= 400 and tostring(data.type) == "traitement" then
+                        if LocalPlayer().FarmLimit >= 600 and tostring(data.type) == "traitement" then
                             return ShowNotification("~r~Vous avez atteint votre limite journalière")
                         end
                         worksP[tostring(data.type)].fct()

@@ -362,7 +362,7 @@ Citizen.CreateThread(
                         RageUI.Button(
                             "Limite de métier",
                             nil,
-                            {RightLabel = LocalPlayer().FarmLimit .. "/400"},
+                            {RightLabel = LocalPlayer().FarmLimit .. "/600"},
                             true,
                             function(_, _, Selected)
                                 if Selected then

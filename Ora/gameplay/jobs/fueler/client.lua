@@ -249,7 +249,7 @@ end
 
 local function fuelFill()
   local farmLimit = GetFarmLimit()
-  if farmLimit < 400 then
+  if farmLimit < 600 then
     local missingFuel = Station.max_fuel-stationInfo.fuel
     local qty = vehTrailer.fuel - missingFuel
     local ped = LocalPlayer().Ped
@@ -257,14 +257,14 @@ local function fuelFill()
     local progressP = 1.0/Station.work.harvest.time
     local p
     
-    if vehTrailer.fuel > missingFuel and (farmLimit + math.floor(Station.limitLiters*missingFuel)) < 400 then
+    if vehTrailer.fuel > missingFuel and (farmLimit + math.floor(Station.limitLiters*missingFuel)) < 600 then
       progressP = 1.0/(0.12*missingFuel)
       p = 1
-    elseif vehTrailer.fuel < missingFuel and (farmLimit + math.floor(Station.limitLiters*vehTrailer.fuel)) < 400 then
+    elseif vehTrailer.fuel < missingFuel and (farmLimit + math.floor(Station.limitLiters*vehTrailer.fuel)) < 600 then
       progressP = 1.0/(0.12*vehTrailer.fuel)
       p = 2
     else
-      local limit = 400 - farmLimit
+      local limit = 600 - farmLimit
       progressP = 1.0/(0.12*(limit/Station.limitLiters))
       p = 3
     end
@@ -299,7 +299,7 @@ local function fuelFill()
             TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "raffinerie", vehTrailer.fuel*stationInfo.priceL, true)
             TriggerServerEvent("entreprise:Add", "raffinerie", vehTrailer.fuel*stationInfo.priceL)
           elseif p == 3 then
-            local limit = 400 - farmLimit
+            local limit = 600 - farmLimit
             local liters = vehTrailer.fuel-(limit/Station.limitLiters)
             DecorSetFloat(vehTrailer.trailer, Station.decor_treatment, liters)
             SetFarmLimit(limit)

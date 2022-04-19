@@ -33,7 +33,7 @@ Citizen.CreateThread(
 )
 
 function startExercise(animInfo, pos)
-    if not ConfigGym.FarmLimit or (ConfigGym.FarmLimit and GetFarmLimit() < 400) then
+    if not ConfigGym.FarmLimit or (ConfigGym.FarmLimit and GetFarmLimit() < 600) then
         local playerPed = LocalPlayer().Ped
 
         LoadDict(animInfo["idleDict"])

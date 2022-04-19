@@ -9557,18 +9557,6 @@ Jobs = {
                     anim = "pickup_snowball"
                 }
             },
-            traitement = {
-                --Poudre café
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Unicorn - Traitement Café",
-                Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
-                required = "graincafe1",
-                giveitem = "graincafe2",
-                RemoveItem = "graincafe1",
-                add = "~p~+ 1  Poudre de café"
-            },
             traitement2 = {
                 --Café
                 type = "traitement",
@@ -9576,9 +9564,9 @@ Jobs = {
                 blipcolor = 7,
                 blipname = "Unicorn - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
-                required = "graincafe2",
+                required = "graincafe1",
                 giveitem = "cafe",
-                RemoveItem = "graincafe2",
+                RemoveItem = "graincafe1",
                 add = "~p~+ 1  Café"
             },
             vente = {
