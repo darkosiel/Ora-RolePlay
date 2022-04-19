@@ -24,6 +24,14 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["plasticpiece3"] = {"Crosse ABS", 200},
     ["plasticpiece4"] = {"Queue de détente ABS", 150},
     ["plasticpiece5"] = {"Renfort protection en ABS", 150},
+    ["poolcue"] = {"Queue de billard", 100},
+    ["knuckle"] = {"Poing américain", 100},
+    ["hammer"] = {"Poing américain", 100},
+    ["batte"] = {"Batte de baseball", 100},
+    ["knife"] = {"Couteau", 100},
+    ["dagger"] = {"Dague", 100},
+    ["wrench"] = {"Clé anglaise", 100},
+
   },
   bennys = {
     ["repairbox"] = {"Boite à outils", 350},

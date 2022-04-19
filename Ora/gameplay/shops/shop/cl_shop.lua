@@ -2028,31 +2028,6 @@ local Shops =
                     price = 100,
                     data = {}
                 },
-                {
-                    name = "knuckle",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "hammer",
-                    price = 300,
-                    data = {}
-                },
-                {
-                    name = "batte",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "knife",
-                    price = 220,
-                    data = {}
-                },
-                {
-                    name = "dagger",
-                    price = 250,
-                    data = {}
-                }
             }
         },
         {
@@ -2095,31 +2070,6 @@ local Shops =
                 {
                     name = "ciseaux",
                     price = 10,
-                    data = {}
-                },
-                {
-                    name = "wrench",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "poolcue",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "pioche",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "pelle",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "masse",
-                    price = 250,
                     data = {}
                 },
                 {
@@ -2260,31 +2210,6 @@ local Shops =
                 {
                     name = "ciseaux",
                     price = 10,
-                    data = {}
-                },
-                {
-                    name = "wrench",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "poolcue",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "pioche",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "pelle",
-                    price = 250,
-                    data = {}
-                },
-                {
-                    name = "masse",
-                    price = 250,
                     data = {}
                 },
                 {
