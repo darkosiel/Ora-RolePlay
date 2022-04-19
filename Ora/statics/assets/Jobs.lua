@@ -567,7 +567,7 @@ Jobs = {
         Extrapos = {
             CraftWeapon = {
                 Pos = {
-                    {x = 809.022, y = -2159.48, z = 29.61}
+                    {x = 813.088, y = -2155.940, z = 29.619}
                 },
                 restricted = {2, 3, 4, 5},
                 Enter = function()
