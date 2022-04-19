@@ -36,7 +36,7 @@ function generateUUIDV2()
     randomTest = uuid.seeder()
     itemVariableIncrementForId = itemVariableIncrementForId + 1
     uuidForItem = timerConnectedAt .. "-" .. uuidForItem .. "-" .. itemVariableIncrementForId
-    print("^5[DBG] Generated new UUID " .. uuidForItem .. "^0")
+    --print("^5[DBG] Generated new UUID " .. uuidForItem .. "^0")
     return uuidForItem
 end
 
