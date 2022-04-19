@@ -1,9 +1,10 @@
 // Load up the discord.js library
 const Discord = require("discord.js");
 const mysql = require("mysql");
+const { exec } = require("child_process");
 const { pass } = require('./secret.js')
 
-// This is your client. Some people call it `bot`, some people call it `self`, 
+// This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
 // this is what we're refering to. Your client.
 const client = new Discord.Client();
@@ -12,8 +13,8 @@ var con = mysql.createConnection({
     user: "orarp",
     password: pass,
     database: "orarp"
-  });
-// Here we load the config.json file that contains our token and our prefix values. 
+});
+// Here we load the config.json file that contains our token and our prefix values.
 const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
@@ -23,27 +24,40 @@ con.connect(function(err) {
     console.log("Connected!");
 });
 client.on("message", async message => {
-  // This event will run on every single message received, from any channel or DM.
+    // This event will run on every single message received, from any channel or DM.
     console.log()
-  // It's good practice to ignore other bots. This also makes your bot ignore itself
-  // and not get into a spam loop (we call that "botception").
-  if(message.author.bot) return;
-  
-  // Also good practice to ignore any message that does not start with our prefix, 
-  // which is set in the configuration file.
-  if(message.content.indexOf(config.prefix) !== 0) return;
-  
-  // Here we separate our "command" name, and our "arguments" for the command. 
-  // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
-  // command = say
-  // args = ["Is", "this", "the", "real", "life?"]
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  
-  // Let's go with a few common example commands! Feel free to delete or change those.
-  console.log(command)
-  console.log(command == "wl")
-  console.log(message.channel.id)
+    // It's good practice to ignore other bots. This also makes your bot ignore itself
+    // and not get into a spam loop (we call that "botception").
+    if(message.author.bot) return;
+
+    // Also good practice to ignore any message that does not start with our prefix,
+    // which is set in the configuration file.
+    if(message.content.indexOf(config.prefix) !== 0) return;
+
+    // Here we separate our "command" name, and our "arguments" for the command.
+    // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
+    // command = say
+    // args = ["Is", "this", "the", "real", "life?"]
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
+    // Let's go with a few common example commands! Feel free to delete or change those.
+    console.log(command)
+    console.log(command == "wl")
+    console.log(message.channel.id)
+    if (command == "pull" && message.channel.id == "966020074060251196") {
+        exec("cd /home/manager/FXServer/server-data/resources/\[script\] && git pull", (error, stdout, stderr) => {
+            if (error) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
+                return;
+            }
+            if (stderr) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${stderr}\`\`\``);
+                return;
+            }
+            message.channel.send(`**Réponse du serveur :** \`\`\`${stdout}\`\`\``);
+        });
+    }
     if (message.channel.id != "962003138905264169") {
         return}
     if (command == "wl") {
@@ -52,8 +66,8 @@ client.on("message", async message => {
             console.log("oue")
             var sql = "INSERT INTO whitelist (identifier) VALUES ('"+args[0]+"')";
             con.query(sql, function (err, result) {
-            if (err) console.log(err);
-            message.channel.send("Utilisateur ("+args[0]+") whitelist !")
+                if (err) console.log(err);
+                message.channel.send("Utilisateur ("+args[0]+") whitelist !")
             });
         }
     }
@@ -71,8 +85,8 @@ client.on("message", async message => {
         if (args[0] != undefined) {
             var sql = "DELETE FROM whitelist WHERE identifier ='"+args[0]+"'";
             con.query(sql, function (err, result) {
-            if (err) throw err;
-            message.channel.send("Utilisateur ("+args[0]+") déswhitelist !")
+                if (err) throw err;
+                message.channel.send("Utilisateur ("+args[0]+") déswhitelist !")
             });
         }
     }
@@ -103,7 +117,7 @@ client.on("message", async message => {
                 con.query(sql, function (err, result) {
                     if (err) throw err;
                 });
-                
+
                 con.query("SELECT uuid, coowner FROM banking_account WHERE uuid = '"+result[0].uuid+"'", (err, res)=>{
                     if(err)throw err
                     if(res.length == 1){ // if there's only a bank account created for the user
@@ -120,9 +134,9 @@ client.on("message", async message => {
                     if(res.length > 1){ // if the user have multiple bank accounts
                         res.forEach(el => {
                             if(el['coowner'] != null){// if there is a coowner
-																con.query('UPDATE banking_account SET uuid = coowner WHERE uuid = "'+el['uuid']+'" AND coowner = "'+el['coowner']+'"', err=>{if (err) throw err})
+                                con.query('UPDATE banking_account SET uuid = coowner WHERE uuid = "'+el['uuid']+'" AND coowner = "'+el['coowner']+'"', err=>{if (err) throw err})
                             }else{// if there is no coowner
-																con.query('DELETE FROM banking_account WHERE uuid = "'+el['uuid']+'" AND coowner IS NULL', err=>{if (err) throw err})
+                                con.query('DELETE FROM banking_account WHERE uuid = "'+el['uuid']+'" AND coowner IS NULL', err=>{if (err) throw err})
                             }
                         })
                     }
@@ -130,15 +144,15 @@ client.on("message", async message => {
             });
             var sql2 = "DELETE FROM users WHERE identifier = '"+args[0]+"'";
             con.query(sql, function (err, result) {
-            if (err) throw err;
-            con.query(sql2, function (err, result) {
                 if (err) throw err;
+                con.query(sql2, function (err, result) {
+                    if (err) throw err;
                     message.channel.send("Utilisateur ("+args[0]+") wipe !")
                 });
             });
         }
     }
-    
+
 });
 
 client.login(config.token);
