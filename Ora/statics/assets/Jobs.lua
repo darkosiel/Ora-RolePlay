@@ -6364,7 +6364,7 @@ Jobs = {
                             ["ears_2"] = 0
                         }
                     },
-                    ["Medical doctor (blouse)"] = {
+                    ["Medical Doctor (blouse)"] = {
                         male = {
                             ["tshirt_1"] = 193,
                             ["tshirt_2"] = 3,
@@ -6492,7 +6492,7 @@ Jobs = {
                             ["torso_2"] = 1,
                             ["decals_1"] = -1,
                             ["decals_2"] = 0,
-                            ["arms"] = 85,
+                            ["arms"] = 92,
                             ["pants_1"] = 45,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 42,
