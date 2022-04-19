@@ -58,6 +58,32 @@ client.on("message", async message => {
             message.channel.send(`**Réponse du serveur :** \`\`\`${stdout}\`\`\``);
         });
     }
+    if (command == "pullvhl" && message.channel.id == "966020074060251196") {
+        exec("cd /home/manager/FXServer/server-data/resources/\[vhl\] && git pull", (error, stdout, stderr) => {
+            if (error) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
+                return;
+            }
+            if (stderr) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${stderr}\`\`\``);
+                return;
+            }
+            message.channel.send(`**Réponse du serveur :** \`\`\`${stdout}\`\`\``);
+        });
+    }
+    if (command == "pullmap" && message.channel.id == "966020074060251196") {
+        exec("cd /home/manager/FXServer/server-data/resources/\[map\] && git pull", (error, stdout, stderr) => {
+            if (error) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
+                return;
+            }
+            if (stderr) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${stderr}\`\`\``);
+                return;
+            }
+            message.channel.send(`**Réponse du serveur :** \`\`\`${stdout}\`\`\``);
+        });
+    }
     if (message.channel.id != "962003138905264169") {
         return}
     if (command == "wl") {
