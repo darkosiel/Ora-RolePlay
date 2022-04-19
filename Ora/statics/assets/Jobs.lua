@@ -8770,6 +8770,15 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Inspecter la plaque",
+                    onSelected = function()
+                        Police.PlateCheck()
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+                {
                     label = "Créer une clé",
                     onSelected = function()
                         Clef()

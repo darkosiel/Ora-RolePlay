@@ -79,7 +79,7 @@ end
 function Ora.Jobs.Jetsam.EnterZone()
     while (Ora.Player.HasLoaded == false) do Wait(50) end
 
-	if (not Ora.Identity:HasAnyJob("jetsam")) then return end
+	if (not Ora.Identity:HasAnyJob("concess")) then return end
     
     Ora.Jobs.Jetsam.E_Thread = false
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir l'ordinateur")
@@ -165,16 +165,16 @@ function Ora.Jobs.Jetsam.INIT()
 		function()
 			while (Ora.Player.HasLoaded == false) do Wait(500) end
 	
-			Zone:Add({x = 819.37, y = -2986.64, z = 6.02 - 0.98, a = 304.70}, Ora.Jobs.Jetsam.EnterZone, Ora.Jobs.Jetsam.ExitZone, "", 3.5)
+			Zone:Add({x = -30.94593, y = -1088.0161, z = 27.2743 - 0.98, a = 176.367}, Ora.Jobs.Jetsam.EnterZone, Ora.Jobs.Jetsam.ExitZone, "", 3.5)
 			
-			local blip = AddBlipForCoord(819.37, -2986.64, 6.02)
+			local blip = AddBlipForCoord(-30.94593, -1088.0161, 27.2743)
 			SetBlipSprite(blip, 521)
 			SetBlipDisplay(blip, 4)
 			SetBlipScale(blip, 0.8)
 			SetBlipColour(blip, 61)
 			SetBlipAsShortRange(blip, true)
 			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString("Jetsam - Réception des commandes")
+			AddTextComponentString("Réception des commandes")
 			EndTextCommandSetBlipName(blip)
 
 			if (Ora.Identity.Job:GetName() == "jetsam") then
@@ -424,8 +424,10 @@ RegisterNUICallback(
 				local veh = vehdata.customs
 				local plate = vehdata.plate
 				local spawnedVehicle = nil
-				
-				spawnedVehicle = Ora.World.Vehicle:Create(veh.model, {x = 827.94, y = -2924.32, z = 5.88 - 0.80}, 180.49, {})
+
+				Wait(10000)
+
+				spawnedVehicle = Ora.World.Vehicle:Create(veh.model, {x = -17.098, y = -1105.643, z = 26.672 - 0.80}, 339.819, {})
 				
 				while (spawnedVehicle == nil) do
 					Wait(100)
@@ -452,14 +454,14 @@ RegisterNUICallback(
 							data = {
 								plate = plate,
 								model = veh.label,
-								identity = "Jetsam"
+								identity = "Concessionnaire"
 							},
 							label = plate
 						}
 					}
 				)
 
-				SetNewWaypoint(827.94, -2924.32)
+				SetNewWaypoint(-17.098, -1105.643)
 				RageUI.Popup({message = "~b~Le véhicule a été livré ici"})
 			end,
 			data.id

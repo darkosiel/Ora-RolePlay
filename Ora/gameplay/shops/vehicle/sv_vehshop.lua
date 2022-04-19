@@ -64,7 +64,7 @@ RegisterServerCallback(
         while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
             vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
         end
-        insertNewVehicleIntoDatabase(seller, "jetsam", vehicleOptions, vehicle.plate, vehicle.label, price)
+        insertNewVehicleIntoDatabase(seller, "concess", vehicleOptions, vehicle.plate, vehicle.label, price)
         callback(true, vehicle.plate)
     end
 )
@@ -77,7 +77,7 @@ RegisterServerCallback(
         while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
             vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
         end
-        insertNewVehicleIntoDatabase(seller, "jetsam", vehicleOptions, vehicle.plate, vehicle.label, price)
+        insertNewVehicleIntoDatabase(seller, "concess", vehicleOptions, vehicle.plate, vehicle.label, price)
         callback(true, vehicle.plate)
     end
 )

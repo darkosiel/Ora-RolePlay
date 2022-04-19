@@ -1,5 +1,5 @@
 Ora.Jobs.Jetsam = {}
-Ora.Jobs.Jetsam.OrderWaitTime = 900000 -- 15 min
+Ora.Jobs.Jetsam.OrderWaitTime = 180000 -- secondes + 000
 Ora.Jobs.Jetsam.TrailerConfig = {
   ----------------
   ----COMPACTS----

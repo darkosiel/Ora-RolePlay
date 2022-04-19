@@ -2800,6 +2800,17 @@ local function action(act)
 end
 Citizen.CreateThread(
     function()
+        Zone:Add({x = -30.94593, y = -1088.0161, z = 27.2743 - 0.98, a = 176.367}, Ora.Jobs.Jetsam.EnterZone, Ora.Jobs.Jetsam.ExitZone, "", 3.5)
+
+        local blip = AddBlipForCoord(-30.94593, -1088.0161, 27.2743)
+        SetBlipSprite(blip, 521)
+        SetBlipDisplay(blip, 4)
+        SetBlipScale(blip, 0.8)
+        SetBlipColour(blip, 61)
+        SetBlipAsShortRange(blip, true)
+        BeginTextCommandSetBlipName("STRING")
+        AddTextComponentString("Réception des commandes")
+        EndTextCommandSetBlipName(blip)
         while true do
             Wait(1)
             if RageUI.Visible(RMenu:Get("concess", "livraison")) then
