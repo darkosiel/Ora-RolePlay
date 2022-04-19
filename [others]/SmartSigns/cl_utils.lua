@@ -25,66 +25,68 @@ Citizen.CreateThread(function()
 end)
 
 function nearAccessPoint(k, v, ped, pedCoords)
-    Draw3DText(v.sign[1].x + config.main.signOffset[1], v.sign[1].y + config.main.signOffset[2], v.sign[1].z + config.main.signOffset[3], config.main.instructionalText, 4, 0.05, 0.05)
-    if IsControlJustPressed(config.main.adjustButton[1], config.main.adjustButton[2]) then
-        if config.main.developerMode then
-            print("[Smart Signs] - Access point control pressed")
-        end
-        if config.main.animation.enabled then
+    if exports["Ora"]:OraGetJob().name == "police" then
+        Draw3DText(v.sign[1].x + config.main.signOffset[1], v.sign[1].y + config.main.signOffset[2], v.sign[1].z + config.main.signOffset[3], config.main.instructionalText, 4, 0.05, 0.05)
+        if IsControlJustPressed(config.main.adjustButton[1], config.main.adjustButton[2]) then
             if config.main.developerMode then
-                print("[Smart Signs] - Animation Enabled - Starting")
+                print("[Smart Signs] - Access point control pressed")
             end
-            local boxPosition = GetOffsetFromEntityInWorldCoords(v.signProp, -1.55, 0.0, 0.0)
-            SetEntityCoords(ped, boxPosition.x, boxPosition.y, boxPosition.z, true, true, true, false)
-            SetEntityHeading(ped, GetEntityHeading(v.signProp) - 90.0)
-            if config.main.developerMode then
-                print("[Smart Signs] - Ped Coords Set")
-            end
-            RequestAnimDict(config.main.animation.dict)
-            if config.main.developerMode then
-                print("[Smart Signs] - Requesting Animation Dictionary: "..config.main.animation.dict)
-            end
-            while not HasAnimDictLoaded(config.main.animation.dict) do 
+            if config.main.animation.enabled then
                 if config.main.developerMode then
-                    print("[Smart Signs] - Loading Animation Dictionary: "..config.main.animation.dict)
+                    print("[Smart Signs] - Animation Enabled - Starting")
                 end
-                Wait(0) 
+                local boxPosition = GetOffsetFromEntityInWorldCoords(v.signProp, -1.55, 0.0, 0.0)
+                SetEntityCoords(ped, boxPosition.x, boxPosition.y, boxPosition.z, true, true, true, false)
+                SetEntityHeading(ped, GetEntityHeading(v.signProp) - 90.0)
+                if config.main.developerMode then
+                    print("[Smart Signs] - Ped Coords Set")
+                end
+                RequestAnimDict(config.main.animation.dict)
+                if config.main.developerMode then
+                    print("[Smart Signs] - Requesting Animation Dictionary: "..config.main.animation.dict)
+                end
+                while not HasAnimDictLoaded(config.main.animation.dict) do
+                    if config.main.developerMode then
+                        print("[Smart Signs] - Loading Animation Dictionary: "..config.main.animation.dict)
+                    end
+                    Wait(0)
+                end
+                if config.main.developerMode then
+                    print("[Smart Signs] - Loaded Animation Dictionary: "..config.main.animation.dict)
+                end
+                if config.main.developerMode then
+                    print("[Smart Signs] - Playing Animation Name: "..config.main.animation.name)
+                end
+                TaskPlayAnim(ped, config.main.animation.dict, config.main.animation.name, 8.0, -8.0, -1, 0, 0.0, 0, 0, 0)
             end
-            if config.main.developerMode then
-                print("[Smart Signs] - Loaded Animation Dictionary: "..config.main.animation.dict)
+            local inputs = {}
+            for i = 1, 3 do
+                if config.main.developerMode then
+                    print("[Smart Signs] - Starting user input for line: "..i)
+                end
+                inputs[i] = getInput(i)
+                if config.main.developerMode then
+                    print("[Smart Signs] - User input returned: "..tostring(inputs[i]))
+                end
             end
+            local streetHash = GetStreetNameAtCoord(pedCoords.x, pedCoords.y, pedCoords.z)
+            local streetName = GetStreetNameFromHashKey(streetHash)
             if config.main.developerMode then
-                print("[Smart Signs] - Playing Animation Name: "..config.main.animation.name)
+                print("[Smart Signs] - Street Hash: "..tostring(streetHash))
+                print("[Smart Signs] - Street Name: "..tostring(streetName))
             end
-            TaskPlayAnim(ped, config.main.animation.dict, config.main.animation.name, 8.0, -8.0, -1, 0, 0.0, 0, 0, 0)
-        end
-        local inputs = {}
-        for i = 1, 3 do 
-            if config.main.developerMode then
-                print("[Smart Signs] - Starting user input for line: "..i)
+            for i = 1, 39 do
+                if config.main.developerMode then
+                    print("[Smart Signs] - Data for Sign ID: "..i.." sent to server")
+                end
+                TriggerServerEvent("SmartSigns:updateSign", i, inputs, tostring(streetName), exports["Ora"]:OraGetJob().name)
             end
-            inputs[i] = getInput(i)
-            if config.main.developerMode then
-                print("[Smart Signs] - User input returned: "..tostring(inputs[i]))
-            end
-        end
-        local streetHash = GetStreetNameAtCoord(pedCoords.x, pedCoords.y, pedCoords.z)
-        local streetName = GetStreetNameFromHashKey(streetHash)
-        if config.main.developerMode then
-            print("[Smart Signs] - Street Hash: "..tostring(streetHash))
-            print("[Smart Signs] - Street Name: "..tostring(streetName))
-        end
-        for i = 1, 39 do
-            if config.main.developerMode then
-                print("[Smart Signs] - Data for Sign ID: "..i.." sent to server")
-            end
-            TriggerServerEvent("SmartSigns:updateSign", i, inputs, tostring(streetName), exports["Ora"]:OraGetJob().name)
-        end
-        ClearPedTasks(ped)
-        if config.main.soundEffect.enabled then
-            PlaySoundFrontend(-1, config.main.soundEffect.name, config.main.soundEffect.dict)
-            if config.main.developerMode then
-                print("[Smart Signs] - Playing sound: Name: "..config.main.soundEffect.name.." - Dict: "..config.main.soundEffect.dict)
+            ClearPedTasks(ped)
+            if config.main.soundEffect.enabled then
+                PlaySoundFrontend(-1, config.main.soundEffect.name, config.main.soundEffect.dict)
+                if config.main.developerMode then
+                    print("[Smart Signs] - Playing sound: Name: "..config.main.soundEffect.name.." - Dict: "..config.main.soundEffect.dict)
+                end
             end
         end
     end
