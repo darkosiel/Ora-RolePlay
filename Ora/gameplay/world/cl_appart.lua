@@ -230,7 +230,7 @@ function SetupApparts()
                 visible = true
             }
             propertyValue.garagePos.z = propertyValue.garagePos.z + 1.0
-            Marker:Add(propertyValue.garagePos, __Marker)
+            --Marker:Add(propertyValue.garagePos, __Marker)
         end
 
         if own then
