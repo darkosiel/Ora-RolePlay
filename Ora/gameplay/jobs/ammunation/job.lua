@@ -243,7 +243,7 @@ AmmunationCrafts["shotgun"] = {
         selected = function()
             ShowNotification("~b~Vérification de la disponibilité des pieces necessaires~s~")
             found = false
-            local data = AmmunationCrafts["shotgun"]["beanbag"]
+            local data = AmmunationCrafts["shotgun"]["lesslethal"]
             craftWeapon(data)
         end
     },
