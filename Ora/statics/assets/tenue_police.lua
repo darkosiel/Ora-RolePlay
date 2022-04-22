@@ -1873,7 +1873,7 @@ TenueLSPD = {
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
-            'tshirt_1'] = 254,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 254,  ['tshirt_2'] = 0,
             ['torso_1'] = 458,   ['torso_2'] = 0,
             ['decals_1'] = 132,   ['decals_2'] = 1,
             ['arms'] = 88,
