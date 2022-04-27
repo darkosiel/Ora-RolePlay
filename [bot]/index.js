@@ -10,8 +10,8 @@ const { pass } = require('./secret.js')
 const client = new Discord.Client();
 var con = mysql.createConnection({
     host: "localhost",
-    user: "orarp",
-    password: pass,
+    user: "root",
+    password: "Ora2k22%",
     database: "orarp"
 });
 // Here we load the config.json file that contains our token and our prefix values.
@@ -46,7 +46,7 @@ client.on("message", async message => {
     console.log(command == "wl")
     console.log(message.channel.id)
     if (command == "pull" && message.channel.id == "966020074060251196") {
-        exec("cd /home/manager/FXServer/server-data/resources/\[script\] && git pull", (error, stdout, stderr) => {
+        exec("cd /home/server-data/resources/ && git pull", (error, stdout, stderr) => {
             if (error) {
                 message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
                 return;
