@@ -5,7 +5,7 @@
   "SoundPack": "default",
   "IngameChannelId": 6,
   "IngameChannelPassword": "orarp2022",
-  "SwissChannelIds": [7],
+  "SwissChannelIds": [7, 8],
   "VoiceRanges": [ 2, 5, 8, 15 ],
   "EnableVoiceRangeNotification": false,
   "IgnoreInvisiblePlayers": false,
