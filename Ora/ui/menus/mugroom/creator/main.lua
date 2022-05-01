@@ -1114,14 +1114,14 @@ Citizen.CreateThread(
                                 end
                                 local am = {}
                                 local amd = {}
-                                for i = 1, 45, 1 do
+                                for i = 1, 46, 1 do
                                     am[i] = i
                                     amd[i] = i - 1
                                 end
                                 RageUI.List(
                                     "Visage",
                                     amd,
-                                    indexCharacter[createPlayer.Model].Face.face.face,
+                                    indexCharacter[createPlayer.Model].Face.face.face + 1,
                                     nil,
                                     {},
                                     true,
