@@ -53,7 +53,7 @@ local fatherNames = {
     "Elizabeth",
     "Charlotte",
     "Emma",
-    "Misty",
+    "Misty"
 }
 local motherNames = {
     "Benjamin",
