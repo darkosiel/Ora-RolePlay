@@ -125,9 +125,6 @@ local name = {
     ["Louis"] = 18,
     ["Samuel"] = 19,
     ["Anthony"] = 20,
-    ["Claude"] = 42,
-    ["Niko"] = 43,
-    ["John"] = 44,
     ["Hannah"] = 21,
     ["Aubrey"] = 22,
     ["Jasmine"] = 23,
@@ -149,6 +146,9 @@ local name = {
     ["Elizabeth"] = 39,
     ["Charlotte"] = 40,
     ["Emma"] = 41,
+    ["Claude"] = 42,
+    ["Niko"] = 43,
+    ["John"] = 44,
     ["Misty"] = 45
 }
 function CreatorMenuHeritage(indexCharacter, createPlayer)
