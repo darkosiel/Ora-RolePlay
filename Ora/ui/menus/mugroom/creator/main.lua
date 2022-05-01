@@ -1121,7 +1121,7 @@ Citizen.CreateThread(
                                 RageUI.List(
                                     "Visage",
                                     amd,
-                                    indexCharacter[createPlayer.Model].Face.face.face + 1,
+                                    indexCharacter[createPlayer.Model].Face.face.face,
                                     nil,
                                     {},
                                     true,
