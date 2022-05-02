@@ -1,8 +1,8 @@
 local HairCutJob = {
-    -- posChair = {x = -816.22, y = -182.72, z = 37.57}, --posChair = {x=-34.06, y=-150.38, z=57.077},
-    posChair = {x = 138.25, y = -1709.13, z = 29.42}, --posChair = {x=-34.06, y=-150.38, z=57.077},
-    -- posCutters = {x = -815.93, y = -183.48, z = 37.56}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
-    posCutters = {x = 137.76, y = -1708.74, z = 29.3}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
+    posChair = {x = -816.22, y = -182.72, z = 37.57}, --posChair = {x=-34.06, y=-150.38, z=57.077},
+    -- posChair = {x = 138.25, y = -1709.13, z = 29.42}, --posChair = {x=-34.06, y=-150.38, z=57.077},
+    posCutters = {x = -815.93, y = -183.48, z = 37.56}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
+    -- posCutters = {x = 137.76, y = -1708.74, z = 29.3}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
     Seated = false
 }
 
@@ -191,8 +191,8 @@ local function SeatChair()
         HairCutJob.Seated = not HairCutJob.Seated
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
     else
-        SetEntityCoordsNoOffset(ped, 138.76, -1709.57, 29.40)
-        SetEntityHeading(ped, 228.0)
+        SetEntityCoordsNoOffset(ped, -816.23, -182.96, 37.61)
+        SetEntityHeading(ped, 30.0)
         FreezeEntityPosition(ped, true)
         SetEntityCollision(ped, false)
         doAnim({"misshair_shop@hair_dressers", "player_base"}, nil, 1)
