@@ -1,4 +1,4 @@
-exports "Ora"
+export "Ora"
 
 fx_version "adamant"
 
