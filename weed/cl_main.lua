@@ -490,6 +490,7 @@ AddEventHandler(
             inNUI = false
             SendNUIMessage({action = "hide", data = v})
         end
+        v.obj = props
         DeleteEntity(props)
         weeds[k] = nil
     end
