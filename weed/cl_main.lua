@@ -286,13 +286,13 @@ AddEventHandler(
         elseif v.percent >= 33 then
             weeds[k].states = 2
         end
-        -- DeleteEntity(weeds[k].obj)
-        -- SpawnObject(states[weeds[k].states],weeds[k].coords,function(props)
-        --     --(props)
-        --     FreezeEntityPosition(props, true)
-        --     SetEntityNoCollisionEntity(props, PlayerPedId(), false)
-        --     weeds[k].obj = props
-        -- end)
+        DeleteEntity(weeds[k].obj)
+        SpawnObject(states[weeds[k].states],weeds[k].coords,function(props)
+            --(props)
+            FreezeEntityPosition(props, true)
+            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
+            weeds[k].obj = props
+        end)
     end
 )
 RegisterNetEvent("water+percentEdit")
@@ -312,16 +312,16 @@ AddEventHandler(
             weeds[k].states = 2
         end
 
-        -- if weeds[k] == nil then error(k) end
-        -- DeleteEntity(weeds[k].obj)
-        -- if weeds[k] == nil then return end
-        -- SpawnObject(states[weeds[k].states],weeds[k].coords,function(props)
-        --     weeds[k].obj = props
-        --     --(props)
-        --     FreezeEntityPosition(props, true)
-        --     SetEntityNoCollisionEntity(props, PlayerPedId(), false)
+        if weeds[k] == nil then error(k) end
+        DeleteEntity(weeds[k].obj)
+        if weeds[k] == nil then return end
+        SpawnObject(states[weeds[k].states],weeds[k].coords,function(props)
+            weeds[k].obj = props
+            --(props)
+            FreezeEntityPosition(props, true)
+            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
 
-        -- end)
+        end)
     end
 )
 
@@ -374,7 +374,7 @@ Citizen.CreateThread(
                     x1, y1, z1 = v.coords.x, v.coords.y, v.coords.z
                 end
                 if v.obj ~= nil then
-                    -- ClearAreaOfObjects(x1,y1,z1,  0.1, 0)
+                    ClearAreaOfObjects(x1,y1,z1,  0.1, 0)
                     for i = 1, 2, 1 do
                         ClearAreaOfObjects(x1, y1, z1 + i, 0.2, 0)
                         ClearAreaOfObjects(x1, y1, z1 - i, 0.2, 0)
@@ -429,21 +429,21 @@ Citizen.CreateThread(
                             v.percent .. "~s~%\n💧 : ~b~" .. v.water .. "~s~%\n~y~[L] 💡\n[~r~X~s~] ❌",
                         1.0
                     )
-                    -- if IsControlJustPressed(0, Keys["U"]) then
-                    --     randPickupAnim()
-                    --     Wait(750)
-                    --     holdAnim()
-                    --     local player = PlayerPedId()
-                    --     local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
-                    --     local _props = states[v.states]
-                    --     local model = (type(_props) == 'number' and _props or GetHashKey(_props))
-                    --     obX = CreateObject(model, GetEntityCoords(PlayerPedId()),  true,  true, true)
-                    --     AttachEntityToEntity(obX, player, GetPedBoneIndex(player, 60309), 0.025, 0.08, 0.255, -045.0, 290.0, 0.0, true, true, false, true, 1, true)
-                    --     carryingItem = v
-                    --     carrying = true
-                    --     carryingProps = obX
-                    --     TriggerServerEvent("removeWeed", k)
-                    -- end
+                    if IsControlJustPressed(0, Keys["U"]) then
+                        randPickupAnim()
+                        Wait(750)
+                        holdAnim()
+                        local player = PlayerPedId()
+                        local x,y,z = table.unpack(GetEntityCoords(PlayerPedId()))
+                        local _props = states[v.states]
+                        local model = (type(_props) == 'number' and _props or GetHashKey(_props))
+                        obX = CreateObject(model, GetEntityCoords(PlayerPedId()),  true,  true, true)
+                        AttachEntityToEntity(obX, player, GetPedBoneIndex(player, 60309), 0.025, 0.08, 0.255, -045.0, 290.0, 0.0, true, true, false, true, 1, true)
+                        carryingItem = v
+                        carrying = true
+                        carryingProps = obX
+                        TriggerServerEvent("removeWeed", k)
+                    end
                     if IsControlJustPressed(0, Keys["L"]) then
                         SendNUIMessage(
                             {
