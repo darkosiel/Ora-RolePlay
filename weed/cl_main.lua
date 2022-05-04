@@ -168,7 +168,7 @@ RegisterNetEvent("createWeed")
 AddEventHandler(
     "createWeed",
     function(c, k)
-        SpawnObject("bkr_prop_weed_01_small_01c",c,function(props)
+        props5 = SpawnObject("bkr_prop_weed_01_small_01c",c,function(props)
            --(props)
            FreezeEntityPosition(props, true)
            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
@@ -484,14 +484,14 @@ AddEventHandler(
 RegisterNetEvent("removeWeed")
 AddEventHandler(
     "removeWeed",
-    function(k, props)
+    function(k, props5)
         if currentID == k and inNUI then
             SetNuiFocus(0, 0)
             inNUI = false
             SendNUIMessage({action = "hide", data = v})
         end
         weeds[k].obj = props
-        DeleteEntity(weeds[k].obj)
+        DeleteEntity(props5)
         weeds[k] = nil
     end
 )
