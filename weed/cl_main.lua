@@ -490,7 +490,7 @@ AddEventHandler(
             inNUI = false
             SendNUIMessage({action = "hide", data = v})
         end
-        DeleteEntity(weeds[k].obj)
+        DeleteEntity("bkr_prop_weed_01_small_01c")
         weeds[k] = nil
     end
 )
