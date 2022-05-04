@@ -484,13 +484,13 @@ AddEventHandler(
 RegisterNetEvent("removeWeed")
 AddEventHandler(
     "removeWeed",
-    function(k)
+    function(k, props)
         if currentID == k and inNUI then
             SetNuiFocus(0, 0)
             inNUI = false
             SendNUIMessage({action = "hide", data = v})
         end
-        DeleteEntity("bkr_prop_weed_01_small_01c")
+        DeleteEntity(props)
         weeds[k] = nil
     end
 )
