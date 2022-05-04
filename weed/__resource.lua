@@ -16,3 +16,5 @@ files {
 	'ui/main.css',
 
 }
+
+exports "Ora"
