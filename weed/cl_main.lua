@@ -492,8 +492,7 @@ AddEventHandler(
         end
         weeds[k].obj = props
         DeleteEntity(props5)
-        local items2 = "weed_pot" 
-        Ora.Inventory:AddItem(items2)
+        exports["Ora"]:AddItem("weed_pot")
         weeds[k] = nil
     end
 )
