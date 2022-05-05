@@ -608,6 +608,101 @@ local kevlarConfig = {
     },
 }
 
+local kevlarConfig2 = {
+    [2] = {
+        status = 50,
+        name = "Kevlar sécurité"
+    },
+    [3] = {
+        status = 100,
+        name = "Kevlar medic / presse"
+    },
+    [4] = {
+        status = 100,
+        name = "Kevlar léger"
+    },
+    [5] = {
+        status = 100,
+        name = "Kevlar anti-riot"
+    },
+    [8] = {
+        status = 0,
+        name = "Gilet de sauvetage"
+    },
+    [11] = {
+        status = 0,
+        name = "Sous-veste EMT"
+    },
+    [12] = {
+        status = 50,
+        name = "Sous-veste col ouvert"
+    },
+    [13] = {
+        status = 50,
+        name = "Radio déportée 1"
+    },
+    [14] = {
+        status = 50,
+        name = "Radio déportée 2"
+    },
+    [15] = {
+        status = 25,
+        name = "Radio"
+    },
+    [17] = {
+        status = 100,
+        name = "Gilet sous-veste"
+    },
+    [18] = {
+        status = 100,
+        name = "Kevlar moyen"
+    },
+    [19] = {
+        status = 50,
+        name = "Sous-veste cravate"
+    },
+    [21] = {
+        status = 50,
+        name = "Gilet jaune"
+    },
+    [22] = {
+        status = 50,
+        name = "Plaque agent fédéral"
+    },
+    [23] = {
+        status = 50,
+        name = "Plaque étoilée"
+    },
+    [24] = {
+        status = 50,
+        name = "Badge"
+    },
+    [25] = {
+        status = 100,
+        name = "Gilet Lourd"
+    },
+    [26] = {
+        status = 50,
+        name = "Col roulé"
+    },
+    [27] = {
+        status = 100,
+        name = "Gilet Lourd 2"
+    },
+    [28] = {
+        status = 50,
+        name = "Sous veste col ouvert"
+    },
+    [37] = {
+        status = 50,
+        name = "Radio déportée 3"
+    },
+    [54] = {
+        status = 0,
+        name = "Carte de presse"
+    },
+}
+
 local weapon_config = {
     Pos = {x = 246.5348, y = -51.9893, z = 68.9412},
     Ped = {
@@ -1712,11 +1807,19 @@ Citizen.CreateThread(
                             end
 
                             if gilItem[ind] == nil then
-                                local kevlarName = "Kevlar civil #" .. i
-                                if (kevlarConfig[i] ~= nil) then
-                                    kevlarName = kevlarConfig[i].name
-                                end
-                                gilItem[ind] = kevlarName
+                                if playerPed == "mp_f_freemode_01" then
+                                    local kevlarName = "Kevlar civil #" .. i
+                                    if (kevlarConfig2[i] ~= nil) then
+                                        kevlarName = kevlarConfig2[i].name
+                                    end
+                                    gilItem[ind] = kevlarName
+                                    elseif playerPed == "mp_m_freemode_01"
+                                    local kevlarName = "Kevlar civil #" .. i
+                                    if (kevlarConfig[i] ~= nil) then
+                                        kevlarName = kevlarConfig[i].name
+                                    end
+                                    gilItem[ind] = kevlarName
+                                 end
                             end
                             RageUI.List(
                                 gilItem[i + 1],
@@ -1732,32 +1835,40 @@ Citizen.CreateThread(
                                     end
                                     if Selected then
                                         local receive = Ora.Inventory:CanReceive("kevlar", 1)
+                                        playerPed = LocalPlayer().Ped
                                         if receive then
                                             local kevlarLevel = 10
                                             local kevlarLabel = "Kevlar"
-                                            if (kevlarConfig[i] ~= nil) then
-                                                kevlarLevel = kevlarConfig[i].status
-                                                kevlarLabel = kevlarConfig[i].name
-                                            end
-                                            dataonWait = {
-                                                title = "Achat Ammunation",
-                                                price = 300,
-                                                fct = function()
-                                                    items = {
-                                                        name = "kevlar",
-                                                        label = kevlarLabel,
-                                                        data = {
-                                                            ind = i,
-                                                            var = Index - 1,
-                                                            serial = math.random(111111111, 999999999),
-                                                            status = kevlarLevel
-                                                        }
-                                                    }
-                                                    Ora.Inventory:AddItem(items)
+                                            if playerPed == "mp_f_freemode_01" then
+                                                if (kevlarConfig2[i] ~= nil) then
+                                                    kevlarLevel = kevlarConfig2[i].status
+                                                    kevlarLabel = kevlarConfig2[i].name
                                                 end
-                                            }
-                                            CloseAllMenus()
-                                            TriggerEvent("payWith?")
+                                            elseif playerPed == "mp_m_freemode_01" then
+                                                if (kevlarConfig[i] ~= nil) then
+                                                    kevlarLevel = kevlarConfig[i].status
+                                                    kevlarLabel = kevlarConfig[i].name
+                                                end
+                                                dataonWait = {
+                                                    title = "Achat Ammunation",
+                                                    price = 300,
+                                                    fct = function()
+                                                        items = {
+                                                            name = "kevlar",
+                                                            label = kevlarLabel,
+                                                            data = {
+                                                                ind = i,
+                                                                var = Index - 1,
+                                                                serial = math.random(111111111, 999999999),
+                                                                status = kevlarLevel
+                                                            }
+                                                        }
+                                                        Ora.Inventory:AddItem(items)
+                                                    end
+                                                }
+                                                CloseAllMenus()
+                                                TriggerEvent("payWith?")
+                                            end
                                         end
                                     end
                                 end
