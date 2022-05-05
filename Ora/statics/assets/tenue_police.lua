@@ -34,7 +34,7 @@ TenueLSPD = {
     },
     ['Officier I - Cérémonie'] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 200,   ['torso_2'] = 0,
             ['decals_1'] = 0,   ['decals_2'] = 0,
             ['arms'] = 75,
@@ -49,7 +49,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 202,   ['torso_2'] = 0,
             ['decals_1'] = 0,   ['decals_2'] = 0,
             ['arms'] = 88,
@@ -130,7 +130,7 @@ TenueLSPD = {
     },
     ['Officier II - Cérémonie'] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 200,   ['torso_2'] = 0,
             ['decals_1'] = 0,   ['decals_2'] = 0,
             ['arms'] = 75,
@@ -145,7 +145,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 33,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 202,   ['torso_2'] = 0,
             ['decals_1'] = 0,   ['decals_2'] = 0,
             ['arms'] = 88,
@@ -354,7 +354,7 @@ TenueLSPD = {
     },
     ["Officier III - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 200,   ['torso_2'] = 0,
             ['decals_1'] = 12,   ['decals_2'] = 0,
             ['arms'] = 75,
@@ -369,7 +369,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 202,   ['torso_2'] = 0,
             ['decals_1'] = 11,   ['decals_2'] = 0,
             ['arms'] = 88,
@@ -578,7 +578,7 @@ TenueLSPD = {
     },
     ["Senior Lead Officer - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 255,   ['torso_2'] = 0,
             ['decals_1'] = 12,   ['decals_2'] = 1,
             ['arms'] = 75,
@@ -593,7 +593,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 264,   ['torso_2'] = 0,
             ['decals_1'] = 11,   ['decals_2'] = 1,
             ['arms'] = 88,
@@ -802,7 +802,7 @@ TenueLSPD = {
     },
     ["Detective I - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 200,   ['torso_2'] = 0,
             ['decals_1'] = 12,   ['decals_2'] = 4,
             ['arms'] = 75,
@@ -817,7 +817,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 202,   ['torso_2'] = 0,
             ['decals_1'] = 11,   ['decals_2'] = 4,
             ['arms'] = 88,
@@ -962,7 +962,7 @@ TenueLSPD = {
     },
     ["Detective II - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 200,   ['torso_2'] = 0,
             ['decals_1'] = 12,   ['decals_2'] = 5,
             ['arms'] = 75,
@@ -977,7 +977,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 202,   ['torso_2'] = 0,
             ['decals_1'] = 11,   ['decals_2'] = 5,
             ['arms'] = 88,
@@ -1122,7 +1122,7 @@ TenueLSPD = {
     },
     ["Detective III - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 255,   ['torso_2'] = 1,
             ['decals_1'] = 12,   ['decals_2'] = 6,
             ['arms'] = 75,
@@ -1137,7 +1137,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 264,   ['torso_2'] = 1,
             ['decals_1'] = 11,   ['decals_2'] = 6,
             ['arms'] = 88,
@@ -1282,7 +1282,7 @@ TenueLSPD = {
     },
     ["Sergent - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 255,   ['torso_2'] = 2,
             ['decals_1'] = 12,   ['decals_2'] = 2,
             ['arms'] = 75,
@@ -1297,7 +1297,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 264,   ['torso_2'] = 2,
             ['decals_1'] = 11,   ['decals_2'] = 2,
             ['arms'] = 88,
@@ -1506,7 +1506,7 @@ TenueLSPD = {
     },
     ["Sergent II - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 255,   ['torso_2'] = 3,
             ['decals_1'] = 12,   ['decals_2'] = 3,
             ['arms'] = 75,
@@ -1521,7 +1521,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 264,   ['torso_2'] = 3,
             ['decals_1'] = 11,   ['decals_2'] = 3,
             ['arms'] = 88,
@@ -1730,7 +1730,7 @@ TenueLSPD = {
     },
     ["Lieutenant - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 255,   ['torso_2'] = 4,
             ['decals_1'] = 45,   ['decals_2'] = 0,
             ['arms'] = 75,
@@ -1745,7 +1745,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 264,   ['torso_2'] = 4,
             ['decals_1'] = 53,   ['decals_2'] = 0,
             ['arms'] = 88,
@@ -1954,7 +1954,7 @@ TenueLSPD = {
     },
     ["Capitaine - Cérémonie"] = {
         male = {
-            ['tshirt_1'] = 133,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 143,  ['tshirt_2'] = 0,
             ['torso_1'] = 255,   ['torso_2'] = 5,
             ['decals_1'] = 45,   ['decals_2'] = 1,
             ['arms'] = 75,
@@ -1969,7 +1969,7 @@ TenueLSPD = {
             ['mask_1'] = 101,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 145,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 184,  ['tshirt_2'] = 0,
             ['torso_1'] = 264,   ['torso_2'] = 5,
             ['decals_1'] = 53,   ['decals_2'] = 1,
             ['arms'] = 88,
