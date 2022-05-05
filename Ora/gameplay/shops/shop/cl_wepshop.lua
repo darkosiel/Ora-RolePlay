@@ -1839,7 +1839,7 @@ Citizen.CreateThread(
                                         if receive then
                                             local kevlarLevel = 10
                                             local kevlarLabel = "Kevlar"
-                                            if playerPed = "mp_f_freemode_01" or playerPed = "mp_m_freemode_01" then
+                                            if playerPed = "mp_f_freemode_01" or playerPed == "mp_m_freemode_01" then
                                                 if (kevlarConfig2[i] ~= nil and playerPed == "mp_f_freemode_01") then
                                                     kevlarLevel = kevlarConfig2[i].status
                                                     kevlarLabel = kevlarConfig2[i].name
