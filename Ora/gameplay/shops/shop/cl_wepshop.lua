@@ -617,91 +617,87 @@ local kevlarConfig2 = {
     },
     [3] = {
         status = 100,
-        name = "Kevlar medic / presse"
+        name = "Kevlar anti-riot"
     },
     [4] = {
-        status = 100,
+        status = 50,
         name = "Kevlar léger"
     },
     [5] = {
         status = 100,
-        name = "Kevlar anti-riot"
+        name = "Kevlar medic"
     },
-    [8] = {
+    [9] = {
         status = 0,
         name = "Gilet de sauvetage"
     },
     [11] = {
-        status = 0,
-        name = "Sous-veste EMT"
+        status = 50,
+        name = "Sous-veste ouverte"
     },
     [12] = {
         status = 50,
-        name = "Sous-veste col ouvert"
-    },
-    [13] = {
-        status = 50,
-        name = "Radio déportée 1"
+        name = "Sous-veste EMT"
     },
     [14] = {
         status = 50,
-        name = "Radio déportée 2"
+        name = "Radio déportée 1"
     },
     [15] = {
-        status = 25,
-        name = "Radio"
-    },
-    [17] = {
-        status = 100,
-        name = "Gilet sous-veste"
-    },
-    [18] = {
-        status = 100,
-        name = "Kevlar moyen"
-    },
-    [19] = {
         status = 50,
-        name = "Sous-veste cravate"
+        name = "Radio déportée 2"
     },
-    [21] = {
-        status = 50,
-        name = "Gilet jaune"
-    },
-    [22] = {
-        status = 50,
-        name = "Plaque agent fédéral"
-    },
-    [23] = {
-        status = 50,
-        name = "Plaque étoilée"
-    },
-    [24] = {
-        status = 50,
-        name = "Badge"
-    },
-    [25] = {
-        status = 100,
-        name = "Gilet Lourd"
-    },
-    [26] = {
-        status = 50,
-        name = "Col roulé"
-    },
-    [27] = {
-        status = 100,
-        name = "Gilet Lourd 2"
-    },
-    [28] = {
-        status = 50,
-        name = "Sous veste col ouvert"
-    },
-    [37] = {
+    [16] = {
         status = 50,
         name = "Radio déportée 3"
     },
-    [54] = {
-        status = 0,
-        name = "Carte de presse"
+    [19] = {
+        status = 100,
+        name = "Gilet jaune"
+    },
+    [21] = {
+        status = 100,
+        name = "Gilet sous-veste"
+    },
+    [22] = {
+        status = 100,
+        name = "Gilet moyen"
+    },
+    [24] = {
+        status = 50,
+        name = "Plaque 1"
+    },
+    [25] = {
+        status = 50,
+        name = "Plaque 2"
+    },
+    [26] = {
+        status = 50,
+        name = "Plaque 3"
+    },
+    [27] = {
+        status = 100,
+        name = "Gilet porte-plaque 1"
+    },
+    [28] = {
+        status = 50,
+        name = "Sous veste col-roulé"
+    },
+    [29] = {
+        status = 100,
+        name = "Gilet porte-plaque 2"
+    },
+    [30] = {
+        status = 50,
+        name = "Sous veste ouverte 2"
+    },
+    [31] = {
+        status = 50,
+        name = "Sous veste cravate"
+    },
+    [33] = {
+        status = 50,
+        name = "Radio déportée 4"
     },
 }
 
