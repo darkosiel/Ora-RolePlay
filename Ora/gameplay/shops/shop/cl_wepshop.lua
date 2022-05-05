@@ -513,6 +513,7 @@ local OpenS = function()
     end
 end
 
+-- hommes
 local kevlarConfig = {
     [2] = {
         status = 50,
@@ -608,6 +609,7 @@ local kevlarConfig = {
     },
 }
 
+-- femmes
 local kevlarConfig2 = {
     [2] = {
         status = 50,
