@@ -1807,7 +1807,7 @@ Citizen.CreateThread(
                             if gilItem[ind] == nil then
                                 if playerPed == "mp_f_freemode_01" then
                                     local kevlarName = "Kevlar civil #" .. i
-                                    if (kevlarConfig2[i] ~= nil and playerPed == "mp_f_freemode_01") then
+                                    if (kevlarConfig2[i] ~= nil) then
                                         kevlarName = kevlarConfig2[i].name
                                     end
                                     gilItem[ind] = kevlarName
