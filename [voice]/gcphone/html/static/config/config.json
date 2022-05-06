@@ -150,8 +150,8 @@
       ]
     },
     {
-      "display": "Wing stop",
-      "icon": "/html/static/img/contact/wing.png",
+      "display": "BurgerShot",
+      "icon": "/html/static/img/contact/burgershot.png",
       "subMenu": [
         {
           "title": "Envoyer un message",

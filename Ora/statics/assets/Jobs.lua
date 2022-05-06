@@ -2020,7 +2020,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "BurgerShot", "Annonce", text, "CHAR_BURGERSHOT", 8, "wing stop")
+                            TriggerServerEvent("Job:Annonce", "BurgerShot", "Annonce", text, "CHAR_BURGERSHOT", 8, "BurgerShot")
                         end
                     end
                 }
@@ -2146,7 +2146,7 @@ Jobs = {
                 type = "traitement",
                 workSize = 1.20,
                 blipcolor = 7,
-                blipname = "Wing Stop - Traitement Café",
+                blipname = "BurgerShot - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
                 required = "graincafe2",
                 giveitem = "cafe",
