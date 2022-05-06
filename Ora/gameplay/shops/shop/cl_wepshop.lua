@@ -1206,6 +1206,19 @@ local function build()
             "shopui_title_gunclub"
         )
     )
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
 
     Zone:Add(e.Pos, e.EnterZone, e.ExitZone, i, 2.5)
     Ped:Add(e.Ped.name, e.Ped.model, e.Ped.Pos, nil)
@@ -1218,6 +1231,19 @@ local function build()
     RMenu.Add(
         "ammunation privé",
         "kevlars",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation privé", "main private"),
             nil,
@@ -1251,6 +1277,20 @@ local function build()
         )
     )
 
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
     Zone:Add(b.Pos, b.EnterZone, b.ExitZone, i, 2.5)
     Ped:Add(b.Ped.name, b.Ped.model, b.Ped.Pos, nil)
     RMenu.Add(
@@ -1262,6 +1302,20 @@ local function build()
     RMenu.Add(
         "ammunation privé",
         "kevlars",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation privé", "main private"),
             nil,
@@ -1306,7 +1360,24 @@ local function build()
         )
     )
 
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
     RMenu:Get("ammunation privé", "kevlars").Closed = function()
+        SetPedComponentVariation(LocalPlayer().Ped, 9, 0, 0, 2)
+    end
+    RMenu:Get("ammunation privé", "kevlars2").Closed = function()
         SetPedComponentVariation(LocalPlayer().Ped, 9, 0, 0, 2)
     end
 end
