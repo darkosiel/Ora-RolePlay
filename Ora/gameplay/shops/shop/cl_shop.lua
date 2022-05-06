@@ -2033,11 +2033,11 @@ local Shops =
         {
             Title = "Juan",
             Pos = {x = 346.7998, y = -199.6498, z = 54.22 - 0.98, a = 70.7492},
---[[            Blips = {
+            Blips = {
                 sprite = 1,
                 color = 6,
                 name = "Haziel"
-            },]]
+            },
             Ped = {
                 model = "u_m_y_proldriver_01"
             },
@@ -2102,11 +2102,11 @@ local Shops =
         {
             Title = "Haziel",
             Pos = {x = 342.2117, y = -2064.4450, z = 20.93 - 0.98, a = 300.2944},
---[[            Blips = {
+            Blips = {
                 sprite = 1,
                 color = 6,
                 name = "Haziel"
-            },]]
+            },
             Ped = {
                 model = "u_m_y_proldriver_01"
             },
