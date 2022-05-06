@@ -1206,6 +1206,19 @@ local function build()
             "shopui_title_gunclub"
         )
     )
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
 
     Zone:Add(e.Pos, e.EnterZone, e.ExitZone, i, 2.5)
     Ped:Add(e.Ped.name, e.Ped.model, e.Ped.Pos, nil)
@@ -1218,6 +1231,19 @@ local function build()
     RMenu.Add(
         "ammunation privé",
         "kevlars",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation privé", "main private"),
             nil,
@@ -1251,6 +1277,20 @@ local function build()
         )
     )
 
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
     Zone:Add(b.Pos, b.EnterZone, b.ExitZone, i, 2.5)
     Ped:Add(b.Ped.name, b.Ped.model, b.Ped.Pos, nil)
     RMenu.Add(
@@ -1262,6 +1302,20 @@ local function build()
     RMenu.Add(
         "ammunation privé",
         "kevlars",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation privé", "main private"),
             nil,
@@ -1306,7 +1360,24 @@ local function build()
         )
     )
 
+    RMenu.Add(
+        "ammunation privé",
+        "kevlars2",
+        RageUI.CreateSubMenu(
+            RMenu:Get("ammunation privé", "main private"),
+            nil,
+            "Kevlars disponibles",
+            10,
+            100,
+            "shopui_title_gunclub",
+            "shopui_title_gunclub"
+        )
+    )
+
     RMenu:Get("ammunation privé", "kevlars").Closed = function()
+        SetPedComponentVariation(LocalPlayer().Ped, 9, 0, 0, 2)
+    end
+    RMenu:Get("ammunation privé", "kevlars2").Closed = function()
         SetPedComponentVariation(LocalPlayer().Ped, 9, 0, 0, 2)
     end
 end
@@ -1463,13 +1534,23 @@ Citizen.CreateThread(
                     {header = true, glare = false},
                     function()
                         RageUI.Button(
-                            "Kevlars",
+                            "Kevlars Homme",
                             nil,
                             {},
                             true,
                             function()
                             end,
                             RMenu:Get("ammunation privé", "kevlars")
+                        )
+
+                        RageUI.Button(
+                            "Kevlars Femme",
+                            nil,
+                            {},
+                            true,
+                            function()
+                            end,
+                            RMenu:Get("ammunation privé", "kevlars2")
                         )
                     end,
                     function()
@@ -1863,6 +1944,79 @@ Citizen.CreateThread(
                     end
                 )
             end
+
+            if RageUI.Visible(RMenu:Get("ammunation privé", "kevlars2")) then
+                RageUI.DrawContent(
+                    {header = true, glare = false},
+                    function()
+                        playerPed = LocalPlayer().Ped
+                        for i = 1, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
+                            local amount = {}
+                            local ind = i + 1
+                            for c = 1, GetNumberOfPedTextureVariations(playerPed, 9, i), 1 do
+                                amount[c] = c
+                            end
+
+                            if gilItem[ind] == nil then
+                                local kevlarName = "Kevlar civil #" .. i
+                                if (kevlarConfig2[i] ~= nil) then
+                                    kevlarName = kevlarConfig2[i].name
+                                end
+                                gilItem[ind] = kevlarName
+                            end
+                            RageUI.List(
+                                gilItem[i + 1],
+                                amount,
+                                Indexes2[i],
+                                "",
+                                {RightLabel = "300$"},
+                                true,
+                                function(Hovered, Active, Selected, Index)
+                                    Indexes2[i] = Index
+                                    if Active then
+                                        SetPedComponentVariation(playerPed, 9, i, Index - 1, 2)
+                                    end
+                                    if Selected then
+                                        local receive = Ora.Inventory:CanReceive("kevlar", 1)
+                                        playerPed = LocalPlayer().Ped
+                                        if receive then
+                                            local kevlarLevel = 10
+                                            local kevlarLabel = "Kevlar"
+
+                                                if (kevlarConfig2[i] ~= nil) then
+                                                    kevlarLevel = kevlarConfig2[i].status
+                                                    kevlarLabel = kevlarConfig2[i].name
+                                                end
+                                                dataonWait = {
+                                                    title = "Achat Ammunation",
+                                                    price = 300,
+                                                    fct = function()
+                                                        items = {
+                                                            name = "kevlar",
+                                                            label = kevlarLabel,
+                                                            data = {
+                                                                ind = i,
+                                                                var = Index - 1,
+                                                                serial = math.random(111111111, 999999999),
+                                                                status = kevlarLevel
+                                                            }
+                                                        }
+                                                        Ora.Inventory:AddItem(items)
+                                                    end
+                                                }
+                                                CloseAllMenus()
+                                                TriggerEvent("payWith?")
+                                        end
+                                    end
+                                end
+                            )
+                        end
+                    end,
+                    function()
+                    end
+                )
+            end
+
             if RageUI.Visible(RMenu:Get("ammunation", "munitions")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
