@@ -1096,7 +1096,7 @@ Jobs = {
                 Pos =  {x=2680.62,y=3508.35,z=53.3},
                 required = "farine",
                 giveitem = "pain",
-                add = "~p~+ 1  Pain"
+                add = "~p~+ 2  Pain"
             },
             vente = {
                 type = "vente",
@@ -1961,8 +1961,8 @@ Jobs = {
         -- }
     },
     burgershot = {
-        label = "Wing Stop",
-        label2 = "wing stop",
+        label = "BurgerShot",
+        label2 = "BurgerShot",
         iban = "burgershot",
         FreeAccess = false,
         grade = {
@@ -1999,7 +1999,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Wing Stop",
+                title = "BurgerShot",
                 subtitle = "Actions disponibles",
                 name = "burgershot_menuperso"
             },
@@ -2020,20 +2020,20 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Wing Stop", "Annonce", text, "CHAR_WING", 8, "wing stop")
+                            TriggerServerEvent("Job:Annonce", "BurgerShot", "Annonce", text, "CHAR_BURGERSHOT", 8, "wing stop")
                         end
                     end
                 }
             }
         },
         garage = {
-            Name = "Garage wing stop",
-            Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98},
+            Name = "Garage BurgerShot",
+            Pos = {x = -1171.692505, y = -893.373413, z = 13.28 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27}
+                spawnpos = {x = -1171.692505, y = -893.373413, z = 13.28 - 0.98, h = 32.3272209}
             },
             Blipdata = {
                 Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27},
@@ -2043,7 +2043,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1242.5872, y = -350.809, z = 69.184 - 0.98},
+                Pos = {x = -1191.6433, y = -897.940918, z = 13.99 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
@@ -2056,7 +2056,7 @@ Jobs = {
                 Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
                 giveitem = "graincafe1",
                 blipcolor = 7,
-                blipname = "Wing Stop - Récolte du café",
+                blipname = "BurgerShot - Récolte du café",
                 add = "~p~+ 1 Graine de Café",
                 anim = {
                     lib = "anim@mp_snowball",
@@ -2066,10 +2066,10 @@ Jobs = {
             traitement2 = {
                 --frites
                 type = "traitement",
-                workSize = 0.5,
+                workSize = 1.20,
                 blipcolor = 5,
                 blipname = "Friteuse",
-                Pos = {x = 1249.9007, y = -352.7587, z = 69.1846},
+                Pos = {x = -1198.7294, y = -901.7692, z = 13.995306},
                 required = "pommeterre",
                 giveitem = "frites",
                 noFarm = true,
@@ -2079,10 +2079,10 @@ Jobs = {
             traitement = {
                 --milkshack
                 type = "traitement",
-                workSize = 0.5,
+                workSize = 1.20,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
-                Pos = {x = 1251.9968, y = -358.9071, z = 69.1846},
+                Pos = {x = -1198.9903, y = -895.0682, z = 13.995306},
                 required = "milk",
                 giveitem = {
                     {name = "milkshack", count = 5},
@@ -2094,18 +2094,18 @@ Jobs = {
             traitement3 = {
                 --hamburger
                 type = "traitement",
-                workSize = 0.5,
+                workSize = 1.20,
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
-                Pos = {x = 1249.9069, y = -356.2945, z = 69.1846},
+                Pos = {x = -1202.8587, y = -895.6409, z = 13995306},
                 required = {
-                    {name = "pain", count = 1},
+                    {name = "bread", count = 1},
                     {name = "chicken", count = 1}
                 },
                 giveitem = "burger",
                 RemoveItem = {
-                    {name = "pain", count = 1},
+                    {name = "bread", count = 1},
                     {name = "chicken", count = 1}
                 },
                 add = "~p~+ 1  Hamburger poulet"
@@ -2113,40 +2113,52 @@ Jobs = {
             traitement5 = {
                 --hamburger
                 type = "traitement",
-                workSize = 0.5,
+                workSize = 1.20,
                 blipcolor = 8,
                 noFarm = true,
                 blipname = "Grill Burger Healthy",
-                Pos = {x = 1253.5775, y = -354.3818, z = 69.1846},
+                Pos = {x = -1200.9940, y = -898.8383, z = 13.9953},
                 required = {
-                    {name = "pain", count = 1},
+                    {name = "bread", count = 1},
                     {name = "meat", count = 1}
                 },
                 giveitem = "burgerhealthy",
                 RemoveItem = {
-                    {name = "pain", count = 1},
+                    {name = "bread", count = 1},
                     {name = "meat", count = 1}
                 },
                 add = "~p~+ 1  Hamburger Healthy"
             },
+            traitement6 = {
+                --Poudre café
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "BurgerShot - Traitement Café",
+                Pos = {x = 1439.88, y = 3748.02, z = 32.13 - 0.98},
+                required = "graincafe1",
+                giveitem = "graincafe2",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Poudre de café"
+            },
             traitement7 = {
                 --Café
                 type = "traitement",
-                workSize = 10.0,
+                workSize = 1.20,
                 blipcolor = 7,
                 blipname = "Wing Stop - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
-                required = "graincafe1",
+                required = "graincafe2",
                 giveitem = "cafe",
-                RemoveItem = "graincafe1",
+                RemoveItem = "graincafe2",
                 add = "~p~+ 1  Café"
             },
             vente = {
                 type = "vente",
                 blipcolor = 7,
-                workSize = 1.2,
-                blipname = "Wing Stop - Vente",
-                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                workSize = 7.45,
+                blipname = "BurgerShot - Vente",
+                Pos = {x = -1205.5755, y = -891.9464, z = 13.99 - 0.98},
                 required = "cafe",
                 price = math.random(20,30),
                 add = "~p~- 1 Café"
