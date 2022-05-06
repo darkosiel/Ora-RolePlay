@@ -12,6 +12,19 @@ function Config()
       pos = vector3(121.965, -1281.300, 29.00), -- Menu
       soundpos = vector3(110.325, -1288.025, 30.25) -- Pos diffusion du son
     },
+
+    restaurant = {
+      name = "restaurant", -- name job
+      label = "restaurant", -- label Orga/Job2
+      interiorId = 197121,
+      playlist = playlist.restaurant,
+      volume = 5,
+      canOpen = false, -- Défaut
+      inclub = false, -- Défaut
+      play = false, -- Défaut
+      pos = vector3(121.965, -1281.300, 29.00), -- Menu
+      soundpos = vector3(110.325, -1288.025, 30.25) -- Pos diffusion du son
+    },
   
     night = {
       name = "night",

@@ -309,9 +309,10 @@ AddEventHandler('music:setVolume', function(club, vol)
 end)
 
 RegisterNetEvent('music:getVolumeConnect')
-AddEventHandler('music:getVolumeConnect', function(unicornV, nightV)
+AddEventHandler('music:getVolumeConnect', function(unicornV, nightV, restaurantV)
   speaker.unicorn.volume = unicornV
   speaker.night.volume = nightV
+  speaker.restaurant.volume = restaurantV
 end)
 
 RegisterNetEvent('music:getMusic')
