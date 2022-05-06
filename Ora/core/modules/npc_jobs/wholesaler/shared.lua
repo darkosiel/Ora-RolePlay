@@ -132,6 +132,17 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["milk"] = {"Lait", 20},
     ["fish12"] = {"Saumon", 100},
     ["fish6"] = {"Daurade", 20},
+    ["whisky"] = {"Bouteille de whisky", 100},
+    ["vodka"] = {"Bouteille de vodka", 80},
+    ["cognac"] = {"Bouteille de cognac", 100},
+    ["rhum"] = {"Bouteille de rhum", 85},
+    ["tequila"] = {"Bouteille de tequila", 80},
+    ["red_wine"] = {"Bouteille de vin rouge", 70},
+    ["high_quality_wine"] = {"Bouteille de grand cru", 100},
+    ["white_wine"] = {"Bouteille de vin blanc", 70},
+    ["beer"] = {"Bière", 50},
+    ["jus_raisin"] = {"Jus de raisin", 40},
+
   },
   ltdsud = {
     ["pinces"] = {"Pinces", 5},
@@ -227,7 +238,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["pommeterre"] = {"Pomme de terre", 45},
     ["cereale"] = {"Céréale", 45},
   },
-  lfsd = {
+  lsfd = {
     ["fire_extinguisher"] = {"Extincteur", 25},
   },
   -- [""] = {},
