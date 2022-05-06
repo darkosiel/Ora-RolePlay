@@ -1095,7 +1095,9 @@ Jobs = {
                 blipname = "Traitement de la farine",
                 Pos =  {x=2680.62,y=3508.35,z=53.3},
                 required = "farine",
-                giveitem = "pain",
+                giveitem = {
+                    {name = "pain", count = 2},
+                },
                 add = "~p~+ 2  Pain"
             },
             vente = {
