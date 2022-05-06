@@ -1805,19 +1805,11 @@ Citizen.CreateThread(
                             end
 
                             if gilItem[ind] == nil then
-                                if playerPed == "mp_f_freemode_01" then
-                                    local kevlarName = "Kevlar civil #" .. i
-                                    if (kevlarConfig2[i] ~= nil and) then
-                                        kevlarName = kevlarConfig2[i].name
-                                    end
-                                    gilItem[ind] = kevlarName
-                                else
-                                    local kevlarName = "Kevlar civil #" .. i
-                                    if (kevlarConfig[i] ~= nil) then
-                                        kevlarName = kevlarConfig[i].name
-                                    end
-                                    gilItem[ind] = kevlarName
-                                 end
+                                local kevlarName = "Kevlar civil #" .. i
+                                if (kevlarConfig[i] ~= nil) then
+                                    kevlarName = kevlarConfig[i].name
+                                end
+                                gilItem[ind] = kevlarName
                             end
                             RageUI.List(
                                 gilItem[i + 1],
@@ -1837,12 +1829,8 @@ Citizen.CreateThread(
                                         if receive then
                                             local kevlarLevel = 10
                                             local kevlarLabel = "Kevlar"
-                                            if playerPed == "mp_f_freemode_01" or playerPed == "mp_m_freemode_01" then
-                                                if (kevlarConfig2[i] ~= nil and playerPed == "mp_f_freemode_01") then
-                                                    kevlarLevel = kevlarConfig2[i].status
-                                                    kevlarLabel = kevlarConfig2[i].name
 
-                                                elseif (kevlarConfig[i] ~= nil and playerPed == "mp_m_freemode_01") then
+                                                if (kevlarConfig[i] ~= nil) then
                                                     kevlarLevel = kevlarConfig[i].status
                                                     kevlarLabel = kevlarConfig[i].name
                                                 end
@@ -1865,7 +1853,6 @@ Citizen.CreateThread(
                                                 }
                                                 CloseAllMenus()
                                                 TriggerEvent("payWith?")
-                                            end
                                         end
                                     end
                                 end
