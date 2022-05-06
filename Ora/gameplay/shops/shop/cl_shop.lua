@@ -2031,13 +2031,82 @@ local Shops =
             }
         },
         {
-            Title = "Haziel",
-            Pos = {x = -1486.71, y = -908.35, z = 10.02 - 0.98, a = 225.68},
-            Blips = {
+            Title = "Juan",
+            Pos = {x = 346.7998, y = -199.6498, z = 54.22 - 0.98, a = 70.7492},
+--[[            Blips = {
                 sprite = 1,
                 color = 6,
                 name = "Haziel"
+            },]]
+            Ped = {
+                model = "u_m_y_proldriver_01"
             },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "pinces",
+                    price = 15,
+                    data = {}
+                },
+                {
+                    name = "radio",
+                    price = 80,
+                    data = {}
+                },
+                {
+                    name = "fertz",
+                    price = 10,
+                    data = {}
+                },
+                {
+                    name = "crochetage",
+                    price = 20,
+                    data = {}
+                },
+                {
+                    name = "ciseaux",
+                    price = 10,
+                    data = {}
+                },
+                {
+                    name = "menottes",
+                    price = 70,
+                    data = {}
+                },
+                {
+                    name = "darknet",
+                    price = 500,
+                    data = {}
+                },
+                {
+                    name = "molotov",
+                    price = 15000,
+                    data = {}
+                },
+                {
+                    name = "allumette",
+                    price = 250,
+                    data = {}
+                },
+                {
+                    name = "molotovartisanal",
+                    price = 1500,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Haziel",
+            Pos = {x = 342.2117, y = -2064.4450, z = 20.93 - 0.98, a = 300.2944},
+--[[            Blips = {
+                sprite = 1,
+                color = 6,
+                name = "Haziel"
+            },]]
             Ped = {
                 model = "u_m_y_proldriver_01"
             },
