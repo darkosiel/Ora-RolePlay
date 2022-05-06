@@ -3,10 +3,10 @@
 -- --------------------------------------------
 
 local defaultScale = 0.5 -- Text scale
-local color = {r = 196, g = 170, b = 0, a = 255} -- Text color
+local color = {r = 128, g = 255, b = 128, a = 150} -- Text color
 local font = 0 -- Text font
 local displayTime = 7000 -- Duration to display the text (in ms)
-local distToDraw = 50 -- Min. distance to draw
+local distToDraw = 250 -- Min. distance to draw
 
 -- --------------------------------------------
 -- Variable
@@ -48,7 +48,7 @@ local function Display(playerServerId, ped, playerCoords, text)
     local playerPed = PlayerPedId()
     local otherPlayerCoords = GetEntityCoords(playerPed)
     local dist = #(playerCoords - otherPlayerCoords)
-    --if dist <= distToDraw then
+    if dist <= distToDraw then
         ped = GetPlayerPed(GetPlayerFromServerId(playerServerId))
         pedDisplaying[ped] = (pedDisplaying[ped] or 1) + 1
         print(ped)
@@ -74,7 +74,7 @@ local function Display(playerServerId, ped, playerCoords, text)
         end
 
         pedDisplaying[ped] = pedDisplaying[ped] - 1
-   -- end
+    end
 end
 
 RegisterNetEvent("Ora::3dme:shareDisplay")

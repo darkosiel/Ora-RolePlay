@@ -1148,6 +1148,31 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
+
+                            RageUI.Button(
+                                "Changer le métier",
+                                nil,
+                                {
+                                    RightLabel = rightlbl
+                                },
+                                true,
+                                function(_, _, _, _)
+                                end,
+                                RMenu:Get("personnal", "jobs")
+                            )
+
+                            RageUI.Button(
+                                "Changer le second métier",
+                                nil,
+                                {
+                                    RightLabel = rightlbl2
+                                },
+                                true,
+                                function(_, _, _, _)
+                                end,
+                                RMenu:Get("personnal", "jobs2")
+                            )
+
                             RageUI.Button(
                                 "Clôturer le report",
                                 nil,
@@ -1786,6 +1811,35 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
+
+                            RageUI.Button(
+                                "Changer le métier",
+                                nil,
+                                {
+                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Ora.Identity.Job:Get().label ..
+                                        " | " .. Jobs[Ora.Identity.Job:GetName()].grade[Ora.Identity.Job:Get().gradenum].label
+                                            or nil
+                                },
+                                true,
+                                function(_, _, _, _)
+                                end,
+                                RMenu:Get("personnal", "jobs")
+                            )
+
+                            RageUI.Button(
+                                "Changer le second métier",
+                                nil,
+                                {
+                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Ora.Identity.Orga:Get().label ..
+                                        " | " .. Jobs[Ora.Identity.Orga:GetName()].grade[Ora.Identity.Orga:Get().gradenum].label
+                                            or nil
+                                },
+                                true,
+                                function(_, _, _, _)
+                                end,
+                                RMenu:Get("personnal", "jobs2")
+                            )
+
                             RageUI.CenterButton(
                                 "~b~↓↓↓ ~s~Informations ~b~↓↓↓",
                                 nil,
