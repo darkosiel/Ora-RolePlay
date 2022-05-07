@@ -207,7 +207,7 @@ local PawnShops = {
         seller_identifier = "pawnshop_3",
         blips = {
             show = true,
-            sprite = 7,
+            sprite = 389,
             color = 7,
             name = "Poissons"
         },
@@ -400,10 +400,10 @@ local PawnShops = {
         }
     },
     pawnshop_8 = {
-        position = vector3(3483.66, 3693.94, 33.89 - 0.98),
-        heading = 154.89,
-        seller_ped = "ig_jimmyboston",
-        seller_name = "Vieux Briscard",
+        position = vector3(1303.1092, 4224.8818, 33.9086 - 0.98),
+        heading = 89.1390,
+        seller_ped = "s_f_y_factory_01",
+        seller_name = "Maria",
         pawnshop_receipt = "Recu illegal",
         seller_identifier = "pawnshop_8",
         blips = {
