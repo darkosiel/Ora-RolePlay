@@ -66,6 +66,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["medbox"] = {"Boite medical", 150},
     ["medikit"] = {"Trousse de soin", 200},
     ["cone"] = {"Cone", 10},
+    ["medbag"] = {"Sac medical", 20},
   },
   carwash = {
     ["lavage"] = {"Kit de nettoyage", 25},
@@ -239,7 +240,9 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["cereale"] = {"Céréale", 45},
   },
   lsfd = {
-    ["fire_extinguisher"] = {"Extincteur", 25},
+    ["fire_extinguisher"] = {"Extincteur", 25}, 
+    ["medbag"] = {"Sac medical", 20},
+    ["medbox"] = {"Boite medical", 20},
   },
   -- [""] = {},
   -- [""] = {},
