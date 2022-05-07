@@ -36,7 +36,7 @@ Items = {
         weight = 1.0
     },
     bigcam = {
-        label = "Caméra",
+        label = "Caméra épaule",
         weight = 1.0
     },
     megaphone = {
