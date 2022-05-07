@@ -627,9 +627,9 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
     },
     limitations = {
       {name = "pinces", byWeek = 50, price = 15},
-      {name = "fertz", byWeek = 300, price = 10},
-      {name = "crochetage", byWeek = 150, price = 20},
-      {name = "menottes", byWeek = 50, price = 70},
+      {name = "fertz", byWeek = 1000, price = 10},
+      {name = "crochetage", byWeek = 200, price = 20},
+      {name = "menottes", byWeek = 100, price = 70},
       {name = "darknet", byWeek = 50, price = 500},
       {name = "molotov", byWeek = 50, price = 15000},
       {name = "allumette", byWeek = 550, price = 250},
