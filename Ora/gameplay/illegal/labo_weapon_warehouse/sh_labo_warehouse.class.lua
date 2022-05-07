@@ -612,6 +612,46 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
 
 
 IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
+  reselleur = {
+    label = "Item illégaux",
+    description = "Divers items illégaux",
+    interior = vector3(179.17, -1000.68, -99.0),
+    vault = vector3(169.76, -1005.82, -150.0 - 0.95),
+    computer = vector3(172.92, -1000.34, -99.0 - 0.95),
+    attackTime = 900,
+    delivery = {
+      {start = vector3(-1153.26, 2674.54, 18.09), startHeading = 151.48, finish = vector3(-900.03, 2576.89, 57.44)},
+      {start = vector3(-350.13, 2953.2, 25.78), startHeading = 265.89, finish = vector3(-173.5, 2860.82, 31.88)},
+      {start = vector3(2461.79, 3432.88, 50.15), startHeading = 203.46, finish = vector3(2671.62, 3514.82, 52.71)},
+      {start = vector3(886.83, 2831.92, 56.29), startHeading = 117.13, finish = vector3(657.55, 2974.55, 42.94)}
+    },
+    limitations = {
+      {name = "pinces", byWeek = 50, price = 15},
+      {name = "fertz", byWeek = 300, price = 10},
+      {name = "crochetage", byWeek = 150, price = 20},
+      {name = "menottes", byWeek = 50, price = 70},
+      {name = "darknet", byWeek = 50, price = 500},
+      {name = "molotov", byWeek = 50, price = 15000},
+      {name = "allumette", byWeek = 550, price = 250},
+      {name = "molotovartisanal", byWeek = 50, price = 1500}
+    },
+    security = {
+      [1] = {
+          label = "",
+          description = "",
+          price = 0,
+          time = 0
+      }
+    },
+    production = {
+      [1] = {
+          label = "",
+          description = "",
+          price = 0,
+          addon = {}
+      }
+    }
+  },
   gunlead1 = {
     label = "Gunlead 1",
     description = "Beretta, Pistolet Lourd, Tec-9, Machete, Hache, Explosifs artisanal",
