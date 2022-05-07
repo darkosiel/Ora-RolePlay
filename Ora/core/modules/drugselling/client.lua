@@ -74,10 +74,10 @@ Ora.DrugDealing.Props = {
 }
 
 Ora.DrugDealing.Prices = {
-    weed_pooch = {27, 35},
-    coke1 = {68, 75},
-    meth = {55, 65},
-    lsd_pooch = {75, 80}
+    weed_pooch = {30, 35},
+    coke1 = {70, 80},
+    meth = {60, 70},
+    lsd_pooch = {80, 90}
 }
 
 Ora.DrugDealing.Demand = {
