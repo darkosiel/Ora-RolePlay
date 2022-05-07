@@ -2045,7 +2045,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1191.6433, y = -897.940918, z = 13.99 - 0.98},
+                Pos = {x = -1186.6437, y = -903.3551, z = 13.9741 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             }
@@ -2071,7 +2071,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 5,
                 blipname = "Friteuse",
-                Pos = {x = -1198.7294, y = -901.7692, z = 13.995306},
+                Pos = {x = -1200.5531, y = -897.4307, z = 13.9741},
                 required = "pommeterre",
                 giveitem = "frites",
                 noFarm = true,
@@ -2084,7 +2084,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
-                Pos = {x = -1198.9903, y = -895.0682, z = 13.995306},
+                Pos = {x = -1169.3804, y = -894.2769, z = 13.9741},
                 required = "milk",
                 giveitem = {
                     {name = "milkshack", count = 5},
@@ -2100,7 +2100,7 @@ Jobs = {
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
-                Pos = {x = -1202.8587, y = -895.6409, z = 13995306},
+                Pos = {x = -1194.8308, y = -895.6914, z = 13.9741},
                 required = {
                     {name = "bread", count = 1},
                     {name = "chicken", count = 1}
@@ -2119,7 +2119,7 @@ Jobs = {
                 blipcolor = 8,
                 noFarm = true,
                 blipname = "Grill Burger Healthy",
-                Pos = {x = -1200.9940, y = -898.8383, z = 13.9953},
+                Pos = {x = -1196.3144, y = -899.9614, z = 13.9741},
                 required = {
                     {name = "bread", count = 1},
                     {name = "meat", count = 1}
@@ -2160,7 +2160,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "BurgerShot - Vente",
-                Pos = {x = -1205.5755, y = -891.9464, z = 13.99 - 0.98},
+                Pos = {x = -423.8536, y = 284.0237, z = 83.19 - 0.98},
                 required = "cafe",
                 price = math.random(20,30),
                 add = "~p~- 1 Café"
