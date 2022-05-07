@@ -1,4 +1,4 @@
---[[ Citizen.CreateThread(
+Citizen.CreateThread(
   function()
     while true do
       Wait(0)
@@ -27,4 +27,4 @@
       end
     end
   end
-) ]]
+)

@@ -35,7 +35,7 @@ Citizen.CreateThread(
               )
 
               if (Ora.ZoneSystem.PrintStuff) then
-                print(string.format("Le bar %s a été payé $%s pour un nombre total de %s joueur(s).", name, pay, count))
+                print(string.format("Le bar %s a été payé $%s pour un nombre total de %s client(s).", name, pay, count))
               end
             end
           end

@@ -666,16 +666,17 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {start = vector3(886.83, 2831.92, 56.29), startHeading = 117.13, finish = vector3(657.55, 2974.55, 42.94)}
     },
     limitations = {
+      {name = "machete", byWeek = 5, price = 200},
+      {name = "hatchet", byWeek = 5, price = 200},
+      {name = "combathatchet", byWeek = 0, price = 200},
       {name = "pistol", byWeek = 15, price = 5000},
       {name = "pitollourd", byWeek = 3, price = 9000},
       {name = "machinepistol", byWeek = 1, price = 55000},
       {name = "mm9", byWeek = 1000, price = 25},
-      {name = "machete", byWeek = 5, price = 200},
-      {name = "hatchet", byWeek = 5, price = 200},
+      {name = "calibre12", byWeek = 0, price = 40},
       {name = "stickybomb", byWeek = 10, price = 1500},
-      {name = "shootguncompact", byWeek = 0, price = 38500},
-      {name = "combathatchet", byWeek = 0, price = 200},
-      {name = "calibre12", byWeek = 0, price = 40}
+      {name = "shootguncompact", byWeek = 0, price = 38500}
+    
     },
     security = {
       [1] = {
