@@ -82,6 +82,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
   },
   henhouse = {
     ["whisky"] = {"Bouteille de whisky", 100},
@@ -94,6 +95,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
   },
   unicorn = {
     ["whisky"] = {"Bouteille de whisky", 100},
@@ -106,6 +108,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
   },
   tequilala = {
     ["whisky"] = {"Bouteille de whisky", 100},
@@ -118,6 +121,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
   },
   restaurant = {
     ["bread"] = {"Pain", 25},
@@ -143,6 +147,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
 
   },
   ltdsud = {
@@ -197,6 +202,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
   },
   bahamas = {
     ["whisky"] = {"Bouteille de whisky", 100},
@@ -209,6 +215,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["white_wine"] = {"Bouteille de vin blanc", 70},
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
+    ["champagne"] = {"Bouteille de champage", 200},
   },
   burgershot = {
     ["milk"] = {"Lait", 30},

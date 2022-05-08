@@ -1264,6 +1264,12 @@ Items = {
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
+    champagne = {
+        label = "Champagne",
+        weight = 0.5,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
+    },
     agave = {
         label = "Agave",
         weight = 1.0
