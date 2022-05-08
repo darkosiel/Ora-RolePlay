@@ -331,19 +331,19 @@ Items = {
         weight = 1.0
         --category = "food"
     },
-    --[[whisky = {
+    whisky = {
         label = "Bouteille de whisky",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },--]]
+    },
     vodka = {
         label = "Bouteille de vodka",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
-    --[[cognac = {
+    cognac = {
         label = "Bouteille de cognac",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
@@ -354,13 +354,13 @@ Items = {
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },]]
---[[    tequila = {
+    },
+    tequila = {
         label = "Bouteille de tequila",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },]]
+    },
     red_wine = {
         label = "Bouteille de vin rouge",
         weight = 0.5,
@@ -1173,7 +1173,7 @@ Items = {
     },
     -- Items : Alcool
 
-    whisky = {
+    --[[whisky = {
         label = "Whisky",
         weight = 1.0,
         actionCl = "miam:Drink",
@@ -1197,14 +1197,14 @@ Items = {
         soif = 15,
         category = "food"
     },
---[[    vodka = {
+    vodka = {
         label = "Vodka",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_vodka_bottle",
         soif = 15,
         category = "food"
-    },]]
+    },
     tequila = {
         label = "Tequila",
         weight = 1.0,
@@ -1228,7 +1228,7 @@ Items = {
         props = "prop_bottle_cognac",
         soif = 15,
         category = "food"
-    },
+    },]]
     -- Items : Distillerie
     c_sucre = {
         label = "Canne a sucre",
