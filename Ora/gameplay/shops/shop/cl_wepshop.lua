@@ -759,34 +759,6 @@ local weapon_configrancho = {
     end
 }
 
-local weapon_configsandy = {
-    Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053},
-    Ped = {
-        Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053, a = 139.8928},
-        model = "s_m_y_ammucity_01",
-        name = "Jerry"
-    },
-    Blips = {
-        sprite = 313,
-        color = 1,
-        name = "Armurerie - Accessoires d'armes"
-    },
-    EnterZone = function()
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", Open, "Ammu")
-        KeySettings:Add("controller", 46, Open, "Ammu")
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
 
 local private_conf = {
     Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
@@ -959,6 +931,8 @@ local function build()
     c = weapon_configrancho
     dx = weapon_configsandy
     e = private_confsandy
+    f = weapon_configcentre
+    g = private_confcentre
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
         SetBlipSprite(blip, v.Blips.sprite)

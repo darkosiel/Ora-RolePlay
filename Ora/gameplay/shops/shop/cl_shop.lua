@@ -2847,6 +2847,140 @@ local Shops =
         --     }
         -- },
         {
+            Title = "Fournisseur Ammunation",
+            Hidden = true,
+            RestrictedJob = {"ammunation"},
+            RestrictedGrade = {"cdi", "chef", "drh", "boss"},
+            Pos = {x = 808.90, y = -2152.31, z = 28.61, a = 261.32}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Vendeur assistant"
+            },
+            Ped = {
+                model = "s_m_y_armymech_01",
+                name = "Gordon"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 20,
+                    data = {}
+                },
+                {
+                    name = "acp45",
+                    price = 20,
+                    data = {}
+                },
+                {
+                    name = "calibre12",
+                    price = 40,
+                    data = {}
+                },
+                {
+                    name = "cab",
+                    price = 20,
+                    data = {}
+                },
+                {
+                    name = "cab2",
+                    price = 30,
+                    data = {}
+                },
+                {
+                    name = "akm",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "snip",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "knife",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "knife1",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "machete",
+                    price = 400,
+                    data = {}
+                },
+                {
+                    name = "hatchet",
+                    price = 400,
+                    data = {}
+                },
+                {
+                    name = "dagger",
+                    price = 400,
+                    data = {}
+                },
+                {
+                    name = "knuckle",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "hammer",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "batte",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "golf",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "katana",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "crowbar",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "poolcue",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "flashlight",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "nightstick",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "teargas",
+                    price = 50,
+                    data = {}
+                }
+            }
+        },
+        {
             Title = "Fournisseur armes blanches",
             Hidden = true,
             RestrictedJob = {"condenados"},
@@ -3675,6 +3809,114 @@ local Shops =
                 --     fct = GeneratePoliceSerial,
                 --     type =  "serial"
                 -- },
+            }
+        },
+        {
+            Title = "Fournisseur munitions",
+            Hidden = true,
+            Pos = {x = 254.1989, y = -49.8555, z = 68.9412, a = 70.7560}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "cs_russiandrunk",  
+                name = "Mike"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Fournisseur munitions Rancho",
+            Hidden = true,
+            Pos = {x = 822.4161, y = -2150.1813, z = 28.6191, a = 179.6899}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "ig_oneil",
+                name = "Olen"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Fournisseur munitions Sandy",
+            Hidden = true,
+            Pos = {x = 1695.6730, y = 3759.4860, z = 33.7053, a = 138.7242}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "cs_old_man1a",
+                name = "Jason"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Fournisseur munitions Center",
+            Hidden = true,
+            Pos = {x = 8.1553, y = -1109.7742, z = 28.7972, a = 349.1873}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+            Blips = {
+                sprite = 478,
+                Enabled = false, -- Image off
+                color = 43,
+                name = "Police"
+            },
+            Ped = {
+                model = "u_m_o_taphillbilly",
+                name = "Andrew"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "mm9",
+                    price = 2,
+                    data = {}
+                }
             }
         },
         {
