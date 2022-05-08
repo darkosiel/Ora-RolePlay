@@ -788,6 +788,35 @@ local weapon_configsandy = {
     end
 }
 
+local weapon_configcentre = {
+    Pos = {x = 13.8605, y = -1111.6655, z = 28.7972},
+    Ped = {
+        Pos = {x = 13.8605, y = -1111.6655, z = 28.7972, a = 343.1783},
+        model = "s_m_y_ammucity_01",
+        name = "Jerry"
+    },
+    Blips = {
+        sprite = 313,
+        color = 1,
+        name = "Armurerie - Accessoires d'armes"
+    },
+    EnterZone = function()
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+        KeySettings:Add("keyboard", "E", Open, "Ammu")
+        KeySettings:Add("controller", 46, Open, "Ammu")
+    end,
+    ExitZone = function()
+        KeySettings:Clear("keyboard", "E", "Ammu")
+        KeySettings:Clear("controller", 46, "Ammu")
+        Hint:RemoveAll()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+    end
+}
+
 local private_conf = {
     Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
     Ped = {
@@ -882,10 +911,10 @@ local private_conf_paleto = {
 }
 
 local private_confsandy = {
-    Pos = {x = 1693.1214, y = 3755.1564, z = 33.7053, a = 317.8447},
+    Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
     Ped = {
-        Pos = {x = 1693.1214, y = 3755.1564, z = 33.7053, a = 317.8447},
-        model = "cs_old_man1a",
+        Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
+        model = "s_m_y_ammucity_01",
         name = "Tom"
     },
     EnterZone = function()
@@ -912,6 +941,36 @@ local private_confsandy = {
     end
 }
 
+local private_confcentre = {
+    Pos = {x = 11.2238, y = -1104.5128, z = 28.7972, a = 161.2828},
+    Ped = {
+        Pos = {x = 11.2238, y = -1104.5128, z = 28.7972, a = 161.2828},
+        model = "s_m_y_ammucity_01",
+        name = "Mark"
+    },
+    EnterZone = function()
+        local isAuth = false
+        for i=1, #restrictedJob do
+            if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
+            if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
+        end
+        if isAuth then
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
+            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
+            KeySettings:Add("controller", 46, OpenP, "Ammu")
+        end
+    end,
+    ExitZone = function()
+        KeySettings:Clear("keyboard", "E", "Ammu")
+        KeySettings:Clear("controller", 46, "Ammu")
+        Hint:RemoveAll()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+        RageUI.GoBack()
+    end
+}
 
 local private_arme = {
    Pos = {x = 814.7973, y = -2155.2089, z = 28.6191, a = 7.0176},
@@ -960,6 +1019,8 @@ local function build()
     c = weapon_configrancho
     dx = weapon_configsandy
     e = private_confsandy
+    f = weapon_configcentre
+    g = private_confcentre
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
         SetBlipSprite(blip, v.Blips.sprite)
