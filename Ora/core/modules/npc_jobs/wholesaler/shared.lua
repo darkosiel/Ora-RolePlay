@@ -63,10 +63,10 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["crowbar"] = {"Pied de biche", 250},
   },
   lsms = {
-    ["medbox"] = {"Boite medical", 150},
+    ["medbox"] = {"Boite medical", 20},
     ["medikit"] = {"Trousse de soin", 200},
     ["cone"] = {"Cone", 10},
-    ["medbag"] = {"Sac medical", 20},
+    ["medbag"] = {"Sac medical", 30},
   },
   carwash = {
     ["lavage"] = {"Kit de nettoyage", 25},
@@ -241,9 +241,14 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
   },
   lsfd = {
     ["fire_extinguisher"] = {"Extincteur", 25}, 
-    ["medbag"] = {"Sac medical", 20},
     ["medbox"] = {"Boite medical", 20},
+    ["medbag"] = {"Sac medical", 30},
   },
+  journaliste ={
+    ["bigcam "] = {"Caméra sur épaule", 300}, 
+    ["micro "] = {"Micro", 50},
+    ["perche"] = {"Perche de micro", 100},
+  }, 
   -- [""] = {},
   -- [""] = {},
   -- [""] = {},
