@@ -702,9 +702,9 @@ local kevlarConfig2 = {
 }
 
 local weapon_config = {
-    Pos = {x = 246.5348, y = -51.9893, z = 68.9412},
+    Pos = {x = 254.1989, y = -49.8555, z = 68.9412},
     Ped = {
-        Pos = {x = 246.5348, y = -51.9893, z = 68.9412, a = 72.9102},
+        Pos = {x = 254.1989, y = -49.8555, z = 68.9412, a = 70.7560},
         model = "s_m_y_ammucity_01",
         name = "Alex"
     },
@@ -731,9 +731,9 @@ local weapon_config = {
 }
 
 local weapon_configrancho = {
-    Pos = {x = 816.4370, y = -2150.1289, z = 28.6191},
+    Pos = {x = 808.90, y = -2152.31, z = 28.61},
     Ped = {
-        Pos = {x = 816.4370, y = -2150.1289, z = 28.6191, a = 184.2281},
+        Pos = {x = 808.90, y = -2152.31, z = 28.61, a = 261.32},
         model = "s_m_y_ammucity_01",
         name = "Harry"
     },
@@ -760,38 +760,9 @@ local weapon_configrancho = {
 }
 
 local weapon_configsandy = {
-    Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053},
+    Pos = {x = 1695.8159, y = 3760.5620, z = 33.7053},
     Ped = {
-        Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053, a = 139.8928},
-        model = "s_m_y_ammucity_01",
-        name = "Jerry"
-    },
-    Blips = {
-        sprite = 313,
-        color = 1,
-        name = "Armurerie - Accessoires d'armes"
-    },
-    EnterZone = function()
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-        KeySettings:Add("keyboard", "E", Open, "Ammu")
-        KeySettings:Add("controller", 46, Open, "Ammu")
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
-
-local weapon_configcentre = {
-    Pos = {x = 13.8605, y = -1111.6655, z = 28.7972},
-    Ped = {
-        Pos = {x = 13.8605, y = -1111.6655, z = 28.7972, a = 343.1783},
+        Pos = {x = 1695.8159, y = 3760.5620, z = 33.7053, a = 176.7952},
         model = "s_m_y_ammucity_01",
         name = "Jerry"
     },
@@ -818,9 +789,9 @@ local weapon_configcentre = {
 }
 
 local private_conf = {
-    Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
+    Pos = {x = 250.7739, y = -45.4911, z = 68.9411, a = 165.3618},
     Ped = {
-        Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
+        Pos = {x = 250.7739, y = -45.4911, z = 68.9411, a = 165.3618},
         model = "s_m_y_ammucity_01",
         name = "Tom"
     },
@@ -849,9 +820,9 @@ local private_conf = {
 }
 
 local private_confrancho = {
-    Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
+    Pos = {x = 813.9841, y = -2154.4321, z = 28.6190, a = 90.5996},
     Ped = {
-        Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
+        Pos = {x = 813.9841, y = -2154.4321, z = 28.6190, a = 90.5996},
         model = "s_m_y_ammucity_01",
         name = "John"
     },
@@ -911,10 +882,10 @@ local private_conf_paleto = {
 }
 
 local private_confsandy = {
-    Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
+    Pos = {x = 1693.1214, y = 3755.1564, z = 33.7053, a = 317.8447},
     Ped = {
-        Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
-        model = "s_m_y_ammucity_01",
+        Pos = {x = 1693.1214, y = 3755.1564, z = 33.7053, a = 317.8447},
+        model = "cs_old_man1a",
         name = "Tom"
     },
     EnterZone = function()
@@ -941,36 +912,6 @@ local private_confsandy = {
     end
 }
 
-local private_confcentre = {
-    Pos = {x = 11.2238, y = -1104.5128, z = 28.7972, a = 161.2828},
-    Ped = {
-        Pos = {x = 11.2238, y = -1104.5128, z = 28.7972, a = 161.2828},
-        model = "s_m_y_ammucity_01",
-        name = "Mark"
-    },
-    EnterZone = function()
-        local isAuth = false
-        for i=1, #restrictedJob do
-            if restrictedJob[i] == Ora.Identity.Job:GetName() then isAuth = true end
-            if restrictedJob[i] == Ora.Identity.Orga:GetName() then isAuth = true end
-        end
-        if isAuth then
-            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
-            KeySettings:Add("keyboard", "E", OpenP, "Ammu")
-            KeySettings:Add("controller", 46, OpenP, "Ammu")
-        end
-    end,
-    ExitZone = function()
-        KeySettings:Clear("keyboard", "E", "Ammu")
-        KeySettings:Clear("controller", 46, "Ammu")
-        Hint:RemoveAll()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-        RageUI.GoBack()
-    end
-}
 
 local private_arme = {
    Pos = {x = 814.7973, y = -2155.2089, z = 28.6191, a = 7.0176},
@@ -1019,8 +960,6 @@ local function build()
     c = weapon_configrancho
     dx = weapon_configsandy
     e = private_confsandy
-    f = weapon_configcentre
-    g = private_confcentre
     if not v.Hidden then
         local blip = AddBlipForCoord(v.Pos.x, v.Pos.y, v.Pos.z)
         SetBlipSprite(blip, v.Blips.sprite)
