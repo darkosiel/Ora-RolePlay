@@ -336,14 +336,14 @@ Items = {
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
-    },
+    },--]]
     vodka = {
         label = "Bouteille de vodka",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
-    cognac = {
+    --[[cognac = {
         label = "Bouteille de cognac",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
@@ -1197,14 +1197,14 @@ Items = {
         soif = 15,
         category = "food"
     },
-    vodka = {
+--[[    vodka = {
         label = "Vodka",
         weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_vodka_bottle",
         soif = 15,
         category = "food"
-    },
+    },]]
     tequila = {
         label = "Tequila",
         weight = 1.0,
