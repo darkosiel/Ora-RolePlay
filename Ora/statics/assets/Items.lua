@@ -364,26 +364,20 @@ Items = {
     red_wine = {
         label = "Bouteille de vin rouge",
         weight = 0.5,
-        actionCl = "miam:Drink",
-        props = "prop_wine_bot_01",
-        soif = 10,
-        category = "food"
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     high_quality_wine = {
         label = "Bouteille de grand cru",
         weight = 0.5,
-        actionCl = "miam:Drink",
-        props = "prop_wine_bot_01",
-        soif = 10,
-        category = "food"
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     white_wine = {
         label = "Bouteille de vin blanc",
         weight = 0.5,
-        actionCl = "miam:Drink",
-        props = "prop_wine_bot_01",
-        soif = 10,
-        category = "food"
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     beer = {
         label = "Bière",
@@ -1254,27 +1248,21 @@ Items = {
     },
     bouteille_vin = {
         label = "Bouteille de vin",
-        weight = 1.0,
-        actionCl = "miam:Drink",
-        props = "prop_wine_white",
-        soif = 10,
-        category = "food"
+        weight = 0.5,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     bouteille_vinr = {
-        label = "Bouteille de vin rouge",
-        weight = 1.0,
-        actionCl = "miam:Drink",
-        props = "prop_wine_red",
-        soif = 10,
-        category = "food"
+        label = "Bouteille de vin rouge de bordeaux",
+        weight = 0.5,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     grand_cru = {
         label = "Château de Marlowe 2014",
-        weight = 1.0,
-        actionCl = "miam:Drink",
-        props = "prop_wine_bot_01",
-        soif = 10,
-        category = "food"
+        weight = 0.5,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     agave = {
         label = "Agave",
