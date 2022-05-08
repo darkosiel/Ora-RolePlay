@@ -2045,9 +2045,14 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1186.6437, y = -903.3551, z = 13.9741 - 0.98},
+                Pos = {x = -1200.6992, y = -901.47088, z = 13.97 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
+            },
+            {
+                Pos = {x = -1186.5991, y = -903.3736, z = 13.97 - 0.98},
+                Limit = 1000,
+                Name = "coffre_restaurantfood1"
             }
         },
         requiredService = false,
@@ -2100,7 +2105,7 @@ Jobs = {
                 blipcolor = 7,
                 noFarm = true,
                 blipname = "Grill Burger Poulet",
-                Pos = {x = -1194.8308, y = -895.6914, z = 13.9741},
+                Pos = {x = -1197.6510, y = -895.5382, z = 13.9741},
                 required = {
                     {name = "bread", count = 1},
                     {name = "chicken", count = 1}
