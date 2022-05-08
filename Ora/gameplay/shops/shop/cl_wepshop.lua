@@ -702,9 +702,9 @@ local kevlarConfig2 = {
 }
 
 local weapon_config = {
-    Pos = {x = 254.1989, y = -49.8555, z = 68.9412},
+    Pos = {x = 246.5348, y = -51.9893, z = 68.9412},
     Ped = {
-        Pos = {x = 254.1989, y = -49.8555, z = 68.9412, a = 70.7560},
+        Pos = {x = 246.5348, y = -51.9893, z = 68.9412, a = 72.9102},
         model = "s_m_y_ammucity_01",
         name = "Alex"
     },
@@ -731,9 +731,9 @@ local weapon_config = {
 }
 
 local weapon_configrancho = {
-    Pos = {x = 808.90, y = -2152.31, z = 28.61},
+    Pos = {x = 816.4370, y = -2150.1289, z = 28.6191},
     Ped = {
-        Pos = {x = 808.90, y = -2152.31, z = 28.61, a = 261.32},
+        Pos = {x = 816.4370, y = -2150.1289, z = 28.6191, a = 184.2281},
         model = "s_m_y_ammucity_01",
         name = "Harry"
     },
@@ -760,9 +760,9 @@ local weapon_configrancho = {
 }
 
 local weapon_configsandy = {
-    Pos = {x = 1695.8159, y = 3760.5620, z = 33.7053},
+    Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053},
     Ped = {
-        Pos = {x = 1695.8159, y = 3760.5620, z = 33.7053, a = 176.7952},
+        Pos = {x = 1697.8917, y = 3757.4921, z = 33.7053, a = 139.8928},
         model = "s_m_y_ammucity_01",
         name = "Jerry"
     },
@@ -789,9 +789,9 @@ local weapon_configsandy = {
 }
 
 local private_conf = {
-    Pos = {x = 250.7739, y = -45.4911, z = 68.9411, a = 165.3618},
+    Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
     Ped = {
-        Pos = {x = 250.7739, y = -45.4911, z = 68.9411, a = 165.3618},
+        Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
         model = "s_m_y_ammucity_01",
         name = "Tom"
     },
@@ -820,9 +820,9 @@ local private_conf = {
 }
 
 local private_confrancho = {
-    Pos = {x = 813.9841, y = -2154.4321, z = 28.6190, a = 90.5996},
+    Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
     Ped = {
-        Pos = {x = 813.9841, y = -2154.4321, z = 28.6190, a = 90.5996},
+        Pos = {x = 821.3031, y = -2156.0778, z = 28.6191, a = 354.9076},
         model = "s_m_y_ammucity_01",
         name = "John"
     },
