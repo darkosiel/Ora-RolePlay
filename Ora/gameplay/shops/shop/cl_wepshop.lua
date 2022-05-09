@@ -727,7 +727,7 @@ local weapon_configcentre = {
 local private_conf = {
     Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
     Ped = {
-        Pos = {x = 249.6309, y = -52.3128, z = 68.9412, a = 339.3597},
+        Pos = {x = 250.351639, y = -51.648857, z = 68.9412, a = 23.2627},
         model = "s_m_y_ammucity_01",
         name = "Tom"
     },
