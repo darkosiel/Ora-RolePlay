@@ -638,9 +638,9 @@ local weapon_config = {
 }
 
 local weapon_configrancho = {
-    Pos = {x = 816.4370, y = -2150.1289, z = 28.6191},
+    Pos = {x = 812.2151, y = -2153.5764, z = 28.6191},
     Ped = {
-        Pos = {x = 816.4370, y = -2150.1289, z = 28.6191, a = 184.2281},
+        Pos = {x = 814.0516, y = -2153.5090, z = 28.6191, a = 87.4582},
         model = "s_m_y_ammucity_01",
         name = "Harry"
     },
