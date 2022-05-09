@@ -605,13 +605,15 @@ Citizen.CreateThread(
                                     tshirt1 = Index
                                     tshirt2 = 1
                                     if Active then
-                                        SetPedComponentVariation(LocalPlayer().Ped, 8, tshirt1 - 1, tshirt2 - 1, 2)
+                                        --SetPedComponentVariation(LocalPlayer().Ped, 8, tshirt1 - 1, tshirt2 - 1, 2)
+                                        SetPedComponentVariation(LocalPlayer().Ped, 8, tshirt1-1, tshirt2 - 1)
                                     end
                                 end
                             end
                         )
                         local am = {}
-                        for i = 1, GetNumberOfPedTextureVariations(LocalPlayer().Ped, 8, tshirt1), 1 do
+                                    --GetNumberOfPedTextureVariations(LocalPlayer().Ped,8,tshirt1-1),1 do
+                        for i = 1, GetNumberOfPedTextureVariations(LocalPlayer().Ped,8,tshirt1-1),1 do
                             am[i] = i
                         end
                         RageUI.List(
