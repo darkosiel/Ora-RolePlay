@@ -609,9 +609,9 @@ local kevlarConfig = {
 }
 
 local weapon_config = {
-    Pos = {x = 246.5348, y = -51.9893, z = 68.9412},
+    Pos = {x = 249.8991, y = -45.1187, z = 68.9412},
     Ped = {
-        Pos = {x = 246.5348, y = -51.9893, z = 68.9412, a = 72.9102},
+        Pos = {x = 249.8991, y = -45.1187, z = 68.9412, a = 145.3043},
         model = "s_m_y_ammucity_01",
         name = "Alex"
     },
