@@ -374,8 +374,6 @@ local accessToRemoveFemale = {
 local chapeauToRemoveMale = {
     [1] = true
 }
-
-
 local braseditInd = 1
 local tshirt1 = 1
 local tshirt2 = 1
@@ -607,15 +605,13 @@ Citizen.CreateThread(
                                     tshirt1 = Index
                                     tshirt2 = 1
                                     if Active then
-                                        --SetPedComponentVariation(LocalPlayer().Ped, 8, tshirt1 - 1, tshirt2 - 1, 2)
-                                        SetPedComponentVariation(LocalPlayer().Ped, 8, tshirt1-1, tshirt2 - 1)
+                                        SetPedComponentVariation(LocalPlayer().Ped, 8, tshirt1 - 1, tshirt2 - 1, 2)
                                     end
                                 end
                             end
                         )
                         local am = {}
-                                    --GetNumberOfPedTextureVariations(LocalPlayer().Ped,8,tshirt1-1),1 do
-                        for i = 1, GetNumberOfPedTextureVariations(LocalPlayer().Ped,8,tshirt1-1),1 do
+                        for i = 1, GetNumberOfPedTextureVariations(LocalPlayer().Ped, 8, tshirt1), 1 do
                             am[i] = i
                         end
                         RageUI.List(
@@ -753,7 +749,9 @@ Citizen.CreateThread(
                                         if Active then
                                             if oldClothes ~= clotheKeyInteger or oldVar ~= Index - 1 then
                                                 -- print("CURRENT KEY " .. clotheKey)
-                                                if Clothes.type == 0 thenSetPedComponentVariation(LocalPlayer().Ped,
+                                                if Clothes.type == 0 then
+                                                    SetPedComponentVariation(
+                                                        LocalPlayer().Ped,
                                                         Clothes.component,
                                                         clotheKeyInteger,
                                                         clotheValue.LIST_RAW[clotheKeyInteger][clotheValue.CURRENT].ComponentVariation
@@ -762,8 +760,12 @@ Citizen.CreateThread(
                                                     oldClothes = clotheKey
                                                     oldVar = Index - 1
                                                     if Clothes.component == 11 then
-                                                        
-                                                        SetPedComponentVariation(LocalPlayer().Ped,3,male_torso[clotheKeyInteger],0)
+                                                        SetPedComponentVariation(
+                                                            LocalPlayer().Ped,
+                                                            3,
+                                                            male_torso[clotheKeyInteger],
+                                                            0
+                                                        )
                                                     end
                                                 else
                                                     SetPedPropIndex(
