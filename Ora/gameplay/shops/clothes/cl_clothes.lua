@@ -374,6 +374,8 @@ local accessToRemoveFemale = {
 local chapeauToRemoveMale = {
     [1] = true
 }
+
+
 local braseditInd = 1
 local tshirt1 = 1
 local tshirt2 = 1
@@ -760,8 +762,8 @@ Citizen.CreateThread(
                                                     oldClothes = clotheKey
                                                     oldVar = Index - 1
                                                     if Clothes.component == 11 then
-                                                        SetPedComponentVariation(LocalPlayer().Ped, 11, male_torso[clotheKeyInteger], 0)
-                                                        --SetPedComponentVariation(LocalPlayer().Ped,3,male_torso[clotheKeyInteger],0)
+                                                        
+                                                        SetPedComponentVariation(LocalPlayer().Ped,3,male_torso[clotheKeyInteger],0)
                                                     end
                                                 else
                                                     SetPedPropIndex(
