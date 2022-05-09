@@ -992,9 +992,6 @@ local function build()
         )
     )
 
-    Zone:Add(f.Pos, f.EnterZone, f.ExitZone, i, 2.5)
-    Ped:Add(f.Ped.name, f.Ped.model, f.Ped.Pos, nil)
-
     RMenu.Add(
         "ammunation",
         "main",
@@ -1075,8 +1072,7 @@ local function build()
         )
     )
 
-    Zone:Add(g.Pos, g.EnterZone, g.ExitZone, i, 2.5)
-    Ped:Add(g.Ped.name, g.Ped.model, g.Ped.Pos, nil)
+
     RMenu.Add(
         "ammunation privé",
         "main private",
