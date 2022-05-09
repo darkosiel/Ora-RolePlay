@@ -728,7 +728,7 @@ local private_conf = {
 }
 
 local private_confrancho = {
-    Pos = {x = 809.7175, y = -2152.1591s, z = 28.6191},
+    Pos = {x = 809.7175, y = -2152.1591, z = 28.6191},
     Ped = {
         Pos = {x = 808.6508, y = -2152.3415, z = 28.6191, a = 277.2904},
         model = "s_m_y_ammucity_01",
