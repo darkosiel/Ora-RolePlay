@@ -519,8 +519,8 @@ local kevlarConfig = {
         name = "Kevlar sécurité"
     },
     [3] = {
-        status = 100,
-        name = "Kevlar medic / presse"
+        status = 50,
+        name = "Kevlar anti-riot"
     },
     [4] = {
         status = 100,
@@ -528,86 +528,93 @@ local kevlarConfig = {
     },
     [5] = {
         status = 100,
-        name = "Kevlar anti-riot"
+        name = "Kevlar medic"
     },
-    [8] = {
+    [9] = {
         status = 0,
         name = "Gilet de sauvetage"
     },
     [11] = {
-        status = 0,
-        name = "Sous-veste EMT"
+        status = 50,
+        name = "Sous-veste ouverte"
     },
     [12] = {
         status = 50,
         name = "Sous-veste col ouvert"
     },
-    [13] = {
+    [14] = {
         status = 50,
         name = "Radio déportée 1"
     },
-    [14] = {
+    [15] = {
         status = 50,
         name = "Radio déportée 2"
     },
-    [15] = {
-        status = 25,
-        name = "Radio"
-    },
-    [17] = {
-        status = 100,
-        name = "Gilet sous-veste"
-    },
-    [18] = {
-        status = 100,
-        name = "Kevlar moyen"
-    },
+    [16] = {
+        status = 50,
+        name = "Radio déportée 3"
     [19] = {
         status = 50,
         name = "Sous-veste cravate"
     },
     [21] = {
-        status = 50,
-        name = "Gilet jaune"
+        status = 100,
+        name = "Gilet sous-veste"
     },
     [22] = {
-        status = 50,
-        name = "Plaque agent fédéral"
-    },
-    [23] = {
-        status = 50,
-        name = "Plaque étoilée"
+        status = 100,
+        name = "Gilet moyen"
     },
     [24] = {
         status = 50,
-        name = "Badge"
+        name = "Plaque 1"
     },
     [25] = {
-        status = 100,
-        name = "Gilet Lourd"
+        status = 50,
+        name = "Plaque 2"
     },
     [26] = {
         status = 50,
-        name = "Col roulé"
+        name = "Plaque 3"
     },
     [27] = {
         status = 100,
-        name = "Gilet Lourd 2"
+        name = "Gilet porte-plaque 1"
     },
     [28] = {
         status = 50,
-        name = "Sous veste col ouvert"
+        name = "Sous veste col-roulé"
     },
-    [37] = {
+    [29] = {
+        status = 100,
+        name = "Gilet porte-plaque 2"
+    },
+    [30] = {
         status = 50,
-        name = "Radio déportée 3"
+        name = "Sous veste ouverte 2"
     },
-    [54] = {
-        status = 0,
-        name = "Carte de presse"
+    [31] = {
+        status = 50,
+        name = "Sous veste cravate"
+    },
+    [33] = {
+        status = 50,
+        name = "Radio déportée 4"
     },
 }
 
+-- hommes
+local kevlarConfig = {
+    [2] = {
+        status = 50,
+    }
+}    
+-- femmes
+local kevlarConfig2 = {
+    [2] = {
+        status = 50,
+    }
+}    
 local weapon_config = {
     Pos = {x = 249.4100, y = -46.3129, z = 68.9412},
     Ped = {
@@ -1398,7 +1405,7 @@ Citizen.CreateThread(
 
                             if gilItem[ind] == nil then
                                 local kevlarName = "Kevlar civil #" .. i
-                                if (kevlarConfig[i] ~= nil) then
+                                if (kevlarConfig[i]) then 
                                     kevlarName = kevlarConfig2[i].name
                                 end
                                 gilItem[ind] = kevlarName
@@ -1785,7 +1792,7 @@ Citizen.CreateThread(
 
                             if gilItem[ind] == nil then
                                 local kevlarName = "Kevlar civil #" .. i
-                                if (kevlarConfig2[i] ~= nil) then
+                                if (kevlarConfig2[i]) then
                                     kevlarName = kevlarConfig[i].name
                                 end
                                 gilItem[ind] = kevlarName
