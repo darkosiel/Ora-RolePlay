@@ -790,9 +790,9 @@ local private_conf_paleto = {
 }
 
 local private_confsandy = {
-    Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
+    Pos = {x = 1698.0855, y = 3758.7258, z = 33.7053},
     Ped = {
-        Pos = {x = 1691.6600, y = 3757.8906, z = 33.7053, a = 229.4132},
+        Pos = {x = 1697.6795, y = 3759.6018, z = 33.7053, a = 196.3361},
         model = "s_m_y_ammucity_01",
         name = "Tom"
     },
