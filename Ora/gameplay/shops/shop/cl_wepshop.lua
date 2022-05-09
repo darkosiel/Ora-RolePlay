@@ -519,8 +519,8 @@ local kevlarConfig = {
         name = "Kevlar sécurité"
     },
     [3] = {
-        status = 50,
-        name = "Kevlar anti-riot"
+        status = 100,
+        name = "Kevlar medic / presse"
     },
     [4] = {
         status = 100,
@@ -528,94 +528,86 @@ local kevlarConfig = {
     },
     [5] = {
         status = 100,
-        name = "Kevlar medic"
+        name = "Kevlar anti-riot"
     },
-    [9] = {
+    [8] = {
         status = 0,
         name = "Gilet de sauvetage"
     },
     [11] = {
-        status = 50,
-        name = "Sous-veste ouverte"
+        status = 0,
+        name = "Sous-veste EMT"
     },
     [12] = {
         status = 50,
         name = "Sous-veste col ouvert"
     },
-    [14] = {
+    [13] = {
         status = 50,
         name = "Radio déportée 1"
     },
-    [15] = {
+    [14] = {
         status = 50,
         name = "Radio déportée 2"
     },
-    [16] = {
-        status = 50,
-        name = "Radio déportée 3"
+    [15] = {
+        status = 25,
+        name = "Radio"
+    },
+    [17] = {
+        status = 100,
+        name = "Gilet sous-veste"
+    },
+    [18] = {
+        status = 100,
+        name = "Kevlar moyen"
     },
     [19] = {
         status = 50,
         name = "Sous-veste cravate"
     },
     [21] = {
-        status = 100,
-        name = "Gilet sous-veste"
+        status = 50,
+        name = "Gilet jaune"
     },
     [22] = {
-        status = 100,
-        name = "Gilet moyen"
+        status = 50,
+        name = "Plaque agent fédéral"
+    },
+    [23] = {
+        status = 50,
+        name = "Plaque étoilée"
     },
     [24] = {
         status = 50,
-        name = "Plaque 1"
+        name = "Badge"
     },
     [25] = {
-        status = 50,
-        name = "Plaque 2"
+        status = 100,
+        name = "Gilet Lourd"
     },
     [26] = {
         status = 50,
-        name = "Plaque 3"
+        name = "Col roulé"
     },
     [27] = {
         status = 100,
-        name = "Gilet porte-plaque 1"
+        name = "Gilet Lourd 2"
     },
     [28] = {
         status = 50,
-        name = "Sous veste col-roulé"
+        name = "Sous veste col ouvert"
     },
-    [29] = {
-        status = 100,
-        name = "Gilet porte-plaque 2"
-    },
-    [30] = {
+    [37] = {
         status = 50,
-        name = "Sous veste ouverte 2"
+        name = "Radio déportée 3"
     },
-    [31] = {
-        status = 50,
-        name = "Sous veste cravate"
-    },
-    [33] = {
-        status = 50,
-        name = "Radio déportée 4"
+    [54] = {
+        status = 0,
+        name = "Carte de presse"
     },
 }
 
--- hommes
-local kevlarConfig = {
-    [2] = {
-        status = 50,
-    }
-}    
--- femmes
-local kevlarConfig2 = {
-    [2] = {
-        status = 50,
-    }
-}    
 local weapon_config = {
     Pos = {x = 249.4100, y = -46.3129, z = 68.9412},
     Ped = {
@@ -1058,20 +1050,6 @@ local function build()
         )
     )
 
-    RMenu.Add(
-        "ammunation privé",
-        "kevlars2",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation privé", "main private"),
-            nil,
-            "Kevlars disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-
     Zone:Add(e.Pos, e.EnterZone, e.ExitZone, i, 2.5)
     Ped:Add(e.Ped.name, e.Ped.model, e.Ped.Pos, nil)
     RMenu.Add(
@@ -1114,20 +1092,6 @@ local function build()
             "shopui_title_gunclub"
         )
     )
-    RMenu.Add(
-        "ammunation privé",
-        "kevlars2",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation privé", "main private"),
-            nil,
-            "Kevlars disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-
 
     Zone:Add(b.Pos, b.EnterZone, b.ExitZone, i, 2.5)
     Ped:Add(b.Ped.name, b.Ped.model, b.Ped.Pos, nil)
@@ -1140,19 +1104,6 @@ local function build()
     RMenu.Add(
         "ammunation privé",
         "kevlars",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation privé", "main private"),
-            nil,
-            "Kevlars disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
-    RMenu.Add(
-        "ammunation privé",
-        "kevlars2",
         RageUI.CreateSubMenu(
             RMenu:Get("ammunation privé", "main private"),
             nil,
@@ -1196,24 +1147,8 @@ local function build()
             "shopui_title_gunclub"
         )
     )
-    RMenu.Add(
-        "ammunation privé",
-        "kevlars2",
-        RageUI.CreateSubMenu(
-            RMenu:Get("ammunation privé", "main private"),
-            nil,
-            "Kevlars disponibles",
-            10,
-            100,
-            "shopui_title_gunclub",
-            "shopui_title_gunclub"
-        )
-    )
 
     RMenu:Get("ammunation privé", "kevlars").Closed = function()
-        SetPedComponentVariation(LocalPlayer().Ped, 9, 0, 0, 2)
-    end
-    RMenu:Get("ammunation privé", "kevlars2").Closed = function()
         SetPedComponentVariation(LocalPlayer().Ped, 9, 0, 0, 2)
     end
 end
@@ -1370,7 +1305,7 @@ Citizen.CreateThread(
                     {header = true, glare = false},
                     function()
                         RageUI.Button(
-                            "Kevlars Homme",
+                            "Kevlars",
                             nil,
                             {},
                             true,
@@ -1378,86 +1313,6 @@ Citizen.CreateThread(
                             end,
                             RMenu:Get("ammunation privé", "kevlars")
                         )
-                    end,
-                    function()
-                    end
-                )
-                RageUI.Button(
-                            "Kevlars Femme",
-                            nil,
-                            {},
-                            true,
-                            function()
-                            end,
-                            RMenu:Get("ammunation privé", "kevlars2")
-                        )
-            end
-            if RageUI.Visible(RMenu:Get("ammunation privé", "kevlars2")) then
-                RageUI.DrawContent(
-                    {header = true, glare = false},
-                    function()
-                        playerPed = LocalPlayer().Ped
-                        for i = 1, GetNumberOfPedDrawableVariations(playerPed, 9) - 1, 1 do
-                            local amount = {}
-                            local ind = i + 1
-                            for c = 1, GetNumberOfPedTextureVariations(playerPed, 9, i), 1 do
-                                amount[c] = c
-                            end
-
-                            if gilItem[ind] == nil then
-                                local kevlarName = "Kevlar civil #" .. i
-                                if (kevlarConfig[i]) then 
-                                    kevlarName = kevlarConfig2[i].name
-                                end
-                                gilItem[ind] = kevlarName
-                            end
-                            RageUI.List(
-                                gilItem[i + 1],
-                                amount,
-                                Indexes2[i],
-                                "",
-                                {RightLabel = "300$"},
-                                true,
-                                function(Hovered, Active, Selected, Index)
-                                    Indexes2[i] = Index
-                                    if Active then
-                                        SetPedComponentVariation(playerPed, 9, i, Index - 1, 2)
-                                    end
-                                    if Selected then
-                                        local receive = Ora.Inventory:CanReceive("kevlar", 1)
-                                        playerPed = LocalPlayer().Ped
-                                        if receive then
-                                            local kevlarLevel = 10
-                                            local kevlarLabel = "Kevlar"
-
-                                                if (kevlarConfig[i] ~= nil) then
-                                                    kevlarLevel = kevlarConfig2[i].status
-                                                    kevlarLabel = kevlarConfig2[i].name
-                                                end
-                                                dataonWait = {
-                                                    title = "Achat Ammunation",
-                                                    price = 300,
-                                                    fct = function()
-                                                        items = {
-                                                            name = "kevlar",
-                                                            label = kevlarLabel,
-                                                            data = {
-                                                                ind = i,
-                                                                var = Index - 1,
-                                                                serial = math.random(111111111, 999999999),
-                                                                status = kevlarLevel
-                                                            }
-                                                        }
-                                                        Ora.Inventory:AddItem(items)
-                                                    end
-                                                }
-                                                CloseAllMenus()
-                                                TriggerEvent("payWith?")
-                                        end
-                                    end
-                                end
-                            )
-                        end
                     end,
                     function()
                     end
@@ -1793,7 +1648,7 @@ Citizen.CreateThread(
 
                             if gilItem[ind] == nil then
                                 local kevlarName = "Kevlar civil #" .. i
-                                if (kevlarConfig2[i]) then
+                                if (kevlarConfig[i] ~= nil) then
                                     kevlarName = kevlarConfig[i].name
                                 end
                                 gilItem[ind] = kevlarName
@@ -1815,7 +1670,7 @@ Citizen.CreateThread(
                                         if receive then
                                             local kevlarLevel = 10
                                             local kevlarLabel = "Kevlar"
-                                            if (kevlarConfig2[i] ~= nil) then
+                                            if (kevlarConfig[i] ~= nil) then
                                                 kevlarLevel = kevlarConfig[i].status
                                                 kevlarLabel = kevlarConfig[i].name
                                             end
