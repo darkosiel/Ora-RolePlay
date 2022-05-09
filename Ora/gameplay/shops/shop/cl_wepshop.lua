@@ -553,6 +553,7 @@ local kevlarConfig = {
     [16] = {
         status = 50,
         name = "Radio déportée 3"
+    },
     [19] = {
         status = 50,
         name = "Sous-veste cravate"
