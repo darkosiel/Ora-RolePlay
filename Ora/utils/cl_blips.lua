@@ -44,7 +44,7 @@ local Blips = {
         Pos = {x = 1686.4, y = 4816.36, z = 42.0092}
     },
     {name = "Distributeur de Billets", color = 2, sprite = 434, size = 0.80, Pos = {x = -95.90, y = 6455.62, z = 31.45}},
-    {name = "Pacific Banque", color = 2, sprite = 108, size = 0.80, Pos = {x = 227.49, y = 212.99, z = 105.53}},
+    {name = "Pacific Banque", color = 2, sprite = 605, size = 0.80, Pos = {x = 227.49, y = 212.99, z = 105.53}},
     --{name = "Blaine County Banque", color = 2, sprite = 108, size = 0.80, Pos = {x = -114.82, y = 6459.21, z = 142.89}},
     {name = "Hôpital Los Santos", color = 5, sprite = 61, Pos = {x = 293.34, y = -582.08, z = 43.2}},
     --{name = "Hôpital Sandy Shores", color = 5, sprite = 61, Pos = {x = 1838.99, y = 3673.48, z = 34.28}},

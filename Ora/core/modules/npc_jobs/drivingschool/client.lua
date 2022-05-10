@@ -298,7 +298,7 @@ end
 local function Create()
     local Pos = Permis_config["start"]
     local blip = AddBlipForCoord(Pos.x, Pos.y, Pos.z)
-    SetBlipSprite(blip, 225)
+    SetBlipSprite(blip, 782)
     SetBlipDisplay(blip, 4)
     SetBlipScale(blip, 0.8)
     SetBlipColour(blip, 84)

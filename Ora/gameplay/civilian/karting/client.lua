@@ -11,7 +11,7 @@ local sRace, host, joined, canOpen, yourTurn, beReady, playerName
 Citizen.CreateThread(function()
 	local blip = AddBlipForCoord(Karting.pos)
 
-	SetBlipSprite(blip, 38)
+	SetBlipSprite(blip, 611)
 	SetBlipScale(blip, 0.8)
 	SetBlipColour(blip, 0)
 	SetBlipDisplay(blip, 4)

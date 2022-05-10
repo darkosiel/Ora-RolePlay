@@ -185,7 +185,7 @@ function Garage:Setup()
 
     local blip = AddBlipForCoord(self.pos.x, self.pos.y, self.pos.z)
     if self.blipdata.BlipId == nil then
-        self.blipdata.BlipId = 357
+        self.blipdata.BlipId = 524
     end
     
     local markerPos = self.pos
@@ -1008,7 +1008,7 @@ PublicGarage = {
         Blipdata = {
             Pos = {x=-1676.84,y=-3118.71,z=12.99,h=243.91},
             Blipcolor  =84,
-            BlipId = 359,
+            BlipId = 524,
             Blipname = "Garage Pegasus"
         },
         Marker = {
@@ -1032,7 +1032,7 @@ PublicGarage = {
     --     Blipdata = {
     --         Pos = {x=1791.96,y=3268.12,z=41.23,h=59.47},
     --         Blipcolor  =84,
-    --         BlipId = 359,
+    --         BlipId = 524,
     --         Blipname = "Garage avion"
     --     },
     --     Marker = {
@@ -1056,7 +1056,7 @@ PublicGarage = {
     --     Blipdata = {
     --         Pos = {x=2128.71,y=4806.65,z=40.23,h=114.91},
     --         Blipcolor  =84,
-    --         BlipId = 359,
+    --         BlipId = 524,
     --         Blipname = "Garage avion"
     --     },
     --     Marker = {
@@ -1080,7 +1080,7 @@ PublicGarage = {
     --     Blipdata = {
     --         Pos = {x=3856.16,y=4454.6,z=-0.1,h=259.18},
     --         Blipcolor  =84,
-    --         BlipId = 356,
+    --         BlipId = 524,
     --         Blipname = "Garage bateau"
     --     },
     --     Marker = {
@@ -1104,7 +1104,7 @@ PublicGarage = {
     --     Blipdata = {
     --         Pos = {x=-854.21,y=-1336.57,z=-0.1,h=108.63},
     --         Blipcolor  =84,
-    --         BlipId = 356,
+    --         BlipId = 524,
     --         Blipname = "Garage bateau"
     --     },
     --     Marker = {
