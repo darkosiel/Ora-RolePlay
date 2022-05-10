@@ -289,14 +289,14 @@ Jobs = {
         },
         garage = {
             Name = "Garage Coiffeur",
-            Pos = {x = -794.15, y = -172.96, z = 36.29},
+            Pos = {x = 142.0619, y = -1692.8919, z = 29.2917},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = -794.15, y = -172.96, z = 36.29, h = 26.32}
+                spawnpos = {x = 142.0619, y = -1692.8919, z = 29.2917, h = 26.32}
             },
             Blipdata = {
                 Pos = {},
