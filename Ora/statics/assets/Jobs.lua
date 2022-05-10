@@ -2389,7 +2389,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -589.56, y = -921.00, z = 28.00},
+                Pos = {x = -589.56, y = -921.00, z = 27.00},
                 Limit = 1000,
                 Name = "coffre_weazel"
             }
