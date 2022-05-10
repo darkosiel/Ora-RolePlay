@@ -289,10 +289,10 @@ function Ora.Illegal.CarRoberry:CallPolice(message)
   local vehicle = self.Current.VEHICLE
   local vehiclePosition = GetEntityCoords(vehicle)
   TriggerServerEvent(
-      "call:makeCall2",
-      "police",
-      vehiclePosition,
-      message .. string.format("\n* immat : %s\n* Modèle : %s", GetVehicleNumberPlateText(vehicle), GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)))
+    "call:makeCall2",
+    "police",
+    vehiclePosition,
+    message .. string.format(" - immat : %s", GetVehicleNumberPlateText(vehicle))
   )
 
   TriggerServerEvent(

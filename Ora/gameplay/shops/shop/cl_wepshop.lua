@@ -523,11 +523,11 @@ local kevlarConfig = {
         name = "Kevlar medic / presse"
     },
     [4] = {
-        status = 100,
+        status = 50,
         name = "Kevlar léger"
     },
     [5] = {
-        status = 100,
+        status = 50,
         name = "Kevlar anti-riot"
     },
     [8] = {
@@ -543,11 +543,11 @@ local kevlarConfig = {
         name = "Sous-veste col ouvert"
     },
     [13] = {
-        status = 50,
+        status = 5,
         name = "Radio déportée 1"
     },
     [14] = {
-        status = 50,
+        status = 5,
         name = "Radio déportée 2"
     },
     [15] = {
@@ -555,11 +555,11 @@ local kevlarConfig = {
         name = "Radio"
     },
     [17] = {
-        status = 100,
+        status = 50,
         name = "Gilet sous-veste"
     },
     [18] = {
-        status = 100,
+        status = 75,
         name = "Kevlar moyen"
     },
     [19] = {
@@ -567,7 +567,7 @@ local kevlarConfig = {
         name = "Sous-veste cravate"
     },
     [21] = {
-        status = 50,
+        status = 5,
         name = "Gilet jaune"
     },
     [22] = {
@@ -579,7 +579,7 @@ local kevlarConfig = {
         name = "Plaque étoilée"
     },
     [24] = {
-        status = 50,
+        status = 5,
         name = "Badge"
     },
     [25] = {
