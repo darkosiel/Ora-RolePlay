@@ -71,6 +71,15 @@ client.on("message", async message => {
             message.channel.send(`**Réponse du serveur :** \`\`\`${stdout}\`\`\``);
         });
     }
+    if (command == "startbot") {
+        exec("node index.js", (error, stdout, stderr) => {
+            if (error) {
+                message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
+                return;
+            }
+            message.channel.send(`**Réponse du serveur :** \`\`\`${stdout}\`\`\``);
+        });
+    }
     if (command == "pullmap" && message.channel.id == "966020074060251196") {
         exec("cd /home/manager/FXServer/server-data/resources/\[map\] && git pull", (error, stdout, stderr) => {
             if (error) {
