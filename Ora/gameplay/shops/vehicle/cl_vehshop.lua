@@ -810,10 +810,6 @@ Citizen.CreateThread(
                                     true,
                                     function(_, Active, Selected)
                                         if (Selected) then
-                                            TriggerServerCallback(
-                                                "Ora::SVCB::Jobs:Jetsam:CanOrder",
-                                                function(canOrder)
-                                                    if (canOrder == true) then
                                                         TriggerServerCallback(
                                                             "getBankingAccountsPly3",
                                                             function(result)
@@ -857,9 +853,7 @@ Citizen.CreateThread(
                                                             end,
                                                             "concess"
                                                         )
-                                                    end
-                                                end
-                                            )
+                                                
                                         end
                                     end
                                 )
