@@ -117,28 +117,6 @@ local MenClothes = {
 }
 
 local FemaleClothes = {
-    {
-        Name = "Cool",
-        Description = " ",
-        Selected = false,
-        Value = {
-            torso = {id = 4, txt = 0},
-            undershirt = {id = 2, txt = 0},
-            tops = {id = 36, txt = 0},
-            legs = {id = 25, txt = 6},
-            body_armor = {id = 0, txt = 0},
-            backpacks = {id = 0, txt = 0},
-            texture = {id = 0, txt = 0},
-            feet = {id = 49, txt = 0},
-            accessories = {id = 0, txt = 0},
-            mask = {toggle = false, id = 0, txt = 0},
-            hat = {toggle = true, id = -1, txt = 0},
-            glasses = {toggle = true, id = 8, txt = 0},
-            ears = {toggle = false, id = -1, txt = 0},
-            watches = {toggle = true, id = 16, txt = 0},
-            bracelets = {toggle = false, id = -1, txt = 0}
-        }
-    },
     -- {
     --     Name = "Hiver rude",
     --     Description = " ",
@@ -166,10 +144,10 @@ local FemaleClothes = {
         Description = " ",
         Selected = false,
         Value = {
-            torso = {id = 4, txt = 0},
-            undershirt = {id = 2, txt = 0},
+            torso = {id = 12, txt = 0},
+            undershirt = {id = 15, txt = 0},
             tops = {id = 169, txt = 0},
-            legs = {id = 78, txt = 1},
+            legs = {id = 66, txt = 0},
             body_armor = {id = 0, txt = 0},
             backpacks = {id = 0, txt = 0},
             texture = {id = 0, txt = 0},
@@ -190,8 +168,8 @@ local FemaleClothes = {
         Value = {
             torso = {id = 12, txt = 0}, -- Mains
             undershirt = {id = 15, txt = 0}, -- Shirt / Accessory
-            tops = {id = 26, txt = 1}, -- Shirt Overlay / Jackets
-            legs = {id = 23, txt = 0},
+            tops = {id = 37, txt = 1}, -- Shirt Overlay / Jackets
+            legs = {id = 24, txt = 0},
             body_armor = {id = 0, txt = 0},
             backpacks = {id = 0, txt = 0},
             texture = {id = 0, txt = 0},
