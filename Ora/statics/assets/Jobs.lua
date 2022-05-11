@@ -2395,60 +2395,60 @@ Jobs = {
             }
         },
     },
-    -- avocat = {
-    --     label = "Cabinet Blue Dragon",
-    --     label2 = "Cabinet Blue Dragon",
-    --     iban = "avocat",
-    --     FreeAccess = false,
-    --     grade = {
-    --         {
-    --             label = "AVOCAT",
-    --             salary = 150,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "ASSOCIE",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "Avocat",
-    --             subtitle = "Actions",
-    --             name = "avocat_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("avocat")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "Cabinet Blue Dragon", "Annonce", text, "CHAR_LAWYER", 8, "Cabinet Blue Dragon")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     },
-    -- },
+    avocat = {
+        label = "Cabinet Hermerion",
+        label2 = "Cabinet Hermerion",
+        iban = "avocat",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "AVOCAT",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "ASSOCIE",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                             riggerServerEvent("Job:Annonce", "Cabinet Hermerion", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Hermerion")
+                        end
+                    end
+                }
+            }
+        },
+    },
     -- avocatn = {
     --     label = "Cabinet Nemesis Associate",
     --     label2 = "Cabinet Nemesis Associate",
@@ -8659,6 +8659,54 @@ Jobs = {
                 }
             }
         }
+    },
+    uber = {
+        label = "Uber",
+        label2 = "Uber",
+        iban = "uber",
+        isSelf = true,
+        grade = {
+            {
+                label = "Auto-entrepreneur",
+                salary = 200,
+                name = "cdd",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Uber",
+                subtitle = "Action",
+                name = "Uber_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("uber")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "LS Custom", "Annonce", text, "CHAR_LSCUSTOM", 8, "Mécano Sud")
+                        end
+                    end
+                },
+                {
+                    label = "Annuler l'appel en cours",
+                    onSelected = function()
+                        TriggerEvent("call:cancelCall")
+                    end
+                }
+            }
+        },
     },
     uber = {
         label = "Uber",
