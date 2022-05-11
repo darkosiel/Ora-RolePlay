@@ -2,9 +2,9 @@ Ora.NpcJobs.Bank = {}
 
 Ora.NpcJobs.Bank.Positions = {
   -- Los Santos
-  { name = "Juan", pos = vector3(243.63, 226.23, 106.29 - 0.98), heading = 158.23},
-  { name = "Albert", pos = vector3(248.95, 224.3, 106.29 - 0.98), heading = 158.63 },
-  { name = "Vincent", pos = vector3(253.95, 222.52, 106.29 - 0.98), heading = 158.21 },
+  { name = "Juan", pos = vector3(259.77, 227.42, 106.29 - 0.98), heading = 156.05},
+  { name = "Albert", pos = vector3(264.33, 225.52, 106.29 - 0.98), heading = 158.78 },
+  { name = "Vincent", pos = vector3(255.38, 215.55, 106.29 - 0.98), heading = 341.78 },
   -- Paleto
   { name = "Claytus", pos = vector3(-112.23, 6471.17, 31.63 - 0.98), heading = 131.86},
 }
@@ -19,9 +19,9 @@ Ora.NpcJobs.Bank.AvailablePeds = {
 
 Ora.NpcJobs.Bank.Zones = {
   -- Los Santos
-  { pos = vector3(243.12, 224.75, 106.29 - 0.95), heading = 336.37, name = "bank_ls1"},
-  { pos = vector3(248.33, 222.75, 106.29 - 0.95), heading = 334.05, name = "bank_ls2" },
-  { pos = vector3(253.52, 221.05, 106.29 - 0.95), heading = 336.16, name = "bank_ls3" },
+  { pos = vector3(259.77, 227.42, 106.29 - 0.98), heading = 155.05, name = "bank_ls1"},
+  { pos = vector3(264.33, 225.52, 106.29 - 0.98), heading = 158.78, name = "bank_ls2" },
+  { pos = vector3(255.38, 215.55, 106.29 - 0.98), heading = 341.78, name = "bank_ls3" },
   -- Paleto
   { pos = vector3(-113.13, 6470.08, 31.63 - 0.95), heading = 310.58, name = "bank_pal1"},
 }
