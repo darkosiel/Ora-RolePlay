@@ -6350,7 +6350,7 @@ Jobs = {
                         ["torso_2"] = 1,
                         ["decals_1"] = -1,
                         ["decals_2"] = 0,
-                        ["arms"] = = 85,
+                        ["arms"] = 85,
                         ["pants_1"] = 45,
                         ["pants_2"] = 1,
                         ["shoes_1"] = 42,
