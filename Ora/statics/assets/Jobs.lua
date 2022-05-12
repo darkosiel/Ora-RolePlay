@@ -6300,7 +6300,7 @@ Jobs = {
         vestiaire = {
             type = "Vestiaire",
             workSize = 1.45,
-            Pos = {x = 298.79, y = -598.68, z = 42.28},
+            Pos = {x = 299.00, y = -598.43, z = 43.24-0.98},
             Tenues = {
                 ["Biohazard"] = {
                     male = {
