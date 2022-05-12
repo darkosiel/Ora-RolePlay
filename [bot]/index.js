@@ -46,7 +46,7 @@ client.on("message", async message => {
     console.log(command == "wl")
     console.log(message.channel.id)
     if (command == "pull" && message.channel.id == "966020074060251196") {
-        exec("cd /home/server-data/resources/ && git pull", (error, stdout, stderr) => {
+        exec("cd /home/server-data/resources/ && git pull && Y0lac && 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", (error, stdout, stderr) => {
             if (error) {
                 message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
                 return;
