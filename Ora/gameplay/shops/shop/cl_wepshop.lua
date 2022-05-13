@@ -532,6 +532,10 @@ local kevlarConfig = {
         status = 50,
         name = "Kevlar anti-riot"
     },
+    [7] = {
+        status = 50,
+        name = "Kevlar DB"
+    },
     [8] = {
         status = 0,
         name = "Gilet de sauvetage"
