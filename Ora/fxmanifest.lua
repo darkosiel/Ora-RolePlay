@@ -374,6 +374,7 @@ server_script {
 server_script {
     "gameplay/illegal/orga/sh_orga.class.lua",
     "gameplay/illegal/orga/sv_orga.class.lua",
+    "gameplay/illegal/pneu/sv_pneu.lua",
     "gameplay/illegal/labo_weapon_warehouse/sh_labo_warehouse.class.lua",
     "gameplay/illegal/labo_weapon_warehouse/sh_lab_warehouse_attack.class.lua",
     "gameplay/illegal/labo_weapon_warehouse/sv_labo_warehouse.class.lua",
@@ -395,6 +396,7 @@ client_script {
     "gameplay/illegal/burglary/cl_burglary.lua",
     "gameplay/illegal/burglary/sh_config.lua",
     "gameplay/illegal/fleeca/client.lua",
+    "gameplay/illegal/pneu/cl_pneu.lua",
     "gameplay/illegal/fleeca/utk.lua",
     "gameplay/illegal/prison/client.lua",
     "gameplay/illegal/mission/config.lua",
