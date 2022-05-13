@@ -7,10 +7,10 @@ local HairCutJob = {
 }
 
 local HairCutJob2 = {
-    posChair = {x = -280.62, y = 6227.97, z = 31.80}, --posChair = {x=-34.06, y=-150.38, z=57.077},
-    -- posChair = {x = 138.25, y = -1709.13, z = 29.42}, --posChair = {x=-34.06, y=-150.38, z=57.077},
-    posCutters = {x = -279.74, y = 6228.70, z = 31.69}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
-    -- posCutters = {x = 137.76, y = -1708.74, z = 29.3}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
+    -- posChair = {x = -280.62, y = 6227.97, z = 31.80}, --posChair = {x=-34.06, y=-150.38, z=57.077},
+    posChair = {x = 138.25, y = -1709.13, z = 29.42}, --posChair = {x=-34.06, y=-150.38, z=57.077},
+    -- posCutters = {x = -279.74, y = 6228.70, z = 31.69}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
+    posCutters = {x = 137.76, y = -1708.74, z = 29.3}, --posCutters = {x=-33.28, y=-151.57, z=57.08},
     Seated = false
 }
 
