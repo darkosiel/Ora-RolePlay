@@ -85,6 +85,7 @@ weapon_name = {
     combathatchet = "WEAPON_BATTLEAXE",
     machete = "WEAPON_MACHETE",
     flashlight = "WEAPON_FLASHLIGHT",
+    brick = "WEAPON_SNOWBALL"
     microsmg = "WEAPON_MICROSMG",
     minismg = "WEAPON_MINISMG",
     assaultsmg = "WEAPON_ASSAULTSMG",
@@ -190,6 +191,7 @@ weapon_munition = {
     bombsticky = "bombsticky",
     molotov ="molotov",
     can = "can",
+    brick = "weapon_snowball",
     parachute = nil,
     --- smg
     microsmg = "mm9",

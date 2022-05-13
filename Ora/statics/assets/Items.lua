@@ -1804,6 +1804,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    brick = {
+        label = "Brique",
+        weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     -- 7.62
     mg = {
         label = "Mitrailleuse légère",
