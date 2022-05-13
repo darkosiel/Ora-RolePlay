@@ -6232,7 +6232,7 @@ Jobs = {
                 {
                     label = "Facturation",
                     onSelected = function()
-                        CreateFacture("gouvernement")
+                        CreateFacture("lsms")
                     end,
                     ActiveFct = function()
                         HoverPlayer()
