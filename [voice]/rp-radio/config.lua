@@ -1,4 +1,4 @@
-radioConfig = {
+radioConfig = {to
     Controls = {
         Activator = {
             -- Open/Close Radio
