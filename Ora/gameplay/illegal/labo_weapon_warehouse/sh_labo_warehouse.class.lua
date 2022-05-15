@@ -69,7 +69,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
-      weed_pot = { price = 4, max_qty = 25 }
+      weed_plant = { price = 7, max_qty = 35 }
     },
     security = {
       [1] = {
