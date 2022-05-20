@@ -64,8 +64,8 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
       {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
       {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
-      {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
-      {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
+      {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
+      {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-486.6180, -2170.4899, 9.2401)},
       {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
@@ -210,7 +210,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
       {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
       {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
-      {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
+      {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
       {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
       {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },

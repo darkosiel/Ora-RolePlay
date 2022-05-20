@@ -4,20 +4,8 @@ IllegalShops.SHARED = {}
 
 IllegalShops.SHARED.DEALER_PED = "s_m_y_dealer_01" 
 IllegalShops.SHARED.DEALER_POSITIONS = {
-  { pos = vector3(-1520.01, 1490.15, 111.63 - 0.98), heading = 2.01 },
-  { pos = vector3(-1128.77, 2695.56, 18.8 - 0.98), heading = 128.76 },
-  { pos = vector3(59.54, 2794.98, 57.88 - 0.98), heading = 310.35 },
-  { pos = vector3(239.79, -3312.5, 5.79 - 0.98), heading = 138.67 },
-  { pos = vector3(805.45, -2950.12, 6.02 - 0.98), heading = 8.97 },
-  { pos = vector3(575.07, -1581.51, 28.08 - 0.98), heading = 211.12 },
-  { pos = vector3(-308.1, -2205.72, 9.98 - 0.98), heading = 155.14 },
-  { pos = vector3(-512.82, -2866.83, 7.3 - 0.98), heading = 225.56 },
-  { pos = vector3(-334.92, -2439.38, 6.0 - 0.98), heading = 53.54 },
-  { pos = vector3(-169.84, -2583.25, 6.0 - 0.98), heading = 53.54 },
-  { pos = vector3(1023.11, -2893.68, 11.26 - 0.98), heading = 97.95 },
-  { pos = vector3(1226.06, -3105.76, 6.03 - 0.98), heading = 348.72 },
-  { pos = vector3(-808.07, -2117.53, 8.81 - 0.98), heading = 310.24 },
-  { pos = vector3(-867.51, -1274.9, 5.15 - 0.98), heading = 247.89 },
+  { pos = vector3(-1520.01, 1490.15, 300.4 - 0.98), heading = 2.01 },
+  { pos = vector3(-1128.77, 2695.56, 322.1 - 0.98), heading = 128.76 },
 }
 
 IllegalShops.SHARED.DELIVERY_POSITIONS = {
