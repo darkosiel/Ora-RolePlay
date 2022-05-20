@@ -385,6 +385,7 @@ client_script {
     "utils/cl_blips.lua",
     "utils/cl_carjack.lua",
     "utils/cl_sit.lua",
+    "utils/cl_suicide.lua",
     "utils/test/cl_test.lua",
     "utils/vendor/player-event/cl_trigger.lua"
 }
