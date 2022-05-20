@@ -9,8 +9,8 @@ function Config()
       canOpen = false, -- Défaut
       inclub = false, -- Défaut
       play = false, -- Défaut
-      pos = vector3(121.965, -1281.300, 29.00), -- Menu
-      soundpos = vector3(110.325, -1288.025, 30.25) -- Pos diffusion du son
+      pos = vector3(121.965, -1281.300, 90.00), -- Menu
+      soundpos = vector3(110.325, -1288.025, 90.25) -- Pos diffusion du son
     },
 
     restaurant = {
@@ -22,8 +22,8 @@ function Config()
       canOpen = false, -- Défaut
       inclub = false, -- Défaut
       play = false, -- Défaut
-      pos = vector3(121.965, -1281.300, 29.00), -- Menu
-      soundpos = vector3(110.325, -1288.025, 30.25) -- Pos diffusion du son
+      pos = vector3(121.965, -1281.300, 90.00), -- Menu
+      soundpos = vector3(110.325, -1288.025, 90.25) -- Pos diffusion du son
     },
   
     night = {
@@ -34,8 +34,8 @@ function Config()
       canOpen = false,
       inclub = false,
       play = false,
-      pos = vector3(-1603.868, -3012.695, -78.50),
-      soundpos = vector3(-1603.868, -3012.695, -78.50)
+      pos = vector3(-1603.868, -3012.695, -90.50),
+      soundpos = vector3(-1603.868, -3012.695, -90.50)
     }
   }
 end
