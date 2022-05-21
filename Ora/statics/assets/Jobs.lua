@@ -5966,31 +5966,31 @@ Jobs = {
         grade = {
             {
                 label = "Ambulancier",
-                salary = 200,
+                salary = 300,
                 name = "ambulancier",
                 show = true
             },
             {
                 label = "Infirmier",
-                salary = 220,
+                salary = 320,
                 name = "infirmier",
                 show = true
             },
             {
                 label = "Médecin",
-                salary = 240,
+                salary = 340,
                 name = "medecin",
                 show = true
             },
             {
                 label = "Directeur adjoint",
-                salary = 270,
+                salary = 370,
                 name = "drh",
                 show = true
             },
             {
                 label = "Directeur",
-                salary = 330,
+                salary = 430,
                 name = "boss",
                 show = true
             }
