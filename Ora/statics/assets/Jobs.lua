@@ -968,31 +968,31 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 120,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 0,
+                salary = 140,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 0,
+                salary = 160,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 0,
+                salary = 170,
                 name = "drh",
                 show = true
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 190,
                 name = "boss",
                 show = true
             }
@@ -2289,31 +2289,31 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 120,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 0,
+                salary = 140,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 0,
+                salary = 160,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 0,
+                salary = 180,
                 name = "drh",
                 show = true
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 190,
                 name = "boss",
                 show = true
             }
@@ -2967,31 +2967,31 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 120,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 0,
+                salary = 140,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 0,
+                salary = 160,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 0,
+                salary = 170,
                 name = "drh",
                 show = true
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 190,
                 name = "boss",
                 show = true
             }
@@ -3215,31 +3215,31 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 100,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 0,
+                salary = 120,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 0,
+                salary = 140,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 0,
+                salary = 160,
                 name = "drh",
                 show = true
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 180,
                 name = "boss",
                 show = true
             }
@@ -8448,31 +8448,31 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 120,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 0,
+                salary = 140,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 0,
+                salary = 160,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 0,
+                salary = 180,
                 name = "drh",
                 show = true
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 200,
                 name = "boss",
                 show = true
             }
