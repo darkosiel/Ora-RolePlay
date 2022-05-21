@@ -672,8 +672,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "pistol", byWeek = 15, price = 5000},
       {name = "pitollourd", byWeek = 3, price = 9000},
       {name = "machinepistol", byWeek = 1, price = 55000},
-      {name = "mm9", byWeek = 1000, price = 25},
-      {name = "calibre12", byWeek = 0, price = 40},
+      {name = "mm9", byWeek = 1000, price = 2},
+      {name = "calibre12", byWeek = 0, price = 5},
       {name = "stickybomb", byWeek = 10, price = 1500},
       {name = "shootguncompact", byWeek = 0, price = 38500}
     
@@ -789,9 +789,9 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "shootgun", byWeek = 2, price = 38500},
       {name = "dagger", byWeek = 5, price = 50},
       {name = "stickybomb", byWeek = 10, price = 1500},
-      {name = "mm9", byWeek = 1000, price = 25},
-      {name = "snip", byWeek = 108, price = 80},
-      {name = "calibre12", byWeek = 50, price = 40}
+      {name = "mm9", byWeek = 1000, price = 2},
+      {name = "snip", byWeek = 108, price = 7},
+      {name = "calibre12", byWeek = 50, price = 5}
     },
     security = {
       [1] = {
@@ -902,9 +902,9 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "shootgun", byWeek = 2, price = 38500},
       {name = "stickybomb", byWeek = 10, price = 1500},
       {name = "combathatchet", byWeek = 5, price = 50},
-      {name = "mm9", byWeek = 1000, price = 25},
-      {name = "snip", byWeek = 108, price = 80},
-      {name = "calibre12", byWeek = 50, price = 40}
+      {name = "mm9", byWeek = 1000, price = 2},
+      {name = "snip", byWeek = 108, price = 7},
+      {name = "calibre12", byWeek = 50, price = 5}
     },
     security = {
       [1] = {
