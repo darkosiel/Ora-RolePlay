@@ -58,7 +58,7 @@ Config.DJPositions = {
         name = 'runner',
         pos = vector3(149.07, -3013.24, 7.04 - 0.98),
         requiredJob = nil, 
-        range = 15.0, 
+        range = 30.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     }
 
