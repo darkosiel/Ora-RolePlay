@@ -6675,43 +6675,43 @@ Jobs = {
         grade = {
             {
                 label = "volontaire",
-                salary = 0,
-                name = "recrue",
-                show = true
-            },
-            {
-                label = "recrue",
                 salary = 200,
                 name = "recrue",
                 show = true
             },
             {
+                label = "recrue",
+                salary = 300,
+                name = "recrue",
+                show = true
+            },
+            {
                 label = "Ambulancier",
-                salary = 220,
+                salary = 310,
                 name = "ambulancier",
                 show = true
             },
             {
                 label = "Pompier",
-                salary = 240,
+                salary = 320,
                 name = "pompier",
                 show = true
             },
             {
                 label = "lieutenant",
-                salary = 270,
+                salary = 340,
                 name = "lieutenant",
                 show = true
             },
             {
                 label = "Capitaine",
-                salary = 300,
+                salary = 370,
                 name = "drh",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 330,
+                salary = 390,
                 name = "boss",
                 show = true
             }
