@@ -414,7 +414,7 @@ Items = {
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "ng_proc_food_burg01a",
-        faim = 2,
+        faim = 15,
         category = "food"
     },
     ----- RESTAURANT

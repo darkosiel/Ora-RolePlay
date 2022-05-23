@@ -10083,6 +10083,32 @@ Jobs = {
                 Name = "Coffre Boss Tequilala"
             }
         },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 717.60, y = -978.55, z = 24.11},
+                giveitem = "aperitif",
+                blipcolor = 7,
+                blipname = "Bar - Vendeur de bretzel",
+                add = "~p~+ 1 Apéritif",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Bar - Vente",
+                Pos = {x = -1113.61, y = -1367.55, z = 5.01},
+                required = "aperitif",
+                price = math.random(18, 25),
+                add = "~p~- 1 Apéritif"
+            }
+        },
         Menu = {
             menu = {
                 title = "Tequilala",
