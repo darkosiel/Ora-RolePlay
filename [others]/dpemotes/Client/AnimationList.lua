@@ -516,6 +516,61 @@ DP.Emotes = {
    {
        EmoteLoop = true,
    }},
+   ["mgangsign_1"] = {"mikey@gangsigns@new", "mgangsign_1", "Gangsign 1", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_2"] = {"mikey@gangsigns@new", "mgangsign_2", "Gangsign 2", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_3"] = {"mikey@gangsigns@new", "mgangsign_3", "Gangsign 3", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_4"] = {"mikey@gangsigns@new", "mgangsign_4", "Gangsign 4", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_5"] = {"mikey@gangsigns@new", "mgangsign_5", "Gangsign 5", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_6"] = {"mikey@gangsigns@new", "mgangsign_6", "Gangsign 6", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_7"] = {"mikey@gangsigns@new", "mgangsign_7", "Gangsign 7", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_8"] = {"mikey@gangsigns@new", "mgangsign_8", "Gangsign 8", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_9"] = {"mikey@gangsigns@new", "mgangsign_9", "Gangsign 9", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_10"] = {"mikey@gangsigns@new", "mgangsign_10", "Gangsign 10", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
+   ["mgangsign_11"] = {"mikey@gangsigns@new", "mgangsign_11", "Gangsign 11", AnimationOptions =
+   {
+       EmoteLoop = true,
+	   EmoteMoving = true,
+   }},
    ["wait3"] = {"amb@world_human_hang_out_street@female_hold_arm@idle_a", "idle_a", "Wait 3", AnimationOptions =
    {
        EmoteLoop = true,
