@@ -444,13 +444,13 @@ function Ora.DrugDealing:StartDealerThread()
                                   else
                                     
                                     if (Ora.DrugDealing.System.HAS_BEEN_CALLED == false) then
-                                      local random = math.random(1, 100)
+                                      local random = math.random(1, 20)
                                       Ora.DrugDealing.System.HAS_BEEN_CALLED = true
-                                      if random > 85 then
+                                      if random > 10 then 
                                           Citizen.SetTimeout(
-                                              math.random(1500, 2500),
+                                              math.random(2500, 3500),
                                               function()
-                                                math.randomseed(GetGameTimer() * math.random(12000, 17000))
+                                                math.randomseed(GetGameTimer() * math.random(17000, 22000))
                                                 msg = Ora.DrugDealing.PolicePhrase[math.random(#Ora.DrugDealing.PolicePhrase)]
                                                 self:Debug(string.format("Police is now called with message ^5%s^3", msg))
                                                 TriggerServerEvent("call:makeCall2", Ora.DrugDealing:GetCopsJuridictionForZoneId(Ora.DrugDealing.System.CURRENT_ZONE_ID), Ora.DrugDealing.System.CURRENT_DESTINATION_COORDS, msg)

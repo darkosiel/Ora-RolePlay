@@ -19,29 +19,14 @@ local Price = {
 }
 local DrugSellPos = {
     weed_pooch = {
-        ["Little Seoul"] = {
-            Location = {
-                "Bridge Street",
-                "Nikola Avenue",
-                "Mirror Park Boulevard",
-                "Mirror Drive East",
-                "Mirror Drive West",
-                "Nikola Place",
-                "Nikola Park Boulevard",
-                "Mirror Place",
-                "Bridge Street"
-            },
-            used = 100
-        },
         ["Richman"] = {},
-        ["Del Perro"] = {},
-        ["Mirror Park"] = {},
-        ["Vespucci Beach"] = {},
-        ["Del Perro Beach"] = {},
-        ["Duluoz Avenue"] = {},
-        ["La Mesa"] = {},
+        ["Rockford Hills"] = {},
+        ["Richards Majestic"] = {},
+        ["Vinewood Hills"] = {},
+        ["Vinewood West"] = {},
+        ["Hawick"] = {},
+        ["Burton"] = {},
         ["Legion Square"] = {},
-        ["La Puerta"] = {},
         ["Vespucci Canals"] = {}
     },
     coke1 = {
@@ -224,7 +209,7 @@ Citizen.CreateThread(
     end
 )
 
-Citizen.CreateThread(
+--[[Citizen.CreateThread(
     function()
         RequestAnimDict("mp_common")
         while not HasAnimDictLoaded("mp_common") do
@@ -556,7 +541,7 @@ Citizen.CreateThread(
             end
         end
     end
-)
+)]]
 
 function ResetNPCDRUG()
     DrugNPC = {

@@ -960,6 +960,88 @@ Jobs = {
             }
         }
     },
+    tatoo3 = {
+        label = "Tatoueur Plage",
+        label2 = "Tatoueur Plage",
+        iban = "tatoo3",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -1149.7503, y = -1428.5909, z = 3.95},
+                Limit = 100,
+                Name = "coffre_tatoo_plage"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Tatoueur",
+                subtitle = "Action",
+                name = "tatoueur_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("tatoo3")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Tatouage",
+                    onSelected = function()
+                        for i = 1, 10, 1 do
+                            Wait(1)
+                            RageUI.GoBack()
+                        end
+                        RageUI.Visible(RMenu:Get("tatoo", "main"), true)
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Tattoo Plage", "Annonce", text, "CHAR_TATTOO", 8, "Tatoueur Plage")
+                        end
+                    end
+                }
+            }
+        }
+    },
     fermier = {
         label = "Fermier",
         label2 = "Fermier",
@@ -2089,7 +2171,7 @@ Jobs = {
                 workSize = 1.20,
                 blipcolor = 6,
                 blipname = "Traitement Milkshake",
-                Pos = {x = -1169.3804, y = -894.2769, z = 13.9741},
+                Pos = {x = -1196.3409, y = -894.2233, z = 13.9741},
                 required = "milk",
                 giveitem = {
                     {name = "milkshack", count = 5},
@@ -8950,31 +9032,31 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 150,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 0,
+                salary = 150,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 0,
+                salary = 150,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 0,
+                salary = 150,
                 name = "drh",
                 show = true
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 200,
                 name = "boss",
                 show = true
             }
