@@ -2135,7 +2135,12 @@ Jobs = {
                 Pos = {x = -1186.5991, y = -903.3736, z = 13.97 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood1"
-            }
+            },
+            {
+                Pos = {x = -1193.0552, y = -897.1772, z = 13.97 - 0.98},
+                Limit = 1000,
+                Name = "coffre_restaurantfood2"
+            } 
         },
         requiredService = false,
         work = {

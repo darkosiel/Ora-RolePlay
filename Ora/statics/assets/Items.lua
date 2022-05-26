@@ -963,14 +963,14 @@ Items = {
         category = "consumable"
     },
     -- Items : Eat
-    --bread = {
-    --    label = "Pain",
-    --    weight = 0.2,
-    --    actionCl = "miam:Eat",
-     --   props = "prop_cs_burger_01",
-    --    faim = 5,
-    --    category = "food"
-    --},
+    bread = {
+        label = "Pain",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+       props = "prop_cs_burger_01",
+        faim = 5,
+        category = "food"
+    },
     tapas = {
         label = "Tapas",
         weight = 0.2,
