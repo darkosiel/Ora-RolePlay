@@ -6756,43 +6756,37 @@ Jobs = {
         iban = "lsfd",
         grade = {
             {
-                label = "volontaire",
-                salary = 200,
-                name = "recrue",
-                show = true
-            },
-            {
-                label = "recrue",
+                label = "Recrue",
                 salary = 300,
                 name = "recrue",
                 show = true
             },
             {
-                label = "Ambulancier",
+                label = "pompier class 2",
                 salary = 310,
                 name = "ambulancier",
                 show = true
             },
             {
-                label = "Pompier",
+                label = "pompier class 1 ",
                 salary = 320,
                 name = "pompier",
                 show = true
             },
             {
-                label = "lieutenant",
+                label = "sergent",
                 salary = 340,
                 name = "lieutenant",
                 show = true
             },
             {
-                label = "Capitaine",
+                label = "lieutenant",
                 salary = 370,
                 name = "drh",
                 show = true
             },
             {
-                label = "Chef",
+                label = "capitaine",
                 salary = 390,
                 name = "boss",
                 show = true
