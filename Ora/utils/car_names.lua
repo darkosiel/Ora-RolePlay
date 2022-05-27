@@ -29,6 +29,23 @@ Citizen.CreateThread(function()
     AddTextEntry("LSFD3", "Ambulance 2 LSFD")
     AddTextEntry("LSFD4", "Ambulance LSFD")
     AddTextEntry("LSFD5", "Bison LSFD")
+
+    --Biker
+    AddTextEntry("foxharley2", "Fox Harley")
+    AddTextEntry("hvrod", "HV Rod")
+    AddTextEntry("na252", "Na 252")
+    AddTextEntry("dyna", "Dyna")
+    AddTextEntry("dyne", "Dyne")
+    AddTextEntry("Softail1", "Softail One")
+    AddTextEntry("na25", "Na 25")
+    AddTextEntry("lv", "LV Motorcycle")
+    AddTextEntry("rk2019", "RK 2019")
+    AddTextEntry("softail2", "Softail Two")
+    AddTextEntry("indian", "Indian")
+    AddTextEntry("acknodlow", "ACK Nodlow")
+    AddTextEntry("Scout", "Scout")
+
+
     --WEAZEL
     -- AddTextEntry("NEWSVAN", "Rumpo News")
     -- AddTextEntry("NEWSMAV", "Maverick News")
