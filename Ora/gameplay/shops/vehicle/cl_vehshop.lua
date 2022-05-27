@@ -349,6 +349,21 @@ local VehShop =
                     {name = "zombiea", price = 4000},
                     {name = "zombieb", price = 4700}
                 },
+                ["Motos Biker"] = {
+                    {name = "foxharley2", price = 15000},
+                    {name = "hvrod", price = 15000},
+                    {name = "na252", price = 15000},
+                    {name = "dyna", price = 15000},
+                    {name = "dyne", price = 15000},
+                    {name = "softail1", price = 15000},
+                    {name = "na25", price = 15000},
+                    {name = "lv", price = 15000},
+                    {name = "rk2019", price = 15000},
+                    {name = "softail2", price = 15000},
+                    {name = "indian", price = 15000},
+                    {name = "acknodlow", price = 15000},
+                    {name = "scout", price = 15000}
+                },
                 ["Quad"] = {
                     {name = "blazer", price = 2700},
                     {name = "blazer2", price = 2000},
