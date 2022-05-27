@@ -109,9 +109,9 @@ Citizen.CreateThread(
 											"getBankingAccountsPly3",
 											function(result)
 												if (result[1].amount - finalPrice >= 0) then
-													TriggerServerEvent("business:SetProductivity", Ora.Jobs.Immo.SellAndRent.CLIENT, "immo", finalPrice, false)
+													--TriggerServerEvent("business:SetProductivity", Ora.Jobs.Immo.SellAndRent.CLIENT, "immo", finalPrice, false)
 													TriggerServerEvent("appart:updateown", Ora.Jobs.Immo.SellAndRent.CLIENT, Ora.Jobs.Immo.Menu.Property.id)
-													TriggerServerEvent("Ora:RemoveFromBankAccount", "immo", finalPrice)
+													--TriggerServerEvent("Ora:RemoveFromBankAccount", "immo", finalPrice)
 
 													TriggerServerEvent(
 													"newTransaction",
@@ -257,9 +257,9 @@ Citizen.CreateThread(
 										"getBankingAccountsPly3",
 										function(result)
 											if (result[1].amount - finalPrice >= 0) then
-												TriggerServerEvent("business:SetProductivity", Ora.Jobs.Immo.SellAndRent.CLIENT, "immo", finalPrice, false)
+												--TriggerServerEvent("business:SetProductivity", Ora.Jobs.Immo.SellAndRent.CLIENT, "immo", finalPrice, false)
 												TriggerServerEvent("appart:updateownLoc", Ora.Jobs.Immo.SellAndRent.CLIENT, Ora.Jobs.Immo.Menu.Property.id, Ora.Jobs.Immo.SellAndRent.NUMBER_OF_WEEKS)
-												TriggerServerEvent("Ora:RemoveFromBankAccount", "immo", finalPrice)
+												--TriggerServerEvent("Ora:RemoveFromBankAccount", "immo", finalPrice)
 
 												TriggerServerEvent(
 													"newTransaction",
