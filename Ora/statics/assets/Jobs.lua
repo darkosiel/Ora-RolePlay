@@ -5382,14 +5382,14 @@ Jobs = {
         iban = "gouvernement",
         grade = {
             {
-                label = "Agent USDSS",
-                salary = 230,
+                label = "Conseiller",
+                salary = 250,
                 name = "agent",
                 show = true
             },
             {
-                label = "Directeur USDSS",
-                salary = 330,
+                label = "Secrétaire d'état",
+                salary = 300,
                 name = "usdss",
                 show = true
             },
@@ -5401,13 +5401,13 @@ Jobs = {
             },
             {
                 label = "Chef de cabinet",
-                salary = 380,
+                salary = 400,
                 name = "drh",
                 show = true
             },
             {
                 label = "Gouverneur",
-                salary = 530,
+                salary = 450,
                 name = "boss",
                 show = true
             }
@@ -5418,6 +5418,111 @@ Jobs = {
                 title = "Gouvernement",
                 subtitle = "Actions disponibles",
                 name = "Gouvernement_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facture",
+                    onSelected = function()
+                        CreateFacture("gouvernement")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Gouvernement", "Annonce", text, "CHAR_GOUV", 8, "Gouvernement")
+                        end
+                    end
+                }
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -2513.32, y = -342.71, z = 94.09 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement"
+            },
+            {
+                Pos = {x = -534.46, y = -193.16, z = 47.54 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement2"
+            },
+            {
+                Pos = {x = 2521.34, y = -336.70, z = 101.89 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement3"
+            },
+            {
+                Pos = {x = 2525.34, y = -317.72, z = 101.89 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement4"
+            }
+        },
+        garage = {
+            Name = "Garage gouvernement",
+            Pos = {x = -570.89, y = -143.61, z = 37.50},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -585.5820, y = -157.4907, z = 37.88189, h = 113.5321}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage Gouvernement"
+            }
+        },
+    },
+    usss = {
+        label = "Usss",
+        label2 = "Usss",
+        iban = "usss",
+        grade = {
+            {
+                label = "Agent spécial",
+                salary = 150,
+                name = "agent",
+                show = true
+            },
+            {
+                label = "Agent Spécial ADJ en charge",
+                salary = 200,
+                name = "usdss",
+                show = true
+            },
+            {
+                label = "Agent Spécial principal",
+                salary = 250,
+                name = "proc",
+                show = true
+            },
+            {
+                label = "Directeur Adjoint",
+                salary = 300,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "Directeur USSS",
+                salary = 350,
+                name = "boss",
+                show = true
+            }
+        },
+        CustomMenu = true,
+        Menu = {
+            menu = {
+                title = "USSS",
+                subtitle = "Actions disponibles",
+                name = "Usss_menuperso"
             },
             buttons = {
                 {
@@ -5605,23 +5710,6 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage gouvernement",
-            Pos = {x = -570.89, y = -143.61, z = 37.50},
-            Properties = {
-                type = 3,
-                Limit = 64,
-                vehicles = {
-                    {}
-                },
-                spawnpos = {x = -585.5820, y = -157.4907, z = 37.88189, h = 113.5321}
-            },
-            Blipdata = {
-                Pos = {},
-                Blipcolor = 7,
-                Blipname = "Garage Gouvernement"
-            }
-        },
-        garage2 = {
             Name = "Garage saisies",
             Pos = {x = -575.95, y = -148.92, z = 37.02},
             Properties = {
@@ -5638,7 +5726,7 @@ Jobs = {
                 Blipname = "Garage Gouvernement Saisies"
             }
         },
-        garage3 = {
+        garage2 = {
             Name = "Garage USSS",
             Pos = {x = 2521.420, y = -311.329, z = 92.99},
             Properties = {
