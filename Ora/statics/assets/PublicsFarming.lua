@@ -204,8 +204,8 @@ PublicFarm = {
             workSize = 1.5,
             blipcolor = 76,
             blipname = "Orpailleur - Concassage de pierre",
-            --Pos = {x = 1337.52, y = 4310.58, z = 37.04},
-            Pos = {x = 2582.98, y = 4686.30, z = 34.07},
+            Pos = {x = 1337.52, y = 4310.58, z = 37.04},
+            --Pos = {x = 2582.98, y = 4686.30, z = 34.07},
             required = "rock",
             giveitemType = 2,
             giveitem = {
