@@ -53,6 +53,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["cone"] = {"Cone", 10},
     ["wrench"] = {"Clé anglaise", 250},
     ["crowbar"] = {"Pied de biche", 250},
+    ["lavage"] = {"Kit de nettoyage", 10},
   },
   mecano = {
     ["repairbox"] = {"Boite à outils", 350},
@@ -61,6 +62,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["cone"] = {"Cone", 10},
     ["wrench"] = {"Clé anglaise", 250},
     ["crowbar"] = {"Pied de biche", 250},
+    ["lavage"] = {"Kit de nettoyage", 10},
   },
   mecano2 = {
     ["repairbox"] = {"Boite à outils", 350},
@@ -69,6 +71,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["cone"] = {"Cone", 10},
     ["wrench"] = {"Clé anglaise", 250},
     ["crowbar"] = {"Pied de biche", 250},
+    ["lavage"] = {"Kit de nettoyage", 10},
   },
   caroccasions = {
     ["repairbox"] = {"Boite à outils", 350},
@@ -85,7 +88,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["medbag"] = {"Sac medical", 30},
   },
   carwash = {
-    ["lavage"] = {"Kit de nettoyage", 25},
+    ["lavage"] = {"Kit de nettoyage", 10},
   },
   night = {
     ["whisky"] = {"Bouteille de whisky", 100},
