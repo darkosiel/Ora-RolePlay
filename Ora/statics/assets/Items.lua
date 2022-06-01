@@ -406,7 +406,7 @@ Items = {
         weight = 0.2,
         actionCl = "miam:Drink",
         props = "prop_cs_milk_01",
-        soif = 2,
+        soif = 20,
         category = "food"
     },
     chicken = {
