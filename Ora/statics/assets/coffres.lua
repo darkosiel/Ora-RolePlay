@@ -53,6 +53,7 @@ vehCoffres = {
     ["ruffian"] = 10,
     ["cliffhanger"] = 10,
     ["seminoie2"] = 10,
+    ["dyna"] = 10,
     -- sportives
     ["akuma"] = 12,
     ["double"] = 12,
