@@ -44,6 +44,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["machete"] = {"Machette", 400},
     ["hatchet"] = {"Hachette", 400},
     ["dagger"] = {"Dague antique", 400},
+    ["wrench"] = {"Clé anglaise", 250},
     
   },
   bennys = {
