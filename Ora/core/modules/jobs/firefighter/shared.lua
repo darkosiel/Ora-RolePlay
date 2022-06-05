@@ -1,7 +1,7 @@
 Ora.Jobs.Firefighter = {}
 Ora.Jobs.Firefighter.Config = {}
 Ora.Jobs.Firefighter.Config.Fire = {
-    fireSpreadChance = 5, -- Out of 100 chances, how many lead to fire spreading? (not exactly percents)
+    fireSpreadChance = 2, -- Out of 100 chances, how many lead to fire spreading? (not exactly percents)
     maximumSpreads = 8,
     selfRemoveMIN = 2700000, -- in ms, 45min, the min time a fire can burn (random between min and max)
     selfRemoveMAX = 4500000, -- in ms, 1h15, the max time a fire can burn
