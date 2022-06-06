@@ -227,6 +227,7 @@ Citizen.CreateThread(
                         local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
                         local coords = {x = x, y = y, z = z}
                         TriggerServerEvent("call:makeCall", "lsfd", coords, "~n~Origine: ~p~"..(deathCause[2] or "inconnue").."~n~~w~Cause: ~p~"..(deathCause[3] or "inconnue").."~n~~w~Blessure: ~p~"..(deathCause[4] or "inconnu"))
+                        TriggerServerEvent("call:makeCall", "lsms", coords, "~n~Origine: ~p~"..(deathCause[2] or "inconnue").."~n~~w~Cause: ~p~"..(deathCause[3] or "inconnue").."~n~~w~Blessure: ~p~"..(deathCause[4] or "inconnu"))
                         Citizen.SetTimeout(600000, function() calledLSFD = false end)
                     end
 
