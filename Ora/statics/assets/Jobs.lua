@@ -1825,7 +1825,7 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = 906.683, y = -151.317, z = 73.20},
-                Limit = 100,
+                Limit = 500,
                 Name = "coffre_taxi"
             }
         },
