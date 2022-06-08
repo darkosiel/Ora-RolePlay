@@ -6302,13 +6302,13 @@ Jobs = {
         Storage = {
             -- SandyShore
             {
-                Pos = {x = 1843.83, y = 3681, z = 33.27},
+                Pos = {x = 306.94, y = -601.6, z = 42.37},
                 Limit = 200,
                 Name = "Coffre SAMS"
             },
-            -- Los Santos
+            
             {
-                Pos = {x = 306.94, y = -601.6, z = 42.37},
+                Pos = {x = 1843.83, y = 3681, z = 33.27},
                 Limit = 200,
                 Name = "Coffre SAMS"
             }
