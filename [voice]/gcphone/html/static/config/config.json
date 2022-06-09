@@ -54,12 +54,14 @@
     "Wolf": "back030.jpg",
     "Gang": "back031.jpg",
     "Blue Line": "back032.jpg",
+    "Ora": "back033.jpg",
+    "Ora2": "back034.jpg",
 
     "Custom URL": "URL"
   },
   "background_default": {
-    "label": "Calvin & Hobbes",
-    "value": "back001.jpg"
+    "label": "Ora",
+    "value": "back033.jpg"
   },
 
   "coque": {
