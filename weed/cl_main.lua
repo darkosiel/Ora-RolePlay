@@ -484,16 +484,13 @@ AddEventHandler(
 RegisterNetEvent("removeWeed")
 AddEventHandler(
     "removeWeed",
-    function(k, props5)
+    function(k)
         if currentID == k and inNUI then
             SetNuiFocus(0, 0)
             inNUI = false
             SendNUIMessage({action = "hide", data = v})
         end
-        weeds[k].obj = props
-        DeleteEntity(props5)
-        items5 = {name = "weed_pot"}
-        exports["Ora"]:AddItem(items5)
+        DeleteEntity(weeds[k].obj)
         weeds[k] = nil
     end
 )
