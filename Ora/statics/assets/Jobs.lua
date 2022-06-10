@@ -244,6 +244,105 @@ Jobs = {
             }
         }
     },
+    grossiste = {
+        label = "Post OP",
+        label2 = "Post OP",
+        iban = "grossiste",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Post OP",
+                subtitle = "Actions disponibles",
+                name = "grossiste_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("grossiste")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Post OP", "Annonce", text, "CHAR_BUGSTARS", 8, "Post OP")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Post OP",
+            Pos = {x = 1183.9031, y = -3236.6330, z = 5.029},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85}
+            },
+            Blipdata = {
+                Pos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 1211.4298, y = -3254.6970, z = 7.08 - 0.98},
+                Limit = 200,
+                Name = "coffre_grossiste"
+            },
+            {
+                Pos = {x = 1188.7767, y = -3261.7687, z = 7.08 - 0.98},
+                Limit = 2000,
+                Name = "coffre_grossiste1"
+            },
+            {
+                Pos = {x = 1187.2518, y = -3314.9147, z = 5.51 - 0.98},
+                Limit = 2000,
+                Name = "coffre_grossiste2"
+            }
+        },
+        requiredService = false
+    },
     coiffeur = {
         label = "Coiffeur",
         label2 = "Coiffeur",
