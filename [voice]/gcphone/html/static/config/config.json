@@ -165,6 +165,19 @@
       ]
     },
     {
+      "display": "Post OP",
+      "icon": "/html/static/img/contact/avocat.png",
+      "subMenu": [
+        {
+          "title": "Envoyer un message",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "grossiste"
+          }
+        }
+      ]
+    },
+    {
       "display": "Mirror",
       "icon": "/html/static/img/contact/miror.png",
       "subMenu": [
