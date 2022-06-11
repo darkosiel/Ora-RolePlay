@@ -43,9 +43,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["knuckle"] = {"Poing américain", 80},
     ["hammer"] = {"Marteau", 80},
     ["batte"] = {"Batte de baseball", 80},
-    ["machete"] = {"Machette", 180},
     ["hatchet"] = {"Hachette", 180},
-    ["dagger"] = {"Dague antique", 180},
     
     -------------
 
