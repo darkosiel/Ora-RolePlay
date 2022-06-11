@@ -5493,14 +5493,14 @@ Jobs = {
                 show = true
             },
             {
-                label = "Procureur",
-                salary = 350,
-                name = "proc",
+                label = "Chef de cabinet",
+                salary = 400,
+                name = "drh",
                 show = true
             },
             {
-                label = "Chef de cabinet",
-                salary = 400,
+                label = "Vice-Gouverneur",
+                salary = 420,
                 name = "drh",
                 show = true
             },
