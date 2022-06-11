@@ -654,7 +654,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
   },
   gunlead1 = {
     label = "Gunlead 1",
-    description = "Beretta, Pistolet Lourd, Calibre.50, Machette, Hache de guerre, Dague antique, Explosif artisanal",
+    description = "Pétoire, Beretta, Pistolet Lourd, Calibre.50, Machette, Hache de guerre, Dague antique, Explosif artisanal",
     interior = vector3(179.17, -1000.68, -99.0),
     vault = vector3(169.76, -1005.82, -99.0 - 0.95),
     computer = vector3(172.92, -1000.34, -99.0 - 0.95),
