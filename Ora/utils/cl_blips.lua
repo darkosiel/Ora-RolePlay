@@ -50,7 +50,7 @@ local Blips = {
     --{name = "Hôpital Sandy Shores", color = 5, sprite = 61, Pos = {x = 1838.99, y = 3673.48, z = 34.28}},
     {name = "LSFD", color = 1, sprite = 61, Pos = {x = 1196.3460, y = -1479.672851, z = 29.39}},
     {name = "Mécano", color = 3, sprite = 777, Pos = {x = -351.73, y = -120.49, z = 38.43}},
-    --{name = "Benny's", color = 63, sprite = 488, size = 1.05, Pos = {x = -207.31, y = -1305.09, z = 31.36}},
+    {name = "Benny's", color = 63, sprite = 488, size = 1.05, Pos = {x = -207.31, y = -1305.09, z = 31.36}},
    -- {name = "Beeker's Garage", color = 47, sprite = 643, Pos = {x = 113.03, y = 6620.29, z = 31.82}},
    -- {name = "Harmony Repairs", color = 61, sprite = 488, size = 1.05, Pos = {x = 1178.06, y = 2646.36, z = 37.75}},
     {name = "Journaliste", color = 2, sprite = 184, Pos = {x = -582.75, y = -927.19, z = 36.83}},
