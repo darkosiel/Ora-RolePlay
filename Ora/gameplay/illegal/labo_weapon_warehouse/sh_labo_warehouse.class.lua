@@ -669,10 +669,11 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "machete", byWeek = 15, price = 200},
       {name = "dagger", byWeek = 15, price = 200},
       {name = "combathatchet", byWeek =15, price = 200},
+      {name = "snspistol", byWeek = 10, price = 3500},
       {name = "pistol", byWeek = 15, price = 5000},
       {name = "pitollourd", byWeek = 3, price = 9000},
-      {name = "pistol50", byWeek = 1, price = 55000},
       {name = "mm9", byWeek = 1000, price = 2},
+      {name = "acp45", byWeek = 500, price = 2},
       {name = "stickybomb", byWeek = 10, price = 1500},
       ----
       {name = "shootguncompact", byWeek = 0, price = 30000},
@@ -703,12 +704,11 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [1] = {
           label = "Confiance commerciale 1",
-          description = "Pour 35 000$ vous obtenez 3 Berettas, 2 pistolets lourds, 2 pistolets .50, 250 balles de 9mm et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+          description = "Pour 35 000$ vous obtenez 3 Berettas, 2 pistolets lourds, 250 balles de 9mm et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
           price = 35000,
           addon = {
             pistol = 3,
             pitollourd = 2,
-            pistol50 = 2,
             mm9 = 250,
             stickybomb = 2,
           }
