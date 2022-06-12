@@ -45,8 +45,6 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["batte"] = {"Batte de baseball", 80},
     ["hatchet"] = {"Hachette", 180},
     
-    -------------
-
     ["repairbox"] = {"Boite à outils", 150},
     ["repairbox2"] = {"Kit de réparation", 180},
     ["chariot"] = {"Chariot", 20},
@@ -54,27 +52,66 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["wrench"] = {"Clé anglaise", 100},
     ["crowbar"] = {"Pied de biche", 100},
 
-    --------
-
     ["lavage"] = {"Kit de nettoyage", 10},
 
-    --------
     ["medikit"] = {"Trousse de soin", 80},
     ["fire_extinguisher"] = {"Extincteur", 10}, 
     ["medbox"] = {"Boite medical", 8},
     ["medbag"] = {"Sac medical", 10},
 
-    --------
-
     ["bigcam "] = {"Caméra sur épaule", 120}, 
     ["micro "] = {"Micro", 20},
     ["perche"] = {"Perche de micro", 30},
+
+    ["aperitif"] = {"Apéritif", 2},
+    ["entreepearl"] = {"Tartare de thon-rouge", 2},
+    ["entreepearl2"] = {"Carpaccio de bar", 2},
+    ["platpearl"] = {"Plat Pearl's", 2},
+    ["poissontahitienne"] = {"Poisson à la Tahitienne", 8},
+    ["boissonpearl"] = {"Boisson Pearl's", 2},
+    ["caviar"] = {"Caviar Beluga", 40},
+    ["tatakithon"] = {"Tataki de thon", 8},
+    ["fish12"] = {"Saumon", 40},
+    ["fish6"] = {"Daurade", 8},
+
+    ["rice"] = {"Riz", 2},
+    ["feuillenori"] = {"Feuille de Nori", 2},
+    ["bouillon"] = {"Bouillon", 2},
+    ["noddle"] = {"Nouilles", 2},
+    ["sushi"] = {"Sushi", 20},
+    ["tonkatsu"] = {"Tonkatsu", 20},
+    ["onigiri"] = {"Onigiri", 20},
+    ["ramen"] = {"Ramen", 20},
+    ["sake"] = {"Sake", 8},
+    ["aperitif"] = {"Apéritif", 2},
+    ["filet"] = {"Filet", 2},
+    ["fish12"] = {"Saumon", 20},
+    ["pinces"] = {"Pinces", 2},
+    ["radio"] = {"Radio", 3},
+    ["parapluie"] = {"Parapluie", 2},
+    ["ciseaux"] = {"Ciseaux", 2},
+    ["binoculars"] = {"Jumelles", 3},
+    ["gascan"] = {"Jerrican", 2},
+    ["blocnote"] = {"Blocnote", 2},
+    ["makeup"] = {"Trousse de maquillage", 5},
+    ["tapas"] = {"Tapas", 1},
+    ["cafe"] = {"Cafe", 1},
+    ["jus"] = {"Jus de leechi", 1},
+    ["mentos"] = {"Mentos", 1},
+    ["water"] = {"Eau", 1},
+    ["cola"] = {"Soda", 2},
+    ["chips"] = {"Chips", 2},
+    ["fishingrod"] = {"Cannes à pêche", 5},
+    ["chicken"] = {"Poulet", 8},
+    ["meat"] = {"Viande Crue", 2},
+    ["donut"] = {"Donut", 2},
+
   },
 
 
 
 
-  night = {
+ --[[ night = {
     ["whisky"] = {"Bouteille de whisky", 100},
     ["vodka"] = {"Bouteille de vodka", 80},
     ["cognac"] = {"Bouteille de cognac", 100},
@@ -125,35 +162,35 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
     ["champagne"] = {"Bouteille de champage", 200},
-  },
-  restaurant = {
-    ["bread"] = {"Pain", 25},
+  },]]
+  --[[restaurant = {
+    --["bread"] = {"Pain", 25},
     ["aperitif"] = {"Apéritif", 5},
     ["entreepearl"] = {"Tartare de thon-rouge", 5},
     ["entreepearl2"] = {"Carpaccio de bar", 5},
     ["platpearl"] = {"Plat Pearl's", 5},
     ["poissontahitienne"] = {"Poisson à la Tahitienne", 20},
     ["boissonpearl"] = {"Boisson Pearl's", 5},
-    ["burgerpoisson"] = {"Burger de poisson", 20},
+    --["burgerpoisson"] = {"Burger de poisson", 20},
     ["caviar"] = {"Caviar Beluga", 100},
     ["tatakithon"] = {"Tataki de thon", 20},
-    ["milk"] = {"Lait", 20},
+    --["milk"] = {"Lait", 20},
     ["fish12"] = {"Saumon", 100},
     ["fish6"] = {"Daurade", 20},
-    ["whisky"] = {"Bouteille de whisky", 100},
-    ["vodka"] = {"Bouteille de vodka", 80},
-    ["cognac"] = {"Bouteille de cognac", 100},
-    ["rhum"] = {"Bouteille de rhum", 85},
-    ["tequila"] = {"Bouteille de tequila", 80},
-    ["red_wine"] = {"Bouteille de vin rouge", 70},
-    ["high_quality_wine"] = {"Bouteille de grand cru", 100},
-    ["white_wine"] = {"Bouteille de vin blanc", 70},
-    ["beer"] = {"Bière", 50},
-    ["jus_raisin"] = {"Jus de raisin", 40},
-    ["champagne"] = {"Bouteille de champage", 200},
+    --["whisky"] = {"Bouteille de whisky", 100},
+    --["vodka"] = {"Bouteille de vodka", 80},
+    --["cognac"] = {"Bouteille de cognac", 100},
+    --["rhum"] = {"Bouteille de rhum", 85},
+    --["tequila"] = {"Bouteille de tequila", 80},
+    --["red_wine"] = {"Bouteille de vin rouge", 70},
+    --["high_quality_wine"] = {"Bouteille de grand cru", 100},
+    --["white_wine"] = {"Bouteille de vin blanc", 70},
+    --["beer"] = {"Bière", 50},
+    --["jus_raisin"] = {"Jus de raisin", 40},
+    --["champagne"] = {"Bouteille de champage", 200},
 
-  },
-  ltdsud = {
+  },]]
+--[[  ltdsud = {
     ["pinces"] = {"Pinces", 5},
     ["radio"] = {"Radio", 10},
     ["tel"] = {"Téléphone", 10},
@@ -189,12 +226,12 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["mentos"] = {"Mentos", 2},
     ["water"] = {"Eau", 1},
     ["cola"] = {"Soda", 5},
-    ["ricemilk"] = {"Lait de riz", 2},
+    --["ricemilk"] = {"Lait de riz", 2},
     ["chips"] = {"Chips", 5},
     ["fishingrod"] = {"Cannes à pêche", 25},
     -- ["speaker"] = {"Radio portative", 350},
-  },
-  yellowjack = {
+  },]]
+--[[  yellowjack = {
     ["whisky"] = {"Bouteille de whisky", 100},
     ["vodka"] = {"Bouteille de vodka", 80},
     ["cognac"] = {"Bouteille de cognac", 100},
@@ -219,18 +256,18 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["beer"] = {"Bière", 50},
     ["jus_raisin"] = {"Jus de raisin", 40},
     ["champagne"] = {"Bouteille de champage", 200},
-  },
-  burgershot = {
-    ["milk"] = {"Lait", 30},
+  },]]
+--[[  burgershot = {
+    --["milk"] = {"Lait", 30},
     ["chicken"] = {"Poulet", 50},
-    ["bread"] = {"Pain", 25},
-    ["pommeterre"] = {"Pomme de terre", 45},
+    --["bread"] = {"Pain", 25},
+   -- ["pommeterre"] = {"Pomme de terre", 45},
     ["meat"] = {"Viande Crue", 5},
-    ["jus_raisin"] = {"Jus de raisin", 40},
-    ["cola"] = {"Soda", 5},
+    --["jus_raisin"] = {"Jus de raisin", 40},
+   -- ["cola"] = {"Soda", 5},
     ["donut"] = {"Donut", 5}
-  },
-  osakatsubaki = {
+  },]]
+  --[[osakatsubaki = {
     ["rice"] = {"Riz", 5},
     ["feuillenori"] = {"Feuille de Nori", 5},
     ["bouillon"] = {"Bouillon", 5},
@@ -244,11 +281,11 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["filet"] = {"Filet", 5},
     ["fish12"] = {"Saumon", 50},
     ["milk"] = {"Lait", 30},
-  },
-  distillerie = {
+  },]]
+--[[  distillerie = {
     ["pommeterre"] = {"Pomme de terre", 45},
     ["cereale"] = {"Céréale", 45},
-  },
+  },]]
   -- [""] = {},
   -- [""] = {},
   -- [""] = {},
