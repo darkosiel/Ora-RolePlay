@@ -96,6 +96,24 @@ local function finishRoberry(hasBeenDetected)
     collectgarbage()
 end
 
+function forceEndRoberry()
+    if (burglaryManager.BLIP ~= nil) then
+        RemoveBlip(burglaryManager.BLIP)
+    end
+
+    burglaryManager.STATE = 0
+    burglaryManager.START_TIME = 0
+    burglaryManager.CALLED = false
+    burglaryManager.ENTITY_DESTROYED = {}
+    burglaryManager.ENTRY_TIME = 0
+    burglaryManager.THREAD_LAUNCHED = false
+    burglaryManager.EXIT_POS = nil
+    burglaryManager.INITIAL_POSITION = nil
+    burglaryManager.PROPERTY = nil
+    burglaryManager.STREET = nil
+    burglaryManager.BLIP = nil
+end
+
 -- Returns the item name from the model.
 local function getItemFromItemModel(model)
     for i = 1, #BurglaryConfig.rewards, 1 do

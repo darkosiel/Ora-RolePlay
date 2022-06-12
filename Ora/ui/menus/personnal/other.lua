@@ -805,6 +805,19 @@ Citizen.CreateThread(
                             end
                         )
 
+                        RageUI.Button(
+                            "Arrêter le cambriolage",
+                            nil,
+                            {},
+                            true,
+                            function(_, _, Selected)
+                                if Selected then
+                                    ShowNotification("~r~Vous avez arrêter le cambriolage")
+                                    forceEndRoberry()
+                                end
+                            end
+                        )
+
                         if (Ora.DrugDealing:ImDealing()) then
                             RageUI.Button(
                                 "Arreter de dealer",
