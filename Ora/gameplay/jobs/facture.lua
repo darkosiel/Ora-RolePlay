@@ -18,6 +18,7 @@ function CreateFacture(account)
 
         if (_facture.title ~= nil and _facture.title ~= "" and tonumber(_facture.montant) ~= nil and _facture.montant ~= 0) then
             TriggerServerEvent("facture:send", _facture)
+            TriggerServerEvent("Ora:sendToDiscord", 30, "Réalise une facture pour le compte ".. _facture.account .. " de " .. _facture.montant .. "$ avec pour titre " .. _facture.title, "info")
             _facture = {}
         else
             _facture = {}
