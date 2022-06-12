@@ -60,6 +60,5 @@ Config['Objects'] = {
 }
 
 Strings = {
-    ['VideoHelp'] = 'Type ~b~/tv ~y~youtube id~s~ to play a video.\nExample: ~b~/tv ~y~3hqjseATp4g~s~',
-    ['VolumeHelp'] = 'Type ~b~/volume ~y~(0-10)~s~ to change the volume.\nExample: ~b~/volume ~y~5~s~\n\nType ~b~/tv ~y~youtube id~s~ to change the video.\nExample: ~b~/tv ~y~3hqjseATp4g~s~\n\nType ~b~/destroy~s~ to stop the video\n\n~INPUT_CONTEXT~ Sync video time',
-}
+    ['VideoHelp'] = 'Taper ~b~/tv ~y~youtube id~s~ pour lancer la vidéo.\nEx: ~b~/tv ~y~ebI2QFbGRSE~s~',
+    ['VolumeHelp'] = 'Taper ~b~/volume ~y~(0-10)~s~ pour changer le volume.\nEx: ~b~/volume ~y~5~s~\n\nTaper ~b~/tv ~y~youtube id~s~ pour changer de vidéo.\nEx: ~b~/tv ~y~ebI2QFbGRSE~s~\n\nTaper ~b~/destroy~s~ pour arrêter la vidéo\n\n~INPUT_CONTEXT~ Sync video time',
