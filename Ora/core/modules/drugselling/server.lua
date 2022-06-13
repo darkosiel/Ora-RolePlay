@@ -6,6 +6,7 @@ Ora.DrugDealing.AreaFiles = {
     [5] = "core/modules/drugselling/data/mirror_park.json",
     [6] = "core/modules/drugselling/data/sandy_shore.json",
     [7] = "core/modules/drugselling/data/paletto.json",
+    [8] = "core/modules/drugselling/data/vinewood.json",
 }
 
 Ora.DrugDealing.AreaPositions = {}

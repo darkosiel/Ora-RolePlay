@@ -8,6 +8,7 @@ Ora.DrugDealing.Area = {
   [4] = "Little Seoul",
   [5] = "Mirror park",
   [6] = "Sandy Shore",
+  [8] = "Vinewood",
   [7] = "Paleto",
 }
 
