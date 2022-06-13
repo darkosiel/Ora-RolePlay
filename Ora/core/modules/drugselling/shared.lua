@@ -20,6 +20,7 @@ Ora.DrugDealing.SimultaneousLimit = {
   [5] = 3,
   [6] = 4,
   [7] = 4,
+  [8] = 3,
 }
 
 Ora.DrugDealing.CopsJuridiction = {
@@ -30,6 +31,7 @@ Ora.DrugDealing.CopsJuridiction = {
   [5] = "police",
   [6] = "lssd",
   [7] = "lssd",
+  [8] = "police",
 }
 
 function Ora.DrugDealing:GetDealingAreas()
