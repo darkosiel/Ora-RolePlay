@@ -591,7 +591,7 @@ local Shops =
         },
         {
             Title = "Medecin de garde",
-            Pos = {x = 308.32, y = -595.39, z = 42.26, a = 62.72},
+            Pos = {x = -1851.66, y = -336.90, z = 49.44 - 0.98, a = 136.38},
             Blips = {
                 sprite = nil,
                 color = 17,

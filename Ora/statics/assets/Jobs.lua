@@ -6370,22 +6370,22 @@ Jobs = {
         },
         garage = {
             Name = "Garage SAMS Los Santos",
-            Pos = {x = 325.63, y = -574.23, z = 28.79},
+            Pos = {x = -1841.22, y = -379.95, z = 40.73 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 325.63, y = -574.23, z = 28.79, h = 304.65}
+                spawnpos = {x = -1841.22, y = -379.95, z = 40.73, h = 319.38}
             },
             Blipdata = {
-                Pos = {x = 325.63, y = -574.23, z = 28.79},
+                Pos = {x = -1841.22, y = -379.95, z = 40.73},
                 Blipcolor = 7,
                 Blipname = "SAMS - Garage Los Santos"
             }
         },
         garage2 = {
             Name = "Garage SAMS Sandy Shores",
-            Pos = {x = 1840.37, y = 3667.2, z = 32.68},
+            Pos = {x = 1840.37, y = 3667.2, z = 32.68 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
@@ -6399,9 +6399,8 @@ Jobs = {
             }
         },
         Storage = {
-            -- SandyShore
             {
-                Pos = {x = 306.94, y = -601.6, z = 42.37},
+                Pos = {x = -1870.05, y = -338.50, z = 53.75 - 0.98},
                 Limit = 200,
                 Name = "Coffre SAMS"
             },
@@ -6414,7 +6413,7 @@ Jobs = {
         },
         garage3 = {
             Name = "Helipad Hopital",
-            Pos = {x = 350.97, y = -587.84, z = 74.16},
+            Pos = {x = -1867.18, y = -352.69, z = 58.03 - 0.98},
             Properties = {
                 type = 2,
                 Limit = 10,
@@ -6430,10 +6429,10 @@ Jobs = {
                         }
                     }
                 },
-                spawnpos = {x = 350.97, y = -587.84, z = 74.16, h = 344.34}
+                spawnpos = {x = -1867.18, y = -352.69, z = 58.03, h = 151.11}
             },
             Blipdata = {
-                Pos = {x = 350.97, y = -587.84, z = 74.16},
+                Pos = {x = -1867.18, y = -352.69, z = 58.03},
                 Blipcolor = 5,
                 Blipname = "SAMS - Helipad Hopital"
             }
@@ -6674,7 +6673,7 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 299.00, y = -598.43, z = 43.24-0.98},
+                Pos = {x = -1813.41, y = -357.94, z = 49.46 - 0.98},
                 Tenues = {
                     ["Biohazard"] = {
                         male = {
