@@ -152,7 +152,13 @@ AddEventHandler("Ora:illegal:successCurrentMission", function(currentMission)
         if k == "money" then
             math.randomseed(GetGameTimer())
             local r = math.random(v.amount[1], v.amount[2])
-            TriggerServerEvent("black_money:Add", r)
+            TriggerServerCallback(
+                "Ora::SE::Money:AuthorizePayment", 
+                function(token)
+                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Migrant", LEGIT = true})
+                end,
+                {}
+            )
             ShowNotification("Tiens voilà " .. r .. "$")
         end
 
@@ -486,7 +492,13 @@ illegalscenario = {
                                             "CHAR_LESTER",
                                             1
                                         )
-                                        TriggerServerEvent("black_money:Add", r)
+                                        TriggerServerCallback(
+                                            "Ora::SE::Money:AuthorizePayment", 
+                                            function(token)
+                                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Migrant", LEGIT = true})
+                                            end,
+                                            {}
+                                        )
                                         local plate = GetVehicleNumberPlateText(spawnedVehicle)
                                         TriggerServerEvent("call:makeCall2", "police", LocalPlayer().Pos, "Un passeur en van a taper un migrant devant moi. La plaque commence par " .. plate:sub(1, 4), "Citoyen")
                                         TriggerServerEvent("call:makeCall2", "lssd", LocalPlayer().Pos, "Un passeur en van a taper un migrant devant moi. La plaque commence par " .. plate:sub(1, 4), "Citoyen")
@@ -518,7 +530,13 @@ illegalscenario = {
                                         "CHAR_LESTER",
                                         1
                                     )
-                                    TriggerServerEvent("black_money:Add", r)
+                                    TriggerServerCallback(
+                                        "Ora::SE::Money:AuthorizePayment", 
+                                        function(token)
+                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Migrant", LEGIT = true})
+                                        end,
+                                        {}
+                                    )
                                     TaskLeaveVehicle(passenger)
                                     TaskWanderStandard(passenger, 10.0, 10)
                                     TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
