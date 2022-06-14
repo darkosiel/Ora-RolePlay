@@ -52,6 +52,8 @@ files {
     "html/static/img/background/back030.jpg",
     "html/static/img/background/back031.jpg",
     "html/static/img/background/back032.jpg",
+    "html/static/img/background/back033.jpg",
+    "html/static/img/background/back034.jpg",
     "html/static/img/icons_app/call.png",
     "html/static/img/icons_app/contacts.png",
     "html/static/img/icons_app/sms.png",
