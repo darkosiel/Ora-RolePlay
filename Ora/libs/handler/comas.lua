@@ -232,10 +232,10 @@ Citizen.CreateThread(
                     end
 
                     if (t - GetGameTimer() < 0) then
-                        drawTxt(.38, .52, .4, "Appuyez sur Y pour être TP à PillBox Hill", 4, nil, nil, 100)
+                        drawTxt(.38, .52, .4, "Appuyez sur Y pour être TP au Ocean Center", 4, nil, nil, 100)
                         if (IsControlJustPressed(1, Keys["Y"])) then
                             local ped = PlayerPedId()
-                            Ora.Core:TeleportEntityTo(ped, vector3(306.47, -595.02, 43.28), true)
+                            Ora.Core:TeleportEntityTo(ped, vector3(-1861.79, -323.38, 49.45), true)
                             ClearPedBloodDamage(ped)
                             Ora.Health:Revive()
                             Ora.Health:SetIsDead(false)
