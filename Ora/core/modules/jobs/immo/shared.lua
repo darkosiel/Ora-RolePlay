@@ -212,10 +212,10 @@ Ora.Jobs.Immo.Interiors = {
     {
         coords = {x = 726.37, y = 2521.85, z = 75.01}, --Studio maison de disque
         r = {x = -190.0, y = -180.0, z = 150.62},
-        entry = {x = 724.96, y = 2521.99, z = 73.50},
+        entry = {x = 731.3458, y = 2523.2314, z = 73.50},
         coffre = {x = 716.52, y = 2524.05, z = 72.50},
         activated = true,
-        label = "Petit appartement",
+        label = "Studio de Musique de luxe",
         id = "appart18"
     },
     {
