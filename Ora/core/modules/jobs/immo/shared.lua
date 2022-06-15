@@ -192,6 +192,33 @@ Ora.Jobs.Immo.Interiors = {
         id = "appart15"
     },
     {
+        coords = {x = -899.82, y = -463.47, z = 162.7}, --Studio de musique
+        r = {x = -190.0, y = -180.0, z = 190.89},
+        entry = {x = -906.27, y = -453.9, z = 161.32},
+        coffre = {x = -888.65, y = -439.18, z = 160.22},
+        activated = true,
+        label = "Studio de Musique",
+        id = "appart16"
+    },
+    {
+        coords = {x = 150.73, y = -1007.99, z = -98.20}, --Chambre motel
+        r = {x = -190.0, y = -180.0, z = 220.46},
+        entry = {x = 151.52, y = -1007.91, z = -99.00},
+        coffre = {x = 151.90, y = -1001.19, z = -98.99},
+        activated = true,
+        label = "Chambre motel",
+        id = "appart17"
+    },
+    {
+        coords = {x = 726.37, y = 2521.85, z = 75.01}, --Studio maison de disque
+        r = {x = -190.0, y = -180.0, z = 150.62},
+        entry = {x = 731.3458, y = 2523.2314, z = 73.50},
+        coffre = {x = 716.52, y = 2524.05, z = 72.50},
+        activated = true,
+        label = "Studio de Musique de luxe",
+        id = "appart18"
+    },
+    {
       coords = {x = 1015.89, y = -3154.37, z = -36.93}, --Biker 1
       entry = {x = 996.95, y = -3158.12, z = -38.91},
       r = {x = -180.0, y = 180.0, z = 61.96},
@@ -219,33 +246,6 @@ Ora.Jobs.Immo.Interiors = {
         activated = true,
         label = "Petit rangement",
         id = "appart21"
-    },
-    {
-        coords = {x = -899.82, y = -463.47, z = 162.7}, --Studio de musique
-        r = {x = -190.0, y = -180.0, z = 190.89},
-        entry = {x = -906.27, y = -453.9, z = 161.32},
-        coffre = {x = -888.65, y = -439.18, z = 160.22},
-        activated = true,
-        label = "Studio de Musique",
-        id = "appart16"
-    },
-    {
-        coords = {x = 150.73, y = -1007.99, z = -98.20}, --Chambre motel
-        r = {x = -190.0, y = -180.0, z = 220.46},
-        entry = {x = 151.52, y = -1007.91, z = -99.00},
-        coffre = {x = 151.90, y = -1001.19, z = -98.99},
-        activated = true,
-        label = "Chambre motel",
-        id = "appart17"
-    },
-    {
-        coords = {x = 726.37, y = 2521.85, z = 75.01}, --Studio maison de disque
-        r = {x = -190.0, y = -180.0, z = 150.62},
-        entry = {x = 731.3458, y = 2523.2314, z = 73.50},
-        coffre = {x = 716.52, y = 2524.05, z = 72.50},
-        activated = true,
-        label = "Studio de Musique de luxe",
-        id = "appart18"
     },
 }
 
