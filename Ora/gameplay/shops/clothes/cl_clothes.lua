@@ -408,7 +408,6 @@ local Clothes = {
         {label = "Pantalon", component = 4, type = 0, staticM = {}, staticF = {}},
         {label = "Chaussure", component = 6, type = 0, staticM = {}, staticF = {}},
         {label = "Accessoire", component = 7, type = 0, staticM = {}, staticF = {}},
-        {label = "Chapeau", component = 0, type = 1, staticM = {}, staticF = {}},
         -- {
         --     label = "Pantalon",
         --     component = 4,
@@ -436,15 +435,15 @@ local Clothes = {
         --     remM = accessToRemoveMale,
         --     remF = accessToRemoveFemale
         -- },
-        -- {
-        --     label = "Chapeau",
-        --     component = 0,
-        --     type = 1,
-        --     staticM = json.decode(Config.Hats),
-        --     staticF = json.decode(Config.HatsF),
-        --     remM = chapeauToRemoveMale,
-        --     remF = chapeauToRemoveFemale
-        -- },
+        {
+            label = "Chapeau",
+            component = 0,
+            type = 1,
+            staticM = json.decode(Config.Hats),
+            staticF = json.decode(Config.HatsF),
+            remM = chapeauToRemoveMale,
+            remF = chapeauToRemoveFemale
+        },
         {label = "Lunettes", component = 1, type = 1, staticM = j(Config.Glasses), staticF = j(Config.GlassesF)},
         {
             label = "Oreilles",
@@ -760,26 +759,6 @@ Citizen.CreateThread(
                                             end
                                         else
                                             Clothes.static[tostring(accessIndex)][tostring(0)] = {Label = "Accessoire #" .. accessIndex}
-                                        end
-
-                                       
-                                    end
-                                end
-
-                                if (Clothes.component == 0) then
-                                    for chapIndex = 0,  GetNumberOfPedDrawableVariations(LocalPlayer().Ped, 0), 1 do 
-                                        if (Clothes.static[tostring(chapIndex)] == nil) then
-                                            Clothes.static[tostring(chapIndex)] = {}
-                                        end
-
-                                        local numberOfVariations = GetNumberOfPedTextureVariations(LocalPlayer().Ped, 0, chapIndex)
-                                    
-                                        if (numberOfVariations > 1) then
-                                            for y = 0, GetNumberOfPedTextureVariations(LocalPlayer().Ped, 0, chapIndex) - 1, 1 do 
-                                                Clothes.static[tostring(chapIndex)][tostring(y)] = {Label = "Chapeau #" .. chapIndex}
-                                            end
-                                        else
-                                            Clothes.static[tostring(chapIndex)][tostring(0)] = {Label = "Chapeau #" .. chapIndex}
                                         end
 
                                        
