@@ -85,7 +85,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Mécano",
+                title = "Mécano Route 68"",
                 subtitle = "Actions disponibles",
                 name = "mecano_menuperso"
             },
