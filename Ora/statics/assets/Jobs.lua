@@ -31,8 +31,8 @@ Jobs = {
     },
 
     mecano2 = {
-        label = "Mecano68",
-        label2 = "Mecano68",
+        label = "HarmonyRepair",
+        label2 = "HarmonyRepair",
         iban = "mecano2",
         isMechanics = true,
         grade = {
@@ -68,7 +68,7 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Mécano 68 Garage",
+            Name = "Garage Harmony Repair",
             Pos = {x = 1203.5927, y = 2639.0180, z = 36.75},
             Properties = {
                 type = 3,
@@ -80,12 +80,12 @@ Jobs = {
             Blipdata = {
                 Pos = {x = 1203.5927, y = 2639.0180, z = 36.75},
                 Blipcolor = 5,
-                Blipname = "Garage"
+                Blipname = "Garage Harmony Repair"
             }
         },
         Menu = {
             menu = {
-                title = "Mécano Route 68"",
+                title = "Harmony Repair",
                 subtitle = "Actions disponibles",
                 name = "mecano_menuperso"
             },
@@ -163,7 +163,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Mécano 68", "Annonce", text, "CHAR_TATTOO", 8, "Mecano68")
+                            TriggerServerEvent("Job:Annonce", "Harmony Repair", "Annonce", text, "CHAR_HARMONY", 8, "HarmonyRepair")
                         end
                     end
                 },
@@ -195,7 +195,7 @@ Jobs = {
                 Blips = {
                     sprite = 473,
                     color = 81,
-                    name = "Fourrière Mécano 68"
+                    name = "Fourrière Harmory Repair"
                 },
                 Marker = {
                     type = 1,

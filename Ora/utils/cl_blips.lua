@@ -66,7 +66,7 @@ local Blips = {
     {name = "Mirror Restaurant", color = 3, sprite = 304, Pos = {x = -1342.2145, y = -1075.8182, z = 6.93}},
     {name = "Burger Shot", color = 75, sprite = 106, Pos = {x = -1182.10, y = -883.58, z = 13.78}},
     {name = "LTD Sud", color = 3, sprite = 59, Pos = {x = 30.42, y = -1345.17, z = 29.5}},       
-    {name = "Garage Route 68", color = 1, sprite = 643, Pos = {x = 1172.9263, y = 2669.7465, z = 37.8209}},    
+    {name = "Harmory Repair", color = 1, sprite = 643, Pos = {x = 1172.9263, y = 2669.7465, z = 37.8209}}, 
     --{name = "LTD Nord", color = 3, sprite = 59, Pos = {x = 161.89, y = 6642.98, z = 31.70}},
     --{name = "Galaxy Club", color = 83, sprite = 614, Pos = {x = 356.18, y = 304.66, z = 103.72}},
     --{name = "Bahama's", color = 83, sprite = 614, Pos = {x = -1394.71, y = -608.88, z = 30.32}},
