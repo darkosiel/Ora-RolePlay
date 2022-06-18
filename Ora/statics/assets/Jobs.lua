@@ -10629,148 +10629,148 @@ Jobs = {
             }
         }
     },
-    -- henhouse = {
-    --     label = "The Hen House",
-    --     label2 = "The Hen House",
-    --     iban = "henhouse",
-    --     grade = {
-    --         {
-    --             label = "CDD",
-    --             salary = 150,
-    --             name = "cdd",
-    --             show = true
-    --         },
-    --         {
-    --             label = "CDI",
-    --             salary = 160,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "Chef",
-    --             salary = 170,
-    --             name = "chef",
-    --             show = true
-    --         },
-    --         {
-    --             label = "DRH",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage The Hen House",
-    --         Pos = {x = -313.14, y = 6275.55, z = 30.50},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = -313.14, y = 6275.55, z = 30.50, h = 140.74}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = -313.14, y = 6275.55, z = 30.50},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage The Hen House"
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = -294.92, y = 6264.51, z = 30.48},
-    --             Limit = 800,
-    --             Name = "Bar Hen House"
-    --         },
-    --         {
-    --             Pos = {x = -300.56, y = 6272.43, z = 30.48},
-    --             Limit = 800,
-    --             Name = "frigo2 Hen House"
-    --         },
-    --         {
-    --             Pos = {x = -292.31, y = 6265.57, z = 33.80},
-    --             Limit = 100,
-    --             Name = "Coffre Boss Hen House"
-    --         }
-    --     },
-    --     requiredService = false,
-    --     work = {
-    --         traitement = {
-    --             --Coktail
-    --             type = "traitement",
-    --             workSize = 1.20,
-    --             blipcolor = 7,
-    --             blipname = "cocktail",
-    --             Pos = {x = -297.18, y = 6261.88, z = 31.48},
-    --             required = {
-    --                 {name = "vodka", count = 1},
-    --                 {name = "milk", count = 3}
-    --             },
-    --             giveitem = "boissonhenhouse",
-    --             RemoveItem = {
-    --                 {name = "vodka", count = 1},
-    --                 {name = "milk", count = 3}
-    --             },
-    --             add = "~p~+ 1  Coktail HenHouse"
-    --         },
-    --         traitement2 = {
-    --             --Saucisse
-    --             type = "traitement",
-    --             workSize = 1.20,
-    --             blipcolor = 7,
-    --             blipname = "Traitement Saucisse",
-    --             Pos = {x = -303.70, y = 6265.58, z = 31.48},
-    --             required = "meat2",
-    --             giveitem = "saucisse",
-    --             RemoveItem = "chicken",
-    --             add = "~p~+ 1  Saucisse fumée"
-    --         },
-    --         traitement3 = {
-    --             --assiete de gibier
-    --             type = "traitement",
-    --             workSize = 1.20,
-    --             blipcolor = 7,
-    --             blipname = "cuisson",
-    --             Pos = {x = -297.96, y = 6271.77, z = 31.48},
-    --             required = "meat1",
-    --             giveitem = "plathenhouse",
-    --             RemoveItem = "meat1",
-    --             add = "~p~+ 1  Assiete de Gibier"
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "TheHenHouse",
-    --             subtitle = "Actions disponibles",
-    --             name = "henhouse_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facture",
-    --                 onSelected = function()
-    --                     CreateFacture("henhouse")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "The Hen House", "Annonce", text, "CHAR_HENHOUSE", 8, "The Hen House")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     }
-    -- },
+    henhouse = {
+        label = "The Hen House",
+        label2 = "The Hen House",
+        iban = "henhouse",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        garage = {
+            Name = "Garage The Hen House",
+            Pos = {x = -313.14, y = 6275.55, z = 30.50},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -313.14, y = 6275.55, z = 30.50, h = 140.74}
+            },
+            Blipdata = {
+                Pos = {x = -313.14, y = 6275.55, z = 30.50},
+                Blipcolor = 5,
+                Blipname = "Garage The Hen House"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -294.92, y = 6264.51, z = 30.48},
+                Limit = 800,
+                Name = "Bar Hen House"
+            },
+            {
+                Pos = {x = -300.56, y = 6272.43, z = 30.48},
+                Limit = 800,
+                Name = "frigo2 Hen House"
+            },
+            {
+                Pos = {x = -292.31, y = 6265.57, z = 33.80},
+                Limit = 100,
+                Name = "Coffre Boss Hen House"
+            }
+        },
+        requiredService = false,
+        work = {
+            traitement = {
+                --Coktail
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "cocktail",
+                Pos = {x = -297.18, y = 6261.88, z = 31.48},
+                required = {
+                    {name = "vodka", count = 1},
+                    {name = "milk", count = 3}
+                },
+                giveitem = "boissonhenhouse",
+                RemoveItem = {
+                    {name = "vodka", count = 1},
+                    {name = "milk", count = 3}
+                },
+                add = "~p~+ 1  Coktail HenHouse"
+            },
+            traitement2 = {
+                --Saucisse
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Traitement Saucisse",
+                Pos = {x = -303.70, y = 6265.58, z = 31.48},
+                required = "meat2",
+                giveitem = "saucisse",
+                RemoveItem = "chicken",
+                add = "~p~+ 1  Saucisse fumée"
+            },
+            traitement3 = {
+                --assiete de gibier
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "cuisson",
+                Pos = {x = -297.96, y = 6271.77, z = 31.48},
+                required = "meat1",
+                giveitem = "plathenhouse",
+                RemoveItem = "meat1",
+                add = "~p~+ 1  Assiete de Gibier"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "TheHenHouse",
+                subtitle = "Actions disponibles",
+                name = "henhouse_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facture",
+                    onSelected = function()
+                        CreateFacture("henhouse")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "The Hen House", "Annonce", text, "CHAR_HENHOUSE", 8, "The Hen House")
+                        end
+                    end
+                }
+            }
+        }
+    },
     jetsam = {
         label = "Jetsam",
         label2 = "Jetsam",
