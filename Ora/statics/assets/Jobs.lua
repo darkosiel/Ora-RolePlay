@@ -38,25 +38,25 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 75,
+                salary = 150,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 100,
+                salary = 160,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 125,
+                salary = 170,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 150,
+                salary = 180,
                 name = "drh",
                 show = true
             },
