@@ -31,8 +31,8 @@ Jobs = {
     },
 
     mecano2 = {
-        label = "Beeker's Garage",
-        label2 = "Beekers Garage",
+        label = "Mecano68",
+        label2 = "Mecano68",
         iban = "mecano2",
         isMechanics = true,
         grade = {
@@ -62,23 +62,23 @@ Jobs = {
             },
             {
                 label = "PDG",
-                salary = 175,
+                salary = 200,
                 name = "boss",
                 show = true
             }
         },
         garage = {
-            Name = "Garage Beeker's Garage",
-            Pos = {x = 110.03, y = 6606.81, z = 31.85},
+            Name = "Garage Mécano 68 Garage",
+            Pos = {x = 1203.5927, y = 2639.0180, z = 36.75},
             Properties = {
                 type = 3,
                 Limit = 20,
                 zonesize = 1.0,
                 vehicles = {},
-                spawnpos = {x = 110.03, y = 6606.81, z = 31.85, h = 310.49}
+                spawnpos = {x = 1203.5927, y = 2639.0180, z = 36.75, h = 310.49}
             },
             Blipdata = {
-                Pos = {x = 110.03, y = 6606.81, z = 31.87},
+                Pos = {x = 1203.5927, y = 2639.0180, z = 36.75},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
@@ -163,7 +163,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Beeker's", "Annonce", text, "CHAR_BEEKERS", 8, "Beekers Garage")
+                            TriggerServerEvent("Job:Annonce", "Mécano 68", "Annonce", text, "CHAR_TATTOO", 8, "Mecano68")
                         end
                     end
                 },
@@ -187,7 +187,7 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                    {x = 117.729, y = 6598.982, z = 31.70}
+                    {x = 1163.9239, y = 2638.4831, z = 37.93}
                 },
                 Enter = EnterZoneTow,
                 Exit = ExitZoneTow,
@@ -195,7 +195,7 @@ Jobs = {
                 Blips = {
                     sprite = 473,
                     color = 81,
-                    name = "Fourrière Beekers Garage"
+                    name = "Fourrière Mécano 68"
                 },
                 Marker = {
                     type = 1,
@@ -209,9 +209,7 @@ Jobs = {
             },
             LSCustoms = {
                 Pos = {
-                    {x = 110.63, y = 6626.31, z = 31.78},
-                    {x = 103.75, y = 6622.61, z = 31.78},
-                    {x = 105.88, y = 6640.58, z = 31.43}
+                    {x = 1175.2818, y = 2639.6523, z = 37.0559}
                 },
                 Enter = function()
                     EnterZoneLSC_NORD()
@@ -220,12 +218,12 @@ Jobs = {
                     ExitZoneLSC_NORD()
                 end,
                 zonesize = 3.0,
-                Blips = {--[[
+                Blips = {--[[ 
                     sprite = 72,
                     color = 81,
                     name = "LSCustom"
                  ]]},
-                Marker = {--[[
+                Marker = {
                     type = 23,
                     scale = {x = 4.5, y = 4.5, z = 0.6},
                     color = {r = 100, g = 255, b = 255, a = 120},
@@ -233,12 +231,12 @@ Jobs = {
                     Cam = false,
                     Rotate = false,
                     visible = true
-                 ]]}
+                }
             }
         },
         Storage = {
             {
-                Pos = {x = 97.68, y = 6619.96, z = 31.63},
+                Pos = {x = 1187.2065, y = 2636.0888, z = 37.40},
                 Limit = 100,
                 Name = "coffre_mecano2"
             }
