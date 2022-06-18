@@ -138,7 +138,7 @@ Citizen.CreateThread(
                             end
                         )
 
-                        if (Ora.Utils:HasValue(BleachingJobs, Ora.Identity.Job:GetName()) or Ora.Utils:HasValue(BleachingJobs, Ora.Identity.Orga:GetName())) then
+                        --[[if (Ora.Utils:HasValue(BleachingJobs, Ora.Identity.Job:GetName()) or Ora.Utils:HasValue(BleachingJobs, Ora.Identity.Orga:GetName())) then
                             RageUI.Button(
                                 "Fausse facture",
                                 nil,
@@ -158,7 +158,7 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
-                        end
+                        end]]
                     end,
                     function()
                     end
