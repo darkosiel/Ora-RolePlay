@@ -967,7 +967,7 @@ Items = {
         label = "Pain",
         weight = 0.2,
         actionCl = "miam:Eat",
-       props = "prop_cs_burger_01",
+        props = "prop_cs_burger_01",
         faim = 5,
         category = "food"
     },
@@ -1078,13 +1078,13 @@ Items = {
         weight = 1.0,
         category = "docs"
     },
-    pain = {
+--[[    pain = {
         label = "Pain",
         weight = 0.2,
         actionCl = "miam:Eat",
         faim = 10,
         category = "food"
-    },
+    },]]
     water = {
         label = "Bouteille d'eau",
         weight = 0.2,
