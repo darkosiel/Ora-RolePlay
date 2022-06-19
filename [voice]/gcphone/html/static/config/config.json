@@ -139,6 +139,19 @@
       ]
     },
     {
+      "display": "Auto Repairs",
+      "icon": "/html/static/img/contact/lscustoms.png",
+      "subMenu": [
+        {
+          "title": "Envoyer un message",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "mecano2"
+          }
+        }
+      ]
+    },
+    {
       "display": "Benny's",
       "icon": "/html/static/img/contact/bennys.png",
       "subMenu": [
