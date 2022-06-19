@@ -734,7 +734,7 @@ Config.DoorList = {
     --  HARMONY REPAIRS / LARRY'S
     {
         textCoords = vector3(1187.202, 2644.949, 38.55),
-        authorizedJobs = {"caroccasions"},
+        authorizedJobs = {"mecano2"},
         locked = true,
         maxDistance = 7.0,
         doors = {
