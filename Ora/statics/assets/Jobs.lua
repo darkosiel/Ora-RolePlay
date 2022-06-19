@@ -10706,10 +10706,6 @@ Jobs = {
                 blipcolor = 7,
                 blipname = "Hen House - Récolte",
                 add = "~p~+ 1  Saucisse fumée"
-                anim = {
-                    lib = "anim@mp_snowball",
-                    anim = "pickup_snowball"
-                }
             },
             vente = {
                 type = "vente",
