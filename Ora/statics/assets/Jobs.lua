@@ -31,32 +31,32 @@ Jobs = {
     },
 
     mecano2 = {
-        label = "HarmonyRepair",
-        label2 = "HarmonyRepair",
+        label = "Autorepairs",
+        label2 = "Autorepairs",
         iban = "mecano2",
         isMechanics = true,
         grade = {
             {
                 label = "CDD",
-                salary = 150,
+                salary = 75,
                 name = "cdd",
                 show = true
             },
             {
                 label = "CDI",
-                salary = 160,
+                salary = 100,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Chef",
-                salary = 170,
+                salary = 125,
                 name = "chef",
                 show = true
             },
             {
                 label = "DRH",
-                salary = 180,
+                salary = 150,
                 name = "drh",
                 show = true
             },
@@ -162,8 +162,8 @@ Jobs = {
                     onSelected = function()
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Harmony Repair", "Annonce", text, "CHAR_HARMONY", 8, "HarmonyRepair")
+                        if text ~= false and text ~= "" then 
+                            TriggerServerEvent("Job:Annonce", "Auto Repairs", "Annonce", text, "CHAR_HARMONY", 8, "Autorepairs")
                         end
                     end
                 },
@@ -187,7 +187,7 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                    {x = 1163.9239, y = 2638.4831, z = 37.93}
+                    {x = 1174.4519, y = 2663.7224, z = 37.95}
                 },
                 Enter = EnterZoneTow,
                 Exit = ExitZoneTow,
@@ -209,7 +209,9 @@ Jobs = {
             },
             LSCustoms = {
                 Pos = {
-                    {x = 1175.2818, y = 2639.6523, z = 37.0559}
+                    {x = 1175.2818, y = 2639.6523, z = 37.0559},
+                    {x = 1182.6738, y = 2638.2207, z = 37.0559},
+                    {x = 1164.0825, y = 2632.5297, z = 37.18}
                 },
                 Enter = function()
                     EnterZoneLSC_NORD()
@@ -239,6 +241,11 @@ Jobs = {
                 Pos = {x = 1187.2065, y = 2636.0888, z = 37.40},
                 Limit = 100,
                 Name = "coffre_mecano2"
+            },
+            {
+                Pos = {x = 1204.6300, y = 2647.87, z = 36.80},
+                Limit = 100,
+                Name = "coffre_mecano3"
             }
         }
     },
