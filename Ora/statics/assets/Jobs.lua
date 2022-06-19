@@ -10719,7 +10719,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Hen House - Vente",
-                Pos = {x = 1722.8204, y = 6417, z = 34.00},
+                Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
                 required = "saucisse",
                 price = math.random(18, 25),
                 add = "~p~- 1 Saucisse fumée"
