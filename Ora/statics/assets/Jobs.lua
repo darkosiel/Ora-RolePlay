@@ -10697,47 +10697,29 @@ Jobs = {
         },
         requiredService = false,
         work = {
-            traitement = {
-                --Coktail
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "cocktail",
-                Pos = {x = -297.18, y = 6261.88, z = 31.48},
-                required = {
-                    {name = "vodka", count = 1},
-                    {name = "milk", count = 3}
-                },
-                giveitem = "boissonhenhouse",
-                RemoveItem = {
-                    {name = "vodka", count = 1},
-                    {name = "milk", count = 3}
-                },
-                add = "~p~+ 1  Coktail HenHouse"
-            },
-            traitement2 = {
-                --Saucisse
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement Saucisse",
-                Pos = {x = -303.70, y = 6265.58, z = 31.48},
-                required = "meat2",
+
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = -70.3619, y = 6261.6303, z = 30.09},
                 giveitem = "saucisse",
-                RemoveItem = "chicken",
-                add = "~p~+ 1  Saucisse fumée"
-            },
-            traitement3 = {
-                --assiete de gibier
-                type = "traitement",
-                workSize = 1.20,
                 blipcolor = 7,
-                blipname = "cuisson",
-                Pos = {x = -297.96, y = 6271.77, z = 31.48},
-                required = "meat1",
-                giveitem = "plathenhouse",
-                RemoveItem = "meat1",
-                add = "~p~+ 1  Assiete de Gibier"
+                blipname = "Hen House - Récolte",
+                add = "~p~+ 1  Saucisse fumée"
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Hen House - Vente",
+                Pos = {x = 1722.8204, y = 6417, z = 34.00},
+                required = "saucisse",
+                price = math.random(18, 25),
+                add = "~p~- 1 Saucisse fumée"
             }
         },
         Menu = {
