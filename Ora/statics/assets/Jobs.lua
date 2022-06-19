@@ -5639,6 +5639,24 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Menotter",
+                    onSelected = function()
+                        Police.HandcuffPly()
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Démenotter",
+                    onSelected = function()
+                        Police.CutMenottes()
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
                     label = "Annonce",
                     onSelected = function()
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
