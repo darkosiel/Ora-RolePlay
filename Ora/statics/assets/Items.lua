@@ -1323,6 +1323,31 @@ Items = {
         weight = 1.0,
         actionCl = "A FAIRE"
     },
+    medica1 = {
+        label = "Anti-Douleur",
+        weight = 0.3,
+        actionCl = "A FAIRE"
+    },
+    medica2 = {
+        label = "Anti-Inflammatoires",
+        weight = 0.3,
+        actionCl = "A FAIRE"
+    },
+    medica3 = {
+        label = "Crème analgésique",
+        weight = 0.3,
+        actionCl = "A FAIRE"
+    },
+    medica4 = {
+        label = "Anti-Dépresseurs",
+        weight = 0.3,
+        actionCl = "A FAIRE"
+    },
+    medica5 = {
+        label = "Crème pour brûlures",
+        weight = 0.3,
+        actionCl = "A FAIRE"
+    },
     soinurgence = {
         label = "Soin à 70%",
         weight = 1.0,
@@ -2202,7 +2227,8 @@ Items = {
     },
     bandage = {
         label = "Bandage",
-        weight = 1.0
+        weight = 1.0,
+        actionCl = "A FAIRE"
     },
     --- Items BDG
     bouquet = {

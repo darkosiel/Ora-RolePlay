@@ -6424,19 +6424,19 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -1870.05, y = -338.50, z = 53.75 - 0.98},
-                Limit = 200,
+                Limit = 2500,
                 Name = "Coffre SAMS"
             },
 
             {
                 Pos = {x = -1829.19, y = -384.37, z = 49.39 - 0.98},
-                Limit = 200,
+                Limit = 2500,
                 Name = "Coffre Pharmacie"
             },
             
             {
                 Pos = {x = 1843.83, y = 3681, z = 33.27},
-                Limit = 200,
+                Limit = 2500,
                 Name = "Coffre SAMS"
             }
         },

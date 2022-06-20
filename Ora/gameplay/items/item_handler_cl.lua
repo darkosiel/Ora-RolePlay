@@ -1100,9 +1100,39 @@ ItemsFunction = {
     cana = eatCana,
     darknet = sendDarknetMessage,
     gants = toggleGloves,
-    medikit = function(i)
+    bandage = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityMaxHealth(LocalPlayer().Ped))
+            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 25.0)
+            Ora.Inventory:RemoveItem(i)
+        end
+    end,
+    medica1 = function(i)
+        if i then
+            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            Ora.Inventory:RemoveItem(i)
+        end
+    end,
+    medica2 = function(i)
+        if i then
+            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            Ora.Inventory:RemoveItem(i)
+        end
+    end,
+    medica3 = function(i)
+        if i then
+            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            Ora.Inventory:RemoveItem(i)
+        end
+    end,
+    medica4 = function(i)
+        if i then
+            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            Ora.Inventory:RemoveItem(i)
+        end
+    end,
+    medica5 = function(i)
+        if i then
+            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
             Ora.Inventory:RemoveItem(i)
         end
     end,
@@ -1146,20 +1176,6 @@ ItemsFunction = {
             local clsPly = GetPlayerServerIdInDirection(8.0)
             if clsPly then
                 TriggerPlayerEvent("player:Revive", clsPly)
-                Ora.Inventory:RemoveItem(i)
-            else
-                RageUI.Popup({message = "Aucun joueur à proximité"})
-            end
-        end
-    end,
-    bandages = function(i)
-        if i then
-            local clsPly = GetPlayerServerIdInDirection(8.0)
-            if clsPly then
-                TaskStartScenarioInPlace(LocalPlayer().Ped, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
-                Wait(5000)
-                TriggerPlayerEvent("player:Heal", clsPly, GetEntityMaxHealth(clsPly))
-                ClearPedTasksImmediately(LocalPlayer().Ped)
                 Ora.Inventory:RemoveItem(i)
             else
                 RageUI.Popup({message = "Aucun joueur à proximité"})

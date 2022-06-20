@@ -45,30 +45,41 @@ local function GetArrayKey(arr, val)
 end
 
 function Ambulance.Revive()
-    local playerId = GetPlayerServerIdInDirection(5.0)
-    if (playerId ~= false) then
-        local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
-
-        RequestAnimDict(lib)
-        while (not HasAnimDictLoaded(lib)) do Citizen.Wait(0) end
-        TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, 0, 0, 0.0, false, false, false)
-        local playerPed = PlayerPedId()
-        Wait(5000)
-        TriggerPlayerEvent("player:Revive",playerId)
+    local count = Ora.Inventory:GetItemCount("medikit")
+    if count > 0 then
+        local playerId = GetPlayerServerIdInDirection(5.0)
+        if (playerId ~= false) then
+            local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
+            RequestAnimDict(lib)
+            while (not HasAnimDictLoaded(lib)) do Citizen.Wait(0) end
+            TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, 0, 0, 0.0, false, false, false)
+            local playerPed = PlayerPedId()
+            Wait(5000)
+            TriggerPlayerEvent("player:Revive",playerId)
+            Ora.Inventory:RemoveFirstItem('medikit')
+        else
+            ShowNotification("~r~Aucun joueur proche")
+        end
     else
-        ShowNotification("~r~Aucun joueur proche")
+        ShowNotification("~r~Vous n'avez pas de trousse de soin")
     end
 end
 
 function Ambulance.Heal(m)
-    TaskStartScenarioInPlace(LocalPlayer().Ped, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
-    local playerId = GetPlayerServerIdInDirection(5.0)
-    if (playerId ~= false) then
-        Wait(5000)
-        TriggerPlayerEvent("player:Heal",playerId,m)
-        ClearPedTasksImmediately(LocalPlayer().Ped)
+    local count = Ora.Inventory:GetItemCount("medikit")
+    if count > 0 then
+        TaskStartScenarioInPlace(LocalPlayer().Ped, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+        local playerId = GetPlayerServerIdInDirection(5.0)
+        if (playerId ~= false) then
+            Wait(5000)
+            TriggerPlayerEvent("player:Heal",playerId,m)
+            ClearPedTasksImmediately(LocalPlayer().Ped)
+            Ora.Inventory:RemoveFirstItem('medikit')
+        else
+            ShowNotification("~r~Aucun joueur proche")
+        end
     else
-        ShowNotification("~r~Aucun joueur proche")
+        ShowNotification("~r~Vous n'avez pas de trousse de soin")
     end
 end
 
