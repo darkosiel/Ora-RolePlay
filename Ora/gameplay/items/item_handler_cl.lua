@@ -1102,37 +1102,43 @@ ItemsFunction = {
     gants = toggleGloves,
     bandage = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 25.0)
+            local vie = GetEntityHealth(LocalPlayer().Ped)
+            SetEntityHealth(LocalPlayer().Ped, vie + 25)
             Ora.Inventory:RemoveItem(i)
         end
     end,
     medica1 = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            local vie = GetEntityHealth(LocalPlayer().Ped)
+            SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
         end
     end,
     medica2 = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            local vie = GetEntityHealth(LocalPlayer().Ped)
+            SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
         end
     end,
     medica3 = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            local vie = GetEntityHealth(LocalPlayer().Ped)
+            SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
         end
     end,
     medica4 = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            local vie = GetEntityHealth(LocalPlayer().Ped)
+            SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
         end
     end,
     medica5 = function(i)
         if i then
-            SetEntityHealth(LocalPlayer().Ped, GetEntityHealth(LocalPlayer().Ped) + 5.0)
+            local vie = GetEntityHealth(LocalPlayer().Ped)
+            SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
         end
     end,
