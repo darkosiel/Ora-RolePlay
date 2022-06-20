@@ -1,11 +1,4 @@
 local CraftingRecipe = {
-    -- ["tel"] = {
-    --     ingredient = {
-    --         {name="bouteille_vin",amount=1},
-    --         {name="raisin",amount=1},
-    --     },
-    --     data = {}
-    -- },
     ["beer"] = {
         ingredient = {
             {name="cereale",amount=1},
@@ -59,14 +52,14 @@ local CraftingRecipe = {
         },
         data = {}
     },
-    --[[ ["champagne"] = {
+    ["champagne"] = {
         ingredient = {
             {name="bouteille_vinr",amount=1},
             {name="water",amount=1},
-            
+            {name="levure",amount=1},
         },
         data = {}
-    }, ]]
+    },
     ["red_wine"] = {
         ingredient = {
             {name="jus_raisin",amount=1},
