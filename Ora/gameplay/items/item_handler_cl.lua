@@ -1105,6 +1105,11 @@ ItemsFunction = {
             local vie = GetEntityHealth(LocalPlayer().Ped)
             SetEntityHealth(LocalPlayer().Ped, vie + 25)
             Ora.Inventory:RemoveItem(i)
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                39,
+                "Utilise un bandage \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+            )
         end
     end,
     medica1 = function(i)
@@ -1112,6 +1117,11 @@ ItemsFunction = {
             local vie = GetEntityHealth(LocalPlayer().Ped)
             SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                39,
+                "Utilise un médicament \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+            )
         end
     end,
     medica2 = function(i)
@@ -1119,6 +1129,11 @@ ItemsFunction = {
             local vie = GetEntityHealth(LocalPlayer().Ped)
             SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                39,
+                "Utilise un médicament \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+            )
         end
     end,
     medica3 = function(i)
@@ -1126,6 +1141,11 @@ ItemsFunction = {
             local vie = GetEntityHealth(LocalPlayer().Ped)
             SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                39,
+                "Utilise un médicament \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+            )
         end
     end,
     medica4 = function(i)
@@ -1133,6 +1153,11 @@ ItemsFunction = {
             local vie = GetEntityHealth(LocalPlayer().Ped)
             SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                39,
+                "Utilise un médicament \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+            )
         end
     end,
     medica5 = function(i)
@@ -1140,6 +1165,11 @@ ItemsFunction = {
             local vie = GetEntityHealth(LocalPlayer().Ped)
             SetEntityHealth(LocalPlayer().Ped, vie + 15)
             Ora.Inventory:RemoveItem(i)
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                39,
+                "Utilise un médicament \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+            )
         end
     end,
     mec = function(i)
