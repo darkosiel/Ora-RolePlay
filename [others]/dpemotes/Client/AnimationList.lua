@@ -194,6 +194,54 @@ DP.Shared = {
 }
 
 DP.Dances = {
+    ["uncle"] = {"anim@mp_player_intcelebrationfemale@uncle_disco", "uncle_disco", "Uncle Josh - ~g~ New", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill"] = {"anim@amb@nightclub_island@dancers@crowddance_single_props@", "mi_dance_prop_13_v1_male^3", "Drill · Male ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill2"] = {"anim@amb@nightclub_island@dancers@crowddance_groups@groupd@", "mi_dance_crowd_13_v2_male^1", "Drill · Male 2 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill3"] = {"anim@amb@nightclub_island@dancers@crowddance_facedj@", "mi_dance_facedj_17_v2_male^4", "Drill · Male 3 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill4"] = {"anim@amb@nightclub_island@dancers@crowddance_facedj@", "mi_dance_facedj_15_v2_male^4", "Drill · Male 4 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill5"] = {"anim@amb@nightclub_island@dancers@crowddance_facedj@", "hi_dance_facedj_hu_15_v2_male^5", "Drill · Male 5 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["Drill6"] = {"anim@amb@nightclub_island@dancers@crowddance_facedj@", "hi_dance_facedj_hu_17_male^5", "Drill · Male 6 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill7"] = {"anim@amb@nightclub@mini@dance@dance_solo@shuffle@", "high_right_up", "Drill · Solo 1 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill8"] = {"anim@amb@nightclub@mini@dance@dance_solo@shuffle@", "med_center", "Drill · Solo 2 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["drill9"] = {"anim@amb@nightclub@mini@dance@dance_solo@shuffle@", "high_right_down", "Drill · Solo 3 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }}, 
+    ["drill10"] = {"anim@amb@nightclub@mini@dance@dance_solo@shuffle@", "high_center", "Drill · Solo 4 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }}, 
+    ["Drill11"] = {"anim@amb@nightclub@mini@dance@dance_solo@shuffle@", "high_left_down", "Drill · Solo 5 ", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
    ["dancef"] = {"anim@amb@nightclub@dancers@solomun_entourage@", "mi_dance_facedj_17_v1_female^1", "Dance F", AnimationOptions =
    {
        EmoteLoop = true,
@@ -443,6 +491,133 @@ DP.Dances = {
 }
 
 DP.Emotes = {
+    ["pbox"] = {"mp_am_hold_up", "purchase_beerbox_shopkeeper", "Purchase Box ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 2500,
+   }},
+   ["ch"] = {"amb@code_human_police_investigate@idle_b", "idle_f", "Cop Search ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 7000,
+   }},
+   ["gangsign5"] = {"anim@mp_player_intupperdock", "idle_a", "Gang Sign ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteDuration = 2500,
+   }},
+   ["checkwatch"] = {"amb@code_human_wander_idles_fat@male@idle_a", "idle_a_wristwatch", "Check Watch · Male ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["picking"] = {"amb@prop_human_movie_bulb@idle_a", "idle_a", "Picking ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteDuration = 2500,
+   }},
+   ["gangaim"] = {"combat@aim_variations@1h@gang", "aim_variation_b", "Gang Aim ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteLoop = true,
+   }},
+   ["showboobs"] = {"mini@strip_club@backroom@", "stripper_b_backroom_idle_b", "Show Boobs ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 6000,
+   }},
+   ["cleanleg"] = {"mini@strip_club@backroom@", "stripper_c_leadin_backroom_idle_a", "Clean Legs ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 6000,
+   }},
+   ["showboobs2"] = {"mini@strip_club@idles@stripper", "stripper_idle_05", "Show Boobs 2 ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 6000,
+   }},
+   ["lockcar"] = {"anim@mp_player_intmenu@key_fob@", "fob_click", "Lock Car ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteDuration = 2500,
+   }},
+   ["selfie5"] = {"cellphone@self", "selfie", "Selfie 3 ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+   }},
+   ["selfiewc"] = {"cellphone@self@franklin@", "west_coast", "Selfie West Coast ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+   }},
+   ["selfie3"] = {"cellphone@self@michael@", "finger_point", "Selfie Finger ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+   }},
+   ["selfie4"] = {"cellphone@self@franklin@", "chest_bump", "Selfie Chest Bump ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+   }},
+   ["Selfie1"] = {"cellphone@self@trevor@", "throat_slit", "Selfie ~g~ New", AnimationOptions =
+   {
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+       EmoteMoving = false,
+   }},
+   ["Selfie2"] = {"cellphone@self@trevor@", "proud_finger", "Selfie2 ~g~ New", AnimationOptions =
+   {
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+       EmoteMoving = false,
+   }},
+   ["khaby"] = {"missarmenian3@simeon_tauntsidle_b", "areyounotman", "Khaby · Special ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["depressed"] = {"oddjobs@bailbond_hobodepressed", "base", "Depressed ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = true,
+   }},
+   ["carsign"] = {"amb@code_human_in_car_mp_actions@gang_sign_a@bodhi@rds@base", "idle_a", "Gang Sign · Car ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteDuration = 2500,
+   }},
+   ["carsign2"] = {"amb@code_human_in_car_mp_actions@gang_sign_a@low@ds@base", "idle_a", "Gang Signs 2 · Car ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteDuration = 2500,
+   }},
+   ["carlowrider"] = {"anim@veh@lowrider@low@front_ds@arm@base", "sit", "Lowrider Style · Car  ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteLoop = true,
+   }},
+   ["carlowrider2"] = {"anim@veh@lowrider@std@ds@arm@music@mexicanidle_a", "idle", "Lowrider Mexican Style · Car  ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteLoop = true,
+   }},
    ["drink"] = {"mp_player_inteat@pnq", "loop", "Drink", AnimationOptions =
    {
        EmoteMoving = true,
@@ -515,61 +690,6 @@ DP.Emotes = {
    ["idle7"] = {"anim@mp_corona_idles@male_d@idle_a", "idle_a", "Idle 7", AnimationOptions =
    {
        EmoteLoop = true,
-   }},
-   ["mgangsign_1"] = {"mikey@gangsigns@new", "mgangsign_1", "Gangsign 1", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_2"] = {"mikey@gangsigns@new", "mgangsign_2", "Gangsign 2", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_3"] = {"mikey@gangsigns@new", "mgangsign_3", "Gangsign 3", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_4"] = {"mikey@gangsigns@new", "mgangsign_4", "Gangsign 4", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_5"] = {"mikey@gangsigns@new", "mgangsign_5", "Gangsign 5", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_6"] = {"mikey@gangsigns@new", "mgangsign_6", "Gangsign 6", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_7"] = {"mikey@gangsigns@new", "mgangsign_7", "Gangsign 7", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_8"] = {"mikey@gangsigns@new", "mgangsign_8", "Gangsign 8", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_9"] = {"mikey@gangsigns@new", "mgangsign_9", "Gangsign 9", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_10"] = {"mikey@gangsigns@new", "mgangsign_10", "Gangsign 10", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
-   }},
-   ["mgangsign_11"] = {"mikey@gangsigns@new", "mgangsign_11", "Gangsign 11", AnimationOptions =
-   {
-       EmoteLoop = true,
-	   EmoteMoving = true,
    }},
    ["wait3"] = {"amb@world_human_hang_out_street@female_hold_arm@idle_a", "idle_a", "Wait 3", AnimationOptions =
    {
@@ -1833,6 +1953,463 @@ DP.Emotes = {
        EmoteMoving = true,
        EmoteDuration = 5000
    }},
+   ["reactiona"] = {"random@shop_robbery_reactions@", "absolutely", "Reaction Absolutely ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactanger"] = {"random@shop_robbery_reactions@", "anger_a", "Reaction Anger ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactwhy"] = {"random@shop_robbery_reactions@", "is_this_it", "Reaction Why ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactscrew"] = {"random@shop_robbery_reactions@", "screw_you", "Reaction Screw You ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactshock"] = {"random@shop_robbery_reactions@", "shock", "Reaction Shock ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactgoodc"] = {"missclothing", "good_choice_storeclerk", "Reaction Good Choice ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["trynewc"] = {"clothingtie", "try_tie_neutral_c", "Try New Clothes ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["trynewc2"] = {"clothingtie", "try_tie_neutral_d", "Try New Clothes 2 ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reacteasy"] = {"gestures@m@car@std@casual@ds", "gesture_easy_now", "Reaction Easy Now ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactıwill"] = {"gestures@m@car@std@casual@ds", "gesture_i_will", "Reaction I will ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactnoway"] = {"gestures@m@car@std@casual@ds", "gesture_no_way", "Reaction No Way ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactbye"] = {"gestures@f@standing@casual", "gesture_bye_hard", "Reaction Bye Hard ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reacthello"] = {"gestures@f@standing@casual", "gesture_hello", "Reaction Hello ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+      ["lookatplayer"] = {"friends@frl@ig_1", "look_lamar", "Look At Player ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+     ["reactgreat"] = {"mp_cp_welcome_tutgreet", "greet", "Great ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["fakepunch"] = {"missarmenian2", "fake_punch_walk_by_lamar", "Fake Punch ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+      ["reactdamn"] = {"missheist_jewel", "damn", "Reaction Damn ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+     ["imtellingyou"] = {"missheist_jewel", "im_telling_you", "I'm telling you ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["reactno"] = {"missheist_jewel", "despair", "Reaction No ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["dontkillme"] = {"missheist_jewel", "manageress_kneel_loop", "Dont Kill Me ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["bangbang"] = {"anim@mp_player_intcelebrationfemale@bang_bang", "bang_bang", "Bang Bang ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["tryshirtn"] = {"clothingshirt", "try_shirt_negative_a", "Try Shirt Negative ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["tryshirtp"] = {"clothingshirt", "try_shirt_positive_a", "Try Shirt Positive ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+      ["tryshoes"] = {"clothingshoes", "try_shoes_positive_d", "Try Shoes ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+    ["tryshoes2"] = {"clothingshoes", "try_shoes_positive_c", "Try Shoes 2 ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+    ["overhere"] = {"friends@fra@ig_1", "over_here_idle_a", "Over Here ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+    ["washingface"] = {"missmic2_washing_face", "michael_washing_face", "Washing Face ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+    ["lastday"] = {"misstrevor1", "ortega_outro_loop_ort", "Last Day ~g~ New", AnimationOptions =
+   {
+    EmoteLoop = true,
+   }},
+    ["tryg"] = {"mp_clothing@female@glasses", "try_glasses_positive_a", "Try Glasses · Female ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+    ["pickup"] = {"pickup_object", "pickup_low", "Pick Up ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["stretchl"] = {"switch@franklin@bed", "stretch_long", "Stretch Long ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["hos"] = {"amb@world_human_hang_out_street@male_a@idle_a", "idle_a", "Hang Out Street · Male ~g~ New", AnimationOptions =
+   {
+    EmoteLoop = true,
+   }},
+   ["hos2"] = {"amb@world_human_hang_out_street@male_c@base", "base", "Hang Out Street 2 · Male ~g~ New", AnimationOptions =
+   {
+    EmoteLoop = true,
+   }},
+   ["guardaim"] = {"guard_reactions", "1hand_aiming_cycle", "Guard Aim ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["gready"] = {"switch@franklin@getting_ready", "002334_02_fras_v2_11_getting_dressed_exit", "Getting Ready ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["lao"] = {"move_clown@p_m_two_idles@", "fidget_look_at_outfit", "Look At Outfits ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 6000,
+   }},
+   ["toilet"] = {"switch@trevor@on_toilet", "trev_on_toilet_loop", "Have A Shit ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+   ["toilet2"] = {"timetable@trevor@on_the_toilet", "trevonlav_struggleloop", "Have A Shit 2 ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+   ["covermale2"] = {"amb@code_human_cower@male@base", "base", "Cover · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["valet"] = {"anim@amb@world_human_valet@normal@base@", "base_a_m_y_vinewood_01", "Valet ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["valet2"] = {"anim@amb@world_human_valet@formal_right@base@", "base_a_m_y_vinewood_01", "Valet 2 ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = true,
+    EmoteLoop = true,
+   }},
+   ["sunbathem"] = {"amb@world_human_sunbathe@male@back@idle_a", "idle_c", "Sunbathe · Male ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteLoop = true,
+   }},
+   ["sunbathem2"] = {"amb@world_human_sunbathe@male@front@base", "base", "Sunbathe 2 · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["leancar"] = {"anim@scripted@carmeet@tun_meet_ig2_race@", "base", "Lean Car ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["checkout"] = {"anim@amb@carmeet@checkout_car@male_a@idles", "idle_b", "Check Out · Female ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["checkout2"] = {"anim@amb@carmeet@checkout_car@male_c@idles", "idle_a", "Check Out 2 · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["checkout"] = {"anim@amb@carmeet@checkout_car@female_d@base", "base", "Check Out 3 · Female ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["readmessages"] = {"anim@amb@carmeet@take_photos@male_a@base", "base", "Read Messages · Male ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+   }},
+   ["readmessages2"] = {"anim@amb@carmeet@take_photos@female_b@base", "base", "Read Messages 2 · Female ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,  
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+   }},
+   ["listenmusic"] = {"anim@amb@carmeet@listen_music@male_a@trans", "a_trans_d", "Listen Music ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+   ["jogger"] = {"move_f@jogger", "idle", "Jogger · Female ~g~ New", AnimationOptions =
+   {
+       EmoteDuration = 2500,
+       EmoteMoving = true,
+   }},
+   ["jogger2"] = {"move_m@jogger", "idle", "Jogger · Male ~g~ New", AnimationOptions =
+   {
+       EmoteDuration = 2500,
+       EmoteMoving = true,
+   }},
+   ["wtf"] = {"mini@triathlon", "wot_the_fuck", "Wot The Fuck ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["ucdt"] = {"mini@triathlon", "u_cant_do_that", "U Cant Do That ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["warmup"] = {"mini@triathlon", "ig_2_gen_warmup_01", "Warmup ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["warmup2"] = {"mini@triathlon", "ig_2_gen_warmup_02", "Warmup 2 ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["warmup3"] = {"mini@triathlon", "jog_idle_f", "Warmup 3 ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["warmup4"] = {"mini@triathlon", "jog_idle_e", "Warmup 4 ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["hmassage"] = {"missheistfbi3b_ig8_2", "cpr_loop_paramedic", "Heart Massage ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["passout"] = {"missheistfbi3b_ig8_2", "cower_loop_victim", "Pass Out ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["ddealer"] = {"amb@world_human_drug_dealer_hard@male@base", "base", "Drug Dealer · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["swatch"] = {"amb@world_human_strip_watch_stand@male_c@idle_a", "idle_b", "Watch Strip · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["checkw"] = {"amb@world_human_bum_wash@male@high@base", "base", "Check Water ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["waitt"] = {"oddjobs@taxi@", "idle_a", "Wait Taxi ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteDuration = 5000,
+   }},
+   ["noway"] = {"oddjobs@towingpleadingbase", "base", "No Way ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["tsomething"] = {"oddjobs@bailbond_hobohang_out_street_c", "idle_c", "Tell Something ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["lfh"] = {"oddjobs@assassinate@old_lady", "looking_for_help", "Looking For Help ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+   ["mstretch"] = {"oddjobs@assassinate@multi@", "idle_a", "Muscle Stretch ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+   ["dj"] = {"anim@mp_player_intcelebrationmale@dj", "dj", "DJ ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["dj2"] = {"anim@scripted@nightclub@dj@dj_moodm@", "moodm_cdj_left_a_12", "DJ 2 ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["dj3"] = {"anim@amb@nightclub@djs@switch@dixn_djset_switchover@", "dix_end_bg_female1", "DJ 3 ~g~ New", AnimationOptions =
+   {
+    EmoteLoop = true,
+   }},
+   ["dj4"] = {"anim@amb@nightclub_island@dancers@crowddance_facedj_transitions@from_low_intensity", "trans_dance_facedj_li_to_mi_11_v1_male^3", "DJ 4 ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["lmic"] = {"anim@veh@lowrider@std@ds@arm@music@hiphopidle_a", "idle", "Listen Music In Car ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = true,
+    EmoteDuration = 2500,
+   }},
+   ["gotc"] = {"random@getawaydriver@thugs", "base_a", "Get Off The Car ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = false,
+   }},
+   ["vsad"] = {"anim@amb@business@bgen@bgen_no_work@", "sit_phone_phoneputdown_sleeping-noworkfemale", "Very Sad ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["dgrave"] = {"anim@amb@drug_field_workers@rake@male_a@base", "base", "Digging Grave ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteLoop = true,
+       Prop = 'prop_tool_shovel006',
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.1, -0.6, 0.0, 0.0, 180.0},
+   }},
+   ["bow3"] = {"missheistdockssetup1ig_10@base", "talk_pipe_base_worker1", "Bend Over Wait ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 2500,
+   }},
+   ["weeding"] = {"anim@amb@drug_field_workers@weeding@male_a@base", "base", "Weeding · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["lookplan"] = {"missheist_agency2aig_4", "look_plan_c_worker2", "Look Plan ~g~ New", AnimationOptions =
+   {
+    EmoteMoving = false,
+    EmoteDuration = 5000,
+   }},
+   ["gangdrink"] = {"amb@world_human_drinking_fat@beer@male@base", "base", "Gang Drink ~g~ New", AnimationOptions =
+   {
+       Prop = 'prop_cs_beer_bot_40oz_03',
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["gangdrink"] = {"amb@world_human_drinking_fat@beer@male@idle_a", "idle_b", "Gang Drink 2 ~g~ New", AnimationOptions =
+   {
+       Prop = 'prop_cs_beer_bot_40oz_03',
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["mleaning"] = {"amb@world_human_leaning@male@wall@back@mobile@base", "base", "Mobile Leaning · Male ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = false,
+       EmoteLoop = true,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+   }},
+   ["thanks"] = {"random@arrests", "thanks_male_05", "Thanks ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["textingmale"] = {"amb@world_human_stand_mobile_fat@male@text@base", "base", "Texting · Male ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteLoop = true,
+       Prop = "prop_npc_phone_02",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+   }},
+   ["ffb"] = {"timetable@trevor@skull_loving_bear", "skull_loving_bear", "F*ck From Behind ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["sitchair7"] = {"timetable@reunited@ig_10", "isthisthebest_jimmy", "Sit Chair 7 ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["sitchair8"] = {"timetable@michael@on_sofabase", "sit_sofa_base", "Sit Chair 8 ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["sitchair9"] = {"timetable@trevor@smoking_meth@base", "base", "Sit Chair 9 ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["sitchair10"] = {"timetable@tracy@ig_7@base", "base", "Sit Chair 10 ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["standingt"] = {"amb@world_human_bum_standing@twitchy@base", "base", "Standing Twitchy ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["standingfit"] = {"amb@world_human_jog_standing@male@fitbase", "base", "Standing Fit ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["standingm"] = {"anim@amb@casino@hangout@ped_male@stand@03b@base", "base", "Standing · Male ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
+   ["standingf"] = {"anim@amb@casino@hangout@ped_female@stand@02a@base", "base", "Standing · Female ~g~ New", AnimationOptions =
+   {
+       EmoteLoop = true,
+   }},
 }
 
 DP.PropEmotes = {
@@ -2241,4 +2818,52 @@ DP.PropEmotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
+   ["clean3"] = {"switch@franklin@cleaning_car", "001946_01_gc_fras_v2_ig_5_base", "Clean 3 - ~g~ New", AnimationOptions =
+   {
+    Prop = "prop_sponge_01",
+    PropBone = 28422,
+    PropPlacement = {0.0, 0.0, -0.01, 90.0, 0.0, 0.0},
+    EmoteLoop = true,
+    EmoteMoving = true,
+    }},
+    ["micro"] = {"anim@heists@humane_labs@finale@keycards", "ped_a_enter_loop", "Hold a microphone - ~g~ New", AnimationOptions =
+   {
+       Prop = "p_ing_microphonel_01",
+       PropBone = 18905,
+       PropPlacement = {0.11, 0.03, 0.03, -100.0, 0.0, -10.0},
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
+   ["micro2"] = {"anim@heists@humane_labs@finale@keycards", "ped_a_enter_loop", "Hold a microphone 2 - ~g~ New", AnimationOptions =
+   {
+       Prop = "prop_microphone_02",
+       PropBone = 18905,
+       PropPlacement = {0.11, 0.03, 0.03, -100.0, 0.0, -10.0},
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
+   ["micro3"] = {"missfra1", "mcs2_crew_idle_m_boom", "Hold a microphone 3 - ~g~ New", AnimationOptions =
+   {
+       Prop = "prop_v_bmike_01",
+       PropBone = 28422,
+       PropPlacement = {-0.08, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteMoving = true,
+       EmoteLoop = true
+   }},
+   ["camerabig"] = {"missfinale_c2mcs_1", "fin_c2_mcs_1_camman", "Hold A Camera - ~g~ New", AnimationOptions =
+   {
+       Prop = "prop_v_cam_01",
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+       EmoteLoop = true,
+       EmoteMoving = true,
+   }},
+   ["dgrave1"] = {"anim@amb@drug_field_workers@rake@male_a@base", "base", "Digging Grave ~g~ New", AnimationOptions =
+   {
+       EmoteMoving = true,
+       EmoteLoop = true,
+       Prop = 'prop_tool_shovel006',
+       PropBone = 28422,
+       PropPlacement = {0.0, 0.1, -0.6, 0.0, 0.0, 180.0},
+    }},
 }
