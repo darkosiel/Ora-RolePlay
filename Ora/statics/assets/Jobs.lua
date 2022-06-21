@@ -1840,19 +1840,19 @@ Jobs = {
         FreeAccess = false,
         grade = {
             {
-                label = "CDD",
+                label = "Taxi CDD",
                 salary = 150,
                 name = "cdd",
                 show = true
             },
             {
-                label = "CDI",
+                label = "Taxi CDI",
                 salary = 160,
                 name = "cdi",
                 show = true
             },
             {
-                label = "Chef",
+                label = "Uber",
                 salary = 170,
                 name = "chef",
                 show = true
