@@ -26,6 +26,7 @@ local VehShop =
             Vehicles = {
                 ["Entreprise"] = {
                     {name = "newsvan", price = 30000},
+                    {name = "rumpo2", price = 12000},
                     {name = "emsnspeedo", price = 30000},
                     {name = "emsroamer", price = 30000},
                     {name = "corspeedo", price = 30000},
@@ -99,6 +100,7 @@ local VehShop =
                 },
                 ["Sport"] = {
                     {name = "alpha", price = 49725},
+                    {name = "argento", price = 140000},
                     {name = "banshee", price = 77350},
                     {name = "bestiagts", price = 110500},
                     {name = "blista2", price = 14000},
