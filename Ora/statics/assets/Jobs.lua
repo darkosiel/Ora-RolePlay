@@ -1884,6 +1884,12 @@ Jobs = {
                         TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "taxi")
                     end
                 },
+                -- {
+                --     label = "Commencer une mission",
+                --     onSelected = function()
+                --         StartTaxiMission()
+                --     end
+                -- },
                 {
                     label = "Facturation",
                     onSelected = function()
