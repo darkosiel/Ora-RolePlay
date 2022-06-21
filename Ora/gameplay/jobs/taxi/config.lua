@@ -9,7 +9,7 @@ taxi.startMission= {
 }
 
 taxi.endMission= {
-    {pos = vector3(937.52, -2441.78, 28.48 - 0.98), heading = 358.41},
+    {pos = vector3(901.74, -183.43, 73.89 - 0.98), heading = 358.41},
 }
 
 taxi.DropOff = {

@@ -1884,12 +1884,16 @@ Jobs = {
                         TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "taxi")
                     end
                 },
-                -- {
-                --     label = "Commencer une mission",
-                --     onSelected = function()
-                --         StartTaxiMission()
-                --     end
-                -- },
+                {
+                    label = "Commencer une mission",
+                    onSelected = function()
+                        if LocalPlayer().FarmLimit >= 600 then
+                            ShowNotification("Vous avez atteint votre limite de missions journalière.")
+                        else
+                            StartTaxiMission()
+                        end
+                    end
+                },
                 {
                     label = "Facturation",
                     onSelected = function()

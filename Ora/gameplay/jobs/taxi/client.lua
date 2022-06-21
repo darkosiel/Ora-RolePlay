@@ -94,6 +94,17 @@ function StartTaxiMission(param)
                             1
                         )
 
+                        TriggerServerCallback(
+                            "Ora::SE::Money:AuthorizePayment", 
+                            function(token)
+                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = 245, SOURCE = "Taxi", LEGIT = true})
+                            end,
+                            {}
+                        )
+
+                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "taxi", 245, true)
+                        TriggerServerEvent("entreprise:Add", "taxi", 245)
+
                         SetVehicleUndriveable(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
                         FreezeEntityPosition(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
                         Citizen.Wait(1000)
@@ -132,14 +143,14 @@ function StartTaxiMission(param)
                                     ShowAdvancedNotification(
                                         "Centrale",
                                         "~b~Dialogue",
-                                        "~g~~h~Tu as réussi à le rattraper. Tu reçois " .. r .. "$.~h~~w~",
+                                        "~g~~h~Tu as réussi à le rattraper. Tu reçois 300 $.~h~~w~",
                                         "CHAR_LESTER",
                                         1
                                     )
                                     TriggerServerCallback(
                                         "Ora::SE::Money:AuthorizePayment", 
                                         function(token)
-                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Taxi", LEGIT = true})
+                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = 300, SOURCE = "Taxi", LEGIT = true})
                                         end,
                                         {}
                                     )
@@ -166,14 +177,14 @@ function StartTaxiMission(param)
                                 ShowAdvancedNotification(
                                     "Client",
                                     "~b~Dialogue",
-                                    "~g~~h~Je vous donne " .. r .. "$.~h~~w~",
+                                    "~g~~h~Je vous donne 245 $.~h~~w~",
                                     "CHAR_LESTER",
                                     1
                                 )
                                 TriggerServerCallback(
                                     "Ora::SE::Money:AuthorizePayment", 
                                     function(token)
-                                        TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = r, SOURCE = "Migrant", LEGIT = true})
+                                        TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = 245, SOURCE = "Taxi", LEGIT = true})
                                     end,
                                     {}
                                 )
@@ -189,11 +200,10 @@ function StartTaxiMission(param)
 
                             if (GetVehiclePedIsIn(LocalPlayer().Ped, false) ~= nil and currentDropOffIndex < #taxi.DropOff) then 
                                 math.randomseed(GetGameTimer() * math.random(10000, 50000))
-                                local migrantModel = taxi.Type.clients[math.random(#taxi.Type.clients)]
+                                local clientModel = "s_f_y_hooker_03"
                                 local vehicleLocation = GetEntityCoords(GetVehiclePedIsIn(LocalPlayer().Ped, false))
                                 oldPassenger = passenger
-                                passenger = Ora.World.Ped:Create(5, migrantModel, vector3(vehicleLocation.x + 2.0, vehicleLocation.y + 2.0, vehicleLocation.z), 0.0)
-                                TaskEnterVehicle(passenger, GetVehiclePedIsIn(LocalPlayer().Ped, false), 2000, 2, 2.0, 16, 0)
+                                passenger = Ora.World.Ped:CreatePedInsideVehicle(GetVehiclePedIsIn(LocalPlayer().Ped, false), 5, GetHashKey("s_f_y_hooker_03"), 2, true, true)
                             end
                         end
 
@@ -211,11 +221,14 @@ function StartTaxiMission(param)
                     ShowAdvancedNotification(
                         "Centrale",
                         "~b~Dialogue",
-                        "~g~~h~Merci pour ton bon boulot.~h~~w~",
+                        "~g~~h~Merci pour ton bon boulot. Ta mission est terminée.~h~~w~",
                         "CHAR_LESTER",
                         1
                     )
-                    
+
+                    RemoveBlip(currentMission.blip)
+                    SetFarmLimit(100)
+
                     local truckLaunched = false
                     local currentPath = 1
                     local startDropOff = false
