@@ -5,8 +5,10 @@ game 'gta5'
 ui_page 'NUI/SaltyWebSocket.html'
 
 client_scripts {
-    'SaltyClient.net.dll'
+    'SaltyClient.net.dll',
+    "lua/client.lua"
 }
+
 
 server_scripts {
     'SaltyServer.net.dll'
