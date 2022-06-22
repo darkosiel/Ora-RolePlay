@@ -449,6 +449,7 @@ vehCoffres = {
     ["pounder"] = 200,
     ["brickade"] = 95,
     ["journey"] = 100,
+    ["newsvan"] = 100,
     --new
     ["elegy"] = 60,
     ["tempesta"] = 45,
