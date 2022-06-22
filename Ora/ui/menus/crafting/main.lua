@@ -54,7 +54,7 @@ local CraftingRecipe = {
     },
     ["champagne"] = {
         ingredient = {
-            {name="bouteille_vinr",amount=1},
+            {name="bouteille_vin",amount=1},
             {name="water",amount=1},
             {name="levure",amount=1},
         },
