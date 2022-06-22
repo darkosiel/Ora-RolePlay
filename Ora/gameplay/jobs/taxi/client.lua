@@ -89,21 +89,13 @@ function StartTaxiMission(param)
                         ShowAdvancedNotification(
                             "Client",
                             "~b~Dialogue",
-                            "~g~~h~Je descends, voici votre argent.~h~~w~",
+                            "~g~~h~Je descends, j'ai payé ton patron.~h~~w~",
                             "CHAR_LESTER",
                             1
                         )
 
-                        TriggerServerCallback(
-                            "Ora::SE::Money:AuthorizePayment", 
-                            function(token)
-                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = 245, SOURCE = "Taxi", LEGIT = true})
-                            end,
-                            {}
-                        )
-
-                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "taxi", 245, true)
-                        TriggerServerEvent("entreprise:Add", "taxi", 245)
+                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "taxi", 120, true)
+                        TriggerServerEvent("entreprise:Add", "taxi", 120)
 
                         SetVehicleUndriveable(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
                         FreezeEntityPosition(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
@@ -120,7 +112,7 @@ function StartTaxiMission(param)
                                 ShowAdvancedNotification(
                                     "Client",
                                     "~b~Dialogue",
-                                    "~r~~h~Tu roules commme une merde | Pète lui la gueule pour obtenir l'argent. Tu as 60 secondes~h~~w~",
+                                    "~r~~h~Tu roules commme une merde !! | Pète lui la gueule pour obtenir l'argent. Tu as 60 secondes~h~~w~",
                                     "CHAR_LESTER",
                                     1
                                 )
@@ -147,13 +139,6 @@ function StartTaxiMission(param)
                                         "CHAR_LESTER",
                                         1
                                     )
-                                    TriggerServerCallback(
-                                        "Ora::SE::Money:AuthorizePayment", 
-                                        function(token)
-                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = 300, SOURCE = "Taxi", LEGIT = true})
-                                        end,
-                                        {}
-                                    )
 
                                     TriggerServerEvent("Ora::SE::World:Entity:Delete", {handle = passenger, network_id = NetworkGetNetworkIdFromEntity(passenger), seconds = 30})
 
@@ -177,16 +162,9 @@ function StartTaxiMission(param)
                                 ShowAdvancedNotification(
                                     "Client",
                                     "~b~Dialogue",
-                                    "~g~~h~Je vous donne 245 $.~h~~w~",
+                                    "~g~~h~J'ai payé votre patron. Ciao' $.~h~~w~",
                                     "CHAR_LESTER",
                                     1
-                                )
-                                TriggerServerCallback(
-                                    "Ora::SE::Money:AuthorizePayment", 
-                                    function(token)
-                                        TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = 245, SOURCE = "Taxi", LEGIT = true})
-                                    end,
-                                    {}
                                 )
                                 TaskLeaveVehicle(passenger)
                                 TaskWanderStandard(passenger, 10.0, 10)
