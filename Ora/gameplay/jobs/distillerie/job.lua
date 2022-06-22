@@ -109,7 +109,7 @@ DistillerieCrafts["alcools"] = {
             craftAlcool(data)
         end
     },
-    --[[ champagne = {
+    champagne = {
         title = "Champagne",
         item = "champagne",
         label = "CHAMPAGNE",
@@ -125,7 +125,7 @@ DistillerieCrafts["alcools"] = {
             local data = DistillerieCrafts["alcools"]["champagne"]
             craftAlcool(data)
         end
-    }, ]]
+    },
     red_wine = {
         title = "Bouteille de vin",
         item = "red_wine",
