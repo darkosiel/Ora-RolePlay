@@ -54,7 +54,7 @@ local Blips = {
    -- {name = "Beeker's Garage", color = 47, sprite = 643, Pos = {x = 113.03, y = 6620.29, z = 31.82}},
    -- {name = "Harmony Repairs", color = 61, sprite = 488, size = 1.05, Pos = {x = 1178.06, y = 2646.36, z = 37.75}},
     {name = "Journaliste", color = 2, sprite = 184, Pos = {x = -582.75, y = -927.19, z = 36.83}},
-    --{name="Taxi", color = 5, sprite=198, Pos = {x=909.18, y=-179.6, z=74.17}},
+    {name="Taxi", color = 5, sprite=198, Pos = {x=909.18, y=-179.6, z=74.17}},
     --{name="Tabac", color = 2, sprite=79, Pos = {x=2010.8, y=3076.6, z=47.06}},
 
     --{name = "Chez Larry", color = 2, sprite = 77, Pos = {x = 1224.63, y = 2727.31, z = 38.00}},
