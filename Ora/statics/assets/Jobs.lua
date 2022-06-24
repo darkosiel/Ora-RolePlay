@@ -2017,15 +2017,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage District Records",
-            Pos = {x = 1183.9031, y = -3236.6330, z = 5.029},
+            Pos = {x = -973.4893, y = -269.6187, z = 37.31},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85}
+                spawnpos = {x = -973.4893, y = -269.6187, z = 37.31, h = 179.85}
             },
             Blipdata = {
-                Pos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85},
+                Pos = {x =  -973.4893, y = -269.6187, z = 37.31, h = 179.85},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
