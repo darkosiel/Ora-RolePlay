@@ -55,7 +55,7 @@ local Blips = {
    -- {name = "Harmony Repairs", color = 61, sprite = 488, size = 1.05, Pos = {x = 1178.06, y = 2646.36, z = 37.75}},
     {name = "Journaliste", color = 2, sprite = 184, Pos = {x = -582.75, y = -927.19, z = 36.83}},
     {name="Taxi", color = 5, sprite=198, Pos = {x=909.18, y=-179.6, z=74.17}},
-    {name="District Records", color = 5, sprite=136, Pos = {x=909.18, y=-179.6, z=74.17}},
+    {name ="District Records", color = 63, sprite=136, Pos = {x = -1012.5096, y= -268.2939, z=39.03}},
     --{name="Tabac", color = 2, sprite=79, Pos = {x=2010.8, y=3076.6, z=47.06}},
 
     --{name = "Chez Larry", color = 2, sprite = 77, Pos = {x = 1224.63, y = 2727.31, z = 38.00}},
