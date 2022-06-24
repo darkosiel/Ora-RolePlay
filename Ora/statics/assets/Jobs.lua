@@ -1950,6 +1950,105 @@ Jobs = {
         },
         requiredService = true
     },
+    rappeur = {
+        label = "District Records",
+        label2 = "District Records",
+        iban = "rappeur",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "Employé",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "Responsable de projet",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Directeur artistique",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "District Records",
+                subtitle = "Actions disponibles",
+                name = "rappeur_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("rappeur")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "District Records", "Annonce", text, "CHAR_RAPPEUR", 8, "District Records")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage District Records",
+            Pos = {x = 1183.9031, y = -3236.6330, z = 5.029},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85}
+            },
+            Blipdata = {
+                Pos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -996.6784, y = -257.2656, z = 39.03 - 0.98},
+                Limit = 200,
+                Name = "coffre_rappeur"
+            },
+            {
+                Pos = {x = -977.5216, y = -257.2708, z = 38.47 - 0.98},
+                Limit = 2000,
+                Name = "coffre_rappeur1"
+            },
+            {
+                Pos = {x = -1008.1710, y = -265.2815, z = 44.79 - 0.98},
+                Limit = 2000,
+                Name = "coffre_rappeur2"
+            }
+        },
+        requiredService = false
+    },
     ltdnord = {
         label = "LTD Nord",
         label2 = "ltd nord",
