@@ -116,7 +116,7 @@ DistillerieCrafts["alcools"] = {
         time = 1000,
         required = {
             {name = "water", count = 1},
-            {name = "bouteille_vinr", count = 1},
+            {name = "bouteille_vin", count = 1},
             {name = "levure", count = 1}
         },
         selected = function()
