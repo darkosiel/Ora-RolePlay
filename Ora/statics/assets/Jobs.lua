@@ -6738,7 +6738,7 @@ Jobs = {
                                 ActiveFct = function()
                                     Ambulance.DrawMarkerStretcher(true)
                                 end
-                            },,
+                            },
                             {
                                 label = "Sortir une chaise roulante",
                                 onSelected = function()
