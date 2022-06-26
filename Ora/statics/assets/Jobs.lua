@@ -6738,6 +6738,18 @@ Jobs = {
                                 ActiveFct = function()
                                     Ambulance.DrawMarkerStretcher(true)
                                 end
+                            },,
+                            {
+                                label = "Sortir une chaise roulante",
+                                onSelected = function()
+                                    ExecuteCommand("wheelchair")
+                                end
+                            },
+                            {
+                                label = "Ranger une chaise roulante",
+                                onSelected = function()
+                                    ExecuteCommand("removewheelchair")
+                                end
                             }
                         }
                     }
