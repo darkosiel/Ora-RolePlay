@@ -382,7 +382,7 @@ end
 function IllegalLabsAndWarehouse.CreatePayement()
     exports['Snoupinput']:ShowInput("Titre du paiement", 50, "text", "Paiement labo", true)
     local title = exports['Snoupinput']:GetInput()
-    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /)", 30, "text", "propre/sale", true)
+    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /)", 30, "text", "propre", true)
     local type = exports['Snoupinput']:GetInput()
     exports['Snoupinput']:ShowInput("Montant du paiement", 30, "number", nil, true)
     local amount = tonumber(exports['Snoupinput']:GetInput())
@@ -605,7 +605,7 @@ Citizen.CreateThread(function()
                             function(Hovered, Active, Selected)
                                 if Selected then
                                     IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = true
-                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
+                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre", true)
                                     local type = exports['Snoupinput']:GetInput()
 
                                     if (type and type == "propre") then
@@ -709,7 +709,7 @@ Citizen.CreateThread(function()
                             function(Hovered, Active, Selected)
                                 if Selected then
                                     IllegalLabsAndWarehouse.MENUS.DRUGLAB.PAYMENT_PROCESS = true
-                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
+                                    exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre", true)
                                     local type = exports['Snoupinput']:GetInput()
 
                                     if (type and type == "propre") then

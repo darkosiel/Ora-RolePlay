@@ -459,7 +459,7 @@ Citizen.CreateThread(function()
                                 function(Hovered, Active, Selected)
                                     if Selected then
                                         IllegalLabsAndWarehouse.MENUS.GUNLEAD.PAYMENT_PROCESS = true
-                                        exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
+                                        exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre", true)
                                         local type = exports['Snoupinput']:GetInput()
 
                                         if (type and type == "propre") then
@@ -563,7 +563,7 @@ Citizen.CreateThread(function()
                                 function(Hovered, Active, Selected)
                                     if Selected then
                                         IllegalLabsAndWarehouse.MENUS.GUNLEAD.PAYMENT_PROCESS = true
-                                        exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre/sale", true)
+                                        exports['Snoupinput']:ShowInput("Type de paiement (supprimez le mauvais et le /) | " .. math.floor(Ora.Illegal.FakeMoneyTax * 100) .. "% du prix initial en argent sale", 30, "text", "propre", true)
                                         local type = exports['Snoupinput']:GetInput()
 
                                         if (type and type == "propre") then
