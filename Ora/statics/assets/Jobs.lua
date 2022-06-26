@@ -179,7 +179,7 @@ Jobs = {
                 {
                     label = "Annuler l'appel en cours",
                     onSelected = function()
-                        Ora.Jobs.Firefighter.Dispatch:clear(0)
+                        TriggerEvent("call:cancelCall")
                     end
                 }
             }
