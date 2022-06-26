@@ -916,7 +916,7 @@ PublicGarage = {
         Blipdata = {
             Pos = {x = 1498.45, y = 3747.46, z = 33.85 - 0.5},
             Blipcolor = 84,
-            Blipname = "Garage"
+            Blipname = "Parkings"
         },
         Marker = {
             type = 1,
@@ -939,7 +939,7 @@ PublicGarage = {
         Blipdata = {
             Pos = {x = 182.18, y = 6625.57, z = 31.68, h = 196.93},
             Blipcolor = 84,
-            Blipname = "Garage"
+            Blipname = "Parkings"
         },
         Marker = {
             type = 1,
@@ -962,7 +962,7 @@ PublicGarage = {
         Blipdata = {
             Pos = {x = 230.4, y = -794.27, z = 29.6, h = 162.05},
             Blipcolor = 84,
-            Blipname = "Garage"
+            Blipname = "Parkings"
         },
         Marker = {
             type = 1,
@@ -985,7 +985,7 @@ PublicGarage = {
         Blipdata = {
             Pos = {x = -1176.15, y = -734.06, z = 19.31, h = 235.05},
             Blipcolor = 84,
-            Blipname = "Garage"
+            Blipname = "Parkings"
         },
         Marker = {
             type = 1,
@@ -1009,7 +1009,7 @@ PublicGarage = {
             Pos = {x=-1676.84,y=-3118.71,z=12.99,h=243.91},
             Blipcolor  =84,
             BlipId = 524,
-            Blipname = "Garage Pegasus"
+            Blipname = "Parkings Pegasus"
         },
         Marker = {
             type = 1,
