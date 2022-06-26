@@ -58,21 +58,14 @@ Config.DJPositions = {
         name = 'henhouse',
         pos = vector3(-312.4682, 6264.6762, 32.0590 - 0.98),
         requiredJob = nil, 
-        range = 15.0, 
+        range = 19.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
-        name = 'Purl',
-        pos = vector3(-1831.1268, -1190.3728, 19.87 - 0.98),
+        name = 'djset',
+        pos = vector3(683.78, 569.74, 130.46 - 0.98),
         requiredJob = nil, 
-        range = 15.0, 
-        volume = 1.0 --[[ do not touch the volume! --]]
-    },
-    {
-        name = 'runner',
-        pos = vector3(149.07, -3013.24, 7.04 - 0.98),
-        requiredJob = nil, 
-        range = 30.0, 
+        range = 90.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     }
 
