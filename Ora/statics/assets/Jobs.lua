@@ -9975,25 +9975,55 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Hackeur",
-            Pos = {x = -594.419, y = 201.161, z = 70.80},
+            Name = "Garage Cerberus",
+            Pos = {x = 4971.57, y = -5746.44, z = 19.88},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -595.064, y = 201.345, z = 71.00, h = 1.17}
+                spawnpos = {x = 4971.57, y = -5746.44, z = 19.88, h = 1.17}
             },
             Blipdata = {
-                Pos = {x = -589.293, y = 197.247, z = 71.00},
+                Pos = {x = 4971.57, y = -5746.44, z = 19.88},
                 Blipcolor = 5,
-                Blipname = "Garage Hackeur"
+                Blipname = "Garage Cerberus"
+            }
+        },
+        garage2 = {
+            Name = "Garage Cerberus2",
+            Pos = {x = 4487.63, y = -4465.17, z = 4.22},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 4487.63, y = -4465.17, z = 4.22, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x = 4487.63, y = -4465.17, z = 4.22},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus2"
+            }
+        },
+        garage3 = {
+            Name = "Garage Cerberus3",
+            Pos = {x = -970.16, y = -3000.53, z = 13.94},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -970.16, y = -3000.53, z = 13.94, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x = -970.16, y = -3000.53, z = 13.94},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus3"
             }
         },
         Storage = {
             {
-                Pos = {x = -578.955, y = 229.933, z = 73.80},
-                Limit = 500,
-                Name = "coffre hackeur"
+                Pos = {x = 5005.33, y = -5754.53, z = 28.84},
+                Limit = 5000,
+                Name = "coffre cerberus"
             }
         }
     },
