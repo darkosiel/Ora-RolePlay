@@ -546,6 +546,105 @@ Jobs = {
             }
         }
     },
+    coiffeur3 = {
+        label = "Coiffeur Miror",
+        label2 = "Coiffeur Miror",
+        iban = "coiffeur3",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -36.48, y = -155.96, z = 57.07 - 0.98},
+                Limit = 100,
+                Name = "coffre_coiffeur"
+            }
+        },
+        garage = {
+            Name = "Garage Coiffeur",
+            Pos = {x = -19.92, y = -139.68, z = 56.83 - 0.98},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -19.92, y = -139.68, z = 56.83 - 0.98, h = 337.18}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage - coiffeur"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "coiffeur",
+                subtitle = "Action",
+                name = "coiffeur_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("coiffeur3")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Coiffure",
+                    onSelected = function()
+                        for i = 1, 10, 1 do
+                            Wait(1)
+                            RageUI.GoBack()
+                        end
+                        RageUI.Visible(RMenu:Get("haircuts", "main"), true)
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Mirror park", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur")
+                        end
+                    end
+                }
+            }
+        }
+    },
     coiffeurnord = {
         label = "Coiffeur Nord",
         label2 = "Coiffeur Nord",
