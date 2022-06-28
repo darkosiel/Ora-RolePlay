@@ -1549,6 +1549,167 @@ Jobs = {
             }
         }
     },
+    pearls = {
+        label = "Pearls",
+        label2 = "Pearls",
+        iban = "pearls",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Pearls",
+                subtitle = "Actions disponibles",
+                name = "restaurant_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("pearls")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Pearls", "Annonce", text, "CHAR_PEARLS", 8, "Restaurant")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Pearls",
+            Pos = {x = -1796.88, y = -1180.76, z = 12.31},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24}
+            },
+            Blipdata = {
+                Pos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -1839.74, y = -1189.69, z = 13.32},
+                Limit = 500,
+                Name = "coffre_caveresto2"
+            },
+            {
+                Pos = {x = -1855.52, y = -1195.06, z = 12.10},
+                Limit = 500,
+                Name = "coffre_caveresto"
+            },
+            {
+                Pos = {x = -1840.72, y = -1183.35, z = 18.20},
+                Limit = 500,
+                Name = "coffre_pearls_club"
+            },
+            {
+                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
+                Limit = 200,
+                Name = "coffre_pearls_bureau"
+            }
+        },
+        requiredService = false,
+        work = {
+            traitement2 = {
+                --Filet de daurade
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "planche",
+                Pos = {x = -1842.25, y = -1185.11, z = 13.33},
+                required = "fish6",
+                giveitem = "filetdaurade",
+                RemoveItem = "fish6",
+                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
+            },
+            traitement = {
+                --milkshack
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Traitement milkshack",
+                Pos = {x = -1838.36, y = -1183.82, z = 13.33},
+                required = "milk",
+                giveitem = "milkshack",
+                RemoveItem = "milk",
+                add = "~p~+ 1  Milkshack"
+            },
+            traitement3 = {
+                --pizza au saumon
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "four",
+                Pos = {x = -1836.62, y = -1184.59, z = 13.33},
+                required = {
+                    {name = "bread", count = 1},
+                    {name = "fish12", count = 1}
+                },
+                giveitem = "pizzasaumon",
+                RemoveItem = {
+                    {name = "bread", count = 1},
+                    {name = "fish12", count = 1}
+                },
+                add = "~p~+ 1  Pizza au saumon"
+            },
+            traitement4 = {
+                --cupcake
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Traitement Cupcake",
+                Pos = {x = -1837.41, y = -1186.21, z = 13.33},
+                required = "bread",
+                giveitem = "cupcake",
+                RemoveItem = "bread",
+                add = "~p~+ 1  Cupcake"
+            }
+        }
+    },
     restaurant = {
         label = "Mirror",
         label2 = "Mirror",
