@@ -2720,19 +2720,6 @@ DP.PropEmotes = {
        PtfxInfo = Config.Languages[Config.MenuLanguage]['makeitrain'],
        PtfxWait = 500,
    }},
-   ["camera"] = {"amb@world_human_paparazzi@male@base", "base", "Camera", AnimationOptions =
-   {
-       Prop = 'prop_pap_camera_01',
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-       EmoteLoop = true,
-       EmoteMoving = true,
-       PtfxAsset = "scr_bike_business",
-       PtfxName = "scr_bike_cfid_camera_flash",
-       PtfxPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0},
-       PtfxInfo = Config.Languages[Config.MenuLanguage]['camera'],
-       PtfxWait = 200,
-   }},
    ["champagnespray"] = {"anim@mp_player_intupperspray_champagne", "idle_a", "Champagne Spray", AnimationOptions =
    {
        Prop = 'ba_prop_battle_champ_open',
@@ -2826,38 +2813,6 @@ DP.PropEmotes = {
     EmoteLoop = true,
     EmoteMoving = true,
     }},
-    ["micro"] = {"anim@heists@humane_labs@finale@keycards", "ped_a_enter_loop", "Hold a microphone - ~g~ New", AnimationOptions =
-   {
-       Prop = "p_ing_microphonel_01",
-       PropBone = 18905,
-       PropPlacement = {0.11, 0.03, 0.03, -100.0, 0.0, -10.0},
-       EmoteMoving = true,
-       EmoteLoop = true
-   }},
-   ["micro2"] = {"anim@heists@humane_labs@finale@keycards", "ped_a_enter_loop", "Hold a microphone 2 - ~g~ New", AnimationOptions =
-   {
-       Prop = "prop_microphone_02",
-       PropBone = 18905,
-       PropPlacement = {0.11, 0.03, 0.03, -100.0, 0.0, -10.0},
-       EmoteMoving = true,
-       EmoteLoop = true
-   }},
-   ["micro3"] = {"missfra1", "mcs2_crew_idle_m_boom", "Hold a microphone 3 - ~g~ New", AnimationOptions =
-   {
-       Prop = "prop_v_bmike_01",
-       PropBone = 28422,
-       PropPlacement = {-0.08, 0.0, 0.0, 0.0, 0.0, 0.0},
-       EmoteMoving = true,
-       EmoteLoop = true
-   }},
-   ["camerabig"] = {"missfinale_c2mcs_1", "fin_c2_mcs_1_camman", "Hold A Camera - ~g~ New", AnimationOptions =
-   {
-       Prop = "prop_v_cam_01",
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-       EmoteLoop = true,
-       EmoteMoving = true,
-   }},
    ["dgrave1"] = {"anim@amb@drug_field_workers@rake@male_a@base", "base", "Digging Grave ~g~ New", AnimationOptions =
    {
        EmoteMoving = true,
