@@ -253,6 +253,19 @@ Citizen.CreateThread(
                                 end
                             end
                         )
+                        
+                        RageUI.Button(
+                            "Gérer la radio",
+                            nil,
+                            {},
+                            true,
+                            function(Hovered, Active, Selected, Index)
+                                if (Selected) then
+                                    ExecuteCommand('radiocar')
+                                    RageUI.Visible(RMenu:Get("personnal", "vehicule"), false)
+                                end
+                            end
+                        )
 
                         RageUI.Button(
                             "Créer une course",
