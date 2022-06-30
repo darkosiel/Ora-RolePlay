@@ -10363,7 +10363,7 @@ Jobs = {
         },
         garage4 = {
             Name = "Garage Cerberus3",
-            Pos = {x = -169.15 y =  -589.18, z = 32.42},
+            Pos = {x = -169.15, y =  -589.18, z = 32.42},
             Properties = {
                 type = 3,
                 Limit = 20,
