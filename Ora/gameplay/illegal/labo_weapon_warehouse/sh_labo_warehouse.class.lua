@@ -813,7 +813,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "stickybomb", byWeek = 10, price = 1500},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "snip", byWeek = 108, price = 4},
-      {name = "calibre12", byWeek = 50, price = 3}
+      {name = "calibre12", byWeek = 50, price = 3},
     },
     security = {
       [1] = {
@@ -838,7 +838,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           addon = {
             pistol = 3,
             mm9 = 250,
-            snip = 35
+            snip = 35,
           }
       },
       [2] = {
@@ -850,7 +850,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
             snspistol = 6,
             pitollourd = 6,
             mm9 = 500,
-            snip = 75
+            snip = 75,
           }
       },
       [3] = {
