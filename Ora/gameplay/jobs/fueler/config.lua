@@ -189,6 +189,12 @@ Station = {
         priceL = 1.30
       }, -- Palomino Freeway
       {
+        id = nil, 
+        coords = vector3(-64.0269, -2529.3581, 3.07), 
+        radius = 5.0, 
+        priceL = 2.50
+      },-- Raffinerie
+      {
         id = 11, 
         coords = vector3(2679.931, 3264.138, 54.80), 
         radius = 5.00, 
