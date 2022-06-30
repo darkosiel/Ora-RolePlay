@@ -830,8 +830,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [1] = {
           label = "Confiance commerciale 1",
-          description = "Pour 80 000$ vous obtenez 3 berettas, 1 Desert Eagle, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
-          price = 80000,
+          description = "Pour 35 000$ vous obtenez 3 berettas, 1 Desert Eagle, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
+          price = 35000,
           addon = {
             pistol = 3,
             pistol50 = 1,
@@ -841,8 +841,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [2] = {
           label = "Confiance commerciale 2",
-          description = "Pour 150 000$ vous obtenez 6 berettas, 3 Desert Eagle, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
-          price = 150000,
+          description = "Pour 75 000$ vous obtenez 6 berettas, 3 Desert Eagle, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
+          price = 75000,
           addon = {
             pistol = 6,
             pistol50 = 2,
@@ -852,8 +852,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [3] = {
         label = "Confiance commerciale 3",
-        description = "Pour 80 000$ vous obtenez 15 berettas, 750 balles de 9mm et 5 Bombes artisanal en plus par semaine par rapport à la limite de base",
-        price = 80000,
+        description = "Pour 55 000$ vous obtenez 15 berettas, 750 balles de 9mm et 5 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        price = 55000,
         addon = {
           pistol = 15,
           pistol50 = 3,
@@ -864,8 +864,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [4] = {
         label = "Confiance commerciale 4",
-        description = "Pour 150 000$ vous obtenez 20 berettas, 1000 balles de 9mm et 7 Bombes artisanal en plus par semaine par rapport à la limite de base",
-        price = 150000,
+        description = "Pour 85 000$ vous obtenez 20 berettas, 1000 balles de 9mm et 7 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        price = 85000,
         addon = {
           pistol = 20,
           pistol50 = 3,
@@ -876,8 +876,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [5] = {
         label = "Confiance commerciale 5",
-        description = "Pour 85 000$ vous obtenez 25 berettas, 4 Desert Eagle, 1500 balles de 9mm, 150 balles de .300 et 10 Bombes artisanal en plus par semaine par rapport à la limite de base",
-        price = 85000,
+        description = "Pour 45 000$ vous obtenez 25 berettas, 4 Desert Eagle, 1500 balles de 9mm, 150 balles de .300 et 10 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        price = 45000,
         addon = {
           pistol = 25,
           pistol50 = 4,
@@ -889,8 +889,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [6] = {
           label = "Confiance commerciale 6",
-          description = "Pour 150 000$ vous obtenez 35 berettas, 5 Desert Eagle, 2500 balles de 9mm, 250 balles de .300 Magnum et 15 Bombes artisanal en plus par semaine par rapport à la limite de base",
-          price = 150000,
+          description = "Pour 85 000$ vous obtenez 35 berettas, 5 Desert Eagle, 2500 balles de 9mm, 250 balles de .300 Magnum et 15 Bombes artisanal en plus par semaine par rapport à la limite de base",
+          price = 85000,
           addon = {
             pistol = 35,
             pistol50 = 5,

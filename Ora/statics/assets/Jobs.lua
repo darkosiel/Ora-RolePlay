@@ -10361,6 +10361,21 @@ Jobs = {
                 Blipname = "Garage Cerberus3"
             }
         },
+        garage4 = {
+            Name = "Garage Cerberus3",
+            Pos = {x = -169.15 y =  -589.18, z = 32.42},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x =  -169.15, y =  -589.18, z = 32.42, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x =  -169.15, y =  -589.18, z = 32.42},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus3"
+            }
+        },
         Storage = {
             {
                 Pos = {x = 5005.33, y = -5754.53, z = 28.84},
