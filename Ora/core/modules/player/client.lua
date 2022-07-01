@@ -275,7 +275,7 @@ exports(
 Citizen.CreateThread(
     function()
         while true do
-            Wait(1000 * 300)
+            Wait(1000)
             if (Ora.Player.HasLoaded == true) then
                 Ora.Inventory:Save(true)
                 if (GetEntityHealth(LocalPlayer().Ped) ~= Ora.Health:GetCurrentRegisteredHealth()) then
