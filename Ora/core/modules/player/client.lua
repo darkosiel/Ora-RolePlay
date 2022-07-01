@@ -282,10 +282,6 @@ Citizen.CreateThread(
                   Ora.Health:SetMyHealth(GetEntityHealth(LocalPlayer().Ped))
                 end
                 Ora.Player:SavePosition()
-                RageUI.Popup({
-                    message = "✅ Personnage synchronisé.",
-                    colors = 20
-                })
             end
         end
     end
