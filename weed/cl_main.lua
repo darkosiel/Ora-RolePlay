@@ -1,3 +1,4 @@
+
 local Keys = {
     ["ESC"] = 322,
     ["F1"] = 288,
@@ -92,19 +93,11 @@ SpawnObject = function(model, coords, cb)
                 Citizen.Wait(0)
             end
 
-            exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
-                function()
-                    local obj = CreateObject(model, coords.x, coords.y, coords.z, false, true, false)
-
-                    --SetEntityCollision(obj, false, true)
-                    FreezeEntityPosition(obj, true)
-                    if cb ~= nil then
-                        cb(obj)
-                    end
-                end,
-                model
-            )
-           
+            local obj = CreateObject(model, coords.x, coords.y, coords.z, false, true, false)
+            FreezeEntityPosition(obj, true)
+            if cb ~= nil then
+                cb(obj)
+            end
         end
     )
 end
@@ -142,6 +135,7 @@ function loadAnimDict(dict)
         Citizen.Wait(0)
     end
 end
+
 function randPickupAnim()
     local randAnim = math.random(7)
     loadAnimDict("random@domestic")
@@ -160,21 +154,17 @@ local states = {
     "bkr_prop_weed_med_01a",
     "bkr_prop_weed_lrg_01a"
 }
+
 local carryingItem = {}
 local carrying = false
 local carryingProps = nil
 local props = {}
+
 RegisterNetEvent("createWeed")
 AddEventHandler(
     "createWeed",
     function(c, k)
-        props5 = SpawnObject("bkr_prop_weed_01_small_01c",c,function(props)
-           --(props)
-           FreezeEntityPosition(props, true)
-           SetEntityNoCollisionEntity(props, PlayerPedId(), false)
-
         weeds[k] = {obj = nil, coords = c, states = 1, water = 10, purety = 50, percent = 0, fertz = 0}
-        end)
     end
 )
 
@@ -186,6 +176,7 @@ AddEventHandler(
         weedsLoaded = true
     end
 )
+
 AddEventHandler(
     "playerSpawned",
     function()
@@ -206,15 +197,11 @@ AddEventHandler(
             percent = c.percent,
             fertz = c.fertz
         }
-        SpawnObject(states[c.states],t,function(props)
-            --(props)
-            FreezeEntityPosition(props, true)
-            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
-            weeds[k] = {obj=props,coords=GetEntityCoords(props),states=c.states,water=c.water,purety=c.purety,percent=c.percent,fertz=c.fertz}
-        end)
     end
 )
+
 local inNUI = false
+
 RegisterNUICallback(
     "exit",
     function(data)
@@ -242,6 +229,7 @@ RegisterNUICallback(
             items = {name = "weed_plant", data = {purety = current.purety, price = 0}}
             exports["Ora"]:AddItem(items)
         end
+        
         SetNuiFocus(0, 0)
         inNUI = false
         SendNUIMessage({action = "hide", data = v})
@@ -255,7 +243,7 @@ RegisterNUICallback(
             fertz = current.fertz
         }
         DeleteEntity(current.obj)
-        TriggerServerEvent("editWeed", currentID, current)
+        TriggerServerEvent("removeWeed", currentID, current)
     end
 )
 
@@ -275,26 +263,22 @@ RegisterNetEvent("editWeed")
 AddEventHandler(
     "editWeed",
     function(k, v)
-        weeds[k].states = v.states
-        weeds[k].water = v.water
-        weeds[k].percent = v.percent
-        weeds[k].fertz = v.fertz
-        if v.percent >= 88 then
-            weeds[k].states = 4
-        elseif v.percent >= 66 then
-            weeds[k].states = 3
-        elseif v.percent >= 33 then
-            weeds[k].states = 2
+        if weeds ~= nil then
+            weeds[k].states = v.states
+            weeds[k].water = v.water
+            weeds[k].percent = v.percent
+            weeds[k].fertz = v.fertz
+            if v.percent >= 88 then
+                weeds[k].states = 4
+            elseif v.percent >= 66 then
+                weeds[k].states = 3
+            elseif v.percent >= 33 then
+                weeds[k].states = 2
+            end
         end
-        DeleteEntity(weeds[k].obj)
-        SpawnObject(states[weeds[k].states],weeds[k].coords,function(props)
-            --(props)
-            FreezeEntityPosition(props, true)
-            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
-            weeds[k].obj = props
-        end)
     end
 )
+
 RegisterNetEvent("water+percentEdit")
 AddEventHandler(
     "water+percentEdit",
@@ -311,21 +295,11 @@ AddEventHandler(
         elseif percent >= 33 then
             weeds[k].states = 2
         end
-
-        if weeds[k] == nil then error(k) end
-        DeleteEntity(weeds[k].obj)
-        if weeds[k] == nil then return end
-        SpawnObject(states[weeds[k].states],weeds[k].coords,function(props)
-            weeds[k].obj = props
-            --(props)
-            FreezeEntityPosition(props, true)
-            SetEntityNoCollisionEntity(props, PlayerPedId(), false)
-
-        end)
     end
 )
 
 local x1, y1, z1
+
 function tableCount(tbl, checkCount)
     if not tbl or type(tbl) ~= "table" then
         return not checkCount and 0
@@ -339,7 +313,9 @@ function tableCount(tbl, checkCount)
     end
     return not checkCount and n
 end
+
 local _props = {}
+
 Citizen.CreateThread(
     function()
         SetNuiFocus(0, 0)
@@ -357,24 +333,31 @@ Citizen.CreateThread(
 
         while weedsLoaded == false do
             Wait(10)
-            print("^7Waiting for Weed to load^0")
+    
+            for k, v in pairs(states) do
+           
+                if not HasModelLoaded(v) then
+                    RequestModel(v)
+                    
+                end
+            end
         end
 
         while true do
-            Wait(7)
-            for k, v in pairs(states) do
-                if not HasModelLoaded(v) then
-                    RequestModel(v)
-                end
-            end
+            
+            local sleep_weed = 1000
+            
             for k, v in pairs(weeds) do
                 if type(v.coords) == "vector3" then
                     x1, y1, z1 = table.unpack(GetEntityCoords(v.obj))
                 else
                     x1, y1, z1 = v.coords.x, v.coords.y, v.coords.z
                 end
+               
                 if v.obj ~= nil then
-                    ClearAreaOfObjects(x1,y1,z1,  0.1, 0)
+                    sleep_weed = 0
+                 
+                    -- ClearAreaOfObjects(x1,y1,z1,  0.1, 0)
                     for i = 1, 2, 1 do
                         ClearAreaOfObjects(x1, y1, z1 + i, 0.2, 0)
                         ClearAreaOfObjects(x1, y1, z1 - i, 0.2, 0)
@@ -392,7 +375,6 @@ Citizen.CreateThread(
                             coords,
                             function(props)
                                 v.obj = props
-                                --(props)
                                 FreezeEntityPosition(props, true)
                                 SetEntityNoCollisionEntity(props, PlayerPedId(), false)
                             end
@@ -402,33 +384,33 @@ Citizen.CreateThread(
 
                 local x2, y2, z2 = table.unpack(GetEntityCoords(PlayerPedId()))
 
-                if
-                    GetDistanceBetweenCoords(x1, y1, z1, x2, y2, z2, false) < 100.0 and v.obj == nil or
-                        GetDistanceBetweenCoords(x1, y1, z1, x2, y2, z2, false) < 20.0 and v.obj == 0
-                 then
+                if GetDistanceBetweenCoords(x1, y1, z1, x2, y2, z2, false) < 50.0 and v.obj == nil or GetDistanceBetweenCoords(x1, y1, z1, x2, y2, z2, false) < 20.0 and v.obj == 0 then
+                    sleep_weed = 0
                     ClearAreaOfObjects(x1, y1, z1, 0.1, 0)
-
+           
                     SpawnObject(
                         states[v.states],
                         v.coords,
                         function(props)
                             v.obj = props
-                            --(props)
                             FreezeEntityPosition(props, true)
                             SetEntityNoCollisionEntity(props, PlayerPedId(), false)
                         end
                     )
                 elseif GetDistanceBetweenCoords(x1, y1, z1, x2, y2, z2, false) > 100.0 then
+                    
                     DeleteEntity(v.obj)
                     v.obj = nil
                 end
                 if GetDistanceBetweenCoords(x1, y1, z1, x2, y2, z2, false) < 0.85 then
+                    sleep_weed = 0
                     DrawText3DTest(
                         v.coords,
                         "~g~Cannabis\n~s~♻️ : ~b~" ..
-                            v.percent .. "~s~%\n💧 : ~b~" .. v.water .. "~s~%\n~y~[L] 💡\n[~r~X~s~] ❌",
+                            v.percent .. "~s~%\n💧 : ~b~" .. v.water .. "~s~%\n~y~[G]~s~ 💡\n[~r~X~s~] ❌",
                         1.0
                     )
+
                     if IsControlJustPressed(0, Keys["U"]) then
                         randPickupAnim()
                         Wait(750)
@@ -444,7 +426,8 @@ Citizen.CreateThread(
                         carryingProps = obX
                         TriggerServerEvent("removeWeed", k)
                     end
-                    if IsControlJustPressed(0, Keys["L"]) then
+
+                    if IsControlJustPressed(0, Keys["G"]) then
                         SendNUIMessage(
                             {
                                 action = "showUI",
@@ -467,7 +450,8 @@ Citizen.CreateThread(
                         TriggerServerEvent("removeWeed", k)
                     end
                 end
-            end
+            end--
+            Wait(sleep_weed)
         end
     end
 )
@@ -498,9 +482,10 @@ AddEventHandler(
 Citizen.CreateThread(
     function()
         while true do
-            Wait(1)
+            local sleep_carrying = 1000
 
             if carrying then
+                sleep_carrying = 0
                 SetTextComponentFormat("STRING")
                 AddTextComponentString("Appuyez sur ~INPUT_DETONATE~ pour déposer l'objet")
                 DisplayHelpTextFromStringLabel(0, 0, 0, -1)
@@ -544,12 +529,14 @@ Citizen.CreateThread(
                     randPickupAnim()
                     Wait(700)
                     carrying = false
-                    print("CREATE WEED 2")
+                    
                     TriggerServerEvent("createWeed2", coords, carryingItem)
                     carryingItem = {}
                     ClearPedTasks(ped)
                 end
             end
+            Wait(sleep_carrying)
         end
     end
 )
+
