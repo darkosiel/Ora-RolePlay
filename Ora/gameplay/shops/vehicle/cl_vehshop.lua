@@ -380,7 +380,7 @@ local VehShop =
                     {name = "police2new", price = 1},
                     {name = "pdumkbuffalo", price = 1},
                     {name = "police3", price = 1},
-                    {name = "police3slick", price = 1},
+                    --{name = "police3slick", price = 1},
                     {name = "police3umk", price = 1},
                     {name = "police4", price = 1},
                     {name = "pscout", price = 1},
