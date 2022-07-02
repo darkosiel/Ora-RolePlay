@@ -377,7 +377,7 @@ local VehShop =
                     {name = "police", price = 1},
                     --{name = "policeslick", price = 1}
                     {name = "police2", price = 1},
-                    --[[{name = "police2new", price = 1},
+                    {name = "police2new", price = 1},
                     {name = "pdumkbuffalo", price = 1},
                     {name = "police3", price = 1},
                     {name = "police3slick", price = 1},
@@ -391,7 +391,7 @@ local VehShop =
                     {name = "polriot", price = 1},
                     {name = "polspeedo", price = 1},
                     {name = "polraiden", price = 1},
-                    {name = "suppressor", price = 1}]]
+                    {name = "suppressor", price = 1}
                     --{name = "prevolter", price = 1}
                 },
                 ["Vans"] = {
