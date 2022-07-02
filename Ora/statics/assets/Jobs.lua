@@ -9300,6 +9300,28 @@ Jobs = {
                     visible = true
                 }
             },
+            Tow = {
+                Pos = {
+                    {x = -1064.6928, y = -867.1359, z = 4.91}
+                },
+                Enter = EnterZoneTow,
+                Exit = ExitZoneTow,
+                zonesize = 5.5,
+                Blips = {
+                    sprite = 473,
+                    color = 81,
+                    name = "Fourrière"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.6},
+                    color = {r = 100, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            },
             LSCustoms = {
                 Pos = {
                     {x = -182.26, y = -1320.08, z = 31.3},
