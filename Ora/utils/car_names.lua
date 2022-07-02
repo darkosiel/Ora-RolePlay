@@ -20,7 +20,7 @@ Citizen.CreateThread(function()
     AddTextEntry("policeb", "Harley Davidson LSPD")
     AddTextEntry("policem1", "Vélo LSPD")]]
     AddTextEntry("POLICE", "Stanier LSPD")
-    AddTextEntry("POLICESLICK", "Stanier Slicktop LSPD")
+--[[    AddTextEntry("POLICESLICK", "Stanier Slicktop LSPD")
     AddTextEntry("POLICE2", "Buffalo LSPD")
     AddTextEntry("POLICE2NEW", "Buffalo S LSPD")
     AddTextEntry("PDUMKBUFFALO", "Buffalo UMK LSPD")
@@ -36,7 +36,7 @@ Citizen.CreateThread(function()
     AddTextEntry("POLRIOT", "Riot LSPD")
     AddTextEntry("POLSPEEDO", "Speedo LSPD")
     AddTextEntry("POLRAIDEN", "Raiden LSPD")
-    AddTextEntry("SUPPRESSOR", "Lencot LSPD")
+    AddTextEntry("SUPPRESSOR", "Lencot LSPD")]]
     --SAMS
     AddTextEntry("EMSNSPEEDO", "Speedo SAMS")
     AddTextEntry("EMSROAMER", "Roamer SAMS")
