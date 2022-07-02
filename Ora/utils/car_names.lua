@@ -34,7 +34,7 @@ Citizen.CreateThread(function()
     AddTextEntry("POLEVERON", "Everon LSPD")
     AddTextEntry("POLALAMO", "Alamo LSPD") 
     AddTextEntry("POLRIOT", "Riot LSPD")
-    AddTextEntry("polspeedo", "Speedo LSPD")
+    AddTextEntry("POLSPEEDO", "Speedo LSPD")
     AddTextEntry("POLRAIDEN", "Raiden LSPD")
     AddTextEntry("SUPPRESSOR", "Lencot LSPD")
     --SAMS
