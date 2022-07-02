@@ -38,8 +38,9 @@ Citizen.CreateThread(function()
     AddTextEntry("POLRAIDEN", "Raiden LSPD")
     AddTextEntry("SUPPRESSOR", "Lencot LSPD")
     --SAMS
-    AddTextEntry("EMSNSPEEDO", "Speedo SAMS")
+    AddTextEntry("EMSNSPEEDO", "Speedo SAMS") 
     AddTextEntry("EMSROAMER", "Roamer SAMS")
+    AddTextEntry("SAFETEAM", "Caracara SAMS")
     --LSFD
     AddTextEntry("LSFDTRUCK3", "MTL 3 LSFD")
     AddTextEntry("LSFDTRUCK2", "MTL Bateau LSFD")

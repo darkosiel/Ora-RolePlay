@@ -29,6 +29,7 @@ local VehShop =
                     {name = "rumpo2", price = 12000},
                     {name = "emsnspeedo", price = 30000},
                     {name = "emsroamer", price = 30000},
+                    {name = "safeteam", price = 25000},
                     {name = "corspeedo", price = 30000},
                     {name = "firetruk", price = 30000},
                     {name = "lsfd", price = 20000},
