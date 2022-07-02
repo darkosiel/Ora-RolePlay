@@ -212,6 +212,6 @@ RepairWhitelist =
 
 blacklistedVehicle = {
 	`rcbandito`,
-	`lspdb`,
+	--`lspdb`,
 	`sheriffb3`
 }
