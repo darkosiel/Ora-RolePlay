@@ -275,13 +275,17 @@ exports(
 Citizen.CreateThread(
     function()
         while true do
-            Wait(1000)
+            Wait(1000 * 300)
             if (Ora.Player.HasLoaded == true) then
                 Ora.Inventory:Save(true)
                 if (GetEntityHealth(LocalPlayer().Ped) ~= Ora.Health:GetCurrentRegisteredHealth()) then
                   Ora.Health:SetMyHealth(GetEntityHealth(LocalPlayer().Ped))
                 end
                 Ora.Player:SavePosition()
+                RageUI.Popup({
+                    message = "✅ Personnage synchronisé.",
+                    colors = 20
+                })
             end
         end
     end
