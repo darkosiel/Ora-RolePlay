@@ -1721,7 +1721,7 @@ Jobs = {
             {
                 Pos = {x = -1855.52, y = -1195.06, z = 12.10},
                 Limit = 500,
-                Name = "coffre_caveresto"
+                Name = "coffre_caveresto1"
             },
             {
                 Pos = {x = -1840.72, y = -1183.35, z = 18.20},
@@ -1789,6 +1789,16 @@ Jobs = {
                 giveitem = "cupcake",
                 RemoveItem = "bread",
                 add = "~p~+ 1  Cupcake"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Pearls - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cupcake",
+                price = math.random(20,30),
+                add = "~p~- 1 cupcake"
             }
         }
     },

@@ -576,7 +576,7 @@ Config.DoorList = {
             objHeading = 151.22,
             objCoords = vector3(-1836.90, -1190.34, 19.08),
             textCoords = vector3(-1836.90, -1190.34, 19.08),
-            authorizedJobs = {'restaurant'},
+            authorizedJobs = {'pearls'},
             locked = true,
             maxDistance = 1.5
     
@@ -586,7 +586,7 @@ Config.DoorList = {
             objHeading = 331.25,
             objCoords = vector3(-1830.24, -1181.78, 19.40),
             textCoords = vector3(-1830.24, -1181.78, 19.40),
-            authorizedJobs = {'restaurant'},
+            authorizedJobs = {'pearls'},
             locked = true,
             maxDistance = 1.5
     
@@ -596,7 +596,7 @@ Config.DoorList = {
             objHeading = 329.11,
             objCoords = vector3(-1847.27, -1189.99, 14.47),
             textCoords = vector3(-1847.27, -1189.99, 14.47),
-            authorizedJobs = {'restaurant'},
+            authorizedJobs = {'pearls'},
             locked = true,
             maxDistance = 1.5
     
