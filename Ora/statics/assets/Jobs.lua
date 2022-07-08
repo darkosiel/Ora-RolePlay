@@ -11199,15 +11199,25 @@ Jobs = {
                     anim = "pickup_snowball"
                 }
             },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Bar - Produire des céréales",
+                Pos = {x = 2553.31, y = 4670.74, z = 32.95},
+                required = "aperitif",
+                giveitem = "tacos",
+                add = "~p~+ 1  tacos"
+            },
             vente = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Bar - Vente",
                 Pos = {x = -1113.61, y = -1367.55, z = 5.01},
-                required = "aperitif",
+                required = "tacos",
                 price = math.random(18, 25),
-                add = "~p~- 1 Apéritif"
+                add = "~p~- 1 tacos"
             }
         },
         Menu = {
