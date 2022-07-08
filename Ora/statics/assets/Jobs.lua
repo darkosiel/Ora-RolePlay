@@ -11216,7 +11216,7 @@ Jobs = {
                 blipname = "Bar - Vente",
                 Pos = {x = -1113.61, y = -1367.55, z = 5.01},
                 required = "tacos",
-                price = math.random(18, 25),
+                price = math.random(8, 15),
                 add = "~p~- 1 tacos"
             }
         },
