@@ -3259,6 +3259,59 @@ Jobs = {
             }
         },
     },
+    records = {
+        label = "Stray Boyz Records",
+        label2 = "Stray Boyz Records",
+        iban = "records",
+        grade = {
+            {
+                label = "Stagiaire",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Rappeur",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Stray Boyz Records",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("records")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Stray Boyz Records", "Annonce", text, "CHAR_LAWYER", 8, "Stray Boyz Records")
+                        end
+                    end
+                }
+            }
+        },
+    },
     -- avocatn = {
     --     label = "Cabinet Nemesis Associate",
     --     label2 = "Cabinet Nemesis Associate",
