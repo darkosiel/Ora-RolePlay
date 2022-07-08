@@ -3305,7 +3305,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Stray Boyz Records", "Annonce", text, "CHAR_LAWYER", 8, "Stray Boyz Records")
+                            TriggerServerEvent("Job:Annonce", "Stray Boyz Records", "Annonce", text, "CHAR_STAY", 8, "Stray Boyz Records")
                         end
                     end
                 }
@@ -3512,7 +3512,56 @@ Jobs = {
                 Limit = 1000,
                 Name = "Frigo_2"
             }
-        }
+        },
+        requiredService = false,
+        work = {
+            traitement2 = {
+                --Filet de daurade
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "planche",
+                Pos = {x = -1577.3686, y = -3017.2575, z = -79.00},
+                required = "fish6",
+                giveitem = "filetdaurade",
+                RemoveItem = "fish6",
+                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
+            },
+            traitement = {
+                --milkshack
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Traitement milkshack",
+                Pos = {x = -1584.7646, y = -3015.1928, z = -76.00},
+                required = "milk",
+                giveitem = "milkshack",
+                RemoveItem = "milk",
+                add = "~p~+ 1  Milkshack"
+            },
+            traitement4 = {
+                --cupcake
+                type = "traitement",
+                workSize = 1.20,
+                blipcolor = 7,
+                blipname = "Traitement Cupcake",
+                Pos = {x = -1584.4299, y = -3010.5556, z = -76.00},
+                required = "bread",
+                giveitem = "cupcake",
+                RemoveItem = "bread",
+                add = "~p~+ 1  Cupcake"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Galxy - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cupcake",
+                price = math.random(20,30),
+                add = "~p~- 1 cupcake"
+            }
+        }   
     },
     caroccasions = {
         label = "Car Occasions",
