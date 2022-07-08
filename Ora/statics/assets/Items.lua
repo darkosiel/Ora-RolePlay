@@ -1146,7 +1146,7 @@ Items = {
         weight = 0.2,
         actionCl = "miam:Drink",
         props = "prop_ecola_can",
-        soif = 5,
+        soif = 15,
         category = "food"
     },
     cafe = {
