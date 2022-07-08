@@ -1069,6 +1069,16 @@ ItemsFunction = {
         }
         ppppp(objectData)
     end,
+    camera = function()
+        objectData = {
+            prop = "prop_pap_camera_01",
+            anim = {"amb@world_human_paparazzi@male@base", "base"},
+            flag = 50,
+            bone = 28422,
+            pos = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+        }
+        ppppp(objectData)
+    end,
     parapluie = function()
         objectData = {
             prop = "p_amb_brolly_01",
