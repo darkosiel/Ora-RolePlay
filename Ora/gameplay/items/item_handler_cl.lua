@@ -1089,7 +1089,7 @@ ItemsFunction = {
         }
         ppppp(objectData)
         megaphone = not megaphone
-        exports["mumble-voip"]:megaPhone()
+        exports["saltychat"]:megaPhone()
     end,
     --cannepeche = function()
     --TaskStartScenarioInPlace(LocalPlayer().Ped, "WORLD_HUMAN_STAND_FISHING", 0, true)
