@@ -648,7 +648,7 @@ Config.DoorList = {
         objCoords = vector3(726.024, 2521.33, 73.95),
         textCoords = vector3(726.024, 2521.33, 73.95),
         authorizedJobs = {"--"},
-        locked = true,
+        locked = false,
         maxDistance = 1.5
     },
     {
@@ -657,7 +657,7 @@ Config.DoorList = {
         objCoords = vector3(723.83, 2521.33, 73.95),
         textCoords = vector3(723.83, 2521.33, 73.95),
         authorizedJobs = {"--"},
-        locked = true,
+        locked = false,
         maxDistance = 1.5
     },
     {
