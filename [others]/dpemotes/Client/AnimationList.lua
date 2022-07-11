@@ -198,6 +198,10 @@ DP.Dances = {
     {
         EmoteLoop = true,
     }},
+    ["respect"] = {"mp_player_int_upperbro_love", "mp_player_int_bro_love_fp", "Respect", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
     ["drill"] = {"anim@amb@nightclub_island@dancers@crowddance_single_props@", "mi_dance_prop_13_v1_male^3", "Drill · Male ", AnimationOptions =
     {
         EmoteLoop = true,
