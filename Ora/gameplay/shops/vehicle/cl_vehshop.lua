@@ -388,7 +388,7 @@ local VehShop =
                     {name = "pscoutnew", price = 25000},
                     {name = "umkscout", price = 25000},
                     {name = "poleveron", price = 25000},
-                    {name = "polalamo", price = 250001},
+                    {name = "polalamo", price = 25000},
                     {name = "polriot", price = 25000},
                     {name = "polspeedo", price = 25000},
                     {name = "polraiden", price = 25000},
