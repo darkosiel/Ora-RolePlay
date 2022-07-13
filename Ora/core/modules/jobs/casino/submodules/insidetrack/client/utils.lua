@@ -15,7 +15,7 @@ Ora.Jobs.Casino.Insidetrack = {
     InsideTrackActive = false,
     BigScreen = {
         enable = true, -- Set it to false if you don't need the big screen
-        coords = vector3(953.952, 85.461, 70.00)
+        coords = vector3(973.41, 83.39, 69.66)
     }
 }
 

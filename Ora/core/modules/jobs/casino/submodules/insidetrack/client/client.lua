@@ -234,7 +234,7 @@ AddEventHandler("Ora::CE::Jobs::Casino::Insidetrack::Seatchair", function(data)
     OpenInsideTrack()
 end)
 
-exports.qtarget:AddTargetModel({-1005355458}, {
+exports.qtarget:AddTargetModel({-1195678770}, {
     options = {
         {
             event = "Ora::CE::Jobs::Casino::Insidetrack::Seatchair",
