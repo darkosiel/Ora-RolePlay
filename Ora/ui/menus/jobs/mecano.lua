@@ -119,38 +119,28 @@ end
 
 function Mecano.Repair()
     local vehicle = GetClosestVeh()
+    if (vehicle == 0) then return RageUI.Popup({message="~r~Aucun véhicule"}) end
 
-    if (vehicle ~= 0 and Ora.Inventory:GetItemCount("repairbox") > 0) then
+    if (Ora.Inventory:GetItemCount("repairbox") == 0) then return RageUI.Popup({message="~r~Vous n'avez pas de boite a outil"})
+    elseif (Ora.Inventory:GetItemCount("repairbox2") == 0) then return RageUI.Popup({ message = "~r~Vous n'avez pas de kit de réparation" })
+    else
         local canRepair = false
         local StorageVector
         local GarageVector
 
-        if (Ora.Identity.Job:Get().isMechanics) then
-            StorageVector = vector3(Ora.Identity.Job:Get().Storage[1].Pos.x, Ora.Identity.Job:Get().Storage[1].Pos.y, Ora.Identity.Job:Get().Storage[1].Pos.z)
-            GarageVector = vector3(Ora.Identity.Job:Get().garage.Pos.x, Ora.Identity.Job:Get().garage.Pos.y, Ora.Identity.Job:Get().garage.Pos.z)
+        
+        local job = Ora.Identity.Job:Get()
+        local orga = Ora.Identity.Orga:Get()
+        local group
 
-            if (
-                #(GetEntityCoords(PlayerPedId()) - GarageVector) < 35.5 or
-                #(GetEntityCoords(PlayerPedId()) - StorageVector) < 55.5
-            ) then
-                canRepair = true
-            else
-                for vehicle in EnumerateVehicles() do
-                    if (
-                        #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(vehicle)) < 10.0 and
-                        (
-                            GetEntityModel(vehicle) == `flatbed` or
-                            GetEntityModel(vehicle) == `towtruck` or
-                            GetEntityModel(vehicle) == `towtruck2`
-                        )
-                    ) then
-                        canRepair = true
-                    end
-                end
-            end
-        elseif (Ora.Identity.Orga:Get().isMechanics) then
-            StorageVector = vector3(Ora.Identity.Orga:Get().Storage[1].Pos.x, Ora.Identity.Orga:Get().Storage[1].Pos.y, Ora.Identity.Orga:Get().Storage[1].Pos.z)
-            GarageVector = vector3(Ora.Identity.Orga:Get().garage.Pos.x, Ora.Identity.Orga:Get().garage.Pos.y, Ora.Identity.Orga:Get().garage.Pos.z)
+        if job.isMechanics then group = job
+        elseif orga.isMechanics then group = orga end
+
+        if (group) then
+            local storagePos = group.Storage[1].Pos
+            local garagePos = group.garage.Pos
+            StorageVector = vector3(storagePos.x, storagePos.y, storagePos.z)
+            GarageVector = vector3(garagePos.x, garagePos.y, garagePos.z)
 
             if (
                 #(GetEntityCoords(PlayerPedId()) - GarageVector) < 35.5 or
@@ -173,7 +163,8 @@ function Mecano.Repair()
             end
         end
 
-        if (canRepair == true) then
+        if (not canRepair) then return RageUI.Popup({message="~r~Vous êtes trop loin d'une dépanneuse ou de votre garage"}) 
+        else 
             player = LocalPlayer()
             player.isBusy = true
             TaskStartScenarioInPlace(LocalPlayer().Ped, 'PROP_HUMAN_BUM_BIN', 0, true)
@@ -199,7 +190,7 @@ function Mecano.Repair()
                             SetVehicleUndriveable(vehicle, false)
                             SetVehicleEngineOn(vehicle, true, true)
                             removeall()
-                
+                            Ora.Inventory:RemoveAnyItemsFromName("repairbox2", 1)
                             ShowNotification(string.format("Le véhicule ~h~%s~h~ a été ~g~réparé~s~", GetVehicleNumberPlateText(vehicle)))
                             player.isBusy = false
                         end)
@@ -208,19 +199,15 @@ function Mecano.Repair()
                     end
                 end
             )
-        else
-            RageUI.Popup({message="~r~Vous êtes trop loin d'une dépanneuse ou de votre garage"})
         end
-    elseif vehicle == 0 then
-        RageUI.Popup({message="~r~Aucun véhicule"})
-    else
-        RageUI.Popup({message="~r~Vous n'avez pas de boite a outil"})
     end    
 end
 
 function Mecano.CleanVehicule()
     local vehicle = GetClosestVeh()
-    if vehicle ~= 0 and Ora.Inventory:GetItemCount("lavage") > 0  then
+    if vehicle == 0 then return RageUI.Popup({message="~r~Aucun véhicule"}) end
+    if Ora.Inventory:GetItemCount("lavage") == 0  then return RageUI.Popup({message="~r~Vous n'avez pas de kit de lavage"})
+    else
         TaskStartScenarioInPlace(LocalPlayer().Ped, 'WORLD_HUMAN_MAID_CLEAN', 0, true)
         player = LocalPlayer()
         player.isBusy = true
@@ -243,6 +230,7 @@ function Mecano.CleanVehicule()
                     Citizen.CreateThread(function()
                         SetVehicleDirtLevel(vehicle, 0)
                         removeall()
+                        Ora.Inventory:RemoveAnyItemsFromName("lavage", 1)
                         ShowNotification(string.format("Le véhicule ~h~%s~h~ a été ~g~nettoyé~s~", GetVehicleNumberPlateText(vehicle)))
                         player.isBusy = false
                     end)
@@ -252,10 +240,6 @@ function Mecano.CleanVehicule()
                 end
             end
         )
-    elseif vehicle == 0 then
-        RageUI.Popup({message="~r~Aucun véhicule"})
-    else
-        RageUI.Popup({message="~r~Vous n'avez pas de kit de lavage"})
     end
 end
 

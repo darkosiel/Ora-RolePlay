@@ -787,9 +787,16 @@ Items = {
         actionCl = "weapon:EquipKev",
         category = "clothes"
     },
+    -- to create outfit
     fabric = {
         label = "Tissu",
         weight = 0.2,
+        actionCl = nil
+    },
+    -- to create tattoo
+    tattoo_ink = {
+        label = "Encre de tatouage",
+        weight = 0.1,
         actionCl = nil
     },
     clothe = {
