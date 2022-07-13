@@ -787,6 +787,11 @@ Items = {
         actionCl = "weapon:EquipKev",
         category = "clothes"
     },
+    fabric = {
+        label = "Tissu",
+        weight = 0.2,
+        actionCl = nil
+    },
     clothe = {
         label = "Vêtement",
         weight = 0.2,
