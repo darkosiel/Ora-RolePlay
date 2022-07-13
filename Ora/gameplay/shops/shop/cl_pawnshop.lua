@@ -380,10 +380,10 @@ local PawnShops = {
         }
     },
     pawnshop_7 = {
-        position = vector3(950.36, 34.06, 71.83 - 0.98),
+        position = vector3(990.31, 30.26, 71.46 - 0.98),
         heading = 39.03,
         seller_ped = "s_f_m_shop_high",
-        seller_name = "",
+        seller_name = "Caissiere Jessifer",
         pawnshop_receipt = "Casino",
         seller_identifier = "pawnshop_7",
         isCasino = true,

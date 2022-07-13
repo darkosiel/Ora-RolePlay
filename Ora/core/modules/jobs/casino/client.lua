@@ -3,21 +3,14 @@ Ora.Jobs.Casino.Shops.CurrentZone = nil
 Ora.Jobs.Casino.Drinks = {}
 Ora.Jobs.Casino.Shops.Peds = { -- s_m_y_casino_01 s_f_y_casino_01
 	["Casino Bar 1"] = {
-		Pos = {x = 939.93, y = 27.56, z = 71.83 - 0.98, a = 326.70},
+		Pos = {x = 979.77, y = 25.44, z = 71.46 - 0.98, a = 336.74},
 		Ped = {
 			model = "s_m_y_barman_01"
 		},
 		Bar = true
 	},
 	["Casino Bar 2"] = {
-		Pos = {x = 937.02, y = 26.24, z = 71.83 - 0.98, a = 97.41},
-		Ped = {
-			model = "s_m_y_barman_01"
-		},
-		Bar = true
-	},
-	["Casino Bar 3"] = {
-		Pos = {x = 939.79, y = 24.54, z = 71.83 - 0.98, a = 205.535},
+		Pos = {x = 978.38, y = 22.58, z = 71.46 - 0.98, a = 144.51},
 		Ped = {
 			model = "s_m_y_barman_01"
 		},

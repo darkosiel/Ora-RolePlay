@@ -10581,8 +10581,8 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 964.304, y = 8.311, z = 71.83 - 0.94},
-                Limit = 100,
+                Pos = {x = 980.90, y = 24.39, z = 71.46 - 0.94},
+                Limit = 1000,
                 Name = "coffre_casino"
             }
         }
