@@ -569,6 +569,7 @@ export "AddItem"
 export "RemoveItem"
 export "GetItemCount"
 export "RemoveFirstItem"
+export "getAnyThrowable"
 
 -- Identity exports
 
