@@ -1148,7 +1148,8 @@ Items = {
         actionCl = "miam:Drink",
         props = "prop_ecola_can",
         soif = 15,
-        category = "food"
+        category = "food",
+        throwableItem = true
     },
     cafe = {
         label = "Café",

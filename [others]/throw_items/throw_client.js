@@ -10,7 +10,7 @@ let throwableProp
 let playerStrength
 let lastStrengthUpdate
 const getNextThrowable = () => {
-    item = exports.Core.getAnyThrowable()
+    item = exports.Ora.getAnyThrowable()
     if (!item) { 
         currentItem = void 0
         return
@@ -22,7 +22,7 @@ RegisterCommand('throw-mode', async () => {
     if (isInputBlocked) { return }
     isInputBlocked = true
     if (currentItem) {
-        exports.Core.removeItemToInv(currentItem.id, currentItem.name)
+        exports.Ora.RemoveFirstItem(currentItem.name)
         await launchItem()
     } else {
         const next = getNextThrowable()
@@ -31,7 +31,7 @@ RegisterCommand('throw-mode', async () => {
             await takeItemInHands()
         }
         else { 
-            exports.Core.ShowNotification("~r~Pas d'objet à lancer")
+            exports.Ora.ShowNotification("~r~Pas d'objet à lancer")
         }
     }
     isInputBlocked = false
@@ -42,7 +42,7 @@ async function takeItemInHands() {
     const propHash = GetHashKey(currentItem.prop)
     // update strength at least 10 minutes after last fetch
     if(playerStrength == undefined || Date.now() - lastStrengthUpdate > 10 * 60 * 1000) {
-        exports.Core.TriggerServerCallback("Core:getStrength", (strength, _isFull) => { 
+        exports.Ora.TriggerServerCallback("Ora:getStrength", (strength, _isFull) => { 
             playerStrength = strength * 10 
             lastStrengthUpdate = Date.now()
         })
