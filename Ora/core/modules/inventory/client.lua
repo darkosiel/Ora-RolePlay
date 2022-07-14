@@ -391,6 +391,21 @@ function Ora.Inventory:RemoveFirstItem(itemName)
     self:RemoveItem(_i)
 end
 
+--@param 
+function Ora.Inventory:getAnyThrowable()
+    for itemName, items in pairs(self.Data) do
+        if itemName and #items > 0 and Items[itemName] ~= nil and Items[itemName].throwableItem == true then
+            return {
+                id = items[1].id,
+                name = itemName,
+                prop = Items[itemName].props,
+                label = Items[itemName].label,
+                weight = Items[itemName].weight
+            }
+        end
+    end
+end
+
 ---@param item itemObject at least name
 ---@param notrefreshing Boolean optionnal
 function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
@@ -1076,6 +1091,7 @@ exports(
     end
 )
 
+exports("getAnyThrowable", Ora.Inventory:getAnyThrowable)
 
 --[[
   ________                        __    

@@ -331,38 +331,40 @@ Citizen.CreateThread(function()
         
                         RageUI.Button("Valider" , nil, {}, true, function(Hovered, Active, Selected)
                             if Selected then
-                                local data = {
-                                    torso = torsoPos - 1,
-                                    pant = pantPos - 1,
-                                    chaus = chaussPos - 1,
-                                    unders = undersPos - 1,
-                                    access = accessPos - 1,
-                                    tops = topsPos - 1,
-                                    pantcolor = pantcolorPos - 1,
-                                    chausscolor = chausscolorPos - 1,
-                                    underscolor = underscolorPos - 1,
-                                    topcolor = topcolorPos - 1,
-                                    accesscolor = accesscolorPos - 1
-                                }
-                                local item = {}
-                                item.name = "tenue"
-                                item.data = data
-                                item.label = KeyboardInput("Nom de la tenue ? ", nil , 25)
-                                local count = tonumber(KeyboardInput("Combien ?"))
-                                if count ~= nil then
+                                local maxCraft = Ora.Inventory:GetItemCount("fabric")
+                                local count = tonumber(KeyboardInput("Combien de copies de la tenue ? ( max : ".. maxCraft .. " )"))
+                                if count ~= nil and count > 0 and count <= maxCraft then
+                                    Ora.Inventory:RemoveAnyItemsFromName("fabric", count)
+                                    local data = {
+                                        torso = torsoPos - 1,
+                                        pant = pantPos - 1,
+                                        chaus = chaussPos - 1,
+                                        unders = undersPos - 1,
+                                        access = accessPos - 1,
+                                        tops = topsPos - 1,
+                                        pantcolor = pantcolorPos - 1,
+                                        chausscolor = chausscolorPos - 1,
+                                        underscolor = underscolorPos - 1,
+                                        topcolor = topcolorPos - 1,
+                                        accesscolor = accesscolorPos - 1
+                                    }
+                                    local item = {}
+                                    item.name = "tenue"
+                                    item.data = data
+                                    item.label = KeyboardInput("Nom de la tenue ? ", nil , 25)
                                     NetworkRequestControlOfEntity(pedPrev[manqidx])
                                     SetEntityCoords(pedPrev[manqidx], 0,0, -120.0)
                                     DeleteEntity(pedPrev[manqidx])
                                     TriggerPlayerEvent("ENTI:DeletePed2",-1)
                                     pedPrev[manqidx] = nil
                                     RageUI.Refresh()
-                                    ShowNotification("~g~Tenue créée ! ")
+                                    ShowNotification("~g~Tenue(s) créée(s) ! ")
                                     for i = 1 , count , 1 do
                                         item.id = generateUUIDV2()
                                         Ora.Inventory:AddItem(item)
                                     end
                                 else
-                                    ShowNotification("~r~Nombre invalide")
+                                    ShowNotification("~r~Nombre invalide ou tissu insuffisant")
                                 end
                             end
                         end)

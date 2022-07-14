@@ -787,9 +787,16 @@ Items = {
         actionCl = "weapon:EquipKev",
         category = "clothes"
     },
+    -- to create outfit
     fabric = {
         label = "Tissu",
         weight = 0.2,
+        actionCl = nil
+    },
+    -- to create tattoo
+    tattoo_ink = {
+        label = "Encre de tatouage",
+        weight = 0.1,
         actionCl = nil
     },
     clothe = {
@@ -1148,7 +1155,8 @@ Items = {
         actionCl = "miam:Drink",
         props = "prop_ecola_can",
         soif = 15,
-        category = "food"
+        category = "food",
+        throwableItem = true
     },
     cafe = {
         label = "Café",
