@@ -11439,6 +11439,126 @@ Jobs = {
             }
         }
     },
+    littleseaoul = {
+        label = "Bar Little Seoul",
+        label2 = "Bar Little Seoul",
+        iban = "littleseaoul",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        garage = {
+            Name = "Garage Bar Little Seoul",
+            Pos = {x = -816.4771, y = -750.0988, z = 22.00},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -816.4771, y = -750.0988, z = 22.00, h = 140.74}
+            },
+            Blipdata = {
+                Pos = {x = -816.4771, y = -750.0988, z = 22.00},
+                Blipcolor = 5,
+                Blipname = "Garage Bar Little Seoul"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -931.4651, y = -728.5750, z = 28.06},
+                Limit = 800,
+                Name = "Bar Little Seoul"
+            },
+            {
+                Pos = {x = -812.3343, y = -698.3747, z = 27.06},
+                Limit = 800,
+                Name = "frigo2 Bar Little Seoul"
+            },
+            {
+                Pos = {x = -827.2576, y = -728.8852, z = 27.06},
+                Limit = 100,
+                Name = "Coffre Boss Bar Little Seoul"
+            }
+        },
+        requiredService = false,
+        work = {
+
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = -70.3619, y = 6261.6303, z = 30.09},
+                giveitem = "saucisse",
+                blipcolor = 7,
+                blipname = "Bar Little Seoul - Récolte",
+                add = "~p~+ 1  Saucisse fumée"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Bar Little Seoul - Vente",
+                Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
+                required = "saucisse",
+                price = math.random(18, 25),
+                add = "~p~- 1 Saucisse fumée"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Bar Little Seoul",
+                subtitle = "Actions disponibles",
+                name = "henhouse_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facture",
+                    onSelected = function()
+                        CreateFacture("littleseaoul")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Bar Little Seoul", "Annonce", text, "CHAR_HENHOUSE", 8, "Bar Little Seoul")
+                        end
+                    end
+                }
+            }
+        }
+    },
     jetsam = {
         label = "Jetsam",
         label2 = "Jetsam",
