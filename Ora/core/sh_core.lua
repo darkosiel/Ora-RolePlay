@@ -11,8 +11,6 @@ Ora.Modules.Config = {}
 Ora.State = {}
 Ora.State.Initializing = true
 
-exports("Ora:getSharedObject", function () return Ora end)
-
 function Ora:GetServerName()
   return self.ServerName
 end
