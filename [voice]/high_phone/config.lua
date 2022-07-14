@@ -3,8 +3,8 @@ Config = {}
 Config.Languages = {}
 
 -- Main config starts here!
-Config.Language = "en"
-Config.SharedObject = "esx:getSharedObject"
+Config.Language = "fr"
+Config.SharedObject = "Ora:getSharedObject"
 Config.PhoneModel = "prop_npc_phone_02"
 
 Config.ItemRequired = true -- Does the player need a phone item in their inventory to be able to use it

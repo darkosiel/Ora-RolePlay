@@ -1,31 +1,36 @@
 -- Framework functions
-FOB = true -- Do not rename this variable! And if your framework doesn't have shared objects, keep and set this variable to true!
+FOB = false -- Do not rename this variable! And if your framework doesn't have shared objects, keep and set this variable to true!
 TriggerEvent(Config.SharedObject, function(obj) FOB = obj end)
 
 if(not IsDuplicityVersion()) then
-    Citizen.CreateThread(function()
-        while FOB == nil do
-            TriggerEvent(Config.SharedObject, function(obj) FOB = obj end)
-            Citizen.Wait(10)
-        end
+    RegisterNetEvent('Ora::CE::PlayerLoaded', function()
+        TriggerServerEvent("high_phone:playerLoaded", GetPlayerServerId(PlayerId()))
     end)
 end
 
+if(IsDuplicityVersion()) then
+    AddEventHandler("playerDropped", function()
+        local src = source
+        TriggerEvent("high_phone:playerDropped", src)
+    end)
+end
+
+
 Config.Events = {
-    playerLoaded = "es:playerLoaded", -- player loaded server-side event, requires a player source as the 1st argument.
-    playerDropped = "es:playerDropped", -- player disconnected server-side event, requires a player source as the 1st argument.
-    updateJob = "es:activateJob" -- player job updated server-side event, requires a player source as the 1st argument.
+    playerLoaded = "high_phone:playerLoaded", -- player loaded server-side event, requires a player source as the 1st argument.
+    playerDropped = "high_phone:playerDropped", -- player disconnected server-side event, requires a player source as the 1st argument.
+    updateJob = "Ora::high_phone:onSetJob" -- player job updated server-side event, requires a player source as the 1st argument.
 }
 
 Config.PlayersTable = "users" -- Database players table.
 Config.IdentifierColumn = "uuid" -- In players table, the main player identifier column.
 Config.Invoices = {
-    enabled = true,
-    table = "billing", -- Table's name that contains all the bills [invoices]
+    enabled = false,
+    table = "phone_invoices", -- Table's name that contains all the bills [invoices]
     columns = {
         id = "id", -- ID column
         owner = "dest", -- Player's identifier that received the invoice column
-        label = "reason", -- Invoice label [title or reason] column
+        label = "sender", -- Invoice label [title or reason] column
         amount = "amount" -- Price/amount of the invoice column
     }
 }
@@ -33,23 +38,17 @@ Config.Invoices = {
 Config.FrameworkFunctions = {
     -- Client-side trigger callback
     triggerCallback = function(name, cb, ...)
-        exports.Ora:TriggerServerCallback(name, cb, ...)
+        FOB.TriggerServerCallback(name, cb, ...)
     end,
     
     -- Server-side register callback
     registerCallback = function(name, cb)
-        exports.Ora:RegisterServerCallback(name, cb)
+        FOB.RegisterServerCallback(name, cb)
     end,
 
     -- Server-side get players function
     getPlayers = function()
-        local players = {}
-        for i = 0, 255 do
-            if NetworkIsPlayerActive(i) then
-                table.insert(players, {id = GetPlayerServerId(i), name = GetPlayerName(i)})
-            end
-        end
-        return players
+        return FOB["high_phone:getPlayers"]()
     end,
 
     -- Client-side get closest player
@@ -150,7 +149,7 @@ Config.FrameworkFunctions = {
             end
 
             self.getItemCount = function(item)
-                return exports["Ora"]:GetItemCount(item)
+                return FOB.getItemCount(item)
             end
 
             return self
@@ -161,12 +160,11 @@ Config.FrameworkFunctions = {
 
     -- Server-side get player data by identifier
     getPlayerByIdentifier = function(identifier)
-        local player
-        for i = 0, 255 do
-            if NetworkIsPlayerActive(i) and GetPlayerIdentifier(i) == identifier then
-                return Config.FrameworkFunctions.getPlayer(i)
-            end
+        local player = FOB.GetPlayerByIdentifier(identifier) -- Only replace this function
+        if(player ~= nil) then
+            return Config.FrameworkFunctions.getPlayer(player.PlayerData.source) -- And replace this player.source with player's source, function requires a player ID.
         end
+
         return nil
     end
 }

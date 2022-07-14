@@ -61,7 +61,7 @@ AddEventHandler(
   function(name, rank, _uuid)
     local src = source
     local uuid = _uuid or Ora.Identity:GetUuid(src)
-    
+    TriggerServerEvent("Ora::high_phone:onSetJob", src, { name = name, grade = { level = rank, name = rank }, payment = 0, isboss = false })
     if (
       Ora.Jobs.Firefighter.Config.Dispatch.enabled and
       Ora.Jobs.Firefighter.Config.Fire.spawner.firefighterJobs[name] ~= nil
