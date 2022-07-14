@@ -15,9 +15,12 @@ jobs:
         run: |
           echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Deploy to develop
+        id: deployRequest
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'http://212.227.190.245/deploy.php'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
           data: "branch=${{ env.RELEASE_VERSION }}&env=dev"
+      - name: Show logs
+          run: echo ${{ steps.deployRequest.outputs.response }}
