@@ -3,6 +3,17 @@
 Ora.PlayersData = {}
 Ora.DisableCheckup = false
 
+function Ora.getPlayers() 
+    return Ora.PlayersData
+end
+
+function Ora.getPlayerByIdentifier(identifier)
+    local user = MySQL.Sync.fetchAll("SELECT * FROM users WHERE identifier = @id", {["@id"] = identifier})[1]
+    if user ~= nil then
+        
+    end
+end
+
 local function IsYetRegistered(licence, steam, initSrc)
     local res = {}
 	
