@@ -107,7 +107,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["meat"] = {"Viande Crue", 2}, 
     ["menottes"] = {"Menotte", 1},
     ["camera"] = {"Appareil photo", 100},
-    ["fabric"] = {"Tissu", 1}
+    ["fabric"] = {"Tissu", 1},
     ["tattoo_ink"] = {"Encre tatouage", 1}
   },
 
