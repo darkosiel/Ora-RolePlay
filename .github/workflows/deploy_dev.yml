@@ -23,4 +23,4 @@ jobs:
           customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
           data: "branch=${{ env.RELEASE_VERSION }}&env=dev"
       - name: Show logs
-          run: echo ${{ steps.deployRequest.outputs.response }}
+        run: echo ${{ steps.deployRequest.outputs.response }}
