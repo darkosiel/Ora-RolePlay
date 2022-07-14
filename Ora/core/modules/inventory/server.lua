@@ -280,32 +280,33 @@ RegisterServerCallback('Ora::SCB::Inventory:GetInventory', function(source, call
     )
 end)
 
-function Ora.getItemCount(source, cb, itemName, targetID)
-    if targetID == nil or targetID == 0 then return cb(false) end
-    local count = 0
-    local target = Ora.Identity:GetUuid(targetID)
+RegisterServerCallback(
+    "Ora::SE::Inventory:GetItemCount",
+    function(source, cb, itemName, targetID)
+        if targetID == nil or targetID == 0 then return cb(false) end
+        local count = 0
+        local target = Ora.Identity:GetUuid(targetID)
 
-    MySQL.Async.fetchAll(
-        'SELECT inventory FROM players_inventory WHERE uuid = @uuid', 
-        {
-            ["@uuid"] = target
-        }, 
-        function(result)
-            if (result[1] ~= nil) then
-                for k, v in pairs(json.decode(result[1].inventory)) do
-                    if k == itemName then
-                        for _, _ in pairs(v) do
-                            count = count + 1
+        MySQL.Async.fetchAll(
+            'SELECT inventory FROM players_inventory WHERE uuid = @uuid', 
+            {
+                ["@uuid"] = target
+            }, 
+            function(result)
+                if (result[1] ~= nil) then
+                    for k, v in pairs(json.decode(result[1].inventory)) do
+                        if k == itemName then
+                            for _, _ in pairs(v) do
+                                count = count + 1
+                            end
+                            break
                         end
-                        break
                     end
+                    cb(count)
+                else
+                    cb(false)
                 end
-                cb(count)
-            else
-                cb(false)
             end
-        end
-    )
-end
-
-RegisterServerCallback("Ora::SE::Inventory:GetItemCount", getItemCount)
+        )
+    end
+)

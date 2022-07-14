@@ -32,7 +32,7 @@ local worksP = {
         fct = function()
             found = false
             if type(data.required) ~= "table" then
-                if Ora.Inventory:GetItemCount(data.required) < 0 then
+                if Ora.Inventory:GetItemCount(data.required) == 0 then
                     ShowNotification("~r~Pas assez de " .. Items[data.required].label)
                     StopCurrentWork()
                     return
@@ -41,7 +41,7 @@ local worksP = {
                 end
             else
                 for i = 1, #data.required, 1 do
-                    if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
+                    if Ora.Inventory:GetItemCount(data.required[i].name) < data.required[i].count then
                         ShowNotification("~r~Pas assez de " .. Items[data.required[i].name].label)
                         StopCurrentWork()
                         return
