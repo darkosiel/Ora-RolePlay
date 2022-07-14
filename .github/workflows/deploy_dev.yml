@@ -21,4 +21,4 @@ jobs:
           url: 'http://212.227.190.245/deploy.php'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
-          data: ${{ format('branch={0}&env=dev', $RELEASE_VERSION) }}
+          data: "branch=${{ env.RELEASE_VERSION }}&env=dev"
