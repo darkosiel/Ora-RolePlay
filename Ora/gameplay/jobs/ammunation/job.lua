@@ -48,6 +48,26 @@ AmmunationCrafts["pistols"] = {
             craftWeapon(data)
         end
     },
+    flaregun = {
+        title = "Pistolet : détresse",
+        requiredBullet = "Calibre 12",
+        label = "Lance fusée",
+        item = "flaregun",
+        time = 30000,
+        required = {
+            {name = "metalpiece1", count = 1},
+            {name = "metalpiece9", count = 1},
+            {name = "woodpiece3", count = 1},
+            {name = "woodpiece2", count = 1},
+            {name = "plasticpiece4", count = 1}
+        },
+        selected = function()
+            ShowNotification("~b~Vérification de la disponibilité des pieces necessaires~s~")
+            found = false
+            local data = AmmunationCrafts["pistols"]["flaregun"]
+            craftWeapon(data)
+        end
+    },
     vintage = {
         title = "Pistolet : Vintage",
         requiredBullet = "9mm",

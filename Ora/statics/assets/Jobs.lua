@@ -1797,7 +1797,7 @@ Jobs = {
                 blipname = "Pearls - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cupcake",
-                price = math.random(20,30),
+                price = math.random(10,15),
                 add = "~p~- 1 cupcake"
             }
         }
@@ -1990,7 +1990,7 @@ Jobs = {
                 blipname = "Miror - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",
-                price = math.random(20,30),
+                price = math.random(10,15),
                 add = "~p~- 1 Café"
             }
         }
@@ -11406,7 +11406,7 @@ Jobs = {
                 blipname = "Hen House - Vente",
                 Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
                 required = "saucisse",
-                price = math.random(18, 25),
+                price = math.random(8, 15),
                 add = "~p~- 1 Saucisse fumée"
             }
         },
@@ -11526,7 +11526,7 @@ Jobs = {
                 blipname = "Bar Little Seoul - Vente",
                 Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
                 required = "saucisse",
-                price = math.random(18, 25),
+                price = math.random(8, 15),
                 add = "~p~- 1 Saucisse fumée"
             }
         },
@@ -11552,7 +11552,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Bar Little Seoul", "Annonce", text, "CHAR_HENHOUSE", 8, "Bar Little Seoul")
+                            TriggerServerEvent("Job:Annonce", "Bar Little Seoul", "Annonce", text, "CHAR_LITTLE", 8, "Bar Little Seoul")
                         end
                     end
                 }
