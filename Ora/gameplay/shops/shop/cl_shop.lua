@@ -2052,7 +2052,7 @@ local Shops =
         },
         {
             Title = "Casino",
-            Pos = {x = 949.39, y = 32.57, z = 71.83 - 0.98, a = 87.41},
+            Pos = {x = 967.82, y = 46.80, z = 71.70 - 0.98, a = 145.76},
             Blips = {},
             Ped = {
                 model = "s_f_y_clubbar_01"

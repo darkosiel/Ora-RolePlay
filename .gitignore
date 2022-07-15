@@ -18,9 +18,18 @@ vhl/
 map/
 [bot]/secret.js
 Ora/statics/assets/Jobs.lua
-*/node_modules
-/node_modules
 screenshot-basic/.yarn.installed
 STRUCTURE_BDD_ATLANTISS.sql
-Ora/gameplay/jobs/fueler/station.json
 Ora/core/modules/world/submodule/weapon/shared.lua
+\[gameplay\]/
+screenshot-basic/dist/
+\[vhl\]/
+\[map\]/
+es_mapper/
+\[test\]/
+\[tenue JEYSO ADDD\]/
+Ora/gameplay/jobs/fueler/station.json
+eup-stream/
+loadscreen/
+\[Clothes\]
+**/node_modules

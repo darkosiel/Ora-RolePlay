@@ -19,41 +19,41 @@ tables = {
 --]]
 
 customTables = {
---[[ 	{
-		coords = vector4(-1641.694, -2997.023, -79.15, 92.00),
+ 	{
+		coords = vector4(1036.58, 51.76, 69.06 - 0.98, 190.43),
 		highStakes = false,
-		color = 3,
-	},
-	{
-		coords = vector4(-1641.894, -3002.178, -79.15, 92.00),
-		highStakes = false,
-		color = 3,
-	},
-	{
-		coords = vector4(-1642.053, -3006.576, -79.15, 92.00),
-		highStakes = false,
-		color = 3,
-	},
-	{
-		coords = vector4(1690.72, 2645.08, 45.56 - 0.98, 1.74),
-		highStakes = false,
-		color = 3,
-	},
-	{
-		coords = vector4(932.07, 41.81, 81.1 - 0.98, 232.83),
-		highStakes = false,
-		color = 3,
-	},
-	{
-		coords = vector4(929.73, 46.79, 81.1 - 0.98, 329.84),
-		highStakes = false,
-		color = 3,
-	},
-	{
-		coords = vector4(926.88, 42.13, 81.1 - 0.98, 149.44),
-		highStakes = false,
-		color = 3,
-	} ]]
+		color = 0,
+	}
+	-- {
+	-- 	coords = vector4(-1641.894, -3002.178, -79.15, 92.00),
+	-- 	highStakes = false,
+	-- 	color = 3,
+	-- },
+	-- {
+	-- 	coords = vector4(-1642.053, -3006.576, -79.15, 92.00),
+	-- 	highStakes = false,
+	-- 	color = 3,
+	-- },
+	-- {
+	-- 	coords = vector4(1690.72, 2645.08, 45.56 - 0.98, 1.74),
+	-- 	highStakes = false,
+	-- 	color = 3,
+	-- },
+	-- {
+	-- 	coords = vector4(932.07, 41.81, 81.1 - 0.98, 232.83),
+	-- 	highStakes = false,
+	-- 	color = 3,
+	-- },
+	-- {
+	-- 	coords = vector4(929.73, 46.79, 81.1 - 0.98, 329.84),
+	-- 	highStakes = false,
+	-- 	color = 3,
+	-- },
+	-- {
+	-- 	coords = vector4(926.88, 42.13, 81.1 - 0.98, 149.44),
+	-- 	highStakes = false,
+	-- 	color = 3,
+	-- }
 }
 
 for i,v in pairs(customTables) do

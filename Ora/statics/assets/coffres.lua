@@ -249,6 +249,7 @@ vehCoffres = {
     ["zorrusso"] = 40,
     ["emerus"] = 40,
     -- muscle
+    ["kanjo"] = 60,
     ["blade"] = 60,
     ["buccanee"] = 60,
     ["buccanee2"] = 60,

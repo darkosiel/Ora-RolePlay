@@ -1,8 +1,8 @@
 Ora.World.Weapon = {}
 
 Ora.World.Weapon.Animation = {
-    [`WEAPON_CANETTE`]  = true,
-    [`gadget_parachute`]  = true,
+    [`WEAPON_CANETTE`]  = true
+--[[    [`gadget_parachute`]  = true,
     [`WEAPON_PISTOL`]  = true,
     --[`WEAPON_COMBATPISTOL`]  = true,
     [`WEAPON_PISTOL50`]  = true,
@@ -92,7 +92,7 @@ Ora.World.Weapon.Animation = {
     [`weapon_pistol_mk2`]  = true,
     [`weapon_assaultshotgun`]  = true,
     [`weapon_appistol`]  = true,
-    [`weapon_marksmanpistol`]  = true,
+    [`weapon_marksmanpistol`]  = true,]]
     --[`WEAPON_FIREEXTINGUISHER`]  = true,
 }
 

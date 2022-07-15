@@ -48,16 +48,16 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["repairbox"] = {"Boite à outils", 150},
     ["chariot"] = {"Chariot", 20},
     ["wrench"] = {"Clé anglaise", 100},
-    ["cone"] = {"Cone", 4},
-     ["repairbox2"] = {"Kit de réparation", 180},   
+    ["cone"] = {"Cone", 1},
+    ["repairbox2"] = {"Kit de réparation", 20},   
     ["crowbar"] = {"Pied de biche", 100},
 
-    ["lavage"] = {"Kit de nettoyage", 10},
+    ["lavage"] = {"Kit de nettoyage", 5},
 
     ["medbox"] = {"Boite medical", 8},
     ["fire_extinguisher"] = {"Extincteur", 10},
     ["medbag"] = {"Sac medical", 10},
-    ["medikit"] = {"Trousse de soin", 80},
+    ["medikit"] = {"Trousse de soin", 20},
 
     ["bigcam "] = {"Caméra sur épaule", 120}, 
     ["micro "] = {"Micro", 20},
@@ -107,7 +107,10 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["meat"] = {"Viande Crue", 2}, 
     ["menottes"] = {"Menotte", 1},
     ["camera"] = {"Appareil photo", 100},
-
+    ["fabric"] = {"Tissu", 1},
+    ["tattoo_ink"] = {"Encre tatouage", 1},
+    ["desertmiror"] = {"Désert Pearl's", 2},
+    ["desertmiror"] = {"Désert Miror", 2}
   },
 
 
