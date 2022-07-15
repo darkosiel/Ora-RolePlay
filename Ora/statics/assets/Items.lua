@@ -801,7 +801,7 @@ Items = {
     },
     --Miror
     desertmiror = {
-        label = "Désert miror",
+        label = "Dessert mirror",
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_food_bs_burg1",
@@ -809,7 +809,7 @@ Items = {
         category = "food"
     },
     entrermiror = {
-        label = "Entrée miror",
+        label = "Entrée mirror",
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_food_bs_burg1",
@@ -818,7 +818,7 @@ Items = {
     },
     --Pearls
     desertpearl = {
-        label = "Désert Pearl's",
+        label = "Dessert Pearl's",
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_food_bs_burg1",
