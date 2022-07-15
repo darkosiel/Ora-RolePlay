@@ -793,7 +793,7 @@ Config.DoorList = {
             objHash = GetHashKey("lr_prop_supermod_door_01"),
             objCoords = vector3(-205.6, -1310.6, 30.2),
             textCoords = vector3(-205.6, -1310.6, 32.2),
-            authorizedJobs = {"mecano"},
+            authorizedJobs = {"bennys"},
             locked = true,
             maxDistance = 5.0
         },
