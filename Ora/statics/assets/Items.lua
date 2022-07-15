@@ -799,6 +799,40 @@ Items = {
         weight = 0.1,
         actionCl = nil
     },
+    --Miror
+    desertmiror = {
+        label = "Désert miror",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_food_bs_burg1",
+        faim = 30,
+        category = "food"
+    },
+    entrermiror = {
+        label = "Entrée miror",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_food_bs_burg1",
+        faim = 30,
+        category = "food"
+    },
+    --Pearls
+    desertpearl = {
+        label = "Désert Pearl's",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_food_bs_burg1",
+        faim = 30,
+        category = "food"
+    },
+    entrerpearl = {
+        label = "Entrée Pearl's",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_food_bs_burg1",
+        faim = 30,
+        category = "food"
+    },
     clothe = {
         label = "Vêtement",
         weight = 0.2,
