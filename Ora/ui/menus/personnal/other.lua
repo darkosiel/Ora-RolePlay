@@ -806,6 +806,18 @@ Citizen.CreateThread(
                         )
 
                         RageUI.Button(
+                            "Gérer vos armes",
+                            nil,
+                            {},
+                            true,
+                            function(_, _, Selected)
+                                if Selected then
+                                    ExecuteCommand("xkz")
+                                end
+                            end
+                        )
+
+                        RageUI.Button(
                             "Arrêter le cambriolage",
                             nil,
                             {},
