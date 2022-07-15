@@ -1797,7 +1797,7 @@ Jobs = {
                 blipname = "Pearls - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cupcake",
-                price = math.random(20,30),
+                price = math.random(10,15),
                 add = "~p~- 1 cupcake"
             }
         }
