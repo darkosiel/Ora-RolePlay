@@ -11406,7 +11406,7 @@ Jobs = {
                 blipname = "Hen House - Vente",
                 Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
                 required = "saucisse",
-                price = math.random(18, 25),
+                price = math.random(8, 15),
                 add = "~p~- 1 Saucisse fumée"
             }
         },
@@ -11526,7 +11526,7 @@ Jobs = {
                 blipname = "Bar Little Seoul - Vente",
                 Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
                 required = "saucisse",
-                price = math.random(18, 25),
+                price = math.random(8, 15),
                 add = "~p~- 1 Saucisse fumée"
             }
         },
