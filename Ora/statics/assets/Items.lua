@@ -19,7 +19,7 @@ Items = {
     },
     repairbox2 = {
         label = "Kit de réparation",
-        weight = 10.0
+        weight = 1.0
     },
     medbox = {
         label = "Boite medical",
