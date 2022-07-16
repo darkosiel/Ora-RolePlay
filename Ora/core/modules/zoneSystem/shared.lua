@@ -19,6 +19,7 @@ Ora.ZoneSystem.Bars = {
   ["YellowJack"] = { Pos = vector3(1987.99, 3050.73, 47.21), JobName = "yellowjack" , MoneyPerHour = 500, MaxDistance = 5.0 },
   ["Bahamas"] = { Pos = vector3(-1391.72, -604.94, 30.31), JobName = "bahamas", MoneyPerHour = 500, MaxDistance = 30.0 },
   ["8 Billards"] = { Pos = vector3(-1586.14, -995.74, 12.08), JobName = "billards", MoneyPerHour = 500, MaxDistance = 20.0 },
+  ["Bar Little Seoul"] = { Pos = vector3(-820.6145, -697.8694, 28.46), JobName = "littleseaoul", MoneyPerHour = 500, MaxDistance = 20.0 },
 }
 
 function Ora.ZoneSystem:GetModuleName()

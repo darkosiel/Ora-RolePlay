@@ -96,8 +96,9 @@ local Blips = {
     {name = "Salon de tatouage", color = 1, sprite = 75, Pos = {x = -1149.7503, y = -1428.5909, z = 3.95}},
     {name = "Post OP", color = 21, sprite = 616, Pos = {x = 1218.5623, y = -3274.3474, z = 29.7969}},
    -- {name = "Fujiwara Tofu", color = 63, sprite = 210, size = 1.0, Pos = {x = -165.19, y = 290.42, z = 93.76}},
-    {name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}}
-    {name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}}
+    {name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
+    {name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},
+    {name = "Ba- - Little Séoul", color = 1, sprite = 106, Pos = {x = -820.6145, y = -697.8694, z = 112.4599}},
     --{name = "Armurerie - Paleto Bay", color = 49, sprite = 313, Pos = {x = -326.78, y = 6080.18, z = 31.45}}
 }
 
