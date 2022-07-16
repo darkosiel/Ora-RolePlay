@@ -73,4 +73,7 @@ Citizen.CreateThread(function()
     --WEAZEL
     AddTextEntry("NEWSVAN", "Rumpo News")
     -- AddTextEntry("NEWSMAV", "Maverick News")
+
+    -- Véhicule addon Sport
+    AddTextEntry("ARGENTO", "Obey Argento")
 end)
