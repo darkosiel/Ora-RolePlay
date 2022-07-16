@@ -441,9 +441,7 @@ VehiclePrices = {
     {name = "lspdb", price = 25000},
     {name = "polalamo", price = 25000},
     {name = "pdumkbuffalo", price = 25000},
-    {name = "police2new", price = 25000},
-
-
+    {name = "police2new", price = 25000}
 }
 
 VehiclePricesByCategory = {
