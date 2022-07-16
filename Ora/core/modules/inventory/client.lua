@@ -1091,7 +1091,9 @@ exports(
     end
 )
 
-exports("getAnyThrowable", Ora.Inventory:getAnyThrowable)
+exports("getAnyThrowable", function () 
+    return Ora.Inventory:getAnyThrowable()
+end)
 
 --[[
   ________                        __    

@@ -33,3 +33,4 @@ eup-stream/
 loadscreen/
 \[Clothes\]
 **/node_modules
+**/whitelist.json

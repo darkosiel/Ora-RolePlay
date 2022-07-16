@@ -39,6 +39,7 @@ Citizen.CreateThread(function()
     AddTextEntry("SUPPRESSOR", "Lencot LSPD") 
     AddTextEntry("SEBALAMO2", "Alamo UMK")
     AddTextEntry("PREVOLTER", "Revolter UMK")
+    AddTextEntry("POLALAMOOLD", "Alamo OLD LSPD")
     --SAMS
     AddTextEntry("EMSNSPEEDO", "Speedo SAMS") 
     AddTextEntry("EMSROAMER", "Roamer SAMS")
@@ -70,6 +71,6 @@ Citizen.CreateThread(function()
 
 
     --WEAZEL
-    -- AddTextEntry("NEWSVAN", "Rumpo News")
+    AddTextEntry("NEWSVAN", "Rumpo News")
     -- AddTextEntry("NEWSMAV", "Maverick News")
 end)

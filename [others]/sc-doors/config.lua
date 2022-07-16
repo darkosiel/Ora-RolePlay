@@ -744,59 +744,59 @@ Config.DoorList = {
         }
     },
         --Miror
-        {
-            objHash = -1540703659,
-            objHeading = 23.23,
-            objCoords = vector3(-1342.5236, -1076.1541, 6.9394),
-            textCoords = vector3(-1342.5236, -1076.1541, 6.9394),
-            authorizedJobs = {"restaurant"},
-            locked = true,
-            maxDistance = 0.5
-        },
+    {
+        objHash = -1540703659,
+        objHeading = 23.23,
+        objCoords = vector3(-1342.5236, -1076.1541, 6.9394),
+        textCoords = vector3(-1342.5236, -1076.1541, 6.9394),
+        authorizedJobs = {"restaurant"},
+        locked = true,
+        maxDistance = 0.5
+    },
     
-        {
-            objHash = -1132262566,
-            objHeading = 23.23,
-            objCoords = vector3(-1341.4703, -1075.5009, 6.9394),
-            textCoords = vector3(-1341.4703, -1075.5009, 6.9394),
-            authorizedJobs = {"restaurant"},
-            locked = true,
-            maxDistance = 0.5
-        },
+    {
+        objHash = -1132262566,
+        objHeading = 23.23,
+        objCoords = vector3(-1341.4703, -1075.5009, 6.9394),
+        textCoords = vector3(-1341.4703, -1075.5009, 6.9394),
+        authorizedJobs = {"restaurant"},
+        locked = true,
+        maxDistance = 0.5
+    },
     
         --Ammunation
     
-        {
-            objHash = GetHashKey("v_ilev_gc_door04"),
-            objHeading = 177.22,
-            objCoords = vector3(812.3914, -2148.0268, 29.5442),
-            textCoords = vector3(812.3914, -2148.0268, 29.5442),
-            authorizedJobs = {"ammunation"},
-            locked = true,
-            maxDistance = 0.5
-        },
+    {
+        objHash = GetHashKey("v_ilev_gc_door04"),
+        objHeading = 177.22,
+        objCoords = vector3(812.3914, -2148.0268, 29.5442),
+        textCoords = vector3(812.3914, -2148.0268, 29.5442),
+        authorizedJobs = {"ammunation"},
+        locked = true,
+        maxDistance = 0.5
+    },
     
-        {
-            objHash = GetHashKey("v_ilev_gc_door03"),
-            objHeading = 23.23,
-            objCoords = vector3(811.1582, -2148.1740, 29.6184),
-            textCoords = vector3(811.1582, -2148.1740, 29.6184),
-            authorizedJobs = {"ammunation"},
-            locked = true,
-            maxDistance = 0.5
-        },
+    {
+        objHash = GetHashKey("v_ilev_gc_door03"),
+        objHeading = 23.23,
+        objCoords = vector3(811.1582, -2148.1740, 29.6184),
+        textCoords = vector3(811.1582, -2148.1740, 29.6184),
+        authorizedJobs = {"ammunation"},
+        locked = true,
+        maxDistance = 0.5
+    },
     
     
         --MECANO
     
-        {
-            objHash = GetHashKey("lr_prop_supermod_door_01"),
-            objCoords = vector3(-205.6, -1310.6, 30.2),
-            textCoords = vector3(-205.6, -1310.6, 32.2),
-            authorizedJobs = {"mecano"},
-            locked = true,
-            maxDistance = 5.0
-        },
+    {
+        objHash = GetHashKey("lr_prop_supermod_door_01"),
+        objCoords = vector3(-205.6, -1310.6, 30.2),
+        textCoords = vector3(-205.6, -1310.6, 32.2),
+        authorizedJobs = {"bennys"},
+        locked = true,
+        maxDistance = 5.0
+    },
 
 }
 
