@@ -1,7 +1,7 @@
 Ora.World.Weapon = {}
 
 Ora.World.Weapon.Animation = {
-    [`WEAPON_CANETTE`]  = true
+    [`WEAPON_CANETTE`]  = true,
     [`WEAPON_DOUBLEACTION`]  = true,
     [`WEAPON_KNUCKLE`]  = false,
     [`WEAPON_SWITCHBLADE`]  = false,

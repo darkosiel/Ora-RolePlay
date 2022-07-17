@@ -19,11 +19,7 @@ Items = {
     },
     repairbox2 = {
         label = "Kit de réparation",
-<<<<<<< HEAD
-        weight = 1.0
-=======
         weight = 0.2
->>>>>>> 9a353f51f797b35559f22e7f40e7a47ab1b2e065
     },
     medbox = {
         label = "Boite medical",
