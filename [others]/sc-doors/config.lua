@@ -370,6 +370,15 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.50
     },
+
+    {
+        objHash = 1695461688,
+        objCoords = vector3(96.09197235107422, -1284.853759765625, 29.438783645629883),
+        textCoords = vector3(96.09197235107422, -1284.853759765625, 29.438783645629883),
+        authorizedJobs = {"unicorn"},
+        locked = true,
+        maxDistance = 1.5
+    },
     -------- PRISON
 
     {
