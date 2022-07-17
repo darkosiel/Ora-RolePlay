@@ -3858,7 +3858,7 @@ local Shops =
                 -- },
             }
         },
-        {
+        --[[{
             Title = "Annonce Weazel News",
             Hidden = true,
             Pos = {x = -599.38, y = -933.59, z = 22.86, a = 86.92},
@@ -3882,7 +3882,7 @@ local Shops =
                     afterPayment = PubWeazel
                 }
             }
-        },
+        },]]
         -- {
         --     Title = "Grossiste LTD",
         --     Hidden = true,
