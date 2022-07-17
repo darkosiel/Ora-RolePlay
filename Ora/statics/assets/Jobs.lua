@@ -11513,21 +11513,31 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = -70.3619, y = 6261.6303, z = 30.09},
-                giveitem = "saucisse",
+                Pos = {x = 953.4779, y = -2108.9062, z = 30.55},
+                giveitem = "chairsaucisse",
                 blipcolor = 7,
                 blipname = "Bar Little Seoul - Récolte",
                 add = "~p~+ 1  Saucisse fumée"
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Bar Little Seoul - Traitement",
+                Pos = {x = 932.9300, y = -1803.9852, z = 30.7150},
+                required = "chairsaucisse",
+                giveitem = "saucissonsec",
+                add = "~p~+ 1  Saucisson sec"
             },
             vente = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Bar Little Seoul - Vente",
-                Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
-                required = "saucisse",
+                Pos = {x = 61.8119, y = -1726.7955, z = 29.4971},
+                required = "saucissonsec",
                 price = math.random(8, 15),
-                add = "~p~- 1 Saucisse fumée"
+                add = "~p~- 1 Saucisson sec"
             }
         },
         Menu = {
