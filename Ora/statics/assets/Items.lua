@@ -965,6 +965,17 @@ Items = {
         label = "Café en poudre",
         weight = 0.5
     },
+    -- Items : bar chinois
+    chairsaucisse = {
+        label = "Chair à saucisse",
+        weight = 0.5
+    },
+    saucissonsec = {
+        label = "saucisson sec",
+        weight = 0.5
+    },
+
+
     sac = {
         label = "Sac",
         weight = 0.0,

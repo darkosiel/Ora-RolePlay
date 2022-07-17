@@ -112,7 +112,16 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["tattoo_ink"] = {"Encre tatouage", 1},
     ["desertpearl"] = {"Dessert Pearl's", 2},
     ["desertmiror"] = {"Dessert Miror", 2},
-    ["entrermiror"] = {"Entrée Mirror", 2}
+    ["entrermiror"] = {"Entrée Mirror", 2},
+    ["coupedefruit"] = {"Coupe de fruits", 2},
+    ["foiegras"] = {"Foie Gras", 2},
+    ["homardbleu"] = {"Homard Bleu", 2}, 
+    ["piecedeboeuf"] = {"Pièce de boeuf", 2}, 
+    ["salade"] = {"Salade", 2}, 
+    ["soupedepoisson"] = {"Soupe de poisson", 2}, 
+    ["tartefraise"] = {"Tarte aux fraises", 2}, 
+    ["veloute"] = {"Velouté", 2},
+    ["boeufkobe"] = {"Boeuf de Kobe", 2}
   },
 
 
