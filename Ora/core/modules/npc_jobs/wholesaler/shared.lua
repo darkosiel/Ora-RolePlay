@@ -45,7 +45,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["metalpiece12"] = {"Renfort protection acier renforcé", 200},
     ["woodpiece4"] = {"Renfort protection en bois", 5000},
     
-    ["repairbox"] = {"Boite à outils", 150},
+    ["repairbox"] = {"Boite à outils", 10},
     ["chariot"] = {"Chariot", 20},
     ["wrench"] = {"Clé anglaise", 100},
     ["cone"] = {"Cone", 1},

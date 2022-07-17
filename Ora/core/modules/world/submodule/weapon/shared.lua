@@ -1,18 +1,7 @@
 Ora.World.Weapon = {}
 
 Ora.World.Weapon.Animation = {
-    [`WEAPON_CANETTE`]  = true
---[[    [`gadget_parachute`]  = true,
-    [`WEAPON_PISTOL`]  = true,
-    --[`WEAPON_COMBATPISTOL`]  = true,
-    [`WEAPON_PISTOL50`]  = true,
-    [`WEAPON_REVOLVER`]  = true,
-    [`WEAPON_VINTAGEPISTOL`]  = true,
-    [`WEAPON_SNSPISTOL`]  = true,
-    [`WEAPON_HEAVYPISTOL`]  = true,
-    --[`WEAPON_STUNGUN`]  = true,
-    [`WEAPON_RAYPISTOL`]  = true,
-    --[`WEAPON_FLAREGUN`]  = true,
+    [`WEAPON_CANETTE`]  = true,
     [`WEAPON_DOUBLEACTION`]  = true,
     [`WEAPON_KNUCKLE`]  = false,
     [`WEAPON_SWITCHBLADE`]  = false,
@@ -36,7 +25,6 @@ Ora.World.Weapon.Animation = {
     [`WEAPON_MICROSMG`]  = true,
     [`WEAPON_MINISMG`]  = true,
     [`WEAPON_ASSAULTSMG`]  = true,
-    [`WEAPON_MACHINEPISTOL`]  = true,
     --[`WEAPON_GRENADELAUNCHER_SMOKE`]  = true,
     [`WEAPON_MG`]  = true,
     [`WEAPON_COMBATMG`]  = true,
@@ -87,12 +75,7 @@ Ora.World.Weapon.Animation = {
     [`weapon_ceramicpistol`]  = true,
     [`weapon_gadgetpistol`]  = true,
     [`weapon_navyrevolver`]  = true,
-    [`weapon_revolver_mk2`]  = true,
-    [`weapon_snspistol_mk2`]  = true,
-    [`weapon_pistol_mk2`]  = true,
     [`weapon_assaultshotgun`]  = true,
-    [`weapon_appistol`]  = true,
-    [`weapon_marksmanpistol`]  = true,]]
     --[`WEAPON_FIREEXTINGUISHER`]  = true,
 }
 

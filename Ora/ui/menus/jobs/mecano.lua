@@ -121,8 +121,7 @@ function Mecano.Repair()
     local vehicle = GetClosestVeh()
     if (vehicle == 0) then return RageUI.Popup({message="~r~Aucun véhicule"}) end
 
-    if (Ora.Inventory:GetItemCount("repairbox") == 0) then return RageUI.Popup({message="~r~Vous n'avez pas de boite a outil"})
-    elseif (Ora.Inventory:GetItemCount("repairbox2") == 0) then return RageUI.Popup({ message = "~r~Vous n'avez pas de kit de réparation" })
+    if (Ora.Inventory:GetItemCount("repairbox2") == 0) then return RageUI.Popup({ message = "~r~Vous n'avez pas de kit de réparation" })
     else
         local canRepair = false
         local StorageVector

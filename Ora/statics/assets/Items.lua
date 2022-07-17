@@ -19,7 +19,7 @@ Items = {
     },
     repairbox2 = {
         label = "Kit de réparation",
-        weight = 10.0
+        weight = 0.2
     },
     medbox = {
         label = "Boite medical",
@@ -1538,7 +1538,7 @@ Items = {
     },
     lavage = {
         label = "Kit de nettoyage",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     -- Items : Munition
