@@ -673,11 +673,7 @@ Citizen.CreateThread(function()
 
         if RageUI.Visible(RMenu:Get("tatoo", "main")) then
             RageUI.DrawContent({header = true, glare = false},function()
-                local inkCount = Ora.Inventory:GetItemCount("tattoo_ink")
-                local buttonText = "S'équiper de la machine à tattoo"
-                if inkCount == 0 then buttonText = "Vous n'avez pas d'encre de tatouage" 
-                elseif tattooGun then buttonText = "Déposer la machine" end
-                RageUI.Button(buttonText, nil, {}, true, function(_, _, Selected)
+                RageUI.Button(not tattooGun and "S'équiper de la machine à tattoo" or "Déposer la machine", nil, {}, true, function(_, _, Selected)
                     if Selected then
                         if not tattooGun then
                             local tattooGunProp = "v_ilev_ta_tatgun"
@@ -685,9 +681,11 @@ Citizen.CreateThread(function()
                             local coords = GetEntityCoords(ped)
                             tattooGun = Ora.World.Object:Create(tattooGunProp, coords, true, true, true)
                             AttachEntityToEntity(tattooGun, ped, GetPedBoneIndex(ped, 18905), 0.15, 0.04, 0.0, 215.0, 0.0, 0.0, true, true, false, true, 1, true)
-                        elseif DoesEntityExist(tattooGun) then
-                            DeleteEntity(tattooGun)
-                            tattooGun = nil
+                        else
+                            if DoesEntityExist(tattooGun) then
+                                DeleteEntity(tattooGun)
+                                tattooGun = nil
+                            end
                         end
                     end
                 end)
@@ -781,7 +779,6 @@ Citizen.CreateThread(function()
                             drawTattoo3(index[i].HashNameMale, indexName)
                         end
                         if Selected then
-                            Ora.Inventory:RemoveAnyItemsFromName("tattoo_ink", count)
                             TriggerPlayerEvent(
                                 "sendTatoo:Data4",
                                 GetPlayerServerIdInDirection(5.0),
