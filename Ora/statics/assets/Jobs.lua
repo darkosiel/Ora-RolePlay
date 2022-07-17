@@ -11492,18 +11492,18 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -931.4651, y = -728.5750, z = 28.06},
+                Pos = {x = -816.0851, y = -701.1306, z = 31.14},
                 Limit = 800,
                 Name = "Bar Little Seoul"
             },
             {
                 Pos = {x = -812.3343, y = -698.3747, z = 27.06},
-                Limit = 800,
+                Limit = 100,
                 Name = "frigo2 Bar Little Seoul"
             },
             {
                 Pos = {x = -827.2576, y = -728.8852, z = 27.06},
-                Limit = 100,
+                Limit = 800,
                 Name = "Coffre Boss Bar Little Seoul"
             }
         },
@@ -11513,21 +11513,31 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = -70.3619, y = 6261.6303, z = 30.09},
-                giveitem = "saucisse",
+                Pos = {x = 953.4779, y = -2108.9062, z = 30.55},
+                giveitem = "chairsaucisse",
                 blipcolor = 7,
                 blipname = "Bar Little Seoul - Récolte",
                 add = "~p~+ 1  Saucisse fumée"
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Bar Little Seoul - Traitement",
+                Pos = {x = 932.9300, y = -1803.9852, z = 30.7150},
+                required = "chairsaucisse",
+                giveitem = "saucissonsec",
+                add = "~p~+ 1  Saucisson sec"
             },
             vente = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Bar Little Seoul - Vente",
-                Pos = {x = 1722.8204, y = 6417.4311, z = 34.00},
-                required = "saucisse",
-                price = math.random(8, 15),
-                add = "~p~- 1 Saucisse fumée"
+                Pos = {x = 61.8119, y = -1726.7955, z = 29.4971},
+                required = "saucissonsec",
+                price = math.random(10,15),
+                add = "~p~- 1 Saucisson sec"
             }
         },
         Menu = {

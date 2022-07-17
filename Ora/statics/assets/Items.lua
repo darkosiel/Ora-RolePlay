@@ -833,6 +833,95 @@ Items = {
         faim = 30,
         category = "food"
     },
+    coupedefruit = {
+        label = "Coupe de fruits",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 20,
+        category = "food"
+    },
+    foiegras = {
+        label = "Foie Gras",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 20,
+        category = "food"
+    },
+    homardbleu = {
+        label = "Homard Bleu",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 30,
+        category = "food"
+    },
+    piecedeboeuf = {
+        label = "Pièce de boeuf",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 30,
+        category = "food"
+    },
+    pommeamour = {
+        label = "Pomme d'amour",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 10,
+        category = "food"
+    },
+    salade = {
+        label = "Salade",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 10,
+        category = "food"
+    },
+    soupedepoisson = {
+        label = "Soupe de poisson",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 30,
+        category = "food"
+    },
+    tartefraise = {
+        label = "Tarte aux fraises",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 30,
+        category = "food"
+    },
+    veloute = {
+        label = "Velouté",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 30,
+        category = "food"
+    },
+    boeufkobe = {
+        label = "Boeuf de Kobe",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 30,
+        category = "food"
+    },
+   --[[ truffe = {
+        label = "Truffe",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "v_res_tt_pizzaplate",
+        faim = 10,
+        category = "food"
+    },]]
+    --Binco/Ponsonbys 
     clothe = {
         label = "Vêtement",
         weight = 0.2,
@@ -876,6 +965,17 @@ Items = {
         label = "Café en poudre",
         weight = 0.5
     },
+    -- Items : bar chinois
+    chairsaucisse = {
+        label = "Chair à saucisse",
+        weight = 0.5
+    },
+    saucissonsec = {
+        label = "saucisson sec",
+        weight = 0.5
+    },
+
+
     sac = {
         label = "Sac",
         weight = 0.0,
@@ -1188,7 +1288,7 @@ Items = {
         weight = 0.2,
         actionCl = "miam:Drink",
         props = "prop_ecola_can",
-        soif = 15,
+        soif = 35,
         category = "food",
         throwableItem = true
     },

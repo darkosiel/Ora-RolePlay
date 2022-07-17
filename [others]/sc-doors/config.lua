@@ -370,6 +370,15 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.50
     },
+
+    {
+        objHash = 1695461688,
+        objCoords = vector3(96.09197235107422, -1284.853759765625, 29.438783645629883),
+        textCoords = vector3(96.09197235107422, -1284.853759765625, 29.438783645629883),
+        authorizedJobs = {"unicorn"},
+        locked = true,
+        maxDistance = 1.5
+    },
     -------- PRISON
 
     {
@@ -763,30 +772,68 @@ Config.DoorList = {
         locked = true,
         maxDistance = 0.5
     },
-    
-        --Ammunation
+
+    --Ammunation 
     
     {
         objHash = GetHashKey("v_ilev_gc_door04"),
         objHeading = 177.22,
-        objCoords = vector3(812.3914, -2148.0268, 29.5442),
-        textCoords = vector3(812.3914, -2148.0268, 29.5442),
+        objCoords = vector3(813.1779174804688, -2148.26953125, 29.768924713134766),
+        textCoords = vector3(813.1779174804688, -2148.26953125, 29.768924713134766),
         authorizedJobs = {"ammunation"},
         locked = true,
         maxDistance = 0.5
     },
-    
+        
     {
         objHash = GetHashKey("v_ilev_gc_door03"),
         objHeading = 23.23,
-        objCoords = vector3(811.1582, -2148.1740, 29.6184),
-        textCoords = vector3(811.1582, -2148.1740, 29.6184),
+        objCoords = vector3(810.576904296875, -2148.26953125, 29.768924713134766),
+        textCoords = vector3(810.576904296875, -2148.26953125, 29.768924713134766),
         authorizedJobs = {"ammunation"},
         locked = true,
         maxDistance = 0.5
     },
-    
-    
+
+    --CFX RECORDS
+
+    {
+        objHash = 2001816392,
+        objCoords = vector3(-826.4025268554688, -695.8140258789062, 28.490825653076172),
+        textCoords = vector3(-826.4025268554688, -695.8140258789062, 28.490825653076172),
+        authorizedJobs = {"littleseaoul"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 2001816392,
+        objCoords = vector3(-826.4025268554688, -697.994384765625, 28.490825653076172),
+        textCoords = vector3(-826.4025268554688, -697.994384765625, 28.490825653076172),
+        authorizedJobs = {"littleseaoul"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+    {
+        objHash = 2001816392,
+        objCoords = vector3(-826.4025268554688, -698.747802734375, 28.490825653076172),
+        textCoords = vector3(-826.4025268554688, -698.747802734375, 28.490825653076172),
+        authorizedJobs = {"littleseaoul"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 2001816392,
+        objCoords = vector3(-826.4025268554688, -700.9301147460938, 28.490825653076172),
+        textCoords = vector3(-826.4025268554688, -700.9301147460938, 28.490825653076172),
+        authorizedJobs = {"littleseaoul"},
+        locked = true,
+        maxDistance = 1.5
+    },
+      
         --MECANO
     
     {
