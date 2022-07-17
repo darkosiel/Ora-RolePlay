@@ -73,6 +73,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["fish12"] = {"Saumon", 40},
     ["tatakithon"] = {"Tataki de thon", 8},
     ["entreepearl"] = {"Tartare de thon-rouge", 2},
+    ["entrerpearl"] = {"Entrée Pearl's", 2},
 
     ["aperitif"] = {"Apéritif", 1},
     ["blocnote"] = {"Blocnote", 2},
@@ -109,8 +110,9 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["camera"] = {"Appareil photo", 100},
     ["fabric"] = {"Tissu", 1},
     ["tattoo_ink"] = {"Encre tatouage", 1},
-    ["desertmiror"] = {"Désert Pearl's", 2},
-    ["desertmiror"] = {"Désert Miror", 2}
+    ["desertpearl"] = {"Dessert Pearl's", 2},
+    ["desertmiror"] = {"Dessert Miror", 2},
+    ["entrermiror"] = {"Entrée Mirror", 2}
   },
 
 
