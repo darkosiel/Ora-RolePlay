@@ -11492,18 +11492,18 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -931.4651, y = -728.5750, z = 28.06},
+                Pos = {x = -816.0851, y = -701.1306, z = 31.14},
                 Limit = 800,
                 Name = "Bar Little Seoul"
             },
             {
                 Pos = {x = -812.3343, y = -698.3747, z = 27.06},
-                Limit = 800,
+                Limit = 100,
                 Name = "frigo2 Bar Little Seoul"
             },
             {
                 Pos = {x = -827.2576, y = -728.8852, z = 27.06},
-                Limit = 100,
+                Limit = 800,
                 Name = "Coffre Boss Bar Little Seoul"
             }
         },
