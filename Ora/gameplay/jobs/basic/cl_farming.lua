@@ -176,8 +176,8 @@ end
 local worksP = {
     recolte = {
         fct = function()
-            showMessageInformation("~b~Récolte en cours...", 5500)
-            Wait(5500)
+            showMessageInformation("~b~Récolte en cours...", 4000)
+            Wait(4000)
             --print("ok")
         end
     },
@@ -204,8 +204,8 @@ local worksP = {
                 end
             end
             if found then
-                showMessageInformation("~b~Traitement en cours...", 5500)
-                Wait(5500)
+                showMessageInformation("~b~Traitement en cours...", 4000)
+                Wait(4000)
                 --   Player.FarmLimit = Player.FarmLimit + 1
                 if (data.noFarm ~= nil) then
                     if (data.noFarm == true) then
