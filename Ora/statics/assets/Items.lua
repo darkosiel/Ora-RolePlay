@@ -971,8 +971,12 @@ Items = {
         weight = 0.5
     },
     saucissonsec = {
-        label = "saucisson sec",
-        weight = 0.5
+        label = "saucisson sec"",
+        weight = 0.5,
+        actionCl = "miam:Eat",
+        props = "prop_food_bs_burger2",
+        faim = 10,
+        category = "food"
     },
 
 
