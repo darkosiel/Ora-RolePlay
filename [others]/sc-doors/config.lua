@@ -833,6 +833,15 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.5
     },
+
+    {
+        objHash = -700626879,
+        objCoords = vector3(-816.2236328125, -740.1626586914062, 24.16523551940918),
+        textCoords = vector3(-816.2236328125, -740.1626586914062, 24.16523551940918),
+        authorizedJobs = {"littleseaoul"},
+        locked = true,
+        maxDistance = 15.5
+    },
       
         --MECANO
     
