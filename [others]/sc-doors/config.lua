@@ -853,6 +853,245 @@ Config.DoorList = {
         locked = true,
         maxDistance = 5.0
     },
+        --Distillerie 
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1861.68896484375, 2054.115966796875, 141.3535919189453),
+        textCoords = vector3(-1861.68896484375, 2054.115966796875, 141.3535919189453),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1859.2139892578125, 2054.117919921875, 141.35350036621094),
+        textCoords = vector3(-1859.2139892578125, 2054.117919921875, 141.35350036621094),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+
+    --
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1885.2110595703125, 2050.3798828125, 141.30850219726562),
+        textCoords = vector3(-1885.2110595703125, 2050.3798828125, 141.30850219726562),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1887.5340576171875, 2051.23388671875, 141.3125),
+        textCoords = vector3(-1887.5340576171875, 2051.23388671875, 141.3125),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1887.903076171875, 2051.386962890625, 141.3115234375),
+        textCoords = vector3(-1887.903076171875, 2051.386962890625, 141.3115234375),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1890.22509765625, 2052.23583984375, 141.3125),
+        textCoords = vector3(-1890.22509765625, 2052.23583984375, 141.3125),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1907.7320556640625, 2071.8779296875, 140.91310119628906),
+        textCoords = vector3(-1907.7320556640625, 2071.8779296875, 140.91310119628906),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1909.6240234375, 2073.471923828125, 140.91519165039062),
+        textCoords = vector3(-1909.6240234375, 2073.471923828125, 140.91519165039062),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1910.208984375, 2073.968994140625, 140.91310119628906),
+        textCoords = vector3(-1910.208984375, 2073.968994140625, 140.91310119628906),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1912.10107421875, 2075.56005859375, 140.91490173339844),
+        textCoords = vector3(-1912.10107421875, 2075.56005859375, 140.91490173339844),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1911.81005859375, 2078.794921875, 140.9114990234375),
+        textCoords = vector3(-1911.81005859375, 2078.794921875, 140.9114990234375),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1910.2020263671875, 2080.678955078125, 140.9114990234375),
+        textCoords = vector3(-1910.2020263671875, 2080.678955078125, 140.9114990234375),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1907.5960693359375, 2083.743896484375, 140.9114990234375),
+        textCoords = vector3(-1907.5960693359375, 2083.743896484375, 140.9114990234375),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1905.9940185546875, 2085.626953125, 140.9114990234375),
+        textCoords = vector3(-1905.9940185546875, 2085.626953125, 140.9114990234375),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1902.882080078125, 2086.544921875, 140.9167938232422),
+        textCoords = vector3(-1902.882080078125, 2086.544921875, 140.9167938232422),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1900.993896484375, 2084.947265625, 140.91883850097656),
+        textCoords = vector3(-1900.993896484375, 2084.947265625, 140.91883850097656),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1900.406005859375, 2084.44677734375, 140.9145965576172),
+        textCoords = vector3(-1900.406005859375, 2084.44677734375, 140.9145965576172),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1843224684,
+        objCoords = vector3(-1898.5140380859375, 2082.85205078125, 140.91525268554688),
+        textCoords = vector3(-1898.5140380859375, 2082.85205078125, 140.91525268554688),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1894.72998046875, 2075.967041015625, 141.3125),
+        textCoords = vector3(-1894.72998046875, 2075.967041015625, 141.3125),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1892.8330078125, 2074.380859375, 141.30850219726562),
+        textCoords = vector3(-1892.8330078125, 2074.380859375, 141.30850219726562),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1887.2430419921875, 2074.307861328125, 141.3125),
+        textCoords = vector3(-1887.2430419921875, 2074.307861328125, 141.3125),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1884.9210205078125, 2073.4619140625, 141.30850219726562),
+        textCoords = vector3(-1884.9210205078125, 2073.4619140625, 141.30850219726562),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    --
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1875.614013671875, 2070.06787109375, 141.3125),
+        textCoords = vector3(-1875.614013671875, 2070.06787109375, 141.3125),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = 1077118233,
+        objCoords = vector3(-1873.2939453125, 2069.2197265625, 141.30850219726562),
+        textCoords = vector3(-1873.2939453125, 2069.2197265625, 141.30850219726562),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
 
 }
 
