@@ -296,7 +296,7 @@ local VehShop =
                     {name = "feltzer3", price = 140400},
                     {name = "turismo2", price = 140400}
                 },
-                ["Velos"] = {
+               --[[ ["Velos"] = {
                     {name = "bmx", price = 245},
                     {name = "cruiser", price = 560},
                     {name = "fixter", price = 595},
@@ -304,7 +304,7 @@ local VehShop =
                     {name = "tribike", price = 1260},
                     {name = "tribike2", price = 1260},
                     {name = "tribike3", price = 1260}
-                },
+                },]]
                 ["Motos"] = {
                     {name = "akuma", price = 8200},
                     {name = "avarus", price = 7500},
@@ -367,13 +367,13 @@ local VehShop =
                     {name = "acknodlow", price = 15000},
                     {name = "scout", price = 15000}
                 },
-                ["Quad"] = {
+                --[[["Quad"] = {
                     {name = "blazer", price = 2700},
                     {name = "blazer2", price = 2000},
                     {name = "blazer3", price = 6100},
                     {name = "blazer4", price = 4500},
                     {name = "verus", price = 5500}
-                },
+                },]]
                 ["Police"] = {
                     {name = "police", price = 25000},
                     {name = "policeslick", price = 25000},
@@ -398,7 +398,7 @@ local VehShop =
                     {name = "polalamoold", price = 25000},
                     {name = "lspdb", price = 25000}
                 },
-                ["Vans"] = {
+                --[[["Vans"] = {
                     {name = "minivan", price = 9100},
                     {name = "paradise", price = 10140},
                     {name = "youga2", price = 9360},
@@ -417,8 +417,8 @@ local VehShop =
                     {name = "rumpo3", price = 55250},
                     {name = "speedo", price = 11960},
                     {name = "gburrito", price = 26000}
-                },
-                ["Suvs"] = {
+                },]]
+                --[[["Suvs"] = {
                     {name = "baller", price = 36400},
                     {name = "baller2", price = 66300},
                     {name = "baller3", price = 66300},
@@ -445,7 +445,7 @@ local VehShop =
                     {name = "xls", price = 44200},
                     {name = "habanero", price = 7500},
                     {name = "serrano", price = 8000}
-                },
+                },]]
                 ["Muscle"] = {
                     {name = "blade", price = 10400},
                     {name = "Buccaneer", price = 12740},
@@ -505,7 +505,7 @@ local VehShop =
                     {name = "yosemite2", price = 82875},
                     {name = "yosemite3", price = 83200}
                 },
-                ["Off-Road"] = {
+                --[[["Off-Road"] = {
                     {name = "bfinjection", price = 13520},
                     {name = "bifta", price = 9360},
                     {name = "bodhi2", price = 8684},
@@ -532,7 +532,7 @@ local VehShop =
                     {name = "sandking", price = 36400},
                     {name = "sandking2", price = 49725},
                     {name = "vagrant", price = 26000}
-                }
+                }]]
             }
         }
     },
