@@ -414,19 +414,19 @@ local PawnShops = {
         },
         items = {
             fishilleg1 = {
-                unitPrice = {min = 100, max = 200},
+                unitPrice = {min = 200, max = 250},
                 illegal = true
             },
             fishilleg2 = {
-                unitPrice = {min = 150, max = 250},
+                unitPrice = {min = 200, max = 300},
                 illegal = true
             },
             fishilleg3 = {
-                unitPrice = {min = 150, max = 250},
+                unitPrice = {min = 200, max = 350},
                 illegal = true
             },
             fishilleg4 = {
-                unitPrice = {min = 100, max = 200},
+                unitPrice = {min = 200, max = 300},
                 illegal = true
             }
         }
