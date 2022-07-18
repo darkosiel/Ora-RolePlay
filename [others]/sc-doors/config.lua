@@ -1046,27 +1046,7 @@ Config.DoorList = {
         maxDistance = 0.5
     },
 
-    --Ammunation 
-    
-    {
-        objHash = GetHashKey("v_ilev_gc_door04"),
-        objHeading = 177.22,
-        objCoords = vector3(813.1779174804688, -2148.26953125, 29.768924713134766),
-        textCoords = vector3(813.1779174804688, -2148.26953125, 29.768924713134766),
-        authorizedJobs = {"ammunation"},
-        locked = true,
-        maxDistance = 0.5
-    },
-        
-    {
-        objHash = GetHashKey("v_ilev_gc_door03"),
-        objHeading = 23.23,
-        objCoords = vector3(810.576904296875, -2148.26953125, 29.768924713134766),
-        textCoords = vector3(810.576904296875, -2148.26953125, 29.768924713134766),
-        authorizedJobs = {"ammunation"},
-        locked = true,
-        maxDistance = 0.5
-    },
+
 
     --CFX RECORDS
 
