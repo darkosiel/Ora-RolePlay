@@ -412,6 +412,7 @@ vehCoffres = {
     ["police2"] = 60,
     ["polraiden"] = 55,
     ["police3"] = 70,
+    ["pscout"] = 100,
     ["lspd1"] = 55,
     ["challenger18"] = 35,
     ["lspd2"] = 55,
