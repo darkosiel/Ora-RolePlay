@@ -23,5 +23,3 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
           data: "tag=${{ env.RELEASE_VERSION }}"
-      - name: Show logs
-        run: echo ${{ steps.deployRequest.outputs.response }}
