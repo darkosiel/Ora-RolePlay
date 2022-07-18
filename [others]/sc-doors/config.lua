@@ -537,6 +537,32 @@ Config.DoorList = {
         }
     },
 
+    {
+        objHash = 1010499530,
+        objCoords = vector3(-21.511592864990234, -1089.3994140625, 28.113454818725586),
+        textCoords = vector3(-21.511592864990234, -1089.3994140625, 28.113454818725586),
+        authorizedJobs = {"concess"},
+        locked = true,
+        maxDistance = 5.0
+    },
+
+    {
+        objHash = 2089009131,
+        objCoords = vector3(-30.42845916748047, -1102.47021484375, 27.42458724975586),
+        textCoords = vector3(-30.42845916748047, -1102.47021484375, 27.42458724975586),
+        authorizedJobs = {"concess"},
+        locked = true,
+        maxDistance = 1.50
+    },
+    {
+        objHash = 2089009131,
+        objCoords = vector3(-32.642669677734375, -1108.5592041015625, 27.42458724975586),
+        textCoords = vector3(-32.642669677734375, -1108.5592041015625, 27.42458724975586),
+        authorizedJobs = {"concess"},
+        locked = true,
+        maxDistance = 1.50
+    },
+
     -------- BANQUE
 
     {
