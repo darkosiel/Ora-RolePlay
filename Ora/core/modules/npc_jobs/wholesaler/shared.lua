@@ -78,7 +78,8 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["soupedepoisson"] = {"Soupe de poisson", 2}, 
     ["tartefraise"] = {"Tarte aux fraises", 2}, 
     ["veloute"] = {"Velouté", 2},
-    ["boeufkobe"] = {"Boeuf de Kobe", 2}
+    ["boeufkobe"] = {"Boeuf de Kobe", 2},
+    ["medica2"] = {"Anti-Inflammatoires", 2}
   },
 
 
