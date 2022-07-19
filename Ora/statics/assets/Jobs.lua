@@ -11517,7 +11517,7 @@ Jobs = {
                 giveitem = "chairsaucisse",
                 blipcolor = 7,
                 blipname = "Bar Little Seoul - Récolte",
-                add = "~p~+ 1  Saucisse fumée"
+                add = "~p~+ 1  Chair à saucisse"
             },
             traitement = {
                 type = "traitement",
