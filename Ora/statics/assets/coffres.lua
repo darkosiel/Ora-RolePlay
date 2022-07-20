@@ -408,6 +408,7 @@ vehCoffres = {
     ["speedo"] = 100,
     ["speedo2"] = 100,
     ["speedo3"] = 100,
+    ["polspeedo"] = 500,
     ["police"] = 55,
     ["police2"] = 60,
     ["polraiden"] = 55,
