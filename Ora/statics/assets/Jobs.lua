@@ -1974,7 +1974,7 @@ Jobs = {
             traitement6 = {
                 --Café
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 5,
                 blipcolor = 7,
                 blipname = "Miror - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
