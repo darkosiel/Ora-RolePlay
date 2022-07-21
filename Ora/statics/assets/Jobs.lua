@@ -29,7 +29,145 @@ Jobs = {
             }
         }
     },
-
+    autojap = {
+        label = "Japonnais",
+        label2 = "Japonnais",
+        iban = "autojap",
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Japonnais",
+                subtitle = "Actions disponibles",
+                name = "Concessionnaire_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facture",
+                    onSelected = function()
+                        CreateFacture("Japonnais")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Listes des ventes",
+                    onSelected = function()
+                        ListesVentesnord()
+                    end
+                },
+                {
+                    label = "Rentrer véhicule",
+                    onSelected = function()
+                        RentrerVeh()
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+                {
+                    label = "Créer une clé",
+                    onSelected = function()
+                        Clef()
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+                {
+                    label = "Créer une carte grise",
+                    onSelected = function()
+                        CarteGrise()
+                    end
+                },
+                {
+                    label = "Changer un propriétaire de véhicule - Joueur",
+                    onSelected = function()
+                        CGNvxProprioPlyr()
+                    end
+                },
+                {
+                    label = "Changer un propriétaire de véhicule - Entreprise",
+                    onSelected = function()
+                        CGNvxProprioJob()
+                    end
+                },
+                {
+                    label = "Mettre/Retirer le véhicule du plateau",
+                    onSelected = function()
+                        Mecano.PutPlateau()
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+                {
+                    label = "Retourner le véhicule",
+                    onSelected = function()
+                        SetVehicleOnGroundProperly(GetVehicleInDirection(5.0))
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 908.666, y = -1807.8575, z = 21.34},
+                Limit = 100,
+                Name = "coffre Japonnais"
+            }
+        },
+        garage = {
+            Name = "Garage Autoshop",
+            Pos = {x = 940.9163, y = -1808.4111, z = 20.03},
+            illimity = true,
+            Properties = {
+                type = 3,
+                -- = garage societe
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 940.9163, y = -1808.4111, z = 20.03, a = 243.75}
+            },
+            Blipdata = {
+                Pos = {x = -940.9163, y = -1808.4111, z = 20.03},
+                Blipcolor = 7,
+                Blipname = "Garage"
+            }
+        }
+    },
     mecano2 = {
         label = "Autorepairs",
         label2 = "Autorepairs",

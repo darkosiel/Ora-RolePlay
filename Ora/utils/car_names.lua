@@ -70,6 +70,27 @@ Citizen.CreateThread(function()
     AddTextEntry("Scout", "Scout")
 
 
+    --Japonnais
+    AddTextEntry("primo3", "Primo Sport"),
+    AddtextEntry("altior", "Vectre Classic"),
+    AddtextEntry("doubled", "Obey TT"),
+    AddtextEntry("dubsta22", "Dubsta 2021"),
+    AddtextEntry("dubstaenus", "Dubsta 4x4"),
+    AddtextEntry("elegyrh7", "Elegy RH7"),
+    AddtextEntry("gauntlets", "Buffalo HellFire"),
+    AddtextEntry("oracleta", "Oracle V12"),
+    AddtextEntry("oraclestd", "Oracle V12 Turbo"),
+    AddtextEntry("scheisser", "Schafter Classic"),
+    AddtextEntry("sentinelsg3a", "Sentinel E35"),
+    AddtextEntry("sentinelsg3b2", "Sentinel E35 Cabrio"),
+    AddtextEntry("sentinelsg3c2", "Sentinel E35 Break"),
+    AddtextEntry("sentinelsg32", "Sentinel E35 Turbo"),
+    AddtextEntry("sigma2", "RT3000 Classic"),
+    AddtextEntry("patriots", "Patriot Sport"),
+    AddtextEntry("stratumc", "Stratum Custom"),
+    AddtextEntry("sunrise1", "Sunrise R"),
+    AddtextEntry("Tampar", "Tampa Sport"),
+    AddtextEntry("buffaloac", "Buffalo S Custom "),
     --WEAZEL
     AddTextEntry("NEWSVAN", "Rumpo News")
     -- AddTextEntry("NEWSMAV", "Maverick News")
