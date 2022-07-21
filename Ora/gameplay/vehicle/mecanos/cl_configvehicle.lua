@@ -441,7 +441,28 @@ VehiclePrices = {
     {name = "lspdb", price = 25000},
     {name = "polalamo", price = 25000},
     {name = "pdumkbuffalo", price = 25000},
-    {name = "police2new", price = 25000}
+    {name = "police2new", price = 25000},
+
+    {name = "primo3", price = 9000},
+    {name = "altior", price = 10000},
+    {name = "doubled", price = 45000},
+    {name = "dubsta22", price = 40000},
+    {name = "dubstaenus", price = 50000},
+    {name = "elegyrh7", price = 115000},
+    {name = "gauntlets", price = 60000},
+    {name = "oracleta", price = 30000},
+    {name = "oraclestd", price = 30000},
+    {name = "scheisser", price = 50000},
+    {name = "sentinelsg3a2", price = 35000},
+    {name = "sentinelsg3b2", price = 35000},
+    {name = "sentinelsg3c2", price = 30000},
+    {name = "sentinelsg32", price = 37000},
+    {name = "sigma2", price = 90000},
+    {name = "patriots", price = 65000},
+    {name = "stratumc", price = 40000},
+    {name = "sunrise1", price = 130000},
+    {name = "tampar", price = 55000},
+    {name = "buffaloac", price = 25000}
 }
 
 VehiclePricesByCategory = {
