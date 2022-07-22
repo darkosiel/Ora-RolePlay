@@ -97,7 +97,9 @@ local VehShop =
                     {name = "windsor2", price = 162000},
                     {name = "zion", price = 26000},
                     {name = "zion2", price = 31200},
-                    {name = "zion3", price = 38000}
+                    {name = "zion3", price = 38000},
+                    {name = "cinquemila", price = 120000},
+                    {name = "deity", price = 90000}
                 },
                 ["Sport"] = {
                     {name = "alpha", price = 49725},
@@ -107,6 +109,7 @@ local VehShop =
                     {name = "blista2", price = 14000},
                     {name = "buffalo", price = 16640},
                     {name = "buffalo2", price = 20800},
+                    {name = "buffalo4", price = 35000},
                     {name = "calico", price = 47500},
                     {name = "carbonizzare", price = 107100},
                     {name = "comet2", price = 104975},
@@ -177,7 +180,8 @@ local VehShop =
                     {name = "vstr", price = 112200},
                     {name = "vectre", price = 130000},
                     {name = "neon", price = 130200},
-                    {name = "zr350", price = 65000}
+                    {name = "zr350", price = 65000},
+                    {name = "comet7", price = 150000}
                 },
                 ["Supersportive"] = {
                     {name = "adder", price = 205200},
@@ -221,7 +225,10 @@ local VehShop =
                     {name = "zentorno", price = 183600},
                     {name = "zorrusso", price = 242550},
                     {name = "vagner", price = 580000},
-                    {name = "italirsx", price = 580000}
+                    {name = "italirsx", price = 580000},
+                    {name = "champion", price = 300000},
+                    {name = "ignus", price = 622000},
+                    {name = "zeno", price = 382000}
                 },
                    
                 ["Sedans"] = {
@@ -350,7 +357,9 @@ local VehShop =
                     {name = "vortex", price = 4500},
                     {name = "wolfsbane", price = 4200},
                     {name = "zombiea", price = 4000},
-                    {name = "zombieb", price = 4700}
+                    {name = "zombieb", price = 4700},
+                    {name = "reever", price = 8000},
+                    {name = "shinobi", price = 12000}
                 },
                 ["Motos Biker"] = {
                     {name = "foxharley2", price = 15000},

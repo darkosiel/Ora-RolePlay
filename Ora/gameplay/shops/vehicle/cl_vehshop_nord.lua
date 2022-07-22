@@ -101,7 +101,7 @@ local autoshop =
                     {name = "granger", price = 26000},
                     {name = "hellion", price = 19240},
                     {name = "kalahari", price = 1820},
-                    {name = "kamacho", price = 44200},
+                    {name = "kamacho", price = 60000},
                     {name = "marshall", price = 80750},
                     {name = "mesa", price = 10400},
                     {name = "mesa3", price = 31200},
@@ -112,7 +112,9 @@ local autoshop =
                     {name = "riata", price = 36400},
                     {name = "sandking", price = 36400},
                     {name = "sandking2", price = 49725},
-                    {name = "vagrant", price = 26000}
+                    {name = "vagrant", price = 26000},
+                    {name = "granger2", price = 36000},
+                    {name = "patriot3", price = 60000}
                 },
                 ["Quad"] = {
                     {name = "blazer", price = 2700},
@@ -207,7 +209,11 @@ local autoshop =
                     {name = "toros", price = 162400},
                     {name = "xls", price = 44200},
                     {name = "habanero", price = 7500},
-                    {name = "serrano", price = 8000}
+                    {name = "serrano", price = 8000},
+                    {name = "astron", price = 130000},
+                    {name = "baller7", price = 70000},
+                    {name = "iwagen", price = 70000},
+                    {name = "jubilee", price = 135000}
                 },
                 ["Vans"] = {
                     {name = "minivan", price = 9100},
@@ -227,7 +233,8 @@ local autoshop =
                     {name = "speedo2", price = 13200},
                     {name = "rumpo3", price = 55250},
                     {name = "speedo", price = 11960},
-                    {name = "gburrito", price = 26000}
+                    {name = "gburrito", price = 26000},
+                    {name = "youga4", price = 10000}
                 }
             }
         }

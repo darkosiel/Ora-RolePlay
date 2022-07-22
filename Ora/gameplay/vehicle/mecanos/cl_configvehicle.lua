@@ -313,7 +313,7 @@ VehiclePrices = {
     {name = "granger", price = 26000},
     {name = "hellion", price = 19240},
     {name = "kalahari", price = 1820},
-    {name = "kamacho", price = 44200},
+    {name = "kamacho", price = 60000},
     {name = "marshall", price = 80750},
     {name = "mesa", price = 10400},
     {name = "mesa3", price = 31200},
@@ -463,7 +463,26 @@ VehiclePrices = {
     {name = "stratumc", price = 40000},
     {name = "sunrise1", price = 130000},
     {name = "tampar", price = 55000},
-    {name = "buffaloac", price = 25000}
+    {name = "buffaloac", price = 25000},
+
+    --new dlc
+    {name = "astron", price = 130000},
+    {name = "baller7", price = 70000},
+    {name = "buffalo4", price = 35000},
+    {name = "champion", price = 300000},
+    {name = "cinquemila", price = 120000},
+    {name = "comet7", price = 150000},
+    {name = "deity", price = 90000},
+    {name = "granger2", price = 36000},
+    {name = "ignus", price = 622000},
+    {name = "iwagen", price = 70000},
+    {name = "jubilee", price = 135000},
+    {name = "patriot3", price = 60000},
+    {name = "reever", price = 8000},
+    {name = "shinobi", price = 12000},
+    {name = "youga4", price = 10000},
+    {name = "zeno", price = 382000}
+    
 }
 
 VehiclePricesByCategory = {
