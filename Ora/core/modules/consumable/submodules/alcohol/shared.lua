@@ -87,6 +87,20 @@ Ora.Consumable.Alcohol = {
       settings = 1,
       count = 10
     },
+    ["champagnebleuter"] = {
+      bottle = "prop_vodka_bottle",
+      glass = "ex_p_ex_tumbler_02_s",
+      anim = {
+        dict = "anim@safehouse@whisky",
+        ped = "drink_whisky_stage2",
+        bottle = vector3(0.10, -0.15, -0.15),
+        glass = "drink_whisky_stage2_tumbler",
+        rotation = 180.0,
+        duration = 9000
+      },
+      settings = 1,
+      count = 10
+    },
     ["cognac"] = {
       bottle = "prop_bottle_cognac",
       glass = 'ex_p_ex_tumbler_01_s',

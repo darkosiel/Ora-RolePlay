@@ -126,6 +126,23 @@ DistillerieCrafts["alcools"] = {
             craftAlcool(data)
         end
     },
+    champagnebleuter = {
+        title = "Champagne Bleuter'd",
+        item = "champagnebleuter",
+        label = "CHAMPAGNEBLEUTER",
+        time = 1000,
+        required = {
+            {name = "water", count = 1},
+            {name = "red_wine", count = 1},
+            {name = "levure", count = 1}
+        },
+        selected = function()
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = DistillerieCrafts["alcools"]["champagnebleuter"]
+            craftAlcool(data)
+        end
+    },
     red_wine = {
         title = "Bouteille de vin",
         item = "red_wine",

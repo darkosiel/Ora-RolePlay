@@ -1415,7 +1415,13 @@ Items = {
         label = "Champagne",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
+        category = "consumable"  
+    },
+    champagnebleuter = {
+        label = "Champagne Bleuter'D",
+        weight = 0.5,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"  
     },
     agave = {
         label = "Agave",
