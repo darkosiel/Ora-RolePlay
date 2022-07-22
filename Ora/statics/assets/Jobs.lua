@@ -11455,6 +11455,42 @@ Jobs = {
                     end
                 }
             }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 717.60, y = -978.55, z = 24.11},
+                giveitem = "aperitif",
+                blipcolor = 7,
+                blipname = "Bar - Vendeur de bretzel",
+                add = "~p~+ 1 Apéritif",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Bar - Produire des céréales",
+                Pos = {x = 2553.31, y = 4670.74, z = 32.95},
+                required = "aperitif",
+                giveitem = "tacos",
+                add = "~p~+ 1  tacos"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Bar - Vente",
+                Pos = {x = -1113.61, y = -1367.55, z = 5.01},
+                required = "tacos",
+                price = math.random(8, 15),
+                add = "~p~- 1 tacos"
+            }
         }
     },
     henhouse = {
