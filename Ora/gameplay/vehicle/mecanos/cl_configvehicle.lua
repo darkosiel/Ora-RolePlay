@@ -443,6 +443,7 @@ VehiclePrices = {
     {name = "pdumkbuffalo", price = 25000},
     {name = "police2new", price = 25000},
 
+    -- Custom business véhicule japonais
     {name = "primo3", price = 9000},
     {name = "altior", price = 10000},
     {name = "doubled", price = 45000},
