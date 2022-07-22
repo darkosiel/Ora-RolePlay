@@ -35,3 +35,4 @@ loadscreen/
 **/node_modules
 **/whitelist.json
 Ora/core/test.cfg
+Ora/whitelist.json
