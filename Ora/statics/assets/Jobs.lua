@@ -3535,8 +3535,8 @@ Jobs = {
     --     },
     -- },
     night = {
-        label = "Night-Club",
-        label2 = "Night-Club",
+        label = "Galaxy",
+        label2 = "Galaxy",
         iban = "night",
         FreeAccess = false,
         grade = {
@@ -3573,7 +3573,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Night-Club",
+                title = "Galaxy",
                 subtitle = "Actions",
                 name = "night_menuperso"
             },
@@ -3593,14 +3593,15 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Galaxy", "Annonce", text, "CHAR_GALAXY", 8, "Night-Club")
+                            TriggerServerEvent("Job:Annonce", "Galaxy", "Annonce", text, "CHAR_GALAXY", 8, "Galaxy")
                         end
                     end
                 }
-            }
+            },
+            
         },
         garage = {
-            Name = "Garage Night-Club",
+            Name = "Garage Galaxy",
             Pos = {x = 367.85, y = 296.09, z = 102.50},
             Properties = {
                 type = 3,
