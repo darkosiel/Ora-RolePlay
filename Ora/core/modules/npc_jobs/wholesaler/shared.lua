@@ -16,6 +16,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["fire_extinguisher"] = {"Extincteur", 10},
     ["medbag"] = {"Sac medical", 100},
     ["medikit"] = {"Trousse de soin", 20},
+    ["medica2"] = {"Anti-Inflammatoires", 2},
 
     ["bigcam "] = {"Caméra sur épaule", 100}, 
     ["micro "] = {"Micro", 80},
