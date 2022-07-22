@@ -84,7 +84,7 @@ Jobs = {
                 {
                     label = "Listes des ventes",
                     onSelected = function()
-                        ListesVentesnord()
+                        ListesVentesautojap()
                     end
                 },
                 {
@@ -151,7 +151,7 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Autoshop",
+            Name = "Garage Autojap",
             Pos = {x = 940.9163, y = -1808.4111, z = 20.03},
             illimity = true,
             Properties = {

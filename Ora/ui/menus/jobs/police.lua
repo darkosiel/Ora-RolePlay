@@ -2133,6 +2133,179 @@ Citizen.CreateThread(
     end
 )
 
+function ListesVentesautojap() -- (concess jap)
+    Citizen.CreateThread(
+        function()
+            RageUI.GoBack()
+            Wait(20)
+            RageUI.GoBack()
+            Wait(20)
+            RageUI.GoBack()
+            Wait(20)
+            RageUI.GoBack()
+            Wait(20)
+            RageUI.GoBack()
+            TriggerServerCallback(
+                "autojap:GetAll",
+                function(d, identity)
+                    for t = 1, #d, 1 do
+                        local buyerFound = false
+                        for i = 1, #identity, 1 do
+                            if identity[i].uuid == d[t].buyer then
+                                d[t].identityBuyer = identity[i]
+                                buyerFound = true
+                            end
+
+                            if identity[i].uuid == d[t].vendor then
+                                d[t].identityVendor = identity[i]
+                            end
+                        end
+
+                        if (buyerFound == false) then
+                            d[t].identityBuyer = {}
+                            d[t].identityBuyer.first_name = "Société"
+                            d[t].identityBuyer.last_name = d[t].buyer
+                        end
+                    end
+                    VehiclesList = d
+                end
+            )
+            RageUI.Visible(RMenu:Get("autojap", "listes"), true)
+        end
+    )
+end
+Citizen.CreateThread(
+    function()
+        while true do
+            Wait(1)
+
+            if RageUI.Visible(RMenu:Get("autojap", "listes")) then
+                RageUI.DrawContent(
+                    {header = false, glare = false},
+                    function()
+                        local label2 = search == nil and "Rechercher" or "Recherche actuel : ~b~" .. search
+                        RageUI.Button(
+                            label2,
+                            nil,
+                            {RightLabel = "🔍"},
+                            true,
+                            function(_, _, S)
+                                if S then
+                                    local filter = KeyboardInput("Rechercher", nil, 250)
+                                    filter = tostring(filter)
+                                    if filter ~= "nil" then
+                                        if tostring(filter) ~= nil and filter ~= "" then
+                                            search = filter
+                                        elseif tostring(filter) == nil and filter == "" then
+                                            search = nil
+                                        else
+                                            search = nil
+                                            ShowAboveRadarMessage("Recherche ~r~invalide")
+                                        end
+                                    else
+                                        search = nil
+                                        ShowAboveRadarMessage("Recherche ~r~invalide")
+                                    end
+                                end
+                            end
+                        )
+                        local found = false
+                        for i = 1, #VehiclesList, 1 do
+                            if filter ~= nil then
+                                for k, v in pairs(vehicleList) do
+                                    if string.match(v, filterSearch.search:lower()) then
+                                        found = true
+                                    end
+                                end
+                            else
+                                found = true
+                            end
+                            if found then
+                                RageUI.Button(
+                                    VehiclesList[i].model .. " - " .. VehiclesList[i].plate,
+                                    nil,
+                                    {RightLabel = VehiclesList[i].date},
+                                    true,
+                                    function(_, _, Selected)
+                                        if Selected then
+                                            currVEH = VehiclesList[i]
+                                        end
+                                    end,
+                                    RMenu:Get("autojap", "listes_veh")
+                                )
+                            end
+                        end
+                    end,
+                    function()
+                    end
+                )
+            end
+            if RageUI.Visible(RMenu:Get("autojap", "listes_veh")) then
+                RageUI.DrawContent(
+                    {header = false, glare = false},
+                    function()
+                        RageUI.Button(
+                            "Modèle du véhicule ",
+                            nil,
+                            {RightLabel = currVEH.model},
+                            true,
+                            function(_, _, Selected)
+                            end
+                        )
+                        RageUI.Button(
+                            "Plaques ",
+                            nil,
+                            {RightLabel = currVEH.plate},
+                            true,
+                            function(_, _, Selected)
+                            end
+                        )
+
+                        RageUI.Button(
+                            "Prix de vente ",
+                            nil,
+                            {RightLabel = currVEH.prices .. "$"},
+                            true,
+                            function(_, _, Selected)
+                            end
+                        )
+
+                        RageUI.Button(
+                            "Date de la vente ",
+                            nil,
+                            {RightLabel = currVEH.date},
+                            true,
+                            function(_, _, Selected)
+                            end
+                        )
+
+                        RageUI.Button(
+                            "Acheteur ",
+                            nil,
+                            {RightLabel = currVEH.identityBuyer.first_name .. " " .. currVEH.identityBuyer.last_name},
+                            true,
+                            function(_, _, Selected)
+                            end
+                        )
+
+                        RageUI.Button(
+                            "Vendeur ",
+                            nil,
+                            {RightLabel = currVEH.identityVendor.first_name .. " " .. currVEH.identityVendor.last_name},
+                            true,
+                            function(_, _, Selected)
+                            end
+                        )
+                    end,
+                    function()
+                    end
+                )
+            end
+        end
+    end
+)
+
+
 function ListesVentesmoto() -- (Bikershop)
     Citizen.CreateThread(
         function()
