@@ -512,10 +512,10 @@ function ChangeVision()
 	if vision_state == 0 then
 		SetNightvision(true)
 		vision_state = 1
-	--[[ elseif vision_state == 1 then
+	elseif vision_state == 1 then
 		SetNightvision(false)
 		SetSeethrough(true)
-		vision_state = 2 ]]
+		vision_state = 2
   else
     SetNightvision(false)
 		vision_state = 0
@@ -609,11 +609,11 @@ function RenderVehicleInfo(vehicle)
 		SetTextDropShadow()
 		SetTextOutline()
 		SetTextEntry("STRING")
-		--[[ if vehicle_display == 0 then
+		if vehicle_display == 0 then
 			AddTextComponentString("Speed: " .. math.ceil(vehspeed) .. " " .. speed_measure .. "\nModel: " .. vehname .. "\nPlate: " .. licenseplate)
 		elseif vehicle_display == 1 then
 			AddTextComponentString("Model: " .. vehname .. "\nPlate: " .. licenseplate)
-		end ]]
+		end
     AddTextComponentString("Speed: " .. math.ceil(vehspeed) .. " " .. speed_measure)
 		DrawText(0.45, 0.9)
 	end
