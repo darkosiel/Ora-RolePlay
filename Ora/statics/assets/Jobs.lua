@@ -3535,8 +3535,8 @@ Jobs = {
     --     },
     -- },
     night = {
-        label = "Night-Club",
-        label2 = "Night-Club",
+        label = "Galaxy",
+        label2 = "Galaxy",
         iban = "night",
         FreeAccess = false,
         grade = {
@@ -3573,7 +3573,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Night-Club",
+                title = "Galaxy",
                 subtitle = "Actions",
                 name = "night_menuperso"
             },
@@ -3593,14 +3593,15 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Galaxy", "Annonce", text, "CHAR_GALAXY", 8, "Night-Club")
+                            TriggerServerEvent("Job:Annonce", "Galaxy", "Annonce", text, "CHAR_GALAXY", 8, "Galaxy")
                         end
                     end
                 }
-            }
+            },
+            
         },
         garage = {
-            Name = "Garage Night-Club",
+            Name = "Garage Galaxy",
             Pos = {x = 367.85, y = 296.09, z = 102.50},
             Properties = {
                 type = 3,
@@ -11454,6 +11455,42 @@ Jobs = {
                         end
                     end
                 }
+            }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 717.60, y = -978.55, z = 24.11},
+                giveitem = "aperitif",
+                blipcolor = 7,
+                blipname = "Bar - Vendeur de bretzel",
+                add = "~p~+ 1 Apéritif",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Bar - Produire des céréales",
+                Pos = {x = 2553.31, y = 4670.74, z = 32.95},
+                required = "aperitif",
+                giveitem = "tacos",
+                add = "~p~+ 1  tacos"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Bar - Vente",
+                Pos = {x = -1113.61, y = -1367.55, z = 5.01},
+                required = "tacos",
+                price = math.random(8, 15),
+                add = "~p~- 1 tacos"
             }
         }
     },
