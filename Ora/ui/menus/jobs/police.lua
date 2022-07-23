@@ -1391,6 +1391,9 @@ RMenu.Add("autoshop", "listes_veh", RageUI.CreateSubMenu(RMenu:Get("concess", "l
 RMenu.Add("bikershop", "listes", RageUI.CreateSubMenu(RMenu:Get("personnal", "main"), "", "Ventes effectuées"))
 RMenu.Add("bikershop", "listes_veh", RageUI.CreateSubMenu(RMenu:Get("concess", "listes"), "", "Informations"))
 
+RMenu.Add("autojap", "listes", RageUI.CreateSubMenu(RMenu:Get("personnal", "main"), "", "Ventes effectuées"))
+RMenu.Add("autojap", "listes_veh", RageUI.CreateSubMenu(RMenu:Get("concess", "listes"), "", "Informations"))
+
 local VehiclesList = {}
 
 function Clef()
