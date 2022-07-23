@@ -3381,13 +3381,25 @@ Jobs = {
         iban = "records",
         grade = {
             {
-                label = "Stagiaire",
+                label = "Sécurité",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "Autres",
                 salary = 150,
                 name = "cdi",
                 show = true
             },
             {
                 label = "Rappeur",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
                 salary = 180,
                 name = "drh",
                 show = true
