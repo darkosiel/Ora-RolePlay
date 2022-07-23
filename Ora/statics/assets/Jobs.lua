@@ -3440,6 +3440,71 @@ Jobs = {
             }
         },
     },
+    drecords = {
+        label = "Death Row Records",
+        label2 = "Death Row Records",
+        iban = "drecords",
+        grade = {
+            {
+                label = "Sécurité",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "Autres",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Rappeur",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Death Row Records",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("drecords")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Death Row Records", "Annonce", text, "CHAR_STAY", 8, "Death Row Records")
+                        end
+                    end
+                }
+            }
+        },
+    },
     -- avocatn = {
     --     label = "Cabinet Nemesis Associate",
     --     label2 = "Cabinet Nemesis Associate",
