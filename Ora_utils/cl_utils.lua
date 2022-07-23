@@ -241,6 +241,7 @@ local clearAreaOfPedsArray = {
     { pos = vector3(117.96, -1287.3, 28.27), radius = 50.0 },
     { pos = vector3(322.58, 181.54, 103.59), radius = 6.0 },
     { pos = vector3(248.62, 220.36, 106.29), radius = 15.0 },
+    { pos = vector3(-204.8388, -1333.2086, 34.89), radius = 60.0 },
     { pos = vector3(-1427.299, -245.1012, 16.8039), radius = 20.0 },
 }
 
