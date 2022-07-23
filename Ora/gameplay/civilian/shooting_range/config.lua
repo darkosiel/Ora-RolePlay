@@ -43,17 +43,6 @@ Shooting_range = {
     }
   },
   localization = {
-    ["Sud"] = {
-      pos = vector3(821.600, -2163.729, 29.00),
-      targetPos = {
-        {pos = vector3(817.784, -2171.768, 28.62), rotX = 90.00, rotY = 0.0, rotZ = 0.0},
-        {pos = vector3(816.187, -2171.665, 28.62), rotX = 90.00, rotY = 0.0, rotZ = 0.0},
-        {pos = vector3(818.271, -2180.777, 28.62), rotX = 90.00, rotY = 0.0, rotZ = 0.0},
-        {pos = vector3(819.867, -2180.825, 28.62), rotX = 90.00, rotY = 0.0, rotZ = 0.0},
-        {pos = vector3(824.311, -2180.719, 28.62), rotX = 90.00, rotY = 0.0, rotZ = 0.0},
-        {pos = vector3(825.908, -2180.736, 28.62), rotX = 90.00, rotY = 0.0, rotZ = 0.0}
-      }
-    },
     ["Centre"] = {
       pos = vector3(13.445, -1097.180, 29.00),
       targetPos = {

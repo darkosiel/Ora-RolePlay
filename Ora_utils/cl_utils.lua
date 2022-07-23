@@ -241,6 +241,7 @@ local clearAreaOfPedsArray = {
     { pos = vector3(117.96, -1287.3, 28.27), radius = 50.0 },
     { pos = vector3(322.58, 181.54, 103.59), radius = 6.0 },
     { pos = vector3(248.62, 220.36, 106.29), radius = 15.0 },
+    { pos = vector3(-204.8388, -1333.2086, 34.89), radius = 60.0 },
     { pos = vector3(-1427.299, -245.1012, 16.8039), radius = 20.0 },
 }
 
@@ -280,11 +281,11 @@ Citizen.CreateThread(
                     ClearAreaOfPeds(value.pos.x, value.pos.y, value.pos.z, value.radius, 1)
                 end
             end
-            SetPedDensityMultiplierThisFrame(1.0) -- set npc/ai peds density to 0
-            SetScenarioPedDensityMultiplierThisFrame(1.0, 1.0)
-            SetVehicleDensityMultiplierThisFrame(0.8) -- was at 0.6
-            SetParkedVehicleDensityMultiplierThisFrame(0.8) -- was at 0.5
-            SetRandomVehicleDensityMultiplierThisFrame(0.8) -- was at 0.5 -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
+            SetPedDensityMultiplierThisFrame(0.5) -- set npc/ai peds density to 0
+            SetScenarioPedDensityMultiplierThisFrame(0.5, 0.5)
+            SetVehicleDensityMultiplierThisFrame(0.4) -- was at 0.6
+            SetParkedVehicleDensityMultiplierThisFrame(0.4) -- was at 0.5
+            SetRandomVehicleDensityMultiplierThisFrame(0.4) -- was at 0.5 -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
             DisablePlayerVehicleRewards(PlayerId())
             SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
         end

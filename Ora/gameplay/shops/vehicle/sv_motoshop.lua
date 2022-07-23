@@ -3,7 +3,7 @@
 
 RegisterServerCallback("bikershop:BuyVehicle", function(source, callback,price,targetSource,vehicle)
     local pUUID = Ora.Identity:GetUuid(source)
-    local uuid = "jetsam"
+    local uuid = "Concess moto"
     while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
         vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
     end
@@ -28,8 +28,7 @@ RegisterServerCallback("bikershop:BuyVehicle", function(source, callback,price,t
             ['@plate'] = vehicle.plate,
             ['@model'] = vehicle.label,
             ['@price'] = price,
-            ['@date'] = os.date("%Y-%m-%d %H:%M:%S", os.time())
-
+            ["@date"] = os.date("%Y-%m-%d %H:%M:%S", os.time())
         }
     )
     --(true)

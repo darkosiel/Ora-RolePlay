@@ -895,7 +895,7 @@ Config.DoorList = {
         textCoords = vector3(731.99, 2522.13, 73.67),
         authorizedJobs = {"--"},
         locked = true,
-        maxDistance = 1.5
+        maxDistance = 0.1
     },
     {
         objHash = -1995612459,
@@ -904,7 +904,7 @@ Config.DoorList = {
         textCoords = vector3(731.99, 2524.66, 73.67),
         authorizedJobs = {"--"},
         locked = true,
-        maxDistance = 1.5
+        maxDistance = 0.1
     },
     {
         objHash = -1576989776,
@@ -912,8 +912,8 @@ Config.DoorList = {
         objCoords = vector3(715.11, 2531.74, 73.55),
         textCoords = vector3(715.11, 2531.74, 73.55),
         authorizedJobs = {"--"},
-        locked = false,
-        maxDistance = 1.5
+        locked = true,
+        maxDistance = 0.1
     },
     {
         objHash = -1576989776,
@@ -921,25 +921,7 @@ Config.DoorList = {
         objCoords = vector3(713.50, 2530.03, 73.55),
         textCoords = vector3(713.50, 2530.03, 73.55),
         authorizedJobs = {"--"},
-        locked = false,
-        maxDistance = 1.5
-    },
-    {
-        objHash = 42511143,
-        objHeading = 359.87,
-        objCoords = vector3(726.024, 2521.33, 73.95),
-        textCoords = vector3(726.024, 2521.33, 73.95),
-        authorizedJobs = {"--"},
-        locked = false,
-        maxDistance = 1.5
-    },
-    {
-        objHash = 42511143,
-        objHeading = 180.14,
-        objCoords = vector3(723.83, 2521.33, 73.95),
-        textCoords = vector3(723.83, 2521.33, 73.95),
-        authorizedJobs = {"--"},
-        locked = false,
+        locked = true,
         maxDistance = 1.5
     },
     {
