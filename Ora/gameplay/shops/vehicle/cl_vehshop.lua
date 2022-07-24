@@ -312,7 +312,7 @@ local VehShop =
                     {name = "tribike2", price = 1260},
                     {name = "tribike3", price = 1260}
                 },]]
-                ["Motos"] = {
+                --[[["Motos"] = {
                     {name = "akuma", price = 8200},
                     {name = "avarus", price = 7500},
                     {name = "bagger", price = 10100},
@@ -360,7 +360,7 @@ local VehShop =
                     {name = "zombieb", price = 4700},
                     {name = "reever", price = 8000},
                     {name = "shinobi", price = 12000}
-                },
+                },]]
                 --[[["Motos Biker"] = {
                     {name = "foxharley2", price = 15000},
                     {name = "hvrod", price = 15000},
@@ -455,7 +455,7 @@ local VehShop =
                     {name = "habanero", price = 7500},
                     {name = "serrano", price = 8000}
                 },]]
-                ["Muscle"] = {
+                --[[["Muscle"] = {
                     {name = "blade", price = 10400},
                     {name = "Buccaneer", price = 12740},
                     {name = "buccaneer2", price = 16640},
@@ -513,7 +513,7 @@ local VehShop =
                     {name = "yosemite", price = 82322},
                     {name = "yosemite2", price = 82875},
                     {name = "yosemite3", price = 83200}
-                },
+                },]]
                 --[[["Off-Road"] = {
                     {name = "bfinjection", price = 13520},
                     {name = "bifta", price = 9360},
