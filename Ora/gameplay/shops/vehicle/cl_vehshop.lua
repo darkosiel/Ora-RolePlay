@@ -361,7 +361,7 @@ local VehShop =
                     {name = "reever", price = 8000},
                     {name = "shinobi", price = 12000}
                 },
-                ["Motos Biker"] = {
+                --[[["Motos Biker"] = {
                     {name = "foxharley2", price = 15000},
                     {name = "hvrod", price = 15000},
                     {name = "na252", price = 15000},
@@ -375,7 +375,7 @@ local VehShop =
                     {name = "indian", price = 15000},
                     {name = "acknodlow", price = 15000},
                     {name = "scout", price = 15000}
-                },
+                },]]
                 --[[["Quad"] = {
                     {name = "blazer", price = 2700},
                     {name = "blazer2", price = 2000},
