@@ -70,7 +70,9 @@ local bikershop =
                     {name = "vortex", price = 4500},
                     {name = "wolfsbane", price = 4200},
                     {name = "zombiea", price = 4000},
-                    {name = "zombieb", price = 4700}
+                    {name = "zombieb", price = 4700},
+                    {name = "reever", price = 8000},
+                    {name = "shinobi", price = 12000}
                 },
                 ["Motos Biker"] = {
                     {name = "foxharley2", price = 15000},
