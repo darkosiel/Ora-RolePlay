@@ -10903,13 +10903,13 @@ Jobs = {
                 show = true
             },
             {
-                label = "CDI",
+                label = "Conseiller",
                 salary = 160,
                 name = "cdi",
                 show = true
             },
             {
-                label = "Chef",
+                label = "Responsable d'équipe",
                 salary = 170,
                 name = "chef",
                 show = true
