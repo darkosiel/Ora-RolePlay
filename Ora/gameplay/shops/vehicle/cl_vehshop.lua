@@ -404,8 +404,8 @@ local VehShop =
                     {name = "suppressor", price = 25000},
                     {name = "sebalamo2", price = 25000},
                     {name = "prevolter", price = 25000},
-                    {name = "polalamoold", price = 25000},
-                    {name = "lspdb", price = 25000}
+                    {name = "polalamoold", price = 25000}
+                    --{name = "lspdb", price = 25000}
                 },
                 --[[["Vans"] = {
                     {name = "minivan", price = 9100},
