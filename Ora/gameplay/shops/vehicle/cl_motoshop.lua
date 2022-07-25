@@ -3,25 +3,21 @@ local bikershop =
     {
         --veh
         {
-            Pos = {x = 266.143, y = -1155.508, z = 28.284, a = 4.014},
-            SpawnPos = {x = 266.696, y = -1159.518, z = 29.255, h = 87.56},
-            Blips = {
-                sprite = 522,
-                color = 5,
-                name = "Concessionnaire moto"
-            },
+            Pos = {x = 262.0588, y = -1155.5795, z = 28.28, a = 85.90},
+            SpawnPos = {x = 254.7695, y = -1156.4265, z = 28.28, a = 85.90},
+            Blips = {},
             Menus = {
                 Sprite = "shopui_title_ie_modgarage",
-                Enabled = true
+                Enabled = false
             },
             Marker = {
-                type = 1,
-                scale = {x = 2.5, y = 2.5, z = 0.2},
+                type = 23,
+                scale = {x = 1.5, y = 1.5, z = 0.2},
                 color = {r = 255, g = 255, b = 255, a = 120},
                 Up = false,
                 Cam = false,
                 Rotate = false,
-                visible = true
+                visible = false
             },
             Vehicles = {
                 ["Motos"] = {
@@ -191,7 +187,7 @@ local function DrawVehicle(vehicleName)
     vehicleFct.SpawnLocalVehicle(
         vehicleName,
         bikershop[CurrentZone].Pos,
-        bikershop[CurrentZone].Pos.h,
+        bikershop[CurrentZone].Pos.a,
         function(veh)
             SetPedIntoVehicle(LocalPlayer().Ped, veh, -1)
             FreezeEntityPosition(veh, true)
@@ -199,14 +195,12 @@ local function DrawVehicle(vehicleName)
             currentveh = veh
         end
     )
-     -- SetEntityVisible(LocalPlayer().Ped, false)
     t = vehicleFct.GetVehiclesInArea(bikershop[CurrentZone].Pos, 8.0)
 
     for i = 1, #t, 1 do
         DeleteEntity(t[i])
     end
     RMenu:Get("bikershop", CurrentZone).Closed = function()
-        --SetEntityVisible(LocalPlayer().Ped, true)
         local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
         if veh ~= nil then
             DeleteEntity(veh)
@@ -272,64 +266,27 @@ Citizen.CreateThread(
                                                     "getBankingAccountsPly3",
                                                     function(result)
                                                         amount = result[1].amount
-                                                        local iban = result[1].iban
                                                         if amount - amountVeh >= 0 then
-                                                            --TriggerServerEvent("bankingRemoveFromAccount2","bikershop",amountVeh)
-
-                                                            local veh =
-                                                                vehicleFct.GetVehicleProperties(
-                                                                GetVehiclePedIsIn(LocalPlayer().Ped)
-                                                            )
-                                                            TriggerServerEvent(
-                                                                "banking:removeAmountFromAccount",
-                                                                "bikershop",
-                                                                amountVeh
-                                                            )
-                                                            --(veh.model)
-                                                            TriggerServerEvent(
-                                                                "newTransaction",
-                                                                "bikershop",
-                                                                "gouvernement",
-                                                                amountVeh,
-                                                                "Achat véhicule concess " .. veh.label
-                                                            )
-                                                            TriggerServerEvent(
-                                                                "bankingSendMoney",
-                                                                "gouvernement",
-                                                                amountVeh,
-                                                                iban
-                                                            )
-                                                            local spawnedVehicle = nil
+                                                            local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                                            
                                                             TriggerServerCallback(
                                                                 "bikershop:BuyVehicle",
                                                                 function(bool, plate)
+                                                                    local spawnedVehicle = nil
                                                                     CloseAllMenus()
                                                                     DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
                                                                     if bool then
-                                                                        vehicleFct.SpawnVehicle(
-                                                                            veh.model,
-                                                                            bikershop[CurrentZone].SpawnPos,
-                                                                            bikershop[CurrentZone].SpawnPos.h,
-                                                                            function(_veh)
-                                                                                SetPedIntoVehicle(
-                                                                                    LocalPlayer().Ped,
-                                                                                    _veh,
-                                                                                    -1
-                                                                                )
-                                                                                --FreezeEntityPosition(veh,true)
-                                                                                --SetVehicleDoorsLocked(veh,4)
-                                                                                veh.fuelLevel = 50.0
-                                                                                veh.plate = plate
-                                                                                vehicleFct.SetVehicleProperties(
-                                                                                    _veh,
-                                                                                    veh
-                                                                                )
-                                                                                if GetVehicleNumberPlateText(_veh) ~= plate then SetVehicleNumberPlateText(_veh, plate) end
-                                                                                spawnedVehicle = _veh
-                                                                                currentveh = veh
-                                                                            end
+                                                                        TriggerServerEvent(
+                                                                            "banking:removeAmountFromAccount",
+                                                                            "bikershop",
+                                                                            amountVeh
                                                                         )
+                                                                        spawnedVehicle = Ora.World.Vehicle:Create(veh.model, bikershop[CurrentZone].SpawnPos, bikershop[CurrentZone].SpawnPos.h, {})
+                                                                        if GetVehicleNumberPlateText(spawnedVehicle) ~= plate then 
+                                                                            SetVehicleNumberPlateText(spawnedVehicle, plate) 
+                                                                        end
                                                                     end
+
                                                                     while spawnedVehicle == nil do
                                                                         Wait(100)
                                                                     end
@@ -370,7 +327,6 @@ Citizen.CreateThread(
                             end
                         )
                     end
-
                     if RageUI.Visible(RMenu:Get("bikershop_sub", "joblist")) then
                         RageUI.DrawContent(
                             {header = true, glare = false},
@@ -388,61 +344,42 @@ Citizen.CreateThread(
                                                     function(result)
                                                         amount = result[1].amount
                                                         if amount - amountVeh >= 0 then
-                                                            local veh =
-                                                                vehicleFct.GetVehicleProperties(
-                                                                GetVehiclePedIsIn(LocalPlayer().Ped)
-                                                            )
-                                                            TriggerServerEvent(
-                                                                "banking:removeAmountFromAccount",
-                                                                "bikershop",
-                                                                amountVeh
-                                                            )
+                                                            local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                                            
 
                                                             TriggerServerCallback(
-                                                                "bikershop:BuyVehicle",
+                                                                "bikershop:BuyVehicleForCompany",
                                                                 function(bool, plate)
+                                                                    spawnedVehicle = nil
                                                                     CloseAllMenus()
                                                                     DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
-
-                                                                                                                                        TriggerServerEvent(
-                                                                        "newTransaction",
-                                                                        "bikershop",
-                                                                        "gouvernement",
-                                                                        amountVeh,
-                                                                        "Achat véhicule concess " .. veh.label
-                                                                    )
                                                                     if bool then
-                                                                        vehicleFct.SpawnVehicle(
-                                                                            veh.model,
-                                                                            VehShop[CurrentZone].SpawnPos,
-                                                                            VehShop[CurrentZone].SpawnPos.h,
-                                                                            function(_veh)
-                                                                                SetPedIntoVehicle(
-                                                                                    LocalPlayer().Ped,
-                                                                                    _veh,
-                                                                                    -1
-                                                                                )
-                                                                                --FreezeEntityPosition(veh,true)
-                                                                                --SetVehicleDoorsLocked(veh,4)
-                                                                                veh.fuelLevel = 50.0
-                                                                                veh.plate = plate
-                                                                                vehicleFct.SetVehicleProperties(
-                                                                                    _veh,
-                                                                                    veh
-                                                                                )
-                                                                                if GetVehicleNumberPlateText(_veh) ~= plate then SetVehicleNumberPlateText(_veh, plate) end
-                                                                                currentveh = veh
-                                                                            end
+                                                                        TriggerServerEvent(
+                                                                            "banking:removeAmountFromAccount",
+                                                                            "bikershop",
+                                                                            amountVeh
                                                                         )
+                                                                        spawnedVehicle = Ora.World.Vehicle:Create(veh.model, bikershop[CurrentZone].SpawnPos, bikershop[CurrentZone].SpawnPos.h, {})
+                                                                        if GetVehicleNumberPlateText(spawnedVehicle) ~= plate then 
+                                                                            SetVehicleNumberPlateText(spawnedVehicle, plate) 
+                                                                        end
+                                                                    end
+
+                                                                    while spawnedVehicle == nil do
+                                                                        Wait(100)
                                                                     end
 
                                                                     items = {
                                                                         name = "key",
-                                                                        data = {plate = veh.plate},
+                                                                        data = {
+                                                                            plate = veh.plate,
+                                                                            vehicleIdentifier = getVehicleIdentifier(
+                                                                                spawnedVehicle
+                                                                            )
+                                                                        },
                                                                         label = veh.plate
                                                                     }
                                                                     Ora.Inventory:AddItem(items)
-                                                                    --SetEntityVisible(LocalPlayer().Ped,true)
                                                                     CloseAllMenus()
                                                                 end,
                                                                 currentInd.price,
@@ -467,77 +404,7 @@ Citizen.CreateThread(
                             function()
                             end
                         )
-                    end 
-
-                    --[[if (RageUI.Visible(RMenu:Get("bikershop_sub", "confirm"))) then
-                        RageUI.DrawContent(
-                            {header = true, glare = false},
-                            function()
-                                RageUI.Button(
-                                    "Confirmer l'achat ?",
-                                    nil,
-                                    {Color = {HightLightColor = {0, 155, 0, 150}}},
-                                    true,
-                                    function(_, Active, Selected)
-                                        if (Selected) then
-                                            TriggerServerCallback(
-                                                "Ora::SVCB::Jobs:Jetsam:CanOrder",
-                                                function(canOrder)
-                                                    if (canOrder == true) then
-                                                        TriggerServerCallback(
-                                                            "getBankingAccountsPly3",
-                                                            function(result)
-                                                                if (result[1].amount - amountVeh >= 0) then
-                                                                    local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
-                    
-                                                                    TriggerServerCallback(
-                                                                        "bikershop:BuyVehicle",
-                                                                        function(_, plate)
-                                                                            TriggerServerEvent(
-                                                                                "Ora::SE::Jobs:Jetsam:Order",
-                                                                                {
-                                                                                    plate = plate,
-                                                                                    customs = veh
-                                                                                },
-                                                                                Ora.Identity:GetMyUuid(),
-                                                                                "bikershop"
-                                                                            )
-                    
-                                                                            CloseAllMenus()
-                                                                            DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                                                            TriggerServerEvent(
-                                                                                "banking:removeAmountFromAccount",
-                                                                                "bikershop",
-                                                                                amountVeh
-                                                                            )
-                    
-                                                                            RageUI.Popup({message = "~g~Commande effectuée !"})
-                                                                        end,
-                                                                        currentInd.price,
-                                                                        0,
-                                                                        veh
-                                                                    )
-                                                                else
-                                                                    RageUI.Popup(
-                                                                        {
-                                                                            message = "Les fonds de la société ne sont pas suffisants pour l'achat de ce véhicule"
-                                                                        }
-                                                                    )
-                                                                end
-                                                            end,
-                                                            "bikershop"
-                                                        )
-                                                    end
-                                                end
-                                            )
-                                        end
-                                    end
-                                )
-                            end,
-                            function()
-                            end
-                        )
-                    end--]]
+                    end
 
                     if RageUI.Visible(RMenu:Get("bikershop_sub", "list")) then
                         RageUI.DrawContent(
@@ -563,7 +430,6 @@ Citizen.CreateThread(
                                     RMenu:Get("bikershop_sub", "joblist")
                                 )
 
-
                                 RageUI.Button(
                                     "Sortir le véhicule",
                                     nil,
@@ -572,24 +438,13 @@ Citizen.CreateThread(
                                     function(_, Active, Selected)
                                         if Selected then
                                             CloseAllMenus()
-                                            local veh =
-                                                vehicleFct.GetVehicleProperties(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                            vehicleFct.SpawnVehicle(
-                                                veh.model,
-                                                bikershop[CurrentZone].SpawnPos,
-                                                bikershop[CurrentZone].SpawnPos.h,
-                                                function(_veh)
-                                                    DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                                    SetPedIntoVehicle(LocalPlayer().Ped, _veh, -1)
-                                                    --FreezeEntityPosition(veh,true)
-                                                    veh.fuelLevel = 50.0
-                                                    vehicleFct.SetVehicleProperties(_veh, veh)
-                                                    SetVehicleNumberPlateText(_veh, "CONCESS")
-                                                       --SetEntityVisible(LocalPlayer().Ped,true)
-                                                    currentveh = veh
-                                                end
-                                            )
-                                            CloseAllMenus()
+                                            
+                                            local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                            spawnedVehicle = Ora.World.Vehicle:Create(veh.model, bikershop[CurrentZone].SpawnPos, bikershop[CurrentZone].SpawnPos.h, {})
+                                            Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
+                                            SetVehicleNumberPlateText(spawnedVehicle, "CONCESS") 
+                                            DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
+                                            SetPedIntoVehicle(LocalPlayer().Ped, _veh, -1)
                                         end
                                     end
                                 )
@@ -630,6 +485,11 @@ Citizen.CreateThread(
                                                         end
                                                         CurrentVehicle = v[i].name
                                                         DrawVehicle(CurrentVehicle)
+                                                        if (type(v[i].name) == "string") then
+                                                            SetModelAsNoLongerNeeded(GetHashKey(v[i].name))
+                                                        else
+                                                            SetModelAsNoLongerNeeded(v[i].name)
+                                                        end
                                                     end
                                                       end)
                                                 end
