@@ -101,4 +101,20 @@ Citizen.CreateThread(function()
 
     -- Véhicule addon Sport
     AddTextEntry("ARGENTO", "Obey Argento")
+    AddTextEntry("pdumkstx", "Buffalo UMK 2018")
+
+    -- Vehicule DLC "The Criminal Entreprise"
+    AddTextEntry("brioso3", "brioso classique")
+    AddTextEntry("corsita", "Corsita")
+    AddTextEntry("draugur", "Draugur")
+    AddTextEntry("greenwood", "Greenwood")
+    AddTextEntry("kanjosj", "Dinka Kanjo SJ")
+    AddTextEntry("postlude", "Dinka Postlude")
+    AddTextEntry("rhinehart", "Ubermacht Rhinehart")
+    AddTextEntry("ruiner4", "Importe Ruiner")
+    AddTextEntry("sentinel4", "Sentinel Classique Custom")
+    AddTextEntry("sm722", "Benefactor SM722")
+    AddTextEntry("tenf2", "Obey 10F Custom")
+    AddTextEntry("vigero2", "Declasse Vigero VL1")
+    AddTextEntry("weevil2", "BF Weevil Rallye")
 end)
