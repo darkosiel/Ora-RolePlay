@@ -6,18 +6,3 @@ RegisterCommand(
     end
 )
 
-RegisterCommand(
-    "bmic",
-    function(source, args, raw)
-        local src = source
-        TriggerClientEvent("Mic:ToggleBMic", src)
-    end
-)
-
-RegisterCommand(
-    "mic",
-    function(source, args, raw)
-        local src = source
-        TriggerClientEvent("Mic:ToggleMic", src)
-    end
-)

@@ -34,36 +34,17 @@ AddEventHandler(
                 Citizen.Wait(100)
             end
 
-            local plyCoords = GetOffsetFromEntityInWorldCoords(LocalPlayer().Ped, 0.0, 0.0, -5.0)
-            local camspawned = Ora.World.Object:Create(GetHashKey(camModel), plyCoords.x, plyCoords.y, plyCoords.z, 1, 1, 1)
             Citizen.Wait(1000)
             local netid = ObjToNet(camspawned)
+            
             SetNetworkIdExistsOnAllMachines(netid, true)
             NetworkSetNetworkIdDynamic(netid, true)
             SetNetworkIdCanMigrate(netid, false)
-            AttachEntityToEntity(
-                camspawned,
-                LocalPlayer().Ped,
-                GetPedBoneIndex(LocalPlayer().Ped, 28422),
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                0.0,
-                1,
-                1,
-                0,
-                1,
-                0,
-                1
-            )
-            TaskPlayAnim(LocalPlayer().Ped, 1.0, -1, -1, 50, 0, 0, 0, 0) -- 50 = 32 + 16 + 2
-            TaskPlayAnim(LocalPlayer().Ped, camanimDict, camanimName, 1.0, -1, -1, 50, 0, 0, 0, 0)
+
             cam_net = netid
             holdingCam = true
             DisplayNotification(
-                "To enter News cam press ~INPUT_PICKUP~ \nTo Enter Movie Cam press ~INPUT_INTERACTION_MENU~"
+                "Pour activer le bandeau, appuyer sur ~r~E~s~ \nPour désactivé le bandeau, appuyer sur ~r~ECHAP"
             )
         else
             ClearPedSecondaryTask(LocalPlayer().Ped)
@@ -84,11 +65,6 @@ Citizen.CreateThread(
                 while not HasAnimDictLoaded(camanimDict) do
                     RequestAnimDict(camanimDict)
                     Citizen.Wait(100)
-                end
-
-                if not IsEntityPlayingAnim(LocalPlayer().Ped, camanimDict, camanimName, 3) then
-                    TaskPlayAnim(LocalPlayer().Ped, 1.0, -1, -1, 50, 0, 0, 0, 0) -- 50 = 32 + 16 + 2
-                    TaskPlayAnim(LocalPlayer().Ped, camanimDict, camanimName, 1.0, -1, -1, 50, 0, 0, 0, 0)
                 end
 
                 DisablePlayerFiring(PlayerId(), true)
