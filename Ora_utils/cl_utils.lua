@@ -282,11 +282,11 @@ Citizen.CreateThread(
                     ClearAreaOfPeds(value.pos.x, value.pos.y, value.pos.z, value.radius, 1)
                 end
             end
-            SetPedDensityMultiplierThisFrame(0.5) -- set npc/ai peds density to 0
-            SetScenarioPedDensityMultiplierThisFrame(0.5, 0.5)
-            SetVehicleDensityMultiplierThisFrame(0.4) -- was at 0.6
-            SetParkedVehicleDensityMultiplierThisFrame(0.4) -- was at 0.5
-            SetRandomVehicleDensityMultiplierThisFrame(0.4) -- was at 0.5 -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
+            SetPedDensityMultiplierThisFrame(1.0) -- set npc/ai peds density to 0
+            SetScenarioPedDensityMultiplierThisFrame(1.0, 1.0)
+            SetVehicleDensityMultiplierThisFrame(0.8) -- was at 0.6
+            SetParkedVehicleDensityMultiplierThisFrame(0.8) -- was at 0.5
+            SetRandomVehicleDensityMultiplierThisFrame(0.8) -- was at 0.5 -- set random vehicles (car scenarios / cars driving off from a parking spot etc.) to 0
             DisablePlayerVehicleRewards(PlayerId())
             SetPlayerHealthRechargeMultiplier(PlayerId(), 0.0)
         end
