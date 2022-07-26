@@ -10803,94 +10803,93 @@ Jobs = {
             }
         }
     },
-    -- pegasus = {
-    --     label = "Pegasus",
-    --     label2 = "Pegasus",
-    --     iban = "pegasus",
-    --     grade = {
-    --         {
-    --             label = "CDD",
-    --             salary = 0,
-    --             name = "cdd",
-    --             show = true
-    --         },
-    --         {
-    --             label = "CDI",
-    --             salary = 0,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "Chef",
-    --             salary = 0,
-    --             name = "chef",
-    --             show = true
-    --         },
-    --         {
-    --             label = "DRH",
-    --             salary = 0,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 0,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage Pegasus",
-    --         Pos = {x = -1661.75, y = -3159.05, z = 13.99},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = -1661.75, y = -3159.05, z = 13.99, h = 329.37}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = -1661.75, y = -3159.05, z = 13.99},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage Pegasus"
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = -1631.18, y = -3163.04, z = 12.99},
-    --             Limit = 500,
-    --             Name = "coffre pegasus"
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "Pegasus",
-    --             subtitle = "Actions disponibles",
-    --             name = "pegasus_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --             label = "Facture",
-    --             onSelected = function()
-    --                 CreateFacture("pegasus")
-    --             end,
-    --             ActiveFct = function()
-    --                 HoverPlayer()
-    --             end
-    --             },
-    --             {
-    --             label = "Annonce",
-    --             onSelected = function()
-    --                 exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                 local text = exports['Snoupinput']:GetInput()
-    --                 if text ~= false and text ~= "" then
-    --                     TriggerServerEvent("Job:Annonce", "Pegasus", "Annonce", text, "CHAR_PEGASUS", 8, "Pegasus")
-    --                 end
-    --             end
-    --             }
-    --         }
-    --     }
-    -- },
-
+    pegasus = {
+        label = "Pegasus",
+        label2 = "Pegasus",
+        iban = "pegasus",
+        grade = {
+            {
+                label = "CDD",
+                salary = 0,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 0,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 0,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 0,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 0,
+                name = "boss",
+                show = true
+            }
+        },
+        garage = {
+            Name = "Garage Pegasus",
+            Pos = {x = -1661.75, y = -3159.05, z = 13.99},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -1661.75, y = -3159.05, z = 13.99, h = 329.37}
+            },
+            Blipdata = {
+                Pos = {x = -1661.75, y = -3159.05, z = 13.99},
+                Blipcolor = 5,
+                Blipname = "Garage Pegasus"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -1631.18, y = -3163.04, z = 12.99},
+                Limit = 500,
+                Name = "coffre pegasus"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Pegasus",
+                subtitle = "Actions disponibles",
+                name = "pegasus_menuperso"
+            },
+            buttons = {
+                {
+                label = "Facture",
+                onSelected = function()
+                    CreateFacture("pegasus")
+                end,
+                ActiveFct = function()
+                    HoverPlayer()
+                end
+                },
+                {
+                label = "Annonce",
+                onSelected = function()
+                    exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                    local text = exports['Snoupinput']:GetInput()
+                    if text ~= false and text ~= "" then
+                        TriggerServerEvent("Job:Annonce", "Pegasus", "Annonce", text, "CHAR_PEGASUS", 8, "Pegasus")
+                    end
+                end
+                }
+            }
+        }
+    },
     immo = {
         label = "Agent Immobilier",
         label2 = "Agent Immobilier",
