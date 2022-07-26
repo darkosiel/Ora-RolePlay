@@ -74,6 +74,7 @@ local VehShop =
                     {name = "club", price = 3800},
                     {name = "brioso2", price = 4900},
                     {name = "brioso", price = 7600},
+                    {name = "brioso3", price = 5600},
                     {name = "dilettante", price = 7200},
                     {name = "blista", price = 4100},
                     {name = "panto", price = 7200},
@@ -99,7 +100,9 @@ local VehShop =
                     {name = "zion2", price = 31200},
                     {name = "zion3", price = 38000},
                     {name = "cinquemila", price = 120000},
-                    {name = "deity", price = 90000}
+                    {name = "deity", price = 90000},
+                    {name = "kanjosj", price = 31850},
+                    {name = "postlude", price = 21850}
                 },
                 ["Sport"] = {
                     {name = "alpha", price = 49725},
@@ -109,7 +112,7 @@ local VehShop =
                     {name = "blista2", price = 14000},
                     {name = "buffalo", price = 16640},
                     {name = "buffalo2", price = 20800},
-                    {name = "buffalo4", price = 35000},
+                    {name = "buffalo4", price = 65000},
                     {name = "calico", price = 47500},
                     {name = "carbonizzare", price = 107100},
                     {name = "comet2", price = 104975},
@@ -181,7 +184,11 @@ local VehShop =
                     {name = "vectre", price = 130000},
                     {name = "neon", price = 130200},
                     {name = "zr350", price = 65000},
-                    {name = "comet7", price = 150000}
+                    {name = "comet7", price = 150000},
+                    {name = "rhinehart", price = 140000},
+                    {name = "sentinel4", price = 55250},
+                    {name = "sm722", price = 158240},
+                    {name = "tenf2", price = 162000}
                 },
                 ["Supersportive"] = {
                     {name = "adder", price = 205200},
@@ -228,7 +235,8 @@ local VehShop =
                     {name = "italirsx", price = 580000},
                     {name = "champion", price = 300000},
                     {name = "ignus", price = 622000},
-                    {name = "zeno", price = 382000}
+                    {name = "zeno", price = 382000},
+                    {name = "corsita", price = 200000}
                 },
                    
                 ["Sedans"] = {
@@ -257,7 +265,8 @@ local VehShop =
                     {name = "tailgater2", price = 67500},
                     {name = "warrener", price = 7900},
                     {name = "warrener2", price = 22500},
-                    {name = "washington", price = 12200}
+                    {name = "washington", price = 12200},
+                    {name = "greenwood", price = 12200}
                 },
                 ["Classique"] = {
                     {name = "tornado", price = 4095},
@@ -404,7 +413,8 @@ local VehShop =
                     {name = "suppressor", price = 25000},
                     {name = "sebalamo2", price = 25000},
                     {name = "prevolter", price = 25000},
-                    {name = "polalamoold", price = 25000}
+                    {name = "polalamoold", price = 25000},
+                    {name = "pdumksx", price = 25000}
                     --{name = "lspdb", price = 25000}
                 },
                 --[[["Vans"] = {

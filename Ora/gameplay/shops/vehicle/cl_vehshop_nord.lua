@@ -114,7 +114,9 @@ local autoshop =
                     {name = "sandking2", price = 49725},
                     {name = "vagrant", price = 26000},
                     {name = "granger2", price = 36000},
-                    {name = "patriot3", price = 60000}
+                    {name = "patriot3", price = 60000},
+                    {name = "draugur", price = 80750},
+                    {name = "weevil2", price = 46700}
                 },
                 ["Quad"] = {
                     {name = "blazer", price = 2700},
@@ -180,7 +182,9 @@ local autoshop =
                     {name = "voodoo2", price = 2730},
                     {name = "yosemite", price = 82322},
                     {name = "yosemite2", price = 82875},
-                    {name = "yosemite3", price = 83200}
+                    {name = "yosemite3", price = 83200},
+                    {name = "ruiner4", price = 32740},
+                    {name = "vigero2", price = 46750}
                 },
                 ["Suvs"] = {
                     {name = "baller", price = 36400},
