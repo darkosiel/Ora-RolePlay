@@ -465,10 +465,10 @@ VehiclePrices = {
     {name = "tampar", price = 55000},
     {name = "buffaloac", price = 25000},
 
-    --new dlc
+    --new dlc the contrat
     {name = "astron", price = 130000},
     {name = "baller7", price = 70000},
-    {name = "buffalo4", price = 35000},
+    {name = "buffalo4", price = 65000},
     {name = "champion", price = 300000},
     {name = "cinquemila", price = 120000},
     {name = "comet7", price = 150000},
@@ -481,7 +481,23 @@ VehiclePrices = {
     {name = "reever", price = 8000},
     {name = "shinobi", price = 12000},
     {name = "youga4", price = 10000},
-    {name = "zeno", price = 382000}
+    {name = "zeno", price = 382000},
+
+    --new dlc summer2
+    {name = "brioso3", price = 5600},
+    {name = "corsita", price = 200000},
+    {name = "draugur", price = 80750},
+    {name = "greenwood", price = 12200},
+    {name = "kanjosj", price = 31850},
+    {name = "postlude", price = 21850},
+    {name = "rhinehart", price = 140000},
+    {name = "ruiner4", price = 32740},
+    {name = "sentinel4", price = 55250},
+    {name = "sm722", price = 158240},
+    {name = "tenf2", price = 162000},
+    {name = "vigero2", price = 46750},
+    {name = "weevil2", price = 46700},
+    {name = "pdumksx", price = 25000}
     
 }
 
