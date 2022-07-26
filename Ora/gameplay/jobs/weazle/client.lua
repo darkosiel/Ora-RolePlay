@@ -44,7 +44,7 @@ AddEventHandler(
             cam_net = netid
             holdingCam = true
             DisplayNotification(
-                "To enter News cam press ~INPUT_PICKUP~ \nTo Enter Movie Cam press ~INPUT_INTERACTION_MENU~"
+                "Pour activer le bandeau, appuyer sur ~r~E~s~ \nPour désactivé le bandeau, appuyer sur ~r~ECHAP"
             )
         else
             ClearPedSecondaryTask(LocalPlayer().Ped)
