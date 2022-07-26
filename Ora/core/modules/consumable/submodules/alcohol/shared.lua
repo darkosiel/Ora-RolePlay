@@ -74,7 +74,7 @@ Ora.Consumable.Alcohol = {
       count = 10
     },
     ["champagne"] = {
-      bottle = "prop_vodka_bottle",
+      bottle = "prop_champ_01b",
       glass = "ex_p_ex_tumbler_02_s",
       anim = {
         dict = "anim@safehouse@whisky",
@@ -88,7 +88,7 @@ Ora.Consumable.Alcohol = {
       count = 10
     },
     ["champagnebleuter"] = {
-      bottle = "prop_vodka_bottle",
+      bottle = "prop_champ_cool",
       glass = "ex_p_ex_tumbler_02_s",
       anim = {
         dict = "anim@safehouse@whisky",
