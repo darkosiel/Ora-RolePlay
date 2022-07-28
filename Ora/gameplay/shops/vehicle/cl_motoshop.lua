@@ -3,9 +3,13 @@ local bikershop =
     {
         --veh
         {
-            Pos = {x = 262.0588, y = -1155.5795, z = 28.28, a = 85.90},
-            SpawnPos = {x = 254.7695, y = -1156.4265, z = 28.28, a = 85.90},
-            Blips = {},
+            Pos = {x = 43.81, y = 6483.13, z = 30.44, a = 224.67},
+            SpawnPos = {x = 37.44, y = 6492.76, z = 30.44, a = 224.14},
+            Blips = {
+                sprite = 226,
+                color = 84,
+                name = "Concessionnaire moto"
+            },
             Menus = {
                 Sprite = "shopui_title_ie_modgarage",
                 Enabled = false

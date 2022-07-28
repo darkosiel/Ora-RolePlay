@@ -10490,23 +10490,23 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 291.9, y = -1166.95, z = 28.24},
+                Pos = {x = 36.85, y = 6478.94, z = 30.44},
                 Limit = 100,
                 Name = "coffre bikershop"
             }
         },
         garage = {
             Name = "Garage Moto Shop",
-            Pos = {x = 274.77, y = -1161.40, z = 28.24},
+            Pos = {x = 65.64, y = 6471.91, z = 30.35},
             Properties = {
                 type = 3,
                 -- = garage societe
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 1174.54, y = 2638.48, z = 36.76, h = 351.51}
+                spawnpos = {x = 65.64, y = 6471.91, z = 30.35}
             },
             Blipdata = {
-                Pos = {x = -40.92, y = -1747.97, z = 29.33},
+                Pos = {x = 65.64, y = 6471.91, z = 30.35},
                 Blipcolor = 7,
                 Blipname = "Garage"
             }
