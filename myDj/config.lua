@@ -76,6 +76,13 @@ Config.DJPositions = {
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
+        name = 'Mayans MC',
+        pos = vector3(12.7061, 6457.2084, 31.55 - 0.98),
+        requiredJob = nil, 
+        range = 20.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
         name = 'djset',
         pos = vector3(683.78, 569.74, 130.46 - 0.98),
         requiredJob = nil, 
