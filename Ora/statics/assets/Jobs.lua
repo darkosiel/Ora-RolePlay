@@ -11275,14 +11275,19 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1392, y = -613, z = 30.32},
+                Pos = {x = -1389.6429, y = -613.6432, z = 30.32},
                 Limit = 1000,
-                Name = "Frigo Bahama's"
+                Name = "Frigo_Bahama"
             },
             {
-                Pos = {x = -1369.14, y = -624.43, z = 29.32},
+                Pos = {x = -1390.8715, y = -607.7440, z = 30.32},
+                Limit = 1000,
+                Name = "Frigo_Bahama2"
+            },
+            {
+                Pos = {x = -1364.1690, y = -623.1672, z = 30.32},
                 Limit = 100,
-                Name = "Coffre Patron"
+                Name = "Coffre_Patronbahama"
             }
         },
         Menu = {
@@ -11312,7 +11317,43 @@ Jobs = {
                     end
                 }
             }
-        }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 717.60, y = -978.55, z = 24.11},
+                giveitem = "aperitif",
+                blipcolor = 7,
+                blipname = "Bahama's- Récolte",
+                add = "~p~+ 1 Apéritif",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Bahama's - Traitement",
+                Pos = {x = 2553.31, y = 4670.74, z = 32.95},
+                required = "aperitif",
+                giveitem = "tacos",
+                add = "~p~+ 1  tacos"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Bahama's - Vente",
+                Pos = {x = -1113.61, y = -1367.55, z = 5.01},
+                required = "tacos",
+                price = math.random(8, 15),
+                add = "~p~- 1 tacos"
+            }
+        },
     },
     tequilala = {
         label = "Tequi-La-La",
