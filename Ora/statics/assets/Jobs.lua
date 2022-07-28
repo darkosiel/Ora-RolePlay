@@ -11275,7 +11275,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1385.48, y = -609.29, z = 29.32},
+                Pos = {x = -1392, y = -613, z = 30.32},
                 Limit = 1000,
                 Name = "Frigo Bahama's"
             },
