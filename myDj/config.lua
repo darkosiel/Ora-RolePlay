@@ -41,6 +41,20 @@ Config.DJPositions = {
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
+        name = 'Studio musique',
+        pos = vector3(-890.4815, -449.0027, 161.21 - 0.98),
+        requiredJob = nil, 
+        range = 10.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
+        name = 'Studio musique2',
+        pos = vector3(-883.8588, -444.9008, 161.21 - 0.98),
+        requiredJob = nil, 
+        range = 10.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
         name = 'mirror',
         pos = vector3(-1297.10, -1036.75, 13.16 - 0.98),
         requiredJob = nil, 
