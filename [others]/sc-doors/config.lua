@@ -1327,6 +1327,42 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.5
     },
+    
+        --bahamas
+    {
+        objHash = GetHashKey("v_ilev_carmod3door"),
+        objCoords = vector3(-1394.1654052734375, -635.7523193359375, 29.57242202758789),
+        textCoords = vector3(-1394.1654052734375, -635.7523193359375, 29.57242202758789),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 5.0
+    },
+    {
+        objHash = GetHashKey("apa_prop_apa_cutscene_doorb"),
+        objCoords = vector3(-1391.6361083984375, -640.3447875976562, 28.875608444213867),
+        textCoords = vector3(-1391.6361083984375, -640.3447875976562, 28.875608444213867),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    {
+        objHash = -1119680854,
+        objCoords = vector3(-1389.234375, -587.956787109375, 30.519865036010742),
+        textCoords = vector3(-1389.234375, -587.956787109375, 30.519865036010742),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 2.0
+    },
+
+    {
+        objHash = -1119680854,
+        objCoords = vector3(-1387.0704345703125, -586.5470581054688, 30.519868850708008),
+        textCoords = vector3(-1387.0704345703125, -586.5470581054688, 30.519868850708008),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 2.0
+    },
 
 }
 
