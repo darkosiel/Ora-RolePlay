@@ -11853,8 +11853,8 @@ Jobs = {
                     onSelected = function()
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Bar Little Seoul", "Annonce", text, "CHAR_LITLLE", 8, "Bar Little Seoul")
+                        if text ~= false and text ~= "" then                                        
+                            TriggerServerEvent("Job:Annonce", "Bar Little Seoul", "Annonce", text, "CHAR_LITTLE", 8, "Bar Little Seoul")
                         end
                     end
                 }
