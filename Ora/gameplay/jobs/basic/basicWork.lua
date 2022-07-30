@@ -21,8 +21,8 @@ local worksP = {
                 Player.FarmLimit = 0
             end
             --if Player.FarmLimit <= 400 then
-                showMessageInformation("~b~Récolte en cours...", 5500)
-                Wait(5500)
+                showMessageInformation("~b~Récolte en cours...", 3500)
+                Wait(3500)
             --[[ else
                 showMessageInformation("~r~Vous avez atteint la limite de farm", 5500)
             end ]]
@@ -51,8 +51,8 @@ local worksP = {
                 end
             end
             if found then
-                showMessageInformation("~b~Traitement en cours...", 5500)
-                Wait(5500)
+                showMessageInformation("~b~Traitement en cours...", 4500)
+                Wait(4500)
                 if Player.FarmLimit == nil then
                     Player.FarmLimit = 0
                 end
