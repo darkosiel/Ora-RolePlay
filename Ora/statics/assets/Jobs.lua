@@ -11579,11 +11579,11 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 717.60, y = -978.55, z = 24.11},
-                giveitem = "aperitif",
+                Pos = {x = 2308.1484, y = 4753.1831, z = 37.1395},
+                giveitem = "chairsaucisse",
                 blipcolor = 7,
                 blipname = "Yellow Jack - Récolte",
-                add = "~p~+ 1 Apéritif",
+                add = "~p~+ 1 Chair à saucisse",
                 anim = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
@@ -11594,20 +11594,20 @@ Jobs = {
                 workSize = 7.45,
                 blipcolor = 7,
                 blipname = "Yellow Jack - Traitement",
-                Pos = {x = 2553.31, y = 4670.74, z = 32.95},
-                required = "aperitif",
-                giveitem = "tacos",
-                add = "~p~+ 1  tacos"
+                Pos = {x = -119.5579, y = 6214.8745, z = 31.1982},
+                required = "chairsaucisse",
+                giveitem = "saucissonsec",
+                add = "~p~+ 1  Saucisson Sec"
             },
             vente = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Yellow Jack - Vente",
-                Pos = {x = -1113.61, y = -1367.55, z = 5.01},
-                required = "tacos",
-                price = math.random(8, 15),
-                add = "~p~- 1 tacos"
+                Pos = {x = 1964.8208, y = 3752.9167, z = 32.2464},
+                required = "saucissonsec",
+                price = math.random(12, 15),
+                add = "~p~- 1 Saucisson Sec"
             }
         }
     },
