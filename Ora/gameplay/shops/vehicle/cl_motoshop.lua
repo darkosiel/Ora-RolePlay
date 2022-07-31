@@ -76,8 +76,8 @@ local bikershop =
                 },
                 ["Motos Biker"] = {
                     {name = "foxharley2", price = 15000},
-                    {name = "hvrod", price = 15000},
-                    {name = "na252", price = 15000},
+                    --{name = "hvrod", price = 15000},
+                    --{name = "na252", price = 15000},
                     {name = "dyna", price = 15000},
                     {name = "dyne", price = 15000},
                     {name = "softail1", price = 15000},
