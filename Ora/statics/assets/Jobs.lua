@@ -11785,32 +11785,32 @@ Jobs = {
         },
         garage = {
             Name = "Garage Bar Little Seoul",
-            Pos = {x = -816.4771, y = -750.0988, z = 22.00},
+            Pos = {x = -209.45, y = 308.36, z = 95.95},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -816.4771, y = -750.0988, z = 22.00, h = 140.74}
+                spawnpos = {x = -209.45, y = 308.36, z = 95.95, h = 274.82}
             },
             Blipdata = {
-                Pos = {x = -816.4771, y = -750.0988, z = 22.00},
+                Pos = {x = -209.45, y = 308.36, z = 95.95},
                 Blipcolor = 5,
                 Blipname = "Garage Bar Little Seoul"
             }
         },
         Storage = {
             {
-                Pos = {x = -816.0851, y = -701.1306, z = 31.14},
+                Pos = {x = -172.66, y = 291.57, z = 92.76},
                 Limit = 800,
                 Name = "Bar Little Seoul"
             },
             {
-                Pos = {x = -812.3343, y = -698.3747, z = 27.06},
+                Pos = {x = -172.34, y = 308.13, z = 96.99},
                 Limit = 100,
                 Name = "frigo2 Bar Little Seoul"
             },
             {
-                Pos = {x = -827.2576, y = -728.8852, z = 27.06},
+                Pos = {x = -138.51, y = 295.8, z = 97.87},
                 Limit = 800,
                 Name = "Coffre Boss Bar Little Seoul"
             }
