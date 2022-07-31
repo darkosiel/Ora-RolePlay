@@ -118,6 +118,7 @@ VehiclePrices = {
     {name = "sugoi", price = 64090},
     {name = "sultan", price = 31200},
     {name = "sultan2", price = 77350},
+    {name = "sultan3", price = 90350},
     {name = "surano", price = 99450},
     {name = "tropos", price = 88400},
     {name = "verlierer2", price = 107100},
