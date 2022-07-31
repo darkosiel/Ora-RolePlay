@@ -11691,7 +11691,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 953.4779, y = -2108.9062, z = 30.55},
+                Pos = {x = 418.3330, y = 6511.2543, z = 27.6969},
                 giveitem = "chairsaucisse",
                 blipcolor = 7,
                 blipname = "Hen House - Récolte",
@@ -11702,7 +11702,7 @@ Jobs = {
                 workSize = 7.45,
                 blipcolor = 7,
                 blipname = "Hen House  - Traitement",
-                Pos = {x = 932.9300, y = -1803.9852, z = 30.7150},
+                Pos = {x = 2478.2470, y = 4121.3378, z = 38.0253},
                 required = "chairsaucisse",
                 giveitem = "saucissonsec",
                 add = "~p~+ 1  Saucisson sec"
@@ -11712,7 +11712,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Hen House  - Vente",
-                Pos = {x = 61.8119, y = -1726.7955, z = 29.4971},
+                Pos = {x = -3.0644, y = 6488.3999, z = 31.5080},
                 required = "saucissonsec",
                 price = math.random(10,15),
                 add = "~p~- 1 Saucisson sec"
