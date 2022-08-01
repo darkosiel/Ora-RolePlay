@@ -70,7 +70,7 @@ Config.DJPositions = {
     },
     {
         name = 'Little Seoul',
-        pos = vector3(-841.3932, -717.3964, 29.28 - 0.98),
+        pos = vector3(-162.1517, 298.0057, 93.76 - 0.98),
         requiredJob = nil, 
         range = 20.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
