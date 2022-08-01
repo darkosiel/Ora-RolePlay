@@ -6510,6 +6510,11 @@ Jobs = {
                 Pos = {x = 2525.34, y = -317.72, z = 101.89 - 0.98},
                 Limit = 500,
                 Name = "coffre_gouvernement4"
+            },
+            {
+                Pos = {x = -515.6679, y = -183.2609, z = 42.70 - 0.98},
+                Limit = 500,
+                Name = "coffre_usss"
             }
         },
         work = {
