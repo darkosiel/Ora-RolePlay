@@ -4285,7 +4285,7 @@ Jobs = {
                 Pos = {x = 1677.34, y = 4882.38, z = 42.04},
                 required = "jus_raisin",
                 RemoveItem = "jus_raisin",
-                price = math.random(18, 25),
+                price = math.random(13, 15),
                 add = "~p~- 1 Jus de raisin"
             }
         },
@@ -6510,6 +6510,11 @@ Jobs = {
                 Pos = {x = 2525.34, y = -317.72, z = 101.89 - 0.98},
                 Limit = 500,
                 Name = "coffre_gouvernement4"
+            },
+            {
+                Pos = {x = -515.6679, y = -183.2609, z = 42.70 - 0.98},
+                Limit = 500,
+                Name = "coffre_usss"
             }
         },
         work = {
@@ -11800,17 +11805,17 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -172.66, y = 291.57, z = 92.76},
+                Pos = {x = -144.8333, y = 295.7938, z = 97.87},
                 Limit = 800,
                 Name = "Bar Little Seoul"
             },
             {
-                Pos = {x = -172.34, y = 308.13, z = 96.99},
+                Pos = {x = -172.2112, y = 288.7464, z = 92.76},
                 Limit = 100,
                 Name = "frigo2 Bar Little Seoul"
             },
             {
-                Pos = {x = -138.51, y = 295.8, z = 97.87},
+                Pos = {x = -172.3963, y = 291.7341, z = 92.76},
                 Limit = 800,
                 Name = "Coffre Boss Bar Little Seoul"
             }
