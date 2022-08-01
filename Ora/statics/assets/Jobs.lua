@@ -4285,7 +4285,7 @@ Jobs = {
                 Pos = {x = 1677.34, y = 4882.38, z = 42.04},
                 required = "jus_raisin",
                 RemoveItem = "jus_raisin",
-                price = math.random(18, 25),
+                price = math.random(13, 15),
                 add = "~p~- 1 Jus de raisin"
             }
         },
