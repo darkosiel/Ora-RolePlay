@@ -377,12 +377,12 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = 1187.2065, y = 2636.0888, z = 37.40},
-                Limit = 100,
+                Limit = 200,
                 Name = "coffre_mecano2"
             },
             {
                 Pos = {x = 1204.6300, y = 2647.87, z = 36.80},
-                Limit = 100,
+                Limit = 200,
                 Name = "coffre_mecano3"
             }
         }
