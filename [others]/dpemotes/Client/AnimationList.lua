@@ -376,6 +376,60 @@ DP.Dances = {
    {
        EmoteLoop = true
    }},
+   --Add emotes
+   ["woowalkinx"] = {"divined@rpack@new", "woowalkinx", "Woo Walk", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["bloodwalk"] = {"divined@rpack@new", "bloodwalk", "Blood Walk", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["cripwalk3"] = {"divined@rpack@new", "cripwalk3", "Crip Walk", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["shootit"] = {"divined@rpack@new", "shootit", "Shoot Dance", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["millyrocks"] = {"divined@rpack@new", "millyrocks", "Milly Rock", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["shmoney"] = {"divined@rpack@new", "shmoney", "Shmoney Dance", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["dougie"] = {"divined@rpack@new", "dougie", "Dougie", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["haiphuthon"] = {"divined@rpack@new", "haiphuthon", "Haiphuthon", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["curvette"] = {"divined@rpack@new", "curvette", "Curvette", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["tokyochall"] = {"divined@rpack@new", "tokyochall", "Tokyo Challenge", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["thotiana"] = {"divined@rpack@new", "thotiana", "Thotiana", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["moodswings"] = {"divined@rpack@new", "moodswings", "Moodswings Dance", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["whatyouknowboutlove"] = {"divined@rpack@new", "whatyouknowboutlove", "Pop Love", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   
    ["danceglowstick"] = {"anim@amb@nightclub@lazlow@hi_railing@", "ambclub_13_mi_hi_sexualgriding_laz", "Dance Glowsticks", AnimationOptions =
    {
        Prop = 'ba_prop_battle_glowstick_01',
