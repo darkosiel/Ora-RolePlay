@@ -10906,6 +10906,12 @@ Jobs = {
                 end
                 },
                 {
+                    label = "Employés en service",
+                    onSelected = function()
+                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "pegasus")
+                    end
+                },
+                {
                 label = "Annonce",
                 onSelected = function()
                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")

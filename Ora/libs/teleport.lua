@@ -89,7 +89,7 @@ local Elevator = {
     {label = "Sortie", pos = vector3(-1403.86, -979.68, 19.38), msg = "Appuyez sur ~INPUT_CONTEXT~ pour descendre."},
   },
 
-  ["MADRAZO"] = {
+--[[  ["MADRAZO"] = {
     {label = "Entrée", pos = vector3(1393.91, 1141.72, 114.47), msg = "Appuyez sur ~INPUT_CONTEXT~ pour entrer."},
     {label = "Sortie", pos = vector3(1396.52, 1141.75, 114.33), msg = "Appuyez sur ~INPUT_CONTEXT~ pour sortir."},
   },
@@ -97,7 +97,7 @@ local Elevator = {
   ["MADRAZO2"] = {
     {label = "Sortie", pos = vector3(1408.26, 1147.39, 114.33), msg = "Appuyez sur ~INPUT_CONTEXT~ pour sortir."},
     {label = "Entrée", pos = vector3(1410.99, 1147.39, 114.33), msg = "Appuyez sur ~INPUT_CONTEXT~ pour entrer."},
-  },
+  },]]
 
   ["BLANCHISSEMENT"] = {
     {label = "Entrée", pos = vector3(639.48, 2772.1, 42.04), msg = "Appuyez sur ~INPUT_CONTEXT~ pour entrer."},
