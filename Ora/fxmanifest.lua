@@ -419,6 +419,8 @@ client_script {
     "gameplay/jobs/concess/*.lua",
     "gameplay/jobs/haircut/client.lua",
     "gameplay/jobs/tatoo/client.lua",
+    "gameplay/jobs/pegasus/client.lua",
+    "gameplay/jobs/pegasus/shared.lua",
     "gameplay/jobs/taxi/client.lua",
     "gameplay/jobs/taxi/config.lua",
     "gameplay/jobs/weazle/client.lua",
