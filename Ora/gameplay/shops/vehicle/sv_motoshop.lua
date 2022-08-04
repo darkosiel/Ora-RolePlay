@@ -3,7 +3,7 @@
 
 RegisterServerCallback("bikershop:BuyVehicle", function(source, callback,price,targetSource,vehicle)
     local pUUID = Ora.Identity:GetUuid(source)
-    local uuid = "Concess moto"
+    local uuid = "bikershop"
     while (Ora.Utils:HasValue(Ora.World.Vehicle.ExistingPlates, vehicle.plate)) do
         vehicle.plate = Ora.World.Vehicle:GenerateRandomPlate()
     end
