@@ -10912,6 +10912,16 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Commencer une mission",
+                    onSelected = function()
+                        if LocalPlayer().FarmLimit >= 600 then
+                            ShowNotification("Vous avez atteint votre limite de missions journalière.")
+                        else
+                            StartpegasusMission()
+                        end
+                    end
+                },
+                {
                 label = "Annonce",
                 onSelected = function()
                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
