@@ -671,7 +671,19 @@ vehCoffres = {
     ["vectre"] = 60,
     ["warrener2"] = 60,
     ["dominator7"] = 50,
-    ["dominator8"] = 50
+    ["dominator8"] = 50,
 
+    -- Moto biker --
+    ["foxharley2"] = 50,
+    ["dyna"] = 50,
+    ["dyne"] = 50,
+    ["softail1"] = 50,
+    ["na25"] = 50,
+    ["lv"] = 50,
+    ["rk2019"] = 50,
+    ["softail2"] = 50,
+    ["indian"] = 50,
+    ["acknodlow"] = 50
+    
 
 }
