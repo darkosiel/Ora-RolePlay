@@ -674,16 +674,16 @@ vehCoffres = {
     ["dominator8"] = 50,
 
     -- Moto biker --
-    ["foxharley2"] = 50,
-    ["dyna"] = 50,
-    ["dyne"] = 50,
-    ["softail1"] = 50,
-    ["na25"] = 50,
-    ["lv"] = 50,
-    ["rk2019"] = 50,
-    ["softail2"] = 50,
-    ["indian"] = 50,
-    ["acknodlow"] = 50
+    ["foxharley2"] = 12,
+    ["dyna"] = 12,
+    ["dyne"] = 12,
+    ["softail1"] = 12,
+    ["na25"] = 12,
+    ["lv"] = 12,
+    ["rk2019"] = 12,
+    ["softail2"] = 12,
+    ["indian"] = 12,
+    ["acknodlow"] = 12
     
 
 }
