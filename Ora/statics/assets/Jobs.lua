@@ -6386,12 +6386,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -2513.32, y = -342.71, z = 94.09 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement"
-            },
-            {
-                Pos = {x = -534.46, y = -193.16, z = 47.54 - 0.98},
+                Pos = {x = -572.04, y = -202.43, z = 41.7 - 0.98},
                 Limit = 500,
                 Name = "coffre_gouvernement2"
             },
