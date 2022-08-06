@@ -8,7 +8,7 @@ Citizen.CreateThread(
         Ped:Add("Benjamin", "s_m_m_fiboffice_02", {x = 2147.68, y = 2922.94, z = -62.9, a = 175.18}, nil)
         Ped:Add("Zack", "s_m_m_fiboffice_01", {x = 2147.93, y = 2919.22, z = -62.9, a = 0.7}, nil)
         Ped:Add("Alissa", "s_f_y_cop_01", {x = -861.34, y = -1333.99, z = 0.6, a = 286.73}, nil)
-        Ped:Add("Tyler", "cs_casey", {x = 248.15, y = 221.21, z = 105.29, a = 338.22}, nil)
+        Ped:Add("Tyler", "cs_casey", {x = 257.82, y = 219.45, z = 105.29, a = 153.7}, nil)
         Ped:Add("Sven", "a_m_m_rurmeth_01", {x = 1713.21, y = 3600.36, z = 34.2, a = 179.19}, nil)
         Ped:Add("Daria", "ig_maude", {x = 2441.3916, y = 4976.86, z = 46.4106 - 0.98, a = 216.3385}, nil)
         Ped:Add("Richard", "s_m_y_cop_01", {x = 378.5736, y = -1606.9127, z = 30.1976 -0.98, a = 58.5412}, nil)
