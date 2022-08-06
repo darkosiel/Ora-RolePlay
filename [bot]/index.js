@@ -10,9 +10,9 @@ const { pass } = require('./secret.js')
 const client = new Discord.Client();
 var con = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "Ora2k22%",
-    database: "orarp"
+    user: "admin",
+    password: "orabdd",
+    database: "oraprod"
 });
 // Here we load the config.json file that contains our token and our prefix values.
 const config = require("./config.json");
