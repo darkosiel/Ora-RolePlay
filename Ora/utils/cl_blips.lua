@@ -1,6 +1,6 @@
 local Blips = {
     {Pos = {x = -1072.52, y = -856.42, z = 4.87}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
-    {Pos = {x = 382.8338, y = -1590.8780, z = 29.2795}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
+    --{Pos = {x = 382.8338, y = -1590.8780, z = 29.2795}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
     -- {Pos = {x = 367.5, y = -1591.53, z = 36.95}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Davis"},
     --{Pos = {x = -440.43, y = 6019.48, z = 31.49}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Paleto Bay"},
     --{Pos = {x = 1856.64, y = 3679.66, z = 33.79}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Sandy Shores"},
@@ -19,7 +19,7 @@ local Blips = {
         name = "Distributeur de Billets",
         color = 2,
         sprite = 434,
-        size = 0.80,
+        size = 0.80,/
         Pos = {x = -526.065, y = -1221.99, z = 18.4549}
     },
     {
@@ -55,7 +55,7 @@ local Blips = {
    -- {name = "Harmony Repairs", color = 61, sprite = 488, size = 1.05, Pos = {x = 1178.06, y = 2646.36, z = 37.75}},
     {name = "Journaliste", color = 2, sprite = 184, Pos = {x = -582.75, y = -927.19, z = 36.83}},
     {name="Taxi", color = 5, sprite=198, Pos = {x=909.18, y=-179.6, z=74.17}},
-    {name ="District Records", color = 63, sprite=136, Pos = {x = -1012.5096, y= -268.2939, z=39.03}},
+    --{name ="District Records", color = 63, sprite=136, Pos = {x = -1012.5096, y= -268.2939, z=39.03}},
     --{name="Tabac", color = 2, sprite=79, Pos = {x=2010.8, y=3076.6, z=47.06}},
 
     --{name = "Chez Larry", color = 2, sprite = 77, Pos = {x = 1224.63, y = 2727.31, z = 38.00}},
