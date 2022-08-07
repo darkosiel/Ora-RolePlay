@@ -490,37 +490,42 @@ Config.DoorList = {
     --     locked = true,
     --     maxDistance = 5.0
     -- },
-    -------- BURGERSHOT
+    --NEW BURGERSHOT
+
 
     {
-        objHash = GetHashKey("p_bs_map_door_01_s"),
-        objCoords = vector3(-1178.82, -892.03, 13.97),
-        textCoords = vector3(-1178.82, -892.03, 13.97),
+        objHash = 386432549,
+        objCoords = vector3(-1183.2745361328125, -885.6295166015625, 14.16980266571045),
+        textCoords = vector3(-1183.2745361328125, -885.6295166015625, 14.16980266571045),
         authorizedJobs = {"burgershot"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 2.5
+    },
+    {
+        objHash = -806752263,
+        objCoords = vector3(-1184.7222900390625, -883.499267578125, 14.16980266571045),
+        textCoords = vector3(-1184.7222900390625, -883.499267578125, 14.16980266571045),
+        authorizedJobs = {"burgershot"},
+        locked = true,
+        maxDistance = 2.5
     },
 
-    {
-        textCoords = vector3(-1184.10, -884.65, 13.99),
-        authorizedJobs = {'burgershot'},
-        locked = true,
-        maxDistance = 2.0,
-        doors = {
-            {objHash = 167687243, objHeading = 124.50, objCoords = vector3(-1184.35, -883.86, 13.99)},
-            {objHash = 1800304361, objHeading = 124.50, objCoords = vector3(-1183.62, -885.37, 13.99)}
-        }
-    },
 
     {
-        textCoords = vector3(-1197.83, -884.30, 13.99),
-        authorizedJobs = {'burgershot'},
+        objHash = 386432549,
+        objCoords = vector3(-1196.755126953125, -883.5769653320312, 14.16980266571045),
+        textCoords = vector3(-1196.755126953125, -883.5769653320312, 14.16980266571045),
+        authorizedJobs = {"burgershot"},
         locked = true,
-        maxDistance = 2.0,
-        doors = {
-            {objHash = 1800304361, objHeading = 213.86, objCoords = vector3(-1197.09, -883.98, 13.99)},
-            {objHash = 167687243, objHeading = 213.86, objCoords = vector3(-1198.51, -884.85, 13.99)}
-        }
+        maxDistance = 2.5
+    },
+    {
+        objHash = -806752263,
+        objCoords = vector3(-1198.8846435546875, -885.0240478515625, 14.16980266571045),
+        textCoords = vector3(-1198.8846435546875, -885.0240478515625, 14.16980266571045),
+        authorizedJobs = {"burgershot"},
+        locked = true,
+        maxDistance = 2.5
     },
 
 
@@ -1089,6 +1094,16 @@ Config.DoorList = {
         maxDistance = 5.0
     },
         --Distillerie 
+
+    {
+        objHash = 1815716966,
+        objCoords = vector3(-1871.9615478515625, 2060.8994140625, 140.07327270507812),
+        textCoords = vector3(-1871.9615478515625, 2060.8994140625, 140.07327270507812),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
 
     {
         objHash = 1077118233,
