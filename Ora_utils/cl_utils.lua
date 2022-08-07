@@ -60,7 +60,8 @@ local vehicleGenerator = {
     {x = 1210.2546, y = -3272.5209, z = 13.77, r = 500}, -- AntiSpawn Post Op
     {x = -1342.8936, y = -1086.5444, z = 6.9363, r = 500}, -- AntiSpawn Mirror
     --{x = 408.50, y = -988.39, z = 29.26, r = 500}, -- AntiSpawn LSPD
-    {x = 1639.45, y = 4836.45, z = 42.02, r = 500} -- Club House AOD
+    {x = 1639.45, y = 4836.45, z = 42.02, r = 500}, -- Club House AOD
+    {x = 1410.83, y = 1117.63, z = 114.83, r = 500} -- Antispawn Fuente Blanca
 }
 
 
