@@ -184,7 +184,8 @@ local autoshop =
                     {name = "yosemite2", price = 82875},
                     {name = "yosemite3", price = 83200},
                     {name = "ruiner4", price = 32740},
-                    {name = "vigero2", price = 46750}
+                    {name = "vigero2", price = 46750},
+                    {name = "imperator", price = 46750}
                 },
                 ["Suvs"] = {
                     {name = "baller", price = 36400},

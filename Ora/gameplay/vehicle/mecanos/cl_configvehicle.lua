@@ -443,6 +443,7 @@ VehiclePrices = {
     {name = "polalamo", price = 25000},
     {name = "pdumkbuffalo", price = 25000},
     {name = "police2new", price = 25000},
+    {name = "imperator", price = 46750},
 
     -- Custom business véhicule japonais
     {name = "primo3", price = 9000},
