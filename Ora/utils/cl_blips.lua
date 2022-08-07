@@ -19,7 +19,7 @@ local Blips = {
         name = "Distributeur de Billets",
         color = 2,
         sprite = 434,
-        size = 0.80,/
+        size = 0.80,
         Pos = {x = -526.065, y = -1221.99, z = 18.4549}
     },
     {
