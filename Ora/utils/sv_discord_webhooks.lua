@@ -23,7 +23,7 @@ local discordWBK = {
     "https://discord.com/api/webhooks/957345819315568770/DH2-Dng4lVIMnjy-YniBOSIse3Zm1trUzCA-uRpNQepN-VT4md9KWzJUP5uVMJEHvwp-", -- 22   Weapon Warehouse
     "https://discord.com/api/webhooks/957344265799888917/yi7JXfNK-r5ObNd87t4PllsVEzDwUvou4JDiyQd5E5Fxlr_0xbhKvLA9yWfHDweEAQvc", -- 23   Admin illegal
     "https://discord.com/api/webhooks/957345819315568770/DH2-Dng4lVIMnjy-YniBOSIse3Zm1trUzCA-uRpNQepN-VT4md9KWzJUP5uVMJEHvwp-", -- 24   Attacks
-    "https://discord.com/api/webhooks/1005259005452615760/OvwNE68Ah7ohYVibMKO2kljHOPVVv8zs2oY3qNmaqTnuPWKUQe1xwVPOnH7F1zyXeYyA", -- 25   Retrait & Dépôt ATM --Fait
+    "https://discord.com/api/webhooks/957344402152489090/0Hi2wcrQAKSHHbHxA7iGC9DQGX89m7_kWgvqJjTRXbh4XxkFokTSdvMvd0m1ZXxquFVJ", -- 25   Retrait & Dépôt ATM
     "https://discord.com/api/webhooks/957344402152489090/0Hi2wcrQAKSHHbHxA7iGC9DQGX89m7_kWgvqJjTRXbh4XxkFokTSdvMvd0m1ZXxquFVJ", -- 26   AddMoney
     "https://discord.com/api/webhooks/957344621229379645/VPVZunSJPZ71odvV9e3tN48oTQ7shv3GSW5hZfvfMK9kHYbo-d6i0xyNEF8X27kN1EAt", -- 27   Casino
     "https://discord.com/api/webhooks/957344621229379645/VPVZunSJPZ71odvV9e3tN48oTQ7shv3GSW5hZfvfMK9kHYbo-d6i0xyNEF8X27kN1EAt", -- 28   Casino System
@@ -59,9 +59,9 @@ AddEventHandler(
     function(_webhook, message, type)
         local webhook = discordWBK[_webhook]
 
-        if (GetConvar("current_env", "dev") == "dev") then
-             webhook = discordWBK[29]
-        end
+        -- if (GetConvar("current_env", "dev") == "dev") then
+        --     webhook = discordWBK[29]
+        -- end
 
         local fullname
         if (Ora.Identity:HasFullname(source)) then
@@ -153,9 +153,9 @@ AddEventHandler(
         if source == nil or source == 0 then return end
         local webhook = discordWBK[_webhook]
         
-        if (GetConvar("current_env", "dev") == "dev") then
-            webhook = discordWBK[29]
-        end
+        -- if (GetConvar("current_env", "dev") == "dev") then
+        --     webhook = discordWBK[29]
+        -- end
 
         local embeds = {}
         local color = 9936031
