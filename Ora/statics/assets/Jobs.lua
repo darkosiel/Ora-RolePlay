@@ -6385,11 +6385,11 @@ Jobs = {
             }
         },
         Storage = {
-            {
-                Pos = {x = -573.68, y = -200.23, z = 42.70 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement"
-            },
+            -- {
+            --     Pos = {x = -573.68, y = -200.23, z = 42.70 - 0.98},
+            --     Limit = 500,
+            --     Name = "coffre_gouvernement"
+            -- },
             {
                 Pos = {x = -559.25, y = -209.73, z = 47.54 - 0.98},
                 Limit = 500,
