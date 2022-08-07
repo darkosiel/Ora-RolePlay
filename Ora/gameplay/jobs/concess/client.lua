@@ -2800,9 +2800,9 @@ local function action(act)
 end
 Citizen.CreateThread(
     function()
-        Zone:Add({x = -30.94593, y = -1088.0161, z = 27.2743 - 0.98, a = 176.367}, Ora.Jobs.Jetsam.EnterZone, Ora.Jobs.Jetsam.ExitZone, "", 3.5)
+        Zone:Add({x = 157.73, y = -1098.53, z = 29.21 - 0.98, a = 55.71}, Ora.Jobs.Jetsam.EnterZone, Ora.Jobs.Jetsam.ExitZone, "", 3.5)
 
-        local blip = AddBlipForCoord(-30.94593, -1088.0161, 27.2743)
+        local blip = AddBlipForCoord(157.73, -1098.53, 28.21)
         SetBlipSprite(blip, 521)
         SetBlipDisplay(blip, 4)
         SetBlipScale(blip, 0.8)
