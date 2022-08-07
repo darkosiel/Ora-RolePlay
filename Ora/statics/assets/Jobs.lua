@@ -6386,7 +6386,12 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -572.04, y = -202.43, z = 41.7 - 0.98},
+                Pos = {x = -573.68, y = -200.23, z = 42.70 - 0.98},
+                Limit = 500,
+                Name = "coffre_gouvernement"
+            },
+            {
+                Pos = {x = -559.25, y = -209.73, z = 47.54 - 0.98},
                 Limit = 500,
                 Name = "coffre_gouvernement2"
             },
@@ -11781,8 +11786,8 @@ Jobs = {
         }
     },
     littleseaoul = {
-        label = "Bar Little Seoul",
-        label2 = "Bar Little Seoul",
+        label = "San-Inn",
+        label2 = "San-Inn",
         iban = "littleseaoul",
         grade = {
             {
@@ -11903,7 +11908,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then                                        
-                            TriggerServerEvent("Job:Annonce", "Bar Little Seoul", "Annonce", text, "CHAR_LITTLE", 8, "Bar Little Seoul")
+                            TriggerServerEvent("Job:Annonce", "San-Inn", "Annonce", text, "CHAR_LITTLE", 8, "San-Inn")
                         end
                     end
                 }
