@@ -1096,6 +1096,16 @@ Config.DoorList = {
         --Distillerie 
 
     {
+        objHash = 1815716966,
+        objCoords = vector3(-1871.9615478515625, 2060.8994140625, 140.07327270507812),
+        textCoords = vector3(-1871.9615478515625, 2060.8994140625, 140.07327270507812),
+        authorizedJobs = {"distillerie"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+
+    {
         objHash = 1077118233,
         objCoords = vector3(-1861.68896484375, 2054.115966796875, 141.3535919189453),
         textCoords = vector3(-1861.68896484375, 2054.115966796875, 141.3535919189453),
