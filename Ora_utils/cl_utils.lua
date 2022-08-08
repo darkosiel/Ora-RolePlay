@@ -247,7 +247,7 @@ local clearAreaOfPedsArray = {
     { pos = vector3(1990.88, 3054.02, 47.21), radius = 60.0 },-- Yellow Jack 
     { pos = vector3(811.8556, -2149.9516, 29.6210), radius = 60.0 },-- Ammunation Sud
     { pos = vector3(1410.99, 1147.39, 114.33), radius = 60.0 },-- Madrazo
-    { pos = vector3(-42.3, -1097.96, 26.42), radius = 40.0 },-- PDM
+    { pos = vector3(146.24, -1113.88, 29.31), radius = 40.0 },-- PDM
 }
 
 Citizen.CreateThread(function()
