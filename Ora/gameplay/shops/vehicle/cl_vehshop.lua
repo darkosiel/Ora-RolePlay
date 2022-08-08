@@ -4,7 +4,7 @@ local VehShop =
         -- veh
         {
             Pos = {x = 181.45, y = -1099.89, z = 28.4, a = 356.38},
-            SpawnPos = {x = 120.4, y = -1116.38, z = 28.17, h = 356.18},
+            SpawnPos = {x = 120.34, y = -1095.33, z = 28.2, h = 178.34},
             Blips = {
                 sprite = 523,
                 color = 84,
