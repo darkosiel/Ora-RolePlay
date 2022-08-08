@@ -420,6 +420,7 @@ VehiclePrices = {
     {name = "prevolter", price = 25000},
     {name = "polschafter3", price = 60000},
     {name = "neon", price = 130200},
+    {name = "comet4", price = 56000},
 
     {name = "calico", price = 47500},
     {name = "comet6", price = 130000},
