@@ -531,49 +531,67 @@ Config.DoorList = {
 
     -------- PDM
 
-    {
-        textCoords = vector3(-38.26, -1108.62, 26.46),
-        authorizedJobs = {'concess'},
-        locked = true,
-        maxDistance = 2.0,
-        doors = {
-            {objHash = GetHashKey("v_ilev_csr_door_r"), objHeading = 339.00, objCoords = vector3(-38.91, -1108.68, 26.43)},
-            {objHash = GetHashKey("v_ilev_csr_door_l"), objHeading = 341.00, objCoords = vector3(-37.80, -1109.05, 26.43)}
-        }
-    },
+    -- {
+    --     textCoords = vector3(-38.26, -1108.62, 26.46),
+    --     authorizedJobs = {'concess'},
+    --     locked = true,
+    --     maxDistance = 2.0,
+    --     doors = {
+    --         {objHash = GetHashKey("v_ilev_csr_door_r"), objHeading = 339.00, objCoords = vector3(-38.91, -1108.68, 26.43)},
+    --         {objHash = GetHashKey("v_ilev_csr_door_l"), objHeading = 341.00, objCoords = vector3(-37.80, -1109.05, 26.43)}
+    --     }
+    -- },
 
     {
-        objHash = 1010499530,
-        objCoords = vector3(-21.511592864990234, -1089.3994140625, 28.113454818725586),
-        textCoords = vector3(-21.511592864990234, -1089.3994140625, 28.113454818725586),
+        objHash = -1867369794,
+        objCoords = vector3(141.110107421875, -1097.15771484375, 28.19093894958496),
+        textCoords = vector3(141.110107421875, -1097.15771484375, 28.19093894958496),
         authorizedJobs = {"concess"},
         locked = true,
         maxDistance = 5.0
     },
 
     {
-        objHash = 2089009131,
-        objCoords = vector3(-30.42845916748047, -1102.47021484375, 27.42458724975586),
-        textCoords = vector3(-30.42845916748047, -1102.47021484375, 27.42458724975586),
+        objHash = 1592189791,
+        objCoords = vector3(159.20928955078125, -1087.690673828125, 29.542530059814453),
+        textCoords = vector3(159.20928955078125, -1087.690673828125, 29.542530059814453),
         authorizedJobs = {"concess"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 3.0
     },
     {
-        objHash = 2089009131,
-        objCoords = vector3(-32.642669677734375, -1108.5592041015625, 27.42458724975586),
-        textCoords = vector3(-32.642669677734375, -1108.5592041015625, 27.42458724975586),
+        objHash = 1428213715,
+        objCoords = vector3(161.80357360839844, -1087.690673828125, 29.542530059814453),
+        textCoords = vector3(161.80357360839844, -1087.690673828125, 29.542530059814453),
         authorizedJobs = {"concess"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 3.0
+    },
+
+    {
+        objHash = 152369736,
+        objCoords = vector3(161.17208862304688, -1118.35107421875, 30.03493881225586),
+        textCoords = vector3(161.17208862304688, -1118.35107421875, 30.03493881225586),
+        authorizedJobs = {"concess"},
+        locked = true,
+        maxDistance = 3.0
     },
     {
-        objHash = 2089009131,
-        objCoords = vector3(-27.621047973632812, -1094.7628173828125, 27.42458724975586),
-        textCoords = vector3(-27.621047973632812, -1094.7628173828125, 27.42458724975586),
+        objHash = -764932881,
+        objCoords = vector3(163.42013549804688, -1118.35107421875, 30.03493881225586),
+        textCoords = vector3(163.42013549804688, -1118.35107421875, 30.03493881225586),
         authorizedJobs = {"concess"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 3.0
+    },
+
+    {
+        objHash = 701638607,
+        objCoords = vector3(120.51622772216797, -1111.1077880859375, 30.023090362548828),
+        textCoords = vector3(120.51622772216797, -1111.1077880859375, 30.023090362548828),
+        authorizedJobs = {"concess"},
+        locked = true,
+        maxDistance = 5.0
     },
         --POSTE DAVIS 
 
