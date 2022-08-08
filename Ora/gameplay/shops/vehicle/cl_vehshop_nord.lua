@@ -77,7 +77,7 @@ local autoshop =
                     {name = "winky", price = 36500},
                     {name = "sadler", price = 76500}
                 },
-                ["Velo"] = {
+                --[[["Velo"] = {
                     {name = "bmx", price = 70},
                     {name = "cruiser", price = 28},
                     {name = "fixter", price = 140},
@@ -85,7 +85,7 @@ local autoshop =
                     {name = "tribike", price = 175},
                     {name = "tribike2", price = 175},
                     {name = "tribike3", price = 175}
-                },
+                },]]
                 ["Off-Road"] = {
                     {name = "bfinjection", price = 13520},
                     {name = "bifta", price = 9360},
@@ -118,13 +118,13 @@ local autoshop =
                     {name = "draugur", price = 80750},
                     {name = "weevil2", price = 46700}
                 },
-                ["Quad"] = {
+                --[[["Quad"] = {
                     {name = "blazer", price = 2700},
                     {name = "blazer2", price = 2000},
                     {name = "blazer3", price = 6100},
                     {name = "blazer4", price = 4500},
                     {name = "verus", price = 5500}
-                },
+                },]]
                 ["Muscle"] = {
                     {name = "blade", price = 10400},
                     {name = "Buccaneer", price = 12740},

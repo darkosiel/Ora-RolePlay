@@ -99,6 +99,15 @@ local bikershop =
                 ["Police"] = {
                     {name = "lspdb", price = 25000}
                     --{name = "sheriffb3", price = 2500}
+                },
+                ["Velo"] = {
+                    {name = "bmx", price = 70},
+                    {name = "cruiser", price = 28},
+                    {name = "fixter", price = 140},
+                    {name = "scorcher", price = 105},
+                    {name = "tribike", price = 175},
+                    {name = "tribike2", price = 175},
+                    {name = "tribike3", price = 175}
                 }
             }
         }
