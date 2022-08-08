@@ -418,7 +418,7 @@ local VehShop =
                     {name = "pdumksx", price = 25000}
                     --{name = "lspdb", price = 25000}
                 },
-                --[[["Vans"] = {
+                ["Vans"] = {
                     {name = "minivan", price = 9100},
                     {name = "paradise", price = 10140},
                     {name = "youga2", price = 9360},
@@ -436,9 +436,10 @@ local VehShop =
                     {name = "speedo2", price = 13200},
                     {name = "rumpo3", price = 55250},
                     {name = "speedo", price = 11960},
-                    {name = "gburrito", price = 26000}
-                },]]
-                --[[["Suvs"] = {
+                    {name = "gburrito", price = 26000},
+                    {name = "youga4", price = 10000}
+                },
+                ["Suvs"] = {
                     {name = "baller", price = 36400},
                     {name = "baller2", price = 66300},
                     {name = "baller3", price = 66300},
@@ -456,6 +457,7 @@ local VehShop =
                     {name = "landstalker2", price = 76500},
                     {name = "patriot", price = 65000},
                     {name = "patriot2", price = 162000},
+                    {name = "radius", price = 6825},
                     {name = "rebla", price = 142000},
                     {name = "rocoto", price = 36400},
                     {name = "seminole", price = 9360},
@@ -464,9 +466,13 @@ local VehShop =
                     {name = "toros", price = 162400},
                     {name = "xls", price = 44200},
                     {name = "habanero", price = 7500},
-                    {name = "serrano", price = 8000}
-                },]]
-                --[[["Muscle"] = {
+                    {name = "serrano", price = 8000},
+                    {name = "astron", price = 130000},
+                    {name = "baller7", price = 70000},
+                    {name = "iwagen", price = 70000},
+                    {name = "jubilee", price = 135000}
+                },
+                ["Muscle"] = {
                     {name = "blade", price = 10400},
                     {name = "Buccaneer", price = 12740},
                     {name = "buccaneer2", price = 16640},
@@ -523,9 +529,12 @@ local VehShop =
                     {name = "voodoo2", price = 2730},
                     {name = "yosemite", price = 82322},
                     {name = "yosemite2", price = 82875},
-                    {name = "yosemite3", price = 83200}
-                },]]
-                --[[["Off-Road"] = {
+                    {name = "yosemite3", price = 83200},
+                    {name = "ruiner4", price = 32740},
+                    {name = "vigero2", price = 46750},
+                    {name = "imperator", price = 46750}
+                },
+                ["Off-Road"] = {
                     {name = "bfinjection", price = 13520},
                     {name = "bifta", price = 9360},
                     {name = "bodhi2", price = 8684},
@@ -540,7 +549,7 @@ local VehShop =
                     {name = "granger", price = 26000},
                     {name = "hellion", price = 19240},
                     {name = "kalahari", price = 1820},
-                    {name = "kamacho", price = 44200},
+                    {name = "kamacho", price = 60000},
                     {name = "marshall", price = 80750},
                     {name = "mesa", price = 10400},
                     {name = "mesa3", price = 31200},
@@ -551,8 +560,12 @@ local VehShop =
                     {name = "riata", price = 36400},
                     {name = "sandking", price = 36400},
                     {name = "sandking2", price = 49725},
-                    {name = "vagrant", price = 26000}
-                }]]
+                    {name = "vagrant", price = 26000},
+                    {name = "granger2", price = 36000},
+                    {name = "patriot3", price = 60000},
+                    {name = "draugur", price = 80750},
+                    {name = "weevil2", price = 46700}
+                }
             }
         }
     },
