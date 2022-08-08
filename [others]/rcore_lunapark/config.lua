@@ -15,9 +15,9 @@ Config.FreefallRenderDistance      = 180.0
 Config.DisableWheelIPL = true
 
 -- Please do note that enabling both frameworks will result in an unexpected behavior
-Config.EnableESX          = true -- Enables support for ESX framework
+Config.EnableESX          = false -- Enables support for ESX framework
 Config.EnableQBCore       = false -- Enables support for QBCore framework
-Config.EnableCustomEvents = false -- Enables support for custom events
+Config.EnableCustomEvents = true -- Enables support for custom events
 
 --[[
     CUSTOM EVENTS (For Developers)
