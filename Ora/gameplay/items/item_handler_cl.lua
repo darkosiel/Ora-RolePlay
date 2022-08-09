@@ -693,9 +693,9 @@ ItemsFunction = {
             AddHackButton()
         end
     end,
-    tablefbi = function()
+--[[    tablefbi = function()
         useTablefbi()
-    end,
+    end,]]
     usbkey = function()
         local bool, m = isNearComputer()
         if bool then
@@ -1766,7 +1766,7 @@ function useCommode()
     )
 end
 
-function useTablefbi()
+--[[function useTablefbi()
     --Ora.Inventory:RemoveItem()
     local playerPed = LocalPlayer().Ped
     local coords, forward = LocalPlayer().Pos, GetEntityForwardVector(playerPed)
@@ -1779,7 +1779,7 @@ function useTablefbi()
             PlaceObjectOnGroundProperly(obj)
         end
     )
-end
+end]]
 
 function useArmoire()
     --Ora.Inventory:RemoveItem()
