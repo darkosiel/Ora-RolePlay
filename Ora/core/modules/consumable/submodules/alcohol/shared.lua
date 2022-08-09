@@ -42,7 +42,17 @@ Ora.Consumable.Alcohol = {
         }
       },
       distance = 1.5
-    }
+    },
+    [4] = { -- meuble
+    options = {
+      {
+        event = "Ora::CE::Consumable::Alcohol::StoreIntoInventory",
+        icon = "fas fa-hand-lizard",
+        label = "Ranger"
+      }
+    },
+    distance = 3.0
+  }
   },
   Bottles ={
     ["whisky"] = {
@@ -224,6 +234,20 @@ Ora.Consumable.Alcohol = {
       },
       settings = 3,
       count = 6
+    },
+    ["tablefbi"] = {
+      bottle = "prop_fbi3_coffee_table",
+      glass = "prop_fbi3_coffee_table",
+      anim = {
+        dict = "anim@safehouse@bong",
+        ped = "prop_fbi3_coffee_table",
+        bottle = "prop_fbi3_coffee_table",
+        glass = "prop_fbi3_coffee_table",
+        rotation = 360.0,
+        duration = 9000
+      },
+      settings = 4,
+      count = 1
     }
   }
 }

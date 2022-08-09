@@ -2115,7 +2115,9 @@ Items = {
     },
     tablefbi = {
         label = "Petite table",
-        weight = 1.0
+        weight = 1.0,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
     armoire = {
         label = "Armoire en bois",
