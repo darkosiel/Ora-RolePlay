@@ -2069,15 +2069,15 @@ RMenu.Add(
 )
 
 RMenu:Get("jobs", "LSC_CONCESS_CAT").Closed = function()
-    UpdateCarB()
+    UpdateCarC()
 end
 
 RMenu:Get("jobs", "LSC_CONCESS_CAT_COLOR").Closed = function()
-    UpdateCarB()
+    UpdateCarC()
 end
 
 RMenu:Get("jobs", "LSC_CONCESS_CAT_COLOR_1").Closed = function()
-    UpdateCarB()
+    UpdateCarC()
 end
 
 RMenu:Get("jobs", "LSC_CONCESS").Closed = function()
