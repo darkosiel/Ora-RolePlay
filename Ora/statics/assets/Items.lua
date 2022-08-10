@@ -2105,28 +2105,21 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
-    commode = {
-        label = "Petite commode",
-        weight = 1.5
+    --Items Ikea
+
+    ikeabbq = {
+        label = "Barbecue",
+        weight = 1.0,
+        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
+        category = "consumable"
     },
-    chaise = {
-        label = "Chaise plastique",
-        weight = 1.0
-    },
-    tablefbi = {
+    test = {
         label = "Petite table",
         weight = 1.0,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
-    armoire = {
-        label = "Armoire en bois",
-        weight = 6.0
-    },
-    fauteuil = {
-        label = "Fauteuil",
-        weight = 1.5
-    },
+
     herse = {
         label = "Herse",
         weight = 0.5

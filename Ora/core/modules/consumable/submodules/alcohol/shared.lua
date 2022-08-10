@@ -248,6 +248,21 @@ Ora.Consumable.Alcohol = {
       },
       settings = 4,
       count = 1
+    },
+    ["ikeabbq"] = {
+      bottle = "prop_bbq_5",
+      glass = "prop_bbq_5",
+      anim = {
+        dict = "anim@safehouse@bong",
+        ped = "prop_bbq_5",
+        bottle = "prop_bbq_5",
+        glass = "prop_bbq_5",
+        rotation = 360.0,
+        duration = 9000
+      },
+      settings = 4,
+      count = 1
     }
+    
   }
 }
