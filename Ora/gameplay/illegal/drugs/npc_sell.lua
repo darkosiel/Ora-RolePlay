@@ -12,7 +12,7 @@ local DrugSellPosProps = {
     lsd_pooch = "bkr_prop_coke_cutblock_01"
 }
 local Price = {
-    weed_pooch = {27, 35},
+    weed_pooch = {21, 26},
     coke1 = {68, 75},
     meth = {55, 65},
     lsd_pooch = {75, 80}
