@@ -10376,7 +10376,7 @@ Jobs = {
         Extrapos = {
             LSCustoms = {
                 Pos = {
-                    {x = 129.11, y = -1104.82, z = 28.2}
+                    {x = 135.13, y = -1091.72, z = 28.61}
                 },
                 Enter = function()
                     EnterZoneLSC_CONCESS()
