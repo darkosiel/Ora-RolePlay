@@ -10373,6 +10373,30 @@ Jobs = {
                 }
             }
         },
+        Extrapos = {
+            LSCustoms = {
+                Pos = {
+                    {x = 129.11, y = -1104.82, z = 28.2}
+                },
+                Enter = function()
+                    EnterZoneLSC_CONCESS()
+                end,
+                Exit = function()
+                    ExitZoneLSC_CONCESS()
+                end,
+                zonesize = 3.5,
+                Blips = {},
+                Marker = {
+                    type = 1,
+                    scale = {x = 4.5, y = 4.5, z = 0.6},
+                    color = {r = 100, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = false
+                }
+            }
+        },
         garage = {
             Name = "Garage Concessionnaire",
             Pos = {x = 142.71, y = -1064.21, z = 28.19},
