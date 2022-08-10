@@ -1033,22 +1033,29 @@ Config.DoorList = {
         --Miror
     {
         objHash = -1540703659,
-        objHeading = 23.23,
-        objCoords = vector3(-1342.5236, -1076.1541, 6.9394),
-        textCoords = vector3(-1342.5236, -1076.1541, 6.9394),
+        objCoords = vector3(-1343.294677734375, -1076.096923828125, 7.269369602203369),
+        textCoords = vector3(-1343.294677734375, -1076.096923828125, 7.269369602203369),
         authorizedJobs = {"restaurant"},
         locked = true,
-        maxDistance = 0.5
+        maxDistance = 5.0
     },
     
     {
         objHash = -1132262566,
-        objHeading = 23.23,
-        objCoords = vector3(-1341.4703, -1075.5009, 6.9394),
-        textCoords = vector3(-1341.4703, -1075.5009, 6.9394),
+        objCoords = vector3(-1341.0965576171875, -1074.8541259765625, 7.269369602203369),
+        textCoords = vector3(-1341.0965576171875, -1074.8541259765625, 7.269369602203369),
         authorizedJobs = {"restaurant"},
         locked = true,
-        maxDistance = 0.5
+        maxDistance = 5.0
+    },
+    
+    {
+        objHash = GetHashKey("v_ilev_fa_roomdoor"),
+        objCoords = vector3(-1349.6475830078125, -1063.7611083984375, 7.036352634429932),
+        textCoords = vector3(-1349.6475830078125, -1063.7611083984375, 7.036352634429932),
+        authorizedJobs = {"restaurant"},
+        locked = true,
+        maxDistance = 5.0
     },
 
 
