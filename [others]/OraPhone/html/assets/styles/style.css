@@ -2842,6 +2842,67 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content#app-settings-body-content-profile div.app-body-content-body div.settings-list div.settings-list-item div.settings-list-item-right div.settings-list-item-right-button span {
   font-size: 20px;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-title span {
+  text-align: center;
+  font-size: 26px;
+  font-family: "SF UI Text Bold";
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-title {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-title {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button i {
+  font-size: 24px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button i {
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button i {
+  color: #FFFFFF;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button-hangup {
+  background-color: #FF3B30;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button-hangup {
+  background-color: #FF453A;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button-pickup {
+  background-color: #34C759;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button-pickup {
+  background-color: #32D74B;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-footer {
   display: flex;
   align-items: flex-end;
@@ -3283,13 +3344,18 @@ div#page div#phone div#phone-screen div#phone-lock-button:hover i {
   transform: translate(0, 0);
 }
 
-button#add-notification, button#remove-notification {
+button#add-notification, button#add-call {
   height: 40px;
   padding: 5px;
   background-color: black;
+  color: white;
   position: absolute;
   top: 60px;
   right: 260px;
+}
+
+button#add-call {
+  top: 120px;
 }
 
 #notification-container {

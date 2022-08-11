@@ -2437,6 +2437,68 @@ div#page {
                                     }
                                 }
                             }
+                            &#app-call {
+                                div.app-body {
+                                    div#app-call-body-content-callnumber {
+
+                                    }
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: space-around;
+                                            align-items: center;
+                                            height: 100%;
+                                            div.callnumber-title {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: center;
+                                                align-items: center;
+                                                width: 100%;
+                                                span {
+                                                    text-align: center;
+                                                    font-size: 26px;
+                                                    font-family: $ora-font-bold;
+                                                }
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                            }
+                                            div.callnumber-buttons {
+                                                display: flex;
+                                                justify-content: space-around;
+                                                align-items: center;
+                                                width: 100%;
+                                                div.call-button {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    width: 85px;
+                                                    height: 85px;
+                                                    border-radius: 50%;
+                                                    cursor: pointer;
+                                                    i {
+                                                        font-size: 24px;
+                                                        @include themed() {
+                                                            color: t($phone-system-color-white);
+                                                        }
+                                                    }
+                                                }
+                                                div.call-button-hangup {
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-red);
+                                                    }
+                                                }
+                                                div.call-button-pickup {
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-green);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -2825,13 +2887,18 @@ div#page {
     }
 }
 
-button#add-notification, button#remove-notification {
+button#add-notification, button#add-call {
     height: 40px;
     padding: 5px;
     background-color: black;
+    color: white;
     position: absolute;
     top: 60px;
     right: 260px;
+}
+
+button#add-call {
+    top: 120px;
 }
 
 #notification-container {

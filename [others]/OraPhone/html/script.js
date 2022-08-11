@@ -1,6 +1,6 @@
-var menuSelected = "contacts";
+var menuSelected = "call";
 var menuSelectedLast = "home";
-var menuAppSelected = "first";
+var menuAppSelected = "callstarted";
 var menuAppSelectedLast = "first";
 var displayToggle = false;
 var displayTopbarToggle = false;
@@ -76,6 +76,9 @@ const folderNotifications = folderSounds + "notifications/";
 const folderRingings = folderSounds + "ringings/";
 var luminosityActive = 10;
 var userData;
+var inReceiveCall = false;
+var inCall = false;
+var callData = "";
 
 $(function(){
     window.onload = (e) => {
@@ -93,6 +96,19 @@ $(function(){
                 }
                 if (item !== undefined && item.type === "updateUserData") {
                     updateUserData(item.data);
+                }
+                if (item !== undefined && item.type === "receiveCall") {
+                    receiveCall(item);
+                }
+                if (item!== undefined && item.type === "callStarted") {
+                    updateContent("call");
+                    updateAppContent("callstarted");
+                }
+                if (item!== undefined && item.type === "callEnded") {
+                    inCall = false;
+                    callData = "";
+                    updateContent("home");
+                    updateAppContent("first");
                 }
             });
 
@@ -282,7 +298,7 @@ $(function(){
         // --- Inisialisation de test --- //
 
             // Affichage de l'écran de test
-            // displayPhone();
+            displayPhone();
             updateContent(menuSelected);
             updateAppContent(menuAppSelected);
             // lockPhone();
@@ -293,18 +309,42 @@ $(function(){
             }
             // Ajout notification
             $("#add-notification").click(function() {
-                // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
+                addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
+            });
+
+            $("#add-call").click(function() {
                 $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5554444", fromNumber: phoneNumber }));
+                updateContent("call");
+                updateAppContent("callnumber");
+                inCall = true;
             });
 
         // --- --- //
 
         
+        $("#callnumber-button-hangup").click(function() {
+            $.post('https://OraPhone/end_call', JSON.stringify({}));
+        });
         
+        $("#callreceive-button-hangup").click(function() {
+            inReceiveCall = false;
+            callData = "";
+            updateContent("home");
+            updateAppContent("first");
+            stopSounds();
+        });
         
+        $("#callreceive-button-pickup").click(function() {
+            inReceiveCall = false;
+            inCall = true;
+            updateContent("call");
+            updateAppContent("callstarted");
+            $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
+        });
 
-        
-        
+        $("#callstarted-button-hangup").click(function() {
+            $.post('https://OraPhone/end_call', JSON.stringify({}));
+        });
         
 
         for (let e of document.querySelectorAll('input[type="range"].topbar-box-button-slider')) {
@@ -980,7 +1020,26 @@ function updateUserData(data) {
 }
 
 
-
+function receiveCall(data) {
+    callData = data;
+    inReceiveCall = true;
+    if(!displayToggle) {
+        displayPhone();
+    }
+    updateContent("call");
+    updateAppContent("callreceive");
+    soundRinging.currentTime = 0;
+    soundRinging.play();
+    setTimeout(function() {
+        if(inReceiveCall) {
+            stopSounds();
+            updateContent("home");
+            updateAppContent("first");
+            inReceiveCall = false;
+            callData = "";
+        }
+    }, 1000);
+}
 
 
 

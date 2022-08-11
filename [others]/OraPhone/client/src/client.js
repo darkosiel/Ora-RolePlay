@@ -107,25 +107,22 @@ onNet('phone_ora:updateUserData', data => {
 
 onNet('phone_ora:callStarted', _ => {
     SendNUIMessage({
-        action: 'beginCall',
+        action: 'callStarted',
     })
 })
 
- onNet('phone_ora:callFinished', _ => {
-     SendNuiMessage({
-         action: 'endCall'
-     })
- })
+onNet('phone_ora:callFinished', _ => {
+    SendNuiMessage({
+        type: 'callEnded'
+    })
+})
 
 onNet('phone_ora:receiveCall', async (fromNumber, chan, video=false) => {
-    playClassicNotifSound(2)
-    await setPhoneVisible(true)
     SendNUIMessage({
-        action: 'receiveCall',
+        type: 'receiveCall',
         fromNumber,
         channel: chan,
-        video,
-        time: getIngameTime()
+        video
     })
 })
 
@@ -159,13 +156,13 @@ on('__cfx_nui:accept_call', channel => {
     emitNet('phone_ora:accept_call', channel)
 })
 
- RegisterNuiCallbackType('end_call')
- on('__cfx_nui:end_call', _ => {
-     console.log('nui end call received')
-     emitNet('phone_ora:end_call')
-     anim.PhonePlayText()
- })
- 
+RegisterNuiCallbackType('end_call')
+on('__cfx_nui:end_call', _ => {
+    console.log('nui end call received')
+    emitNet('phone_ora:end_call')
+    anim.PhonePlayText()
+})
+
 RegisterNuiCallbackType('call_number')
 on('__cfx_nui:call_number', data => {
     anim.PhonePlayCall()

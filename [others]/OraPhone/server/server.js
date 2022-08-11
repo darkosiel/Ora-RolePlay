@@ -326,12 +326,12 @@ const callers = {
 }
 
 function purgeCaller (src, video = false) {
-   for (const chan in callers) {
-       if ([callers[chan].receiverId, callers[chan].callerId].includes(src)) {
-           endCall(chan, video)
-           return
-       }
-   }
+    for (const chan in callers) {
+        if ([callers[chan].receiverId, callers[chan].callerId].includes(src)) {
+            endCall(chan, video)
+            return
+        }
+    }
 }
 
 /**

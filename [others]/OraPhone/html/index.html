@@ -17,6 +17,9 @@
         <button id="add-notification">
             Ajouter notification
         </button>
+        <button id="add-call">
+            Ajouter appel
+        </button>
         <label id="switch-theme-mode">
             <input type="checkbox" />
             <i></i>
@@ -232,8 +235,8 @@
                                 </div>
                             </div>
                             <div id="app-clock" class="app app-tabbed">
-                                    <div id="app-clock-body" class="app-body">
-                                        <div id="app-clock-body-content-clock" class="disable-select app-body-content">
+                                <div id="app-clock-body" class="app-body">
+                                    <div id="app-clock-body-content-clock" class="disable-select app-body-content">
                                             <div class="app-body-content-header">
                                                 <div class="app-body-content-header-button">
                                                     <div class="app-body-content-header-button-parent">
@@ -252,9 +255,8 @@
                                                     
                                                 </div>
                                             </div>
-                                        </div>
-    
-                                        <div id="app-clock-body-content-alarm" class=" disable-select app-body-content">
+                                    </div>
+                                    <div id="app-clock-body-content-alarm" class=" disable-select app-body-content">
                                             <div class="app-body-content-header">
                                                 <div class="app-body-content-header-button">
                                                     <div class="app-body-content-header-button-parent">
@@ -272,9 +274,8 @@
                                                 <div class="app-body-content-body-list">
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div id="app-clock-body-content-addalarm" class="app-body-content">
+                                    </div>
+                                    <div id="app-clock-body-content-addalarm" class="app-body-content">
                                             <div class="app-body-content-header">
                                                 <div class="app-body-content-header-button">
                                                     <div class="app-body-content-header-button-parent">
@@ -314,9 +315,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-    
-                                        <div id="app-clock-body-content-stopwatch" class="app-body-content disable-select">
+                                    </div>
+                                    <div id="app-clock-body-content-stopwatch" class="app-body-content disable-select">
                                             <div class="app-body-content-body">
                                                 <div id="app-clock-list-item-stopwatch">00:00.00</div>
                                                 <div class="stopwatch-list-button">
@@ -326,9 +326,8 @@
                                                 <div id="stopwatch-list-loop">
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div id="app-clock-body-content-timer" class="app-body-content disable-select">
+                                    </div>
+                                    <div id="app-clock-body-content-timer" class="app-body-content disable-select">
                                             <div class="app-body-content-body">
                                                 <div id="timer-app-clock-time-select" class="app-clock-time-select">
                                                     <div class="time-select">
@@ -362,27 +361,26 @@
                                                     <div id="timer-button-start" class="start">Démarrer</div><!--Pause-->
                                                 </div>
                                             </div>
-                                        </div>
-    
                                     </div>
-                                    <div class="app-tab">
-                                        <div id="app-tab-button-clock" class="app-tab-button">
-                                            <i class="fa-solid fa-globe"></i>
-                                            <span>Horloge</span>
-                                        </div>
-                                        <div id="app-tab-button-alarm" class="app-tab-button">
-                                            <i class="fa-regular fa-clock"></i>
-                                            <span>Alarme</span>
-                                        </div>
-                                        <div id="app-tab-button-stopwatch" class="app-tab-button">
-                                            <i class="fa-solid fa-stopwatch"></i>
-                                            <span>Chronomètre</span>
-                                        </div>
-                                        <div id="app-tab-button-timer" class="app-tab-button">
-                                            <i class="fa-regular fa-hourglass-half"></i>
-                                            <span>Minuteur</span>
-                                        </div>
+                                </div>
+                                <div class="app-tab">
+                                    <div id="app-tab-button-clock" class="app-tab-button">
+                                        <i class="fa-solid fa-globe"></i>
+                                        <span>Horloge</span>
                                     </div>
+                                    <div id="app-tab-button-alarm" class="app-tab-button">
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>Alarme</span>
+                                    </div>
+                                    <div id="app-tab-button-stopwatch" class="app-tab-button">
+                                        <i class="fa-solid fa-stopwatch"></i>
+                                        <span>Chronomètre</span>
+                                    </div>
+                                    <div id="app-tab-button-timer" class="app-tab-button">
+                                        <i class="fa-regular fa-hourglass-half"></i>
+                                        <span>Minuteur</span>
+                                    </div>
+                                </div>
                             </div>
                             <div id="app-templatetabbed" class="app app-tabbed">
                                 <div class="app-body">
@@ -1384,6 +1382,50 @@
                                         </div>
                                         <div class="app-body-content-body">
                                             <div id="settings-list-general-zoom" class="settings-list">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-call" class="app app-modal">
+                                <div id="app-call-body" class="app-body">
+                                    <div id="app-call-body-content-callnumber" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <div class="callnumber-title">
+                                                <span>Appel vers 555-5265</span>
+                                            </div>
+                                            <div class="callnumber-buttons">
+                                                <div id="callnumber-button-hangup" class="call-button call-button-hangup">
+                                                    <i class='fa-solid fa-phone-slash'></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-call-body-content-callreceive" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <div class="callnumber-title">
+                                                <span>Appel de 555-5265</span>
+                                            </div>
+                                            <div class="callnumber-buttons">
+                                                <div id="callreceive-button-hangup" class="call-button call-button-hangup">
+                                                    <i class='fa-solid fa-phone-slash'></i>
+                                                </div>
+                                                <div id="callreceive-button-pickup" class="call-button call-button-pickup">
+                                                    <i class='fa-solid fa-phone'></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-call-body-content-callstarted" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <div class="callnumber-title">
+                                                <span>Appel en cours</span>
+                                                <span>00:36</span>
+                                            </div>
+                                            <div class="callnumber-buttons">
+                                                <div id="callstarted-button-hangup" class="call-button call-button-hangup">
+                                                    <i class='fa-solid fa-phone-slash'></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
