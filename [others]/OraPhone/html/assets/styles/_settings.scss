@@ -1,0 +1,237 @@
+// @import 'fonts';
+
+//vars
+
+//folders
+
+$ora-folder-assets: "./assets/";
+$ora-folder-wallpaper: $ora-folder-assets + "wallpaper/";
+$ora-folder-app-icon: $ora-folder-assets + "app-icon/";
+
+//fonts
+$ora-font-regular: 'SF UI Text Regular';
+$ora-font-medium: 'SF UI Text Medium';
+$ora-font-semibold: 'SF UI Text Semibold';
+$ora-font-bold: 'SF UI Text Bold';
+$ora-font-heavy: 'SF UI Text Heavy';
+
+//layout
+$ora-phone-screen-width: 390px;
+// $ora-phone-screen-width: 296px;
+$ora-phone-screen-height: 844px;
+// $ora-phone-screen-height: 640px;
+$ora-phone-padding-left: 21px;
+$ora-phone-padding-right: 21px;
+$ora-phone-padding-top: 18px;
+$ora-phone-padding-bottom: 18px;
+$ora-phone-width: $ora-phone-screen-width + $ora-phone-padding-left + $ora-phone-padding-right;
+$ora-phone-height: $ora-phone-screen-height + $ora-phone-padding-top + $ora-phone-padding-bottom;
+$ora-phone-screen-header-height: 48px;
+$ora-phone-screen-footer-height: 34px;
+$ora-phone-app-home-icon-width: 60px;
+$ora-phone-app-home-icon-height: 95px;
+$ora-phone-app-home-icon-image-width: 60px;
+$ora-phone-app-home-icon-image-height: 60px;
+$ora-phone-app-home-list-primary-width: 366px;
+$ora-phone-app-home-list-primary-height: 96px;
+$ora-phone-app-tab-height: 60px;
+$ora-phone-app-body-height: calc(100% - $ora-phone-app-tab-height);
+$ora-phone-app-body-content-header-height: 95px;
+$ora-phone-app-body-content-body-height: calc(100% - $ora-phone-app-body-content-header-height);
+$ora-phone-app-tab-button-width: 80px;
+$ora-phone-app-tab-button-height: 48px;
+$ora-phone-app-tab-button-icon-width: 30px;
+$ora-phone-app-tab-button-icon-height: 30px;
+$ora-phone-app-tab-button-icon-size: 24px;
+$ora-phone-app-tab-button-title-size: 14px;
+$ora-phone-app-calculator-buttons-height: 435px;
+$ora-phone-app-calculator-result-height: 115px;
+$ora-phone-app-calculator-history-height: calc(100% - $ora-phone-app-calculator-buttons-height - $ora-phone-app-calculator-result-height);
+$ora-phone-app-message-chat-bubble-width: 95px;
+$ora-phone-app-message-chat-bubble-height: calc($ora-phone-app-message-chat-bubble-width / 1.53);
+
+//--colors
+$system--red--light: #FF3B30;
+$system--red--dark: #FF453A;
+$system--orange--light: #FF9500;
+$system--orange--dark: #FF9F0A;
+$system--yellow--light: #FFCC00;
+$system--yellow--dark: #FFD60A;
+$system--green--light: #34C759;
+$system--green--dark: #32D74B;
+$system--teal--light: #5AC8FA;
+$system--teal--dark: #64D2FF;
+$system--blue--light: #007AFF;
+$system--blue--dark: #0A84FF;
+$system--indigo--light: #5856D6;
+$system--indigo--dark: #5E5CE6;
+$system--purple--light: #AF52DE;
+$system--purple--dark: #BF5AF2;
+$system--pink--light: #FF2D55;
+$system--pink--dark: #FF2D55;
+$system--black--light: #000000;
+$system--black--dark: #000000;
+$system--white--light: #FFFFFF;
+$system--white--dark: #FFFFFF;
+$system--gray--light: #8E8E93;
+$system--gray--dark: #8E8E93;
+$system--gray--2--light: #AEAEB2;
+$system--gray--2--dark: #636366;
+$system--gray--3--light: #C7C7CC;
+$system--gray--3--dark: #48484A;
+$system--gray--4--light: #D1D1D6;
+$system--gray--4--dark: #3A3A3C;
+$system--gray--5--light: #E5E5EA;
+$system--gray--5--dark: #1C1C1E;
+$system--gray--6--light: #F2F2F7;
+$system--gray--6--dark: #1C1C1E;
+
+$app--tab--background--color--light: #eaeaea;
+$app--tab--background--color--dark: #151515;
+$app--tab--color--light: #999999;
+$app--tab--color--dark: #999999;
+
+$app--clock--gray--light: #3c3c43;
+$app--clock--gray--dark: #ebebf5;
+
+$system--background-primary-light: #FFFFFF;
+$system--background-primary-dark: #000000;
+$system--background-secondary-light: #F2F2F7;
+$system--background-secondary-dark: #1C1C1E;
+$system--background-tertiary-light: #FFFFFF;
+$system--background-tertiary-dark: #2C2C2E;
+
+$system--grouped--background--primary--light: #3A3A3C;
+$system--grouped--background--primary--dark: #000000;
+$system--grouped--background--secondary--light: #FFFFFF;
+$system--grouped--background--secondary--dark: #1C1C1E;
+$system--grouped--background--tertiary--light: #F2F2F7;
+$system--grouped--background--tertiary--dark: #2C2C2E;
+
+$system-notification--background--color--light: rgba(255, 255, 255, 0.95);
+$system-notification--background--color--dark: rgba(0, 0, 0, 0.95);
+$system-notification--color--light: #000000;
+$system-notification--color--dark: #ffffff;
+
+$label--color--primary--light: #000000;
+$label--color--primary--dark: #FFFFFF;
+$label--color--secondary--light: rgba(60, 60, 67, 0.60);
+$label--color--secondary--dark: rgba(235, 235, 245, 0.60);
+$label--color--tertiary--light: rgba(60, 60, 67, 0.30);
+$label--color--tertiary--dark: rgba(235, 235, 245, 0.30);
+$label--color--quaternary--light: rgba(60, 60, 67, 0.18);
+$label--color--quaternary--dark: rgba(235, 235, 245, 0.18);
+
+$fill--color--primary--light: rgba(120, 120, 128, 0.20);
+$fill--color--primary--dark: rgba(120, 120, 128, 0.38);
+$fill--color--secondary--light: rgba(120, 120, 128, 0.16);
+$fill--color--secondary--dark: rgba(120, 120, 128, 0.32);
+$fill--color--tertiary--light: rgba(120, 120, 128, 0.12);
+$fill--color--tertiary--dark: rgba(120, 120, 128, 0.24);
+$fill--color--quaternary--light: rgba(120, 120, 128, 0.08);
+$fill--color--quaternary--dark: rgba(120, 120, 128, 0.18);
+
+$separator--color--opaque-light: #C6C6C8;
+$separator--color--opaque-dark: #38383A;
+$separator--color--non--opaque-light: rgba(60, 60, 67, 0.36);
+$separator--color--non--opaque-dark: rgba(84, 84, 88, 0.65);
+
+$system--material--thick-light: rgba(253, 253, 253, 0.92);
+$system--material--thick-dark: rgba(0, 0, 0, 0.60);
+$system--material--regular-light: rgba(249, 249, 249, 0.78);
+$system--material--regular-dark: rgba(0, 0, 0, 0.41);
+$system--material--thin-light: rgba(245, 245, 245, 0.60);
+$system--material--thin-dark: rgba(0, 0, 0, 0.26);
+$system--material--ultrathin-light: rgba(240, 240, 240, 0.38);
+$system--material--ultrathin-dark: rgba(0, 0, 0, 0.10);
+
+$system--material--label--primary--light: rgba(0, 0, 0, 0.96);
+$system--material--label--primary--dark: rgba(255, 255, 255, 0.96);
+$system--material--label--secondary--light: rgba(0, 0, 0, 0.50);
+$system--material--label--secondary--dark: rgba(255, 255, 255, 0.50);
+$system--material--label--tertiary--light: rgba(0, 0, 0, 0.30);
+$system--material--label--tertiary--dark: rgba(255, 255, 255, 0.30);
+$system--material--label--quaternary--light: rgba(0, 0, 0, 0.20);
+$system--material--label--quaternary--dark: rgba(255, 255, 255, 0.20);
+$system--material--fill--primary--light: rgba(0, 0, 0, 0.45);
+$system--material--fill--primary--dark: rgba(255, 255, 255, 0.45);
+$system--material--fill--secondary--light: rgba(0, 0, 0, 0.20);
+$system--material--fill--secondary--dark: rgba(217, 217, 217, 0.20);
+$system--material--fill--tertiary--light: rgba(0, 0, 0, 0.10);
+$system--material--fill--tertiary--dark: rgba(217, 217, 217, 0.10);
+
+// Colors Setup
+
+$phone--input--switch--background--color--light: #d8d9db;
+$phone--input--switch--background--color--dark: #1C1C1E;
+$phone--input--switch--after--background--color--light: #ffffff;
+$phone--input--switch--after--background--color--dark: #000000;
+
+// Multiple Attribut
+
+%text-max-line-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+%text-max-line-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+//SHADOWS
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow: $top $left $blur $color, $inset;
+    -moz-box-shadow: $top $left $blur $color, $inset;
+    box-shadow: $top $left $blur $color, $inset;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin card-shadow {
+  @include box-shadow(0, 1px, 3px, rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24));
+}
+
+@mixin card-shadow--hover {
+  @include box-shadow(0, 14px, 28px, rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22));
+}
+
+//HOVER
+%hover {
+  transition: transform .5s;
+  cursor: pointer;
+
+  &::after {
+    @include card-shadow--hover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+    content: '';
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale3d(1.006, 1.006, 1);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}

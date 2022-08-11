@@ -1,0 +1,3274 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Public+Sans:wght@300;400;500;700;900&display=swap");
+
+@import 'fonts';
+@import 'settings';
+@import 'color-themes';
+
+$color-ora-dark: #020202;
+$color-ora-success: #a2c62f;
+$color-ora-error: #fe3f3f;
+$color-ora-primary: #ffffff;
+$ora-color-primary: #ffffff;
+$ora-color-primary-active: #068ffb;
+$ora-color-gray: #c4c4c4;
+$ora-color-gray-light: #e9e9e9;
+$ora-color-topbar-background-button: #727376;
+
+$ora-height-app-footer: 80px;
+$ora-app-clock-icon-width: 53px;
+
+[draggable] {
+    user-select: none;
+}
+
+* {
+    position: relative;
+    box-sizing: border-box;
+	font-family: $ora-font-regular;
+}
+
+.disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.success {
+    color: $color-ora-success !important;
+}
+
+.error {
+    color: $color-ora-error !important;
+}
+
+body {
+    max-height: 100vh;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
+    width: 100%;
+}
+
+div {
+    display: block;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    &:focus-visible {
+        outline: none
+    }
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+*::-webkit-scrollbar {
+    width: 20px;
+    display: none;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--color-ora-dark);
+    border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--color-ora-primary);
+    border-radius: 20px;
+    border: 3px solid var(--color-ora-dark-light);
+}
+
+div#page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+    div#phone {
+        position: absolute;
+        // bottom: 30px;
+        bottom: -900px;
+        right: 100px;
+        width: $ora-phone-width;
+        height: $ora-phone-height;
+        padding: $ora-phone-padding-top $ora-phone-padding-right $ora-phone-padding-bottom $ora-phone-padding-left;
+        background: transparent;
+        opacity: 1;
+        z-index: 1;
+        transition: all 0.3s ease-in-out, bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        zoom: 75%;
+        div#phone-coque {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            user-select: none;
+            img {
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                user-select: none;
+            }
+        }
+        div#phone-screen {
+            width: $ora-phone-screen-width;
+            height: $ora-phone-screen-height;
+            border-radius: 40px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(100%);
+            transition: all 0.3s ease-in-out;
+            @include themed() {
+                background-image: t($phone-background-default);
+            }
+            &.wallpaper-ios15, div#phone-lock.wallpaper-ios15 {
+                @include themed() {
+                    background-image: t($phone-wallpaper-ios15);
+                }
+            }
+            &.wallpaper-starlight, div#phone-lock.wallpaper-starlight {
+                @include themed() {
+                    background-image: t($phone-wallpaper-starlight);
+                }
+            }
+            &.wallpaper-midnight, div#phone-lock.wallpaper-midnight {
+                @include themed() {
+                    background-image: t($phone-wallpaper-midnight);
+                }
+            }
+            &.wallpaper-blue, div#phone-lock.wallpaper-blue {
+                @include themed() {
+                    background-image: t($phone-wallpaper-blue);
+                }
+            }
+            &.wallpaper-pink, div#phone-lock.wallpaper-pink {
+                @include themed() {
+                    background-image: t($phone-wallpaper-pink);
+                }
+            }
+            &.wallpaper-red, div#phone-lock.wallpaper-red {
+                @include themed() {
+                    background-image: t($phone-wallpaper-red);
+                }
+            }
+            &.wallpaper-green, div#phone-lock.wallpaper-green {
+                @include themed() {
+                    background-image: t($phone-wallpaper-green);
+                }
+            }
+            &.wallpaper-silver, div#phone-lock.wallpaper-silver {
+                @include themed() {
+                    background-image: t($phone-wallpaper-silver);
+                }
+            }
+            &.wallpaper-graphite, div#phone-lock.wallpaper-graphite {
+                @include themed() {
+                    background-image: t($phone-wallpaper-graphite);
+                }
+            }
+            &.wallpaper-gold, div#phone-lock.wallpaper-gold {
+                @include themed() {
+                    background-image: t($phone-wallpaper-gold);
+                }
+            }
+            &.wallpaper-sierraBlue, div#phone-lock.wallpaper-sierraBlue {
+                @include themed() {
+                    background-image: t($phone-wallpaper-sierraBlue);
+                }
+            }
+            &.wallpaper-alpineGreen, div#phone-lock.wallpaper-alpineGreen {
+                @include themed() {
+                    background-image: t($phone-wallpaper-alpineGreen);
+                }
+            }
+            div#phone-screen-content {
+                width: 100%;
+                height: 100%;
+                border-radius: 40px;
+                overflow: hidden;
+                div#phone-screen-content-header {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    height: $ora-phone-screen-header-height;
+                    user-select: none;
+                    padding-left: 36px;
+                    padding-right: 20px;
+                    z-index: 100;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+                    @include themed() {
+                        color: t($phone-screen-content-header-color);
+                    }
+                    div#phone-screen-content-header-left, div#phone-screen-content-header-right {
+                        .phone-screen-content-header-icon {
+                            display: inline-block;
+                            margin-right: 4px;
+                            span {
+                                font-family: $ora-font-bold;
+                            }
+                        }
+                    }
+                }
+                div#phone-screen-content-body {
+                    width: 100%;
+                    height: calc(100% - #{$ora-phone-screen-header-height} - #{$ora-phone-screen-footer-height});
+                    div#app-content {
+                        width: 100%;
+                        height: 100%;
+                        transition: all 0.3s ease-in-out;
+                        div.app {
+                            position: absolute;
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            height: 100%;
+                            transition: all 0.3s ease-in-out;
+                            z-index: 20;
+                            @include themed() {
+                                background-color: t($phone-app-background-color);
+                            }
+                            div.app-body {
+                                width: 100%;
+                                height: $ora-phone-app-body-height;
+                                div.app-body-content {
+                                    width: 100%;
+                                    height: 100%;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    div.app-body-content-header {
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: space-between;
+                                        width: 100%;
+                                        height: $ora-phone-app-body-content-header-height;
+                                        padding: 8px 25px 8px 15px;
+                                        transition: all 0.3s ease-in-out;
+                                        @include themed() {
+                                            background-color: t($phone-app-tab-background-color);
+                                        }
+                                        div.app-body-content-header-button {
+                                            display: flex;
+                                            flex-direction: row;
+                                            justify-content: space-between;
+                                            align-items: center;
+                                            @include themed() {
+                                                color: t($phone-app-label-color-active);
+                                            }
+                                            div {
+                                                cursor: pointer;
+                                            }
+                                            div.app-body-content-header-button-parent {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-items: center;
+                                                column-gap: 5px;
+                                            }
+                                            i {
+                                                font-size: 26px;
+                                            }
+                                            span {
+                                                font-size: 22px;
+                                            }
+                                        }
+                                        div.app-body-content-header-title {
+                                            span {
+                                                font-size: 36px;
+                                                font-family: $ora-font-bold;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    div.app-body-content-body {
+                                        width: 100%;
+                                        height: $ora-phone-app-body-content-body-height;
+                                        overflow: scroll;
+                                        div.app-body-content-body-list {
+                                            width: 100%;
+                                            display: flex;
+                                            flex-direction: column;
+                                            flex-wrap: wrap;
+                                            justify-content: flex-start;
+                                            align-items: flex-start;
+                                            padding: 10px;
+                                            row-gap: 15px;
+                                            div.app-body-content-body-list-item {
+                                                display: flex;
+                                                flex-direction: row;
+                                                width: 100%;
+                                                height: auto;
+                                                min-height: 70px;
+                                                border-bottom-width: 1px;
+                                                border-bottom-style: solid;
+                                                transition: all 0.3s ease-in-out;
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    border-bottom-color: t($phone-app-body-content-body-list-item-border-color);
+                                                }
+                                                div.app-body-content-body-list-item-area {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    height: 100%;
+                                                    div.app-body-content-body-list-item-area-day {
+                                                        font-size: 14px;
+                                                        line-height: 20px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-info-color);
+                                                        }
+                                                    }
+                                                    div.app-body-content-body-list-item-area-time-zone {
+                                                        font-size: 26px;
+                                                        line-height: 32px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                }
+                                                div.app-body-content-body-list-item-time {
+                                                    font-size: 42px;
+                                                    line-height: 52px;
+                                                    font-weight: normal;
+                                                    font-family: "Public Sans", sans-serif;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                div.app-body-content-body-list-item-alarm {
+                                                    color: #565656;
+                                                    font-size: 34px;
+                                                    line-height: 44px;
+                                                    div.app-body-content-body-list-item-alarm-name, div.app-body-content-body-list-item-alarm-day {
+                                                        color: #727272;
+                                                        font-size: 14px;
+                                                        line-height: 20px;
+                                                    }
+                                                }
+                                                label.app-body-content-body-list-item-switch {
+                                                    width: 60px;
+                                                    height: 34px;
+                                                    input {
+                                                        width: 0;
+                                                        height: 0;
+                                                        opacity: 0;
+                                                        &:checked + span {
+                                                            background: #fea00a;
+                                                            &:before {
+                                                                transform: translateX(26px);
+                                                            }
+                                                        }
+                                                    }
+                                                    span {
+                                                        background-color: #26252a;
+                                                        transition: 0.4s;
+                                                        position: absolute;
+                                                        top: 0;
+                                                        bottom: 0;
+                                                        left: 0;
+                                                        right: 0;
+                                                        cursor: pointer;
+                                                        border-top-left-radius: 34px;
+                                                        border-top-right-radius: 34px;
+                                                        border-bottom-left-radius: 34px;
+                                                        border-bottom-right-radius: 34px;
+                                                        &::before {
+                                                            content: '';
+                                                            width: 26px;
+                                                            height: 26px;
+                                                            background-color: #ffffff;
+                                                            transition: 0.4s;
+                                                            position: absolute;
+                                                            bottom: 4px;
+                                                            left: 4px;
+                                                            border-top-left-radius: 34px;
+                                                            border-top-right-radius: 34px;
+                                                            border-bottom-left-radius: 34px;
+                                                            border-bottom-right-radius: 34px;
+                                                        }
+                                                    }
+                                                }
+                                                div.app-body-content-body-list-item-icon {
+                                                    width: auto;
+                                                    height: 70px;
+                                                    img {
+                                                        height: 100%;
+                                                    }
+                                                }
+                                                div.app-body-content-body-list-item-detail {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    margin-left: 10px;
+                                                    span {
+                                                        &.app-body-content-body-list-item-detail-name {
+                                                            font-size: 19px;
+                                                            font-weight: bold;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-active);
+                                                            }
+                                                        }
+                                                        &.app-body-content-body-list-item-detail-description {
+                                                            font-size: 14px;
+                                                            @include themed() {
+                                                                color: t($phone-app-description-color);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body-app {
+                                            width: 100%;
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: flex-start;
+                                            align-items: flex-start;
+                                            padding: 10px;
+                                            row-gap: 20px;
+                                            div.app-body-content-body-app-header {
+                                                display: flex;
+                                                flex-direction: row;
+                                                align-items: center;
+                                                div.app-body-content-body-app-header-icon {
+                                                    width: auto;
+                                                    height: 70px;
+                                                    img {
+                                                        height: 100%;
+                                                    }
+                                                }
+                                                div.app-body-content-body-app-header-detail {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    margin-left: 10px;
+                                                    span {
+                                                        &.app-body-content-body-app-header-detail-name {
+                                                            font-size: 19px;
+                                                            font-weight: bold;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-active);
+                                                            }
+                                                        }
+                                                        &.app-body-content-body-app-header-detail-description {
+                                                            font-size: 14px;
+                                                            @include themed() {
+                                                                color: t($phone-app-description-color);
+                                                            }
+                                                        }
+                                                    }
+                                                    div#app-body-content-body-app-header-detail-button-download {
+                                                        border: none;
+                                                        width: 230px;
+                                                        text-align: center;
+                                                        padding: 7px 20px;
+                                                        border-radius: 15px;
+                                                        margin: 5px 0;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-label-color-active);
+                                                            color: t($phone-system-color-white);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.app-body-content-body-app-info {
+                                                display: flex;
+                                                flex-direction: row;
+                                                justify-content: center;
+                                                width: 100%;
+                                                height: auto;
+                                                @include themed() {
+                                                    color: t($phone-app-info-color);
+                                                }
+                                                > div {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: space-between;
+                                                    row-gap: 5px;
+                                                    text-align: center;
+                                                    padding: 5px;
+                                                    border-left-width: 1px;
+                                                    border-left-style: solid;
+                                                    @include themed() {
+                                                        border-left-color: t($phone-app-info-color);
+                                                    }
+                                                    &:first-child {
+                                                        border-left: none;
+                                                    }
+                                                    span, i {
+                                                        font-size: 11px;
+                                                        &.app-info-span-medium {
+                                                            font-size: 16px;
+                                                        }
+                                                    }
+                                                    div.app-info-stars {
+                                                        i {
+                                                            @include themed() {
+                                                                color: t($phone-system-color-yellow);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.app-body-content-body-app-galery {
+                                                display: flex;
+                                                flex-direction: row;
+                                                column-gap: 20px;
+                                                width: 100%;
+                                                height: auto;
+                                                img {
+                                                    width: calc(50% - 10px);
+                                                    height: auto;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            div.app-tab {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-evenly;
+                                align-items: center;
+                                width: 100%;
+                                height: $ora-phone-app-tab-height;
+                                transition: all 0.3s ease-in-out;
+                                @include themed() {
+                                    background-color: t($phone-app-tab-background-color);
+                                }
+                                div.app-tab-button {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    row-gap: 5px;
+                                    align-items: center;
+                                    max-width: $ora-phone-app-tab-button-width;
+                                    cursor: pointer;
+                                    @include themed() {
+                                        color: t($phone-app-tab-button-color);
+                                    }
+                                    &.active {
+                                        i, span {
+                                            @include themed() {
+                                                color: t($phone-app-label-color-active);
+                                            }
+                                        }
+                                    }
+                                    i {
+                                        font-size: $ora-phone-app-tab-button-icon-size;
+                                    }
+                                    span {
+                                        font-size: $ora-phone-app-tab-button-title-size;
+                                        text-align: center;
+                                        @extend %text-max-line-1;
+                                    }
+                                }
+                            }
+                            &.app-modal {
+                                div.app-body {
+                                    height: 100%;
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            justify-content: flex-end;
+                                            height: 145px;
+                                            padding: 10px 15px;
+                                            div {
+                                                &.app-body-content-header-title {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    margin-bottom: 15px;
+                                                    div.app-body-content-header-title-icon {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        width: 39px;
+                                                        height: 39px;
+                                                        padding: 10px;
+                                                        border-radius: 50%;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-label-color-active);
+                                                        }
+                                                        &#message-list-new-message {
+                                                            cursor: pointer;
+                                                        }
+                                                        i {
+                                                            @include themed() {
+                                                                color: t($phone-system-color-white);
+                                                            }
+                                                        }
+                                                    }
+                                                    > i {
+                                                        font-size: 32px;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-active);
+                                                        }
+                                                    }
+                                                }
+                                                &.app-body-content-header-input {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    column-gap: 10px;
+                                                    width: 100%;
+                                                    height: 40px;
+                                                    padding: 7px 12px;
+                                                    border-radius: 10px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-modal-header-input-background-color);
+                                                    }
+                                                    i, input {
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-info-color);
+                                                        }
+                                                    }
+                                                    i {
+                                                        font-size: 20px;
+                                                    }
+                                                    input {
+                                                        width: inherit;
+                                                        height: 100%;
+                                                        margin: 0;
+                                                        padding: 0;
+                                                        font-size: 17px;
+                                                        font-family: "SF Pro Text Regular";
+                                                        background: none;
+                                                        border: none;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 145px);
+                                            padding-top: 10px;
+                                            padding-bottom: 10px;
+                                            div.app-body-content-body-list {
+                                                height: 100%;
+                                                overflow: scroll;
+                                                z-index: 1;
+                                                div.app-body-content-body-list-item {
+                                                    flex-direction: row;
+                                                    align-items: center;
+                                                    width: 100%;
+                                                    height: 68px;
+                                                    padding-right: 15px;
+                                                    cursor: pointer;
+                                                    div.message-list-item-left {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        width: auto;
+                                                        height: 100%;
+                                                        div.message-list-item-left-avatar {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-self: center;
+                                                            width: 45px;
+                                                            height: 45px;
+                                                            padding: 10px;
+                                                            border-radius: 50%;
+                                                            transition: all 0.3s ease-in-out;
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-green);
+                                                            }
+                                                            i {
+                                                                font-size: 22px;
+                                                                transition: all 0.3s ease-in-out;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.message-list-item-right {
+                                                        width: auto;
+                                                        height: 100%;
+                                                        margin-left: 10px;
+                                                        @include themed() {
+                                                            color: t($phone-app-info-color);
+                                                        }
+                                                        span, i {
+                                                            font-size: 15px;
+                                                            transition: all 0.3s ease-in-out;
+                                                        }
+                                                        div.message-list-item-right-header {
+                                                            display: flex;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                            margin-top: 2px;
+                                                            div.message-list-item-right-header-name {
+                                                                span {
+                                                                    font-size: 17px;
+                                                                    font-family: $ora-font-bold;
+                                                                    @include themed() {
+                                                                        color: t($phone-app-label-color-primary);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        div.message-list-item-right-body {
+                                                            margin-top: 5px;
+                                                            div.message-list-item-right-body-text {
+                                                                span {
+                                                                    @extend %text-max-line-2;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                &#contacts-list {
+                                                    display: block;
+                                                    padding: 0;
+                                                    div.contacts-list-row {
+                                                        div.contacts-list-row-letter {
+                                                            position: sticky;
+                                                            display: flex;
+                                                            align-items: center;
+                                                            width: 100%;
+                                                            height: 30px;
+                                                            top: 0;
+                                                            padding-left: 20px;
+                                                            z-index: 2;
+                                                            cursor: pointer;
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-gray-4);
+                                                            }
+                                                            span {
+                                                                font-size: 20px;
+                                                                font-family: $ora-font-bold;
+                                                            }
+                                                        }
+                                                        div.contacts-list-row-item {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            column-gap: 15px;
+                                                            width: 90%;
+                                                            height: 44px;
+                                                            margin: 0 auto;
+                                                            border-bottom-width: 2px;
+                                                            border-bottom-style: solid;
+                                                            z-index: 1;
+                                                            cursor: pointer;
+                                                            @include themed() {
+                                                                border-bottom-color: t($phone-system-color-gray-4);
+                                                            }
+                                                            &:last-child {
+                                                                border: 0;
+                                                            }
+                                                            div.contacts-list-row-item-avatar {
+                                                                display: flex;
+                                                                justify-content: center;
+                                                                align-self: center;
+                                                                width: 35px;
+                                                                height: 35px;
+                                                                padding: 10px;
+                                                                border-radius: 50%;
+                                                                transition: all 0.3s ease-in-out;
+                                                                @include themed() {
+                                                                    background-color: t($phone-system-color-green);
+                                                                }
+                                                                i {
+                                                                    font-size: 18px;
+                                                                    transition: all 0.3s ease-in-out;
+                                                                    @include themed() {
+                                                                        color: t($phone-app-label-color-primary);
+                                                                    }
+                                                                }
+                                                            }
+                                                            div.contacts-list-row-item-name {
+                                                                span {
+                                                                    font-size: 20px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div#contacts-list-alphabet {
+                                                position: absolute;
+                                                display: flex;
+                                                flex-direction: column;
+                                                width: 10%;
+                                                height: 100%;
+                                                top: 40px;
+                                                right: 5px;
+                                                z-index: 2;
+                                                span {
+                                                    font-size: 18px;
+                                                    cursor: pointer;
+                                                    text-align: center;
+                                                    border-radius: 50%;
+                                                    transition: all 0.2s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-active);
+                                                    }
+                                                    &:hover {
+                                                        padding: 8px;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-label-color-active);
+                                                            color: t($phone-system-color-white);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-home {    
+                                top: 0;
+                                left: 0;
+                                flex-direction: column;
+                                justify-content: space-between;
+                                transition: all 0.3s ease-in-out, left 1s ease-in-out;
+                                background-color: transparent;
+                                div#app-home-page-container {
+                                    display: flex;
+                                    flex-direction: row;
+                                    left: 0px;
+                                    width: 200%;
+                                    height: inherit;
+                                    transition: all 0.3s ease-in-out, left 0s ease-in-out;
+                                }
+                                div.app-home-page {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-between;
+                                    width: 100%;
+                                    height: 100%;
+                                    padding: 15px;
+                                    transition: all 0.3s ease-in-out;
+                                }
+                                div.app-home-dots-container {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 100%;
+                                    margin-bottom: 35px;
+                                    column-gap: 10px;
+                                    transition: all 0.3s ease-in-out;
+                                    div.app-home-dot {
+                                        width: 8px;
+                                        height: 8px;
+                                        border-radius: 50%;
+                                        opacity: 0.3;
+                                        background-color: $ora-color-primary;
+                                        &.active {
+                                            opacity: 1;
+                                        }
+                                    }
+                                    div#update-home-change-page {
+                                        display: none;
+                                        position: absolute;
+                                        top: -50px;
+                                        right: 25px;
+                                        width: 53px;
+                                        height: 53px;
+                                        background-color: rgba(0, 0, 0, 0.5);
+                                        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 1);
+                                        border-radius: 10px;
+                                        padding: 10px;
+                                        cursor: pointer;
+                                        i {
+                                            font-size: 30px;
+                                            color: $ora-color-primary;
+                                        }
+                                    }
+                                }
+                                div.app-home-list, div#app-home-list-primary {
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                    justify-content: space-evenly;
+                                    column-gap: 24px;
+                                    row-gap: 10px;
+                                    width: 100%;
+                                    height: auto;
+                                    padding: 20px 12px;
+                                    transition: all 0.3s ease-in-out;
+                                    div.app-home-list-item {
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        row-gap: 7px;
+                                        width: $ora-phone-app-home-icon-width;
+                                        height: $ora-phone-app-home-icon-height;
+                                        @include themed() {
+                                            color: t($phone-screen-content-lock-color);
+                                        }
+                                        &.app-home-list-item-primary {
+                                            height: auto;
+                                            -webkit-user-drag: none;
+                                            user-select: none;
+                                            img {
+                                                -webkit-user-drag: none;
+                                                user-select: none;
+                                            }
+                                        }
+                                        &.over {
+                                            img {
+                                                border: 1px solid $ora-color-primary;
+                                            }
+                                        }
+                                        &.draggable-element {
+                                            animation: 0.3s linear 0s infinite moveRotateDraggable;
+                                            div {
+                                                opacity: 1 !important;
+                                            }
+                                        }
+                                        &.empty-place {
+                                            div {
+                                                width: 53px;
+                                                height: 53px;
+                                                background-color: rgba(0, 0, 0, 0.5);
+                                                box-shadow: 0 0 5px 1px rgba(0, 0, 0, 1);
+                                                opacity: 0;
+                                                border-radius: 10px;
+                                            }
+                                            padding-bottom: 26px;
+                                        }
+                                        @keyframes moveRotateDraggable {
+                                            0% {
+                                                transform: rotate(0deg);
+                                            }
+                                            25% {
+                                                transform: rotate(1deg);
+                                            }
+                                            50% {
+                                                transform: rotate(0deg);
+                                            }
+                                            75% {
+                                                transform: rotate(-1deg);
+                                            }
+                                            100% {
+                                                transform: rotate(0deg);
+                                            }
+                                        }
+                                        img {
+                                            width: $ora-phone-app-home-icon-image-width;
+                                            height: $ora-phone-app-home-icon-image-height;
+                                            border-radius: 10px;
+                                            cursor: pointer;
+                                        }
+                                        span {
+                                            font-size: 12px;
+                                            text-align: center;
+                                            @extend %text-max-line-2;
+                                        }
+                                        #centered {
+                                            width: $ora-phone-app-home-icon-image-width;
+                                            height: $ora-phone-app-home-icon-image-height;
+                                            cursor: pointer;
+                                            #app {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                width: 100%;
+                                                height: 100%;
+                                                padding: 2px 2px 3px 3px;
+                                                background: black;
+                                                border-radius: 20%;
+                                                #circle {
+                                                    width: 100%; 
+                                                    height: 100%;
+                                                    background: white;
+                                                    border-radius: 50%;
+                                                    ul { 
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        margin: 0;
+                                                        padding: 0;
+                                                        font-size: $ora-phone-app-home-icon-image-width*.1;
+                                                        font-family: Helvetica, Arial;
+                                                        li {
+                                                            list-style: none;
+                                                            position: absolute;
+                                                            color: black;
+                                                            &:nth-child(1){
+                                                                top: 12%;
+                                                                left: 68%;
+                                                            }
+                                                            &:nth-child(2){
+                                                                top: 25%;
+                                                                left: 80%;
+                                                            }
+                                                            &:nth-child(3){
+                                                                top: 45%;
+                                                                left: 85%;
+                                                            }
+                                                            &:nth-child(4){
+                                                                top: 65%;
+                                                                left: 80%;
+                                                            }
+                                                            &:nth-child(5){
+                                                                top: 78%;
+                                                                left: 65%;
+                                                            }
+                                                            &:nth-child(6){
+                                                                top: 83%;
+                                                                left: 47%;
+                                                            }
+                                                            &:nth-child(7){
+                                                                top: 78%;
+                                                                left: 30%;
+                                                            }
+                                                            &:nth-child(8){
+                                                                top: 65%;
+                                                                left: 15%;
+                                                            }
+                                                            &:nth-child(9){
+                                                                top: 45%;
+                                                                left: 8%;
+                                                            }
+                                                            &:nth-child(10){
+                                                                top: 25%;
+                                                                left: 10%;
+                                                            }
+                                                            &:nth-child(11){
+                                                                top: 12%;
+                                                                left: 23%;
+                                                            }
+                                                            &:nth-child(12){
+                                                                top: 5%;
+                                                                left: 44%;
+                                                            }   
+                                                        }
+                                                    }
+                                                    .hand {
+                                                        background: black;
+                                                        bottom: 50%;
+                                                        display: block;
+                                                        left: 50%;
+                                                        position: absolute;
+                                                        transform-origin: bottom center;
+                                                        border-radius: $ora-app-clock-icon-width;
+                                                        min-width: 1px;
+                                                        &#hours {
+                                                            height: 30%;
+                                                            width: 1.4%;
+                                                        }
+                                                        &#minutes {
+                                                            height: 43%;
+                                                            width: 1.4%;
+                                                        }
+                                                        &#seconds {
+                                                            height: 43%;
+                                                            width: .6%;
+                                                            background: red;
+                                                            z-index: 2;
+                                                            &:after {
+                                                                content: '';
+                                                                margin-top: $ora-app-clock-icon-width*.9*.40;
+                                                                width: 100%;
+                                                                height: 20%;
+                                                                background: red;
+                                                                display: block;
+                                                            }
+                                                        }
+                                                    }
+                                                    #black-circle, #red-circle{
+                                                        position: absolute;
+                                                        top: 0;
+                                                        bottom: 0;
+                                                        left: 0;
+                                                        right: 0;
+                                                        margin: auto;
+                                                        width: $ora-app-clock-icon-width*.05;
+                                                        height: $ora-app-clock-icon-width*.05;
+                                                        background: black;
+                                                        border-radius: 50%;
+                                                    }
+                                                    #red-circle {
+                                                        width: $ora-app-clock-icon-width*.015;
+                                                        height: $ora-app-clock-icon-width*.015;
+                                                        background: red;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                div#app-home-list-primary {
+                                    justify-content: space-between;
+                                    align-self: center;
+                                    width: $ora-phone-app-home-list-primary-width;
+                                    height: $ora-phone-app-home-list-primary-height;
+                                    padding: 17px 18px 19px 18px;
+                                    border-radius: 35px;
+                                    backdrop-filter: blur(4px);
+                                    @include themed() {
+                                        background-color: t($phone-app-home-list-primary-background-color);
+                                    }
+                                }
+                            }
+                            &#app-calculator {
+                                div.app-body {
+                                    background-color: #000000;
+                                    height: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    transition: all 0.3s ease-in-out;
+                                    @include themed() {
+                                        background: t($phone-app-background-color);
+                                        color: t($phone-app-label-color-primary);
+                                    }
+                                    div#calculator-history {
+                                        height: $ora-phone-app-calculator-history-height;
+                                        overflow: hidden;
+                                        span {
+                                            position: absolute;
+                                            bottom: 0;
+                                            right: 0;
+                                            text-align: right;
+                                            padding: 20px;
+                                        }
+                                    }
+                                    div#calculator-result {
+                                        display: flex;
+                                        justify-content: flex-end;
+                                        align-items: flex-end;
+                                        width: 100%;
+                                        height: $ora-phone-app-calculator-result-height;
+                                        padding: 10px 35px;
+                                    }
+                                    div#calculator-buttons {
+                                        height: $ora-phone-app-calculator-buttons-height;
+                                        padding-bottom: 20px;
+                                        @include themed() {
+                                            color: t($phone-system-color-white);
+                                        }
+                                        ul {
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            margin: 0;
+                                            padding: 0;
+                                            li {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                width: 75px;
+                                                height: 75px;
+                                                border-radius: 75px;
+                                                background-color: #555;
+                                                transition: 0.1s;
+                                                list-style: none;
+                                                font-size: 1.7rem;
+                                                user-select: none;
+                                                margin: 4px;
+                                                cursor: pointer;
+                                                &:hover {
+                                                    background-color: #888;
+                                                }
+                                                &.misc-btn  {
+                                                    background-color: #aaa;
+                                                    color: #222;
+                                                    &:hover {
+                                                        background-color: #ccc;
+                                                    }
+                                                }
+                                                &.Operator-btn , &.equal {
+                                                    background-color: darkorange;
+                                                    &:hover {
+                                                        background-color: #eac483;
+                                                    }
+                                                }
+                                                &.zero {
+                                                    padding-left: 29px;
+                                                    width: 75px * 2 + 8px;
+                                                    justify-content: flex-start;
+                                                }
+                                                &.click {
+                                                    background-color: #fff;
+                                                    color: darkorange;
+                                                    font-weight: 900;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-clock {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            div.app-body-content-header-button {
+                                                @include themed() {
+                                                    color: t($phone-app-clock-color-active);
+                                                }
+                                                div.app-body-content-header-button-action {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    height: 30px;
+                                                    i {
+                                                        font-size: 50px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            div.app-body-content-body-list {
+                                                div.app-body-content-body-list-item {
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    height: 72px;
+                                                    padding: 4px 16px;
+                                                    &.item-alarm {
+                                                        height: 105px;
+                                                    }
+                                                }
+                                            }
+                                            div.addalarm-list {
+                                                display: flex;
+                                                flex-direction: column;
+                                                row-gap: 10px;
+                                                margin-top: 20px;
+                                                padding: 10px;
+                                                div.addalarm-list-element {
+                                                    label.addalarm-label {
+                                                        display: block;
+                                                        text-align: center;
+                                                        font-size: 18px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                    input.addalarm-input {
+                                                        display: block;
+                                                        width: 100%;
+                                                        margin-top: 10px;
+                                                        padding: 15px ;
+                                                        border: none;
+                                                        border-radius: 5px;
+                                                        font-size: 16px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-background-color);
+                                                            background-color: t($phone-app-clock-addalarm-input);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.app-clock-time-select {
+                                                display: flex;
+                                                justify-content: space-evenly;
+                                                align-items: center;
+                                                margin-top: 50px;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                                div.time-select {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: flex-end;
+                                                    column-gap: 5px;
+                                                    div.time-select-number {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        i {
+                                                            font-size: 46px;
+                                                            cursor: pointer;
+                                                            transition: all 0.3s ease-in-out;
+                                                            &:hover {
+                                                                color: #fea00a;
+                                                            }
+                                                        }
+                                                        span {
+                                                            font-size: 50px;
+                                                            font-family: "Public Sans", sans-serif;
+                                                            width: 63px;
+                                                            text-align: center;
+                                                            transition: all 0.3s ease-in-out;
+                                                        }
+                                                    }
+                                                    div.time-select-name {
+                                                        font-size: 18px;
+                                                        margin-bottom: 55px;
+                                                        transition: all 0.3s ease-in-out;
+                                                    }
+                                                }
+                                            }
+                                            div.stopwatch-list-button {
+                                                    display: flex;
+                                                    justify-content: space-around;
+                                                    align-items: center;
+                                                    .cancel, .start, .reset {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        width: 82px;
+                                                        height: 82px;
+                                                        border-top-left-radius: 41px;
+                                                        border-top-right-radius: 41px;
+                                                        border-bottom-left-radius: 41px;
+                                                        border-bottom-right-radius: 41px;
+                                                        font-weight: 500;
+                                                        position: relative;
+                                                        cursor: pointer;
+                                                        &:after {
+                                                            content: "";
+                                                            position: absolute;
+                                                            width: 108%;
+                                                            height: 108%;
+                                                            border-top-left-radius: 50%;
+                                                            border-top-right-radius: 50%;
+                                                            border-bottom-left-radius: 50%;
+                                                            border-bottom-right-radius: 50%;
+                                                            border: 1px solid;
+                                                        }
+                                                    }
+                                                    .cancel {
+                                                        color: #565656;
+                                                        background: #1d1c20;
+                                                        &:after {
+                                                            border-color: #1d1c20;
+                                                        }
+                                                    }
+                                                    .reset {
+                                                        color: #fff;
+                                                        background: #383838;
+                                                        &:after {
+                                                            border-color: #383838;
+                                                        }
+                                                    }
+                                                    
+                                                    .start {
+                                                        color: #2fd058;
+                                                        background: #0a2a11;
+                                                        &:after {
+                                                            border-color: #0a2a11;
+                                                        }
+                                                    }
+                                                    .stop {
+                                                        color: #ff463c;
+                                                        background: #2a0a0a;
+                                                        &:after {
+                                                            border-color: #2a0a0a;
+                                                        }
+                                                    }
+                                                    .pause {
+                                                        color: #f19c2b;
+                                                        background: #342003;
+                                                        &:after {
+                                                            border-color: #342003;
+                                                        }
+                                                    }
+                                            }
+                                        }
+                                        &#app-clock-body-content-stopwatch {
+                                            div.app-body-content-body {
+                                                height: 100%;
+                                                overflow: hidden;
+                                                #app-clock-list-item-stopwatch {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    height: 50%;
+                                                    font-size: 70px;
+                                                    line-height: 84px;
+                                                    font-weight: 300;
+                                                    font-family: "Public Sans", sans-serif;
+                                                    user-select: none;
+                                                    margin-left: 50px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                #stopwatch-list-loop {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    padding: 10px;
+                                                    height: calc(100% - 50% - 82px - 10px);
+                                                    margin-top: 16px;
+                                                    user-select: none;
+                                                    overflow: auto;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    .loop {
+                                                        display: flex;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        padding: 10px 20px;
+                                                        border-bottom: 1px solid #26252a;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            background-color: t($phone-system-color-gray-6);
+                                                        }
+                                                        .name, .time {
+                                                            font-size: 18px;
+                                                            line-height: 24px;
+                                                        }
+                                                        .time {
+                                                            font-family: "Public Sans", sans-serif;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &#app-clock-body-content-timer {
+                                            div.app-body-content-body {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: space-evenly;
+                                                height: 100%;
+                                                div#app-clock-timer-time {
+                                                    display: none;
+                                                    align-items: center;
+                                                    height: 50%;
+                                                    font-size: 70px;
+                                                    line-height: 84px;
+                                                    font-weight: 300;
+                                                    font-family: "Public Sans", sans-serif;
+                                                    user-select: none;
+                                                    margin-left: 54px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &.finish {
+                                                        animation: timerFinish 2s infinite;
+                                                    }
+                                                    @keyframes timerFinish {
+                                                        0% {
+                                                            transform: scale(1);
+                                                        }
+                                                        50% {
+                                                            transform: scale(1.15);
+                                                        }
+                                                        100% {
+                                                            transform: scale(1);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                div.app-tab {
+                                    div.app-tab-button {
+                                        &.active {
+                                            span, i {
+                                                @include themed() {
+                                                    color: t($phone-app-clock-color-active);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-message {
+                                div.app-body {
+                                    div#app-message-body-content-newmessage {
+                                        div.app-body-content-header {
+                                            justify-content: center;
+                                            row-gap: 8px;
+                                            height: 84px;
+                                        }
+                                        div.app-body-content-body {
+                                            display: flex;
+                                            height: calc(100% - 84px);
+                                            overflow: hidden;
+                                            @include themed() {
+                                                color: t($phone-app-label-color-primary);
+                                            }
+                                            span, i {
+                                                transition: all 0.3s ease-in-out;
+                                            }
+                                            div.newmessage-list-container {
+                                                width: 92%;
+                                                height: 100%;
+                                                div.newmessage-text {
+                                                    height: 52px;
+                                                    font-size: 18px;
+                                                    line-height: 44px;
+                                                    font-weight: 600;
+                                                    padding: 4px 16px;
+                                                    transition: all 0.3s ease-in-out;
+                                                }
+                                                div#newmessage-list {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    row-gap: 10px;
+                                                    height: calc(100% - 52px - 10px);
+                                                    padding-left: 15px;
+                                                    overflow: scroll;
+                                                    div.newmessage-list-item {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        align-items: center;
+                                                        width: 100%;
+                                                        height: 50px;
+                                                        padding-right: 15px;
+                                                        cursor: pointer;
+                                                        &.active {
+                                                            div.newmessage-list-item-left {
+                                                                div.newmessage-list-item-left-avatar {
+                                                                    @include themed() {
+                                                                        background-color: t($phone-app-label-color-active);
+                                                                    }
+                                                                    img, i:not(.fa-check) {
+                                                                        display: none;
+                                                                    }
+                                                                    i.fa-check {
+                                                                        display: block;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        div.newmessage-list-item-left {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            width: 45px;
+                                                            height: 100%;
+                                                            div.newmessage-list-item-left-avatar {
+                                                                display: flex;
+                                                                justify-content: center;
+                                                                align-self: center;
+                                                                width: 45px;
+                                                                height: 45px;
+                                                                padding: 10px;
+                                                                border-radius: 50%;
+                                                                @include themed() {
+                                                                    background-color: t($phone-system-color-green);
+                                                                }
+                                                                i {
+                                                                    font-size: 22px;
+                                                                    &.fa-check {
+                                                                        display: none;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        div.newmessage-list-item-right {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            justify-content: center;
+                                                            row-gap: 6px;
+                                                            width: calc(100% - 45px - 10px);
+                                                            height: 100%;
+                                                            margin-left: 10px;
+                                                            div.newmessage-list-item-right-header {
+                                                                display: flex;
+                                                                justify-content: space-between;
+                                                                align-items: center;
+                                                                span.newmessage-list-item-right-header-name {
+                                                                    font-size: 17px;
+                                                                    font-family: $ora-font-bold;
+                                                                    text-overflow: ellipsis;
+                                                                    overflow: hidden;
+                                                                    white-space: nowrap;
+                                                                }
+                                                            }
+                                                            div.newmessage-list-item-right-body {
+                                                                span.newmessage-list-item-right-body-number {
+                                                                    font-size: 15px;
+                                                                    text-overflow: ellipsis;
+                                                                    overflow: hidden;
+                                                                    white-space: nowrap;
+                                                                    @include themed() {
+                                                                        color: t($phone-app-info-color);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div#newmessage-list-alphabet {
+                                                display: flex;
+                                                flex-direction: column;
+                                                width: 10%;
+                                                height: 100%;
+                                                padding: 10px 0;
+                                                padding-right: 4px;
+                                                span {
+                                                    font-size: 18px;
+                                                    cursor: pointer;
+                                                    text-align: center;
+                                                    border-radius: 50%;
+                                                    transition: all 0.2s ease-in-out;
+                                                    &:hover {
+                                                        padding: 8px;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-label-color-active);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    div#app-message-body-content-message {
+                                        div.app-body-content-header {
+                                            height: 72px;
+                                            div.app-body-content-header-profil {
+                                                position: absolute;
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: center;
+                                                align-items: center;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%);
+                                                span, i {
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                div.app-body-content-header-profil-avatar {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    width: 39px;
+                                                    height: 39px;
+                                                    padding: 10px;
+                                                    border-radius: 50%;
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-green);
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                div.app-body-content-header-profil-name {
+                                                    span, i {
+                                                        font-size: 12px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 72px);
+                                            padding: 0;
+                                            div.app-message-conversation {
+                                                width: 99%;
+                                                height: calc(100% - 50px);
+                                                padding: 0 2px;
+                                                user-select: none;   
+                                                cursor: default;
+                                                & ::-webkit-scrollbar {
+                                                    display: block;
+                                                    width: 4px;
+                                                    height: 1px;
+                                                    transition: all .5s;
+                                                    z-index: 10;
+                                                    padding-right: 5px;
+                                                }
+                                                & ::-webkit-scrollbar-track {
+                                                    background-color: white;
+                                                }
+                                                & ::-webkit-scrollbar-thumb {
+                                                    background-color: #bec4c8; 
+                                                    border-radius: 3px;
+                                                }
+                                                * {
+                                                    transition: all .5s;
+                                                }
+                                                date {
+                                                    position: absolute;
+                                                    top: 10px;
+                                                    font-size: 14px;
+                                                    white-space: nowrap;
+                                                    vertical-align:middle;
+                                                    color: #8b8b90;
+                                                    opacity: 0;
+                                                    z-index: 4;
+                                                    @include themed() {
+                                                        color: t($phone-app-clock-addalarm-input);
+                                                    }
+                                                    b {
+                                                        font-weight: normal;
+                                                        font-family: $ora-font-bold;
+                                                    }
+                                                }
+                                                .messages{
+                                                    overflow-x: hidden;
+                                                    overflow-y: scroll;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    padding: 8px 15px;
+                                                    border-bottom-width: 1px;
+                                                    border-bottom-style: solid;
+                                                    @include themed() {
+                                                        border-bottom-color: t($phone-system-color-gray-5);
+                                                    }
+                                                    .myMessage,
+                                                    .fromThem {
+                                                        max-width: 90%;
+                                                        word-wrap: break-word;
+                                                        margin-bottom: 20px;
+                                                        position: relative;
+                                                        padding: 10px 20px;
+                                                        border-radius: 25px;
+                                                        clear: both;
+                                                        font-size: 16px;
+                                                        @include themed() {
+                                                            color: t($phone-system-color-white);
+                                                        }
+                                                        date {
+                                                            top: -20px;
+                                                            left:auto;
+                                                            right:0;
+                                                            font-size:12px;
+                                                        }
+                                                        &:hover {
+                                                            transform: translateY(18px);
+                                                            date {
+                                                                opacity: 1;
+                                                            }
+                                                        }
+                                                        &:before, &:after {
+                                                            content: "";
+                                                            position: absolute;
+                                                            z-index: 1;
+                                                            bottom: -2px;
+                                                            height: 19px;
+                                                            transform: translate(0, -2px);
+                                                        }
+                                                        &:after {
+                                                            height: 20px;
+                                                            transform: translate(-30px, -2px);
+                                                            @include themed() {
+                                                                background-color: t($phone-app-background-color);
+                                                            }
+                                                        }
+                                                    }
+                                                    .myMessage {
+                                                        float: right;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-label-color-active);
+                                                        }
+                                                        &:before {
+                                                            right: -8px;
+                                                            border-right-width: 20px;
+                                                            border-right-style: solid;
+                                                            border-bottom-left-radius: 16px 14px;
+                                                            @include themed() {
+                                                                border-right-color: t($phone-app-label-color-active);
+                                                            }
+                                                        }
+                                                        &:after {
+                                                            right: -42px;
+                                                            width: 12px;
+                                                            border-bottom-left-radius: 10px;
+                                                            transition: all 0.3s ease-in-out;
+                                                        }
+                                                    }
+                                                    .fromThem {
+                                                        background: #E5E5EA;
+                                                        float: left;
+                                                        @include themed() {
+                                                            color: t($phone-system-color-black);
+                                                        }
+                                                        &:before {
+                                                            z-index: 2;
+                                                            left: -7px;
+                                                            border-left: 20px solid #E5E5EA;
+                                                            border-bottom-right-radius: 16px 14px;
+                                                        }
+                                                        &:after {
+                                                            z-index: 3;
+                                                            left: 4px;
+                                                            width: 26px;
+                                                            border-bottom-right-radius: 10px;
+                                                            transition: all 0.3s ease-in-out;
+                                                        }
+                                                    }
+                                                    .chat-bubble{
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        width: $ora-phone-app-message-chat-bubble-width;
+                                                        height: $ora-phone-app-message-chat-bubble-height;
+                                                        margin-left: -10px;
+                                                        border-radius: 40px;
+                                                        background: #e5e5e5;
+                                                        transform: scale(0.7);
+                                                        .tail{
+                                                            position: absolute;
+                                                            width: calc($ora-phone-app-message-chat-bubble-width / 4.4);
+                                                            height: calc($ora-phone-app-message-chat-bubble-width / 4.4);
+                                                            bottom: 2px;
+                                                            left: -2px;
+                                                            border-radius: 50%;
+                                                            background: #e5e5e5;
+                                                            &:before{
+                                                                position: absolute;
+                                                                content: '';
+                                                                width: calc($ora-phone-app-message-chat-bubble-width / 9.17);
+                                                                height: calc($ora-phone-app-message-chat-bubble-width / 9.17);
+                                                                bottom: -8px;
+                                                                left: -10px;
+                                                                border-radius: 50%;
+                                                                background: #e5e5e5;
+                                                            }
+                                                        }
+                                                        .loading{
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                            column-gap: 8px;
+                                                            .dot{
+                                                                height: calc($ora-phone-app-message-chat-bubble-width / 6.47);
+                                                                width: calc($ora-phone-app-message-chat-bubble-width / 6.47);
+                                                                border-radius: 50%;
+                                                                background: #c1c1c1;
+                                                                animation-direction: normal;
+                                                                &.one{
+                                                                    animation: cycleOne 1s ease-in-out infinite;
+                                                                }
+                                                                &.two{
+                                                                    animation: cycleTwo 1s ease-in-out infinite;
+                                                                }
+                                                                &.three{
+                                                                    animation: cycleThree 1s ease-in-out infinite;
+                                                                }
+                                                            }
+                                                        }
+                                                        @keyframes cycleOne{
+                                                            0%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            33.333%{
+                                                                background: rgba(150, 150, 150, 1);
+                                                            }
+                                                            66.6667%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            100%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                        }
+                                                        @keyframes cycleTwo{
+                                                            0%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            33.333%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            66.6667%{
+                                                                background: rgba(150, 150, 150, 1);
+                                                            }
+                                                            100%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                        }
+                                                        @keyframes cycleThree{
+                                                            0%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            33.333%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            66.6667%{
+                                                                background: rgba(150, 150, 150, 0.4);
+                                                            }
+                                                            100%{
+                                                                background: rgba(150, 150, 150, 1);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.app-message-footer {
+                                                display: flex;
+                                                align-items: flex-end;
+                                                height: 50px;
+                                                padding: 0 10px;
+                                                div.app-message-footer-input {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    column-gap: 15px;
+                                                    width: 100%;
+                                                    height: 40px;
+                                                    padding: 7px 12px;
+                                                    border-radius: 10px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-modal-header-input-background-color);
+                                                    }
+                                                    i, input {
+                                                        font-size: 24px;
+                                                        cursor: pointer;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-info-color);
+                                                        }
+                                                    }
+                                                    input {
+                                                        width: inherit;
+                                                        height: 100%;
+                                                        margin: 0;
+                                                        padding: 0;
+                                                        font-size: 18px;
+                                                        background: none;
+                                                        border: none;
+                                                        cursor: text;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-contacts {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            padding: 0;
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-settings {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            height: 105px;
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 105px);
+                                            padding: 0 20px;
+                                            transition: all 0.3s ease-in-out;
+                                            @include themed() {
+                                                background-color: t($phone-app-tab-background-color);
+                                            }
+                                            div.settings-profile-top {
+                                                width: 100%;
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: center;
+                                                align-items: center;
+                                                margin-bottom: 20px;
+                                                img {
+                                                    width: 40%;
+                                                    border-radius: 50%;
+                                                }
+                                                span {
+                                                    width: auto;
+                                                    font-family: $ora-font-semibold;
+                                                    font-size: 24px;
+                                                }
+                                            }
+                                            div.settings-list, div#settings-profile {
+                                                display: flex;
+                                                flex-direction: column;
+                                                width: 100%;
+                                                height: auto;
+                                                margin-bottom: 20px;
+                                                border-radius: 15px;
+                                                overflow: hidden;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    background-color: t($phone-app-background-color);
+                                                }
+                                                div.settings-list-item {
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    width: 100%;
+                                                    height: 55px;
+                                                    padding: 5px 18px;
+                                                    border-bottom-width: 1px;
+                                                    border-bottom-style: solid;
+                                                    cursor: pointer;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        border-bottom-color: t($phone-app-body-content-body-list-item-border-color);
+                                                    }
+                                                    &:hover {
+                                                        @include themed() {
+                                                            background-color: t($phone-system-color-gray-6);
+                                                        }
+                                                    }
+                                                    span, i {
+                                                        transition: all 0.3s ease-in-out;
+                                                    }
+                                                    &:last-child {
+                                                        border-bottom-width: 0;
+                                                    }
+                                                    &.column {
+                                                        flex-direction: column;
+                                                        justify-content: center;
+                                                        row-gap: 10px;
+                                                        height: 70px;
+                                                        span, i {
+                                                            font-size: 20px;
+                                                            @include themed() {
+                                                                color: t($phone-app-info-color);
+                                                            }
+                                                        }
+                                                        span {
+                                                            font-size: 18px;
+                                                        }
+                                                        div.settings-list-item-top {
+                                                            display: flex;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                            width: 100%;
+                                                        }
+                                                        div.settings-list-item-bottom {
+                                                            display: flex;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                            width: 100%;
+                                                            input.settings-slider {
+                                                                appearance: none;
+                                                                width: 220px;
+                                                                background-color: transparent;
+                                                                cursor: pointer;
+                                                                &::-webkit-slider-thumb {
+                                                                    appearance: none;
+                                                                    height: 28px;
+                                                                    width: 28px;
+                                                                    border: none;
+                                                                    margin-top: -12px;
+                                                                    border-radius: 50%;
+                                                                    background-color: white;
+                                                                    z-index: 2;
+                                                                    box-shadow: 0 3px 8px rgba(0, 0, 0, .15),
+                                                                    0 1px 1px rgba(0, 0, 0, .16),
+                                                                    0 3px 1px rgba(0, 0, 0, .10);
+                                                                }
+                                                                &::-webkit-slider-runnable-track {
+                                                                    appearance: none;
+                                                                    background: linear-gradient(#007AFF,#007AFF) 0/var(--sx) 100% no-repeat, #B6B6B6;
+                                                                    border: none;
+                                                                    border-radius: 1.5px;
+                                                                    width: 100%;
+                                                                    height: 3px;
+                                                                    cursor: pointer;
+                                                                }
+                                                                & {
+                                                                    --range: calc(var(--max) - var(--min));
+                                                                    --ratio: calc((var(--value) - var(--min)) / var(--range));
+                                                                    --sx: calc(1 * (220px / var(--max)) + var(--ratio) * (100% - (220px / var(--max))));
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.settings-list-item-left {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        align-items: center;
+                                                        column-gap: 20px;
+                                                        div.settings-list-item-left-icon {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                            width: 35px;
+                                                            height: 35px;
+                                                            border-radius: 5px;
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-orange);
+                                                            }
+                                                            i {
+                                                                font-size: 23px;
+                                                                @include themed() {
+                                                                    color: t($phone-system-color-white);
+                                                                }
+                                                            }
+                                                        }
+                                                        div.settings-list-item-left-title {
+                                                            span {
+                                                                font-size: 20px;
+                                                                font-family: $ora-font-semibold;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.settings-list-item-right {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        align-items: center;
+                                                        column-gap: 10px;
+                                                        div.settings-list-item-right-info {
+                                                            span {
+                                                                font-size: 20px;
+                                                                @include themed() {
+                                                                    color: t($phone-app-info-color);
+                                                                }
+                                                            }
+                                                        }
+                                                        div.settings-list-item-right-button {
+                                                            i {
+                                                                font-size: 20px;
+                                                                @include themed() {
+                                                                    color: t($phone-app-info-color);
+                                                                }
+                                                                &.settings-list-item-right-button-check {
+                                                                    display: none;
+                                                                    @include themed() {
+                                                                        color: t($phone-app-label-color-active);
+                                                                    }
+                                                                    &.active {
+                                                                        display: block;
+                                                                    }
+                                                                }
+                                                            }
+                                                            label {
+                                                                > input {
+                                                                    display: none;
+                                                                }
+                                                                i {
+                                                                    display: inline-block;
+                                                                    padding: 2px;
+                                                                    width: 40px;
+                                                                    height: 20px;
+                                                                    border-radius: 13px;
+                                                                    vertical-align: middle;
+                                                                    box-sizing: initial;
+                                                                    @include themed() {
+                                                                        background-color: t($phone-input-switch-background-color);
+                                                                    }
+                                                                    &:after {
+                                                                        content: " ";
+                                                                        display: block;
+                                                                        width: 20px;
+                                                                        height: 20px;
+                                                                        border-radius: 50%;
+                                                                        position: absolute;
+                                                                        left: 2px;
+                                                                        transition: all 0.3s ease-in-out;
+                                                                        @include themed() {
+                                                                            background-color: t($phone-input-switch-after-background-color);
+                                                                        }
+                                                                    }
+                                                                }
+                                                                > input:checked + i {
+                                                                    @include themed() {
+                                                                        background-color: t($phone-input-switch-background-color-active);
+                                                                    }
+                                                                }
+                                                                > input:checked + i:after {
+                                                                    transform: translateX(20px);
+                                                                }
+                                                                &:hover {
+                                                                    cursor: pointer;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-bluetooth {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-blue);
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-notification {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-red);
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-sound {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-pink);
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-thememode, &#settings-list-item-screentime {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-purple);
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-general, &#settings-list-item-controlcenter {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-gray);
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-wallpaper {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-teal);
+                                                            }
+                                                        }
+                                                    }
+                                                    &#settings-list-item-security {
+                                                        div.settings-list-item-left-icon {
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-indigo);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div#settings-profile {
+                                                div.settings-list-item {
+                                                    height: 110px;
+                                                    div.settings-list-item-left {
+                                                        height: 100%;
+                                                        div.settings-list-item-left-icon {
+                                                            width: 75px;
+                                                            height: 75px;
+                                                            border-radius: 50%;
+                                                            background-color: transparent !important;
+                                                            overflow: hidden;
+                                                            img {
+                                                                width: 100%;
+                                                                height: 100%
+                                                            }
+                                                        }
+                                                        div.settings-list-item-left-title {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            justify-content: center;
+                                                            row-gap: 8px;
+                                                            height: 100%;
+                                                            span {
+                                                                &:first-of-type {
+                                                                    font-size: 25px;
+                                                                    font-family: $ora-font-bold;
+                                                                }
+                                                                &:last-of-type {
+                                                                    font-size: 14px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            span {
+                                                width: 100%;
+                                                &.settings-wallpaper-list-title {
+                                                    padding: 5px;
+                                                    font-family: $ora-font-semibold;
+                                                    font-size: 24px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                &.settings-wallpaper-list-custom {
+                                                    display: block;
+                                                    padding: 5px;
+                                                    font-family: $ora-font-semibold;
+                                                    font-size: 20px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                            }
+                                            div#settings-wallpaper-list-input, div#settings-wallpaper-lock-list-input {
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                width: 100%;
+                                                height: 40px;
+                                                @include themed() {
+                                                    background-color: t($phone-app-label-color-primary);
+                                                }
+                                                input {
+                                                    width: 100%;
+                                                    height: 40px;
+                                                    padding: 5px 10px;
+                                                    border: none;
+                                                    background-color: transparent;
+                                                    @include themed() {
+                                                        color: t($phone-app-tab-background-color);
+                                                    }
+                                                    &::placeholder {
+                                                        @include themed() {
+                                                            color: t($phone-app-tab-background-color);
+                                                        }
+                                                    }
+                                                }
+                                                div.settings-wallpaper-list-input-button {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    width: 50px;
+                                                    height: 100%;
+                                                    border-left-width: 4px;
+                                                    border-left-style: solid;
+                                                    cursor: pointer;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-label-color-primary);
+                                                        border-left-color: t($phone-app-tab-background-color);
+                                                    }
+                                                    i {
+                                                        font-size: 24px;
+                                                        @include themed() {
+                                                            color: t($phone-app-tab-background-color);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div#settings-wallpaper-list, div#settings-wallpaper-lock-list {
+                                                width: 100%;
+                                                height: auto;
+                                                display: grid;
+                                                grid-template-columns: repeat(3, 1fr);
+                                                grid-column-gap: 5px;
+                                                grid-row-gap: 5px;
+                                                padding-bottom: 10px;
+                                                border-width: 4px 0;
+                                                border-style: solid;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    border-color: t($phone-app-label-color-primary);
+                                                }
+                                                div.settings-wallpaper-list-item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-self: center;
+                                                    row-gap: 5px;
+                                                    width: 100px;
+                                                    border-width: 4px;
+                                                    border-style: solid;
+                                                    border-color: transparent;
+                                                    transition: all 0.3s ease-in-out;
+                                                    cursor: pointer;
+                                                    div.settings-wallpaper-list-item-img {
+                                                        display: flex;
+                                                        width: 100%;
+                                                        height: 200px;
+                                                        div {
+                                                            width: 50%;
+                                                            height: 100%;
+                                                            overflow: hidden;
+                                                            img {
+                                                                position: absolute;
+                                                                width: 200%;
+                                                                top: 0;
+                                                            }
+                                                            &.settings-wallpaper-list-item-img-light {
+                                                                img {
+                                                                    left: 0;
+                                                                }
+                                                            }
+                                                            &.settings-wallpaper-list-item-img-dark {
+                                                                img {
+                                                                    right: 0;
+                                                                }
+                                                            }
+                                                        }
+                                                        i {
+                                                            position: absolute;
+                                                            font-size: 24px;
+                                                            top: 50%;
+                                                            left: 50%;
+                                                            transform: translate(-50%, -50%);
+                                                            @include themed() {
+                                                                color: t($phone-system-color-white);
+                                                            }
+                                                            &.wallpaper-active {
+                                                                display: none;
+                                                                top: 75%;
+                                                                transform: translate(-50%, 0%);
+                                                                font-size: 32px;
+                                                            }
+                                                        }
+                                                    }
+                                                    span {
+                                                        text-align: center;
+                                                        font-family: $ora-font-semibold;
+                                                        text-transform: capitalize;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                    &.active {
+                                                        div.settings-wallpaper-list-item-img {
+                                                            i.wallpaper-active {
+                                                                display: block;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &#app-settings-body-content-profile {
+                                            div.app-body-content-body {
+                                                div.settings-list {
+                                                    div.settings-list-item {
+                                                        div.settings-list-item-right {
+                                                            div.settings-list-item-right-button {
+                                                                span {
+                                                                    font-size: 20px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                div#phone-screen-content-footer {
+                    display: flex;
+                    align-items: flex-end;
+                    width: 100%;
+                    height: $ora-phone-screen-footer-height;
+                    cursor: pointer;
+                    padding-bottom: 10px;
+                    transition: all 0.3s ease-in-out;
+                    z-index: 100;
+                    @include themed() {
+                        color: t($phone-screen-content-footer-color);
+                    }
+                    div#phone-screen-content-footer-bar {
+                        width: 134px;
+                        height: 5px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        background-color: $color-ora-primary;
+                        border-radius: 10px;
+                        z-index: 50;
+                        transition: all 0.3s ease-in-out;
+                    }
+                }
+                div#phone-screen-content-topbar {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 80;
+                    transition: all 0.3s ease-in-out;
+                    div#topbar-blur {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        opacity: 0;
+                        backdrop-filter: blur(8px);
+                        transition: all 0.3s ease-in-out;
+                    }
+                    div#topbar-content {
+                        top: -700px;
+                        left: 0;
+                        padding: 70px 25px;
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        width: 100%;
+                        height: auto;
+                        row-gap: 20px;
+                        transition: all 0.3s ease-in-out;
+                        div.topbar-content-row {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            width: 100%;
+                            height: auto;
+                            column-gap: 20px;
+                            div.topbar-box {
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: wrap;
+                                justify-content: space-around;
+                                align-items: center;
+                                width: 155px;
+                                height: 155px;
+                                padding: 5px;
+                                border-radius: 20px;
+                                backdrop-filter: blur(8px);
+                                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                                background-color: rgba(0, 0, 0, 0.5);
+                                &.topbar-box-nobackground {
+                                    justify-content: space-between;
+                                    align-items: flex-start;
+                                    row-gap: 12px;
+                                    padding: 0;
+                                    background-color: transparent;
+                                    box-shadow: none;
+                                    backdrop-filter: none;
+                                    div.topbar-box-button {
+                                        width: 70px;
+                                        height: 70px;
+                                        border-radius: 12px;
+                                        backdrop-filter: blur(8px);
+                                        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                                        background-color: rgba(0, 0, 0, 0.5);
+                                        transition: all 0.3s ease-in-out;
+                                        i {
+                                            font-size: 30px;
+                                            transition: all 0.3s ease-in-out;
+                                        }
+                                        &.active {
+                                            background-color: $color-ora-primary;
+                                            i {
+                                                color: rgba(0, 0, 0, 0.5);
+                                            }
+                                        }
+                                    }
+                                }
+                                &#topbar-box-music {
+                                    flex-direction: column;
+                                    justify-content: space-evenly;
+                                    row-gap: 34px;
+                                    padding: 5px 15px;
+                                    @include themed() {
+                                        color: t($phone-screen-content-lock-color);
+                                    }
+                                    div#topbar-box-music-button-content {
+                                        width: 100%;
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: space-between;
+                                        align-items: center;
+                                        i {
+                                            font-size: 26px;
+                                            text-shadow: 0 0 20px black;
+                                            cursor: pointer;
+                                            &:active {
+                                                transform: scale(0.8);
+                                            }
+                                        }
+                                    }
+                                }
+                                &#topbar-box-slider {
+                                    div.topbar-box-button {
+                                        display: block;
+                                        height: 100%;
+                                        overflow: hidden;
+                                        input[type=range].topbar-box-button-slider {
+                                            transform: rotateZ(270deg) translate(-42px, -42px);
+                                            -webkit-appearance: none;
+                                            appearance: none;
+                                            background: transparent;
+                                            cursor: pointer;
+                                            width: 155px;
+                                            height: 70px;
+                                            margin: 0;
+                                        }
+                                        input[type=range].topbar-box-button-slider::-webkit-slider-thumb {
+                                            -webkit-appearance: none;
+                                            display: flex;
+                                            width: 0;
+                                            height: 0;
+                                            background: transparent;
+                                            border: none;
+                                        }
+                                        
+                                        input[type=range].topbar-box-button-slider::-webkit-slider-runnable-track {
+                                            -webkit-appearance: none;
+                                            height: 70px;
+                                            border: none;
+                                            box-shadow: none;
+                                        }
+                                        input[type=range].topbar-box-button-slider {
+                                            --range: calc(var(--max) - var(--min));
+                                            --ratio: calc((var(--value) - var(--min)) / var(--range));
+                                            --sx: calc(1 * (155px / var(--max)) + var(--ratio) * (100% - (155px / var(--max))));
+                                        }
+                                        input[type=range].topbar-box-button-slider::-webkit-slider-runnable-track {
+                                            background: linear-gradient($color-ora-primary,$color-ora-primary) 0/var(--sx) 100% no-repeat, transparent;
+                                        }
+                                        i {
+                                            position: absolute;
+                                            bottom: 10px;
+                                            left: 50%;
+                                            font-size: 18px;
+                                            color: $ora-color-topbar-background-button;
+                                            transform: translate(-50%, 0);
+                                        }
+                                    }
+                                }
+                                div.topbar-box-button {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 55px;
+                                    height: 55px;
+                                    border-radius: 50%;
+                                    background-color: $ora-color-topbar-background-button;
+                                    transition: all 0.1s ease-in-out;
+                                    cursor: pointer;
+                                    i {
+                                        color: $color-ora-primary;
+                                        font-size: 26px;
+                                        transition: all 0.1s ease-in-out;
+                                    }
+                                    &.active {
+                                        background-color: $color-ora-primary;
+                                        i {
+                                            @include themed() {
+                                                color: t(phone-app-label-color-active);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                div#phone-lock {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    padding-top: $ora-phone-screen-header-height;
+                    padding-bottom: $ora-phone-screen-footer-height;
+                    user-select: none;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    transform: translate(0, -100%);
+                    transition: all 0.4s ease-in-out, border-radius 0s;
+                    z-index: 30;
+                    border-radius: 40px;
+                    @include themed() {
+                        background-image: t($phone-lock-background-default);
+                        color: t($phone-screen-content-lock-color);
+                    }
+                    &.wallpaper-ios15 {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-ios15);
+                        }
+                    }
+                    &.wallpaper-starlight {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-starlight);
+                        }
+                    }
+                    &.wallpaper-midnight {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-midnight);
+                        }
+                    }
+                    &.wallpaper-blue {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-blue);
+                        }
+                    }
+                    &.wallpaper-pink {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-pink);
+                        }
+                    }
+                    &.wallpaper-red {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-red);
+                        }
+                    }
+                    &.wallpaper-green {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-green);
+                        }
+                    }
+                    &.wallpaper-silver {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-silver);
+                        }
+                    }
+                    &.wallpaper-graphite {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-graphite);
+                        }
+                    }
+                    &.wallpaper-gold {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-gold);
+                        }
+                    }
+                    &.wallpaper-sierraBlue {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-sierraBlue);
+                        }
+                    }
+                    &.wallpaper-alpineGreen {
+                        @include themed() {
+                            background-image: t($phone-wallpaper-alpineGreen);
+                        }
+                    }
+                    div#app-lock-icon-lock {
+                        margin-top: 30px;
+                        i {
+                            font-size: 32px;
+                            &.snooze {
+                                animation: snooze 0.5s linear;
+                            }
+                            @keyframes snooze {
+                                0% {
+                                    transform: rotate(0deg);
+                                }
+                                20% {
+                                    transform: rotate(20deg);
+                                }
+                                30% {
+                                    transform: rotate(0deg);
+                                }
+                                40% {
+                                    transform: rotate(-20deg);
+                                }
+                                50% {
+                                    transform: rotate(0deg);
+                                }
+                                60% {
+                                    transform: rotate(20deg);
+                                }
+                                70% {
+                                    transform: rotate(0deg);
+                                }
+                                80% {
+                                    transform: rotate(-20deg);
+                                }
+                                100% {
+                                    transform: rotate(0deg);
+                                }
+                            }
+                        }
+                    }
+                    div#app-lock-time {
+                        margin-top: 20px;
+                        span#app-lock-time-text {
+                            font-size: 83px;
+                            font-family: "SF Pro Display Thin";
+                        }
+                    }
+                    div#app-lock-day {
+                        margin-top: 10px;
+                        span#app-lock-day-text {
+                            font-size: 22px;
+                            font-family: "SF Pro Display Regular";
+                            text-transform: capitalize;
+                        }
+                    }
+                    div#app-lock-enter-text {
+                        margin-top: auto;
+                        margin-bottom: 10px;
+                        text-align: center;
+                        font-size: 14px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            div#phone-lock-button {
+                position: absolute;
+                width: 130px;
+                height: 126px;
+                top: 234px;
+                right: -126px;
+                padding: 30px;
+                text-align: center;
+                transition: all 0.3s ease-in-out;
+                @include themed() {
+                    color: t($phone-screen-content-lock-color);
+                }
+                i {
+                    width: 70px;
+                    height: 66px;
+                    visibility: hidden;
+                    opacity: 0;
+                    background-color: $system--material--thick-dark;
+                    border-radius: 15px;
+                    font-size: 36px;
+                    padding: 15px;
+                    cursor: pointer;
+                    transform: translate(-10px, 0);
+                    transition: all 0.3s ease-in-out;
+                }
+                &:hover {
+                    i {
+                        visibility: visible;
+                        opacity: 1;
+                        transform: translate(0, 0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+button#add-notification, button#remove-notification {
+    height: 40px;
+    padding: 5px;
+    background-color: black;
+    position: absolute;
+    top: 60px;
+    right: 260px;
+}
+
+#notification-container {
+    width: 100%;
+    height: auto;
+    max-height: 28%;
+    padding: 10px;
+    overflow: hidden;
+    z-index: 70;
+    pointer-events: none;
+    .notification-item {
+        height: 90px;
+        max-height: 140px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+        transition: height .75s ease-in-out, margin-bottom .75s ease-in-out, transform .75s ease-in-out, visibility .75s ease-in-out, opacity .75s ease-in-out;
+        cursor: pointer;
+        pointer-events: auto;
+        @for $i from 1 through 20 {
+            &:nth-child(#{$i}) {
+                transform: translateY(($i - 1) * -77px) scale(1 - calc(($i - 1) / 10));
+                z-index: 99 - $i;
+            }
+        }
+        &:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
+            display: none;
+        }
+        &.close {
+            height: 0;
+            .notification-item-content {
+                transform: scale(0);
+            }
+        }
+        .notification-item-content {
+            height: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            transform: scale(1);
+            transition: transform .75s ease-in-out;
+            @include themed() {
+                color: t($phone-notification-color);
+            }
+            > .notification-item-background-blur {
+                border-radius: 10px;
+            }
+            .notification-item-background-blur {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px 10px 0px 0px;
+                // backdrop-filter: blur(30px);
+                @include themed() {
+                    background-color: t($phone-notification-background-color);
+                }
+            }
+            .notification-item-header {
+                height: 30px;
+                .notification-item-header-content {
+                    font-size: 16px;
+                    position: inherit;
+                    width: 100%;
+                    height: 100%;
+                    div {
+                        width: auto;
+                        height: 100%;
+                        &.notification-item-header-content-left {
+                            display: flex;
+                            align-items: center;
+                            width: max-content;
+                            float: left;
+                            padding: 5px 10px;
+                            text-align: left;
+                            column-gap: 5px;
+                            img {
+                                width: auto;
+                                height: 100%;
+                            }
+                        }
+                        &.notification-item-header-content-right {
+                            width: max-content;
+                            float: right;
+                            padding: 5px 10px;
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+            .notification-item-main {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                position: inherit;
+                width: 100%;
+                height: calc(100% - 30px);
+                padding: 8px 20px 10px 10px;
+                font-size: 16px;
+                &.call {
+                    flex-direction: row;
+                    align-items: center;
+                    height: 100%;
+                    padding: 5px 15px;
+                }
+                span {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    &.notification-item-main-header {
+                        font-family: $ora-font-bold;
+                    }
+                }
+                div.notification-item-main-avatar {
+                    display: flex;
+                    justify-content: center;
+                    align-self: center;
+                    width: 60px;
+                    height: 60px;
+                    padding: 10px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease-in-out;
+                    @include themed() {
+                        background-color: t($phone-system-color-green);
+                    }
+                    i {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 22px;
+                        transition: all 0.3s ease-in-out;
+                        @include themed() {
+                            color: t($phone-app-label-color-primary);
+                        }
+                    }
+                }
+                div.notification-item-main-info {
+                    display: flex;
+                    flex-direction: column;
+                }
+                div.notification-item-main-hangup, div.notification-item-main-pickup {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 55px;
+                    height: 55px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    i {
+                        font-size: 24px;
+                        @include themed() {
+                            color: t($phone-system-color-white);
+                        }
+                    }
+                }
+                div.notification-item-main-hangup {
+                    @include themed() {
+                        background-color: t($phone-system-color-red);
+                    }
+                }
+                div.notification-item-main-pickup {
+                    @include themed() {
+                        background-color: t($phone-system-color-green);
+                    }
+                }
+            }
+        }
+    }
+}
+
+#notification-container-lock {
+    width: 100%;
+    height: auto;
+    max-height: 55%;
+    padding: 10px;
+    overflow: hidden;
+    z-index: 70;
+    margin-top: 10px;
+    .notification-item {
+        width: 100%;
+        height: 68px;
+        margin-bottom: 5px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+        transition: height .75s ease-in-out, margin-bottom .75s ease-in-out, transform .75s ease-in-out, opacity .75s ease-in-out;
+        cursor: pointer;
+        pointer-events: auto;
+        &.close {
+            height: 0;
+            margin-bottom: 0px;
+            .notification-item-content {
+                transform: scale(0);
+            }
+        }
+        .notification-item-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            transform: scale(1);
+            transition: transform .75s ease-in-out;
+            overflow: hidden;
+            cursor: pointer;
+            @include themed() {
+                color: t($phone-notification-color);
+            }
+            .notification-item-background-blur {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                // backdrop-filter: blur(80px);
+                @include themed() {
+                    background-color: t($phone-notification-background-color);
+                }
+            }
+            .notification-item-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
+                padding-left: 10px;
+                box-sizing: content-box;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .notification-item-main {
+                display: flex;
+                justify-content: space-between;
+                position: inherit;
+                width: 100%;
+                font-size: 16px;
+                &.call {
+                    flex-direction: row;
+                    align-items: center;
+                    height: 100%;
+                    padding: 5px 15px;
+                }
+                span {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                div.notification-item-main-avatar {
+                    display: flex;
+                    justify-content: center;
+                    align-self: center;
+                    width: 60px;
+                    height: 60px;
+                    padding: 10px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease-in-out;
+                    @include themed() {
+                        background-color: t($phone-system-color-green);
+                    }
+                    i {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 22px;
+                        transition: all 0.3s ease-in-out;
+                        @include themed() {
+                            color: t($phone-app-label-color-primary);
+                        }
+                    }
+                }
+                div.notification-item-main-info {
+                    display: flex;
+                    flex-direction: column;
+                }
+                div.notification-item-main-hangup, div.notification-item-main-pickup {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 55px;
+                    height: 55px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    i {
+                        font-size: 24px;
+                        @include themed() {
+                            color: t($phone-system-color-white);
+                        }
+                    }
+                }
+                div.notification-item-main-hangup {
+                    @include themed() {
+                        background-color: t($phone-system-color-red);
+                    }
+                }
+                div.notification-item-main-pickup {
+                    @include themed() {
+                        background-color: t($phone-system-color-green);
+                    }
+                }
+            }
+            .notification-item-content-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                width: calc(100% - 64px);
+                height: 100%;
+                padding: 5px 10px;
+                .notification-item-content-body-header {
+                    height: 20px;
+                    .notification-item-content-body-header-left {
+                        font-family: $ora-font-bold;
+                        float: left;
+                        text-align: left;
+                    }
+                    .notification-item-content-body-header-right {
+                        float: right;
+                        text-align: right;
+                    }
+                }
+                .notification-item-content-body-content {
+                    height: 18px;
+                    div.notification-item-content-body-content-message {
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+label#switch-theme-mode {
+    position: absolute;
+    display: block;
+    top: 80px;
+    right: 120px;
+    background: #fff;
+    padding: 10px 15px;
+    // Hide the ugly checkbox
+    > input {
+        display: none;
+    }
+    // New beautiful checkbox
+    i {
+        display: inline-block;
+        float: right;
+        padding: 2px;
+        width: 40px;
+        height: 20px;
+        border-radius: 13px;
+        vertical-align: middle;
+        transition: .25s .09s;
+        position: relative;
+        background: #d8d9db;
+        box-sizing: initial;
+        &:after {
+            content: " ";
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            position: absolute;
+            left: 2px;
+            transition: .25s;
+        }
+    }
+    // Checked-state
+    > input:checked + i {
+        background: #4bd865;
+    }
+    > input:checked + i:after {
+        transform: translateX(20px);
+    }
+    // Label-hover
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
+div#phone-screen-content {
+    &.app-tabbed {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-app-tab-background-color) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
+            }
+        }
+    }
+    &.app-modal {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-app-background-color) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
+            }
+        }
+        div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-app-tab-background-color) !important;
+            }
+        }
+    }
+    &.app-calculator {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-app-background-color) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
+            }
+        }
+    }
+    &.app-settings {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-app-tab-background-color) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
+            }
+        }
+    }
+}
