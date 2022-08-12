@@ -141,7 +141,7 @@ DistillerieCrafts["alcools"] = {
             found = false
             local data = DistillerieCrafts["alcools"]["champagnebleuter"]
             craftAlcool(data)
-        end
+        end 
     },
     red_wine = {
         title = "Bouteille de vin",
@@ -157,6 +157,38 @@ DistillerieCrafts["alcools"] = {
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
             local data = DistillerieCrafts["alcools"]["red_wine"]
+            craftAlcool(data)
+        end
+    },
+    White_wine = {
+        title = "Bouteille de vin blanc",
+        item = "White_wine",
+        label = "BOUTEILLE VIN BLANC",
+        time = 1000,
+        required = {
+            {name = "jus_raisin", count = 1},
+            {name = "levure", count = 1}
+        },
+        selected = function()
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = DistillerieCrafts["alcools"]["White_wine"]
+            craftAlcool(data)
+        end
+    },
+    pink_wine = {
+        title = "Bouteille de vin rosé",
+        item = "pink_wine",
+        label = "BOUTEILLE VIN ROSE",
+        time = 1000,
+        required = {
+            {name = "White_wine", count = 1},
+            {name = "red_wine", count = 1}
+        },
+        selected = function()
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = DistillerieCrafts["alcools"]["pink_wine"]
             craftAlcool(data)
         end
     }
