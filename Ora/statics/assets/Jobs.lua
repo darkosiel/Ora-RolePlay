@@ -5661,6 +5661,309 @@ Jobs = {
             }
         }
     },
+
+    
+    fib = {
+        label = "FIB",
+        label2 = "FIB",
+        iban = "fib",
+        radios = {1, 2},
+        grade = {
+            {
+                label = "Agent Special",
+                salary = 325,
+                name = "agent"
+            },
+            {
+                label = "Agent Special Senior",
+                salary = 340,
+                name = "agent2"
+            },
+            {
+                label = "Agent Special en charge",
+                salary = 350,
+                name = "agent2"
+            },
+            {
+                label = "Directeur Adjoint",
+                salary = 390,
+                name = "drh"
+            },
+            {
+                label = "Directeur",
+                salary = 430,
+                name = "boss"
+            }
+        },
+        garage = {
+            Name = "Garage fib",
+            Pos = {x = 2523.86, y = -377.82, z = 91.99},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = 2523.86, y = -377.82, z = 91.99, h = 182.90}
+            },
+            Blipdata = {
+                Pos = {x = 2523.86, y = -377.82, z = 91.99},
+                Blipcolor = 5,
+                Blipname = "FIB - Garage"
+            }
+        },
+        garage2 = {
+            Name = "Garage fib2",
+            Pos = {x = 2531.11, y = -401.88, z = 91.99},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = 2531.11, y = -401.88, z = 91.99},
+            },
+            Blipdata = {
+                Pos = {x = 2531.11, y = -401.88, z = 91.99},
+                Blipcolor = 5,
+                Blipname = "FIB - Garage Personnel"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "FIB",
+                subtitle = "Actions disponibles",
+                name = "police_menuperso"
+            },
+            submenus = {
+                ["Actions citoyen"] = {
+                    submenu = "police_menuperso",
+                    title = "Actions citoyen",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Menotter",
+                                onSelected = function()
+                                    Police.HandcuffPly()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Démenotter",
+                                onSelected = function()
+                                    Police.CutMenottes()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Amendes",
+                                onSelected = function()
+                                    CreateFacture("gouvernement")
+                                end
+                            },
+                            {
+                                label = "Test poudre à feu",
+                                onSelected = function()
+                                    Police.Powder()
+                                end
+                            },
+                            {
+                                label = "Test stupéfiant",
+                                onSelected = function()
+                                    Police.Stup()
+                                end
+                            },
+                            {
+                                label = "Mettre dans le véhicule",
+                                onSelected = function()
+                                    Police.PutInVeh()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Sortir du véhicule",
+                                onSelected = function()
+                                    Police.SortirVeh()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Bracelet électronique",
+                                onSelected = function()
+                                    Police.Bracelet()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            }
+                        },
+                        submenus = {}
+                    }
+                },
+                ["Actions traffic"] = {
+                    submenu = "police_menuperso",
+                    title = "Actions traffic",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Modifier la zone",
+                                onSelected = function()
+                                    Police.EditZone()
+                                end
+                            },
+                            {
+                                label = "Changer la vitesse de la zone",
+                                desc = "0 pour que les véhicules soient immobiles",
+                                onSelected = function()
+                                    Police.ChangeZone()
+                                end
+                            },
+                            {
+                                label = "Supprimer la limite de vitesse",
+                                onSelected = function()
+                                    Police.RemoveZone()
+                                end
+                            },
+                            {
+                                label = "Afficher la zone",
+                                onSelected = function()
+                                end,
+                                ActiveFct = function()
+                                    Police.ShowZone()
+                                end
+                            }
+                        },
+                        submenus = {}
+                    }
+                },
+                ["Actions véhicule"] = {
+                    submenu = "police_menuperso",
+                    title = "Actions véhicule",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Inspecter la plaque",
+                                onSelected = function()
+                                    Police.PlateCheck()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            },
+                            {
+                                label = "Crocheter",
+                                onSelected = function()
+                                    Police.Crocheter()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            },
+                            {
+                                label = "Immobiliser",
+                                onSelected = function()
+                                    Police.Immobiliser()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            },
+                            {
+                                label = "Désimmobiliser",
+                                onSelected = function()
+                                    Police.Desimmobiliser()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            },
+                            {
+                                label = "Placer une sirène",
+                                onSelected = function()
+                                    if (Ora.Identity:GetMyGroup() == "superadmin") then
+                                        Police.Sirens()
+                                    else
+                                        RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                                    end
+                                end
+                            }
+                        },
+                        submenus = {}
+                    }
+                },
+                ["Action objets"] = {
+                    submenu = "police_menuperso",
+                    title = "Placer objets",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Mettre un cone",
+                                onSelected = function()
+                                    useCone()
+                                end
+                            },
+                            {
+                                label = "Mettre une barriere",
+                                onSelected = function()
+                                    useBarrier()
+                                end
+                            },
+                            {
+                                label = "Supprimer un cone",
+                                onSelected = function()
+                                    DeleteCone()
+                                end
+                            },
+                            {
+                                label = "Supprimer une barriere",
+                                onSelected = function()
+                                    DeleteBarrier()
+                                end
+                            }
+                        },
+                        submenu = {}
+                    }
+                }
+            },
+            buttons = {
+                -- {label="Activer/Désactiver le tracking",onSelected=function()
+                --     Police.ActivateTrack()
+                -- end},
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "fib", "Annonce", text, "CHAR_FIB", 8)
+                        end
+                    end
+                },
+                {
+                    label = "Annuler l'appel en cours",
+                    onSelected = function()
+                        TriggerEvent("call:cancelCall")
+                    end
+                }
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 2525.64, y = -342.12, z = 100.89},
+                Limit = 99999999,
+                Name = "coffre fib"
+            },
+            {
+                Pos = {x = 2518.30, y = -323.38, z = 100.89},
+                Limit = 99999999,
+                Name = "coffre saisies"
+            }
+        }
+    },
     -- usms = {
     --     label = "US MARSHALS",
     --     label2 = "US MARSHALS",
