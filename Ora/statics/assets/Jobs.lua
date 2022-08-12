@@ -4309,7 +4309,7 @@ Jobs = {
         Extrapos = {
             CraftSpiritueux = {
                 Pos = {
-                    {x = -1928.61, y = 2060.05, z = 140.84 - 0.98}
+                    {x = -1931.4281, y = 2053.1835, z = 140.84 - 0.98}
                 },
                 restricted = {1, 2, 3, 4, 5},
                 Enter = function()
