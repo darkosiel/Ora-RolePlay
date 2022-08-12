@@ -4290,8 +4290,8 @@ Jobs = {
                 giveitemType = 1,
                 add = "~p~+ 1  Bouteille de vin",
                 giveitem = {
-                    {name = "red_wine", count = 2, chanceDrop = 65},
-                    {name = "high_quality_wine", count = 2, chanceDrop = 35}
+                    {name = "red_wine", count = 2, chanceDrop = 75},
+                    {name = "high_quality_wine", count = 2, chanceDrop = 25}
                 }
             },
             vente = {
