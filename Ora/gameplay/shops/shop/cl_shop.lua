@@ -3747,174 +3747,174 @@ local Shops =
                 -- },
             }
         },
-        {
-            Title = "Fournisseur police",
-            Hidden = true,
-            RestrictedJob = {"police"},
-            RestrictedGrade = {"drh", "boss"},
-            Pos = {x = -1103.76, y = -821.33, z = 13.28, a = 213.79}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
-            Blips = {
-                sprite = 478,
-                Enabled = false, -- Image off
-                color = 43,
-                name = "Police"
-            },
-            Ped = {
-                model = "s_m_y_cop_01",
-                name = "John"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = false
-            },
-            braquable = false,
-            Items = {
-                {
-                    name = "mm9",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "cab",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "cab2",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "calibre12",
-                    price = 2,
-                    data = {}
-                },
-                {
-                    name = "acp45",
-                    price = 2,
-                    data = {}
-                },
-                -- {
-                --     name = "pistol",
-                --     price = 1200,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type =  "serial"
-                -- },
-                -- {
-                --     name = "pistolcombat",
-                --     price = 1890,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                -- {
-                --     name = "pistol50",
-                --     price = 1560,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type =  "serial"
-                -- },
-                -- {
-                --     name = "stungun",
-                --     price = 530,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                {
-                    name = "flaregun",
-                    price = 250,
-                    data = {},
-                    fct = GeneratePoliceSerial,
-                    type = "serial"
-                },
-                -- {
-                --     name = "assaultsmg",
-                --     price = 15000,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type =  "serial"
-                -- },
-                -- {
-                --     name = "nightstick",
-                --     price = 50,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                -- {
-                --     name = "teargas",
-                --     price = 75,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                -- {
-                --     name = "carrabine",
-                --     price = 20000,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                -- {
-                --     name = "beanbag",
-                --     price = 3400,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                -- {
-                --     name = "shootgun",
-                --     price = 4300,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
-                -- {
-                --     name = "smg",
-                --     price = 14000,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type = "serial"
-                -- },
---[[                 {
-                    name = "kevlar",
-                    price = 3000,
-                    data = {status = 25, showLabel = "Kevlar Léger", label = "Léger"},
-                    fct = GeneratePoliceSerial,
-                    type = "serial"
-                  },
-                  {
-                    name = "kevlar",
-                    price = 6000,
-                    data = {status = 50, showLabel = "Kevlar Renforcé", label = "Renforcé"},
-                    fct = GeneratePoliceSerial,
-                    type = "serial"
-                  },
-                  {
-                    name = "kevlar",
-                    price = 9000,
-                    data = {status = 75, showLabel = "Kevlar SWAT", label = "SWAT"},
-                    fct = GeneratePoliceSerial,
-                    type = "serial"
-                  } ]]
-                -- {
-                --     name = "heavysniper",
-                --     price = 50000,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type =  "serial"
-                -- },
-                -- {
-                --     name = "compactrifle",
-                --     price = 25000,
-                --     data = {},
-                --     fct = GeneratePoliceSerial,
-                --     type =  "serial"
-                -- },
-            }
-        },
+--         {
+--             Title = "Fournisseur police",
+--             Hidden = true,
+--             RestrictedJob = {"police"},
+--             RestrictedGrade = {"drh", "boss"},
+--             Pos = {x = -1103.76, y = -821.33, z = 13.28, a = 213.79}, -- { x = 454.1, y = -980.07, z = 29.69, a = 85.87 },
+--             Blips = {
+--                 sprite = 478,
+--                 Enabled = false, -- Image off
+--                 color = 43,
+--                 name = "Police"
+--             },
+--             Ped = {
+--                 model = "s_m_y_cop_01",
+--                 name = "John"
+--             },
+--             Menus = {
+--                 Sprite = "shopui_title_conveniencestore",
+--                 Enabled = false
+--             },
+--             braquable = false,
+--             Items = {
+--                 {
+--                     name = "mm9",
+--                     price = 2,
+--                     data = {}
+--                 },
+--                 {
+--                     name = "cab",
+--                     price = 2,
+--                     data = {}
+--                 },
+--                 {
+--                     name = "cab2",
+--                     price = 2,
+--                     data = {}
+--                 },
+--                 {
+--                     name = "calibre12",
+--                     price = 2,
+--                     data = {}
+--                 },
+--                 {
+--                     name = "acp45",
+--                     price = 2,
+--                     data = {}
+--                 },
+--                 -- {
+--                 --     name = "pistol",
+--                 --     price = 1200,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type =  "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "pistolcombat",
+--                 --     price = 1890,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "pistol50",
+--                 --     price = 1560,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type =  "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "stungun",
+--                 --     price = 530,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 {
+--                     name = "flaregun",
+--                     price = 250,
+--                     data = {},
+--                     fct = GeneratePoliceSerial,
+--                     type = "serial"
+--                 },
+--                 -- {
+--                 --     name = "assaultsmg",
+--                 --     price = 15000,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type =  "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "nightstick",
+--                 --     price = 50,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "teargas",
+--                 --     price = 75,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "carrabine",
+--                 --     price = 20000,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "beanbag",
+--                 --     price = 3400,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "shootgun",
+--                 --     price = 4300,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "smg",
+--                 --     price = 14000,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type = "serial"
+--                 -- },
+-- --[[                 {
+--                     name = "kevlar",
+--                     price = 3000,
+--                     data = {status = 25, showLabel = "Kevlar Léger", label = "Léger"},
+--                     fct = GeneratePoliceSerial,
+--                     type = "serial"
+--                   },
+--                   {
+--                     name = "kevlar",
+--                     price = 6000,
+--                     data = {status = 50, showLabel = "Kevlar Renforcé", label = "Renforcé"},
+--                     fct = GeneratePoliceSerial,
+--                     type = "serial"
+--                   },
+--                   {
+--                     name = "kevlar",
+--                     price = 9000,
+--                     data = {status = 75, showLabel = "Kevlar SWAT", label = "SWAT"},
+--                     fct = GeneratePoliceSerial,
+--                     type = "serial"
+--                   } ]]
+--                 -- {
+--                 --     name = "heavysniper",
+--                 --     price = 50000,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type =  "serial"
+--                 -- },
+--                 -- {
+--                 --     name = "compactrifle",
+--                 --     price = 25000,
+--                 --     data = {},
+--                 --     fct = GeneratePoliceSerial,
+--                 --     type =  "serial"
+--                 -- },
+--             }
+--         },
         {
             Title = "Fournisseur USMS",
             Hidden = true,

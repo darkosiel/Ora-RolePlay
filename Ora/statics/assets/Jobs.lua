@@ -5153,7 +5153,7 @@ Jobs = {
         },
         garage4 = {
             Name = "Garage Helipad",
-            Pos = {x = -1096.74, y = -833.14, z = 37.7},
+            Pos = {x = -1097.38, y = -822.73, z = 38.56},
             Properties = {
                 type = 2,
                 Limit = 10,
@@ -5169,10 +5169,10 @@ Jobs = {
                         }
                     }
                 },
-                spawnpos = {x = -1096.74, y = -833.14, z = 37.7, h = 128.28}
+                spawnpos = {x = -1097.38, y = -822.73, z = 38.56, h = 345.85}
             },
             Blipdata = {
-                Pos = {x = -1096.74, y = -833.14, z = 37.7},
+                Pos = {x = -1097.38, y = -822.73, z = 38.56},
                 Blipcolor = 5,
                 Blipname = "LSPD - Helipad"
             }
