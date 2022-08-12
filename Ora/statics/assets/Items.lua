@@ -1412,7 +1412,7 @@ Items = {
         category = "consumable"
     },
     champagne = {
-        label = "Champagne",
+        label = "Gold Lady Champagne",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"  
