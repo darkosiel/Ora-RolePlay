@@ -557,8 +557,8 @@ local kevlarConfig = {
         name = "Radio déportée 2"
     },
     [15] = {
-        status = 25,
-        name = "Radio"
+        status = 100,
+        name = "DOJ"
     },
     [17] = {
         status = 50,
