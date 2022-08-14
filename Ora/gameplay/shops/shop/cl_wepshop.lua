@@ -488,7 +488,7 @@ local globalAttachmentTable = {
     {"COMPONENT_SNSPISTOL_MK2_CAMO_IND_01", "American Camo", 1000}
 }
 
-local restrictedJob = {'police', 'lssd', 'usms', 'gouv', 'doj'}
+local restrictedJob = {'police', 'lssd', 'usms', 'gouv', 'doj', 'fib'}
 local ep1 = false
 local Indexes2 = {}
 local Open = function()
