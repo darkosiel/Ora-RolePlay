@@ -1,6 +1,6 @@
 Config = {}
 
-Config.BlipName = 'Lunapark'
+Config.BlipName = 'Fête Foraine'
 
 Config.Enable3dText = false -- Will render 3D Text instead of the default GTA help text
 Config.Scale3dText  = 0.5 -- Scale of the 3D Text, a number between 0.0 and 1.0
@@ -46,25 +46,25 @@ Config.Prices.Freefall      = 3 -- Ticket price for the Freefall
 
 Config.Text = {}
 
-Config.Text.COASTER_NO_PLAYERS  = 'Not enough players on the Roller Coaster.'
-Config.Text.COASTER_NO_MONEY    = 'You haven\'t got enough money, you need $5.'
-Config.Text.COASTER_ROW_FULL    = 'Row full'
-Config.Text.COASTER_GET_ON      = '~INPUT_CONTEXT~ Get on ~g~$5~s~'
-Config.Text.COASTER_GET_OFF     = '~INPUT_VEH_EXIT~ Get off'
-Config.Text.COASTER_START       = '~INPUT_SPRINT~ + ~INPUT_VEH_ACCELERATE~ Start the Roller Coaster' .. '~n~' .. Config.Text.COASTER_GET_OFF
-Config.Text.COASTER_TIMER       = 'The Roller Coaster starts in %s second(s).'
-Config.Text.COASTER_HANDS_UP    = 'Hands up'
-Config.Text.COASTER_HANDS_DOWN  = 'Hands down'
+Config.Text.COASTER_NO_PLAYERS  = 'Pas assez de monde dans le manège.'
+Config.Text.COASTER_NO_MONEY    = 'Il vous faut 5$ pour faire l\'attraction.'
+Config.Text.COASTER_ROW_FULL    = 'Ligne complète'
+Config.Text.COASTER_GET_ON      = '~INPUT_CONTEXT~ Monter ~g~$5~s~'
+Config.Text.COASTER_GET_OFF     = '~INPUT_VEH_EXIT~ Sortir'
+Config.Text.COASTER_START       = '~INPUT_SPRINT~ + ~INPUT_VEH_ACCELERATE~ Démarrer le Roller Coaster' .. '~n~' .. Config.Text.COASTER_GET_OFF
+Config.Text.COASTER_TIMER       = 'Le Roller Coaster commence dans %s seconde(s).'
+Config.Text.COASTER_HANDS_UP    = 'Lever les mains'
+Config.Text.COASTER_HANDS_DOWN  = 'Baisser les mains'
 
-Config.Text.WHEEL_NO_MONEY   = 'You haven\'t got enough money, you need $3.'
-Config.Text.WHEEL_CABIN_FULL = 'Cabin full'
-Config.Text.WHEEL_GET_ON     = '~INPUT_CONTEXT~ Get on ~g~$3~s~'
-Config.Text.WHEEL_GET_OFF    = '~INPUT_VEH_EXIT~ Get off'
+Config.Text.WHEEL_NO_MONEY   = 'Il vous faut 3$ pour faire l\'attraction.'
+Config.Text.WHEEL_CABIN_FULL = 'Cabine pleine'
+Config.Text.WHEEL_GET_ON     = '~INPUT_CONTEXT~ Monter ~g~$3~s~'
+Config.Text.WHEEL_GET_OFF    = '~INPUT_VEH_EXIT~ Descendre'
 
-Config.Text.FREEFALL_NO_PLAYERS = 'Not enough players on the Attraction.'
-Config.Text.FREEFALL_NO_MONEY   = 'You haven\'t got enough money, you need $3.'
-Config.Text.FREEFALL_FULL       = 'Seats are full'
-Config.Text.FREEFALL_GET_ON     = '~INPUT_CONTEXT~ Get on ~g~$3~s~'
-Config.Text.FREEFALL_GET_OFF    = '~INPUT_VEH_EXIT~ Get off'
-Config.Text.FREEFALL_START      = '~INPUT_SPRINT~ + ~INPUT_VEH_ACCELERATE~ Start the Freefall' .. '~n~' .. Config.Text.FREEFALL_GET_OFF
-Config.Text.FREEFALL_TIMER      = 'The freefall starts in %s second(s).'
+Config.Text.FREEFALL_NO_PLAYERS = 'Pas assez de monde dans le manège.'
+Config.Text.FREEFALL_NO_MONEY   = 'Il vous faut 3$ pour faire l\'attraction.'
+Config.Text.FREEFALL_FULL       = 'Sièges pleins'
+Config.Text.FREEFALL_GET_ON     = '~INPUT_CONTEXT~ Monter ~g~$3~s~'
+Config.Text.FREEFALL_GET_OFF    = '~INPUT_VEH_EXIT~ Descendre'
+Config.Text.FREEFALL_START      = '~INPUT_SPRINT~ + ~INPUT_VEH_ACCELERATE~ Commencer la chute libre' .. '~n~' .. Config.Text.FREEFALL_GET_OFF
+Config.Text.FREEFALL_TIMER      = 'La chute commence dans %s seconde(s).'
