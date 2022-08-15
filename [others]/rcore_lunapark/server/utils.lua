@@ -30,7 +30,7 @@ function HandleTransaction(source, amount, errorMsg, successEvent, customEvent, 
         end
     elseif Config.EnableCustomEvents then
         if customEvent then
-            TriggerEvent(customEvent, source, amount, function(paid)
+            paid = true
                 if paid then
                     if successEvent then
                         TriggerEvent(successEvent or '', source, table.unpack(args))
@@ -38,7 +38,6 @@ function HandleTransaction(source, amount, errorMsg, successEvent, customEvent, 
                 else
                     TriggerClientEvent('lsrp_lunapark:showNotification', source, errorMsg)
                 end
-            end)
         end
     else
         if successEvent then
