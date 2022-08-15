@@ -3,8 +3,8 @@ local autojap =
     {
         --veh
         {
-            Pos = {x = -657.54, y = -2455.6, z = 12.94, a = 141.69},
-            SpawnPos = {x = -691.54, y = -2460.44, z = 12.83, a = 109.54},
+            Pos = {x = 977.1851, y = -2398.0607, z = 21.32, a = 183.5447},
+            SpawnPos = {x = 977.8609, y = -2387.9807, z = 21.71, a = 87.0860},
             Blips = {},
             Menus = {
                 Sprite = "shopui_title_ie_modgarage",
