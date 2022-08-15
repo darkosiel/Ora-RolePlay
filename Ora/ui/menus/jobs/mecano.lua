@@ -265,3 +265,142 @@ function Mecano.ShowMarker()
         DrawMarker(2, x, y, z + 1.5, 0, 0, 0, 180.0, nil, nil, 0.5, 0.5, 0.5, 52, 177, 74, 255, false, true, 2, true)
     end
 end
+
+
+function Mecano.SpawnCarRemorque()
+
+    Ora.Jobs.Jetsam.Trailer = Ora.World.Vehicle:Create("tr2", {x = 121.54, y = -1059.86, z = 28.19}, 246.81, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
+    SetNewWaypoint(121.54, -1059.86)
+    RageUI.Popup({message = "~b~Votre remorque est sortie ici, ~h~attachez-là à votre camion avant de la remplir~h~"})
+
+end
+
+function Mecano.SpawnTruckRemorque()
+
+    Ora.Jobs.Jetsam.Trailer = Ora.World.Vehicle:Create("trflat", {x = 121.54, y = -1059.86, z = 28.19}, 246.81, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
+    SetNewWaypoint(121.54, -1059.86)
+    RageUI.Popup({message = "~b~Votre remorque est sortie ici, ~h~attachez-là à votre camion avant de la remplir~h~"})
+
+end
+
+function Mecano.RangerRemorque()
+
+    if (#(vector3(121.54, -1059.86, 28.19) - GetEntityCoords(GetPlayerPed(-1))) > 15.0) then
+        return RageUI.Popup({message = "~r~Vous êtes trop loin du garage entreprise"})
+    end
+
+    if (GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
+        DeleteEntity(Ora.Jobs.Jetsam.Trailer)
+        Ora.Jobs.Jetsam.Trailer = nil
+        RageUI.Popup({message = "~b~Vous avez rangé votre remorque"})
+    else
+        RageUI.Popup({message = "~r~Vous n'avez pas sorti de remorque vous-même ou alors elle n'est pas en face de vous"})
+    end
+
+end
+
+function Mecano.SortirRampe()
+
+    local player = PlayerPedId()
+	local playerCoords = GetEntityCoords(player)
+	local radius = 5.0
+									
+	local vehicle = nil
+									
+	if IsAnyVehicleNearPoint(playerCoords, radius) then
+		vehicle = getClosestVehicle(playerCoords)
+		local vehicleName = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle))
+									
+		if contains(vehicleName, whitelist) then
+			local vehicleCoords = GetEntityCoords(vehicle)
+							
+			for _, value in pairs(offsets) do
+				if vehicleName == value.model then
+					local ramp = CreateObject(RampHash, vector3(value.offset.x, value.offset.y, value.offset.z), true, false, false)
+					AttachEntityToEntity(ramp, vehicle, GetEntityBoneIndexByName(vehicle, 'chassis'), value.offset.x, value.offset.y, value.offset.z , 180.0, 180.0, 0.0, 0, 0, 1, 0, 0, 1)
+					RageUI.Popup({message = "~g~La rampe est bien sortie."})
+				end
+			end
+			return
+		end
+		return
+		RageUI.Popup({message = "~r~Vous devez être sur la remorque."})
+	end
+
+end
+
+function Mecano.RangerRampe()
+
+    local player = PlayerPedId()
+	local playerCoords = GetEntityCoords(player)
+									
+	local object = GetClosestObjectOfType(playerCoords.x, playerCoords.y, playerCoords.z, 5.0, RampHash, false, 0, 0)
+									
+	if not IsPedInAnyVehicle(player, false) then
+		if GetHashKey(RampHash) == GetEntityModel(object) then
+			DeleteObject(object)
+			RageUI.Popup({message = "~g~La rampe est bien rentrée."})
+			return
+		end
+		RageUI.Popup({message = "~r~Vous devez être sur la rampe."})
+	end
+
+end
+
+function Mecano.AttacherVehicle()
+
+    local player = PlayerPedId()
+	local vehicle = nil
+									
+	if IsPedInAnyVehicle(player, false) then
+		vehicle = GetVehiclePedIsIn(player, false)
+		if GetPedInVehicleSeat(vehicle, -1) == player then
+			local vehicleCoords = GetEntityCoords(vehicle)
+			local vehicleOffset = GetOffsetFromEntityInWorldCoords(vehicle, 1.0, 0.0, -1.5)
+			local vehicleRotation = GetEntityRotation(vehicle, 2)
+			local belowEntity = GetVehicleBelowMe(vehicleCoords, vehicleOffset)
+			local vehicleBelowRotation = GetEntityRotation(belowEntity, 2)
+			local vehicleBelowName = GetDisplayNameFromVehicleModel(GetEntityModel(belowEntity))
+					
+			local vehiclesOffset = GetOffsetFromEntityGivenWorldCoords(belowEntity, vehicleCoords)
+						
+			local vehiclePitch = vehicleRotation.x - vehicleBelowRotation.x
+			local vehicleYaw = vehicleRotation.z - vehicleBelowRotation.z
+							
+			if contains(vehicleBelowName, whitelist) then
+				if not IsEntityAttached(vehicle) then
+					AttachEntityToEntity(vehicle, belowEntity, GetEntityBoneIndexByName(belowEntity, 'chassis'), vehiclesOffset, vehiclePitch, 0.0, vehicleYaw, false, false, true, false, 0, true)
+					return RageUI.Popup({message = "~g~Véhicule bien attaché."})
+				end
+				return RageUI.Popup({message = "~g~Véhicule bien attaché."})
+			end
+					return RageUI.Popup({message = 'Vous ne pouvez pas attacher : ' .. vehicleBelowName})
+		end
+		return RageUI.Popup({message = "~r~Vous devez être conducteur."})
+	end
+	RageUI.Popup({message = "~r~Vous devez être dans un véhicule."})
+
+end
+
+function Mecano.DetacherVehicle()
+
+    local player = PlayerPedId()
+	local vehicle = nil
+	
+    if IsPedInAnyVehicle(player, false) then
+		vehicle = GetVehiclePedIsIn(player, false)
+		if GetPedInVehicleSeat(vehicle, -1) == player then
+			if IsEntityAttached(vehicle) then
+				DetachEntity(vehicle, false, true)
+				return RageUI.Popup({message = "~g~Véhicule bien détaché."})
+			else
+				return RageUI.Popup({message = "~g~Véhicule pas attaché."})
+			end
+		else
+			return RageUI.Popup({message = "~r~Vous devez être conducteur."})
+		end
+	else
+		return RageUI.Popup({message = "~r~Vous devez être dans un véhicule."})
+	end
+
+end
