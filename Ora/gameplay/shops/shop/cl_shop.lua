@@ -2031,6 +2031,66 @@ local Shops =
             }
         },
         {
+            Title = "Mike",
+            Pos = {x = -1486.80, y = -908.34, z = 9.02, a = 231.58},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "pinces",
+                    price = 15,
+                    data = {}
+                },
+                -- {
+                --     name = "fertz",
+                --     price = 100,
+                --     data = {}
+                -- },
+                {
+                    name = "crochetage",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "menottes",
+                    price = 70,
+                    data = {}
+                },
+                {
+                    name = "darknet",
+                    price = 500,
+                    data = {}
+                },
+                {
+                    name = "molotov",
+                    price = 15000,
+                    data = {}
+                },
+                -- {
+                --     name = "allumette",
+                --     price = 100,
+                --     data = {}
+                -- },
+                -- {
+                --     name = "molotovartisanal",
+                --     price = 100,
+                --     data = {}
+                -- },
+            }
+        },
+        {
             Title = "Casino",
             Pos = {x = -1633.951, y = -2994.321, z = -79.15, a = 181.00},
             Blips = {},
