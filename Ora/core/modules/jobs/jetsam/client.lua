@@ -427,7 +427,7 @@ RegisterNUICallback(
 
 				Wait(10000)
 
-				spawnedVehicle = Ora.World.Vehicle:Create(veh.model, {x = 120.34, y = -1095.33, z = 29.2 - 0.80}, 178.34, {})
+				spawnedVehicle = Ora.World.Vehicle:Create(veh.model, {x = 120.57, y = -1116.49, z = 29.17 - 0.80}, 178.17, {})
 				
 				while (spawnedVehicle == nil) do
 					Wait(100)
