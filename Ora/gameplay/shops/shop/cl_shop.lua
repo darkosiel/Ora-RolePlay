@@ -2457,25 +2457,25 @@ local Shops =
 
             }
         },
-        {
-            Title = "Liquor Ace Sandy Shores",
-            Pos = {x = 1392.94, y = 3606.44, z = 33.98, a = 192.91},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_m_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
+        -- {
+        --     Title = "Liquor Ace Sandy Shores",
+        --     Pos = {x = 1392.94, y = 3606.44, z = 33.98, a = 192.91},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_m_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
         {
             Title = "LTD Mirror Park",
             Pos = {x = 1164.565, y = -322.121, z = 68.205, a = 100.492},
@@ -2571,82 +2571,82 @@ local Shops =
             Items = BasicShopsNorth,
             bzone = "lssd"
         },
-        {
-            Title = "LTD YOU TOOL",
-            Pos = {x = 2676.389, y = 3280.362, z = 54.241, a = 332.305},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_m_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
-        {
-            Title = "LTD Chumash",
-            Pos = {x = -3243.99, y = 999.86, z = 11.83, a = 0.0},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_y_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
-        {
-            Title = "Liquor Ace Banham Canyon",
-            Pos = {x = -2966.391, y = 391.324, z = 14.043, a = 88.867},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_y_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
-        {
-            Title = "LTD Palomino Freeway",
-            Pos = {x = 2555.474, y = 380.909, z = 107.623, a = 355.737},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_y_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
+        -- {
+        --     Title = "LTD YOU TOOL",
+        --     Pos = {x = 2676.389, y = 3280.362, z = 54.241, a = 332.305},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_m_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
+        -- {
+        --     Title = "LTD Chumash",
+        --     Pos = {x = -3243.99, y = 999.86, z = 11.83, a = 0.0},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_y_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
+        -- {
+        --     Title = "Liquor Ace Banham Canyon",
+        --     Pos = {x = -2966.391, y = 391.324, z = 14.043, a = 88.867},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_y_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
+        -- {
+        --     Title = "LTD Palomino Freeway",
+        --     Pos = {x = 2555.474, y = 380.909, z = 107.623, a = 355.737},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_y_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
         {
             Title = "LTD North Rockford Drive",
             Pos = {x = -1820.230, y = 794.343, z = 137.089, a = 130.327},
@@ -2666,63 +2666,63 @@ local Shops =
             Items = BasicShopsSouth,
             bzone = "police"
         },
-        {
-            Title = "LTD Banham Canyon",
-            Pos = {x = -3041.18, y = 583.85, z = 6.91, a = 16.09},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_m_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
-        {
-            Title = "LTD Route 68 Ouest",
-            Pos = {x = 549.35, y = 2669.06, z = 41.16, a = 90.0},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_m_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
-        {
-            Title = "Liquor Ace Route 68 Est",
-            Pos = {x = 1165.91, y = 2710.77, z = 37.16, a = 180.0},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_y_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsNorth,
-            bzone = "lssd"
-        },
+        -- {
+        --     Title = "LTD Banham Canyon",
+        --     Pos = {x = -3041.18, y = 583.85, z = 6.91, a = 16.09},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_m_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
+        -- {
+        --     Title = "LTD Route 68 Ouest",
+        --     Pos = {x = 549.35, y = 2669.06, z = 41.16, a = 90.0},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_m_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
+        -- {
+        --     Title = "Liquor Ace Route 68 Est",
+        --     Pos = {x = 1165.91, y = 2710.77, z = 37.16, a = 180.0},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_y_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsNorth,
+        --     bzone = "lssd"
+        -- },
         { -- LTD SUD
             Title = "LTD Little Seoul",
             Pos = {x = -705.9, y = -913.5, z = 18.22, a = 92.47},
