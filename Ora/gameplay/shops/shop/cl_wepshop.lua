@@ -608,6 +608,10 @@ local kevlarConfig = {
         status = 50,
         name = "Radio déportée 3"
     },
+    [46] = {
+        status = 50,
+        name = "Kevlar FIB"
+    },
     [54] = {
         status = 0,
         name = "Carte de presse"
