@@ -20,9 +20,9 @@ files {
 	'weapons/weaponanimations2.meta',
 	'weapons/pedpersonality.meta',
 	'weapons/pedpersonality2.meta',
-	'weapons/weaponsOra.meta',
+	'weapons/weaponsora.meta',
 	'weapons/explosion.ymt',
-  'weapons/recul/weaponautoshotgun.meta',
+    'weapons/recul/weaponautoshotgun.meta',
 	'weapons/recul/weaponbullpuprifle.meta',
 	'weapons/recul/weaponcombatpdw.meta',
 	'weapons/recul/weaponcompactrifle.meta',
@@ -69,7 +69,7 @@ data_file 'WEAPON_METADATA_FILE' 'weapons/weaponarchetypes.meta'
 data_file 'WEAPON_ANIMATIONS_FILE' 'weapons/weaponanimations.meta'
 data_file 'WEAPON_ANIMATIONS_FILE' 'weapons/weaponanimations2.meta'
 data_file 'LOADOUTS_FILE' 'weapons/loadouts.meta'
-data_file 'WEAPONINFO_FILE' 'weapons/weaponsOra.meta'
+data_file 'WEAPONINFO_FILE' 'weapons/weaponsora.meta'
 data_file 'PED_PERSONALITY_FILE' 'weapons/pedpersonality.meta'
 data_file 'PED_PERSONALITY_FILE' 'weapons/pedpersonality2.meta'
 data_file 'EXPLOSION_INFO_FILE' 'weapons/explosion.ymt'
