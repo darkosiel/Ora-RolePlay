@@ -21,6 +21,8 @@ files {
     "html/assets/images/*.jpg",
     "html/assets/images/wallpaper/*.jpg",
     "html/assets/images/app-icon/*.png",
+    "html/assets/images/contacts-profile-icon/*.png",
+    "html/assets/sounds/*.mp3",
     "html/assets/sounds/alarms/*.mp3",
     "html/assets/sounds/notifications/*.mp3",
     "html/assets/sounds/ringings/*.mp3",

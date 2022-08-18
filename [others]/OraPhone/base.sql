@@ -33,22 +33,29 @@ CREATE TABLE IF NOT EXISTS ora_phone (
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_contacts (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    player_uuid VARCHAR(255) NOT NULL,
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `phone_id` INT(11) NOT NULL,
     `name` varchar(255) NOT NULL,
     `number` varchar(255) NOT NULL,
-    note text,
-    avatar varchar(255)
+    `note` text,
+    `avatar` varchar(255)
+);
+
+CREATE TABLE IF NOT EXISTS ora_phone_conversations (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `target_number` VARCHAR(255) NOT NULL,
+    `last_msg_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS ora_phone_messages (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    source_uuid VARCHAR(255) NOT NULL,
-    target_uuid VARCHAR(255) NOT NULL,
-    msg_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    txt VARCHAR(255),
-    img_id INT DEFAULT NULL,
-    gps_json VARCHAR(255)
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `id_conversation` INT NOT NULL,
+    `source_number` VARCHAR(255) NOT NULL,
+    `msg_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `message` VARCHAR(255) DEFAULT NULL,
+    `img_id` INT DEFAULT NULL,
+    `gps_json` VARCHAR(255) DEFAULT NULL,
+    `is_read` TINYINT(1) NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS ora_phone_call_history (

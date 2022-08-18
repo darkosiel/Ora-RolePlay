@@ -20,6 +20,9 @@
         <button id="add-call">
             Ajouter appel
         </button>
+        <button id="refresh-contacts">
+            Refresh Contacts
+        </button>
         <label id="switch-theme-mode">
             <input type="checkbox" />
             <i></i>
@@ -483,7 +486,7 @@
                             </div>
                             <div id="app-message" class="app app-modal">
                                 <div id="app-message-body" class="app-body">
-                                    <div id="app-message-body-content-list" class="app-body-content">
+                                    <div id="app-message-body-content-list" class="app-body-content disable-select">
                                         <div class="app-body-content-header">
                                             <div class="app-body-content-header-title">
                                                 <span>Messages</span>
@@ -494,7 +497,7 @@
                                             <div class="app-body-content-header-input">
                                                 <i class="fas fa-search"></i>
                                                 <input autocomplete="off" type="text" id="app-message-body-content-list-search" placeholder="Rechercher..."/>
-                                                <i class="fas fa-times"></i>
+                                                <i id="app-message-body-content-list-search-reset" class="fas fa-times"></i>
                                             </div>
                                         </div>
                                         <div class="app-body-content-body">
@@ -546,22 +549,6 @@
                                             <div class="newmessage-list-container">
                                                 <div class="newmessage-text">Suggestions</div>
                                                 <div id="newmessage-list">
-                                                    <div class="newmessage-list-item">
-                                                        <div class="newmessage-list-item-left">
-                                                            <div class="newmessage-list-item-left-avatar">
-                                                                <i class="fa-solid fa-user-astronaut"></i>
-                                                                <i class="fa-solid fa-check"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="newmessage-list-item-right">
-                                                            <div class="newmessage-list-item-right-header">
-                                                                <span class="newmessage-list-item-right-header-name">Stephen Yustiono</span>
-                                                            </div>
-                                                            <div class="newmessage-list-item-right-body">
-                                                                <span class="newmessage-list-item-right-body-number">555-3460</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div id="newmessage-list-alphabet">
@@ -604,7 +591,7 @@
                                             </div>
                                             <div class="app-body-content-header-profil">
                                                 <div class="app-body-content-header-profil-avatar">
-                                                    <i class="fa-solid fa-user-astronaut"></i>
+                                                    <img src="./assets/images/contacts-profile-icon/50-Animals-avatar_49.png" />
                                                 </div>
                                                 <div class="app-body-content-header-profil-name">
                                                     <span>Stephen Yustiono</span>
@@ -629,17 +616,17 @@
                                 </div>
                             </div>
                             <div id="app-contacts" class="app app-modal">
-                                <div id="app-message-body" class="app-body">
-                                    <div id="app-contacts-body-content-list" class="app-body-content">
+                                <div id="app-contacts-body" class="app-body">
+                                    <div id="app-contacts-body-content-list" class="app-body-content disable-select">
                                         <div class="app-body-content-header">
                                             <div class="app-body-content-header-title">
                                                 <span>Contacts</span>
-                                                <i class="fa-solid fa-plus"></i>
+                                                <i id="contacts-list-new-contact" class="fa-solid fa-plus"></i>
                                             </div>
                                             <div class="app-body-content-header-input">
                                                 <i class="fas fa-search"></i>
                                                 <input autocomplete="off" type="text" id="app-contacts-body-content-list-search" placeholder="Rechercher..."/>
-                                                <i class="fas fa-times"></i>
+                                                <i id="app-contacts-body-content-list-search-reset" class="fas fa-times"></i>
                                             </div>
                                         </div>
                                         <div class="app-body-content-body">
@@ -648,188 +635,25 @@
                                                     <div class="contacts-list-row-letter">
                                                         <span>A</span>
                                                     </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
+                                                    <div class='contacts-list-row-item'>
+                                                        <div class='contacts-list-row-item-top'>
+                                                            <div class='contacts-list-row-item-top-avatar'>
+                                                                <img draggable='false' src='./assets/images/contacts-profile-icon/50-Animals-avatar_16.png'/>
+                                                            </div>
+                                                            <div class='contacts-list-row-item-top-name'>
+                                                                <span>Mike Bell</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Marie Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>B</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>C</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>D</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>E</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>F</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>G</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>H</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>I</span>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="contacts-list-row-item">
-                                                        <div class="contacts-list-row-item-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                        <div class="contacts-list-row-item-name">
-                                                            <span>Stephen Yustiono</span>
+                                                        <div class='contacts-list-row-item-bottom'>
+                                                            <div data-number='5559696' class='contacts-list-row-item-bottom-button'>
+                                                                <i class='fa-solid fa-envelope'></i>
+                                                            </div>
+                                                            <div data-number='5559696' class='contacts-list-row-item-bottom-button'>
+                                                                <i class='fa-solid fa-phone'></i>
+                                                            </div>
+                                                            <div data-id='1' class='contacts-list-row-item-bottom-button'>
+                                                                <i class='fa-solid fa-pen-to-square'></i>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -864,6 +688,105 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="app-contacts-body-content-newcontact" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-chevron-left"></i>
+                                                    <span class="app-cancel-button">Retour</span>
+                                                </div>
+                                                <div class="app-body-content-header-create app-body-content-header-button-action">
+                                                    <span id="newcontact-create-button">Créer</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="newcontact-profile">
+                                                <div data-title="50-Animals-avatar_49" id="newcontact-profile-icon">
+                                                    <img draggable="false" src='./assets/images/contacts-profile-icon/50-Animals-avatar_49.png'/>
+                                                </div>
+                                                <div id="newcontact-profile-name">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div class="newcontact-information">
+                                                <div class="newcontact-information-phone-number">
+                                                    <span>Portable</span>
+                                                    <div class="newcontact-information-phone-number-input">
+                                                        <span>555-</span>
+                                                        <input type="number" id="newcontact-phone-number-input">
+                                                    </div>
+                                                </div>
+                                                <div class="newcontact-information-name">
+                                                    <span>Nom</span>
+                                                    <div class="newcontact-information-name-input">
+                                                        <input type="text" id="newcontact-name-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="newcontact-icon-list">
+                                            </div>
+                                            <div class="newcontact-buttons">
+                                                <div class="newcontact-button-photo">
+                                                    <i class="fa-solid fa-camera"></i>
+                                                </div>
+                                            </div>
+                                            <div class="newcontact-icon-custom">
+                                                <input type="text" id="newcontact-icon-custom-input" placeholder="URL de l'image"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-contacts-body-content-editcontact" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-chevron-left"></i>
+                                                    <span class="app-cancel-button">Retour</span>
+                                                </div>
+                                                <div class="app-body-content-header-create app-body-content-header-button-action">
+                                                    <span id="editcontact-save-button">Enregistrer</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="newcontact-profile">
+                                                <div data-title="50-Animals-avatar_49" id="editcontact-profile-icon">
+                                                    <img draggable="false" src='./assets/images/contacts-profile-icon/50-Animals-avatar_49.png'/>
+                                                </div>
+                                                <div id="editcontact-profile-name">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div class="newcontact-information">
+                                                <div class="newcontact-information-phone-number">
+                                                    <span>Portable</span>
+                                                    <div class="newcontact-information-phone-number-input">
+                                                        <span>555-</span>
+                                                        <input type="number" id="editcontact-phone-number-input">
+                                                    </div>
+                                                </div>
+                                                <div class="newcontact-information-name">
+                                                    <span>Nom</span>
+                                                    <div class="newcontact-information-name-input">
+                                                        <input type="text" id="editcontact-name-input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="editcontact-icon-list">
+                                            </div>
+                                            <div class="newcontact-buttons">
+                                                <div class="newcontact-button-photo">
+                                                    <i class="fa-solid fa-camera"></i>
+                                                </div>
+                                            </div>
+                                            <div class="newcontact-icon-custom">
+                                                <input type="text" id="editcontact-icon-custom-input" placeholder="URL de l'image"/>
+                                            </div>
+                                            <div class="editcontact-remove">
+                                                <button id="editcontact-remove-button">Supprimer le contacte</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div id="app-settings" class="app app-modal">
@@ -882,7 +805,7 @@
                                                             <img src="./assets/images/app-settings-profile-image-default.jpg"/>
                                                         </div>
                                                         <div class="settings-list-item-left-title">
-                                                            <span>Jason Cipriani</span>
+                                                            <span class="settings-profile-full-name">xxxx xxxx</span>
                                                             <span>ID Téléphone, Nom, Numéro</span>
                                                         </div>
                                                     </div>
@@ -1110,7 +1033,7 @@
                                         <div class="app-body-content-body">
                                             <div class="settings-profile-top">
                                                 <img src="assets/images/app-settings-profile-image-default.jpg">
-                                                <span>Jason Cipriani</span>
+                                                <span class="settings-profile-full-name">xxxx xxxx</span>
                                             </div>
                                             <div class="settings-list">
                                                 <div class="settings-list-item">
@@ -1121,7 +1044,7 @@
                                                     </div>
                                                     <div class="settings-list-item-right">
                                                         <div class="settings-list-item-right-button">
-                                                            <span id="settings-list-item-serial-number">5676-5569</span>
+                                                            <span id="settings-profile-serial-number">XXXX-XXXX</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1133,7 +1056,7 @@
                                                     </div>
                                                     <div class="settings-list-item-right">
                                                         <div class="settings-list-item-right-button">
-                                                            <span id="settings-profile-first-name">Jason</span>
+                                                            <span id="settings-profile-first-name">xxxx</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1145,7 +1068,7 @@
                                                     </div>
                                                     <div class="settings-list-item-right">
                                                         <div class="settings-list-item-right-button">
-                                                            <span id="settings-profile-last-name">Cipriani</span>
+                                                            <span id="settings-profile-last-name">xxxx</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1157,7 +1080,7 @@
                                                     </div>
                                                     <div class="settings-list-item-right">
                                                         <div class="settings-list-item-right-button">
-                                                            <span id="settings-profile-number">555-5689</span>
+                                                            <span id="settings-profile-number">555-XXXX</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1391,8 +1314,13 @@
                                 <div id="app-call-body" class="app-body">
                                     <div id="app-call-body-content-callnumber" class="app-body-content disable-select">
                                         <div class="app-body-content-body">
-                                            <div class="callnumber-title">
-                                                <span>Appel vers 555-5265</span>
+                                            <div class="callnumber-info">
+                                                <div id="callnumber-icon">
+                                                    <img draggable="false" src='./assets/images/contacts-profile-icon/50-Animals-avatar_49.png'/>
+                                                </div>
+                                                <div class="callnumber-title">
+                                                    <span id="callnumber-title-number">Appel vers 555-XXXX</span>
+                                                </div>
                                             </div>
                                             <div class="callnumber-buttons">
                                                 <div id="callnumber-button-hangup" class="call-button call-button-hangup">
@@ -1420,7 +1348,7 @@
                                         <div class="app-body-content-body">
                                             <div class="callnumber-title">
                                                 <span>Appel en cours</span>
-                                                <span>00:36</span>
+                                                <span id="callstarted-time">00:36</span>
                                             </div>
                                             <div class="callnumber-buttons">
                                                 <div id="callstarted-button-hangup" class="call-button call-button-hangup">
@@ -1428,6 +1356,105 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-phone" class="app app-tabbed">
+                                <div class="app-body">
+                                    <div id="app-templatetabbed-body-content-tab1" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Parent Title</span>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <span>Action</span>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Tab 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            
+                                        </div>
+                                    </div>
+                                    <div id="app-templatetabbed-body-content-tab2" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Parent Title</span>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <span>Action</span>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Tab 2</span>
+                                            </div>
+                                        </div>
+                                        <div id="alarm-list" class="app-body-content-body">
+                                            
+                                        </div>
+                                    </div>
+                                    <div id="app-templatetabbed-body-content-tab3" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Parent Title</span>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <span>Action</span>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Tab 3</span>
+                                            </div>
+                                        </div>
+                                        <div id="alarm-list" class="app-body-content-body">
+                                            
+                                        </div>
+                                    </div>
+                                    <div id="app-templatetabbed-body-content-tab4" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Parent Title</span>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <span>Action</span>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Tab 4</span>
+                                            </div>
+                                        </div>
+                                        <div id="alarm-list" class="app-body-content-body">
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="app-tab">
+                                    <div id="app-tab-button-tab1" class="app-tab-button active">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>Tab 1</span>
+                                    </div>
+                                    <div id="app-tab-button-tab2" class="app-tab-button">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>Lablel</span>
+                                    </div>
+                                    <div id="app-tab-button-tab3" class="app-tab-button">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>Lablel</span>
+                                    </div>
+                                    <div id="app-tab-button-tab4" class="app-tab-button">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>Lablel</span>
                                     </div>
                                 </div>
                             </div>
@@ -1499,7 +1526,7 @@
                                 </div>
                                 <div class="topbar-box topbar-box-nobackground" id="topbar-box-slider">
                                     <div class="topbar-box-button">
-                                        <input id="topbar-box-button-slider-luminosity" class="topbar-box-button-slider" value="10" type="range" min="1" max="10">
+                                        <input id="topbar-box-button-slider-luminosity" class="topbar-box-button-slider" value="100" type="range" min="10" max="100">
                                         <i class="fa-solid fa-sun"></i>
                                     </div>
                                     <div class="topbar-box-button">

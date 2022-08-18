@@ -36,6 +36,14 @@ $ora-app-clock-icon-width: 53px;
     -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
+.enable-select {
+    user-select: auto; /* supported by Chrome and Opera */
+    -webkit-user-select: auto; /* Safari */
+    -khtml-user-select: auto; /* Konqueror HTML */
+    -moz-user-select: auto; /* Firefox */
+    -ms-user-select: auto; /* Internet Explorer/Edge */
+}
+
 .success {
     color: $color-ora-success !important;
 }
@@ -670,24 +678,26 @@ div#page {
                                                 height: 100%;
                                                 overflow: scroll;
                                                 z-index: 1;
+                                                &#message-list {
+                                                    row-gap: 10px;
+                                                }
                                                 div.app-body-content-body-list-item {
                                                     flex-direction: row;
                                                     align-items: center;
                                                     width: 100%;
                                                     height: 68px;
-                                                    padding-right: 15px;
                                                     cursor: pointer;
                                                     div.message-list-item-left {
                                                         display: flex;
                                                         align-items: center;
-                                                        width: auto;
+                                                        width: 15%;
                                                         height: 100%;
                                                         div.message-list-item-left-avatar {
                                                             display: flex;
                                                             justify-content: center;
                                                             align-self: center;
-                                                            width: 45px;
-                                                            height: 45px;
+                                                            width: 50px;
+                                                            height: 50px;
                                                             padding: 10px;
                                                             border-radius: 50%;
                                                             transition: all 0.3s ease-in-out;
@@ -704,7 +714,7 @@ div#page {
                                                         }
                                                     }
                                                     div.message-list-item-right {
-                                                        width: auto;
+                                                        width: 85%;
                                                         height: 100%;
                                                         margin-left: 10px;
                                                         @include themed() {
@@ -720,13 +730,19 @@ div#page {
                                                             align-items: center;
                                                             margin-top: 2px;
                                                             div.message-list-item-right-header-name {
+                                                                width: 80%;
                                                                 span {
                                                                     font-size: 17px;
                                                                     font-family: $ora-font-bold;
+                                                                    @extend %text-max-line-1;
                                                                     @include themed() {
                                                                         color: t($phone-app-label-color-primary);
                                                                     }
                                                                 }
+                                                            }
+                                                            div.message-list-item-right-header-date {
+                                                                width: 20%;
+                                                                text-align: right;
                                                             }
                                                         }
                                                         div.message-list-item-right-body {
@@ -743,64 +759,96 @@ div#page {
                                                     display: block;
                                                     padding: 0;
                                                     div.contacts-list-row {
+                                                        padding-top: 10px;
                                                         div.contacts-list-row-letter {
-                                                            position: sticky;
                                                             display: flex;
                                                             align-items: center;
-                                                            width: 100%;
+                                                            width: 85%;
                                                             height: 30px;
-                                                            top: 0;
-                                                            padding-left: 20px;
+                                                            margin-left: 20px;
+                                                            padding-left: 5px;
+                                                            border-bottom-width: 2px;
+                                                            border-bottom-style: solid;
                                                             z-index: 2;
                                                             cursor: pointer;
+                                                            transition: all 0.3s ease-in-out;
                                                             @include themed() {
-                                                                background-color: t($phone-system-color-gray-4);
+                                                                border-bottom-color: t($phone-system-color-gray-4);
                                                             }
                                                             span {
                                                                 font-size: 20px;
                                                                 font-family: $ora-font-bold;
+                                                                transition: all 0.3s ease-in-out;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
                                                             }
                                                         }
                                                         div.contacts-list-row-item {
-                                                            display: flex;
-                                                            align-items: center;
-                                                            column-gap: 15px;
-                                                            width: 90%;
-                                                            height: 44px;
-                                                            margin: 0 auto;
+                                                            width: 85%;
+                                                            height: 50px;
+                                                            margin-left: 20px;
                                                             border-bottom-width: 2px;
                                                             border-bottom-style: solid;
+                                                            overflow: hidden;
                                                             z-index: 1;
-                                                            cursor: pointer;
+                                                            transition: all 0.3s ease-in-out;
                                                             @include themed() {
                                                                 border-bottom-color: t($phone-system-color-gray-4);
                                                             }
-                                                            &:last-child {
-                                                                border: 0;
+                                                            &.active {
+                                                                height: 94px;
                                                             }
-                                                            div.contacts-list-row-item-avatar {
+                                                            div.contacts-list-row-item-top {
                                                                 display: flex;
-                                                                justify-content: center;
-                                                                align-self: center;
-                                                                width: 35px;
-                                                                height: 35px;
-                                                                padding: 10px;
-                                                                border-radius: 50%;
-                                                                transition: all 0.3s ease-in-out;
-                                                                @include themed() {
-                                                                    background-color: t($phone-system-color-green);
-                                                                }
-                                                                i {
-                                                                    font-size: 18px;
+                                                                align-items: center;
+                                                                column-gap: 15px;
+                                                                cursor: pointer;
+                                                                div.contacts-list-row-item-top-avatar {
+                                                                    width: 48px;
+                                                                    height: 48px;
+                                                                    border-radius: 50%;
+                                                                    border: 4px solid transparent;
                                                                     transition: all 0.3s ease-in-out;
-                                                                    @include themed() {
-                                                                        color: t($phone-app-label-color-primary);
+                                                                    &.url {
+                                                                        overflow: hidden;
+                                                                    }
+                                                                    img {
+                                                                        width: 100%;
+                                                                        height: auto;
+                                                                    }
+                                                                }
+                                                                div.contacts-list-row-item-top-name {
+                                                                    span {
+                                                                        font-size: 20px;
+                                                                        transition: all 0.3s ease-in-out;
+                                                                        @include themed() {
+                                                                            color: t($phone-app-label-color-primary);
+                                                                        }
                                                                     }
                                                                 }
                                                             }
-                                                            div.contacts-list-row-item-name {
-                                                                span {
-                                                                    font-size: 20px;
+                                                            div.contacts-list-row-item-bottom {
+                                                                display: flex;
+                                                                justify-content: space-around;
+                                                                align-items: center;
+                                                                margin-top: 8px;
+                                                                div.contacts-list-row-item-bottom-button {
+                                                                    cursor: pointer;
+                                                                    i {
+                                                                        font-size: 24px;
+                                                                        @include themed() {
+                                                                            color: t($phone-app-label-color-primary);
+                                                                        }
+                                                                    }
+                                                                }
+                                                                div.contacts-list-row-item-bottom-phone-number {
+                                                                    display: flex;
+                                                                    justify-content: center;
+                                                                    margin-top: 10px;
+                                                                    span {
+                                                                        font-size: 20px;
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -811,9 +859,9 @@ div#page {
                                                 position: absolute;
                                                 display: flex;
                                                 flex-direction: column;
-                                                width: 10%;
+                                                width: 8%;
                                                 height: 100%;
-                                                top: 40px;
+                                                top: 20px;
                                                 right: 5px;
                                                 z-index: 2;
                                                 span {
@@ -1487,6 +1535,32 @@ div#page {
                             }
                             &#app-message {
                                 div.app-body {
+                                    div#app-message-body-content-list {
+                                        div.app-body-content-body {
+                                            div#message-list {
+                                                flex-wrap: nowrap;
+                                                div.app-body-content-body-list-item {
+                                                    div.message-list-item-left {
+                                                        div.message-list-item-left-avatar {
+                                                            display: block;
+                                                            width: 45px;
+                                                            height: 45px;
+                                                            padding: 0;
+                                                            border-radius: 50%;
+                                                            background-color: transparent;
+                                                            &.url {
+                                                                overflow: hidden;
+                                                            }
+                                                            img {
+                                                                width: 100%;
+                                                                height: auto;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                     div#app-message-body-content-newmessage {
                                         div.app-body-content-header {
                                             justify-content: center;
@@ -1535,36 +1609,41 @@ div#page {
                                                                     @include themed() {
                                                                         background-color: t($phone-app-label-color-active);
                                                                     }
-                                                                    img, i:not(.fa-check) {
+                                                                    img {
                                                                         display: none;
                                                                     }
-                                                                    i.fa-check {
+                                                                    i {
                                                                         display: block;
                                                                     }
+                                                                    
                                                                 }
                                                             }
                                                         }
                                                         div.newmessage-list-item-left {
                                                             display: flex;
                                                             align-items: center;
-                                                            width: 45px;
+                                                            width: 48px;
                                                             height: 100%;
                                                             div.newmessage-list-item-left-avatar {
-                                                                display: flex;
-                                                                justify-content: center;
-                                                                align-self: center;
-                                                                width: 45px;
-                                                                height: 45px;
-                                                                padding: 10px;
+                                                                width: 48px;
+                                                                height: 48px;
                                                                 border-radius: 50%;
-                                                                @include themed() {
-                                                                    background-color: t($phone-system-color-green);
+                                                                border: 4px solid transparent;
+                                                                transition: all 0.3s ease-in-out;
+                                                                &.url {
+                                                                    overflow: hidden;
+                                                                }
+                                                                img {
+                                                                    width: 100%;
+                                                                    height: auto;
                                                                 }
                                                                 i {
+                                                                    position: absolute;
+                                                                    display: none;
+                                                                    left: 50%;
+                                                                    top: 50%;
+                                                                    transform: translate(-50%, -50%);
                                                                     font-size: 22px;
-                                                                    &.fa-check {
-                                                                        display: none;
-                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -1635,6 +1714,7 @@ div#page {
                                                 flex-direction: column;
                                                 justify-content: center;
                                                 align-items: center;
+                                                width: 43%;
                                                 top: 50%;
                                                 left: 50%;
                                                 transform: translate(-50%, -50%);
@@ -1645,21 +1725,32 @@ div#page {
                                                     }
                                                 }
                                                 div.app-body-content-header-profil-avatar {
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
+                                                    display: block;
                                                     width: 39px;
                                                     height: 39px;
-                                                    padding: 10px;
+                                                    padding: 0;
                                                     border-radius: 50%;
-                                                    @include themed() {
-                                                        background-color: t($phone-system-color-green);
-                                                        color: t($phone-app-label-color-primary);
+                                                    background-color: transparent;
+                                                    &.url {
+                                                        overflow: hidden;
+                                                    }
+                                                    img {
+                                                        width: 100%;
+                                                        height: auto;
                                                     }
                                                 }
                                                 div.app-body-content-header-profil-name {
+                                                    display: flex;
+                                                    align-items: center;
                                                     span, i {
                                                         font-size: 12px;
+                                                    }
+                                                    span {
+                                                        @extend %text-max-line-1;
+                                                    }
+                                                    i {
+                                                        display: flex;
+                                                        align-items: center;
                                                     }
                                                 }
                                             }
@@ -1734,9 +1825,7 @@ div#page {
                                                         }
                                                         date {
                                                             top: -20px;
-                                                            left:auto;
-                                                            right:0;
-                                                            font-size:12px;
+                                                            font-size: 12px;
                                                         }
                                                         &:hover {
                                                             transform: translateY(18px);
@@ -1765,6 +1854,10 @@ div#page {
                                                         @include themed() {
                                                             background-color: t($phone-app-label-color-active);
                                                         }
+                                                        date {
+                                                            left: auto;
+                                                            right: 0;
+                                                        }
                                                         &:before {
                                                             right: -8px;
                                                             border-right-width: 20px;
@@ -1786,6 +1879,10 @@ div#page {
                                                         float: left;
                                                         @include themed() {
                                                             color: t($phone-system-color-black);
+                                                        }
+                                                        date {
+                                                            right: auto;
+                                                            left: 0;
                                                         }
                                                         &:before {
                                                             z-index: 2;
@@ -1945,6 +2042,209 @@ div#page {
                                         div.app-body-content-body {
                                             padding: 0;
                                         }
+                                        &#app-contacts-body-content-newcontact,&#app-contacts-body-content-editcontact {
+                                            div.app-body-content-header {
+                                                height: 48px;
+                                            }
+                                            div.app-body-content-body {
+                                                height: calc(100% - 48px);
+                                                div.newcontact-profile {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    div#newcontact-profile-icon, div#editcontact-profile-icon {
+                                                        width: 80px;
+                                                        height: 80px;
+                                                        border-radius: 50%;
+                                                        border-width: 4px;
+                                                        border-style: solid;
+                                                        border-color: transparent;
+                                                        &.url {
+                                                            overflow: hidden;
+                                                        }
+                                                        &.active {
+                                                            @include themed() {
+                                                                border-color: t($phone-app-label-color-active);
+                                                            }
+                                                        }
+                                                        img {
+                                                            width: 100%;
+                                                            height: auto;
+                                                        }
+                                                    }
+                                                    div#newcontact-profile-name, div#editcontact-profile-name {
+                                                        height: 27px;
+                                                        span {
+                                                            font-size: 22px;
+                                                            font-family: $ora-font-semibold;
+                                                            transition: all 0.3s ease-in-out;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-primary);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                div.newcontact-information {
+                                                    > div {
+                                                        display: flex;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        width: 100%;
+                                                        padding: 8px 20px;
+                                                        border-bottom-width: 2px;
+                                                        border-bottom-style: solid;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-system-color-gray-4);
+                                                        }
+                                                    }
+                                                    div.newcontact-information-phone-number, div.newcontact-information-name {
+                                                        > span {
+                                                            font-family: $ora-font-semibold;
+                                                            font-size: 22px;
+                                                            transition: all 0.3s ease-in-out;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-primary);
+                                                            }
+                                                        }
+                                                        div.newcontact-information-phone-number-input, div.newcontact-information-name-input {
+                                                            display: flex;
+                                                            align-items: center;
+                                                            width: 230px;
+                                                            height: 34px;
+                                                            padding: 5px 10px;
+                                                            border-radius: 10px;
+                                                            transition: all 0.3s ease-in-out;
+                                                            @include themed() {
+                                                                background-color: t($phone-system-color-gray-4);
+                                                            }
+                                                            span, input {
+                                                                font-size: 20px;
+                                                                transition: all 0.3s ease-in-out;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                            }
+                                                            input {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                border: none;
+                                                                background-color: transparent;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                div#newcontact-icon-list, div#editcontact-icon-list {
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    justify-content: space-around;
+                                                    align-items: flex-start;
+                                                    flex-wrap: wrap;
+                                                    row-gap: 10px;
+                                                    width: 100%;
+                                                    max-height: 280px;
+                                                    margin-top: 10px;
+                                                    padding: 8px;
+                                                    overflow-y: scroll;
+                                                    overflow-x: hidden;
+                                                    div.newcontact-icon-list-item {
+                                                        width: 70px;
+                                                        height: 70px;
+                                                        border-radius: 50%;
+                                                        border-width: 4px;
+                                                        border-style: solid;
+                                                        border-color: transparent;
+                                                        cursor: pointer;
+                                                        &.active {
+                                                            @include themed() {
+                                                                border-color: t($phone-app-label-color-active);
+                                                            }
+                                                        }
+                                                        img {
+                                                            width: 100%;
+                                                            height: auto;
+                                                        }
+                                                    }
+                                                }
+                                                ::-webkit-scrollbar {
+                                                    display: block;
+                                                    width: 12px;
+                                                    transition: all .5s;
+                                                    z-index: 10;
+                                                }
+                                                ::-webkit-scrollbar-track {
+                                                    background-color: transparent;
+                                                }
+                                                ::-webkit-scrollbar-thumb {
+                                                    background-color: #bec4c8; 
+                                                    border-radius: 3px;
+                                                }
+                                                div.newcontact-buttons {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    padding: 15px;
+                                                    border-bottom-width: 2px;
+                                                    border-bottom-style: solid;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        border-bottom-color: t($phone-system-color-gray-4);
+                                                    }
+                                                    div.newcontact-button-photo {
+                                                        cursor: pointer;
+                                                        i {
+                                                            font-size: 62px;
+                                                            transition: all 0.3s ease-in-out;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-primary);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                div.newcontact-icon-custom {
+                                                    padding: 10px 20px;
+                                                    border-bottom-width: 2px;
+                                                    border-bottom-style: solid;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        border-bottom-color: t($phone-system-color-gray-4);
+                                                    }
+                                                    input#newcontact-icon-custom-input, input#editcontact-icon-custom-input {
+                                                        width: 100%;
+                                                        height: 34px;
+                                                        border: none;
+                                                        padding: 5px 10px;
+                                                        border-radius: 10px;
+                                                        font-size: 20px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                            background-color: t($phone-system-color-gray-4);
+                                                        }
+                                                    }
+                                                }
+                                                div.editcontact-remove {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    width: 100%;
+                                                    margin-top: 20px;
+                                                    button#editcontact-remove-button {
+                                                        width: 70%;
+                                                        height: 40px;
+                                                        border: none;
+                                                        text-align: center;
+                                                        font-size: 20px;
+                                                        font-family: $ora-font-semibold;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            color: t($phone-system-color-red);
+                                                            background-color: t($phone-system-color-gray-4);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -1976,6 +2276,9 @@ div#page {
                                                     width: auto;
                                                     font-family: $ora-font-semibold;
                                                     font-size: 24px;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
                                                 }
                                             }
                                             div.settings-list, div#settings-profile {
@@ -2135,6 +2438,11 @@ div#page {
                                                                     &.active {
                                                                         display: block;
                                                                     }
+                                                                }
+                                                            }
+                                                            span {
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
                                                                 }
                                                             }
                                                             label {
@@ -2439,9 +2747,6 @@ div#page {
                             }
                             &#app-call {
                                 div.app-body {
-                                    div#app-call-body-content-callnumber {
-
-                                    }
                                     div.app-body-content {
                                         div.app-body-content-body {
                                             display: flex;
@@ -2449,6 +2754,27 @@ div#page {
                                             justify-content: space-around;
                                             align-items: center;
                                             height: 100%;
+                                            div.callnumber-info {
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-items: center;
+                                                row-gap: 15px;
+                                            }
+                                            div#callnumber-icon {
+                                                width: 120px;
+                                                height: 120px;
+                                                border-radius: 50%;
+                                                border-width: 4px;
+                                                border-style: solid;
+                                                border-color: transparent;
+                                                &.url {
+                                                    overflow: hidden;
+                                                }
+                                                img {
+                                                    width: 100%;
+                                                    height: auto;
+                                                }
+                                            }
                                             div.callnumber-title {
                                                 display: flex;
                                                 flex-direction: column;
@@ -2887,7 +3213,7 @@ div#page {
     }
 }
 
-button#add-notification, button#add-call {
+button#add-notification, button#add-call, button#refresh-contacts {
     height: 40px;
     padding: 5px;
     background-color: black;
@@ -2899,6 +3225,10 @@ button#add-notification, button#add-call {
 
 button#add-call {
     top: 120px;
+}
+
+button#refresh-contacts {
+    top: 180px;
 }
 
 #notification-container {
@@ -3011,26 +3341,18 @@ button#add-call {
                     }
                 }
                 div.notification-item-main-avatar {
-                    display: flex;
-                    justify-content: center;
-                    align-self: center;
-                    width: 60px;
-                    height: 60px;
-                    padding: 10px;
+                    width: 65px;
+                    height: 65px;
                     border-radius: 50%;
-                    transition: all 0.3s ease-in-out;
-                    @include themed() {
-                        background-color: t($phone-system-color-green);
+                    border-width: 4px;
+                    border-style: solid;
+                    border-color: transparent;
+                    &.url {
+                        overflow: hidden;
                     }
-                    i {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 22px;
-                        transition: all 0.3s ease-in-out;
-                        @include themed() {
-                            color: t($phone-app-label-color-primary);
-                        }
+                    img {
+                        width: 100%;
+                        height: auto;
                     }
                 }
                 div.notification-item-main-info {
