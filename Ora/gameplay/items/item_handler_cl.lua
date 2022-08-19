@@ -1334,7 +1334,18 @@ function EquipWeapon(weapon)
     local name = weapon_name[weapon.name]
     if HasPedGotWeapon(LocalPlayer().Ped, GetHashKey(name), false) then
         RemoveWeaponFromPed(playerPed, GetHashKey(name))
+        Ora.Inventory.CurrentWeapon = {
+            Label = nil, Name = nil, id = nil
+        }
     else
+        -- if player already have a weapon, putting it away before equip the new one
+        if Ora.Inventory.CurrentWeapon.Name then
+            RemoveWeaponFromPed(playerPed, Ora.Inventory.CurrentWeapon.Name)
+            Ora.Inventory.CurrentWeapon = {
+                Label = nil, Name = nil, id = nil
+            }
+        end
+
         if (weapon.name == "parachute") then
             GiveWeaponToPed(LocalPlayer().Ped, GetHashKey("GADGET_PARACHUTE"), true)
             SetCurrentPedWeapon(LocalPlayer().Ped, GetHashKey("GADGET_PARACHUTE"), true)
@@ -1403,6 +1414,7 @@ Citizen.CreateThread(
             playerPed = LocalPlayer().Ped
             local currentWeapon = GetSelectedPedWeapon(playerPed)
 
+            SetWeaponsNoAutoswap(true)
             -- Jerrican
             if (currentWeapon == 883325847) then
                 local playerCoords = LocalPlayer().Pos
@@ -1505,8 +1517,13 @@ Citizen.CreateThread(
                 end
 
                 if Ora.Inventory.Data[Ora.Inventory.CurrentMunition] ~= nil then
-                    item = Ora.Inventory.Data[Ora.Inventory.CurrentMunition][1].id
                     Ora.Inventory.CurrentAmmo = Ora.Inventory.CurrentAmmo - 1
+                    local _, maxAmmo = GetMaxAmmo(LocalPlayer().Ped, Ora.Inventory.CurrentWeapon.Label)
+                    print(Ora.Inventory.CurrentAmmo, GetAmmoInPedWeapon(LocalPlayer().Ped, currentWeapon), maxAmmo)
+                    if Ora.Inventory.CurrentAmmo > maxAmmo then
+                        SetPedAmmo(LocalPlayer().Ped, currentWeapon, Ora.Inventory.CurrentAmmo)
+                    end
+                    print(Ora.Inventory.CurrentAmmo, GetAmmoInPedWeapon(LocalPlayer().Ped, currentWeapon))
                     Ora.Inventory:RemoveFirstItem(Ora.Inventory.CurrentMunition)
                 end
             end
@@ -2595,7 +2612,7 @@ end
 ShowNotification = function(msg)
     SetNotificationTextEntry("STRING")
     AddTextComponentSubstringWebsite(msg)
-    DrawNotification(false, true)
+    return EndTextCommandThefeedPostTicker(false, true)
 end
 exports(
     "lavage",

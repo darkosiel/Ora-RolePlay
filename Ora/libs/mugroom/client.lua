@@ -151,7 +151,7 @@ AddEventHandler(
                 ClearPlayerWantedLevel(PlayerId())
                 ClearPedTasksImmediately(PlayerPed)
                 if Users[1].position == nil then
-                    Users[1].position = json.encode({x = -1041.58, y = -2744.09, z = 21.36})
+                    Users[1].position = json.encode({x = -1041.58, y = -2744.09, z = 21.36, heading = 0.0})
                 end
 
                 local position = json.decode(Users[1].position)

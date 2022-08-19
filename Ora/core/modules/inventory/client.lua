@@ -47,6 +47,16 @@ local Infos = {
     end
 }
 
+local ItemsThatAreWeaponsAndAmmo = {
+    can = true,
+    --snowball = true, -- not implemented yet, but weapon exists
+}
+
+local ItemsThatGiveEmptyCan = {
+    water = true,
+    cola = true,
+}
+
 
 --[[
     __                     __   ______                 __  _                 
@@ -254,7 +264,7 @@ function Ora.Inventory:SetWeapon(weapon, number)
 
         if weapon ~= nil then
             for k, v in pairs(self.Data[weapon.name]) do
-                if v.id == weapon.id then
+                if v.id == weapon.id or ItemsThatAreWeaponsAndAmmo[weapon.name] then -- définir le data slot de chaque item (pour les canettes notamment)
                     if self.Data[weapon.name][k].data then
                         self.Data[weapon.name][k].data.equipedSlot = number
                     else
@@ -320,6 +330,16 @@ function Ora.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to r
                     table.remove(self.Data[itemName], i)
                     if itemName == "clothe" then
                         RefreshClothes()
+                    end
+                    if itemName == self.CurrentMunition then
+                        self.CurrentAmmo = #self.Data[itemName]
+                        SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
+                        if ItemsThatAreWeaponsAndAmmo[itemName] and self.CurrentWeapon.Name ~= 0 then
+                            self.CurrentWeapon = {
+                                Name = nil, Label = nil, id = nil
+                            }
+                            RemoveWeaponFromPed(LocalPlayer().Ped, self.CurrentWeapon.Name)
+                        end
                     end
                     break
                 end
@@ -388,6 +408,9 @@ function Ora.Inventory:RemoveFirstItem(itemName)
         _i = inv[i]
         if _i ~= nil then break end
     end
+    if Items[itemName].category == "weapon" and #inv == 1 then -- prevent ui inventory still showing in weapon slot even if player doesn't have any left
+        self:SetWeapon(nil, inv[1].data.equipedSlot)
+    end
     self:RemoveItem(_i)
 end
 
@@ -428,10 +451,12 @@ function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refr
             cp = k
         end
     end
-    if item.name == weapon_munition[cp] then
-        AddAmmoToPed(GetPlayerPed(-1), self.CurrentWeapon.Name, 1)
-    end
     table.insert(T, {name = item.name, id = item.id, data = item.data, label = item.label})
+    if item.name == weapon_munition[cp] then
+        self.CurrentMunition = item.name
+        self.CurrentAmmo = #self.Data[item.name]
+        SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
+    end
     RageUI.Popup({message = "Vous avez reçu un(e) ~b~" .. string.lower(Items[item.name].label) .. "(s)"})
     if not isntRefreshing then
         self:RefreshWeight()
@@ -662,6 +687,9 @@ function Ora.Inventory:UseItem(item)
         SpecialProps(item)
     elseif Items[item.name].category == "food" then
         TriggerEvent("miam:Drink", item, Items)
+        if ItemsThatGiveEmptyCan[item.name] ~= nil then
+            self:AddItem({name = "can"})
+        end
         self:RemoveItem(item)
     elseif Items[item.name].category == "consumable" then
         if (Items[item.name].actionCl ~= nil) then
