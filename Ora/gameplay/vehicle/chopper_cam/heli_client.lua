@@ -313,7 +313,7 @@ Citizen.CreateThread(function()
 				end
 
 				HandleZoom(cam)
-        HideHUDThisFrame()
+        		HideHUDThisFrame()
 				PushScaleformMovieFunction(scaleform, "SET_ALT_FOV_HEADING")
 				PushScaleformMovieFunctionParameterFloat(GetEntityCoords(heli).z)
 				PushScaleformMovieFunctionParameterFloat(zoomvalue)
