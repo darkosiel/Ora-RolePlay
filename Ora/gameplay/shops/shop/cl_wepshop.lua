@@ -54,7 +54,7 @@ local WeaponsFct =
         weaponClasses = {}
     }
 weapon_name = {
-    ["glif4"] = "WEAPON_FLASHBANG",
+    ["gm2l"] = "WEAPON_FLASHBANG",
     can = "WEAPON_CANETTE",
     parachute = "gadget_parachute",
     pistol = "WEAPON_PISTOL",
@@ -192,7 +192,7 @@ weapon_munition = {
     bombsticky = "bombsticky",
     molotov ="molotov",
     can = "can",
-    ["glif4"] = "glif4",
+    ["gm2l"] = "gm2l",
     brick = "weapon_snowball",
     parachute = nil,
     --- smg
