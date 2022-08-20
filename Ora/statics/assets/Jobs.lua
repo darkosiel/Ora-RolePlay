@@ -2112,7 +2112,7 @@ Jobs = {
             traitement6 = {
                 --Café
                 type = "traitement",
-                workSize = 5,
+                workSize = 10.0,
                 blipcolor = 7,
                 blipname = "Miror - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
@@ -3023,7 +3023,7 @@ Jobs = {
             traitement7 = {
                 --Café
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 10.0,
                 blipcolor = 7,
                 blipname = "BurgerShot - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
@@ -11535,7 +11535,7 @@ Jobs = {
             traitement2 = {
                 --Café
                 type = "traitement",
-                workSize = 1.20,
+                workSize = 10.0,
                 blipcolor = 7,
                 blipname = "Unicorn - Traitement Café",
                 Pos = {x = 2542.21, y = 2584.90, z = 37.00},
