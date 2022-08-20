@@ -1843,8 +1843,8 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
-    ["gm2l"] = {
-        label = "GM2L",
+    ["glif4"] = {
+        label = "GLI F4",
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
