@@ -1,46 +1,43 @@
 Citizen.CreateThread(function()
-	local allowedWeapons = {"WEAPON_KNIFE", "WEAPON_BOTTLE", "WEAPON_DAGGER", "WEAPON_HATCHET", "WEAPON_MACHETE", "WEAPON_SWITCHBLADE"}
-	local animDict = "melee@knife@streamed_core_fps"
-	local animName = "ground_attack_on_spot"
-
 	while true do
-		local plyPed = LocalPlayer().Ped
-		if Ora.Inventory.CurrentWeapon.Label ~= nil then
-			local vehicle = GetClosestVehicleToPlayer()
-			if vehicle ~= 0 then
-				if CanUseWeapon(allowedWeapons) then
-					local closestTire = GetClosestVehicleTire(vehicle)
-					if closestTire ~= nil then
+		local allowedWeapons = {"WEAPON_KNIFE", "WEAPON_BOTTLE", "WEAPON_DAGGER", "WEAPON_HATCHET", "WEAPON_MACHETE", "WEAPON_SWITCHBLADE"}
+		local player = PlayerId()
+		local plyPed = GetPlayerPed(player)
+		local vehicle = GetClosestVehicleToPlayer()
+		local animDict = "melee@knife@streamed_core_fps"
+		local animName = "ground_attack_on_spot"
+		if vehicle ~= 0 then
+			if CanUseWeapon(allowedWeapons) then
+				local closestTire = GetClosestVehicleTire(vehicle)
+				if closestTire ~= nil then
+					
+					if IsVehicleTyreBurst(vehicle, closestTire.tireIndex, 0) == false then
+						Draw3DText(closestTire.bonePos.x, closestTire.bonePos.y, closestTire.bonePos.z, tostring("~r~[E] CREVER PNEU"))
+						if IsControlJustPressed(1, 38) then
 
-						if IsVehicleTyreBurst(vehicle, closestTire.tireIndex, 0) == false then
-							Draw3DText(closestTire.bonePos.x, closestTire.bonePos.y, closestTire.bonePos.z, tostring("~r~[E] CREVER PNEU"))
-							if IsControlJustPressed(1, 38) then
-
-								RequestAnimDict(animDict)
-								while not HasAnimDictLoaded(animDict) do
-									Citizen.Wait(100)
-								end
-
-								local animDuration = GetAnimDuration(animDict, animName)
-								TaskPlayAnim(plyPed, animDict, animName, 8.0, -8.0, animDuration, 15, 1.0, 0, 0, 0)
-								Citizen.Wait((animDuration / 2) * 1000)
-
-								local driverOfVehicleServerId = GetDriverOfVehicle(vehicle)
-								print("driverOfVehicleServerId: " .. driverOfVehicleServerId)
-								if driverOfVehicleServerId < 1 then
-									SetVehicleTyreBurst(vehicle, closestTire.tireIndex, 0, 100.0)
-								else
-									TriggerServerEvent("SlashTires:TargetClient", driverOfVehicleServerId, closestTire.tireIndex)
-								end
-								Citizen.Wait((animDuration / 2) * 1000)
-								ClearPedTasksImmediately(plyPed)
+							RequestAnimDict(animDict)
+							while not HasAnimDictLoaded(animDict) do
+								Citizen.Wait(100)
 							end
+
+							local animDuration = GetAnimDuration(animDict, animName)
+							TaskPlayAnim(plyPed, animDict, animName, 8.0, -8.0, animDuration, 15, 1.0, 0, 0, 0)
+							Citizen.Wait((animDuration / 2) * 1000)
+
+							local driverOfVehicle = GetDriverOfVehicle(vehicle)
+							local driverServer = GetPlayerServerId(driverOfVehicle)
+
+							if driverServer == 0 then
+								SetVehicleTyreBurst(vehicle, closestTire.tireIndex, 0, 100.0)
+							else
+								TriggerServerEvent("SlashTires:TargetClient", driverServer, closestTire.tireIndex)
+							end
+							Citizen.Wait((animDuration / 2) * 1000)
+							ClearPedTasksImmediately(plyPed)
 						end
 					end
 				end
 			end
-		else
-			Citizen.Wait(1000)
 		end
 		Citizen.Wait(0)
 	end
@@ -48,19 +45,17 @@ end)
 
 RegisterNetEvent("SlashTires:SlashClientTire")
 AddEventHandler("SlashTires:SlashClientTire", function(tireIndex)
-	local plyPed = LocalPlayer().Ped
+	local player = PlayerId()
+	local plyPed = GetPlayerPed(player)
 	local vehicle = GetVehiclePedIsIn(plyPed, false)
 	SetVehicleTyreBurst(vehicle, tireIndex, 0, 100.0)
-	print("Issue here, i'm not the driver of the vehicle")
 end)
 
 function GetDriverOfVehicle(vehicle)
 	local dPed = GetPedInVehicleSeat(vehicle, -1)
-	if dPed ~= 0 then
-		for _, playerId in pairs(GetPlayers()) do
-			if playerId == GetPlayerServerId(dPed) then
-				return playerId
-			end
+	for a = 0, 32 do
+		if dPed == GetPlayerPed(a) then
+			return a
 		end
 	end
 	return -1

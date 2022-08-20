@@ -1482,51 +1482,49 @@ Citizen.CreateThread(
                 end
             end
 
-            if not onShooting then
-                if IsPedShooting(playerPed) then
-                    if IsARealWeapon(currentWeapon) then
-                        DecorSetBool(playerPed, "powder", true)
-                        TriggerServerEvent("Ora_status:addOn", "powder")
+            if IsPedShooting(playerPed) and not onShooting then
+                if IsARealWeapon(currentWeapon) then
+                    DecorSetBool(playerPed, "powder", true)
+                    TriggerServerEvent("Ora_status:addOn", "powder")
+                end
+
+                -- Jerrican
+                if (currentWeapon == 883325847) then
+                    local gascan = Ora.Inventory.Data["gascan"][1]
+                    if (gascan.data == nil or gascan.data.useTime == nil) then
+                        gascan.data = {useTime = 0}
                     end
+                    gascan.data.useTime = gascan.data.useTime + 1
 
-                    -- Jerrican
-                    if (currentWeapon == 883325847) then
-                        local gascan = Ora.Inventory.Data["gascan"][1]
-                        if (gascan.data == nil or gascan.data.useTime == nil) then
-                            gascan.data = {useTime = 0}
-                        end
-                        gascan.data.useTime = gascan.data.useTime + 1
-
-                        if (gascan.data.useTime > 1500) then
-                            Ora.Inventory:RemoveFirstItem("gascan")
-                        end
+                    if (gascan.data.useTime > 1500) then
+                        Ora.Inventory:RemoveFirstItem("gascan")
                     end
+                end
 
-                    if (currentWeapon == 101631238) then
-                        local extinguisher = Ora.Inventory.Data["fire_extinguisher"][1]
-                        if (extinguisher.data == nil or extinguisher.data.useTime == nil) then
-                            extinguisher.data = {useTime = 0}
-                        end
-                        extinguisher.data.useTime = extinguisher.data.useTime + 1
-
-                        if (extinguisher.data.useTime > 6000) then
-                            Ora.Inventory:RemoveFirstItem("fire_extinguisher")
-                            RageUI.Popup({message = "~r~Votre extincteur est vide"})
-                            EquipWeapon({name = "fire_extinguisher"})
-                            TriggerEvent("Ora:inventory:deleteIfWeapon", extinguisher)
-                        end
+                if (currentWeapon == 101631238) then
+                    local extinguisher = Ora.Inventory.Data["fire_extinguisher"][1]
+                    if (extinguisher.data == nil or extinguisher.data.useTime == nil) then
+                        extinguisher.data = {useTime = 0}
                     end
+                    extinguisher.data.useTime = extinguisher.data.useTime + 1
 
-                    if Ora.Inventory.Data[Ora.Inventory.CurrentMunition] ~= nil then
-                        Ora.Inventory.CurrentAmmo = Ora.Inventory.CurrentAmmo - 1
-                        local _, maxAmmo = GetMaxAmmo(LocalPlayer().Ped, Ora.Inventory.CurrentWeapon.Label)
-                        print(Ora.Inventory.CurrentAmmo, GetAmmoInPedWeapon(LocalPlayer().Ped, currentWeapon), maxAmmo)
-                        if Ora.Inventory.CurrentAmmo > maxAmmo then
-                            SetPedAmmo(LocalPlayer().Ped, currentWeapon, Ora.Inventory.CurrentAmmo)
-                        end
-                        print(Ora.Inventory.CurrentAmmo, GetAmmoInPedWeapon(LocalPlayer().Ped, currentWeapon))
-                        Ora.Inventory:RemoveFirstItem(Ora.Inventory.CurrentMunition)
+                    if (extinguisher.data.useTime > 6000) then
+                        Ora.Inventory:RemoveFirstItem("fire_extinguisher")
+                        RageUI.Popup({message = "~r~Votre extincteur est vide"})
+                        EquipWeapon({name = "fire_extinguisher"})
+                        TriggerEvent("Ora:inventory:deleteIfWeapon", extinguisher)
                     end
+                end
+
+                if Ora.Inventory.Data[Ora.Inventory.CurrentMunition] ~= nil then
+                    Ora.Inventory.CurrentAmmo = Ora.Inventory.CurrentAmmo - 1
+                    local _, maxAmmo = GetMaxAmmo(LocalPlayer().Ped, Ora.Inventory.CurrentWeapon.Label)
+                    print(Ora.Inventory.CurrentAmmo, GetAmmoInPedWeapon(LocalPlayer().Ped, currentWeapon), maxAmmo)
+                    if Ora.Inventory.CurrentAmmo > maxAmmo then
+                        SetPedAmmo(LocalPlayer().Ped, currentWeapon, Ora.Inventory.CurrentAmmo)
+                    end
+                    print(Ora.Inventory.CurrentAmmo, GetAmmoInPedWeapon(LocalPlayer().Ped, currentWeapon))
+                    Ora.Inventory:RemoveFirstItem(Ora.Inventory.CurrentMunition)
                 end
             end
         end

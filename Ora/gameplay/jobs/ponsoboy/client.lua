@@ -107,309 +107,300 @@ Citizen.CreateThread(function()
     
     while true do
         Wait(0)
-        -- Get Player jobs using Ora own function
-        local jobs = {
-            Ora.Identity.Job:GetName(),
-            Ora.Identity.Orga:GetName()
-        }
-        -- Check if player is a ponsoboy
-        if jobs[1] == "ponsonbys" or jobs[2] == "ponsonbys" then
-            if RageUI.Visible(RMenu:Get("ponsonbys","main")) then
-                RageUI.DrawContent({ header = true, glare = false }, function()
-                    RageUI.List(pedPrev[manqidx] == nil and "Faire apparaitre le mannequin" or "Supprimer le mannequin", mannequins, manqidx , nil, {}, true, function(Hovered, Active, Selected, Index)
-                        if manqidx ~= Index then manqidx = Index end
-                        if Selected and manqidx == 4 and manPos[4][1] == nil then
-                            return RageUI.Popup({message = "~r~Erreur~s~\nIl faut définir une position pour ce mannequin et être ~y~PDG~s~ ou ~y~Co-PDG~s~."})
-                        elseif Selected and pedPrev[manqidx] == nil then
-                            spawnManequin()
-                        elseif Selected and pedPrev[manqidx] ~= nil then
-                            NetworkRequestControlOfEntity(pedPrev[manqidx])
-                            DeleteEntity(pedPrev[manqidx])
-                            TriggerPlayerEvent("ENTI:DeletePed",-1)
-                            pedPrev[manqidx] = nil
-                            if manPos[4][1] then
-                                manPos[4] = {}
-                                RageUI.Popup({message = "~y~Attention~s~\nLa position du 4e mannequin a été réinitialisée."})
-                            end
-                        end
-                    end)
 
-
-                    RageUI.List("Sexe mannequin", skinSexe,  skinIndex,nil,{}, true, function(Hovered, Active, Selected, Index)
-                        if skinIndex ~= Index then
-                            skinIndex = Index
-                            if pedPrev[manqidx] ~= nil then
-                                respawnSkin()
-                            end
-                        end
-                    end)
-
-                    if pedPrev[manqidx] == nil then
-                        local isAbleTo = false
-                        if Ora.Identity.Job:GetName() == "ponsonbys" then
-                            isAbleTo = (Ora.Identity.Job:IsCoBoss() or Ora.Identity.Job:IsBoss())
-                        else
-                            isAbleTo = (Ora.Identity.Orga:IsCoBoss() or Ora.Identity.Orga:IsBoss())
-                        end
-
-                        if isAbleTo then
-                            RageUI.Button(
-                                    "Enregistrer la position du mannequin en face de vous",
-                                    nil,
-                                    {},
-                                    true,
-                                    function(_, Active, Selected)
-                                        if Selected then
-                                            local coords = GetEntityCoords(LocalPlayer().Ped)
-                                            manPos[4][1] = GetEntityForwardX(LocalPlayer().Ped) + coords.x
-                                            manPos[4][2] = GetEntityForwardY(LocalPlayer().Ped) + coords.y
-                                            manPos[4][3] = coords.z
-                                            manPos[4][4] = GetEntityHeading(LocalPlayer().Ped) + 180
-                                            RageUI.Popup({message = "~g~Position enregistrée pour le mennequin !"})
-                                        end
-                                    end
-                            )
-                        end
-                    else
-                        manequin = pedPrev[manqidx]
-                        RageUI.List("Haut ", tops, topsPos,nil, {},topLocked, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= topsPos then
-                                    SetPedComponentVariation(manequin, 11, Index-1, underscolorPos - 1)
-
-                                    topcolor = {}
-                                    ped = manequin
-                                    for i = 0 ,GetNumberOfPedTextureVariations(ped,11,Index-1),1 do
-                                        table.insert( topcolor, i )
-                                    end
-                                    topcolorPos = 1
-                                    topColorLocked = true
-                                end
-                            end
-                            topsPos = Index
-
-                            if Selected and not topLocked then
-                                topLocked = true
-                            elseif Selected then
-                                topLocked = false
-                            end
-                        end)
-                        RageUI.List("Couleur du haut ", topcolor, topcolorPos,nil, {},topColorLocked, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= topcolorPos then
-                                    SetPedComponentVariation(manequin, 11, topsPos-1, Index-1)
-                                end
-
-                            end
-                            topcolorPos = Index
-                            if Selected and not topColorLocked then
-                                topColorLocked = true
-
-                            elseif Selected then
-                                topColorLocked = false
-                            end
-                        end)
-                        RageUI.List("Sous haut ", unders, undersPos,nil, {},undersLocked, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= undersPos then
-                                    SetPedComponentVariation(manequin, 8, Index-1, underscolorPos - 1)
-                                    underscolor = {}
-                                    ped = manequin
-                                    for i = 0 ,GetNumberOfPedTextureVariations(ped,8,Index-1),1 do
-                                        table.insert( underscolor, i )
-                                    end
-                                    underscolorPos = 1
-                                    accessColorLocked = true
-                                end
-                            end
-                            undersPos = Index
-                            if Selected and not undersLocked then
-                                undersLocked = true
-                            elseif Selected then
-                                undersLocked = false
-                            end
-                        end)
-
-                        RageUI.List("Couleur du sous haut ", underscolor, underscolorPos,nil, {},underscolorLocked, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= underscolorPos then
-                                    SetPedComponentVariation(manequin, 8, undersPos-1, Index-1)
-                                end
-                            end
-                            underscolorPos = Index
-                            if Selected and not underscolorLocked then
-                                underscolorLocked = true
-                            elseif Selected then
-                                underscolorLocked = false
-                            end
-                        end)
-                        RageUI.List("Accessoire ", access, accessPos,nil, {},accessLocked, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= accessPos then
-                                    SetPedComponentVariation(manequin, 7, Index-1, accesscolorPos - 1)
-
-                                    accesscolor = {}
-                                    ped = manequin
-                                    for i = 0 ,GetNumberOfPedTextureVariations(ped,7,Index-1),1 do
-                                        table.insert( accesscolor, i )
-                                    end
-                                    accesscolorPos = 1
-                                    accessColorLocked = true
-                                end
-                            end
-                            accessPos = Index
-                            if Selected and not accessLocked then
-                                accessLocked = true
-                            elseif Selected then
-                                accessLocked = false
-                            end
-                        end)
-                        RageUI.List("Couleur de l'accessoire ", accesscolor, accesscolorPos,nil, {},accessColorLocked, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= accesscolorPos then
-                                    SetPedComponentVariation(manequin, 7, accessPos-1, Index-1)
-                                end
-                            end
-                            accesscolorPos = Index
-                            if Selected and not accessColorLocked then
-                                accessColorLocked = true
-                            elseif Selected then
-                                accessColorLocked = false
-                            end
-                        end)
-
-                        RageUI.List("Bras ", torso, torsoPos,nil, {},lockedTorso, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= torsoPos then
-                                    SetPedComponentVariation(manequin, 3, Index-1, 0)
-                                end
-                            end
-                            torsoPos = Index
-                            if Selected and not lockedTorso then
-                                lockedTorso = true
-                            elseif Selected then
-                                lockedTorso = false
-                            end
-                        end)
-
-                        RageUI.List("Pantalon ", pant, pantPos,nil, {},lockedPant, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= pantPos then
-                                    SetPedComponentVariation(manequin, 4, Index-1, pantcolorPos - 1)
-                                    pantcolor = {}
-                                    ped = manequin
-                                    for i = 0 ,GetNumberOfPedTextureVariations(ped,4,Index-1),1 do
-                                        table.insert( pantcolor, i )
-                                    end
-                                    pantcolorPos = 1
-                                    lockedPantColor = true
-                                end
-                            end
-                            pantPos = Index
-                            if Selected and not lockedPant then
-                                lockedPant = true
-                            elseif Selected then
-                                lockedPant = false
-                            end
-                        end)
-
-                        RageUI.List("Couleur du pantalon ", pantcolor, pantcolorPos,nil, {},lockedPantColor, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= torsoPos then
-                                    SetPedComponentVariation(manequin, 4, pantPos-1, Index-1)
-                                end
-                            end
-                            pantcolorPos = Index
-                            if Selected and not lockedPantColor then
-                                lockedPantColor = true
-                            elseif Selected then
-                                lockedPantColor = false
-                            end
-                        end)
-
-                        RageUI.List("Chaussure ", chauss, chaussPos,nil, {},lockedchauss, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= chaussPos then
-                                    SetPedComponentVariation(manequin, 6, Index-1, chausscolorPos - 1)
-
-                                    chausscolor = {}
-                                    ped = manequin
-                                    for i = 0 ,GetNumberOfPedTextureVariations(ped,6,Index-1),1 do
-                                        table.insert( chausscolor, i )
-                                    end
-                                    chausscolorPos = 1
-                                    lockedchaussColor = true
-                                end
-                            end
-                            chaussPos = Index
-                            if Selected and not lockedchauss then
-                                lockedchauss = true
-                            elseif Selected then
-                                lockedchauss = false
-                            end
-                        end)
-
-                        RageUI.List("Couleur des chaussures ", chausscolor, chausscolorPos,nil, {},lockedchaussColor, function(Hovered, Active, Selected, Index)
-                            if Active then
-                                if Index ~= chausscolorPos then
-                                    SetPedComponentVariation(manequin, 6, chaussPos-1, Index-1)
-                                end
-                            end
-                            chausscolorPos = Index
-                            if Selected and not lockedchaussColor then
-                                lockedchaussColor = true
-                            elseif Selected then
-                                lockedchaussColor = false
-                            end
-                        end)
-
-                        if not lockedTorso and not lockedPant and not lockedPantColor and not lockedchauss and not lockedPant and not lockedchaussColor and not accessLocked and not accessColorLocked and not underscolorLocked and not topLocked and not topColorLocked  then
-                            RageUI.Button("Valider" , nil, {}, true, function(Hovered, Active, Selected)
-                                if Selected then
-                                    local maxCraft = Ora.Inventory:GetItemCount("fabric")
-                                    local count = tonumber(KeyboardInput("Combien de copies de la tenue ? ( max : ".. maxCraft .. " )"))
-                                    if count ~= nil and count > 0 and count <= maxCraft then
-                                        Ora.Inventory:RemoveAnyItemsFromName("fabric", count)
-                                        local data = {
-                                            torso = torsoPos - 1,
-                                            pant = pantPos - 1,
-                                            chaus = chaussPos - 1,
-                                            unders = undersPos - 1,
-                                            access = accessPos - 1,
-                                            tops = topsPos - 1,
-                                            pantcolor = pantcolorPos - 1,
-                                            chausscolor = chausscolorPos - 1,
-                                            underscolor = underscolorPos - 1,
-                                            topcolor = topcolorPos - 1,
-                                            accesscolor = accesscolorPos - 1
-                                        }
-                                        local item = {}
-                                        item.name = "tenue"
-                                        item.data = data
-                                        item.label = KeyboardInput("Nom de la tenue ? ", nil , 25)
-                                        NetworkRequestControlOfEntity(pedPrev[manqidx])
-                                        SetEntityCoords(pedPrev[manqidx], 0,0, -120.0)
-                                        DeleteEntity(pedPrev[manqidx])
-                                        TriggerPlayerEvent("ENTI:DeletePed",-1)
-                                        pedPrev[manqidx] = nil
-                                        RageUI.Refresh()
-                                        ShowNotification("~g~Tenue(s) créée(s) ! (-" .. count .. " tissus)")
-                                        for i = 1 , count , 1 do
-                                            item.id = generateUUIDV2()
-                                            Ora.Inventory:AddItem(item)
-                                        end
-                                    else
-                                        ShowNotification("~r~Nombre invalide ou tissu insuffisant !")
-                                    end
-                                end
-                            end)
+        if RageUI.Visible(RMenu:Get("ponsonbys","main")) then
+            RageUI.DrawContent({ header = true, glare = false }, function()
+                RageUI.List(pedPrev[manqidx] == nil and "Faire apparaitre le mannequin" or "Supprimer le mannequin", mannequins, manqidx , nil, {}, true, function(Hovered, Active, Selected, Index)
+                    if manqidx ~= Index then manqidx = Index end
+                    if Selected and manqidx == 4 and manPos[4][1] == nil then
+                        return RageUI.Popup({message = "~r~Erreur~s~\nIl faut définir une position pour ce mannequin et être ~y~PDG~s~ ou ~y~Co-PDG~s~."})
+                    elseif Selected and pedPrev[manqidx] == nil then
+                        spawnManequin()
+                    elseif Selected and pedPrev[manqidx] ~= nil then
+                        NetworkRequestControlOfEntity(pedPrev[manqidx])
+                        DeleteEntity(pedPrev[manqidx])
+                        TriggerPlayerEvent("ENTI:DeletePed",-1)
+                        pedPrev[manqidx] = nil
+                        if manPos[4][1] then
+                            manPos[4] = {}
+                            RageUI.Popup({message = "~y~Attention~s~\nLa position du 4e mannequin a été réinitialisée."})
                         end
                     end
-                end, function()
                 end)
-            end
-        else
-            Citizen.Wait(2500)
+
+
+                RageUI.List("Sexe mannequin", skinSexe,  skinIndex,nil,{}, true, function(Hovered, Active, Selected, Index)
+                    if skinIndex ~= Index then
+                        skinIndex = Index
+                        if pedPrev[manqidx] ~= nil then
+                            respawnSkin()
+                        end
+                    end
+                end)
+
+                if pedPrev[manqidx] == nil then
+                    local isAbleTo = false
+                    if Ora.Identity.Job:GetName() == "ponsonbys" then
+                        isAbleTo = (Ora.Identity.Job:IsCoBoss() or Ora.Identity.Job:IsBoss())
+                    else
+                        isAbleTo = (Ora.Identity.Orga:IsCoBoss() or Ora.Identity.Orga:IsBoss())
+                    end
+
+                    if isAbleTo then
+                        RageUI.Button(
+                            "Enregistrer la position du mannequin en face de vous",
+                            nil,
+                            {},
+                            true,
+                            function(_, Active, Selected)
+                                if Selected then
+                                    local coords = GetEntityCoords(LocalPlayer().Ped)
+                                    manPos[4][1] = GetEntityForwardX(LocalPlayer().Ped) + coords.x
+                                    manPos[4][2] = GetEntityForwardY(LocalPlayer().Ped) + coords.y
+                                    manPos[4][3] = coords.z
+                                    manPos[4][4] = GetEntityHeading(LocalPlayer().Ped) + 180
+                                    RageUI.Popup({message = "~g~Position enregistrée pour le mennequin !"})
+                                end
+                            end
+                        )
+                    end
+                else
+                    manequin = pedPrev[manqidx]
+                    RageUI.List("Haut ", tops, topsPos,nil, {},topLocked, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= topsPos then
+                                SetPedComponentVariation(manequin, 11, Index-1, underscolorPos - 1)
+                                
+                                topcolor = {}
+                                ped = manequin
+                                for i = 0 ,GetNumberOfPedTextureVariations(ped,11,Index-1),1 do
+                                    table.insert( topcolor, i )
+                                end
+                                topcolorPos = 1
+                                topColorLocked = true
+                            end
+                        end
+                        topsPos = Index
+                        
+                        if Selected and not topLocked then
+                            topLocked = true
+                        elseif Selected then
+                            topLocked = false
+                        end
+                    end)
+                    RageUI.List("Couleur du haut ", topcolor, topcolorPos,nil, {},topColorLocked, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= topcolorPos then
+                                SetPedComponentVariation(manequin, 11, topsPos-1, Index-1)
+                            end
+        
+                        end
+                        topcolorPos = Index
+                        if Selected and not topColorLocked then
+                            topColorLocked = true
+                        
+                        elseif Selected then
+                            topColorLocked = false
+                        end
+                    end)
+                    RageUI.List("Sous haut ", unders, undersPos,nil, {},undersLocked, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= undersPos then
+                                SetPedComponentVariation(manequin, 8, Index-1, underscolorPos - 1)
+                                underscolor = {}
+                                ped = manequin
+                                for i = 0 ,GetNumberOfPedTextureVariations(ped,8,Index-1),1 do
+                                    table.insert( underscolor, i )
+                                end
+                                underscolorPos = 1
+                                accessColorLocked = true
+                            end
+                        end
+                        undersPos = Index
+                        if Selected and not undersLocked then
+                            undersLocked = true
+                        elseif Selected then
+                            undersLocked = false
+                        end
+                    end)
+        
+                    RageUI.List("Couleur du sous haut ", underscolor, underscolorPos,nil, {},underscolorLocked, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= underscolorPos then
+                                SetPedComponentVariation(manequin, 8, undersPos-1, Index-1)
+                            end
+                        end
+                        underscolorPos = Index
+                        if Selected and not underscolorLocked then
+                            underscolorLocked = true
+                        elseif Selected then
+                            underscolorLocked = false
+                        end
+                    end)
+                    RageUI.List("Accessoire ", access, accessPos,nil, {},accessLocked, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= accessPos then
+                                SetPedComponentVariation(manequin, 7, Index-1, accesscolorPos - 1)
+                                
+                                accesscolor = {}
+                                ped = manequin
+                                for i = 0 ,GetNumberOfPedTextureVariations(ped,7,Index-1),1 do
+                                    table.insert( accesscolor, i )
+                                end
+                                accesscolorPos = 1
+                                accessColorLocked = true
+                            end
+                        end
+                        accessPos = Index
+                        if Selected and not accessLocked then
+                            accessLocked = true
+                        elseif Selected then
+                            accessLocked = false
+                        end
+                    end)
+                    RageUI.List("Couleur de l'accessoire ", accesscolor, accesscolorPos,nil, {},accessColorLocked, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= accesscolorPos then
+                                SetPedComponentVariation(manequin, 7, accessPos-1, Index-1)
+                            end
+                        end
+                        accesscolorPos = Index
+                        if Selected and not accessColorLocked then
+                            accessColorLocked = true
+                        elseif Selected then
+                            accessColorLocked = false
+                        end
+                    end)
+        
+                    RageUI.List("Bras ", torso, torsoPos,nil, {},lockedTorso, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= torsoPos then
+                                SetPedComponentVariation(manequin, 3, Index-1, 0)
+                            end
+                        end
+                        torsoPos = Index
+                        if Selected and not lockedTorso then
+                            lockedTorso = true
+                        elseif Selected then
+                            lockedTorso = false
+                        end
+                    end)
+        
+                    RageUI.List("Pantalon ", pant, pantPos,nil, {},lockedPant, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= pantPos then
+                                SetPedComponentVariation(manequin, 4, Index-1, pantcolorPos - 1)
+                                pantcolor = {}
+                                ped = manequin
+                                for i = 0 ,GetNumberOfPedTextureVariations(ped,4,Index-1),1 do
+                                    table.insert( pantcolor, i )
+                                end
+                                pantcolorPos = 1 
+                                lockedPantColor = true
+                            end
+                        end
+                        pantPos = Index
+                        if Selected and not lockedPant then
+                            lockedPant = true
+                        elseif Selected then
+                            lockedPant = false
+                        end
+                    end)
+        
+                    RageUI.List("Couleur du pantalon ", pantcolor, pantcolorPos,nil, {},lockedPantColor, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= torsoPos then
+                                SetPedComponentVariation(manequin, 4, pantPos-1, Index-1)
+                            end
+                        end
+                        pantcolorPos = Index
+                        if Selected and not lockedPantColor then
+                            lockedPantColor = true
+                        elseif Selected then
+                            lockedPantColor = false
+                        end
+                    end)
+        
+                    RageUI.List("Chaussure ", chauss, chaussPos,nil, {},lockedchauss, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= chaussPos then
+                                SetPedComponentVariation(manequin, 6, Index-1, chausscolorPos - 1)
+                                
+                                chausscolor = {}
+                                ped = manequin
+                                for i = 0 ,GetNumberOfPedTextureVariations(ped,6,Index-1),1 do
+                                    table.insert( chausscolor, i )
+                                end
+                                chausscolorPos = 1
+                                lockedchaussColor = true
+                            end
+                        end
+                        chaussPos = Index
+                        if Selected and not lockedchauss then
+                            lockedchauss = true
+                        elseif Selected then
+                            lockedchauss = false
+                        end
+                    end)
+                    
+                    RageUI.List("Couleur des chaussures ", chausscolor, chausscolorPos,nil, {},lockedchaussColor, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= chausscolorPos then
+                                SetPedComponentVariation(manequin, 6, chaussPos-1, Index-1)
+                            end
+                        end
+                        chausscolorPos = Index
+                        if Selected and not lockedchaussColor then
+                            lockedchaussColor = true
+                        elseif Selected then
+                            lockedchaussColor = false
+                        end
+                    end)
+        
+                    if not lockedTorso and not lockedPant and not lockedPantColor and not lockedchauss and not lockedPant and not lockedchaussColor and not accessLocked and not accessColorLocked and not underscolorLocked and not topLocked and not topColorLocked  then
+                        RageUI.Button("Valider" , nil, {}, true, function(Hovered, Active, Selected)
+                            if Selected then
+                                local maxCraft = Ora.Inventory:GetItemCount("fabric")
+                                local count = tonumber(KeyboardInput("Combien de copies de la tenue ? ( max : ".. maxCraft .. " )"))
+                                if count ~= nil and count > 0 and count <= maxCraft then
+                                    Ora.Inventory:RemoveAnyItemsFromName("fabric", count)
+                                    local data = {
+                                        torso = torsoPos - 1,
+                                        pant = pantPos - 1,
+                                        chaus = chaussPos - 1,
+                                        unders = undersPos - 1,
+                                        access = accessPos - 1,
+                                        tops = topsPos - 1,
+                                        pantcolor = pantcolorPos - 1,
+                                        chausscolor = chausscolorPos - 1,
+                                        underscolor = underscolorPos - 1,
+                                        topcolor = topcolorPos - 1,
+                                        accesscolor = accesscolorPos - 1
+                                    }
+                                    local item = {}
+                                    item.name = "tenue"
+                                    item.data = data
+                                    item.label = KeyboardInput("Nom de la tenue ? ", nil , 25)
+                                    NetworkRequestControlOfEntity(pedPrev[manqidx])
+                                    SetEntityCoords(pedPrev[manqidx], 0,0, -120.0)
+                                    DeleteEntity(pedPrev[manqidx])
+                                    TriggerPlayerEvent("ENTI:DeletePed",-1)
+                                    pedPrev[manqidx] = nil
+                                    RageUI.Refresh()
+                                    ShowNotification("~g~Tenue(s) créée(s) ! (-" .. count .. " tissus)")
+                                    for i = 1 , count , 1 do
+                                        item.id = generateUUIDV2()
+                                        Ora.Inventory:AddItem(item)
+                                    end
+                                else
+                                    ShowNotification("~r~Nombre invalide ou tissu insuffisant !")
+                                end
+                            end
+                        end)
+                    end
+                end
+            end, function()
+            end)
         end
     end
 end)
