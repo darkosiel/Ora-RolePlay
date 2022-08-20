@@ -89,6 +89,15 @@ onNet('OraPhone:client:updateContacts', data => {
     })
 })
 
+// Phone
+
+onNet('OraPhone:client:updateCalls', data => {
+    SendNUIMessage({
+        type: 'updateCalls',
+        calls: data
+    })
+})
+
 // Call
 
 onNet('OraPhone:client:callStarted', _ => {
@@ -211,6 +220,13 @@ RegisterNuiCallbackType('end_call')
 on('__cfx_nui:end_call', _ => {
     console.log('nui end call received')
     emitNet('OraPhone:server:end_call')
+})
+
+// Phone
+
+RegisterNuiCallbackType('refresh_calls')
+on('__cfx_nui:refresh_calls', data => {
+    emitNet('OraPhone:server:refresh_calls', data)
 })
 
 // Messsages

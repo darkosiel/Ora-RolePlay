@@ -69,7 +69,7 @@ const generateCrud = (table_suffix, fieldsMap) => {
             sanitizeKeys(values)
             let sql = `INSERT INTO ${table} (${Object.keys(values).map(k=>fieldsMap[k]).join(', ')})`
             sql += ` VALUES (${Object.keys(aliasKeys(values)).join(', ')})`
-            executeSql(sql, values)
+            return fetchDb(sql, values)
         },
         read: criteria => {
             sanitizeKeys(criteria)
@@ -78,6 +78,8 @@ const generateCrud = (table_suffix, fieldsMap) => {
                 sql += ` ORDER BY name ASC`;
             } else if(table == "ora_phone_messages") {
                 sql += ` ORDER BY msg_time ASC`;
+            } else if(table == "ora_phone_call_history") {
+                sql += ` ORDER BY id DESC`;
             }
             return fetchDb(sql, criteria)
         },
@@ -85,12 +87,12 @@ const generateCrud = (table_suffix, fieldsMap) => {
             sanitizeKeys(criteria)
             sanitizeKeys(values)
             let sql = `UPDATE ${table} SET ${Object.keys(values).map(k => `${fieldsMap[k]} = @${k}`).join(',')} WHERE ${buildSqlCriteria(criteria)}`
-            executeSql(sql, {...values, ...criteria})
+            return fetchDb(sql, {...values, ...criteria})
         },
         delete: criteria => {
             sanitizeKeys(criteria)
             let sql = `DELETE FROM ${table} WHERE ${buildSqlCriteria(criteria)}`
-            executeSql(sql, criteria)
+            return fetchDb(sql, criteria)
         }
     }
     return crud
@@ -151,8 +153,8 @@ const crud = {
     }),
     calls: generateCrud('phone_call_history', {
         id: 'id',
-        sourceUuid: 'source_uuid',
-        targetUuid: 'target_uuid',
+        sourceNumber: 'source_number',
+        targetNumber: 'target_number',
         callTime: 'call_time',
         accepted: 'accepted',
         callDuration: 'call_duration',
@@ -222,12 +224,12 @@ async function requestUserData(steamId) {
         // }
         // userData.messages = [...sentMsgResponse, ...receivedMsgResponse].sort((a,b)=>b.msgTime-a.msgTime)
         // calls history
-        const sentCallsResponse = await crud.calls.read({ sourceUuid: id })
-        const receivedCallsResponse = await crud.calls.read({ sourceUuid: id })
-        if (!sentCallsResponse || !receivedCallsResponse) {
-            console.error('Call history query failed with steamId', steamId)
-        }
-        userData.calls = [...sentCallsResponse, ...receivedCallsResponse].sort((a,b)=>b.callTime-a.callTime)
+        // const sentCallsResponse = await crud.calls.read({ sourceUuid: id })
+        // const receivedCallsResponse = await crud.calls.read({ sourceUuid: id })
+        // if (!sentCallsResponse || !receivedCallsResponse) {
+            // console.error('Call history query failed with steamId', steamId)
+        // }
+        // userData.calls = [...sentCallsResponse, ...receivedCallsResponse].sort((a,b)=>b.callTime-a.callTime)
         return userData
     } catch (e) {
         console.error('Could not fetch user data with steamId "'+steamId+'"', e)
@@ -236,7 +238,7 @@ async function requestUserData(steamId) {
 
 /**
  * ===============================
- * Update User data
+ * Update User data&
  * ===============================
  */
 async function updateUserData () {
@@ -358,17 +360,24 @@ function purgeCaller (src, video = false) {
  * Remove everybody from voice channel
  * @param {number} chan 
  */
-function endCall(chan, video = false) {
+async function endCall(chan, video = false) {
     console.log('remove callers from channel ', chan, callers[chan] || callers)
     if (!callers[chan]) { return }
     exports["pma-voice"].setPlayerCall(callers[chan].callerId, 0)
     exports["pma-voice"].setPlayerCall(callers[chan].receiverId, 0)
     if (video) {
-        emitNet('OraPhone:client:endVideoCall', callers[channel].callerId)
-        emitNet('OraPhone:client:endVideoCall', callers[channel].receiverId)
+        emitNet('OraPhone:client:endVideoCall', callers[chan].callerId)
+        emitNet('OraPhone:client:endVideoCall', callers[chan].receiverId)
     } else {
         emitNet('OraPhone:client:callFinished', callers[chan].callerId)
         emitNet('OraPhone:client:callFinished', callers[chan].receiverId)
+    }
+    const lastCallResponse = await crud.calls.read({ id: callers[chan].callId })
+    if(lastCallResponse[0].accepted == 1) {
+        let startDuration = new Date(lastCallResponse[0].callTime);
+        let endDuration = new Date()
+        let secondsDuration = (endDuration.getTime() - startDuration.getTime()) / 1000;
+        await crud.calls.update({ id: lastCallResponse[0].id }, { callDuration: secondsDuration })
     }
     delete callers[chan]
 }
@@ -385,6 +394,19 @@ async function refreshContacts(data) {
     }
     const defaultContacts = [{ id: -1, phone_id: data.phone_id, name: 'Urgences', number: '911', avatar: 'Protest_41' }]
     return [...defaultContacts, ...contactsResponse]
+}
+
+/**
+ * Refresh all calls
+ * @param {array} data
+ */
+async function refreshCalls(data) {
+    const callsResponse = await fetchDb("SELECT * FROM ora_phone_call_history WHERE source_number = " + data.number + " OR target_number = " + data.number + " ORDER BY id DESC LIMIT 20")
+    if (!callsResponse) {
+        console.error('Contacts query failed with phoneId', data.phone_id)
+        return
+    }
+    return [...callsResponse]
 }
 
 /**
@@ -451,7 +473,6 @@ onNet('OraPhone:add_contact', async data => {
         return
     }
     await crud.contacts.create({ phoneId: data.phone_id, name: data.name, number: data.number, avatar: data.avatar })
-    await Delay(200)
     emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
 })
 
@@ -462,7 +483,6 @@ onNet('OraPhone:server:delete_contact', async data => {
         return
     }
     crud.contacts.delete({ id: data.id })
-    await Delay(200)
     emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
 })
 
@@ -473,7 +493,6 @@ onNet('OraPhone:server:update_contact', async data => {
         return
     }
     await crud.contacts.update({ id: data.id }, data.data)
-    await Delay(200)
     emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
 })
 
@@ -496,6 +515,7 @@ onNet('OraPhone:server:call_number', async (sourceNum,targetNum,video=false) => 
     const receiver = getOnlinePlayerBySteamId(steamId)
     if (!receiver) {
         console.error('Player with steamid', steamId ,'is not currently online')
+        await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
         await Delay(3000)
         if(inCall) {
             emitNet('OraPhone:client:receiver_offline', src)
@@ -505,6 +525,7 @@ onNet('OraPhone:server:call_number', async (sourceNum,targetNum,video=false) => 
     for(let [chanIndex, chanValue] of Object.entries(callers)) {
         if(chanValue.receiverId == receiver) {
             console.log('Player is already on a channel', chan)
+            await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
             await Delay(5000)
             if(inCall) {
                 emitNet('OraPhone:client:receiver_offline', src)
@@ -514,7 +535,9 @@ onNet('OraPhone:server:call_number', async (sourceNum,targetNum,video=false) => 
     }
     const chan = getFreeChan()
     // save channel for the call and send call notif to receiver
-    callers[chan] = {callerId:src, callerSteamId: onlinePlayers[src], receiverSteamId: steamId, receiverId:receiver, fromNum: sourceNum, chan}
+    await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
+    const lastCallResponse = await crud.calls.read({ sourceNumber: sourceNum, targetNumber: targetNum })
+    callers[chan] = {callerId:src, callerSteamId: onlinePlayers[src], receiverSteamId: steamId, receiverId:receiver, fromNum: sourceNum, targetNum: targetNum, chan, callId: lastCallResponse[0].id }
     emitNet('OraPhone:client:receiveCall', receiver, sourceNum, chan, video)
     console.log('call emitted from ',GetPlayerName(src),' to ', GetPlayerName(receiver), 'for channel ', chan)
 })
@@ -529,6 +552,7 @@ onNet('OraPhone:server:accept_call', async (channel, video=false) => {
     console.log(GetPlayerName(src), ' accepted call, moving both in chan', channel, 'with ', GetPlayerName(callers[channel].callerId))
     exports["pma-voice"].setPlayerCall(src, channel)
     exports["pma-voice"].setPlayerCall(callers[channel].callerId, channel)
+    await crud.calls.update({ id: callers[channel].callId }, { accepted: 1 })
     if (video) {
         emitNet('OraPhone:startVideoCall', callers[channel].callerId)
         // emitNet('phone_ora:startVideoCall', src)
@@ -540,6 +564,13 @@ onNet('OraPhone:server:accept_call', async (channel, video=false) => {
 onNet('OraPhone:server:end_call', (video=false) => {
     const src = source
     purgeCaller(src, video)
+})
+
+// Phone
+
+onNet('OraPhone:server:refresh_calls', async data => {
+    const src = source
+    emitNet('OraPhone:client:updateCalls', src, await refreshCalls(data))
 })
 
 // Message
@@ -560,7 +591,6 @@ onNet('OraPhone:server:message_create_conversation', async (data) => {
     }
     if(!conversationResponse || !conversationExist) {
         await crud.conversations.create({ targetNumber: JSON.stringify(data.authors) })
-        await Delay(200)
     }
     emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number))
 })

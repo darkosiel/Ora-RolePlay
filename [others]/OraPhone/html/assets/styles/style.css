@@ -97,7 +97,7 @@
   font-weight: normal;
   src: local("SF Pro Display Regular"), url("./font/SF-Pro/SF-Pro-Display-Regular.woff") format("woff");
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -115,7 +115,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   -webkit-box-orient: vertical;
 }
 
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -771,10 +771,10 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button {
   color: #999999;
 }
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active i, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active span {
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active i, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active span, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active img {
   color: #007AFF;
 }
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active i, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active span {
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active i, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active span, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button.active img {
   color: #0A84FF;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button i {
@@ -783,6 +783,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
   font-size: 14px;
   text-align: center;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button img {
+  height: 100%;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body {
   height: 100%;
@@ -3252,6 +3255,199 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-buttons div.call-button-pickup {
   background-color: #32D74B;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body {
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body {
+  background-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-phone-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-phone-number span {
+  font-size: 44px;
+  font-family: "SF UI Text Semibold";
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-phone-number span {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-phone-number span {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons {
+  padding-bottom: 20px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 85px;
+  margin: 8px 15px;
+  border-radius: 50%;
+  list-style: none;
+  font-size: 42px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li {
+  background-color: #AEAEB2;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li {
+  background-color: #636366;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li i {
+  font-size: 34px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li:hover {
+  background-color: #8E8E93;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li:hover {
+  background-color: #8E8E93;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li.call {
+  color: #FFFFFF;
+  background-color: #34C759;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonepad div.app-body-content-body div#phonepad-buttons ul li.call {
+  color: #FFFFFF;
+  background-color: #32D74B;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-header {
+  height: 65px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body {
+  height: calc(100% - 65px);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list {
+  width: 100%;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding: 0 5%;
+  border-top-width: 2px;
+  border-top-style: solid;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item {
+  border-top-color: #C7C7CC;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item {
+  border-top-color: #48484A;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item:hover div.phonehistory-list-item-time {
+  display: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item:hover div.phonehistory-list-item-duration {
+  display: block;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item.miss div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name {
+  color: #FF3B30;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item.miss div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name {
+  color: #FF453A;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item:last-of-type {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item:last-of-type {
+  border-bottom-color: #C7C7CC;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item:last-of-type {
+  border-bottom-color: #48484A;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item i {
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item span, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item i {
+  color: #8E8E93;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item span, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item i {
+  color: #8E8E93;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item span {
+  font-size: 22px;
+  font-family: "SF UI Text Semibold";
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item i {
+  font-size: 18px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  min-width: 50px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name {
+  font-family: "SF UI Text Bold";
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-number {
+  font-size: 20px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-time {
+  width: auto;
+  text-align: right;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-time span {
+  font-size: 18px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-duration {
+  display: none;
+  width: auto;
+  text-align: right;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-duration span {
+  font-size: 18px;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-footer {
   display: flex;

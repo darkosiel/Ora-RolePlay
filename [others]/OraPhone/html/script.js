@@ -1,5 +1,5 @@
 
-var menuSelected = "home";
+var menuSelected = "settings";
 var menuSelectedLast = "home";
 var menuAppSelected = "first";
 var menuAppSelectedLast = "first";
@@ -95,6 +95,33 @@ var callNotificationLock;
 var conversationAuthors = [];
 var conversationId = "";
 
+// userData = {};
+// userData.phone = {};
+// userData.phone.appHomeOrder = {
+//     page1: [
+//         'clock',
+//         '',
+//         'camera',
+//         'galery',
+//         'calandar',
+//         'notes',
+//         '',
+//         'calculator',
+//         '',
+//         'store',
+//         'music',
+//         'templatetabbed',
+//         '',
+//         '',
+//         '',
+//         '',
+//         '',
+//         '',
+//         '',
+//         '',
+//     ]
+// };
+
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
 $(function(){
@@ -158,6 +185,7 @@ $(function(){
                             }
                         }, 750);
                     }
+                    $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
                 }
                 if (item !== undefined && item.type === "call_number_response") {
                     updateContent("call");
@@ -170,6 +198,10 @@ $(function(){
                     userData.contacts = item.contacts;
                     updateAppContacts();
                     updateAppMessage();
+                }
+                if (item !== undefined && item.type === "updateCalls") {
+                    userData.calls = item.calls;
+                    updateAppPhone();
                 }
                 if (item !== undefined && item.type === "update_conversations") {
                     userData.conversations = item.conversations;
@@ -194,6 +226,8 @@ $(function(){
             // -(- Inisialisation des applications --- //
 
                 // initializeAppContacts();
+                // initializeAppPhone();
+                // updateAppHomeOrder();
             
             // --- --- //
 
@@ -212,107 +246,11 @@ $(function(){
             });
 
             
-            // Création de la liste des applications
-            for(let app of config.apps) {
-                if(!app.isPrimary) {
-                    if(app.name == "clock") {
-                        let divAppElement = "<div draggable='true' id='app-home-list-item-" + app.name + "' class='app-home-list-item'><div id='centered'><div id='app'><div id='circle'><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ul><div class='hand' id='hours'></div><div class='hand' id='minutes'></div><div class='hand' id='seconds'></div><div id='black-circle'></div><div id='red-circle'></div></div></div></div><span>" + app.label + "</span></div>";
-                        $("#app-home-page-1 .app-home-list").append(divAppElement);
-                    } else {
-                        let divAppElement = "<div draggable='true' id='app-home-list-item-" + app.name + "' class='app-home-list-item'><img src='" + folderAppIcon + "app-" + app.name + "-icon.png'/><span>" + app.label + "</span></div>";
-                        $("#app-home-page-1 .app-home-list").append(divAppElement);
-                    }
-                } else {
-                    let divAppElement = "<div draggable='false' id='app-home-list-item-" + app.name + "' class='app-home-list-item app-home-list-item-primary'><img src='" + folderAppIcon + "app-" + app.name + "-icon.png'/></div>";
-                    $("#app-home-list-primary").append(divAppElement);
-                }
-            }
-            let page1AppEmptyPlaceTotal = 20 - document.getElementById("app-home-page-1").firstElementChild.children.length;
-            for(let i = 1; i <= page1AppEmptyPlaceTotal; i++) {
-                let divAppElement = "<div draggable='false' class='app-home-list-item empty-place'><div></div></div>";
-                $("#app-home-page-1 .app-home-list").append(divAppElement);
-            }
-            let page2AppEmptyPlaceTotal = 20 - document.getElementById("app-home-page-2").firstElementChild.children.length;
-            for(let i = 1; i <= page2AppEmptyPlaceTotal; i++) {
-                let divAppElement = "<div draggable='false' class='app-home-list-item empty-place'><div></div></div>";
-                $("#app-home-page-2 .app-home-list").append(divAppElement);
-            }
-            // Drag and drop des apps
-            items = document.querySelectorAll('.app-home-list-item:not(.app-home-list-item-primary)');
-            items.forEach(function(item) {
-                item.addEventListener('dragstart', handleDragStart, false);
-                item.addEventListener('dragenter', handleDragEnter, false);
-                item.addEventListener('dragover', handleDragOver, false);
-                item.addEventListener('dragleave', handleDragLeave, false);
-                item.addEventListener('drop', handleDrop, false);
-                item.addEventListener('dragend', handleDragEnd, false);
-            });
-            // Bouton changement de page
-            document.getElementById("update-home-change-page").addEventListener('dragenter', function() {
-                if(!hasChangePageOnDrag) {
-                    updatePageSelected();
-                }
-                hasChangePageOnDrag = true;
-            }, false);
-            // Souris changement de page
-            pageSelected = document.getElementById("app-home-page-container");
-            pageSelected.addEventListener('mousedown', function(e) {
-                isDown = true;
-                if(!activeUpdateHomeToggle) {
-                    offset = [
-                        pageSelected.offsetLeft - e.clientX,
-                        pageSelected.offsetTop - e.clientY
-                    ];
-                }
-            }, true);
-            pageSelected.addEventListener('mouseup', function() {
-                isDown = false;
-                if(!activeUpdateHomeToggle) {
-                    let left = $("#app-home-page-container").css("left");
-                    left = parseInt(left.slice(0, -2));
-                    if(mousePosition.x != null || mousePosition.y != null) {
-                        if(pageSelectedStart == 1) {
-                            if(mousePosition.x + offset[0] <= -75) {
-                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                                updatePageSelected();
-                                setTimeout(function() {
-                                    pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                                });
-                            } else {
-                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                                pageSelected.style.left = '0%';
-                                setTimeout(function() {
-                                    pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                                });
-                            }
-                        } else {
-                            if(mousePosition.x + offset[0] >= -260) {
-                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                                updatePageSelected();
-                                setTimeout(function() {
-                                    pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                                });
-                            } else {
-                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                                pageSelected.style.left = '-100%';
-                                setTimeout(function() {
-                                    pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                                });
-                            }
-                        }
-                    }
-                }
-            }, true);
-            pageSelected.addEventListener('mousemove', function(event) {
-                if (isDown && !activeUpdateHomeToggle) {
-                    event.preventDefault();
-                    mousePosition = {
-                        x : event.clientX,
-                        y : event.clientY
-                    };
-                    pageSelected.style.left = (mousePosition.x + offset[0]) + 'px';
-                }
-            }, true);
+            
+
+
+            
+            
             // Heure Téléphone
             setInterval(function () {
                 let now = new Date();
@@ -329,35 +267,7 @@ $(function(){
                 $("#app-lock-time-text").html(time);
                 $("#app-lock-day-text").html(date);
             }, 1000);
-            // Icon Horloge
-            window.requestAnimFrame = (function() {
-                return  window.requestAnimationFrame       ||
-                        window.webkitRequestAnimationFrame ||
-                        window.mozRequestAnimationFrame    ||
-                        function( callback ){
-                            window.setTimeout(callback, 1000 / 60);
-                        };
-            })();
-            (function clock(){ 
-                var hour = document.getElementById("hours"),
-                    min = document.getElementById("minutes"),
-                    sec = document.getElementById("seconds");
-                    (function loop(){
-                        requestAnimFrame(loop);
-                        draw();
-                    })();
-                    function draw(){
-                        var now = new Date(),
-                            then = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0),
-                            diffInMil = (now.getTime() - then.getTime()),
-                            h = (diffInMil/(1000*60*60)),
-                            m = (h*60),
-                            s = (m*60);
-                            sec.style.transform = "rotate(" + (s * 6) + "deg)";
-                            hour.style.transform = "rotate(" + (h * 30 + (h / 2)) + "deg)";
-                            min.style.transform = "rotate(" + (m * 6) + "deg)";
-                    } 
-            })();
+            
 
         // --- --- //
 
@@ -436,6 +346,7 @@ $(function(){
                 updateAppContent(element.id.split("-")[3]);
             });
         }
+        
         for(let item of $("#app-store .app-body-content-body-list-item")) {
             item.addEventListener("click", function() {
                 updateAppContent("app");
@@ -707,13 +618,6 @@ $(function(){
                 }
             });;
             updateAppContent("alarm");
-        });
-        $(".app-home-list-item").click(function() {
-            if(!activeUpdateHomeToggle) {
-                if(this.id) {
-                    updateContent(this.id.split("-")[4]);
-                }
-            }
         });
         $("#app-body-content-body-app-header-detail-button-download").click(function () {
             if(isDownloadApp) {
@@ -1084,14 +988,7 @@ function updateAppContacts() {
         }
     });
     $(".call-contact").click(function() {
-        $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: $(this).data("number"), fromNumber: phoneNumber }));
-        $("#callnumber-title-number").html("Appel vers " + ($(this).data("number").toString().length == 7 ? "555-" + $(this).data("number").toString().substring(3) : $(this).data("number")));
-        $("#callnumber-icon img").attr("src", ($(this).data("avatar").includes("http") ? $(this).data("avatar") : "./assets/images/contacts-profile-icon/" + $(this).data("avatar") + ".png"));
-        if($(this).data("avatar").includes("http")) {
-            $("#callnumber-icon").addClass("url");
-        } else {
-            $("#callnumber-icon").removeClass("url");
-        }
+        callNumber($(this).data("number"));
     });
     $(".message-contact").click(function() {
             conversationAuthors = [];
@@ -1158,30 +1055,32 @@ function updateUserData(data) {
     lastName = data.phone.lastName;
     phoneNumber = data.phone.number;
     luminosityActive = data.phone.luminosity;
-    // Update sounds
     updateSound();
-    // Update wallpapers
     updateWallpaper();
-    // Update theme mode
     updateDarkMode();
-    // Update phone zoom
     updateZoom();
     updateProfile();
     updateLuminosity();
+    updateAppHomeOrder();
 
     // Inisialisation des applications
     initializeAppContacts();
     initializeAppMessage();
+    initializeAppPhone();
 }
 
 function receiveCall(data) {
     callData = data;
     inReceiveCall = true;
-    let avatar = false;
+    let avatar = contactAvatarDefault;
     let name = callData.fromNumber;
     for(let contact of userData.contacts) {
         if(contact.number == callData.fromNumber) {
-            avatar = contact.avatar;
+            if(contact.avatar.includes("http")) {
+                avatar = contact.avatar;
+            } else {
+                avatar = folderContactsProfileIcon + contact.avatar + ".png";
+            }
             name = contact.name;
         }
     }
@@ -1400,7 +1299,106 @@ function updateAppMessage() {
     });
 }
 
+function initializeAppPhone() {
+    $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
+    $("#phonepad-phone-number span").html("555-");
+    $("#phonepad-buttons li").click(function() {
+        let targetNumber = $(this).data("number");
+        if(targetNumber == "reset") {
+            $("#phonepad-phone-number span").html("555-");
+        } else if(targetNumber == "delete") {
+            if($("#phonepad-phone-number span").html().length > 4) {
+                $("#phonepad-phone-number span").html($("#phonepad-phone-number span").html().slice(0, -1));
+            }
+        } else if(targetNumber == "call") {
+            if($("#phonepad-phone-number span").html().replace("-", "").length == 7) {
+                callNumber($("#phonepad-phone-number span").html().replace("-", ""));
+                $("#phonepad-phone-number span").html("555-");
+            }
+        } else {
+            if($("#phonepad-phone-number span").html().length < 8) {
+                $("#phonepad-phone-number span").html($("#phonepad-phone-number span").html() + targetNumber);
+            }
+        }
+    });
+}
 
+function callNumber(callNumber) {
+    callNumber = callNumber.toString();
+    callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
+    callAvatar = contactAvatarDefault;
+    for(let contact of userData.contacts) {
+        if(contact.number == callNumber) {
+            callAvatar = (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png");
+            callName = contact.name;
+            break;
+        }
+    }
+    $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: callNumber, fromNumber: phoneNumber }));
+    $("#callnumber-title-number").html("Appel vers " + callName);
+    $("#callnumber-icon img").attr("src", callAvatar);
+    if(callAvatar.includes("http")) {
+        $("#callnumber-icon").addClass("url");
+    } else {
+        $("#callnumber-icon").removeClass("url");
+    }
+}
+
+function updateAppPhone() {
+    $("#phonehistory-list").empty();
+    for(let call of userData.calls) {
+        let callTarget = "";
+        let callSource = false;
+        let callDuration = "";
+        if(call.source_number == phoneNumber) {
+            callSource = true;
+            callTarget = call.target_number.toString();
+        } else {
+            callTarget = call.source_number.toString();
+        }
+        let callNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
+        let callName = callNumber
+        for(let contact of userData.contacts) {
+            if(contact.number == callTarget) {
+                callName = contact.name;
+                break;
+            }
+        }
+        callAccepted = call.accepted;
+        let callTime = new Date(call.call_time)
+        let nowTime = new Date()
+        if(callTime.toDateString() == nowTime.toDateString()) {
+            callTime = callTime.toLocaleString('fr-FR', { timeStyle: 'short' });
+        } else {
+            let yesterday = new Date();
+            yesterday.setDate(nowTime.getDate() - 1);
+            if(callTime.toDateString() == yesterday.toDateString()) {
+                callTime = "Hier";
+            } else {
+                tmp = Math.ceil(Math.abs(nowTime - callTime) / (1000 * 60 * 60 * 24));
+                if(tmp <= 7) {
+                    callTime = callTime.toLocaleString('fr-FR', { weekday: 'long' });
+                    callTime = callTime.charAt(0).toUpperCase() + callTime.slice(1);
+                } else {
+                    callTime = callTime.toLocaleString('fr-FR', { dateStyle: 'short' });
+                }
+            }
+        }
+        if(callAccepted) {
+            let minutes = Math.floor(call.call_duration / 60);
+            let seconds = call.call_duration - minutes * 60;
+            callDuration = (minutes < 10 ? "0" + minutes : minutes)+ ":" + (seconds < 10 ? "0" + seconds : seconds);
+        } else {
+            callDuration = "Manqué";
+        }
+
+        let divCall = "<div class='phonehistory-list-item " + (callAccepted ? '' : 'miss') + "'><div class='phonehistory-list-item-left'><div class='phonehistory-list-item-type'><i class='fa-solid fa-phone'></i><i class='fa-solid fa-turn-" + (callSource ? 'up' : 'down') + "'></i></div><div class='phonehistory-list-item-body'><span class='phonehistory-list-item-body-name'>" + callName + "</span><span class='phonehistory-list-item-body-number'>" + callNumber + "</span></div></div><div class='phonehistory-list-item-time'><span>" + callTime + "</span></div><div class='phonehistory-list-item-duration'><span>" + callDuration + "</span></div></div>";
+        $("#phonehistory-list").append(divCall);
+        $("#phonehistory-list").children().last().click(function () {
+            callNumber(callTarget);
+        });
+    }
+}
 
 function addNotification(app, appSub, time, title, message, avatar = false) {
     let label = "Inconnu";
@@ -1428,15 +1426,15 @@ function addNotification(app, appSub, time, title, message, avatar = false) {
                         name = contact.name;
                         break;
                     }
-                }0
+                }
                 messageName += name + ", ";
             }
         }
         title = messageName.slice(0, -2);
     }
     if(app == "call") {
-        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img src='" + (avatar ? (avatar.includes('http') ? avatar : "./assets/images/contacts-profile-icon/" + avatar + ".png") : "./assets/images/contacts-profile-icon/50-Animals-avatar_49.png") + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
-        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img src='" + (avatar ? (avatar.includes('http') ? avatar : "./assets/images/contacts-profile-icon/" + avatar + ".png") : "./assets/images/contacts-profile-icon/50-Animals-avatar_49.png") + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
+        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
+        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
     } else {
         divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-header'><div class='notification-item-background-blur'></div><div class='notification-item-header-content'><div class='notification-item-header-content-left'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/>" + label + "</div><div class='notification-item-header-content-right'>" + time + "</div></div></div><div class='notification-item-main'><span class='notification-item-main-header'>" + title + "</span><span class='notification-item-main-message'>" + message + "</span></div></div></div>";
         divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-icon'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/></div><div class='notification-item-content-body'><div class='notification-item-content-body-header'><div class='notification-item-content-body-header-left'>" + label + "</div><div class='notification-item-content-body-header-right'>" + time + "</div></div><div class='notification-item-content-body-content'><div class='notification-item-content-body-content-message'>" + message + "</div></div></div></div></div>";
@@ -1688,6 +1686,7 @@ function updateContent(menu) {
         }
     }
     if(menu != "home") {
+        $("#phone-screen-content").removeClass();
         if(appSelected.classList.contains("app-tabbed")) {
             $("#phone-screen-content").addClass("app-tabbed");
         } else if(appSelected.classList.contains("app-modal")) {
@@ -1711,6 +1710,7 @@ function updateAppContent(element) {
     for(let content of document.getElementsByClassName("app-body-content")) {
         content.style.display = "none";
     }
+    $(".app-tab-button").removeClass("active");
     if(element == "first") {
         for(let content of document.getElementsByClassName("app")) {
             for(let appContent of content.getElementsByClassName("app-body-content")) {
@@ -1805,6 +1805,8 @@ function updateHomeDots() {
     inactive.addClass("active");
 }
 
+// --- Fonctions pour le drag and drop des applications sur la home page --- //
+
 function handleDragStart(e) {
     if(activeUpdateHomeToggle) {
         dragToggle = true;
@@ -1813,6 +1815,7 @@ function handleDragStart(e) {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/html', this.innerHTML);
         e.dataTransfer.setData('class', this.classList);
+        e.dataTransfer.setData('id', this.id);
     }
 }
 
@@ -1849,12 +1852,14 @@ function handleDrop(e) {
             hasChangePageOnDrag = false;
             dragSrcEl.innerHTML = this.innerHTML;
             dragSrcEl.classList = this.classList;
+            dragSrcEl.id = this.id;
             if(dragSrcEl.classList.contains("empty-place")) {
                 dragSrcEl.setAttribute("draggable", "false");
             }
             dragSrcEl.style.opacity = '1';
             this.innerHTML = e.dataTransfer.getData('text/html');
             this.classList = e.dataTransfer.getData('class');
+            this.id = e.dataTransfer.getData('id');
             this.setAttribute("draggable", "true");
         }
         return false;
@@ -1872,6 +1877,8 @@ function handleDragEnd(e) {
         });
     }
 }
+
+// ---  --- //
 
 function updatePageSelected() {
     if(pageSelectedStart == 1) {
@@ -2181,6 +2188,160 @@ function updateSound() {
     soundAlarm.volume = soundAlarmVolume / 10;
     soundCallWait = new Audio(folderSounds + "sound-call-wait.mp3");
     soundCallWait.volume = 0.5;
+}
+
+function updateAppHomeOrder() {
+    // Création de la liste des applications
+    userData.phone.appHomeOrder = JSON.parse(userData.phone.appHomeOrder);
+    for(const page in userData.phone.appHomeOrder) {
+        for(let app of userData.phone.appHomeOrder[page]) {
+            let divAppElement = "";
+            if(app != '') {
+                let label = config.apps.find( application => application.name == app).label;
+                if(app == "clock") {
+                    divAppElement = "<div draggable='true' id='app-home-list-item-" + app + "' class='app-home-list-item'><div id='centered'><div id='app'><div id='circle'><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ul><div class='hand' id='hours'></div><div class='hand' id='minutes'></div><div class='hand' id='seconds'></div><div id='black-circle'></div><div id='red-circle'></div></div></div></div><span>" + label + "</span></div>";
+                } else {
+                    divAppElement = "<div draggable='true' id='app-home-list-item-" + app + "' class='app-home-list-item'><img src='" + folderAppIcon + "app-" + app + "-icon.png'/><span>" + label + "</span></div>";
+                }
+            } else {
+                divAppElement = "<div draggable='false' class='app-home-list-item empty-place'><div></div></div>";
+            }
+            $("#app-home-page-" + page.slice(-1) + " .app-home-list").append(divAppElement);
+            let listItem = $("#app-home-page-" + page.slice(-1) + " .app-home-list").children().last();
+            listItem.click(function () {
+                if(!activeUpdateHomeToggle) {
+                    if(this.id) {
+                        updateContent(this.id.split("-")[4]);
+                    }
+                }
+            });
+            listItem.on('dargstart', handleDragStart, false);
+            listItem.on('dragenter', handleDragEnter, false);
+            listItem.on('dragover', handleDragOver, false);
+            listItem.on('dragleave', handleDragLeave, false);
+            listItem.on('drop', handleDrop, false);
+            listItem.on('dragend', handleDragEnd, false);
+        }
+    }
+    // Création des application principales
+    for(let app of config.apps) {
+        if(app.isPrimary) {
+            let divAppElement = "<div draggable='false' id='app-home-list-item-" + app.name + "' class='app-home-list-item app-home-list-item-primary'><img src='" + folderAppIcon + "app-" + app.name + "-icon.png'/></div>";
+            $("#app-home-list-primary").append(divAppElement);
+            $("#app-home-list-primary").children().last().click(function () {
+                if(!activeUpdateHomeToggle) {
+                    if(this.id) {
+                        updateContent(this.id.split("-")[4]);
+                    }
+                }
+            });
+        }
+    }
+    // Icon Horloge
+    window.requestAnimFrame = (function() {
+        return  window.requestAnimationFrame       ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame    ||
+                function( callback ){
+                    window.setTimeout(callback, 1000 / 60);
+                };
+    })();
+    (function clock() { 
+        var hour = document.getElementById("hours"),
+            min = document.getElementById("minutes"),
+            sec = document.getElementById("seconds");
+            (function loop(){
+                requestAnimFrame(loop);
+                draw();
+            })();
+            function draw(){
+                var now = new Date(),
+                    then = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0),
+                    diffInMil = (now.getTime() - then.getTime()),
+                    h = (diffInMil/(1000*60*60)),
+                    m = (h*60),
+                    s = (m*60);
+                    sec.style.transform = "rotate(" + (s * 6) + "deg)";
+                    hour.style.transform = "rotate(" + (h * 30 + (h / 2)) + "deg)";
+                    min.style.transform = "rotate(" + (m * 6) + "deg)";
+            } 
+    })();
+    // Drag and drop des apps
+    // items = document.querySelectorAll('.app-home-list-item:not(.app-home-list-item-primary)');
+    // items.forEach(function(item) {
+    //     item.addEventListener('dragstart', handleDragStart, false);
+    //     item.addEventListener('dragenter', handleDragEnter, false);
+    //     item.addEventListener('dragover', handleDragOver, false);
+    //     item.addEventListener('dragleave', handleDragLeave, false);
+    //     item.addEventListener('drop', handleDrop, false);
+    //     item.addEventListener('dragend', handleDragEnd, false);
+    // });
+    // Bouton changement de page
+    document.getElementById("update-home-change-page").addEventListener('dragenter', function() {
+        if(!hasChangePageOnDrag) {
+            updatePageSelected();
+        }
+        hasChangePageOnDrag = true;
+    }, false);
+    // Souris changement de page
+    pageSelected = document.getElementById("app-home-page-container");
+    pageSelected.addEventListener('mousedown', function(e) {
+        isDown = true;
+        if(!activeUpdateHomeToggle) {
+            offset = [
+                pageSelected.offsetLeft - e.clientX,
+                pageSelected.offsetTop - e.clientY
+            ];
+        }
+    }, true);
+    pageSelected.addEventListener('mouseup', function() {
+        isDown = false;
+        if(!activeUpdateHomeToggle) {
+            let left = $("#app-home-page-container").css("left");
+            left = parseInt(left.slice(0, -2));
+            if(mousePosition.x != null || mousePosition.y != null) {
+                if(pageSelectedStart == 1) {
+                    if(mousePosition.x + offset[0] <= -75) {
+                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                        updatePageSelected();
+                        setTimeout(function() {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                        });
+                    } else {
+                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                        pageSelected.style.left = '0%';
+                        setTimeout(function() {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                        });
+                    }
+                } else {
+                    if(mousePosition.x + offset[0] >= -260) {
+                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                        updatePageSelected();
+                        setTimeout(function() {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                        });
+                    } else {
+                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                        pageSelected.style.left = '-100%';
+                        setTimeout(function() {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                        });
+                    }
+                }
+            }
+        }
+    }, true);
+    pageSelected.addEventListener('mousemove', function(event) {
+        if (isDown && !activeUpdateHomeToggle) {
+            event.preventDefault();
+            mousePosition = {
+                x : event.clientX,
+                y : event.clientY
+            };
+            pageSelected.style.left = (mousePosition.x + offset[0]) + 'px';
+        }
+    }, true);
 }
 
 function isImage(url) {

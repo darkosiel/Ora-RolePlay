@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS ora_phone_messages (
 );
 
 CREATE TABLE IF NOT EXISTS ora_phone_call_history (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    source_uuid VARCHAR(255) NOT NULL,
-    target_uuid VARCHAR(255) NOT NULL,
-    call_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    accepted BOOLEAN DEFAULT 0,
-    call_duration INTEGER DEFAULT 0,
-    video BOOLEAN DEFAULT 0
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `source_number` VARCHAR(255) NOT NULL,
+    `target_number` VARCHAR(255) NOT NULL,
+    `call_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `accepted` BOOLEAN DEFAULT 0,
+    `call_duration` INTEGER DEFAULT 0,
+    `video` BOOLEAN DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS ora_phone_app_store (
