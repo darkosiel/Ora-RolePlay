@@ -49,6 +49,7 @@ local Infos = {
 
 local ItemsThatAreWeaponsAndAmmo = {
     can = true,
+    ["glif4"] = true,
     --snowball = true, -- not implemented yet, but weapon exists
 }
 
