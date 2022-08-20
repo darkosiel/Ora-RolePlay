@@ -219,8 +219,8 @@ local AnimScroll = 0
 -- Medium Thread
 CreateThread(function()
     while true do
-        plyCoords = GetEntityCoords(PlayerPedId())
         Wait(1000)
+        plyCoords = LocalPlayer().Pos
     end
 end)
 

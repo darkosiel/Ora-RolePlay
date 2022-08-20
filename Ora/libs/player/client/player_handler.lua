@@ -97,7 +97,7 @@ Citizen.CreateThread(function()
 		Player.Pos = GetEntityCoords(Player.Ped)
 		Player.Heading = GetEntityHeading(Player.Ped)
 		Player.InVehicle = IsPedInAnyVehicle(Player.Ped)
-		Citizen.Wait(0)
+		Citizen.Wait(10)
 	end
 end)
 
@@ -105,7 +105,6 @@ Citizen.CreateThread(
     function()
         while true do
             Player.Ped = PlayerPedId()
-            Player.Pos = GetEntityCoords(Player.Ped)
             Player.Hud = exports["Ora_utils"]:GetPlayerHUD()
             SetPedSuffersCriticalHits(Player.Ped, false)
 
@@ -121,6 +120,8 @@ Citizen.CreateThread(
                     SetPedGadget(Player.Ped, "GADGET_PARACHUTE", true)
                 end
             end
+
+            _, Player.Weapon = GetCurrentPedWeapon(Player.Ped, true)
 
             Citizen.Wait(1000)
         end
