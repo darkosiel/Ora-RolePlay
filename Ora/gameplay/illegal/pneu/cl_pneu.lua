@@ -27,10 +27,13 @@ Citizen.CreateThread(function()
 							local driverOfVehicle = GetDriverOfVehicle(vehicle)
 							local driverServer = GetPlayerServerId(driverOfVehicle)
 
+							local driverServer = GetPlayerServerId(NetworkGetEntityOwner(vehicle))
+							local vehicleServerId = NetworkGetEntityNetScriptId(vehicle)
+							print(driverServer, vehicleServerId)
 							if driverServer == 0 then
 								SetVehicleTyreBurst(vehicle, closestTire.tireIndex, 0, 100.0)
 							else
-								TriggerServerEvent("SlashTires:TargetClient", driverServer, closestTire.tireIndex)
+								TriggerServerEvent("SlashTires:TargetClient", driverServer, vehicleServerId, closestTire.tireIndex)
 							end
 							Citizen.Wait((animDuration / 2) * 1000)
 							ClearPedTasksImmediately(plyPed)
@@ -44,10 +47,10 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNetEvent("SlashTires:SlashClientTire")
-AddEventHandler("SlashTires:SlashClientTire", function(tireIndex)
+AddEventHandler("SlashTires:SlashClientTire", function(vehicleNetId, tireIndex)
 	local player = PlayerId()
 	local plyPed = GetPlayerPed(player)
-	local vehicle = GetVehiclePedIsIn(plyPed, false)
+	local vehicle = NetworkGetEntityFromNetworkId(vehicleNetId)
 	SetVehicleTyreBurst(vehicle, tireIndex, 0, 100.0)
 end)
 
