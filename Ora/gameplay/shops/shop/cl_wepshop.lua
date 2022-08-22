@@ -516,6 +516,10 @@ local OpenS = function()
 end
 
 local kevlarConfig = {
+    [1] = {
+        status = 100,
+        name = "Kevlar DB lourd"
+    },
     [2] = {
         status = 50,
         name = "Kevlar sécurité"
@@ -531,6 +535,10 @@ local kevlarConfig = {
     [5] = {
         status = 50,
         name = "Kevlar anti-riot"
+    },
+    [6] = {
+        status = 100,
+        name = "SWAT léger"
     },
     [7] = {
         status = 50,
@@ -549,11 +557,11 @@ local kevlarConfig = {
         name = "Sous-veste col ouvert"
     },
     [13] = {
-        status = 5,
+        status = 50,
         name = "Radio déportée 1"
     },
     [14] = {
-        status = 5,
+        status = 50,
         name = "Radio déportée 2"
     },
     [15] = {
@@ -569,8 +577,8 @@ local kevlarConfig = {
         name = "Kevlar moyen"
     },
     [19] = {
-        status = 50,
-        name = "Sous-veste cravate"
+        status = 70,
+        name = "Bleu lourd"
     },
     [21] = {
         status = 5,
@@ -594,7 +602,7 @@ local kevlarConfig = {
     },
     [26] = {
         status = 50,
-        name = "Col roulé"
+        name = "Bleu moyen"
     },
     [27] = {
         status = 100,
@@ -608,9 +616,17 @@ local kevlarConfig = {
         status = 50,
         name = "Radio déportée 3"
     },
+    [44] = {
+        status = 70,
+        name = "Kevlar GOUV"
+    },
     [46] = {
         status = 50,
         name = "Kevlar FIB"
+    },
+    [52] = {
+        status = 100,
+        name = "SWAT Lourd"
     },
     [54] = {
         status = 0,
