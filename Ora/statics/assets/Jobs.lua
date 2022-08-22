@@ -7862,34 +7862,6 @@ Jobs = {
                 }
             }
         },
-        requiredService = false,
-        work = {
-                recolte = {
-                    type = "recolte",
-                    workSize = 10.0,
-                    Pos = {x = -448.43, y = -339.80, z = 34.50 - 0.98},
-                    giveitem = "bandage",
-                    blipcolor = 7,
-                    blipname = "SAMS - Bandage",
-                    add = "~p~+ 1 Bandage",
-                    anim = {
-                        lib = "anim@mp_snowball",
-                        anim = "pickup_snowball"
-                    }
-                },
-                recolte2 = {
-                    type = "recolte",
-                    workSize = 10.0,
-                    Pos = {x = 235.41, y = -26.70, z = 69.89 - 0.98},
-                    giveitem = "medikit",
-                    blipcolor = 7,
-                    blipname = "SAMS - Trousse de soin",
-                    add = "~p~+ 1 Trousse de soin",
-                    anim = {
-                        lib = "anim@mp_snowball",
-                        anim = "pickup_snowball"
-                    }
-                },
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
