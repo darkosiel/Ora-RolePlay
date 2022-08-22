@@ -14,8 +14,8 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
 
     ["medbox"] = {"Boite medical", 8}, 
 
-    ["bandage"] = {"Bandage", 8},
-    ["medikit"] = {"Trousse de soin", 8},
+    ["bandage"] = {"Bandage", 2},
+    ["medikit"] = {"Trousse de soin", 10},
  
 
 
