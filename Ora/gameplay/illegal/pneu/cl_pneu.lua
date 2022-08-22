@@ -24,8 +24,8 @@ Citizen.CreateThread(function()
 							TaskPlayAnim(plyPed, animDict, animName, 8.0, -8.0, animDuration, 15, 1.0, 0, 0, 0)
 							Citizen.Wait((animDuration / 2) * 1000)
 
-							local driverOfVehicle = GetDriverOfVehicle(vehicle)
-							local driverServer = GetPlayerServerId(driverOfVehicle)
+							-- local driverOfVehicle = GetDriverOfVehicle(vehicle)
+							-- local driverServer = GetPlayerServerId(driverOfVehicle)
 
 							local driverServer = GetPlayerServerId(NetworkGetEntityOwner(vehicle))
 							local vehicleServerId = NetworkGetEntityNetScriptId(vehicle)
