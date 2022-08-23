@@ -2079,10 +2079,7 @@ local Shops =
                     data = {}
                 },
                 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ae749065b47082eb478d518c6d5992dc53bfbfbb
+
                     name = "katana",
                     price = 1000,
                     data = {}
@@ -2102,8 +2099,7 @@ local Shops =
                     price = 300,
                     data = {}
                 },
-<<<<<<< HEAD
-=======
+                {
                     name = "can",
                     price = 1,
                     data = {},
@@ -2128,9 +2124,6 @@ local Shops =
                     price = 2000,
                     data = {}
                 }
->>>>>>> 16942d044cede6cfe43e692ea33ebd884f881660
-=======
->>>>>>> ae749065b47082eb478d518c6d5992dc53bfbfbb
                 -- {
                 --     name = "allumette",
                 --     price = 100,
