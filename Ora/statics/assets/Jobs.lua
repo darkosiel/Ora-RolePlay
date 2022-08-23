@@ -7862,6 +7862,7 @@ Jobs = {
                 }
             }
         },
+        work = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
