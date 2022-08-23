@@ -2078,6 +2078,26 @@ local Shops =
                     price = 15000,
                     data = {}
                 },
+                {
+                    name = "katana",
+                    price = 1000,
+                    data = {}
+                },
+                {
+                    name = "pelle",
+                    price = 300,
+                    data = {}
+                },
+                {
+                    name = "pioche",
+                    price = 300,
+                    data = {}
+                },
+                {
+                    name = "masse",
+                    price = 300,
+                    data = {}
+                },
                 -- {
                 --     name = "allumette",
                 --     price = 100,
