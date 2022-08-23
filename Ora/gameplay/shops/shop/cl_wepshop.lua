@@ -548,6 +548,10 @@ local kevlarConfig = {
         status = 0,
         name = "Gilet de sauvetage"
     },
+    [9] = {
+        status = 70,
+        name = "Kevlar GOUV/DOJ"
+    },
     [11] = {
         status = 0,
         name = "Sous-veste EMT"
@@ -615,10 +619,6 @@ local kevlarConfig = {
     [37] = {
         status = 50,
         name = "Radio déportée 3"
-    },
-    [44] = {
-        status = 70,
-        name = "Kevlar GOUV"
     },
     [46] = {
         status = 50,
