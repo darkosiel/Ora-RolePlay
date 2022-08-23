@@ -260,7 +260,7 @@
                     <CoronaIntensity value="0.000000" />
                     <CoronaZBias value="0.000000" />
                     <ProjectileFlags>ProcessImpacts NoPullPin DoubleDamping ApplyDamageOnImpact DontFireAnyEvents</ProjectileFlags>
-                    <ThrownForce value="1.000000" />
+                    <ThrownForce value="0.000000" />
                     <ThrownForceFromVehicle value="5.000000" />
                 </Item>
                 <Item type="CAmmoThrownInfo">
@@ -575,18 +575,18 @@
                     <RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
                     <MinHeadShotDistancePlayer value="5.000000" />
                     <MaxHeadShotDistancePlayer value="40.000000" />
-                    <HeadShotDamageModifierPlayer value="1.000000" />
-                    <Damage value="2.000000" />
+                    <HeadShotDamageModifierPlayer value="2.000000" />
+                    <Damage value="0.000000" />
                     <DamageTime value="0.000000" />
                     <DamageTimeInVehicle value="0.000000" />
                     <DamageTimeInVehicleHeadShot value="0.000000" />
                     <HitLimbsDamageModifier value="0.500000" />
                     <NetworkHitLimbsDamageModifier value="0.800000" />
                     <LightlyArmouredDamageModifier value="0.750000" />
-                    <Force value="10.000000" />
+                    <Force value="0.000000" />
                     <ForceHitPed value="150.000000" />
-                    <ForceHitVehicle value="20.000000" />
-                    <ForceHitFlyingHeli value="20.000000" />
+                    <ForceHitVehicle value="0.000000" />
+                    <ForceHitFlyingHeli value="0.000000" />
                     <OverrideForces>
                         <Item>
                             <BoneTag>BONETAG_HEAD</BoneTag>
@@ -765,7 +765,7 @@
                     <Model>w_ex_canette</Model>
                     <Audio>AUDIO_ITEM_GRENADE</Audio>
                     <Slot>SLOT_CANETTE</Slot>
-                    <DamageType>UNKNOWN</DamageType>
+                    <DamageType>NONE</DamageType>
                     <Explosion>
                         <Default>DONTCARE</Default>
                         <HitCar>DONTCARE</HitCar>
@@ -794,18 +794,18 @@
                     <RecoilAccuracyToAllowHeadShotPlayer value="0.175000" />
                     <MinHeadShotDistancePlayer value="5.000000" />
                     <MaxHeadShotDistancePlayer value="40.000000" />
-                    <HeadShotDamageModifierPlayer value="1.000000" />
-                    <Damage value="100.000000" />
+                    <HeadShotDamageModifierPlayer value="0.000000" />
+                    <Damage value="20.000000" />
                     <DamageTime value="0.000000" />
                     <DamageTimeInVehicle value="0.000000" />
                     <DamageTimeInVehicleHeadShot value="0.000000" />
-                    <HitLimbsDamageModifier value="0.700000" />
-                    <NetworkHitLimbsDamageModifier value="0.7000000" />
-                    <LightlyArmouredDamageModifier value="0.750000" />
-                    <Force value="100.000000" />
-                    <ForceHitPed value="125.000000" />
-                    <ForceHitVehicle value="750.000000" />
-                    <ForceHitFlyingHeli value="750.000000" />
+                    <HitLimbsDamageModifier value="1.000000" />
+                    <NetworkHitLimbsDamageModifier value="1.000000" />
+                    <LightlyArmouredDamageModifier value="1.000000" />
+                    <Force value="10.000000" />
+                    <ForceHitPed value="65.000000" />
+                    <ForceHitVehicle value="0.000000" />
+                    <ForceHitFlyingHeli value="0.000000" />
                     <OverrideForces>
                         <Item>
                             <BoneTag>BONETAG_HEAD</BoneTag>
@@ -824,7 +824,7 @@
                     <ForceFalloffMin value="1.000000" />
                     <ProjectileForce value="10.000000" />
                     <FragImpulse value="1000.000000" />
-                    <Penetration value="1.000000" />
+                    <Penetration value="0.000000" />
                     <VerticalLaunchAdjustment value="0.300000" />
                     <DropForwardVelocity value="4.000000" />
                     <Speed value="2000.000000" />
@@ -956,7 +956,7 @@
                     <AttachPoints />
                     <GunFeedBone />
                     <TargetSequenceGroup />
-                    <WeaponFlags>CarriedInHand Silenced CanLockonOnFoot CanFreeAim AnimReload AnimCrouchFire Thrown UsableOnFoot UsableInCover SuppressGunshotEvent ThrowOnly NoWheelStats DisableLeftHandIkWhenOnFoot SwapToUnarmedWhenOutOfThrownAmmo UseFPSAimIK UseFPSSecondaryMotion AttachFPSLeftHandIKToRight DisableFPSScope DamageCausesDisputes</WeaponFlags>
+                    <WeaponFlags>CarriedInHand Silenced CanLockonOnFoot CanFreeAim AnimReload AnimCrouchFire Thrown UsableOnFoot UsableInCover NonViolent SuppressGunshotEvent ThrowOnly NoWheelStats DisableLeftHandIkWhenOnFoot SwapToUnarmedWhenOutOfThrownAmmo UseFPSAimIK UseFPSSecondaryMotion AttachFPSLeftHandIKToRight DisableFPSScope DamageCausesDisputes</WeaponFlags>
                     <TintSpecValues ref="TINT_DEFAULT" />
                     <FiringPatternAliases ref="NULL" />
                     <ReloadUpperBodyFixupExpressionData ref="DEFAULT" />
@@ -1229,17 +1229,17 @@
                     <MinHeadShotDistancePlayer value="5.000000" />
                     <MaxHeadShotDistancePlayer value="40.000000" />
                     <HeadShotDamageModifierPlayer value="2.000000" />
-                    <Damage value="2.000000" />
+                    <Damage value="0.000000" />
                     <DamageTime value="0.000000" />
                     <DamageTimeInVehicle value="0.000000" />
                     <DamageTimeInVehicleHeadShot value="0.000000" />
                     <HitLimbsDamageModifier value="0.500000" />
                     <NetworkHitLimbsDamageModifier value="0.800000" />
                     <LightlyArmouredDamageModifier value="0.750000" />
-                    <Force value="10.000000" />
+                    <Force value="0.000000" />
                     <ForceHitPed value="150.000000" />
-                    <ForceHitVehicle value="20.000000" />
-                    <ForceHitFlyingHeli value="20.000000" />
+                    <ForceHitVehicle value="0.000000" />
+                    <ForceHitFlyingHeli value="0.000000" />
                     <OverrideForces>
                         <Item>
                             <BoneTag>BONETAG_HEAD</BoneTag>
@@ -1448,17 +1448,17 @@
                     <MinHeadShotDistancePlayer value="5.000000" />
                     <MaxHeadShotDistancePlayer value="40.000000" />
                     <HeadShotDamageModifierPlayer value="2.000000" />
-                    <Damage value="2.000000" />
+                    <Damage value="0.000000" />
                     <DamageTime value="0.000000" />
                     <DamageTimeInVehicle value="0.000000" />
                     <DamageTimeInVehicleHeadShot value="0.000000" />
                     <HitLimbsDamageModifier value="0.500000" />
                     <NetworkHitLimbsDamageModifier value="0.800000" />
                     <LightlyArmouredDamageModifier value="0.750000" />
-                    <Force value="10.000000" />
+                    <Force value="0.000000" />
                     <ForceHitPed value="150.000000" />
-                    <ForceHitVehicle value="20.000000" />
-                    <ForceHitFlyingHeli value="20.000000" />
+                    <ForceHitVehicle value="0.000000" />
+                    <ForceHitFlyingHeli value="0.000000" />
                     <OverrideForces>
                         <Item>
                             <BoneTag>BONETAG_HEAD</BoneTag>
@@ -1490,7 +1490,7 @@
                     <Penetration value="0.000000" />
                     <VerticalLaunchAdjustment value="0.000000" />
                     <DropForwardVelocity value="0.000000" />
-                    <Speed value="500.000000" />
+                    <Speed value="2000.000000" />
                     <BulletsInBatch value="1" />
                     <BatchSpread value="0.000000" />
                     <ReloadTimeMP value="-1.000000" />

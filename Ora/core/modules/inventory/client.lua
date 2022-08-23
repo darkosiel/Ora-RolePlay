@@ -47,10 +47,6 @@ local Infos = {
     end
 }
 
-local ItemsEqualAmmo = {
-    can = true,
-    --snowball = true, -- not implemented yet, but weapon exists
-}
 
 --[[
     __                     __   ______                 __  _                 
@@ -258,7 +254,7 @@ function Ora.Inventory:SetWeapon(weapon, number)
 
         if weapon ~= nil then
             for k, v in pairs(self.Data[weapon.name]) do
-                if v.id == weapon.id or ItemsEqualAmmo[weapon.name] then
+                if v.id == weapon.id then
                     if self.Data[weapon.name][k].data then
                         self.Data[weapon.name][k].data.equipedSlot = number
                     else
@@ -321,20 +317,9 @@ function Ora.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to r
                             TriggerServerEvent("gcPhone:allUpdate")
                         end
                     end
-
                     table.remove(self.Data[itemName], i)
                     if itemName == "clothe" then
                         RefreshClothes()
-                    end
-                    if itemName == self.CurrentMunition then
-                        self.CurrentAmmo = #self.Data[itemName]
-                        SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
-                        if ItemsEqualAmmo[self.CurrentWeapon.Name] then
-                            RemoveWeaponFromPed(LocalPlayer().Ped, self.CurrentWeapon.Name)
-                            self.CurrentWeapon = {
-                                Name = nil, Label = nil, id = nil
-                            }
-                        end
                     end
                     break
                 end
@@ -403,11 +388,6 @@ function Ora.Inventory:RemoveFirstItem(itemName)
         _i = inv[i]
         if _i ~= nil then break end
     end
-
-    if Items[itemName].category == "weapon" and #inv == 1 then
-        self:SetWeapon(nil, inv[1].data.equipedSlot)
-    end
-
     self:RemoveItem(_i)
 end
 
@@ -448,14 +428,10 @@ function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refr
             cp = k
         end
     end
-    table.insert(T, {name = item.name, id = item.id, data = item.data, label = item.label})
     if item.name == weapon_munition[cp] then
-        --AddAmmoToPed(GetPlayerPed(-1), self.CurrentWeapon.Name, 1)
-
-        self.CurrentMunition = item.name
-        self.CurrentAmmo = #self.Data[item.name]
-        SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
+        AddAmmoToPed(GetPlayerPed(-1), self.CurrentWeapon.Name, 1)
     end
+    table.insert(T, {name = item.name, id = item.id, data = item.data, label = item.label})
     RageUI.Popup({message = "Vous avez reçu un(e) ~b~" .. string.lower(Items[item.name].label) .. "(s)"})
     if not isntRefreshing then
         self:RefreshWeight()
@@ -682,8 +658,6 @@ end
 function Ora.Inventory:UseItem(item)
     if Items[item.name].category == "weapon" then
         EquipWeapon(item)
-    elseif Items[item.name].category == "weapon:component" then
-        EquipAccessory(item)
     elseif Items[item.name].type == "props" then
         SpecialProps(item)
     elseif Items[item.name].category == "food" then

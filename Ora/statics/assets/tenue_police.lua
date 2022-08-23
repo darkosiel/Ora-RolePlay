@@ -1854,8 +1854,8 @@ TenueLSPD = {
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
-        },]]
-    },
+        },
+    },]]
     ["Lieutenant - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
@@ -2078,8 +2078,8 @@ TenueLSPD = {
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
-        },]]
-    },
+        },
+    },]]
     ["Capitaine - Moto"] = {
         male = {
             ['tshirt_1'] = 56,  ['tshirt_2'] = 0,
@@ -3344,21 +3344,21 @@ TenueLSPD = {
             ['chain_1'] = 1,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
-        --[[female = {
-            ['tshirt_1'] = 48,  ['tshirt_2'] = 0,
-            ['torso_1'] = 230,   ['torso_2'] = 0,
-            ['decals_1'] = -1,   ['decals_2'] = 0,
-            ['arms'] = 18,
-            ['pants_1'] = 30,   ['pants_2'] = 0,
-            ['shoes_1'] = 25,   ['shoes_2'] = 0,
-            ['helmet_1'] = 149,  ['helmet_2'] = 2,
-            ['ears_1'] = -1,     ['ears_2'] = 0,
-            ['bproof_1'] = 27,  ['bproof_2'] = 0,
-            ['bags_1'] = -1,     ['bags_2'] = 0,
-            ['glasses_1'] = 5,  ['glasses_2'] = 2,
-            ['chain_1'] = 0,    ['chain_2'] = 0,
-            ['mask_1'] = -1,     ['mask_2'] = 0
-        },]]
+        -- female = {
+        --     ['tshirt_1'] = 48,  ['tshirt_2'] = 0,
+        --     ['torso_1'] = 230,   ['torso_2'] = 0,
+        --     ['decals_1'] = -1,   ['decals_2'] = 0,
+        --     ['arms'] = 18,
+        --     ['pants_1'] = 30,   ['pants_2'] = 0,
+        --     ['shoes_1'] = 25,   ['shoes_2'] = 0,
+        --     ['helmet_1'] = 149,  ['helmet_2'] = 2,
+        --     ['ears_1'] = -1,     ['ears_2'] = 0,
+        --     ['bproof_1'] = 27,  ['bproof_2'] = 0,
+        --     ['bags_1'] = -1,     ['bags_2'] = 0,
+        --     ['glasses_1'] = 5,  ['glasses_2'] = 2,
+        --     ['chain_1'] = 0,    ['chain_2'] = 0,
+        --     ['mask_1'] = -1,     ['mask_2'] = 0
+        -- },
     },
     ["Police academy"] = {
         male = {

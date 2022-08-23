@@ -229,7 +229,7 @@ Citizen.CreateThread(
     end
 )
 
-local clearAreaOfPedsArray = {
+local clearAreaOfPedsArray = { --Antispawn PNJ
     { pos = vector3(-1084.15, -821.88, 5.48), radius = 60.0 },
     { pos = vector3(326.78, -583.25, 43.4), radius = 50.0 },
     { pos = vector3(-556.62, 285.77, 82.18), radius = 25.0 },
@@ -248,6 +248,7 @@ local clearAreaOfPedsArray = {
     { pos = vector3(811.8556, -2149.9516, 29.6210), radius = 60.0 },-- Ammunation Sud
     { pos = vector3(1410.99, 1147.39, 114.33), radius = 60.0 },-- Madrazo
     { pos = vector3(146.24, -1113.88, 29.31), radius = 40.0 },-- PDM
+    { pos = vector3(-1839.58, -360.67, 59.00), radius = 40.0 },-- Hopital
 }
 
 Citizen.CreateThread(function()
