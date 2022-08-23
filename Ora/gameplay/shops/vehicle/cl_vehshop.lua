@@ -967,7 +967,8 @@ Citizen.CreateThread(
                                             Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
                                             SetVehicleNumberPlateText(spawnedVehicle, "CONCESS") 
                                             DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                            SetPedIntoVehicle(LocalPlayer().Ped, spawnedVehicle, -1)
+                                            --SetPedIntoVehicle(LocalPlayer().Ped, spawnedVehicle, -1)
+                                            SetVehicleDirtLevel(spawnedVehicle, 0.0)
                                         end
                                     end
                                 )

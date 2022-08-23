@@ -438,7 +438,9 @@ RegisterNUICallback(
 				if (GetVehicleNumberPlateText(spawnedVehicle) ~= plate) then 
 					SetVehicleNumberPlateText(spawnedVehicle, plate)
 				end
-		
+				
+				SetVehicleDirtLevel(vehicle, 0)
+
 				Ora.Inventory:AddItems(
 					{
 						{
@@ -450,11 +452,10 @@ RegisterNUICallback(
 							label = plate
 						},
 						{
-							name = "carte_grise",
+							name = "key",
 							data = {
 								plate = plate,
-								model = veh.label,
-								identity = "Concessionnaire"
+								vehicleIdentifier = getVehicleIdentifier(spawnedVehicle)
 							},
 							label = plate
 						}
