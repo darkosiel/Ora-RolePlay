@@ -453,7 +453,7 @@ Citizen.CreateThread(
                                             CloseAllMenus()
                                             
                                             local veh = Ora.World.Vehicle:GetVehicleCustoms(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                            spawnedVehicle = Ora.World.Vehicle:Create(veh.model, bikershop[CurrentZone].SpawnPos, bikershop[CurrentZone].SpawnPos.h, {})
+                                            spawnedVehicle = Ora.World.Vehicle:Create(veh.model, bikershop[CurrentZone].SpawnPos, bikershop[CurrentZone].SpawnPos.h, {maxFuel = true})
                                             Ora.World.Vehicle:ApplyCustomsToVehicle(spawnedVehicle, veh)
                                             SetVehicleNumberPlateText(spawnedVehicle, "CONCESS") 
                                             DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
