@@ -2373,7 +2373,6 @@ Items = {
         label = "XBOX ONE",
         weight = 3.0
     },
-    --test
     burglary_flatscreen = {
         label = "TV LCD",
         weight = 2.0
