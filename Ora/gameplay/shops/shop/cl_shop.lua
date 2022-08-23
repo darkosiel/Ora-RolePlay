@@ -2079,6 +2079,7 @@ local Shops =
                     data = {}
                 },
                 {
+<<<<<<< HEAD
                     name = "katana",
                     price = 1000,
                     data = {}
@@ -2098,6 +2099,32 @@ local Shops =
                     price = 300,
                     data = {}
                 },
+=======
+                    name = "can",
+                    price = 1,
+                    data = {},
+                },
+                {
+                    name = "pelle",
+                    price = 500,
+                    data = {}
+                },
+                {
+                    name = "masse",
+                    price = 500,
+                    data = {}
+                },
+                {
+                    name = "katana",
+                    price = 1000,
+                    data = {}
+                },
+                {
+                    name = "pioche",
+                    price = 2000,
+                    data = {}
+                }
+>>>>>>> 16942d044cede6cfe43e692ea33ebd884f881660
                 -- {
                 --     name = "allumette",
                 --     price = 100,
@@ -2533,7 +2560,177 @@ local Shops =
                     price = 1,
                     data = {}
                 },
+                 -- Accessoires armes
+                -- Pistols
+                {
+                    name = "psuppressor",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "plight",
+                    price = 500,
+                    data = {}
+                },
+                {
+                    name = "pextendedclip",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "pscopes",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "pscope",
+                    price = 500,
+                    data = {}
+                },
+                -- SMG
+                {
+                    name = "smgsuppressor",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "smglight",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "smgextendedclip",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "smgscope",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "smggrip",
+                    price = 1,
+                    data = {}
+                },
 
+                -- Machine guns
+                {
+                    name = "mgsuppressor",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "mgextendedclip",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "mgscopes",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "mgscopem",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "mggrip",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "mgholo",
+                    price = 1,
+                    data = {}
+                },
+
+                -- RIFLES
+
+                {
+                    name = "rlight",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rextendedclip",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rgrip",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rholo",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rscope",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rscopes",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rscopel",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "rsuppressor",
+                    price = 1,
+                    data = {}
+                },
+                -- Sniper rifles
+                {
+                    name = "sscopem",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "sscopel",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "ssuppressor",
+                    price = 1,
+                    data = {}
+                },
+
+                -- Shotguns
+                {
+                    name = "sglight",
+                    price = 1,
+                    data = {},
+                },
+                {
+                    name = "sgsuppressor",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "sgscope",
+                    price = 1,
+                    data = {},
+                },
+                {
+                    name = "sgscopem",
+                    price = 1,
+                    data = {}
+                },
+                {
+                    name = "sggrip",
+                    price = 1,
+                    data = {},
+                }
 
             }
         },

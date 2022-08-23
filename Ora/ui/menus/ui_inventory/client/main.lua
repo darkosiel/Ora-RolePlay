@@ -182,14 +182,37 @@ local function HoverPlayer(ply)
 	DrawMarker(2, x, y, z + 1.0, 0, 0, 0, 180.0, nil, nil, 0.15, 0.15, 0.15, 52, 177, 74, 255, false, true, 2, true)
 end
 
+local weaponNotifId = nil
+
 local function showNotificationForWeapon(weaponData, isEquiped)
+    if weaponNotifId ~= nil then
+        ThefeedRemoveItem(weaponNotifId)
+        weaponNotifId = nil
+    end
     if (weaponData ~= nil and weaponData.name ~= nil) then
         if (isEquiped == false) then
-            ShowNotification(string.format("Vous avez équipé votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            --ShowNotification(string.format("Vous avez équipé votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            weaponNotifId = ShowNotification(string.format("Vous avez équipé votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            print(weaponNotifId)
         else
-            ShowNotification(string.format("Vous sortez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            --ShowNotification(string.format("Vous sortez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            print(weaponData.name)
+            if Ora.Inventory.CurrentWeapon.Label == weapon_name[weaponData.name] then
+                weaponNotifId = ShowNotification(string.format("Vous rangez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            else
+                weaponNotifId = ShowNotification(string.format("Vous sortez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            end
         end
     end
+    local nId = weaponNotifId
+    Citizen.SetTimeout(2000, function()
+        
+        if nId ~= nil then
+            ThefeedRemoveItem(nId)
+            weaponNotifId = nil
+            nId = nil 
+        end
+    end)
 end
 
 
