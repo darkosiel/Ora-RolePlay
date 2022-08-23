@@ -667,9 +667,9 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {400, 550}
+                amount = {1500, 2000}
             },
-            ["xp"] = {1500, 1600}
+            ["xp"] = {2500, 3600}
         }
     }
 }

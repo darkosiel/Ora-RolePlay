@@ -1,75 +1,121 @@
+local function Draw3DText(x, y, z, text)
+	print("Hello")
+    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
+    local px,py,pz=table.unpack(GetGameplayCamCoords())
+    local dist = GetDistanceBetweenCoords(px,py,pz, x,y,z, 1)
+
+    local scale = (1/dist)*0.75
+    local fov = (1/GetGameplayCamFov())*100
+    local scale = scale*fov
+
+    if onScreen then
+        SetTextScale(0.0*scale, 0.55*scale)
+        SetTextFont(0)
+        SetTextProportional(1)
+        -- SetTextScale(0.0, 0.55)
+        SetTextColour(255, 255, 255, 255)
+        SetTextDropshadow(0, 0, 0, 0, 255)
+        SetTextEdge(2, 0, 0, 0, 150)
+        SetTextDropShadow()
+        SetTextOutline()
+        SetTextEntry("STRING")
+        SetTextCentre(1)
+        AddTextComponentString(text)
+        DrawText(_x,_y)
+    end
+end
+
 Citizen.CreateThread(function()
+	local allowedWeapons = {GetHashKey("WEAPON_KNIFE"), GetHashKey("WEAPON_BOTTLE"), GetHashKey("WEAPON_DAGGER"), GetHashKey("WEAPON_HATCHET"), GetHashKey("WEAPON_MACHETE"), GetHashKey("WEAPON_SWITCHBLADE")}
+	local animDict = "melee@knife@streamed_core_fps"
+	local animName = "ground_attack_on_spot"
+	local unarmedHash = GetHashKey("WEAPON_UNARMED")
+	
 	while true do
-		local allowedWeapons = {"WEAPON_KNIFE", "WEAPON_BOTTLE", "WEAPON_DAGGER", "WEAPON_HATCHET", "WEAPON_MACHETE", "WEAPON_SWITCHBLADE"}
-		local player = PlayerId()
-		local plyPed = GetPlayerPed(player)
-		local vehicle = GetClosestVehicleToPlayer()
-		local animDict = "melee@knife@streamed_core_fps"
-		local animName = "ground_attack_on_spot"
-		if vehicle ~= 0 then
-			if CanUseWeapon(allowedWeapons) then
-				local closestTire = GetClosestVehicleTire(vehicle)
-				if closestTire ~= nil then
-					
-					if IsVehicleTyreBurst(vehicle, closestTire.tireIndex, 0) == false then
-						Draw3DText(closestTire.bonePos.x, closestTire.bonePos.y, closestTire.bonePos.z, tostring("~r~[E] CREVER PNEU"))
-						if IsControlJustPressed(1, 38) then
+		if LocalPlayer().Weapon ~= unarmedHash then
+			local plyPed = LocalPlayer().Ped
+			local vehicle = GetClosestVehicleToPlayer()
 
-							RequestAnimDict(animDict)
-							while not HasAnimDictLoaded(animDict) do
-								Citizen.Wait(100)
+			if vehicle ~= 0 then
+				if CanUseWeapon(allowedWeapons) then
+					local closestTire = GetClosestVehicleTire(vehicle)
+					if closestTire ~= nil then
+
+						if IsVehicleTyreBurst(vehicle, closestTire.tireIndex, 0) == false then
+							Draw3DText(closestTire.bonePos.x, closestTire.bonePos.y, closestTire.bonePos.z, tostring("~r~[E] CREVER PNEU"))
+							if IsControlJustPressed(1, 38) then
+
+								RequestAnimDict(animDict)
+								while not HasAnimDictLoaded(animDict) do
+									Citizen.Wait(100)
+								end
+
+								local animDuration = GetAnimDuration(animDict, animName)
+								TaskPlayAnim(plyPed, animDict, animName, 8.0, -8.0, animDuration, 15, 1.0, 0, 0, 0)
+								Citizen.Wait((animDuration / 2) * 1000)
+
+								-- local driverOfVehicle = GetDriverOfVehicle(vehicle)
+								-- local driverServer = GetPlayerServerId(driverOfVehicle)
+
+								if #(LocalPlayer().Pos - GetEntityCoords(vehicle)) < 5.0 then
+
+									local driverServer = GetPlayerServerId(NetworkGetEntityOwner(vehicle))
+									local vehicleServerId = NetworkGetEntityNetScriptId(vehicle)
+									print(driverServer, vehicleServerId)
+									if driverServer == LocalPlayer().ServerID then
+										SetVehicleTyreBurst(vehicle, closestTire.tireIndex, 0, 100.0)
+									else
+										TriggerServerEvent("SlashTires:TargetClient", driverServer, vehicleServerId, closestTire.tireIndex)
+									end
+									Citizen.Wait((animDuration / 2) * 1000)
+									ClearPedTasksImmediately(plyPed)
+								end
 							end
-
-							local animDuration = GetAnimDuration(animDict, animName)
-							TaskPlayAnim(plyPed, animDict, animName, 8.0, -8.0, animDuration, 15, 1.0, 0, 0, 0)
-							Citizen.Wait((animDuration / 2) * 1000)
-
-							-- local driverOfVehicle = GetDriverOfVehicle(vehicle)
-							-- local driverServer = GetPlayerServerId(driverOfVehicle)
-
-							local driverServer = GetPlayerServerId(NetworkGetEntityOwner(vehicle))
-							local vehicleServerId = NetworkGetEntityNetScriptId(vehicle)
-							print(driverServer, vehicleServerId)
-							if driverServer == 0 then
-								SetVehicleTyreBurst(vehicle, closestTire.tireIndex, 0, 100.0)
-							else
-								TriggerServerEvent("SlashTires:TargetClient", driverServer, vehicleServerId, closestTire.tireIndex)
-							end
-							Citizen.Wait((animDuration / 2) * 1000)
-							ClearPedTasksImmediately(plyPed)
 						end
 					end
 				end
+			else
+				Citizen.Wait(500)
 			end
+		else
+			Citizen.Wait(2000)
 		end
 		Citizen.Wait(0)
 	end
 end)
 
+-- Citizen.CreateThread(function()
+-- 	while true do
+-- 		local ped = PlayerPedId()
+-- 		PlayerWeapon = GetSelectedPedWeapon(ped)
+-- 		Citizen.Wait(1000.0)
+-- 	end
+-- end)
+
 RegisterNetEvent("SlashTires:SlashClientTire")
 AddEventHandler("SlashTires:SlashClientTire", function(vehicleNetId, tireIndex)
-	local player = PlayerId()
-	local plyPed = GetPlayerPed(player)
+	-- local player = PlayerId()
+	-- local plyPed = GetPlayerPed(player)
 	local vehicle = NetworkGetEntityFromNetworkId(vehicleNetId)
 	SetVehicleTyreBurst(vehicle, tireIndex, 0, 100.0)
 end)
 
-function GetDriverOfVehicle(vehicle)
-	local dPed = GetPedInVehicleSeat(vehicle, -1)
-	for a = 0, 32 do
-		if dPed == GetPlayerPed(a) then
-			return a
-		end
-	end
-	return -1
-end
+-- function GetDriverOfVehicle(vehicle)
+-- 	local dPed = GetPedInVehicleSeat(vehicle, -1)
+-- 	for a = 0, 32 do
+-- 		if dPed == GetPlayerPed(a) then
+-- 			return a
+-- 		end
+-- 	end
+-- 	return -1
+-- end
 
 function CanUseWeapon(allowedWeapons)
-	local player = PlayerId()
-	local plyPed = GetPlayerPed(player)
-	local plyCurrentWeapon = GetSelectedPedWeapon(plyPed)
-	for a = 1, #allowedWeapons do
-		if GetHashKey(allowedWeapons[a]) == plyCurrentWeapon then
+	-- local player = PlayerId()
+	-- local plyPed = GetPlayerPed(player)
+	-- local plyCurrentWeapon = GetSelectedPedWeapon(plyPed)
+	for k, v in pairs(allowedWeapons) do
+		if v == LocalPlayer().Weapon then
 			return true
 		end
 	end
@@ -77,13 +123,12 @@ function CanUseWeapon(allowedWeapons)
 end
 
 function GetClosestVehicleToPlayer()
-	local player = PlayerId()
-	local plyPed = GetPlayerPed(player)
-	local plyPos = GetEntityCoords(plyPed, false)
-	local plyOffset = GetOffsetFromEntityInWorldCoords(plyPed, 0.0, 1.0, 0.0)
-	local radius = 3.0
-	local rayHandle = StartShapeTestCapsule(plyPos.x, plyPos.y, plyPos.z, plyOffset.x, plyOffset.y, plyOffset.z, radius, 10, plyPed, 7)
-	local _, _, _, _, vehicle = GetShapeTestResult(rayHandle)
+	local player = LocalPlayer()
+	local plyPos = player.Pos
+	local fwdVector = GetEntityMatrix(player.Ped)
+	local plyOffset = plyPos+fwdVector*2
+	local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(plyPos.x, plyPos.y, plyPos.z, plyOffset.x, plyOffset.y, plyOffset.z, 10, player.Ped, 7)
+	local retval, hit, endcoords, surfaceNormal, vehicle = GetShapeTestResult(rayHandle)
 	return vehicle
 end
 
@@ -106,7 +151,7 @@ function GetClosestVehicleTire(vehicle)
 	local plyPos = GetEntityCoords(plyPed, false)
 	local minDistance = 1.0
 	local closestTire = nil
-	
+
 	for a = 1, #tireBones do
 		local bonePos = GetWorldPositionOfEntityBone(vehicle, GetEntityBoneIndexByName(vehicle, tireBones[a]))
 		local distance = Vdist(plyPos.x, plyPos.y, plyPos.z, bonePos.x, bonePos.y, bonePos.z)
@@ -123,30 +168,4 @@ function GetClosestVehicleTire(vehicle)
 	end
 
 	return closestTire
-end
-
-function Draw3DText(x, y, z, text)
-    local onScreen,_x,_y=World3dToScreen2d(x,y,z)
-    local px,py,pz=table.unpack(GetGameplayCamCoords())
-    local dist = GetDistanceBetweenCoords(px,py,pz, x,y,z, 1)
- 
-    local scale = (1/dist)*2
-    local fov = (1/GetGameplayCamFov())*100
-    local scale = scale*fov
-   
-    if onScreen then
-        SetTextScale(0.0*scale, 0.55*scale)
-        SetTextFont(0)
-        SetTextProportional(1)
-        -- SetTextScale(0.0, 0.55)
-        SetTextColour(255, 255, 255, 255)
-        SetTextDropshadow(0, 0, 0, 0, 255)
-        SetTextEdge(2, 0, 0, 0, 150)
-        SetTextDropShadow()
-        SetTextOutline()
-        SetTextEntry("STRING")
-        SetTextCentre(1)
-        AddTextComponentString(text)
-        DrawText(_x,_y)
-    end
 end
