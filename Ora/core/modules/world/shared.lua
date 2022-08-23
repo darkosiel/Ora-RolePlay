@@ -1,7 +1,7 @@
 Ora.World = {}
 Ora.World.List = {}
 
-Ora.World.VehicleGeneratorRemoved = {
+Ora.World.VehicleGeneratorRemoved = { --Antispawn VOITURES
   {x = 1222.7, y = 2712.9, z = 38.01, r = 3.0}, -- AntiSpawn Larry's
   {x = -44.02, y = -1098.0, z = 26.42, r = 3.0}, -- AntiSpawn concess sud
   --{x = 133.89, y = 6604.01, z = 31.84, r = 500}, -- AntiSpawn biker QG
