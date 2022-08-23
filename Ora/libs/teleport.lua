@@ -18,11 +18,11 @@ local Elevator = {
 
   },
 
-  ["AGENCE IMMO"] = {
-    {label = "Parking", pos = vector3(-1537.28, -577.91, 25.71), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
-    {label = "Agence", pos = vector3(-1581.25, -562.07, 108.52), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
+  -- ["AGENCE IMMO"] = {
+  --   {label = "Parking", pos = vector3(-1537.28, -577.91, 25.71), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
+  --   {label = "Agence", pos = vector3(-1581.25, -562.07, 108.52), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     
-  },
+  -- },
 
   -- ["UNICORN"] = {
   --   {label = "", pos = vector3(133.06, -1293.65, 28.0), msg = "Appuyez sur ~INPUT_CONTEXT~ pour aller derrière le bar"},
@@ -96,11 +96,6 @@ local Elevator = {
   ["HOTEL2"] = {
     {label = "Terrasse", pos = vector3(-1384.70, -976.10, 8.93), msg = "Appuyez sur ~INPUT_CONTEXT~ pour monter."},
     {label = "Sortie", pos = vector3(-1403.86, -979.68, 19.38), msg = "Appuyez sur ~INPUT_CONTEXT~ pour descendre."},
-  },
-
-  ["PDM"] = {
-    {label = "rez-de-chaussée", pos = vector3(-28.92, -1094.24, 25.44), msg = "Appuyez sur ~INPUT_CONTEXT~ pour monter."},
-    {label = "Étage 1", pos = vector3(-24.33, -1106.68, 34.92), msg = "Appuyez sur ~INPUT_CONTEXT~ pour descendre."},
   },
 
 --[[  ["MADRAZO"] = {

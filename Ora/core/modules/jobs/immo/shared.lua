@@ -247,6 +247,15 @@ Ora.Jobs.Immo.Interiors = {
         label = "Petit rangement",
         id = "appart21"
     },
+    {
+        entry = {x = -1581.13, y = -562.26, z = 107.52}, 
+        coffre = {x = -1564.73, y = -572.32, z = 107.52},
+        r = {x = -180.0, y = -180.0, z = 353.6},
+        coords = {x = -1569.59, y = -568.47, z = 108.91},
+        activated = true,
+        label = "Business Moderne 2",
+        id = "appart22"
+    },
 }
 
 Ora.Jobs.Immo.ErrorMessages = {}
