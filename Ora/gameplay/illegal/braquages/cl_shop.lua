@@ -194,7 +194,7 @@ local function CreateRobberyThread(apuEntity)
                     if (not lastReward or lastReward + 10000 < GetGameTimer()) and IsPedArmed(ped, 7) then
                         TaskSynchronizedTasks(apuEntity, {{anim = {"mp_am_hold_up", "handsup_exit"}, flag = 0}})
                         math.randomseed(GetGameTimer())
-                        local t = math.random(15, 60)
+                        local t = math.random(30, 90)
                         ShowNotification("~g~+" .. t .. "$")
 
                         TriggerServerCallback(
@@ -432,7 +432,7 @@ local function startRobberyFunc(apuEntity)
     ShowNotification("~r~Criez et continuez de menacer Apu~w~\npour récupérer plus de cash.")
     firstStageCompleted = true
     math.randomseed(GetGameTimer())
-    t = math.random(150, 280)
+    t = math.random(900, 1100)
 
     ShowNotification("~g~+" .. t .. "$")
     TriggerServerCallback(
