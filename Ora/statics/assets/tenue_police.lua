@@ -3298,18 +3298,18 @@ TenueLSPD = {
     },
     ["SWAT Bleu"] = {
         male = {
-            ['tshirt_1'] = 68,  ['tshirt_2'] = 0,
-            ['torso_1'] = 220,   ['torso_2'] = 0,
+            ['tshirt_1'] = 156,  ['tshirt_2'] = 0,
+            ['torso_1'] = 534,   ['torso_2'] = 2,
             ['decals_1'] = -1,   ['decals_2'] = 0,
-            ['arms'] = 17,
-            ['pants_1'] = 31,   ['pants_2'] = 0,
+            ['arms'] = 58,
+            ['pants_1'] = 69,   ['pants_2'] = 2,
             ['shoes_1'] = 25,   ['shoes_2'] = 0,
             ['helmet_1'] = 150,  ['helmet_2'] = 0,
             ['ears_1'] = -1,     ['ears_2'] = 0,
-            ['bproof_1'] = 25,  ['bproof_2'] = 0,
+            ['bproof_1'] = -1,  ['bproof_2'] = 0,
             ['bags_1'] = -1,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
-            ['chain_1'] = 0,    ['chain_2'] = 0,
+            ['chain_1'] = 1,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
