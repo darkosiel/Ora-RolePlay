@@ -1334,7 +1334,23 @@ function EquipWeapon(weapon)
     local name = weapon_name[weapon.name]
     if HasPedGotWeapon(LocalPlayer().Ped, GetHashKey(name), false) then
         RemoveWeaponFromPed(playerPed, GetHashKey(name))
+
+        Ora.Inventory.CurrentWeapon = {
+            Name = nil, Label = nil, id = nil
+        }
+        Ora.Inventory.CurrentAmmo = 0
+        Ora.Inventory.CurrentMunition = nil
     else
+
+        if Ora.Inventory.CurrentWeapon.Name ~= nil then
+            RemoveWeaponFromPed(playerPed, Ora.Inventory.CurrentWeapon.Name)
+            Ora.Inventory.CurrentWeapon = {
+                Name = nil, Label = nil, id = nil
+            }
+            Ora.Inventory.CurrentAmmo = 0
+            Ora.Inventory.CurrentMunition = nil
+        end
+
         if (weapon.name == "parachute") then
             GiveWeaponToPed(LocalPlayer().Ped, GetHashKey("GADGET_PARACHUTE"), true)
             SetCurrentPedWeapon(LocalPlayer().Ped, GetHashKey("GADGET_PARACHUTE"), true)
@@ -2595,7 +2611,7 @@ end
 ShowNotification = function(msg)
     SetNotificationTextEntry("STRING")
     AddTextComponentSubstringWebsite(msg)
-    DrawNotification(false, true)
+    return DrawNotification(false, true)
 end
 exports(
     "lavage",

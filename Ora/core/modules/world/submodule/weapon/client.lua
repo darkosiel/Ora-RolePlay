@@ -86,11 +86,11 @@ function Ora.World.Weapon:PlayAnimationForWeapon(weaponHash)
 				end
 			end
 		end
-  end
+  	end
 end
 
 function CheckWeapon(newWeap)
-  return Ora.World.Weapon.Animation[newWeap] ~= nil
+  return Ora.World.Weapon.Animation[newWeap]
 end
 
 function loadAnimDict(dict)

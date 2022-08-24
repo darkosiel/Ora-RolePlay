@@ -1,7 +1,7 @@
 Ora.World.Weapon = {}
 
 Ora.World.Weapon.Animation = {
-    [`WEAPON_CANETTE`]  = true,
+    [`WEAPON_CANETTE`]  = false,
     [`WEAPON_DOUBLEACTION`]  = true,
     [`WEAPON_KNUCKLE`]  = false,
     [`WEAPON_SWITCHBLADE`]  = false,
@@ -77,6 +77,21 @@ Ora.World.Weapon.Animation = {
     [`weapon_navyrevolver`]  = true,
     [`weapon_assaultshotgun`]  = true,
     --[`WEAPON_FIREEXTINGUISHER`]  = true,
+
+    -- PISTOL
+    [GetHashKey("WEAPON_APPISTOL")] = true,
+    [GetHashKey("WEAPON_PISTOL50")] = true,
+    [GetHashKey("WEAPON_SNSPISTOL")] = true,
+    [GetHashKey("WEAPON_HEAVYPISTOL")] = true,
+    [GetHashKey("WEAPON_VINTAGEPISTOL")] = true,
+    [GetHashKey("WEAPON_MARKSMANPISTOL")] = true,
+    [GetHashKey("WEAPON_MACHINEPISTOL")] = true,
+    [GetHashKey("WEAPON_VINTAGEPISTOL")] = true,
+    [GetHashKey("WEAPON_PISTOL_MK2")] = true,
+    [GetHashKey("WEAPON_SNSPISTOL_MK2")] = true,
+    [GetHashKey("WEAPON_FLAREGUN")] = false,
+    [GetHashKey("WEAPON_STUNGUN")] = false,
+    [GetHashKey("WEAPON_REVOLVER")] = true,
 }
 
 Ora.World:Register(`Weapon`)

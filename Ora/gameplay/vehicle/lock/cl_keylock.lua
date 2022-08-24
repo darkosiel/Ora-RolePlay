@@ -1,7 +1,7 @@
+local carNotifId = nil
 function OpenCar()
     local vehicle = vehicleFct.GetVehicleInDirection(8.0)
     local closestvehicle = GetClosestVehicle(LocalPlayer().Pos.x, LocalPlayer().Pos.y, LocalPlayer().Pos.z, 4.0, 0, 127)
-
 
     if vehicle == 0 and closestvehicle == 0 then
     else
@@ -35,8 +35,20 @@ function OpenCar()
                         NetworkRequestControlOfEntity(veh)
                         SetVehicleDoorsLockedForAllPlayers(veh, not lock)
                         SetVehicleDoorsLockedForPlayer(veh, PlayerId(), not lock)
-        
-                        ShowNotification("Vous avez " .. (lock and "~g~déverrouillé" or "~r~verrouillé") .. "~w~ votre véhicule.")
+                        
+                        if notifId ~= nil then
+                            ThefeedRemoveItem(notifId)
+                        end
+
+                        notifId = ShowNotification("Vous avez " .. (lock and "~g~déverrouillé" or "~r~verrouillé") .. "~w~ votre véhicule.")
+                        local tempId = notifId
+                        Citizen.SetTimeout(1500, function()
+                            if tempId == notifId then
+                                ThefeedRemoveItem(tempId)
+                                notifId = nil
+                                tempId = nil
+                            end
+                        end)
                     end
                 end
 
