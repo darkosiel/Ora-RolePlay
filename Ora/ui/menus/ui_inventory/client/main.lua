@@ -182,13 +182,31 @@ local function HoverPlayer(ply)
 	DrawMarker(2, x, y, z + 1.0, 0, 0, 0, 180.0, nil, nil, 0.15, 0.15, 0.15, 52, 177, 74, 255, false, true, 2, true)
 end
 
+local notifId
+
 local function showNotificationForWeapon(weaponData, isEquiped)
     if (weaponData ~= nil and weaponData.name ~= nil) then
-        if (isEquiped == false) then
-            ShowNotification(string.format("Vous avez équipé votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
-        else
-            ShowNotification(string.format("Vous sortez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+        
+        if notifId ~= nil then
+            ThefeedRemoveItem(notifId)
         end
+        if (isEquiped == false) then
+            notifId = ShowNotification(string.format("Vous avez équipé votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+        else
+            if Ora.Inventory.CurrentWeapon.Label == weapon_name[weaponData.name] then
+                notifId = ShowNotification(string.format("Vous rangez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            else
+                notifId = ShowNotification(string.format("Vous sortez votre ~h~~g~%s~h~~s~", Items[weaponData.name].label))
+            end
+        end
+
+        local tempId = notifId
+        Citizen.SetTimeout(1500, function()
+            if notifId == tempId then
+                notifId = nil
+                ThefeedRemoveItem(tempId)
+            end
+        end)
     end
 end
 
@@ -454,9 +472,17 @@ RegisterNUICallback('TargetToInventory', function(data)
 end)
 
 Citizen.CreateThread(function()
+    while true do
+        Wait(0)
+        HideHudComponentThisFrame(19)
+        HudWeaponWheelIgnoreSelection()
+    end
+end)
+
+Citizen.CreateThread(function()
 	Wait(500)
 	while true do
-        Wait(1)
+        Wait(0)
         HideHudComponentThisFrame(19)
 		HudWeaponWheelIgnoreSelection()
 
