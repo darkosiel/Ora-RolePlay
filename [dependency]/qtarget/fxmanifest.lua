@@ -28,3 +28,7 @@ files {
 	'html/css/style.css',
 	'html/js/script.js'
 }
+
+server_scripts {
+	'server/main.lua'
+}

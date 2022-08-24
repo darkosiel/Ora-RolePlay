@@ -60,15 +60,31 @@ M.CloneTable = function(table)
 	return copy
 end
 
-M.ToggleDoor = function(vehicle, door)
-	if GetVehicleDoorLockStatus(vehicle) ~= 2 then 
-		if GetVehicleDoorAngleRatio(vehicle, door) > 0.0 then
-			SetVehicleDoorShut(vehicle, door, false)
-		else
-			SetVehicleDoorOpen(vehicle, door, false)
+M.ToggleDoor = function(vehicle, door, localToggle)
+	local playerServerId = GetPlayerServerId(PlayerId())
+	local ownerServerId = GetPlayerServerId(NetworkGetEntityOwner(vehicle))
+	print(playerServerId, ownerServerId)
+	if playerServerId == ownerServerId or localToogle then
+		if GetVehicleDoorLockStatus(vehicle) ~= 2 then 
+			if GetVehicleDoorAngleRatio(vehicle, door) > 0.0 then
+				SetVehicleDoorShut(vehicle, door, true)
+			else
+				SetVehicleDoorOpen(vehicle, door, false)
+			end
+
+			-- if not localToogle and GetEntityModel(vehicle) == GetHashKey("tr2") then
+			-- 	TriggerServerEvent("qtarget:server:SyncToogleDoor", NetworkGetNetworkIdFromEntity(vehicle), door)
+			-- end
 		end
+	else
+		TriggerServerEvent('qtarget:server:ToggleDoor', ownerServerId, NetworkGetNetworkIdFromEntity(vehicle), door)
 	end
+
 end
+
+RegisterNetEvent("qtarget:client:ToggleDoor", function(vehicle, door, localToggle)
+	M.ToggleDoor(NetworkGetEntityFromNetworkId(vehicle), door, localToggle)
+end)
 
 M.EnterByDoor = function(vehicle, door)
 	local ped = PlayerPedId()
