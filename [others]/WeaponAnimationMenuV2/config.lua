@@ -36,7 +36,7 @@ config = {
         -- "WEAPON_PISTOL50",
         -- "WEAPON_SNSPISTOL",
         -- "WEAPON_HEAVYPISTOL",
-        -- "WEAPON_VINTAGEPISTOL",
+        "WEAPON_VINTAGEPISTOL",
         -- "WEAPON_MARKSMANPISTOL",
         -- "WEAPON_MACHINEPISTOL",
         -- "WEAPON_VINTAGEPISTOL",
