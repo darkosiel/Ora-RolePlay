@@ -122,6 +122,8 @@ Citizen.CreateThread(
                 end
             end
 
+            Player.Weapon = GetSelectedPedWeapon(Player.Ped)
+
             Citizen.Wait(1000)
         end
     end
