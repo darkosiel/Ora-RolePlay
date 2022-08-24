@@ -10,6 +10,10 @@
 local display = false
 local AimAnim = GetResourceKvpString("AimAnim")
 local HolsterAnim = GetResourceKvpString("HolsterAnim")
+if HolsterAnim == "" then
+    SetResourceKvp("HolsterAnim", "BackHolsterAnimation")
+    HolsterAnim = "HolsterAnim"
+end	
 
 -- When bac is opened for the first time.
 RegisterNetEvent("Andyyy:OpenWAM")
@@ -135,13 +139,13 @@ CreateThread(function()
                     if CheckWeapon(ped) then
                         if holstered then
                             blocked   = true
-                                --SetPedCurrentWeaponVisible(ped, 0, 1, 1, 1)
-                                TaskPlayAnim(ped, "reaction@intimidation@cop@unarmed", "intro", 8.0, 2.0, -1, 50, 2.0, 0, 0, 0 )
+                                SetPedCurrentWeaponVisible(ped, 0, 1, 1, 1)
+                                TaskPlayAnim(ped, "reaction@intimidation@cop@unarmed", "intro", 6.0, 2.0, -1, 50, 0, 0, 0, 0 )
                                 
-                                    Citizen.Wait(100)
-                                    --SetPedCurrentWeaponVisible(ped, 1, 1, 1, 1)
-                                TaskPlayAnim(ped, "rcmjosh4", "josh_leadout_cop2", 8.0, 2.0, -1, 48, 10, 0, 0, 0 )
-                                    Citizen.Wait(400)
+                                Citizen.Wait(100)
+                                SetPedCurrentWeaponVisible(ped, 1, 1, 1, 1)
+                                TaskPlayAnim(ped, "rcmjosh4", "josh_leadout_cop2", 6.0, 2.0, -1, 48, 10, 0, 0, 0 )
+                                Citizen.Wait(600)
                                 ClearPedTasks(ped)
                             holstered = false
                         else
