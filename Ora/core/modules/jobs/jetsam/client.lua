@@ -439,7 +439,7 @@ RegisterNUICallback(
 					SetVehicleNumberPlateText(spawnedVehicle, plate)
 				end
 				
-				SetVehicleDirtLevel(vehicle, 0)
+				SetVehicleDirtLevel(spawnedVehicle, 0)
 
 				Ora.Inventory:AddItems(
 					{
