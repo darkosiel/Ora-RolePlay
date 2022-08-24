@@ -43,8 +43,9 @@ RegisterNUICallback("3", function(data)
 end)
 
 RegisterNUICallback("4", function(data)
-    SetResourceKvp("HolsterAnim", "nil")
-    HolsterAnim = GetResourceKvpString("HolsterAnim")
+    --SetResourceKvp("HolsterAnim", "nil")
+    --HolsterAnim = GetResourceKvpString("HolsterAnim")
+    ShowNotif("~r~Cette animation est volontairement désactivée.")
     SetDisplay(false)
 end)
 RegisterNUICallback("5", function(data)
@@ -134,11 +135,11 @@ CreateThread(function()
                     if CheckWeapon(ped) then
                         if holstered then
                             blocked   = true
-                                SetPedCurrentWeaponVisible(ped, 0, 1, 1, 1)
+                                --SetPedCurrentWeaponVisible(ped, 0, 1, 1, 1)
                                 TaskPlayAnim(ped, "reaction@intimidation@cop@unarmed", "intro", 8.0, 2.0, -1, 50, 2.0, 0, 0, 0 )
                                 
                                     Citizen.Wait(100)
-                                    SetPedCurrentWeaponVisible(ped, 1, 1, 1, 1)
+                                    --SetPedCurrentWeaponVisible(ped, 1, 1, 1, 1)
                                 TaskPlayAnim(ped, "rcmjosh4", "josh_leadout_cop2", 8.0, 2.0, -1, 48, 10, 0, 0, 0 )
                                     Citizen.Wait(400)
                                 ClearPedTasks(ped)
@@ -160,7 +161,7 @@ CreateThread(function()
                     end
                     Citizen.Wait(50)
                 else
-                    SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+                    --SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
                 end
             else
                 holstered = true
@@ -196,7 +197,7 @@ CreateThread(function()
                     end
                     Citizen.Wait(50)
                 else
-                    SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+                    --SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
                 end
             else
                 holstered = true
@@ -240,7 +241,7 @@ CreateThread(function()
                     end
                     Citizen.Wait(50)
                 else
-                    SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+                    --SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
                 end
             else
                 holstered = true
@@ -277,7 +278,7 @@ CreateThread(function()
                     end
                     Citizen.Wait(50)
                 else
-                    SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+                    --SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
                 end
             else
                 holstered = true
@@ -312,7 +313,7 @@ CreateThread(function()
                         Citizen.Wait(40)
                     end
                 else
-                    SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
+                    --SetCurrentPedWeapon(ped, GetHashKey("WEAPON_UNARMED"), true)
                 end
                 Citizen.Wait(50)
             else
@@ -381,4 +382,11 @@ function loadAnimDict(dict)
 		RequestAnimDict(dict)
 		Citizen.Wait(50)
 	end
+end
+
+function ShowNotif(msg)
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(msg)
+    local notifId = DrawNotification(true, false)
+    Citizen.SetTimeout(1500, function() ThefeedRemoveItem(notifId) end)
 end

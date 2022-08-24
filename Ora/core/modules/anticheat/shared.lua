@@ -40,6 +40,14 @@ Ora.Anticheat.ObjectWhitelist = {
   [1184113278] = true, -- poolcue
   [1729911864] = true, -- speaker
   [1262298127] = true, -- wheelchair
+  [GetHashKey("bv_shield1")] = true,
+  [GetHashKey("bv_shield2")] = true,
+  [GetHashKey("bv_shield3")] = true,
+  [GetHashKey("bv_shield4")] = true,
+  [GetHashKey("prop_shield_one")] = true,
+  [GetHashKey("prop_shield_two")] = true,
+  [GetHashKey("prop_shield_three")] = true,
+  [GetHashKey("prop_shield_four")] = true,
 }
 
 Ora.Anticheat.WeaponBlacklist = {
