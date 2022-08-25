@@ -209,7 +209,7 @@ local function GetInFrontObject()
     local forward = GetEntityMatrix(player)
     local endCoords = (coords + forward * 1.0)
     print(coords, endCoords)
-    local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(coords.x, coords.y, coords.z, endCoords.x, endCoords.y, endCoords.z, 4294967295, player, 0)
+    local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(coords.x, coords.y, coords.z, endCoords.x, endCoords.y, endCoords.z, 16, player, 0)
     local retval, hit, endCoords, surfaceNormal, object = GetShapeTestResult(rayHandle)
     print(retval, hit, endCoords, surfaceNormal, object)
     return object
