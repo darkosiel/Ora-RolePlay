@@ -1747,7 +1747,7 @@ Items = {
         category = "weapon"
     },
     flashbang = {
-        label = "GL2M",
+        label = "GM2L",
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
