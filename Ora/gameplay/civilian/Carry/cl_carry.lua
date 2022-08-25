@@ -1,3 +1,31 @@
+local function GetClosestPlayer(radius)
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = PlayerPedId()
+    local plyCoords = GetEntityCoords(ply, 0)
+
+    for index, value in pairs(GetActivePlayers()) do
+        local target = GetPlayerPed(value)
+        if (target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = #(targetCoords - plyCoords)
+                
+            if (closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+    --print("closest player is dist: " .. tostring(closestDistance))
+    if closestDistance <= radius then
+        return closestPlayer
+    else
+        return nil
+    end
+end
+
+
+
 local carryingBackInProgress = false
 RegisterCommand("carry",
     function(source, args)
@@ -19,6 +47,7 @@ RegisterCommand("carry",
             animFlagTarget = 1
             local closestPlayer = GetClosestPlayer(3)
             target = GetPlayerServerId(closestPlayer)
+            print(target, closestPlayer)
             if closestPlayer ~= nil then
                 --print("triggering cmg2_animations:sync")
                 TriggerServerEvent(
@@ -47,8 +76,10 @@ RegisterCommand("carry",
             ClearPedSecondaryTask(PlayerPedId())
             DetachEntity(PlayerPedId(), true, false)
             local closestPlayer = GetClosestPlayer(3)
-            target = GetPlayerServerId(closestPlayer)
-            TriggerServerEvent("cmg2_animations:stop", target)
+            if closestPlayer ~= nil then
+                target = GetPlayerServerId(closestPlayer)
+                TriggerServerEvent("cmg2_animations:stop",target)
+            end
         end
     end,
     false
@@ -125,40 +156,6 @@ AddEventHandler(
     end
 )
 
-function GetClosestPlayer(radius)
-    local players = GetPlayers()
-    local closestDistance = -1
-    local closestPlayer = -1
-    local ply = PlayerPedId()
-    local plyCoords = GetEntityCoords(ply, 0)
-
-    for index, value in ipairs(players) do
-        local target = GetPlayerPed(value)
-        if (target ~= ply) then
-            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
-            local distance =
-                GetDistanceBetweenCoords(
-                targetCoords["x"],
-                targetCoords["y"],
-                targetCoords["z"],
-                plyCoords["x"],
-                plyCoords["y"],
-                plyCoords["z"],
-                true
-            )
-            if (closestDistance == -1 or closestDistance > distance) then
-                closestPlayer = value
-                closestDistance = distance
-            end
-        end
-    end
-    --print("closest player is dist: " .. tostring(closestDistance))
-    if closestDistance <= radius then
-        return closestPlayer
-    else
-        return nil
-    end
-end
 
 RegisterNetEvent("carry:notify")
 AddEventHandler(
