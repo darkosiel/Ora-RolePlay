@@ -452,6 +452,7 @@ client_script {
     "gameplay/world/cl_appart.lua",
     "gameplay/world/cl_computer.lua",
     "gameplay/world/cl_anticarjack.lua",
+    "gameplay/world/cl_tp.lua",
     --"gameplay/civilian/treasurehunt/config.lua",
     --"gameplay/civilian/treasurehunt/client.lua",
     "gameplay/civilian/Carry/cl_carry.lua",
