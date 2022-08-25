@@ -174,6 +174,7 @@ Citizen.CreateThread(
 RegisterCommand(
     "CancelAnim",
     function()
+        TriggerEvent("Ora:Client:CancelBinSearch")
         ClearPedTasks(PlayerPedId())
     end,
     false
