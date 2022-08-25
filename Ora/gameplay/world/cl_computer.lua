@@ -80,7 +80,6 @@ end)
 
 -- TODO: MAYBE ADD A CHECK IF THE PLAYER ISNT BEHIND THE BIN ?
 local function CheckBin(prop)
-    print("Hola")
     if (alreadySearched + #propsFouilled) == 10 then
         return RageUI.Popup({message="~r~Vous avez fouillé trop de poubelle pour aujourd'hui"})
     end
@@ -208,10 +207,9 @@ local function GetInFrontObject()
     local coords = LocalPlayer().Pos
     local forward = GetEntityMatrix(player)
     local endCoords = (coords + forward * 1.0)
-    print(coords, endCoords)
     local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(coords.x, coords.y, coords.z, endCoords.x, endCoords.y, endCoords.z, 16, player, 0)
     local retval, hit, endCoords, surfaceNormal, object = GetShapeTestResult(rayHandle)
-    print(retval, hit, endCoords, surfaceNormal, object)
+    --print(retval, hit, endCoords, surfaceNormal, object)
     return object
 end
 
