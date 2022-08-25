@@ -47,6 +47,11 @@ local Infos = {
     end
 }
 
+local WeaponEqualAmmo = { 
+    can = true,
+    flashbang = true
+    --snowball = true, -- not implemented yet, but weapon exists
+}
 
 --[[
     __                     __   ______                 __  _                 
@@ -117,9 +122,40 @@ function GetNuFemale()
     }
 end
 
+local function ReapplyOutfit(item)
+    print("ReapplyOutfit")
+    local data = item.data
+    local ped = LocalPlayer().Ped
+
+    SetPedComponentVariation(ped, 3, data.torso, data.torsocolor)
+    SetPedComponentVariation(ped, 4, data.pant, data.pantcolor)
+    SetPedComponentVariation(ped, 6, data.chaus, data.chausscolor)
+    SetPedComponentVariation(ped, 11, data.tops, data.topcolor)
+    SetPedComponentVariation(ped, 3, data.torso, data.torsocolor)
+    SetPedComponentVariation(ped, 7, data.access, data.accesscolor)
+    SetPedComponentVariation(ped, 8, data.unders, data.underscolor)
+    SetPedComponentVariation(ped, 10, data.decals, data.decalscolor)
+    if data.chain ~= nil then
+        SetPedComponentVariation(ped, 7, data.chain, data.chaincolor)
+    end
+    if data.bags ~= nil then
+        SetPedComponentVariation(ped, 5, data.bags, data.bagscolor)
+    end
+    if data.glasses ~= nil then
+        SetPedPropIndex(ped, 1, data.glasses, data.glassescolor)
+    end
+    if data.hat ~= nil then
+        SetPedPropIndex(ped, 0, data.hat, data.hatcolor)
+    end
+    if data.mask_1 ~= nil then
+        SetPedComponentVariation(ped, 1, data.mask, data.maskcolor)
+    end
+end
+
 function RefreshClothes()
     visor = false
     local clothesIn = Ora.Inventory.Data ~= nil and Ora.Inventory.Data["clothe"] or nil
+    local tenueIn = Ora.Inventory.Data ~= nil and Ora.Inventory.Data["tenue"] or nil
     local accessIn = Ora.Inventory.Data ~= nil and Ora.Inventory.Data["access"] or nil
     local Clothes = {}
     if Ora.World.Ped:IsPedMale(LocalPlayer().Ped) then
@@ -129,6 +165,13 @@ function RefreshClothes()
     end
 
     UpdateEntityOutfit(LocalPlayer().Ped, Clothes)
+    if tenueIn ~= nil then
+        for k, v in pairs(tenueIn) do
+            if v.data.equiped then
+                ReapplyOutfit(v)
+            end
+        end
+    end
     if clothesIn ~= nil then
         for i = 1, #clothesIn, 1 do
             if clothesIn[i].data.equiped then
@@ -161,7 +204,6 @@ function RefreshClothes()
         end
     end
 end
-
 
 --[[ 
    ________      __          __   __  ___     __  __              __    
@@ -254,7 +296,7 @@ function Ora.Inventory:SetWeapon(weapon, number)
 
         if weapon ~= nil then
             for k, v in pairs(self.Data[weapon.name]) do
-                if v.id == weapon.id then
+                if v.id == weapon.id or WeaponEqualAmmo[weapon.name] then
                     if self.Data[weapon.name][k].data then
                         self.Data[weapon.name][k].data.equipedSlot = number
                     else
@@ -320,6 +362,20 @@ function Ora.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to r
                     table.remove(self.Data[itemName], i)
                     if itemName == "clothe" then
                         RefreshClothes()
+                    end
+                    if itemName == "tenue" then
+                        RefreshClothes()
+                    end
+
+                    if itemName == self.CurrentMunition then
+                        self.CurrentAmmo = #self.Data[itemName]
+                        SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
+                        -- if WeaponEqualAmmo[itemName] and self.CurrentWeapon.Name ~= 0 then
+                        --     RemoveWeaponFromPed(LocalPlayer().Ped, self.CurrentWeapon.Name)
+                        --     self.CurrentWeapon = {
+                        --         Name = nil, Label = nil, id = nil
+                        --     }
+                        -- end
                     end
                     break
                 end
@@ -388,6 +444,9 @@ function Ora.Inventory:RemoveFirstItem(itemName)
         _i = inv[i]
         if _i ~= nil then break end
     end
+    if Items[itemName].category == "weapon" and #inv == 1 then -- prevent ui inventory still showing in weapon slot even if player doesn't have any left
+        self:SetWeapon(nil, inv[1].data.equipedSlot)
+    end
     self:RemoveItem(_i)
 end
 
@@ -428,10 +487,12 @@ function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refr
             cp = k
         end
     end
-    if item.name == weapon_munition[cp] then
-        AddAmmoToPed(GetPlayerPed(-1), self.CurrentWeapon.Name, 1)
-    end
     table.insert(T, {name = item.name, id = item.id, data = item.data, label = item.label})
+    if item.name == weapon_munition[cp] then
+        self.CurrentMunition = item.name
+        self.CurrentAmmo = #self.Data[item.name]
+        SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
+    end
     RageUI.Popup({message = "Vous avez reçu un(e) ~b~" .. string.lower(Items[item.name].label) .. "(s)"})
     if not isntRefreshing then
         self:RefreshWeight()
@@ -821,6 +882,7 @@ function Ora.Inventory:GiveItemToPlayer(_player, item, amount)
                         if k.id == item.id then
                             if item.data ~= nil and item.data.equiped ~= nil then
                                 item.data.equiped = false
+
                             end
                             table.insert(giveTable, item)
                         else

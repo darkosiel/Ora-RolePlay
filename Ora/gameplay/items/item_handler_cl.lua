@@ -271,6 +271,14 @@ function EquipTenue()
         end
     )
     Wait(7000)
+
+    for i = 1, #Ora.Inventory.Data["clothe"] do
+        local p = Ora.Inventory.Data["clothe"][i]
+        if p.data.equiped then
+            p.data.equiped = false
+        end
+    end
+
 end
 visor = false
 local sac = nil
@@ -316,9 +324,15 @@ function EquipClothes()
         end
     end
 
+    for k, v in pairs(Ora.Inventory.Data["tenue"]) do
+        if v.data.equiped then
+            v.data.equiped = false
+        end
+    end
+
     for i = 1, #Ora.Inventory.Data[SelectedItem.name] do
         local p = Ora.Inventory.Data[SelectedItem.name][i]
-        if p.data.component == SelectedItem.data.commponent then
+        if p.data.component == SelectedItem.data.component then
             if p.id ~= SelectedItem.id then
                 p.data.equiped = false
             end
@@ -1418,7 +1432,7 @@ Citizen.CreateThread(
             Wait(0)
             playerPed = LocalPlayer().Ped
             local currentWeapon = GetSelectedPedWeapon(playerPed)
-
+            SetWeaponsNoAutoswap(true)
             -- Jerrican
             if (currentWeapon == 883325847) then
                 local playerCoords = LocalPlayer().Pos
