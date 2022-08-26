@@ -1346,8 +1346,12 @@ end
 
 function EquipWeapon(weapon)
     local name = weapon_name[weapon.name]
-    if HasPedGotWeapon(LocalPlayer().Ped, GetHashKey(name), false) then
-        RemoveWeaponFromPed(playerPed, GetHashKey(name))
+    if Ora.Inventory.CurrentWeapon.Name == name then 
+        if HasPedGotWeapon(LocalPlayer().Ped, GetHashKey(name), false) then
+            RemoveWeaponFromPed(playerPed, GetHashKey(name))
+        else
+            print(("You're supposed to have a weapon equiped [%s] but you actually don't have it"):format(name))
+        end
 
         Ora.Inventory.CurrentWeapon = {
             Name = nil, Label = nil, id = nil
@@ -1428,117 +1432,125 @@ local isFueling = false
 
 Citizen.CreateThread(
     function()
+        SetWeaponsNoAutoswap(true)
         while true do
             Wait(0)
             playerPed = LocalPlayer().Ped
-            local currentWeapon = GetSelectedPedWeapon(playerPed)
-            SetWeaponsNoAutoswap(true)
+            local currentWeapon = Ora.Inventory.CurrentWeapon.Name
             -- Jerrican
-            if (currentWeapon == 883325847) then
-                local playerCoords = LocalPlayer().Pos
-                local closestVehicle = GetClosestVehicle(playerCoords.x, playerCoords.y, playerCoords.z, 2.0, 0, 127)
-                local vehicleCoords = GetEntityCoords(closestVehicle)
-                local distance =
-                    GetDistanceBetweenCoords(
-                    vehicleCoords.x,
-                    vehicleCoords.y,
-                    vehicleCoords.z,
-                    playerCoords.x,
-                    playerCoords.y,
-                    playerCoords.z,
-                    true
-                )
-                if (distance <= 3.0 and isFueling == false) then
-                    DrawText3D(
+            if currentWeapon ~= nil then
+                -- Jerican handling
+                if (currentWeapon == 883325847) then
+                    local playerCoords = LocalPlayer().Pos
+                    local closestVehicle = GetClosestVehicle(playerCoords.x, playerCoords.y, playerCoords.z, 2.0, 0, 127)
+                    local vehicleCoords = GetEntityCoords(closestVehicle)
+                    local distance =
+                        GetDistanceBetweenCoords(
                         vehicleCoords.x,
                         vehicleCoords.y,
-                        vehicleCoords.z + 1.5,
-                        "appuyez sur [~h~K~h~] avec votre jerrican en main pour faire le plein"
+                        vehicleCoords.z,
+                        playerCoords.x,
+                        playerCoords.y,
+                        playerCoords.z,
+                        true
                     )
+                    if (distance <= 3.0 and isFueling == false) then
+                        DrawText3D(
+                            vehicleCoords.x,
+                            vehicleCoords.y,
+                            vehicleCoords.z + 1.5,
+                            "appuyez sur [~h~K~h~] avec votre jerrican en main pour faire le plein"
+                        )
 
-                    if IsControlJustPressed(1, Keys["K"]) and IsPedWeaponReadyToShoot(LocalPlayer().Ped) then
-                        local tankV = GetVehicleHandlingFloat(closestVehicle, "CHandlingData", "fPetrolTankVolume")
-                        if GetFuel(closestVehicle) + 10 < tankV or (tankV <= 10.00 and GetFuel(closestVehicle) < 5.00) then
-                            isFueling = true
+                        if IsControlJustPressed(1, Keys["K"]) and IsPedWeaponReadyToShoot(LocalPlayer().Ped) then
+                            local tankV = GetVehicleHandlingFloat(closestVehicle, "CHandlingData", "fPetrolTankVolume")
+                            if GetFuel(closestVehicle) + 10 < tankV or (tankV <= 10.00 and GetFuel(closestVehicle) < 5.00) then
+                                isFueling = true
 
-                            RequestAnimDict("timetable@gardener@filling_can")
-                            local j = 0
-                            while not HasAnimDictLoaded("timetable@gardener@filling_can") and j <= 50 do
-                                Citizen.Wait(100)
-                                j = j + 1
-                            end
+                                RequestAnimDict("timetable@gardener@filling_can")
+                                local j = 0
+                                while not HasAnimDictLoaded("timetable@gardener@filling_can") and j <= 50 do
+                                    Citizen.Wait(100)
+                                    j = j + 1
+                                end
 
-                            if j >= 50 then
-                                SendNotification("~r~~h~ERROR ~h~~w~: The animation dictionnary took too long to load.")
+                                if j >= 50 then
+                                    SendNotification("~r~~h~ERROR ~h~~w~: The animation dictionnary took too long to load.")
+                                else
+                                    TaskPlayAnim(
+                                        LocalPlayer().Ped,
+                                        "timetable@gardener@filling_can",
+                                        "gar_ig_5_filling_can",
+                                        8.0,
+                                        1.0,
+                                        -1,
+                                        1
+                                    )
+                                    SendNotification(
+                                        "~r~~h~ESSENCE~h~~w~: Vous ajoutez 10 Litres d'essence, veuillez patienter."
+                                    )
+                                    Wait(1000 * 10)
+                                    Ora.Inventory:RemoveFirstItem("gascan")
+                                    Wait(1000 * 5)
+                                    ClearPedTasksImmediately(LocalPlayer().Ped)
+                                    RemoveAnimDict("timetable@gardener@filling_can")
+                                    local newEssenceLevel = GetFuel(closestVehicle)
+                                    SetFuel(closestVehicle, newEssenceLevel + 10)
+                                    SendNotification("~r~~h~ESSENCE~h~~w~: Vous avez remis un peu d'essence dans votre voiture")
+                                    isFueling = false
+                                end
                             else
-                                TaskPlayAnim(
-                                    LocalPlayer().Ped,
-                                    "timetable@gardener@filling_can",
-                                    "gar_ig_5_filling_can",
-                                    8.0,
-                                    1.0,
-                                    -1,
-                                    1
-                                )
-                                SendNotification(
-                                    "~r~~h~ESSENCE~h~~w~: Vous ajoutez 10 Litres d'essence, veuillez patienter."
-                                )
-                                Wait(1000 * 10)
-                                Ora.Inventory:RemoveFirstItem("gascan")
-                                Wait(1000 * 5)
-                                ClearPedTasksImmediately(LocalPlayer().Ped)
-                                RemoveAnimDict("timetable@gardener@filling_can")
-                                local newEssenceLevel = GetFuel(closestVehicle)
-                                SetFuel(closestVehicle, newEssenceLevel + 10)
-                                SendNotification("~r~~h~ESSENCE~h~~w~: Vous avez remis un peu d'essence dans votre voiture")
-                                isFueling = false
+                                SendNotification("~r~~h~ESSENCE~h~~w~: Votre réservoir est loin d'être vide")
                             end
-                        else
-                            SendNotification("~r~~h~ESSENCE~h~~w~: Votre réservoir est loin d'être vide")
                         end
                     end
                 end
-            end
 
-            if IsPedShooting(playerPed) and not onShooting then
-                if IsARealWeapon(currentWeapon) then
-                    DecorSetBool(playerPed, "powder", true)
-                    TriggerServerEvent("Ora_status:addOn", "powder")
-                end
-
-                -- Jerrican
-                if (currentWeapon == 883325847) then
-                    local gascan = Ora.Inventory.Data["gascan"][1]
-                    if (gascan.data == nil or gascan.data.useTime == nil) then
-                        gascan.data = {useTime = 0}
+                if not onShooting and IsPedShooting(playerPed) then
+                    if IsARealWeapon(currentWeapon) then
+                        DecorSetBool(playerPed, "powder", true)
+                        TriggerServerEvent("Ora_status:addOn", "powder")
                     end
-                    gascan.data.useTime = gascan.data.useTime + 1
 
-                    if (gascan.data.useTime > 1500) then
-                        Ora.Inventory:RemoveFirstItem("gascan")
+                    -- Jerrican
+                    if (currentWeapon == 883325847) then
+                        local gascan = Ora.Inventory.Data["gascan"][1]
+                        if (gascan.data == nil or gascan.data.useTime == nil) then
+                            gascan.data = {useTime = 0}
+                        end
+                        gascan.data.useTime = gascan.data.useTime + 1
+
+                        if (gascan.data.useTime > 1500) then
+                            Ora.Inventory:RemoveFirstItem("gascan")
+                        end
+
+                    elseif (currentWeapon == 101631238) then
+                        local extinguisher = Ora.Inventory.Data["fire_extinguisher"][1]
+                        if (extinguisher.data == nil or extinguisher.data.useTime == nil) then
+                            extinguisher.data = {useTime = 0}
+                        end
+                        extinguisher.data.useTime = extinguisher.data.useTime + 1
+
+                        if (extinguisher.data.useTime > 6000) then
+                            Ora.Inventory:RemoveFirstItem("fire_extinguisher")
+                            RageUI.Popup({message = "~r~Votre extincteur est vide"})
+                            EquipWeapon({name = "fire_extinguisher"})
+                            TriggerEvent("Ora:inventory:deleteIfWeapon", extinguisher)
+                        end
+                    end
+
+                    if Ora.Inventory.CurrentMunition ~= nil then
+                        if Ora.Inventory.Data[Ora.Inventory.CurrentMunition] ~= nil then
+                            --item = Ora.Inventory.Data[Ora.Inventory.CurrentMunition][1].id
+                            Ora.Inventory.CurrentAmmo = Ora.Inventory.CurrentAmmo - 1
+                            Ora.Inventory:RemoveFirstItem(Ora.Inventory.CurrentMunition)
+                        end
+                    else
+                        Citizen.Wait(1000)
                     end
                 end
-
-                if (currentWeapon == 101631238) then
-                    local extinguisher = Ora.Inventory.Data["fire_extinguisher"][1]
-                    if (extinguisher.data == nil or extinguisher.data.useTime == nil) then
-                        extinguisher.data = {useTime = 0}
-                    end
-                    extinguisher.data.useTime = extinguisher.data.useTime + 1
-
-                    if (extinguisher.data.useTime > 6000) then
-                        Ora.Inventory:RemoveFirstItem("fire_extinguisher")
-                        RageUI.Popup({message = "~r~Votre extincteur est vide"})
-                        EquipWeapon({name = "fire_extinguisher"})
-                        TriggerEvent("Ora:inventory:deleteIfWeapon", extinguisher)
-                    end
-                end
-
-                if Ora.Inventory.Data[Ora.Inventory.CurrentMunition] ~= nil then
-                    item = Ora.Inventory.Data[Ora.Inventory.CurrentMunition][1].id
-                    Ora.Inventory.CurrentAmmo = Ora.Inventory.CurrentAmmo - 1
-                    Ora.Inventory:RemoveFirstItem(Ora.Inventory.CurrentMunition)
-                end
+            else
+                Citizen.Wait(1000)
             end
         end
     end
