@@ -1346,7 +1346,7 @@ end
 
 function EquipWeapon(weapon)
     local name = weapon_name[weapon.name]
-    if Ora.Inventory.CurrentWeapon.Name == name then 
+    if Ora.Inventory.CurrentWeapon.Label == name then 
         if HasPedGotWeapon(LocalPlayer().Ped, GetHashKey(name), false) then
             RemoveWeaponFromPed(playerPed, GetHashKey(name))
         else
