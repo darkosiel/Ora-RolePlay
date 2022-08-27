@@ -10739,6 +10739,22 @@ Jobs = {
                 Blipname = "Garage Concessionnaire"
             }
         },
+        garage2 = {
+            Name = "Garage Concessionnaire2",
+            Pos = {x = 126.96, y = -1104.08, z = 28.19},
+            illimity = true,
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 126.96, y = -1104.08, z = 28.19, h = 113.24}
+            },
+            Blipdata = {
+                Pos = {x = 126.96, y = -1104.08, z = 28.19},
+                Blipcolor = 5,
+                Blipname = "Garage Concessionnaire2"
+            }
+        },
         Storage = {
             {
                 Pos = {x = 131.5, y = -1088.93, z = 28.2},

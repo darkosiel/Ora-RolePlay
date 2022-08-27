@@ -98,7 +98,7 @@ Config = {
         AIM_RIGHT = "Viser à droite",
         AIM_SLOWER = "Visez plus lentement",
 
-        POOL = 'Bilard',
+        POOL = 'Billard',
         POOL_GAME = 'Pool game',
         POOL_SUBMENU = 'mode de jeu',
         TYPE_8_BALL = '8-Ball',

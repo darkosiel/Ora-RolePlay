@@ -1,5 +1,6 @@
 -- character table string
 local b = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+local NumbersOfBins = {}
 
 -- encoding
 function enc(data)
@@ -34,3 +35,15 @@ function dec(data)
         end
     ))
 end
+
+RegisterServerEvent("Ora:Server:LogNumberOfBins", function(numberOfBins)
+    local src = source
+    local identifier = GetPlayerIdentifiers(src)[1]
+    NumbersOfBins[identifier] = numberOfBins
+end)
+
+RegisterServerCallback("Ora:Server:GetNumberOfBins", function(source, cb)
+    local src = source
+    local identifier = GetPlayerIdentifiers(src)[1]
+    cb(NumbersOfBins[identifier] ~= nil and NumbersOfBins[identifier] or 0)
+end)

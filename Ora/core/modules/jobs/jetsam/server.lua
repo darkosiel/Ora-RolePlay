@@ -40,7 +40,7 @@ RegisterServerCallback(
 	"Ora::SVCB::Jobs:Jetsam:GetOrders",
 	function(src, cb)
 		MySQL.Async.fetchAll(
-			"SELECT id, uuid, owner, data, DATE_FORMAT(date, '%d/%m/%Y') AS date, received FROM jetsam_orders",
+			"SELECT id, uuid, owner, data, DATE_FORMAT(date, '%d/%m/%Y') AS date, received FROM jetsam_orders WHERE received = 0",
 			{},
 			function(result)
 				cb(result)

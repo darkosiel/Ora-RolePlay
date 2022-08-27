@@ -1746,6 +1746,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    flashbang = {
+        label = "GM2L",
+        weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     molotov = {
         label = "Cocktail Molotov",
         weight = 1.0,
@@ -1809,6 +1815,12 @@ Items = {
     raypistol = {
         label = "Pistolet admin",
         weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
+    firework = {
+        label = "Mortier",
+        weight = 3.0,
         actionCl = "weapon:Equip",
         category = "weapon"
     },

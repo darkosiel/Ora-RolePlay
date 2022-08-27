@@ -55,6 +55,7 @@ local WeaponsFct =
     }
 weapon_name = {
     can = "WEAPON_CANETTE",
+    flashbang = "WEAPON_FLASHBANG",
     parachute = "gadget_parachute",
     pistol = "WEAPON_PISTOL",
     pistolcombat = "WEAPON_COMBATPISTOL",
@@ -128,6 +129,7 @@ weapon_name = {
     marksmanriflemk2 = "weapon_marksmanrifle_mk2",
     hominglauncher = "weapon_hominglauncher",
     railgun = "weapon_railgun",
+    --firework = "weapon_firework",
     compactlauncher = "weapon_compactlauncher",
     minigun = "weapon_minigun",
     rpg = "weapon_rpg",
@@ -162,6 +164,7 @@ weapon_munition = {
     raypistol = nil,
     flaregun = "calibre12",
     pistoldouble = "snip",
+    --firework = "calibre12",
     --- blanches
     knuckle = nil,
     knife1 = nil,
@@ -191,6 +194,7 @@ weapon_munition = {
     bombsticky = "bombsticky",
     molotov ="molotov",
     can = "can",
+    flashbang = "flashbang",
     brick = "weapon_snowball",
     parachute = nil,
     --- smg

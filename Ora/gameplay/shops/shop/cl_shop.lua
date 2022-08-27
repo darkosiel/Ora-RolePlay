@@ -2078,11 +2078,11 @@ local Shops =
                     price = 15000,
                     data = {}
                 },
-                {
-                    name = "can",
-                    price = 1,
-                    data = {},
-                },
+                -- {
+                --     name = "can",
+                --     price = 1,
+                --     data = {},
+                -- },
                 {
                     name = "pelle",
                     price = 500,
