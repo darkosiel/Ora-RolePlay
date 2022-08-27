@@ -396,7 +396,7 @@ local VehShop =
                 ["Police"] = {
                     {name = "police", price = 25000},
                     {name = "policeslick", price = 25000},
-                    {name = "police2", price = 25000},
+                    --{name = "police2", price = 25000},
                     {name = "police2new", price = 25000},
                     {name = "pdumkbuffalo", price = 25000},
                     {name = "police3", price = 25000},
