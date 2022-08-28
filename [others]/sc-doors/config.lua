@@ -1030,14 +1030,14 @@ Config.DoorList = {
             {objHash = -822900180, objCoords =  vector3(1182.305, 2645.240, 38.67)}
         }
     },
-        --Miror
+        --Mirror
     {
         objHash = -1540703659,
         objCoords = vector3(-1343.294677734375, -1076.096923828125, 7.269369602203369),
         textCoords = vector3(-1343.294677734375, -1076.096923828125, 7.269369602203369),
         authorizedJobs = {"restaurant"},
         locked = true,
-        maxDistance = 5.0
+        maxDistance = 2.0
     },
     
     {
@@ -1046,7 +1046,7 @@ Config.DoorList = {
         textCoords = vector3(-1341.0965576171875, -1074.8541259765625, 7.269369602203369),
         authorizedJobs = {"restaurant"},
         locked = true,
-        maxDistance = 5.0
+        maxDistance = 2.0
     },
     
     {
@@ -1055,7 +1055,7 @@ Config.DoorList = {
         textCoords = vector3(-1349.6475830078125, -1063.7611083984375, 7.036352634429932),
         authorizedJobs = {"restaurant"},
         locked = true,
-        maxDistance = 5.0
+        maxDistance = 2.0
     },
 
 
