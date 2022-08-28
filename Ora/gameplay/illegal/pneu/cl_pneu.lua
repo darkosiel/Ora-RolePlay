@@ -1,5 +1,5 @@
 local function Draw3DText(x, y, z, text)
-	print("Hello")
+	--print("Hello")
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
     local dist = GetDistanceBetweenCoords(px,py,pz, x,y,z, 1)
@@ -61,7 +61,7 @@ Citizen.CreateThread(function()
 
 									local driverServer = GetPlayerServerId(NetworkGetEntityOwner(vehicle))
 									local vehicleServerId = NetworkGetEntityNetScriptId(vehicle)
-									print(driverServer, vehicleServerId)
+									--print(driverServer, vehicleServerId)
 									if driverServer == LocalPlayer().ServerID then
 										SetVehicleTyreBurst(vehicle, closestTire.tireIndex, 0, 100.0)
 									else
