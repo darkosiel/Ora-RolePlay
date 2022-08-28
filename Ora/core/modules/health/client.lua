@@ -115,25 +115,25 @@ end
 function Ora.Health:SetMyHealthPercentWithoutRegister(healthPercent)
   self:Debug(string.format("^5%s^3 has now ^5%s^3 %% life", GetPlayerServerId(PlayerId()), healthPercent))
   local life = self:GetHealthPointByPercent(healthPercent)
-  SetEntityHealth(LocalPlayer().Ped, life)
+  SetEntityHealth(PlayerPedId(), life)
   self:SetCurrentRegisteredHealth(life)
 end
 
 function Ora.Health:SetMyHealthWithoutRegister(healthPoint)
   self:Debug(string.format("^5%s^3 has now ^5%s^3 health point life", GetPlayerServerId(PlayerId()), healthPoint))
-  local playerPed = LocalPlayer().Ped
+  local playerPed = PlayerPedId()
   SetEntityHealth(playerPed, math.tointeger(healthPoint))
   self:SetCurrentRegisteredHealth(math.tointeger(healthPoint))
 end
 
 function Ora.Health:SetMyHealth(healthPoint)
-  local playerPed = LocalPlayer().Ped
+  local playerPed = PlayerPedId()
   self:SetMyHealthWithoutRegister(math.tointeger(healthPoint))
   TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(playerPed))
 end
 
 function Ora.Health:SetMyHealthPercent(healthPercent)
-  local playerPed = LocalPlayer().Ped
+  local playerPed = PlayerPedId()
   self:SetMyHealthPercentWithoutRegister(healthPercent)
   TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(playerPed))
 end
