@@ -3,64 +3,84 @@ local display = true
 
 Citizen.CreateThread(
     function()
+        local GetIsVehicleEngineRunning, GetEntitySpeed, SendNUIMessage = GetIsVehicleEngineRunning, GetEntitySpeed, SendNUIMessage
+        local GetVehiclePedIsIn = GetVehiclePedIsIn
         local PedCar = nil
-        local PedInVehicleSeat = nil
-        while true do
-            local Ped, waitTime = PlayerPedId(), 1000
-            local PedCar = GetVehiclePedIsIn(Ped)
-
-            _,feuPosition,feuRoute = GetVehicleLightsState(PedCar)
-            if(feuPosition == 1 and feuRoute == 0) then
-                SendNUIMessage({
-                    feuPosition = true
-                })
-            else
-                SendNUIMessage({
-                    feuPosition = false
-                })
+        local Ped = PlayerPedId()
+        
+        Citizen.CreateThread(function()
+            while true do
+                Citizen.Wait(1500)
+                Ped = PlayerPedId()
+                PedCar = GetVehiclePedIsIn(Ped)
             end
-            if(feuPosition == 1 and feuRoute == 1) then
-                SendNUIMessage({
-                    feuRoute = true
-                })
-            else
-                SendNUIMessage({
-                    feuRoute = false
-                })
-            end
+        end)
 
-            if PedCar ~= 0 and  GetIsVehicleEngineRunning(PedCar) and display then
-                waitTime = 100
-                if PedCar then
-                    -- Speed
-                    carSpeed = math.ceil(GetEntitySpeed(PedCar) * 3.6)
-                    SendNUIMessage(
-                        {
-                            showhud = true,
-                            speed = carSpeed
-                        }
-                    )
+        Citizen.CreateThread(function()
+            while true do
+                local waitTime = 1000
+
+                -- if(feuPosition == 1 and feuRoute == 0) then
+                --     SendNUIMessage({
+                --         feuPosition = true
+                --         feuRoute = false
+                --     })
+                -- else
+                --     SendNUIMessage({
+                --         feuPosition = false
+                --         feuRoute = false
+                --     })
+                -- end
+                -- if(feuPosition == 1 and feuRoute == 1) then
+                --     SendNUIMessage({
+                --         feuPosition = true
+                --         feuRoute = true
+                --     })
+                -- else
+                --     SendNUIMessage({
+                --         feuPosition = false
+                --         feuRoute = false
+                --     })
+                -- end
+
+
+
+                if PedCar ~= 0 and  GetIsVehicleEngineRunning(PedCar) and display then
+                    if PedCar then
+                        waitTime = 400
+                        -- Speed
+                        carSpeed = math.ceil(GetEntitySpeed(PedCar) * 3.6)
+                        _,feuPosition,feuRoute = GetVehicleLightsState(PedCar)
+
+                        SendNUIMessage(
+                            {
+                                showhud = true,
+                                speed = carSpeed,
+                                feuPosition = feuPosition == 1 and true or false,
+                                feuRoute = feuRoute == 1 and true or false
+                            }
+                        )
+                    else
+                        SendNUIMessage(
+                            {
+                                showhud = false
+                            }
+                        )
+                        PedCar = nil
+                    end
                 else
                     SendNUIMessage(
                         {
                             showhud = false
                         }
                     )
-                    PedInVehicleSeat = nil
                     PedCar = nil
                 end
-            else
-                SendNUIMessage(
-                    {
-                        showhud = false
-                    }
-                )
-                PedInVehicleSeat = nil
-                PedCar = nil
-            end
 
-            Citizen.Wait(waitTime)
-        end
+                Citizen.Wait(waitTime)
+            end
+        end)
+
     end
 )
 

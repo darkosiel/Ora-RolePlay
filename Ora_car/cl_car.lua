@@ -63,9 +63,9 @@ local function VehicleInFront(ped)
     local pos = GetEntityCoords(ped)
     local entityWorld = GetOffsetFromEntityInWorldCoords(ped, 0.0, 5.0, 0.0)
     local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, ped, 0)
-    local _, _, _, _, result = GetRaycastResult(rayHandle)
+    local _, hit, _, _, result = GetRaycastResult(rayHandle)
 	
-    return result
+    return hit, result
 end
 
 local function Notif(msg)
@@ -83,8 +83,8 @@ Citizen.CreateThread(function()
         local pedCoords = GetEntityCoords(ped)
         
         if not IsPedInAnyVehicle(ped, true) then
-            local veh = VehicleInFront(ped)
-            if DoesEntityExist(veh) then
+            local hit, veh = VehicleInFront(ped)
+            if hit and DoesEntityExist(veh) then
                 if (GetNumberOfVehicleDoors(veh) > 2) then
                     for i = 1, GetNumberOfVehicleDoors(veh), 1 do
                         local doorCoords = GetEntryPositionOfDoor(veh, i)
