@@ -158,6 +158,7 @@ AddEventHandler(
 
                 FreezeEntityPosition(PlayerPedId(), true)
                 SetCoords(PlayerPedId(), position)
+                Ora.Health:SetMyHealthWithoutRegister(Identity[1].health)
                 Wait(1500)
                 FreezeEntityPosition(PlayerPedId(), false)
                 
@@ -176,6 +177,8 @@ AddEventHandler(
                 if (ifModuleLoaded("Player")) then
                     Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
                 end
+                TriggerEvent("Ora::CE::Character:Loaded")
+                TriggerServerEvent("Ora::CE::Character:Loaded")
             end
         )
         DoScreenFadeIn(500)
@@ -185,7 +188,6 @@ AddEventHandler(
         LocalPlayer().isBussy = false
         Citizen.Wait(5000)
         RemoveLoadingPrompt()
-
         Ora.Player.HasLoaded = true
     end
 )

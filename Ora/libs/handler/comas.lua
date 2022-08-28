@@ -344,10 +344,12 @@ function drawTxt(x, y, scale, text, f, c, n, a, r, g, b)
 end
 
 local firstSpawn = true
+RegisterNetEvent("Ora::CE::Character:Loaded")
 AddEventHandler(
-    "playerSpawned",
+    "Ora::CE::Character:Loaded",
     function()
-        Wait(20000)
+        Wait(100)
+        --print("He is loaded")
         if firstSpawn then
             firstSpawn = false
             TriggerServerCallback(
