@@ -46,6 +46,33 @@ Citizen.CreateThread(
         for i = 1, #emoteList, 1 do
             Humor[i] = emoteList[i].name
         end
+
+        -- Add event handler for the ora event when player is loaded to load the humor and clipset
+        AddEventHandler("Ora::CE::Character:Loaded", function()
+            DemarcheInd = GetResourceKvpInt("Ora::CE::Demarche", 1)
+
+            -- To actualize de value of LocalPlayer().Ped to make sure we do have to right ped
+            LocalPlayer().Ped = PlayerPedId()
+            local ped = LocalPlayer().Ped
+            ResetPedMovementClipset(ped, 0)
+            if DemarcheInd >= 1 then
+                local clipset = demarcheAnim[DemarcheInd].dict
+                RequestAnimSet(clipset)
+                while not HasAnimSetLoaded(clipset) do
+                    Citizen.Wait(100)
+                end
+                SetPedMovementClipset(ped, clipset, 0)
+            end
+            
+            HumeurInd = GetResourceKvpInt("Ora::CE::Humeur", 1)
+
+            local anim = emoteList[HumeurInd].dict
+            ClearFacialIdleAnimOverride(ped)
+            if HumeurInd >= 1 then
+                SetFacialIdleAnimOverride(ped, anim, 0)
+            end
+        end)
+
         while true do
             Wait(1)
             if RageUI.Visible(RMenu:Get("personnal", "animations")) then
@@ -99,15 +126,16 @@ Citizen.CreateThread(
                                     Citizen.CreateThread(
                                         function()
                                             ped = PlayerPedId()
-                                            anim = demarcheAnim[Index].dict
                                             ResetPedMovementClipset(ped, 0)
                                             if Index ~= 1 then
+                                                anim = demarcheAnim[Index].dict
                                                 RequestAnimSet(anim)
                                                 while not HasAnimSetLoaded(anim) do
                                                     Citizen.Wait(100)
                                                 end
                                                 SetPedMovementClipset(ped, anim, 0)
                                             end
+                                            SetResourceKvpInt("Ora::CE::Demarche", Index)
                                         end
                                     )
                                 end
@@ -132,6 +160,7 @@ Citizen.CreateThread(
                                             if Index ~= 1 then
                                                 SetFacialIdleAnimOverride(ped, anim, 0)
                                             end
+                                            SetResourceKvpInt("Ora::CE::Humeur", Index)
                                         end
                                     )
                                 end
