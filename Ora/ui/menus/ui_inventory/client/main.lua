@@ -14,18 +14,22 @@ local function OpenInventory()
     Ora.Inventory:RefreshWeight()
     if pedInVeh then
         local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
-        currentStorage = Storage.New(
-            GetEntityModel(veh) .. "|" .. 
-                GetVehicleNumberPlateText(veh) .. 
-                    " b-a-g", 
-            2
-        )
-        while currentStorage == nil do
-            Wait(1)
+        if veh ~= 0 then
+            currentStorage = Storage.New(
+                GetEntityModel(veh) .. "|" .. 
+                    GetVehicleNumberPlateText(veh) .. 
+                        " b-a-g", 
+                2
+            )
+            while currentStorage == nil do
+                Wait(1)
+            end
+            currentStorage:Visible(true)
+            currentStorage:RefreshDB()
+            currentStorage:RefreshWeight()
+        else
+            ShowNotification("Une erreur c'est produite ! Veuillez réessayer. Si le problème persiste, contactez un développeur.")
         end
-        currentStorage:Visible(true)
-        currentStorage:RefreshDB()
-        currentStorage:RefreshWeight()
     else
         if not exports["Ora_utils"]:GetPlayerHUD() then
             washudoff = true
