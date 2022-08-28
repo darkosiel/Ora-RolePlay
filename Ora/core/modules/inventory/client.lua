@@ -123,7 +123,7 @@ function GetNuFemale()
 end
 
 local function ReapplyOutfit(item)
-    print("ReapplyOutfit")
+    --print("ReapplyOutfit")
     local data = item.data
     local ped = LocalPlayer().Ped
 
