@@ -349,15 +349,13 @@ AddEventHandler(
     "Ora::CE::Character:Loaded",
     function()
         Wait(100)
-        --print("He is loaded")
         if firstSpawn then
             firstSpawn = false
             TriggerServerCallback(
                 "Ora::SE::Health:IsPlayerDead",
                 function(bool)
-                    --print("mort status ", bool)
                     if bool then
-                        Ora.Health:Slay()
+                        --Ora.Health:Slay()
                     end
                 end
             )

@@ -55,6 +55,7 @@ RegisterServerCallback(
     "Ora::SE::Health:IsPlayerDead",
     function(source, callback)
         local uuid = Ora.Identity:GetUuid(source)
+        print(source, uuid, Ora.Health.Dead[uuid])
         if (Ora.Health.Dead[uuid] ~= nil) then
             callback(true)
         else
