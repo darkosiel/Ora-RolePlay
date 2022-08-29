@@ -574,7 +574,7 @@ local kevlarConfig = {
     },
     [15] = {
         status = 100,
-        name = "DOJ"
+        name = "FIB/USSS"
     },
     [17] = {
         status = 50,
@@ -623,10 +623,6 @@ local kevlarConfig = {
     [37] = {
         status = 50,
         name = "Radio déportée 3"
-    },
-    [46] = {
-        status = 50,
-        name = "Kevlar FIB"
     },
     [52] = {
         status = 100,

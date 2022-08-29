@@ -784,7 +784,7 @@ Items = {
     -- },
     mask = {
         label = "Masque",
-        weight = 0.2,
+        weight = 0.1,
         actionCl = "mask:equip",
         category = "clothes"
     },
@@ -936,7 +936,7 @@ Items = {
     --Binco/Ponsonbys 
     clothe = {
         label = "Vêtement",
-        weight = 0.2,
+        weight = 0.1,
         actionCl = "clothe:EquipClothe",
         category = "clothes"
     },
@@ -950,7 +950,7 @@ Items = {
     -- },
     tenue = {
         label = "Tenue",
-        weight = 0.2,
+        weight = 0.1,
         actionCl = "clothe:EquipTenue",
         category = "clothes"
     },
