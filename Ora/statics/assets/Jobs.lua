@@ -1874,6 +1874,19 @@ Jobs = {
         },
         requiredService = false,
         work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Pearl's - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
             traitement2 = {
                 --Filet de daurade
                 type = "traitement",
@@ -1928,15 +1941,27 @@ Jobs = {
                 RemoveItem = "bread",
                 add = "~p~+ 1  Cupcake"
             },
+            traitement5 = {
+                --Café
+                type = "traitement",
+                workSize = 10.0,
+                blipcolor = 7,
+                blipname = "Pearl's - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe1",
+                giveitem = "cafe",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Café"
+            },
             vente = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Pearls - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
-                required = "cupcake",
-                price = math.random(10,15),
-                add = "~p~- 1 cupcake"
+                required = "cafe",
+                price = math.random(13,16),
+                add = "~p~- 1 Café"
             }
         }
     },
