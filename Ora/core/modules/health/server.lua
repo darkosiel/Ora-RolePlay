@@ -26,40 +26,34 @@ Ora.Health.Dead = {}
 --     end
 -- )
 
-RegisterServerEvent("Ora::SE::Health:SetPlayerIsDead")
-AddEventHandler(
-    "Ora::SE::Health:SetPlayerIsDead",
-    function(isDead)
-        local _source = source
-        local uuid = Ora.Identity:GetUuid(_source)
+RegisterServerEvent("Ora::SE::Health:SetPlayerIsDead", function(isDead)
+    local _source = source
+    local uuid = Ora.Identity:GetUuid(_source)
 
-        if (Ora.Health.Dead[uuid] ~= nil) then
-            Ora.Health.Dead[uuid] = nil
-        end
-
-        if (isDead) then 
-            Ora.Health.Dead[uuid] = isDead
-        end
-        
-        SaveResourceFile("Ora", "core/modules/health/playersDead.json", json.encode(Ora.Health.Dead), -1)
+    if (Ora.Health.Dead[uuid] ~= nil) then
+        Ora.Health.Dead[uuid] = nil
     end
-)
+
+    if (isDead) then 
+        Ora.Health.Dead[uuid] = isDead
+    end
+    
+    SaveResourceFile("Ora", "core/modules/health/playersDead.json", json.encode(Ora.Health.Dead), -1)
+end)
 
 AddEventHandler("onServerResourceStart", function(resourceName)
-    if (GetCurrentResourceName() ~= resourceName) then
-        Ora.Health.Dead = json.decode(LoadResourceFile("Ora", "core/modules/health/playersDead.json"))
+    if (GetCurrentResourceName() == resourceName) then
+        local data = LoadResourceFile("Ora", "core/modules/health/playersDead.json")
+        Ora.Health.Dead = json.decode(data ~= nil and data or "{}")
     end
 end)
 
-RegisterServerCallback(
-    "Ora::SE::Health:IsPlayerDead",
-    function(source, callback)
-        local uuid = Ora.Identity:GetUuid(source)
-        print(source, uuid, Ora.Health.Dead[uuid])
-        if (Ora.Health.Dead[uuid] ~= nil) then
-            callback(true)
-        else
-            callback(false)
-        end
+RegisterServerCallback("Ora::SE::Health:IsPlayerDead",function(source, callback)
+    local uuid = Ora.Identity:GetUuid(source)
+    print(source, uuid, Ora.Health.Dead[uuid])
+    if (Ora.Health.Dead[uuid] ~= nil) then
+        callback(true)
+    else
+        callback(false)
     end
-)
+end)

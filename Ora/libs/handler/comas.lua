@@ -354,6 +354,7 @@ AddEventHandler(
             TriggerServerCallback(
                 "Ora::SE::Health:IsPlayerDead",
                 function(bool)
+                    print("Death status : " .. bool)
                     if bool then
                         --Ora.Health:Slay()
                     end
