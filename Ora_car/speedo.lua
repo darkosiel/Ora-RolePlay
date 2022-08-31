@@ -7,12 +7,16 @@ Citizen.CreateThread(
         local GetVehiclePedIsIn = GetVehiclePedIsIn
         local PedCar = nil
         local Ped = PlayerPedId()
-        
+        local feuPosition = 0
+        local feuRoute = 0
         Citizen.CreateThread(function()
             while true do
                 Citizen.Wait(1500)
                 Ped = PlayerPedId()
                 PedCar = GetVehiclePedIsIn(Ped)
+                if PedCar > 0 then
+                    engineRunning = GetIsVehicleEngineRunning(PedCar)
+                end
             end
         end)
 
@@ -45,13 +49,13 @@ Citizen.CreateThread(
 
 
 
-                if PedCar ~= 0 and  GetIsVehicleEngineRunning(PedCar) and display then
+                if PedCar ~= 0 and  engineRunning and display then
                     if PedCar then
-                        waitTime = 400
+                        waitTime = 100
                         -- Speed
                         carSpeed = math.ceil(GetEntitySpeed(PedCar) * 3.6)
-                        _,feuPosition,feuRoute = GetVehicleLightsState(PedCar)
 
+                        _,feuPosition,feuRoute = GetVehicleLightsState(PedCar)
                         SendNUIMessage(
                             {
                                 showhud = true,
@@ -80,7 +84,6 @@ Citizen.CreateThread(
                 Citizen.Wait(waitTime)
             end
         end)
-
     end
 )
 
