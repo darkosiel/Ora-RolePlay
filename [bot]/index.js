@@ -32,7 +32,6 @@ con.connect(function(err) {
 
 client.on("message", async message => {
     // This event will run on every single message received, from any channel or DM.
-    console.log()
     // It's good practice to ignore other bots. This also makes your bot ignore itself
     // and not get into a spam loop (we call that "botception").
     if(message.author.bot) return;
@@ -49,9 +48,6 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
     
     // Let's go with a few common example commands! Feel free to delete or change those.
-    console.log(command)
-    console.log(command == "wl")
-    console.log(message.channel.id)
     if (command == "pull" && message.channel.id == "966020074060251196") {
         exec("cd /home/server-data/resources/ && git pull && Y0lac && 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", (error, stdout, stderr) => {
             if (error) {
@@ -120,7 +116,6 @@ client.on("message", async message => {
             }
         }
         if (command == "tow") {
-            console.log(args)
             if (args[0] !== undefined) {
                 var sql1 = `SELECT plate, pound FROM players_vehicles WHERE plate = '${args[0]}'`;
                 con.query(sql1, function (err, result) {
@@ -239,14 +234,11 @@ client.on("message", async message => {
                 if (args[0] == "id") {
                         //var sql = `SELECT pi.first_name AS firstName, pi.last_name AS lastName, pi.uuid AS uuid, u.identifier AS identifier, u.last_connected_at AS lastConnected, u.is_active AS isActive, ba.amount AS amountInBank FROM banking_account As ba, users AS u, players_identity AS pi WHERE pi.uuid = u.uuid AND (u.identifier = ${args[1]} OR (pi.first_name = ${args[1]} AND pi.last_name = ${args[2]}) OR (pi.last_name = ${args[1]} AND pi.first_name = ${args[2]}));`;
                         var sql = `SELECT pi.first_name, pi.last_name, u.identifier, u.uuid, u.phone_number, u.group FROM players_identity AS pi, users AS u WHERE u.uuid = pi.uuid AND ((pi.first_name LIKE '${args[1]}' AND pi.last_name LIKE '${args[2]}') OR (pi.last_name LIKE '${args[1]}' AND pi.first_name LIKE '${args[2]}') OR (u.uuid = '${args[1]}') OR (u.identifier = '${args[1]}'));`;
-                        con.query(sql, (err, res)=>{
-                            console.log(res, err, res.length);
-                            
+                        con.query(sql, (err, res)=>{                            
                             if (err) console.log(err.message);
                             if(res.length == 1){
                                 
                                 var result = res[0];
-                                console.log(result);
                                 // Embed message
                                 var embed = new Discord.MessageEmbed()
                                 .setTitle("Informations sur "+result.first_name+" "+res[0].last_name)
@@ -273,7 +265,6 @@ client.on("message", async message => {
                                         
                                     var sql_job = `SELECT name AS job1_name, rank AS job1_rank, orga AS job2_name, rank AS job2_rank FROM players_jobs WHERE uuid = '${result.uuid}';`;	
                                     con.query(sql_job, (err, res)=>{
-                                        console.log(res, err);
                                         if (err) console.log(err.message);
                                         if(res.length >= 1){
                                             result.job1_name = res[0].job1_name;
@@ -319,10 +310,8 @@ client.on("message", async message => {
                         var sql = `SELECT uuid, pound, label, plate_identifier FROM players_vehicles WHERE plate = '${args[1]}';`;
                         con.query(sql, (err, res)=>{
                             if (err) console.log(err.message);
-                            console.log(res);
                             if(res != undefined && res.length == 1){
                                 var result = res[0];
-                                console.log(result.uuid)
 
                                 var embed = new Discord.MessageEmbed()
                                 .setTitle("Informations sur le véhicule ["+args[1]+"]")
@@ -331,7 +320,6 @@ client.on("message", async message => {
                                 var sql = `SELECT pi.first_name AS first_name, pi.last_name AS last_name, u.identifier AS identifier, u.uuid AS uuid FROM players_identity AS pi, users AS u WHERE u.uuid = pi.uuid AND pi.uuid LIKE '${result.uuid}%';`;
                                 con.query(sql, (err, res)=>{
                                     if (err) console.log(err.message);
-                                    console.log(res);
                                     if(res.length == 1){
                                         embed.addFields(
                                             {name : "Nom du propriétaire", value : res[0].last_name, inline: true},
@@ -342,7 +330,6 @@ client.on("message", async message => {
                                             
                                         var sql_more_details = `SELECT pound FROM players_vehicles WHERE plate = '${args[1]}';`;
                                         con.query(sql_more_details, (err, res)=>{   
-                                            console.log("pounded")
                                             if (err) console.log(err.message);
                                             if(res.length == 1 && res[0].pound == 1){
                                                 result.pounded = res[0].pound;
@@ -392,7 +379,6 @@ client.on("message", async message => {
                                         con.query(sql_company, (err, res)=>{
                                             if (err) console.log(err.message);
                                             if(res.length == 1){
-                                                console.log(res[0].label);
                                                 result.company = res[0].name;
                                                 embed.setDescription("Le propriétaire de ce véhicule est un entreprise : **" + result.company + "**");
 
@@ -546,10 +532,8 @@ client.on("message", async message => {
                     //
                     if (args[1] != undefined) {
                         var sql = `SELECT first_name, last_name FROM players_identity, players_inventory WHERE players_identity.uuid = players_inventory.uuid AND players_inventory.inventory LIKE '%"num":"${args[1]}"%';`;
-                        console.log(sql);
                         con.query(sql, (err, res)=>{
                             if (err) console.log(err.message);
-                            console.log(res);
                             if(res.length == 1){
                                 var embed = new Discord.MessageEmbed()
                                     .setColor(discordColor)
