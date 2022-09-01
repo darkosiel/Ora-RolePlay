@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS ora_phone_images_shares;
 -- Tables creation
 CREATE TABLE IF NOT EXISTS ora_phone (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `player_uuid` VARCHAR(255) NOT NULL UNIQUE,
+    `player_uuid` VARCHAR(255) NOT NULL,
     `serial_number` VARCHAR(20) NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
     `last_name` VARCHAR(50) NOT NULL,
@@ -99,3 +99,27 @@ CREATE TABLE IF NOT EXISTS ora_phone_images_shares (
     share_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (image_id, player_id)
 );
+
+-- INSERT INTO `ora_phone` (
+--     `id`, `player_uuid`, `serial_number`, `first_name`, `last_name`, `number`, `is_active`, `sound_notification`, `sound_ringing`, `sound_alarm`, `sound_notification_volume`, `sound_ringing_volume`, `sound_alarm_volume`, `dark_mode`, `zoom`, `wallpaper`, `wallpaper_lock`, `luminosity`, `app_home_order`) 
+--     VALUES (
+--         NULL, 
+--         'serial_number', 
+--         'XXXX-XXXX', 
+--         'first_name', 
+--         'last_name', 
+--         '555XXXX',
+--         '1', 
+--         'notification-sms1', 
+--         'ringing-iosoriginal', 
+--         'alarm-iosradaroriginal', 
+--         '5', 
+--         '5', 
+--         '5', 
+--         '0', 
+--         'zoom100%', 
+--         'wallpaper-ios15', 
+--         'wallpaper-ios15', 
+--         '100', 
+--         '[\"clock\",\"camera\",\"galery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+-- );

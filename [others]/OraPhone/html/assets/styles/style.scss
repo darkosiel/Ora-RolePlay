@@ -958,8 +958,8 @@ div#page {
                                     column-gap: 24px;
                                     row-gap: 10px;
                                     width: 100%;
-                                    height: auto;
-                                    padding: 20px 12px;
+                                    height: 500px;
+                                    padding: 20px 0;
                                     transition: all 0.3s ease-in-out;
                                     div.app-home-list-item {
                                         display: flex;
@@ -968,6 +968,7 @@ div#page {
                                         row-gap: 7px;
                                         width: $ora-phone-app-home-icon-width;
                                         height: $ora-phone-app-home-icon-height;
+                                        cursor: pointer;
                                         @include themed() {
                                             color: t($phone-screen-content-lock-color);
                                         }
@@ -980,12 +981,6 @@ div#page {
                                                 user-select: none;
                                             }
                                         }
-                                        &.draggable-element {
-                                            animation: 0.3s linear 0s infinite moveRotateDraggable;
-                                            div {
-                                                opacity: 1 !important;
-                                            }
-                                        }
                                         &.empty-place {
                                             div {
                                                 width: 53px;
@@ -996,23 +991,7 @@ div#page {
                                                 border-radius: 10px;
                                             }
                                             padding-bottom: 26px;
-                                        }
-                                        @keyframes moveRotateDraggable {
-                                            0% {
-                                                transform: rotate(0deg);
-                                            }
-                                            25% {
-                                                transform: rotate(1deg);
-                                            }
-                                            50% {
-                                                transform: rotate(0deg);
-                                            }
-                                            75% {
-                                                transform: rotate(-1deg);
-                                            }
-                                            100% {
-                                                transform: rotate(0deg);
-                                            }
+                                            cursor: default;
                                         }
                                         img {
                                             width: $ora-phone-app-home-icon-image-width;
@@ -1155,6 +1134,107 @@ div#page {
                                                     }
                                                 }
                                             }
+                                        }
+                                    }
+                                    .icons-list {
+                                        width: 100%;
+                                        height: 100%;
+                                        margin: 0;
+                                        padding: 0;
+                                        ul {
+                                            width: 100%;
+                                            height: 100%;
+                                            margin: 0;
+                                            padding: 0;
+                                            overflow: hidden;
+                                            &.shaking {
+                                                li > div {
+                                                    animation: shake 0.25s 0s ease-in-out infinite;
+                                                }
+                                                .dragging {
+                                                    div {
+                                                        animation: none;
+                                                    }
+                                                }
+                                            }
+                                            li {
+                                                transition: opacity, transform 0.25s ease-in-out;
+                                                cursor: pointer;
+                                                list-style: none;
+                                                position: absolute;
+                                                text-align: center;
+                                                &.placeholder {
+                                                    cursor: auto;
+                                                    div {
+                                                        background: none;
+                                                    }
+                                                    span {
+                                                        display: none;
+                                                    }
+                                                }
+                                                &.dragging {
+                                                    transition: none;
+                                                    opacity: 0.75;
+                                                    > div {
+                                                        transform: scale(1.25);
+                                                        &:after {
+                                                            opacity: 0.75;
+                                                        }
+                                                    }
+                                                }
+                                                div {
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    transition: transform 0.25s ease-out;
+                                                    &:after {
+                                                        content: '';
+                                                        left: 0;
+                                                        top: 0;
+                                                        background: #000;
+                                                        position: absolute;
+                                                        z-index: 1;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        border-radius: 12px;
+                                                        opacity: 0;
+                                                    }
+                                                }
+                                                span {
+                                                    width: 100%;
+                                                    display: block;
+                                                    position: absolute;
+                                                    text-align: center;
+                                                    top: 64px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    @-webkit-keyframes shake {
+                                        0% {
+                                            transform: rotateZ(-2deg);
+                                        }
+                                        33.3% {
+                                            transform: rotateZ(0deg);
+                                        }
+                                        66.6% {
+                                            transform: rotateZ(2deg);
+                                        }
+                                        100% {
+                                            transform: rotateZ(0deg);
+                                        }
+                                    }
+                                    @keyframes shake {
+                                        0% {
+                                            transform: rotateZ(-2deg);
+                                        }
+                                        33.3% {
+                                            transform: rotateZ(0deg);
+                                        }
+                                        66.6% {
+                                            transform: rotateZ(2deg);
+                                        }
+                                        100% {
+                                            transform: rotateZ(0deg);
                                         }
                                     }
                                 }
@@ -3007,6 +3087,163 @@ div#page {
                                 }
                             }
                         }
+                        #notification-container {
+                            width: 100%;
+                            height: auto;
+                            max-height: 28%;
+                            padding: 10px;
+                            overflow: hidden;
+                            z-index: 70;
+                            pointer-events: none;
+                            .notification-item {
+                                height: 90px;
+                                max-height: 140px;
+                                border-radius: 10px;
+                                overflow: hidden;
+                                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+                                transition: height .75s ease-in-out, margin-bottom .75s ease-in-out, transform .75s ease-in-out, visibility .75s ease-in-out, opacity .75s ease-in-out;
+                                cursor: pointer;
+                                pointer-events: auto;
+                                @for $i from 1 through 20 {
+                                    &:nth-child(#{$i}) {
+                                        transform: translateY(($i - 1) * -77px) scale(1 - calc(($i - 1) / 10));
+                                        z-index: 99 - $i;
+                                    }
+                                }
+                                &:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
+                                    display: none;
+                                }
+                                &.close {
+                                    height: 0;
+                                    .notification-item-content {
+                                        transform: scale(0);
+                                    }
+                                }
+                                .notification-item-content {
+                                    height: 100%;
+                                    cursor: pointer;
+                                    overflow: hidden;
+                                    transform: scale(1);
+                                    transition: transform .75s ease-in-out;
+                                    @include themed() {
+                                        color: t($phone-notification-color);
+                                    }
+                                    > .notification-item-background-blur {
+                                        border-radius: 10px;
+                                    }
+                                    .notification-item-background-blur {
+                                        position: absolute;
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 10px 10px 0px 0px;
+                                        // backdrop-filter: blur(30px);
+                                        @include themed() {
+                                            background-color: t($phone-notification-background-color);
+                                        }
+                                    }
+                                    .notification-item-header {
+                                        height: 30px;
+                                        .notification-item-header-content {
+                                            font-size: 16px;
+                                            position: inherit;
+                                            width: 100%;
+                                            height: 100%;
+                                            div {
+                                                width: auto;
+                                                height: 100%;
+                                                &.notification-item-header-content-left {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    width: max-content;
+                                                    float: left;
+                                                    padding: 5px 10px;
+                                                    text-align: left;
+                                                    column-gap: 5px;
+                                                    img {
+                                                        width: auto;
+                                                        height: 100%;
+                                                    }
+                                                }
+                                                &.notification-item-header-content-right {
+                                                    width: max-content;
+                                                    float: right;
+                                                    padding: 5px 10px;
+                                                    text-align: right;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .notification-item-main {
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: space-between;
+                                        position: inherit;
+                                        width: 100%;
+                                        height: calc(100% - 30px);
+                                        padding: 8px 20px 10px 10px;
+                                        font-size: 16px;
+                                        &.call {
+                                            flex-direction: row;
+                                            align-items: center;
+                                            height: 100%;
+                                            padding: 5px 15px;
+                                        }
+                                        span {
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                            white-space: nowrap;
+                                            &.notification-item-main-header {
+                                                font-family: $ora-font-bold;
+                                            }
+                                        }
+                                        div.notification-item-main-avatar {
+                                            width: 65px;
+                                            height: 65px;
+                                            border-radius: 50%;
+                                            border-width: 4px;
+                                            border-style: solid;
+                                            border-color: transparent;
+                                            &.url {
+                                                overflow: hidden;
+                                            }
+                                            img {
+                                                width: 100%;
+                                                height: auto;
+                                            }
+                                        }
+                                        div.notification-item-main-info {
+                                            display: flex;
+                                            flex-direction: column;
+                                        }
+                                        div.notification-item-main-hangup, div.notification-item-main-pickup {
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            width: 55px;
+                                            height: 55px;
+                                            border-radius: 50%;
+                                            cursor: pointer;
+                                            i {
+                                                font-size: 24px;
+                                                @include themed() {
+                                                    color: t($phone-system-color-white);
+                                                }
+                                            }
+                                        }
+                                        div.notification-item-main-hangup {
+                                            @include themed() {
+                                                background-color: t($phone-system-color-red);
+                                            }
+                                        }
+                                        div.notification-item-main-pickup {
+                                            @include themed() {
+                                                background-color: t($phone-system-color-green);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 div#phone-screen-content-footer {
@@ -3355,6 +3592,167 @@ div#page {
                         font-size: 14px;
                         cursor: pointer;
                     }
+                    #notification-container-lock {
+                        width: 100%;
+                        height: auto;
+                        max-height: 55%;
+                        padding: 10px;
+                        overflow: hidden;
+                        z-index: 70;
+                        margin-top: 10px;
+                        .notification-item {
+                            width: 100%;
+                            height: 68px;
+                            margin-bottom: 5px;
+                            border-radius: 20px;
+                            overflow: hidden;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+                            transition: height .75s ease-in-out, margin-bottom .75s ease-in-out, transform .75s ease-in-out, opacity .75s ease-in-out;
+                            cursor: pointer;
+                            pointer-events: auto;
+                            &.close {
+                                height: 0;
+                                margin-bottom: 0px;
+                                .notification-item-content {
+                                    transform: scale(0);
+                                }
+                            }
+                            .notification-item-content {
+                                display: flex;
+                                align-items: center;
+                                width: 100%;
+                                height: 100%;
+                                transform: scale(1);
+                                transition: transform .75s ease-in-out;
+                                overflow: hidden;
+                                cursor: pointer;
+                                @include themed() {
+                                    color: t($phone-notification-color);
+                                }
+                                .notification-item-background-blur {
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 100%;
+                                    border-radius: 20px;
+                                    // backdrop-filter: blur(80px);
+                                    @include themed() {
+                                        background-color: t($phone-notification-background-color);
+                                    }
+                                }
+                                .notification-item-icon {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    width: 50px;
+                                    height: 50px;
+                                    padding-left: 10px;
+                                    box-sizing: content-box;
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                }
+                                .notification-item-main {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    position: inherit;
+                                    width: 100%;
+                                    font-size: 16px;
+                                    &.call {
+                                        flex-direction: row;
+                                        align-items: center;
+                                        height: 100%;
+                                        padding: 5px 15px;
+                                    }
+                                    span {
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                    }
+                                    div.notification-item-main-avatar {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-self: center;
+                                        width: 60px;
+                                        height: 60px;
+                                        padding: 10px;
+                                        border-radius: 50%;
+                                        transition: all 0.3s ease-in-out;
+                                        @include themed() {
+                                            background-color: t($phone-system-color-green);
+                                        }
+                                        i {
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            font-size: 22px;
+                                            transition: all 0.3s ease-in-out;
+                                            @include themed() {
+                                                color: t($phone-app-label-color-primary);
+                                            }
+                                        }
+                                    }
+                                    div.notification-item-main-info {
+                                        display: flex;
+                                        flex-direction: column;
+                                    }
+                                    div.notification-item-main-hangup, div.notification-item-main-pickup {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        width: 55px;
+                                        height: 55px;
+                                        border-radius: 50%;
+                                        cursor: pointer;
+                                        i {
+                                            font-size: 24px;
+                                            @include themed() {
+                                                color: t($phone-system-color-white);
+                                            }
+                                        }
+                                    }
+                                    div.notification-item-main-hangup {
+                                        @include themed() {
+                                            background-color: t($phone-system-color-red);
+                                        }
+                                    }
+                                    div.notification-item-main-pickup {
+                                        @include themed() {
+                                            background-color: t($phone-system-color-green);
+                                        }
+                                    }
+                                }
+                                .notification-item-content-body {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: space-evenly;
+                                    width: calc(100% - 64px);
+                                    height: 100%;
+                                    padding: 5px 10px;
+                                    .notification-item-content-body-header {
+                                        height: 20px;
+                                        .notification-item-content-body-header-left {
+                                            font-family: $ora-font-bold;
+                                            float: left;
+                                            text-align: left;
+                                        }
+                                        .notification-item-content-body-header-right {
+                                            float: right;
+                                            text-align: right;
+                                        }
+                                    }
+                                    .notification-item-content-body-content {
+                                        height: 18px;
+                                        div.notification-item-content-body-content-message {
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                            white-space: nowrap;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             div#phone-lock-button {
@@ -3394,7 +3792,7 @@ div#page {
     }
 }
 
-button#add-notification, button#add-call, button#refresh-contacts {
+#add-notification, #add-call, #refresh-contacts, #save-home {
     height: 40px;
     padding: 5px;
     background-color: black;
@@ -3404,384 +3802,18 @@ button#add-notification, button#add-call, button#refresh-contacts {
     right: 260px;
 }
 
-button#add-call {
+#add-call {
     top: 120px;
 }
 
-button#refresh-contacts {
+#refresh-contacts {
     top: 180px;
 }
 
-#notification-container {
-    width: 100%;
-    height: auto;
-    max-height: 28%;
-    padding: 10px;
-    overflow: hidden;
-    z-index: 70;
-    pointer-events: none;
-    .notification-item {
-        height: 90px;
-        max-height: 140px;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-        transition: height .75s ease-in-out, margin-bottom .75s ease-in-out, transform .75s ease-in-out, visibility .75s ease-in-out, opacity .75s ease-in-out;
-        cursor: pointer;
-        pointer-events: auto;
-        @for $i from 1 through 20 {
-            &:nth-child(#{$i}) {
-                transform: translateY(($i - 1) * -77px) scale(1 - calc(($i - 1) / 10));
-                z-index: 99 - $i;
-            }
-        }
-        &:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
-            display: none;
-        }
-        &.close {
-            height: 0;
-            .notification-item-content {
-                transform: scale(0);
-            }
-        }
-        .notification-item-content {
-            height: 100%;
-            cursor: pointer;
-            overflow: hidden;
-            transform: scale(1);
-            transition: transform .75s ease-in-out;
-            @include themed() {
-                color: t($phone-notification-color);
-            }
-            > .notification-item-background-blur {
-                border-radius: 10px;
-            }
-            .notification-item-background-blur {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                border-radius: 10px 10px 0px 0px;
-                // backdrop-filter: blur(30px);
-                @include themed() {
-                    background-color: t($phone-notification-background-color);
-                }
-            }
-            .notification-item-header {
-                height: 30px;
-                .notification-item-header-content {
-                    font-size: 16px;
-                    position: inherit;
-                    width: 100%;
-                    height: 100%;
-                    div {
-                        width: auto;
-                        height: 100%;
-                        &.notification-item-header-content-left {
-                            display: flex;
-                            align-items: center;
-                            width: max-content;
-                            float: left;
-                            padding: 5px 10px;
-                            text-align: left;
-                            column-gap: 5px;
-                            img {
-                                width: auto;
-                                height: 100%;
-                            }
-                        }
-                        &.notification-item-header-content-right {
-                            width: max-content;
-                            float: right;
-                            padding: 5px 10px;
-                            text-align: right;
-                        }
-                    }
-                }
-            }
-            .notification-item-main {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                position: inherit;
-                width: 100%;
-                height: calc(100% - 30px);
-                padding: 8px 20px 10px 10px;
-                font-size: 16px;
-                &.call {
-                    flex-direction: row;
-                    align-items: center;
-                    height: 100%;
-                    padding: 5px 15px;
-                }
-                span {
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    &.notification-item-main-header {
-                        font-family: $ora-font-bold;
-                    }
-                }
-                div.notification-item-main-avatar {
-                    width: 65px;
-                    height: 65px;
-                    border-radius: 50%;
-                    border-width: 4px;
-                    border-style: solid;
-                    border-color: transparent;
-                    &.url {
-                        overflow: hidden;
-                    }
-                    img {
-                        width: 100%;
-                        height: auto;
-                    }
-                }
-                div.notification-item-main-info {
-                    display: flex;
-                    flex-direction: column;
-                }
-                div.notification-item-main-hangup, div.notification-item-main-pickup {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 55px;
-                    height: 55px;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    i {
-                        font-size: 24px;
-                        @include themed() {
-                            color: t($phone-system-color-white);
-                        }
-                    }
-                }
-                div.notification-item-main-hangup {
-                    @include themed() {
-                        background-color: t($phone-system-color-red);
-                    }
-                }
-                div.notification-item-main-pickup {
-                    @include themed() {
-                        background-color: t($phone-system-color-green);
-                    }
-                }
-            }
-        }
-    }
+#save-home {
+    top: 340px;
+    right: 400px;
 }
-
-#notification-container-lock {
-    width: 100%;
-    height: auto;
-    max-height: 55%;
-    padding: 10px;
-    overflow: hidden;
-    z-index: 70;
-    margin-top: 10px;
-    .notification-item {
-        width: 100%;
-        height: 68px;
-        margin-bottom: 5px;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-        transition: height .75s ease-in-out, margin-bottom .75s ease-in-out, transform .75s ease-in-out, opacity .75s ease-in-out;
-        cursor: pointer;
-        pointer-events: auto;
-        &.close {
-            height: 0;
-            margin-bottom: 0px;
-            .notification-item-content {
-                transform: scale(0);
-            }
-        }
-        .notification-item-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            transform: scale(1);
-            transition: transform .75s ease-in-out;
-            overflow: hidden;
-            cursor: pointer;
-            @include themed() {
-                color: t($phone-notification-color);
-            }
-            .notification-item-background-blur {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                border-radius: 20px;
-                // backdrop-filter: blur(80px);
-                @include themed() {
-                    background-color: t($phone-notification-background-color);
-                }
-            }
-            .notification-item-icon {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 50px;
-                height: 50px;
-                padding-left: 10px;
-                box-sizing: content-box;
-                img {
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            .notification-item-main {
-                display: flex;
-                justify-content: space-between;
-                position: inherit;
-                width: 100%;
-                font-size: 16px;
-                &.call {
-                    flex-direction: row;
-                    align-items: center;
-                    height: 100%;
-                    padding: 5px 15px;
-                }
-                span {
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    white-space: nowrap;
-                }
-                div.notification-item-main-avatar {
-                    display: flex;
-                    justify-content: center;
-                    align-self: center;
-                    width: 60px;
-                    height: 60px;
-                    padding: 10px;
-                    border-radius: 50%;
-                    transition: all 0.3s ease-in-out;
-                    @include themed() {
-                        background-color: t($phone-system-color-green);
-                    }
-                    i {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 22px;
-                        transition: all 0.3s ease-in-out;
-                        @include themed() {
-                            color: t($phone-app-label-color-primary);
-                        }
-                    }
-                }
-                div.notification-item-main-info {
-                    display: flex;
-                    flex-direction: column;
-                }
-                div.notification-item-main-hangup, div.notification-item-main-pickup {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 55px;
-                    height: 55px;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    i {
-                        font-size: 24px;
-                        @include themed() {
-                            color: t($phone-system-color-white);
-                        }
-                    }
-                }
-                div.notification-item-main-hangup {
-                    @include themed() {
-                        background-color: t($phone-system-color-red);
-                    }
-                }
-                div.notification-item-main-pickup {
-                    @include themed() {
-                        background-color: t($phone-system-color-green);
-                    }
-                }
-            }
-            .notification-item-content-body {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                width: calc(100% - 64px);
-                height: 100%;
-                padding: 5px 10px;
-                .notification-item-content-body-header {
-                    height: 20px;
-                    .notification-item-content-body-header-left {
-                        font-family: $ora-font-bold;
-                        float: left;
-                        text-align: left;
-                    }
-                    .notification-item-content-body-header-right {
-                        float: right;
-                        text-align: right;
-                    }
-                }
-                .notification-item-content-body-content {
-                    height: 18px;
-                    div.notification-item-content-body-content-message {
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        white-space: nowrap;
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-label#switch-theme-mode {
-    position: absolute;
-    display: block;
-    top: 80px;
-    right: 120px;
-    background: #fff;
-    padding: 10px 15px;
-    // Hide the ugly checkbox
-    > input {
-        display: none;
-    }
-    // New beautiful checkbox
-    i {
-        display: inline-block;
-        float: right;
-        padding: 2px;
-        width: 40px;
-        height: 20px;
-        border-radius: 13px;
-        vertical-align: middle;
-        transition: .25s .09s;
-        position: relative;
-        background: #d8d9db;
-        box-sizing: initial;
-        &:after {
-            content: " ";
-            display: block;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #fff;
-            position: absolute;
-            left: 2px;
-            transition: .25s;
-        }
-    }
-    // Checked-state
-    > input:checked + i {
-        background: #4bd865;
-    }
-    > input:checked + i:after {
-        transform: translateX(20px);
-    }
-    // Label-hover
-    &:hover {
-        cursor: pointer;
-    }
-}
-
 
 div#phone-screen-content {
     &.app-tabbed {
@@ -3840,5 +3872,97 @@ div#phone-screen-content {
                 }
             }
         }
+    }
+}
+
+/* --- Context Menu --- */
+
+.contextMenu {
+    height: 0;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: var(--top);
+    left: var(--left);
+    animation: menuAnimation 0.4s 0s both;
+    transform-origin: left;
+    list-style: none;
+    margin: 4px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 999999999;
+    @include themed() {
+        background: t($phone-contextmenu-menu-background-color);
+        box-shadow: 0 0 0 1px t($phone-contextmenu-menu-border-color), 0 2px 2px rgb(0 0 0 / 3%),
+        0 4px 4px rgb(0 0 0 / 4%), 0 10px 8px rgb(0 0 0 / 5%),
+        0 15px 15px rgb(0 0 0 / 6%), 0 30px 30px rgb(0 0 0 / 7%),
+        0 70px 65px rgb(0 0 0 / 9%);
+    }
+    &-item {
+        padding: 4px;
+    }
+    &-item[data-divider="top"] {
+        border-top: 1px solid;
+    }
+    &-item[data-divider="bottom"] {
+        border-bottom: 1px solid;
+    }
+    &-item[data-divider="top-bottom"] {
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+    }
+    &-item[data-divider] {
+        @include themed() {
+            border-color: t($phone-contextmenu-item-border-color);
+        }
+    }
+    &-button {
+        background: 0;
+        border: 0;
+        white-space: nowrap;
+        width: 100%;
+        border-radius: 4px;
+        padding: 6px 24px 6px 7px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        width: 100%;
+        animation: menuItemAnimation 0.2s 0s both;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        @include themed() {
+            color: t($phone-contextmenu-item-color);
+        }
+        &:hover {
+            @include themed() {
+                background-color: t($phone-contextmenu-item-background-color);
+            }
+        }
+    }
+}
+
+@keyframes menuAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        height: var(--height);
+        opacity: 1;
+        border-radius: 8px;
+        transform: scale(1);
+    }
+}
+
+@keyframes menuItemAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
     }
 }

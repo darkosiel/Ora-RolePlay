@@ -1,5 +1,5 @@
 
-var menuSelected = "settings";
+var menuSelected = "home";
 var menuSelectedLast = "home";
 var menuAppSelected = "first";
 var menuAppSelectedLast = "first";
@@ -8,10 +8,7 @@ var displayTopbarToggle = false;
 var phoneBottomShow = "30px";
 var phoneBottomShowNot = "-900px";
 var phoneLockToggle = false;
-var activeUpdateHomeToggle = false;
 var items;
-var dragSrcEl = null;
-var dragToggle = false;
 var pageSelectedStart = 1;  
 var hasChangePageOnDrag = false;
 var mousePosition;
@@ -94,33 +91,54 @@ var callNotificationLock;
 // Message
 var conversationAuthors = [];
 var conversationId = "";
+var longpress = true;
+var startTime, endTime;
+var gridPage1 = "";
 
 // userData = {};
 // userData.phone = {};
-// userData.phone.appHomeOrder = {
-//     page1: [
-//         'clock',
-//         '',
-//         'camera',
-//         'galery',
-//         'calandar',
-//         'notes',
-//         '',
-//         'calculator',
-//         '',
-//         'store',
-//         'music',
-//         'templatetabbed',
-//         '',
-//         '',
-//         '',
-//         '',
-//         '',
-//         '',
-//         '',
-//         '',
-//     ]
-// };
+// userData.phone.appHomeOrder = [
+//     'clock',
+//     '',
+//     'camera',
+//     'galery',
+//     'calandar',
+//     'notes',
+//     '',
+//     'calculator',
+//     '',
+//     'store',
+//     'music',
+//     'templatetabbed',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+//     '',
+// ];
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
@@ -232,7 +250,7 @@ $(function(){
             // --- --- //
 
             // Clique droit
-            $(document).bind("contextmenu",function() {
+            $("#phone").bind("contextmenu",function() {
                 // updateContent(menuSelectedLast);
                 // displayPhone();
                 // return false;
@@ -245,12 +263,6 @@ $(function(){
                 $.post('https://OraPhone/DisableInput', JSON.stringify({}));
             });
 
-            
-            
-
-
-            
-            
             // Heure Téléphone
             setInterval(function () {
                 let now = new Date();
@@ -267,7 +279,145 @@ $(function(){
                 $("#app-lock-time-text").html(time);
                 $("#app-lock-day-text").html(date);
             }, 1000);
-            
+
+            class ContextMenu {
+                constructor({ target = null, menuItems = [] }) {
+                    this.target = target;
+                    this.menuItems = menuItems;
+                    this.targetNode = this.getTargetNode();
+                    this.menuItemsNode = this.getMenuItemsNode();
+                    this.isOpened = false;
+                }
+
+                getTargetNode() {
+                    const nodes = document.querySelectorAll(this.target);
+                    if (nodes && nodes.length !== 0) {
+                        return nodes;
+                    } else {
+                        console.error(`getTargetNode :: "${this.target}" target not found`);
+                        return [];
+                    }
+                }
+
+                getMenuItemsNode() {
+                    const nodes = [];
+                    if (!this.menuItems) {
+                        console.error("getMenuItemsNode :: Please enter menu items");
+                        return [];
+                    }
+                    this.menuItems.forEach((data, index) => {
+                        const item = this.createItemMarkup(data);
+                        item.firstChild.setAttribute(
+                            "style",
+                            `animation-delay: ${index * 0.08}s`
+                        );
+                        nodes.push(item);
+                    });
+                    return nodes;
+                }
+
+                createItemMarkup(data) {
+                    const button = document.createElement("BUTTON");
+                    const item = document.createElement("LI");
+                    button.innerHTML = data.content;
+                    button.classList.add("contextMenu-button");
+                    item.classList.add("contextMenu-item");
+                    if (data.divider) item.setAttribute("data-divider", data.divider);
+                    item.appendChild(button);
+                    if (data.events && data.events.length !== 0) {
+                        Object.entries(data.events).forEach((event) => {
+                            const [key, value] = event;
+                            button.addEventListener(key, value);
+                        });
+                    }
+                    return item;
+                }
+
+                renderMenu() {
+                    const menuContainer = document.createElement("UL");
+                    menuContainer.classList.add("contextMenu");
+                    this.menuItemsNode.forEach((item) => menuContainer.appendChild(item));
+                    return menuContainer;
+                }
+
+                closeMenu(menu) {
+                    if (this.isOpened) {
+                        this.isOpened = false;
+                        menu.remove();
+                    }
+                }
+
+                init() {
+                    const contextMenu = this.renderMenu();
+                    document.addEventListener("click", () => this.closeMenu(contextMenu));
+                    window.addEventListener("blur", () => this.closeMenu(contextMenu));
+                    // document.addEventListener("contextmenu", (e) => {
+                    //     this.targetNode.forEach((target) => {
+                    //         if (!e.target.contains(target)) {
+                    //             contextMenu.remove();
+                    //         }
+                    //     });
+                    // });
+
+                    this.targetNode.forEach((target) => {
+                        target.addEventListener("contextmenu", (e) => {
+                            e.preventDefault();
+                            this.isOpened = true;
+                            contextMenuHomeTarget = target;
+
+                            const { clientX, clientY } = e;
+                            document.body.appendChild(contextMenu);
+                    
+                            const positionY =
+                                clientY + contextMenu.scrollHeight >= window.innerHeight
+                                ? window.innerHeight - contextMenu.scrollHeight - 20
+                                : clientY;
+                            const positionX =
+                                clientX + contextMenu.scrollWidth >= window.innerWidth
+                                ? window.innerWidth - contextMenu.scrollWidth - 20
+                                : clientX;
+                    
+                            contextMenu.setAttribute(
+                                "style",
+                                `--width: ${contextMenu.scrollWidth}px;
+                                --height: ${contextMenu.scrollHeight}px;
+                                --top: ${positionY}px;
+                                --left: ${positionX}px;`
+                            );
+                        });
+                    });
+                }
+            }
+            const copyIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+            const cutIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`;
+            const pasteIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px; position: relative; top: -1px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`;
+            const downloadIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px; position: relative; top: -1px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
+            const deleteIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 7px" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+            const menuItems = [
+                {
+                    content: `${copyIcon}Changer page`,
+                    events: {
+                        click: (e) => changeAppPlacePage()
+                    }
+                },
+                // {
+                //     content: `${copyIcon}Copy`,
+                //     events: {
+                //         click: (e) => console.log(e, "Copy Button Click")
+                //         // mouseover: () => console.log("Copy Button Mouseover")
+                //         // You can use any event listener from here
+                //     }
+                // },
+                // {
+                //     content: `${cutIcon}Cut`,
+                //     divider: "top-bottom" // top, bottom, top-bottom
+                // },
+            ];
+            const contextMenuHome = new ContextMenu({
+                target: "#app-home .icons-list ul li:not(.empty-place)",
+                menuItems
+            });
+            // contextMenuHome.init();
 
         // --- --- //
 
@@ -283,7 +433,6 @@ $(function(){
             $("#add-notification").click(function() {
                 addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
             });
-
             $("#add-call").click(function() {
                 receiveCall();
                 // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
@@ -291,10 +440,12 @@ $(function(){
             $("#refresh-contacts").click(function() {
                 $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
             });
+            $("#save-home").click(function() {
+                saveHomeOrder();
+            });
 
         // --- --- //
 
-        
         $("#callnumber-button-hangup").click(function() {
             $.post('https://OraPhone/end_call', JSON.stringify({}));
         });
@@ -391,21 +542,6 @@ $(function(){
             updateContent("home");
             if(displayTopbarToggle) {
                 displayTopbar();
-            }
-        });
-        $("#update-home-change-page").click(function() {
-            updatePageSelected();
-        });
-        $("#topbar-box-button-update-home").click(function () {
-            if(menuSelected == "home") {
-                if(activeUpdateHomeToggle) {
-                    desactiveUpdateHome();
-                } else {
-                    activeUpdateHome();
-                }
-                if(displayTopbarToggle) {
-                    displayTopbar();
-                }
             }
         });
         $("#topbar-box-music-button-play").click(function () {
@@ -849,7 +985,7 @@ $(function(){
         $("#topbar-box-button-update-thememode").click(function() {
             switchThemeMode();
         });
-        $("#settings-list-item-thememode label, #switch-theme-mode").change(function() {
+        $("#settings-list-item-thememode label").change(function() {
             switchThemeMode();
         });
         $(".settings-list-item.child").click(function () {
@@ -857,8 +993,6 @@ $(function(){
         });
 
         // $('.app-message-conversation .messages').append('<div class="chat-bubble"><div class="loading"><div class="dot one"></div><div class="dot two"></div><div class="dot three"></div></div><div class="tail"></div></div>');
-
-        
 
 	};
 });
@@ -1593,33 +1727,10 @@ function timerStart() {
         (timer.ss < 10 ? "0" + timer.ss : timer.ss));
 }
 
-function activeUpdateHome() {
-    if(!activeUpdateHomeToggle) {
-        $("#topbar-box-button-update-home").addClass("active");
-        $("#update-home-change-page").show();
-        activeUpdateHomeToggle = true;
-        for(let app of $(".app-home-list-item:not(.app-home-list-item-primary)")) {
-            app.classList.add("draggable-element");
-        }
-    }
-}
-
-function desactiveUpdateHome() {
-    if(activeUpdateHomeToggle) {
-        $("#topbar-box-button-update-home").removeClass("active");
-        $("#update-home-change-page").hide();
-        activeUpdateHomeToggle = false;
-        for(let app of $(".app-home-list-item:not(.app-home-list-item-primary)")) {
-            app.classList.remove("draggable-element");
-        }
-    }
-}
-
 function displayPhone() {
     if(displayToggle) {
         $("#phone").css("bottom", phoneBottomShowNot);
         displayToggle = false;
-        desactiveUpdateHome();
     } else {
         $("#phone").css("bottom", phoneBottomShow);
         displayToggle = true;
@@ -1654,7 +1765,6 @@ function updateContent(menu) {
     } else if(menu == "settings" && !activateAppSettingsToggle) {
         activateAppSettings();
     }
-    desactiveUpdateHome();
     FooterColor = "#ffffff";
     FooterColorBackground = "transparent";
     Bodycolor = "#ffffff";
@@ -1786,7 +1896,6 @@ function lockPhone() {
     if(menuSelectedLock != null && menuSelectedLock.id != "app-home") {
         $("#phone-screen-content").removeClass();
     }
-    desactiveUpdateHome();
     $("#phone-lock").show();
     $("#phone-lock").css("transform", "translate(0, 0)");
     setTimeout(function() {
@@ -1804,81 +1913,6 @@ function updateHomeDots() {
     active.removeClass("active");
     inactive.addClass("active");
 }
-
-// --- Fonctions pour le drag and drop des applications sur la home page --- //
-
-function handleDragStart(e) {
-    if(activeUpdateHomeToggle) {
-        dragToggle = true;
-        this.style.opacity = '0.4';
-        dragSrcEl = this;
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.innerHTML);
-        e.dataTransfer.setData('class', this.classList);
-        e.dataTransfer.setData('id', this.id);
-    }
-}
-
-function handleDragOver(e) {
-    if(activeUpdateHomeToggle) {
-        if (e.preventDefault) {
-            e.preventDefault();
-        }
-        e.dataTransfer.dropEffect = 'move';
-        return false;
-    }
-}
-
-function handleDragEnter(e) {
-    if(activeUpdateHomeToggle) {
-        this.classList.add('over');
-    }
-}
-
-function handleDragLeave(e) {
-    hasChangePageOnDrag = false;
-    if(activeUpdateHomeToggle) {
-        this.classList.remove('over');
-    }
-}
-
-function handleDrop(e) {
-    if(activeUpdateHomeToggle) {
-        if (e.stopPropagation) {
-            e.stopPropagation(); // stops the browser from redirecting.
-        }
-        if (dragSrcEl != this) {
-            dragToggle = false;
-            hasChangePageOnDrag = false;
-            dragSrcEl.innerHTML = this.innerHTML;
-            dragSrcEl.classList = this.classList;
-            dragSrcEl.id = this.id;
-            if(dragSrcEl.classList.contains("empty-place")) {
-                dragSrcEl.setAttribute("draggable", "false");
-            }
-            dragSrcEl.style.opacity = '1';
-            this.innerHTML = e.dataTransfer.getData('text/html');
-            this.classList = e.dataTransfer.getData('class');
-            this.id = e.dataTransfer.getData('id');
-            this.setAttribute("draggable", "true");
-        }
-        return false;
-    }
-}
-
-function handleDragEnd(e) {
-    if(activeUpdateHomeToggle) {
-        dragToggle = false;
-        hasChangePageOnDrag = false;
-        this.style.opacity = '1';
-        dragSrcEl.style.opacity = '1';
-        items.forEach(function (item) {
-            item.classList.remove('over');
-        });
-    }
-}
-
-// ---  --- //
 
 function updatePageSelected() {
     if(pageSelectedStart == 1) {
@@ -2122,14 +2156,12 @@ function switchThemeMode() {
     }
     $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { darkMode: darkMode } }));
     $("#topbar-box-button-update-thememode").toggleClass("active");
-    $("#settings-list-item-thememode label input, #switch-theme-mode input").prop("checked", darkMode);
 }
 
 function updateDarkMode() {
     if(darkMode) {
         $("body").addClass("theme--dark");
         $("#topbar-box-button-update-thememode").toggleClass("active");
-        $("#settings-list-item-thememode label input, #switch-theme-mode input").prop("checked", darkMode);
     } else {
         $("body").addClass("theme--default");
     }
@@ -2193,35 +2225,30 @@ function updateSound() {
 function updateAppHomeOrder() {
     // Création de la liste des applications
     userData.phone.appHomeOrder = JSON.parse(userData.phone.appHomeOrder);
-    for(const page in userData.phone.appHomeOrder) {
-        for(let app of userData.phone.appHomeOrder[page]) {
-            let divAppElement = "";
-            if(app != '') {
-                let label = config.apps.find( application => application.name == app).label;
-                if(app == "clock") {
-                    divAppElement = "<div draggable='true' id='app-home-list-item-" + app + "' class='app-home-list-item'><div id='centered'><div id='app'><div id='circle'><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ul><div class='hand' id='hours'></div><div class='hand' id='minutes'></div><div class='hand' id='seconds'></div><div id='black-circle'></div><div id='red-circle'></div></div></div></div><span>" + label + "</span></div>";
-                } else {
-                    divAppElement = "<div draggable='true' id='app-home-list-item-" + app + "' class='app-home-list-item'><img src='" + folderAppIcon + "app-" + app + "-icon.png'/><span>" + label + "</span></div>";
-                }
+    $("#app-home-page-1 .app-home-list .icons-list ul").empty();
+    for(let app of userData.phone.appHomeOrder) {
+        let divAppElement = "<li data-name='" + app + "'>";
+        if(app != '') {
+            let label = config.apps.find( application => application.name == app).label;
+            if(app == "clock") {
+                divAppElement += "<div id='app-home-list-item-" + app + "' class='app-home-list-item'><div id='centered'><div id='app'><div id='circle'><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ul><div class='hand' id='hours'></div><div class='hand' id='minutes'></div><div class='hand' id='seconds'></div><div id='black-circle'></div><div id='red-circle'></div></div></div></div><span>" + label + "</span></div>";
             } else {
-                divAppElement = "<div draggable='false' class='app-home-list-item empty-place'><div></div></div>";
+                divAppElement += "<div id='app-home-list-item-" + app + "' class='app-home-list-item'><img src='" + folderAppIcon + "app-" + app + "-icon.png'/><span>" + label + "</span></div>";
             }
-            $("#app-home-page-" + page.slice(-1) + " .app-home-list").append(divAppElement);
-            let listItem = $("#app-home-page-" + page.slice(-1) + " .app-home-list").children().last();
-            listItem.click(function () {
-                if(!activeUpdateHomeToggle) {
+        } else {
+            divAppElement = "<li class='empty-place'>";
+            divAppElement += "<div class='app-home-list-item empty-place'></div>";
+        }
+        $("#app-home-page-1 .app-home-list .icons-list > ul").append(divAppElement + "</li>");
+        $(".app-home-list .icons-list > ul li > div").click(function(e) {
+                if(longpress) {
+                    e.preventDefault();
+                } else {
                     if(this.id) {
                         updateContent(this.id.split("-")[4]);
                     }
                 }
-            });
-            listItem.on('dargstart', handleDragStart, false);
-            listItem.on('dragenter', handleDragEnter, false);
-            listItem.on('dragover', handleDragOver, false);
-            listItem.on('dragleave', handleDragLeave, false);
-            listItem.on('drop', handleDrop, false);
-            listItem.on('dragend', handleDragEnd, false);
-        }
+        });
     }
     // Création des application principales
     for(let app of config.apps) {
@@ -2229,111 +2256,104 @@ function updateAppHomeOrder() {
             let divAppElement = "<div draggable='false' id='app-home-list-item-" + app.name + "' class='app-home-list-item app-home-list-item-primary'><img src='" + folderAppIcon + "app-" + app.name + "-icon.png'/></div>";
             $("#app-home-list-primary").append(divAppElement);
             $("#app-home-list-primary").children().last().click(function () {
-                if(!activeUpdateHomeToggle) {
-                    if(this.id) {
-                        updateContent(this.id.split("-")[4]);
-                    }
+                if(this.id) {
+                    updateContent(this.id.split("-")[4]);
                 }
             });
         }
     }
-    // Icon Horloge
-    window.requestAnimFrame = (function() {
-        return  window.requestAnimationFrame       ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame    ||
-                function( callback ){
-                    window.setTimeout(callback, 1000 / 60);
-                };
-    })();
-    (function clock() { 
-        var hour = document.getElementById("hours"),
-            min = document.getElementById("minutes"),
-            sec = document.getElementById("seconds");
-            (function loop(){
-                requestAnimFrame(loop);
-                draw();
-            })();
-            function draw(){
-                var now = new Date(),
-                    then = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0),
-                    diffInMil = (now.getTime() - then.getTime()),
-                    h = (diffInMil/(1000*60*60)),
-                    m = (h*60),
-                    s = (m*60);
-                    sec.style.transform = "rotate(" + (s * 6) + "deg)";
-                    hour.style.transform = "rotate(" + (h * 30 + (h / 2)) + "deg)";
-                    min.style.transform = "rotate(" + (m * 6) + "deg)";
-            } 
-    })();
-    // Drag and drop des apps
-    // items = document.querySelectorAll('.app-home-list-item:not(.app-home-list-item-primary)');
-    // items.forEach(function(item) {
-    //     item.addEventListener('dragstart', handleDragStart, false);
-    //     item.addEventListener('dragenter', handleDragEnter, false);
-    //     item.addEventListener('dragover', handleDragOver, false);
-    //     item.addEventListener('dragleave', handleDragLeave, false);
-    //     item.addEventListener('drop', handleDrop, false);
-    //     item.addEventListener('dragend', handleDragEnd, false);
-    // });
-    // Bouton changement de page
-    document.getElementById("update-home-change-page").addEventListener('dragenter', function() {
-        if(!hasChangePageOnDrag) {
-            updatePageSelected();
-        }
-        hasChangePageOnDrag = true;
-    }, false);
+    //Icon Horloge
+    if(userData.phone.appHomeOrder.includes("clock")) {
+        window.requestAnimFrame = (function() {
+            return  window.requestAnimationFrame       ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame    ||
+                    function( callback ){
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+        })();
+        (function clock() { 
+            var hour = document.getElementById("hours"),
+                min = document.getElementById("minutes"),
+                sec = document.getElementById("seconds");
+                (function loop(){
+                    requestAnimFrame(loop);
+                    draw();
+                })();
+                function draw(){
+                    var now = new Date(),
+                        then = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0),
+                        diffInMil = (now.getTime() - then.getTime()),
+                        h = (diffInMil/(1000*60*60)),
+                        m = (h*60),
+                        s = (m*60);
+                        sec.style.transform = "rotate(" + (s * 6) + "deg)";
+                        hour.style.transform = "rotate(" + (h * 30 + (h / 2)) + "deg)";
+                        min.style.transform = "rotate(" + (m * 6) + "deg)";
+                }
+        })();
+    }
     // Souris changement de page
     pageSelected = document.getElementById("app-home-page-container");
     pageSelected.addEventListener('mousedown', function(e) {
-        isDown = true;
-        if(!activeUpdateHomeToggle) {
+        if(e.which != 1) {
+            return;
+        }
+        if(e.target.tagName == "UL" || e.target.classList.contains("empty-place") || e.target.classList.contains("icons-list") || e.target.classList.contains("app-home-list") || e.target.classList.contains("app-home-page") || e.target.id == "app-home-page-container") {
+            isDown = true;
             offset = [
                 pageSelected.offsetLeft - e.clientX,
                 pageSelected.offsetTop - e.clientY
             ];
         }
     }, true);
-    pageSelected.addEventListener('mouseup', function() {
-        isDown = false;
-        if(!activeUpdateHomeToggle) {
+    pageSelected.addEventListener('mouseup', function(e) {
+        if(e.which != 1) {
+            return;
+        }
+        if(e.target.tagName == "UL" || e.target.classList.contains("empty-place") || e.target.classList.contains("icons-list") || e.target.classList.contains("app-home-list") || e.target.classList.contains("app-home-page") || e.target.id == "app-home-page-container") {
+            isDown = false;
             let left = $("#app-home-page-container").css("left");
             left = parseInt(left.slice(0, -2));
             if(mousePosition.x != null || mousePosition.y != null) {
-                if(pageSelectedStart == 1) {
-                    if(mousePosition.x + offset[0] <= -75) {
-                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                        updatePageSelected();
-                        setTimeout(function() {
-                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                        });
+                    if(pageSelectedStart == 1) {
+                        if(mousePosition.x + offset[0] <= -75) {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                            updatePageSelected();
+                            setTimeout(function() {
+                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                            });
+                        } else {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                            pageSelected.style.left = '0%';
+                            setTimeout(function() {
+                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                            });
+                        }
                     } else {
-                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                        pageSelected.style.left = '0%';
-                        setTimeout(function() {
-                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                        });
+                        if(mousePosition.x + offset[0] >= -260) {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                            updatePageSelected();
+                            setTimeout(function() {
+                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                            });
+                        } else {
+                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
+                            pageSelected.style.left = '-100%';
+                            setTimeout(function() {
+                                pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
+                            });
+                        }
                     }
-                } else {
-                    if(mousePosition.x + offset[0] >= -260) {
-                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                        updatePageSelected();
-                        setTimeout(function() {
-                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                        });
-                    } else {
-                        pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
-                        pageSelected.style.left = '-100%';
-                        setTimeout(function() {
-                            pageSelected.style.transition = "all 0.3s ease-in-out, left 0s ease-in-out";
-                        });
-                    }
-                }
+            }
+            mousePosition = {
+                x: null,
+                y: null
             }
         }
     }, true);
     pageSelected.addEventListener('mousemove', function(event) {
-        if (isDown && !activeUpdateHomeToggle) {
+        if (isDown) {
             event.preventDefault();
             mousePosition = {
                 x : event.clientX,
@@ -2342,6 +2362,329 @@ function updateAppHomeOrder() {
             pageSelected.style.left = (mousePosition.x + offset[0]) + 'px';
         }
     }, true);
+    setInterval(function () {
+        saveHomeOrder()
+    }, 300000);
+    createShuffleGrid();
+}
+
+function createShuffleGrid() {
+    var ShuffleGrid, addClass, grid, hasClass, iconsList, removeClass;
+    addClass = function(el, className) {
+        if (hasClass(el, className)) {
+            return;
+        }
+        if (el.classList) {
+            el.classList.add(className);
+        } else {
+            el.className += ' ' + className;
+        }
+    };
+    removeClass = function(el, className) {
+        if (el.classList) {
+            el.classList.remove(className);
+        } else {
+            el.className = el.className.replace(new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"), " ");
+        }
+    };
+    hasClass = function(el, className) {
+        if (el.classList) {
+            return el.classList.contains(className);
+        } else {
+            return new RegExp("(^| )" + className + "( |$)", "gi").test(el.className);
+        }
+    };
+    ShuffleGrid = (function() {
+        class ShuffleGrid {
+            constructor(context, cols, rows, colSize, rowSize, paddingX = 0, paddingY = 0) {
+                    this.initIndex = this.initIndex.bind(this);
+                    this.addItem = this.addItem.bind(this);
+                    this.shuffleItems = this.shuffleItems.bind(this);
+                    this.snapToGrid = this.snapToGrid.bind(this);
+                    this.positionItem = this.positionItem.bind(this);
+                    this.getPosition = this.getPosition.bind(this);
+                    this.getCell = this.getCell.bind(this);
+                    this.onMousePress = this.onMousePress.bind(this);
+                    this.onMouseMove = this.onMouseMove.bind(this);
+                    this.onMouseRelease = this.onMouseRelease.bind(this);
+                    this.numCells = this.numCells.bind(this);
+                    this.startDrag = this.startDrag.bind(this);
+                    this.stopDrag = this.stopDrag.bind(this);
+                    this.context = context;
+                    this.cols = cols;
+                    this.rows = rows;
+                    this.colSize = colSize;
+                    this.rowSize = rowSize;
+                    this.paddingX = paddingX;
+                    this.paddingY = paddingY;
+                    this.numItems = 0;
+                    this.initIndex();
+                    this.items = [].slice.call(this.context.children);
+                    this.items.forEach((item, id) => {
+                        return this.addItem(item);
+                    });
+                return;
+            }
+            initIndex() {
+                var i;
+                this.itemVOs = [];
+                this.index = new Array(this.rows);
+                i = 0;
+                while (i < this.rows) {
+                    this.index[i++] = new Array(this.cols);
+                }
+            }
+            addItem(item) {
+                    var col, id, itemVO, position, row;
+                    col = this.numItems % this.cols;
+                    row = Math.floor(this.numItems / this.cols);
+                    position = this.getPosition(row, col);
+                    id = this.numItems;
+                    this.numItems++;
+                    itemVO = {
+                        row: row,
+                        col: col,
+                        item: item,
+                        id: id
+                    };
+                    item.style.width = `${this.colSize}px`;
+                    item.style.height = `${this.rowSize}px`;
+                    item.setAttribute('id', id);
+                    this.positionItem(item, position.x, position.y);
+                    this.index[row][col] = itemVO;
+                    this.itemVOs[id] = itemVO;
+                    if (hasClass(item, 'placeholder')) {
+                        return;
+                    }
+                    item.children[0].style.webkitAnimationDelay = Math.random() * 0.5 + 's';
+                    item.children[0].style.MozAnimationDelay = Math.random() * 0.5 + 's';
+                    item.addEventListener('mousedown', this.onMousePress, false);
+                    return item;
+            }
+            shuffleItems() {
+                var cell, col, hMove, i, item, itemVO, move, row, vMove;
+                itemVO = this.itemVOs[this.currentItem.getAttribute('id')];
+                cell = this.getCell(parseInt(this.currentItem.getAttribute('x')), parseInt(this.currentItem.getAttribute('y')));
+                col = cell.x;
+                row = cell.y;
+                if (col === itemVO.col && row === itemVO.row) {
+                    return;
+                }
+                hMove = col - itemVO.col;
+                vMove = row - itemVO.row;
+                move = [];
+                if (hMove < 0) {
+                    i = itemVO.col - 1;
+                    while (i >= itemVO.col + hMove) {
+                    if (this.index[itemVO.row][i]) {
+                        item = this.index[itemVO.row][i];
+                        item.col++;
+                        this.index[item.row][item.col] = item;
+                        move.push(item);
+                    }
+                    i--;
+                    }
+                } else {
+                    i = itemVO.col + 1;
+                    while (i <= itemVO.col + hMove) {
+                    if (this.index[itemVO.row][i]) {
+                        item = this.index[itemVO.row][i];
+                        item.col--;
+                        this.index[item.row][item.col] = item;
+                        move.push(item);
+                    }
+                    i++;
+                    }
+                }
+                if (vMove < 0) {
+                    i = itemVO.row - 1;
+                    while (i >= itemVO.row + vMove) {
+                    if (this.index[i][itemVO.col + hMove]) {
+                        item = this.index[i][itemVO.col + hMove];
+                        item.row++;
+                        this.index[item.row][item.col] = item;
+                        move.push(item);
+                    }
+                    i--;
+                    }
+                } else {
+                    i = itemVO.row + 1;
+                    while (i <= itemVO.row + vMove) {
+                    if (this.index[i][itemVO.col + hMove]) {
+                        item = this.index[i][itemVO.col + hMove];
+                        item.row--;
+                        this.index[item.row][item.col] = item;
+                        move.push(item);
+                    }
+                    i++;
+                    }
+                }
+                i = 0;
+                while (i < move.length) {
+                    this.snapToGrid(move[i++]);
+                }
+                itemVO.row = row;
+                itemVO.col = col;
+                this.index[row][col] = itemVO;
+            }
+            snapToGrid(itemVO) {
+                var position;
+                position = this.getPosition(itemVO.row, itemVO.col);
+                this.positionItem(itemVO.item, position.x, position.y);
+            }
+            positionItem(item, x, y) {
+                item.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            }
+            getPosition(row, col) {
+                    var position;
+                    // Only used for the iOS demo
+                    position = {
+                        x: col * (this.colSize + this.paddingX),
+                        y: row * (this.rowSize + this.paddingY)
+                    };
+                    return position;
+            }
+            getCell(x, y) {
+                var cell;
+                cell = {
+                    x: Math.max(0, Math.min(this.cols - 1, Math.round(x / (this.colSize + this.paddingX)))),
+                    y: Math.max(0, Math.min(this.rows - 1, Math.round(y / (this.rowSize + this.paddingY))))
+                };
+                return cell;
+            }
+            onMousePress(event) {
+                    if(event.which != 1) {
+                        return;
+                    }
+                    startTime = new Date().getTime();
+                    let itemSave = this;
+                    let itemCurrent = event.currentTarget;
+                    if(itemCurrent.firstElementChild.classList.contains('empty-place')) {
+                        return;
+                    }
+                    this.context.addEventListener('mouseup', function() {
+                        endTime = new Date().getTime();
+                        if (endTime - startTime < 250) {
+                            longpress = false;
+                            setTimeout(function() {
+                                longpress = true;
+                            }, 300);
+                        }
+                    }, false);
+                    setTimeout(function() {
+                        if(longpress) {
+                            var contextOffset, left, top, zoom;
+                            itemSave.currentItem = itemCurrent;
+                            contextOffset = itemSave.context.getBoundingClientRect();
+                            zoom = $("#phone").css("zoom");
+                            left = contextOffset.left * parseFloat(zoom) - 25;
+                            top = contextOffset.top * parseFloat(zoom) - 5;
+                            itemSave.originOffset = {
+                                    x: event.offsetX + left + 24,
+                                    y: event.offsetY + top + 0
+                            };
+                            itemSave.startDrag(itemSave.currentItem);
+                            itemSave.onMouseMove(event);
+                            itemSave.context.addEventListener('mouseup', itemSave.onMouseRelease, false);
+                            itemSave.context.addEventListener('mousemove', itemSave.onMouseMove, false);
+                            itemSave.context.addEventListener('mouseleave', itemSave.onMouseRelease, false);
+                        }
+                    }, 275);
+            }
+            onMouseMove(event) {
+                    var x, y, zoom, zoomPadding;
+                    x = event.clientX - this.originOffset.x;
+                    y = event.clientY - this.originOffset.y;
+                    zoom = parseFloat($("#phone").css("zoom"));
+                    for(let generalZoomItem of config.generalzoom) {
+                        if(generalZoomItem.title == generalZoomActive) {
+                            zoomPadding = generalZoomItem.home;
+                        }
+                    }
+                    x = x + (x / Math.exp((zoom * 100 - 50) / (this.paddingX - zoomPadding)));
+                    y = y + (y / Math.exp((zoom * 100 - 50) / (this.paddingY - zoomPadding)));
+                    this.currentItem.setAttribute('x', x);
+                    this.currentItem.setAttribute('y', y);
+                    this.positionItem(this.currentItem, x, y);
+                    this.shuffleItems();
+            }
+            onMouseRelease(event) {
+                this.currentItem.removeEventListener('mouseout', this.onMouseRelease);
+                this.stopDrag(this.currentItem);
+                this.context.removeEventListener('mousemove', this.onMouseMove);
+                this.snapToGrid(this.itemVOs[this.currentItem.getAttribute('id')]);
+            }
+            numCells() {
+                return this.rows * this.cols;
+            }
+            startDrag(item) {
+                    this.zIndex++;
+                    item.style.zIndex = this.zIndex;
+                    addClass(item, 'dragging');
+                    addClass(this.context, 'shaking');
+            }
+            stopDrag(item) {
+                removeClass(item, 'dragging');
+                removeClass(this.context, 'shaking');
+                $(window).off('mousemove');
+            }
+        };
+        ShuffleGrid.prototype.zIndex = 100;
+        return ShuffleGrid;
+    }).call(this);
+    iconsList = document.querySelector('.icons-list ul');
+    gridPage1 = new ShuffleGrid(iconsList, 8, 5, 60, 60, 38, 30);
+}
+
+function saveHomeOrder() {
+    gridPage1.itemVOs.sort(dynamicSortMultiple("row", "col"));
+    let appHomeOrderSave = userData.phone.appHomeOrder;
+    userData.phone.appHomeOrder = [];
+    for(let icon of gridPage1.itemVOs) {
+        if(icon.item.dataset.name != null) {
+            userData.phone.appHomeOrder.push(icon.item.dataset.name);
+        } else {
+            userData.phone.appHomeOrder.push('');
+        }
+    }
+    if(appHomeOrderSave.toString() != userData.phone.appHomeOrder.toString()) {
+        $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { appHomeOrder: JSON.stringify(userData.phone.appHomeOrder) } }));
+    }
+}
+
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        /* next line works with strings and numbers, 
+         * and you may want to customize it to your needs
+         */
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+function dynamicSortMultiple() {
+    /*
+     * save the arguments object as it will be overwritten
+     * note that arguments object is an array-like object
+     * consisting of the names of the properties to sort by
+     */
+    var props = arguments;
+    return function (obj1, obj2) {
+        var i = 0, result = 0, numberOfProperties = props.length;
+        /* try getting a different result from 0 (equal)
+         * as long as we have extra properties to compare
+         */
+        while(result === 0 && i < numberOfProperties) {
+            result = dynamicSort(props[i])(obj1, obj2);
+            i++;
+        }
+        return result;
+    }
 }
 
 function isImage(url) {
@@ -2551,32 +2894,38 @@ const config = {
         {
             "title": "zoom150%",
             "label": "150%",
-            "value": 100
+            "value": 100,
+            "home": 19
         },
         {
             "title": "zoom125%",
             "label": "125%",
-            "value": 85
+            "value": 85,
+            "home": 15
         },
         {
             "title": "zoom100%",
             "label": "100%",
-            "value": 75
+            "value": 75,
+            "home": 12
         },
         {
             "title": "zoom75%",
             "label": "75%",
-            "value": 65
+            "value": 65,
+            "home": 9
         },
         {
             "title": "zoom50%",
             "label": "50%",
-            "value": 55
+            "value": 55,
+            "home": 9
         },
         {
             "title": "zoom25%",
             "label": "25%",
-            "value": 45
+            "value": 45,
+            "home": 8
         },
     ],
     "contactsicon": [

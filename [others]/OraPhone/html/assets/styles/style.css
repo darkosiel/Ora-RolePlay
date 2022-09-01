@@ -1187,8 +1187,8 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
        column-gap: 24px;
   row-gap: 10px;
   width: 100%;
-  height: auto;
-  padding: 20px 12px;
+  height: 500px;
+  padding: 20px 0;
   transition: all 0.3s ease-in-out;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item {
@@ -1198,6 +1198,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   row-gap: 7px;
   width: 60px;
   height: 95px;
+  cursor: pointer;
 }
 .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item {
   color: #FFFFFF;
@@ -1220,18 +1221,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
       -ms-user-select: none;
           user-select: none;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item.over img, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item.over img {
-  border: 1px solid #ffffff;
-}
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item.draggable-element, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item.draggable-element {
-  -webkit-animation: 0.3s linear 0s infinite moveRotateDraggable;
-          animation: 0.3s linear 0s infinite moveRotateDraggable;
-}
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item.draggable-element div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item.draggable-element div {
-  opacity: 1 !important;
-}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item.empty-place, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item.empty-place {
   padding-bottom: 26px;
+  cursor: default;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item.empty-place div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item.empty-place div {
   width: 53px;
@@ -1240,40 +1232,6 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   box-shadow: 0 0 5px 1px rgb(0, 0, 0);
   opacity: 0;
   border-radius: 10px;
-}
-@-webkit-keyframes moveRotateDraggable {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(1deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-1deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-@keyframes moveRotateDraggable {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(1deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-1deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item img, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item img {
   width: 60px;
@@ -1415,6 +1373,105 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   width: 0.795px;
   height: 0.795px;
   background: red;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul.shaking li > div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul.shaking li > div {
+  -webkit-animation: shake 0.25s 0s ease-in-out infinite;
+          animation: shake 0.25s 0s ease-in-out infinite;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul.shaking .dragging div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul.shaking .dragging div {
+  -webkit-animation: none;
+          animation: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li {
+  transition: opacity, transform 0.25s ease-in-out;
+  cursor: pointer;
+  list-style: none;
+  position: absolute;
+  text-align: center;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li.placeholder, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li.placeholder {
+  cursor: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li.placeholder div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li.placeholder div {
+  background: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li.placeholder span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li.placeholder span {
+  display: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li.dragging, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li.dragging {
+  transition: none;
+  opacity: 0.75;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li.dragging > div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li.dragging > div {
+  transform: scale(1.25);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li.dragging > div:after, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li.dragging > div:after {
+  opacity: 0.75;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li div, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li div {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.25s ease-out;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li div:after, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li div:after {
+  content: "";
+  left: 0;
+  top: 0;
+  background: #000;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  opacity: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list ul li span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list ul li span {
+  width: 100%;
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: 64px;
+}
+@-webkit-keyframes shake {
+  0% {
+    transform: rotateZ(-2deg);
+  }
+  33.3% {
+    transform: rotateZ(0deg);
+  }
+  66.6% {
+    transform: rotateZ(2deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes shake {
+  0% {
+    transform: rotateZ(-2deg);
+  }
+  33.3% {
+    transform: rotateZ(0deg);
+  }
+  66.6% {
+    transform: rotateZ(2deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary {
   justify-content: space-between;
@@ -3449,6 +3506,252 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-duration span {
   font-size: 18px;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container {
+  width: 100%;
+  height: auto;
+  max-height: 28%;
+  padding: 10px;
+  overflow: hidden;
+  z-index: 70;
+  pointer-events: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item {
+  height: 90px;
+  max-height: 140px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: height 0.75s ease-in-out, margin-bottom 0.75s ease-in-out, transform 0.75s ease-in-out, visibility 0.75s ease-in-out, opacity 0.75s ease-in-out;
+  cursor: pointer;
+  pointer-events: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(1) {
+  transform: translateY(0px) scale(1);
+  z-index: 98;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(2) {
+  transform: translateY(-77px) scale(0.9);
+  z-index: 97;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(3) {
+  transform: translateY(-154px) scale(0.8);
+  z-index: 96;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(4) {
+  transform: translateY(-231px) scale(0.7);
+  z-index: 95;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(5) {
+  transform: translateY(-308px) scale(0.6);
+  z-index: 94;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(6) {
+  transform: translateY(-385px) scale(0.5);
+  z-index: 93;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(7) {
+  transform: translateY(-462px) scale(0.4);
+  z-index: 92;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(8) {
+  transform: translateY(-539px) scale(0.3);
+  z-index: 91;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(9) {
+  transform: translateY(-616px) scale(0.2);
+  z-index: 90;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(10) {
+  transform: translateY(-693px) scale(0.1);
+  z-index: 89;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(11) {
+  transform: translateY(-770px) scale(0);
+  z-index: 88;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(12) {
+  transform: translateY(-847px) scale(-0.1);
+  z-index: 87;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(13) {
+  transform: translateY(-924px) scale(-0.2);
+  z-index: 86;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(14) {
+  transform: translateY(-1001px) scale(-0.3);
+  z-index: 85;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(15) {
+  transform: translateY(-1078px) scale(-0.4);
+  z-index: 84;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(16) {
+  transform: translateY(-1155px) scale(-0.5);
+  z-index: 83;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(17) {
+  transform: translateY(-1232px) scale(-0.6);
+  z-index: 82;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(18) {
+  transform: translateY(-1309px) scale(-0.7);
+  z-index: 81;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(19) {
+  transform: translateY(-1386px) scale(-0.8);
+  z-index: 80;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:nth-child(20) {
+  transform: translateY(-1463px) scale(-0.9);
+  z-index: 79;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
+  display: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item.close {
+  height: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item.close .notification-item-content {
+  transform: scale(0);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content {
+  height: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.75s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content {
+  color: #ffffff;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content > .notification-item-background-blur {
+  border-radius: 10px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-background-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 10px 0px 0px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-background-blur {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-background-blur {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-header {
+  height: 30px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content {
+  font-size: 16px;
+  position: inherit;
+  width: 100%;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div {
+  width: auto;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div.notification-item-header-content-left {
+  display: flex;
+  align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  float: left;
+  padding: 5px 10px;
+  text-align: left;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div.notification-item-header-content-left img {
+  width: auto;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div.notification-item-header-content-right {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  float: right;
+  padding: 5px 10px;
+  text-align: right;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: inherit;
+  width: 100%;
+  height: calc(100% - 30px);
+  padding: 8px 20px 10px 10px;
+  font-size: 16px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main.call {
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  padding: 5px 15px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main span.notification-item-main-header {
+  font-family: "SF UI Text Bold";
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar.url {
+  overflow: hidden;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar img {
+  width: 100%;
+  height: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-info {
+  display: flex;
+  flex-direction: column;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
+  font-size: 24px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
+  color: #FFFFFF;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
+  background-color: #FF3B30;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
+  background-color: #FF453A;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
+  background-color: #34C759;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
+  background-color: #32D74B;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-footer {
   display: flex;
   align-items: flex-end;
@@ -3855,6 +4158,183 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock div#
   font-size: 14px;
   cursor: pointer;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock {
+  width: 100%;
+  height: auto;
+  max-height: 55%;
+  padding: 10px;
+  overflow: hidden;
+  z-index: 70;
+  margin-top: 10px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item {
+  width: 100%;
+  height: 68px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: height 0.75s ease-in-out, margin-bottom 0.75s ease-in-out, transform 0.75s ease-in-out, opacity 0.75s ease-in-out;
+  cursor: pointer;
+  pointer-events: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item.close {
+  height: 0;
+  margin-bottom: 0px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item.close .notification-item-content {
+  transform: scale(0);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform: scale(1);
+  transition: transform 0.75s ease-in-out;
+  overflow: hidden;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content {
+  color: #ffffff;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-background-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-background-blur {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-background-blur {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  padding-left: 10px;
+  box-sizing: content-box;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-icon img {
+  width: 100%;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main {
+  display: flex;
+  justify-content: space-between;
+  position: inherit;
+  width: 100%;
+  font-size: 16px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main.call {
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  padding: 5px 15px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
+  background-color: #34C759;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
+  background-color: #32D74B;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar i {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar i {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-info {
+  display: flex;
+  flex-direction: column;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup, div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
+  font-size: 24px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
+  color: #FFFFFF;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
+  background-color: #FF3B30;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
+  background-color: #FF453A;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
+  background-color: #34C759;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
+  background-color: #32D74B;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: calc(100% - 64px);
+  height: 100%;
+  padding: 5px 10px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-header {
+  height: 20px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-header .notification-item-content-body-header-left {
+  font-family: "SF UI Text Bold";
+  float: left;
+  text-align: left;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-header .notification-item-content-body-header-right {
+  float: right;
+  text-align: right;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-content {
+  height: 18px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-lock #notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-content div.notification-item-content-body-content-message {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 div#page div#phone div#phone-screen div#phone-lock-button {
   position: absolute;
   width: 130px;
@@ -3890,7 +4370,7 @@ div#page div#phone div#phone-screen div#phone-lock-button:hover i {
   transform: translate(0, 0);
 }
 
-button#add-notification, button#add-call, button#refresh-contacts {
+#add-notification, #add-call, #refresh-contacts, #save-home {
   height: 40px;
   padding: 5px;
   background-color: black;
@@ -3900,482 +4380,17 @@ button#add-notification, button#add-call, button#refresh-contacts {
   right: 260px;
 }
 
-button#add-call {
+#add-call {
   top: 120px;
 }
 
-button#refresh-contacts {
+#refresh-contacts {
   top: 180px;
 }
 
-#notification-container {
-  width: 100%;
-  height: auto;
-  max-height: 28%;
-  padding: 10px;
-  overflow: hidden;
-  z-index: 70;
-  pointer-events: none;
-}
-#notification-container .notification-item {
-  height: 90px;
-  max-height: 140px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-  transition: height 0.75s ease-in-out, margin-bottom 0.75s ease-in-out, transform 0.75s ease-in-out, visibility 0.75s ease-in-out, opacity 0.75s ease-in-out;
-  cursor: pointer;
-  pointer-events: auto;
-}
-#notification-container .notification-item:nth-child(1) {
-  transform: translateY(0px) scale(1);
-  z-index: 98;
-}
-#notification-container .notification-item:nth-child(2) {
-  transform: translateY(-77px) scale(0.9);
-  z-index: 97;
-}
-#notification-container .notification-item:nth-child(3) {
-  transform: translateY(-154px) scale(0.8);
-  z-index: 96;
-}
-#notification-container .notification-item:nth-child(4) {
-  transform: translateY(-231px) scale(0.7);
-  z-index: 95;
-}
-#notification-container .notification-item:nth-child(5) {
-  transform: translateY(-308px) scale(0.6);
-  z-index: 94;
-}
-#notification-container .notification-item:nth-child(6) {
-  transform: translateY(-385px) scale(0.5);
-  z-index: 93;
-}
-#notification-container .notification-item:nth-child(7) {
-  transform: translateY(-462px) scale(0.4);
-  z-index: 92;
-}
-#notification-container .notification-item:nth-child(8) {
-  transform: translateY(-539px) scale(0.3);
-  z-index: 91;
-}
-#notification-container .notification-item:nth-child(9) {
-  transform: translateY(-616px) scale(0.2);
-  z-index: 90;
-}
-#notification-container .notification-item:nth-child(10) {
-  transform: translateY(-693px) scale(0.1);
-  z-index: 89;
-}
-#notification-container .notification-item:nth-child(11) {
-  transform: translateY(-770px) scale(0);
-  z-index: 88;
-}
-#notification-container .notification-item:nth-child(12) {
-  transform: translateY(-847px) scale(-0.1);
-  z-index: 87;
-}
-#notification-container .notification-item:nth-child(13) {
-  transform: translateY(-924px) scale(-0.2);
-  z-index: 86;
-}
-#notification-container .notification-item:nth-child(14) {
-  transform: translateY(-1001px) scale(-0.3);
-  z-index: 85;
-}
-#notification-container .notification-item:nth-child(15) {
-  transform: translateY(-1078px) scale(-0.4);
-  z-index: 84;
-}
-#notification-container .notification-item:nth-child(16) {
-  transform: translateY(-1155px) scale(-0.5);
-  z-index: 83;
-}
-#notification-container .notification-item:nth-child(17) {
-  transform: translateY(-1232px) scale(-0.6);
-  z-index: 82;
-}
-#notification-container .notification-item:nth-child(18) {
-  transform: translateY(-1309px) scale(-0.7);
-  z-index: 81;
-}
-#notification-container .notification-item:nth-child(19) {
-  transform: translateY(-1386px) scale(-0.8);
-  z-index: 80;
-}
-#notification-container .notification-item:nth-child(20) {
-  transform: translateY(-1463px) scale(-0.9);
-  z-index: 79;
-}
-#notification-container .notification-item:not(:nth-child(1)):not(:nth-child(2)):not(:nth-child(3)):not(:nth-child(4)) {
-  display: none;
-}
-#notification-container .notification-item.close {
-  height: 0;
-}
-#notification-container .notification-item.close .notification-item-content {
-  transform: scale(0);
-}
-#notification-container .notification-item .notification-item-content {
-  height: 100%;
-  cursor: pointer;
-  overflow: hidden;
-  transform: scale(1);
-  transition: transform 0.75s ease-in-out;
-}
-.theme--default #notification-container .notification-item .notification-item-content {
-  color: #000000;
-}
-.theme--dark #notification-container .notification-item .notification-item-content {
-  color: #ffffff;
-}
-#notification-container .notification-item .notification-item-content > .notification-item-background-blur {
-  border-radius: 10px;
-}
-#notification-container .notification-item .notification-item-content .notification-item-background-blur {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 10px 0px 0px;
-}
-.theme--default #notification-container .notification-item .notification-item-content .notification-item-background-blur {
-  background-color: rgba(255, 255, 255, 0.95);
-}
-.theme--dark #notification-container .notification-item .notification-item-content .notification-item-background-blur {
-  background-color: rgba(0, 0, 0, 0.95);
-}
-#notification-container .notification-item .notification-item-content .notification-item-header {
-  height: 30px;
-}
-#notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content {
-  font-size: 16px;
-  position: inherit;
-  width: 100%;
-  height: 100%;
-}
-#notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div {
-  width: auto;
-  height: 100%;
-}
-#notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div.notification-item-header-content-left {
-  display: flex;
-  align-items: center;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  float: left;
-  padding: 5px 10px;
-  text-align: left;
-  -moz-column-gap: 5px;
-       column-gap: 5px;
-}
-#notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div.notification-item-header-content-left img {
-  width: auto;
-  height: 100%;
-}
-#notification-container .notification-item .notification-item-content .notification-item-header .notification-item-header-content div.notification-item-header-content-right {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  float: right;
-  padding: 5px 10px;
-  text-align: right;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: inherit;
-  width: 100%;
-  height: calc(100% - 30px);
-  padding: 8px 20px 10px 10px;
-  font-size: 16px;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main.call {
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-  padding: 5px 15px;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main span {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main span.notification-item-main-header {
-  font-family: "SF UI Text Bold";
-}
-#notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  border-width: 4px;
-  border-style: solid;
-  border-color: transparent;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar.url {
-  overflow: hidden;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar img {
-  width: 100%;
-  height: auto;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-info {
-  display: flex;
-  flex-direction: column;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup, #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-#notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
-  font-size: 24px;
-}
-.theme--default #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--default #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
-  color: #FFFFFF;
-}
-.theme--dark #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--dark #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
-  color: #FFFFFF;
-}
-.theme--default #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
-  background-color: #FF3B30;
-}
-.theme--dark #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
-  background-color: #FF453A;
-}
-.theme--default #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
-  background-color: #34C759;
-}
-.theme--dark #notification-container .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
-  background-color: #32D74B;
-}
-
-#notification-container-lock {
-  width: 100%;
-  height: auto;
-  max-height: 55%;
-  padding: 10px;
-  overflow: hidden;
-  z-index: 70;
-  margin-top: 10px;
-}
-#notification-container-lock .notification-item {
-  width: 100%;
-  height: 68px;
-  margin-bottom: 5px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-  transition: height 0.75s ease-in-out, margin-bottom 0.75s ease-in-out, transform 0.75s ease-in-out, opacity 0.75s ease-in-out;
-  cursor: pointer;
-  pointer-events: auto;
-}
-#notification-container-lock .notification-item.close {
-  height: 0;
-  margin-bottom: 0px;
-}
-#notification-container-lock .notification-item.close .notification-item-content {
-  transform: scale(0);
-}
-#notification-container-lock .notification-item .notification-item-content {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  transform: scale(1);
-  transition: transform 0.75s ease-in-out;
-  overflow: hidden;
-  cursor: pointer;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content {
-  color: #000000;
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content {
-  color: #ffffff;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-background-blur {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-background-blur {
-  background-color: rgba(255, 255, 255, 0.95);
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-background-blur {
-  background-color: rgba(0, 0, 0, 0.95);
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  padding-left: 10px;
-  box-sizing: content-box;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-icon img {
-  width: 100%;
-  height: 100%;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main {
-  display: flex;
-  justify-content: space-between;
-  position: inherit;
-  width: 100%;
-  font-size: 16px;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main.call {
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-  padding: 5px 15px;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main span {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  width: 60px;
-  height: 60px;
-  padding: 10px;
-  border-radius: 50%;
-  transition: all 0.3s ease-in-out;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
-  background-color: #34C759;
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar {
-  background-color: #32D74B;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar i {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 22px;
-  transition: all 0.3s ease-in-out;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar i {
-  color: #000000;
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-avatar i {
-  color: #FFFFFF;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-info {
-  display: flex;
-  flex-direction: column;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup, #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
-  font-size: 24px;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
-  color: #FFFFFF;
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup i, .theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup i {
-  color: #FFFFFF;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
-  background-color: #FF3B30;
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-hangup {
-  background-color: #FF453A;
-}
-.theme--default #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
-  background-color: #34C759;
-}
-.theme--dark #notification-container-lock .notification-item .notification-item-content .notification-item-main div.notification-item-main-pickup {
-  background-color: #32D74B;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-content-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: calc(100% - 64px);
-  height: 100%;
-  padding: 5px 10px;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-header {
-  height: 20px;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-header .notification-item-content-body-header-left {
-  font-family: "SF UI Text Bold";
-  float: left;
-  text-align: left;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-header .notification-item-content-body-header-right {
-  float: right;
-  text-align: right;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-content {
-  height: 18px;
-}
-#notification-container-lock .notification-item .notification-item-content .notification-item-content-body .notification-item-content-body-content div.notification-item-content-body-content-message {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-label#switch-theme-mode {
-  position: absolute;
-  display: block;
-  top: 80px;
-  right: 120px;
-  background: #fff;
-  padding: 10px 15px;
-}
-label#switch-theme-mode > input {
-  display: none;
-}
-label#switch-theme-mode i {
-  display: inline-block;
-  float: right;
-  padding: 2px;
-  width: 40px;
-  height: 20px;
-  border-radius: 13px;
-  vertical-align: middle;
-  transition: 0.25s 0.09s;
-  position: relative;
-  background: #d8d9db;
-  box-sizing: initial;
-}
-label#switch-theme-mode i:after {
-  content: " ";
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #fff;
-  position: absolute;
-  left: 2px;
-  transition: 0.25s;
-}
-label#switch-theme-mode > input:checked + i {
-  background: #4bd865;
-}
-label#switch-theme-mode > input:checked + i:after {
-  transform: translateX(20px);
-}
-label#switch-theme-mode:hover {
-  cursor: pointer;
+#save-home {
+  top: 340px;
+  right: 400px;
 }
 
 .theme--default div#phone-screen-content.app-tabbed div#phone-screen-content-footer, .theme--default div#phone-screen-content.app-tabbed div#phone-screen-content-header {
@@ -4439,4 +4454,126 @@ label#switch-theme-mode:hover {
 }
 .theme--dark div#phone-screen-content.app-settings div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--dark div#phone-screen-content.app-settings div#phone-screen-content-header div#phone-screen-content-footer-bar {
   background-color: #FFFFFF !important;
+}
+
+/* --- Context Menu --- */
+.contextMenu {
+  height: 0;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  position: fixed;
+  top: var(--top);
+  left: var(--left);
+  -webkit-animation: menuAnimation 0.4s 0s both;
+          animation: menuAnimation 0.4s 0s both;
+  transform-origin: left;
+  list-style: none;
+  margin: 4px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 999999999;
+}
+.theme--default .contextMenu {
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.85) 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.04), 0 10px 8px rgba(0, 0, 0, 0.05), 0 15px 15px rgba(0, 0, 0, 0.06), 0 30px 30px rgba(0, 0, 0, 0.07), 0 70px 65px rgba(0, 0, 0, 0.09);
+}
+.theme--dark .contextMenu {
+  background: linear-gradient(45deg, rgba(10, 20, 28, 0.2) 0%, rgba(10, 20, 28, 0.7) 100%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.04), 0 10px 8px rgba(0, 0, 0, 0.05), 0 15px 15px rgba(0, 0, 0, 0.06), 0 30px 30px rgba(0, 0, 0, 0.07), 0 70px 65px rgba(0, 0, 0, 0.09);
+}
+.contextMenu-item {
+  padding: 4px;
+}
+.contextMenu-item[data-divider=top] {
+  border-top: 1px solid;
+}
+.contextMenu-item[data-divider=bottom] {
+  border-bottom: 1px solid;
+}
+.contextMenu-item[data-divider=top-bottom] {
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.theme--default .contextMenu-item[data-divider] {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.theme--dark .contextMenu-item[data-divider] {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.contextMenu-button {
+  background: 0;
+  border: 0;
+  white-space: nowrap;
+  width: 100%;
+  border-radius: 4px;
+  padding: 6px 24px 6px 7px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  width: 100%;
+  -webkit-animation: menuItemAnimation 0.2s 0s both;
+          animation: menuItemAnimation 0.2s 0s both;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+.theme--default .contextMenu-button {
+  color: rgb(10, 20, 28);
+}
+.theme--dark .contextMenu-button {
+  color: #ffffff;
+}
+.theme--default .contextMenu-button:hover {
+  background-color: rgba(10, 20, 28, 0.09);
+}
+.theme--dark .contextMenu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@-webkit-keyframes menuAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    height: var(--height);
+    opacity: 1;
+    border-radius: 8px;
+    transform: scale(1);
+  }
+}
+
+@keyframes menuAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    height: var(--height);
+    opacity: 1;
+    border-radius: 8px;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes menuItemAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes menuItemAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }/*# sourceMappingURL=style.css.map */

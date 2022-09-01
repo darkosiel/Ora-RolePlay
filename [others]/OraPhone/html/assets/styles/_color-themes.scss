@@ -60,6 +60,12 @@ $phone-input-switch-after-background-color: "phone-input-switch-after-background
 $phone-app-settings-wallpaper-light: "phone-app-settings-wallpaper-light";
 $phone-app-settings-wallpaper-dark: "phone-app-settings-wallpaper-dark";
 
+$phone-contextmenu-menu-border-color: "phone-contextmenu-menu-border-color";
+$phone-contextmenu-menu-background-color: "phone-contextmenu-menu-background-color";
+$phone-contextmenu-item-border-color: "phone-contextmenu-item-border-color";
+$phone-contextmenu-item-color: "phone-contextmenu-item-color";
+$phone-contextmenu-item-background-color: "phone-contextmenu-item-background-color";
+
 //themes
 $themes: (
         default: (
@@ -121,6 +127,12 @@ $themes: (
                 phone-input-switch-background-color-active: $system--green--light,
                 phone-app-settings-wallpaper-light: block,
                 phone-app-settings-wallpaper-dark: none,
+
+                phone-contextmenu-menu-border-color: $phone--contextmenu--menu--border--color--light,
+                phone-contextmenu-menu-background-color: $phone--contextmenu--menu--background--color--light,
+                phone-contextmenu-item-border-color: $phone--contextmenu--item--border--color--light,
+                phone-contextmenu-item-color: $phone--contextmenu--item--color--light,
+                phone-contextmenu-item-background-color: $phone--contextmenu--item--background--color--light,
         ),
         dark: (
                 phone-background-default: url("../images/wallpaper/wallpaper-ios15-dark.jpg"),
@@ -181,6 +193,12 @@ $themes: (
                 phone-input-switch-background-color-active: $system--green--dark,
                 phone-app-settings-wallpaper-light: none,
                 phone-app-settings-wallpaper-dark: block,
+
+                phone-contextmenu-menu-border-color: $phone--contextmenu--menu--border--color--dark,
+                phone-contextmenu-menu-background-color: $phone--contextmenu--menu--background--color--dark,
+                phone-contextmenu-item-border-color: $phone--contextmenu--item--border--color--dark,
+                phone-contextmenu-item-color: $phone--contextmenu--item--color--dark,
+                phone-contextmenu-item-background-color: $phone--contextmenu--item--background--color--dark,
         ),
 );
 
