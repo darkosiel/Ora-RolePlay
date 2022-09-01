@@ -159,6 +159,7 @@ AddEventHandler(
                 FreezeEntityPosition(PlayerPedId(), true)
                 SetCoords(PlayerPedId(), position)
                 Ora.Health:SetMyHealthWithoutRegister(Identity[1].health)
+                print("Setting health to : " .. Identity[1].health, "\nFor player : " .. GetPlayerName(PlayerId()), "\nWith ServerID : " .. GetPlayerServerId(PlayerId()), "\nWith UUID : " .. PlyUUID)
                 Wait(1500)
                 FreezeEntityPosition(PlayerPedId(), false)
                 
