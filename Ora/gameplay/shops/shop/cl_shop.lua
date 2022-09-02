@@ -2032,7 +2032,7 @@ local Shops =
         },
         {
             Title = "Mike",
-            Pos = {x = -1486.80, y = -908.34, z = 9.02, a = 231.58},
+            Pos = {x = -348.67, y = -46.88, z = 53.42, a = 339.53},
             Blips = {
                 Enabled = false
                 -- sprite = 1,
