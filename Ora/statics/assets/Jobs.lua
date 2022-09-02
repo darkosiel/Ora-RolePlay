@@ -8524,35 +8524,6 @@ Jobs = {
                     }
                 }
             },
-            Extrapos = {
-                ExtraVehicle = {
-                    Pos = {
-                        {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
-                    },
-                    restricted = {1, 2, 3, 4, 5, 6, 7},
-                    Enter = function()
-                        EnterExtraPompierVehicleZone()
-                    end,
-                    Exit = function()
-                        ExitExtraPompierVehicleZone()
-                    end,
-                    zonesize = 3.5,
-                    Blips = {
-                        sprite = 402,
-                        color = 81,
-                        name = "LSFD - Extras"
-                    },
-                    Marker = {
-                        type = 1,
-                        scale = {x = 3.5, y = 3.5, z = 0.1},
-                        color = {r = 255, g = 255, b = 255, a = 120},
-                        Up = false,
-                        Cam = false,
-                        Rotate = false,
-                        visible = true
-                    }
-                }
-            },
             buttons = {
                 {
                     label = "Facturation",
@@ -9757,6 +9728,35 @@ Jobs = {
                             ["mask_2"] = 0
                         }
                     },
+                }
+            }
+        },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
+                },
+                restricted = {1, 2, 3, 4, 5, 6, 7},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "LSFD - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
                 }
             }
         }
