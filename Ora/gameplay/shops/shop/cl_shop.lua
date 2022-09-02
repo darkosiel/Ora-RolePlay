@@ -2102,17 +2102,17 @@ local Shops =
                     name = "pioche",
                     price = 2000,
                     data = {}
-                }
+                },
                 -- {
                 --     name = "allumette",
                 --     price = 100,
                 --     data = {}
                 -- },
-                -- {
-                --     name = "molotovartisanal",
-                --     price = 100,
-                --     data = {}
-                -- },
+                {
+                    name = "molotovartisanal",
+                    price = 500,
+                    data = {}
+                }
             }
         },
         {
