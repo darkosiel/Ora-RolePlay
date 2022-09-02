@@ -502,7 +502,16 @@ VehiclePrices = {
     {name = "tenf2", price = 162000},
     {name = "vigero2", price = 46750},
     {name = "weevil2", price = 46700},
-    {name = "pdumksx", price = 25000}
+    {name = "pdumksx", price = 25000},
+
+    --LSFD
+    {name = "lsfd", price = 25000},
+    {name = "lsfd2", price = 25000},
+    {name = "lsfd3", price = 25000},
+    {name = "lsfd5", price = 25000},
+    {name = "lsfdtruck", price = 25000},
+    {name = "lsfdtruck2", price = 25000},
+    {name = "lsfdtruck3", price = 25000}
     
 }
 
