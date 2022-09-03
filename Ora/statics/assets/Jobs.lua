@@ -10228,7 +10228,7 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -311.08, y = -136.7, z = 38.01},
-                Limit = 100,
+                Limit = 500,
                 Name = "coffre_mecano"
             }
         },
