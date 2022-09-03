@@ -64,7 +64,7 @@ Items = {
         actionCl = "binoculars:Activate"
     },
     gofastweapon = {
-        label = "Caisse d'armes de guerre",
+        label = "Carton de LSD",
         weight = 0.1
     },
     gofastcoke = {
