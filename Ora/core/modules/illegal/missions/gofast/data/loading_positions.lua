@@ -6,7 +6,7 @@ Ora.Illegal.Gofast.LoadingPositions = {
   },
   {
     pos = vector3(291.05, 6786.42, 15.69 - 0.98),
-    ped = vector3(281.55, 6789.24 15.86 - 0.98),
+    ped = vector3(281.55, 6789.24, 15.86 - 0.98),
     heading_ped = 259.83
   },
   {
