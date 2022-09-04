@@ -20,6 +20,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["moules"] = {"Moules", 2},
     ["crevettes"] = {"Crevettes", 2},
     ["plateaufruitsmer"] = {"Plateau de fruits de mer", 2},
+    ["oeuf"] = {"oeuf", 2},
 
     ["fire_extinguisher"] = {"Extincteur", 10},
     ["medbag"] = {"Sac medical", 100},
