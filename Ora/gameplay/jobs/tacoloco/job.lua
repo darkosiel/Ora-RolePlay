@@ -33,7 +33,7 @@ tacoCrafts["recettes"] = {
         time = 1000, -- temps de craft je pense
         required = {
             {name = "moules", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "crevettes", count = 1}
+            {name = "fish15", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")

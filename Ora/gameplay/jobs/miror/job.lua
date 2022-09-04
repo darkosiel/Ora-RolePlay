@@ -49,7 +49,7 @@ mirorCrafts["recettes"] = {
         item = "charcuterie",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "crevettes", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "fish15", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
             {name = "milk", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
