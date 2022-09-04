@@ -85,29 +85,18 @@
           }
         }
       ]
-    },
+    },    
     {
-      "display": "Pompiers",
-      "icon": "/html/static/img/contact/lsfd.png",
-      "subMenu": [
-        {
-          "title": "Envoyer un message",
-          "eventName": "esx_addons_gcphone:call",
-          "type": {
-            "number": "lsfd"
-          }
-        }
-      ]
-    },
-    {
-      "display": "Hôpital LS",
+      "display": "Secours",
       "icon": "/html/static/img/contact/lsms.png",
       "subMenu": [
         {
           "title": "Envoyer un message",
           "eventName": "esx_addons_gcphone:call",
           "type": {
-            "number": "lsms"
+            "number": [
+              "lsfd", "lsms"
+            ]
           }
         }
       ]

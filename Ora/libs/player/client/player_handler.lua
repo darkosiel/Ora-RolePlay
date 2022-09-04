@@ -92,11 +92,20 @@ end
 Citizen.CreateThread(function()
 	Player.ID = PlayerId()
 	Player.ServerID = GetPlayerServerId(Player.ID)
-
-	while true do
+    local WEAPON_UNARMED_HASH <const> = GetHashKey("WEAPON_UNARMED")
+    local WEAPON_HOSE_HASH <const> = GetHashKey("WEAPON_HOSE")
+    while true do
 		Player.Pos = GetEntityCoords(Player.Ped)
 		Player.Heading = GetEntityHeading(Player.Ped)
 		Player.InVehicle = IsPedInAnyVehicle(Player.Ped)
+
+
+        if Player.Weapon ~= WEAPON_UNARMED_HASH and Player.Weapon ~= WEAPON_HOSE_HASH and not IsPedArmed(Player.Ped, 1) then
+            DisableControlAction(0, 140, true)
+            DisableControlAction(0, 141, true)
+            DisableControlAction(0, 142, true)
+        end
+
 		Citizen.Wait(0)
 	end
 end)

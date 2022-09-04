@@ -42,7 +42,7 @@ local JOB_FIREFIGHTER <const> = "lsfd"
 local PROBA_FOR_TWO_SIMULT_FIRES <const> = 0.8
 
 local FIRE_START_AROUND_TIMES <const> = {
-	"13:30",
+	--"13:30",
 	"17:15",
 	"21:30",
 	"23:00",
@@ -122,4 +122,6 @@ local function generateFires()
 end
 
 -- Démarrer la génération des incendies
-SetTimeout(fireTimes[1] - os.time(), generateFires)
+if fireTimes[1] then
+	SetTimeout(fireTimes[1] - os.time(), generateFires)
+end

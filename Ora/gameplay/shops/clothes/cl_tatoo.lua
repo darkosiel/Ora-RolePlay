@@ -21,7 +21,13 @@ AddEventHandler(
         if (GetOnscreenKeyboardResult()) then
             message = GetOnscreenKeyboardResult()
         end
-        TriggerServerEvent("call:makeCall", data.number, pos, message)
+        if type(data.number) == "table" then
+            for _, number in pairs(data.number) do
+                TriggerServerEvent("call:makeCall", number, pos, message)
+            end
+        else
+            TriggerServerEvent("call:makeCall", data.number, pos, message)
+        end
     end
 )
 
