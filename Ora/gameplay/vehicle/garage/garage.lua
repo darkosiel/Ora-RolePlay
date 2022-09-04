@@ -1023,22 +1023,22 @@ PublicGarage = {
         Name = "garage_5"
     },
     {
-        Pos = {x= -1789.2976,y= -1183.9643,z= 12.99,h= 243.91},
+        Pos = {x= -1793.3376,y= -1181.8843,z= 12.99,h= 243.91},
         Properties = {
             type = 0,
-            spawnpos ={x=-1789.2976,y= -1183.9643,z= 12.99,h=243.91},
+            spawnpos ={x= -1793.3376,y= -1181.8843,z= 12.99,h=243.91},
             Limit = 2
         },
         Blipdata = {
-            Pos = {x=-1789.2976,y= -1183.9643,z= 12.99,h=243.91},
+            Pos = {x= -1793.3376,y= -1181.8843,z= 12.99,h=243.91},
             Blipcolor  =84,
             BlipId = 524,
             Blipname = "Parkings Pearls"
         },
         Marker = {
             type = 1,
-            scale = {x=2.5,y=2.5,z=0.2},
-            color = {r=255,g=255,b=255,a=120},
+            scale = {x = 2.5, y = 2.5, z = 0.0},
+            color = {r = 255, g = 255, b = 255, a = 120},
             Up = false,
             Cam = false,
             Rotate = false,

@@ -876,39 +876,105 @@ Config.DoorList = {
 
         -- THE PEARLS --
 
-        {
-            objHash = -1197804771,
-            objHeading = 151.22,
-            objCoords = vector3(-1836.90, -1190.34, 19.08),
-            textCoords = vector3(-1836.90, -1190.34, 19.08),
-            authorizedJobs = {'pearls'},
-            locked = true,
-            maxDistance = 1.5
+    {
+        objHash = -1197804771,
+        objCoords = vector3(-1836.90, -1190.34, 19.08),
+        textCoords = vector3(-1836.90, -1190.34, 19.08),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
     
-        },
-        {
-            objHash = -1196002204,
-            objHeading = 331.25,
-            objCoords = vector3(-1830.24, -1181.78, 19.40),
-            textCoords = vector3(-1830.24, -1181.78, 19.40),
-            authorizedJobs = {'pearls'},
-            locked = true,
-            maxDistance = 1.5
-    
-        },
-        {
-            objHash = -1285189121,
-            objHeading = 329.11,
-            objCoords = vector3(-1847.27, -1189.99, 14.47),
-            textCoords = vector3(-1847.27, -1189.99, 14.47),
-            authorizedJobs = {'pearls'},
-            locked = true,
-            maxDistance = 1.5
-    
-        },
+    },
+    {
+        objHash = -1196002204,
+        objCoords = vector3(-1830.24, -1181.78, 19.40),
+        textCoords = vector3(-1830.24, -1181.78, 19.40),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
 
+    },
+    {
+        objHash = -1285189121,
+        objCoords = vector3(-1847.27, -1189.99, 14.47),
+        textCoords = vector3(-1847.27, -1189.99, 14.47),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
     
-
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1815.88427734375, -1194.8330078125, 14.863202095031738),
+        textCoords = vector3(-1815.88427734375, -1194.8330078125, 14.863202095031738),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1817.9013671875, -1193.6683349609375, 14.863202095031738),
+        textCoords = vector3(-1817.9013671875, -1193.6683349609375, 14.863202095031738),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = -1643773373,
+        objCoords = vector3(-1845.4246826171875, -1194.8035888671875, 19.455190658569336),
+        textCoords = vector3(-1845.4246826171875, -1194.8035888671875, 19.455190658569336),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1843.049560546875, -1200.0379638671875, 14.863687515258789),
+        textCoords = vector3(-1843.049560546875, -1200.0379638671875, 14.863687515258789),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1841.8841552734375, -1198.0194091796875, 14.863687515258789),
+        textCoords = vector3(-1841.8841552734375, -1198.0194091796875, 14.863687515258789),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1823.80810546875, -1202.057373046875, 19.992624282836914),
+        textCoords = vector3(-1823.80810546875, -1202.057373046875, 19.992624282836914),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1822.6376953125, -1200.036376953125, 19.957948684692383),
+        textCoords = vector3(-1822.6376953125, -1200.036376953125, 19.957948684692383),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1870406214,
+        objCoords = vector3(-1831.5758056640625, -1180.9742431640625, 14.749608993530273),
+        textCoords = vector3(-1831.5758056640625, -1180.9742431640625, 14.749608993530273),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
     -- STUDIO LABEL --
 
     {
