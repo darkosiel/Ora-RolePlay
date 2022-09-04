@@ -1485,7 +1485,7 @@ Items = {
 
     medikit = {
         label = "Trousse de soin",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     medica1 = {
@@ -2399,7 +2399,7 @@ Items = {
     },
     bandage = {
         label = "Bandage",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     --- Items BDG
