@@ -1485,7 +1485,7 @@ Items = {
 
     medikit = {
         label = "Trousse de soin",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     medica1 = {
@@ -2399,7 +2399,7 @@ Items = {
     },
     bandage = {
         label = "Bandage",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     --- Items BDG
@@ -2448,6 +2448,262 @@ Items = {
         label = "4 Roues de route",
         weight = 30.0
     },
+    ----
+    fish15 = {
+        label = "crevettes",
+        weight = 1.0
+    },
+        --NEW CRAFT PEARLS 
+    moules = {
+        label = "Moules",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 15,
+        category = "food"
+    },
+
+    terrinepoisson = {
+        label = "Terrine de poisson",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    tartaresaumon = {
+        label = "Tartare de saumon",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    crevettesail = {
+        label = "Crevettes à l'ail",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    turbotraisins = {
+        label = "Turbot aux raisins",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    paella = {
+        label = "Paëlla",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 60,
+        category = "food"
+    },
+
+    saumonchampagne = {
+        label = "Saumon au champagne",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+
+    moulesfrites = {
+        label = "Moules frites",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+
+    filetcabillaud = {
+        label = "Filet de cabillaud",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+
+    tarteraisins = {
+        label = "Tarte aux raisins",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    rizlait = {
+        label = "Riz au lait",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    plateaufruitsmer = {
+        label = "Plateau de fruits de mer",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    tartareviande = {
+        label = "Tartare de viande",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    }, 
+    carpaccioboeuf = {
+        label = "Carpaccio de boeuf",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    charcuterie = {
+        label = "Plateau de charcuterie",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    pouletbraise = {
+        label = "Poulet braisé pommes de terre",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    fajitas = {
+        label = "Fajitas",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    raclette = {
+        label = "Raclette",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    pierrade = {
+        label = "Pierrade 3 viandes",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    cremebrule = {
+        label = "Crème brulée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    ileflottante = {
+        label = "Ile flottante",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    }, 
+    tiramisu = {
+        label = "Tiramisu",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    nachos = {
+        label = "Nachos",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    ceviche = {
+        label = "ceviche",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    pozole = {
+        label = "Pozole",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    enchiladas = {
+        label = "Enchiladas",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    mole = {
+        label = "Mole",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    capirotada = {
+        label = "Capirotada",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    pastel = {
+        label = "Pastel tres leche",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    oeuf = {
+        label = "Oeuf",
+        weight = 1.0
+    }, 
+    veloute = {
+        label = "Veloute",
+        weight = 1.0
+    }, 
 }
 
 -- staticcc

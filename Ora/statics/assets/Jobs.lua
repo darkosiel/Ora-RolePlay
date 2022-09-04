@@ -1872,6 +1872,35 @@ Jobs = {
                 Name = "coffre_pearls_bureau"
             }
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1842.6386, y = -1186.4794, z = 14.32 - 0.98}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftpearlsZone()
+                end,
+                Exit = function()
+                    ExitcraftpearlsZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Pearls - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
             recolte = {
@@ -1886,60 +1915,6 @@ Jobs = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
                 }
-            },
-            traitement2 = {
-                --Filet de daurade
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -1842.25, y = -1185.11, z = 13.33},
-                required = "fish6",
-                giveitem = "filetdaurade",
-                RemoveItem = "fish6",
-                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
-            },
-            traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement milkshack",
-                Pos = {x = -1838.36, y = -1183.82, z = 13.33},
-                required = "milk",
-                giveitem = "milkshack",
-                RemoveItem = "milk",
-                add = "~p~+ 1  Milkshack"
-            },
-            traitement3 = {
-                --pizza au saumon
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "four",
-                Pos = {x = -1836.62, y = -1184.59, z = 13.33},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                giveitem = "pizzasaumon",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                add = "~p~+ 1  Pizza au saumon"
-            },
-            traitement4 = {
-                --cupcake
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement Cupcake",
-                Pos = {x = -1837.41, y = -1186.21, z = 13.33},
-                required = "bread",
-                giveitem = "cupcake",
-                RemoveItem = "bread",
-                add = "~p~+ 1  Cupcake"
             },
             traitement5 = {
                 --Café
@@ -1958,6 +1933,171 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Pearls - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cafe",
+                price = math.random(13,16),
+                add = "~p~- 1 Café"
+            }
+        }
+    },
+    tacoloco = {
+        label = "Taco Loco",
+        label2 = "Taco Loco",
+        iban = "tacoloco",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Taco Loco",
+                subtitle = "Actions disponibles",
+                name = "restaurant_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("tacoloco")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Taco Loco", "Annonce", text, "CHAR_PEARLS", 8, "Taco Loco")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Taco Loco",
+            Pos = {x = 416.2844, y = -1929.2210, z = 23.43},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24}
+            },
+            Blipdata = {
+                Pos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 426.0520, y = -1911.7979, z = 24.47},
+                Limit = 500,
+                Name = "coffre_tacoloco2"
+            },
+            {
+                Pos = {x = 418.2400, y = -1916.0034, z = 24.47},
+                Limit = 500,
+                Name = "coffre_tacoloco1"
+            },
+            {
+                Pos = {x = 429.8100, y = -1915.5762, z = 24.47},
+                Limit = 500,
+                Name = "coffre_tacoloco"
+            }
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = 425.4309, y = -1917.5015, z = 25.47}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercrafttacoZone()
+                end,
+                Exit = function()
+                    ExitcrafttacoZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Taco Loco - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Taco Loco - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 10.0,
+                blipcolor = 7,
+                blipname = "Taco Loco - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe1",
+                giveitem = "cafe",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Taco Loco - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",
                 price = math.random(13,16),
@@ -2063,6 +2203,35 @@ Jobs = {
                 Name = "coffre_Mirror_club"
             }
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1352.6164, y = -1068.4773, z = 6.98}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftmirorZone()
+                end,
+                Exit = function()
+                    ExitcraftmirorZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Mirror - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
             recolte = {
@@ -2077,60 +2246,6 @@ Jobs = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
                 }
-            },
-            traitement2 = {
-                --Filet de daurade
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -1352.45, y = -1068.95, z = 6.98},
-                required = "fish6",
-                giveitem = "filetdaurade",
-                RemoveItem = "fish6",
-                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
-            },
-            traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement milkshack",
-                Pos = {x = -1343.49, y = -1061.64, z = 6.98},
-                required = "milk",
-                giveitem = "milkshack",
-                RemoveItem = "milk",
-                add = "~p~+ 1  Milkshack"
-            },
-            traitement3 = {
-                --pizza au saumon
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "four",
-                Pos = {x = -1341.67, y = -1069.72, z = 6.98},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                giveitem = "pizzasaumon",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                add = "~p~+ 1  Pizza au saumon"
-            },
-            traitement4 = {
-                --cupcake
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement Cupcake",
-                Pos = {x = -1350.88, y = -1072.00, z = 6.98},
-                required = "bread",
-                giveitem = "cupcake",
-                RemoveItem = "bread",
-                add = "~p~+ 1  Cupcake"
             },
             traitement6 = {
                 --Café
