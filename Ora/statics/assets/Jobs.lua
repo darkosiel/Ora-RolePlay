@@ -12362,6 +12362,35 @@ Jobs = {
                 Name = "Coffre Boss Bar Little Seoul"
             }
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -172.2402, y = 293.6936, z = 93.76}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftsanZone()
+                end,
+                Exit = function()
+                    ExitcraftsanZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "San-In - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
 
