@@ -1740,6 +1740,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    flare = {
+        label = "Fumigène Rouge",
+        weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     bombsticky = {
         label = "C4 Explosif",
         weight = 1.0,

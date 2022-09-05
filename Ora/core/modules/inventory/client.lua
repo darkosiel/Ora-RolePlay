@@ -49,6 +49,7 @@ local Infos = {
 
 local WeaponEqualAmmo = { 
     can = true,
+    flare = true,
     flashbang = true
     --snowball = true, -- not implemented yet, but weapon exists
 }
