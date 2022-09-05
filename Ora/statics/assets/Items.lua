@@ -1758,6 +1758,18 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    policeshield1 = {
+        label = "Bouclier SWAT",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
+    },
+    policeshield2 = {
+        label = "Bouclier Police Long",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
+    },
     molotov = {
         label = "Cocktail Molotov",
         weight = 1.0,
@@ -2746,6 +2758,45 @@ Items = {
         label = "Noix de coco",
         weight = 0.2
     }, 
+<<<<<<< HEAD
+=======
+    salade2 = {
+        label = "Salade assaisonnée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    boeufkobe2 = {
+        label = "Boeuf de Kobe Riz",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    mochi = {
+        label = "Mochi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    perlecoco = {
+        label = "Perle de coco",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    coco = {
+        label = "Noix de coco",
+        weight = 0.2
+    }, 
+>>>>>>> 6df255948ab6254e30eb9dc8d732109fea9f8d2a
     litchi = {
         label = "Litchi",
         weight = 0.2
