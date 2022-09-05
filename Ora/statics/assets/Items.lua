@@ -1740,6 +1740,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    flare = {
+        label = "Fumigène Rouge",
+        weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     bombsticky = {
         label = "C4 Explosif",
         weight = 1.0,
@@ -1751,6 +1757,18 @@ Items = {
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
+    },
+    policeshield1 = {
+        label = "Bouclier SWAT",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
+    },
+    policeshield2 = {
+        label = "Bouclier Police Long",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
     },
     molotov = {
         label = "Cocktail Molotov",
@@ -2704,6 +2722,70 @@ Items = {
         label = "Veloute",
         weight = 1.0
     }, 
+    salade2 = {
+        label = "Salade assaisonnée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    boeufkobe2 = {
+        label = "Boeuf de Kobe Riz",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    mochi = {
+        label = "Mochi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    perlecoco = {
+        label = "Perle de coco",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    coco = {
+        label = "Noix de coco",
+        weight = 0.2
+    }, 
+    litchi = {
+        label = "Litchi",
+        weight = 0.2
+    }, 
+    coupelitchi = {
+        label = "Coupe de litchi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+        churros = {
+        label = "Churros",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+        boissontaco = {
+        label = "Boisson taco loco",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
 }
 
 -- staticcc
