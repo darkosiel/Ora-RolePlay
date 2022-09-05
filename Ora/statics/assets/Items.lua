@@ -2758,8 +2758,6 @@ Items = {
         label = "Noix de coco",
         weight = 0.2
     }, 
-<<<<<<< HEAD
-=======
     salade2 = {
         label = "Salade assaisonnée",
         weight = 0.2,
@@ -2796,7 +2794,6 @@ Items = {
         label = "Noix de coco",
         weight = 0.2
     }, 
->>>>>>> 6df255948ab6254e30eb9dc8d732109fea9f8d2a
     litchi = {
         label = "Litchi",
         weight = 0.2
@@ -2809,7 +2806,7 @@ Items = {
         faim = 25,
         category = "food"
     },
-        churros = {
+    churros = {
         label = "Churros",
         weight = 0.2,
         actionCl = "miam:Eat",
