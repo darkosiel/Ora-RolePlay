@@ -1758,6 +1758,18 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    policeshield1 = {
+        label = "Bouclier SWAT",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
+    },
+    policeshield2 = {
+        label = "Bouclier Police Long",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
+    },
     molotov = {
         label = "Cocktail Molotov",
         weight = 1.0,
@@ -2746,7 +2758,6 @@ Items = {
         label = "Noix de coco",
         weight = 0.2
     }, 
-<<<<<<< HEAD
     salade2 = {
         label = "Salade assaisonnée",
         weight = 0.2,
@@ -2783,8 +2794,6 @@ Items = {
         label = "Noix de coco",
         weight = 0.2
     }, 
-=======
->>>>>>> parent of 0daa2015 (commit from prod idk why it wasn't commited)
     litchi = {
         label = "Litchi",
         weight = 0.2
