@@ -2704,11 +2704,11 @@ Items = {
     },
     oeuf = {
         label = "Oeuf",
-        weight = 1.0
+        weight = 0.2
     }, 
     veloute = {
         label = "Veloute",
-        weight = 1.0
+        weight = 0.2
     }, 
     salade2 = {
         label = "Salade assaisonnée",
