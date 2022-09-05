@@ -2758,7 +2758,7 @@ Items = {
         faim = 25,
         category = "food"
     },
-        churros = {
+    churros = {
         label = "Churros",
         weight = 0.2,
         actionCl = "miam:Eat",
