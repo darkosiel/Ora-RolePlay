@@ -395,9 +395,6 @@ function craftRecettes(data)
 
         serial = GenerateparlsSerial()
         Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
-
-        serial = GenerateparlsSerial()
-        Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
     else
         ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
         return

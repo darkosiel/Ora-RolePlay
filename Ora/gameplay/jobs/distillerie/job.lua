@@ -392,9 +392,6 @@ function craftAlcool(data)
 
         serial = GenerateDistillerieSerial()
         Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
-
-        serial = GenerateDistillerieSerial()
-        Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
     else
         ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
         return
