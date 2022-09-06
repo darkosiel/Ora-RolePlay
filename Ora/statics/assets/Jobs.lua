@@ -4290,7 +4290,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1907.4420, y = 2073.0834, z = 139.48},
+                Pos = {x = -1905.6743, y = 2072.8759, z = 139.48},
                 Limit = 9999,
                 Name = "coffre_distillerie"
             },
@@ -4326,7 +4326,7 @@ Jobs = {
                 Name = "coffre_distillerie_gestion"
             },
             {
-                Pos = {x = -1909.5435, y = 2073.9716, z = 140.38},
+                Pos = {x = -1910.5480, y = 2075.4038, z = 139.58},
                 Limit = 9999,
                 Name = "coffre_distillerie_drh"
             }
