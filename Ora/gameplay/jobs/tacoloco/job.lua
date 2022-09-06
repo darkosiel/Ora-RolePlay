@@ -91,8 +91,8 @@ tacoCrafts["recettes"] = {
         item = "capirotada",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "fish12", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "champagne", count = 1}
+            {name = "bread", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "aperitif", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
@@ -101,7 +101,22 @@ tacoCrafts["recettes"] = {
             craftRecettes(data)
         end
     },
-
+    panuchos = {
+        title = "Panuchos",
+        label = "Panuchos",
+        item = "panuchos",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "meat", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "pommeterre", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = TacoCraft["recettes"]["panuchos"]
+            craftRecettes(data)
+        end
+    },
     pastel = {
         title = "Pastel tres leche",
         label = "Pastel tres leche",

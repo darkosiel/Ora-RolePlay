@@ -90,6 +90,13 @@ Config.DJPositions = {
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
+        name = 'CafeCoretto',
+        pos = vector3(-1191.6643, -1392.5897, 10.92 - 0.98),
+        requiredJob = nil, 
+        range = 20.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
         name = 'henhouse',
         pos = vector3(-312.4682, 6264.6762, 32.0590 - 0.98),
         requiredJob = nil, 

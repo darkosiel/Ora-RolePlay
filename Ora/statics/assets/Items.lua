@@ -2469,7 +2469,7 @@ Items = {
     ----
     fish15 = {
         label = "crevettes",
-        weight = 1.0
+        weight = 0.2
     },
         --NEW CRAFT PEARLS 
     moules = {
@@ -2820,6 +2820,14 @@ Items = {
         actionCl = "miam:Drink",
         props = "prop_tequsunrise",
         soif = 30,
+        category = "food"
+    },
+    panuchos = {
+        label = "Panuchos",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 50,
         category = "food"
     },
 }
