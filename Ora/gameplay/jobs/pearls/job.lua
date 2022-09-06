@@ -1,11 +1,3 @@
-local function showMessageInformation(message, duree)
-    duree = duree or 500
-    ClearPrints()
-    SetTextEntry_2("STRING")
-    AddTextComponentString(message)
-    DrawSubtitleTimed(duree, 1)
-end
-
 pearlsCrafts = {}
 -- Pistols
 pearlsCrafts["recettes"] = {
@@ -268,12 +260,6 @@ Citizen.CreateThread(
     end
 )
 
-function GenerateparlsSerial()
-    local serial = "DIST-"
-    math.randomseed(GetGameTimer())
-    local num = math.random(11111, 99999)
-    return serial .. num .. "-" .. GetGameTimer()
-end
 
 function craftRecettes(data)
     local hasOneMissing = false
@@ -306,78 +292,30 @@ function craftRecettes(data)
     if not hasOneMissing then
         SetFarmLimit(1)
         local timeWait = (data.time / 1000) / 60
-        showMessageInformation("~b~Création du plat en cours (" .. timeWait .. " minute(s))...", data.time)
 
         for i = 1, #data.required, 1 do
             Ora.Inventory:RemoveFirstItem(data.required[i].name)
         end
 
-        local playerPed = LocalPlayer().Ped
-
-        RequestAnimDict("anim@arena@celeb@podium@no_prop@")
-        local j = 0
-        while not HasAnimDictLoaded("anim@arena@celeb@podium@no_prop@") and j <= 50 do
-            Citizen.Wait(100)
-            j = j + 1
-        end
-
-        if j >= 50 then
-            SendNotification("~r~~h~ERROR ~h~~w~: The animation dictionnary took too long to load.")
-        else
-            TaskPlayAnim(playerPed, "anim@arena@celeb@podium@no_prop@", "cocky_a_2nd", 8.0, 1.0, -1, 1)
-        end
-        Wait(data.time / 4)
-        RemoveAnimDict("anim@arena@celeb@podium@no_prop@")
-
-        RequestAnimDict("anim@amb@nightclub@mini@drinking@drinking_shots@ped_b@normal")
-        local j = 0
-        while not HasAnimDictLoaded("anim@amb@nightclub@mini@drinking@drinking_shots@ped_b@normal") and j <= 50 do
-            Citizen.Wait(100)
-            j = j + 1
-        end
-
-        if j >= 50 then
-            SendNotification("~r~~h~ERROR ~h~~w~: The animation dictionnary took too long to load.")
-        else
-            TaskPlayAnim(
-                playerPed,
-                "anim@amb@nightclub@mini@drinking@drinking_shots@ped_b@normal",
-                "idle",
-                8.0,
-                1.0,
-                -1,
-                1
-            )
-        end
-        Wait(data.time / 4)
-
-        TaskPlayAnim(
-            playerPed,
-            "anim@amb@nightclub@mini@drinking@drinking_shots@ped_b@normal",
-            "glass_hold",
-            8.0,
-            1.0,
-            -1,
-            1
+        exports["mythic_progbar"]:Progress(
+            {
+                name = data.item,
+                duration = data.time,
+                label = "Création du plat en cours...",
+                useWhileDead = true,
+                canCancel = false,
+                controlDisables = {
+                    disableMovement = false,
+                    disableCarMovement = false,
+                    disableMouse = false,
+                    disableCombat = false
+                },
+            },
+            function(cancelled)
+            end
         )
-        Wait(data.time / 4)
-
-        TaskPlayAnim(
-            playerPed,
-            "anim@amb@nightclub@mini@drinking@drinking_shots@ped_b@normal",
-            "pour_one",
-            8.0,
-            1.0,
-            -1,
-            1
-        )
-        RemoveAnimDict("anim@amb@nightclub@mini@drinking@drinking_shots@ped_b@normal")
-        Wait(data.time / 4)
-
-        ClearPedTasksImmediately(LocalPlayer().Ped)
-
-        serial = GenerateparlsSerial()
-        Ora.Inventory:AddItem({name = data.item, id = generateUUIDV2(), data = {serial = serial}, label = serial})
+        
+        Ora.Inventory:AddItem({name = data.item, data = {}}) 
     else
         ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
         return
