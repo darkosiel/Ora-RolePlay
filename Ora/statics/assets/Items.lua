@@ -1385,14 +1385,14 @@ Items = {
     -- Items : Distillerie
     c_sucre = {
         label = "Canne a sucre",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "miam:Eat",
         faim = 5,
         category = "food"
     },
     raisin = {
         label = "Raisin",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "miam:Eat",
         faim = 5,
         category = "food"
@@ -1437,15 +1437,15 @@ Items = {
     },
     agave = {
         label = "Agave",
-        weight = 1.0
+        weight = 0.2
     },
     houblon = {
         label = "Houblon",
-        weight = 1.0
+        weight = 0.2
     },
     levure = {
         label = "Levure",
-        weight = 1.0
+        weight = 0.2
     },
     -- Items : Props
 
