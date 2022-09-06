@@ -78,7 +78,6 @@ AddEventHandler(
         end
 
         local embeds = {}
-        print(_webhook, message, type)
         if (_webhook == 33) then
             embeds = {
                 {
@@ -151,7 +150,6 @@ RegisterServerEvent("Ora:sendToDiscordFromServer")
 AddEventHandler(
     "Ora:sendToDiscordFromServer",
     function(source, _webhook, message, type)
-        print("Ora:sendToDiscordFromServer", source, _webhook, message, type)
         if source == nil or source == 0 then return end
         local webhook = discordWBK[_webhook]
         
@@ -205,7 +203,6 @@ AddEventHandler(
                 }
             }
         end
-        print("Ora:sendToDiscordFromServer", source, webhook, message, type)
         PerformHttpRequest(
             webhook,
             function(err, text, headers)
