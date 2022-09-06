@@ -385,12 +385,6 @@ Items = {
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
     },
-    white_wine = {
-        label = "Bouteille de vin blanc",
-        weight = 0.5,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
-    },
     beer = {
         label = "Bière",
         weight = 0.2,
