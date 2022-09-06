@@ -1639,7 +1639,42 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.0
     },
+    ---Taco Loco
 
+    {
+        objHash = GetHashKey("prop_bs_map_door_01"),
+        objCoords = vector3(416.14190673828125, -1903.447509765625, 25.763065338134766),
+        textCoords = vector3(416.14190673828125, -1903.447509765625, 25.763065338134766),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
+
+    {
+        objHash = GetHashKey("prop_bs_map_door_01"),
+        objCoords = vector3(421.2456970214844, -1923.8768310546875, 25.66853904724121),
+        textCoords = vector3(421.2456970214844, -1923.8768310546875, 25.66853904724121),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
+
+    {
+        objHash = -567327289,
+        objCoords = vector3(410.99761962890625, -1909.6868896484375, 25.716644287109375),
+        textCoords = vector3(410.99761962890625, -1909.6868896484375, 25.716644287109375),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
+    {
+        objHash = -567327289,
+        objCoords = vector3(410.89947509765625, -1911.7393798828125, 25.714988708496094),
+        textCoords = vector3(410.89947509765625, -1911.7393798828125, 25.714988708496094),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
 }
 
 -- EXAMPLE HOW TO DO DOORS WITH OBJECT HASHES

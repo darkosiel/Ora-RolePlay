@@ -1,134 +1,198 @@
-tacoCrafts = {}
+sanCrafts = {}
 -- Pistols
-tacoCrafts["recettes"] = {
-    nachos = {
-        title = "Nachos",
-        label = "Nachos",
-        item = "nachos",
+sanCrafts["recettes"] = {
+    bouillon = {
+        title = "Bouillon de légume",
+        label = "Bouillon de légume",
+        item = "bouillon",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "water", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "salade", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["bouillon"]
+            craftRecettes(data)
+        end
+    },
+    nem = {
+        title = "Nem Poulet",
+        label = "Nem Poulet",
+        item = "nem",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "chicken", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "feuillenori", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["nem"]
+            craftRecettes(data)
+        end
+    },
+    salade2 = {
+        title = "Salade assaisonnée",
+        label = "Salade assaisonnée",
+        item = "salade2",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "salade", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["salade2"]
+            craftRecettes(data)
+        end
+    },
+    entreepearl = {
+        title = "Tartare de thon-rouge",
+        label = "Tartare de thon-rouge",
+        item = "entreepearl",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "fish4", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "cereale", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["entreepearl"]
+            craftRecettes(data)
+        end
+    },
+    boeufkobe2 = {
+        title = "Boeuf de Kobe Riz",
+        label = "Boeuf de Kobe Riz",
+        item = "boeufkobe2",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "boeufkobe", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "rice", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["boeufkobe2"]
+            craftRecettes(data)
+        end
+    },
+    ramen = {
+        title = "Ramen",
+        label = "Ramen",
+        item = "ramen",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "oeuf", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "meat", count = 1},
+            {name = "salade", count = 1},
+            {name = "noddle", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["ramen"]
+            craftRecettes(data)
+        end
+    },
+    sushi = {
+        title = "Sushi",
+        label = "Sushi",
+        item = "sushi",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "fish12", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "rice", count = 1},
+            {name = "feuillenori", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = sanCrafts["recettes"]["sushi"]
+            craftRecettes(data)
+        end
+    },
+    tonkatsu = {
+        title = "Tonkatsu",
+        label = "Tonkatsu",
+        item = "tonkatsu",
         time = 1000, -- temps de craft je pense
         required = {
             {name = "pommeterre", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "chips", count = 1}
+            {name = "chicken", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["nachos"]
+            local data = sanCrafts["recettes"]["tonkatsu"]
             craftRecettes(data)
         end
     },
-
-    ceviche = {
-        title = "Ceviche",
-        label = "Ceviche",
-        item = "ceviche",
+    tatakithon = {
+        title = "Tataki de thon",
+        label = "Tataki de thon",
+        item = "tatakithon",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "moules", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "fish15", count = 1}
+            {name = "fish4", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "sake", count = 1},
+            {name = "cereale", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["ceviche"]
+            local data = sanCrafts["recettes"]["tatakithon"]
             craftRecettes(data)
         end
     },
-
-    pozole = {
-        title = "Pozole",
-        label = "Pozole",
-        item = "pozole",
+    mochi = {
+        title = "Mochi",
+        label = "Mochi",
+        item = "mochi",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "veloute", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "rice", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "milk", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["pozole"]
+            local data = sanCrafts["recettes"]["mochi"]
             craftRecettes(data)
         end
     },
-
-    enchiladas = {
-        title = "Enchiladas",
-        label = "Enchiladas",
-        item = "enchiladas",
+        perlecoco = {
+        title = "Perle de coco",
+        label = "Perle de coco",
+        item = "perlecoco",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "bread", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "meat", count = 1}
+            {name = "oeuf", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "coco", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["enchiladas"]
+            local data = sanCrafts["recettes"]["perlecoco"]
             craftRecettes(data)
         end
     },
-
-    mole = {
-        title = "Mole",
-        label = "Mole",
-        item = "mole",
+    coupelitchi = {
+        title = "Coupe de litchi",
+        label = "Coupe de litchi",
+        item = "coupelitchi",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "aperitif", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "chicken", count = 1},
+            {name = "litchi", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "milk", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["mole"]
-            craftRecettes(data)
-        end
-    },
-
-    capirotada = {
-        title = "Capirotada",
-        label = "Capirotada",
-        item = "capirotada",
-        time = 1000, -- temps de craft je pense
-        required = {
-            {name = "bread", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "aperitif", count = 1}
-        },
-        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
-            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
-            found = false
-            local data = tacoCrafts["recettes"]["capirotada"]
-            craftRecettes(data)
-        end
-    },
-    panuchos = {
-        title = "Panuchos",
-        label = "Panuchos",
-        item = "panuchos",
-        time = 1000, -- temps de craft je pense
-        required = {
-            {name = "meat", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "pommeterre", count = 1}
-        },
-        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
-            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
-            found = false
-            local data = TacoCraft["recettes"]["panuchos"]
-            craftRecettes(data)
-        end
-    },
-    pastel = {
-        title = "Pastel tres leche",
-        label = "Pastel tres leche",
-        item = "pastel",
-        time = 1000, -- temps de craft je pense
-        required = {
-            {name = "milk", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-        },
-        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
-            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
-            found = false
-            local data = tacoCrafts["recettes"]["pastel"]
+            local data = sanCrafts["recettes"]["coupelitchi"]
             craftRecettes(data)
         end
     }
@@ -139,23 +203,23 @@ Citizen.CreateThread(
         while RMenu == nil do
             Wait(1)
         end
-        RMenu.Add("tacoCrafts", "main", RageUI.CreateMenu("Taco Loco", "Catégories disponibles", 10, 100))
+        RMenu.Add("sanCrafts", "main", RageUI.CreateMenu("San-Inn", "Catégories disponibles", 10, 100))
         -- creata acc
         RMenu.Add(
-            "tacoCrafts",
-            "create_taco",
-            RageUI.CreateSubMenu(RMenu:Get("tacoCrafts", "main"), "Taco Loco", "Craft", 10, 100)
+            "sanCrafts",
+            "create_san",
+            RageUI.CreateSubMenu(RMenu:Get("sanCrafts", "main"), "San-Inn", "Craft", 10, 100)
         )
     end
 )
 
-function EntercrafttacoZone()
+function EntercraftsanZone()
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour cuisiner")
-    KeySettings:Add("keyboard", "E", OpentacoMenu, "ALCOOL")
-    KeySettings:Add("controller", 46, OpentacoMenu, "ALCOOL")
+    KeySettings:Add("keyboard", "E", OpensanMenu, "ALCOOL")
+    KeySettings:Add("controller", 46, OpensanMenu, "ALCOOL")
 end
 
-function ExitcrafttacoZone()
+function ExitcraftsanZone()
     Hint:RemoveAll()
     KeySettings:Clear("keyboard", "E", "ALCOOL")
     KeySettings:Clear("controller", "E", "ALCOOL")
@@ -167,15 +231,15 @@ function ExitcrafttacoZone()
     RageUI.GoBack()
 end
 
-function OpentacoMenu()
-    RageUI.Visible(RMenu:Get("tacoCrafts", "main"), true)
+function OpensanMenu()
+    RageUI.Visible(RMenu:Get("sanCrafts", "main"), true)
 end
 
 Citizen.CreateThread(
     function()
         while true do
             Wait(1)
-            if RageUI.Visible(RMenu:Get("tacoCrafts", "main")) then
+            if RageUI.Visible(RMenu:Get("sanCrafts", "main")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
@@ -186,7 +250,7 @@ Citizen.CreateThread(
                             true,
                             function(_, _, Selected)
                             end,
-                            RMenu:Get("tacoCrafts", "create_taco")
+                            RMenu:Get("sanCrafts", "create_san")
                         )
                     end,
                     function()
@@ -194,11 +258,11 @@ Citizen.CreateThread(
                 )
             end
 
-            if RageUI.Visible(RMenu:Get("tacoCrafts", "create_taco")) then
+            if RageUI.Visible(RMenu:Get("sanCrafts", "create_san")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
-                        for k, v in pairs(tacoCrafts["recettes"]) do
+                        for k, v in pairs(sanCrafts["recettes"]) do
                             RageUI.Button(
                                 v.title,
                                 nil,
@@ -253,7 +317,7 @@ function craftRecettes(data)
     if not hasOneMissing then
         SetFarmLimit(1)
         local timeWait = (data.time / 1000) / 60
-    
+
         for i = 1, #data.required, 1 do
             Ora.Inventory:RemoveFirstItem(data.required[i].name)
         end
@@ -276,7 +340,7 @@ function craftRecettes(data)
             end
         )
         
-        Ora.Inventory:AddItem({name = data.item, data = {}})  
+        Ora.Inventory:AddItem({name = data.item, data = {}}) 
     else
         ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
         return

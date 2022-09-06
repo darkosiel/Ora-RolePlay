@@ -1385,14 +1385,14 @@ Items = {
     -- Items : Distillerie
     c_sucre = {
         label = "Canne a sucre",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "miam:Eat",
         faim = 5,
         category = "food"
     },
     raisin = {
         label = "Raisin",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "miam:Eat",
         faim = 5,
         category = "food"
@@ -1437,15 +1437,15 @@ Items = {
     },
     agave = {
         label = "Agave",
-        weight = 1.0
+        weight = 0.2
     },
     houblon = {
         label = "Houblon",
-        weight = 1.0
+        weight = 0.2
     },
     levure = {
         label = "Levure",
-        weight = 1.0
+        weight = 0.2
     },
     -- Items : Props
 
@@ -2469,7 +2469,7 @@ Items = {
     ----
     fish15 = {
         label = "crevettes",
-        weight = 1.0
+        weight = 0.2
     },
         --NEW CRAFT PEARLS 
     moules = {
@@ -2716,11 +2716,47 @@ Items = {
     },
     oeuf = {
         label = "Oeuf",
-        weight = 1.0
+        weight = 0.2
     }, 
     veloute = {
         label = "Veloute",
-        weight = 1.0
+        weight = 0.2
+    }, 
+    salade2 = {
+        label = "Salade assaisonnée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    boeufkobe2 = {
+        label = "Boeuf de Kobe Riz",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    mochi = {
+        label = "Mochi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    perlecoco = {
+        label = "Perle de coco",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    coco = {
+        label = "Noix de coco",
+        weight = 0.2
     }, 
     salade2 = {
         label = "Salade assaisonnée",
@@ -2770,7 +2806,7 @@ Items = {
         faim = 25,
         category = "food"
     },
-        churros = {
+    churros = {
         label = "Churros",
         weight = 0.2,
         actionCl = "miam:Eat",
@@ -2784,6 +2820,14 @@ Items = {
         actionCl = "miam:Drink",
         props = "prop_tequsunrise",
         soif = 30,
+        category = "food"
+    },
+    panuchos = {
+        label = "Panuchos",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 50,
         category = "food"
     },
 }

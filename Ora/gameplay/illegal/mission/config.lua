@@ -328,7 +328,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {750, 800}
+                amount = {1000, 1100}
             },
             ["xp"] = {2000, 2100}
         }
@@ -372,7 +372,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {900, 950}
+                amount = {2000, 2100}
             },
             ["xp"] = {2500, 2600}
         }
@@ -415,7 +415,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {1000, 1100}
+                amount = {2500, 2600}
             },
             ["xp"] = {3000, 3100}
         }
@@ -458,7 +458,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {1500, 1600}
+                amount = {3000, 3100}
             },
             ["xp"] = {3500, 4000}
         }
