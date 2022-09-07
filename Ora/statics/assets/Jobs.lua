@@ -1810,7 +1810,7 @@ Jobs = {
             menu = {
                 title = "Pearls",
                 subtitle = "Actions disponibles",
-                name = "restaurant_menuperso"
+                name = "pearls_menuperso"
             },
             buttons = {
                 -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
@@ -1829,7 +1829,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Pearls", "Annonce", text, "CHAR_PEARLS", 8, "Restaurant")
+                            TriggerServerEvent("Job:Annonce", "Pearls", "Annonce", text, "CHAR_PEARLS", 8, "Pearls")
                         end
                     end
                 }
@@ -3079,7 +3079,7 @@ Jobs = {
             {
                 Pos = {x = -1179.2254, y = -894.7935, z = 13.97 - 0.98},
                 Limit = 100,
-                Name = "coffre_restaurantfood3"
+                Name = "coffre_restaurantfood2"
             } 
         },
         requiredService = false,
