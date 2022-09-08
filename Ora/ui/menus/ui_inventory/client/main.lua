@@ -514,27 +514,18 @@ Citizen.CreateThread(function()
         end
 
         if (IsControlJustPressed(0, Keys['1'])) then
-            if Ora.Inventory.weaponONE and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
-                showNotificationForWeapon(Ora.Inventory.weaponONE, true)
-                Ora.Inventory:UseItem(Ora.Inventory.weaponONE)
-                Ora.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Ora.Inventory.weaponONE.name]))
-            end
+            showNotificationForWeapon(Ora.Inventory.weaponONE, true)
+            Ora.Inventory:UseItem(Ora.Inventory.weaponONE)
         end
 
         if (IsControlJustPressed(0, Keys['2'])) then
-            if Ora.Inventory.weaponTWO and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
-                showNotificationForWeapon(Ora.Inventory.weaponTWO, true)
-                Ora.Inventory:UseItem(Ora.Inventory.weaponTWO) 
-                Ora.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Ora.Inventory.weaponTWO.name]))
-            end
+            showNotificationForWeapon(Ora.Inventory.weaponTWO, true)
+            Ora.Inventory:UseItem(Ora.Inventory.weaponTWO) 
         end
 
         if (IsControlJustPressed(0, Keys['3'])) then
-            if Ora.Inventory.weaponTHREE and GetVehiclePedIsIn(LocalPlayer().Ped) == 0 then
-                showNotificationForWeapon(Ora.Inventory.weaponTHREE, true)
-                Ora.Inventory:UseItem(Ora.Inventory.weaponTHREE) 
-                Ora.World.Weapon:PlayAnimationForWeapon(GetHashKey(weapon_name[Ora.Inventory.weaponTHREE.name]))
-            end
+            showNotificationForWeapon(Ora.Inventory.weaponTHREE, true)
+            Ora.Inventory:UseItem(Ora.Inventory.weaponTHREE) 
         end
 	end
 end)
