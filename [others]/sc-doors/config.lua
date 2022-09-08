@@ -1539,38 +1539,28 @@ Config.DoorList = {
     
         --bahamas
     {
-        objHash = GetHashKey("v_ilev_carmod3door"),
-        objCoords = vector3(-1394.1654052734375, -635.7523193359375, 29.57242202758789),
-        textCoords = vector3(-1394.1654052734375, -635.7523193359375, 29.57242202758789),
+        objHash = -880376952,
+        objCoords = vector3(-1387.0535888671875, -586.5787963867188, 30.386581420898438),
+        textCoords = vector3(-1387.0535888671875, -586.5787963867188, 30.386581420898438),
         authorizedJobs = {"bahamas"},
         locked = true,
-        maxDistance = 5.0
+        maxDistance = 2.5
     },
     {
-        objHash = GetHashKey("apa_prop_apa_cutscene_doorb"),
-        objCoords = vector3(-1391.6361083984375, -640.3447875976562, 28.875608444213867),
-        textCoords = vector3(-1391.6361083984375, -640.3447875976562, 28.875608444213867),
+        objHash = -880376952,
+        objCoords = vector3(-1389.2301025390625, -587.9961547851562, 30.3863525390625),
+        textCoords = vector3(-1389.2301025390625, -587.9961547851562, 30.3863525390625),
         authorizedJobs = {"bahamas"},
         locked = true,
-        maxDistance = 1.5
+        maxDistance = 2.5
     },
-
     {
-        objHash = -1119680854,
-        objCoords = vector3(-1389.234375, -587.956787109375, 30.519865036010742),
-        textCoords = vector3(-1389.234375, -587.956787109375, 30.519865036010742),
+        objHash = -1459022116,
+        objCoords = vector3(-1379.3011474609375, -636.8530883789062, 29.627294540405273),
+        textCoords = vector3(-1379.3011474609375, -636.8530883789062, 29.627294540405273),
         authorizedJobs = {"bahamas"},
         locked = true,
-        maxDistance = 2.0
-    },
-
-    {
-        objHash = -1119680854,
-        objCoords = vector3(-1387.0704345703125, -586.5470581054688, 30.519868850708008),
-        textCoords = vector3(-1387.0704345703125, -586.5470581054688, 30.519868850708008),
-        authorizedJobs = {"bahamas"},
-        locked = true,
-        maxDistance = 2.0
+        maxDistance = 7.0
     },
        
     --Japonnais
