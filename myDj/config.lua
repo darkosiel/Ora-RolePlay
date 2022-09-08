@@ -28,7 +28,7 @@ Config.enableMarker = true -- purple marker at the DJ stations
 Config.DJPositions = {
     {
         name = 'bahama',
-        pos = vector3(-1378.5733, -629.3204, 30.62),
+        pos = vector3(-1390.0961, -605.7287, 31.51 - 0.98),
         requiredJob = nil, 
         range = 25.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
