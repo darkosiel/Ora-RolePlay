@@ -11,7 +11,8 @@ client_scripts {
     "ac.lua",
     "cl_explosion.lua",
     "reticle/Client.net.dll",
-    "crouch.lua"
+    "crouch.lua",
+    "clear_ped.lua",
 }
 
 server_scripts {
