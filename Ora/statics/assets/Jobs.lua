@@ -1852,12 +1852,17 @@ Jobs = {
         },
         Storage = {
             {
+                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
+                Limit = 200,
+                Name = "coffre_pearls_bureau"
+            },
+            {
                 Pos = {x = -1839.74, y = -1189.69, z = 13.32},
                 Limit = 500,
                 Name = "coffre_caveresto2"
             },
             {
-                Pos = {x = -1855.52, y = -1195.06, z = 12.10},
+                Pos = {x = -1838.21, y = -1183.83, z = 13.50},
                 Limit = 500,
                 Name = "coffre_caveresto1"
             },
@@ -1865,12 +1870,8 @@ Jobs = {
                 Pos = {x = -1840.72, y = -1183.35, z = 18.20},
                 Limit = 500,
                 Name = "coffre_pearls_club"
-            },
-            {
-                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
-                Limit = 200,
-                Name = "coffre_pearls_bureau"
             }
+
         },
         Extrapos = {
             CraftSpiritueux = {
@@ -3082,6 +3083,35 @@ Jobs = {
                 Name = "coffre_restaurantfood3"
             } 
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1198.1027, y = -896.0474, z = 13.97}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftBurgerZone()
+                end,
+                Exit = function()
+                    ExitcraftburgerZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "BurgerShot - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
             recolte = {
@@ -3097,73 +3127,7 @@ Jobs = {
                     anim = "pickup_snowball"
                 }
             },
-            traitement2 = {
-                --frites
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 5,
-                blipname = "Friteuse",
-                Pos = {x = -1200.5531, y = -897.4307, z = 13.9741},
-                required = "pommeterre",
-                giveitem = "frites",
-                noFarm = true,
-                RemoveItem = "pommeterre",
-                add = "~p~+ 1  Barquette de frites"
-            },
             traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 6,
-                blipname = "Traitement Milkshake",
-                Pos = {x = -1196.3409, y = -894.2233, z = 13.9741},
-                required = "milk",
-                giveitem = {
-                    {name = "milkshack", count = 5},
-                },
-                RemoveItem = "milk",
-                noFarm = true,
-                add = "~p~+ 5  Milkshake"
-            },
-            traitement3 = {
-                --hamburger
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                noFarm = true,
-                blipname = "Grill Burger Poulet",
-                Pos = {x = -1197.6510, y = -895.5382, z = 13.9741},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "chicken", count = 1}
-                },
-                giveitem = "burger",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "chicken", count = 1}
-                },
-                add = "~p~+ 1  Hamburger poulet"
-            },
-            traitement5 = {
-                --hamburger
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 8,
-                noFarm = true,
-                blipname = "Grill Burger Healthy",
-                Pos = {x = -1196.3144, y = -899.9614, z = 13.9741},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "meat", count = 1}
-                },
-                giveitem = "burgerhealthy",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "meat", count = 1}
-                },
-                add = "~p~+ 1  Hamburger Healthy"
-            },
-            traitement7 = {
                 --Café
                 type = "traitement",
                 workSize = 10.0,
@@ -10298,7 +10262,9 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                   {x = -376.76, y = -105.69, z = 37.7}
+                   {x = -376.76, y = -105.69, z = 37.7},
+                   {x = -329.2701, y = -160.3248, z = 35.60},
+                   {x = -327.2104, y = -152.2423, z = 35.60}
                    -- {x = -1071.99, y = -868.38, z = 4.87}
                 },
                 Enter = EnterZoneTow,

@@ -2824,6 +2824,114 @@ Items = {
         soif = 50,
         category = "food"
     },
+    tacos2 = {
+        label = "Chicken Mexican",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    tender = {
+        label = "Crazy Tenders",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger1 = {
+        label = "Double Shot",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    wraps1 = {
+        label = "Goat Cheese",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger2 = {
+        label = "The Prickly",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger3 = {
+        label = "Stopper 6lb burguer",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 70,
+        category = "food"
+    },
+    sunday1 = {
+        label = "Sunday chocolat",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 20,
+        category = "food"
+    },
+    sunday2 = {
+        label = "Sunday fraise",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 20,
+        category = "food"
+    },
+    burger4 = {
+        label = "The Bleeder",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger5 = {
+        label = "The Glorious",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger6 = {
+        label = "The Simply",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    wraps2 = {
+        label = "Wraps Poulet",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    cheddar = {
+        label = "Cheddar",
+        weight = 0.2
+    },
+    chocolat = {
+        label = "chocolat",
+        weight = 0.2
+    },
+    fraise = {
+        label = "Fraise",
+        weight = 0.2
+    },
 }
 
 -- staticcc

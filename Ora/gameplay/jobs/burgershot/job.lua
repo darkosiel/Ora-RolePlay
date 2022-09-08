@@ -1,126 +1,218 @@
-tacoCrafts = {}
--- Pistols
-tacoCrafts["recettes"] = {
-    nachos = {
-        title = "Nachos",
-        label = "Nachos",
-        item = "nachos",
+burgerCrafts = {}
+burgerCrafts["recettes"] = {
+    tacos2 = {
+        title = "Chicken Mexican",
+        label = "Chicken Mexican",
+        item = "tacos2",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "pommeterre", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "cereale", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "chicken", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["tacos2"]
+            craftRecettes(data)
+        end
+    },
+    tender = {
+        title = "Crazy Tenders",
+        label = "Crazy Tenders",
+        item = "tender",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "chicken", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
             {name = "chips", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["nachos"]
+            local data = burgerCrafts["recettes"]["tender"]
             craftRecettes(data)
         end
     },
-
-    ceviche = {
-        title = "Ceviche",
-        label = "Ceviche",
-        item = "ceviche",
+    burger1 = {
+        title = "Double Shot",
+        label = "Double Shot",
+        item = "burger1",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "moules", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "fish15", count = 1}
+            {name = "meat", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "bread", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["ceviche"]
+            local data = burgerCrafts["recettes"]["burger1"]
             craftRecettes(data)
         end
     },
-
-    pozole = {
-        title = "Pozole",
-        label = "Pozole",
-        item = "pozole",
+    wraps1 = {
+        title = "Goat Cheese",
+        label = "Goat Cheese",
+        item = "wraps1",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "veloute", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-        },
-        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
-            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
-            found = false
-            local data = tacoCrafts["recettes"]["pozole"]
-            craftRecettes(data)
-        end
-    },
-
-    enchiladas = {
-        title = "Enchiladas",
-        label = "Enchiladas",
-        item = "enchiladas",
-        time = 1000, -- temps de craft je pense
-        required = {
-            {name = "bread", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "cereale", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
             {name = "meat", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["enchiladas"]
+            local data = burgerCrafts["recettes"]["wraps1"]
             craftRecettes(data)
         end
     },
-
-    mole = {
-        title = "Mole",
-        label = "Mole",
-        item = "mole",
-        time = 1000, -- temps de craft je pense
-        required = {
-            {name = "aperitif", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "chicken", count = 1},
-        },
-        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
-            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
-            found = false
-            local data = tacoCrafts["recettes"]["mole"]
-            craftRecettes(data)
-        end
-    },
-
-    capirotada = {
-        title = "Capirotada",
-        label = "Capirotada",
-        item = "capirotada",
+    burger2 = {
+        title = "The Prickly",
+        label = "The Prickly",
+        item = "burger2",
         time = 1000, -- temps de craft je pense
         required = {
             {name = "bread", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "aperitif", count = 1}
+            {name = "chicken", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["capirotada"]
+            local data = burgerCrafts["recettes"]["burger2"]
             craftRecettes(data)
         end
     },
-    panuchos = {
-        title = "Panuchos",
-        label = "Panuchos",
-        item = "panuchos",
+    burger3 = {
+        title = "Stopper 6lb burguer",
+        label = "Stopper 6lb burguer",
+        item = "burger3",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "bread", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "meat", count = 1},
+            {name = "cheddar", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["burger3"]
+            craftRecettes(data)
+        end
+    },
+    sunday1 = {
+        title = "Sunday chocolat",
+        label = "Sunday chocolat",
+        item = "sunday1",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "milk", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "chocolat", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["sunday1"]
+            craftRecettes(data)
+        end
+    },
+    sunday2 = {
+        title = "Sunday fraise",
+        label = "Sunday fraise",
+        item = "sunday2",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "milk", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "fraise", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["sunday2"]
+            craftRecettes(data)
+        end
+    },
+    burger4 = {
+        title = "The Bleeder",
+        label = "The Bleeder",
+        item = "burger4",
         time = 1000, -- temps de craft je pense
         required = {
             {name = "meat", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "pommeterre", count = 1}
+            {name = "cheddar", count = 1},
+            {name = "bread", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["panuchos"]
+            local data = burgerCrafts["recettes"]["burger4"]
             craftRecettes(data)
         end
     },
-    pastel = {
-        title = "Pastel tres leche",
-        label = "Pastel tres leche",
-        item = "pastel",
+    burger5 = {
+        title = "The Glorious",
+        label = "The Glorious",
+        item = "burger5",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "meat", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "bread", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["burger5"]
+            craftRecettes(data)
+        end
+    },
+    burger6 = {
+        title = "The Simply",
+        label = "The Simply",
+        item = "burger6",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "chicken", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "bread", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["burger6"]
+            craftRecettes(data)
+        end
+    },
+    wraps2 = {
+        title = "Wraps Poulet",
+        label = "Wraps Poulet",
+        item = "wraps2",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "cereale", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "chicken", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["wraps2"]
+            craftRecettes(data)
+        end
+    },
+    frites = {
+        title = "Frites",
+        label = "Frites",
+        item = "frites",
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "pommeterre", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = burgerCrafts["recettes"]["frites"]
+            craftRecettes(data)
+        end
+    },
+    milkshack = {
+        title = "MilkShake",
+        label = "MilkShake",
+        item = "milkshack",
         time = 1000, -- temps de craft je pense
         required = {
             {name = "milk", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -128,7 +220,7 @@ tacoCrafts["recettes"] = {
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = tacoCrafts["recettes"]["pastel"]
+            local data = burgerCrafts["recettes"]["milkshack"]
             craftRecettes(data)
         end
     }
@@ -139,23 +231,23 @@ Citizen.CreateThread(
         while RMenu == nil do
             Wait(1)
         end
-        RMenu.Add("tacoCrafts", "main", RageUI.CreateMenu("Taco Loco", "Catégories disponibles", 10, 100))
+        RMenu.Add("burgerCrafts", "main", RageUI.CreateMenu("BurgerShot", "Catégories disponibles", 10, 100))
         -- creata acc
         RMenu.Add(
-            "tacoCrafts",
-            "create_taco",
-            RageUI.CreateSubMenu(RMenu:Get("tacoCrafts", "main"), "Taco Loco", "Craft", 10, 100)
+            "burgerCrafts",
+            "create_burger",
+            RageUI.CreateSubMenu(RMenu:Get("burgerCrafts", "main"), "BurgerShot", "Craft", 10, 100)
         )
     end
 )
 
-function EntercrafttacoZone()
+function EntercraftBurgerZone()
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour cuisiner")
-    KeySettings:Add("keyboard", "E", OpentacoMenu, "ALCOOL")
-    KeySettings:Add("controller", 46, OpentacoMenu, "ALCOOL")
+    KeySettings:Add("keyboard", "E", OpenburgerMenu, "ALCOOL")
+    KeySettings:Add("controller", 46, OpenburgerMenu, "ALCOOL")
 end
 
-function ExitcrafttacoZone()
+function ExitcraftburgerZone()
     Hint:RemoveAll()
     KeySettings:Clear("keyboard", "E", "ALCOOL")
     KeySettings:Clear("controller", "E", "ALCOOL")
@@ -167,15 +259,15 @@ function ExitcrafttacoZone()
     RageUI.GoBack()
 end
 
-function OpentacoMenu()
-    RageUI.Visible(RMenu:Get("tacoCrafts", "main"), true)
+function OpenburgerMenu()
+    RageUI.Visible(RMenu:Get("burgerCrafts", "main"), true)
 end
 
 Citizen.CreateThread(
     function()
         while true do
             Wait(1)
-            if RageUI.Visible(RMenu:Get("tacoCrafts", "main")) then
+            if RageUI.Visible(RMenu:Get("burgerCrafts", "main")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
@@ -186,7 +278,7 @@ Citizen.CreateThread(
                             true,
                             function(_, _, Selected)
                             end,
-                            RMenu:Get("tacoCrafts", "create_taco")
+                            RMenu:Get("burgerCrafts", "create_burger")
                         )
                     end,
                     function()
@@ -194,11 +286,11 @@ Citizen.CreateThread(
                 )
             end
 
-            if RageUI.Visible(RMenu:Get("tacoCrafts", "create_taco")) then
+            if RageUI.Visible(RMenu:Get("burgerCrafts", "create_burger")) then
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
-                        for k, v in pairs(tacoCrafts["recettes"]) do
+                        for k, v in pairs(burgerCrafts["recettes"]) do
                             RageUI.Button(
                                 v.title,
                                 nil,
@@ -253,7 +345,7 @@ function craftRecettes(data)
     if not hasOneMissing then
         SetFarmLimit(1)
         local timeWait = (data.time / 1000) / 60
-    
+
         for i = 1, #data.required, 1 do
             Ora.Inventory:RemoveFirstItem(data.required[i].name)
         end
@@ -275,8 +367,8 @@ function craftRecettes(data)
             function(cancelled)
             end
         )
-        
-        Ora.Inventory:AddItem({name = data.item, data = {}})  
+
+       Ora.Inventory:AddItem({name = data.item, data = {}})  
     else
         ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
         return
