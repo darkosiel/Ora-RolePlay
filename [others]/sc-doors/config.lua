@@ -1555,6 +1555,14 @@ Config.DoorList = {
         maxDistance = 2.5
     },
     {
+        objHash = -1266543998,
+        objCoords = vector3(-1389.48767089843755, -623.2332763671875, 30.36359977722168),
+        textCoords = vector3(-1389.4876708984375, -623.2332763671875, 30.36359977722168),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
         objHash = -1459022116,
         objCoords = vector3(-1379.3011474609375, -636.8530883789062, 29.627294540405273),
         textCoords = vector3(-1379.3011474609375, -636.8530883789062, 29.627294540405273),
