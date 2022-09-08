@@ -11799,19 +11799,19 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1389.6429, y = -613.6432, z = 30.32},
+                Pos = {x = -1376.6281, y = -621.8822, z = 35.00},
+                Limit = 100,
+                Name = "Coffre_Patronbahama"
+            },
+            {
+                Pos = {x = -1378.5832, y = -594.6552, z = 29.30},
                 Limit = 1000,
                 Name = "Frigo_Bahama"
             },
             {
-                Pos = {x = -1390.8715, y = -607.7440, z = 30.32},
+                Pos = {x = -1385.6295, y = -627.2821, z = 35.00},
                 Limit = 1000,
                 Name = "Frigo_Bahama2"
-            },
-            {
-                Pos = {x = -1364.1690, y = -623.1672, z = 30.32},
-                Limit = 100,
-                Name = "Coffre_Patronbahama"
             }
         },
         Menu = {
