@@ -113,7 +113,7 @@ tacoCrafts["recettes"] = {
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = TacoCraft["recettes"]["panuchos"]
+            local data = tacoCrafts["recettes"]["panuchos"]
             craftRecettes(data)
         end
     },
