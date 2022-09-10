@@ -28,7 +28,7 @@ local function OpenInventory()
             currentStorage:RefreshDB()
             currentStorage:RefreshWeight()
         else
-            ShowNotification("Une erreur c'est produite ! Veuillez réessayer. Si le problème persiste, contactez un développeur.")
+            ShowNotification("Une erreur s'est produite ! Veuillez réessayer. Si le problème persiste, contactez un développeur.")
         end
     else
         if not exports["Ora_utils"]:GetPlayerHUD() then
