@@ -677,7 +677,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Coiffeur Hawick", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur2")
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Hawick", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur Hawick")
                         end
                     end
                 }
@@ -776,7 +776,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Coiffeur Mirror park", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur3")
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Mirror park", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur Miror")
                         end
                     end
                 }
