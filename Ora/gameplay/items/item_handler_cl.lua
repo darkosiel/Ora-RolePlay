@@ -646,6 +646,69 @@ function EquipMasks()
     end
     item.data.equiped = not item.data.equiped
 end
+
+-- local EquipedRadio = {}
+-- local DEFAULT_FREQUENCY_RADIO = 137.00
+
+-- RegisterNetEvent("Ora::CE::SaveRadioFrequency", function(frequency)
+--     if EquipedRadio.id ~= nil then
+--         local radiosItems = Ora.Inventory.Data["radio"]
+--         for k, v in pairs(radiosItems) do
+--             if (v.id == EquipedRadio.id) then
+--                 radio.data.frequency = frequency
+--                 break
+--             end
+--         end
+--     end
+-- end)
+
+-- function EquipRadio(item)
+--     --ShowNotification(string.format("Radio : ~g~Equipée~s~"))
+--     --exports["rp-radio"]:SetRadio(true)
+--     --print(json.encode(item))
+--     if (EquipedRadio.id ~= nil and item.id ~= EquipedRadio.id) then
+--         local radiosItems = Ora.Inventory.Data["radio"]
+--         for k, v in pairs(radioItems) do
+--             if (v.id == EquipedRadio.id) then
+--                 v.data.freq = exports["rp-radio"]:GetRadioFrequency()
+--                 v.data.equiped = false
+--                 exports["rp-radio"]:SetRadio(false)
+--                 break
+--             end
+--         end
+--     end
+
+--     local radioItems = Ora.Inventory.Data["radio"]
+--     for k, v in pairs(radioItems) do
+--         if (v.id == item.id) then
+--             local radio = v
+--             if (radio.data ~= nil and radio.data.equiped) then
+--                 radio.data.equiped = false
+--                 radio.data.frequency = exports["rp-radio"]:GetRadioFrequency()
+--                 exports["rp-radio"]:SetRadio(false)
+--                 --print("Radio : ~r~Déséquipée~s~")
+--             else
+--                 --print(json.encode(radio.data))
+--                 if radio.data == nil or radio.data == {} or radio.data.frequency == nil or radio.data.equiped == nil then
+--                     radio.data = {
+--                         equiped = true,
+--                         frequency = DEFAULT_FREQUENCY_RADIO
+--                     }
+--                     exports["rp-radio"]:SetRadio(true, radio.data)
+--                     --print(json.encode(radio.data))
+--                     EquipedRadio = radio   
+--                     break
+--                 else
+--                     radio.data.equiped = true
+--                     exports["rp-radio"]:SetRadio(true, radio.data)
+--                     EquipedRadio = radio
+--                 end
+--             end
+--             break
+--         end
+--     end
+-- end
+
 function EquipRadio()
     ShowNotification(string.format("Radio : ~g~Equipée~s~"))
     exports["rp-radio"]:SetRadio(true)
@@ -829,7 +892,7 @@ ItemsFunction = {
             EquipClothes()
         end
     end,
-    radio = EquipRadio,
+    radio = function(item) EquipRadio(item) end,
     tenue = function(item)
         if item then
             for i = 1, #Ora.Inventory.Data[item.name] do
@@ -1426,6 +1489,28 @@ function EquipWeapon(weapon)
     end
 end
 DecorRegister("powder", 2)
+
+local EquipedShield = false
+
+function EquipShield(item)
+    local playerPed = LocalPlayer().Ped
+    local model = "bv_shield1"
+    if item.name == "policeshield1" then
+        model = "bv_shield2"
+    elseif item.name == "policeshield2" then
+        model = "prop_shield_three"
+    else
+        error("Shield model is not defined, please contact an admin")
+    end
+
+    if EquipedShield then
+        exports["PoliceShields"]:DestroyShield(model)
+        EquipedShield = false
+    else
+        EquipedShield = true
+        exports["PoliceShields"]:CreateShield(model)
+    end
+end
 
 local Keys = {["E"] = 38, ["K"] = 311}
 local isFueling = false

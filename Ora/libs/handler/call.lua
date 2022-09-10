@@ -4,11 +4,21 @@ local isCall = false
 local ttak2 = false
 local work = {}
 local target = {}
+
+function AddLongString(txt)
+    AddTextComponentSubstringPlayerName(txt)
+    if string.len(txt) > 99 then
+        for i = 100, string.len(txt), 99 do
+            AddTextComponentSubstringPlayerName(string.sub(txt, i, i + 99))
+        end
+    end
+end
+
 ShowAdvancedNotification = function(title, subject, msg, icon, iconType)
-    SetNotificationTextEntry("STRING")
-    AddTextComponentSubstringPlayerName(msg)
+    BeginTextCommandThefeedPost("jamyfafi")
+    AddLongString(msg)
     SetNotificationMessage(icon, icon, false, iconType, title, subject)
-    DrawNotification(false, false)
+    EndTextCommandThefeedPostTicker(true, false)
 end
 Citizen.CreateThread(
     function()
@@ -169,16 +179,17 @@ AddEventHandler(
 RegisterNetEvent("call:callIncoming2")
 AddEventHandler(
     "call:callIncoming2",
-    function(job, pos, msg, author)
-        --(job, pos, msg)
+    function(job, pos, message, author)
+        --(job, pos, message)
 
         callActive = true
         work = job
         target.pos = pos
-        coords = LocalPlayer().Pos
+        local coords = LocalPlayer().Pos
 
-        dist = "*x*"
-        streetname = "Non indiquée"
+        local dist = "*x*"
+        local streetname = "Non indiquée"
+        local zone = ""
 
         if pos ~= nil then
             dist =
@@ -195,113 +206,102 @@ AddEventHandler(
                 GetStreetNameFromHashKey(GetStreetNameAtCoord(target.pos.x, target.pos.y, target.pos.z))
         end
 
+        local title, subject, msg, icon, iconType = "", "", "", "", 1
+
         if work == "police" then
-            --SendNotification("Appuyez sur ~g~Y~s~ pour prendre l'appel ou ~g~L~s~ pour le refuser")
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 911",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_LSPD",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_LSPD"
+            iconType = 1
         elseif work == "lssd" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 911",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_LSSD",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_LSSD"
+            iconType = 1
         elseif work == "mecano" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 907",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_BENNYS",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 907"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_BENNYS"
+            iconType = 1
         elseif work == "mecano2" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 907",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_BEEKERS",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 907"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_BEEKERS"
+            iconType = 1
         elseif work == "chauffeur" then
             --SendNotification("Appuyez sur ~g~Y~s~ pour prendre l'appel ou ~g~L~s~ pour le refuser")
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 906",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 906"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "lsms" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 912",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "fib" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_FIB",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_FIB"
+            iconType = 1
         elseif work == "pilot" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "epicerie" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "brinks" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "army" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "realestateagent" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "caroccasions" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "uber" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel client",
-                "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_UBER",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel client"
+            msg = "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_UBER"
+            iconType = 1
         elseif work == "unicorn" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 902",
-                "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 902"
+            msg =  "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "journaliste" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 900",
-                "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 900"
+            msg =  "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "state" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
+        elseif work == "lsfd" then
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_LSFD"
+            iconType = 1        
         else
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel",
-                "~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel"
+            msg = "~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_DEFAULT"
+            iconType = 1
         end
 
-        SendNotification("~b~Détails:~s~ " .. msg)
+        msg = msg .. "\n~b~Détails:~s~ " .. message
+        if title ~= "" then
+            ShowAdvancedNotification(title, subject, msg, icon, iconType)
+        end
+
         SendNotification(
             "Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
         )
@@ -311,126 +311,114 @@ AddEventHandler(
 RegisterNetEvent("call:callIncoming")
 AddEventHandler(
     "call:callIncoming",
-    function(job, pos, msg)
-        --(job, pos, msg)
+    function(job, pos, message)
+        --(job, pos, message)
 
         callActive = true
         work = job
         target.pos = pos
 
-        coords = LocalPlayer().Pos
-        zone = GetZoneLabelTextFromZoneCode(GetNameOfZone(target.pos.x, target.pos.y, target.pos.z))
-        dist =
-            CalculateTravelDistanceBetweenPoints(coords.x, coords.y, coords.z, target.pos.x, target.pos.y, target.pos.z)
-        streetname =
-            GetStreetNameFromHashKey(GetStreetNameAtCoord(target.pos.x, target.pos.y, target.pos.z))
+        local coords = LocalPlayer().Pos
+        local zone = GetZoneLabelTextFromZoneCode(GetNameOfZone(target.pos.x, target.pos.y, target.pos.z))
+        local dist = CalculateTravelDistanceBetweenPoints(coords.x, coords.y, coords.z, target.pos.x, target.pos.y, target.pos.z)
+        local streetname = GetStreetNameFromHashKey(GetStreetNameAtCoord(target.pos.x, target.pos.y, target.pos.z))
+
+        local title, subject, msg, icon, iconType = "", "", "", "", 1
 
         if work == "police" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 911",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_LSPD",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_LSPD"
+            iconType = 1
         elseif work == "lssd" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 911",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_LSSD",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_LSSD"
+            iconType = 1
         elseif work == "mecano" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 907",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_BENNYS",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 907"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_BENNYS"
+            iconType = 1
         elseif work == "mecano2" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 907",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_BEEKERS",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 907"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_BEEKERS"
+            iconType = 1
         elseif work == "chauffeur" then
             --SendNotification("Appuyez sur ~g~Y~s~ pour prendre l'appel ou ~g~L~s~ pour le refuser")
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 906",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 906"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "lsms" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 912",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "fib" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel",
-                string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname),
-                "CHAR_FIB",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_FIB"
+            iconType = 1
         elseif work == "pilot" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "epicerie" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "brinks" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "army" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "realestateagent" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "caroccasions" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
         elseif work == "uber" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel client",
-                "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_UBER",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel client"
+            msg = "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_UBER"
+            iconType = 1
         elseif work == "unicorn" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 902",
-                "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 902"
+            msg =  "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "journaliste" then
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel d'urgence: 900",
-                "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_CALL911",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 900"
+            msg =  "~b~Identité: ~s~Inconnu\n~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_CALL911"
+            iconType = 1
         elseif work == "state" then
-            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(msg))
+            SendNotification("~r~APPEL EN COURS:~w~ " .. tostring(message))
+        elseif work == "lsfd" then
+            title = "Centrale"
+            subject = "~b~Appel d'urgence: 911"
+            msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
+            icon = "CHAR_LSFD"
+            iconType = 1        
         else
-            ShowAdvancedNotification(
-                "Centrale",
-                "~b~Appel",
-                "~b~Localisation: ~s~" .. streetname .. "",
-                "CHAR_DEFAULT",
-                1
-            )
+            title = "Centrale"
+            subject = "~b~Appel"
+            msg = "~b~Localisation: ~s~" .. streetname .. ""
+            icon = "CHAR_DEFAULT"
+            iconType = 1
         end
 
-        SendNotification("~b~Détails:~s~ " .. msg)
+        msg = msg .. "\n~b~Détails:~s~ " .. message
+        if title ~= "" then
+            ShowAdvancedNotification(title, subject, msg, icon, iconType)
+        end
+
         SendNotification(
             "Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
         )

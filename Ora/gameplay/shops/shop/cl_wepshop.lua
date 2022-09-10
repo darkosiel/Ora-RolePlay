@@ -105,6 +105,7 @@ weapon_name = {
     heavysniper = "WEAPON_HEAVYSNIPER",
     sniperrifle = "WEAPON_SNIPERRIFLE",
     shootgun = "WEAPON_PUMPSHOTGUN",
+    flare ="weapon_flare",
     teargas = "WEAPON_SMOKEGRENADE",
     bombsticky = "WEAPON_STICKYBOMB",
     molotov = "WEAPON_MOLOTOV",
@@ -190,6 +191,7 @@ weapon_munition = {
     poolcue = nil,
     fire_extinguisher = nil,
     --- grenades
+    flare = "flare",
     teargas = "teargas",
     bombsticky = "bombsticky",
     molotov ="molotov",

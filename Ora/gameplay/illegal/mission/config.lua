@@ -108,10 +108,10 @@ missionConfig.boss = {
         }
     },
     {
-        name = "Jordan",
-        pos = {x = 1645.72, y = 4843.35, z = 42.02 - 0.98, a = 148.39}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
-        model = "a_m_m_mexcntry_01",
-        missions = {"Go Fast - Cannabis", "Go Fast - Meth", "Go Fast - Cocaine", "Go Fast - Armes"}
+        name = "Michael",
+        pos = {x = 2635.56, y = 4237.66, z = 44.86 - 0.98, a = 92.30}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_socenlat_01",
+        missions = {"Go Fast - Cannabis", "Go Fast - Meth", "Go Fast - Cocaine", "Go Fast - LSD"}
     },
     {
         name = "Josh",
@@ -328,7 +328,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {750, 800}
+                amount = {1000, 1100}
             },
             ["xp"] = {2000, 2100}
         }
@@ -372,7 +372,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {900, 950}
+                amount = {2000, 2100}
             },
             ["xp"] = {2500, 2600}
         }
@@ -415,12 +415,12 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {1000, 1100}
+                amount = {2500, 2600}
             },
             ["xp"] = {3000, 3100}
         }
     },
-    ["Go Fast - Armes"] = {
+    ["Go Fast - LSD"] = {
         levelRequired = 15,
         scenarioIndex = 2,
         policeRequired = Ora.Illegal:GetCopsRequired("gofast"),
@@ -458,7 +458,7 @@ missionConfig.missionLists = {
                 }
             },
             ["money"] = {
-                amount = {1500, 1600}
+                amount = {3000, 3100}
             },
             ["xp"] = {3500, 4000}
         }

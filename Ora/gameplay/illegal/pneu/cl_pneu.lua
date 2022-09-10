@@ -67,6 +67,16 @@ Citizen.CreateThread(function()
 									else
 										TriggerServerEvent("SlashTires:TargetClient", driverServer, vehicleServerId, closestTire.tireIndex)
 									end
+									local fullName = Ora.Identity:GetFullname(LocalPlayer().ServerID)
+									local ownerFullname = Ora.Identity:GetFullname(driverServer)
+									local vehPos = GetEntityCoords(vehicle)
+									local street, crossing = GetStreetNameAtCoord(vehPos.x, vehPos.y, vehPos.z)
+									print(street, crossing)
+									local names = GetStreetNameFromHashKey(street) .. (crossing ~= 0 and (" / " .. GetStreetNameFromHashKey(crossing)) or "") 
+									local plateText = GetVehicleNumberPlateText(vehicle)
+									local entityModel = GetEntityModel(vehicle)
+									TriggerServerEvent("Ora:sendToDiscord", "Pneu", fullName .. " a crevé le pneu " .. closestTire.tireIndex .. " du véhicule " .. plateText .. " (" .. entityModel .. "). \nL'entité est possédée par : " .. ownerFullname.."\nPosition : " .. vehPos .. "\n("..names..").", 16711680)
+
 									Citizen.Wait((animDuration / 2) * 1000)
 									ClearPedTasksImmediately(plyPed)
 								end
@@ -127,7 +137,7 @@ function GetClosestVehicleToPlayer()
 	local plyPos = player.Pos
 	local fwdVector = GetEntityMatrix(player.Ped)
 	local plyOffset = plyPos+fwdVector*2
-	local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(plyPos.x, plyPos.y, plyPos.z, plyOffset.x, plyOffset.y, plyOffset.z, 10, player.Ped, 7)
+	local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(plyPos.x, plyPos.y, plyPos.z, plyOffset.x, plyOffset.y, plyOffset.z-0.5, 2, player.Ped, 7)
 	local retval, hit, endcoords, surfaceNormal, vehicle = GetShapeTestResult(rayHandle)
 	return vehicle
 end

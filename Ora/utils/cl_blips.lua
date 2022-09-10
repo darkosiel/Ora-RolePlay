@@ -48,7 +48,7 @@ local Blips = {
     --{name = "Blaine County Banque", color = 2, sprite = 108, size = 0.80, Pos = {x = -114.82, y = 6459.21, z = 142.89}},
     {name = "Hôpital Los Santos", color = 5, sprite = 61, Pos = {x = -1858.35, y = -324.27, z = 53.77}},
     --{name = "Hôpital Sandy Shores", color = 5, sprite = 61, Pos = {x = 1838.99, y = 3673.48, z = 34.28}},
-   -- {name = "LSFD", color = 1, sprite = 61, Pos = {x = 1196.3460, y = -1479.672851, z = 29.39}},
+    {name = "LSFD", color = 1, sprite = 61, Pos = {x = 1196.3460, y = -1479.672851, z = 29.39}},
     {name = "Mécano", color = 3, sprite = 777, Pos = {x = -351.73, y = -120.49, z = 38.43}},
     {name = "Benny's", color = 63, sprite = 488, size = 1.05, Pos = {x = -207.31, y = -1305.09, z = 31.36}},
    -- {name = "Beeker's Garage", color = 47, sprite = 643, Pos = {x = 113.03, y = 6620.29, z = 31.82}},
@@ -98,6 +98,7 @@ local Blips = {
     {name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
     {name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},
     {name = "Bar - San-Inn", color = 59, sprite = 93, Pos = {x = -172.66, y = 291.57, z = 92.76}},
+    {name = "Taco Loco", color = 46, sprite = 79, Pos = {x = 417.2778, y = -1911.7052, z = 25.47}},
     --{name = "Armurerie - Paleto Bay", color = 49, sprite = 313, Pos = {x = -326.78, y = 6080.18, z = 31.45}}
     {name = "Death Row Records", color = 49, sprite = 355, Pos = {x = -1441.7468, y = -546.6607, z = 34.7418}}
 }

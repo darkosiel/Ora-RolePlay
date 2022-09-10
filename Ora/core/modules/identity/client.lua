@@ -64,6 +64,8 @@ function Ora.Identity:GetFullname(playerId)
   return identity.first_name .. " " .. identity.last_name
 end
 
+exports('GetFullname', Ora.Identity.GetFullname)
+
 function Ora.Identity:GetGroup(playerId)
   local identity = Ora.Identity:GetIdentity(playerId)
   return identity.group

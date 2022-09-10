@@ -49,7 +49,8 @@ RegisterNetEvent('fireManager:command:startfire')
 AddEventHandler(
 	'fireManager:command:startfire',
 	function(coords, maxSpread, chance, triggerDispatch, dispatchMessage)
-		if not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.start") then
+		-- If source == "" > it's the server that called the event
+		if source ~= "" and not Ora.Jobs.Firefighter.Whitelist:isWhitelisted(source, "firescript.start") then
 			sendMessage(source, "Insufficient permissions.")
 			return
 		end

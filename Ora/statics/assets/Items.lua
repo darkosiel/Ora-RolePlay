@@ -64,7 +64,7 @@ Items = {
         actionCl = "binoculars:Activate"
     },
     gofastweapon = {
-        label = "Caisse d'armes de guerre",
+        label = "Carton de LSD",
         weight = 0.1
     },
     gofastcoke = {
@@ -381,12 +381,6 @@ Items = {
     },
     high_quality_wine = {
         label = "Bouteille de grand cru",
-        weight = 0.5,
-        actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
-        category = "consumable"
-    },
-    white_wine = {
-        label = "Bouteille de vin blanc",
         weight = 0.5,
         actionCl = "Ora::CE::Consumable::Alcohol::SpawnProp",
         category = "consumable"
@@ -1385,14 +1379,14 @@ Items = {
     -- Items : Distillerie
     c_sucre = {
         label = "Canne a sucre",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "miam:Eat",
         faim = 5,
         category = "food"
     },
     raisin = {
         label = "Raisin",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "miam:Eat",
         faim = 5,
         category = "food"
@@ -1437,15 +1431,15 @@ Items = {
     },
     agave = {
         label = "Agave",
-        weight = 1.0
+        weight = 0.2
     },
     houblon = {
         label = "Houblon",
-        weight = 1.0
+        weight = 0.2
     },
     levure = {
         label = "Levure",
-        weight = 1.0
+        weight = 0.2
     },
     -- Items : Props
 
@@ -1485,7 +1479,7 @@ Items = {
 
     medikit = {
         label = "Trousse de soin",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     medica1 = {
@@ -1740,6 +1734,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    flare = {
+        label = "Fumigène Rouge",
+        weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     bombsticky = {
         label = "C4 Explosif",
         weight = 1.0,
@@ -1751,6 +1751,18 @@ Items = {
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
+    },
+    policeshield1 = {
+        label = "Bouclier SWAT",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
+    },
+    policeshield2 = {
+        label = "Bouclier Police Long",
+        weight = 1.0,
+        actionCl = "shield:Equip",
+        category = "shield"
     },
     molotov = {
         label = "Cocktail Molotov",
@@ -2399,7 +2411,7 @@ Items = {
     },
     bandage = {
         label = "Bandage",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = "A FAIRE"
     },
     --- Items BDG
@@ -2447,6 +2459,478 @@ Items = {
     roadwheels = {
         label = "4 Roues de route",
         weight = 30.0
+    },
+    ----
+    fish15 = {
+        label = "crevettes",
+        weight = 0.2
+    },
+        --NEW CRAFT PEARLS 
+    moules = {
+        label = "Moules",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 15,
+        category = "food"
+    },
+
+    terrinepoisson = {
+        label = "Terrine de poisson",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    tartaresaumon = {
+        label = "Tartare de saumon",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    crevettesail = {
+        label = "Crevettes à l'ail",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    turbotraisins = {
+        label = "Turbot aux raisins",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    paella = {
+        label = "Paëlla",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 60,
+        category = "food"
+    },
+
+    saumonchampagne = {
+        label = "Saumon au champagne",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+
+    moulesfrites = {
+        label = "Moules frites",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+
+    filetcabillaud = {
+        label = "Filet de cabillaud",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+
+    tarteraisins = {
+        label = "Tarte aux raisins",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+
+    rizlait = {
+        label = "Riz au lait",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    plateaufruitsmer = {
+        label = "Plateau de fruits de mer",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    tartareviande = {
+        label = "Tartare de viande",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    }, 
+    carpaccioboeuf = {
+        label = "Carpaccio de boeuf",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    charcuterie = {
+        label = "Plateau de charcuterie",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    pouletbraise = {
+        label = "Poulet braisé pommes de terre",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    fajitas = {
+        label = "Fajitas",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    raclette = {
+        label = "Raclette",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    pierrade = {
+        label = "Pierrade 3 viandes",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    cremebrule = {
+        label = "Crème brulée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    ileflottante = {
+        label = "Ile flottante",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    }, 
+    tiramisu = {
+        label = "Tiramisu",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    nachos = {
+        label = "Nachos",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    ceviche = {
+        label = "ceviche",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    pozole = {
+        label = "Pozole",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    enchiladas = {
+        label = "Enchiladas",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    mole = {
+        label = "Mole",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    capirotada = {
+        label = "Capirotada",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    pastel = {
+        label = "Pastel tres leche",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    oeuf = {
+        label = "Oeuf",
+        weight = 0.2
+    }, 
+    veloute = {
+        label = "Veloute",
+        weight = 0.2
+    }, 
+    salade2 = {
+        label = "Salade assaisonnée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    boeufkobe2 = {
+        label = "Boeuf de Kobe Riz",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    mochi = {
+        label = "Mochi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    perlecoco = {
+        label = "Perle de coco",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    coco = {
+        label = "Noix de coco",
+        weight = 0.2
+    }, 
+    salade2 = {
+        label = "Salade assaisonnée",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    boeufkobe2 = {
+        label = "Boeuf de Kobe Riz",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    mochi = {
+        label = "Mochi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    perlecoco = {
+        label = "Perle de coco",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    coco = {
+        label = "Noix de coco",
+        weight = 0.2
+    }, 
+    litchi = {
+        label = "Litchi",
+        weight = 0.2
+    }, 
+    coupelitchi = {
+        label = "Coupe de litchi",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    churros = {
+        label = "Churros",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+        boissontaco = {
+        label = "Boisson taco loco",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    panuchos = {
+        label = "Panuchos",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 50,
+        category = "food"
+    },
+    tacos2 = {
+        label = "Chicken Mexican",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    tender = {
+        label = "Crazy Tenders",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger1 = {
+        label = "Double Shot",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    wraps1 = {
+        label = "Goat Cheese",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger2 = {
+        label = "The Prickly",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger3 = {
+        label = "Stopper 6lb burguer",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 70,
+        category = "food"
+    },
+    sunday1 = {
+        label = "Sunday chocolat",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 20,
+        category = "food"
+    },
+    sunday2 = {
+        label = "Sunday fraise",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 20,
+        category = "food"
+    },
+    burger4 = {
+        label = "The Bleeder",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger5 = {
+        label = "The Glorious",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    burger6 = {
+        label = "The Simply",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    wraps2 = {
+        label = "Wraps Poulet",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 40,
+        category = "food"
+    },
+    cheddar = {
+        label = "Cheddar",
+        weight = 0.2
+    },
+    chocolat = {
+        label = "chocolat",
+        weight = 0.2
+    },
+    fraise = {
+        label = "Fraise",
+        weight = 0.2
     },
 }
 

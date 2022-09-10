@@ -167,9 +167,23 @@ Ora.Consumable.Alcohol = {
       settings = 1,
       count = 6
     },
-    ["white_wine"] = {
+    ["White_wine"] = {
       bottle = "prop_wine_white",
       glass = "prop_drink_whtwine",
+      anim = {
+        dict = "mp_safehousewine@",
+        ped = "drinking_wine",
+        bottle = "drinking_wine_bottle",
+        glass = "drinking_wine_glass",
+        rotation = 0.0,
+        duration = 15000
+      },
+      settings = 1,
+      count = 6
+    }, 
+    ["pink_wine"] = {
+      bottle = "prop_wine_rose",
+      glass = "prop_wine_rose",
       anim = {
         dict = "mp_safehousewine@",
         ped = "drinking_wine",

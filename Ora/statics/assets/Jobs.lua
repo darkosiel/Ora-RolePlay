@@ -1810,7 +1810,7 @@ Jobs = {
             menu = {
                 title = "Pearls",
                 subtitle = "Actions disponibles",
-                name = "restaurant_menuperso"
+                name = "pearls_menuperso"
             },
             buttons = {
                 -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
@@ -1829,7 +1829,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Pearls", "Annonce", text, "CHAR_PEARLS", 8, "Restaurant")
+                            TriggerServerEvent("Job:Annonce", "Pearls", "Annonce", text, "CHAR_PEARLS", 8, "Pearls")
                         end
                     end
                 }
@@ -1837,27 +1837,32 @@ Jobs = {
         },
         garage = {
             Name = "Garage Pearls",
-            Pos = {x = -1796.88, y = -1180.76, z = 12.31},
+            Pos = {x = -1798.1511, y = -1177.2968, z = 12.31},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24}
+                spawnpos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24}
             },
             Blipdata = {
-                Pos = {x = -1796.88, y = -1180.76, z = 12.31, h = 318.24},
+                Pos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
+                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
+                Limit = 200,
+                Name = "coffre_pearls_bureau"
+            },
+            {
                 Pos = {x = -1839.74, y = -1189.69, z = 13.32},
                 Limit = 500,
                 Name = "coffre_caveresto2"
             },
             {
-                Pos = {x = -1855.52, y = -1195.06, z = 12.10},
+                Pos = {x = -1838.21, y = -1183.83, z = 13.50},
                 Limit = 500,
                 Name = "coffre_caveresto1"
             },
@@ -1865,11 +1870,36 @@ Jobs = {
                 Pos = {x = -1840.72, y = -1183.35, z = 18.20},
                 Limit = 500,
                 Name = "coffre_pearls_club"
-            },
-            {
-                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
-                Limit = 200,
-                Name = "coffre_pearls_bureau"
+            }
+
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1842.6386, y = -1186.4794, z = 14.32 - 0.98}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftpearlsZone()
+                end,
+                Exit = function()
+                    ExitcraftpearlsZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Pearls - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
             }
         },
         requiredService = false,
@@ -1886,60 +1916,6 @@ Jobs = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
                 }
-            },
-            traitement2 = {
-                --Filet de daurade
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -1842.25, y = -1185.11, z = 13.33},
-                required = "fish6",
-                giveitem = "filetdaurade",
-                RemoveItem = "fish6",
-                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
-            },
-            traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement milkshack",
-                Pos = {x = -1838.36, y = -1183.82, z = 13.33},
-                required = "milk",
-                giveitem = "milkshack",
-                RemoveItem = "milk",
-                add = "~p~+ 1  Milkshack"
-            },
-            traitement3 = {
-                --pizza au saumon
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "four",
-                Pos = {x = -1836.62, y = -1184.59, z = 13.33},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                giveitem = "pizzasaumon",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                add = "~p~+ 1  Pizza au saumon"
-            },
-            traitement4 = {
-                --cupcake
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement Cupcake",
-                Pos = {x = -1837.41, y = -1186.21, z = 13.33},
-                required = "bread",
-                giveitem = "cupcake",
-                RemoveItem = "bread",
-                add = "~p~+ 1  Cupcake"
             },
             traitement5 = {
                 --Café
@@ -1958,6 +1934,171 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Pearls - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cafe",
+                price = math.random(13,16),
+                add = "~p~- 1 Café"
+            }
+        }
+    },
+    tacoloco = {
+        label = "Taco Loco",
+        label2 = "Taco Loco",
+        iban = "tacoloco",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Taco Loco",
+                subtitle = "Actions disponibles",
+                name = "restaurant_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("tacoloco")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Taco Loco", "Annonce", text, "CHAR_TACOLOCO", 8, "Taco Loco")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Taco Loco",
+            Pos = {x = 416.2844, y = -1929.2210, z = 23.43},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24}
+            },
+            Blipdata = {
+                Pos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 426.0520, y = -1911.7979, z = 24.47},
+                Limit = 500,
+                Name = "coffre_tacoloco2"
+            },
+            {
+                Pos = {x = 418.2400, y = -1916.0034, z = 24.47},
+                Limit = 500,
+                Name = "coffre_tacoloco1"
+            },
+            {
+                Pos = {x = 429.8100, y = -1915.5762, z = 24.47},
+                Limit = 500,
+                Name = "coffre_tacoloco"
+            }
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = 425.4309, y = -1917.5015, z = 25.47}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercrafttacoZone()
+                end,
+                Exit = function()
+                    ExitcrafttacoZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Taco Loco - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Taco Loco - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 10.0,
+                blipcolor = 7,
+                blipname = "Taco Loco - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe1",
+                giveitem = "cafe",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Taco Loco - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
                 required = "cafe",
                 price = math.random(13,16),
@@ -2063,6 +2204,35 @@ Jobs = {
                 Name = "coffre_Mirror_club"
             }
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1352.6164, y = -1068.4773, z = 6.98}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftmirorZone()
+                end,
+                Exit = function()
+                    ExitcraftmirorZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Mirror - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
             recolte = {
@@ -2077,60 +2247,6 @@ Jobs = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
                 }
-            },
-            traitement2 = {
-                --Filet de daurade
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -1352.45, y = -1068.95, z = 6.98},
-                required = "fish6",
-                giveitem = "filetdaurade",
-                RemoveItem = "fish6",
-                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
-            },
-            traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement milkshack",
-                Pos = {x = -1343.49, y = -1061.64, z = 6.98},
-                required = "milk",
-                giveitem = "milkshack",
-                RemoveItem = "milk",
-                add = "~p~+ 1  Milkshack"
-            },
-            traitement3 = {
-                --pizza au saumon
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "four",
-                Pos = {x = -1341.67, y = -1069.72, z = 6.98},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                giveitem = "pizzasaumon",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "fish12", count = 1}
-                },
-                add = "~p~+ 1  Pizza au saumon"
-            },
-            traitement4 = {
-                --cupcake
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement Cupcake",
-                Pos = {x = -1350.88, y = -1072.00, z = 6.98},
-                required = "bread",
-                giveitem = "cupcake",
-                RemoveItem = "bread",
-                add = "~p~+ 1  Cupcake"
             },
             traitement6 = {
                 --Café
@@ -2952,7 +3068,7 @@ Jobs = {
                 Name = "coffre_restaurantfood"
             },
             {
-                Pos = {x = -1186.5991, y = -903.3736, z = 13.97 - 0.98},
+                Pos = {x = -1182.4001, y = -899.5428, z = 13.97 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood1"
             },
@@ -2960,7 +3076,41 @@ Jobs = {
                 Pos = {x = -1193.0552, y = -897.1772, z = 13.97 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood2"
+            } ,
+            {
+                Pos = {x = -1179.2254, y = -894.7935, z = 13.97 - 0.98},
+                Limit = 100,
+                Name = "coffre_restaurantfood3"
             } 
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1198.1027, y = -896.0474, z = 13.97}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftBurgerZone()
+                end,
+                Exit = function()
+                    ExitcraftburgerZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "BurgerShot - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
         },
         requiredService = false,
         work = {
@@ -2977,73 +3127,7 @@ Jobs = {
                     anim = "pickup_snowball"
                 }
             },
-            traitement2 = {
-                --frites
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 5,
-                blipname = "Friteuse",
-                Pos = {x = -1200.5531, y = -897.4307, z = 13.9741},
-                required = "pommeterre",
-                giveitem = "frites",
-                noFarm = true,
-                RemoveItem = "pommeterre",
-                add = "~p~+ 1  Barquette de frites"
-            },
             traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 6,
-                blipname = "Traitement Milkshake",
-                Pos = {x = -1196.3409, y = -894.2233, z = 13.9741},
-                required = "milk",
-                giveitem = {
-                    {name = "milkshack", count = 5},
-                },
-                RemoveItem = "milk",
-                noFarm = true,
-                add = "~p~+ 5  Milkshake"
-            },
-            traitement3 = {
-                --hamburger
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                noFarm = true,
-                blipname = "Grill Burger Poulet",
-                Pos = {x = -1197.6510, y = -895.5382, z = 13.9741},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "chicken", count = 1}
-                },
-                giveitem = "burger",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "chicken", count = 1}
-                },
-                add = "~p~+ 1  Hamburger poulet"
-            },
-            traitement5 = {
-                --hamburger
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 8,
-                noFarm = true,
-                blipname = "Grill Burger Healthy",
-                Pos = {x = -1196.3144, y = -899.9614, z = 13.9741},
-                required = {
-                    {name = "bread", count = 1},
-                    {name = "meat", count = 1}
-                },
-                giveitem = "burgerhealthy",
-                RemoveItem = {
-                    {name = "bread", count = 1},
-                    {name = "meat", count = 1}
-                },
-                add = "~p~+ 1  Hamburger Healthy"
-            },
-            traitement7 = {
                 --Café
                 type = "traitement",
                 workSize = 10.0,
@@ -4170,7 +4254,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1907.4420, y = 2073.0834, z = 139.48},
+                Pos = {x = -1905.6743, y = 2072.8759, z = 139.48},
                 Limit = 9999,
                 Name = "coffre_distillerie"
             },
@@ -4206,7 +4290,7 @@ Jobs = {
                 Name = "coffre_distillerie_gestion"
             },
             {
-                Pos = {x = -1909.5435, y = 2073.9716, z = 140.38},
+                Pos = {x = -1910.5480, y = 2075.4038, z = 139.58},
                 Limit = 9999,
                 Name = "coffre_distillerie_drh"
             }
@@ -8524,35 +8608,6 @@ Jobs = {
                     }
                 }
             },
-            Extrapos = {
-                ExtraVehicle = {
-                    Pos = {
-                        {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
-                    },
-                    restricted = {1, 2, 3, 4, 5, 6, 7},
-                    Enter = function()
-                        EnterExtraPompierVehicleZone()
-                    end,
-                    Exit = function()
-                        ExitExtraPompierVehicleZone()
-                    end,
-                    zonesize = 3.5,
-                    Blips = {
-                        sprite = 402,
-                        color = 81,
-                        name = "LSFD - Extras"
-                    },
-                    Marker = {
-                        type = 1,
-                        scale = {x = 3.5, y = 3.5, z = 0.1},
-                        color = {r = 255, g = 255, b = 255, a = 120},
-                        Up = false,
-                        Cam = false,
-                        Rotate = false,
-                        visible = true
-                    }
-                }
-            },
             buttons = {
                 {
                     label = "Facturation",
@@ -9057,7 +9112,7 @@ Jobs = {
                             ["torso_2"] = 1,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 4,
+                            ["arms"] = 86,
                             ["pants_1"] = 101,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 51,
@@ -9078,7 +9133,7 @@ Jobs = {
                             ["torso_2"] = 1,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 3,
+                            ["arms"] = 101,
                             ["pants_1"] = 105,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 52,
@@ -9101,7 +9156,7 @@ Jobs = {
                             ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 4,
+                            ["arms"] = 86,
                             ["pants_1"] = 101,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 51,
@@ -9122,7 +9177,7 @@ Jobs = {
                             ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 3,
+                            ["arms"] = 101,
                             ["pants_1"] = 105,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 52,
@@ -9145,7 +9200,7 @@ Jobs = {
                             ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 11,
+                            ["arms"] = 92,
                             ["pants_1"] = 101,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 51,
@@ -9166,7 +9221,7 @@ Jobs = {
                             ["torso_2"] = 0,
                             ["decals_1"] = 0,
                             ["decals_2"] = 0,
-                            ["arms"] = 9,
+                            ["arms"] = 106,
                             ["pants_1"] = 105,
                             ["pants_2"] = 0,
                             ["shoes_1"] = 52,
@@ -9759,6 +9814,35 @@ Jobs = {
                     },
                 }
             }
+        },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
+                },
+                restricted = {1, 2, 3, 4, 5, 6, 7},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "LSFD - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
         }
     },
 
@@ -10178,7 +10262,9 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                   {x = -376.76, y = -105.69, z = 37.7}
+                   {x = -376.76, y = -105.69, z = 37.7},
+                   {x = -329.2701, y = -160.3248, z = 35.60},
+                   {x = -327.2104, y = -152.2423, z = 35.60}
                    -- {x = -1071.99, y = -868.38, z = 4.87}
                 },
                 Enter = EnterZoneTow,
@@ -10228,7 +10314,7 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -311.08, y = -136.7, z = 38.01},
-                Limit = 100,
+                Limit = 500,
                 Name = "coffre_mecano"
             }
         },
@@ -11713,19 +11799,19 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1389.6429, y = -613.6432, z = 30.32},
+                Pos = {x = -1376.6281, y = -621.8822, z = 35.00},
+                Limit = 100,
+                Name = "Coffre_Patronbahama"
+            },
+            {
+                Pos = {x = -1378.5832, y = -594.6552, z = 29.30},
                 Limit = 1000,
                 Name = "Frigo_Bahama"
             },
             {
-                Pos = {x = -1390.8715, y = -607.7440, z = 30.32},
+                Pos = {x = -1385.6295, y = -627.2821, z = 35.00},
                 Limit = 1000,
                 Name = "Frigo_Bahama2"
-            },
-            {
-                Pos = {x = -1364.1690, y = -623.1672, z = 30.32},
-                Limit = 100,
-                Name = "Coffre_Patronbahama"
             }
         },
         Menu = {
@@ -12245,6 +12331,35 @@ Jobs = {
                 Pos = {x = -172.3963, y = 291.7341, z = 92.76},
                 Limit = 800,
                 Name = "Coffre Boss Bar Little Seoul"
+            }
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -175.9085, y = 301.9834, z = 97.45}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftsanZone()
+                end,
+                Exit = function()
+                    ExitcraftsanZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "San-In - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
             }
         },
         requiredService = false,

@@ -1,0 +1,221 @@
+@import 'settings';
+
+//shortcuts
+$phone-background-default: "phone-background-default";
+
+$phone-wallpaper-ios15: "phone-wallpaper-ios15";
+$phone-wallpaper-starlight: "phone-wallpaper-starlight";
+$phone-wallpaper-midnight: "phone-wallpaper-midnight";
+$phone-wallpaper-blue: "phone-wallpaper-blue";
+$phone-wallpaper-pink: "phone-wallpaper-pink";
+$phone-wallpaper-red: "phone-wallpaper-red";
+$phone-wallpaper-green: "phone-wallpaper-green";
+$phone-wallpaper-silver: "phone-wallpaper-silver";
+$phone-wallpaper-graphite: "phone-wallpaper-graphite";
+$phone-wallpaper-gold: "phone-wallpaper-gold";
+$phone-wallpaper-sierraBlue: "phone-wallpaper-sierraBlue";
+$phone-wallpaper-alpineGreen: "phone-wallpaper-alpineGreen";
+
+$phone-lock-background-default: "phone-lock-background-default";
+$phone-screen-content-header-color: "phone-screen-content-header-color";
+$phone-screen-content-footer-color: "phone-screen-content-footer-color";
+$phone-screen-content-lock-color: "phone-screen-content-lock-color";
+$phone-app-home-list-primary-background-color: "phone-app-home-list-primary-background-color";
+$phone-app-background-color: "phone-app-background-color";
+$phone-app-tab-background-color: "phone-app-tab-background-color";
+$phone-app-tab-button-color: "phone-app-tab-button-color";
+$phone-app-calculator-background-color: "phone-app-calculator-background-color";
+$phone-app-calculator-button-color: "phone-app-calculator-button-color";
+$phone-app-label-color-primary: "phone-app-label-color-primary";
+$phone-app-body-content-body-list-item-border-color: "phone-app-body-content-body-list-item-border-color";
+$phone-app-label-color-active: "phone-app-label-color-active";
+$phone-app-description-color: "phone-app-description-color";
+$phone-app-info-color: "phone-app-info-color";
+$phone-system-color-red: "phone-system-color-red";
+$phone-system-color-orange: "phone-system-color-orange";
+$phone-system-color-yellow: "phone-system-color-yellow";
+$phone-system-color-green: "phone-system-color-green";
+$phone-system-color-teal: "phone-system-color-teal";
+$phone-system-color-blue: "phone-system-color-blue";
+$phone-system-color-indigo: "phone-system-color-indigo";
+$phone-system-color-purple: "phone-system-color-purple";
+$phone-system-color-pink: "phone-system-color-pink";
+$phone-system-color-black: "phone-system-color-black";
+$phone-system-color-white: "phone-system-color-white";
+$phone-system-color-gray: "phone-system-color-gray";
+$phone-system-color-gray-2: "phone-system-color-gray-2";	
+$phone-system-color-gray-3: "phone-system-color-gray-3";	
+$phone-system-color-gray-4: "phone-system-color-gray-4";	
+$phone-system-color-gray-5: "phone-system-color-gray-5";
+$phone-system-color-gray-6: "phone-system-color-gray-6";
+$phone-app-clock-color-active: "phone-app-clock-color-active";
+$phone-app-clock-addalarm-input: "phone-app-clock-addalarm-input";
+$phone-notification-background-color: "phone-notification-background-color";
+$phone-notification-color: "phone-notification-color";
+$phone-app-modal-header-input-background-color: "phone-app-modal-header-input-background-color";
+$phone-app-message-footer-icon-color: "phone-app-message-footer-icon-color";
+$phone-input-switch-background-color: "phone-input-switch-background-color";
+$phone-input-switch-background-color-active: "phone-input-switch-background-color-active";
+$phone-input-switch-after-background-color: "phone-input-switch-after-background-color";
+$phone-app-settings-wallpaper-light: "phone-app-settings-wallpaper-light";
+$phone-app-settings-wallpaper-dark: "phone-app-settings-wallpaper-dark";
+
+$phone-contextmenu-menu-border-color: "phone-contextmenu-menu-border-color";
+$phone-contextmenu-menu-background-color: "phone-contextmenu-menu-background-color";
+$phone-contextmenu-item-border-color: "phone-contextmenu-item-border-color";
+$phone-contextmenu-item-color: "phone-contextmenu-item-color";
+$phone-contextmenu-item-background-color: "phone-contextmenu-item-background-color";
+
+//themes
+$themes: (
+        default: (
+                phone-background-default: url("../images/wallpaper/wallpaper-ios15-light.jpg"),
+
+                phone-wallpaper-ios15: url("../images/wallpaper/wallpaper-ios15-light.jpg"),
+                phone-wallpaper-starlight: url("../images/wallpaper/wallpaper-starlight-light.jpg"),
+                phone-wallpaper-midnight: url("../images/wallpaper/wallpaper-midnight-light.jpg"),
+                phone-wallpaper-blue: url("../images/wallpaper/wallpaper-blue-light.jpg"),
+                phone-wallpaper-pink: url("../images/wallpaper/wallpaper-pink-light.jpg"),
+                phone-wallpaper-red: url("../images/wallpaper/wallpaper-red-light.jpg"),
+                phone-wallpaper-green: url("../images/wallpaper/wallpaper-green-light.jpg"),
+                phone-wallpaper-silver: url("../images/wallpaper/wallpaper-silver-light.jpg"),
+                phone-wallpaper-graphite: url("../images/wallpaper/wallpaper-graphite-light.jpg"),
+                phone-wallpaper-gold: url("../images/wallpaper/wallpaper-gold-light.jpg"),
+                phone-wallpaper-sierraBlue: url("../images/wallpaper/wallpaper-sierraBlue-light.jpg"),
+                phone-wallpaper-alpineGreen: url("../images/wallpaper/wallpaper-alpineGreen-light.jpg"),
+
+                phone-lock-background-default: url("../images/wallpaper/wallpaper-red-light.jpg"),
+                phone-screen-content-header-color: $system--white--light,
+                phone-screen-content-footer-color: $system--white--light,
+                phone-screen-content-lock-color: $system--white--light,
+                phone-app-home-list-primary-background-color: $system--material--thin-light,
+                phone-app-background-color: $system--background-primary-light,
+                phone-app-tab-background-color: $app--tab--background--color--light,
+                phone-app-tab-button-color: $app--tab--color--light,
+                phone-app-calculator-background-color: $system--background-primary-light,
+                phone-app-calculator-button-color: $label--color--primary--light,
+                phone-app-label-color-primary: $label--color--primary--light,
+                phone-app-body-content-body-list-item-border-color: $system--gray--5--light,
+                phone-app-label-color-active: $system--blue--light,
+                phone-app-description-color: $system--gray--light,
+                phone-app-info-color: $system--gray--2--dark,
+                phone-system-color-red: $system--red--light,
+                phone-system-color-orange: $system--orange--light,
+                phone-system-color-yellow: $system--yellow--light,
+                phone-system-color-green: $system--green--light,
+                phone-system-color-teal: $system--teal--light,
+                phone-system-color-blue: $system--blue--light,
+                phone-system-color-indigo: $system--indigo--light,
+                phone-system-color-purple: $system--purple--light,
+                phone-system-color-pink: $system--pink--light,
+                phone-system-color-black: $system--black--light,
+                phone-system-color-white: $system--white--light,
+                phone-system-color-gray: $system--gray--light,
+                phone-system-color-gray-2: $system--gray--2--light,
+                phone-system-color-gray-3: $system--gray--3--light,
+                phone-system-color-gray-4: $system--gray--4--light,
+                phone-system-color-gray-5: $system--gray--5--light,
+                phone-system-color-gray-6: $system--gray--6--light,
+                phone-app-clock-color-active: $system--orange--light,
+                phone-app-clock-addalarm-input: $app--clock--gray--light,
+                phone-notification-background-color: $system-notification--background--color--light,
+                phone-notification-color: $system-notification--color--light,
+                phone-app-modal-header-input-background-color: $system--material--fill--secondary--light,
+                phone-app-message-footer-icon-color: $system--material--fill--primary--light,
+                phone-input-switch-background-color: $phone--input--switch--background--color--light,
+                phone-input-switch-after-background-color: $phone--input--switch--after--background--color--light,
+                phone-input-switch-background-color-active: $system--green--light,
+                phone-app-settings-wallpaper-light: block,
+                phone-app-settings-wallpaper-dark: none,
+
+                phone-contextmenu-menu-border-color: $phone--contextmenu--menu--border--color--light,
+                phone-contextmenu-menu-background-color: $phone--contextmenu--menu--background--color--light,
+                phone-contextmenu-item-border-color: $phone--contextmenu--item--border--color--light,
+                phone-contextmenu-item-color: $phone--contextmenu--item--color--light,
+                phone-contextmenu-item-background-color: $phone--contextmenu--item--background--color--light,
+        ),
+        dark: (
+                phone-background-default: url("../images/wallpaper/wallpaper-ios15-dark.jpg"),
+
+                phone-wallpaper-ios15: url("../images/wallpaper/wallpaper-ios15-dark.jpg"),
+                phone-wallpaper-starlight: url("../images/wallpaper/wallpaper-starlight-dark.jpg"),
+                phone-wallpaper-midnight: url("../images/wallpaper/wallpaper-midnight-dark.jpg"),
+                phone-wallpaper-blue: url("../images/wallpaper/wallpaper-blue-dark.jpg"),
+                phone-wallpaper-pink: url("../images/wallpaper/wallpaper-pink-dark.jpg"),
+                phone-wallpaper-red: url("../images/wallpaper/wallpaper-red-dark.jpg"),
+                phone-wallpaper-green: url("../images/wallpaper/wallpaper-green-dark.jpg"),
+                phone-wallpaper-silver: url("../images/wallpaper/wallpaper-silver-dark.jpg"),
+                phone-wallpaper-graphite: url("../images/wallpaper/wallpaper-graphite-dark.jpg"),
+                phone-wallpaper-gold: url("../images/wallpaper/wallpaper-gold-dark.jpg"),
+                phone-wallpaper-sierraBlue: url("../images/wallpaper/wallpaper-sierraBlue-dark.jpg"),
+                phone-wallpaper-alpineGreen: url("../images/wallpaper/wallpaper-alpineGreen-dark.jpg"),
+
+                phone-lock-background-default: url("../images/wallpaper/wallpaper-red-dark.jpg"),
+                phone-screen-content-header-color: $system--white--dark,
+                phone-screen-content-footer-color: $system--white--dark,
+                phone-screen-content-lock-color: $system--white--dark,
+                phone-app-home-list-primary-background-color: $system--material--thin-dark,
+                phone-app-background-color: $system--background-primary-dark,
+                phone-app-tab-background-color: $app--tab--background--color--dark,
+                phone-app-tab-button-color: $app--tab--color--dark,
+                phone-app-calculator-background-color: $system--background-primary-dark,
+                phone-app-calculator-button-color: $label--color--primary--dark,
+                phone-app-label-color-primary: $label--color--primary--dark,
+                phone-app-body-content-body-list-item-border-color: $system--gray--5--dark,
+                phone-app-label-color-active: $system--blue--dark,
+                phone-app-description-color: $system--gray--dark,
+                phone-app-info-color: $system--gray--2--light,
+                phone-system-color-red: $system--red--dark,
+                phone-system-color-orange: $system--orange--dark,
+                phone-system-color-yellow: $system--yellow--dark,
+                phone-system-color-green: $system--green--dark,
+                phone-system-color-teal: $system--teal--dark,
+                phone-system-color-blue: $system--blue--dark,
+                phone-system-color-indigo: $system--indigo--dark,
+                phone-system-color-purple: $system--purple--dark,
+                phone-system-color-pink: $system--pink--dark,
+                phone-system-color-black: $system--black--dark,
+                phone-system-color-white: $system--white--dark,
+                phone-system-color-gray: $system--gray--dark,
+                phone-system-color-gray-2: $system--gray--2--dark,
+                phone-system-color-gray-3: $system--gray--3--dark,
+                phone-system-color-gray-4: $system--gray--4--dark,
+                phone-system-color-gray-5: $system--gray--5--dark,
+                phone-system-color-gray-6: $system--gray--6--dark,
+                phone-app-clock-color-active: $system--orange--dark,
+                phone-app-clock-addalarm-input: $app--clock--gray--dark,
+                phone-notification-background-color: $system-notification--background--color--dark,
+                phone-notification-color: $system-notification--color--dark,
+                phone-app-modal-header-input-background-color: $system--material--fill--secondary--dark,
+                phone-app-message-footer-icon-color: $system--material--fill--primary--dark,
+                phone-input-switch-background-color: $phone--input--switch--background--color--dark,
+                phone-input-switch-after-background-color: $phone--input--switch--after--background--color--dark,
+                phone-input-switch-background-color-active: $system--green--dark,
+                phone-app-settings-wallpaper-light: none,
+                phone-app-settings-wallpaper-dark: block,
+
+                phone-contextmenu-menu-border-color: $phone--contextmenu--menu--border--color--dark,
+                phone-contextmenu-menu-background-color: $phone--contextmenu--menu--background--color--dark,
+                phone-contextmenu-item-border-color: $phone--contextmenu--item--border--color--dark,
+                phone-contextmenu-item-color: $phone--contextmenu--item--color--dark,
+                phone-contextmenu-item-background-color: $phone--contextmenu--item--background--color--dark,
+        ),
+);
+
+@mixin themed() {
+    @each $theme, $map in $themes {
+        .theme--#{$theme} & {
+            $theme-map: () !global;
+            @each $key, $submap in $map {
+                $value: map-get(map-get($themes, $theme), '#{$key}');
+                $theme-map: map-merge($theme-map, ($key: $value)) !global;
+            }
+            @content;
+            $theme-map: null !global;
+        }
+    }
+}
+
+@function t($key) {
+    @return map-get($theme-map, $key);
+}

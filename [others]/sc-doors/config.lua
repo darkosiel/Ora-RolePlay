@@ -876,39 +876,105 @@ Config.DoorList = {
 
         -- THE PEARLS --
 
-        {
-            objHash = -1197804771,
-            objHeading = 151.22,
-            objCoords = vector3(-1836.90, -1190.34, 19.08),
-            textCoords = vector3(-1836.90, -1190.34, 19.08),
-            authorizedJobs = {'pearls'},
-            locked = true,
-            maxDistance = 1.5
+    {
+        objHash = -1197804771,
+        objCoords = vector3(-1836.90, -1190.34, 19.08),
+        textCoords = vector3(-1836.90, -1190.34, 19.08),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
     
-        },
-        {
-            objHash = -1196002204,
-            objHeading = 331.25,
-            objCoords = vector3(-1830.24, -1181.78, 19.40),
-            textCoords = vector3(-1830.24, -1181.78, 19.40),
-            authorizedJobs = {'pearls'},
-            locked = true,
-            maxDistance = 1.5
-    
-        },
-        {
-            objHash = -1285189121,
-            objHeading = 329.11,
-            objCoords = vector3(-1847.27, -1189.99, 14.47),
-            textCoords = vector3(-1847.27, -1189.99, 14.47),
-            authorizedJobs = {'pearls'},
-            locked = true,
-            maxDistance = 1.5
-    
-        },
+    },
+    {
+        objHash = -1196002204,
+        objCoords = vector3(-1830.24, -1181.78, 19.40),
+        textCoords = vector3(-1830.24, -1181.78, 19.40),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
 
+    },
+    {
+        objHash = -1285189121,
+        objCoords = vector3(-1847.27, -1189.99, 14.47),
+        textCoords = vector3(-1847.27, -1189.99, 14.47),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
     
-
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1815.88427734375, -1194.8330078125, 14.863202095031738),
+        textCoords = vector3(-1815.88427734375, -1194.8330078125, 14.863202095031738),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1817.9013671875, -1193.6683349609375, 14.863202095031738),
+        textCoords = vector3(-1817.9013671875, -1193.6683349609375, 14.863202095031738),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = -1643773373,
+        objCoords = vector3(-1845.4246826171875, -1194.8035888671875, 19.455190658569336),
+        textCoords = vector3(-1845.4246826171875, -1194.8035888671875, 19.455190658569336),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1843.049560546875, -1200.0379638671875, 14.863687515258789),
+        textCoords = vector3(-1843.049560546875, -1200.0379638671875, 14.863687515258789),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1841.8841552734375, -1198.0194091796875, 14.863687515258789),
+        textCoords = vector3(-1841.8841552734375, -1198.0194091796875, 14.863687515258789),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1823.80810546875, -1202.057373046875, 19.992624282836914),
+        textCoords = vector3(-1823.80810546875, -1202.057373046875, 19.992624282836914),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1994441020,
+        objCoords = vector3(-1822.6376953125, -1200.036376953125, 19.957948684692383),
+        textCoords = vector3(-1822.6376953125, -1200.036376953125, 19.957948684692383),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
+    {
+        objHash = 1870406214,
+        objCoords = vector3(-1831.5758056640625, -1180.9742431640625, 14.749608993530273),
+        textCoords = vector3(-1831.5758056640625, -1180.9742431640625, 14.749608993530273),
+        authorizedJobs = {'pearls'},
+        locked = true,
+        maxDistance = 1.5
+    
+    },
     -- STUDIO LABEL --
 
     {
@@ -1473,38 +1539,44 @@ Config.DoorList = {
     
         --bahamas
     {
-        objHash = GetHashKey("v_ilev_carmod3door"),
-        objCoords = vector3(-1394.1654052734375, -635.7523193359375, 29.57242202758789),
-        textCoords = vector3(-1394.1654052734375, -635.7523193359375, 29.57242202758789),
+        objHash = -880376952,
+        objCoords = vector3(-1387.0535888671875, -586.5787963867188, 30.386581420898438),
+        textCoords = vector3(-1387.0535888671875, -586.5787963867188, 30.386581420898438),
         authorizedJobs = {"bahamas"},
         locked = true,
-        maxDistance = 5.0
+        maxDistance = 2.5
     },
     {
-        objHash = GetHashKey("apa_prop_apa_cutscene_doorb"),
-        objCoords = vector3(-1391.6361083984375, -640.3447875976562, 28.875608444213867),
-        textCoords = vector3(-1391.6361083984375, -640.3447875976562, 28.875608444213867),
+        objHash = -880376952,
+        objCoords = vector3(-1389.2301025390625, -587.9961547851562, 30.3863525390625),
+        textCoords = vector3(-1389.2301025390625, -587.9961547851562, 30.3863525390625),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = -1266543998,
+        objCoords = vector3(-1389.48767089843755, -623.2332763671875, 30.36359977722168),
+        textCoords = vector3(-1389.4876708984375, -623.2332763671875, 30.36359977722168),
+        authorizedJobs = {"bahamas"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = GetHashKey("prop_ch3_04_door_02"),
+        objCoords = vector3(-1379.41748046875, -628.7461547851562, 28.888845443725586),
+        textCoords = vector3(-1379.41748046875, -628.7461547851562, 28.888845443725586),
         authorizedJobs = {"bahamas"},
         locked = true,
         maxDistance = 1.5
     },
-
     {
-        objHash = -1119680854,
-        objCoords = vector3(-1389.234375, -587.956787109375, 30.519865036010742),
-        textCoords = vector3(-1389.234375, -587.956787109375, 30.519865036010742),
+        objHash = -1459022116,
+        objCoords = vector3(-1379.3011474609375, -636.8530883789062, 29.627294540405273),
+        textCoords = vector3(-1379.3011474609375, -636.8530883789062, 29.627294540405273),
         authorizedJobs = {"bahamas"},
         locked = true,
-        maxDistance = 2.0
-    },
-
-    {
-        objHash = -1119680854,
-        objCoords = vector3(-1387.0704345703125, -586.5470581054688, 30.519868850708008),
-        textCoords = vector3(-1387.0704345703125, -586.5470581054688, 30.519868850708008),
-        authorizedJobs = {"bahamas"},
-        locked = true,
-        maxDistance = 2.0
+        maxDistance = 7.0
     },
        
     --Japonnais
@@ -1573,7 +1645,42 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.0
     },
+    ---Taco Loco
 
+    {
+        objHash = GetHashKey("prop_bs_map_door_01"),
+        objCoords = vector3(416.14190673828125, -1903.447509765625, 25.763065338134766),
+        textCoords = vector3(416.14190673828125, -1903.447509765625, 25.763065338134766),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
+
+    {
+        objHash = GetHashKey("prop_bs_map_door_01"),
+        objCoords = vector3(421.2456970214844, -1923.8768310546875, 25.66853904724121),
+        textCoords = vector3(421.2456970214844, -1923.8768310546875, 25.66853904724121),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
+
+    {
+        objHash = -567327289,
+        objCoords = vector3(410.99761962890625, -1909.6868896484375, 25.716644287109375),
+        textCoords = vector3(410.99761962890625, -1909.6868896484375, 25.716644287109375),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
+    {
+        objHash = -567327289,
+        objCoords = vector3(410.89947509765625, -1911.7393798828125, 25.714988708496094),
+        textCoords = vector3(410.89947509765625, -1911.7393798828125, 25.714988708496094),
+        authorizedJobs = {"tacoloco"},
+        locked = true,
+        maxDistance = 2.0
+    },
 }
 
 -- EXAMPLE HOW TO DO DOORS WITH OBJECT HASHES

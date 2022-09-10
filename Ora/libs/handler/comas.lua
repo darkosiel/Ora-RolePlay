@@ -354,7 +354,7 @@ AddEventHandler(
             TriggerServerCallback(
                 "Ora::SE::Health:IsPlayerDead",
                 function(bool)
-                    print("Death status : " .. bool)
+                    print("Death status : " .. tostring(bool))
                     if bool then
                         --Ora.Health:Slay()
                     end
@@ -503,11 +503,11 @@ AddEventHandler(
             if ped ~= victimEntity then
                 return
             end
-            
+            print("I'm hit by a damage")
             Ora.Core:Debug(string.format("victimEnt : ^5%s^3\nattackEnt : ^5%s^3\nx1 : ^5%s^3\nx2 : ^5%s^3\nx3 : ^5%s^3\nfatalBool : ^5%s^3\nweaponUsed : ^5%s^3\nx4 : ^5%s^3\nx5 : ^5%s^3\nx6 : ^5%s^3\nx7 : ^5%s^3\nx8 : ^5%s^3\nentityType : ^5%s^3", victimEntity, attackEntity, x1, x2, x3, fatalBool, weaponUsed, x4, x5, x6, x7, x8, entityType))
             local IsKO = fatalBool ~= 0 and (IsPedArmed(attackEntity, 1) or tableHasValue(KOWeapons, weaponUsed))
             eventName = IsKO and "EntityKO" or fatalBool ~= 0 and "EntityDeath" or "EntityTakeDamage"
-
+            --print(eventName, fatalBool, IsKo, victimEntity, attackEntity, weaponUsed)
             TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
                 function()
                     Ora.Health:SetCurrentRegisteredHealth(GetEntityHealth(PlayerPedId()))

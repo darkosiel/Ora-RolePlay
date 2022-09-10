@@ -49,6 +49,7 @@ local Infos = {
 
 local WeaponEqualAmmo = { 
     can = true,
+    flare = true,
     flashbang = true
     --snowball = true, -- not implemented yet, but weapon exists
 }
@@ -719,6 +720,8 @@ end
 function Ora.Inventory:UseItem(item)
     if Items[item.name].category == "weapon" then
         EquipWeapon(item)
+    elseif Items[item.name].category == "shield" then
+        EquipShield(item)
     elseif Items[item.name].type == "props" then
         SpecialProps(item)
     elseif Items[item.name].category == "food" then
