@@ -530,7 +530,7 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Coiffeur",
+            Name = "Garage Coiffeursud",
             Pos = {x = 142.0619, y = -1692.8919, z = 29.2917},
             Properties = {
                 type = 3,
@@ -625,7 +625,7 @@ Jobs = {
             {
                 Pos = {x = -36.48, y = -155.96, z = 57.07 - 0.98},
                 Limit = 100,
-                Name = "coffre_coiffeur"
+                Name = "coffre_coiffeur2"
             }
         },
         garage = {
@@ -677,7 +677,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Coiffeur Hawick", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur")
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Hawick", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur2")
                         end
                     end
                 }
@@ -724,11 +724,11 @@ Jobs = {
             {
                 Pos = {x = -36.48, y = -155.96, z = 57.07 - 0.98},
                 Limit = 100,
-                Name = "coffre_coiffeur"
+                Name = "coffre_coiffeur3"
             }
         },
         garage = {
-            Name = "Garage Coiffeur",
+            Name = "Garage Coiffeurmiror",
             Pos = {x = -19.92, y = -139.68, z = 56.83 - 0.98},
             Properties = {
                 type = 3,
@@ -776,7 +776,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Coiffeur Mirror park", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur")
+                            TriggerServerEvent("Job:Annonce", "Coiffeur Mirror park", "Annonce", text, "CHAR_BARBER", 8, "Coiffeur3")
                         end
                     end
                 }
