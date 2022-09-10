@@ -66,18 +66,18 @@ local Elevator = {
     {label = "Etage  3 - Dispatch-Gym", pos = vector3(-1096.15, -850.35, 25.82), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage  2 - Restauration", pos = vector3(-1096.15, -850.35, 22.03), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage  1 - Entrée principal", pos = vector3(-1096.15, -850.35, 18.00), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
-    {label = "Etage -3 - Armurerie-SWAT", pos = vector3(-1096.15, -850.35, 12.68), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
+    {label = "Etage -1 - Armurerie-SWAT", pos = vector3(-1096.15, -850.35, 12.68), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage -2 - Laboratoire-Saisies", pos = vector3(-1096.15, -850.35, 9.27), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
-    {label = "Etage -1 - Garages-Cellules", pos = vector3(-1096.15, -850.35, 3.88), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
+    {label = "Etage -3 - Garages-Cellules", pos = vector3(-1096.15, -850.35, 3.88), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     
   },
 
   ["LSPD2"] = {
     {label = "Etage  3 - Dispatch-Gym", pos = vector3(-1066.27, -833.69, 26.03), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage  1 - Entrée principal", pos = vector3(-1066.27, -833.69, 18.03), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
-    {label = "Etage -3 - Armurerie-SWAT", pos = vector3(-1066.27, -833.69, 13.88), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
+    {label = "Etage -1 - Armurerie-SWAT", pos = vector3(-1066.27, -833.69, 13.88), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage -2 - Laboratoire-Saisies", pos = vector3(-1066.27, -833.69, 10.04), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
-    {label = "Etage -1 - Garages-Cellules", pos = vector3(-1066.27, -833.69, 4.48), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
+    {label = "Etage -3 - Garages-Cellules", pos = vector3(-1066.27, -833.69, 4.48), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     
   },
 
