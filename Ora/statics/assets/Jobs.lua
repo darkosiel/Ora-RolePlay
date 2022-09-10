@@ -11799,7 +11799,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1376.6281, y = -621.8822, z = 35.00},
+                Pos = {x = -1378.0623, y = -625.5050, z = 35.00},
                 Limit = 100,
                 Name = "Coffre_Patronbahama"
             },
