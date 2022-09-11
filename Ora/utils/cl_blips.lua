@@ -7,14 +7,6 @@ local Blips = {
     {Pos = {x = 119.47, y = -1308.58, z = 29.71}, sprite = 121, size = 0.8, color = 61, name = "Vanilla Unicorn"},
     --{name="Aéroport", color=3, sprite=90, Pos = {x=-1336.25, y=-3043.99, z=13.9444}},
     --{name="Aéroport", color=3, sprite=90, Pos = {x=2044.42, y=4768.07, z=41.0603}},
-
-    {
-        name = "Distributeur de Billets",
-        color = 2,
-        sprite = 434,
-        size = 0.80,
-        Pos = {x = 89.9733, y = 2.18227, z = 68.2283}
-    },
     {
         name = "Distributeur de Billets",
         color = 2,
@@ -94,6 +86,7 @@ local Blips = {
     {name = "SubUrban", color = 64, sprite = 366, Pos = {x = 618.1, y = 2759.32, z = 40.98}},
     {name = "Salon de tatouage", color = 1, sprite = 75, Pos = {x = -1149.7503, y = -1428.5909, z = 3.95}},
     {name = "Post OP", color = 21, sprite = 616, Pos = {x = 1218.5623, y = -3274.3474, z = 29.7969}},
+    {name = "Pawn Shop", color = 12, sprite = 587, Pos = {x = 105.43, y = 9.43, z = 67.86}},
    -- {name = "Fujiwara Tofu", color = 63, sprite = 210, size = 1.0, Pos = {x = -165.19, y = 290.42, z = 93.76}},
     {name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
     {name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},

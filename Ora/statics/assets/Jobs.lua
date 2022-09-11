@@ -4095,6 +4095,199 @@ Jobs = {
             }
         }
     },
+    pawnshop = {
+        label = "Pawn Shop",
+        label2 = "Pawn Shop",
+        iban = "pawnshop",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 130,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 140,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 150,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 200,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 230,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Pawn Shop",
+                subtitle = "Actions",
+                name = "pawnshop_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("pawnshop")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "PawnShop", "Annonce", text, "CHAR_BEEKERS", 8, "Pawn Shop")
+                        end
+                    end
+                },
+                {
+                    label = "Créer une clé",
+                    onSelected = function()
+                        Clef()
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Créer une carte grise",
+                    onSelected = function()
+                        CarteGrise()
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Changer un propriétaire de véhicule - Personne en face",
+                    onSelected = function()
+                        local playerID = GetPlayerServerIdInDirection(5.0)
+
+                        if (playerID and playerID ~= false) then
+                            CGNvxProprioPlyrID(playerID)
+                        end
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Changer un propriétaire de véhicule - Nom/Prénom",
+                    onSelected = function()
+                        CGNvxProprioPlyr()
+                    end
+                },
+                {
+                    label = "Changer un propriétaire de véhicule - Entreprise",
+                    onSelected = function()
+                        CGNvxProprioJob()
+                    end
+                },
+                {
+                    label = "Mettre/Retirer le véhicule du plateau",
+                    onSelected = function()
+                        Mecano.PutPlateau()
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+                {
+                    label = "Retourner le véhicule",
+                    onSelected = function()
+                        SetVehicleOnGroundProperly(GetVehicleInDirection(5.0))
+                    end,
+                    ActiveFct = function()
+                        Mecano.ShowMarker()
+                    end
+                },
+                {
+                    label = "Annuler l'appel en cours",
+                    onSelected = function()
+                        TriggerEvent("call:cancelCall")
+                    end
+                }
+            },
+            submenus = {
+                ["Actions véhicule"] = {
+                    submenu = "pawnshop_menuperso",
+                    title = "Actions véhicule",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Inspecter l'état du véhicule",
+                                onSelected = function()
+                                    Mecano.CheckVehicle()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            },
+                            {
+                                label = "Inspecter les performances du véhicule",
+                                onSelected = function()
+                                    Mecano.CheckPerfs()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            },
+                            {
+                                label = "Mettre/Retirer le véhicule du plateau",
+                                onSelected = function()
+                                    Mecano.PutPlateau()
+                                end,
+                                ActiveFct = function()
+                                    Mecano.ShowMarker()
+                                end
+                            }
+                        },
+                        submenus = {}
+                    }
+                }
+            }
+        },
+        garage = {
+            Name = "Garage_pawnshop",
+            Pos = {x = 74.73, y = 18.13, z = 69.14},
+            Properties = {
+                type = 3, --job public
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 74.73, y = 18.13, z = 69.14, h = 159.84}
+            },
+            Blipdata = {
+                Pos = {x = 74.73, y = 18.13, z = 69.14},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 106.56, y = 18.44, z = 67.25},
+                Limit = 1000,
+                Name = "coffre_pawnshop"
+            }
+        }
+    },
     -- Mosley = {
     --     label = "Mosley",
     --     label2 = "Mosley",
