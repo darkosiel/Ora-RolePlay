@@ -499,10 +499,13 @@ VehiclePrices = {
     {name = "ruiner4", price = 32740},
     {name = "sentinel4", price = 55250},
     {name = "sm722", price = 158240},
+    {name = "tenf", price = 150000},
     {name = "tenf2", price = 162000},
+    {name = "torero2", price = 130000},
     {name = "vigero2", price = 46750},
     {name = "weevil2", price = 46700},
     {name = "pdumksx", price = 25000},
+    {name = "omnisegt", price = 125000},
 
     --LSFD
     {name = "lsfd", price = 25000},
