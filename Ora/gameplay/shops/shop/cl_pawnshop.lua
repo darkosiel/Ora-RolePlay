@@ -1,59 +1,56 @@
 local PawnShops = {
-    pawnshop_4 = {
-        position = vector3(103.48, 19.88, 66.90),
-        heading = 163.62,
-        seller_ped = "cs_bankman",
-        seller_name = "Edouard",
-        pawnshop_receipt = "PawnShop",
-        seller_identifier = "pawnshop_4",
+    pawnshop_1 = {
+        position = vector3(-1459.37, -413.67, 34.75),
+        heading = 157.74,
+        seller_ped = "s_f_m_shop_high",
+        seller_name = "Angelina Arnaka",
+        pawnshop_receipt = "Pawnshop",
+        seller_identifier = "pawnshop_1",
         blips = {
-            show = false,
+            show = true,
             sprite = 7,
             color = 7,
-            name = "Bank Exchange"
+            name = "Pawn Stairs"
         },
         items = {
             markedcheck = {
                 unitPrice = 20
             },
             goldpepite1 = {
-                unitPrice = 10
+                unitPrice = {min = math.random(6, 7), max = math.random(8, 9)}
             },
             goldpepite2 = {
-                unitPrice = 12
+                unitPrice = {min = math.random(8, 9), max = math.random(10, 11)}
             },
             goldpepite3 = {
-                unitPrice = 17
+                unitPrice = {min = math.random(12, 14), max = math.random(15, 17)}
             },
             goldpepite4 = {
-                unitPrice = 25
+                unitPrice = {min = math.random(19, 20), max = math.random(22, 24)}
             },
             goldpepite5 = {
-                unitPrice = 40
+                unitPrice = {min = math.random(27, 28), max = math.random(34, 37)}
             },
             goldpepite6 = {
-                unitPrice = 55
+                unitPrice = {min = math.random(42, 47), max = math.random(52, 57)}
             },
             jewels1 = {
-                unitPrice = 225
+                unitPrice = {min = 130, max = 230}
             },
             jewels2 = {
-                unitPrice = 125
+                unitPrice = {min = 60, max = 110}
             },
             jewels3 = {
-                unitPrice = 125
+                unitPrice = {min = 85, max = 110}
             },
             jewels4 = {
-                unitPrice = 150
+                unitPrice = {min = math.random(285, 300), max = math.random(310, 335)}
             },
             jewels5 = {
-                unitPrice = 450
+                unitPrice = {min = 85, max = 135}
             },
             jewels6 = {
-                unitPrice = 475
-            },
-            markedcheck = {
-                unitPrice = 20
+                unitPrice = {min = math.random(285, 310), max = math.random(335, 360)}
             },
             burglary_item = {
                 illegal = true,
@@ -256,6 +253,61 @@ local PawnShops = {
             },
             fish14 = {
                 unitPrice = {min = math.random(1, 2), max = math.random(3, 5)}
+            }
+        }
+    },
+    pawnshop_4 = {
+        position = vector3(253.73, 229.41, 100.68),
+        heading = 206.32,
+        seller_ped = "cs_bankman",
+        seller_name = "J. P. Morgan",
+        pawnshop_receipt = "Banque",
+        seller_identifier = "pawnshop_4",
+        blips = {
+            show = false,
+            sprite = 7,
+            color = 7,
+            name = "Bank Exchange"
+        },
+        items = {
+            markedcheck = {
+                unitPrice = 20
+            },
+            goldpepite1 = {
+                unitPrice = 10
+            },
+            goldpepite2 = {
+                unitPrice = 12
+            },
+            goldpepite3 = {
+                unitPrice = 17
+            },
+            goldpepite4 = {
+                unitPrice = 25
+            },
+            goldpepite5 = {
+                unitPrice = 40
+            },
+            goldpepite6 = {
+                unitPrice = 55
+            },
+            jewels1 = {
+                unitPrice = 225
+            },
+            jewels2 = {
+                unitPrice = 125
+            },
+            jewels3 = {
+                unitPrice = 125
+            },
+            jewels4 = {
+                unitPrice = 150
+            },
+            jewels5 = {
+                unitPrice = 450
+            },
+            jewels6 = {
+                unitPrice = 475
             }
         }
     },
