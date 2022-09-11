@@ -30,7 +30,7 @@ Config.DJPositions = {
         name = 'bahama',
         pos = vector3(-1390.0961, -605.7287, 31.51 - 0.98),
         requiredJob = nil, 
-        range = 25.0, 
+        range = 35.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
