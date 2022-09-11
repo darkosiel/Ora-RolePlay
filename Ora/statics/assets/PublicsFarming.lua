@@ -192,7 +192,8 @@ PublicFarm = {
                 anim = "pickup_snowball"
             },
             closedHours = {
-                19,
+                18, --20h00 IRL
+                19, 
                 20,
                 21,
                 22
