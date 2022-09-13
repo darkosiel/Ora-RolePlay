@@ -160,11 +160,17 @@ function Query:RequestPlayerContent(Source, Identifier, Callback)
 end
 
 function CreateUser(identifier, callback)
-    TriggerEvent('uuid', function(result)
-        local user = { uuid = result, identifier = identifier, money = 0, black_money = 0, group = "user", permission_level = 0 }
-        MySQL.Async.execute('INSERT INTO users (`uuid`, `identifier`, `money`, `black_money`, `group`, `permission_level`, `position`,`is_active`) VALUES (@uuid, @identifier, @money, @black_money, @group, @permission_level,@pos,1);', { uuid = user.uuid, identifier = user.identifier, money = user.money, black_money = user.black_money, permission_level = user.permission_level, group = user.group, license = user.license, pos = json.encode({}) }, function(e)
+    MySQL.Async.fetchScalar("SELECT COUNT(id) FROM users WHERE identifier = @identifier", {['@identifier'] = identifier }, function(result)
+        if result == 0 then
+            TriggerEvent('uuid', function(result)
+                local user = { uuid = result, identifier = identifier, money = 0, black_money = 0, group = "user", permission_level = 0 }
+                MySQL.Async.execute('INSERT INTO users (`uuid`, `identifier`, `money`, `black_money`, `group`, `permission_level`, `position`,`is_active`) VALUES (@uuid, @identifier, @money, @black_money, @group, @permission_level,@pos,1);', { uuid = user.uuid, identifier = user.identifier, money = user.money, black_money = user.black_money, permission_level = user.permission_level, group = user.group, license = user.license, pos = json.encode({}) }, function(e)
+                    callback()
+                end)
+            end)
+        else
             callback()
-        end)
+        end
     end)
 end
 
