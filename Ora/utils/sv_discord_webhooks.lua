@@ -14,7 +14,7 @@ local discordWBK = {
     "https://discord.com/api/webhooks/957345202580885574/6fKt3ubgtIcaoMpEx_9JVIHJHaMxHCUZGN7qPeANSZ2LJ2ft9wRqKKhYpfkG4XsoCtKw", -- 13   Report
     "https://discord.com/api/webhooks/957343304117289040/1yKbVLDURqH3oab1C4mfc321igZznK8_P2dCmASy_rqjLjqccHg1yaQLKJXoQ4zakWkA", -- 14   Connexion
     "https://discord.com/api/webhooks/957344265799888917/yi7JXfNK-r5ObNd87t4PllsVEzDwUvou4JDiyQd5E5Fxlr_0xbhKvLA9yWfHDweEAQvc", -- 15   Admin
-    "https://discord.com/api/webhooks/957344621229379645/VPVZunSJPZ71odvV9e3tN48oTQ7shv3GSW5hZfvfMK9kHYbo-d6i0xyNEF8X27kN1EAt", -- 16   Medecin
+    "https://discord.com/api/webhooks/1019299965366976624/jUEQa2Aa6SWlggesrCLvxQI87WdLFyawqJFmdTkj2QiDxylDJar6vvYzH9eVbEjI4pVc", -- 16   Medecin
     "https://discord.com/api/webhooks/957345323326513174/Me8qKmydxxEp1qK70Fi3fHk73-taTAQ0DRQRcY9iDtwGX_ux_KUTtgsxmCHExbPgHR4a", -- 17   Rapport de lancement
     "https://discord.com/api/webhooks/957344051579990096/AoZTVACryat7vLS69pSVHaJ3FHN7aSFN98bSIvQKThnWzl1B6tugl84e-gUbu7iXcR0R", -- 18   Migrant Smuggling
     "https://discord.com/api/webhooks/957344051579990096/AoZTVACryat7vLS69pSVHaJ3FHN7aSFN98bSIvQKThnWzl1B6tugl84e-gUbu7iXcR0R", -- 19   Burglary
