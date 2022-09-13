@@ -4254,6 +4254,11 @@ Jobs = {
         },
         Storage = {
             {
+                Pos = {x = -1896.6995, y = 2067.8933, z = 140.02},
+                Limit = 9999,
+                Name = "coffre_distillerie_gestion"
+            },
+            {
                 Pos = {x = -1905.6743, y = 2072.8759, z = 139.48},
                 Limit = 9999,
                 Name = "coffre_distillerie"
@@ -4283,11 +4288,6 @@ Jobs = {
                 Pos = {x = -1875.4757, y = 2054.1853, z = 140.06},
                 Limit = 9999,
                 Name = "coffre_distillerie_vestiaire"
-            },
-            {
-                Pos = {x = -1899.0695, y = 2068.7685, z = 140.02},
-                Limit = 9999,
-                Name = "coffre_distillerie_gestion"
             },
             {
                 Pos = {x = -1910.5480, y = 2075.4038, z = 139.58},
