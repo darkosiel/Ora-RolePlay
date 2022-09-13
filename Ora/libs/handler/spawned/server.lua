@@ -101,6 +101,7 @@ function Query:GetAllCharacterIdentity(Source, Identifier, Callback)
         if (result ~= nil) then
             for i = 1, #result do
                 MySQL.Async.fetchAll('SELECT * FROM players_identity WHERE uuid = @uuid', { ["@uuid"] = result[i].uuid }, function(list)
+                    print("^1[HealthDebug] - (".. os.date()..") - Health was set to " .. list[1].health .. " for " .. list[1].first_name .. " " .. list[1].last_name .. " (" .. list[1].uuid .. ")^7")
                     Callback(list)
                 end)
             end
@@ -158,6 +159,15 @@ function Query:RequestPlayerContent(Source, Identifier, Callback)
     end)
 end
 
+function CreateUser(identifier, callback)
+    TriggerEvent('uuid', function(result)
+        local user = { uuid = result, identifier = identifier, money = 0, black_money = 0, group = "user", permission_level = 0 }
+        MySQL.Async.execute('INSERT INTO users (`uuid`, `identifier`, `money`, `black_money`, `group`, `permission_level`, `position`,`is_active`) VALUES (@uuid, @identifier, @money, @black_money, @group, @permission_level,@pos,1);', { uuid = user.uuid, identifier = user.identifier, money = user.money, black_money = user.black_money, permission_level = user.permission_level, group = user.group, license = user.license, pos = json.encode({}) }, function(e)
+            callback()
+        end)
+    end)
+end
+
 --- Active ID : 0  = Personnage active uniquement besoin de chargé le contenue
 --- Active ID : 1  = Pas de personnage active mes retourne une table avec tout les personnage de l'utilisateur
 --- Active ID : 2  = Pas de personnage crée un perso
@@ -195,7 +205,9 @@ RegisterServerCallback('spawned:requestData', function(source, Callback)
                 end
             end)
         else
-            Callback(false, 2, {})
+            CreateUser(identifier, function()
+                Callback(false, 2, {})
+            end)
         end
     end)
 end)
