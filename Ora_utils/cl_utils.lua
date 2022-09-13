@@ -51,18 +51,6 @@ local RELATIONSHIP_HATE = 1
 )]]
 local mp_pointing = false
 local keyPressed = false
-local vehicleGenerator = {
-    {x = 1222.7, y = 2712.9, z = 38.01, r = 500}, -- AntiSpawn Larry's
-    {x = -44.02, y = -1098.0, z = 26.42, r = 100}, -- AntiSpawn concess sud
-    --{x = 133.89, y = 6604.01, z = 31.84, r = 500}, -- AntiSpawn biker QG
-    --{x = 1986.10, y = 3785.63, z = 34.65, r = 500}, -- AntiSpawn station sandy
-    {x = 1806.64, y = 3392.35, z = 41.44, r = 500}, -- AntiSpawn FlyWheels Garage
-    {x = 1210.2546, y = -3272.5209, z = 13.77, r = 500}, -- AntiSpawn Post Op
-    {x = -1342.8936, y = -1086.5444, z = 6.9363, r = 500}, -- AntiSpawn Mirror
-    --{x = 408.50, y = -988.39, z = 29.26, r = 500}, -- AntiSpawn LSPD
-    {x = 1639.45, y = 4836.45, z = 42.02, r = 500}, -- Club House AOD
-    {x = 1410.83, y = 1117.63, z = 114.83, r = 500} -- Antispawn Fuente Blanca
-}
 
 
 Player = {
@@ -234,8 +222,7 @@ Citizen.CreateThread(
         end
     end
 )
-
--- local clearAreaOfPedsArray = { --Antispawn PNJ
+local clearAreaOfPedsArray = { --Antispawn PNJ
 --     { pos = vector3(-1084.15, -821.88, 5.48), radius = 60.0 },
 --     { pos = vector3(326.78, -583.25, 43.4), radius = 50.0 },
 --     { pos = vector3(-556.62, 285.77, 82.18), radius = 25.0 },
@@ -254,8 +241,8 @@ Citizen.CreateThread(
 --     { pos = vector3(811.8556, -2149.9516, 29.6210), radius = 60.0 },-- Ammunation Sud
 --     { pos = vector3(1410.99, 1147.39, 114.33), radius = 60.0 },-- Madrazo
 --     { pos = vector3(146.24, -1113.88, 29.31), radius = 40.0 },-- PDM
---     { pos = vector3(-1839.58, -360.67, 59.00), radius = 40.0 },-- Hopital
--- }
+    { pos = vector3(-1839.58, -360.67, 59.00), radius = 40.0 },-- Hopital
+}
 
 -- Citizen.CreateThread(function()
 --     local PlayerId, PlayerPedId, GetEntityCoords, ClearAreaOfCops = PlayerId, PlayerPedId, GetEntityCoords, ClearAreaOfCops
