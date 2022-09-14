@@ -201,7 +201,7 @@ AddEventHandler(
     "Ora::SE::Player:RegisterHealth",
     function(health)
         local _source = source
-        if (health > 0 and health < 200) then
+        if (health > 0) then
             local results = MySQL.Sync.fetchAll(
                 "SELECT count(uuid) AS result_count FROM players_identity WHERE uuid = @uuid",
                 {
