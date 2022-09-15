@@ -983,7 +983,7 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = 818.11, y = -2155.71, z = 28.71},
-                Limit = 300,
+                Limit = 700,
                 Name = "coffre_ammunation"
             }
         },
