@@ -3833,7 +3833,6 @@ Jobs = {
                     end
                 }
             }
-            
         },
         garage = {
             Name = "Garage Galaxy",
@@ -3926,30 +3925,29 @@ Jobs = {
                 price = math.random(13,16),
                 add = "~p~- 1 Café"
             }
-        }   
-    },
-        garage = {
-            Name = "Garage_caroccasions",
-            Pos = {x = 1210.015, y = 2714.235, z = 37.20},
-            Properties = {
-                type = 3, --job public
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = 1210.015, y = 2714.235, z = 37.20, h = 351.93}
-            },
-            Blipdata = {
-                Pos = {x = 1210.015, y = 2714.235, z = 37.20},
-                Blipcolor = 5,
-                Blipname = "Garage"
-            }
         },
-        Storage = {
-            {
-                Pos = {x = 1226.933, y = 2738.123, z = 37.00},
-                Limit = 100,
-                Name = "coffre_caroccasions"
-            }
-        }
+        -- garage = {
+        --     Name = "Garage_caroccasions",
+        --     Pos = {x = 1210.015, y = 2714.235, z = 37.20},
+        --     Properties = {
+        --         type = 3, --job public
+        --         Limit = 20,
+        --         vehicles = {},
+        --         spawnpos = {x = 1210.015, y = 2714.235, z = 37.20, h = 351.93}
+        --     },
+        --     Blipdata = {
+        --         Pos = {x = 1210.015, y = 2714.235, z = 37.20},
+        --         Blipcolor = 5,
+        --         Blipname = "Garage"
+        --     }
+        -- },
+        -- Storage = {
+        --     {
+        --         Pos = {x = 1226.933, y = 2738.123, z = 37.00},
+        --         Limit = 100,
+        --         Name = "coffre_caroccasions"
+        --     }
+        -- }
     },
     -- Mosley = {
     --     label = "Mosley",
