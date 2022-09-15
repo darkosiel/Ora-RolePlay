@@ -10,7 +10,7 @@ local PawnShops = {
             show = false,
             sprite = 7,
             color = 7,
-            name = "Pawnshop
+            name = "Pawnshop"
         },
         items = {
             markedcheck = {
