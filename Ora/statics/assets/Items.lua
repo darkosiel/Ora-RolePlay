@@ -2181,10 +2181,6 @@ Items = {
         label = "Renseignement de haute valeur",
         weight = 1
     },
-    chocolat = {
-        label = "Chocolat de contrebande",
-        weight = 1
-    },
     cigarette = {
         label = "Cigarette de contrebande",
         weight = 1
@@ -2930,6 +2926,94 @@ Items = {
     },
     fraise = {
         label = "Fraise",
+        weight = 0.2
+    },
+    beignetcrevette = {
+        label = "Beignet de crevette",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    rouleauprintemps = {
+        label = "Rouleau de printemps",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    Maki = {
+        label = "Maki radis concombre",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    soupechinoise = {
+        label = "Soupe chinoise",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    Pouletimperial = {
+        label = "Poulet impérial",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    canardlaque = {
+        label = "Canard laque",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    Nouilles sautees = {
+        label = "Canard laque",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 50,
+        category = "food"
+    },
+    Beignetsesame = {
+        label = "Beignet de sésame",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    fortunecookie = {
+        label = "Fortune cookie",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 25,
+        category = "food"
+    },
+    caramel = {
+        label = "Caramel",
+        weight = 0.2
+    },
+    latecoco = {
+        label = "Lait de coco",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        soif = 25,
+        category = "food"
+    },
+    concombre= {
+        label = "Concombre",
         weight = 0.2
     },
 }

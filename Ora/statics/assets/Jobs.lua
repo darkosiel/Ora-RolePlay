@@ -11846,6 +11846,172 @@ Jobs = {
             }
         },
     },
+    koi = {
+        label = "Koi",
+        label2 = "Koi",
+        iban = "koi",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Koi",
+                subtitle = "Actions disponibles",
+                name = "restaurant_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("koi")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Koi", "Annonce", text, "CHAR_PEARLS", 8, "Koi")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Koi",
+            Pos = {x = -1798.1511, y = -1177.2968, z = 12.31},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24}
+            },
+            Blipdata = {
+                Pos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -1039.4825, y = -1477.8227, z = 1.63},
+                Limit = 500,
+                Name = "coffre_koi2"
+            },
+            {
+                Pos = {x = -1023.2456, y = -1470.3432, z = 5.30},
+                Limit = 500,
+                Name = "coffre_koi"
+            },
+            {
+                Pos = {x = -1836.73, y = -1176.40, z = 18.20},
+                Limit = 200,
+                Name = "coffre_koi_bureau"
+            }
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1026.1946, y = -1472.5821, z = 5.30 - 0.98}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftKoiZone()
+                end,
+                Exit = function()
+                    ExitcraftkoiZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Koi - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "koi - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                --Café
+                type = "traitement",
+                workSize = 10.0,
+                blipcolor = 7,
+                blipname = "koi - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe1",
+                giveitem = "cafe",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "koi - Vente",
+                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+                required = "cafe",
+                price = math.random(13,16),
+                add = "~p~- 1 Café"
+            }
+        }
+    },
     -- billards = {
     --     label = "8 Billards",
     --     label2 = "Billards",
