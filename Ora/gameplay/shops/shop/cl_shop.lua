@@ -2121,6 +2121,81 @@ local Shops =
             }
         },
         {
+            Title = "Louis",
+            Pos = {x = 101.97, y = 14.15, z = 67.00, a = 298.78},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "hatchet",
+                    price = 150,
+                    data = {}
+                },
+                {
+                    name = "golf",
+                    price = 150,
+                    data = {}
+                },
+                {
+                    name = "dagger",
+                    price = 300,
+                    data = {}
+                },
+                {
+                    name = "combathatchet",
+                    price = 350,
+                    data = {}
+                },
+                {
+                    name = "poolcue",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "crowbar",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "bague",
+                    price = 50,
+                    data = {},
+                },
+                {
+                    name = "bouquet",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "chocolatbox",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "makeup",
+                    price = 25,
+                    data = {}
+                },
+                {
+                    name = "knife",
+                    price = 100,
+                    data = {}
+                }
+            }
+        },
+        {
             Title = "Casino",
             Pos = {x = -1633.951, y = -2994.321, z = -79.15, a = 181.00},
             Blips = {},
