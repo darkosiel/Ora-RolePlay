@@ -10,29 +10,29 @@ local PawnShops = {
             show = false,
             sprite = 7,
             color = 7,
-            name = "Bank Exchange"
+            name = "Pawnshop
         },
         items = {
             markedcheck = {
                 unitPrice = 20
             },
             goldpepite1 = {
-                unitPrice = 10
-            },
-            goldpepite2 = {
-                unitPrice = 12
-            },
-            goldpepite3 = {
                 unitPrice = 17
             },
+            goldpepite2 = {
+                unitPrice = 22
+            },
+            goldpepite3 = {
+                unitPrice = 26
+            },
             goldpepite4 = {
-                unitPrice = 25
+                unitPrice = 32
             },
             goldpepite5 = {
-                unitPrice = 40
+                unitPrice = 50
             },
             goldpepite6 = {
-                unitPrice = 55
+                unitPrice = 60
             },
             jewels1 = {
                 unitPrice = 225
@@ -51,9 +51,6 @@ local PawnShops = {
             },
             jewels6 = {
                 unitPrice = 475
-            },
-            markedcheck = {
-                unitPrice = 20
             },
             burglary_item = {
                 illegal = true,
