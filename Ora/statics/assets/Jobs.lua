@@ -3780,8 +3780,59 @@ Jobs = {
                             TriggerServerEvent("Job:Annonce", "Galaxy", "Annonce", text, "CHAR_GALAXY", 8, "Galaxy")
                         end
                     end
+                },
+                {
+                    label = "Faire travailler les danseuses",
+                    onSelected = function()
+                        local foodPeds = {
+                            -- { model="s_f_y_stripper_02", x=112.68, y=-1288.3, z=28.46, a=238.85, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
+                            -- { model="s_f_y_stripperlite", x=111.99, y=-1286.03, z=28.46, a=308.8, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
+                          --  { model="s_f_y_stripperlite", x=113.00, y=-1287.01, z=28.46, a=294.26, animation="mini@strip_club@pole_dance@pole_dance1", animationName="pd_dance_01"}
+                            { model="s_f_y_hooker_01", x=-1598.55, y=-3015.74, z=-78.21, a=312.43, animation="mini@strip_club@private_dance@part2", animationName="priv_dance_p2"},
+                            { model="a_f_y_clubcust_02", x=-1596.14, y=-3008.01, z=-78.21, a=173.43, animation="mini@strip_club@private_dance@part1", animationName="priv_dance_p1"},
+                            --{ model="s_f_y_stripper_02", x=104.66, y=-1294.46, z=29.26, a=287.12, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
+                            --{ model="a_f_y_topless_01", x=102.26, y=-1289.92, z=29.26, a=292.05, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
+                        }
+                        local spawnedPeds = {}
+                        TriggerServerCallback(
+                            'strip:spawn',
+                            function(spawned, peds)
+                                if spawned then
+                                    if peds then
+                                        for k,v in pairs(peds) do
+                                            local e = NetworkGetEntityFromNetworkId(v)
+                                            if DoesEntityExist(e) then DeleteEntity(e) end
+                                        end
+                                    end
+                                else
+                                    for k,v in ipairs(foodPeds) do
+                                        RequestModel(GetHashKey(v.model))
+                                        while not HasModelLoaded(GetHashKey(v.model)) do
+                                            Wait(0)
+                                        end
+                                        RequestAnimDict(v.animation)
+                                        while not HasAnimDictLoaded(v.animation) do
+                                            Wait(1)
+                                        end
+                                        local storePed = Ora.World.Ped:Create(5, v.model, vector3(v.x, v.y, v.z), v.a)
+                                        SetBlockingOfNonTemporaryEvents(storePed, false)
+                                        SetPedFleeAttributes(storePed, 0, 0)
+                                        SetPedArmour(storePed, 100)
+                                        SetPedMaxHealth(storePed, 100)
+                                        SetPedDiesWhenInjured(storePed, false)
+                                        SetAmbientVoiceName(storePed, v.voice)
+
+                                        TaskPlayAnim(storePed, v.animation, v.animationName, 8.0, 0.0, -1, 1, 0, 0, 0, 0)
+                                        SetModelAsNoLongerNeeded(GetHashKey(v.model))
+                                        table.insert(spawnedPeds, NetworkGetNetworkIdFromEntity(storePed))
+                                    end
+                                    TriggerServerEvent('strip:sendPeds', spawnedPeds)
+                                end
+                            end
+                        )
+                    end
                 }
-            },
+            }
             
         },
         garage = {
@@ -3840,238 +3891,43 @@ Jobs = {
                 RemoveItem = "milk",
                 add = "~p~+ 1  Milkshack"
             },
-            traitement4 = {
-                --cupcake
-                type = "traitement",
-                workSize = 1.20,
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
                 blipcolor = 7,
-                blipname = "Traitement Cupcake",
-                Pos = {x = -1584.4299, y = -3010.5556, z = -76.00},
-                required = "bread",
-                giveitem = "cupcake",
-                RemoveItem = "bread",
-                add = "~p~+ 1  Cupcake"
+                blipname = "Galaxy - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement6 = {
+                --Café
+                type = "traitement",
+                workSize = 10.0,
+                blipcolor = 7,
+                blipname = "Galaxy - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe1",
+                giveitem = "cafe",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Café"
             },
             vente = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
-                blipname = "Galxy - Vente",
+                blipname = "Galaxy - Vente",
                 Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
-                required = "cupcake",
-                price = math.random(20,30),
-                add = "~p~- 1 cupcake"
+                required = "cafe",
+                price = math.random(13,16),
+                add = "~p~- 1 Café"
             }
         }   
     },
-    caroccasions = {
-        label = "Car Occasions",
-        label2 = "Car Occasions",
-        iban = "caroccasions",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "CDD",
-                salary = 0,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 0,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 0,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 0,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 0,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Car Occasions",
-                subtitle = "Actions",
-                name = "caroccasions_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("caroccasions")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Larry's", "Annonce", text, "CHAR_LARRYS", 8, "Car Occasions")
-                        end
-                    end
-                },
-                {
-                    label = "Créer une clé",
-                    onSelected = function()
-                        Clef()
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Créer une carte grise",
-                    onSelected = function()
-                        CarteGrise()
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Changer un propriétaire de véhicule - Personne en face",
-                    onSelected = function()
-                        local playerID = GetPlayerServerIdInDirection(5.0)
-
-                        if (playerID and playerID ~= false) then
-                            CGNvxProprioPlyrID(playerID)
-                        end
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Changer un propriétaire de véhicule - Nom/Prénom",
-                    onSelected = function()
-                        CGNvxProprioPlyr()
-                    end
-                },
-                {
-                    label = "Changer un propriétaire de véhicule - Entreprise",
-                    onSelected = function()
-                        CGNvxProprioJob()
-                    end
-                },
-                {
-                    label = "Mettre/Retirer le véhicule du plateau",
-                    onSelected = function()
-                        Mecano.PutPlateau()
-                    end,
-                    ActiveFct = function()
-                        Mecano.ShowMarker()
-                    end
-                },
-                {
-                    label = "Retourner le véhicule",
-                    onSelected = function()
-                        SetVehicleOnGroundProperly(GetVehicleInDirection(5.0))
-                    end,
-                    ActiveFct = function()
-                        Mecano.ShowMarker()
-                    end
-                },
-                {
-                    label = "Annuler l'appel en cours",
-                    onSelected = function()
-                        TriggerEvent("call:cancelCall")
-                    end
-                }
-            },
-            submenus = {
-                ["Actions véhicule"] = {
-                    submenu = "caroccasions_menuperso",
-                    title = "Actions véhicule",
-                    menus = {
-                        buttons = {
-                            {
-                                label = "Inspecter l'état du véhicule",
-                                onSelected = function()
-                                    Mecano.CheckVehicle()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Inspecter les performances du véhicule",
-                                onSelected = function()
-                                    Mecano.CheckPerfs()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Ouvrir le capot",
-                                onSelected = function()
-                                    Mecano.OpenTrunk()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Réparer",
-                                onSelected = function()
-                                    Mecano.Repair()
-                                    RageUI.CloseAll()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Nettoyer",
-                                onSelected = function()
-                                    Mecano.CleanVehicule()
-                                    RageUI.CloseAll()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Mettre/Retirer le véhicule du plateau",
-                                onSelected = function()
-                                    Mecano.PutPlateau()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            },
-                            {
-                                label = "Mise en fourière",
-                                onSelected = function()
-                                    Mecano.Fouriere()
-                                end,
-                                ActiveFct = function()
-                                    Mecano.ShowMarker()
-                                end
-                            }
-                        },
-                        submenus = {}
-                    }
-                }
-            }
-        },
         garage = {
             Name = "Garage_caroccasions",
             Pos = {x = 1210.015, y = 2714.235, z = 37.20},
