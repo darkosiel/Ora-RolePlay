@@ -284,15 +284,15 @@ Ora.Jobs.Immo.Interiors = {
         label = "Bureau luxe #3",
         id = "office3"
     },
-    {
-        entry = {x = -577.054871, y = -715.776184, z = 113.005226}, 
-        coffre = {x = -600.930908, y = -709.444946, z = 121.605049},
-        r = {x = -180.0, y = -180.0, z = 353.6},
-        coords = vector3(-587.87213, -716.84937, 118.10156),
-        activated = true,
-        label = "Bureau luxe #4",
-        id = "office4"
-    },
+    -- {
+    --     entry = {x = -577.054871, y = -715.776184, z = 113.005226}, 
+    --     coffre = {x = -600.930908, y = -709.444946, z = 121.605049},
+    --     r = {x = -180.0, y = -180.0, z = 353.6},
+    --     coords = vector3(-587.87213, -716.84937, 118.10156),
+    --     activated = true,
+    --     label = "Bureau luxe #4",
+    --     id = "office4"
+    -- },
 }
 
 Ora.Jobs.Immo.ErrorMessages = {}
