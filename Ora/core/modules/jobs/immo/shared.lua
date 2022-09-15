@@ -256,6 +256,43 @@ Ora.Jobs.Immo.Interiors = {
         label = "Business Moderne 2",
         id = "appart22"
     },
+
+    {
+        entry = {x = -1030.776611, y = -433.482025, z = 63.861313}, 
+        coffre = {x = -1007.158264, y = -428.152954, z = 72.461113},
+        r = {x = -180.0, y = -180.0, z = 353.6},
+        coords = vector3(-1021.86084, -427.74564, 68.95764),
+        activated = true,
+        label = "Bureau luxe #1",
+        id = "office1"
+    },
+    {
+        entry = {x = 372.777313, y = -57.142601, z = 103.363235}, 
+        coffre = {x = 393.037323, y = -70.901428, z = 111.962982},
+        r = {x = -180.0, y = -180.0, z = 353.6},
+        coords = vector3(383.4156, -59.878227, 108.4595),
+        activated = true,
+        label = "Bureau luxe #2",
+        id = "office2"
+    },
+    {
+        entry = {x = -1003.163086, y = -771.930237, z = 61.894363}, 
+        coffre = {x = -997.149109, y = -748.274353, z = 70.494194},
+        r = {x = -180.0, y = -180.0, z = 353.6},
+        coords = vector3(-1004.23035, -761.2084, 66.99069),
+        activated = true,
+        label = "Bureau luxe #3",
+        id = "office3"
+    },
+    {
+        entry = {x = -577.054871, y = -715.776184, z = 113.005226}, 
+        coffre = {x = -600.930908, y = -709.444946, z = 121.605049},
+        r = {x = -180.0, y = -180.0, z = 353.6},
+        coords = vector3(-587.87213, -716.84937, 118.10156),
+        activated = true,
+        label = "Bureau luxe #4",
+        id = "office4"
+    },
 }
 
 Ora.Jobs.Immo.ErrorMessages = {}
