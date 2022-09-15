@@ -2976,7 +2976,7 @@ Items = {
         faim = 50,
         category = "food"
     },
-    Nouilles sautees = {
+    Nouillessautees = {
         label = "Canard laque",
         weight = 0.2,
         actionCl = "miam:Eat",
