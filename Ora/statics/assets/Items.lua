@@ -3016,6 +3016,110 @@ Items = {
         label = "Concombre",
         weight = 0.2
     },
+    sirup = {
+        label = "Sirop",
+        weight = 0.1
+    },
+    mint = {
+        label = "Menthe",
+        weight = 0.1
+    },
+    orangejuice = {
+        label = "Jus d'orange",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 15,
+        category = "food"
+    },
+    pineapplejuice = {
+        label = "Jus d'ananas",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 15,
+        category = "food"
+    },
+    kirroyal = {
+        label = "Kir royal",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    monacodrink = {
+        label = "Monaco",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    grenadine = {
+        label = "Grenadine",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    mojito = {
+        label = "Mojito",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    pinacolada = {
+        label = "Piña Colada",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    tipunch = {
+        label = "Ti-punch",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    applevodka = {
+        label = "Vodka pomme",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    orangevodka = {
+        label = "Vodka orange",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    tequilapaf = {
+        label = "Tequila paf",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    tequilasunrise = {
+        label = "Tequila sunrise",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
 }
 
 -- staticcc
