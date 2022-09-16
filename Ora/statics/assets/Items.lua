@@ -3088,14 +3088,6 @@ Items = {
         soif = 30,
         category = "food"
     },
-    applevodka = {
-        label = "Vodka pomme",
-        weight = 0.2,
-        actionCl = "miam:Drink",
-        props = "prop_tequsunrise",
-        soif = 30,
-        category = "food"
-    },
     orangevodka = {
         label = "Vodka orange",
         weight = 0.2,
@@ -3120,6 +3112,14 @@ Items = {
         soif = 30,
         category = "food"
     },
+    whiskycoke = {
+        label = "Whisky coca",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 15,
+        category = "food"
+    }, 
 }
 
 -- staticcc
