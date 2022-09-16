@@ -75,7 +75,6 @@ local bikershop =
                     {name = "shinobi", price = 12000}
                 },
                 ["Motos Biker"] = {
-                    {name = "foxharley2", price = 15000},
                     {name = "dyna", price = 15000},
                     {name = "lv", price = 15000},
                     {name = "softail2", price = 15000}
