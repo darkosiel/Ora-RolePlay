@@ -2122,6 +2122,8 @@ local Shops =
         },
         {
             Title = "Louis",
+            RestrictedJob = {"pawnshop"},
+            RestrictedGrade = {"cdd", "cdi", "chef", "drh", "boss"},
             Pos = {x = 101.97, y = 14.15, z = 67.00, a = 298.78},
             Blips = {
                 Enabled = false
