@@ -52,7 +52,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["crowbar"] = {"Pied de biche", 100},
     ["piecedeboeuf"] = {"Pièce de boeuf", 2},
     ["pinces"] = {"Pinces", 2},
-    ["chicken"] = {"Poulet", 2},
+    --["chicken"] = {"Poulet", 2},
     ["plateaufruitsmer"] = {"Plateau de fruits de mer", 2},
     ["radio"] = {"Radio", 3},
     ["rice"] = {"Riz", 2},
@@ -68,6 +68,9 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["makeup"] = {"Trousse de maquillage", 5},
     ["medikit"] = {"Trousse de soin", 10},
     ["veloute"] = {"Velouté", 2},
+    ["courgette"] = {"Courgette", 2},
+    ["caramel"] = {"Caramel", 2},
+    ["latecoco"] = {"Lait de coco", 2},
     ["meat"] = {"Viande Crue", 2}
   },
 

@@ -201,21 +201,23 @@ AddEventHandler(
     "Ora::SE::Player:RegisterHealth",
     function(health)
         local _source = source
-        local results = MySQL.Sync.fetchAll(
-            "SELECT count(uuid) AS result_count FROM players_identity WHERE uuid = @uuid",
-            {
-              ['@uuid'] = Ora.Identity:GetUuid(_source)
-            }
-        )
-
-        if (results ~= nil and results[1] ~= nil and results[1].result_count > 0) then
-            MySQL.Sync.execute(
-                "UPDATE players_identity SET health = @health WHERE uuid = @uuid",
+        if (health > 0) then
+            local results = MySQL.Sync.fetchAll(
+                "SELECT count(uuid) AS result_count FROM players_identity WHERE uuid = @uuid",
                 {
-                  ['@health'] = health,
-                  ['@uuid'] = Ora.Identity:GetUuid(_source)
+                ['@uuid'] = Ora.Identity:GetUuid(_source)
                 }
             )
+
+            if (results ~= nil and results[1] ~= nil and results[1].result_count > 0) then
+                MySQL.Sync.execute(
+                    "UPDATE players_identity SET health = @health WHERE uuid = @uuid",
+                    {
+                    ['@health'] = health,
+                    ['@uuid'] = Ora.Identity:GetUuid(_source)
+                    }
+                )
+            end
         end
     end
 )
