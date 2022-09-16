@@ -1,7 +1,7 @@
 fx_version "adamant"
 games {"gta5"}
 
-server_script "@mysql-async/lib/MySQL.lua"
+server_script "@Ora_dep/MySQL/lib/MySQL.lua"
 
 ui_page('ui/menus/ui_inventory/ui/dist/index.html')
 
@@ -198,6 +198,7 @@ client_script {
     "ui/menus/mugroom/selector.lua",
     "ui/menus/mugroom/creator/main.lua",
     "ui/menus/mugroom/creator/categories/appearance.lua",
+    "ui/menus/mugroom/creator/categories/character.lua",
     "ui/menus/mugroom/creator/categories/clothes.lua",
     "ui/menus/mugroom/creator/categories/faceFeature.lua",
     "ui/menus/mugroom/creator/categories/heritage.lua",
@@ -414,6 +415,7 @@ client_script {
     "gameplay/jobs/distillerie/job.lua",
     "gameplay/jobs/pearls/job.lua",
     "gameplay/jobs/miror/job.lua",
+    "gameplay/jobs/night/job.lua",
     "gameplay/jobs/tacoloco/job.lua",
     "gameplay/jobs/burgershot/job.lua",
     "gameplay/jobs/koi/job.lua",

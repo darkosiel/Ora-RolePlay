@@ -3864,32 +3864,37 @@ Jobs = {
                 Name = "Frigo_2"
             }
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1584.4697, y = -3015.2500, z = -76.0050}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftnightZone()
+                end,
+                Exit = function()
+                    ExitcraftnightZone()
+                end,
+                zonesize = 2.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Galaxy - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
-            traitement2 = {
-                --Filet de daurade
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "planche",
-                Pos = {x = -1577.3686, y = -3017.2575, z = -79.00},
-                required = "fish6",
-                giveitem = "filetdaurade",
-                RemoveItem = "fish6",
-                add = "~p~+ 1  Filet de daurade mariné à la japonaise"
-            },
-            traitement = {
-                --milkshack
-                type = "traitement",
-                workSize = 1.20,
-                blipcolor = 7,
-                blipname = "Traitement milkshack",
-                Pos = {x = -1584.7646, y = -3015.1928, z = -76.00},
-                required = "milk",
-                giveitem = "milkshack",
-                RemoveItem = "milk",
-                add = "~p~+ 1  Milkshack"
-            },
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
@@ -3925,7 +3930,7 @@ Jobs = {
                 price = math.random(13,16),
                 add = "~p~- 1 Café"
             }
-        },
+        }
         -- garage = {
         --     Name = "Garage_caroccasions",
         --     Pos = {x = 1210.015, y = 2714.235, z = 37.20},
