@@ -427,7 +427,7 @@ local VehShop =
                     {name = "prevolter", price = 25000},
                     {name = "polalamoold", price = 25000},
                     {name = "polbuffals", price = 25000},
-                    {name = "nscoutlspd", price = 25000},
+                    --{name = "nscoutlspd", price = 25000},
                     {name = "pdumksx", price = 25000}
                     --{name = "lspdb", price = 25000}
                 },
