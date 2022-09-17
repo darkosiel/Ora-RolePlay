@@ -11768,15 +11768,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Koi",
-            Pos = {x = -1798.1511, y = -1177.2968, z = 12.31},
+            Pos = {x = -1012.4503, y = -1462.4267, z = 5.01},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24}
+                spawnpos = {x = -1012.4503, y = -1462.4267, z = 5.01, h = 318.24}
             },
             Blipdata = {
-                Pos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24},
+                Pos = {x = -1012.4503, y = -1462.4267, z = 5.01, h = 318.24},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
