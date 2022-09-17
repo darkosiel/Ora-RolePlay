@@ -2944,7 +2944,7 @@ Items = {
         faim = 25,
         category = "food"
     },
-    Maki = {
+    maki = {
         label = "Maki radis concombre",
         weight = 0.2,
         actionCl = "miam:Eat",
