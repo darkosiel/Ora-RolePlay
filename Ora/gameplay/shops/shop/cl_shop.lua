@@ -2620,6 +2620,16 @@ local Shops =
                     price = 1,
                     data = {}
                 },
+                {
+                    name = "crowbar",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "wrench",
+                    price = 100,
+                    data = {}
+                },
 
 
             }
