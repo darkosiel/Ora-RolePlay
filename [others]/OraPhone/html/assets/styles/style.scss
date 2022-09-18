@@ -56,6 +56,7 @@ body {
     max-height: 100vh;
     height: 100vh;
     background: transparent;
+    margin: 0;
     overflow: hidden;
     width: 100%;
 }
@@ -70,7 +71,7 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0;
 }
 
-input {
+input, select, textarea {
     &:focus-visible {
         outline: none
     }
@@ -287,6 +288,13 @@ div#page {
                                                 flex-direction: row;
                                                 align-items: center;
                                                 column-gap: 5px;
+                                            }
+                                            div.app-body-content-header-button-logo {
+                                                display: flex;
+                                                img {
+                                                    width: 80%;
+                                                    margin: 0 auto;
+                                                }
                                             }
                                             i {
                                                 font-size: 26px;
@@ -539,7 +547,7 @@ div#page {
                                                     }
                                                 }
                                             }
-                                            div.app-body-content-body-app-galery {
+                                            div.app-body-content-body-app-gallery {
                                                 display: flex;
                                                 flex-direction: row;
                                                 column-gap: 20px;
@@ -818,7 +826,8 @@ div#page {
                                                                     }
                                                                     img {
                                                                         width: 100%;
-                                                                        height: auto;
+                                                                        height: 100%;
+                                                                        object-fit: cover;
                                                                     }
                                                                 }
                                                                 div.contacts-list-row-item-top-name {
@@ -1631,7 +1640,8 @@ div#page {
                                                             }
                                                             img {
                                                                 width: 100%;
-                                                                height: auto;
+                                                                height: 100%;
+                                                                object-fit: cover;
                                                             }
                                                         }
                                                     }
@@ -1713,7 +1723,8 @@ div#page {
                                                                 }
                                                                 img {
                                                                     width: 100%;
-                                                                    height: auto;
+                                                                    height: 100%;
+                                                                    object-fit: cover;
                                                                 }
                                                                 i {
                                                                     position: absolute;
@@ -1814,7 +1825,8 @@ div#page {
                                                     }
                                                     img {
                                                         width: 100%;
-                                                        height: auto;
+                                                        height: 100%;
+                                                        object-fit: cover;
                                                     }
                                                 }
                                                 div.app-body-content-header-profil-name {
@@ -2148,7 +2160,8 @@ div#page {
                                                         }
                                                         img {
                                                             width: 100%;
-                                                            height: auto;
+                                                            height: 100%;
+                                                            object-fit: cover;
                                                         }
                                                     }
                                                     div#newcontact-profile-name, div#editcontact-profile-name {
@@ -2850,7 +2863,8 @@ div#page {
                                                 }
                                                 img {
                                                     width: 100%;
-                                                    height: auto;
+                                                    height: 100%;
+                                                    object-fit: cover;
                                                 }
                                             }
                                             div.callnumber-title {
@@ -3085,6 +3099,400 @@ div#page {
                                         }
                                     }
                                 }
+                            }
+                            &#app-richtermotorsport {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            justify-content: space-between;
+                                            height: 125px;
+                                            padding: 10px 30px;
+                                            @include themed() {
+                                                background-color: t($phone-system-color-gray-6);
+                                            }
+                                            i {
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                            }
+                                            div.app-body-content-header-button-logo {
+                                                cursor: default;
+                                            }
+                                            div.app-body-content-header-title {
+                                                justify-content: center;
+                                                margin-bottom: 0;
+                                                span {
+                                                    font-size: 26px;
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 125px);
+                                            padding: 0 20px;
+                                            transition: all 0.3s ease-in-out;
+                                            @include themed() {
+                                                background-color: t($phone-system-color-gray-6);
+                                            }
+                                            > div {
+                                                display: flex;
+                                                justify-content: center;
+                                                width: 100%;
+                                                height: auto;
+                                                padding: 5px 0;
+                                                transition: all 0.3s ease-in-out;
+                                                span {
+                                                    font-size: 22px;
+                                                    font-family: $ora-font-semibold;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &.richtermotorsport-no-favorite {
+                                                        margin: 0 auto;
+                                                        font-size: 18px;
+                                                    }
+                                                }
+                                                button {
+                                                    width: 80%;
+                                                    height: 50px;
+                                                    border: 0;
+                                                    border-radius: 10px;
+                                                    font-size: 24px;
+                                                    font-family: $ora-font-bold;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-blue);
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                }
+                                                &.richtermotorsport-title {
+                                                    justify-content: flex-start;
+                                                }
+                                                &#richtermotorsport-button-create-advertisement {
+                                                    display: none;
+                                                }
+                                            }
+                                            *::-webkit-scrollbar {
+                                                height: 10px;
+                                                display: block;
+                                                transition: all 0.3s ease-in-out;
+                                            }
+                                            *::-webkit-scrollbar-thumb {
+                                                border-radius: 20px;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    background: t($phone-app-label-color-primary);
+                                                }
+                                            }
+                                            div.richtermotorsport-container {
+                                                justify-content: flex-start;
+                                                overflow-y: auto;
+                                                div.richtermotorsport-list {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: flex-start;
+                                                    align-items: center;
+                                                    row-gap: 15px;
+                                                    column-gap: 15px;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    &.richtermotorsport-list-horizontal {
+                                                        flex-direction: row;
+                                                        width: auto;
+                                                        div.richtermotorsport-list-item {
+                                                            width: 170px;
+                                                            height: 220px;
+                                                            div.richtermotorsport-list-item-image {
+                                                                height: 55%;
+                                                            }
+                                                            div.richtermotorsport-list-item-description {
+                                                                justify-content: space-evenly;
+                                                                height: 45%;
+                                                                div {
+                                                                    &:last-child {
+                                                                        flex-direction: column;
+                                                                        align-items: flex-start;
+                                                                    }
+                                                                }
+                                                                span, i {
+                                                                    font-size: 16px;
+                                                                    &.richtermotorsport-list-item-description-title {
+                                                                        @extend %text-max-line-2;
+                                                                    }
+                                                                    &.richtermotorsport-list-item-description-category {
+                                                                        font-size: 14px;
+                                                                    }
+                                                                    &.richtermotorsport-list-item-description-price {
+                                                                        font-size: 18px;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.richtermotorsport-list-item {
+                                                        width: 100%;
+                                                        height: 260px;
+                                                        border-radius: 20px;
+                                                        overflow: hidden;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            background-color: t($phone-system-color-blue);
+                                                        }
+                                                        div.richtermotorsport-list-item-image {
+                                                            width: 100%;
+                                                            height: 70%;
+                                                            img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: cover;
+                                                            }
+                                                        }
+                                                        div.richtermotorsport-list-item-description {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                            width: 100%;
+                                                            height: 30%;
+                                                            padding: 5px 15px;
+                                                            div {
+                                                                display: flex;
+                                                                flex-direction: row;
+                                                                justify-content: space-between;
+                                                                align-items: center;
+                                                                width: 100%;
+                                                            }
+                                                            span, i {
+                                                                font-size: 26px;
+                                                                @include themed() {
+                                                                    color: t($phone-system-color-white);
+                                                                }
+                                                                &.richtermotorsport-list-item-description-title {
+                                                                    @extend %text-max-line-1;
+                                                                }
+                                                                &.richtermotorsport-list-item-description-category {
+                                                                    font-size: 18px;
+                                                                    font-family: $ora-font-regular;
+                                                                    text-transform: capitalize;
+                                                                }
+                                                                &.richtermotorsport-list-item-description-price {
+                                                                    font-size: 28px;
+                                                                    > span {
+                                                                        font-size: 14px;
+                                                                    }
+                                                                }
+                                                            }
+                                                            i {
+                                                                @include themed() {
+                                                                    color: t($phone-system-color-red);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            input.richtermotorsport-create-input, select.richtermotorsport-create-select, textarea.richtermotorsport-create-textarea, div.richtermotorsport-create-image, button.richtermotorsport-create-button {
+                                                width: 100%;
+                                                height: 50px;
+                                                margin-bottom: 15px;
+                                                padding: 10px 20px;
+                                                border: none;
+                                                border-radius: 10px;
+                                                font-size: 20px;
+                                                font-family: $ora-font-semibold;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                    background-color: t($phone-app-background-color);
+                                                }
+                                            }
+                                            textarea.richtermotorsport-create-textarea {
+                                                height: 150px;
+                                                resize: none;
+                                            }
+                                            button.richtermotorsport-create-button {
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    color: t($phone-system-color-white);
+                                                    background-color: t($phone-system-color-blue);
+                                                }
+                                            }
+                                            div.richtermotorsport-create-image {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                height: 150px;
+                                                padding: 0;
+                                                overflow: hidden;
+                                                cursor: pointer;
+                                                i {
+                                                    font-size: 50px;
+                                                }
+                                                img#richtermotorsport-create-image-photo {
+                                                    display: none;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    object-fit: cover;
+                                                }
+                                            }
+                                        }
+                                        &#app-richtermotorsport-body-content-home {
+                                            div.app-body-content-header {
+                                                div.app-body-content-header-button-parent {
+                                                    visibility: hidden;
+                                                }
+                                            }
+                                        }
+                                        &#app-richtermotorsport-body-content-detail {
+                                            div.app-body-content-body {
+                                                padding: 0;
+                                                div.richtermotorsport-detail-image {
+                                                    width: 100%;
+                                                    height: 220px;
+                                                    padding: 0;
+                                                    img {
+                                                        width: 100%;
+                                                        height: 110%;
+                                                        object-fit: cover;
+                                                    }
+                                                }
+                                                div.richtermotorsport-detail-body {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    padding: 10px 25px;
+                                                    border-top-left-radius: 40px;
+                                                    border-top-right-radius: 40px;
+                                                    overflow: hidden;
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-gray-6);
+                                                    }
+                                                    span, i {
+                                                        display: block;
+                                                        font-size: 26px;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                        &.richtermotorsport-detail-body-category {
+                                                            font-family: $ora-font-regular;
+                                                            font-size: 24px;
+                                                            text-transform: capitalize;
+                                                        }
+                                                        &.richtermotorsport-detail-body-info {
+                                                            font-family: $ora-font-regular;
+                                                            font-size: 18px;
+                                                            text-align: justify;
+                                                        }
+                                                    }
+                                                    i {
+                                                        font-size: 44px;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            color: t($phone-system-color-red);
+                                                        }
+                                                    }
+                                                    div.richtermotorsport-detail-body-header {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        margin-bottom: 15px;
+                                                        div {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                        }
+                                                    }
+                                                    div.richtermotorsport-detail-body-description {
+                                                        margin-bottom: 15px;
+                                                    }
+                                                    div.richtermotorsport-detail-body-price {
+                                                        width: 85%;
+                                                        margin: 0 auto;
+                                                        padding: 10px;
+                                                        text-align: center;
+                                                        border-radius: 10px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-background-color);
+                                                        }
+                                                        span {
+                                                            font-size: 32px;
+                                                            transition: all 0.3s ease-in-out;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-camera {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            height: 100%;
+                                            padding: 0;
+                                            canvas#videocall-canvas {
+                                                height: 100%;
+                                                transform: translate(-40%, 0);
+                                            }
+                                            img#camera-image {
+                                                height: $ora-phone-screen-width;
+                                                top: 50%;
+                                                transform: rotate(90deg) translate(-50%, 0);
+                                                transform-origin: calc($ora-phone-screen-width / 2) calc($ora-phone-screen-width / 2);
+                                            }
+                                            div#camera-button-takepicture {
+                                                position: absolute;
+                                                width: 80px;
+                                                height: 80px;
+                                                bottom: 20px;
+                                                left: 50%;
+                                                border-radius: 50%;
+                                                border: 7px solid rgba(142, 142, 147, 0.7);
+                                                transform: translate(-50%, 0);
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    background-color: t($phone-system-color-white);
+                                                }
+                                            }
+                                            div#camera-button-fullscreen {
+                                                position: absolute;
+                                                bottom: 30px;
+                                                left: 15%;
+                                                transform: translate(-25%, 0);
+                                                cursor: pointer;
+                                                i {
+                                                    font-size: 60px;
+                                                    @include themed() {
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-gallery {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            div#gallery-image-list {
+                                                flex-direction: row;
+                                                justify-content: flex-start;
+                                                row-gap: 1px;
+                                                column-gap: 1px;
+                                                div.gallery-image-list-item {
+                                                    width: 33%;
+                                                    height: auto;
+                                                    img {
+                                                        width: 100%;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }   
                             }
                         }
                         #notification-container {
@@ -3790,6 +4198,23 @@ div#page {
             }
         }
     }
+    div#image-fullscreen {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: 50px;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        z-index: 2;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }
 
 #add-notification, #add-call, #refresh-contacts, #save-home {
@@ -3864,6 +4289,19 @@ div#phone-screen-content {
         div#phone-screen-content-footer, div#phone-screen-content-header {
             @include themed() {
                 background-color: t($phone-app-tab-background-color) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
+            }
+        }
+    }
+    &.app-richtermotorsport {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-system-color-gray-6) !important;
                 color: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
