@@ -5,7 +5,9 @@ var menuAppSelected = "first";
 var menuAppSelectedLast = "first";
 var displayToggle = false;
 var displayTopbarToggle = false;
+var formatOrientation = "portrait"
 var phoneBottomShow = "30px";
+var phoneBottomShowLandscape = "-150px";
 var phoneBottomShowNot = "-900px";
 var phoneLockToggle = false;
 var items;
@@ -95,13 +97,17 @@ var longpress = true;
 var startTime, endTime;
 var gridPage1 = "";
 
+var RichterMotorSportCurrentAdvertisement;
+
+var canvasActivate = false;
+
 // userData = {};
 // userData.phone = {};
 // userData.phone.appHomeOrder = [
 //     'clock',
 //     '',
 //     'camera',
-//     'galery',
+//     'gallery',
 //     'calandar',
 //     'notes',
 //     '',
@@ -227,7 +233,35 @@ $(function(){
                     updateConversationList();
                 }
                 if (item !== undefined && item.type === "new_notification") {
-                    addNotification(item.notification.app, item.notification.appSub, item.notification.time, item.notification.title, item.notification.message);
+                    addNotification(item.notification.app, item.notification.appSub, item.notification.time, item.notification.title, item.notification.message, { conversationId: item.notification.conversationId });
+                }
+                if (item !== undefined && item.type === "updateRichterMotorsportAdvertisement") {
+                    userData.richterMotorsportAdvertisement = item.richterMotorsportAdvertisement;
+                    updateAppRichterMotorsport();
+                }
+                if (item !== undefined && item.type === "updateGalleryPhoto") {
+                    userData.galleryPhoto = item.galleryPhoto;
+                    updateAppGallery();
+                }
+                if (item !== undefined && item.type === "updateRichterMotorsportRole") {
+                    for(let job of item.richterMotorsportRole) {
+                        userData.richterMotorsportRole = job;
+                        if(job.name == "concess") {
+                            $("#richtermotorsport-button-create-advertisement").css("display", "flex");
+                            break;
+                        } else {
+                            $("#richtermotorsport-button-create-advertisement").css("display", "none");
+                            break;
+                        }
+                    }
+                }
+                if (item !== undefined && item.type === "take_picture") {
+                    takeScreenshot(item.app, item.appSub);
+                    MainRender.stop();
+                }
+                if (item !== undefined && item.type === "cancel_picture") {
+                    updateContent("home");
+                    MainRender.stop();
                 }
             });
 
@@ -246,6 +280,7 @@ $(function(){
                 // initializeAppContacts();
                 // initializeAppPhone();
                 // updateAppHomeOrder();
+                // initializeAppRichterMotorsport();
             
             // --- --- //
 
@@ -288,7 +323,6 @@ $(function(){
                     this.menuItemsNode = this.getMenuItemsNode();
                     this.isOpened = false;
                 }
-
                 getTargetNode() {
                     const nodes = document.querySelectorAll(this.target);
                     if (nodes && nodes.length !== 0) {
@@ -298,7 +332,6 @@ $(function(){
                         return [];
                     }
                 }
-
                 getMenuItemsNode() {
                     const nodes = [];
                     if (!this.menuItems) {
@@ -315,7 +348,6 @@ $(function(){
                     });
                     return nodes;
                 }
-
                 createItemMarkup(data) {
                     const button = document.createElement("BUTTON");
                     const item = document.createElement("LI");
@@ -332,21 +364,18 @@ $(function(){
                     }
                     return item;
                 }
-
                 renderMenu() {
                     const menuContainer = document.createElement("UL");
                     menuContainer.classList.add("contextMenu");
                     this.menuItemsNode.forEach((item) => menuContainer.appendChild(item));
                     return menuContainer;
                 }
-
                 closeMenu(menu) {
                     if (this.isOpened) {
                         this.isOpened = false;
                         menu.remove();
                     }
                 }
-
                 init() {
                     const contextMenu = this.renderMenu();
                     document.addEventListener("click", () => this.closeMenu(contextMenu));
@@ -431,17 +460,19 @@ $(function(){
             // initializeAppContacts();
             // Ajout notification
             $("#add-notification").click(function() {
-                addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
+                // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
+                $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
             });
             $("#add-call").click(function() {
                 receiveCall();
                 // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
             });
             $("#refresh-contacts").click(function() {
-                $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
+                // $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
             });
             $("#save-home").click(function() {
-                saveHomeOrder();
+                // saveHomeOrder();
+                switchFormatOrientation();
             });
 
         // --- --- //
@@ -449,11 +480,9 @@ $(function(){
         $("#callnumber-button-hangup").click(function() {
             $.post('https://OraPhone/end_call', JSON.stringify({}));
         });
-        
         $("#callreceive-button-hangup").click(function() {
             $.post('https://OraPhone/end_call', JSON.stringify({}));
         });
-        
         $("#callreceive-button-pickup").click(function() {
             inReceiveCall = false;
             inCall = true;
@@ -487,7 +516,6 @@ $(function(){
                 }
             }, 1000);
         });
-
         $("#callstarted-button-hangup").click(function() {
             $.post('https://OraPhone/end_call', JSON.stringify({}));
         });
@@ -497,7 +525,6 @@ $(function(){
                 updateAppContent(element.id.split("-")[3]);
             });
         }
-        
         for(let item of $("#app-store .app-body-content-body-list-item")) {
             item.addEventListener("click", function() {
                 updateAppContent("app");
@@ -997,6 +1024,41 @@ $(function(){
 	};
 });
 
+function updateUserData(data) {
+    // Update main variables
+    userData = data;
+    darkMode = (data.phone.darkMode == 1 ? true : false);
+    wallpaperActive = data.phone.wallpaper;
+    wallpaperLockActive = data.phone.wallpaperLock;
+    soundNotificationActive = data.phone.soundNotification;
+    soundNotificationVolume = data.phone.soundNotificationVolume;
+    soundRingingActive = data.phone.soundRinging;
+    soundRingingVolume = data.phone.soundRingingVolume;
+    soundAlarmActive = data.phone.soundAlarm;
+    soundAlarmVolume = data.phone.soundAlarmVolume;
+    generalZoomActive = data.phone.zoom;
+    serialNumber = data.phone.serialNumber;
+    firstName = data.phone.firstName;
+    lastName = data.phone.lastName;
+    phoneNumber = data.phone.number;
+    luminosityActive = data.phone.luminosity;
+    updateSound();
+    updateWallpaper();
+    updateDarkMode();
+    updateZoom();
+    updateProfile();
+    updateLuminosity();
+    updateAppHomeOrder();
+
+    // Inisialisation des applications
+    initializeAppContacts();
+    initializeAppMessage();
+    initializeAppPhone();
+    initializeAppRichterMotorsport();
+    initializeAppCamera();
+    initializeAppGallery();
+}
+
 function initializeAppContacts() {
     $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
     // Inisialisation de la liste des icones
@@ -1075,6 +1137,12 @@ function initializeAppContacts() {
     $("#app-contacts-body-content-list-search-reset").click(function() {
         $("#app-contacts-body-content-list-search").val("");
         $(".contacts-list-row-item").css("display", "block");
+    });
+    $("#newcontact-button-takephoto").click(function() {
+        activateAppCamera("contact", "newcontact");
+    });
+    $("#editcontact-button-takephoto").click(function() {
+        activateAppCamera("contact", "editcontact");
     });
 }
 
@@ -1169,38 +1237,6 @@ function updateAppContacts() {
             $(this.parentNode).addClass("active");
         }
     });
-}
-
-function updateUserData(data) {
-    // Update main variables
-    userData = data;
-    darkMode = (data.phone.darkMode == 1 ? true : false);
-    wallpaperActive = data.phone.wallpaper;
-    wallpaperLockActive = data.phone.wallpaperLock;
-    soundNotificationActive = data.phone.soundNotification;
-    soundNotificationVolume = data.phone.soundNotificationVolume;
-    soundRingingActive = data.phone.soundRinging;
-    soundRingingVolume = data.phone.soundRingingVolume;
-    soundAlarmActive = data.phone.soundAlarm;
-    soundAlarmVolume = data.phone.soundAlarmVolume;
-    generalZoomActive = data.phone.zoom;
-    serialNumber = data.phone.serialNumber;
-    firstName = data.phone.firstName;
-    lastName = data.phone.lastName;
-    phoneNumber = data.phone.number;
-    luminosityActive = data.phone.luminosity;
-    updateSound();
-    updateWallpaper();
-    updateDarkMode();
-    updateZoom();
-    updateProfile();
-    updateLuminosity();
-    updateAppHomeOrder();
-
-    // Inisialisation des applications
-    initializeAppContacts();
-    initializeAppMessage();
-    initializeAppPhone();
 }
 
 function receiveCall(data) {
@@ -1534,7 +1570,185 @@ function updateAppPhone() {
     }
 }
 
-function addNotification(app, appSub, time, title, message, avatar = false) {
+function initializeAppRichterMotorsport() {
+    $.post('https://OraPhone/refresh_richtermotorsport_advertisement', JSON.stringify({ phoneId: userData.phone.id }));
+    
+    $("#app-richtermotorsport-body-content-advertisement-search-reset").click(function() {
+        $("#app-richtermotorsport-body-content-advertisement-search").val("");
+        $(".richtermotorsport-list-item").css("display", "block");
+    });
+    $("#richtermotorsport-button-advertisement").click(function() {
+        updateAppContent("advertisement");
+    });
+    $("#richtermotorsport-button-auction").click(function() {
+        updateAppContent("auction");
+    });
+    $("#richtermotorsport-button-create").click(function() {
+        $("#richtermotorsport-create-image-takephoto").show();
+        $("#richtermotorsport-create-image-photo").hide();
+        $("#richtermotorsport-create-image-photo").attr("src", "");
+        updateAppContent("create");
+    });
+    $("#richtermotorsport-create-button-create").click(function() {
+        let model = $("#richtermotorsport-create-input-model").val();
+        let category = $("#richtermotorsport-create-select-category").val();
+        let advertisementType = $("#richtermotorsport-create-select-advertisement-type").val();
+        let image = ($("#richtermotorsport-create-image-photo").attr("src") != '' ? $("#richtermotorsport-create-image-photo").attr("src") : "null");
+        let description = $("#richtermotorsport-create-textarea-description").val();
+        let registration = $("#richtermotorsport-create-input-registration").val();
+        let price = $("#richtermotorsport-create-input-price").val();
+        if(model.length > 0 && description.length > 0 && registration.length > 0 && price.length > 0 && category != "choice" && advertisementType != "choice" && image != "null") {
+            $.post('https://OraPhone/richtermotorsport_add_advertisement', JSON.stringify({ phoneId: userData.phone.id, image: image, model: model, category: category, advertisementType: advertisementType, description: description, registration: registration, price: price }));
+            updateAppContent("home");
+        }
+    });
+    $("#richtermotorsport-detail-favorite").click(function() {
+        $.post('https://OraPhone/richtermotorsport_favorite_advertisement', JSON.stringify({ phoneId: userData.phone.id, advertisementId: RichterMotorSportCurrentAdvertisement.id, favorite: !RichterMotorSportCurrentAdvertisement.favorite }));
+        if(!RichterMotorSportCurrentAdvertisement.favorite) {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-regular");
+            $("#richtermotorsport-detail-favorite").addClass("fa-solid");
+        } else {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-solid");
+            $("#richtermotorsport-detail-favorite").addClass("fa-regular");
+        }
+        for(let advertisement of userData.richterMotorsportAdvertisement.advertisement) {
+            if(advertisement.id == RichterMotorSportCurrentAdvertisement.id) {
+                advertisement.favorite = !advertisement.favorite;
+                break;
+            }
+        }
+    });
+    $("#richtermotorsport-create-image-takephoto").click(function() {
+        activateAppCamera("richtermotorsport", "create");
+    });
+}
+
+function updateAppRichterMotorsport() {
+    $("#richtermotorsport-list-favorite").empty();
+    $("#richtermotorsport-list-advertisement").empty();
+    $("#richtermotorsport-list-auction").empty();
+    for(let advertisement of userData.richterMotorsportAdvertisement.advertisement) {
+        let favorite = userData.richterMotorsportAdvertisement.favorite.find( favorite => favorite.advertisementId == advertisement.id);
+        advertisement.favorite = (favorite ? true : false);
+        let divItem = "";
+        if(advertisement.advertisementType == "vente") {
+            divItem = "<div data-id='" + advertisement.id + "' class='richtermotorsport-list-item'><div class='richtermotorsport-list-item-image'><img src='" + advertisement.imgUrl + "'/></div><div class='richtermotorsport-list-item-description'><div><span class='richtermotorsport-list-item-description-title'>" + advertisement.model + "</span>" + (advertisement.favorite ? "<i class='fa-solid fa-heart richtermotorsport-list-item-description-favorite'></i>" : "<i class='fa-regular fa-heart richtermotorsport-list-item-description-favorite'></i>") + "</div><div><span class='richtermotorsport-list-item-description-category'>" + advertisement.category + "</span><span class='richtermotorsport-list-item-description-price'>$ " + numberWithSpaces(advertisement.price) + "</span></div></div></div></div>";
+            $("#richtermotorsport-list-advertisement").append(divItem);
+        } else if(advertisement.advertisementType == "enchère") {
+            divItem = "<div data-id='" + advertisement.id + "' class='richtermotorsport-list-item'><div class='richtermotorsport-list-item-image'><img src='" + advertisement.imgUrl + "'/></div><div class='richtermotorsport-list-item-description'><div><span class='richtermotorsport-list-item-description-title'>" + advertisement.model + "</span>" + (advertisement.favorite ? "<i class='fa-solid fa-heart richtermotorsport-list-item-description-favorite'></i>" : "<i class='fa-regular fa-heart richtermotorsport-list-item-description-favorite'></i>") + "</div><div><span class='richtermotorsport-list-item-description-category'>" + advertisement.category + "</span><span class='richtermotorsport-list-item-description-price'><span>A partir de </span>$ " + numberWithSpaces(advertisement.price) + "</span></div></div></div></div>";
+            $("#richtermotorsport-list-auction").append(divItem);
+        }
+        if(advertisement.favorite) {
+            $("#richtermotorsport-list-favorite").append(divItem);
+        }
+    }
+    if($("#richtermotorsport-list-favorite").children().length == 0) {
+        $("#richtermotorsport-list-favorite").append("<span class='richtermotorsport-no-favorite'>Aucun favoris</span>");
+        $("#richtermotorsport-list-favorite").css("min-width", "100%");
+    } else {
+        $("#richtermotorsport-list-favorite").css("min-width", "auto");
+    }
+    $(".richtermotorsport-list-item").click(function() {
+        let id = $(this).attr("data-id");
+        let advertisement = userData.richterMotorsportAdvertisement.advertisement.find( advertisement => advertisement.id == id);
+        $("#richtermotorsport-detail-model").html(advertisement.model);
+        $("#richtermotorsport-detail-category").html(advertisement.category);
+        if(advertisement.favorite) {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-regular");
+            $("#richtermotorsport-detail-favorite").addClass("fa-solid");
+        } else {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-solid");
+            $("#richtermotorsport-detail-favorite").addClass("fa-regular");
+        }
+        $(".richtermotorsport-detail-image img").attr("src", advertisement.imgUrl);
+        $("#richtermotorsport-detail-description").html(advertisement.description);
+        $("#richtermotorsport-detail-registration").html(advertisement.registration);
+        $("#richtermotorsport-detail-price").html("$ " + numberWithSpaces(advertisement.price));
+        RichterMotorSportCurrentAdvertisement = advertisement;
+        updateAppContent("detail");
+    });
+    let searchInput = document.getElementById("app-richtermotorsport-body-content-advertisement-search");
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $(".richtermotorsport-list-item")) {
+            if(elt.querySelector(".richtermotorsport-list-item-description-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "block";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+}
+
+function updateAppRichterMotorsportLoad(id) {
+    if(id != "") {
+        $('.app-message-conversation .messages').empty();
+        for(let conversation of userData.conversations) {
+            if(conversation.id == conversationId) {
+                let conversationAvatar = contactAvatarDefault;
+                let conversationName = "";
+                targetNumber = JSON.parse(conversation.target_number);
+                for(let user of JSON.parse(conversation.target_number)) {
+                    if(user != userData.phone.number) {
+                        let name = user;
+                        for(let contact of userData.contacts) {
+                            if(contact.number == user) {
+                                if(JSON.parse(conversation.target_number).length == 2) {
+                                    if(contact.avatar.includes("http")) {
+                                        conversationAvatar = contact.avatar;
+                                    } else {
+                                        conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                                    }
+                                }
+                                name = contact.name;
+                                break;
+                            }
+                        }
+                        conversationName += name + ", ";
+                    }
+                }
+                conversationName = conversationName.slice(0, -2);
+                if(conversationAvatar.includes("http")) {
+                    $(".app-body-content-header-profil-avatar").addClass("url");
+                } else {
+                    $(".app-body-content-header-profil-avatar").removeClass("url");
+                }
+                $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
+                $(".app-body-content-header-profil-name span").html(conversationName);
+                for(let message of conversation.messages) {
+                    let sourceName = "";
+                    let sourceType = "";
+                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+                    if(message.sourceNumber == userData.phone.number) {
+                        sourceName = "Moi";
+                        sourceType = "me";
+                    } else {
+                        sourceName = message.sourceNumber;
+                        sourceType = "you";
+                        for(let contact of userData.contacts) {
+                            if(contact.number == message.sourceNumber) {
+                                sourceName = contact.name;
+                            }
+                        }
+                    }
+                    responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
+                }
+            }
+        }
+        let messageInput = $("#app-message-footer-input");
+        messageInput.on("keyup", function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                if (messageInput.val() != "") {
+                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
+                    messageInput.val("");
+                }
+            }
+        });
+        let elementMessages = document.querySelector(".app-message-conversation .messages");
+        elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+    }
+}
+
+function addNotification(app, appSub, time, title, message, data, avatar = false) {
     let label = "Inconnu";
     let divNotification = "";
     let divNotificationLock = "";
@@ -1565,6 +1779,7 @@ function addNotification(app, appSub, time, title, message, avatar = false) {
             }
         }
         title = messageName.slice(0, -2);
+        updateAppMessageLoad(data.conversationId);
     }
     if(app == "call") {
         divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
@@ -1626,6 +1841,10 @@ function addNotification(app, appSub, time, title, message, avatar = false) {
                 updateAppContent(appSub);
                 notification.remove();
                 stopSounds();
+                if(app == "message") {
+                    let elementMessages = document.querySelector(".app-message-conversation .messages");
+                    elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+                }
             }
         });
         notificationLock.addEventListener("click", function() {
@@ -1732,7 +1951,11 @@ function displayPhone() {
         $("#phone").css("bottom", phoneBottomShowNot);
         displayToggle = false;
     } else {
-        $("#phone").css("bottom", phoneBottomShow);
+        if(formatOrientation == "landscape") {
+            $("#phone").css("bottom", phoneBottomShowLandscape);
+        } else {
+            $("#phone").css("bottom", phoneBottomShow);
+        }
         displayToggle = true;
     }
 }
@@ -1764,7 +1987,15 @@ function updateContent(menu) {
         activateAppClock();
     } else if(menu == "settings" && !activateAppSettingsToggle) {
         activateAppSettings();
+    } else if(menu == "richtermotorsport") {
+        activateAppRichterMotorsport();
+    } else if(menu == "camera") {
+        if(!canvasActivate) {
+            canvasActivate = true;
+            activateAppCamera("camera", "photo");
+        }
     }
+    switchFormatOrientation("portrait");
     FooterColor = "#ffffff";
     FooterColorBackground = "transparent";
     Bodycolor = "#ffffff";
@@ -1805,6 +2036,7 @@ function updateContent(menu) {
         $("#phone-screen-content").addClass("app-" + menu);
     } else if(menu == "home") {
         $("#phone-screen-content").removeClass();
+        canvasActivate = false;
         setTimeout(function() {
             updateAppContent("first");
         }, 300);
@@ -2127,6 +2359,94 @@ function activateAppSettings() {
     }
 }
 
+function activateAppRichterMotorsport() {
+    $.post('https://OraPhone/richtermotorsport_find_job', JSON.stringify({ phoneId: userData.phone.id }));
+}
+
+function initializeAppCamera() {
+    $("#camera-image").click(function() {
+        $("#image-fullscreen img").attr("src", $(this).attr("src"));
+        $("#image-fullscreen").show();
+    });
+    $("#image-fullscreen").click(function() {
+        $("#image-fullscreen").hide();
+    });
+}
+
+function activateAppCamera(app, appSub) {
+    $.post('https://OraPhone/open_camera', JSON.stringify({ app, appSub }));
+    const canvas = document.getElementById("videocall-canvas");
+    MainRender.renderToTarget(canvas);
+}
+
+async function takeScreenshot(app, appSub) {
+    updateContent(app);
+    updateAppContent(appSub);
+    $("#camera-image").attr("src", "");
+    let resp = await MainRender.requestScreenshot("https://api.imgur.com/3/image/", "image");
+    if(app == "camera") {
+        $.post('https://OraPhone/camera_add_image', JSON.stringify({ phoneId: userData.phone.id, image: resp.data.link }));
+    } else if(appSub == "newcontact") {
+        $("#newcontact-icon-custom-input").val(resp.data.link);
+        $("#newcontact-profile-icon img").attr("src", resp.data.link);
+        $("#newcontact-profile-icon").addClass("url");
+    } else if(appSub == "editcontact") {
+        $("#editcontact-icon-custom-input").val(resp.data.link);
+        $("#editcontact-profile-icon img").attr("src", resp.data.link);
+        $("#editcontact-profile-icon").addClass("url");
+    } else if(app == "richtermotorsport" && appSub == "create") {
+        $("#richtermotorsport-create-image-takephoto").hide();
+        $("#richtermotorsport-create-image-photo").attr("src", resp.data.link);
+        $("#richtermotorsport-create-image-photo").show();
+    }
+    $.post('https://OraPhone/close_camera', JSON.stringify({}));
+    MainRender.stop();
+    $("#camera-image").attr("src", resp.data.link);
+}
+
+function setCameraImage(image) {
+    if(menuSelected == "camera") {
+        $("#camera-image").attr("src", image);
+        switchFormatOrientation("landscape");
+    }
+}
+
+function switchFormatOrientation(orientation = false) {
+    if(orientation) {
+        if(orientation == formatOrientation) {
+            return;
+        }
+        formatOrientation = orientation;
+    } else {
+        formatOrientation = formatOrientation == "landscape" ? "portrait" : "landscape";
+    }
+    if(formatOrientation == "portrait") {
+        $("#phone").css("rotate", "0deg");
+        $("#phone").css("bottom", phoneBottomShow);
+        $("#phone").css("right", "100px");
+    } else {
+        $("#phone").css("rotate", "-90deg");
+        $("#phone").css("bottom", phoneBottomShowLandscape);
+        $("#phone").css("right", "330px");
+    }
+}
+
+function initializeAppGallery() {
+    $.post('https://OraPhone/refresh_gallery', JSON.stringify({ phoneId: userData.phone.id }));
+}
+
+function updateAppGallery() {
+    $("#gallery-image-list").empty();
+    for(let image of userData.galleryPhoto) {
+        let divImage = "<div class='gallery-image-list-item'><img src='" + image.imageLink + "'/></div>";
+        $("#gallery-image-list").append(divImage);
+        $("#gallery-image-list").children().last().click(function() {
+            $("#image-fullscreen img").attr("src", image.imageLink);
+            $("#image-fullscreen").show();
+        });
+    }
+}
+
 function updateZoom() {
     for(let generalZoomItem of config.generalzoom) {
         if(generalZoomItem.title == generalZoomActive) {
@@ -2331,7 +2651,7 @@ function updateAppHomeOrder() {
                             });
                         }
                     } else {
-                        if(mousePosition.x + offset[0] >= -260) {
+                        if(mousePosition.x + offset[0] >= -280) {
                             pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
                             updatePageSelected();
                             setTimeout(function() {
@@ -2687,6 +3007,12 @@ function dynamicSortMultiple() {
     }
 }
 
+function numberWithSpaces(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return parts.join(".");
+}
+
 function isImage(url) {
     return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
 }
@@ -2709,7 +3035,7 @@ const config = {
             "label": "Caméra"
         },
         {
-            "name": "galery",
+            "name": "gallery",
             "label": "Galerie"
         },
         {
@@ -2735,6 +3061,10 @@ const config = {
         {
             "name": "templatetabbed",
             "label": "Template Tabbed"
+        },
+        {
+            "name": "richtermotorsport",
+            "label": "Richter Motorsport"
         },
         {
             "name": "phone",

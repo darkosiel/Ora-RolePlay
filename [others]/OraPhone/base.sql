@@ -68,58 +68,77 @@ CREATE TABLE IF NOT EXISTS ora_phone_call_history (
     `video` BOOLEAN DEFAULT 0
 );
 
-CREATE TABLE IF NOT EXISTS ora_phone_app_store (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    owner_uuid VARCHAR(255) DEFAULT NULL,
-    owner_name VARCHAR(255) DEFAULT "iOS",
-    owner_tax_percent INT DEFAULT 0,
-    app_id VARCHAR(255) NOT NULL,
-    app_name VARCHAR(255) NOT NULL,
-    price INT DEFAULT 0,
-);
-
-CREATE TABLE IF NOT EXISTS ora_phone_players_apps (
-    app_id INT NOT NULL,
-    player_id INT NOT NULL,
-    download_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(app_id, player_id)
-);
-
 CREATE TABLE IF NOT EXISTS ora_phone_image (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    author_uuid VARCHAR(255) NOT NULL,
-    image_name VARCHAR(255),
-    image_link VARCHAR(255) NOT NULL,
-    image_description VARCHAR(255),
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `phone_id` INT NOT NULL,
+    `image_link` VARCHAR(255) NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS ora_phone_images_shares (
-    image_id INT NOT NULL,
-    player_id INT NOT NULL,
-    share_time DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (image_id, player_id)
+CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `phone_id` INT DEFAULT NOT NULL,
+    `img_url` VARCHAR(255) DEFAULT NULL,
+    `model` VARCHAR(255) NOT NULL,
+    `category` VARCHAR(255) NOT NULL,
+    `description` VARCHAR(255) NOT NULL,
+    `registration` VARCHAR(255) NOT NULL,
+    `price` INT NOT NULL,
+    `advertisement_type` VARCHAR(255) NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- INSERT INTO `ora_phone` (
---     `id`, `player_uuid`, `serial_number`, `first_name`, `last_name`, `number`, `is_active`, `sound_notification`, `sound_ringing`, `sound_alarm`, `sound_notification_volume`, `sound_ringing_volume`, `sound_alarm_volume`, `dark_mode`, `zoom`, `wallpaper`, `wallpaper_lock`, `luminosity`, `app_home_order`) 
---     VALUES (
---         NULL, 
---         'serial_number', 
---         'XXXX-XXXX', 
---         'first_name', 
---         'last_name', 
---         '555XXXX',
---         '1', 
---         'notification-sms1', 
---         'ringing-iosoriginal', 
---         'alarm-iosradaroriginal', 
---         '5', 
---         '5', 
---         '5', 
---         '0', 
---         'zoom100%', 
---         'wallpaper-ios15', 
---         'wallpaper-ios15', 
---         '100', 
---         '[\"clock\",\"camera\",\"galery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport_favorite (
+    `advertisement_id` INT NOT NULL,
+    `player_uuid` VARCHAR(255) NOT NULL,
+);
+
+-- CREATE TABLE IF NOT EXISTS ora_phone_app_store (
+--     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--     owner_uuid VARCHAR(255) DEFAULT NULL,
+--     owner_name VARCHAR(255) DEFAULT "iOS",
+--     owner_tax_percent INT DEFAULT 0,
+--     app_id VARCHAR(255) NOT NULL,
+--     app_name VARCHAR(255) NOT NULL,
+--     price INT DEFAULT 0,
 -- );
+
+-- CREATE TABLE IF NOT EXISTS ora_phone_players_apps (
+--     app_id INT NOT NULL,
+--     player_id INT NOT NULL,
+--     download_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     PRIMARY KEY(app_id, player_id)
+-- );
+
+
+
+-- CREATE TABLE IF NOT EXISTS ora_phone_images_shares (
+--     image_id INT NOT NULL,
+--     player_id INT NOT NULL,
+--     share_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     PRIMARY KEY (image_id, player_id)
+-- );
+
+INSERT INTO `ora_phone` (
+    `id`, `player_uuid`, `serial_number`, `first_name`, `last_name`, `number`, `is_active`, `sound_notification`, `sound_ringing`, `sound_alarm`, `sound_notification_volume`, `sound_ringing_volume`, `sound_alarm_volume`, `dark_mode`, `zoom`, `wallpaper`, `wallpaper_lock`, `luminosity`, `app_home_order`) 
+    VALUES (
+        NULL, 
+        '1ed21a93-97e6-6dd0-2222-08e78d9135c4', 
+        '7676-8441', 
+        'Kaleo', 
+        'Alahe', 
+        '5558857',
+        '1', 
+        'notification-sms1', 
+        'ringing-iosoriginal', 
+        'alarm-iosradaroriginal', 
+        '5', 
+        '5', 
+        '5', 
+        '0', 
+        'zoom100%', 
+        'wallpaper-ios15', 
+        'wallpaper-ios15', 
+        '100', 
+        '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+);

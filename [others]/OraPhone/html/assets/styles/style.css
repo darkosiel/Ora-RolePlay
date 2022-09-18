@@ -97,7 +97,7 @@
   font-weight: normal;
   src: local("SF Pro Display Regular"), url("./font/SF-Pro/SF-Pro-Display-Regular.woff") format("woff");
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -106,7 +106,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   -webkit-box-orient: vertical;
 }
 
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-body div.message-list-item-right-body-text span {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-body div.message-list-item-right-body-text span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -115,7 +115,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   -webkit-box-orient: vertical;
 }
 
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-left div.phonehistory-list-item-body span.phonehistory-list-item-body-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-header div.message-list-item-right-header-name span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-tab div.app-tab-button span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -124,7 +124,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   -webkit-box-orient: vertical;
 }
 
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-body div.message-list-item-right-body-text span {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-title, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right div.message-list-item-right-body div.message-list-item-right-body-text span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -174,6 +174,7 @@ body {
   max-height: 100vh;
   height: 100vh;
   background: transparent;
+  margin: 0;
   overflow: hidden;
   width: 100%;
 }
@@ -188,10 +189,10 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 0;
 }
 
-input:focus-visible {
+input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: none;
 }
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button, select::-webkit-outer-spin-button, select::-webkit-inner-spin-button, textarea::-webkit-outer-spin-button, textarea::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
@@ -447,6 +448,13 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   align-items: center;
   -moz-column-gap: 5px;
        column-gap: 5px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-button div.app-body-content-header-button-logo {
+  display: flex;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-button div.app-body-content-header-button-logo img {
+  width: 80%;
+  margin: 0 auto;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-button i {
   font-size: 26px;
@@ -729,7 +737,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-app div.app-body-content-body-app-info > div div.app-info-stars i {
   color: #FFD60A;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-app div.app-body-content-body-app-galery {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-app div.app-body-content-body-app-gallery {
   display: flex;
   flex-direction: row;
   -moz-column-gap: 20px;
@@ -737,7 +745,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   width: 100%;
   height: auto;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-app div.app-body-content-body-app-galery img {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-app div.app-body-content-body-app-gallery img {
   width: calc(50% - 10px);
   height: auto;
 }
@@ -1043,7 +1051,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list#contacts-list div.contacts-list-row div.contacts-list-row-item div.contacts-list-row-item-top div.contacts-list-row-item-top-avatar img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list#contacts-list div.contacts-list-row div.contacts-list-row-item div.contacts-list-row-item-top div.contacts-list-row-item-top-name span {
   font-size: 20px;
@@ -1894,7 +1904,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-list div.app-body-content-body div#message-list div.app-body-content-body-list-item div.message-list-item-left div.message-list-item-left-avatar img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-newmessage div.app-body-content-header {
   justify-content: center;
@@ -1974,7 +1986,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-newmessage div.app-body-content-body div.newmessage-list-container div#newmessage-list div.newmessage-list-item div.newmessage-list-item-left div.newmessage-list-item-left-avatar img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-newmessage div.app-body-content-body div.newmessage-list-container div#newmessage-list div.newmessage-list-item div.newmessage-list-item-left div.newmessage-list-item-left-avatar i {
   position: absolute;
@@ -2077,7 +2091,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-avatar img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-header div.app-body-content-header-profil div.app-body-content-header-profil-name {
   display: flex;
@@ -2491,7 +2507,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-newcontact div.app-body-content-body div.newcontact-profile div#newcontact-profile-icon img, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-newcontact div.app-body-content-body div.newcontact-profile div#editcontact-profile-icon img, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-editcontact div.app-body-content-body div.newcontact-profile div#newcontact-profile-icon img, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-editcontact div.app-body-content-body div.newcontact-profile div#editcontact-profile-icon img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-newcontact div.app-body-content-body div.newcontact-profile div#newcontact-profile-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-newcontact div.app-body-content-body div.newcontact-profile div#editcontact-profile-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-editcontact div.app-body-content-body div.newcontact-profile div#newcontact-profile-name, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content#app-contacts-body-content-editcontact div.app-body-content-body div.newcontact-profile div#editcontact-profile-name {
   height: 27px;
@@ -3257,7 +3275,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div#callnumber-icon img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-call div.app-body div.app-body-content div.app-body-content-body div.callnumber-title {
   display: flex;
@@ -3505,6 +3525,425 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-phone div.app-body div#app-phone-body-content-phonehistory div.app-body-content-body div#phonehistory-list div.phonehistory-list-item div.phonehistory-list-item-duration span {
   font-size: 18px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header {
+  justify-content: space-between;
+  height: 125px;
+  padding: 10px 30px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header {
+  background-color: #F2F2F7;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header {
+  background-color: #1C1C1E;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header i {
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header i {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header i {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-button-logo {
+  cursor: default;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-title {
+  justify-content: center;
+  margin-bottom: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-title span {
+  font-size: 26px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body {
+  height: calc(100% - 125px);
+  padding: 0 20px;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body {
+  background-color: #F2F2F7;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body {
+  background-color: #1C1C1E;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 5px 0;
+  transition: all 0.3s ease-in-out;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div span {
+  font-size: 22px;
+  font-family: "SF UI Text Semibold";
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div span {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div span {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div span.richtermotorsport-no-favorite {
+  margin: 0 auto;
+  font-size: 18px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div button {
+  width: 80%;
+  height: 50px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 24px;
+  font-family: "SF UI Text Bold";
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div button {
+  background-color: #007AFF;
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div button {
+  background-color: #0A84FF;
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div.richtermotorsport-title {
+  justify-content: flex-start;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body > div#richtermotorsport-button-create-advertisement {
+  display: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body *::-webkit-scrollbar {
+  height: 10px;
+  display: block;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body *::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body *::-webkit-scrollbar-thumb {
+  background: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body *::-webkit-scrollbar-thumb {
+  background: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container {
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 15px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  width: 100%;
+  height: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal {
+  flex-direction: row;
+  width: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item {
+  width: 170px;
+  height: 220px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-image {
+  height: 55%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description {
+  justify-content: space-evenly;
+  height: 45%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description div:last-child {
+  flex-direction: column;
+  align-items: flex-start;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description i {
+  font-size: 16px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-category, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-category {
+  font-size: 14px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-price, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list.richtermotorsport-list-horizontal div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-price {
+  font-size: 18px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item {
+  width: 100%;
+  height: 260px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item {
+  background-color: #007AFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item {
+  background-color: #0A84FF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-image {
+  width: 100%;
+  height: 70%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  padding: 5px 15px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i {
+  font-size: 26px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i {
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-category, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-category {
+  font-size: 18px;
+  font-family: "SF UI Text Regular";
+  text-transform: capitalize;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-price, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-price {
+  font-size: 28px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description span.richtermotorsport-list-item-description-price > span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i.richtermotorsport-list-item-description-price > span {
+  font-size: 14px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i {
+  color: #FF3B30;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-container div.richtermotorsport-list div.richtermotorsport-list-item div.richtermotorsport-list-item-description i {
+  color: #FF453A;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body input.richtermotorsport-create-input, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body select.richtermotorsport-create-select, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body textarea.richtermotorsport-create-textarea, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-create-image, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body button.richtermotorsport-create-button {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "SF UI Text Semibold";
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body input.richtermotorsport-create-input, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body select.richtermotorsport-create-select, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body textarea.richtermotorsport-create-textarea, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-create-image, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body button.richtermotorsport-create-button {
+  color: #000000;
+  background-color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body input.richtermotorsport-create-input, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body select.richtermotorsport-create-select, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body textarea.richtermotorsport-create-textarea, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-create-image, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body button.richtermotorsport-create-button {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body textarea.richtermotorsport-create-textarea {
+  height: 150px;
+  resize: none;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body button.richtermotorsport-create-button {
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body button.richtermotorsport-create-button {
+  color: #FFFFFF;
+  background-color: #007AFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body button.richtermotorsport-create-button {
+  color: #FFFFFF;
+  background-color: #0A84FF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-create-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-create-image i {
+  font-size: 50px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content div.app-body-content-body div.richtermotorsport-create-image img#richtermotorsport-create-image-photo {
+  display: none;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-home div.app-body-content-header div.app-body-content-header-button-parent {
+  visibility: hidden;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body {
+  padding: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-image {
+  width: 100%;
+  height: 220px;
+  padding: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-image img {
+  width: 100%;
+  height: 110%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  overflow: hidden;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body {
+  background-color: #F2F2F7;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body {
+  background-color: #1C1C1E;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body span, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i {
+  display: block;
+  font-size: 26px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body span, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body span, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body span.richtermotorsport-detail-body-category, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i.richtermotorsport-detail-body-category {
+  font-family: "SF UI Text Regular";
+  font-size: 24px;
+  text-transform: capitalize;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body span.richtermotorsport-detail-body-info, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i.richtermotorsport-detail-body-info {
+  font-family: "SF UI Text Regular";
+  font-size: 18px;
+  text-align: justify;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i {
+  font-size: 44px;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i {
+  color: #FF3B30;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body i {
+  color: #FF453A;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-header div {
+  display: flex;
+  flex-direction: column;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-description {
+  margin-bottom: 15px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-price {
+  width: 85%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-price {
+  background-color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-price {
+  background-color: #000000;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-richtermotorsport div.app-body div.app-body-content#app-richtermotorsport-body-content-detail div.app-body-content-body div.richtermotorsport-detail-body div.richtermotorsport-detail-body-price span {
+  font-size: 32px;
+  transition: all 0.3s ease-in-out;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body {
+  height: 100%;
+  padding: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body canvas#videocall-canvas {
+  height: 100%;
+  transform: translate(-40%, 0);
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body img#camera-image {
+  height: 390px;
+  top: 50%;
+  transform: rotate(90deg) translate(-50%, 0);
+  transform-origin: 195px 195px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-takepicture {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 20px;
+  left: 50%;
+  border-radius: 50%;
+  border: 7px solid rgba(142, 142, 147, 0.7);
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-takepicture {
+  background-color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-takepicture {
+  background-color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-fullscreen {
+  position: absolute;
+  bottom: 30px;
+  left: 15%;
+  transform: translate(-25%, 0);
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-fullscreen i {
+  font-size: 60px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-fullscreen i {
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-camera div.app-body div.app-body-content div.app-body-content-body div#camera-button-fullscreen i {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content div.app-body-content-body div#gallery-image-list {
+  flex-direction: row;
+  justify-content: flex-start;
+  row-gap: 1px;
+  -moz-column-gap: 1px;
+       column-gap: 1px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content div.app-body-content-body div#gallery-image-list div.gallery-image-list-item {
+  width: 33%;
+  height: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content div.app-body-content-body div#gallery-image-list div.gallery-image-list-item img {
+  width: 100%;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container {
   width: 100%;
@@ -4369,6 +4808,24 @@ div#page div#phone div#phone-screen div#phone-lock-button:hover i {
   opacity: 1;
   transform: translate(0, 0);
 }
+div#page div#image-fullscreen {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  z-index: 2;
+}
+div#page div#image-fullscreen img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 
 #add-notification, #add-call, #refresh-contacts, #save-home {
   height: 40px;
@@ -4453,6 +4910,20 @@ div#page div#phone div#phone-screen div#phone-lock-button:hover i {
   background-color: #000000 !important;
 }
 .theme--dark div#phone-screen-content.app-settings div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--dark div#phone-screen-content.app-settings div#phone-screen-content-header div#phone-screen-content-footer-bar {
+  background-color: #FFFFFF !important;
+}
+.theme--default div#phone-screen-content.app-richtermotorsport div#phone-screen-content-footer, .theme--default div#phone-screen-content.app-richtermotorsport div#phone-screen-content-header {
+  background-color: #F2F2F7 !important;
+  color: #000000 !important;
+}
+.theme--dark div#phone-screen-content.app-richtermotorsport div#phone-screen-content-footer, .theme--dark div#phone-screen-content.app-richtermotorsport div#phone-screen-content-header {
+  background-color: #1C1C1E !important;
+  color: #FFFFFF !important;
+}
+.theme--default div#phone-screen-content.app-richtermotorsport div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--default div#phone-screen-content.app-richtermotorsport div#phone-screen-content-header div#phone-screen-content-footer-bar {
+  background-color: #000000 !important;
+}
+.theme--dark div#phone-screen-content.app-richtermotorsport div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--dark div#phone-screen-content.app-richtermotorsport div#phone-screen-content-header div#phone-screen-content-footer-bar {
   background-color: #FFFFFF !important;
 }
 
