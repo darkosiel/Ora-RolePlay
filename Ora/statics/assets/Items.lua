@@ -2977,7 +2977,7 @@ Items = {
         category = "food"
     },
     Nouillessautees = {
-        label = "Canard laque",
+        label = "Nouilles sautées",
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_plate_03",
@@ -3120,6 +3120,18 @@ Items = {
         soif = 15,
         category = "food"
     }, 
+    sesame = {
+        label = "Sésame",
+        weight = 0.1
+    },
+    duck = {
+        label = "Canard",
+        weight = 0.1
+    },
+    radish = {
+        label = "Radis",
+        weight = 0.1
+    },
 }
 
 -- staticcc
