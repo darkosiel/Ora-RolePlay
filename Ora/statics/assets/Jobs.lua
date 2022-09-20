@@ -12558,7 +12558,12 @@ Jobs = {
             {
                 Pos = {x = -172.2112, y = 288.7464, z = 92.76},
                 Limit = 100,
-                Name = "frigo2 Bar Little Seoul"
+                Name = "Vestiaire Bar Little Seoul"
+            },
+            {
+                Pos = {x = -179.1901, y = 305.7939, z = 97.46},
+                Limit = 1000,
+                Name = "Frigo Bar Little Seoul"
             },
             {
                 Pos = {x = -172.3963, y = 291.7341, z = 92.76},
