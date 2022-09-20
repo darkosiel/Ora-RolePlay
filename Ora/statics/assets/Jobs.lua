@@ -7685,6 +7685,12 @@ Jobs = {
                 show = true
             },
             {
+                label = "Spécialiste",
+                salary = 360,
+                name = "medecin",
+                show = true
+            },
+            {
                 label = "Directeur adjoint",
                 salary = 370,
                 name = "drh",
