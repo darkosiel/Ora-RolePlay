@@ -7693,7 +7693,7 @@ Jobs = {
             {
                 label = "Chef de service",
                 salary = 380,
-                name = "medecin",
+                name = "drh",
                 show = true
             },
             {
