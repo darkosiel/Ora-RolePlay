@@ -7691,8 +7691,14 @@ Jobs = {
                 show = true
             },
             {
+                label = "Chef de service",
+                salary = 380,
+                name = "medecin",
+                show = true
+            },
+            {
                 label = "Directeur adjoint",
-                salary = 370,
+                salary = 400,
                 name = "drh",
                 show = true
             },
