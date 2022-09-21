@@ -2825,8 +2825,8 @@ Jobs = {
         -- }
     },
     ltdsud = {
-        label = "LTD Sud",
-        label2 = "ltd sud",
+        label = "LTD Davis",
+        label2 = "ltd Davis",
         iban = "ltdsud",
         FreeAccess = false,
         grade = {
@@ -2863,7 +2863,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "LTD Sud",
+                title = "LTD Davis",
                 subtitle = "Actions disponibles",
                 name = "ltdsud_menuperso"
             },
@@ -2884,14 +2884,14 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "24/7 - Supermarket", "Annonce", text, "CHAR_LTDSUD", 8, "ltd sud")
+                            TriggerServerEvent("Job:Annonce", "24/7 - Supermarket", "Annonce", text, "CHAR_LTDSUD", 8, "LTD Davis")
                         end
                     end
                 }
             }
         },
         garage = {
-            Name = "Garage LTD SUD",
+            Name = "Garage LTD Davis",
             Pos = {x = 15.9, y = -1350.09, z = 28.32},
             Properties = {
                 type = 3,
@@ -2979,6 +2979,95 @@ Jobs = {
         --         add = "~p~+ 1  Hamburger Healthy"
         --     }
         -- }
+    },
+    ltdsud2 = {
+        label = "LTD Grove Street",
+        label2 = "ltd Grove Street",
+        iban = "ltdsud2",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "LTD Grove Street",
+                subtitle = "Actions disponibles",
+                name = "ltdsud2_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("ltdsud2")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "24/7 - Supermarket", "Annonce", text, "CHAR_LTDSUD2", 8, "ltd Grove Street")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage LTD Grove Street",
+            Pos = {x = -46.9176, y = -1738.4676, z = 29.1648},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -46.9176, y = -1738.4676, z = 29.1648, h = 229.7284}
+            },
+            Blipdata = {
+                Pos = {x = -46.9176, y = -1738.4676, z = 29.1648, h = 229.7284},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -42.3382, y = -1748.9405, z = 29.4210, h = 167.2710},
+                Limit = 2000,
+                Name = "coffre_ltdsud2"
+            }
+        },
     },
     burgershot = {
         label = "BurgerShot",
@@ -3476,6 +3565,60 @@ Jobs = {
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
                             TriggerServerEvent("Job:Annonce", "Cabinet Lysias", "Annonce", text, "CHAR_WALTER", 8, "Cabinet Lysias")
+                        end
+                    end
+                }
+            }
+        },
+    },
+    avocat3 = {
+        label = "Cabinet Genovese",
+        label2 = "Cabinet Genovese",
+        iban = "avocat3",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "AVOCAT",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "ASSOCIE",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat3")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Cabinet Genovese", "Annonce", text, "CHAR_GENOVESE", 8, "Cabinet Genovese")
                         end
                     end
                 }
