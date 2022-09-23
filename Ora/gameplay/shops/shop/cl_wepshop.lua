@@ -210,7 +210,7 @@ weapon_munition = {
     --- armes lourdes
     mg = "akm",
     combatmg = "akm",
-    gusenberg = "akm",
+    gusenberg = "acp45",
     ak = "akm",
     compactrifle = "akm",
     carrabine = "cab2",
