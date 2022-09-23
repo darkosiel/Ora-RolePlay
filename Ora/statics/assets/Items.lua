@@ -1637,6 +1637,11 @@ Items = {
         weight = 1.0,
         actionCl = "A FAIRE"
     },
+    golfball = {
+        label = "Balle de golf",
+        weight = 0.5,
+        actionCl = "A FAIRE"
+    },
     mec = {
         label = "Médicament",
         weight = 1.0,
