@@ -1265,6 +1265,11 @@ ItemsFunction = {
             Ora.Inventory:RemoveItem(i)
         end
     end,
+    golfball = function(i)
+        if i then
+            ExecuteCommand("golf")
+        end
+    end,
     moteur = RepairMotor,
     fikit = RepairCaro,
     roue = RepairRoue,

@@ -2218,6 +2218,31 @@ local Shops =
             }
         },
         {
+            Title = "Golfeur",
+            Pos = {x = -1340.67, y = 82.81, z = 53.50, a = 272.68},
+            Blips = {
+                Enabled = true,
+                sprite = 1,
+                color = 6,
+                name = "Mark"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "golfball",
+                    price = 20,
+                    data = {}
+                }
+            }
+        },
+        {
             Title = "Casino",
             Pos = {x = 967.82, y = 46.80, z = 71.70 - 0.98, a = 145.76},
             Blips = {},
