@@ -20,6 +20,7 @@ Ora.Anticheat.ObjectWhitelist = {
   [`p_parachute1_sp_s`] = true,
   [`p_parachute1_mp_s`] = true,
   [`xm_prop_x17_tool_draw_01a`] = true,
+  [`prop_tennis_rack_01b`] = true,
   [974883178] = true,
   [-303457828] = true,
   [-901038522] = true,
