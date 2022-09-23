@@ -28,6 +28,7 @@ Ora.Anticheat.ObjectWhitelist = {
   [`prop_golf_putter_01`] = true,
   [`prop_golf_iron_01`] = true,
   [`prop_golf_wood_01`] = true,
+  [-1124612472] = true,
   [974883178] = true,
   [-303457828] = true,
   [-901038522] = true,
