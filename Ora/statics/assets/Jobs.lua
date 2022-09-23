@@ -5880,12 +5880,12 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1110.92, y = -823.14, z = 13.21},
+                Pos = {x = -1098.83, y = -825.99, z = 13.28},
                 Limit = 99999999,
                 Name = "coffre"
             },
             {
-                Pos = {x = -1086.89, y = -812.7, z = 4.48},
+                Pos = {x = -1088.27, y = -811.700, z = 5.479},
                 Limit = 1000,
                 Name = "coffre cellules"
             },
@@ -5895,22 +5895,17 @@ Jobs = {
                 Name = "coffre des saisies"
             },
             {
-                Pos = {x = -1099.39, y = -825.64, z = 13.21},
+                Pos = {x = -1099.21, y = -830.74, z = 13.28},
                 Limit = 99999999,
                 Name = "coffre personnel"
             },
             {
-                Pos = {x = -1095.1, y = -829.31, z = 13.21},
-                Limit = 99999999,
-                Name = "coffre personnel"
-            },
-            {
-                Pos = {x = -1083.85, y = -808.18, z = 10.04},
+                Pos = {x = -1087.4049, y = -820.5991, z = 11.0358},
                 Limit = 2000,
                 Name = "coffre Saisies DB"
             },
             {
-                Pos = {x = -1090.35, y = -810, z = 13.8},
+                Pos = {x = -1079.99, y = -823.06, z = 13.88},
                 Limit = 99999999,
                 Name = "coffre SWAT"
             }
@@ -5919,11 +5914,11 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = -1094.59, y = -824.11, z = 13.21},
+                Pos = {x = -1096.24, y = -832.15, z = 14.28},
                 vestiaire = {
                     type = "Vestiaire",
                     workSize = 1.45,
-                    Pos = {x = -1094.59, y = -824.11, z = 13.21},
+                    Pos = {x = -1096.24, y = -832.15, z = 14.28},
                     Tenues = TenueLSPD
                 }
             }
