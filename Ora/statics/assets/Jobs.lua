@@ -3624,6 +3624,33 @@ Jobs = {
                 }
             }
         },
+        garage = {
+            Name = "Garage Avocat",
+            Pos = {x = -1171.73, y = -1390.28, z = 4.20},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -1171.73, y = -1390.28, z = 4.20, h = 166.45}
+            },
+            Blipdata = {
+                Pos = {x = -1171.73, y = -1390.28, z = 4.20},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -1180.58, y = -1406.70, z = 13.22},
+                Limit = 500,
+                Name = "coffre_avocatge"
+            },
+            {
+                Pos = {x = -1194.90, y = -1397.00, z = 9.80},
+                Limit = 500,
+                Name = "coffre_avocatge2"
+            }
+        },
     },
     records = {
         label = "Stray Boyz Records",
