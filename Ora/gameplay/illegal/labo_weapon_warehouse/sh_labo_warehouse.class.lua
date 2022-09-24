@@ -678,6 +678,9 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       ----
       {name = "shootguncompact", byWeek = 0, price = 50000},
       {name = "revolver", byWeek = 0, price = 14000},
+      {name = "pistol50", byWeek = 0, price = 16000},
+      {name = "dbshotgun", byWeek = 0, price = 45000},
+      {name = "ceramicpistol", byWeek = 0, price = 12000},
       {name = "minismg", byWeek = 0, price = 35000},
       {name = "machinepistol", byWeek = 0, price = 65000},
       {name = "microsmg", byWeek = 0, price = 85000},
@@ -716,7 +719,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [2] = {
           label = "Confiance commerciale 2",
-          description = "Pour 75 000$ vous obtenez 5 Berettas, 3 pistolets lourds, 2 canons sciés, 500 balles de 9mm, 150 balles de calibre 12 et 5 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+          description = "Pour 75 000$ vous obtenez 5 Berettas, 3 pistolets lourds, 2 canons sciés, 2 Fusil à pompe compact, 500 balles de 9mm, 150 balles de calibre 12 et 5 explosifs artisanaux en plus par semaine par rapport à la limite de base",
           price = 75000,
           addon = {
             pistol = 8,
@@ -724,19 +727,22 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
             mm9 = 750,
             calibre12 = 150,
             shootguncompact = 2,
+            dbshotgun = 2,
             stickybomb = 7,
           }
       },
       [3] = {
         label = "Confiance commerciale 3",
-        description = "Pour 55 000$ vous obtenez 5 Berettas, 2 pistolets lourds, 2 canons sciés, 1 Skorpion, 2 Revolvers,  750 balles de 9mm, 200 balles de .45 ACP et 3 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+        description = "Pour 55 000$ vous obtenez 5 Berettas, 2 pistolets lourds, 2 canons sciés, 2 Fusil à pompe compact, 1 Skorpion, 2 Revolvers, 2 Calibre 50,  750 balles de 9mm, 200 balles de .45 ACP et 3 explosifs artisanaux en plus par semaine par rapport à la limite de base",
         price = 55000,
         addon = {
           pistol = 13,
           pitollourd = 7,
           shootguncompact = 4,
+          dbshotgun = 4,
           calibre12 = 150,
           revolver = 2,
+          pistol50 = 2,
           minismg = 1,
           mm9 = 1500,
           stickybomb = 10,
@@ -751,8 +757,10 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           pistol = 18,
           pitollourd = 10,
           shootguncompact = 4,
+          dbshotgun = 4,
           calibre12 = 210,
           revolver = 2,
+          pistol50 = 2,
           minismg = 3,
           machinepistol = 1,
           mm9 = 2250,
@@ -762,14 +770,17 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [5] = {
         label = "Confiance commerciale 5",
-        description = "Pour 45 000$ vous obtenez 5 berettas, 2 canons sciés, 2 Skorpions, 1500 balles de 9mm, 2 Tec9, 60 Calibre 12, et 20 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+        description = "Pour 45 000$ vous obtenez 5 berettas, 5 Pistolet Céramique, 2 canons sciés, 2 Skorpions, 1500 balles de 9mm, 2 Tec9, 60 Calibre 12, et 20 explosifs artisanaux en plus par semaine par rapport à la limite de base",
         price = 45000,
         addon = {
           pistol = 23,
+          ceramicpistol = 5,
           pitollourd = 10,
           shootguncompact = 6,
+          dbshotgun = 4,
           calibre12 = 270,
           revolver = 2,
+          pistol50 = 2,
           minismg = 5,
           machinepistol = 3,
           mm9 = 3750,
@@ -780,12 +791,14 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [6] = {
           label = "Confiance commerciale 6",
-          description = "Pour 85 000$ vous obtenez 10 Berettas, 5 pistolets lourds, 2 Skorpions, 2500 balles de 9mm, 2 Tec9, 1 Gusenberg, 2 Uzis 60 Calibre 12 et 20 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+          description = "Pour 85 000$ vous obtenez 10 Berettas, 10 Pistolet Céramique, 5 pistolets lourds, 2 Skorpions, 2500 balles de 9mm, 2 Tec9, 1 Gusenberg, 2 Uzis 60 Calibre 12 et 20 explosifs artisanaux en plus par semaine par rapport à la limite de base",
           price = 85000,
           addon = {
             pistol = 33,
+            ceramicpistol = 15,
             pitollourd = 15,
             shootguncompact = 6,
+            dbshotgun = 4,
             calibre12 = 330,
             revolver = 2,
             minismg = 7,
