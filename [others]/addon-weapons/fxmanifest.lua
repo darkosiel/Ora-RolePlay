@@ -13,6 +13,8 @@ files {
 	'weapons/weaponstonehatchet.meta',
 	'weapons/weapons_doubleaction.meta',
 	'weapons/weaponflaregun.meta',
+	'weapons/weapon_tacticalrifle.meta',
+	'weapons/weapon_ceramicpistol.meta',
 
 	'weapons/loadouts.meta',
 	'weapons/weaponarchetypes.meta',
