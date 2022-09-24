@@ -1812,7 +1812,7 @@ Items = {
         category = "weapon"
     },
     ceramicpistol = {
-        label = "Pistoler céramique",
+        label = "Pistolet céramique",
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
