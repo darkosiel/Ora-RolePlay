@@ -801,6 +801,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
             dbshotgun = 4,
             calibre12 = 330,
             revolver = 2,
+            pistol50 = 2,
             minismg = 7,
             machinepistol = 5,
             microsmg = 2,
