@@ -2073,6 +2073,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    tacticalrifle = {
+        label = "M16",
+        weight = 3.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     carabinespecial = {
         label = "Carabine spécial",
         weight = 3.0,
