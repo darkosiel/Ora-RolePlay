@@ -47,10 +47,10 @@ local PawnShops = {
                 unitPrice = 150
             },
             jewels5 = {
-                unitPrice = 450
+                unitPrice = 400
             },
             jewels6 = {
-                unitPrice = 475
+                unitPrice = 450
             },
             burglary_item = {
                 illegal = true,
