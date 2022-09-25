@@ -10,6 +10,7 @@ server_scripts {
 }
 client_scripts {
     'client/client.js',
+    'client/main.lua',
 }
 
 ui_page "html/index.html"
@@ -54,3 +55,6 @@ files {
     "html/script.js",
     "html/index.html",
 }
+
+export 'print_table'
+server_export 'RegisterNewPhone'

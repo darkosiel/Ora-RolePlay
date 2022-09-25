@@ -16,17 +16,22 @@ var firstTime = false
 var takePictureBool = false
 var app = "";
 var appSub = "";
+var onTick
+var onTickCamera
+var phoneActive = false
 
-RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'e')
+RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'f2')
 RegisterCommand('phone', _=>setPhoneVisible(!phoneVisible))
 
 function setMouseFocus(active = true) {
     mouseFocus = active
 }
 
- // onTick timer ref
-var onTick
+// onTick timer ref
 async function setPhoneVisible(visible = true) {
+    if(!phoneActive && !phoneVisible) {
+        return
+    }
     phoneVisible = visible
     // When we wanna show the phone
     if (visible) {
@@ -75,29 +80,12 @@ async function setPhoneVisible(visible = true) {
     })
 }
 
-RegisterNuiCallbackType('open_camera')
-on('__cfx_nui:open_camera', async (data) => {
-    app = data.app
-    appSub = data.appSub
-    setPhoneVisible(false)
-    CreateMobilePhone(1)
-    CellCamActivate(true, true)
-    setCamera(true)
-    takePictureBool = false
-})
-
-RegisterNuiCallbackType('close_camera')
-on('__cfx_nui:close_camera', async () => {
-    setCamera(false)
-})
-
 function CellFrontCamActivate(activate) {
     firstTime = false
 	return Citizen.invokeNative('0x2491A93618B7D838', activate)
 }
 
 DestroyMobilePhone()
-var onTickCamera
 async function setCamera(activate) {
     if(activate) {
         exports.Ora_utils.SetPlayerHUD(false)
@@ -174,7 +162,17 @@ function DisplayHelpText(str) {
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 }
 
-// onNet events from server
+/**
+ * ========================
+ * onNet events from server
+ * ========================
+ */
+
+// Is the phone active ?
+
+onNet('OraPhone:client:phone_active', (active) => {
+    phoneActive = active
+})
 
 // User data
 
@@ -268,7 +266,11 @@ onNet('OraPhone:client:gallery_update_photo', data => {
     })
 })
 
-// Nui callbacks
+/**
+ * =============
+ * Nui callbacks
+ * =============
+ */
 
 // User Data
 
@@ -420,6 +422,22 @@ on('__cfx_nui:camera_add_image', data => {
     emitNet('OraPhone:server:camera_add_image', data)
 })
 
+RegisterNuiCallbackType('open_camera')
+on('__cfx_nui:open_camera', async (data) => {
+    app = data.app
+    appSub = data.appSub
+    setPhoneVisible(false)
+    CreateMobilePhone(1)
+    CellCamActivate(true, true)
+    setCamera(true)
+    takePictureBool = false
+})
+
+RegisterNuiCallbackType('close_camera')
+on('__cfx_nui:close_camera', async () => {
+    setCamera(false)
+})
+
 // Gallery
 
 RegisterNuiCallbackType('refresh_gallery')
@@ -445,8 +463,7 @@ on('__cfx_nui:DisableInput', _ => {
     SetNuiFocusKeepInput(false)
 })
 
-
- //*// Debug
+//*// Debug
 RegisterNuiCallbackType('debug')
 on('__cfx_nui:debug', data => {
     console.log('Nui:debug',data.debugTitle)

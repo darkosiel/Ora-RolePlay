@@ -361,6 +361,11 @@ RegisterNUICallback('inventoryInteraction', function(data)
                         for i = 0, tonumber(data.amount)-1 do
                             if itarr[idx+i] then
                                 table.insert(toDrop, itarr[idx+i])
+                                if itarr[idx+i].name == "tel" then
+                                    MyNumber = nil
+                                    MyBattery = 0
+                                    TriggerEvent("OraPhone:client:phone_active", false)
+                                end
                             end
                         end
                         break

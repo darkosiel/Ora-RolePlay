@@ -4,7 +4,7 @@ var inCall = false
 
 /**
  * =============
- * DB operations
+ * DB operations / Functions
  * =============
  */
 
@@ -180,7 +180,6 @@ const crud = {
     }),
 }
 
-
 /**
  * Description for the user data object
  * 
@@ -205,7 +204,7 @@ async function fetchSteamIdFromNumber(num) {
  * @param {string} steamId 
  * @returns {UserData}
  */
-async function requestUserData(steamId) {
+async function requestUserData(steamId, number) {
     try {
         // identity
         const identityResponse = await fetchDb("SELECT u.uuid as uuid, u.identifier as steamId, u.phone_number as phoneNumber, p.first_name as firstName, p.last_name as lastName"
@@ -213,6 +212,7 @@ async function requestUserData(steamId) {
             + " INNER JOIN players_identity p ON u.uuid = p.uuid"
             + " WHERE u.identifier = @id"
         , { id: steamId })
+        console.log(steamId)
         if (!identityResponse || identityResponse.length != 1) {
             console.error('Identity query failed with steamid', steamId)
             return
@@ -220,11 +220,13 @@ async function requestUserData(steamId) {
         const userData = identityResponse[0]
         const id = userData.uuid
         // parameters
-        const phoneResponse = await crud.phone.read({ playerUuid: id })
+        console.log(number)
+        const phoneResponse = await crud.phone.read({ number: number })
         if (!phoneResponse || phoneResponse.length === 0) {
             console.log('Phone query failed, creating default phone params for user ', steamId)
         }
         userData.phone = phoneResponse[0]
+        await crud.phone.update({ number: number }, { playerUuid: id })
         // contacts
         const contactsResponse = await crud.contacts.read({ phoneId: userData.phone.id })
         if (!contactsResponse) {
@@ -259,10 +261,10 @@ async function requestUserData(steamId) {
  * Update User data&
  * ===============================
  */
-async function updateUserData () {
+async function updateUserData(number) {
     const src = source
     const steamId = getSteamId(source)
-    const userData = await requestUserData(steamId)
+    const userData = await requestUserData(steamId, number)
     if (!userData) {
         console.error('Could not get user data with steam id ', steamId, 'from source', src)
         return
@@ -432,7 +434,7 @@ async function refreshRichterMotorsport(phoneId) {
  * Refresh all Richter Motorsport app
  * @param {array} data
  */
- async function refreshGallery(phoneId) {
+async function refreshGallery(phoneId) {
     const galleryImageResponse = await crud.image.read({ phoneId: phoneId })
     if (!galleryImageResponse) {
         console.error('Photo query failed with phoneId', phoneId)
@@ -480,6 +482,7 @@ async function refreshConversations(number) {
  * Server Events
  * =============
  */
+
 on('playerDropped', _ => {
     const src = source
     if (onlinePlayers.hasOwnProperty(src)) {
@@ -498,7 +501,9 @@ on("Ora::SE::PlayerLoaded", source => {
  * ==============
  */
 
-onNet('OraPhone:server:request_user_data', updateUserData)
+onNet('OraPhone:server:request_user_data', async data => {
+    updateUserData(data)
+})
 
 onNet('OraPhone:patch_user_data', async data => {
     patchUserData(data)
@@ -726,4 +731,26 @@ onNet('OraPhone:server:refresh_gallery', async (data) => {
     emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
 })
 
+// Create new phone
 
+function RegisterNewPhone(phoneNumber, identity) {
+    let playerUuid = identity.uuid
+    let serialNumber = Math.floor(Math.random() * (9999 - 1111 + 1) + 1111) + "-" + Math.floor(Math.random() * (9999 - 1111 + 1) + 1111)
+    let firstName = identity.first_name
+    let lastName = identity.last_name
+    let number = phoneNumber
+    let isActive = 0
+    let soundNotification = 'notification-sms1'
+    let soundRinging = 'ringing-iosoriginal'
+    let soundAlarm = 'alarm-iosradaroriginal'
+    let soundNotificationVolume = '5'
+    let soundRingingVolume = '5'
+    let soundAlarmVolume = '5'
+    let darkMode = '0'
+    let zoom = 'zoom100%'
+    let wallpaper = 'wallpaper-ios15'
+    let wallpaperLock = 'wallpaper-ios15'
+    let luminosity = '100'
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+    crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
+}
