@@ -195,8 +195,7 @@ PublicFarm = {
                 18, --20h00 IRL
                 19, 
                 20,
-                21,
-                22
+                21
             },
             closedHoursMessage = "La mine est fermée de 20h00 a 00h00. Allez recontrer des gens."
         },
