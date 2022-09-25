@@ -1064,6 +1064,15 @@ Config.DoorList = {
             {objHash = GetHashKey("v_ilev_cs_door01_r"), objHeading = 30.50, objCoords = vector3(-816.793, -1078.406, 11.48)}
         }
     },
+    {
+        objHash = -770740285,
+        objHeading = 250.95,
+        objCoords = vector3(105.96, 14.36, 67.86),
+        textCoords = vector3(106.37, 14.54, 67.86),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5
+    },
     --- BINCO NORD
     {
         objHash = GetHashKey("v_ilev_clothmiddoor"),
@@ -1546,6 +1555,7 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.5
     },
+    --
     {
         objHash = -880376952,
         objCoords = vector3(-1387.0535888671875, -586.5787963867188, 30.386581420898438),
