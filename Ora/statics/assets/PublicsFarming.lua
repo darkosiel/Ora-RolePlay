@@ -215,8 +215,8 @@ PublicFarm = {
                 {name = "goldpepite4", count = 1, drop = math.random(25, 45)},
                 {name = "goldpepite5", count = 1, drop = math.random(5, 20)},
                 {name = "goldpepite6", count = 1, drop = math.random(5, 5)},
-                {name = "jewels5", count = 1, drop = math.random(2, 5)},
-                {name = "jewels6", count = 1, drop = math.random(1, 3)}
+                {name = "jewels5", count = 1, drop = math.random(1, 5)},
+                {name = "jewels6", count = 1, drop = math.random(1, 2)}
             },
             RemoveItem = "rock",
             add = "~p~ Vous avez concassé une pierre"
