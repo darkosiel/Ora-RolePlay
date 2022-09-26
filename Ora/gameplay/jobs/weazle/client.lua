@@ -44,7 +44,7 @@ AddEventHandler(
             cam_net = netid
             holdingCam = true
             DisplayNotification(
-                "Pour activer le bandeau, appuyer sur ~r~E~s~ \nPour désactivé le bandeau, appuyer sur ~r~ECHAP"
+                "Pour activer le bandeau, appuyer sur ~r~E~s~ \nPour désactivé le bandeau, appuyer sur ~r~DELETE"
             )
         else
             ClearPedSecondaryTask(LocalPlayer().Ped)
