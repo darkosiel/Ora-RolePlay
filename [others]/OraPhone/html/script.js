@@ -121,52 +121,6 @@ var RichterMotorSportCurrentAdvertisement;
 // App Camera
 var canvasActivate = false;
 
-// Objet UserData pour des tests
-// userData = {};
-// userData.phone = {};
-// userData.phone.appHomeOrder = [
-//     'clock',
-//     '',
-//     'camera',
-//     'gallery',
-//     'calandar',
-//     'notes',
-//     '',
-//     'calculator',
-//     '',
-//     'store',
-//     'music',
-//     'templatetabbed',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-// ];
-
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
 $(function(){
@@ -347,6 +301,13 @@ $(function(){
             // updateContent(menuSelected);
             // updateAppContent(menuAppSelected);
             // lockPhone();
+            // let dateTest = {
+            //     'phone': {
+            //         'darkMode': 1, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': [ 'clock', '', 'camera', 'gallery', 'calandar', 'notes', '', 'calculator', '', 'store', 'music', 'templatetabbed', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+            //         ]
+            //     }
+            // }
+            // updateUserData(dateTest);
             // $("#add-notification").click(function() {
             //     // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
             //     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
