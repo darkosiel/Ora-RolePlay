@@ -6,6 +6,7 @@ local PawnShops = {
         seller_name = "Edouard",
         pawnshop_receipt = "PawnShop",
         seller_identifier = "pawnshop_4",
+        isPawnshop = true,
         blips = {
             show = false,
             sprite = 7,
@@ -513,10 +514,14 @@ Citizen.CreateThread(
                                                                     end
                                                                 end
                                                             )
+                                                        elseif (PawnShops[CurrentZone].isPawnshop) then
+                                                            Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
+                                                            TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "pawnshop", finalPrice, true)
+                                                            TriggerServerEvent("entreprise:Add", "pawnshop", finalPrice)
                                                         else
                                                             Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
-                                                            
-                                                            
+                                                                
+                                                                
                                                             TriggerServerCallback(
                                                                 "Ora::SE::Money:AuthorizePayment", 
                                                                 function(token)
@@ -533,6 +538,7 @@ Citizen.CreateThread(
                                                                 {}
                                                             )
                                                         end
+                                                    end
                                                     end
                                                 end,
                                                 nil
