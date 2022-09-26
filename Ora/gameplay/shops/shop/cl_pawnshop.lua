@@ -17,22 +17,22 @@ local PawnShops = {
                 unitPrice = 20
             },
             goldpepite1 = {
-                unitPrice = 17
+                unitPrice = 2
             },
             goldpepite2 = {
-                unitPrice = 22
+                unitPrice = 5
             },
             goldpepite3 = {
-                unitPrice = 26
+                unitPrice = 8
             },
             goldpepite4 = {
-                unitPrice = 32
+                unitPrice = 10
             },
             goldpepite5 = {
-                unitPrice = 50
+                unitPrice = 15
             },
             goldpepite6 = {
-                unitPrice = 60
+                unitPrice = 19
             },
             jewels1 = {
                 unitPrice = 225
@@ -47,10 +47,10 @@ local PawnShops = {
                 unitPrice = 150
             },
             jewels5 = {
-                unitPrice = 125
+                unitPrice = 30
             },
             jewels6 = {
-                unitPrice = 135
+                unitPrice = 40
             },
             burglary_item = {
                 illegal = true,
