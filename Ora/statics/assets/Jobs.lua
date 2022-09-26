@@ -2826,7 +2826,7 @@ Jobs = {
     },
     ltdsud = {
         label = "LTD Davis",
-        label2 = "ltd Davis",
+        label2 = "LTD Davis",
         iban = "ltdsud",
         FreeAccess = false,
         grade = {
@@ -2884,7 +2884,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "24/7 - Supermarket", "Annonce", text, "CHAR_LTDSUD", 8, "LTD Davis")
+                            TriggerServerEvent("Job:Annonce", "LTD Davis", "Annonce", text, "CHAR_LTDSUD", 8, "LTD Davis")
                         end
                     end
                 }
