@@ -2191,7 +2191,7 @@ Jobs = {
             {
                 Pos = {x = -1338.05, y = -1072.20, z = 6.98 - 0.98},
                 Limit = 500,
-                Name = "coffre_restaurant"
+                Name = "coffre_restaurant_new"
             },
             {
                 Pos = {x = -1353.03, y = -1055.21, z = 3.51 - 0.98},
