@@ -518,6 +518,15 @@ Citizen.CreateThread(
                                                             Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
                                                             TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "pawnshop", finalPrice, true)
                                                             TriggerServerEvent("entreprise:Add", "pawnshop", finalPrice)
+
+                                                            ShowNotification(
+                                                                "~h~~b~L'acheteur vous achete ~r~" ..
+                                                                    itemCount ..
+                                                                        "x~s~ " ..
+                                                                            Items[tmpKey].label ..
+                                                                                "~s~ pour ~g~" .. finalPrice .. "$~s~"
+                                                            )
+
                                                         else
                                                             Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
                                                                 
@@ -538,7 +547,6 @@ Citizen.CreateThread(
                                                                 {}
                                                             )
                                                         end
-                                                    end
                                                     end
                                                 end,
                                                 nil
