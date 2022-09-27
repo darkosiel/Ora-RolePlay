@@ -791,7 +791,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [6] = {
           label = "Confiance commerciale 6",
-          description = "Pour 85 000$ vous obtenez 10 Berettas, 10 Pistolet Céramique, 3 Calibre 50, 5 pistolets lourds, 2 Skorpions, 2500 balles de 9mm, 2 Tec9, 1 Gusenberg, 2 Uzis 60 Calibre 12 et 20 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+          description = "Pour 85 000$ vous obtenez 10 Berettas, 10 Pistolet Céramique, 8 Calibre 50, 5 pistolets lourds, 2 Skorpions, 2500 balles de 9mm, 2 Tec9, 1 Gusenberg, 2 Uzis 60 Calibre 12 et 20 explosifs artisanaux en plus par semaine par rapport à la limite de base",
           price = 85000,
           addon = {
             pistol = 33,
@@ -801,7 +801,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
             -- dbshotgun = 4,
             calibre12 = 330,
             revolver = 2,
-            pistol50 = 5,
+            pistol50 = 10,
             minismg = 7,
             machinepistol = 5,
             microsmg = 2,
