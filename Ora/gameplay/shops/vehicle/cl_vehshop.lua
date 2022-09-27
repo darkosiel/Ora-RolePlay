@@ -575,7 +575,6 @@ local VehShop =
                     {name = "sandking2", price = 49725},
                     {name = "vagrant", price = 26000},
                     {name = "granger2", price = 36000},
-                    {name = "patriot3", price = 60000},
                     {name = "draugur", price = 80750},
                     {name = "weevil2", price = 46700},
                     {name = "comet4", price = 56000}
