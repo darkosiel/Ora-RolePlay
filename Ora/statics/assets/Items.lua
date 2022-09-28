@@ -2179,7 +2179,7 @@ Items = {
     },
     rock = {
         label = "Pierre à concasser",
-        weight = 1
+        weight = 0.5
     },
     ---prison
     info = {
