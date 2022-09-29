@@ -805,10 +805,14 @@ ItemsFunction = {
             TriggerServerEvent("core:SetNumber", item.data.num)
             MyNumber = item.data.num
             MyBattery = item.data.battery
+            -- GC Phone
             TriggerEvent("gcphone:UpdateBattery", MyBattery)
             TriggerEvent("gcPhone:myPhoneNumber", MyNumber)
             Wait(300)
             TriggerServerEvent("gcPhone:allUpdate")
+            -- OraPhone
+            -- TriggerServerEvent("OraPhone:server:request_user_data", MyNumber)
+            -- TriggerEvent("OraPhone:client:phone_active", true)
             RageUI.Popup({message = "Téléphone activé : ~g~" .. MyNumber})
         else
             ShowNotification("~r~La carte SIM de ce téléphone est cassé. Veuillez en acheter un autre~s~")
