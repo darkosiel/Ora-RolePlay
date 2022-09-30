@@ -7390,7 +7390,7 @@ Jobs = {
                     ActiveFct = function()
                         HoverPlayer()
                     end
-                }
+                },
                 {
                     label = "Annonce",
                     onSelected = function()
