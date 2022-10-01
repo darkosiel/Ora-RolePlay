@@ -2,10 +2,9 @@ Ora/gameplay/civilian/shooting_range/ranking.json
 /Ora/gameplay/civilian/shooting_range/ranking.json
 Ora/gameplay/civilian/karting/ranking.json
 /Ora/gameplay/civilian/karting/ranking.json
-Ora/gameplay/jobs/fueler/station.json
-/Ora/gameplay/jobs/fueler/station.json
 Ora/gameplay/jobs/police/dispatch.json
 /Ora/gameplay/jobs/police/dispatch.json
+Ora/core/modules/health/playersDead.json
 addonsclothes/
 .vscode/
 rcore_pool/config.lua
@@ -36,3 +35,6 @@ loadscreen/
 **/whitelist.json
 Ora/core/test.cfg
 Ora/whitelist.json
+Ora/gameplay/jobs/fueler/station.json
+Ora/gameplay/jobs/g6/atm.json
+Ora/gameplay/jobs/g6/atms.json
