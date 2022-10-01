@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS ora_phone_image (
 
 CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `phone_id` INT DEFAULT NOT NULL,
-    `img_url` VARCHAR(255) DEFAULT NULL,
+    `phone_id` INT NOT NULL,
+    `img_url` VARCHAR(255) NULL,
     `model` VARCHAR(255) NOT NULL,
     `category` VARCHAR(255) NOT NULL,
     `description` VARCHAR(255) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport (
 
 CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport_favorite (
     `advertisement_id` INT NOT NULL,
-    `player_uuid` VARCHAR(255) NOT NULL,
+    `player_uuid` VARCHAR(255) NOT NULL
 );
 
 -- CREATE TABLE IF NOT EXISTS ora_phone_app_store (

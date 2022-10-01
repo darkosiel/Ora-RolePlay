@@ -178,6 +178,11 @@ $phone--contextmenu--item--color--dark: #ffffff;
 $phone--contextmenu--item--background--color--light: rgba(10, 20, 28, 0.09);
 $phone--contextmenu--item--background--color--dark: rgba(255, 255, 255, 0.1);
 
+$phone--notes--input--border--color--light: rgba(255, 204, 0, 0.3);
+$phone--notes--input--border--color--dark: rgba(255, 214, 10, 0.3);
+$phone--notes--input--focus--border-color--light: rgba(255, 204, 0, 1);
+$phone--notes--input--focus--border-color--dark: rgba(255, 214, 10, 1);
+
 // Multiple Attribut
 
 %text-max-line-1 {

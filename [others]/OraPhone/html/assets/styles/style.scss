@@ -318,6 +318,7 @@ div#page {
                                         width: 100%;
                                         height: $ora-phone-app-body-content-body-height;
                                         overflow: scroll;
+                                        transition: all 0.3s ease-in-out;
                                         div.app-body-content-body-list {
                                             width: 100%;
                                             display: flex;
@@ -560,6 +561,10 @@ div#page {
                                             }
                                         }
                                     }
+                                    div.app-body-content-tab {
+                                        width: 100%;
+                                        transition: all 0.3s ease-in-out;
+                                    }
                                 }
                             }
                             div.app-tab {
@@ -667,6 +672,9 @@ div#page {
                                                     }
                                                     i {
                                                         font-size: 20px;
+                                                        &:last-of-type {
+                                                            cursor: pointer;
+                                                        }
                                                     }
                                                     input {
                                                         width: inherit;
@@ -3494,6 +3502,270 @@ div#page {
                                     }
                                 }   
                             }
+                            &#app-notes {
+                                div.app-body {
+                                    transition: background-color 0.3s ease-in-out;
+                                    @include themed() {
+                                        background-color: t($phone-app-tab-background-color);
+                                    }
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            height: 100px;
+                                            background-color: transparent;
+                                            div.app-body-content-header-button {
+                                                div.app-body-content-header-button-parent {
+                                                    span, i {
+                                                        @include themed() {
+                                                            color: t($phone-system-color-yellow);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 100px - 60px);
+                                            padding: 0 20px;
+                                            overflow: hidden;
+                                            span {
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                                &.notes-title {
+                                                    display: block;
+                                                    height: 30px;
+                                                    margin: 20px 0 10px 25px;
+                                                    font-family: $ora-font-semibold;
+                                                    font-size: 24px;
+                                                }
+                                            }
+                                            div.notes-list {
+                                                width: 100%;
+                                                height: auto;
+                                                div.notes-list-item {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    width: 100%;
+                                                    height: 45px;
+                                                    padding: 0 15px;
+                                                    border-bottom-width: 2px;
+                                                    border-bottom-style: solid;
+                                                    transition: background-color 0.3s ease-in-out;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-background-color);
+                                                        border-bottom-color: t($phone-app-tab-background-color);
+                                                    }
+                                                    &:first-child {
+                                                        border-top-left-radius: 10px;
+                                                        border-top-right-radius: 10px;
+                                                    }
+                                                    &:last-child {
+                                                        border: 0;
+                                                        border-bottom-left-radius: 10px;
+                                                        border-bottom-right-radius: 10px;
+                                                    }
+                                                    div.notes-list-item-left, div.notes-list-item-right {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        column-gap: 15px;
+                                                        span, i, input {
+                                                            font-size: 20px;
+                                                        }
+                                                        input.notes-list-item-title {
+                                                            width: 220px;
+                                                            border: 0;
+                                                            background-color: transparent;
+                                                            transition: all 0.3s ease-in-out;
+                                                            cursor: pointer;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-primary);
+                                                            }
+                                                            &.active {
+                                                                border-bottom-width: 3px;
+                                                                border-bottom-style: solid;
+                                                                cursor: text;
+                                                                @include themed() {
+                                                                    border-bottom-color: t($phone-system-color-yellow);
+                                                                }
+                                                            }
+                                                        }
+                                                        span.notes-list-item-count, i.notes-list-item-arrow {
+                                                            @include themed() {
+                                                                color: t($phone-system-color-gray);
+                                                            }
+                                                        }
+                                                        i.notes-list-item-icon {
+                                                            font-size: 22px;
+                                                            @include themed() {
+                                                                color: t($phone-system-color-yellow);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                &#notes-list-folders {
+                                                    height: calc(100% - 45px - 60px);
+                                                    overflow: scroll;
+                                                }
+                                                &#notes-list-notes {
+                                                    margin-top: 20px;
+                                                    height: calc(100% - 20px);
+                                                    overflow: scroll;
+                                                    div.notes-list-item {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        justify-content: space-evenly;
+                                                        align-items: flex-start;
+                                                        height: 85px;
+                                                        padding: 0 25px;
+                                                        span, i {
+                                                            @include themed() {
+                                                                color: t($phone-system-color-gray);
+                                                            }
+                                                            &.notes-list-item-title {
+                                                                font-size: 18px;
+                                                                font-family: $ora-font-bold;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                            }
+                                                            &.notes-list-item-folder {
+                                                                margin-left: 5px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-tab {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;
+                                            height: 60px;
+                                            padding: 0 30px;
+                                            @include themed() {
+                                                color: t($phone-system-color-yellow);
+                                            }
+                                            i {
+                                                font-size: 30px;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                        &#app-notes-body-content-folder {
+                                            div.app-body-content-header {
+                                                height: 145px;
+                                            }
+                                            div.app-body-content-body {
+                                                height: calc(100% - 145px - 60px);
+                                            }
+                                            div.app-body-content-tab {
+                                                justify-content: center;
+                                            }
+                                        }
+                                        &#app-notes-body-content-note {
+                                            div.app-body-content-header, div.app-body-content-body, div.app-body-content-tab {
+                                                transition: background-color 0.3s ease-in-out;
+                                                @include themed() {
+                                                    background-color: t($phone-app-background-color);
+                                                }
+                                            }
+                                            div.app-body-content-header {
+                                                height: 50px;
+                                            }
+                                            div.app-body-content-body {
+                                                height: calc(100% - 50px - 60px);
+                                                overflow-y: scroll; 
+                                                input.notes-title {
+                                                    width: 100%;
+                                                    margin-top: 15px;
+                                                    border: 0;
+                                                    font-size: 28px;
+                                                    font-family: $ora-font-bold;
+                                                    background-color: transparent;
+                                                    transition: color 0.3s ease-in-out;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &:focus {
+                                                        border-bottom-width: 3px;
+                                                        border-bottom-style: solid;
+                                                        cursor: text;
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-system-color-yellow);
+                                                        }
+                                                    }
+                                                }
+                                                textarea {
+                                                    width: 100%;
+                                                    min-height: 400px;
+                                                    height: auto;
+                                                    margin-top: 20px;
+                                                    padding: 5px;
+                                                    border: 0;
+                                                    border-bottom-width: 3px;
+                                                    border-bottom-style: solid;
+                                                    outline: none;
+                                                    font-size: 18px;
+                                                    background-color: rgba(0, 0, 0, 0.02);
+                                                    resize: none;
+                                                    overflow-y: hidden;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        border-bottom-color: t($phone-notes-input-border-color);
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &:focus {
+                                                        background-color: rgba(0, 0, 0, 0.05);
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-notes-input-focus-border-color);
+                                                        }
+                                                    }
+                                                }
+                                                div#notes-note-container {
+                                                    display: none;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    margin-top: 20px;
+                                                    padding: 5px;
+                                                    font-size: 18px;
+                                                    li {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        list-style: none;
+                                                        column-gap: 5px;
+                                                        input {
+                                                            appearance: none;
+                                                            background-color: transparent;
+                                                            border: 2px solid gray;
+                                                            width: 30px;
+                                                            height: 30px;
+                                                            border-radius: 50%;
+                                                            text-align: center;
+                                                            vertical-align: middle;
+                                                            &.checked {
+                                                                @include themed() {
+                                                                    background-image: t($phone-system-color-yellow), url("../images/apps/notes/check.png");
+                                                                    border-color: t($phone-system-color-yellow);
+                                                                }
+                                                            }
+                                                        }
+                                                        span {
+                                                            font-family: $ora-font-semibold;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.app-body-content-tab {
+                                                justify-content: space-around;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         #notification-container {
                             width: 100%;
@@ -4311,6 +4583,20 @@ div#phone-screen-content {
             }
         }
     }
+    &.app-notes {
+        div#phone-screen-content-footer {
+            @include themed() {
+                background-color: t($phone-app-tab-background-color) !important;
+            }
+        }
+        &.notes-note {
+            div#phone-screen-content-footer, div#phone-screen-content-header, div.app-body {
+                @include themed() {
+                    background-color: t($phone-app-background-color) !important;
+                }
+            }
+        }
+    }
 }
 
 /* --- Context Menu --- */
@@ -4318,7 +4604,7 @@ div#phone-screen-content {
 .contextMenu {
     height: 0;
     overflow: hidden;
-    backdrop-filter: blur(5px);
+    // backdrop-filter: blur(5px); // Bug affichage en jeu avec rectangle noir
     position: fixed;
     top: var(--top);
     left: var(--left);
@@ -4376,6 +4662,12 @@ div#phone-screen-content {
         &:hover {
             @include themed() {
                 background-color: t($phone-contextmenu-item-background-color);
+            }
+        }
+        &.delete {
+            @include themed() {
+                stroke: t($phone-system-color-red);
+                color: t($phone-system-color-red);
             }
         }
     }

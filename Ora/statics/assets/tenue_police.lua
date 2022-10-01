@@ -3552,7 +3552,7 @@ TenueLSPD = {
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
-    ["Garde nationale"] = {
+    --[[["Garde nationale"] = {
         male = {
             ['tshirt_1'] = 15,  ['tshirt_2'] = 0,
             ['torso_1'] = 220,   ['torso_2'] = 25,
@@ -3583,7 +3583,7 @@ TenueLSPD = {
             ['chain_1'] = 81,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
-    },
+    },]]
     ["ASD"] = {
         male = {
             ['tshirt_1'] = 67,  ['tshirt_2'] = 0,
