@@ -1,5 +1,6 @@
 
 // --- Variables constantes
+// Dossier
 const folderAssets = "./assets/";
 const folderImages = folderAssets + "images/";
 const folderWallpaper = folderImages + "wallpaper/";
@@ -10,6 +11,14 @@ const folderAlarms = folderSounds + "alarms/";
 const folderNotifications = folderSounds + "notifications/";
 const folderRingings = folderSounds + "ringings/";
 const contactAvatarDefault = folderContactsProfileIcon + "50-Animals-avatar_49.png";
+
+// SVG d'icones
+const copyIcon =        `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+const cutIcon =         `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`;
+const pasteIcon =       `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px;top: -1px;" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`;
+const downloadIcon =    `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px;top: -1px;" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
+const deleteIcon =      `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+const renameIcon =      `<svg viewBox="0 0 20 20" width="13" height="13" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M19.404,6.65l-5.998-5.996c-0.292-0.292-0.765-0.292-1.056,0l-2.22,2.22l-8.311,8.313l-0.003,0.001v0.003l-0.161,0.161c-0.114,0.112-0.187,0.258-0.21,0.417l-1.059,7.051c-0.035,0.233,0.044,0.47,0.21,0.639c0.143,0.14,0.333,0.219,0.528,0.219c0.038,0,0.073-0.003,0.111-0.009l7.054-1.055c0.158-0.025,0.306-0.098,0.417-0.211l8.478-8.476l2.22-2.22C19.695,7.414,19.695,6.941,19.404,6.65z M8.341,16.656l-0.989-0.99l7.258-7.258l0.989,0.99L8.341,16.656z M2.332,15.919l0.411-2.748l4.143,4.143l-2.748,0.41L2.332,15.919z M13.554,7.351L6.296,14.61l-0.849-0.848l7.259-7.258l0.423,0.424L13.554,7.351zM10.658,4.457l0.992,0.99l-7.259,7.258L3.4,11.715L10.658,4.457z M16.656,8.342l-1.517-1.517V6.823h-0.003l-0.951-0.951l-2.471-2.471l1.164-1.164l4.942,4.94L16.656,8.342z"></path></svg>`
 
 // --- Variables par défauts
 
@@ -26,12 +35,7 @@ var phoneBottomShowLandscape = "-150px";
 var phoneBottomShowNot = "-900px";
 var phoneLockToggle = false;
 var lockIconSnoozeEffect = false;
-
-// Apps Colors
-var FooterColor = "#ffffff";
-var FooterColorBackground = "transparent";
-var Bodycolor = "#ffffff";
-var BodyColorBackground = "transparent";
+var contextMenuItemClicked;
 
 // App Home
 var pageSelectedStart = 1;  
@@ -44,6 +48,7 @@ var mousePosition = {
 var offset = [0,0];
 var pageSelected;
 var isDown = false;
+var contextMenuHomeTarget;
 
 // App Clock
 var activateAppClockToggle = false;
@@ -120,6 +125,10 @@ var RichterMotorSportCurrentAdvertisement;
 
 // App Camera
 var canvasActivate = false;
+
+// App Notes
+var notesListItem = false;
+var notesNoteInputToggle = true;
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
@@ -259,7 +268,7 @@ $(function(){
             // Gestion du clique droit
             $("#phone").bind("contextmenu",function() {
                 // updateContent(menuSelectedLast);
-                return false;
+                // return false;
             });
             // Gestion entrer/sortie des inputs
             $(':input').on('blur', function() {
@@ -286,28 +295,24 @@ $(function(){
                 $("#app-lock-day-text").html(date);
             }, 1000);
 
-            // Inisiialisation de l'accueil
-            updateContent(menuSelected);
-            updateAppContent(menuAppSelected);
-            lockPhone();
-
             // Initialisation des applications
             initializeApps();
 
         // --- Inisialisation de test --- //
 
             // Affichage de l'écran de test
-            // displayPhone();
-            // updateContent(menuSelected);
+            let dateTest = {
+                'phone': {
+                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': [ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'templatetabbed', 'richtermotorsport', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                    ]
+                }
+            }
+            updateUserData(dateTest);
+            displayPhone();
+            // updateContent("notes");
             // updateAppContent(menuAppSelected);
             // lockPhone();
-            // let dateTest = {
-            //     'phone': {
-            //         'darkMode': 1, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': [ 'clock', '', 'camera', 'gallery', 'calandar', 'notes', '', 'calculator', '', 'store', 'music', 'templatetabbed', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-            //         ]
-            //     }
-            // }
-            // updateUserData(dateTest);
+            // unlockPhone();
             // $("#add-notification").click(function() {
             //     // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
             //     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
@@ -337,9 +342,10 @@ $(function(){
 
 // Mise à jour total
 function updateUserData(data) {
-    updateContent("home");
-    updateAppContent("first");
-    lockPhone();
+    // Inisiialisation de l'accueil
+    updateContent("notes");
+    updateAppContent("note");
+    // lockPhone();
     // Update main variables
     userData = data;
     darkMode = (data.phone.darkMode == 1 ? true : false);
@@ -387,6 +393,7 @@ function initializeApps() {
     initializeAppCalculator();
     initializeAppCamera();
     initializeAppRichterMotorsport();
+    initializeAppNotes();
 
     // Initialisation des boutons généraux de chaques applications
     $(".app-header-first").click(function () {
@@ -1306,6 +1313,174 @@ function initializeAppCamera() {
     });
 }
 
+function initializeAppNotes() {
+    $("#notes-folder-button-add").click(function() {
+        let newDiv = `<div class="notes-list-item">
+            <div class="notes-list-item-left">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+            </div>
+            <div class="notes-list-item-right">
+                <span class="notes-list-item-count">0</span>
+                <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+            </div>
+        </div>`;
+        $("#notes-list-folders").append(newDiv);
+        $("#notes-list-folders").children().last().click(function() {
+            updateAppContent("folder");
+        });
+        notesFolderContextMenu.updateTargetNode();
+    });
+    $("#notes-folder-note-button-add").click(function() {
+        let newDiv = `<div class="notes-list-item">
+            <span class="notes-list-item-title">Note #1</span>
+            <span class="notes-list-item-date">16:29</span>
+            <div class="notes-list-item-bottom">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <span class="notes-list-item-folder">Notes rapides</span>
+            </div>
+        </div> `;
+        $("#notes-list-notes").append(newDiv);
+        $("#notes-list-notes").children().last().click(function() {
+            updateAppContent("note");
+        });
+        notesNoteContextMenu.updateTargetNode();
+    });
+    const notesFolderMenuItems = [
+        {
+            content: `${renameIcon}Renommer le dossier`,
+            events: {
+                click: () =>  renameNotesFolder()
+            }
+        },
+        {
+            content: `${deleteIcon}Supprimer le dossier`,
+            events: {
+                click: () => removeNotesFolder()
+            },
+            divider: "top",
+            class: "delete"
+        },
+    ];
+    const notesNoteMenuItems = [
+        {
+            content: `${deleteIcon}Supprimer la note`,
+            events: {
+                click: () => removeNotesNote()
+            },
+            class: "delete"
+        },
+    ];
+    const notesFolderContextMenu = new ContextMenu({
+        target: "#notes-list-folders .notes-list-item:not(.disabled)",
+        menuItems: notesFolderMenuItems
+    });
+    const notesNoteContextMenu = new ContextMenu({
+        target: "#notes-list-notes .notes-list-item:not(.disabled)",
+        menuItems: notesNoteMenuItems
+    });
+    notesFolderContextMenu.init();
+    notesNoteContextMenu.init();
+    $("#app-notes-body-content-folder-search-reset").click(function() {
+        $("#app-notes-body-content-folder-search").val("");
+        $(".notes-list-item").css("display", "flex");
+    });
+    // Inisialisation de la recherche de notes
+    let searchInput = document.getElementById("app-notes-body-content-folder-search");
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $("#notes-list-notes .notes-list-item")) {
+            if(elt.querySelector(".notes-list-item-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "flex";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+    $("#notes-note-content").on("input", function() {
+        this.style.height = 0;
+        this.style.height = (this.scrollHeight) + "px";
+    });
+    $("#notes-checklist-button-add").click(function() {
+        $("#notes-note-content").val($("#notes-note-content").val() + "\n- [ ] ");
+    });
+    $("#notes-note-button-edit").click(function() {
+        updateNotesNoteContent();
+    });
+}
+
+function updateNotesNoteContent() {
+    $("#notes-note-content").toggle();
+    $("#notes-note-container").toggle();
+    notesNoteInputToggle = !notesNoteInputToggle;
+    if(notesNoteInputToggle) {
+        $("#notes-note-content").focus();
+    } else {
+        $("#notes-note-container").empty();
+        let lines = $("#notes-note-content").val().split("\n");
+        let newContent = "";
+        for(let line of lines) {
+            if(line.startsWith("- [ ]")) {
+                line = line.replace("- [ ]", "<li><input type='checkbox' class='notes-checklist-item-checkbox unchecked'/><span class='notes-checklist-item-text'>");
+                line += "</span></li>";
+            } else if(line.startsWith("- [x]")) {
+                line = line.replace("- [x]", "<li><input type='checkbox' class='notes-checklist-item-checkbox checked' checked/><span class='notes-checklist-item-text'>");
+                line += "</span></li>";
+            }
+            newContent += line + "<br/>";
+        }
+        $("#notes-note-container").empty();
+        $("#notes-note-container").append(newContent);
+        $("#notes-note-container input").on("input", function() {
+            let find = "";
+            let replacement = "";
+            let index = "";
+            if(this.checked) {
+                find = "- [ ]";
+                replacement = "- [x]";
+                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.unchecked").index(this) + 1).join(find).length;
+                $(this).removeClass("unchecked");
+                $(this).addClass("checked");
+            } else {
+                find = "- [x]";
+                replacement = "- [ ]";
+                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.checked").index(this) + 1).join(find).length;
+                $(this).removeClass("checked");
+                $(this).addClass("unchecked");
+            }
+            $("#notes-note-content").val($("#notes-note-content").val().substring(0, index) + replacement + $("#notes-note-content").val().substring(index + replacement.length));
+        });
+    }
+}
+
+function removeNotesFolder() {
+    if(notesListItem) {
+        notesListItem.disabled = true;
+        notesListItem.classList.remove("active");
+        notesListItem = false;
+    }
+    let folder = contextMenuItemClicked.target.closest(".notes-list-item");
+    folder.remove();
+}
+
+function renameNotesFolder() {
+    if(notesListItem) {
+        notesListItem.disabled = true;
+        notesListItem.classList.remove("active");
+        notesListItem = false;
+    }
+    let input = contextMenuItemClicked.target.closest(".notes-list-item").querySelector(".notes-list-item-title");
+    input.disabled = false;
+    input.focus();
+    input.classList.add("active");
+    notesListItem = input;
+    
+}
+
+function removeNotesNote() {
+    let note = contextMenuItemClicked.target.closest(".notes-list-item");
+    note.remove();
+}
+
 // Mise à jour des applications
 
 function updateAppContacts() {
@@ -1905,7 +2080,7 @@ function updateSound() {
 
 function updateAppHomeOrder() {
     // Création de la liste des applications
-    userData.phone.appHomeOrder = JSON.parse(userData.phone.appHomeOrder);
+    // userData.phone.appHomeOrder = JSON.parse(userData.phone.appHomeOrder);
     $("#app-home-page-1 .app-home-list .icons-list ul").empty();
     for(let app of userData.phone.appHomeOrder) {
         let divAppElement = "<li data-name='" + app + "'>";
@@ -2376,10 +2551,6 @@ function updateContent(menu) {
         }
     }
     switchFormatOrientation("portrait");
-    FooterColor = "#ffffff";
-    FooterColorBackground = "transparent";
-    Bodycolor = "#ffffff";
-    BodyColorBackground = "transparent";
     for(let content of document.getElementsByClassName("app")) {
         if(content.id.split("-")[1] != "home") {
             content.style.transform = "scale(0)";
@@ -2395,16 +2566,6 @@ function updateContent(menu) {
     $("#app-" + menu).show();
     if(appSelected.id.split("-")[1] != "home") {
         appSelected.style.transform = "scale(1)";
-    }
-    if(menu != "home") {
-        for(let app of config.apps) {
-            if(app.name == menu) {
-                FooterColor = app.footerColor;
-                FooterColorBackground = app.footerColorBackground;
-                Bodycolor = app.bodyColor;
-                BodyColorBackground = app.bodyColorBackground;            
-            }
-        }
     }
     if(menu != "home") {
         $("#phone-screen-content").removeClass();
@@ -2449,6 +2610,12 @@ function updateAppContent(element) {
         elementSelected = element;
         $("#app-tab-button-" + element).addClass("active");
     }
+    let oldClass = $("#phone-screen-content").data("app-content-class");
+    if(oldClass) {
+        $("#phone-screen-content").removeClass(oldClass);
+    }
+    $("#phone-screen-content").addClass(menuSelected + "-" + elementSelected);
+    $("#phone-screen-content").data("app-content-class", menuSelected + "-" + elementSelected);
     if(element == "newmessage") {
         let searchInput = document.getElementById("app-message-body-content-newmessage-search");
         searchInput.value = "";
@@ -3654,10 +3821,11 @@ class ContextMenu {
         this.menuItems = menuItems;
         this.targetNode = this.getTargetNode();
         this.menuItemsNode = this.getMenuItemsNode();
+        this.contextMenu;
         this.isOpened = false;
     }
     getTargetNode() {
-        const nodes = document.querySelectorAll(this.target);
+        const nodes = document.querySelectorAll(this.target);   
         if (nodes && nodes.length !== 0) {
             return nodes;
         } else {
@@ -3666,36 +3834,37 @@ class ContextMenu {
         }
     }
     getMenuItemsNode() {
-        const nodes = [];
-        if (!this.menuItems) {
-            console.error("getMenuItemsNode :: Please enter menu items");
-            return [];
-        }
-        this.menuItems.forEach((data, index) => {
-            const item = this.createItemMarkup(data);
-            item.firstChild.setAttribute(
-                "style",
-                `animation-delay: ${index * 0.08}s`
-            );
-            nodes.push(item);
-        });
-        return nodes;
+            const nodes = [];
+            if (!this.menuItems) {
+                console.error("getMenuItemsNode :: Please enter menu items");
+                return [];
+            }
+            this.menuItems.forEach((data, index) => {
+                const item = this.createItemMarkup(data);
+                item.firstChild.setAttribute(
+                    "style",
+                    `animation-delay: ${index * 0.08}s`
+                );
+                nodes.push(item);
+            });
+            return nodes;
     }
     createItemMarkup(data) {
-        const button = document.createElement("BUTTON");
-        const item = document.createElement("LI");
-        button.innerHTML = data.content;
-        button.classList.add("contextMenu-button");
-        item.classList.add("contextMenu-item");
-        if (data.divider) item.setAttribute("data-divider", data.divider);
-        item.appendChild(button);
-        if (data.events && data.events.length !== 0) {
-            Object.entries(data.events).forEach((event) => {
-                const [key, value] = event;
-                button.addEventListener(key, value);
-            });
-        }
-        return item;
+            const button = document.createElement("BUTTON");
+            const item = document.createElement("LI");
+            button.innerHTML = data.content;
+            button.classList.add("contextMenu-button");
+            item.classList.add("contextMenu-item");
+            if (data.divider) item.setAttribute("data-divider", data.divider);
+            if (data.class) button.classList.add(data.class);
+            item.appendChild(button);
+            if (data.events && data.events.length !== 0) {
+                Object.entries(data.events).forEach((event) => {
+                    const [key, value] = event;
+                    button.addEventListener(key, value);
+                });
+            }
+            return item;
     }
     renderMenu() {
         const menuContainer = document.createElement("UL");
@@ -3704,45 +3873,76 @@ class ContextMenu {
         return menuContainer;
     }
     closeMenu(menu) {
-        if (this.isOpened) {
-            this.isOpened = false;
-            menu.remove();
-        }
+            if (this.isOpened) {
+                this.isOpened = false;
+                menu.remove();
+            }
     }
     init() {
-        const contextMenu = this.renderMenu();
-        document.addEventListener("click", () => this.closeMenu(contextMenu));
-        window.addEventListener("blur", () => this.closeMenu(contextMenu));
+        this.contextMenu = this.renderMenu();
+        document.addEventListener("click", () => this.closeMenu(this.contextMenu));
+        window.addEventListener("blur", () => this.closeMenu(this.contextMenu));
         // document.addEventListener("contextmenu", (e) => {
-        //     this.targetNode.forEach((target) => {
-        //         if (!e.target.contains(target)) {
-        //             contextMenu.remove();
-        //         }
-        //     });
-        // });
-
+            //     this.targetNode.forEach((target) => {
+            //         if (!e.target.contains(target)) {
+            //             contextMenu.remove();
+            //         }
+            //     });
+            // });
         this.targetNode.forEach((target) => {
             target.addEventListener("contextmenu", (e) => {
                 e.preventDefault();
                 this.isOpened = true;
                 contextMenuHomeTarget = target;
-
+                contextMenuItemClicked = e;
+    
                 const { clientX, clientY } = e;
-                document.body.appendChild(contextMenu);
+                document.body.appendChild(this.contextMenu);
         
                 const positionY =
-                    clientY + contextMenu.scrollHeight >= window.innerHeight
-                    ? window.innerHeight - contextMenu.scrollHeight - 20
+                    clientY + this.contextMenu.scrollHeight >= window.innerHeight
+                    ? window.innerHeight - this.contextMenu.scrollHeight - 20
                     : clientY;
                 const positionX =
-                    clientX + contextMenu.scrollWidth >= window.innerWidth
-                    ? window.innerWidth - contextMenu.scrollWidth - 20
+                    clientX + this.contextMenu.scrollWidth >= window.innerWidth
+                    ? window.innerWidth - this.contextMenu.scrollWidth - 20
                     : clientX;
         
-                contextMenu.setAttribute(
+                this.contextMenu.setAttribute(
                     "style",
-                    `--width: ${contextMenu.scrollWidth}px;
-                    --height: ${contextMenu.scrollHeight}px;
+                    `--width: ${this.contextMenu.scrollWidth}px;
+                    --height: ${this.contextMenu.scrollHeight}px;
+                    --top: ${positionY}px;
+                    --left: ${positionX}px;`
+                );
+            });
+        });
+    }
+    updateTargetNode() {
+        this.targetNode = this.getTargetNode();
+        this.targetNode.forEach((target) => {
+            target.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                this.isOpened = true;
+                contextMenuHomeTarget = target;
+                contextMenuItemClicked = e;
+
+                const { clientX, clientY } = e;
+                document.body.appendChild(this.contextMenu);
+        
+                const positionY =
+                    clientY + this.contextMenu.scrollHeight >= window.innerHeight
+                    ? window.innerHeight - this.contextMenu.scrollHeight - 20
+                    : clientY;
+                const positionX =
+                    clientX + this.contextMenu.scrollWidth >= window.innerWidth
+                    ? window.innerWidth - this.contextMenu.scrollWidth - 20
+                    : clientX;
+        
+                this.contextMenu.setAttribute(
+                    "style",
+                    `--width: ${this.contextMenu.scrollWidth}px;
+                    --height: ${this.contextMenu.scrollHeight}px;
                     --top: ${positionY}px;
                     --left: ${positionX}px;`
                 );
@@ -3750,33 +3950,30 @@ class ContextMenu {
         });
     }
 }
-const copyIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-const cutIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`;
-const pasteIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px; position: relative; top: -1px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`;
-const downloadIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px; position: relative; top: -1px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
-const deleteIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 7px" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
-const menuItems = [
-    {
-        content: `${copyIcon}Changer page`,
-        events: {
-            click: (e) => changeAppPlacePage()
-        }
-    },
-    // {
-    //     content: `${copyIcon}Copy`,
-    //     events: {
-    //         click: (e) => console.log(e, "Copy Button Click")
-    //         // mouseover: () => console.log("Copy Button Mouseover")
-    //         // You can use any event listener from here
-    //     }
-    // },
-    // {
-    //     content: `${cutIcon}Cut`,
-    //     divider: "top-bottom" // top, bottom, top-bottom
-    // },
-];
+
+// const menuItems = [
+//     {
+//         content: `${copyIcon}Changer page`,
+//         events: {
+//             click: (e) => changeAppPlacePage()
+//         }
+//     },
+//     {
+//         content: `${copyIcon}Copy`,
+//         events: {
+//             click: (e) => console.log(e, "Copy Button Click")
+//             // mouseover: () => console.log("Copy Button Mouseover")
+//             // You can use any event listener from here
+//         }
+//     },
+//     {
+//         content: `${cutIcon}Cut`,
+//         divider: "top-bottom" // top, bottom, top-bottom
+//     },
+// ];
+
 // const contextMenuHome = new ContextMenu({
-//     target: "#app-home .icons-list ul li:not(.empty-place)",
+//     target: "#app-home",
 //     menuItems
 // });
 // contextMenuHome.init();

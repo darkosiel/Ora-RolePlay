@@ -1811,6 +1811,120 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="app-notes" class="app app-modal">
+                                <div class="app-body">
+                                    <div id="app-notes-body-content-home" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-title">
+                                                <span>Dossiers</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="notes-list-quicknotes" class="notes-list">
+                                                <div class="notes-list-item disabled">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Notes rapides"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="notes-title">Dossiers</span>
+                                            <div id="notes-list-folders" class="notes-list">
+                                                <div class="notes-list-item">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="notes-list-item">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="notes-list-item">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-tab">
+                                            <i id="notes-folder-button-add" class="fa-solid fa-folder-plus"></i>
+                                            <i id="notes-home-note-button-add" class="fa-solid fa-pen-to-square"></i>
+                                        </div>
+                                    </div>
+                                    <div id="app-notes-body-content-folder" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Dossiers</span>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Notes</span>
+                                            </div>
+                                            <div class="app-body-content-header-input">
+                                                <i class="fas fa-search"></i>
+                                                <input autocomplete="off" type="text" id="app-notes-body-content-folder-search" placeholder="Rechercher..."/>
+                                                <i id="app-notes-body-content-folder-search-reset" class="fas fa-times"></i>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="notes-list-notes" class="notes-list">
+                                                <div class="notes-list-item">
+                                                    <span class="notes-list-item-title">Note #1</span>
+                                                    <span class="notes-list-item-date">16:29</span>
+                                                    <div class="notes-list-item-bottom">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <span class="notes-list-item-folder">Notes rapides</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-tab">
+                                            <i id="notes-folder-note-button-add" class="fa-solid fa-pen-to-square"></i>
+                                        </div>
+                                    </div>
+                                    <div id="app-notes-body-content-note" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-back app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Notes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <input id="notes-note-title" type="text" class="notes-title" value="Nouvelle note"/>
+                                            <textarea id="notes-note-content" name="content" maxlength="1900"></textarea>
+                                            <div id="notes-note-container"></div>
+                                        </div>
+                                        <div class="app-body-content-tab">
+                                            <i id="notes-checklist-button-add" class="fa-solid fa-list-check"></i>
+                                            <i id="notes-note-button-edit" class="fa-solid fa-pencil"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="notification-container">
                             </div>
                         </div>
