@@ -4604,7 +4604,7 @@ div#phone-screen-content {
 .contextMenu {
     height: 0;
     overflow: hidden;
-    backdrop-filter: blur(5px);
+    // backdrop-filter: blur(5px); // Bug affichage en jeu avec rectangle noir
     position: fixed;
     top: var(--top);
     left: var(--left);

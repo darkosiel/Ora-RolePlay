@@ -307,8 +307,8 @@ $(function(){
                     ]
                 }
             }
-            updateUserData(dateTest);
-            displayPhone();
+            // updateUserData(dateTest);
+            // displayPhone();
             // updateContent("notes");
             // updateAppContent(menuAppSelected);
             // lockPhone();
@@ -343,9 +343,9 @@ $(function(){
 // Mise à jour total
 function updateUserData(data) {
     // Inisiialisation de l'accueil
-    updateContent("notes");
-    updateAppContent("note");
-    // lockPhone();
+    updateContent("home");
+    updateAppContent("first");
+    lockPhone();
     // Update main variables
     userData = data;
     darkMode = (data.phone.darkMode == 1 ? true : false);
@@ -2080,7 +2080,7 @@ function updateSound() {
 
 function updateAppHomeOrder() {
     // Création de la liste des applications
-    // userData.phone.appHomeOrder = JSON.parse(userData.phone.appHomeOrder);
+    userData.phone.appHomeOrder = JSON.parse(userData.phone.appHomeOrder);
     $("#app-home-page-1 .app-home-list .icons-list ul").empty();
     for(let app of userData.phone.appHomeOrder) {
         let divAppElement = "<li data-name='" + app + "'>";
