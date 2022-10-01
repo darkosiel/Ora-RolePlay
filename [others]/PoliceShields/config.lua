@@ -62,7 +62,7 @@ jobCheck = {
 shields = {
     {
         name = "Firearms",
-        model = `bv_shield1`,
+        model = GetHashKey("bv_shield1"),
         offSet = {-0.099, 0.378, -0.135},
         rotation = {177.1, 178.5, 0.0},
         boneIndex = -1,
@@ -82,7 +82,7 @@ shields = {
     },
     {
         name = "Small",
-        model = `bv_shield3`,
+        model = GetHashKey("bv_shield3"),
         offSet = {0.0, 0.288, 0.0},
         rotation = {0.0, 0.0, 163.1},
         boneIndex = -1,
@@ -92,7 +92,7 @@ shields = {
     },
     {
         name = "Long",
-        model = `bv_shield4`,
+        model = GetHashKey("bv_shield4"),
         offSet = {0.045, 0.405, -0.108},
         rotation = {0.7, -0.7, 171.5},
         boneIndex = -1,
@@ -102,7 +102,7 @@ shields = {
     },
     {
         name = "CTSFO2",
-        model = `prop_shield_one`,
+        model = GetHashKey("prop_shield_one"),
         offSet = {-0.59, 0.29, 0.15},
         rotation = {0.16, 79.04, 41.39},
         boneIndex = 24818,
@@ -112,7 +112,7 @@ shields = {
     },
     {
         name = "Firearms2",
-        model = `prop_shield_two`,
+        model = GetHashKey("prop_shield_two"),
         offSet = {-0.59, 0.29, 0.15},
         rotation = {0.16, 79.04, 41.39},
         boneIndex = 24818,
@@ -122,7 +122,7 @@ shields = {
     },
     {
         name = "Long2",
-        model = `prop_shield_three`,
+        model = GetHashKey("prop_shield_three"),
         offSet = {0.738, 0.117, 0.675},
         rotation = {11.2, 210.7, 102.98},
         boneIndex = 62,
@@ -132,7 +132,7 @@ shields = {
     },
     {
         name = "Short2",
-        model = `prop_shield_four`,
+        model = GetHashKey("prop_shield_four"),
         offSet = {-0.68, 0.22, 0.15},
         rotation = {0.52, 79.28, 41.39},
         boneIndex = 24818,

@@ -61,8 +61,8 @@ CreateThread(function()
                 Wait(1500)
             end
 
-        else
-            sleep = 5000
+        -- else
+        --     sleep = 5000
         end
 
         Citizen.Wait(sleep)

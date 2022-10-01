@@ -405,9 +405,9 @@ function CreatePeds()
 	end
 	
 	for i,v in pairs(customTables) do
-		local model = `vw_prop_casino_blckjack_01`
+		local model = GetHashKey("vw_prop_casino_blckjack_01")
 		if v.highStakes == true then
-			model = `vw_prop_casino_blckjack_01b`
+			model = GetHashKey("vw_prop_casino_blckjack_01b")
 		end
 		
 		if not HasModelLoaded(model) then
@@ -431,7 +431,7 @@ function CreatePeds()
 	
 		dealerHand[i] = {}
 		dealerHandObjs[i] = {}
-		local model = `s_f_y_casino_01`
+		local model = GetHashKey("s_f_y_casino_01")
 
 		chips[i] = {}
 		
@@ -455,7 +455,7 @@ function CreatePeds()
 		SetBlockingOfNonTemporaryEvents(dealer, true)
 		SetPedCanRagdollFromPlayerImpact(dealer, false)
 		
-		-- SetPedVoiceGroup(dealer, `S_F_Y_Casino_01_ASIAN_02`)
+		-- SetPedVoiceGroup(dealer, GetHashKey("S_F_Y_Casino_01_ASIAN_02"))
 		
 		-- SetPedDefaultComponentVariation(dealer)
 		
@@ -512,7 +512,7 @@ AddEventHandler("BLACKJACK:PlayDealerAnim", function(i, animDict, anim)
 			repeat Wait(0) until HasAnimDictLoaded(animDict)
 		end
 	
-		-- if GetEntityModel(spawnedPeds[i]) == `s_f_y_casino_01` then
+		-- if GetEntityModel(spawnedPeds[i]) == GetHashKey("s_f_y_casino_01") then
 			-- anim = "female_"..anim
 		-- end
 		
@@ -1307,11 +1307,11 @@ function ProcessTables()
 				
 					-- local pCoords = vector3(cord.x, cord.y, cord.z)
 					local pCoords = GetEntityCoords(PlayerPedId())
-					local tableObj = GetClosestObjectOfType(pCoords, 1.0, `vw_prop_casino_blckjack_01`, false, false, false)
+					local tableObj = GetClosestObjectOfType(pCoords, 1.0, GetHashKey("vw_prop_casino_blckjack_01"), false, false, false)
 					-- highStakes = false
 					
 					if GetEntityCoords(tableObj) == vector3(0.0, 0.0, 0.0) then
-						tableObj = GetClosestObjectOfType(pCoords, 1.0, `vw_prop_casino_blckjack_01b`, false, false, false)
+						tableObj = GetClosestObjectOfType(pCoords, 1.0, GetHashKey("vw_prop_casino_blckjack_01b"), false, false, false)
 						-- highStakes = true
 					end
 					
@@ -1520,7 +1520,7 @@ end
 
 Citizen.CreateThread(function()
 
-	if IsModelInCdimage(`vw_prop_casino_blckjack_01`) and IsModelInCdimage(`s_f_y_casino_01`) and IsModelInCdimage(`vw_prop_chip_10dollar_x1`) then
+	if IsModelInCdimage(GetHashKey("vw_prop_casino_blckjack_01")) and IsModelInCdimage(GetHashKey("s_f_y_casino_01")) and IsModelInCdimage(GetHashKey("vw_prop_chip_10dollar_x1")) then
 		Citizen.CreateThread(ProcessTables)
 		Citizen.CreateThread(CreatePeds)
 	else

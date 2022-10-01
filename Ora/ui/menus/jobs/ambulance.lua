@@ -106,7 +106,7 @@ function Pompier.DrawMarkerVehicle()
 end
 
 function Ambulance.DrawMarkerStretcher(restriction)
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local coords = GetEntityCoords(LocalPlayer().Ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
     if (restriction and stretcher ~= 0 and GetEntityAttachedTo(stretcher) == 0) or not restriction then
@@ -116,7 +116,7 @@ function Ambulance.DrawMarkerStretcher(restriction)
 end
 
 function Pompier.DrawMarkerStretcher(restriction)
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local coords = GetEntityCoords(LocalPlayer().Ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
     if (restriction and stretcher ~= 0 and GetEntityAttachedTo(stretcher) == 0) or not restriction then
@@ -146,7 +146,7 @@ function Pompier.DrawMarkerOnPed()
 end
 
 function Ambulance.GetOffStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local veh = GetVehicleInDirection()
     if veh ~= 0 and GetEntityModel(veh) == GetHashKey("emsnspeedo") then
         local vehCoords = GetEntityCoords(veh)
@@ -170,7 +170,7 @@ function Ambulance.GetOffStretcher()
 end
 
 function Pompier.GetOffStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local veh = GetVehicleInDirection()
     if veh ~= 0 and GetEntityModel(veh) == GetHashKey("lsfd4") or GetEntityModel(veh) == GetHashKey("lsfd3") then
         local vehCoords = GetEntityCoords(veh)
@@ -196,7 +196,7 @@ end
 function Ambulance.PutStretcherOnVehicle()
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
     if stretcher and GetEntityAttachedTo(stretcher) == ped then
         local veh = GetVehicleInDirection()
@@ -213,7 +213,7 @@ end
 function Pompier.PutStretcherOnVehicle()
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
     if stretcher and GetEntityAttachedTo(stretcher) == ped then
         local veh = GetVehicleInDirection()
@@ -228,7 +228,7 @@ function Pompier.PutStretcherOnVehicle()
 end
 
 function Ambulance.PickPutStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
@@ -279,7 +279,7 @@ function Ambulance.PickPutStretcher()
 end
 
 function Pompier.PickPutStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
@@ -330,7 +330,7 @@ function Pompier.PickPutStretcher()
 end
 
 function Ambulance.PutOnStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local targetId = GetPlayerServerIdInDirection(4.0)
@@ -343,7 +343,7 @@ end
 
 
 function Pompier.PutOnStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local targetId = GetPlayerServerIdInDirection(4.0)
@@ -355,7 +355,7 @@ function Pompier.PutOnStretcher()
 end
 
 function Ambulance.RemoveStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)
@@ -366,7 +366,7 @@ end
 
 
 function Pompier.RemoveStretcher()
-    local stretcherHash = `prop_ld_binbag_01`
+    local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local ped = LocalPlayer().Ped
     local coords = GetEntityCoords(ped)
     local stretcher = GetClosestObjectOfType(coords, 3.0, stretcherHash)

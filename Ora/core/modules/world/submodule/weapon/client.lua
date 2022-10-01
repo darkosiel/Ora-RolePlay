@@ -1,6 +1,6 @@
 local holstered = true
 local canFire = true
-local currWeapon = `WEAPON_UNARMED`
+local currWeapon = GetHashKey("WEAPON_UNARMED")
 
 function Ora.World.Weapon:PlayAnimationForWeapon(weaponHash)
   if (self.Animation[weaponHash] ~= nil) then

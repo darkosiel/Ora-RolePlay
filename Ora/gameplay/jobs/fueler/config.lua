@@ -66,18 +66,18 @@ Station = {
   electric = {
     pump = "stt_prop_stunt_bowling_pin",
     cars = {
-      `AIRTUG`,
-      `CADDY`,
-      `CYCLONE`,
-      `DILETTANTE`,
-      `IMORGON`,
-      `KHAMELION`,
-      `NEON`,
-      `RAIDEN`,
-      `SURGE`,
-      `TEZERACT`,
-      `VOLTIC`,
-      `POLRAIDEN`
+      GetHashKey("AIRTUG"),
+      GetHashKey("CADDY"),
+      GetHashKey("CYCLONE"),
+      GetHashKey("DILETTANTE"),
+      GetHashKey("IMORGON"),
+      GetHashKey("KHAMELION"),
+      GetHashKey("NEON"),
+      GetHashKey("RAIDEN"),
+      GetHashKey("SURGE"),
+      GetHashKey("TEZERACT"),
+      GetHashKey("VOLTIC"),
+      GetHashKey("POLRAIDEN")
     }
   },
 

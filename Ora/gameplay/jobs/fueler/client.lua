@@ -270,7 +270,7 @@ local function fuelFill()
     end
     if IsPedInAnyVehicle(ped, false) then
       local veh = GetVehiclePedIsIn(ped, false)
-      if GetEntityModel(vehTrailer.trailer) == `tanker` then
+      if GetEntityModel(vehTrailer.trailer) == GetHashKey("tanker") then
         fbusy = true
         FreezeEntityPosition(veh, true)
         SetVehicleEngineOn(veh, false, false, true)
@@ -399,7 +399,7 @@ AddEventHandler("fueler:harvest", function()
   if IsPedInAnyVehicle(ped, false) then
     local veh = GetVehiclePedIsIn(ped, false)
     local bool, trailer = GetVehicleTrailerVehicle(veh)
-    if GetEntityModel(trailer) == `tanker` then
+    if GetEntityModel(trailer) == GetHashKey("tanker") then
       fbusy = true
       FreezeEntityPosition(veh, true)
       SetVehicleEngineOn(veh, false, false, true)
@@ -433,7 +433,7 @@ AddEventHandler("fueler:treatment", function()
   if IsPedInAnyVehicle(ped, false) then
     local veh = GetVehiclePedIsIn(ped, false)
     local bool, trailer = GetVehicleTrailerVehicle(veh)
-    if GetEntityModel(trailer) == `tanker` then
+    if GetEntityModel(trailer) == GetHashKey("tanker") then
       if DecorGetFloat(trailer, Station.decor_harvest) == Station.work.harvest.qty then
         fbusy = true
         FreezeEntityPosition(veh, true)

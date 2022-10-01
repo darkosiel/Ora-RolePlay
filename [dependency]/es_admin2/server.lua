@@ -9,7 +9,6 @@ local groupsRequired = {
 	bring = "mod",
 	["goto"] = "mod",
 	slap = "mod",
-	slay = "mod",
 	kick = "mod",
 	ban = "admin"
 }

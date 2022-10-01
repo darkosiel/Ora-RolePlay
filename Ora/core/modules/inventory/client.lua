@@ -245,7 +245,7 @@ function Ora.Inventory:Load()
     )
 end
 
----@param force Boolean optionnal
+---@param force boolean optionnal
 function Ora.Inventory:Save(force)
     local uuid = Ora.Identity:GetMyUuid()
     if self.Data == nil or self.Data == {} or self.Data == '{}' then
@@ -311,7 +311,7 @@ function Ora.Inventory:SetWeapon(weapon, number)
     end
 end
 
----@return Table of player weapons
+---@return table of player weapons
 function Ora.Inventory:GetWeapons()
     return {
         self.weaponONE or nil,

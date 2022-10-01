@@ -605,24 +605,24 @@ chipValues = {
 }
 
 chipThickness = {
-	[`vw_prop_chip_10dollar_x1`] = 0.0054170000366867,
-	[`vw_prop_chip_50dollar_x1`] = 0.0056730001233518,
-	[`vw_prop_chip_100dollar_x1`] = 0.0056900000199676,
-	[`vw_prop_chip_10dollar_st`] = 0.061421997845173,
-	[`vw_prop_chip_500dollar_x1`] = 0.0057030003517866,
-	[`vw_prop_chip_50dollar_st`] = 0.061151999980211,
-	[`vw_prop_chip_1kdollar_x1`] = 0.0056910002604127,
-	[`vw_prop_chip_100dollar_st`] = 0.060908999294043,
-	[`vw_prop_chip_500dollar_st`] = 0.060989998281002,
+	[GetHashKey("vw_prop_chip_10dollar_x1")] = 0.0054170000366867,
+	[GetHashKey("vw_prop_chip_50dollar_x1")] = 0.0056730001233518,
+	[GetHashKey("vw_prop_chip_100dollar_x1")] = 0.0056900000199676,
+	[GetHashKey("vw_prop_chip_10dollar_st")] = 0.061421997845173,
+	[GetHashKey("vw_prop_chip_500dollar_x1")] = 0.0057030003517866,
+	[GetHashKey("vw_prop_chip_50dollar_st")] = 0.061151999980211,
+	[GetHashKey("vw_prop_chip_1kdollar_x1")] = 0.0056910002604127,
+	[GetHashKey("vw_prop_chip_100dollar_st")] = 0.060908999294043,
+	[GetHashKey("vw_prop_chip_500dollar_st")] = 0.060989998281002,
 
-	[`vw_prop_chip_5kdollar_x1`] = 0.005538,
-	[`vw_prop_chip_10kdollar_x1`] = 0.005562,
-	[`vw_prop_chip_5kdollar_st`] = 0.061049,
-	[`vw_prop_chip_10kdollar_st`] = 0.06095,
-	[`vw_prop_plaq_5kdollar_x1`] = 0.006891000084579,
-	[`vw_prop_plaq_10kdollar_x1`] = 0.0057889996096492,
-	[`vw_prop_plaq_5kdollar_st`] = 0.060949999839067,
-	[`vw_prop_plaq_10kdollar_st`] = 0.060749001801014,
+	[GetHashKey("vw_prop_chip_5kdollar_x1")] = 0.005538,
+	[GetHashKey("vw_prop_chip_10kdollar_x1")] = 0.005562,
+	[GetHashKey("vw_prop_chip_5kdollar_st")] = 0.061049,
+	[GetHashKey("vw_prop_chip_10kdollar_st")] = 0.06095,
+	[GetHashKey("vw_prop_plaq_5kdollar_x1")] = 0.006891000084579,
+	[GetHashKey("vw_prop_plaq_10kdollar_x1")] = 0.0057889996096492,
+	[GetHashKey("vw_prop_plaq_5kdollar_st")] = 0.060949999839067,
+	[GetHashKey("vw_prop_plaq_10kdollar_st")] = 0.060749001801014,
 }
 
 chipHeights = { -- whatever the fuck this even means
