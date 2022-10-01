@@ -140,10 +140,7 @@ function Ora.Player:ApplyAllSavedTattoos(withoutHairs)
   Ora.Player:ApplyTattoos(currentTattoos)
 
   if (withoutHairs ~= true) then
-    local headTattoos = Ora.Config:GetDataCollection("AppliedHarcutTatoos")
-    if (headTattoos ~= nil and headTattoos.dict ~= nil and headTattoos.hash ~= nil) then
-      self:ApplyTattoo(headTattoos.dict, headTattoos.hash)
-    end
+    Ora.Player:ApplyHairsTattoos()
   end
 
   self:Debug(string.format("Applied ^5%s^3 tattoos to player ^5%s^3", #currentTattoos, GetPlayerServerId(PlayerId())))
@@ -286,6 +283,17 @@ Citizen.CreateThread(
                     message = "✅ Personnage synchronisé.",
                     colors = 20
                 })
+            end
+        end
+    end
+)
+
+Citizen.CreateThread(
+    function()
+        while true do
+            Wait(1000 * 60)
+            if (Ora.Player.HasLoaded == true) then
+                Ora.Player:SavePosition()
             end
         end
     end
