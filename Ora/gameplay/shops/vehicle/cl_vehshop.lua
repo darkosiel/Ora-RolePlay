@@ -194,6 +194,7 @@ local VehShop =
                     {name = "sm722", price = 158240},
                     {name = "tenf2", price = 162000},
                     {name = "tenf", price = 150000}
+                    --{name = "hotring", price = A DEFINIR}
                 },
                 ["Supersportive"] = {
                     {name = "adder", price = 205200},
