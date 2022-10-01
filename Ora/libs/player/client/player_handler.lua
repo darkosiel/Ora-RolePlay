@@ -114,6 +114,7 @@ Citizen.CreateThread(
         while true do
             Player.Ped = PlayerPedId()
             Player.Pos = GetEntityCoords(Player.Ped)
+            Player.ZoneId = Ora.Core:GetGridZoneId(Player.Pos.x, Player.Pos.y)
             Player.Hud = exports["Ora_utils"]:GetPlayerHUD()
             SetPedSuffersCriticalHits(Player.Ped, false)
 
