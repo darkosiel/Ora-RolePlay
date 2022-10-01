@@ -56,6 +56,7 @@ body {
     max-height: 100vh;
     height: 100vh;
     background: transparent;
+    margin: 0;
     overflow: hidden;
     width: 100%;
 }
@@ -70,7 +71,7 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0;
 }
 
-input {
+input, select, textarea {
     &:focus-visible {
         outline: none
     }
@@ -288,6 +289,13 @@ div#page {
                                                 align-items: center;
                                                 column-gap: 5px;
                                             }
+                                            div.app-body-content-header-button-logo {
+                                                display: flex;
+                                                img {
+                                                    width: 80%;
+                                                    margin: 0 auto;
+                                                }
+                                            }
                                             i {
                                                 font-size: 26px;
                                             }
@@ -310,6 +318,7 @@ div#page {
                                         width: 100%;
                                         height: $ora-phone-app-body-content-body-height;
                                         overflow: scroll;
+                                        transition: all 0.3s ease-in-out;
                                         div.app-body-content-body-list {
                                             width: 100%;
                                             display: flex;
@@ -539,7 +548,7 @@ div#page {
                                                     }
                                                 }
                                             }
-                                            div.app-body-content-body-app-galery {
+                                            div.app-body-content-body-app-gallery {
                                                 display: flex;
                                                 flex-direction: row;
                                                 column-gap: 20px;
@@ -551,6 +560,10 @@ div#page {
                                                 }
                                             }
                                         }
+                                    }
+                                    div.app-body-content-tab {
+                                        width: 100%;
+                                        transition: all 0.3s ease-in-out;
                                     }
                                 }
                             }
@@ -659,6 +672,9 @@ div#page {
                                                     }
                                                     i {
                                                         font-size: 20px;
+                                                        &:last-of-type {
+                                                            cursor: pointer;
+                                                        }
                                                     }
                                                     input {
                                                         width: inherit;
@@ -818,7 +834,8 @@ div#page {
                                                                     }
                                                                     img {
                                                                         width: 100%;
-                                                                        height: auto;
+                                                                        height: 100%;
+                                                                        object-fit: cover;
                                                                     }
                                                                 }
                                                                 div.contacts-list-row-item-top-name {
@@ -1631,7 +1648,8 @@ div#page {
                                                             }
                                                             img {
                                                                 width: 100%;
-                                                                height: auto;
+                                                                height: 100%;
+                                                                object-fit: cover;
                                                             }
                                                         }
                                                     }
@@ -1713,7 +1731,8 @@ div#page {
                                                                 }
                                                                 img {
                                                                     width: 100%;
-                                                                    height: auto;
+                                                                    height: 100%;
+                                                                    object-fit: cover;
                                                                 }
                                                                 i {
                                                                     position: absolute;
@@ -1814,7 +1833,8 @@ div#page {
                                                     }
                                                     img {
                                                         width: 100%;
-                                                        height: auto;
+                                                        height: 100%;
+                                                        object-fit: cover;
                                                     }
                                                 }
                                                 div.app-body-content-header-profil-name {
@@ -2148,7 +2168,8 @@ div#page {
                                                         }
                                                         img {
                                                             width: 100%;
-                                                            height: auto;
+                                                            height: 100%;
+                                                            object-fit: cover;
                                                         }
                                                     }
                                                     div#newcontact-profile-name, div#editcontact-profile-name {
@@ -2850,7 +2871,8 @@ div#page {
                                                 }
                                                 img {
                                                     width: 100%;
-                                                    height: auto;
+                                                    height: 100%;
+                                                    object-fit: cover;
                                                 }
                                             }
                                             div.callnumber-title {
@@ -3081,6 +3103,664 @@ div#page {
                                                         }
                                                     }
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-richtermotorsport {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            justify-content: space-between;
+                                            height: 125px;
+                                            padding: 10px 30px;
+                                            @include themed() {
+                                                background-color: t($phone-system-color-gray-6);
+                                            }
+                                            i {
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                            }
+                                            div.app-body-content-header-button-logo {
+                                                cursor: default;
+                                            }
+                                            div.app-body-content-header-title {
+                                                justify-content: center;
+                                                margin-bottom: 0;
+                                                span {
+                                                    font-size: 26px;
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 125px);
+                                            padding: 0 20px;
+                                            transition: all 0.3s ease-in-out;
+                                            @include themed() {
+                                                background-color: t($phone-system-color-gray-6);
+                                            }
+                                            > div {
+                                                display: flex;
+                                                justify-content: center;
+                                                width: 100%;
+                                                height: auto;
+                                                padding: 5px 0;
+                                                transition: all 0.3s ease-in-out;
+                                                span {
+                                                    font-size: 22px;
+                                                    font-family: $ora-font-semibold;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &.richtermotorsport-no-favorite {
+                                                        margin: 0 auto;
+                                                        font-size: 18px;
+                                                    }
+                                                }
+                                                button {
+                                                    width: 80%;
+                                                    height: 50px;
+                                                    border: 0;
+                                                    border-radius: 10px;
+                                                    font-size: 24px;
+                                                    font-family: $ora-font-bold;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-blue);
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                }
+                                                &.richtermotorsport-title {
+                                                    justify-content: flex-start;
+                                                }
+                                                &#richtermotorsport-button-create-advertisement {
+                                                    display: none;
+                                                }
+                                            }
+                                            *::-webkit-scrollbar {
+                                                height: 10px;
+                                                display: block;
+                                                transition: all 0.3s ease-in-out;
+                                            }
+                                            *::-webkit-scrollbar-thumb {
+                                                border-radius: 20px;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    background: t($phone-app-label-color-primary);
+                                                }
+                                            }
+                                            div.richtermotorsport-container {
+                                                justify-content: flex-start;
+                                                overflow-y: auto;
+                                                div.richtermotorsport-list {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: flex-start;
+                                                    align-items: center;
+                                                    row-gap: 15px;
+                                                    column-gap: 15px;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    &.richtermotorsport-list-horizontal {
+                                                        flex-direction: row;
+                                                        width: auto;
+                                                        div.richtermotorsport-list-item {
+                                                            width: 170px;
+                                                            height: 220px;
+                                                            div.richtermotorsport-list-item-image {
+                                                                height: 55%;
+                                                            }
+                                                            div.richtermotorsport-list-item-description {
+                                                                justify-content: space-evenly;
+                                                                height: 45%;
+                                                                div {
+                                                                    &:last-child {
+                                                                        flex-direction: column;
+                                                                        align-items: flex-start;
+                                                                    }
+                                                                }
+                                                                span, i {
+                                                                    font-size: 16px;
+                                                                    &.richtermotorsport-list-item-description-title {
+                                                                        @extend %text-max-line-2;
+                                                                    }
+                                                                    &.richtermotorsport-list-item-description-category {
+                                                                        font-size: 14px;
+                                                                    }
+                                                                    &.richtermotorsport-list-item-description-price {
+                                                                        font-size: 18px;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.richtermotorsport-list-item {
+                                                        width: 100%;
+                                                        height: 260px;
+                                                        border-radius: 20px;
+                                                        overflow: hidden;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            background-color: t($phone-system-color-blue);
+                                                        }
+                                                        div.richtermotorsport-list-item-image {
+                                                            width: 100%;
+                                                            height: 70%;
+                                                            img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: cover;
+                                                            }
+                                                        }
+                                                        div.richtermotorsport-list-item-description {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            justify-content: space-between;
+                                                            align-items: center;
+                                                            width: 100%;
+                                                            height: 30%;
+                                                            padding: 5px 15px;
+                                                            div {
+                                                                display: flex;
+                                                                flex-direction: row;
+                                                                justify-content: space-between;
+                                                                align-items: center;
+                                                                width: 100%;
+                                                            }
+                                                            span, i {
+                                                                font-size: 26px;
+                                                                @include themed() {
+                                                                    color: t($phone-system-color-white);
+                                                                }
+                                                                &.richtermotorsport-list-item-description-title {
+                                                                    @extend %text-max-line-1;
+                                                                }
+                                                                &.richtermotorsport-list-item-description-category {
+                                                                    font-size: 18px;
+                                                                    font-family: $ora-font-regular;
+                                                                    text-transform: capitalize;
+                                                                }
+                                                                &.richtermotorsport-list-item-description-price {
+                                                                    font-size: 28px;
+                                                                    > span {
+                                                                        font-size: 14px;
+                                                                    }
+                                                                }
+                                                            }
+                                                            i {
+                                                                @include themed() {
+                                                                    color: t($phone-system-color-red);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            input.richtermotorsport-create-input, select.richtermotorsport-create-select, textarea.richtermotorsport-create-textarea, div.richtermotorsport-create-image, button.richtermotorsport-create-button {
+                                                width: 100%;
+                                                height: 50px;
+                                                margin-bottom: 15px;
+                                                padding: 10px 20px;
+                                                border: none;
+                                                border-radius: 10px;
+                                                font-size: 20px;
+                                                font-family: $ora-font-semibold;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                    background-color: t($phone-app-background-color);
+                                                }
+                                            }
+                                            textarea.richtermotorsport-create-textarea {
+                                                height: 150px;
+                                                resize: none;
+                                            }
+                                            button.richtermotorsport-create-button {
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    color: t($phone-system-color-white);
+                                                    background-color: t($phone-system-color-blue);
+                                                }
+                                            }
+                                            div.richtermotorsport-create-image {
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                height: 150px;
+                                                padding: 0;
+                                                overflow: hidden;
+                                                cursor: pointer;
+                                                i {
+                                                    font-size: 50px;
+                                                }
+                                                img#richtermotorsport-create-image-photo {
+                                                    display: none;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    object-fit: cover;
+                                                }
+                                            }
+                                        }
+                                        &#app-richtermotorsport-body-content-home {
+                                            div.app-body-content-header {
+                                                div.app-body-content-header-button-parent {
+                                                    visibility: hidden;
+                                                }
+                                            }
+                                        }
+                                        &#app-richtermotorsport-body-content-detail {
+                                            div.app-body-content-body {
+                                                padding: 0;
+                                                div.richtermotorsport-detail-image {
+                                                    width: 100%;
+                                                    height: 220px;
+                                                    padding: 0;
+                                                    img {
+                                                        width: 100%;
+                                                        height: 110%;
+                                                        object-fit: cover;
+                                                    }
+                                                }
+                                                div.richtermotorsport-detail-body {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    padding: 10px 25px;
+                                                    border-top-left-radius: 40px;
+                                                    border-top-right-radius: 40px;
+                                                    overflow: hidden;
+                                                    @include themed() {
+                                                        background-color: t($phone-system-color-gray-6);
+                                                    }
+                                                    span, i {
+                                                        display: block;
+                                                        font-size: 26px;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                        &.richtermotorsport-detail-body-category {
+                                                            font-family: $ora-font-regular;
+                                                            font-size: 24px;
+                                                            text-transform: capitalize;
+                                                        }
+                                                        &.richtermotorsport-detail-body-info {
+                                                            font-family: $ora-font-regular;
+                                                            font-size: 18px;
+                                                            text-align: justify;
+                                                        }
+                                                    }
+                                                    i {
+                                                        font-size: 44px;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            color: t($phone-system-color-red);
+                                                        }
+                                                    }
+                                                    div.richtermotorsport-detail-body-header {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        margin-bottom: 15px;
+                                                        div {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                        }
+                                                    }
+                                                    div.richtermotorsport-detail-body-description {
+                                                        margin-bottom: 15px;
+                                                    }
+                                                    div.richtermotorsport-detail-body-price {
+                                                        width: 85%;
+                                                        margin: 0 auto;
+                                                        padding: 10px;
+                                                        text-align: center;
+                                                        border-radius: 10px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            background-color: t($phone-app-background-color);
+                                                        }
+                                                        span {
+                                                            font-size: 32px;
+                                                            transition: all 0.3s ease-in-out;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-camera {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            height: 100%;
+                                            padding: 0;
+                                            canvas#videocall-canvas {
+                                                height: 100%;
+                                                transform: translate(-40%, 0);
+                                            }
+                                            img#camera-image {
+                                                height: $ora-phone-screen-width;
+                                                top: 50%;
+                                                transform: rotate(90deg) translate(-50%, 0);
+                                                transform-origin: calc($ora-phone-screen-width / 2) calc($ora-phone-screen-width / 2);
+                                            }
+                                            div#camera-button-takepicture {
+                                                position: absolute;
+                                                width: 80px;
+                                                height: 80px;
+                                                bottom: 20px;
+                                                left: 50%;
+                                                border-radius: 50%;
+                                                border: 7px solid rgba(142, 142, 147, 0.7);
+                                                transform: translate(-50%, 0);
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    background-color: t($phone-system-color-white);
+                                                }
+                                            }
+                                            div#camera-button-fullscreen {
+                                                position: absolute;
+                                                bottom: 30px;
+                                                left: 15%;
+                                                transform: translate(-25%, 0);
+                                                cursor: pointer;
+                                                i {
+                                                    font-size: 60px;
+                                                    @include themed() {
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-gallery {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            div#gallery-image-list {
+                                                flex-direction: row;
+                                                justify-content: flex-start;
+                                                row-gap: 1px;
+                                                column-gap: 1px;
+                                                div.gallery-image-list-item {
+                                                    width: 33%;
+                                                    height: auto;
+                                                    img {
+                                                        width: 100%;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }   
+                            }
+                            &#app-notes {
+                                div.app-body {
+                                    transition: background-color 0.3s ease-in-out;
+                                    @include themed() {
+                                        background-color: t($phone-app-tab-background-color);
+                                    }
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            height: 100px;
+                                            background-color: transparent;
+                                            div.app-body-content-header-button {
+                                                div.app-body-content-header-button-parent {
+                                                    span, i {
+                                                        @include themed() {
+                                                            color: t($phone-system-color-yellow);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 100px - 60px);
+                                            padding: 0 20px;
+                                            overflow: hidden;
+                                            span {
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                                &.notes-title {
+                                                    display: block;
+                                                    height: 30px;
+                                                    margin: 20px 0 10px 25px;
+                                                    font-family: $ora-font-semibold;
+                                                    font-size: 24px;
+                                                }
+                                            }
+                                            div.notes-list {
+                                                width: 100%;
+                                                height: auto;
+                                                div.notes-list-item {
+                                                    display: flex;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    width: 100%;
+                                                    height: 45px;
+                                                    padding: 0 15px;
+                                                    border-bottom-width: 2px;
+                                                    border-bottom-style: solid;
+                                                    transition: background-color 0.3s ease-in-out;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-background-color);
+                                                        border-bottom-color: t($phone-app-tab-background-color);
+                                                    }
+                                                    &:first-child {
+                                                        border-top-left-radius: 10px;
+                                                        border-top-right-radius: 10px;
+                                                    }
+                                                    &:last-child {
+                                                        border: 0;
+                                                        border-bottom-left-radius: 10px;
+                                                        border-bottom-right-radius: 10px;
+                                                    }
+                                                    div.notes-list-item-left, div.notes-list-item-right {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        column-gap: 15px;
+                                                        span, i, input {
+                                                            font-size: 20px;
+                                                        }
+                                                        input.notes-list-item-title {
+                                                            width: 220px;
+                                                            border: 0;
+                                                            background-color: transparent;
+                                                            transition: all 0.3s ease-in-out;
+                                                            cursor: pointer;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-primary);
+                                                            }
+                                                            &.active {
+                                                                border-bottom-width: 3px;
+                                                                border-bottom-style: solid;
+                                                                cursor: text;
+                                                                @include themed() {
+                                                                    border-bottom-color: t($phone-system-color-yellow);
+                                                                }
+                                                            }
+                                                        }
+                                                        span.notes-list-item-count, i.notes-list-item-arrow {
+                                                            @include themed() {
+                                                                color: t($phone-system-color-gray);
+                                                            }
+                                                        }
+                                                        i.notes-list-item-icon {
+                                                            font-size: 22px;
+                                                            @include themed() {
+                                                                color: t($phone-system-color-yellow);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                &#notes-list-folders {
+                                                    height: calc(100% - 45px - 60px);
+                                                    overflow: scroll;
+                                                }
+                                                &#notes-list-notes {
+                                                    margin-top: 20px;
+                                                    height: calc(100% - 20px);
+                                                    overflow: scroll;
+                                                    div.notes-list-item {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        justify-content: space-evenly;
+                                                        align-items: flex-start;
+                                                        height: 85px;
+                                                        padding: 0 25px;
+                                                        span, i {
+                                                            @include themed() {
+                                                                color: t($phone-system-color-gray);
+                                                            }
+                                                            &.notes-list-item-title {
+                                                                font-size: 18px;
+                                                                font-family: $ora-font-bold;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                            }
+                                                            &.notes-list-item-folder {
+                                                                margin-left: 5px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-tab {
+                                            display: flex;
+                                            justify-content: space-between;
+                                            align-items: center;
+                                            height: 60px;
+                                            padding: 0 30px;
+                                            @include themed() {
+                                                color: t($phone-system-color-yellow);
+                                            }
+                                            i {
+                                                font-size: 30px;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                        &#app-notes-body-content-folder {
+                                            div.app-body-content-header {
+                                                height: 145px;
+                                            }
+                                            div.app-body-content-body {
+                                                height: calc(100% - 145px - 60px);
+                                            }
+                                            div.app-body-content-tab {
+                                                justify-content: center;
+                                            }
+                                        }
+                                        &#app-notes-body-content-note {
+                                            div.app-body-content-header, div.app-body-content-body, div.app-body-content-tab {
+                                                transition: background-color 0.3s ease-in-out;
+                                                @include themed() {
+                                                    background-color: t($phone-app-background-color);
+                                                }
+                                            }
+                                            div.app-body-content-header {
+                                                height: 50px;
+                                            }
+                                            div.app-body-content-body {
+                                                height: calc(100% - 50px - 60px);
+                                                overflow-y: scroll; 
+                                                input.notes-title {
+                                                    width: 100%;
+                                                    margin-top: 15px;
+                                                    border: 0;
+                                                    font-size: 28px;
+                                                    font-family: $ora-font-bold;
+                                                    background-color: transparent;
+                                                    transition: color 0.3s ease-in-out;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &:focus {
+                                                        border-bottom-width: 3px;
+                                                        border-bottom-style: solid;
+                                                        cursor: text;
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-system-color-yellow);
+                                                        }
+                                                    }
+                                                }
+                                                textarea {
+                                                    width: 100%;
+                                                    min-height: 400px;
+                                                    height: auto;
+                                                    margin-top: 20px;
+                                                    padding: 5px;
+                                                    border: 0;
+                                                    border-bottom-width: 3px;
+                                                    border-bottom-style: solid;
+                                                    outline: none;
+                                                    font-size: 18px;
+                                                    background-color: rgba(0, 0, 0, 0.02);
+                                                    resize: none;
+                                                    overflow-y: hidden;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        border-bottom-color: t($phone-notes-input-border-color);
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                    &:focus {
+                                                        background-color: rgba(0, 0, 0, 0.05);
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-notes-input-focus-border-color);
+                                                        }
+                                                    }
+                                                }
+                                                div#notes-note-container {
+                                                    display: none;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    margin-top: 20px;
+                                                    padding: 5px;
+                                                    font-size: 18px;
+                                                    li {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        list-style: none;
+                                                        column-gap: 5px;
+                                                        input {
+                                                            appearance: none;
+                                                            background-color: transparent;
+                                                            border: 2px solid gray;
+                                                            width: 30px;
+                                                            height: 30px;
+                                                            border-radius: 50%;
+                                                            text-align: center;
+                                                            vertical-align: middle;
+                                                            &.checked {
+                                                                @include themed() {
+                                                                    background-image: t($phone-system-color-yellow), url("../images/apps/notes/check.png");
+                                                                    border-color: t($phone-system-color-yellow);
+                                                                }
+                                                            }
+                                                        }
+                                                        span {
+                                                            font-family: $ora-font-semibold;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.app-body-content-tab {
+                                                justify-content: space-around;
                                             }
                                         }
                                     }
@@ -3790,6 +4470,23 @@ div#page {
             }
         }
     }
+    div#image-fullscreen {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: 50px;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+        z-index: 2;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 }
 
 #add-notification, #add-call, #refresh-contacts, #save-home {
@@ -3873,6 +4570,33 @@ div#phone-screen-content {
             }
         }
     }
+    &.app-richtermotorsport {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-system-color-gray-6) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
+            }
+        }
+    }
+    &.app-notes {
+        div#phone-screen-content-footer {
+            @include themed() {
+                background-color: t($phone-app-tab-background-color) !important;
+            }
+        }
+        &.notes-note {
+            div#phone-screen-content-footer, div#phone-screen-content-header, div.app-body {
+                @include themed() {
+                    background-color: t($phone-app-background-color) !important;
+                }
+            }
+        }
+    }
 }
 
 /* --- Context Menu --- */
@@ -3880,7 +4604,7 @@ div#phone-screen-content {
 .contextMenu {
     height: 0;
     overflow: hidden;
-    backdrop-filter: blur(5px);
+    // backdrop-filter: blur(5px); // Bug affichage en jeu avec rectangle noir
     position: fixed;
     top: var(--top);
     left: var(--left);
@@ -3938,6 +4662,12 @@ div#phone-screen-content {
         &:hover {
             @include themed() {
                 background-color: t($phone-contextmenu-item-background-color);
+            }
+        }
+        &.delete {
+            @include themed() {
+                stroke: t($phone-system-color-red);
+                color: t($phone-system-color-red);
             }
         }
     }

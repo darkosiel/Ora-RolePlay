@@ -115,14 +115,15 @@ function Ora.Player:GetXp(playerId)
 end
 
 RegisterServerCallback("Ora::SE::Player:Phone:GetNewPhoneNumber", 
-  function(source, cb) 
-    local _source = source
-    local newPhoneNumber = Ora.Player:GenerateNewPhoneNumber()
-    Ora.Player:RegisterPhoneNumberToPlayer(newPhoneNumber)
-
-
-    cb(newPhoneNumber)
-  end
+    function(source, cb) 
+        local _source = source
+        local newPhoneNumber = Ora.Player:GenerateNewPhoneNumber()
+        Ora.Player:RegisterPhoneNumberToPlayer(newPhoneNumber)
+        -- OraPhone
+        -- local identity = Ora.Identity:GetIdentity(_source)
+        -- exports.OraPhone:RegisterNewPhone(newPhoneNumber, identity)
+        cb(newPhoneNumber)
+    end
 )
 
 RegisterServerEvent("Ora::SE::Player:AddToSessionData")

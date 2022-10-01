@@ -2121,6 +2121,83 @@ local Shops =
             }
         },
         {
+            Title = "Louis",
+            RestrictedJob = {"pawnshop"},
+            RestrictedGrade = {"cdd", "cdi", "chef", "drh", "boss"},
+            Pos = {x = 101.97, y = 14.15, z = 67.00, a = 298.78},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "hatchet",
+                    price = 150,
+                    data = {}
+                },
+                {
+                    name = "golf",
+                    price = 150,
+                    data = {}
+                },
+                {
+                    name = "dagger",
+                    price = 300,
+                    data = {}
+                },
+                {
+                    name = "combathatchet",
+                    price = 350,
+                    data = {}
+                },
+                {
+                    name = "poolcue",
+                    price = 200,
+                    data = {}
+                },
+                {
+                    name = "crowbar",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "bague",
+                    price = 50,
+                    data = {},
+                },
+                {
+                    name = "bouquet",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "chocolatbox",
+                    price = 50,
+                    data = {}
+                },
+                {
+                    name = "makeup",
+                    price = 25,
+                    data = {}
+                },
+                {
+                    name = "knife",
+                    price = 100,
+                    data = {}
+                }
+            }
+        },
+        {
             Title = "Casino",
             Pos = {x = -1633.951, y = -2994.321, z = -79.15, a = 181.00},
             Blips = {},
@@ -2136,6 +2213,31 @@ local Shops =
                 {
                     name = "casinopiece",
                     price = 10,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Golfeur",
+            Pos = {x = -1340.67, y = 82.81, z = 53.50, a = 272.68},
+            Blips = {
+                Enabled = true,
+                sprite = 1,
+                color = 6,
+                name = "Mark"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "golfball",
+                    price = 20,
                     data = {}
                 }
             }
@@ -2543,6 +2645,16 @@ local Shops =
                     price = 1,
                     data = {}
                 },
+                {
+                    name = "crowbar",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "wrench",
+                    price = 100,
+                    data = {}
+                },
 
 
             }
@@ -2850,7 +2962,7 @@ local Shops =
         --     Items = BasicShopsNorth,
         --     bzone = "lssd"
         -- }, --LTD NORD
-        {
+        --[[{
             Title = "LTD Grove Street",
             Pos = {x = -47.321, y = -1758.669, z = 28.45, a = 57.08},
             Blips = {
@@ -2869,7 +2981,7 @@ local Shops =
             Items = BasicShopsNorth,
             bzone = "lssd",
             braquable = false
-        },
+        },]]
         -- {
         --     Title = "Fournisseur Osaka Tsubaki",
         --     Hidden = true,

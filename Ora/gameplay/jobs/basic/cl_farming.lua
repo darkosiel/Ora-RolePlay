@@ -421,12 +421,12 @@ function startworkInternal(type)
                                 if data.giveitem ~= nil then
                                     if data.giveitemType == 2 then
                                         math.randomseed(GetGameTimer() * math.random(1000))
-                                        local dropChance = math.random(0, 1000)
+                                        local dropChance = math.random(501, 1000)
                                         local itemsCount = #data.giveitem
                                         math.randomseed(GetGameTimer() * math.random(1000))
                                         local itemDrop = data.giveitem[math.random(itemsCount)]
                                         local itemDropValue = 1000 - itemDrop.drop * 10
-                                        if (dropChance > itemDropValue) then
+                                        if (dropChance > 500) then
                                             Ora.Inventory:AddItem({name = itemDrop.name})
                                             math.randomseed(GetGameTimer() * math.random(1000))
                                             ShowNotification(

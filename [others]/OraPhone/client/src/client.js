@@ -3,25 +3,35 @@
 /**
  * Imports
  */
- import anim from './anim.js'
+import anim from './anim.js'
 
- const Delay = ms => new Promise(r=>setTimeout(r, ms))
- /**
+const Wait = ms => new Promise(r=>setTimeout(r, ms))
+/**
   * Client
   */
- let phoneVisible = false
- let mouseFocus = false
+let phoneVisible = false
+let mouseFocus = false
+var frontCam = false
+var firstTime = false
+var takePictureBool = false
+var app = "";
+var appSub = "";
+var onTick
+var onTickCamera
+var phoneActive = false
 
-RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'e')
+RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'f2')
 RegisterCommand('phone', _=>setPhoneVisible(!phoneVisible))
 
 function setMouseFocus(active = true) {
     mouseFocus = active
 }
 
- // onTick timer ref
-let onTick
+// onTick timer ref
 async function setPhoneVisible(visible = true) {
+    if(!phoneActive && !phoneVisible) {
+        return
+    }
     phoneVisible = visible
     // When we wanna show the phone
     if (visible) {
@@ -32,7 +42,7 @@ async function setPhoneVisible(visible = true) {
         setMouseFocus(visible)
         SetNuiFocusKeepInput(visible)
         // lock controls, focus nui
-        onTick = setTick(_=> {
+        onTick = setTick( async () => {
             // On right click in fivem focus back to the phone
             // if (IsControlJustReleased(1, 25) && phoneVisible) {
             //     setMouseFocus(true)
@@ -45,6 +55,7 @@ async function setPhoneVisible(visible = true) {
             EnableControlAction(1, 21)
             // right click to switch focus back on ui
             EnableControlAction(1, 25)
+            EnableControlAction(1, 27)
             // move
             EnableControlAction(1, 30);EnableControlAction(1, 31);EnableControlAction(1, 32);EnableControlAction(1, 33);EnableControlAction(1, 34);EnableControlAction(1, 35)
             // push to talk
@@ -69,7 +80,99 @@ async function setPhoneVisible(visible = true) {
     })
 }
 
-// onNet events from server
+function CellFrontCamActivate(activate) {
+    firstTime = false
+	return Citizen.invokeNative('0x2491A93618B7D838', activate)
+}
+
+DestroyMobilePhone()
+async function setCamera(activate) {
+    if(activate) {
+        exports.Ora_utils.SetPlayerHUD(false)
+        onTickCamera = setTick(async () => {
+            DisableControlAction(1, 200)
+            if (IsControlJustPressed(1, 177)) { // -- CLOSE PHONE
+                DestroyMobilePhone()
+                CellCamActivate(false, false)
+                SendNUIMessage({
+                    type: "cancel_picture"
+                })
+                setPhoneVisible(true)
+                stopTick();
+                exports.Ora_utils.SetPlayerHUD(true)
+            }
+            if (IsControlJustPressed(1, 27) && firstTime == false) { // -- SELFIE MODE
+                firstTime = true
+                frontCam = !frontCam
+                CellFrontCamActivate(frontCam)
+            }
+            if (IsControlJustPressed(1, 18) && takePictureBool == false) { // -- TAKE PICTURE
+                takePictureBool = true
+                takePicture()
+            }
+            if (takePictureBool == false && phoneVisible == false) {
+                let text = "Appuyez sur ~INPUT_CELLPHONE_UP~ pour changer la caméra"
+                DisplayHelpText(text)
+            }
+            if (phoneVisible == false) {
+                HideHudComponentThisFrame(1)
+                HideHudComponentThisFrame(2)
+                HideHudComponentThisFrame(3)
+                HideHudComponentThisFrame(4)
+                HideHudComponentThisFrame(5)
+                HideHudComponentThisFrame(6)
+                HideHudComponentThisFrame(7)
+                HideHudComponentThisFrame(8)
+                HideHudComponentThisFrame(9)
+                HideHudComponentThisFrame(13)
+                HideHudComponentThisFrame(17)
+                HideHudComponentThisFrame(20)
+                HideHudAndRadarThisFrame()
+                ThefeedHideThisFrame()
+            }
+        })
+    } else {
+        clearTick(onTickCamera)
+    }
+}
+
+async function takePicture() {
+    await Wait(100)
+    SendNUIMessage({
+        type: "take_picture",
+        app: app,
+        appSub: appSub
+    })
+    await Wait(500)
+    DestroyMobilePhone()
+    CellCamActivate(false, false)
+    setPhoneVisible(true)
+    await Wait(500)
+    exports.Ora_utils.SetPlayerHUD(true)
+}
+
+async function stopTick() {
+    await Wait(100)
+    clearTick(onTickCamera)
+}
+
+function DisplayHelpText(str) {
+	SetTextComponentFormat("STRING")
+	AddTextComponentString(str)
+	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+}
+
+/**
+ * ========================
+ * onNet events from server
+ * ========================
+ */
+
+// Is the phone active ?
+
+onNet('OraPhone:client:phone_active', (active) => {
+    phoneActive = active
+})
 
 // User data
 
@@ -145,7 +248,29 @@ onNet('OraPhone:client:new_notification', data => {
     })
 })
 
-// Nui callbacks
+// Richter Motorsport
+
+onNet('OraPhone:client:richtermotorsport_update_advertisement', data => {
+    SendNUIMessage({
+        type: 'updateRichterMotorsportAdvertisement',
+        richterMotorsportAdvertisement: data
+    })
+})
+
+// Gallery
+
+onNet('OraPhone:client:gallery_update_photo', data => {
+    SendNUIMessage({
+        type: 'updateGalleryPhoto',
+        galleryPhoto: data
+    })
+})
+
+/**
+ * =============
+ * Nui callbacks
+ * =============
+ */
 
 // User Data
 
@@ -250,8 +375,77 @@ on('__cfx_nui:add_message', data => {
     emitNet('OraPhone:server:add_message', data)
 })
 
+// Richter Motorsport
 
+RegisterNuiCallbackType('refresh_richtermotorsport_advertisement')
+on('__cfx_nui:refresh_richtermotorsport_advertisement', data => {
+    emitNet('OraPhone:server:refresh_richtermotorsport_advertisement', data)
+})
 
+RegisterNuiCallbackType('richtermotorsport_add_advertisement')
+on('__cfx_nui:richtermotorsport_add_advertisement', data => {
+    let players = []
+    exports.Ora.TriggerServerCallback(
+        "onlinePlayers:list",
+        function(users) {
+            for (let user of users) {
+                players.push(user.id)
+            }
+            emitNet('OraPhone:server:richtermotorsport_add_advertisement', data, players)
+        }
+    )
+})
+
+RegisterNuiCallbackType('richtermotorsport_favorite_advertisement')
+on('__cfx_nui:richtermotorsport_favorite_advertisement', data => {
+    emitNet('OraPhone:server:richtermotorsport_favorite_advertisement', data)
+})
+
+RegisterNuiCallbackType('richtermotorsport_find_job')
+on('__cfx_nui:richtermotorsport_find_job', data => {
+    exports.Ora.TriggerServerCallback(
+        "Ora::SVCB::Identity:Job:Get",
+        function(job) {
+            SendNUIMessage({
+                type: 'updateRichterMotorsportRole',
+                richterMotorsportRole: [job]
+            })
+        },
+        GetPlayerServerId(PlayerId())
+    )
+})
+
+// Camera
+
+RegisterNuiCallbackType('camera_add_image')
+on('__cfx_nui:camera_add_image', data => {
+    emitNet('OraPhone:server:camera_add_image', data)
+})
+
+RegisterNuiCallbackType('open_camera')
+on('__cfx_nui:open_camera', async (data) => {
+    app = data.app
+    appSub = data.appSub
+    setPhoneVisible(false)
+    CreateMobilePhone(1)
+    CellCamActivate(true, true)
+    setCamera(true)
+    takePictureBool = false
+})
+
+RegisterNuiCallbackType('close_camera')
+on('__cfx_nui:close_camera', async () => {
+    setCamera(false)
+})
+
+// Gallery
+
+RegisterNuiCallbackType('refresh_gallery')
+on('__cfx_nui:refresh_gallery', data => {
+    emitNet('OraPhone:server:refresh_gallery', data)
+})
+
+// Tools
 
 RegisterNuiCallbackType('right_click')
 on('__cfx_nui:right_click', _ => {
@@ -269,8 +463,7 @@ on('__cfx_nui:DisableInput', _ => {
     SetNuiFocusKeepInput(false)
 })
 
-
- //*// Debug
+//*// Debug
 RegisterNuiCallbackType('debug')
 on('__cfx_nui:debug', data => {
     console.log('Nui:debug',data.debugTitle)

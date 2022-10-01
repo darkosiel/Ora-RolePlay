@@ -1637,6 +1637,11 @@ Items = {
         weight = 1.0,
         actionCl = "A FAIRE"
     },
+    golfball = {
+        label = "Balle de golf",
+        weight = 0.5,
+        actionCl = "A FAIRE"
+    },
     mec = {
         label = "Médicament",
         weight = 1.0,
@@ -1802,6 +1807,12 @@ Items = {
     },
     snspistol = {
         label = "Pétoire",
+        weight = 1.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
+    ceramicpistol = {
+        label = "Pistolet céramique",
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
@@ -2068,6 +2079,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    tacticalrifle = {
+        label = "M16",
+        weight = 3.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     carabinespecial = {
         label = "Carabine spécial",
         weight = 3.0,
@@ -2162,7 +2179,7 @@ Items = {
     },
     rock = {
         label = "Pierre à concasser",
-        weight = 1
+        weight = 0.5
     },
     ---prison
     info = {
@@ -2944,7 +2961,7 @@ Items = {
         faim = 25,
         category = "food"
     },
-    Maki = {
+    maki = {
         label = "Maki radis concombre",
         weight = 0.2,
         actionCl = "miam:Eat",
@@ -2977,7 +2994,7 @@ Items = {
         category = "food"
     },
     Nouillessautees = {
-        label = "Canard laque",
+        label = "Nouilles sautées",
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_plate_03",
@@ -3015,6 +3032,122 @@ Items = {
     concombre= {
         label = "Concombre",
         weight = 0.2
+    },
+    sirup = {
+        label = "Sirop",
+        weight = 0.1
+    },
+    mint = {
+        label = "Menthe",
+        weight = 0.1
+    },
+    orangejuice = {
+        label = "Jus d'orange",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 15,
+        category = "food"
+    },
+    pineapplejuice = {
+        label = "Jus d'ananas",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 15,
+        category = "food"
+    },
+    kirroyal = {
+        label = "Kir royal",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    monacodrink = {
+        label = "Monaco",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    grenadine = {
+        label = "Grenadine",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    mojito = {
+        label = "Mojito",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    pinacolada = {
+        label = "Piña Colada",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    tipunch = {
+        label = "Ti-punch",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    orangevodka = {
+        label = "Vodka orange",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    tequilapaf = {
+        label = "Tequila paf",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    tequilasunrise = {
+        label = "Tequila sunrise",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 30,
+        category = "food"
+    },
+    whiskycoke = {
+        label = "Whisky coca",
+        weight = 0.2,
+        actionCl = "miam:Drink",
+        props = "prop_tequsunrise",
+        soif = 15,
+        category = "food"
+    }, 
+    sesame = {
+        label = "Sésame",
+        weight = 0.1
+    },
+    duck = {
+        label = "Canard",
+        weight = 0.1
+    },
+    radish = {
+        label = "Radis",
+        weight = 0.1
     },
 }
 

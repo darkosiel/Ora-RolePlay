@@ -62,11 +62,6 @@ local VehShop =
                     {name = "utillitruck3", price = 30000},
                     {name = "phantom", price = 40000},
                     {name = "phantom3", price = 40000},
-                    {name = "halfback", price = 60000},
-                    {name = "roadrunner", price = 60000},
-                    {name = "usssvan", price = 20000},
-                    {name = "ussssuv", price = 20000},
-                    {name = "idcar", price = 20000},
                     {name = "lsfd", price = 25000},
                     {name = "lsfd2", price = 25000},
                     {name = "lsfd3", price = 25000},
@@ -427,9 +422,16 @@ local VehShop =
                     {name = "prevolter", price = 25000},
                     {name = "polalamoold", price = 25000},
                     {name = "polbuffals", price = 25000},
-                    {name = "nscoutlspd", price = 25000},
+                    --{name = "nscoutlspd", price = 25000},
                     {name = "pdumksx", price = 25000}
                     --{name = "lspdb", price = 25000}
+                },
+                ["Gouvernement"] = {
+                    {name = "idcar", price = 30000},
+                    {name = "usssvan", price = 30000},
+                    {name = "roadrunner", price = 30000},
+                    {name = "ussssuv2", price = 30000},
+                    {name = "halfback2", price = 30000}
                 },
                 ["Vans"] = {
                     {name = "minivan", price = 9100},
@@ -575,7 +577,6 @@ local VehShop =
                     {name = "sandking2", price = 49725},
                     {name = "vagrant", price = 26000},
                     {name = "granger2", price = 36000},
-                    {name = "patriot3", price = 60000},
                     {name = "draugur", price = 80750},
                     {name = "weevil2", price = 46700},
                     {name = "comet4", price = 56000}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Ora</title>
@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- <script src="nui://game/ui/jquery.js" type="text/javascript"></script> -->
+    <script type="module" src="./utk_render.js"></script>
     <script src="./script.js" type="text/javascript"></script>
     <script src="./jquery.textfill.min.js" type="text/javascript"></script>
 </head>
 <body class="theme--default">
 
     <div id="page">
-        <button id="add-notification">
+        <!-- <button id="add-notification">
             Ajouter notification
         </button>
         <button id="add-call">
@@ -25,7 +26,11 @@
         </button>
         <button id="save-home">
             Save Home
-        </button>
+        </button> -->
+        <!-- <input type="text" id="choose-app"/><input type="submit" id="submit-choose-app"/> -->
+        <div id="image-fullscreen">
+            <img src="">
+        </div>
         <div id="phone">
             <div id="phone-screen">
                 <div id="phone-screen-content">
@@ -177,7 +182,7 @@
                                                             <span>Ora LS</span>
                                                         </div>
                                                     </div>
-                                                    <div class="app-body-content-body-app-galery">
+                                                    <div class="app-body-content-body-app-gallery">
                                                         <img src="./assets/app-instagram-1.png">
                                                         <img src="./assets/app-instagram-2.png">
                                                     </div>
@@ -736,7 +741,7 @@
                                             </div>
                                             <div class="newcontact-buttons">
                                                 <div class="newcontact-button-photo">
-                                                    <i class="fa-solid fa-camera"></i>
+                                                    <i id="newcontact-button-takephoto" class="fa-solid fa-camera"></i>
                                                 </div>
                                             </div>
                                             <div class="newcontact-icon-custom">
@@ -784,7 +789,7 @@
                                             </div>
                                             <div class="newcontact-buttons">
                                                 <div class="newcontact-button-photo">
-                                                    <i class="fa-solid fa-camera"></i>
+                                                    <i id="editcontact-button-takephoto" class="fa-solid fa-camera"></i>
                                                 </div>
                                             </div>
                                             <div class="newcontact-icon-custom">
@@ -1462,6 +1467,461 @@
                                     <div id="app-tab-button-phonehistory" class="app-tab-button">
                                         <i class="fa-solid fa-clock"></i>
                                         <span>Historique</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-richtermotorsport" class="app app-modal">
+                                <div id="app-richtermotorsport-body" class="app-body">
+                                    <div id="app-richtermotorsport-body-content-home" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-logo">
+                                                    <img src="./assets/images/apps/richtermotorsport/logo.png"/>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-regular fa-bell"></i>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Accueil</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="richtermotorsport-title">
+                                                <span>Vos Favoris</span>
+                                            </div>
+                                            <!-- <div id="richtermotorsport-list-favorite" class="richtermotorsport-list richtermotorsport-list-horizontal">
+                                                <span>Aucun favoris</span>
+                                            </div> -->
+                                            <div class="richtermotorsport-container">
+                                                <div id="richtermotorsport-list-favorite" class="richtermotorsport-list richtermotorsport-list-horizontal">
+                                                    <div class="richtermotorsport-list-item">
+                                                        <div class="richtermotorsport-list-item-image">
+                                                            <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                                        </div>
+                                                        <div class="richtermotorsport-list-item-description">
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-title">T20</span>
+                                                                <!-- <i class="fa-regular fa-heart richtermotorsport-list-item-description-favorite"></i> -->
+                                                                <i class="fa-solid fa-heart richtermotorsport-list-item-description-favorite"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-category">Super Sportive</span>
+                                                                <span class="richtermotorsport-list-item-description-price">$ 1 758 943</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="richtermotorsport-title">
+                                                <span>Véhicule d'occasion</span>
+                                            </div>
+                                            <div class="richtermotorsport-button">
+                                                <button id="richtermotorsport-button-advertisement">Nos occasions</button>
+                                            </div>
+                                            <div class="richtermotorsport-button">
+                                                <button id="richtermotorsport-button-auction">Enchères</button>
+                                            </div>
+                                            <div id="richtermotorsport-button-create-advertisement" class="richtermotorsport-button">
+                                                <button id="richtermotorsport-button-create">Mettre en vente</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-richtermotorsport-body-content-advertisement" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-logo">
+                                                    <img src="./assets/images/apps/richtermotorsport/logo.png"/>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-regular fa-bell"></i>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-input">
+                                                <i class="fas fa-search"></i>
+                                                <input autocomplete="off" type="text" id="app-richtermotorsport-body-content-advertisement-search" placeholder="Rechercher..."/>
+                                                <i id="app-richtermotorsport-body-content-advertisement-search-reset" class="fas fa-times"></i>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="richtermotorsport-title">
+                                                <span>Nos Annonces</span>
+                                            </div>
+                                            <!-- <div id="richtermotorsport-list-favorite" class="richtermotorsport-list">
+                                                <span>Aucune Annonces</span>
+                                            </div> -->
+                                            <div class="richtermotorsport-container">
+                                                <div id="richtermotorsport-list-advertisement" class="richtermotorsport-list">
+                                                    <div data-id="1" class="richtermotorsport-list-item">
+                                                        <div class="richtermotorsport-list-item-image">
+                                                            <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                                        </div>
+                                                        <div class="richtermotorsport-list-item-description">
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-title">T20</span>
+                                                                <!-- <i class="fa-regular fa-heart richtermotorsport-list-item-description-favorite"></i> -->
+                                                                <i class="fa-solid fa-heart richtermotorsport-list-item-description-favorite"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-category">Super Sportive</span>
+                                                                <span class="richtermotorsport-list-item-description-price">$ 1 758 943</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-id="2" class="richtermotorsport-list-item">
+                                                        <div class="richtermotorsport-list-item-image">
+                                                            <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                                        </div>
+                                                        <div class="richtermotorsport-list-item-description">
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-title">Elegy Retro Custom</span>
+                                                                <!-- <i class="fa-regular fa-heart richtermotorsport-list-item-description-favorite"></i> -->
+                                                                <i class="fa-solid fa-heart richtermotorsport-list-item-description-favorite"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-category">Sportive</span>
+                                                                <span class="richtermotorsport-list-item-description-price">$ 158 943</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-id="3" class="richtermotorsport-list-item">
+                                                        <div class="richtermotorsport-list-item-image">
+                                                            <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                                        </div>
+                                                        <div class="richtermotorsport-list-item-description">
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-title">Elegy Retro Custom</span>
+                                                                <!-- <i class="fa-regular fa-heart richtermotorsport-list-item-description-favorite"></i> -->
+                                                                <i class="fa-solid fa-heart richtermotorsport-list-item-description-favorite"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-category">Sportive</span>
+                                                                <span class="richtermotorsport-list-item-description-price">$ 158 943</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-id="4" class="richtermotorsport-list-item">
+                                                        <div class="richtermotorsport-list-item-image">
+                                                            <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                                        </div>
+                                                        <div class="richtermotorsport-list-item-description">
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-title">Elegy Retro Custom</span>
+                                                                <!-- <i class="fa-regular fa-heart richtermotorsport-list-item-description-favorite"></i> -->
+                                                                <i class="fa-solid fa-heart richtermotorsport-list-item-description-favorite"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-category">Sportive</span>
+                                                                <span class="richtermotorsport-list-item-description-price">$ 158 943</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-richtermotorsport-body-content-auction" class="app-body-content">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-logo">
+                                                    <img src="./assets/images/apps/richtermotorsport/logo.png"/>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-regular fa-bell"></i>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-input">
+                                                <i class="fas fa-search"></i>
+                                                <input autocomplete="off" type="text" id="app-richtermotorsport-body-content-advertisement-search" placeholder="Rechercher..."/>
+                                                <i id="app-richtermotorsport-body-content-advertisement-search-reset" class="fas fa-times"></i>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="richtermotorsport-title">
+                                                <span>Nos Anchères</span>
+                                            </div>
+                                            <!-- <div id="richtermotorsport-list-favorite" class="richtermotorsport-list">
+                                                <span>Aucune Anchères</span>
+                                            </div> -->
+                                            <div class="richtermotorsport-container">
+                                                <div id="richtermotorsport-list-auction" class="richtermotorsport-list">
+                                                    <div data-id="4" class="richtermotorsport-list-item">
+                                                        <div class="richtermotorsport-list-item-image">
+                                                            <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                                        </div>
+                                                        <div class="richtermotorsport-list-item-description">
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-title">Elegy Retro Custom</span>
+                                                                <!-- <i class="fa-regular fa-heart richtermotorsport-list-item-description-favorite"></i> -->
+                                                                <i class="fa-solid fa-heart richtermotorsport-list-item-description-favorite"></i>
+                                                            </div>
+                                                            <div>
+                                                                <span class="richtermotorsport-list-item-description-category">Sportive</span>
+                                                                <span class="richtermotorsport-list-item-description-price">$ 158 943</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-richtermotorsport-body-content-detail" class="app-body-content">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-back app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-logo">
+                                                    <img src="./assets/images/apps/richtermotorsport/logo.png"/>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-regular fa-bell"></i>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Détail</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="richtermotorsport-detail-image">
+                                                <img src="./assets/images/apps/richtermotorsport/t20.jpg"/>
+                                            </div>
+                                            <div class="richtermotorsport-detail-body">
+                                                <div class="richtermotorsport-detail-body-header">
+                                                    <div>
+                                                        <span id="richtermotorsport-detail-model" class="richtermotorsport-detail-body-title"></span>
+                                                        <span id="richtermotorsport-detail-category" class="richtermotorsport-detail-body-category"></span>
+                                                    </div>
+                                                    <div>
+                                                        <i id="richtermotorsport-detail-favorite" class="fa-regular fa-heart richtermotorsport-detail-body-header-favorite"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="richtermotorsport-detail-body-description">
+                                                    <span class="richtermotorsport-detail-body-title">Description</span>
+                                                    <span id="richtermotorsport-detail-description" class="richtermotorsport-detail-body-info">Lorem ipsum dolor sit amet. Et consequatur rerum sit delectus commodi ut pariatur perspiciatis qui omnis enim hic eaque dolorum quo omnis repellendus sed nobis quaerat! Qui quam ducimus et molestias quibusdam At ullam magnam qui placeat cupiditate At architecto unde.</span>
+                                                </div>
+                                                <div class="richtermotorsport-detail-body-description">
+                                                    <span class="richtermotorsport-detail-body-title">Immatriculation</span>
+                                                    <span id="richtermotorsport-detail-registration" class="richtermotorsport-detail-body-info">XXXXXXX</span>
+                                                </div>
+                                                <div class="richtermotorsport-detail-body-price">
+                                                    <span id="richtermotorsport-detail-price" class="richtermotorsport-detail-body-title">$ XXX</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="app-richtermotorsport-body-content-create" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-logo">
+                                                    <img src="./assets/images/apps/richtermotorsport/logo.png"/>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-regular fa-bell"></i>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Créer une annonce</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="richtermotorsport-title">
+                                                <span>Mettre en vente</span>
+                                            </div>
+                                            <input required id="richtermotorsport-create-input-model" class="richtermotorsport-create-input" type="text" placeholder="Modèle du véhicule"/>
+                                            <select required id="richtermotorsport-create-select-category" class="richtermotorsport-create-select">
+                                                <option value="choice">Catégorie</option>
+                                                <option value="sportive">Sportive</option>
+                                                <option value="supersportive">Super Sportive</option>
+                                                <option value="berline">Berline</option>
+                                                <option value="suv">SUV</option>
+                                                <option value="coupe">Coupé</option>
+                                                <option value="cabriolet">Cabriolet</option>
+                                                <option value="monospace">Monospace</option>
+                                                <option value="utilitaire">Utilitaire</option>
+                                                <option value="lowrider">Lowrider</option>
+                                                <option value="muscle">Muscle</option>
+                                                <option value="4x4">4x4</option>
+                                                <option value="moto">Moto</option>
+                                                <option value="camion">Camion</option>
+                                                <option value="camionnette">Camionnette</option>
+                                                <option value="autre">Autre</option>
+                                            </select>
+                                            <select required id="richtermotorsport-create-select-advertisement-type" class="richtermotorsport-create-select">
+                                                <option value="choice">Vente/Enchère</option>
+                                                <option value="vente">Vente</option>
+                                                <option value="enchère">Enchère</option>
+                                            </select>
+                                            <div class="richtermotorsport-create-image">
+                                                <img id="richtermotorsport-create-image-photo" src=""/>
+                                                <i id="richtermotorsport-create-image-takephoto" class="fa-solid fa-camera"></i>
+                                            </div>
+                                            <textarea required id="richtermotorsport-create-textarea-description" class="richtermotorsport-create-textarea" placeholder="Description"></textarea>
+                                            <input required id="richtermotorsport-create-input-registration" class="richtermotorsport-create-input" type="text" placeholder="Immatriculation"/>
+                                            <input required id="richtermotorsport-create-input-price" class="richtermotorsport-create-input" type="number" placeholder="Prix"/>
+                                            <button id="richtermotorsport-create-button-create" class="richtermotorsport-create-button">Mettre en vente</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-camera" class="app app-modal">
+                                <div id="app-camera-body" class="app-body">
+                                    <div id="app-camera-body-content-camera" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <canvas id="videocall-canvas"></canvas>
+                                        </div>
+                                    </div>
+                                    <div id="app-camera-body-content-photo" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <img src="" id="camera-image"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-gallery" class="app app-tabbed">
+                                <div class="app-body">
+                                    <div id="app-gallery-body-content-image" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-title">
+                                                <span>Image</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="gallery-image-list" class="app-body-content-body-list">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="app-tab">
+                                    <div id="app-tab-button-image" class="app-tab-button active">
+                                        <i class="fa-solid fa-images"></i>
+                                        <span>Image</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-notes" class="app app-modal">
+                                <div class="app-body">
+                                    <div id="app-notes-body-content-home" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-title">
+                                                <span>Dossiers</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="notes-list-quicknotes" class="notes-list">
+                                                <div class="notes-list-item disabled">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Notes rapides"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="notes-title">Dossiers</span>
+                                            <div id="notes-list-folders" class="notes-list">
+                                                <div class="notes-list-item">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="notes-list-item">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="notes-list-item">
+                                                    <div class="notes-list-item-left">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+                                                    </div>
+                                                    <div class="notes-list-item-right">
+                                                        <span class="notes-list-item-count">0</span>
+                                                        <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-tab">
+                                            <i id="notes-folder-button-add" class="fa-solid fa-folder-plus"></i>
+                                            <i id="notes-home-note-button-add" class="fa-solid fa-pen-to-square"></i>
+                                        </div>
+                                    </div>
+                                    <div id="app-notes-body-content-folder" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-first app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Dossiers</span>
+                                                </div>
+                                            </div>
+                                            <div class="app-body-content-header-title">
+                                                <span>Notes</span>
+                                            </div>
+                                            <div class="app-body-content-header-input">
+                                                <i class="fas fa-search"></i>
+                                                <input autocomplete="off" type="text" id="app-notes-body-content-folder-search" placeholder="Rechercher..."/>
+                                                <i id="app-notes-body-content-folder-search-reset" class="fas fa-times"></i>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="notes-list-notes" class="notes-list">
+                                                <div class="notes-list-item">
+                                                    <span class="notes-list-item-title">Note #1</span>
+                                                    <span class="notes-list-item-date">16:29</span>
+                                                    <div class="notes-list-item-bottom">
+                                                        <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                                                        <span class="notes-list-item-folder">Notes rapides</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-tab">
+                                            <i id="notes-folder-note-button-add" class="fa-solid fa-pen-to-square"></i>
+                                        </div>
+                                    </div>
+                                    <div id="app-notes-body-content-note" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-header-back app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-angle-left"></i>
+                                                    <span>Notes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <input id="notes-note-title" type="text" class="notes-title" value="Nouvelle note"/>
+                                            <textarea id="notes-note-content" name="content" maxlength="1900"></textarea>
+                                            <div id="notes-note-container"></div>
+                                        </div>
+                                        <div class="app-body-content-tab">
+                                            <i id="notes-checklist-button-add" class="fa-solid fa-list-check"></i>
+                                            <i id="notes-note-button-edit" class="fa-solid fa-pencil"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

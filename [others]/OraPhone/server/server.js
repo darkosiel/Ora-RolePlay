@@ -4,7 +4,7 @@ var inCall = false
 
 /**
  * =============
- * DB operations
+ * DB operations / Functions
  * =============
  */
 
@@ -73,7 +73,12 @@ const generateCrud = (table_suffix, fieldsMap) => {
         },
         read: criteria => {
             sanitizeKeys(criteria)
-            let sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table} WHERE ${buildSqlCriteria(criteria)}`
+            let sql = ``
+            if(criteria != null || criteria != undefined) {
+                sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table} WHERE ${buildSqlCriteria(criteria)}`
+            } else {
+                sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table}`
+            }
             if(table == "ora_phone_contacts") {
                 sql += ` ORDER BY name ASC`;
             } else if(table == "ora_phone_messages") {
@@ -151,17 +156,29 @@ const crud = {
         gps: 'gps_json',
         isRead: 'is_read',
     }),
-    calls: generateCrud('phone_call_history', {
+    richtermotorsport: generateCrud('phone_richtermotorsport', {
         id: 'id',
-        sourceNumber: 'source_number',
-        targetNumber: 'target_number',
-        callTime: 'call_time',
-        accepted: 'accepted',
-        callDuration: 'call_duration',
-        video: 'video',
+        phoneId: 'phone_id',
+        imgUrl: 'img_url',
+        model: 'model',
+        category: 'category',
+        description: 'description',
+        registration: 'registration',
+        price: 'price',
+        advertisementType: 'advertisement_type',
+        createTime: 'create_time',
+    }),
+    richtermotorsportfavorite: generateCrud('phone_richtermotorsport_favorite', {
+        advertisementId: 'advertisement_id',
+        phoneId: 'phone_id',
+    }),
+    image: generateCrud('phone_image', {
+        id: 'id',
+        phoneId: 'phone_id',
+        imageLink: 'image_link',
+        createTime: 'create_time',
     }),
 }
-
 
 /**
  * Description for the user data object
@@ -178,7 +195,7 @@ const crud = {
  * @param {Object} calls
  */
 
-function fetchSteamIdFromNumber(num) {
+async function fetchSteamIdFromNumber(num) {
     return fetchDb("SELECT identifier FROM users WHERE phone_number = @num", {num})
 }
 
@@ -187,7 +204,7 @@ function fetchSteamIdFromNumber(num) {
  * @param {string} steamId 
  * @returns {UserData}
  */
-async function requestUserData(steamId) {
+async function requestUserData(steamId, number) {
     try {
         // identity
         const identityResponse = await fetchDb("SELECT u.uuid as uuid, u.identifier as steamId, u.phone_number as phoneNumber, p.first_name as firstName, p.last_name as lastName"
@@ -195,6 +212,7 @@ async function requestUserData(steamId) {
             + " INNER JOIN players_identity p ON u.uuid = p.uuid"
             + " WHERE u.identifier = @id"
         , { id: steamId })
+        console.log(steamId)
         if (!identityResponse || identityResponse.length != 1) {
             console.error('Identity query failed with steamid', steamId)
             return
@@ -202,11 +220,13 @@ async function requestUserData(steamId) {
         const userData = identityResponse[0]
         const id = userData.uuid
         // parameters
-        const phoneResponse = await crud.phone.read({ playerUuid: id })
+        console.log(number)
+        const phoneResponse = await crud.phone.read({ number: number })
         if (!phoneResponse || phoneResponse.length === 0) {
             console.log('Phone query failed, creating default phone params for user ', steamId)
         }
         userData.phone = phoneResponse[0]
+        await crud.phone.update({ number: number }, { playerUuid: id })
         // contacts
         const contactsResponse = await crud.contacts.read({ phoneId: userData.phone.id })
         if (!contactsResponse) {
@@ -241,10 +261,10 @@ async function requestUserData(steamId) {
  * Update User data&
  * ===============================
  */
-async function updateUserData () {
+async function updateUserData(number) {
     const src = source
     const steamId = getSteamId(source)
-    const userData = await requestUserData(steamId)
+    const userData = await requestUserData(steamId, number)
     if (!userData) {
         console.error('Could not get user data with steam id ', steamId, 'from source', src)
         return
@@ -397,6 +417,33 @@ async function refreshContacts(data) {
 }
 
 /**
+ * Refresh all Richter Motorsport app
+ * @param {array} data
+ */
+async function refreshRichterMotorsport(phoneId) {
+    const richterMotorsportAdvertisementResponse = await crud.richtermotorsport.read()
+    const richterMotorsportFavoriteResponse = await crud.richtermotorsportfavorite.read({ phoneId: phoneId })
+    if (!richterMotorsportFavoriteResponse) {
+        console.error('Richter Motorsport Favorite query failed with phoneId', phoneId)
+        return
+    }
+    return { advertisement: richterMotorsportAdvertisementResponse, favorite: richterMotorsportFavoriteResponse }
+}
+
+/**
+ * Refresh all Richter Motorsport app
+ * @param {array} data
+ */
+async function refreshGallery(phoneId) {
+    const galleryImageResponse = await crud.image.read({ phoneId: phoneId })
+    if (!galleryImageResponse) {
+        console.error('Photo query failed with phoneId', phoneId)
+        return
+    }
+    return galleryImageResponse
+}
+
+/**
  * Refresh all calls
  * @param {array} data
  */
@@ -435,6 +482,7 @@ async function refreshConversations(number) {
  * Server Events
  * =============
  */
+
 on('playerDropped', _ => {
     const src = source
     if (onlinePlayers.hasOwnProperty(src)) {
@@ -453,7 +501,9 @@ on("Ora::SE::PlayerLoaded", source => {
  * ==============
  */
 
-onNet('OraPhone:server:request_user_data', updateUserData)
+onNet('OraPhone:server:request_user_data', async data => {
+    updateUserData(data)
+})
 
 onNet('OraPhone:patch_user_data', async data => {
     patchUserData(data)
@@ -524,7 +574,7 @@ onNet('OraPhone:server:call_number', async (sourceNum,targetNum,video=false) => 
     }
     for(let [chanIndex, chanValue] of Object.entries(callers)) {
         if(chanValue.receiverId == receiver) {
-            console.log('Player is already on a channel', chan)
+            console.log('Player is already on a channel', chanIndex, chanValue)
             await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
             await Delay(5000)
             if(inCall) {
@@ -620,12 +670,87 @@ onNet('OraPhone:server:add_message', async (data) => {
         if(target != data.number) {
             let notification = {
                 app: "message",
-                appSub: false,
+                appSub: "message",
                 time: "Maintenant",
                 title: data.targetNumber,
-                message: data.message
+                message: data.message,
+                conversationId: data.conversationId
             }
             emitNet('OraPhone:client:new_notification', receiver, notification)
         }
     }
 })
+
+// Richter Motorsport
+
+onNet('OraPhone:server:refresh_richtermotorsport_advertisement', async data => {
+    const src = source
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
+})
+
+onNet('OraPhone:server:richtermotorsport_add_advertisement', async (data, players) => {
+    const src = source
+    await crud.richtermotorsport.create({ phoneId: data.phoneId, imgUrl: data.image, model: data.model, category: data.category, description: data.description, registration: data.registration, price: data.price, advertisementType: data.advertisementType })
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
+    console.log(players)
+    for(let player of players) {
+        let notification = {
+            app: "richtermotorsport",
+            appSub: "home",
+            time: "Maintenant",
+            title: "Nouvelle annonce",
+            message: data.model
+        }
+        console.log("envoie à " + player)
+        emitNet('OraPhone:client:new_notification', player, notification)
+    }
+})
+
+onNet('OraPhone:server:richtermotorsport_favorite_advertisement', async (data) => {
+    const src = source
+    if(data.favorite) {
+        await crud.richtermotorsportfavorite.create({ phoneId: data.phoneId, advertisementId: data.advertisementId })
+    } else {
+        await crud.richtermotorsportfavorite.delete({ phoneId: data.phoneId, advertisementId: data.advertisementId })
+    }
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
+})
+
+// Camera
+
+onNet('OraPhone:server:camera_add_image', async (data) => {
+    const src = source
+    await crud.image.create({ phoneId: data.phoneId, imageLink: data.image })
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+})
+
+// Gallery
+
+onNet('OraPhone:server:refresh_gallery', async (data) => {
+    const src = source
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+})
+
+// Create new phone
+
+function RegisterNewPhone(phoneNumber, identity) {
+    let playerUuid = identity.uuid
+    let serialNumber = Math.floor(Math.random() * (9999 - 1111 + 1) + 1111) + "-" + Math.floor(Math.random() * (9999 - 1111 + 1) + 1111)
+    let firstName = identity.first_name
+    let lastName = identity.last_name
+    let number = phoneNumber
+    let isActive = 0
+    let soundNotification = 'notification-sms1'
+    let soundRinging = 'ringing-iosoriginal'
+    let soundAlarm = 'alarm-iosradaroriginal'
+    let soundNotificationVolume = '5'
+    let soundRingingVolume = '5'
+    let soundAlarmVolume = '5'
+    let darkMode = '0'
+    let zoom = 'zoom100%'
+    let wallpaper = 'wallpaper-ios15'
+    let wallpaperLock = 'wallpaper-ios15'
+    let luminosity = '100'
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+    crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
+}

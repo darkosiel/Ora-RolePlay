@@ -1,0 +1,48 @@
+
+<html>
+	<head>
+        <link rel="stylesheet" href="reset.css" type="text/css">
+		<link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<script src="./script.js" type="text/javascript"></script>
+	
+    </head>
+	<body>
+        <div id="box">
+            <div id="container">
+                <div id="header">
+                    <div id="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" onkeyup="searchEmote()" placeholder="Chercher emote...">
+                    </div>
+                    <div id="stop-walk-expression-button">
+                        <span>STOP</span>
+                    </div>
+                    <div id="favorite-button" data-name="favorite" class="navbar-item">
+                        <i class="fa-solid fa-star"></i>
+                        <span>FAVORIS</span>
+                    </div>
+                    <div id="close-box">
+                        <i class="fa-solid fa-times"></i>
+                    </div>
+                </div>
+                <div id="navbar">
+                    <div data-name="expressions" class="navbar-item"><i class="fa-solid fa-face-grin-tears"></i></div>
+                    <div data-name="walks" class="navbar-item"><i class="fa-solid fa-person-walking"></i></div>
+                    <div data-name="shared" class="navbar-item"><i class="fa-solid fa-people-arrows-left-right"></i></div>
+                    <div data-name="dances" class="navbar-item"><i class="fa-solid fa-music"></i></div>
+                    <div data-name="emotes" class="navbar-item"><i class="fa-solid fa-face-grin"></i></div>
+                    <div data-name="propemotes" class="navbar-item"><i class="fa-solid fa-box"></i></div>
+                </div>
+                <div class="content" id="expressions"></div>
+                <div class="content" id="walks"></div>
+                <div class="content" id="shared"></div>
+                <div class="content" id="dances"></div>
+                <div class="content" id="emotes"></div>
+                <div class="content" id="propemotes"></div>
+                <div class="content" id="favorite"></div>
+            </div>
+        </div>
+	</body>
+</html>

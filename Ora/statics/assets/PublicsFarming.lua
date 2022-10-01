@@ -195,8 +195,7 @@ PublicFarm = {
                 18, --20h00 IRL
                 19, 
                 20,
-                21,
-                22
+                21
             },
             closedHoursMessage = "La mine est fermée de 20h00 a 00h00. Allez recontrer des gens."
         },
@@ -210,14 +209,14 @@ PublicFarm = {
             required = "rock",
             giveitemType = 2,
             giveitem = {
-                {name = "goldpepite1", count = 1, drop = math.random(60, 80)},
-                {name = "goldpepite2", count = 1, drop = math.random(50, 70)},
-                {name = "goldpepite3", count = 1, drop = math.random(20, 40)},
-                {name = "goldpepite4", count = 1, drop = math.random(20, 40)},
+                {name = "goldpepite1", count = 1, drop = math.random(90, 95)},
+                {name = "goldpepite2", count = 1, drop = math.random(55, 76)},
+                {name = "goldpepite3", count = 1, drop = math.random(25, 45)},
+                {name = "goldpepite4", count = 1, drop = math.random(25, 45)},
                 {name = "goldpepite5", count = 1, drop = math.random(5, 20)},
                 {name = "goldpepite6", count = 1, drop = math.random(5, 5)},
-                {name = "jewels5", count = 1, drop = math.random(2, 5)},
-                {name = "jewels6", count = 1, drop = math.random(1, 3)}
+                {name = "jewels5", count = 1, drop = math.random(1, 2)},
+                {name = "jewels6", count = 1, drop = math.random(1, 2)}
             },
             RemoveItem = "rock",
             add = "~p~ Vous avez concassé une pierre"

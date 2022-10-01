@@ -100,6 +100,7 @@ weapon_name = {
     carrabine = "WEAPON_CARBINERIFLE",
     carabinespecial = "WEAPON_SPECIALCARBINE",
     advancedrifle = "WEAPON_ADVANCEDRIFLE",
+    tacticalrifle = "WEAPON_TACTICALRIFLE",
     bullpuprifle = "WEAPON_BULLPUPRIFLE",
     musket = "WEAPON_MUSKET",
     heavysniper = "WEAPON_HEAVYSNIPER",
@@ -155,6 +156,7 @@ weapon_name = {
 
 weapon_munition = {
     pistol = "mm9",
+    ceramicpistol = "mm9",
     pistolcombat = "mm9",
     pitollourd = "mm9",
     pistol50 = "snip",
@@ -210,12 +212,13 @@ weapon_munition = {
     --- armes lourdes
     mg = "akm",
     combatmg = "akm",
-    gusenberg = "akm",
+    gusenberg = "acp45",
     ak = "akm",
     compactrifle = "akm",
     carrabine = "cab2",
     carabinespecial = "cab2",
     advancedrifle = "cab2",
+    tacticalrifle = "cab2",
     bullpuprifle = "cab2",
     musket = "cab",
     --- sniper

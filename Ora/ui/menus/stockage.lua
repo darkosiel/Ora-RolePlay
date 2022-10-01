@@ -233,6 +233,14 @@ function Storage:TransferToInventory(count, item)
                             end
                         end
                         tempCount = tempCount - 1
+                        if itemName == "tel" then
+                            if it.data.num == MyNumber then
+                                -- OraPhone
+                                -- MyNumber = nil
+                                -- MyBattery = 0
+                                -- TriggerEvent("OraPhone:client:phone_active", false)
+                            end
+                        end
                     end
                 end
             else
@@ -293,9 +301,12 @@ function Storage:TransferToStorage(count, item)
                             if it.data.num == MyNumber then
                                 MyNumber = nil
                                 MyBattery = 0
+                                -- GC Phone
                                 TriggerEvent("gcphone:UpdateBattery", MyBattery)
                                 TriggerEvent("gcPhone:myPhoneNumber", MyNumber)
                                 TriggerServerEvent("gcPhone:allUpdate")
+                                -- OraPhone
+                                -- TriggerEvent("OraPhone:client:phone_active", false)
                             end
                         end
 

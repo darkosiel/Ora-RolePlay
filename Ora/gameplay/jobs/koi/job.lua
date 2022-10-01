@@ -38,7 +38,7 @@ KoiCraft["recettes"] = {
         item = "canardlaque",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "meat", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "duck", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
             {name = "caramel", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
@@ -54,7 +54,8 @@ KoiCraft["recettes"] = {
         item = "maki",
         time = 1000, -- temps de craft je pense
         required = {
-            {name = "concombre", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "concombre", count = 1},
+            {name = "radish", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
             {name = "feuillenori", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
@@ -95,10 +96,10 @@ KoiCraft["recettes"] = {
             craftRecettes(data)
         end
     },
-    noddle2 = {
+    Nouillessautees = {
         title = "Nouilles sautées",
         label = "Nouilles sautées",
-        item = "noddle2",
+        item = "Nouillessautees",
         time = 1000, -- temps de craft je pense
         required = {
             {name = "noddle", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -107,7 +108,7 @@ KoiCraft["recettes"] = {
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
             found = false
-            local data = KoiCraft["recettes"]["noddle2"]
+            local data = KoiCraft["recettes"]["Nouillessautees"]
             craftRecettes(data)
         end
     },
@@ -118,7 +119,8 @@ KoiCraft["recettes"] = {
         time = 1000, -- temps de craft je pense
         required = {
             {name = "farine", count = 1}, -- duppliquer cette ligne pour ajouter un ingrédient
-            {name = "cereale", count = 1}
+            {name = "cereale", count = 1},
+            {name = "sesame", count = 1}
         },
         selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
             ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")

@@ -23,7 +23,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["chocolat"] = {"chocolat", 2},
     ["fraise"] = {"Fraise", 2},
     ["ciseaux"] = {"Ciseaux", 2},
-    ["wrench"] = {"Clé anglaise", 100},
+    --["wrench"] = {"Clé anglaise", 100},
     ["cone"] = {"Cone", 1},
     ["coupedefruit"] = {"Coupe de fruits", 2},
     ["medica3"] = {"Crème analgésique", 2},
@@ -49,10 +49,10 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["oeuf"] = {"oeuf", 2},
     ["parapluie"] = {"Parapluie", 2},
     ["perche"] = {"Perche de micro", 100},
-    ["crowbar"] = {"Pied de biche", 100},
+    --["crowbar"] = {"Pied de biche", 100},
     ["piecedeboeuf"] = {"Pièce de boeuf", 2},
     ["pinces"] = {"Pinces", 2},
-    ["chicken"] = {"Poulet", 2},
+    --["chicken"] = {"Poulet", 2},
     ["plateaufruitsmer"] = {"Plateau de fruits de mer", 2},
     ["radio"] = {"Radio", 3},
     ["rice"] = {"Riz", 2},
@@ -60,7 +60,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["salade"] = {"Salade", 2},
     ["fish12"] = {"Saumon", 5},
     ["cola"] = {"Soda", 2},
-    ["sushi"] = {"Sushi", 5},
+    --["sushi"] = {"Sushi", 5},
     ["tapas"] = {"Tapas", 1},
     ["tartefraise"] = {"Tarte aux fraises", 2},
     ["fish4"] = {"Thon rouge", 5},
@@ -68,12 +68,20 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["makeup"] = {"Trousse de maquillage", 5},
     ["medikit"] = {"Trousse de soin", 10},
     ["veloute"] = {"Velouté", 2},
-    ["courgette"] = {"Courgette", 2},
     ["caramel"] = {"Caramel", 2},
     ["latecoco"] = {"Lait de coco", 2},
-    ["meat"] = {"Viande Crue", 2}
+    ["meat"] = {"Viande Crue", 2},
+    ["sirup"] = {"Sirop", 1},
+    ["mint"] = {"Menthe", 1},
+    ["orangejuice"] = {"Jus d'orange", 1},
+    ["pineapplejuice"] = {"Jus d'ananas", 1},
+    ["sesame"] = {"Sésame", 1},
+    ["duck"] = {"Canard", 1},
+    ["radish"] = {"Radis", 1},
+    ["concombre"] = {"Concombre", 2},
+    ["bouillon"] = {"Bouillon", 2}
   },
-
+  
 
 
 

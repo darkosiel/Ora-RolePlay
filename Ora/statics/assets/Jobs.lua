@@ -446,7 +446,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Post OP", "Annonce", text, "CHAR_BUGSTARS", 8, "Post OP")
+                            TriggerServerEvent("Job:Annonce", "Post OP", "Annonce", text, "CHAR_POSTOP", 8, "Post OP")
                         end
                     end
                 }
@@ -2825,8 +2825,8 @@ Jobs = {
         -- }
     },
     ltdsud = {
-        label = "LTD Sud",
-        label2 = "ltd sud",
+        label = "LTD Davis",
+        label2 = "LTD Davis",
         iban = "ltdsud",
         FreeAccess = false,
         grade = {
@@ -2863,7 +2863,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "LTD Sud",
+                title = "LTD Davis",
                 subtitle = "Actions disponibles",
                 name = "ltdsud_menuperso"
             },
@@ -2884,14 +2884,14 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "24/7 - Supermarket", "Annonce", text, "CHAR_LTDSUD", 8, "ltd sud")
+                            TriggerServerEvent("Job:Annonce", "LTD Davis", "Annonce", text, "CHAR_LTDSUD", 8, "LTD Davis")
                         end
                     end
                 }
             }
         },
         garage = {
-            Name = "Garage LTD SUD",
+            Name = "Garage LTD Davis",
             Pos = {x = 15.9, y = -1350.09, z = 28.32},
             Properties = {
                 type = 3,
@@ -2979,6 +2979,95 @@ Jobs = {
         --         add = "~p~+ 1  Hamburger Healthy"
         --     }
         -- }
+    },
+    ltdsud2 = {
+        label = "LTD Grove Street",
+        label2 = "LTD Grove Street",
+        iban = "ltdsud2",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "LTD Grove Street",
+                subtitle = "Actions disponibles",
+                name = "ltdsud2_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("ltdsud2")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "LTD Grove Street", "Annonce", text, "CHAR_LTDSUD2", 8, "LTD Grove Street")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage LTD Grove Street",
+            Pos = {x = -46.9176, y = -1738.4676, z = 29.1648},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -46.9176, y = -1738.4676, z = 29.1648, h = 229.7284}
+            },
+            Blipdata = {
+                Pos = {x = -46.9176, y = -1738.4676, z = 29.1648, h = 229.7284},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -42.3382, y = -1748.9405, z = 29.4210, h = 167.2710},
+                Limit = 2000,
+                Name = "coffre_ltdsud2"
+            }
+        },
     },
     burgershot = {
         label = "BurgerShot",
@@ -3479,6 +3568,87 @@ Jobs = {
                         end
                     end
                 }
+            }
+        },
+    },
+    avocat3 = {
+        label = "Cabinet Genovese",
+        label2 = "Cabinet Genovese",
+        iban = "avocat3",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "AVOCAT",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "ASSOCIE",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat3")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Cabinet Genovese", "Annonce", text, "CHAR_GENOVESE", 8, "Cabinet Genovese")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Avocat",
+            Pos = {x = -1171.73, y = -1390.28, z = 4.20},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -1171.73, y = -1390.28, z = 4.20, h = 166.45}
+            },
+            Blipdata = {
+                Pos = {x = -1171.73, y = -1390.28, z = 4.20},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -1180.58, y = -1406.70, z = 13.22},
+                Limit = 500,
+                Name = "coffre_avocatge"
+            },
+            {
+                Pos = {x = -1194.90, y = -1397.00, z = 9.80},
+                Limit = 500,
+                Name = "coffre_avocatge2"
             }
         },
     },
@@ -4090,7 +4260,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "PawnShop", "Annonce", text, "CHAR_BEEKERS", 8, "Pawn Shop")
+                            TriggerServerEvent("Job:Annonce", "PawnShop", "Annonce", text, "CHAR_PAWNSHOP", 8, "Pawn Shop")
                         end
                     end
                 },
@@ -5312,7 +5482,7 @@ Jobs = {
         },
         garage4 = {
             Name = "Garage Helipad",
-            Pos = {x = -1097.38, y = -822.73, z = 38.56},
+            Pos = {x = -1096.74, y = -833.14, z = 37.7},
             Properties = {
                 type = 2,
                 Limit = 10,
@@ -5328,10 +5498,10 @@ Jobs = {
                         }
                     }
                 },
-                spawnpos = {x = -1097.38, y = -822.73, z = 38.56, h = 345.85}
+                spawnpos = {x = -1096.74, y = -833.14, z = 37.7, h = 128.28}
             },
             Blipdata = {
-                Pos = {x = -1097.38, y = -822.73, z = 38.56},
+                Pos = {x = -1096.74, y = -833.14, z = 37.7},
                 Blipcolor = 5,
                 Blipname = "LSPD - Helipad"
             }
@@ -5742,12 +5912,12 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1110.92, y = -823.14, z = 13.21},
+                Pos = {x = -1098.83, y = -825.99, z = 13.28},
                 Limit = 99999999,
                 Name = "coffre"
             },
             {
-                Pos = {x = -1086.89, y = -812.7, z = 4.48},
+                Pos = {x = -1088.27, y = -811.700, z = 5.479},
                 Limit = 1000,
                 Name = "coffre cellules"
             },
@@ -5757,22 +5927,17 @@ Jobs = {
                 Name = "coffre des saisies"
             },
             {
-                Pos = {x = -1099.39, y = -825.64, z = 13.21},
+                Pos = {x = -1099.21, y = -830.74, z = 13.28},
                 Limit = 99999999,
                 Name = "coffre personnel"
             },
             {
-                Pos = {x = -1095.1, y = -829.31, z = 13.21},
-                Limit = 99999999,
-                Name = "coffre personnel"
-            },
-            {
-                Pos = {x = -1083.85, y = -808.18, z = 10.04},
+                Pos = {x = -1087.4049, y = -820.5991, z = 11.0358},
                 Limit = 2000,
                 Name = "coffre Saisies DB"
             },
             {
-                Pos = {x = -1090.35, y = -810, z = 13.8},
+                Pos = {x = -1079.99, y = -823.06, z = 13.88},
                 Limit = 99999999,
                 Name = "coffre SWAT"
             }
@@ -5781,11 +5946,11 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = -1094.59, y = -824.11, z = 13.21},
+                Pos = {x = -1096.24, y = -832.15, z = 14.28},
                 vestiaire = {
                     type = "Vestiaire",
                     workSize = 1.45,
-                    Pos = {x = -1094.59, y = -824.11, z = 13.21},
+                    Pos = {x = -1096.24, y = -832.15, z = 14.28},
                     Tenues = TenueLSPD
                 }
             }
@@ -7230,6 +7395,16 @@ Jobs = {
                     ActiveFct = function()
                         HoverPlayer()
                     end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "D.O.J", "Annonce", text, "CHAR_DOJ", 8, "D.O.J")
+                        end
+                    end
                 }
             }
         },
@@ -7690,8 +7865,20 @@ Jobs = {
                 show = true
             },
             {
+                label = "Spécialiste",
+                salary = 360,
+                name = "medecin",
+                show = true
+            },
+            {
+                label = "Chef de service",
+                salary = 380,
+                name = "drh",
+                show = true
+            },
+            {
                 label = "Directeur adjoint",
-                salary = 370,
+                salary = 400,
                 name = "drh",
                 show = true
             },
@@ -7730,6 +7917,21 @@ Jobs = {
                 Pos = {x = 1840.37, y = 3667.2, z = 32.68},
                 Blipcolor = 7,
                 Blipname = "SAMS - Garage Sandy Shores"
+            }
+        },
+        garage3 = {
+            Name = "Garage SAMS Los Santos 2",
+            Pos = {x = -1822.6702, y = -381.0412, z = 40.73 - 0.98},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = -1822.6702, y = -381.0412, z = 40.73, h = 319.38}
+            },
+            Blipdata = {
+                Pos = {x = -1822.6702, y = -381.0412, z = 40.73},
+                Blipcolor = 7,
+                Blipname = "SAMS - Garage Los Santos 2"
             }
         },
         Storage = {
@@ -11773,15 +11975,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Koi",
-            Pos = {x = -1798.1511, y = -1177.2968, z = 12.31},
+            Pos = {x = -1012.4503, y = -1462.4267, z = 5.01},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24}
+                spawnpos = {x = -1012.4503, y = -1462.4267, z = 5.01, h = 318.24}
             },
             Blipdata = {
-                Pos = {x = -1798.1511, y = -1177.2968, z = 12.31, h = 318.24},
+                Pos = {x = -1012.4503, y = -1462.4267, z = 5.01, h = 318.24},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
@@ -12542,7 +12744,12 @@ Jobs = {
             {
                 Pos = {x = -172.2112, y = 288.7464, z = 92.76},
                 Limit = 100,
-                Name = "frigo2 Bar Little Seoul"
+                Name = "Vestiaire Bar Little Seoul"
+            },
+            {
+                Pos = {x = -179.1901, y = 305.7939, z = 97.46},
+                Limit = 1000,
+                Name = "Frigo Bar Little Seoul"
             },
             {
                 Pos = {x = -172.3963, y = 291.7341, z = 92.76},
@@ -12608,7 +12815,7 @@ Jobs = {
                 blipname = "Bar Little Seoul - Vente",
                 Pos = {x = 61.8119, y = -1726.7955, z = 29.4971},
                 required = "saucissonsec",
-                price = math.random(10,15),
+                price = math.random(13,16),
                 add = "~p~- 1 Saucisson sec"
             }
         },

@@ -1,14 +1,43 @@
 
+// --- Variables constantes
+// Dossier
+const folderAssets = "./assets/";
+const folderImages = folderAssets + "images/";
+const folderWallpaper = folderImages + "wallpaper/";
+const folderAppIcon = folderImages + "app-icon/";
+const folderContactsProfileIcon = folderImages + "contacts-profile-icon/";
+const folderSounds = folderAssets + "sounds/";
+const folderAlarms = folderSounds + "alarms/";
+const folderNotifications = folderSounds + "notifications/";
+const folderRingings = folderSounds + "ringings/";
+const contactAvatarDefault = folderContactsProfileIcon + "50-Animals-avatar_49.png";
+
+// SVG d'icones
+const copyIcon =        `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+const cutIcon =         `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`;
+const pasteIcon =       `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px;top: -1px;" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`;
+const downloadIcon =    `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px;top: -1px;" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
+const deleteIcon =      `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+const renameIcon =      `<svg viewBox="0 0 20 20" width="13" height="13" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M19.404,6.65l-5.998-5.996c-0.292-0.292-0.765-0.292-1.056,0l-2.22,2.22l-8.311,8.313l-0.003,0.001v0.003l-0.161,0.161c-0.114,0.112-0.187,0.258-0.21,0.417l-1.059,7.051c-0.035,0.233,0.044,0.47,0.21,0.639c0.143,0.14,0.333,0.219,0.528,0.219c0.038,0,0.073-0.003,0.111-0.009l7.054-1.055c0.158-0.025,0.306-0.098,0.417-0.211l8.478-8.476l2.22-2.22C19.695,7.414,19.695,6.941,19.404,6.65z M8.341,16.656l-0.989-0.99l7.258-7.258l0.989,0.99L8.341,16.656z M2.332,15.919l0.411-2.748l4.143,4.143l-2.748,0.41L2.332,15.919z M13.554,7.351L6.296,14.61l-0.849-0.848l7.259-7.258l0.423,0.424L13.554,7.351zM10.658,4.457l0.992,0.99l-7.259,7.258L3.4,11.715L10.658,4.457z M16.656,8.342l-1.517-1.517V6.823h-0.003l-0.951-0.951l-2.471-2.471l1.164-1.164l4.942,4.94L16.656,8.342z"></path></svg>`
+
+// --- Variables par défauts
+
+// Affichage
 var menuSelected = "home";
 var menuSelectedLast = "home";
 var menuAppSelected = "first";
 var menuAppSelectedLast = "first";
 var displayToggle = false;
 var displayTopbarToggle = false;
+var formatOrientation = "portrait"
 var phoneBottomShow = "30px";
+var phoneBottomShowLandscape = "-150px";
 var phoneBottomShowNot = "-900px";
 var phoneLockToggle = false;
-var items;
+var lockIconSnoozeEffect = false;
+var contextMenuItemClicked;
+
+// App Home
 var pageSelectedStart = 1;  
 var hasChangePageOnDrag = false;
 var mousePosition;
@@ -19,8 +48,10 @@ var mousePosition = {
 var offset = [0,0];
 var pageSelected;
 var isDown = false;
+var contextMenuHomeTarget;
+
+// App Clock
 var activateAppClockToggle = false;
-var activateAppSettingsToggle = false;
 var alarmList = [];
 var stopWatch = {
     stopStart: false,
@@ -40,24 +71,24 @@ var timer = {
     mm: 0,
     ss: 0
 };
-var FooterColor = "#ffffff";
-var FooterColorBackground = "transparent";
-var Bodycolor = "#ffffff";
-var BodyColorBackground = "transparent";
+
+// App Store
 var isDownloadApp = false;
+
+// Settings / Data info
+var userData;
 var darkMode = false;
-var lockIconSnoozeEffect = false;
 var wallpaperActive = "wallpaper-midnight";
 var wallpaperLockActive = "wallpaper-midnight";
 var soundNotificationActive = "notification-magic";
 var soundNotification = "";
-var soundNotificationVolume = 1;
+var soundNotificationVolume = 5;
 var soundRingingActive = "ringing-iosoriginal";
 var soundRinging = "";
-var soundRingingVolume = 0.1;
+var soundRingingVolume = 5;
 var soundAlarmActive = "alarm-iosradaroriginal";
 var soundAlarm = "";
-var soundAlarmVolume = 1;
+var soundAlarmVolume = 5;
 var soundCallWait = "";
 var generalZoomActive = "zoom100%";
 var generalZoom = "75%";
@@ -65,22 +96,15 @@ var serialNumber = "";
 var firstName = "";
 var lastName = "";
 var phoneNumber = "";
-const folderAssets = "./assets/";
-const folderImages = folderAssets + "images/";
-const folderWallpaper = folderImages + "wallpaper/";
-const folderAppIcon = folderImages + "app-icon/";
-const folderContactsProfileIcon = folderImages + "contacts-profile-icon/";
-const folderSounds = folderAssets + "sounds/";
-const folderAlarms = folderSounds + "alarms/";
-const folderNotifications = folderSounds + "notifications/";
-const folderRingings = folderSounds + "ringings/";
-const contactAvatarDefault = folderContactsProfileIcon + "50-Animals-avatar_49.png";
 var luminosityActive = 10;
-var userData;
+var volumeActive = 10;
+
+// App Call
 var inReceiveCall = false;
 var inCall = false;
 var callData = "";
-// Save Contact
+
+// App Contact
 var contactId;
 var contactPhoneNumber;
 var contactName;
@@ -88,57 +112,23 @@ var contactAvatar;
 // Save Call Notification
 var callNotification;
 var callNotificationLock;
-// Message
+
+// App Message
 var conversationAuthors = [];
 var conversationId = "";
 var longpress = true;
 var startTime, endTime;
 var gridPage1 = "";
 
-// userData = {};
-// userData.phone = {};
-// userData.phone.appHomeOrder = [
-//     'clock',
-//     '',
-//     'camera',
-//     'galery',
-//     'calandar',
-//     'notes',
-//     '',
-//     'calculator',
-//     '',
-//     'store',
-//     'music',
-//     'templatetabbed',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-//     '',
-// ];
+// App Richter Motorsport
+var RichterMotorSportCurrentAdvertisement;
+
+// App Camera
+var canvasActivate = false;
+
+// App Notes
+var notesListItem = false;
+var notesNoteInputToggle = true;
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
@@ -147,115 +137,140 @@ $(function(){
 
         // --- Inisialisation du téléphone --- //
 
-            // Request user data
-            $.post('https://OraPhone/request_user_data', JSON.stringify({}));
+            // Request user data / Pour des tests
+            // $.post('https://OraPhone/request_user_data', JSON.stringify({}));
 
             // Intérception fonction Lua
             window.addEventListener('message', (event) => {
                 var item = event.data;
-                if (item !== undefined && item.type === "ui") {
-                    displayPhone();
+                if (item == undefined) {
+                    return;
                 }
-                if (item !== undefined && item.type === "updateUserData") {
-                    updateUserData(item.data);
-                }
-                if (item !== undefined && item.type === "receiveCall") {
-                    receiveCall(item);
-                }
-                if (item !== undefined && item.type === "callStarted") {
-                    updateAppContent("callstarted");
-                    stopSounds();
-                    $("#callstarted-time").html("00:00");
-                    let callStartedSec = 0
-                    let callStartedMin = 0
-                    let callStartedTimer = setInterval(function() {
-                        $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
-                        if(callStartedSec == 59) {
-                            callStartedSec = 0;
-                            callStartedMin++;
+                switch(item.type) {
+                    case "ui":
+                        displayPhone();
+                        break;
+                    case "updateUserData":
+                        updateUserData(item.data);
+                        break;
+                    case "receiveCall":
+                        receiveCall(item);
+                        break;
+                    case "callStarted":
+                        updateAppContent("callstarted");
+                        stopSounds();
+                        $("#callstarted-time").html("00:00");
+                        let callStartedSec = 0
+                        let callStartedMin = 0
+                        let callStartedTimer = setInterval(function() {
+                                $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
+                                if(callStartedSec == 59) {
+                                    callStartedSec = 0;
+                                    callStartedMin++;
+                                } else {
+                                    callStartedSec++;
+                                }
+                                if(!inCall) {
+                                    clearInterval(callStartedTimer);
+                                }
+                        }, 1000);
+                        break;
+                    case "callEnded":
+                        inCall = false;
+                        inReceiveCall = false;
+                        callData = "";
+                        if(menuAppSelectedLast != "call") {
+                                updateContent(menuSelectedLast);
                         } else {
-                            callStartedSec++;
+                                updateContent("home");
                         }
-                        if(!inCall) {
-                            clearInterval(callStartedTimer);
+                        updateAppContent("first");
+                        stopSounds();
+                        if(callNotification != null && callNotification != undefined) {
+                                callNotification.style.opacity = "0";
+                                callNotificationLock.style.opacity = "0";
+                                setTimeout(function() {
+                                    callNotification.remove();
+                                    callNotificationLock.remove();
+                                    if($("#notification-container").children().length == 0 && !displayToggle) {
+                                        $("#phone").css("bottom", phoneBottomShowNot);
+                                    }
+                                }, 750);
                         }
-                    }, 1000);
-                }
-                if (item !== undefined && item.type === "callEnded") {
-                    inCall = false;
-                    inReceiveCall = false;
-                    callData = "";
-                    if(menuAppSelectedLast != "call") {
-                        updateContent(menuSelectedLast);
-                    } else {
+                        $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
+                        break;
+                    case "call_number_response":
+                        updateContent("call");
+                        updateAppContent("callnumber");
+                        inCall = true;
+                        soundCallWait.currentTime = 0;
+                        soundCallWait.play();
+                        break;
+                    case "updateContacts":
+                        userData.contacts = item.contacts;
+                        updateAppContacts();
+                        updateAppMessage();
+                        break;
+                    case "updateCalls":
+                        userData.calls = item.calls;
+                        updateAppPhone();
+                        break;
+                    case "update_conversations":
+                        userData.conversations = item.conversations;
+                        updateAppMessageLoad();
+                        updateConversationList();
+                        break;
+                    case "new_notification":
+                        addNotification(item.notification.app, item.notification.appSub, item.notification.time, item.notification.title, item.notification.message, { conversationId: item.notification.conversationId });
+                        break;
+                    case "updateRichterMotorsportAdvertisement":
+                        userData.richterMotorsportAdvertisement = item.richterMotorsportAdvertisement;
+                        updateAppRichterMotorsport();
+                        break;
+                    case "updateGalleryPhoto":
+                        userData.galleryPhoto = item.galleryPhoto;
+                        updateAppGallery();
+                        break;
+                    case "updateRichterMotorsportRole":
+                        for(let job of item.richterMotorsportRole) {
+                                userData.richterMotorsportRole = job;
+                                if(job.name == "concess") {
+                                    $("#richtermotorsport-button-create-advertisement").css("display", "flex");
+                                    break;
+                                } else {
+                                    $("#richtermotorsport-button-create-advertisement").css("display", "none");
+                                    break;
+                                }
+                        }
+                        break;
+                    case "take_picture":
+                        takeScreenshot(item.app, item.appSub);
+                        MainRender.stop();
+                        break;
+                    case "cancel_picture":
                         updateContent("home");
-                    }
-                    updateAppContent("first");
-                    stopSounds();
-                    if(callNotification != null && callNotification != undefined) {
-                        callNotification.style.opacity = "0";
-                        callNotificationLock.style.opacity = "0";
-                        setTimeout(function() {
-                            callNotification.remove();
-                            callNotificationLock.remove();
-                            if($("#notification-container").children().length == 0 && !displayToggle) {
-                                $("#phone").css("bottom", phoneBottomShowNot);
-                            }
-                        }, 750);
-                    }
-                    $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
-                }
-                if (item !== undefined && item.type === "call_number_response") {
-                    updateContent("call");
-                    updateAppContent("callnumber");
-                    inCall = true;
-                    soundCallWait.currentTime = 0;
-                    soundCallWait.play();
-                }
-                if (item !== undefined && item.type === "updateContacts") {
-                    userData.contacts = item.contacts;
-                    updateAppContacts();
-                    updateAppMessage();
-                }
-                if (item !== undefined && item.type === "updateCalls") {
-                    userData.calls = item.calls;
-                    updateAppPhone();
-                }
-                if (item !== undefined && item.type === "update_conversations") {
-                    userData.conversations = item.conversations;
-                    updateAppMessageLoad();
-                    updateConversationList();
-                }
-                if (item !== undefined && item.type === "new_notification") {
-                    addNotification(item.notification.app, item.notification.appSub, item.notification.time, item.notification.title, item.notification.message);
+                        MainRender.stop();
+                        break;
                 }
             });
 
-            // Ajout des touches
+            // Gestion des touches
             document.onkeydown = function (data) {
+                // Touche P pour ouvrir le téléphone
                 if (data.which == 80) {
                     displayPhone();
                 }
+                // Touche Entrer pour déverrouiller le téléphone
                 if (data.which == 13) {
                     unlockPhone();
                 }
             }
-
-            // -(- Inisialisation des applications --- //
-
-                // initializeAppContacts();
-                // initializeAppPhone();
-                // updateAppHomeOrder();
-            
-            // --- --- //
-
-            // Clique droit
+            // Gestion du clique droit
             $("#phone").bind("contextmenu",function() {
                 // updateContent(menuSelectedLast);
-                // displayPhone();
                 // return false;
             });
-            // Gestion entrer sortie des inputs
+            // Gestion entrer/sortie des inputs
             $(':input').on('blur', function() {
                 $.post('https://OraPhone/EnableInput', JSON.stringify({}));
             });
@@ -280,725 +295,192 @@ $(function(){
                 $("#app-lock-day-text").html(date);
             }, 1000);
 
-            class ContextMenu {
-                constructor({ target = null, menuItems = [] }) {
-                    this.target = target;
-                    this.menuItems = menuItems;
-                    this.targetNode = this.getTargetNode();
-                    this.menuItemsNode = this.getMenuItemsNode();
-                    this.isOpened = false;
-                }
-
-                getTargetNode() {
-                    const nodes = document.querySelectorAll(this.target);
-                    if (nodes && nodes.length !== 0) {
-                        return nodes;
-                    } else {
-                        console.error(`getTargetNode :: "${this.target}" target not found`);
-                        return [];
-                    }
-                }
-
-                getMenuItemsNode() {
-                    const nodes = [];
-                    if (!this.menuItems) {
-                        console.error("getMenuItemsNode :: Please enter menu items");
-                        return [];
-                    }
-                    this.menuItems.forEach((data, index) => {
-                        const item = this.createItemMarkup(data);
-                        item.firstChild.setAttribute(
-                            "style",
-                            `animation-delay: ${index * 0.08}s`
-                        );
-                        nodes.push(item);
-                    });
-                    return nodes;
-                }
-
-                createItemMarkup(data) {
-                    const button = document.createElement("BUTTON");
-                    const item = document.createElement("LI");
-                    button.innerHTML = data.content;
-                    button.classList.add("contextMenu-button");
-                    item.classList.add("contextMenu-item");
-                    if (data.divider) item.setAttribute("data-divider", data.divider);
-                    item.appendChild(button);
-                    if (data.events && data.events.length !== 0) {
-                        Object.entries(data.events).forEach((event) => {
-                            const [key, value] = event;
-                            button.addEventListener(key, value);
-                        });
-                    }
-                    return item;
-                }
-
-                renderMenu() {
-                    const menuContainer = document.createElement("UL");
-                    menuContainer.classList.add("contextMenu");
-                    this.menuItemsNode.forEach((item) => menuContainer.appendChild(item));
-                    return menuContainer;
-                }
-
-                closeMenu(menu) {
-                    if (this.isOpened) {
-                        this.isOpened = false;
-                        menu.remove();
-                    }
-                }
-
-                init() {
-                    const contextMenu = this.renderMenu();
-                    document.addEventListener("click", () => this.closeMenu(contextMenu));
-                    window.addEventListener("blur", () => this.closeMenu(contextMenu));
-                    // document.addEventListener("contextmenu", (e) => {
-                    //     this.targetNode.forEach((target) => {
-                    //         if (!e.target.contains(target)) {
-                    //             contextMenu.remove();
-                    //         }
-                    //     });
-                    // });
-
-                    this.targetNode.forEach((target) => {
-                        target.addEventListener("contextmenu", (e) => {
-                            e.preventDefault();
-                            this.isOpened = true;
-                            contextMenuHomeTarget = target;
-
-                            const { clientX, clientY } = e;
-                            document.body.appendChild(contextMenu);
-                    
-                            const positionY =
-                                clientY + contextMenu.scrollHeight >= window.innerHeight
-                                ? window.innerHeight - contextMenu.scrollHeight - 20
-                                : clientY;
-                            const positionX =
-                                clientX + contextMenu.scrollWidth >= window.innerWidth
-                                ? window.innerWidth - contextMenu.scrollWidth - 20
-                                : clientX;
-                    
-                            contextMenu.setAttribute(
-                                "style",
-                                `--width: ${contextMenu.scrollWidth}px;
-                                --height: ${contextMenu.scrollHeight}px;
-                                --top: ${positionY}px;
-                                --left: ${positionX}px;`
-                            );
-                        });
-                    });
-                }
-            }
-            const copyIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-            const cutIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>`;
-            const pasteIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px; position: relative; top: -1px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>`;
-            const downloadIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" style="margin-right: 7px; position: relative; top: -1px" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`;
-            const deleteIcon = `<svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2.5" fill="none" style="margin-right: 7px" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
-            const menuItems = [
-                {
-                    content: `${copyIcon}Changer page`,
-                    events: {
-                        click: (e) => changeAppPlacePage()
-                    }
-                },
-                // {
-                //     content: `${copyIcon}Copy`,
-                //     events: {
-                //         click: (e) => console.log(e, "Copy Button Click")
-                //         // mouseover: () => console.log("Copy Button Mouseover")
-                //         // You can use any event listener from here
-                //     }
-                // },
-                // {
-                //     content: `${cutIcon}Cut`,
-                //     divider: "top-bottom" // top, bottom, top-bottom
-                // },
-            ];
-            const contextMenuHome = new ContextMenu({
-                target: "#app-home .icons-list ul li:not(.empty-place)",
-                menuItems
-            });
-            // contextMenuHome.init();
-
-        // --- --- //
+            // Initialisation des applications
+            initializeApps();
 
         // --- Inisialisation de test --- //
 
             // Affichage de l'écran de test
+            let dateTest = {
+                'phone': {
+                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': [ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'templatetabbed', 'richtermotorsport', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                    ]
+                }
+            }
+            // updateUserData(dateTest);
             // displayPhone();
-            updateContent(menuSelected);
-            updateAppContent(menuAppSelected);
+            // updateContent("notes");
+            // updateAppContent(menuAppSelected);
             // lockPhone();
-            // initializeAppContacts();
-            // Ajout notification
-            $("#add-notification").click(function() {
-                addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
-            });
-            $("#add-call").click(function() {
-                receiveCall();
-                // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
-            });
-            $("#refresh-contacts").click(function() {
-                $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
-            });
-            $("#save-home").click(function() {
-                saveHomeOrder();
-            });
-
-        // --- --- //
-
-        $("#callnumber-button-hangup").click(function() {
-            $.post('https://OraPhone/end_call', JSON.stringify({}));
-        });
+            // unlockPhone();
+            // $("#add-notification").click(function() {
+            //     // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
+            //     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
+            // });
+            // $("#add-call").click(function() {
+            //     receiveCall();
+            //     // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
+            // });
+            // $("#refresh-contacts").click(function() {
+            //     // $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
+            // });
+            // $("#save-home").click(function() {
+            //     // saveHomeOrder();
+            //     switchFormatOrientation();
+            // });
+            // $("#submit-choose-app").click(function() {
+            //     updateContent($("#choose-app").val());
+            // });
         
-        $("#callreceive-button-hangup").click(function() {
-            $.post('https://OraPhone/end_call', JSON.stringify({}));
-        });
-        
-        $("#callreceive-button-pickup").click(function() {
-            inReceiveCall = false;
-            inCall = true;
-            updateAppContent("callstarted");
-            stopSounds();
-            $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
-            if(callNotification != null && callNotification != undefined) {
-                callNotification.style.opacity = "0";
-                callNotificationLock.style.opacity = "0";
-                setTimeout(function() {
-                    callNotification.remove();
-                    callNotificationLock.remove();
-                    if($("#notification-container").children().length == 0 && !displayToggle) {
-                        $("#phone").css("bottom", phoneBottomShowNot);
-                    }
-                }, 750);
-            }
-            $("#callstarted-time").html("00:00");
-            let callStartedSec = 0
-            let callStartedMin = 0
-            let callStartedTimer = setInterval(function() {
-                $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
-                if(callStartedSec == 59) {
-                    callStartedSec = 0;
-                    callStartedMin++;
-                } else {
-                    callStartedSec++;
-                }
-                if(!inCall) {
-                    clearInterval(callStartedTimer);
-                }
-            }, 1000);
-        });
-
-        $("#callstarted-button-hangup").click(function() {
-            $.post('https://OraPhone/end_call', JSON.stringify({}));
-        });
-
-        for(let element of $(".app-tab-button")) {
-            element.addEventListener("click", function() {
-                updateAppContent(element.id.split("-")[3]);
-            });
-        }
-        
-        for(let item of $("#app-store .app-body-content-body-list-item")) {
-            item.addEventListener("click", function() {
-                updateAppContent("app");
-            });
-        }
-        for(let elt of document.getElementsByClassName("app-clock-list-item-switch")) {
-            elt.firstElementChild.addEventListener("change", function() {
-                if(elt.firstElementChild.checked) {
-                    alarmList.push( {
-                        "id": elt.dataset.id,
-                        "timer": setInterval(function() {
-                            let dateNow = new Date();
-                            if(elt.dataset.hour == dateNow.getHours() && elt.dataset.minute == dateNow.getMinutes()) {
-                                elt.firstElementChild.checked = false;
-                                if(menuSelected != "clock" || menuAppSelected != "alarm") {
-                                    addNotification("clock", "alarm", "Maintenant", "Alarme", elt.parentNode.previousElementSibling.querySelector(".app-clock-list-item-alarm-name").innerHTML);
-                                }
-                                for(let eltm of alarmList) {
-                                    if(eltm.id == elt.dataset.id) {
-                                        clearInterval(eltm.timer);
-                                    }
-                                }
-                            }
-                        }, 1000)
-                    });
-                } else {
-                    for(let eltm of alarmList) {
-                        if(eltm.id == elt.dataset.id) {
-                            clearInterval(eltm.timer);
-                        }
-                    }
-                }
-            });
-        }
-        $("#app-unlock").click(function () {
-            unlockPhone();
-        });
-        $("#phone-screen-content-header").click(function () {
-            displayTopbar();
-        });
-        $("#phone-screen-content-footer").click(function () {
-            updateContent("home");
-            if(displayTopbarToggle) {
-                displayTopbar();
-            }
-        });
-        $("#topbar-box-music-button-play").click(function () {
-            $("#topbar-box-music-button-play").hide();
-            $("#topbar-box-music-button-pause").show(); 
-        });
-        $("#topbar-box-music-button-pause").click(function () {
-            $("#topbar-box-music-button-pause").hide();
-            $("#topbar-box-music-button-play").show();
-        });
-        $("#topbar-box-button-bluetooth").click(function () {
-            $("#topbar-box-button-bluetooth").toggleClass("active")
-        });
-        $("#topbar-box-button-torch").click(function () {
-            $("#topbar-box-button-torch").toggleClass("active")
-        });
-        $(".app-header-first").click(function () {
-            updateAppContent("first");
-        });
-        $(".app-header-back").click(function () {
-            if(menuAppSelected == menuAppSelectedLast) {
-                updateAppContent("first");
-            } else {
-                updateAppContent(menuAppSelectedLast);
-            }
-        });
-        $(".app-header-sound").click(function () {
-            stopSounds();
-        });
-        $(".time-select-number-button").click(function () {
-            let numberType = $(this).attr("id").split("-")[2];
-            let operationType = $(this).attr("id").split("-")[4];
-            let spanAmount = $("#time-select-" + numberType + "-number-amount");
-            if(operationType == "up") {
-                if(spanAmount.html() == "59") {
-                    spanAmount.html("00");
-                } else {
-                    let amount = parseInt(spanAmount.html()) + 1;
-                    spanAmount.html(amount < 10 ? "0" + amount : amount);
-                }
-            } else {
-                if(spanAmount.html() == "00") {
-                    spanAmount.html("59");
-                } else {
-                    let amount = parseInt(spanAmount.html()) - 1;
-                    spanAmount.html(amount < 10 ? "0" + amount : amount);
-                }
-            }
-        });
-        $(".alarm-time-select-number-button").click(function () {
-            let numberType = $(this).attr("id").split("-")[3];
-            let operationType = $(this).attr("id").split("-")[5];
-            let spanAmount = $("#alarm-time-select-" + numberType + "-number-amount");
-            if(operationType == "up") {
-                if(numberType == "hour") {
-                    if(spanAmount.html() == "23") {
-                        spanAmount.html("00");
-                    } else {
-                        let amount = parseInt(spanAmount.html()) + 1;
-                        spanAmount.html(amount < 10 ? "0" + amount : amount);
-                    }
-                } else {
-                    if(spanAmount.html() == "59") {
-                        spanAmount.html("00");
-                    } else {
-                        let amount = parseInt(spanAmount.html()) + 1;
-                        spanAmount.html(amount < 10 ? "0" + amount : amount);
-                    }
-                }
-            } else {
-                if(numberType == "hour") {
-                    if(spanAmount.html() == "00") {
-                        spanAmount.html("23");
-                    } else {
-                        let amount = parseInt(spanAmount.html()) - 1;
-                        spanAmount.html(amount < 10 ? "0" + amount : amount);
-                    }
-                } else {
-                    if(spanAmount.html() == "00") {
-                        spanAmount.html("59");
-                    } else {
-                        let amount = parseInt(spanAmount.html()) - 1;
-                        spanAmount.html(amount < 10 ? "0" + amount : amount);
-                    }
-                }
-            }
-        });
-        $("#timer-button-start").click(function () {
-            if(timer.isFinish) {
-                return;
-            }
-            if(timer.stopStart) {
-                clearInterval(timer.timer);
-                $("#timer-button-start").removeClass("pause");
-                $("#timer-button-start").html("Reprendre");
-                timer.stopStart = false;
-            } else {
-                timer.timer = setInterval(timerStart, 1000);
-                $("#timer-button-start").addClass("pause");
-                $("#timer-button-start").html("Pause");
-                timer.stopStart = true;
-            }
-            if(!timer.loopShow) {
-                timer.hh = parseInt($("#time-select-hour-number-amount").html());
-                timer.mm = parseInt($("#time-select-minute-number-amount").html());
-                timer.ss = parseInt($("#time-select-second-number-amount").html());
-                $("#app-clock-timer-time").html(
-                    (timer.hh < 10 ? "0" + timer.hh : timer.hh) +
-                    ":" +
-                    (timer.mm < 10 ? "0" + timer.mm : timer.mm) +
-                    ":" +
-                    (timer.ss < 10 ? "0" + timer.ss : timer.ss));
-                $("#timer-app-clock-time-select").hide();
-                $("#app-clock-timer-time").css("display", "flex");
-                $("#timer-button-reset").addClass("reset");
-                timer.loopShow = true;
-            }
-        });
-        $("#timer-button-reset").click(function () {
-                clearInterval(timer.timer);
-                $("#timer-app-clock-time-select").show();
-                $("#app-clock-timer-time").hide();
-                $("#timer-button-reset").removeClass("reset");
-                $("#timer-button-start").removeClass("pause");
-                $("#timer-button-start").html("Démarrer");
-                $("#app-clock-timer-time").html("00:00:00");
-                timer.hh = timer.mm = timer.ss = timer.loopNumber = 0;
-                $("#app-clock-timer-time").removeClass("finish");
-                timer.isFinish = false;
-                timer.stopStart = false;
-                timer.loopShow = false;
-        });
-        $("#stopwatch-button-start").click(function () {
-            if(stopWatch.stopStart) {
-                clearInterval(stopWatch.timer);
-                $("#stopwatch-button-start").removeClass("stop");
-                $("#stopwatch-button-start").html("Démarrer");
-                $("#stopwatch-button-reset").html("Effacer");
-                stopWatch.stopStart = false;
-            } else {
-                stopWatch.timer = setInterval(stopWatchStart, 10);
-                $("#stopwatch-button-start").addClass("stop");
-                $("#stopwatch-button-start").html("Arrêter");
-                $("#stopwatch-button-reset").html("Tour");
-                stopWatch.stopStart = true;
-            }
-            if(!stopWatch.loopShow) {
-                $("#stopwatch-button-reset").addClass("reset");
-                stopWatch.loopShow = true;
-            }
-        });
-        $("#stopwatch-button-reset").click(function () {
-            if(stopWatch.stopStart) {
-                stopWatch.loopNumber++;
-                let loopTimer = (stopWatch.hh < 10 ? "0" + stopWatch.hh : stopWatch.hh) +
-                                ":" +
-                                (stopWatch.mm < 10 ? "0" + stopWatch.mm : stopWatch.mm) +
-                                "." +
-                                (stopWatch.ss < 10 ? "0" + stopWatch.ss : stopWatch.ss);
-                let divLoop = "<div class='loop'><div class='name'>Tour " + stopWatch.loopNumber + "</div><div class='time' ref='looptime'>" + loopTimer + "</div></div>";
-                $("#stopwatch-list-loop").append(divLoop);
-            } else {
-                clearInterval(stopWatch.timer);
-                $("#stopwatch-button-reset").removeClass("reset");
-                $("#app-clock-list-item-stopwatch").html("00:00.00");
-                stopWatch.hh = stopWatch.mm = stopWatch.ss = stopWatch.loopNumber = 0;
-                $("#stopwatch-list-loop").empty();
-                stopWatch.loopShow = false;
-            }
-        });
-        $("#alarm-add-button").click(function () {
-            updateAppContent("addalarm");
-        });
-        $("#addalarm-cancel-button").click(function () {
-            updateAppContent("alarm");
-        });
-        $("#addalarm-save-button").click(function () {
-            let alarmId = Math.floor(Math.random() * (999999 - 111111) + 111111);
-            let alarmDescription = ($("#addalarm-input-description").val() == "") ? "Alarme" : $("#addalarm-input-description").val();
-            let alarmHour = parseInt($("#alarm-time-select-hour-number-amount").html());
-            let alarmMinute = parseInt($("#alarm-time-select-minute-number-amount").html());
-            let alarm = "<div class='app-body-content-body-list-item item-alarm'><div class='app-body-content-body-list-item-alarm'><div class='app-body-content-body-list-item-time'>" + (alarmHour < 10 ? "0" + alarmHour : alarmHour) +":" +(alarmMinute < 10 ? "0" + alarmMinute : alarmMinute) + "</div><div class='app-body-content-body-list-item-alarm-name'>" + alarmDescription + "</div><div class='app-body-content-body-list-item-alarm-day'></div></div><label data-id='" + alarmId + "' data-hour='" + alarmHour + "' data-minute='" + alarmMinute + "' class='app-body-content-body-list-item-switch'><input type='checkbox'/><span></span></label></div>";
-            $("#app-clock-body-content-alarm .app-body-content-body-list").append(alarm);
-            let alarmElement = document.querySelector("#app-clock-body-content-alarm .app-body-content-body-list").lastElementChild.querySelector(".app-body-content-body-list-item-switch");
-            alarmElement.addEventListener("change", function() {
-                if(alarmElement.firstElementChild.checked) {
-                    alarmList.push( {
-                        "id": alarmElement.dataset.id,
-                        "timer": setInterval(function() {
-                            let dateNow = new Date();
-                            if(alarmElement.dataset.hour == dateNow.getHours() && alarmElement.dataset.minute == dateNow.getMinutes()) {
-                                alarmElement.firstElementChild.checked = false;
-                                if(menuSelected != "clock" || menuAppSelected != "alarm") {
-                                    addNotification("clock", "alarm", "Maintenant", "Alarme", alarmElement.previousElementSibling.querySelector(".app-body-content-body-list-item-alarm-name").innerHTML);
-                                }
-                                for(let eltm of alarmList) {
-                                    if(eltm.id == alarmElement.dataset.id) {
-                                        clearInterval(eltm.timer);
-                                    }
-                                }
-                            }
-                        }, 1000)
-                    });
-                } else {
-                    for(let eltm of alarmList) {
-                        if(eltm.id == alarmElement.dataset.id) {
-                            clearInterval(eltm.timer);
-                        }
-                    }
-                }
-            });;
-            updateAppContent("alarm");
-        });
-        $("#app-body-content-body-app-header-detail-button-download").click(function () {
-            if(isDownloadApp) {
-                return;
-            }
-            isDownloadApp = true;
-            let button = $("#app-body-content-body-app-header-detail-button-download");
-            let color = button.css("background-color");
-            button.css("background", "linear-gradient(110deg, " + color + " 0%, white 0%)")
-            for(let i = 0; i <= 100; ++i) {
-                setTimeout(function() {
-                    button.css("background", "linear-gradient(110deg, " + color + " " + i + "%, white " + i + "%)");
-                    button.first().html(i + "% Téléchargement...");
-                }, i * 50);
-            }
-            setTimeout(function() {
-                button.css("background", "");
-                button.first().html("Lancer");
-                isDownloadApp = false;
-            }, 100 * 50);
-        });
-        $("#phone-lock-button i").mouseover(function() {
-            if(phoneLockToggle) {
-                $("#phone-lock-button i").removeClass("fa-lock");
-                $("#phone-lock-button i").addClass("fa-lock-open");
-            } else {
-                $("#phone-lock-button i").removeClass("fa-lock-open");
-                $("#phone-lock-button i").addClass("fa-lock");
-            }
-        });
-        $("#phone-lock-button i").mouseout(function() {
-            if(phoneLockToggle) {
-                $("#phone-lock-button i").removeClass("fa-lock-open");
-                $("#phone-lock-button i").addClass("fa-lock");
-            } else {
-                $("#phone-lock-button i").removeClass("fa-lock");
-                $("#phone-lock-button i").addClass("fa-lock-open");
-            }
-        });
-        $("#phone-lock-button i").click(function() {
-            if(phoneLockToggle) {
-                unlockPhone();
-            } else {
-                lockPhone();
-            }
-        });
-        $("#calculator-result").on('DOMSubtreeModified', function(){
-            $("#calculator-result").textfill({
-                minFontPixels: 10,
-                maxFontPixels: 80,
-                innerTag: "span",
-                widthOnly: true,
-                allowOverflow: true
-            });
-        });
-        $(function(){
-            var OperatorStatus = false;
-            var OperatorEqualStage = false;
-            var historyReset = false;
-            var NumberValue_first = 0;
-            var NumberValue_secend = 0;
-            var ScreenTotal = 0;
-            var Operators = "";
-            var PointLength_first = 0;
-            var PointLength_secend = 0;
-            var PointLengthMax = Math.max(PointLength_first, PointLength_secend);
-            $("#calculator-result span").text("0");
-
-            $(".Number-btn").click(function() {
-                if(historyReset) {
-                    $("#calculator-history span").text("");
-                    historyReset = false;
-                }
-                if(OperatorEqualStage) {
-                    OperatorEqualStage = false;
-                    $("#calculator-result span").text("");
-                }
-                if($(this).text() !== "0") {
-                    $(".AC").text("C");
-                }
-                if($(this).text() === ".") {
-                    if($("#calculator-result span").text() === "0") {
-                        $("#calculator-result span").html( 0 + ".");
-                    } else if(ScreenTotal.indexOf(".") != -1) {
-                        return;
-                    }
-                }
-                if(OperatorStatus) {
-                    NumberValue_secend = $(this).text();
-                    if($("#calculator-result span").text().length === 0 || $("#calculator-result span").text() === "0") {
-                        ScreenTotal = NumberValue_secend;
-                        $("#calculator-result span").text(ScreenTotal);
-                    } else {
-                        ScreenTotal = ScreenTotal + NumberValue_secend;
-                        $("#calculator-result span").text(ScreenTotal);
-                        NumberValue_secend = ScreenTotal;
-                    }
-                    $(".Operator-btn").removeClass("click");
-                } else {
-                    NumberValue_first = $(this).text();
-                    if($("#calculator-result span").text().length === 0 || $("#calculator-result span").text() === "0") {
-                        ScreenTotal = NumberValue_first;
-                        $("#calculator-result span").text(ScreenTotal);
-                    } else{
-                        ScreenTotal = ScreenTotal + NumberValue_first;
-                        $("#calculator-result span").text(ScreenTotal);
-                        NumberValue_first = ScreenTotal;
-                    }
-                }
-            });
-
-            $(".Percentage").click(function() {
-                $(".Operator-btn").removeClass("click");
-                if(Math.round(ScreenTotal) === Number(ScreenTotal)) {
-                    ScreenTotal *= 0.01;
-                } else {
-                    PointLength_first = ScreenTotal.toString().split(".")[1].length;
-                    ScreenTotal = (Number(ScreenTotal).toString().replace(".","") * 1) / Math.pow(10,(PointLength_first + 2));
-                }
-                NumberValue_first = ScreenTotal;
-                $("#calculator-result span").text(ScreenTotal);
-            });
-            
-            // AC
-            $(".AC").click(function() {
-                $("#calculator-result span").css("font-size",  "3.15rem");
-                $(".Operator-btn").removeClass("click");
-                $(this).text("AC");
-                OperatorStatus = false;
-                NumberValue_first = 0;
-                NumberValue_secend = 0;
-                ScreenTotal = 0;
-                Operators = "";
-                PointLength_first = 0;
-                PointLength_secend = 0;
-                PointLength = Math.max(PointLength_first, PointLength_secend);
-                $("#calculator-history span").text("");
-                $("#calculator-result span").text(ScreenTotal);
-            });
-            
-            //+-
-            $(".PlusMinus").click(function() {
-                $(".Operator-btn").removeClass("click");
-                ScreenTotal *= -1;
-                NumberValue_first = ScreenTotal;
-                $("#calculator-result span").text(ScreenTotal);
-            })
-            
-            $(".Operator-btn").click(function() {
-                Operators = $(this).text();
-                $(".Operator-btn").removeClass("click");
-                $(this).addClass("click");
-                NumberValue_first = parseFloat(ScreenTotal);
-                if(!historyReset && !isNaN(NumberValue_first)) {
-                    $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_first + " " + Operators);
-                }
-                OperatorEqualStage = true;
-                OperatorStatus = true;
-                ScreenTotal = "";
-            });
-            
-            $(".equal").click(function() {
-                NumberValue_secend = parseFloat(NumberValue_secend);
-                OperatorEqualStage = true;
-                switch(Operators) {
-                    case "+" :
-                        PointLength_first = NumberValue_first.toFixed(10).toString().split(".")[1].length;
-                        PointLength_secend = NumberValue_secend.toFixed(10).toString().split(".")[1].length;
-                        PointLengthMax = Math.max(PointLength_first, PointLength_secend);
-                        ScreenTotal = Math.round((NumberValue_first*Math.pow(10,PointLengthMax) + NumberValue_secend*Math.pow(10,PointLengthMax)))/Math.pow(10,PointLengthMax);
-                        if(!historyReset) {
-                            $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
-                        }
-                        $("#calculator-result span").text(ScreenTotal);
-                        historyReset = true;
-                        OperatorStatus = false;
-                        NumberValue_first = ScreenTotal;
-                        break;
-                    case "-" :
-                        PointLength_first = NumberValue_first.toFixed(10).toString().split(".")[1].length;
-                        PointLength_secend = NumberValue_secend.toFixed(10).toString().split(".")[1].length;
-                        PointLengthMax = Math.max(PointLength_first, PointLength_secend);
-                        ScreenTotal = Math.round((NumberValue_first*Math.pow(10,PointLengthMax) - NumberValue_secend*Math.pow(10,PointLengthMax)))/Math.pow(10,PointLengthMax);
-                        if(!historyReset) {
-                            $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
-                        }
-                        $("#calculator-result span").text(ScreenTotal);
-                        historyReset = true;
-                        OperatorStatus = false;
-                        NumberValue_first = ScreenTotal;
-                    break;
-                    case "×" :
-                        if(Math.round(NumberValue_first) !== NumberValue_first &&  Math.round(NumberValue_secend) !== NumberValue_secend) {
-                            PointLength_first = NumberValue_first.toString().split(".")[1].length;
-                            PointLength_secend = NumberValue_secend.toString().split(".")[1].length;
-                            ScreenTotal = (Number(NumberValue_first).toString().replace(".","")* Number(NumberValue_secend).toString().replace(".","")) / Math.pow(10,(PointLength_first + PointLength_secend));
-                        } else if(Math.round(NumberValue_first) === NumberValue_first &&  Math.round(NumberValue_secend) !== NumberValue_secend) { // NumberValue_first 為整數
-                            PointLength_secend = NumberValue_secend.toString().split(".")[1].length;
-                            ScreenTotal = (NumberValue_first * Number(NumberValue_secend).toString().replace(".","")) / Math.pow(10,(PointLength_secend));
-                        } else if(Math.round(NumberValue_first) !== NumberValue_first &&  Math.round(NumberValue_secend) === NumberValue_secend) { // NumberValue_secend 為整數
-                            PointLength_first = NumberValue_first.toString().split(".")[1].length;
-                            ScreenTotal = (Number(NumberValue_first).toString().replace(".","") * NumberValue_secend) / Math.pow(10,(PointLength_first));
-                        } else {
-                            ScreenTotal = Number(NumberValue_first * NumberValue_secend);
-                        }
-                        if(!historyReset) {
-                            $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
-                        }
-                        $("#calculator-result span").text(ScreenTotal);
-                        historyReset = true;
-                        OperatorStatus = false;
-                        NumberValue_first = ScreenTotal;
-                        break;
-                    case "÷" :
-                        PointLength_first = (Math.round(Number(NumberValue_first).toString().replace(".","")/NumberValue_first) +"").length;
-                        PointLength_secend = (Math.round(Number(NumberValue_secend).toString().replace(".","")/NumberValue_secend) +"").length;
-                        ScreenTotal = Number((Number(NumberValue_first).toString().replace(".","")) / Number(Number(NumberValue_secend).toString().replace(".",""))) * Math.pow(10,PointLength_secend - PointLength_first);
-                        if(!historyReset) {
-                            $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
-                        }
-                        $("#calculator-result span").text(ScreenTotal);
-                        historyReset = true;
-                        OperatorStatus = false;
-                        NumberValue_first = ScreenTotal;
-                        break;
-                }
-            })
-        });
-        $("#topbar-box-button-update-thememode").click(function() {
-            switchThemeMode();
-        });
-        $("#settings-list-item-thememode label").change(function() {
-            switchThemeMode();
-        });
-        $(".settings-list-item.child").click(function () {
-            updateAppContent($(this).attr("id").split("-")[3]);
-        });
-
+        // Ajout d'une bulle dans une conversation
         // $('.app-message-conversation .messages').append('<div class="chat-bubble"><div class="loading"><div class="dot one"></div><div class="dot two"></div><div class="dot three"></div></div><div class="tail"></div></div>');
 
 	};
 });
 
-function initializeAppContacts() {
+// --- Fonctions --- //
+
+// Mise à jour total
+function updateUserData(data) {
+    // Inisiialisation de l'accueil
+    updateContent("home");
+    updateAppContent("first");
+    lockPhone();
+    // Update main variables
+    userData = data;
+    darkMode = (data.phone.darkMode == 1 ? true : false);
+    wallpaperActive = data.phone.wallpaper;
+    wallpaperLockActive = data.phone.wallpaperLock;
+    soundNotificationActive = data.phone.soundNotification;
+    soundNotificationVolume = data.phone.soundNotificationVolume;
+    soundRingingActive = data.phone.soundRinging;
+    soundRingingVolume = data.phone.soundRingingVolume;
+    soundAlarmActive = data.phone.soundAlarm;
+    soundAlarmVolume = data.phone.soundAlarmVolume;
+    generalZoomActive = data.phone.zoom;
+    serialNumber = data.phone.serialNumber;
+    firstName = data.phone.firstName;
+    lastName = data.phone.lastName;
+    phoneNumber = data.phone.number;
+    luminosityActive = data.phone.luminosity;
+    updateSound();
+    updateWallpaper();
+    updateDarkMode();
+    updateZoom();
+    updateProfile();
+    updateLuminosity();
+    updateVolume();
+    updateAppHomeOrder();
+
+    // Mise à jour des applications
     $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
+    $.post('https://OraPhone/refresh_conversations', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number }));
+    $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
+    $.post('https://OraPhone/refresh_gallery', JSON.stringify({ phoneId: userData.phone.id }));
+    $.post('https://OraPhone/refresh_richtermotorsport_advertisement', JSON.stringify({ phoneId: userData.phone.id }));
+}
+
+function initializeApps() {
+    // Initialisation des applications
+    initializeAppScreen();
+    initializeAppContacts();
+    initializeAppMessage();
+    initializeAppCall();
+    initializeAppPhone();
+    initializeAppSettings();
+    initializeAppStore();
+    initializeAppClock();
+    initializeAppCalculator();
+    initializeAppCamera();
+    initializeAppRichterMotorsport();
+    initializeAppNotes();
+
+    // Initialisation des boutons généraux de chaques applications
+    $(".app-header-first").click(function () {
+        updateAppContent("first");
+    });
+    $(".app-header-back").click(function () {
+        if(menuAppSelected == menuAppSelectedLast) {
+            updateAppContent("first");
+        } else {
+            updateAppContent(menuAppSelectedLast);
+        }
+    });
+    $(".app-header-sound").click(function () {
+        stopSounds();
+    });
+    for(let element of $(".app-tab-button")) {
+        element.addEventListener("click", function() {
+            updateAppContent(element.id.split("-")[3]);
+        });
+    }
+    for(let item of $("#app-store .app-body-content-body-list-item")) {
+        item.addEventListener("click", function() {
+            updateAppContent("app");
+        });
+    }
+}
+
+// Initialisation des applications
+
+function initializeAppScreen() {
+    $("#phone-screen-content-header").click(function () {
+        displayTopbar();
+    });
+    $("#phone-screen-content-footer").click(function () {
+        updateContent("home");
+        if(displayTopbarToggle) {
+            displayTopbar();
+        }
+    });
+    $("#topbar-box-music-button-play").click(function () {
+        $("#topbar-box-music-button-play").hide();
+        $("#topbar-box-music-button-pause").show(); 
+    });
+    $("#topbar-box-music-button-pause").click(function () {
+        $("#topbar-box-music-button-pause").hide();
+        $("#topbar-box-music-button-play").show();
+    });
+    $("#topbar-box-button-bluetooth").click(function () {
+        $("#topbar-box-button-bluetooth").toggleClass("active")
+    });
+    $("#topbar-box-button-torch").click(function () {
+        $("#topbar-box-button-torch").toggleClass("active")
+    });
+    $("#topbar-box-button-update-thememode").click(function() {
+        switchThemeMode();
+    });
+    $("#app-unlock").click(function () {
+        unlockPhone();
+    });
+    $("#phone-lock-button i").mouseover(function() {
+        if(phoneLockToggle) {
+            $("#phone-lock-button i").removeClass("fa-lock");
+            $("#phone-lock-button i").addClass("fa-lock-open");
+        } else {
+            $("#phone-lock-button i").removeClass("fa-lock-open");
+            $("#phone-lock-button i").addClass("fa-lock");
+        }
+    });
+    $("#phone-lock-button i").mouseout(function() {
+        if(phoneLockToggle) {
+            $("#phone-lock-button i").removeClass("fa-lock-open");
+            $("#phone-lock-button i").addClass("fa-lock");
+        } else {
+            $("#phone-lock-button i").removeClass("fa-lock");
+            $("#phone-lock-button i").addClass("fa-lock-open");
+        }
+    });
+    $("#phone-lock-button i").click(function() {
+        if(phoneLockToggle) {
+            unlockPhone();
+        } else {
+            lockPhone();
+        }
+    });
+}
+
+function initializeAppContacts() {
     // Inisialisation de la liste des icones
     for(let icon of config.contactsicon) {
         let divIcon = "<div data-title='" + icon.title + "' class='newcontact-icon-list-item'><img draggable='false' src='" + folderContactsProfileIcon + icon.title + ".png'/></div>";
@@ -1076,165 +558,15 @@ function initializeAppContacts() {
         $("#app-contacts-body-content-list-search").val("");
         $(".contacts-list-row-item").css("display", "block");
     });
-}
-
-function updateAppContacts() {
-    $("#contacts-list").empty();
-    for(var i = 65; i <= 90; i++) {
-        let divItem = "";
-        for(let contact of userData.contacts) {
-            if(contact.name.substring(0,1).toLowerCase() == String.fromCharCode(i).toLowerCase()) {
-                divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div><div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div><div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div></div></div>";
-            }
-        }
-        if(divItem != "") {
-            let divRow = "<div class='contacts-list-row'><div class='contacts-list-row-letter'><span>" + String.fromCharCode(i).toUpperCase() + "</span></div>" + divItem + "</div>";
-            $('#contacts-list').append(divRow);
-        }
-    }
-    // Inisialisation bouton de contacte
-    $(".edit-contact").click(function() {
-        contactId = $(this).data("id");
-        contactPhoneNumber = $(this).data("number").toString().substring(3);
-        contactName = $(this).data("name");
-        contactAvatar = $(this).data("avatar");
-        updateAppContent("editcontact");
-        $("#editcontact-profile-icon").data("title", contactAvatar);
-        if(contactAvatar.includes("http")) {
-            $("#editcontact-profile-icon").addClass("url");
-        } else {
-            $("#editcontact-profile-icon").removeClass("url");
-        }
-        $("#editcontact-profile-icon img").attr("src", (contactAvatar.includes("http") ? contactAvatar : folderContactsProfileIcon + contactAvatar + ".png"));
-        $("#editcontact-profile-name span").html(contactName);
-        $("#editcontact-phone-number-input").val(contactPhoneNumber);
-        $("#editcontact-name-input").val(contactName);
-        if(contactAvatar.includes("http")) {
-            $("#editcontact-icon-custom-input").val(contactAvatar);
-        } else {
-            $("#editcontact-icon-custom-input").val("");
-        }
-        $("#editcontact-icon-list").children().removeClass("active");
-        for(let icon of $("#editcontact-icon-list").children()) {
-            if(icon.dataset.title == contactAvatar) {
-                icon.classList.add("active");
-            }
-        }
+    $("#newcontact-button-takephoto").click(function() {
+        activateAppCamera("contact", "newcontact");
     });
-    $(".call-contact").click(function() {
-        callNumber($(this).data("number"));
+    $("#editcontact-button-takephoto").click(function() {
+        activateAppCamera("contact", "editcontact");
     });
-    $(".message-contact").click(function() {
-            conversationAuthors = [];
-            for(let contact of $("#newmessage-list").children()) {
-                if(contact.classList.contains("active")) {
-                    conversationAuthors.push(contact.dataset.number);
-                }
-            }
-            conversationAuthors.push($(this).data("number"));
-            conversationAuthors.push(userData.phone.number);
-            if(conversationAuthors.length < 2) {
-                return;
-            }
-            $.post('https://OraPhone/message_create_conversation', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number , authors: conversationAuthors }));
-            updateContent("message")
-            updateAppContent("message");
-    });
-    // Inisialisation de la liste de l'alphabet
-    $("#contacts-list-alphabet span").click(function() {
-        for(let item of $(".contacts-list-row-letter")) {
-            if(item.querySelector("span").innerText.charAt(0).toLowerCase() == this.title.toLowerCase()) {
-                document.getElementById("contacts-list").scrollTo({top: item.parentNode.offsetTop, behavior: 'smooth'});
-                return;
-            }
-        }
-    });
-    // Inisialisation de la recherche de contactes
-    let searchInput = document.getElementById("app-contacts-body-content-list-search");
-    searchInput.addEventListener('input', (e) => {
-        for(let elt of $(".contacts-list-row-item")) {
-            if(elt.querySelector(".contacts-list-row-item-top-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                elt.style.display = "block";
-            } else {
-                elt.style.display = "none";
-            }
-        }
-    });
-    // Inisialisation des événements sur les contactes
-    $(".contacts-list-row-item-top").click(function () {
-        if($(this.parentNode).hasClass("active")) {
-            $(this.parentNode).removeClass("active");
-        } else {
-            $(".contacts-list-row-item").removeClass("active");
-            $(this.parentNode).addClass("active");
-        }
-    });
-}
-
-function updateUserData(data) {
-    // Update main variables
-    userData = data;
-    darkMode = (data.phone.darkMode == 1 ? true : false);
-    wallpaperActive = data.phone.wallpaper;
-    wallpaperLockActive = data.phone.wallpaperLock;
-    soundNotificationActive = data.phone.soundNotification;
-    soundNotificationVolume = data.phone.soundNotificationVolume;
-    soundRingingActive = data.phone.soundRinging;
-    soundRingingVolume = data.phone.soundRingingVolume;
-    soundAlarmActive = data.phone.soundAlarm;
-    soundAlarmVolume = data.phone.soundAlarmVolume;
-    generalZoomActive = data.phone.zoom;
-    serialNumber = data.phone.serialNumber;
-    firstName = data.phone.firstName;
-    lastName = data.phone.lastName;
-    phoneNumber = data.phone.number;
-    luminosityActive = data.phone.luminosity;
-    updateSound();
-    updateWallpaper();
-    updateDarkMode();
-    updateZoom();
-    updateProfile();
-    updateLuminosity();
-    updateAppHomeOrder();
-
-    // Inisialisation des applications
-    initializeAppContacts();
-    initializeAppMessage();
-    initializeAppPhone();
-}
-
-function receiveCall(data) {
-    callData = data;
-    inReceiveCall = true;
-    let avatar = contactAvatarDefault;
-    let name = callData.fromNumber;
-    for(let contact of userData.contacts) {
-        if(contact.number == callData.fromNumber) {
-            if(contact.avatar.includes("http")) {
-                avatar = contact.avatar;
-            } else {
-                avatar = folderContactsProfileIcon + contact.avatar + ".png";
-            }
-            name = contact.name;
-        }
-    }
-    if(!displayToggle) {
-        addNotification("call", "callreceive", "Maintenant", "Appel", name, avatar);
-    }
-    updateContent("call");
-    updateAppContent("callreceive");
-    soundRinging.currentTime = 0;
-    soundRinging.play();
-    setTimeout(function() {
-        if(inReceiveCall) {
-            $.post('https://OraPhone/end_call', JSON.stringify({}));
-            inReceiveCall = false;
-        }
-    }, 10000);
 }
 
 function initializeAppMessage() {
-    $.post('https://OraPhone/refresh_conversations', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number }));
     $("#message-list-new-message").click(function() {
         updateAppContent("newmessage");
     });
@@ -1258,183 +590,52 @@ function initializeAppMessage() {
     });
 }
 
-function updateAppMessageLoad(id = false) {
-    if(!id) {
-        // Get conversationId from authors list
-        for(let conversation of userData.conversations) {
-            if(conversationAuthors.every(i => JSON.parse(conversation.target_number).includes(i)) && conversationAuthors.length == JSON.parse(conversation.target_number).length) {
-                conversationId = conversation.id;
-                break;
-            }
+function initializeAppCall() {
+    $("#callnumber-button-hangup").click(function() {
+        $.post('https://OraPhone/end_call', JSON.stringify({}));
+    });
+    $("#callreceive-button-hangup").click(function() {
+        $.post('https://OraPhone/end_call', JSON.stringify({}));
+    });
+    $("#callreceive-button-pickup").click(function() {
+        inReceiveCall = false;
+        inCall = true;
+        updateAppContent("callstarted");
+        stopSounds();
+        $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
+        if(callNotification != null && callNotification != undefined) {
+            callNotification.style.opacity = "0";
+            callNotificationLock.style.opacity = "0";
+            setTimeout(function() {
+                callNotification.remove();
+                callNotificationLock.remove();
+                if($("#notification-container").children().length == 0 && !displayToggle) {
+                    $("#phone").css("bottom", phoneBottomShowNot);
+                }
+            }, 750);
         }
-    } else {
-        conversationId = id;
-    }
-    if(conversationId != "") {
-        let targetNumber = "";
-        $('.app-message-conversation .messages').empty();
-        for(let conversation of userData.conversations) {
-            if(conversation.id == conversationId) {
-                let conversationAvatar = contactAvatarDefault;
-                let conversationName = "";
-                targetNumber = JSON.parse(conversation.target_number);
-                for(let user of JSON.parse(conversation.target_number)) {
-                    if(user != userData.phone.number) {
-                        let name = user;
-                        for(let contact of userData.contacts) {
-                            if(contact.number == user) {
-                                if(JSON.parse(conversation.target_number).length == 2) {
-                                    if(contact.avatar.includes("http")) {
-                                        conversationAvatar = contact.avatar;
-                                    } else {
-                                        conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
-                                    }
-                                }
-                                name = contact.name;
-                                break;
-                            }
-                        }
-                        conversationName += name + ", ";
-                    }
-                }
-                conversationName = conversationName.slice(0, -2);
-                if(conversationAvatar.includes("http")) {
-                    $(".app-body-content-header-profil-avatar").addClass("url");
-                } else {
-                    $(".app-body-content-header-profil-avatar").removeClass("url");
-                }
-                $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
-                $(".app-body-content-header-profil-name span").html(conversationName);
-                for(let message of conversation.messages) {
-                    let sourceName = "";
-                    let sourceType = "";
-                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
-                    if(message.sourceNumber == userData.phone.number) {
-                        sourceName = "Moi";
-                        sourceType = "me";
-                    } else {
-                        sourceName = message.sourceNumber;
-                        sourceType = "you";
-                        for(let contact of userData.contacts) {
-                            if(contact.number == message.sourceNumber) {
-                                sourceName = contact.name;
-                            }
-                        }
-                    }
-                    responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
-                }
-            }
-        }
-        let messageInput = $("#app-message-footer-input");
-        messageInput.on("keyup", function(e) {
-            if (e.key === 'Enter' || e.keyCode === 13) {
-                if (messageInput.val() != "") {
-                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
-                    messageInput.val("");
-                }
-            }
-        });
-        let elementMessages = document.querySelector(".app-message-conversation .messages");
-        elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
-    }
-}
-
-function responsiveChatPush(sender, origin, date, message) {
-    var originClass;
-    if (origin == 'me') {
-        originClass = 'myMessage';
-    } else {
-        originClass = 'fromThem';
-    }
-    $('.app-message-conversation .messages').append('<div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div>');
-}
-
-function updateConversationList() {
-    $("#message-list").empty();
-    for(let conversation of userData.conversations) {
-        let conversationName = "";
-        let conversationTime = "";
-        let conversationMessage = "";
-        let conversationAvatar = contactAvatarDefault;
-        if(conversation.messages != "") {
-            conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
-            conversationMessage = conversation.messages[conversation.messages.length - 1].message;
-        }
-        for(let user of JSON.parse(conversation.target_number)) {
-            if(user != userData.phone.number) {
-                let name = user;
-                for(let contact of userData.contacts) {
-                    if(contact.number == user) {
-                        if(JSON.parse(conversation.target_number).length == 2) {
-                            if(contact.avatar.includes("http")) {
-                                conversationAvatar = contact.avatar;
-                            } else {
-                                conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
-                            }
-                        }
-                        name = contact.name;
-                        break;
-                    }
-                }
-                conversationName += name + ", ";
-            }
-        }
-        conversationName = conversationName.slice(0, -2);
-        let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div></div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
-        $("#message-list").append(divConversation);
-        $("#message-list").children().last().click(function () {
-            updateAppMessageLoad(conversation.id);
-            updateAppContent("message");
-            let elementMessages = document.querySelector(".app-message-conversation .messages");
-            elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
-        });
-    }
-    let searchInput = document.getElementById("app-message-body-content-list-search");
-    searchInput.value = "";
-    searchInput.addEventListener('input', (e) => {
-        for(let elt of $("#message-list .app-body-content-body-list-item")) {
-            if(elt.querySelector(".message-list-item-right-header-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                elt.style.display = "flex";
+        $("#callstarted-time").html("00:00");
+        let callStartedSec = 0
+        let callStartedMin = 0
+        let callStartedTimer = setInterval(function() {
+            $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
+            if(callStartedSec == 59) {
+                callStartedSec = 0;
+                callStartedMin++;
             } else {
-                elt.style.display = "none";
+                callStartedSec++;
             }
-        }
-    });
-}
-
-function updateAppMessage() {
-    for(let contact of userData.contacts) {
-        if(contact.number.toString().length == 7) {
-            let div = "<div data-number='" + contact.number + "' data-name='" + contact.name + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + contact.name + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + contact.number.toString().substring(3) + "</span></div></div></div>";
-            $('#newmessage-list').append(div);
-        }
-    }
-    $(".newmessage-list-item").click(function() {
-        this.classList.toggle("active");
-    });
-    $("#newmessage-list-alphabet span").click(function() {
-        for(let item of $(".newmessage-list-item")) {
-            if(item.querySelector(".newmessage-list-item-right-header-name").innerText.charAt(0).toLowerCase() == this.title.toLowerCase()) {
-                document.getElementById("newmessage-list").scrollTo({top: item.offsetTop, behavior: 'smooth'});
-                return;
+            if(!inCall) {
+                clearInterval(callStartedTimer);
             }
-        }
+        }, 1000);
     });
-    let searchInput = document.getElementById("app-message-body-content-newmessage-search");
-    searchInput.value = "";
-    searchInput.addEventListener('input', (e) => {
-        for(let elt of $(".newmessage-list-item")) {
-            if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                elt.style.display = "flex";
-            } else {
-                elt.style.display = "none";
-            }
-        }
+    $("#callstarted-button-hangup").click(function() {
+        $.post('https://OraPhone/end_call', JSON.stringify({}));
     });
 }
 
 function initializeAppPhone() {
-    $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
     $("#phonepad-phone-number span").html("555-");
     $("#phonepad-buttons li").click(function() {
         let targetNumber = $(this).data("number");
@@ -1457,507 +658,13 @@ function initializeAppPhone() {
     });
 }
 
-function callNumber(callNumber) {
-    callNumber = callNumber.toString();
-    callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
-    callAvatar = contactAvatarDefault;
-    for(let contact of userData.contacts) {
-        if(contact.number == callNumber) {
-            callAvatar = (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png");
-            callName = contact.name;
-            break;
-        }
-    }
-    $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: callNumber, fromNumber: phoneNumber }));
-    $("#callnumber-title-number").html("Appel vers " + callName);
-    $("#callnumber-icon img").attr("src", callAvatar);
-    if(callAvatar.includes("http")) {
-        $("#callnumber-icon").addClass("url");
-    } else {
-        $("#callnumber-icon").removeClass("url");
-    }
-}
-
-function updateAppPhone() {
-    $("#phonehistory-list").empty();
-    for(let call of userData.calls) {
-        let callTarget = "";
-        let callSource = false;
-        let callDuration = "";
-        if(call.source_number == phoneNumber) {
-            callSource = true;
-            callTarget = call.target_number.toString();
-        } else {
-            callTarget = call.source_number.toString();
-        }
-        let callNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
-        let callName = callNumber
-        for(let contact of userData.contacts) {
-            if(contact.number == callTarget) {
-                callName = contact.name;
-                break;
-            }
-        }
-        callAccepted = call.accepted;
-        let callTime = new Date(call.call_time)
-        let nowTime = new Date()
-        if(callTime.toDateString() == nowTime.toDateString()) {
-            callTime = callTime.toLocaleString('fr-FR', { timeStyle: 'short' });
-        } else {
-            let yesterday = new Date();
-            yesterday.setDate(nowTime.getDate() - 1);
-            if(callTime.toDateString() == yesterday.toDateString()) {
-                callTime = "Hier";
-            } else {
-                tmp = Math.ceil(Math.abs(nowTime - callTime) / (1000 * 60 * 60 * 24));
-                if(tmp <= 7) {
-                    callTime = callTime.toLocaleString('fr-FR', { weekday: 'long' });
-                    callTime = callTime.charAt(0).toUpperCase() + callTime.slice(1);
-                } else {
-                    callTime = callTime.toLocaleString('fr-FR', { dateStyle: 'short' });
-                }
-            }
-        }
-        if(callAccepted) {
-            let minutes = Math.floor(call.call_duration / 60);
-            let seconds = call.call_duration - minutes * 60;
-            callDuration = (minutes < 10 ? "0" + minutes : minutes)+ ":" + (seconds < 10 ? "0" + seconds : seconds);
-        } else {
-            callDuration = "Manqué";
-        }
-
-        let divCall = "<div class='phonehistory-list-item " + (callAccepted ? '' : 'miss') + "'><div class='phonehistory-list-item-left'><div class='phonehistory-list-item-type'><i class='fa-solid fa-phone'></i><i class='fa-solid fa-turn-" + (callSource ? 'up' : 'down') + "'></i></div><div class='phonehistory-list-item-body'><span class='phonehistory-list-item-body-name'>" + callName + "</span><span class='phonehistory-list-item-body-number'>" + callNumber + "</span></div></div><div class='phonehistory-list-item-time'><span>" + callTime + "</span></div><div class='phonehistory-list-item-duration'><span>" + callDuration + "</span></div></div>";
-        $("#phonehistory-list").append(divCall);
-        $("#phonehistory-list").children().last().click(function () {
-            callNumber(callTarget);
-        });
-    }
-}
-
-function addNotification(app, appSub, time, title, message, avatar = false) {
-    let label = "Inconnu";
-    let divNotification = "";
-    let divNotificationLock = "";
-    if(!displayToggle) {
-        if(!phoneLockToggle) {
-            $("#phone").css("bottom", "-670px");
-        } else {
-            $("#phone").css("bottom", "-480px");
-        }
-    }
-    for(let appItem of config.apps) {
-        if(appItem.name == app) {
-            label = appItem.label;
-        }
-    }
-    if(app == "message") {
-        let messageName = "";
-        for(let user of title) {
-            if(user != userData.phone.number) {
-                let name = user;
-                for(let contact of userData.contacts) {
-                    if(contact.number == user) {
-                        name = contact.name;
-                        break;
-                    }
-                }
-                messageName += name + ", ";
-            }
-        }
-        title = messageName.slice(0, -2);
-    }
-    if(app == "call") {
-        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
-        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
-    } else {
-        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-header'><div class='notification-item-background-blur'></div><div class='notification-item-header-content'><div class='notification-item-header-content-left'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/>" + label + "</div><div class='notification-item-header-content-right'>" + time + "</div></div></div><div class='notification-item-main'><span class='notification-item-main-header'>" + title + "</span><span class='notification-item-main-message'>" + message + "</span></div></div></div>";
-        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-icon'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/></div><div class='notification-item-content-body'><div class='notification-item-content-body-header'><div class='notification-item-content-body-header-left'>" + label + "</div><div class='notification-item-content-body-header-right'>" + time + "</div></div><div class='notification-item-content-body-content'><div class='notification-item-content-body-content-message'>" + message + "</div></div></div></div></div>";
-    }
-    $("#notification-container").prepend(divNotification);
-    $("#notification-container-lock").prepend(divNotificationLock);
-    let notification = document.getElementById("notification-container").firstElementChild;
-    let notificationLock = document.getElementById("notification-container-lock").firstElementChild;
-    if(app == "call") {
-        callNotification = notification;
-        callNotificationLock = notificationLock;
-        $(".notification-item-main-pickup").click(function() {
-            inReceiveCall = false;
-            inCall = true;
-            updateAppContent("callstarted");
-            stopSounds();
-            $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
-            if(callNotification != null && callNotification != undefined) {
-                callNotification.style.opacity = "0";
-                callNotificationLock.style.opacity = "0";
-                setTimeout(function() {
-                    callNotification.remove();
-                    callNotificationLock.remove();
-                    if($("#notification-container").children().length == 0 && !displayToggle) {
-                        $("#phone").css("bottom", phoneBottomShowNot);
-                    }
-                }, 750);
-            }
-            $("#callstarted-time").html("00:00");
-            let callStartedSec = 0
-            let callStartedMin = 0
-            let callStartedTimer = setInterval(function() {
-                $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
-                if(callStartedSec == 59) {
-                    callStartedSec = 0;
-                    callStartedMin++;
-                } else {
-                    callStartedSec++;
-                }
-                if(!inCall) {
-                    clearInterval(callStartedTimer);
-                }
-            }, 1000);
-        });
-        $(".notification-item-main-hangup").click(function() {
-            $.post('https://OraPhone/end_call', JSON.stringify({}));
-        });
-    } else {
-        notification.addEventListener("click", function() {
-            if(!phoneLockToggle) {
-                if(!displayToggle) {
-                    displayPhone();
-                }
-                updateContent(app);
-                updateAppContent(appSub);
-                notification.remove();
-                stopSounds();
-            }
-        });
-        notificationLock.addEventListener("click", function() {
-            if(phoneLockToggle) {
-                if(!displayToggle) {
-                    displayPhone();
-                }
-                if(!lockIconSnoozeEffect) {
-                    lockIconSnoozeEffect = true;
-                    $("#app-lock-icon-lock i").addClass("snooze");
-                    setTimeout(function() {
-                        $("#app-lock-icon-lock i").removeClass("snooze");
-                        lockIconSnoozeEffect = false;
-                    }, 500);
-                }
-            }
-        });
-    }
-    $(".notification-item-main-hangup").click(function() {
-        stopSounds();
+function initializeAppSettings() {
+    $("#settings-list-item-thememode label").change(function() {
+        switchThemeMode();
     });
-    setTimeout(function() {
-        notification.classList.remove("close");
-        notificationLock.classList.remove("close");
-        let notificationTime = "5000";
-        if(app == "call") {
-            soundRinging.currentTime = 0;
-            soundRinging.play();
-            notificationTime = "10000";
-
-        } else if(app == "clock") {
-            soundAlarm.currentTime = 0;
-            soundAlarm.play();
-            notificationTime = "30000";
-        } else {
-            soundNotification.currentTime = 0;
-            soundNotification.play();
-        }
-        setTimeout(function() {
-            if(app != "call") {
-                notification.style.opacity = "0";
-                notificationLock.style.opacity = "0";
-                setTimeout(function() {
-                    notification.remove();
-                    notificationLock.remove();
-                    if(app == "clock" || app == "call") {
-                        stopSounds();
-                    }
-                    if($("#notification-container").children().length == 0 && !displayToggle) {
-                        $("#phone").css("bottom", phoneBottomShowNot);
-                    }
-                }, 750);
-            }
-        }, notificationTime);
-    }, 25);
-}
-
-function stopWatchStart() {
-    stopWatch.ss++;
-    if (stopWatch.ss >= 100) {
-        stopWatch.ss = 0;
-        stopWatch.mm++;
-    }
-    if (stopWatch.mm >= 60) {
-        stopWatch.mm = 0;
-        stopWatch.hh++;
-    }
-    $("#app-clock-list-item-stopwatch").html(
-        (stopWatch.hh < 10 ? "0" + stopWatch.hh : stopWatch.hh) +
-        ":" +
-        (stopWatch.mm < 10 ? "0" + stopWatch.mm : stopWatch.mm) +
-        "." +
-        (stopWatch.ss < 10 ? "0" + stopWatch.ss : stopWatch.ss));
-}
-
-function timerStart() {
-    timer.ss--;
-    if(timer.ss == 0 && timer.mm == 0 && timer.hh == 0) {
-        clearInterval(timer.timer);
-        $("#app-clock-timer-time").addClass("finish");
-        timer.isFinish = true;
-        if(menuSelected != "clock" || menuAppSelected != "timer") {
-            addNotification("clock", "timer", "Maintenant", "Minuteur", "Minuteur terminé");
-        }
-    }
-    if (timer.ss <= -1) {
-        timer.ss = 59;
-        timer.mm--;
-    }
-    if (timer.mm <= -1) {
-        timer.mm = 59;
-        timer.hh--;
-    }
-    $("#app-clock-timer-time").html(
-        (timer.hh < 10 ? "0" + timer.hh : timer.hh) +
-        ":" +
-        (timer.mm < 10 ? "0" + timer.mm : timer.mm) +
-        ":" +
-        (timer.ss < 10 ? "0" + timer.ss : timer.ss));
-}
-
-function displayPhone() {
-    if(displayToggle) {
-        $("#phone").css("bottom", phoneBottomShowNot);
-        displayToggle = false;
-    } else {
-        $("#phone").css("bottom", phoneBottomShow);
-        displayToggle = true;
-    }
-}
-
-function displayTopbar() {
-    if(displayTopbarToggle) {
-        $("#topbar-blur").css("opacity", "0");
-        setTimeout(function() {
-            $("#topbar-blur").hide();
-            $("#phone-screen-content-topbar").hide();
-        }, 300);
-        $("#topbar-content").css("top", "-700px");
-        displayTopbarToggle = false;
-    } else {
-        $("#phone-screen-content-topbar").show();
-        $("#topbar-blur").show();
-        $("#topbar-blur").css("opacity", "1");
-        $("#topbar-content").css("top", "0px");
-        displayTopbarToggle = true;
-    }
-}
-
-function updateContent(menu) {
-    let appSelected = document.getElementById("app-" + menu);
-    if(!appSelected) {
-        return;
-    }
-    if(menu == "clock" && !activateAppClockToggle) {
-        activateAppClock();
-    } else if(menu == "settings" && !activateAppSettingsToggle) {
-        activateAppSettings();
-    }
-    FooterColor = "#ffffff";
-    FooterColorBackground = "transparent";
-    Bodycolor = "#ffffff";
-    BodyColorBackground = "transparent";
-    for(let content of document.getElementsByClassName("app")) {
-        if(content.id.split("-")[1] != "home") {
-            content.style.transform = "scale(0)";
-            if(menu != content.id.split("-")[1]) {
-                setTimeout(function() {
-                    content.style.display = "none";
-                }, 300);
-            } else {
-                content.style.display = "none";
-            }
-        }
-    }
-    $("#app-" + menu).show();
-    if(appSelected.id.split("-")[1] != "home") {
-        appSelected.style.transform = "scale(1)";
-    }
-    if(menu != "home") {
-        for(let app of config.apps) {
-            if(app.name == menu) {
-                FooterColor = app.footerColor;
-                FooterColorBackground = app.footerColorBackground;
-                Bodycolor = app.bodyColor;
-                BodyColorBackground = app.bodyColorBackground;            
-            }
-        }
-    }
-    if(menu != "home") {
-        $("#phone-screen-content").removeClass();
-        if(appSelected.classList.contains("app-tabbed")) {
-            $("#phone-screen-content").addClass("app-tabbed");
-        } else if(appSelected.classList.contains("app-modal")) {
-            $("#phone-screen-content").addClass("app-modal");
-        }
-        $("#phone-screen-content").addClass("app-" + menu);
-    } else if(menu == "home") {
-        $("#phone-screen-content").removeClass();
-        setTimeout(function() {
-            updateAppContent("first");
-        }, 300);
-    }
-    menuSelectedLast = menuSelected;
-    menuSelected = menu;
-}
-
-function updateAppContent(element) {
-    menuAppSelectedLast = menuAppSelected;
-    menuAppSelected = element;
-    let elementSelected = "";
-    for(let content of document.getElementsByClassName("app-body-content")) {
-        content.style.display = "none";
-    }
-    $(".app-tab-button").removeClass("active");
-    if(element == "first") {
-        for(let content of document.getElementsByClassName("app")) {
-            for(let appContent of content.getElementsByClassName("app-body-content")) {
-                appContent.style.display = "block";
-                $("#app-tab-button-" + appContent.id.split("-")[4]).addClass("active");
-                if(content.id.split("-")[1] == menuSelected) {
-                    elementSelected = appContent.id.split("-")[4];
-                }
-                break;
-            }
-        }
-    } else {
-        document.getElementById("app-"+ menuSelected  + "-body-content-" + element).style.display = "block";
-        elementSelected = element;
-        $("#app-tab-button-" + element).addClass("active");
-    }
-    if(element == "newmessage") {
-        let searchInput = document.getElementById("app-message-body-content-newmessage-search");
-        searchInput.value = "";
-        for(let elt of $(".newmessage-list-item")) {
-            if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                elt.style.display = "flex";
-            } else {
-                elt.style.display = "none";
-            }
-        }
-    }
-    // Remise à zéro de la liste des contactes
-    if(menuSelected == "contacts") {
-        $("#newcontact-phone-number-input").val("");
-        $("#newcontact-name-input").val("");
-        $("#newcontact-icon-custom-input").val("");
-        $("#newcontact-profile-name span").html("");
-        $("#newcontact-profile-icon").data("title", "50-Animals-avatar_49");
-        $("#newcontact-profile-icon img").attr("src", folderContactsProfileIcon + "50-Animals-avatar_49.png");
-        let searchInput = document.getElementById("app-contacts-body-content-list-search");
-        searchInput.value = "";
-        for(let elt of $(".contacts-list-row-item")) {
-            if(elt.querySelector(".contacts-list-row-item-top-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                elt.style.display = "block";
-            } else {
-                elt.style.display = "none";
-            }
-        }
-        
-    }
-}
-
-function unlockPhone() {
-    let menuSelectedUnlock = document.getElementById("app-" + menuSelected);
-    if(menuSelectedUnlock != null && menuSelectedUnlock.id != "app-home") {
-        if(menuSelectedUnlock.classList.contains("app-tabbed")) {
-            $("#phone-screen-content").addClass("app-tabbed");
-        } else if(menuSelectedUnlock.classList.contains("app-modal")) {
-            $("#phone-screen-content").addClass("app-modal");
-        }
-        $("#phone-screen-content").addClass("app-" + menuSelected);
-    }
-    $("#phone-lock").hide();
-    $("#phone-lock").css("transform", "translate(0, -100%)");
-    $("#app-content").css("transform", "scale(1)");
-    $("#app-content").css("opacity", "1");
-    phoneLockToggle = false;
-    $("#phone-lock-button i").removeClass("fa-lock-open");
-    $("#phone-lock-button i").addClass("fa-lock");
-    if(!displayToggle) {
-        displayPhone();
-    }
-}
-
-function lockPhone() {
-    let menuSelectedLock = document.getElementById("app-" + menuSelected);
-    if(menuSelectedLock != null && menuSelectedLock.id != "app-home") {
-        $("#phone-screen-content").removeClass();
-    }
-    $("#phone-lock").show();
-    $("#phone-lock").css("transform", "translate(0, 0)");
-    setTimeout(function() {
-        $("#app-content").css("transform", "scale(3)");
-        $("#app-content").css("opacity", "0");
-    }, 0);
-    phoneLockToggle = true;
-    $("#phone-lock-button i").removeClass("fa-lock");
-    $("#phone-lock-button i").addClass("fa-lock-open");
-}
-
-function updateHomeDots() {
-    let active = $(".app-home-dot.active");
-    let inactive = $(".app-home-dot:not(.active)");
-    active.removeClass("active");
-    inactive.addClass("active");
-}
-
-function updatePageSelected() {
-    if(pageSelectedStart == 1) {
-        $("#app-home-page-container").css("left", "-100%");
-        pageSelectedStart = 2;
-        updateHomeDots();
-    } else if(pageSelectedStart == 2) {
-        $("#app-home-page-container").css("left", "0%");
-        pageSelectedStart = 1;
-        updateHomeDots();
-    }
-}
-
-function activateAppClock() {
-    activateAppClockToggle = true;
-    for(let timeClock of config.timelist) {
-        let divElement = "<div class='app-body-content-body-list-item'><div class='app-body-content-body-list-item-area'><div class='app-body-content-body-list-item-area-day'>" + timeClock.day + ", " + timeClock.gym + "</div><div class='app-body-content-body-list-item-area-time-zone'>" + timeClock.zone + "</div></div><div class='app-body-content-body-list-item-time'></div></div>";
-        $("#app-clock-body-content-clock .app-body-content-body-list").append(divElement);
-    }
-    let now = new Date();
-    let i = 0;
-    for(let time of config.timelist) {
-        time.now = now.toLocaleString("fr-FR", {
-            timeStyle: "short",
-            timeZone: time.timezone
-        });
-        document.querySelectorAll("#app-clock-body-content-clock .app-body-content-body-list-item")[i].querySelector(".app-body-content-body-list-item-time").innerHTML = time.now;
-        i += 1;
-    }
-	setInterval(function () {
-        let now = new Date();
-        let i = 0;
-        for(let time of config.timelist) {
-            time.now = now.toLocaleString("fr-FR", {
-                timeStyle: "short",
-                timeZone: time.timezone
-            });
-            document.querySelectorAll("#app-clock-body-content-clock .app-body-content-body-list-item")[i].querySelector(".app-body-content-body-list-item-time").innerHTML = time.now;
-            i += 1;
-        }
-    }, 1000);
-}
-
-function activateAppSettings() {
-    activateAppSettingsToggle = true;
+    $(".settings-list-item.child").click(function () {
+        updateAppContent($(this).attr("id").split("-")[3]);
+    });
     for(let wallpaper of config.wallpaper) {
         let divWallpaper = "<div data-wallpaper='" + wallpaper.title + "' class='settings-wallpaper-list-item'><div class='settings-wallpaper-list-item-img'><div class='settings-wallpaper-list-item-img-light'><img src='./assets/images/wallpaper/" + wallpaper.title + "-light.jpg' /></div><div class='settings-wallpaper-list-item-img-dark'><img src='./assets/images/wallpaper/" + wallpaper.title + "-dark.jpg' /></div><i class='fa-solid fa-circle-check wallpaper-active'></i><i class='fa-solid fa-circle-half-stroke'></i></div><span>" + wallpaper.label + "</span></div>";
         $("#settings-wallpaper-list").append(divWallpaper);
@@ -2127,10 +834,1108 @@ function activateAppSettings() {
     }
 }
 
+function initializeAppStore() {
+    $("#app-body-content-body-app-header-detail-button-download").click(function () {
+        if(isDownloadApp) {
+            return;
+        }
+        isDownloadApp = true;
+        let button = $("#app-body-content-body-app-header-detail-button-download");
+        let color = button.css("background-color");
+        button.css("background", "linear-gradient(110deg, " + color + " 0%, white 0%)")
+        for(let i = 0; i <= 100; ++i) {
+            setTimeout(function() {
+                button.css("background", "linear-gradient(110deg, " + color + " " + i + "%, white " + i + "%)");
+                button.first().html(i + "% Téléchargement...");
+            }, i * 50);
+        }
+        setTimeout(function() {
+            button.css("background", "");
+            button.first().html("Lancer");
+            isDownloadApp = false;
+        }, 100 * 50);
+    });
+}
+
+function initializeAppClock() {
+    $(".time-select-number-button").click(function () {
+        let numberType = $(this).attr("id").split("-")[2];
+        let operationType = $(this).attr("id").split("-")[4];
+        let spanAmount = $("#time-select-" + numberType + "-number-amount");
+        if(operationType == "up") {
+            if(spanAmount.html() == "59") {
+                spanAmount.html("00");
+            } else {
+                let amount = parseInt(spanAmount.html()) + 1;
+                spanAmount.html(amount < 10 ? "0" + amount : amount);
+            }
+        } else {
+            if(spanAmount.html() == "00") {
+                spanAmount.html("59");
+            } else {
+                let amount = parseInt(spanAmount.html()) - 1;
+                spanAmount.html(amount < 10 ? "0" + amount : amount);
+            }
+        }
+    });
+    $(".alarm-time-select-number-button").click(function () {
+        let numberType = $(this).attr("id").split("-")[3];
+        let operationType = $(this).attr("id").split("-")[5];
+        let spanAmount = $("#alarm-time-select-" + numberType + "-number-amount");
+        if(operationType == "up") {
+            if(numberType == "hour") {
+                if(spanAmount.html() == "23") {
+                    spanAmount.html("00");
+                } else {
+                    let amount = parseInt(spanAmount.html()) + 1;
+                    spanAmount.html(amount < 10 ? "0" + amount : amount);
+                }
+            } else {
+                if(spanAmount.html() == "59") {
+                    spanAmount.html("00");
+                } else {
+                    let amount = parseInt(spanAmount.html()) + 1;
+                    spanAmount.html(amount < 10 ? "0" + amount : amount);
+                }
+            }
+        } else {
+            if(numberType == "hour") {
+                if(spanAmount.html() == "00") {
+                    spanAmount.html("23");
+                } else {
+                    let amount = parseInt(spanAmount.html()) - 1;
+                    spanAmount.html(amount < 10 ? "0" + amount : amount);
+                }
+            } else {
+                if(spanAmount.html() == "00") {
+                    spanAmount.html("59");
+                } else {
+                    let amount = parseInt(spanAmount.html()) - 1;
+                    spanAmount.html(amount < 10 ? "0" + amount : amount);
+                }
+            }
+        }
+    });
+    $("#timer-button-start").click(function () {
+        if(timer.isFinish) {
+            return;
+        }
+        if(timer.stopStart) {
+            clearInterval(timer.timer);
+            $("#timer-button-start").removeClass("pause");
+            $("#timer-button-start").html("Reprendre");
+            timer.stopStart = false;
+        } else {
+            timer.timer = setInterval(timerStart, 1000);
+            $("#timer-button-start").addClass("pause");
+            $("#timer-button-start").html("Pause");
+            timer.stopStart = true;
+        }
+        if(!timer.loopShow) {
+            timer.hh = parseInt($("#time-select-hour-number-amount").html());
+            timer.mm = parseInt($("#time-select-minute-number-amount").html());
+            timer.ss = parseInt($("#time-select-second-number-amount").html());
+            $("#app-clock-timer-time").html(
+                (timer.hh < 10 ? "0" + timer.hh : timer.hh) +
+                ":" +
+                (timer.mm < 10 ? "0" + timer.mm : timer.mm) +
+                ":" +
+                (timer.ss < 10 ? "0" + timer.ss : timer.ss));
+            $("#timer-app-clock-time-select").hide();
+            $("#app-clock-timer-time").css("display", "flex");
+            $("#timer-button-reset").addClass("reset");
+            timer.loopShow = true;
+        }
+    });
+    $("#timer-button-reset").click(function () {
+            clearInterval(timer.timer);
+            $("#timer-app-clock-time-select").show();
+            $("#app-clock-timer-time").hide();
+            $("#timer-button-reset").removeClass("reset");
+            $("#timer-button-start").removeClass("pause");
+            $("#timer-button-start").html("Démarrer");
+            $("#app-clock-timer-time").html("00:00:00");
+            timer.hh = timer.mm = timer.ss = timer.loopNumber = 0;
+            $("#app-clock-timer-time").removeClass("finish");
+            timer.isFinish = false;
+            timer.stopStart = false;
+            timer.loopShow = false;
+    });
+    $("#stopwatch-button-start").click(function () {
+        if(stopWatch.stopStart) {
+            clearInterval(stopWatch.timer);
+            $("#stopwatch-button-start").removeClass("stop");
+            $("#stopwatch-button-start").html("Démarrer");
+            $("#stopwatch-button-reset").html("Effacer");
+            stopWatch.stopStart = false;
+        } else {
+            stopWatch.timer = setInterval(stopWatchStart, 10);
+            $("#stopwatch-button-start").addClass("stop");
+            $("#stopwatch-button-start").html("Arrêter");
+            $("#stopwatch-button-reset").html("Tour");
+            stopWatch.stopStart = true;
+        }
+        if(!stopWatch.loopShow) {
+            $("#stopwatch-button-reset").addClass("reset");
+            stopWatch.loopShow = true;
+        }
+    });
+    $("#stopwatch-button-reset").click(function () {
+        if(stopWatch.stopStart) {
+            stopWatch.loopNumber++;
+            let loopTimer = (stopWatch.hh < 10 ? "0" + stopWatch.hh : stopWatch.hh) +
+                            ":" +
+                            (stopWatch.mm < 10 ? "0" + stopWatch.mm : stopWatch.mm) +
+                            "." +
+                            (stopWatch.ss < 10 ? "0" + stopWatch.ss : stopWatch.ss);
+            let divLoop = "<div class='loop'><div class='name'>Tour " + stopWatch.loopNumber + "</div><div class='time' ref='looptime'>" + loopTimer + "</div></div>";
+            $("#stopwatch-list-loop").append(divLoop);
+        } else {
+            clearInterval(stopWatch.timer);
+            $("#stopwatch-button-reset").removeClass("reset");
+            $("#app-clock-list-item-stopwatch").html("00:00.00");
+            stopWatch.hh = stopWatch.mm = stopWatch.ss = stopWatch.loopNumber = 0;
+            $("#stopwatch-list-loop").empty();
+            stopWatch.loopShow = false;
+        }
+    });
+    $("#alarm-add-button").click(function () {
+        updateAppContent("addalarm");
+    });
+    $("#addalarm-cancel-button").click(function () {
+        updateAppContent("alarm");
+    });
+    $("#addalarm-save-button").click(function () {
+        let alarmId = Math.floor(Math.random() * (999999 - 111111) + 111111);
+        let alarmDescription = ($("#addalarm-input-description").val() == "") ? "Alarme" : $("#addalarm-input-description").val();
+        let alarmHour = parseInt($("#alarm-time-select-hour-number-amount").html());
+        let alarmMinute = parseInt($("#alarm-time-select-minute-number-amount").html());
+        let alarm = "<div class='app-body-content-body-list-item item-alarm'><div class='app-body-content-body-list-item-alarm'><div class='app-body-content-body-list-item-time'>" + (alarmHour < 10 ? "0" + alarmHour : alarmHour) +":" +(alarmMinute < 10 ? "0" + alarmMinute : alarmMinute) + "</div><div class='app-body-content-body-list-item-alarm-name'>" + alarmDescription + "</div><div class='app-body-content-body-list-item-alarm-day'></div></div><label data-id='" + alarmId + "' data-hour='" + alarmHour + "' data-minute='" + alarmMinute + "' class='app-body-content-body-list-item-switch'><input type='checkbox'/><span></span></label></div>";
+        $("#app-clock-body-content-alarm .app-body-content-body-list").append(alarm);
+        let alarmElement = document.querySelector("#app-clock-body-content-alarm .app-body-content-body-list").lastElementChild.querySelector(".app-body-content-body-list-item-switch");
+        alarmElement.addEventListener("change", function() {
+            if(alarmElement.firstElementChild.checked) {
+                alarmList.push( {
+                    "id": alarmElement.dataset.id,
+                    "timer": setInterval(function() {
+                        let dateNow = new Date();
+                        if(alarmElement.dataset.hour == dateNow.getHours() && alarmElement.dataset.minute == dateNow.getMinutes()) {
+                            alarmElement.firstElementChild.checked = false;
+                            if(menuSelected != "clock" || menuAppSelected != "alarm") {
+                                addNotification("clock", "alarm", "Maintenant", "Alarme", alarmElement.previousElementSibling.querySelector(".app-body-content-body-list-item-alarm-name").innerHTML);
+                            }
+                            for(let eltm of alarmList) {
+                                if(eltm.id == alarmElement.dataset.id) {
+                                    clearInterval(eltm.timer);
+                                }
+                            }
+                        }
+                    }, 1000)
+                });
+            } else {
+                for(let eltm of alarmList) {
+                    if(eltm.id == alarmElement.dataset.id) {
+                        clearInterval(eltm.timer);
+                    }
+                }
+            }
+        });;
+        updateAppContent("alarm");
+    });
+    for(let elt of document.getElementsByClassName("app-clock-list-item-switch")) {
+        elt.firstElementChild.addEventListener("change", function() {
+            if(elt.firstElementChild.checked) {
+                alarmList.push( {
+                    "id": elt.dataset.id,
+                    "timer": setInterval(function() {
+                        let dateNow = new Date();
+                        if(elt.dataset.hour == dateNow.getHours() && elt.dataset.minute == dateNow.getMinutes()) {
+                            elt.firstElementChild.checked = false;
+                            if(menuSelected != "clock" || menuAppSelected != "alarm") {
+                                addNotification("clock", "alarm", "Maintenant", "Alarme", elt.parentNode.previousElementSibling.querySelector(".app-clock-list-item-alarm-name").innerHTML);
+                            }
+                            for(let eltm of alarmList) {
+                                if(eltm.id == elt.dataset.id) {
+                                    clearInterval(eltm.timer);
+                                }
+                            }
+                        }
+                    }, 1000)
+                });
+            } else {
+                for(let eltm of alarmList) {
+                    if(eltm.id == elt.dataset.id) {
+                        clearInterval(eltm.timer);
+                    }
+                }
+            }
+        });
+    }
+}
+
+function initializeAppCalculator() {
+    $("#calculator-result").on('DOMSubtreeModified', function(){
+        $("#calculator-result").textfill({
+            minFontPixels: 10,
+            maxFontPixels: 80,
+            innerTag: "span",
+            widthOnly: true,
+            allowOverflow: true
+        });
+    });
+    $(function(){
+        var OperatorStatus = false;
+        var OperatorEqualStage = false;
+        var historyReset = false;
+        var NumberValue_first = 0;
+        var NumberValue_secend = 0;
+        var ScreenTotal = 0;
+        var Operators = "";
+        var PointLength_first = 0;
+        var PointLength_secend = 0;
+        var PointLengthMax = Math.max(PointLength_first, PointLength_secend);
+        $("#calculator-result span").text("0");
+        $(".Number-btn").click(function() {
+            if(historyReset) {
+                $("#calculator-history span").text("");
+                historyReset = false;
+            }
+            if(OperatorEqualStage) {
+                OperatorEqualStage = false;
+                $("#calculator-result span").text("");
+            }
+            if($(this).text() !== "0") {
+                $(".AC").text("C");
+            }
+            if($(this).text() === ".") {
+                if($("#calculator-result span").text() === "0") {
+                    $("#calculator-result span").html( 0 + ".");
+                } else if(ScreenTotal.indexOf(".") != -1) {
+                    return;
+                }
+            }
+            if(OperatorStatus) {
+                NumberValue_secend = $(this).text();
+                if($("#calculator-result span").text().length === 0 || $("#calculator-result span").text() === "0") {
+                    ScreenTotal = NumberValue_secend;
+                    $("#calculator-result span").text(ScreenTotal);
+                } else {
+                    ScreenTotal = ScreenTotal + NumberValue_secend;
+                    $("#calculator-result span").text(ScreenTotal);
+                    NumberValue_secend = ScreenTotal;
+                }
+                $(".Operator-btn").removeClass("click");
+            } else {
+                NumberValue_first = $(this).text();
+                if($("#calculator-result span").text().length === 0 || $("#calculator-result span").text() === "0") {
+                    ScreenTotal = NumberValue_first;
+                    $("#calculator-result span").text(ScreenTotal);
+                } else{
+                    ScreenTotal = ScreenTotal + NumberValue_first;
+                    $("#calculator-result span").text(ScreenTotal);
+                    NumberValue_first = ScreenTotal;
+                }
+            }
+        });
+        $(".Percentage").click(function() {
+            $(".Operator-btn").removeClass("click");
+            if(Math.round(ScreenTotal) === Number(ScreenTotal)) {
+                ScreenTotal *= 0.01;
+            } else {
+                PointLength_first = ScreenTotal.toString().split(".")[1].length;
+                ScreenTotal = (Number(ScreenTotal).toString().replace(".","") * 1) / Math.pow(10,(PointLength_first + 2));
+            }
+            NumberValue_first = ScreenTotal;
+            $("#calculator-result span").text(ScreenTotal);
+        });
+        // AC
+        $(".AC").click(function() {
+            $("#calculator-result span").css("font-size",  "3.15rem");
+            $(".Operator-btn").removeClass("click");
+            $(this).text("AC");
+            OperatorStatus = false;
+            NumberValue_first = 0;
+            NumberValue_secend = 0;
+            ScreenTotal = 0;
+            Operators = "";
+            PointLength_first = 0;
+            PointLength_secend = 0;
+            PointLength = Math.max(PointLength_first, PointLength_secend);
+            $("#calculator-history span").text("");
+            $("#calculator-result span").text(ScreenTotal);
+        });
+        //+-
+        $(".PlusMinus").click(function() {
+            $(".Operator-btn").removeClass("click");
+            ScreenTotal *= -1;
+            NumberValue_first = ScreenTotal;
+            $("#calculator-result span").text(ScreenTotal);
+        })
+        $(".Operator-btn").click(function() {
+            Operators = $(this).text();
+            $(".Operator-btn").removeClass("click");
+            $(this).addClass("click");
+            NumberValue_first = parseFloat(ScreenTotal);
+            if(!historyReset && !isNaN(NumberValue_first)) {
+                $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_first + " " + Operators);
+            }
+            OperatorEqualStage = true;
+            OperatorStatus = true;
+            ScreenTotal = "";
+        });
+        $(".equal").click(function() {
+            NumberValue_secend = parseFloat(NumberValue_secend);
+            OperatorEqualStage = true;
+            switch(Operators) {
+                case "+" :
+                    PointLength_first = NumberValue_first.toFixed(10).toString().split(".")[1].length;
+                    PointLength_secend = NumberValue_secend.toFixed(10).toString().split(".")[1].length;
+                    PointLengthMax = Math.max(PointLength_first, PointLength_secend);
+                    ScreenTotal = Math.round((NumberValue_first*Math.pow(10,PointLengthMax) + NumberValue_secend*Math.pow(10,PointLengthMax)))/Math.pow(10,PointLengthMax);
+                    if(!historyReset) {
+                        $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
+                    }
+                    $("#calculator-result span").text(ScreenTotal);
+                    historyReset = true;
+                    OperatorStatus = false;
+                    NumberValue_first = ScreenTotal;
+                    break;
+                case "-" :
+                    PointLength_first = NumberValue_first.toFixed(10).toString().split(".")[1].length;
+                    PointLength_secend = NumberValue_secend.toFixed(10).toString().split(".")[1].length;
+                    PointLengthMax = Math.max(PointLength_first, PointLength_secend);
+                    ScreenTotal = Math.round((NumberValue_first*Math.pow(10,PointLengthMax) - NumberValue_secend*Math.pow(10,PointLengthMax)))/Math.pow(10,PointLengthMax);
+                    if(!historyReset) {
+                        $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
+                    }
+                    $("#calculator-result span").text(ScreenTotal);
+                    historyReset = true;
+                    OperatorStatus = false;
+                    NumberValue_first = ScreenTotal;
+                break;
+                case "×" :
+                    if(Math.round(NumberValue_first) !== NumberValue_first &&  Math.round(NumberValue_secend) !== NumberValue_secend) {
+                        PointLength_first = NumberValue_first.toString().split(".")[1].length;
+                        PointLength_secend = NumberValue_secend.toString().split(".")[1].length;
+                        ScreenTotal = (Number(NumberValue_first).toString().replace(".","")* Number(NumberValue_secend).toString().replace(".","")) / Math.pow(10,(PointLength_first + PointLength_secend));
+                    } else if(Math.round(NumberValue_first) === NumberValue_first &&  Math.round(NumberValue_secend) !== NumberValue_secend) { // NumberValue_first 為整數
+                        PointLength_secend = NumberValue_secend.toString().split(".")[1].length;
+                        ScreenTotal = (NumberValue_first * Number(NumberValue_secend).toString().replace(".","")) / Math.pow(10,(PointLength_secend));
+                    } else if(Math.round(NumberValue_first) !== NumberValue_first &&  Math.round(NumberValue_secend) === NumberValue_secend) { // NumberValue_secend 為整數
+                        PointLength_first = NumberValue_first.toString().split(".")[1].length;
+                        ScreenTotal = (Number(NumberValue_first).toString().replace(".","") * NumberValue_secend) / Math.pow(10,(PointLength_first));
+                    } else {
+                        ScreenTotal = Number(NumberValue_first * NumberValue_secend);
+                    }
+                    if(!historyReset) {
+                        $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
+                    }
+                    $("#calculator-result span").text(ScreenTotal);
+                    historyReset = true;
+                    OperatorStatus = false;
+                    NumberValue_first = ScreenTotal;
+                    break;
+                case "÷" :
+                    PointLength_first = (Math.round(Number(NumberValue_first).toString().replace(".","")/NumberValue_first) +"").length;
+                    PointLength_secend = (Math.round(Number(NumberValue_secend).toString().replace(".","")/NumberValue_secend) +"").length;
+                    ScreenTotal = Number((Number(NumberValue_first).toString().replace(".","")) / Number(Number(NumberValue_secend).toString().replace(".",""))) * Math.pow(10,PointLength_secend - PointLength_first);
+                    if(!historyReset) {
+                        $("#calculator-history span").text($("#calculator-history span").text() + " " + NumberValue_secend + " = " + ScreenTotal);
+                    }
+                    $("#calculator-result span").text(ScreenTotal);
+                    historyReset = true;
+                    OperatorStatus = false;
+                    NumberValue_first = ScreenTotal;
+                    break;
+            }
+        })
+    });
+}
+
+function initializeAppRichterMotorsport() {
+    $("#app-richtermotorsport-body-content-advertisement-search-reset").click(function() {
+        $("#app-richtermotorsport-body-content-advertisement-search").val("");
+        $(".richtermotorsport-list-item").css("display", "block");
+    });
+    $("#richtermotorsport-button-advertisement").click(function() {
+        updateAppContent("advertisement");
+    });
+    $("#richtermotorsport-button-auction").click(function() {
+        updateAppContent("auction");
+    });
+    $("#richtermotorsport-button-create").click(function() {
+        $("#richtermotorsport-create-image-takephoto").show();
+        $("#richtermotorsport-create-image-photo").hide();
+        $("#richtermotorsport-create-image-photo").attr("src", "");
+        updateAppContent("create");
+    });
+    $("#richtermotorsport-create-button-create").click(function() {
+        let model = $("#richtermotorsport-create-input-model").val();
+        let category = $("#richtermotorsport-create-select-category").val();
+        let advertisementType = $("#richtermotorsport-create-select-advertisement-type").val();
+        let image = ($("#richtermotorsport-create-image-photo").attr("src") != '' ? $("#richtermotorsport-create-image-photo").attr("src") : "null");
+        let description = $("#richtermotorsport-create-textarea-description").val();
+        let registration = $("#richtermotorsport-create-input-registration").val();
+        let price = $("#richtermotorsport-create-input-price").val();
+        if(model.length > 0 && description.length > 0 && registration.length > 0 && price.length > 0 && category != "choice" && advertisementType != "choice" && image != "null") {
+            $.post('https://OraPhone/richtermotorsport_add_advertisement', JSON.stringify({ phoneId: userData.phone.id, image: image, model: model, category: category, advertisementType: advertisementType, description: description, registration: registration, price: price }));
+            updateAppContent("home");
+        }
+    });
+    $("#richtermotorsport-detail-favorite").click(function() {
+        $.post('https://OraPhone/richtermotorsport_favorite_advertisement', JSON.stringify({ phoneId: userData.phone.id, advertisementId: RichterMotorSportCurrentAdvertisement.id, favorite: !RichterMotorSportCurrentAdvertisement.favorite }));
+        if(!RichterMotorSportCurrentAdvertisement.favorite) {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-regular");
+            $("#richtermotorsport-detail-favorite").addClass("fa-solid");
+        } else {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-solid");
+            $("#richtermotorsport-detail-favorite").addClass("fa-regular");
+        }
+        for(let advertisement of userData.richterMotorsportAdvertisement.advertisement) {
+            if(advertisement.id == RichterMotorSportCurrentAdvertisement.id) {
+                advertisement.favorite = !advertisement.favorite;
+                break;
+            }
+        }
+    });
+    $("#richtermotorsport-create-image-takephoto").click(function() {
+        activateAppCamera("richtermotorsport", "create");
+    });
+}
+
+function initializeAppCamera() {
+    $("#camera-image").click(function() {
+        $("#image-fullscreen img").attr("src", $(this).attr("src"));
+        $("#image-fullscreen").show();
+    });
+    $("#image-fullscreen").click(function() {
+        $("#image-fullscreen").hide();
+    });
+}
+
+function initializeAppNotes() {
+    $("#notes-folder-button-add").click(function() {
+        let newDiv = `<div class="notes-list-item">
+            <div class="notes-list-item-left">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <input type="text" class="notes-list-item-title" disabled value="Nouveau dossier"/>
+            </div>
+            <div class="notes-list-item-right">
+                <span class="notes-list-item-count">0</span>
+                <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+            </div>
+        </div>`;
+        $("#notes-list-folders").append(newDiv);
+        $("#notes-list-folders").children().last().click(function() {
+            updateAppContent("folder");
+        });
+        notesFolderContextMenu.updateTargetNode();
+    });
+    $("#notes-folder-note-button-add").click(function() {
+        let newDiv = `<div class="notes-list-item">
+            <span class="notes-list-item-title">Note #1</span>
+            <span class="notes-list-item-date">16:29</span>
+            <div class="notes-list-item-bottom">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <span class="notes-list-item-folder">Notes rapides</span>
+            </div>
+        </div> `;
+        $("#notes-list-notes").append(newDiv);
+        $("#notes-list-notes").children().last().click(function() {
+            updateAppContent("note");
+        });
+        notesNoteContextMenu.updateTargetNode();
+    });
+    const notesFolderMenuItems = [
+        {
+            content: `${renameIcon}Renommer le dossier`,
+            events: {
+                click: () =>  renameNotesFolder()
+            }
+        },
+        {
+            content: `${deleteIcon}Supprimer le dossier`,
+            events: {
+                click: () => removeNotesFolder()
+            },
+            divider: "top",
+            class: "delete"
+        },
+    ];
+    const notesNoteMenuItems = [
+        {
+            content: `${deleteIcon}Supprimer la note`,
+            events: {
+                click: () => removeNotesNote()
+            },
+            class: "delete"
+        },
+    ];
+    const notesFolderContextMenu = new ContextMenu({
+        target: "#notes-list-folders .notes-list-item:not(.disabled)",
+        menuItems: notesFolderMenuItems
+    });
+    const notesNoteContextMenu = new ContextMenu({
+        target: "#notes-list-notes .notes-list-item:not(.disabled)",
+        menuItems: notesNoteMenuItems
+    });
+    notesFolderContextMenu.init();
+    notesNoteContextMenu.init();
+    $("#app-notes-body-content-folder-search-reset").click(function() {
+        $("#app-notes-body-content-folder-search").val("");
+        $(".notes-list-item").css("display", "flex");
+    });
+    // Inisialisation de la recherche de notes
+    let searchInput = document.getElementById("app-notes-body-content-folder-search");
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $("#notes-list-notes .notes-list-item")) {
+            if(elt.querySelector(".notes-list-item-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "flex";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+    $("#notes-note-content").on("input", function() {
+        this.style.height = 0;
+        this.style.height = (this.scrollHeight) + "px";
+    });
+    $("#notes-checklist-button-add").click(function() {
+        $("#notes-note-content").val($("#notes-note-content").val() + "\n- [ ] ");
+    });
+    $("#notes-note-button-edit").click(function() {
+        updateNotesNoteContent();
+    });
+}
+
+function updateNotesNoteContent() {
+    $("#notes-note-content").toggle();
+    $("#notes-note-container").toggle();
+    notesNoteInputToggle = !notesNoteInputToggle;
+    if(notesNoteInputToggle) {
+        $("#notes-note-content").focus();
+    } else {
+        $("#notes-note-container").empty();
+        let lines = $("#notes-note-content").val().split("\n");
+        let newContent = "";
+        for(let line of lines) {
+            if(line.startsWith("- [ ]")) {
+                line = line.replace("- [ ]", "<li><input type='checkbox' class='notes-checklist-item-checkbox unchecked'/><span class='notes-checklist-item-text'>");
+                line += "</span></li>";
+            } else if(line.startsWith("- [x]")) {
+                line = line.replace("- [x]", "<li><input type='checkbox' class='notes-checklist-item-checkbox checked' checked/><span class='notes-checklist-item-text'>");
+                line += "</span></li>";
+            }
+            newContent += line + "<br/>";
+        }
+        $("#notes-note-container").empty();
+        $("#notes-note-container").append(newContent);
+        $("#notes-note-container input").on("input", function() {
+            let find = "";
+            let replacement = "";
+            let index = "";
+            if(this.checked) {
+                find = "- [ ]";
+                replacement = "- [x]";
+                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.unchecked").index(this) + 1).join(find).length;
+                $(this).removeClass("unchecked");
+                $(this).addClass("checked");
+            } else {
+                find = "- [x]";
+                replacement = "- [ ]";
+                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.checked").index(this) + 1).join(find).length;
+                $(this).removeClass("checked");
+                $(this).addClass("unchecked");
+            }
+            $("#notes-note-content").val($("#notes-note-content").val().substring(0, index) + replacement + $("#notes-note-content").val().substring(index + replacement.length));
+        });
+    }
+}
+
+function removeNotesFolder() {
+    if(notesListItem) {
+        notesListItem.disabled = true;
+        notesListItem.classList.remove("active");
+        notesListItem = false;
+    }
+    let folder = contextMenuItemClicked.target.closest(".notes-list-item");
+    folder.remove();
+}
+
+function renameNotesFolder() {
+    if(notesListItem) {
+        notesListItem.disabled = true;
+        notesListItem.classList.remove("active");
+        notesListItem = false;
+    }
+    let input = contextMenuItemClicked.target.closest(".notes-list-item").querySelector(".notes-list-item-title");
+    input.disabled = false;
+    input.focus();
+    input.classList.add("active");
+    notesListItem = input;
+    
+}
+
+function removeNotesNote() {
+    let note = contextMenuItemClicked.target.closest(".notes-list-item");
+    note.remove();
+}
+
+// Mise à jour des applications
+
+function updateAppContacts() {
+    $("#contacts-list").empty();
+    for(var i = 65; i <= 90; i++) {
+        let divItem = "";
+        for(let contact of userData.contacts) {
+            if(contact.name.substring(0,1).toLowerCase() == String.fromCharCode(i).toLowerCase()) {
+                divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div><div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div><div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div></div></div>";
+            }
+        }
+        if(divItem != "") {
+            let divRow = "<div class='contacts-list-row'><div class='contacts-list-row-letter'><span>" + String.fromCharCode(i).toUpperCase() + "</span></div>" + divItem + "</div>";
+            $('#contacts-list').append(divRow);
+        }
+    }
+    // Inisialisation bouton de contacte
+    $(".edit-contact").click(function() {
+        contactId = $(this).data("id");
+        contactPhoneNumber = $(this).data("number").toString().substring(3);
+        contactName = $(this).data("name");
+        contactAvatar = $(this).data("avatar");
+        updateAppContent("editcontact");
+        $("#editcontact-profile-icon").data("title", contactAvatar);
+        if(contactAvatar.includes("http")) {
+            $("#editcontact-profile-icon").addClass("url");
+        } else {
+            $("#editcontact-profile-icon").removeClass("url");
+        }
+        $("#editcontact-profile-icon img").attr("src", (contactAvatar.includes("http") ? contactAvatar : folderContactsProfileIcon + contactAvatar + ".png"));
+        $("#editcontact-profile-name span").html(contactName);
+        $("#editcontact-phone-number-input").val(contactPhoneNumber);
+        $("#editcontact-name-input").val(contactName);
+        if(contactAvatar.includes("http")) {
+            $("#editcontact-icon-custom-input").val(contactAvatar);
+        } else {
+            $("#editcontact-icon-custom-input").val("");
+        }
+        $("#editcontact-icon-list").children().removeClass("active");
+        for(let icon of $("#editcontact-icon-list").children()) {
+            if(icon.dataset.title == contactAvatar) {
+                icon.classList.add("active");
+            }
+        }
+    });
+    $(".call-contact").click(function() {
+        callNumber($(this).data("number"));
+    });
+    $(".message-contact").click(function() {
+            conversationAuthors = [];
+            for(let contact of $("#newmessage-list").children()) {
+                if(contact.classList.contains("active")) {
+                    conversationAuthors.push(contact.dataset.number);
+                }
+            }
+            conversationAuthors.push($(this).data("number"));
+            conversationAuthors.push(userData.phone.number);
+            if(conversationAuthors.length < 2) {
+                return;
+            }
+            $.post('https://OraPhone/message_create_conversation', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number , authors: conversationAuthors }));
+            updateContent("message")
+            updateAppContent("message");
+    });
+    // Inisialisation de la liste de l'alphabet
+    $("#contacts-list-alphabet span").click(function() {
+        for(let item of $(".contacts-list-row-letter")) {
+            if(item.querySelector("span").innerText.charAt(0).toLowerCase() == this.title.toLowerCase()) {
+                document.getElementById("contacts-list").scrollTo({top: item.parentNode.offsetTop, behavior: 'smooth'});
+                return;
+            }
+        }
+    });
+    // Inisialisation de la recherche de contactes
+    let searchInput = document.getElementById("app-contacts-body-content-list-search");
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $(".contacts-list-row-item")) {
+            if(elt.querySelector(".contacts-list-row-item-top-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "block";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+    // Inisialisation des événements sur les contactes
+    $(".contacts-list-row-item-top").click(function () {
+        if($(this.parentNode).hasClass("active")) {
+            $(this.parentNode).removeClass("active");
+        } else {
+            $(".contacts-list-row-item").removeClass("active");
+            $(this.parentNode).addClass("active");
+        }
+    });
+}
+
+function updateAppMessage() {
+    for(let contact of userData.contacts) {
+        if(contact.number.toString().length == 7) {
+            let div = "<div data-number='" + contact.number + "' data-name='" + contact.name + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + contact.name + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + contact.number.toString().substring(3) + "</span></div></div></div>";
+            $('#newmessage-list').append(div);
+        }
+    }
+    $(".newmessage-list-item").click(function() {
+        this.classList.toggle("active");
+    });
+    $("#newmessage-list-alphabet span").click(function() {
+        for(let item of $(".newmessage-list-item")) {
+            if(item.querySelector(".newmessage-list-item-right-header-name").innerText.charAt(0).toLowerCase() == this.title.toLowerCase()) {
+                document.getElementById("newmessage-list").scrollTo({top: item.offsetTop, behavior: 'smooth'});
+                return;
+            }
+        }
+    });
+    let searchInput = document.getElementById("app-message-body-content-newmessage-search");
+    searchInput.value = "";
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $(".newmessage-list-item")) {
+            if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "flex";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+}
+
+function updateAppMessageLoad(id = false) {
+    if(!id) {
+        // Get conversationId from authors list
+        for(let conversation of userData.conversations) {
+            if(conversationAuthors.every(i => JSON.parse(conversation.target_number).includes(i)) && conversationAuthors.length == JSON.parse(conversation.target_number).length) {
+                conversationId = conversation.id;
+                break;
+            }
+        }
+    } else {
+        conversationId = id;
+    }
+    if(conversationId != "") {
+        let targetNumber = "";
+        $('.app-message-conversation .messages').empty();
+        for(let conversation of userData.conversations) {
+            if(conversation.id == conversationId) {
+                let conversationAvatar = contactAvatarDefault;
+                let conversationName = "";
+                targetNumber = JSON.parse(conversation.target_number);
+                for(let user of JSON.parse(conversation.target_number)) {
+                    if(user != userData.phone.number) {
+                        let name = user;
+                        for(let contact of userData.contacts) {
+                            if(contact.number == user) {
+                                if(JSON.parse(conversation.target_number).length == 2) {
+                                    if(contact.avatar.includes("http")) {
+                                        conversationAvatar = contact.avatar;
+                                    } else {
+                                        conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                                    }
+                                }
+                                name = contact.name;
+                                break;
+                            }
+                        }
+                        conversationName += name + ", ";
+                    }
+                }
+                conversationName = conversationName.slice(0, -2);
+                if(conversationAvatar.includes("http")) {
+                    $(".app-body-content-header-profil-avatar").addClass("url");
+                } else {
+                    $(".app-body-content-header-profil-avatar").removeClass("url");
+                }
+                $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
+                $(".app-body-content-header-profil-name span").html(conversationName);
+                for(let message of conversation.messages) {
+                    let sourceName = "";
+                    let sourceType = "";
+                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+                    if(message.sourceNumber == userData.phone.number) {
+                        sourceName = "Moi";
+                        sourceType = "me";
+                    } else {
+                        sourceName = message.sourceNumber;
+                        sourceType = "you";
+                        for(let contact of userData.contacts) {
+                            if(contact.number == message.sourceNumber) {
+                                sourceName = contact.name;
+                            }
+                        }
+                    }
+                    responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
+                }
+            }
+        }
+        let messageInput = $("#app-message-footer-input");
+        messageInput.on("keyup", function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                if (messageInput.val() != "") {
+                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
+                    messageInput.val("");
+                }
+            }
+        });
+        let elementMessages = document.querySelector(".app-message-conversation .messages");
+        elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+    }
+}
+
+function updateAppPhone() {
+    $("#phonehistory-list").empty();
+    for(let call of userData.calls) {
+        let callTarget = "";
+        let callSource = false;
+        let callDuration = "";
+        if(call.source_number == phoneNumber) {
+            callSource = true;
+            callTarget = call.target_number.toString();
+        } else {
+            callTarget = call.source_number.toString();
+        }
+        let callNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
+        let callName = callNumber
+        for(let contact of userData.contacts) {
+            if(contact.number == callTarget) {
+                callName = contact.name;
+                break;
+            }
+        }
+        callAccepted = call.accepted;
+        let callTime = new Date(call.call_time)
+        let nowTime = new Date()
+        if(callTime.toDateString() == nowTime.toDateString()) {
+            callTime = callTime.toLocaleString('fr-FR', { timeStyle: 'short' });
+        } else {
+            let yesterday = new Date();
+            yesterday.setDate(nowTime.getDate() - 1);
+            if(callTime.toDateString() == yesterday.toDateString()) {
+                callTime = "Hier";
+            } else {
+                tmp = Math.ceil(Math.abs(nowTime - callTime) / (1000 * 60 * 60 * 24));
+                if(tmp <= 7) {
+                    callTime = callTime.toLocaleString('fr-FR', { weekday: 'long' });
+                    callTime = callTime.charAt(0).toUpperCase() + callTime.slice(1);
+                } else {
+                    callTime = callTime.toLocaleString('fr-FR', { dateStyle: 'short' });
+                }
+            }
+        }
+        if(callAccepted) {
+            let minutes = Math.floor(call.call_duration / 60);
+            let seconds = call.call_duration - minutes * 60;
+            callDuration = (minutes < 10 ? "0" + minutes : minutes)+ ":" + (seconds < 10 ? "0" + seconds : seconds);
+        } else {
+            callDuration = "Manqué";
+        }
+
+        let divCall = "<div class='phonehistory-list-item " + (callAccepted ? '' : 'miss') + "'><div class='phonehistory-list-item-left'><div class='phonehistory-list-item-type'><i class='fa-solid fa-phone'></i><i class='fa-solid fa-turn-" + (callSource ? 'up' : 'down') + "'></i></div><div class='phonehistory-list-item-body'><span class='phonehistory-list-item-body-name'>" + callName + "</span><span class='phonehistory-list-item-body-number'>" + callNumber + "</span></div></div><div class='phonehistory-list-item-time'><span>" + callTime + "</span></div><div class='phonehistory-list-item-duration'><span>" + callDuration + "</span></div></div>";
+        $("#phonehistory-list").append(divCall);
+        $("#phonehistory-list").children().last().click(function () {
+            callNumber(callTarget);
+        });
+    }
+}
+
+function updateAppRichterMotorsport() {
+    $("#richtermotorsport-list-favorite").empty();
+    $("#richtermotorsport-list-advertisement").empty();
+    $("#richtermotorsport-list-auction").empty();
+    for(let advertisement of userData.richterMotorsportAdvertisement.advertisement) {
+        let favorite = userData.richterMotorsportAdvertisement.favorite.find( favorite => favorite.advertisementId == advertisement.id);
+        advertisement.favorite = (favorite ? true : false);
+        let divItem = "";
+        if(advertisement.advertisementType == "vente") {
+            divItem = "<div data-id='" + advertisement.id + "' class='richtermotorsport-list-item'><div class='richtermotorsport-list-item-image'><img src='" + advertisement.imgUrl + "'/></div><div class='richtermotorsport-list-item-description'><div><span class='richtermotorsport-list-item-description-title'>" + advertisement.model + "</span>" + (advertisement.favorite ? "<i class='fa-solid fa-heart richtermotorsport-list-item-description-favorite'></i>" : "<i class='fa-regular fa-heart richtermotorsport-list-item-description-favorite'></i>") + "</div><div><span class='richtermotorsport-list-item-description-category'>" + advertisement.category + "</span><span class='richtermotorsport-list-item-description-price'>$ " + numberWithSpaces(advertisement.price) + "</span></div></div></div></div>";
+            $("#richtermotorsport-list-advertisement").append(divItem);
+        } else if(advertisement.advertisementType == "enchère") {
+            divItem = "<div data-id='" + advertisement.id + "' class='richtermotorsport-list-item'><div class='richtermotorsport-list-item-image'><img src='" + advertisement.imgUrl + "'/></div><div class='richtermotorsport-list-item-description'><div><span class='richtermotorsport-list-item-description-title'>" + advertisement.model + "</span>" + (advertisement.favorite ? "<i class='fa-solid fa-heart richtermotorsport-list-item-description-favorite'></i>" : "<i class='fa-regular fa-heart richtermotorsport-list-item-description-favorite'></i>") + "</div><div><span class='richtermotorsport-list-item-description-category'>" + advertisement.category + "</span><span class='richtermotorsport-list-item-description-price'><span>A partir de </span>$ " + numberWithSpaces(advertisement.price) + "</span></div></div></div></div>";
+            $("#richtermotorsport-list-auction").append(divItem);
+        }
+        if(advertisement.favorite) {
+            $("#richtermotorsport-list-favorite").append(divItem);
+        }
+    }
+    if($("#richtermotorsport-list-favorite").children().length == 0) {
+        $("#richtermotorsport-list-favorite").append("<span class='richtermotorsport-no-favorite'>Aucun favoris</span>");
+        $("#richtermotorsport-list-favorite").css("min-width", "100%");
+    } else {
+        $("#richtermotorsport-list-favorite").css("min-width", "auto");
+    }
+    $(".richtermotorsport-list-item").click(function() {
+        let id = $(this).attr("data-id");
+        let advertisement = userData.richterMotorsportAdvertisement.advertisement.find( advertisement => advertisement.id == id);
+        $("#richtermotorsport-detail-model").html(advertisement.model);
+        $("#richtermotorsport-detail-category").html(advertisement.category);
+        if(advertisement.favorite) {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-regular");
+            $("#richtermotorsport-detail-favorite").addClass("fa-solid");
+        } else {
+            $("#richtermotorsport-detail-favorite").removeClass("fa-solid");
+            $("#richtermotorsport-detail-favorite").addClass("fa-regular");
+        }
+        $(".richtermotorsport-detail-image img").attr("src", advertisement.imgUrl);
+        $("#richtermotorsport-detail-description").html(advertisement.description);
+        $("#richtermotorsport-detail-registration").html(advertisement.registration);
+        $("#richtermotorsport-detail-price").html("$ " + numberWithSpaces(advertisement.price));
+        RichterMotorSportCurrentAdvertisement = advertisement;
+        updateAppContent("detail");
+    });
+    let searchInput = document.getElementById("app-richtermotorsport-body-content-advertisement-search");
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $(".richtermotorsport-list-item")) {
+            if(elt.querySelector(".richtermotorsport-list-item-description-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "block";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+}
+
+function updateAppRichterMotorsportLoad(id) {
+    if(id != "") {
+        $('.app-message-conversation .messages').empty();
+        for(let conversation of userData.conversations) {
+            if(conversation.id == conversationId) {
+                let conversationAvatar = contactAvatarDefault;
+                let conversationName = "";
+                targetNumber = JSON.parse(conversation.target_number);
+                for(let user of JSON.parse(conversation.target_number)) {
+                    if(user != userData.phone.number) {
+                        let name = user;
+                        for(let contact of userData.contacts) {
+                            if(contact.number == user) {
+                                if(JSON.parse(conversation.target_number).length == 2) {
+                                    if(contact.avatar.includes("http")) {
+                                        conversationAvatar = contact.avatar;
+                                    } else {
+                                        conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                                    }
+                                }
+                                name = contact.name;
+                                break;
+                            }
+                        }
+                        conversationName += name + ", ";
+                    }
+                }
+                conversationName = conversationName.slice(0, -2);
+                if(conversationAvatar.includes("http")) {
+                    $(".app-body-content-header-profil-avatar").addClass("url");
+                } else {
+                    $(".app-body-content-header-profil-avatar").removeClass("url");
+                }
+                $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
+                $(".app-body-content-header-profil-name span").html(conversationName);
+                for(let message of conversation.messages) {
+                    let sourceName = "";
+                    let sourceType = "";
+                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+                    if(message.sourceNumber == userData.phone.number) {
+                        sourceName = "Moi";
+                        sourceType = "me";
+                    } else {
+                        sourceName = message.sourceNumber;
+                        sourceType = "you";
+                        for(let contact of userData.contacts) {
+                            if(contact.number == message.sourceNumber) {
+                                sourceName = contact.name;
+                            }
+                        }
+                    }
+                    responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
+                }
+            }
+        }
+        let messageInput = $("#app-message-footer-input");
+        messageInput.on("keyup", function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                if (messageInput.val() != "") {
+                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
+                    messageInput.val("");
+                }
+            }
+        });
+        let elementMessages = document.querySelector(".app-message-conversation .messages");
+        elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+    }
+}
+
+function updateAppGallery() {
+    $("#gallery-image-list").empty();
+    for(let image of userData.galleryPhoto) {
+        let divImage = "<div class='gallery-image-list-item'><img src='" + image.imageLink + "'/></div>";
+        $("#gallery-image-list").append(divImage);
+        $("#gallery-image-list").children().last().click(function() {
+            $("#image-fullscreen img").attr("src", image.imageLink);
+            $("#image-fullscreen").show();
+        });
+    }
+}
+
+// Activer les applications
+
+function activateAppClock() {
+    activateAppClockToggle = true;
+    for(let timeClock of config.timelist) {
+        let divElement = "<div class='app-body-content-body-list-item'><div class='app-body-content-body-list-item-area'><div class='app-body-content-body-list-item-area-day'>" + timeClock.day + ", " + timeClock.gym + "</div><div class='app-body-content-body-list-item-area-time-zone'>" + timeClock.zone + "</div></div><div class='app-body-content-body-list-item-time'></div></div>";
+        $("#app-clock-body-content-clock .app-body-content-body-list").append(divElement);
+    }
+    let now = new Date();
+    let i = 0;
+    for(let time of config.timelist) {
+        time.now = now.toLocaleString("fr-FR", {
+            timeStyle: "short",
+            timeZone: time.timezone
+        });
+        document.querySelectorAll("#app-clock-body-content-clock .app-body-content-body-list-item")[i].querySelector(".app-body-content-body-list-item-time").innerHTML = time.now;
+        i += 1;
+    }
+	setInterval(function () {
+        let now = new Date();
+        let i = 0;
+        for(let time of config.timelist) {
+            time.now = now.toLocaleString("fr-FR", {
+                timeStyle: "short",
+                timeZone: time.timezone
+            });
+            document.querySelectorAll("#app-clock-body-content-clock .app-body-content-body-list-item")[i].querySelector(".app-body-content-body-list-item-time").innerHTML = time.now;
+            i += 1;
+        }
+    }, 1000);
+}
+
+function activateAppRichterMotorsport() {
+    $.post('https://OraPhone/richtermotorsport_find_job', JSON.stringify({ phoneId: userData.phone.id }));
+}
+
+function activateAppCamera(app, appSub) {
+    $.post('https://OraPhone/open_camera', JSON.stringify({ app, appSub }));
+    const canvas = document.getElementById("videocall-canvas");
+    MainRender.renderToTarget(canvas);
+}
+
+// Application paramètre
+
 function updateZoom() {
+    $("#settings-list-general-zoom .settings-list-item-right-button-check").removeClass("active");
     for(let generalZoomItem of config.generalzoom) {
         if(generalZoomItem.title == generalZoomActive) {
+            $("#settings-list-item-generalzoom .settings-list-item-right-info span").html(generalZoomItem.label);
             generalZoom = generalZoomItem.value + "%";
+        }
+    }
+    for(let generalZoomItem of $("#settings-list-general-zoom").children()) {
+        if(generalZoomItem.dataset.generalzoom == generalZoomActive) {
+            generalZoomItem.querySelector(".settings-list-item-right-button-check").classList.add("active");
         }
     }
     $("#phone").css("zoom", generalZoom);
@@ -2144,49 +1949,52 @@ function updateProfile() {
     $("#settings-profile-number").html("555-" + phoneNumber.toString().substring(3));
 }
 
-function switchThemeMode() {
-    if(darkMode) {
-        $("body").addClass("theme--default");
-        $("body").removeClass("theme--dark");
-        darkMode = false;
-    } else {
-        $("body").removeClass("theme--default");
-        $("body").addClass("theme--dark");
-        darkMode = true;
-    }
-    $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { darkMode: darkMode } }));
-    $("#topbar-box-button-update-thememode").toggleClass("active");
-}
-
 function updateDarkMode() {
     if(darkMode) {
         $("body").addClass("theme--dark");
-        $("#topbar-box-button-update-thememode").toggleClass("active");
+        $("body").removeClass("theme--default");
+        $("#topbar-box-button-update-thememode").addClass("active");
+        $("#settings-list-item-thememode label input").prop("checked", true);
     } else {
         $("body").addClass("theme--default");
+        $("body").removeClass("theme--dark");
+        $("#topbar-box-button-update-thememode").removeClass("active");
+        $("#settings-list-item-thememode label input").prop("checked", false);
     }
 }
 
 function updateLuminosity() {
-    for (let e of document.querySelectorAll('input[type="range"].topbar-box-button-slider')) {
-        e.value = luminosityActive;
-        e.style.setProperty('--value', luminosityActive);
-        e.style.setProperty('--min', e.min == '' ? '10' : e.min);
-        e.style.setProperty('--max', e.max == '' ? '100' : e.max);
-        e.addEventListener('input', () => {
-            e.style.setProperty('--value', e.value);
-            if(e.id == "topbar-box-button-slider-luminosity") {
-                $("#phone-screen").css("filter", "brightness(" + (e.value) + "%)");
-                luminosityActive = e.value;
-                $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { luminosity: luminosityActive } }));
-            }
-        });
-    }
+    let slider = document.getElementById("topbar-box-button-slider-luminosity");
+    slider.value = luminosityActive;
+    slider.style.setProperty('--value', luminosityActive);
+    slider.style.setProperty('--min', slider.min == '' ? '10' : slider.min);
+    slider.style.setProperty('--max', slider.max == '' ? '100' : slider.max);
+    $("#phone-screen").css("filter", "brightness(" + (slider.value) + "%)");
+    slider.addEventListener('input', () => {
+        slider.style.setProperty('--value', slider.value);
+        $("#phone-screen").css("filter", "brightness(" + (slider.value) + "%)");
+        luminosityActive = slider.value;
+        $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { luminosity: luminosityActive } }));
+    });
+}
+
+function updateVolume() {
+    let slider = document.getElementById("topbar-box-button-slider-volume");
+    slider.value = volumeActive;
+    slider.style.setProperty('--value', volumeActive);
+    slider.style.setProperty('--min', slider.min == '' ? '0' : slider.min);
+    slider.style.setProperty('--max', slider.max == '' ? '100' : slider.max);
+    slider.addEventListener('input', () => {
+        slider.style.setProperty('--value', slider.value);
+        volumeActive = slider.value;
+        // $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { volume: volumeActive } }));
+    });
 }
 
 function updateWallpaper() {
     let wallpaperElement = false;
     let wallpaperLockElement = false;
+    $(".settings-wallpaper-list-item").removeClass("active");
     for(let wallpaper of config.wallpaper) {
         if(wallpaper.title == wallpaperActive) {
             $("#phone-screen").removeClass();
@@ -2199,27 +2007,75 @@ function updateWallpaper() {
             wallpaperLockElement = true;
         }
     }
-    if(!wallpaperElement) {
-        if(wallpaperActive.length > 0) {
-            $("#phone-screen").css("background-image", "url(" + wallpaperActive + ")");
+    if(wallpaperElement) {
+        for(let wallpaper of $("#settings-wallpaper-list").children()) {
+            if(wallpaper.dataset.wallpaper == wallpaperActive) {
+                wallpaper.classList.add("active");
+            }
         }
+    } else if(wallpaperActive.length > 0) {
+        $("#phone-screen").css("background-image", "url(" + wallpaperActive + ")");
     }
-    if(!wallpaperLockElement) {
-        if(wallpaperLockActive.length > 0) {
-            $("#phone-screen").css("background-image", "url(" + wallpaperLockActive + ")");
+    if(wallpaperLockElement) {
+        for(let wallpaper of $("#settings-wallpaper-lock-list").children()) {
+            if(wallpaper.dataset.wallpaper == wallpaperLockActive) {
+                wallpaper.classList.add("active");
+            }
         }
+    } else if(wallpaperLockActive.length > 0) {
+        $("#phone-screen").css("background-image", "url(" + wallpaperLockActive + ")");
     }
 }
 
 function updateSound() {
     soundNotification = new Audio(folderNotifications + soundNotificationActive + ".mp3");
     soundNotification.volume = soundNotificationVolume / 10;
+    for(let soundNotificationItem of $("#settings-list-sound-notification").children()) {
+        let buttonCheck = soundNotificationItem.querySelector(".settings-list-item-right-button-check");
+        if(buttonCheck.classList.contains("active")) {
+            buttonCheck.classList.remove("active");
+        }
+        if(soundNotificationItem.dataset.soundnotification == soundNotificationActive) {
+            buttonCheck.classList.add("active");
+            $("#settings-list-item-soundnotification .settings-list-item-right-info span").html(soundNotificationItem.querySelector(".settings-list-item-left-title span").innerHTML);
+        }
+    }
     soundRinging = new Audio(folderRingings + soundRingingActive + ".mp3");
     soundRinging.volume = soundRingingVolume / 10;
+    for(let soundRingingItem of $("#settings-list-sound-ringing").children()) {
+        let buttonCheck = soundRingingItem.querySelector(".settings-list-item-right-button-check");
+        if(buttonCheck.classList.contains("active")) {
+            buttonCheck.classList.remove("active");
+        }
+        if(soundRingingItem.dataset.soundringing == soundRingingActive) {
+            buttonCheck.classList.add("active");
+            $("#settings-list-item-soundringing .settings-list-item-right-info span").html(soundRingingItem.querySelector(".settings-list-item-left-title span").innerHTML);
+        }
+    }
     soundAlarm = new Audio(folderAlarms + soundAlarmActive + ".mp3");
     soundAlarm.volume = soundAlarmVolume / 10;
+    for(let soundAlarmItem of $("#settings-list-sound-alarm").children()) {
+        let buttonCheck = soundAlarmItem.querySelector(".settings-list-item-right-button-check");
+        if(buttonCheck.classList.contains("active")) {
+            buttonCheck.classList.remove("active");
+        }
+        if(soundAlarmItem.dataset.soundalarm == soundRingingActive) {
+            buttonCheck.classList.add("active");
+            $("#settings-list-item-soundalarm .settings-list-item-right-info span").html(soundAlarmItem.querySelector(".settings-list-item-left-title span").innerHTML);
+        }
+    }
     soundCallWait = new Audio(folderSounds + "sound-call-wait.mp3");
     soundCallWait.volume = 0.5;
+
+    document.getElementById("settings-slider-sound-notification").style.setProperty('--value', soundNotificationVolume);
+    document.getElementById("settings-slider-sound-notification").value = soundNotificationVolume;
+    document.getElementById("settings-slider-sound-notification").parentNode.parentNode.querySelector('.settings-list-item-top-right-amount').innerHTML = soundNotificationVolume;
+    document.getElementById("settings-slider-sound-ringing").style.setProperty('--value', soundRingingVolume);
+    document.getElementById("settings-slider-sound-ringing").value = soundRingingVolume;
+    document.getElementById("settings-slider-sound-ringing").parentNode.parentNode.querySelector('.settings-list-item-top-right-amount').innerHTML = soundRingingVolume;
+    document.getElementById("settings-slider-sound-alarm").style.setProperty('--value', soundAlarmVolume);
+    document.getElementById("settings-slider-sound-alarm").value = soundAlarmVolume;
+    document.getElementById("settings-slider-sound-alarm").parentNode.parentNode.querySelector('.settings-list-item-top-right-amount').innerHTML = soundAlarmVolume;
 }
 
 function updateAppHomeOrder() {
@@ -2251,6 +2107,7 @@ function updateAppHomeOrder() {
         });
     }
     // Création des application principales
+    $("#app-home-list-primary").empty();
     for(let app of config.apps) {
         if(app.isPrimary) {
             let divAppElement = "<div draggable='false' id='app-home-list-item-" + app.name + "' class='app-home-list-item app-home-list-item-primary'><img src='" + folderAppIcon + "app-" + app.name + "-icon.png'/></div>";
@@ -2331,7 +2188,7 @@ function updateAppHomeOrder() {
                             });
                         }
                     } else {
-                        if(mousePosition.x + offset[0] >= -260) {
+                        if(mousePosition.x + offset[0] >= -280) {
                             pageSelected.style.transition = "all 0.3s ease-in-out, left 0.5s ease-in-out";
                             updatePageSelected();
                             setTimeout(function() {
@@ -2366,6 +2223,671 @@ function updateAppHomeOrder() {
         saveHomeOrder()
     }, 300000);
     createShuffleGrid();
+}
+
+function switchThemeMode() {
+    if(darkMode) {
+        $("body").addClass("theme--default");
+        $("body").removeClass("theme--dark");
+        darkMode = false;
+    } else {
+        $("body").removeClass("theme--default");
+        $("body").addClass("theme--dark");
+        darkMode = true;
+    }
+    $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { darkMode: darkMode } }));
+    $("#topbar-box-button-update-thememode").toggleClass("active");
+    $("#settings-list-item-thememode label input").prop("checked", darkMode);
+}
+
+function saveHomeOrder() {
+    gridPage1.itemVOs.sort(dynamicSortMultiple("row", "col"));
+    let appHomeOrderSave = userData.phone.appHomeOrder;
+    userData.phone.appHomeOrder = [];
+    for(let icon of gridPage1.itemVOs) {
+        if(icon.item.dataset.name != null) {
+            userData.phone.appHomeOrder.push(icon.item.dataset.name);
+        } else {
+            userData.phone.appHomeOrder.push('');
+        }
+    }
+    if(appHomeOrderSave.toString() != userData.phone.appHomeOrder.toString()) {
+        $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { appHomeOrder: JSON.stringify(userData.phone.appHomeOrder) } }));
+    }
+}
+
+// Application Message
+
+function responsiveChatPush(sender, origin, date, message) {
+    var originClass;
+    if (origin == 'me') {
+        originClass = 'myMessage';
+    } else {
+        originClass = 'fromThem';
+    }
+    $('.app-message-conversation .messages').append('<div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div>');
+}
+
+function updateConversationList() {
+    $("#message-list").empty();
+    for(let conversation of userData.conversations) {
+        let conversationName = "";
+        let conversationTime = "";
+        let conversationMessage = "";
+        let conversationAvatar = contactAvatarDefault;
+        if(conversation.messages != "") {
+            conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
+            conversationMessage = conversation.messages[conversation.messages.length - 1].message;
+        }
+        for(let user of JSON.parse(conversation.target_number)) {
+            if(user != userData.phone.number) {
+                let name = user;
+                for(let contact of userData.contacts) {
+                    if(contact.number == user) {
+                        if(JSON.parse(conversation.target_number).length == 2) {
+                            if(contact.avatar.includes("http")) {
+                                conversationAvatar = contact.avatar;
+                            } else {
+                                conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                            }
+                        }
+                        name = contact.name;
+                        break;
+                    }
+                }
+                conversationName += name + ", ";
+            }
+        }
+        conversationName = conversationName.slice(0, -2);
+        let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div></div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
+        $("#message-list").append(divConversation);
+        $("#message-list").children().last().click(function () {
+            updateAppMessageLoad(conversation.id);
+            updateAppContent("message");
+            let elementMessages = document.querySelector(".app-message-conversation .messages");
+            elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+        });
+    }
+    let searchInput = document.getElementById("app-message-body-content-list-search");
+    searchInput.value = "";
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of $("#message-list .app-body-content-body-list-item")) {
+            if(elt.querySelector(".message-list-item-right-header-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "flex";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+}
+
+// Apllication Appel
+
+function receiveCall(data) {
+    callData = data;
+    inReceiveCall = true;
+    let avatar = contactAvatarDefault;
+    let name = callData.fromNumber;
+    for(let contact of userData.contacts) {
+        if(contact.number == callData.fromNumber) {
+            if(contact.avatar.includes("http")) {
+                avatar = contact.avatar;
+            } else {
+                avatar = folderContactsProfileIcon + contact.avatar + ".png";
+            }
+            name = contact.name;
+        }
+    }
+    if(!displayToggle) {
+        addNotification("call", "callreceive", "Maintenant", "Appel", name, avatar);
+    }
+    updateContent("call");
+    updateAppContent("callreceive");
+    soundRinging.currentTime = 0;
+    soundRinging.play();
+    setTimeout(function() {
+        if(inReceiveCall) {
+            $.post('https://OraPhone/end_call', JSON.stringify({}));
+            inReceiveCall = false;
+        }
+    }, 10000);
+}
+
+function callNumber(callNumber) {
+    callNumber = callNumber.toString();
+    callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
+    callAvatar = contactAvatarDefault;
+    for(let contact of userData.contacts) {
+        if(contact.number == callNumber) {
+            callAvatar = (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png");
+            callName = contact.name;
+            break;
+        }
+    }
+    $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: callNumber, fromNumber: phoneNumber }));
+    $("#callnumber-title-number").html("Appel vers " + callName);
+    $("#callnumber-icon img").attr("src", callAvatar);
+    if(callAvatar.includes("http")) {
+        $("#callnumber-icon").addClass("url");
+    } else {
+        $("#callnumber-icon").removeClass("url");
+    }
+}
+
+// Application Camera
+
+async function takeScreenshot(app, appSub) {
+    updateContent(app);
+    updateAppContent(appSub);
+    $("#camera-image").attr("src", "");
+    let resp = await MainRender.requestScreenshot("https://api.imgur.com/3/image/", "image");
+    if(app == "camera") {
+        $.post('https://OraPhone/camera_add_image', JSON.stringify({ phoneId: userData.phone.id, image: resp.data.link }));
+    } else if(appSub == "newcontact") {
+        $("#newcontact-icon-custom-input").val(resp.data.link);
+        $("#newcontact-profile-icon img").attr("src", resp.data.link);
+        $("#newcontact-profile-icon").addClass("url");
+    } else if(appSub == "editcontact") {
+        $("#editcontact-icon-custom-input").val(resp.data.link);
+        $("#editcontact-profile-icon img").attr("src", resp.data.link);
+        $("#editcontact-profile-icon").addClass("url");
+    } else if(app == "richtermotorsport" && appSub == "create") {
+        $("#richtermotorsport-create-image-takephoto").hide();
+        $("#richtermotorsport-create-image-photo").attr("src", resp.data.link);
+        $("#richtermotorsport-create-image-photo").show();
+    }
+    $.post('https://OraPhone/close_camera', JSON.stringify({}));
+    MainRender.stop();
+    $("#camera-image").attr("src", resp.data.link);
+}
+
+function setCameraImage(image) {
+    if(menuSelected == "camera") {
+        $("#camera-image").attr("src", image);
+        switchFormatOrientation("landscape");
+    }
+}
+
+function switchFormatOrientation(orientation = false) {
+    if(orientation) {
+        if(orientation == formatOrientation) {
+            return;
+        }
+        formatOrientation = orientation;
+    } else {
+        formatOrientation = formatOrientation == "landscape" ? "portrait" : "landscape";
+    }
+    if(formatOrientation == "portrait") {
+        $("#phone").css("rotate", "0deg");
+        $("#phone").css("bottom", phoneBottomShow);
+        $("#phone").css("right", "100px");
+    } else {
+        $("#phone").css("rotate", "-90deg");
+        $("#phone").css("bottom", phoneBottomShowLandscape);
+        $("#phone").css("right", "330px");
+    }
+}
+
+// Application Home
+
+function unlockPhone() {
+    let menuSelectedUnlock = document.getElementById("app-" + menuSelected);
+    if(menuSelectedUnlock != null && menuSelectedUnlock.id != "app-home") {
+        if(menuSelectedUnlock.classList.contains("app-tabbed")) {
+            $("#phone-screen-content").addClass("app-tabbed");
+        } else if(menuSelectedUnlock.classList.contains("app-modal")) {
+            $("#phone-screen-content").addClass("app-modal");
+        }
+        $("#phone-screen-content").addClass("app-" + menuSelected);
+    }
+    $("#phone-lock").hide();
+    $("#phone-lock").css("transform", "translate(0, -100%)");
+    $("#app-content").css("transform", "scale(1)");
+    $("#app-content").css("opacity", "1");
+    phoneLockToggle = false;
+    $("#phone-lock-button i").removeClass("fa-lock-open");
+    $("#phone-lock-button i").addClass("fa-lock");
+    if(!displayToggle) {
+        displayPhone();
+    }
+}
+
+function lockPhone() {
+    let menuSelectedLock = document.getElementById("app-" + menuSelected);
+    if(menuSelectedLock != null && menuSelectedLock.id != "app-home") {
+        $("#phone-screen-content").removeClass();
+    }
+    $("#phone-lock").show();
+    $("#phone-lock").css("transform", "translate(0, 0)");
+    setTimeout(function() {
+        $("#app-content").css("transform", "scale(3)");
+        $("#app-content").css("opacity", "0");
+    }, 0);
+    phoneLockToggle = true;
+    $("#phone-lock-button i").removeClass("fa-lock");
+    $("#phone-lock-button i").addClass("fa-lock-open");
+}
+
+function updateHomeDots() {
+    let active = $(".app-home-dot.active");
+    let inactive = $(".app-home-dot:not(.active)");
+    active.removeClass("active");
+    inactive.addClass("active");
+}
+
+function updatePageSelected() {
+    if(pageSelectedStart == 1) {
+        $("#app-home-page-container").css("left", "-100%");
+        pageSelectedStart = 2;
+        updateHomeDots();
+    } else if(pageSelectedStart == 2) {
+        $("#app-home-page-container").css("left", "0%");
+        pageSelectedStart = 1;
+        updateHomeDots();
+    }
+}
+
+// Application Horloge
+
+function stopWatchStart() {
+    stopWatch.ss++;
+    if (stopWatch.ss >= 100) {
+        stopWatch.ss = 0;
+        stopWatch.mm++;
+    }
+    if (stopWatch.mm >= 60) {
+        stopWatch.mm = 0;
+        stopWatch.hh++;
+    }
+    $("#app-clock-list-item-stopwatch").html(
+        (stopWatch.hh < 10 ? "0" + stopWatch.hh : stopWatch.hh) +
+        ":" +
+        (stopWatch.mm < 10 ? "0" + stopWatch.mm : stopWatch.mm) +
+        "." +
+        (stopWatch.ss < 10 ? "0" + stopWatch.ss : stopWatch.ss));
+}
+
+function timerStart() {
+    timer.ss--;
+    if(timer.ss == 0 && timer.mm == 0 && timer.hh == 0) {
+        clearInterval(timer.timer);
+        $("#app-clock-timer-time").addClass("finish");
+        timer.isFinish = true;
+        if(menuSelected != "clock" || menuAppSelected != "timer") {
+            addNotification("clock", "timer", "Maintenant", "Minuteur", "Minuteur terminé");
+        }
+    }
+    if (timer.ss <= -1) {
+        timer.ss = 59;
+        timer.mm--;
+    }
+    if (timer.mm <= -1) {
+        timer.mm = 59;
+        timer.hh--;
+    }
+    $("#app-clock-timer-time").html(
+        (timer.hh < 10 ? "0" + timer.hh : timer.hh) +
+        ":" +
+        (timer.mm < 10 ? "0" + timer.mm : timer.mm) +
+        ":" +
+        (timer.ss < 10 ? "0" + timer.ss : timer.ss));
+}
+
+// Fonctions d'affichage
+
+function updateContent(menu) {
+    let appSelected = document.getElementById("app-" + menu);
+    if(!appSelected) {
+        return;
+    }
+    if(menu == "clock" && !activateAppClockToggle) {
+        activateAppClock();
+    } else if(menu == "richtermotorsport") {
+        activateAppRichterMotorsport();
+    } else if(menu == "camera") {
+        if(!canvasActivate) {
+            canvasActivate = true;
+            activateAppCamera("camera", "photo");
+        }
+    }
+    switchFormatOrientation("portrait");
+    for(let content of document.getElementsByClassName("app")) {
+        if(content.id.split("-")[1] != "home") {
+            content.style.transform = "scale(0)";
+            if(menu != content.id.split("-")[1]) {
+                setTimeout(function() {
+                    content.style.display = "none";
+                }, 300);
+            } else {
+                content.style.display = "none";
+            }
+        }
+    }
+    $("#app-" + menu).show();
+    if(appSelected.id.split("-")[1] != "home") {
+        appSelected.style.transform = "scale(1)";
+    }
+    if(menu != "home") {
+        $("#phone-screen-content").removeClass();
+        if(appSelected.classList.contains("app-tabbed")) {
+            $("#phone-screen-content").addClass("app-tabbed");
+        } else if(appSelected.classList.contains("app-modal")) {
+            $("#phone-screen-content").addClass("app-modal");
+        }
+        $("#phone-screen-content").addClass("app-" + menu);
+    } else if(menu == "home") {
+        $("#phone-screen-content").removeClass();
+        canvasActivate = false;
+        setTimeout(function() {
+            updateAppContent("first");
+        }, 300);
+    }
+    menuSelectedLast = menuSelected;
+    menuSelected = menu;
+}
+
+function updateAppContent(element) {
+    menuAppSelectedLast = menuAppSelected;
+    menuAppSelected = element;
+    let elementSelected = "";
+    for(let content of document.getElementsByClassName("app-body-content")) {
+        content.style.display = "none";
+    }
+    $(".app-tab-button").removeClass("active");
+    if(element == "first") {
+        for(let content of document.getElementsByClassName("app")) {
+            for(let appContent of content.getElementsByClassName("app-body-content")) {
+                appContent.style.display = "block";
+                $("#app-tab-button-" + appContent.id.split("-")[4]).addClass("active");
+                if(content.id.split("-")[1] == menuSelected) {
+                    elementSelected = appContent.id.split("-")[4];
+                }
+                break;
+            }
+        }
+    } else {
+        document.getElementById("app-"+ menuSelected  + "-body-content-" + element).style.display = "block";
+        elementSelected = element;
+        $("#app-tab-button-" + element).addClass("active");
+    }
+    let oldClass = $("#phone-screen-content").data("app-content-class");
+    if(oldClass) {
+        $("#phone-screen-content").removeClass(oldClass);
+    }
+    $("#phone-screen-content").addClass(menuSelected + "-" + elementSelected);
+    $("#phone-screen-content").data("app-content-class", menuSelected + "-" + elementSelected);
+    if(element == "newmessage") {
+        let searchInput = document.getElementById("app-message-body-content-newmessage-search");
+        searchInput.value = "";
+        for(let elt of $(".newmessage-list-item")) {
+            if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "flex";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    }
+    // Remise à zéro de la liste des contactes
+    if(menuSelected == "contacts") {
+        $("#newcontact-phone-number-input").val("");
+        $("#newcontact-name-input").val("");
+        $("#newcontact-icon-custom-input").val("");
+        $("#newcontact-profile-name span").html("");
+        $("#newcontact-profile-icon").data("title", "50-Animals-avatar_49");
+        $("#newcontact-profile-icon img").attr("src", folderContactsProfileIcon + "50-Animals-avatar_49.png");
+        let searchInput = document.getElementById("app-contacts-body-content-list-search");
+        searchInput.value = "";
+        for(let elt of $(".contacts-list-row-item")) {
+            if(elt.querySelector(".contacts-list-row-item-top-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "block";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+        
+    }
+}
+
+function displayPhone() {
+    if(displayToggle) {
+        $("#phone").css("bottom", phoneBottomShowNot);
+        displayToggle = false;
+    } else {
+        if(formatOrientation == "landscape") {
+            $("#phone").css("bottom", phoneBottomShowLandscape);
+        } else {
+            $("#phone").css("bottom", phoneBottomShow);
+        }
+        displayToggle = true;
+    }
+}
+
+function displayTopbar() {
+    if(displayTopbarToggle) {
+        $("#topbar-blur").css("opacity", "0");
+        setTimeout(function() {
+            $("#topbar-blur").hide();
+            $("#phone-screen-content-topbar").hide();
+        }, 300);
+        $("#topbar-content").css("top", "-700px");
+        displayTopbarToggle = false;
+    } else {
+        $("#phone-screen-content-topbar").show();
+        $("#topbar-blur").show();
+        $("#topbar-blur").css("opacity", "1");
+        $("#topbar-content").css("top", "0px");
+        displayTopbarToggle = true;
+    }
+}
+
+// Notification
+
+function addNotification(app, appSub, time, title, message, data, avatar = false) {
+    let label = "Inconnu";
+    let divNotification = "";
+    let divNotificationLock = "";
+    if(!displayToggle) {
+        if(!phoneLockToggle) {
+            $("#phone").css("bottom", "-670px");
+        } else {
+            $("#phone").css("bottom", "-480px");
+        }
+    }
+    for(let appItem of config.apps) {
+        if(appItem.name == app) {
+            label = appItem.label;
+        }
+    }
+    if(app == "message") {
+        let messageName = "";
+        for(let user of title) {
+            if(user != userData.phone.number) {
+                let name = user;
+                for(let contact of userData.contacts) {
+                    if(contact.number == user) {
+                        name = contact.name;
+                        break;
+                    }
+                }
+                messageName += name + ", ";
+            }
+        }
+        title = messageName.slice(0, -2);
+        updateAppMessageLoad(data.conversationId);
+    }
+    if(app == "call") {
+        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
+        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
+    } else {
+        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-header'><div class='notification-item-background-blur'></div><div class='notification-item-header-content'><div class='notification-item-header-content-left'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/>" + label + "</div><div class='notification-item-header-content-right'>" + time + "</div></div></div><div class='notification-item-main'><span class='notification-item-main-header'>" + title + "</span><span class='notification-item-main-message'>" + message + "</span></div></div></div>";
+        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-icon'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/></div><div class='notification-item-content-body'><div class='notification-item-content-body-header'><div class='notification-item-content-body-header-left'>" + label + "</div><div class='notification-item-content-body-header-right'>" + time + "</div></div><div class='notification-item-content-body-content'><div class='notification-item-content-body-content-message'>" + message + "</div></div></div></div></div>";
+    }
+    $("#notification-container").prepend(divNotification);
+    $("#notification-container-lock").prepend(divNotificationLock);
+    let notification = document.getElementById("notification-container").firstElementChild;
+    let notificationLock = document.getElementById("notification-container-lock").firstElementChild;
+    if(app == "call") {
+        callNotification = notification;
+        callNotificationLock = notificationLock;
+        $(".notification-item-main-pickup").click(function() {
+            inReceiveCall = false;
+            inCall = true;
+            updateAppContent("callstarted");
+            stopSounds();
+            $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
+            if(callNotification != null && callNotification != undefined) {
+                callNotification.style.opacity = "0";
+                callNotificationLock.style.opacity = "0";
+                setTimeout(function() {
+                    callNotification.remove();
+                    callNotificationLock.remove();
+                    if($("#notification-container").children().length == 0 && !displayToggle) {
+                        $("#phone").css("bottom", phoneBottomShowNot);
+                    }
+                }, 750);
+            }
+            $("#callstarted-time").html("00:00");
+            let callStartedSec = 0
+            let callStartedMin = 0
+            let callStartedTimer = setInterval(function() {
+                $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
+                if(callStartedSec == 59) {
+                    callStartedSec = 0;
+                    callStartedMin++;
+                } else {
+                    callStartedSec++;
+                }
+                if(!inCall) {
+                    clearInterval(callStartedTimer);
+                }
+            }, 1000);
+        });
+        $(".notification-item-main-hangup").click(function() {
+            $.post('https://OraPhone/end_call', JSON.stringify({}));
+        });
+    } else {
+        notification.addEventListener("click", function() {
+            if(!phoneLockToggle) {
+                if(!displayToggle) {
+                    displayPhone();
+                }
+                updateContent(app);
+                updateAppContent(appSub);
+                notification.remove();
+                stopSounds();
+                if(app == "message") {
+                    let elementMessages = document.querySelector(".app-message-conversation .messages");
+                    elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+                }
+            }
+        });
+        notificationLock.addEventListener("click", function() {
+            if(phoneLockToggle) {
+                if(!displayToggle) {
+                    displayPhone();
+                }
+                if(!lockIconSnoozeEffect) {
+                    lockIconSnoozeEffect = true;
+                    $("#app-lock-icon-lock i").addClass("snooze");
+                    setTimeout(function() {
+                        $("#app-lock-icon-lock i").removeClass("snooze");
+                        lockIconSnoozeEffect = false;
+                    }, 500);
+                }
+            }
+        });
+    }
+    $(".notification-item-main-hangup").click(function() {
+        stopSounds();
+    });
+    setTimeout(function() {
+        notification.classList.remove("close");
+        notificationLock.classList.remove("close");
+        let notificationTime = "5000";
+        if(app == "call") {
+            soundRinging.currentTime = 0;
+            soundRinging.play();
+            notificationTime = "10000";
+
+        } else if(app == "clock") {
+            soundAlarm.currentTime = 0;
+            soundAlarm.play();
+            notificationTime = "30000";
+        } else {
+            soundNotification.currentTime = 0;
+            soundNotification.play();
+        }
+        setTimeout(function() {
+            if(app != "call") {
+                notification.style.opacity = "0";
+                notificationLock.style.opacity = "0";
+                setTimeout(function() {
+                    notification.remove();
+                    notificationLock.remove();
+                    if(app == "clock" || app == "call") {
+                        stopSounds();
+                    }
+                    if($("#notification-container").children().length == 0 && !displayToggle) {
+                        $("#phone").css("bottom", phoneBottomShowNot);
+                    }
+                }, 750);
+            }
+        }, notificationTime);
+    }, 25);
+}
+
+// Fonctions diverses
+
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        /* next line works with strings and numbers, 
+         * and you may want to customize it to your needs
+         */
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+function dynamicSortMultiple() {
+    /*
+     * save the arguments object as it will be overwritten
+     * note that arguments object is an array-like object
+     * consisting of the names of the properties to sort by
+     */
+    var props = arguments;
+    return function (obj1, obj2) {
+        var i = 0, result = 0, numberOfProperties = props.length;
+        /* try getting a different result from 0 (equal)
+         * as long as we have extra properties to compare
+         */
+        while(result === 0 && i < numberOfProperties) {
+            result = dynamicSort(props[i])(obj1, obj2);
+            i++;
+        }
+        return result;
+    }
+}
+
+function numberWithSpaces(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return parts.join(".");
+}
+
+function isImage(url) {
+    return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+}
+
+function stopSounds() {
+    soundNotification.pause();
+    soundRinging.pause();
+    soundAlarm.pause();
+    soundCallWait.pause();
 }
 
 function createShuffleGrid() {
@@ -2636,68 +3158,7 @@ function createShuffleGrid() {
     gridPage1 = new ShuffleGrid(iconsList, 8, 5, 60, 60, 38, 30);
 }
 
-function saveHomeOrder() {
-    gridPage1.itemVOs.sort(dynamicSortMultiple("row", "col"));
-    let appHomeOrderSave = userData.phone.appHomeOrder;
-    userData.phone.appHomeOrder = [];
-    for(let icon of gridPage1.itemVOs) {
-        if(icon.item.dataset.name != null) {
-            userData.phone.appHomeOrder.push(icon.item.dataset.name);
-        } else {
-            userData.phone.appHomeOrder.push('');
-        }
-    }
-    if(appHomeOrderSave.toString() != userData.phone.appHomeOrder.toString()) {
-        $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { appHomeOrder: JSON.stringify(userData.phone.appHomeOrder) } }));
-    }
-}
-
-function dynamicSort(property) {
-    var sortOrder = 1;
-    if(property[0] === "-") {
-        sortOrder = -1;
-        property = property.substr(1);
-    }
-    return function (a,b) {
-        /* next line works with strings and numbers, 
-         * and you may want to customize it to your needs
-         */
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-        return result * sortOrder;
-    }
-}
-
-function dynamicSortMultiple() {
-    /*
-     * save the arguments object as it will be overwritten
-     * note that arguments object is an array-like object
-     * consisting of the names of the properties to sort by
-     */
-    var props = arguments;
-    return function (obj1, obj2) {
-        var i = 0, result = 0, numberOfProperties = props.length;
-        /* try getting a different result from 0 (equal)
-         * as long as we have extra properties to compare
-         */
-        while(result === 0 && i < numberOfProperties) {
-            result = dynamicSort(props[i])(obj1, obj2);
-            i++;
-        }
-        return result;
-    }
-}
-
-function isImage(url) {
-    return /^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-}
-
-function stopSounds() {
-    soundNotification.pause();
-    soundRinging.pause();
-    soundAlarm.pause();
-    soundCallWait.pause();
-}
-
+// Objet config
 const config = {
     "apps": [
         {
@@ -2709,7 +3170,7 @@ const config = {
             "label": "Caméra"
         },
         {
-            "name": "galery",
+            "name": "gallery",
             "label": "Galerie"
         },
         {
@@ -2735,6 +3196,10 @@ const config = {
         {
             "name": "templatetabbed",
             "label": "Template Tabbed"
+        },
+        {
+            "name": "richtermotorsport",
+            "label": "Richter Motorsport"
         },
         {
             "name": "phone",
@@ -3348,3 +3813,167 @@ const config = {
         }
     ]
 }
+
+// Menu context au clique droit / Désactivé
+class ContextMenu {
+    constructor({ target = null, menuItems = [] }) {
+        this.target = target;
+        this.menuItems = menuItems;
+        this.targetNode = this.getTargetNode();
+        this.menuItemsNode = this.getMenuItemsNode();
+        this.contextMenu;
+        this.isOpened = false;
+    }
+    getTargetNode() {
+        const nodes = document.querySelectorAll(this.target);   
+        if (nodes && nodes.length !== 0) {
+            return nodes;
+        } else {
+            console.error(`getTargetNode :: "${this.target}" target not found`);
+            return [];
+        }
+    }
+    getMenuItemsNode() {
+            const nodes = [];
+            if (!this.menuItems) {
+                console.error("getMenuItemsNode :: Please enter menu items");
+                return [];
+            }
+            this.menuItems.forEach((data, index) => {
+                const item = this.createItemMarkup(data);
+                item.firstChild.setAttribute(
+                    "style",
+                    `animation-delay: ${index * 0.08}s`
+                );
+                nodes.push(item);
+            });
+            return nodes;
+    }
+    createItemMarkup(data) {
+            const button = document.createElement("BUTTON");
+            const item = document.createElement("LI");
+            button.innerHTML = data.content;
+            button.classList.add("contextMenu-button");
+            item.classList.add("contextMenu-item");
+            if (data.divider) item.setAttribute("data-divider", data.divider);
+            if (data.class) button.classList.add(data.class);
+            item.appendChild(button);
+            if (data.events && data.events.length !== 0) {
+                Object.entries(data.events).forEach((event) => {
+                    const [key, value] = event;
+                    button.addEventListener(key, value);
+                });
+            }
+            return item;
+    }
+    renderMenu() {
+        const menuContainer = document.createElement("UL");
+        menuContainer.classList.add("contextMenu");
+        this.menuItemsNode.forEach((item) => menuContainer.appendChild(item));
+        return menuContainer;
+    }
+    closeMenu(menu) {
+            if (this.isOpened) {
+                this.isOpened = false;
+                menu.remove();
+            }
+    }
+    init() {
+        this.contextMenu = this.renderMenu();
+        document.addEventListener("click", () => this.closeMenu(this.contextMenu));
+        window.addEventListener("blur", () => this.closeMenu(this.contextMenu));
+        // document.addEventListener("contextmenu", (e) => {
+            //     this.targetNode.forEach((target) => {
+            //         if (!e.target.contains(target)) {
+            //             contextMenu.remove();
+            //         }
+            //     });
+            // });
+        this.targetNode.forEach((target) => {
+            target.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                this.isOpened = true;
+                contextMenuHomeTarget = target;
+                contextMenuItemClicked = e;
+    
+                const { clientX, clientY } = e;
+                document.body.appendChild(this.contextMenu);
+        
+                const positionY =
+                    clientY + this.contextMenu.scrollHeight >= window.innerHeight
+                    ? window.innerHeight - this.contextMenu.scrollHeight - 20
+                    : clientY;
+                const positionX =
+                    clientX + this.contextMenu.scrollWidth >= window.innerWidth
+                    ? window.innerWidth - this.contextMenu.scrollWidth - 20
+                    : clientX;
+        
+                this.contextMenu.setAttribute(
+                    "style",
+                    `--width: ${this.contextMenu.scrollWidth}px;
+                    --height: ${this.contextMenu.scrollHeight}px;
+                    --top: ${positionY}px;
+                    --left: ${positionX}px;`
+                );
+            });
+        });
+    }
+    updateTargetNode() {
+        this.targetNode = this.getTargetNode();
+        this.targetNode.forEach((target) => {
+            target.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                this.isOpened = true;
+                contextMenuHomeTarget = target;
+                contextMenuItemClicked = e;
+
+                const { clientX, clientY } = e;
+                document.body.appendChild(this.contextMenu);
+        
+                const positionY =
+                    clientY + this.contextMenu.scrollHeight >= window.innerHeight
+                    ? window.innerHeight - this.contextMenu.scrollHeight - 20
+                    : clientY;
+                const positionX =
+                    clientX + this.contextMenu.scrollWidth >= window.innerWidth
+                    ? window.innerWidth - this.contextMenu.scrollWidth - 20
+                    : clientX;
+        
+                this.contextMenu.setAttribute(
+                    "style",
+                    `--width: ${this.contextMenu.scrollWidth}px;
+                    --height: ${this.contextMenu.scrollHeight}px;
+                    --top: ${positionY}px;
+                    --left: ${positionX}px;`
+                );
+            });
+        });
+    }
+}
+
+// const menuItems = [
+//     {
+//         content: `${copyIcon}Changer page`,
+//         events: {
+//             click: (e) => changeAppPlacePage()
+//         }
+//     },
+//     {
+//         content: `${copyIcon}Copy`,
+//         events: {
+//             click: (e) => console.log(e, "Copy Button Click")
+//             // mouseover: () => console.log("Copy Button Mouseover")
+//             // You can use any event listener from here
+//         }
+//     },
+//     {
+//         content: `${cutIcon}Cut`,
+//         divider: "top-bottom" // top, bottom, top-bottom
+//     },
+// ];
+
+// const contextMenuHome = new ContextMenu({
+//     target: "#app-home",
+//     menuItems
+// });
+// contextMenuHome.init();
