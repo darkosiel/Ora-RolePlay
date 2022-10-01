@@ -9,10 +9,10 @@
 ---@param Width number
 ---@param Height number
 ---@param Heading number
----@param R number
----@param G number
----@param B number
----@param A number
+---@param R number optional
+---@param G number optional
+---@param B number optional
+---@param A number optional
 ---@return nil
 ---@public
 function RenderSprite(TextureDictionary, TextureName, X, Y, Width, Height, Heading, R, G, B, A)
