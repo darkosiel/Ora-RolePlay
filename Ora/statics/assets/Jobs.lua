@@ -7934,6 +7934,21 @@ Jobs = {
                 Blipname = "SAMS - Garage Los Santos 2"
             }
         },
+        garage4 = {
+            Name = "Garage SAMS Los Santos 3",
+            Pos = {x = -1822.7004, y = -381.4256, z = 40.73 - 0.98},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = -1822.7004, y = -381.4256, z = 40.73, h = 319.38}
+            },
+            Blipdata = {
+                Pos = {x = -1822.7004, y = -381.4256, z = 40.73},
+                Blipcolor = 7,
+                Blipname = "SAMS - Garage Los Santos 3"
+            }
+        },
         Storage = {
             {
                 Pos = {x = -1870.05, y = -338.50, z = 53.75 - 0.98},
@@ -12906,7 +12921,7 @@ Jobs = {
                 Name = "Coffre Jetsam"
             }
         }
-    }
+    },
     -- drivingschool = {
     --     label = "Auto school",
     --     label2 = "Auto school",
@@ -12954,4 +12969,142 @@ Jobs = {
     --         }
     --     }
     -- }
+    g6 = {
+        label = "Gruppe Seichs",
+        label2 = "Gruppe Seichs",
+        iban = "g6",
+        grade = {
+            {
+                label = "CDD",
+                salary = 120,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 140,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 160,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        work = {
+            vestiaire = {
+                type = "Vestiaire",
+                workSize = 1.45,
+                Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+                vestiaire = {
+                    type = "Vestiaire",
+                    workSize = 1.45,
+                    Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+                    Tenues = {
+                        ["Tenue de service"] = {
+                            male = {
+
+                            },
+                            female = {
+                                
+                            },
+                        }
+                    }
+                } 
+            }
+        },
+        garage = {
+            Name = "Garage G6",
+            Pos = {x = 232.67, y = 385.44, z = 106.42},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 232.67, y = 385.44, z = 106.42, h = 76.92}
+            },
+            Blipdata = {
+                Pos = {x = 232.67, y = 385.44, z = 106.42},
+                Blipcolor = 5,
+                Blipname = "Garage G6"
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Gruppe Seichs",
+                subtitle = "Actions disponibles",
+                name = "g6_menujob"
+            },
+            buttons = {
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Gruppe Seichs", "Annonce", text, "CHAR_G6", 8, "Gruppe Seichs")
+                        end
+                    end
+                },
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("g6")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+            },
+            submenus = {
+                ["Actions citoyen"] = {
+                    submenu = "g6_menu_citoyen",
+                    title = "Actions citoyen",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Menotter",
+                                onSelected = function()
+                                    Police.HandcuffPly()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Démenotter",
+                                onSelected = function()
+                                    Police.CutMenottes()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                        }
+                    }
+                }
+            },
+            Storage = {
+                {
+                    --TODO : def pos of storage
+                    Pos = {x = -196.01, y = -1340.04, z = 33.9},
+                    Limit = 100,
+                    Name = "coffre_bennys"
+                }
+            },
+        }
+    }
 }

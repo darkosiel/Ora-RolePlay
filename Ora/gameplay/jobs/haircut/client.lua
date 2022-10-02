@@ -343,7 +343,7 @@ Citizen.CreateThread(
             if RageUI.Visible(RMenu:Get("makeup", "main")) then
                 if cam == nil then
                     cam = true
-                    local brush = `prop_makeup_brush`
+                    local brush = GetHashKey("prop_makeup_brush")
                     local ped = LocalPlayer().Ped
                     local coords = GetEntityCoords(ped)
                     local forwardx = GetEntityForwardX(ped)

@@ -15,7 +15,7 @@ local function registerTarget(name, objectModel)
 end
 
 local function loadBigScreen()
-    screenTarget = registerTarget(renderTargetName, `vw_vwint01_betting_screen`)
+    screenTarget = registerTarget(renderTargetName, GetHashKey("vw_vwint01_betting_screen"))
     
     bigScreenScaleform = RequestScaleformMovie('HORSE_RACING_WALL')
 

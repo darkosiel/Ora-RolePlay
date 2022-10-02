@@ -101,6 +101,20 @@ function Ora.Service:GetTotalServiceCountForJobs(jobs)
   return numberOfService
 end
 
+function Ora.Service:IsPlayerInService(player, job)
+  if (self.Jobs[job] ~= nil) then
+    for _, value in pairs(self.Jobs[job]) do
+      if (value == player) then
+        self:Debug(string.format("Player ^5%s^3 is in service for job ^5%s^3", player, job))
+        return true
+      end
+    end
+  end
+
+  self:Debug(string.format("Player ^5%s^3 is not in service for job ^5%s^3", player, job))
+  return false
+end
+
 RegisterServerEvent("Ora::SE::Service:ShowOnDutyPlayers")
 AddEventHandler(
     "Ora::SE::Service:ShowOnDutyPlayers",

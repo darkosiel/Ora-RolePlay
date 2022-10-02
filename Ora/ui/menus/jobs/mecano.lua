@@ -75,7 +75,7 @@ function Mecano.PutPlateau()
     local flatbed = nil
 
     for veh in EnumerateVehicles() do
-        if (GetEntityModel(veh) == `flatbed` and #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(veh)) < 20.0) then
+        if (GetEntityModel(veh) == GetHashKey("flatbed") and #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(veh)) < 20.0) then
             table.insert(flatbeds, veh)
             flatbed = veh
         end
@@ -151,9 +151,9 @@ function Mecano.Repair()
                     if (
                         #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(vehicle)) < 10.0 and
                         (
-                            GetEntityModel(vehicle) == `flatbed` or
-                            GetEntityModel(vehicle) == `towtruck` or
-                            GetEntityModel(vehicle) == `towtruck2`
+                            GetEntityModel(vehicle) == GetHashKey("flatbed") or
+                            GetEntityModel(vehicle) == GetHashKey("towtruck") or
+                            GetEntityModel(vehicle) == GetHashKey("towtruck2")
                         )
                     ) then
                         canRepair = true

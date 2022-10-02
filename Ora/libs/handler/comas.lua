@@ -508,22 +508,14 @@ AddEventHandler(
             local IsKO = fatalBool ~= 0 and (IsPedArmed(attackEntity, 1) or tableHasValue(KOWeapons, weaponUsed))
             eventName = IsKO and "EntityKO" or fatalBool ~= 0 and "EntityDeath" or "EntityTakeDamage"
             --print(eventName, fatalBool, IsKo, victimEntity, attackEntity, weaponUsed)
-            TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", 
-                function()
-                    Ora.Health:SetCurrentRegisteredHealth(GetEntityHealth(PlayerPedId()))
-                    TriggerEvent(eventName, victimEntity, attackEntity, weaponUsed)
-                    TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(LocalPlayer().Ped))
-                    if
-                        victimEntity == ped and GetPedArmour(ped) <= 0 and IsEntityAPed(attackEntity) and
-                            IsPedAPlayer(attackEntity) and
-                            not fatalBool and
-                            IsPedArmed(attackEntity, 6)
-                    then
-                        SetPedToRagdollWithFall(ped, 1500, 2000, 1, -GetEntityForwardVector(ped), 1.0, 0.0, .0, .0, .0, .0, .0)
-                    end
-                end,
-                GetEntityModel(PlayerPedId())
-            )
+            TriggerServerCallback("Ora::SE::Anticheat:RegisterPed", function()
+                Ora.Health:SetCurrentRegisteredHealth(GetEntityHealth(PlayerPedId()))
+                TriggerEvent(eventName, victimEntity, attackEntity, weaponUsed)
+                TriggerServerEvent("Ora::SE::Player:RegisterHealth", GetEntityHealth(LocalPlayer().Ped))
+                if victimEntity == ped and GetPedArmour(ped) <= 0 and IsEntityAPed(attackEntity) and IsPedAPlayer(attackEntity) and not fatalBool and IsPedArmed(attackEntity, 6) then
+                    SetPedToRagdollWithFall(ped, 1500, 2000, 1, -GetEntityForwardVector(ped), 1.0, 0.0, .0, .0, .0, .0, .0)
+                end
+            end,GetEntityModel(PlayerPedId()))
         end
     end
 )
