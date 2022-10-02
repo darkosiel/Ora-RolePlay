@@ -548,7 +548,8 @@ local VehShop =
                     {name = "yosemite3", price = 83200},
                     {name = "ruiner4", price = 32740},
                     {name = "vigero2", price = 46750},
-                    {name = "imperator", price = 46750}
+                    {name = "imperator", price = 46750},
+                    {name = "hotring", price = 46750}
                 },
                 ["Off-Road"] = {
                     {name = "bfinjection", price = 13520},

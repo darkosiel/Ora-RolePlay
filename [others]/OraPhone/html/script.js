@@ -210,6 +210,7 @@ $(function(){
                         userData.contacts = item.contacts;
                         updateAppContacts();
                         updateAppMessage();
+                        $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
                         break;
                     case "updateCalls":
                         userData.calls = item.calls;
@@ -257,9 +258,9 @@ $(function(){
             // Gestion des touches
             document.onkeydown = function (data) {
                 // Touche P pour ouvrir le téléphone
-                if (data.which == 80) {
-                    displayPhone();
-                }
+                // if (data.which == 80) {
+                //     displayPhone();
+                // }
                 // Touche Entrer pour déverrouiller le téléphone
                 if (data.which == 13) {
                     unlockPhone();
@@ -318,7 +319,8 @@ $(function(){
             //     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
             // });
             // $("#add-call").click(function() {
-            //     receiveCall();
+            //     // callNumber("5556585");
+            //     // receiveCall();
             //     // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
             // });
             // $("#refresh-contacts").click(function() {
@@ -1700,8 +1702,8 @@ function updateAppPhone() {
         } else {
             callTarget = call.source_number.toString();
         }
-        let callNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
-        let callName = callNumber
+        let callContactNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
+        let callName = callContactNumber
         for(let contact of userData.contacts) {
             if(contact.number == callTarget) {
                 callName = contact.name;
@@ -1736,7 +1738,7 @@ function updateAppPhone() {
             callDuration = "Manqué";
         }
 
-        let divCall = "<div class='phonehistory-list-item " + (callAccepted ? '' : 'miss') + "'><div class='phonehistory-list-item-left'><div class='phonehistory-list-item-type'><i class='fa-solid fa-phone'></i><i class='fa-solid fa-turn-" + (callSource ? 'up' : 'down') + "'></i></div><div class='phonehistory-list-item-body'><span class='phonehistory-list-item-body-name'>" + callName + "</span><span class='phonehistory-list-item-body-number'>" + callNumber + "</span></div></div><div class='phonehistory-list-item-time'><span>" + callTime + "</span></div><div class='phonehistory-list-item-duration'><span>" + callDuration + "</span></div></div>";
+        let divCall = "<div class='phonehistory-list-item " + (callAccepted ? '' : 'miss') + "'><div class='phonehistory-list-item-left'><div class='phonehistory-list-item-type'><i class='fa-solid fa-phone'></i><i class='fa-solid fa-turn-" + (callSource ? 'up' : 'down') + "'></i></div><div class='phonehistory-list-item-body'><span class='phonehistory-list-item-body-name'>" + callName + "</span><span class='phonehistory-list-item-body-number'>" + callContactNumber + "</span></div></div><div class='phonehistory-list-item-time'><span>" + callTime + "</span></div><div class='phonehistory-list-item-duration'><span>" + callDuration + "</span></div></div>";
         $("#phonehistory-list").append(divCall);
         $("#phonehistory-list").children().last().click(function () {
             callNumber(callTarget);
@@ -1800,74 +1802,74 @@ function updateAppRichterMotorsport() {
     });
 }
 
-function updateAppRichterMotorsportLoad(id) {
-    if(id != "") {
-        $('.app-message-conversation .messages').empty();
-        for(let conversation of userData.conversations) {
-            if(conversation.id == conversationId) {
-                let conversationAvatar = contactAvatarDefault;
-                let conversationName = "";
-                targetNumber = JSON.parse(conversation.target_number);
-                for(let user of JSON.parse(conversation.target_number)) {
-                    if(user != userData.phone.number) {
-                        let name = user;
-                        for(let contact of userData.contacts) {
-                            if(contact.number == user) {
-                                if(JSON.parse(conversation.target_number).length == 2) {
-                                    if(contact.avatar.includes("http")) {
-                                        conversationAvatar = contact.avatar;
-                                    } else {
-                                        conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
-                                    }
-                                }
-                                name = contact.name;
-                                break;
-                            }
-                        }
-                        conversationName += name + ", ";
-                    }
-                }
-                conversationName = conversationName.slice(0, -2);
-                if(conversationAvatar.includes("http")) {
-                    $(".app-body-content-header-profil-avatar").addClass("url");
-                } else {
-                    $(".app-body-content-header-profil-avatar").removeClass("url");
-                }
-                $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
-                $(".app-body-content-header-profil-name span").html(conversationName);
-                for(let message of conversation.messages) {
-                    let sourceName = "";
-                    let sourceType = "";
-                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
-                    if(message.sourceNumber == userData.phone.number) {
-                        sourceName = "Moi";
-                        sourceType = "me";
-                    } else {
-                        sourceName = message.sourceNumber;
-                        sourceType = "you";
-                        for(let contact of userData.contacts) {
-                            if(contact.number == message.sourceNumber) {
-                                sourceName = contact.name;
-                            }
-                        }
-                    }
-                    responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
-                }
-            }
-        }
-        let messageInput = $("#app-message-footer-input");
-        messageInput.on("keyup", function(e) {
-            if (e.key === 'Enter' || e.keyCode === 13) {
-                if (messageInput.val() != "") {
-                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
-                    messageInput.val("");
-                }
-            }
-        });
-        let elementMessages = document.querySelector(".app-message-conversation .messages");
-        elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
-    }
-}
+// function updateAppRichterMotorsportLoad(id) {
+//     if(id != "") {
+//         $('.app-message-conversation .messages').empty();
+//         for(let conversation of userData.conversations) {
+//             if(conversation.id == conversationId) {
+//                 let conversationAvatar = contactAvatarDefault;
+//                 let conversationName = "";
+//                 targetNumber = JSON.parse(conversation.target_number);
+//                 for(let user of JSON.parse(conversation.target_number)) {
+//                     if(user != userData.phone.number) {
+//                         let name = user;
+//                         for(let contact of userData.contacts) {
+//                             if(contact.number == user) {
+//                                 if(JSON.parse(conversation.target_number).length == 2) {
+//                                     if(contact.avatar.includes("http")) {
+//                                         conversationAvatar = contact.avatar;
+//                                     } else {
+//                                         conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+//                                     }
+//                                 }
+//                                 name = contact.name;
+//                                 break;
+//                             }
+//                         }
+//                         conversationName += name + ", ";
+//                     }
+//                 }
+//                 conversationName = conversationName.slice(0, -2);
+//                 if(conversationAvatar.includes("http")) {
+//                     $(".app-body-content-header-profil-avatar").addClass("url");
+//                 } else {
+//                     $(".app-body-content-header-profil-avatar").removeClass("url");
+//                 }
+//                 $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
+//                 $(".app-body-content-header-profil-name span").html(conversationName);
+//                 for(let message of conversation.messages) {
+//                     let sourceName = "";
+//                     let sourceType = "";
+//                     let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+//                     if(message.sourceNumber == userData.phone.number) {
+//                         sourceName = "Moi";
+//                         sourceType = "me";
+//                     } else {
+//                         sourceName = message.sourceNumber;
+//                         sourceType = "you";
+//                         for(let contact of userData.contacts) {
+//                             if(contact.number == message.sourceNumber) {
+//                                 sourceName = contact.name;
+//                             }
+//                         }
+//                     }
+//                     responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
+//                 }
+//             }
+//         }
+//         let messageInput = $("#app-message-footer-input");
+//         messageInput.on("keyup", function(e) {
+//             if (e.key === 'Enter' || e.keyCode === 13) {
+//                 if (messageInput.val() != "") {
+//                     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
+//                     messageInput.val("");
+//                 }
+//             }
+//         });
+//         let elementMessages = document.querySelector(".app-message-conversation .messages");
+//         elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+//     }
+// }
 
 function updateAppGallery() {
     $("#gallery-image-list").empty();
