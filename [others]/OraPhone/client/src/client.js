@@ -19,6 +19,7 @@ var appSub = "";
 var onTick
 var onTickCamera
 var phoneActive = false
+var canSetPhoneVisible = true
 
 RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'f2')
 RegisterCommand('phone', _=>setPhoneVisible(!phoneVisible))
@@ -29,9 +30,10 @@ function setMouseFocus(active = true) {
 
 // onTick timer ref
 async function setPhoneVisible(visible = true) {
-    if(!phoneActive && !phoneVisible) {
+    if((!phoneActive && !phoneVisible) || !canSetPhoneVisible) {
         return
     }
+    canSetPhoneVisible = false
     phoneVisible = visible
     // When we wanna show the phone
     if (visible) {
@@ -78,6 +80,8 @@ async function setPhoneVisible(visible = true) {
         type: "ui",
         display: visible
     })
+    await Wait(600)
+    canSetPhoneVisible = true
 }
 
 function CellFrontCamActivate(activate) {

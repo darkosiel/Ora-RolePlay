@@ -156,6 +156,15 @@ const crud = {
         gps: 'gps_json',
         isRead: 'is_read',
     }),
+    calls: generateCrud('phone_call_history', {
+        id: 'id',
+        sourceNumber: 'source_number',
+        targetNumber: 'target_number',
+        callTime: 'call_time',
+        accepted: 'accepted',
+        callDuration: 'call_duration',
+        video: 'video',
+    }),
     richtermotorsport: generateCrud('phone_richtermotorsport', {
         id: 'id',
         phoneId: 'phone_id',
@@ -751,6 +760,8 @@ function RegisterNewPhone(phoneNumber, identity) {
     let wallpaper = 'wallpaper-ios15'
     let wallpaperLock = 'wallpaper-ios15'
     let luminosity = '100'
-    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"richtermotorsport\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
 }
+
+["clock","camera","gallery","calandar","","","","","notes","calculator","templatetabbed","store","","","","","music","","","","","","","","","","","","","","","","","","","","","","",""]

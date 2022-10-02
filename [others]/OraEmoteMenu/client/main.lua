@@ -21,7 +21,6 @@ RegisterKeyMapping('emote', 'Menu emote', 'keyboard', 'f4')
 RegisterCommand('emote', function()
     SetDisplay(not display)
     display = not display
-    print("Menu :" .. tostring(display))
     while display do
         Citizen.Wait(0)
         DisableControlAction(0, 1, display) -- LookLeftRight

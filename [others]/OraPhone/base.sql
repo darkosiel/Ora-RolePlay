@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport (
 
 CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport_favorite (
     `advertisement_id` INT NOT NULL,
-    `player_uuid` VARCHAR(255) NOT NULL
+    `phone_id` INT NOT NULL
 );
 
 -- CREATE TABLE IF NOT EXISTS ora_phone_app_store (
