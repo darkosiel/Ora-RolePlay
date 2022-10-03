@@ -969,7 +969,7 @@ Items = {
     },
     graincafe1 = {
         label = "Café en poudre",
-        weight = 0.1
+        weight = 0.2
     },
     -- Items : bar chinois
     chairsaucisse = {
