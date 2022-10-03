@@ -1,3 +1,71 @@
+local function craftRecettes(data)
+    local hasOneMissing = false
+
+    for i = 1, #data.required, 1 do
+        if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
+            ShowNotification(
+                "~b~[" ..
+                    data.title ..
+                        "]\n" ..
+                            Items[data.required[i].name].label ..
+                                "~s~ : ~r~" ..
+                                    Ora.Inventory:GetItemCount(data.required[i].name) ..
+                                        "/" .. data.required[i].count .. "~s~"
+            )
+            hasOneMissing = true
+        else
+            ShowNotification(
+                "~b~[" ..
+                    data.title ..
+                        "]\n" ..
+                            Items[data.required[i].name].label ..
+                                "~s~ : ~g~" ..
+                                    Ora.Inventory:GetItemCount(data.required[i].name) ..
+                                        "/" .. data.required[i].count .. "~s~"
+            )
+        end
+    end
+
+    if not hasOneMissing then
+        SetFarmLimit(1)
+        local timeWait = (data.time / 1000) / 60
+
+        -- for i = 1, #data.required, 1 do
+        --     Ora.Inventory:RemoveFirstItem(data.required[i].name)
+        -- end
+        for i = 1, #data.required, 1 do
+            for i2 = 1, data.required[i].count, 1 do
+                Ora.Inventory:RemoveFirstItem(data.required[i].name)
+            end
+        end
+
+        exports["mythic_progbar"]:Progress(
+            {
+                name = data.item,
+                duration = data.time,
+                label = "Création d'un cocktail en cours...",
+                useWhileDead = true,
+                canCancel = false,
+                controlDisables = {
+                    disableMovement = false,
+                    disableCarMovement = false,
+                    disableMouse = false,
+                    disableCombat = false
+                },
+            },
+            function(cancelled)
+            end
+        )
+
+        for i = 1, (data.addQuantity == nil and 1 or data.addQuantity), 1 do
+            Ora.Inventory:AddItem({name = data.item, data = {}})  
+        end  
+    else
+        ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
+        return
+    end
+end
+
 nightCrafts = {}
 -- Pistols
 nightCrafts["recettes"] = {
@@ -5,6 +73,7 @@ nightCrafts["recettes"] = {
         title = "Kir Royal",
         label = "Kir Royal",
         item = "kirroyal",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "sirup", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -53,6 +122,7 @@ nightCrafts["recettes"] = {
         title = "Mojito",
         label = "Mojito",
         item = "mojito",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "mint", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -70,6 +140,7 @@ nightCrafts["recettes"] = {
         title = "Piña Colada",
         label = "Piña Colada",
         item = "pinacolada",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "pineapplejuice", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -87,6 +158,7 @@ nightCrafts["recettes"] = {
         title = "Ti-punch",
         label = "Ti-punch",
         item = "tipunch",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "sirup", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -104,6 +176,7 @@ nightCrafts["recettes"] = {
         title = "Vodka orange",
         label = "Vodka orange",
         item = "orangevodka",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "orangejuice", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -120,6 +193,7 @@ nightCrafts["recettes"] = {
         title = "Tequila paf",
         label = "Tequila paf",
         item = "tequilapaf",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "lemon", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -136,6 +210,7 @@ nightCrafts["recettes"] = {
         title = "Tequila sunrise",
         label = "Tequila sunrise",
         item = "tequilasunrise",
+        addQuantity = 5,
         time = 1000, -- temps de craft je pense
         required = {
             {name = "orangejuice", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
@@ -239,63 +314,3 @@ Citizen.CreateThread(
 )
 
 
-function craftRecettes(data)
-    local hasOneMissing = false
-
-    for i = 1, #data.required, 1 do
-        if Ora.Inventory:GetItemCount(data.required[i].name) - data.required[i].count < 0 then
-            ShowNotification(
-                "~b~[" ..
-                    data.title ..
-                        "]\n" ..
-                            Items[data.required[i].name].label ..
-                                "~s~ : ~r~" ..
-                                    Ora.Inventory:GetItemCount(data.required[i].name) ..
-                                        "/" .. data.required[i].count .. "~s~"
-            )
-            hasOneMissing = true
-        else
-            ShowNotification(
-                "~b~[" ..
-                    data.title ..
-                        "]\n" ..
-                            Items[data.required[i].name].label ..
-                                "~s~ : ~g~" ..
-                                    Ora.Inventory:GetItemCount(data.required[i].name) ..
-                                        "/" .. data.required[i].count .. "~s~"
-            )
-        end
-    end
-
-    if not hasOneMissing then
-        SetFarmLimit(1)
-        local timeWait = (data.time / 1000) / 60
-
-        for i = 1, #data.required, 1 do
-            Ora.Inventory:RemoveFirstItem(data.required[i].name)
-        end
-
-        exports["mythic_progbar"]:Progress(
-            {
-                name = data.item,
-                duration = data.time,
-                label = "Création d'un cocktail en cours...",
-                useWhileDead = true,
-                canCancel = false,
-                controlDisables = {
-                    disableMovement = false,
-                    disableCarMovement = false,
-                    disableMouse = false,
-                    disableCombat = false
-                },
-            },
-            function(cancelled)
-            end
-        )
-
-        Ora.Inventory:AddItem({name = data.item, data = {}})  
-    else
-        ShowNotification("~r~Action impossible car certains ingrédients manquent~s~")
-        return
-    end
-end

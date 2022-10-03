@@ -4024,7 +4024,7 @@ Jobs = {
                 Name = "coffre_NightClub"
             },
             {
-                Pos = {x = -1583.104, y = -3014.27, z = -77.00},
+                Pos = {x = -1583.104, y = -3012.27, z = -77.00},
                 Limit = 1000,
                 Name = "Frigo_1"
             },
@@ -7959,7 +7959,7 @@ Jobs = {
             {
                 Pos = {x = -1829.19, y = -384.37, z = 49.39 - 0.98},
                 Limit = 2500,
-                Name = "Coffre Pharmacienew"
+                Name = "Coffre Pharmacie"
             },
             
             {
