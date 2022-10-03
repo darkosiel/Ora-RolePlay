@@ -1045,6 +1045,30 @@ PublicGarage = {
             visible = true
         },
         Name = "garage_6"
+    },
+    {
+        Pos = {x= 374.0743,y= 289.4802,z= 102.8247,h= 243.91},
+        Properties = {
+            type = 0,
+            spawnpos ={x= 374.0743,y= 289.4802,z= 102.8247,h=243.91},
+            Limit = 2
+        },
+        Blipdata = {
+            Pos = {x= 374.0743,y= 289.4802,z= 102.8247,h=243.91},
+            Blipcolor  =84,
+            BlipId = 524,
+            Blipname = "Parkings Galaxy"
+        },
+        Marker = {
+            type = 1,
+            scale = {x = 2.5, y = 2.5, z = 0.0},
+            color = {r = 255, g = 255, b = 255, a = 120},
+            Up = false,
+            Cam = false,
+            Rotate = false,
+            visible = true
+        },
+        Name = "garage_7"
     }
     -- {
     --     Pos = {x=1791.96,y=3268.12,z=41.23,h=59.47},
