@@ -3350,8 +3350,8 @@ Jobs = {
     -- },
 
     journaliste = {
-        label = "Journaliste",
-        label2 = "Journaliste",
+        label = "Weazel News",
+        label2 = "Weazel News",
         iban = "journaliste",
         FreeAccess = false,
         grade = {
@@ -3388,7 +3388,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Journaliste",
+                title = "Weazel News",
                 subtitle = "Actions",
                 name = "journaliste_menuperso"
             },
@@ -3415,7 +3415,7 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Journaliste",
+            Name = "Garage Weazel News",
             Pos = {x = -535.52, y = -894.27, z = 24.22},
             Properties = {
                 type = 3,
@@ -3438,7 +3438,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "newsmav",
+                        name = "newsheli",
                         label = "Helicoptere Weazel",
                         job = true,
                         tuning = {

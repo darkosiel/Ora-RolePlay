@@ -44,7 +44,7 @@ AddEventHandler(
             cam_net = netid
             holdingCam = true
             DisplayNotification(
-                "Pour activer le bandeau, appuyer sur ~r~E~s~ \nPour désactivé le bandeau, appuyer sur ~r~DELETE"
+                "Pour activer la caméra, appuyer sur ~r~E~s~ \nPour désactivé la caméra, appuyer sur ~r~ECHAP"
             )
         else
             ClearPedSecondaryTask(LocalPlayer().Ped)
@@ -187,16 +187,6 @@ Citizen.CreateThread(
                 SetTimecycleModifier("default")
                 SetTimecycleModifierStrength(0.3)
 
-                local scaleform = RequestScaleformMovie("security_camera")
-                local scaleform2 = RequestScaleformMovie("breaking_news")
-
-                while not HasScaleformMovieLoaded(scaleform) do
-                    Citizen.Wait(10)
-                end
-                while not HasScaleformMovieLoaded(scaleform2) do
-                    Citizen.Wait(10)
-                end
-
                 local lPed = GetPlayerPed(-1)
                 local vehicle = GetVehiclePedIsIn(lPed)
                 local cam2 = CreateCam("DEFAULT_SCRIPTED_FLY_CAMERA", true)
@@ -205,8 +195,6 @@ Citizen.CreateThread(
                 SetCamRot(cam2, 2.0, 1.0, GetEntityHeading(lPed))
                 SetCamFov(cam2, fov)
                 RenderScriptCams(true, false, 0, 1, 0)
-                PushScaleformMovieFunction(scaleform, "SET_CAM_LOGO")
-                PushScaleformMovieFunction(scaleform2, "breaking_news")
                 PopScaleformMovieFunctionVoid()
 
                 while newscamera and not IsEntityDead(lPed) and (GetVehiclePedIsIn(lPed) == vehicle) and true do
@@ -222,10 +210,6 @@ Citizen.CreateThread(
 
                     HandleZoom(cam2)
                     HideHUDThisFrame()
-
-                    DrawScaleformMovieFullscreen(scaleform, 255, 255, 255, 255)
-                    DrawScaleformMovie(scaleform2, 0.5, 0.63, 1.0, 1.0, 255, 255, 255, 255)
-                    Breaking("BREAKING NEWS")
 
                     local camHeading = GetGameplayCamRelativeHeading()
                     local camPitch = GetGameplayCamRelativePitch()
