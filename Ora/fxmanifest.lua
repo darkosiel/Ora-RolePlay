@@ -416,6 +416,7 @@ client_script {
     "gameplay/jobs/pearls/job.lua",
     "gameplay/jobs/miror/job.lua",
     "gameplay/jobs/night/job.lua",
+    "gameplay/jobs/bahamas/job.lua",
     "gameplay/jobs/tacoloco/job.lua",
     "gameplay/jobs/burgershot/job.lua",
     "gameplay/jobs/koi/job.lua",

@@ -12276,6 +12276,35 @@ Jobs = {
                 }
             }
         },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -1378.0197, y = -598.6028, z = 30.2164}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftbahamasZone()
+                end,
+                Exit = function()
+                    ExitcraftbahamasZone()
+                end,
+                zonesize = 2.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Bahamas - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
         requiredService = false,
         work = {
             recolte = {
