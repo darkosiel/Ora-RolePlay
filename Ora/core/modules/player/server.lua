@@ -114,6 +114,12 @@ function Ora.Player:GetXp(playerId)
     return 0
 end
 
+function TriggerMultiClientsEvent(eventName, playerList, ...)
+    for k, v in pairs(playerList) do
+        TriggerClientEvent(eventName, v, ...)
+    end
+end
+
 RegisterServerCallback("Ora::SE::Player:Phone:GetNewPhoneNumber", 
     function(source, cb) 
         local _source = source
