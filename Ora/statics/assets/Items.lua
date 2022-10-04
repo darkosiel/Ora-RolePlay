@@ -3149,6 +3149,10 @@ Items = {
         label = "Radis",
         weight = 0.1
     },
+    lemon = {
+        label = "Citron",
+        weight = 0.1
+    },
 }
 
 -- staticcc
