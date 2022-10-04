@@ -55,7 +55,7 @@ missionConfig.startMigrantSmuggling = {
     {pos = vector3(1749.84, 3042.44, 61.98 - 0.98), heading = 77.02, truckPos = vector3(1408.71, 2966.38, 40.93), headingTruck = 298.56},
     {pos = vector3(2898.78, 4382.77, 50.37 - 0.98), heading = 294.23, truckPos = vector3(3068.19, 4028.11, 70.29), headingTruck = 14.84},
     {pos = vector3(2171.35, 3359.45, 45.53 - 0.98), heading = 54.96, truckPos = vector3(2140.41, 3514.88, 44.67), headingTruck = 204.50},
-    {pos = vector3(2460.57, 3447.1, 49.84 - 0.98), heading = 148.05, truckPos = vector3(2607.46, 3368.77, 55.51), headingTruck = 102.56},
+    {pos = vector3(2460.57, 3447.1, 49.84 - 0.98), heading = 148.05, truckPos = vector3(2607.46, 3368.77, 55.51), headingTruck = 102.56}
 }
 
 missionConfig.endMigrantSmuggling = {

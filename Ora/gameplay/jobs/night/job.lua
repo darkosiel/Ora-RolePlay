@@ -223,6 +223,23 @@ nightCrafts["recettes"] = {
             craftRecettes(data)
         end
     },
+    whiskycoke = {
+        title = "Whisky Coca",
+        label = "Whisky Coca",
+        item = "whiskycoke",
+        addQuantity = 5,
+        time = 1000, -- temps de craft je pense
+        required = {
+            {name = "cola", count = 5}, -- duppliquer cette ligne pour ajouter un ingrédient
+            {name = "whisky", count = 1}
+        },
+        selected = function() -- !! Ne pas toucher en dessous sauf la 3ème ligne !!
+            ShowNotification("~b~Vérification de la disponibilité des ingrédients necessaires~s~")
+            found = false
+            local data = bahamasCrafts["recettes"]["whiskycoke"]
+            craftRecettes(data)
+        end
+    },
 }
 
 Citizen.CreateThread(
