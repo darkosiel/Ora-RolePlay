@@ -49,7 +49,7 @@ client.on("message", async message => {
     
     // Let's go with a few common example commands! Feel free to delete or change those.
     if (command == "pull" && message.channel.id == "966020074060251196") {
-        exec("cd /home/server-data/resources/ && git pull && Y0lac && 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", (error, stdout, stderr) => {
+        exec("cd /home/Prod/resources/ && git pull && Y0lac && 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", (error, stdout, stderr) => {
             if (error) {
                 message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
                 return;
