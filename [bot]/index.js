@@ -36,7 +36,7 @@ client.on("message", async message => {
     // and not get into a spam loop (we call that "botception").
     if(message.author.bot) return;
 
-    //test push bot eeeeee
+    //test push bot
     
     // Also good practice to ignore any message that does not start with our prefix,
     // which is set in the configuration file.
@@ -50,7 +50,7 @@ client.on("message", async message => {
     const command = args.shift().toLowerCase();
     
     // Let's go with a few common example commands! Feel free to delete or change those.
-    if (command == "pull" && message.channel.id == "962003138905264169") {
+    if (command == "pull" && message.channel.id == "1027263035091460136") {
         exec("cd /home/Prod/resources/ && git pull && Y0lac && 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", (error, stdout, stderr) => {
             if (error) {
                 message.channel.send(`**Réponse du serveur :** \`\`\`${error.message}\`\`\``);
