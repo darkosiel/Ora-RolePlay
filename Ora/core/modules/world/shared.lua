@@ -11,7 +11,8 @@ Ora.World.VehicleGeneratorRemoved = { --Antispawn VOITURES
   {x = 1639.45, y = 4836.45, z = 42.02, r = 3.0}, -- Club House AOD
   {x = -102.858, y = -2071.420, z = 17.00, r = 100.0}, -- Karting
   {x = 205.28, y = -1651.42, z = 29.80, r = 200.0}, -- Caserne pompier
-  {x = 1410.83, y = 1117.63, z = 114.83, r = 500} -- Antispawn Fuente Blanca
+  {x = 1410.83, y = 1117.63, z = 114.83, r = 500}, -- Antispawn Fuente Blanca
+  {x = 31.7753, y = 6459.4218, z = 31.30, r = 500} --Dirty Punks
 }
 
 
