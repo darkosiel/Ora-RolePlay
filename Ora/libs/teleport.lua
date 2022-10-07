@@ -81,11 +81,6 @@ local Elevator = {
     
   },
 
-  ["GALAXY"] = {
-    {label = "Entrée", pos = vector3(355.307, 302.165, 102.80), msg = "Appuyez sur ~INPUT_CONTEXT~ pour entrer"},
-    {label = "Sortie", pos = vector3(-1569.416, -3017.197, -75.40), msg = "Appuyez sur ~INPUT_CONTEXT~ pour sortir"},
-  },
-
   ["HOTEL"] = {
     {label = "Terrasse", pos = vector3(-98.189, 367.36, 112.27), msg = "Appuyez sur ~INPUT_CONTEXT~ pour monter"},
     {label = "Jardin", pos = vector3(-84.19, 326.49, 141.59), msg = "Appuyez sur ~INPUT_CONTEXT~ pour descendre"},

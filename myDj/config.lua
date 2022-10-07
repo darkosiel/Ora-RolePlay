@@ -84,9 +84,16 @@ Config.DJPositions = {
     },
     {
         name = 'Galaxy',
-        pos = vector3(-1603.9594, -3012.4260, -77.96 - 0.98),
+        pos = vector3(375.42, 275.95, 92.40 - 0.98),
         requiredJob = nil, 
-        range = 30.0, 
+        range = 26.5, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
+        name = 'Galaxy2',
+        pos = vector3(398.35, 251.16, 92.05 - 0.98),
+        requiredJob = nil, 
+        range = 25.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
