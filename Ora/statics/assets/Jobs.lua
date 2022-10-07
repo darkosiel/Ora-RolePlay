@@ -3985,11 +3985,11 @@ Jobs = {
                                             Wait(1)
                                         end
                                         local storePed = Ora.World.Ped:Create(5, v.model, vector3(v.x, v.y, v.z), v.a)
-                                        SetBlockingOfNonTemporaryEvents(storePed, false)
+                                        SetBlockingOfNonTemporaryEvents(storePed, true)
                                         SetPedFleeAttributes(storePed, 0, 0)
                                         SetPedArmour(storePed, 100)
                                         SetPedMaxHealth(storePed, 100)
-                                        SetPedDiesWhenInjured(storePed, false)
+                                        SetPedDiesWhenInjured(storePed, true)
                                         SetAmbientVoiceName(storePed, v.voice)
 
                                         TaskPlayAnim(storePed, v.animation, v.animationName, 8.0, 0.0, -1, 1, 0, 0, 0, 0)
