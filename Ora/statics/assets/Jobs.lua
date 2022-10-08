@@ -6963,31 +6963,31 @@ Jobs = {
         grade = {
             {
                 label = "Conseiller",
-                salary = 250,
+                salary = 350,
                 name = "agent",
                 show = true
             },
             {
                 label = "Secrétaire d'état",
-                salary = 300,
+                salary = 400,
                 name = "usdss",
                 show = true
             },
             {
                 label = "Chef de cabinet",
-                salary = 400,
+                salary = 430,
                 name = "drh",
                 show = true
             },
             {
                 label = "Vice-Gouverneur",
-                salary = 420,
+                salary = 450,
                 name = "drh",
                 show = true
             },
             {
                 label = "Gouverneur",
-                salary = 450,
+                salary = 500,
                 name = "boss",
                 show = true
             }
