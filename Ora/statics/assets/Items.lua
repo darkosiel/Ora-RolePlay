@@ -730,11 +730,6 @@ Items = {
         weight = 0.1,
         category = "docs"
     },
-    ["fake-permis-conduire"] = {
-        label = "Permis de conduire",
-        weight = 0.1,
-        category = "docs"
-    },
     hunting_license = {
         label = "Permis de chasse",
         weight = 0.1,
@@ -1829,12 +1824,6 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
-    stungun = {
-        label = "Tazer",
-        weight = 1.0,
-        actionCl = "weapon:Equip",
-        category = "weapon"
-    },
     raypistol = {
         label = "Pistolet admin",
         weight = 1.0,
@@ -2765,42 +2754,6 @@ Items = {
         label = "Noix de coco",
         weight = 0.2
     }, 
-    salade2 = {
-        label = "Salade assaisonnée",
-        weight = 0.2,
-        actionCl = "miam:Eat",
-        props = "prop_plate_03",
-        faim = 25,
-        category = "food"
-    },
-    boeufkobe2 = {
-        label = "Boeuf de Kobe Riz",
-        weight = 0.2,
-        actionCl = "miam:Eat",
-        props = "prop_plate_03",
-        faim = 50,
-        category = "food"
-    },
-    mochi = {
-        label = "Mochi",
-        weight = 0.2,
-        actionCl = "miam:Eat",
-        props = "prop_plate_03",
-        faim = 25,
-        category = "food"
-    },
-    perlecoco = {
-        label = "Perle de coco",
-        weight = 0.2,
-        actionCl = "miam:Eat",
-        props = "prop_plate_03",
-        faim = 25,
-        category = "food"
-    },
-    coco = {
-        label = "Noix de coco",
-        weight = 0.2
-    }, 
     litchi = {
         label = "Litchi",
         weight = 0.2
@@ -3151,7 +3104,11 @@ Items = {
     },
     lemon = {
         label = "Citron",
-        weight = 0.1
+        weight = 0.1,
+    },
+    g6_case = {
+        label = "Malette G6",
+        weight = 1.0,
     },
 }
 
