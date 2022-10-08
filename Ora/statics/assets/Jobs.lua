@@ -454,15 +454,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Post OP",
-            Pos = {x = 1183.9031, y = -3236.6330, z = 5.029},
+            Pos = {x = 1222.9278, y = -3280.9433, z = 5.5155},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85}
+                spawnpos = {x = 1222.9278, y = -3280.9433, z = 5.5155, h = 179.85}
             },
             Blipdata = {
-                Pos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85},
+                Pos = {{x = 1222.9278, y = -3280.9433, z = 5.5155, h = 179.85},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
