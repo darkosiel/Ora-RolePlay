@@ -18,7 +18,7 @@ AddEventHandler(
         end
     end
 )
-
+ 
 function Ora.Anticheat:Initialize()
     if (not self:IsAnticheatWhitelist()) then
         self:Debug(string.format("^5%s^3 is not whitelist for Anticheat", GetPlayerServerId(PlayerId())))
