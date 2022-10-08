@@ -9,7 +9,14 @@ local TattoJob2 = {
      posTatoo = {x=1864.1995, y=3745.8034, z=32.939},
      Seated = false,
      Tatoueur = false
- }
+}
+local TattoJob3 = { 
+    posChair = {x=1320.3298, y= -1653.3701, z=52.27},
+    posTatoo = {x=1320.6446, y= -1654.8449, z=52.27},
+    Seated = false,
+    Tatoueur = false
+}
+
 local Colors = {
     {22, 19, 19}, -- 0
     {30, 28, 25}, -- 1
@@ -209,6 +216,11 @@ Citizen.CreateThread(function()
             SetEntityCompletelyDisableCollision(LocalPlayer().Ped)
             doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
         end
+        if TattoJob3.Seated then
+            Wait(1)
+            SetEntityCompletelyDisableCollision(LocalPlayer().Ped)
+            doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
+        end
     end
 end)
 
@@ -220,6 +232,10 @@ Citizen.CreateThread(function()
             doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
         end
         if TattoJob2.Tatoueur then
+            Wait(1)
+            doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
+        end
+        if TattoJob3.Tatoueur then
             Wait(1)
             doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
         end
@@ -274,6 +290,28 @@ local function SeatChair2()
         doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
     end
 end
+local function SeatChair3()
+    Hint:RemoveAll()
+    local ped = LocalPlayer().Ped
+    local plyPos = LocalPlayer().Pos
+    if TattoJob3.Seated == true then
+        ClearPedTasks(ped)
+        FreezeEntityPosition(ped, false)
+        TattoJob3.Seated = not TattoJob3.Seated
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
+        SetEntityCollision(LocalPlayer().Ped, true)
+    else                                    
+        SetEntityCoords(LocalPlayer().Ped, 1320.4609, -1654.2133, 51.27)
+        SetEntityHeading(LocalPlayer().Ped, 268.9627)
+        Wait(1)
+
+        SetEntityCollision(LocalPlayer().Ped, false)
+        FreezeEntityPosition(ped, true)
+        TattoJob3.Seated = not TattoJob3.Seated
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
+        doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
+    end
+end
 local currentSitObj
 local fakeEnt
 local fpxm
@@ -318,6 +356,30 @@ local function SeatTatoueur2()
         SetEntityCollision(LocalPlayer().Ped, false)
         FreezeEntityPosition(ped, true)
         TattoJob2.Tatoueur = not TattoJob2.Tatoueur
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
+        doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
+
+    end
+end
+
+local function SeatTatoueur3()
+    Hint:RemoveAll()
+    local ped = LocalPlayer().Ped
+    local plyPos = LocalPlayer().Pos
+    if TattoJob3.Tatoueur == true then
+        ClearPedTasks(ped)
+        FreezeEntityPosition(ped, false)
+        TattoJob3.Tatoueur = not TattoJob3.Tatoueur
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
+        SetEntityCollision(LocalPlayer().Ped, true)
+    else
+        SetEntityCoords(LocalPlayer().Ped, 1320.6446, -1654.8449, 51.00)
+        SetEntityHeading(LocalPlayer().Ped, 9.6111)
+        Wait(1)
+
+        SetEntityCollision(LocalPlayer().Ped, false)
+        FreezeEntityPosition(ped, true)
+        TattoJob3.Tatoueur = not TattoJob3.Tatoueur
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
         doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
 
@@ -414,6 +476,45 @@ local function Create2()
             Rotate = false,
             visible = GetDistanceBetweenCoords(138.26, -1708.48, 28.30, x, y, z, true)
         }
+    )
+end
+
+local function Create3()
+    --print("create job tatoo")
+    Zone:Add(
+        TattoJob3.posChair,
+        function()
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
+            KeySettings:Add("keyboard", "E", SeatChair3, "PosChairX")
+            KeySettings:Add("controller", 46, SeatChair3, "PosChairX")
+            --print("asseoir")
+        end,
+        function()
+            Hint:RemoveAll()
+            KeySettings:Clear("keyboard", "E", "PosChairX")
+            KeySettings:Clear("controller", 46, "PosChairX")
+            --print("exit")
+        end,
+        "ssxxxx",
+        0.8
+    )
+
+    Zone:Add(
+        TattoJob3.posTatoo,
+        function()
+            --print("tattt")
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
+            KeySettings:Add("keyboard", "E", SeatTatoueur3, "PosTatoueur")
+            KeySettings:Add("controller", 46, SeatTatoueur3, "PosTatoueur")
+        end,
+        function()
+            Hint:RemoveAll()
+            --print("exit")
+            KeySettings:Clear("keyboard", "E", "PosTatoueur")
+            KeySettings:Clear("controller", 46, "PosTatoueur")
+        end,
+        "3612",
+        0.8
     )
 end
 
@@ -620,6 +721,7 @@ Citizen.CreateThread(function()
     Wait(500)
     Create()
     Create2()
+    Create3()
     hairstyles = {}
     local newT = nil
     local tattooGun = nil
