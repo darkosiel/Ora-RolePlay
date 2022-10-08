@@ -176,6 +176,10 @@ function DisplayHelpText(str) {
 
 onNet('OraPhone:client:phone_active', (active) => {
     phoneActive = active
+    SendNUIMessage({
+        type: "phoneActive",
+        toggle: active
+    })
 })
 
 // User data
@@ -270,11 +274,27 @@ onNet('OraPhone:client:gallery_update_photo', data => {
     })
 })
 
+// Notes
+
+onNet('OraPhone:client:notes_refresh', data => {
+    SendNUIMessage({
+        type: 'updateNotes',
+        notes: data
+    })
+})
+
 /**
  * =============
  * Nui callbacks
  * =============
  */
+
+// General Phone
+
+RegisterNuiCallbackType('phone_close')
+on('__cfx_nui:phone_close', _ => {
+    setPhoneVisible(false)
+})
 
 // User Data
 
@@ -449,7 +469,19 @@ on('__cfx_nui:refresh_gallery', data => {
     emitNet('OraPhone:server:refresh_gallery', data)
 })
 
-// Tools
+// Notes
+
+RegisterNuiCallbackType('refresh_notes')
+on('__cfx_nui:refresh_notes', data => {
+    emitNet('OraPhone:server:refresh_notes', data)
+})
+
+RegisterNuiCallbackType('notes_add_folder')
+on('__cfx_nui:notes_add_folder', data => {
+    emitNet('OraPhone:server:notes_add_folder', data)
+})
+
+// --- Tools
 
 RegisterNuiCallbackType('right_click')
 on('__cfx_nui:right_click', _ => {
