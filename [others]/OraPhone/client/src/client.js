@@ -469,6 +469,11 @@ on('__cfx_nui:refresh_gallery', data => {
     emitNet('OraPhone:server:refresh_gallery', data)
 })
 
+RegisterNuiCallbackType('gallery_image_remove')
+on('__cfx_nui:gallery_image_remove', data => {
+    emitNet('OraPhone:server:gallery_image_remove', data)
+})
+
 // Notes
 
 RegisterNuiCallbackType('refresh_notes')

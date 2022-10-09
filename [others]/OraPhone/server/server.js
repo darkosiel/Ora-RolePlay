@@ -769,6 +769,12 @@ onNet('OraPhone:server:refresh_gallery', async (data) => {
     emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
 })
 
+onNet('OraPhone:server:gallery_image_remove', async (data) => {
+    const src = source
+    await crud.image.delete({ id: data.id })
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+})
+
 // Notes
 
 onNet('OraPhone:server:refresh_notes', async (data) => {
@@ -802,8 +808,6 @@ function RegisterNewPhone(phoneNumber, identity) {
     let wallpaper = 'wallpaper-ios15'
     let wallpaperLock = 'wallpaper-ios15'
     let luminosity = '100'
-    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"richtermotorsport\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
 }
-
-["clock","camera","gallery","calandar","","","","","notes","calculator","templatetabbed","store","","","","","music","","","","","","","","","","","","","","","","","","","","","","",""]

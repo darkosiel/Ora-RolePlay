@@ -1268,6 +1268,42 @@ div#page {
                                     }
                                 }
                             }
+                            &#app-maintenance {
+                                div.app-body {
+                                    height: 100%;
+                                    div.app-body-content {
+                                        div.app-body-content-body {
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                            align-items: center;
+                                            row-gap: 15px;
+                                            @include themed() {
+                                                background-color: t($phone-app-background-color);
+                                            }
+                                            img {
+                                                width: 70%;
+                                            }
+                                            span {
+                                                font-size: 32px;
+                                                font-family: $ora-font-bold;
+                                                text-align: center;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                }
+                                                &.maintenance-description {
+                                                    font-size: 18px;
+                                                    font-family: $ora-font-semibold;
+                                                    @include themed() {
+                                                        color: t($phone-system-color-gray);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                             &#app-calculator {
                                 div.app-body {
                                     background-color: #000000;
@@ -2127,6 +2163,40 @@ div#page {
                                                         background: none;
                                                         border: none;
                                                         cursor: text;
+                                                    }
+                                                }
+                                            }
+                                            div#app-message-position {
+                                                position: absolute;
+                                                display: none;
+                                                flex-direction: column;
+                                                width: auto;
+                                                height: 58px;
+                                                bottom: 45px;
+                                                left: 55px;
+                                                border-radius: 10px;
+                                                transition: all 0.3s ease-in-out;
+                                                overflow: hidden;
+                                                z-index: 999;
+                                                @include themed() {
+                                                    background-color: t($phone-app-modal-header-input-background-color);
+                                                    color: t($phone-app-info-color);
+                                                }
+                                                &.active {
+                                                    display: flex;
+                                                }
+                                                div {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    width: 100%;
+                                                    height: 50%;
+                                                    padding: 7px 12px;
+                                                    cursor: pointer;
+                                                    &:hover {
+                                                        @include themed() {
+                                                            background-color: t($phone-app-info-color);
+                                                            color: t($phone-system-color-white);
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3499,8 +3569,37 @@ div#page {
                                                 }
                                             }
                                         }
+                                        &#app-gallery-body-content-image {
+                                            div.app-body-content-body {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                img#gallery-image {
+                                                    width: 100%;
+                                                    margin-top: 150px;
+                                                }
+                                                div {
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    width: 100%;
+                                                    height: 70px;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-tab-background-color);
+                                                    }
+                                                    i {
+                                                        font-size: 26px;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            color: t($phone-app-tab-button-color);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
-                                }   
+                                }
                             }
                             &#app-notes {
                                 div.app-body {
@@ -4541,6 +4640,19 @@ div#phone-screen-content {
         div#phone-screen-content-header {
             @include themed() {
                 background-color: t($phone-app-tab-background-color) !important;
+            }
+        }
+    }
+    &.app-maintenance {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-app-background-color) !important;
+                color: t($phone-app-label-color-primary) !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-app-label-color-primary) !important;
+                }
             }
         }
     }

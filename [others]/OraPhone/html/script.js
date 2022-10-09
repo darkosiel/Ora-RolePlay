@@ -412,6 +412,7 @@ function initializeApps() {
     initializeAppCamera();
     initializeAppRichterMotorsport();
     initializeAppNotes();
+    initializeAppGallery();
 
     // Initialisation des boutons généraux de chaques applications
     $(".app-header-first").click(function () {
@@ -446,9 +447,10 @@ function initializeAppScreen() {
         displayTopbar();
     });
     $("#phone-screen-content-footer").click(function () {
-        updateContent("home");
         if(displayTopbarToggle) {
             displayTopbar();
+        } else {
+            updateContent("home");
         }
     });
     $("#topbar-box-music-button-play").click(function () {
@@ -467,6 +469,18 @@ function initializeAppScreen() {
     });
     $("#topbar-box-button-torch").click(function () {
         $("#topbar-box-button-torch").toggleClass("active")
+    });
+    $("#topbar-box-button-clock").click(function () {
+        updateContent("clock");
+        displayTopbar();
+    });
+    $("#topbar-box-button-calculator").click(function () {
+        updateContent("calculator");
+        displayTopbar();
+    });
+    $("#topbar-box-button-camera").click(function () {
+        updateContent("camera");
+        displayTopbar();
     });
     $("#topbar-box-button-update-thememode").click(function() {
         switchThemeMode();
@@ -608,6 +622,15 @@ function initializeAppMessage() {
     $("#app-message-body-content-list-search-reset").click(function() {
         $("#app-message-body-content-list-search").val("");
         $("#message-list .app-body-content-body-list-item").css("display", "flex");
+    });
+    $("#message-position-button-show").click(function () {
+        $("#app-message-position").toggleClass("active");
+    })
+    $("#message-position-button-marker").click(function () {
+
+    });
+    $("#message-position-button-myposition").click(function () {
+        $.post('https://OraPhone/message_send_myposition', JSON.stringify({}));
     });
 }
 
@@ -1433,6 +1456,17 @@ function initializeAppNotes() {
     });
 }
 
+function initializeAppGallery() {
+    $("#gallery-image").click(function () {
+        $("#image-fullscreen img").attr("src", $("#gallery-image").attr("src"));
+        $("#image-fullscreen").show();
+    });
+    $("#gallery-image-button-remove").click(function () {
+        updateAppContent("list");
+        $.post('https://OraPhone/gallery_image_remove', JSON.stringify({ phoneId: userData.phone.id, id: $("#gallery-image").data("id") }));
+    })
+}
+
 function updateNotesNoteContent() {
     $("#notes-note-content").toggle();
     $("#notes-note-container").toggle();
@@ -1878,83 +1912,15 @@ function updateNotesNoteLoad(folderId, id) {
     $("#notes-note-content").val(note.content);
 }
 
-// function updateAppRichterMotorsportLoad(id) {
-//     if(id != "") {
-//         $('.app-message-conversation .messages').empty();
-//         for(let conversation of userData.conversations) {
-//             if(conversation.id == conversationId) {
-//                 let conversationAvatar = contactAvatarDefault;
-//                 let conversationName = "";
-//                 targetNumber = JSON.parse(conversation.target_number);
-//                 for(let user of JSON.parse(conversation.target_number)) {
-//                     if(user != userData.phone.number) {
-//                         let name = user;
-//                         for(let contact of userData.contacts) {
-//                             if(contact.number == user) {
-//                                 if(JSON.parse(conversation.target_number).length == 2) {
-//                                     if(contact.avatar.includes("http")) {
-//                                         conversationAvatar = contact.avatar;
-//                                     } else {
-//                                         conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
-//                                     }
-//                                 }
-//                                 name = contact.name;
-//                                 break;
-//                             }
-//                         }
-//                         conversationName += name + ", ";
-//                     }
-//                 }
-//                 conversationName = conversationName.slice(0, -2);
-//                 if(conversationAvatar.includes("http")) {
-//                     $(".app-body-content-header-profil-avatar").addClass("url");
-//                 } else {
-//                     $(".app-body-content-header-profil-avatar").removeClass("url");
-//                 }
-//                 $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
-//                 $(".app-body-content-header-profil-name span").html(conversationName);
-//                 for(let message of conversation.messages) {
-//                     let sourceName = "";
-//                     let sourceType = "";
-//                     let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
-//                     if(message.sourceNumber == userData.phone.number) {
-//                         sourceName = "Moi";
-//                         sourceType = "me";
-//                     } else {
-//                         sourceName = message.sourceNumber;
-//                         sourceType = "you";
-//                         for(let contact of userData.contacts) {
-//                             if(contact.number == message.sourceNumber) {
-//                                 sourceName = contact.name;
-//                             }
-//                         }
-//                     }
-//                     responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
-//                 }
-//             }
-//         }
-//         let messageInput = $("#app-message-footer-input");
-//         messageInput.on("keyup", function(e) {
-//             if (e.key === 'Enter' || e.keyCode === 13) {
-//                 if (messageInput.val() != "") {
-//                     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
-//                     messageInput.val("");
-//                 }
-//             }
-//         });
-//         let elementMessages = document.querySelector(".app-message-conversation .messages");
-//         elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
-//     }
-// }
-
 function updateAppGallery() {
     $("#gallery-image-list").empty();
     for(let image of userData.galleryPhoto) {
-        let divImage = "<div class='gallery-image-list-item'><img src='" + image.imageLink + "'/></div>";
+        let divImage = "<div data-id='" + image.id + "' class='gallery-image-list-item'><img src='" + image.imageLink + "'/></div>";
         $("#gallery-image-list").append(divImage);
         $("#gallery-image-list").children().last().click(function() {
-            $("#image-fullscreen img").attr("src", image.imageLink);
-            $("#image-fullscreen").show();
+            $("#gallery-image").attr("src", image.imageLink);
+            $("#gallery-image").data("id", image.id);
+            updateAppContent("image");
         });
     }
 }
@@ -2174,14 +2140,15 @@ function updateAppHomeOrder() {
             divAppElement += "<div class='app-home-list-item empty-place'></div>";
         }
         $("#app-home-page-1 .app-home-list .icons-list > ul").append(divAppElement + "</li>");
-        $(".app-home-list .icons-list > ul li > div").click(function(e) {
-                if(longpress) {
-                    e.preventDefault();
-                } else {
-                    if(this.id) {
-                        updateContent(this.id.split("-")[4]);
-                    }
+        // $(".app-home-list .icons-list > ul li > div").click(function(e) {
+        $(".app-home-list .icons-list > ul > li").last().find("div").click(function(e) {
+            if(longpress) {
+                e.preventDefault();
+            } else {
+                if(this.id) {
+                    updateContent(this.id.split("-")[4]);
                 }
+            }
         });
     }
     // Création des application principales
@@ -2635,6 +2602,12 @@ function timerStart() {
 // Fonctions d'affichage
 
 function updateContent(menu) {
+    for(let app of config.apps) {
+        if(menu == app.name && app.maintenance) {
+            menu = "maintenance";
+            break;
+        }
+    }
     let appSelected = document.getElementById("app-" + menu);
     if(!appSelected) {
         return;
@@ -3282,11 +3255,13 @@ const config = {
         },
         {
             "name": "calandar",
-            "label": "Calendrier"
+            "label": "Calendrier",
+            "maintenance": true
         },
         {
             "name": "notes",
-            "label": "Notes"
+            "label": "Notes",
+            "maintenance": true
         },
         {
             "name": "calculator",
@@ -3294,16 +3269,18 @@ const config = {
         },
         {
             "name": "store",
-            "label": "Magasin"
+            "label": "Magasin",
+            "maintenance": true
         },
         {
             "name": "music",
-            "label": "Musique"
+            "label": "Musique",
+            "maintenance": true
         },
-        {
-            "name": "templatetabbed",
-            "label": "Template Tabbed"
-        },
+        // {
+        //     "name": "templatetabbed",
+        //     "label": "Template Tabbed"
+        // },
         {
             "name": "richtermotorsport",
             "label": "Richter Motorsport"
