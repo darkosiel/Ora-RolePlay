@@ -4006,12 +4006,12 @@ Jobs = {
         },
         garage = {
             Name = "Garage Galaxy",
-            Pos = {x = 322.7271, y = 264.0486, z = 104.3781},
+            Pos = {x = 359.9612, y = 272.1847, z = 103.1023},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 322.72, y = 264.04, z = 104.37, h = 353.35}
+                spawnpos = {x = 359.96, y = 272.18, z = 103.10, h = 353.35}
             },
             Blipdata = {
                 Pos = "none"
