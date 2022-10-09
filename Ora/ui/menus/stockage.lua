@@ -163,11 +163,12 @@ function Storage:RefreshWeight()
     self.Weight = Weight
 end
 
-function Storage:RefreshDB()
+function Storage:RefreshDB(cb)
     TriggerServerCallback(
         "rage-reborn:GetStorageItems",
         function(Items)
             self.items = FormatStorage(Items)
+            if type(cb) == "function" then cb() end
         end,
         self.name
     )
@@ -217,6 +218,7 @@ function Storage:TransferToInventory(count, item)
     local itemsIds = {}
     self = currentStorage
 
+    -- Should replace with self.items[itemName] to improve performance (with a check if null or if == {} )
     for k, v in pairs(self.items) do
         if k == itemName then
             local itemsLocal = {}
@@ -261,8 +263,7 @@ function Storage:TransferToInventory(count, item)
         --TriggerEvent('Ora:InvNotification', 'Récupération du coffre. Veuillez patienter...', 'warning')
         TriggerServerEvent("rage-reborn:TransfertToInventory", itemsIds, item, self.name)
 
-        TriggerServerEvent(
-            "Ora:sendToDiscord",
+        TriggerServerEvent("Ora:sendToDiscord",
             3,
             "Récupère " .. 
                 count .. " x " .. 

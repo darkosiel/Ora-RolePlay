@@ -48,13 +48,15 @@ end
 
 local function RefreshSto()
     SetNuiFocus(true, true)
-    Storage:RefreshWeight()
-    Ora.Inventory:RefreshWeight()
-    SendNUIMessage({
-        eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
-        weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-        bars = exports['Ora_utils'].GetPlayerBars()
-    })
+    currentStorage:RefreshDB(function()
+        currentStorage:RefreshWeight()
+        Ora.Inventory:RefreshWeight()
+        SendNUIMessage({
+            eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
+            weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
+            bars = exports['Ora_utils'].GetPlayerBars()
+        })
+    end)
 end
 
 local function Refresh()
@@ -230,7 +232,7 @@ AddEventHandler('Ora:hideInventory', function() SendNUIMessage({eventName = "hid
 AddEventHandler('Ora:openInvStorage', function() OpenInvStorage() end)
 AddEventHandler('Ora:InvNotification', function(message, theme) ShowNotif(message, theme) end)
 AddEventHandler('Ora:inventoryFouille', function(targetInv) Fouilling(targetInv) end)
-AddEventHandler('Ora:refreshStorage', function() RefreshSto() end)
+AddEventHandler('Ora:refreshStorage', function(name) if currentStorage.name == name then Refresh() end end)
 AddEventHandler('Ora:inventory:deleteIfWeapon', function(item) DeleteIfWeapon(item) end)
 
 --																			NUICALLBACKS
