@@ -2129,7 +2129,7 @@ function updateAppHomeOrder() {
     for(let app of userData.phone.appHomeOrder) {
         let divAppElement = "<li data-name='" + app + "'>";
         if(app != '') {
-            let label = config.apps.find( application => application.name == app).label;
+            let label = (config.apps.find( application => application.name == app).label ? config.apps.find( application => application.name == app).label : app);
             if(app == "clock") {
                 divAppElement += "<div id='app-home-list-item-" + app + "' class='app-home-list-item'><div id='centered'><div id='app'><div id='circle'><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ul><div class='hand' id='hours'></div><div class='hand' id='minutes'></div><div class='hand' id='seconds'></div><div id='black-circle'></div><div id='red-circle'></div></div></div></div><span>" + label + "</span></div>";
             } else {
@@ -2405,8 +2405,9 @@ function receiveCall(data) {
         }
     }
     if(!displayToggle) {
-        addNotification("call", "callreceive", "Maintenant", "Appel", name, avatar);
+        addNotification("call", "callreceive", "Maintenant", "Appel", name, "", avatar);
     }
+    $("#call-callreceive-title").html("Appel de " + name);
     updateContent("call");
     updateAppContent("callreceive");
     soundRinging.currentTime = 0;
