@@ -1,15 +1,22 @@
 local TattoJob = {
-    posChair = {x = 324.07, y = 181.24, z = 103.5}, --posChair = {x=-1154.43, y=-1427.52, z=4.951},
-    posTatoo = {x = 323.68, y = 181.97, z = 103.75},
+    posChair = {x = 325.3215, y = 179.4357, z = 104.1064}, --posChair = {x=-1154.43, y=-1427.52, z=4.951},
+    posTatoo = {x = 325.7946, y = 180.3293, z = 103.75},
     Seated = false,
     Tatoueur = false
 }
 local TattoJob2 = {
-    posChair = {x=1864.006, y=3745.933, z=32.939},
-    posTatoo = {x=1864.967, y=3746.374, z=32.939},
+     posChair = {x=1863.5434, y=3745.5908, z=33.06},
+     posTatoo = {x=1864.1995, y=3745.8034, z=32.939},
+     Seated = false,
+     Tatoueur = false
+}
+local TattoJob3 = { 
+    posChair = {x=1320.3298, y= -1653.3701, z=52.27},
+    posTatoo = {x=1320.6446, y= -1654.8449, z=52.27},
     Seated = false,
     Tatoueur = false
 }
+
 local Colors = {
     {22, 19, 19}, -- 0
     {30, 28, 25}, -- 1
@@ -209,6 +216,11 @@ Citizen.CreateThread(function()
             SetEntityCompletelyDisableCollision(LocalPlayer().Ped)
             doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
         end
+        if TattoJob3.Seated then
+            Wait(1)
+            SetEntityCompletelyDisableCollision(LocalPlayer().Ped)
+            doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
+        end
     end
 end)
 
@@ -220,6 +232,10 @@ Citizen.CreateThread(function()
             doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
         end
         if TattoJob2.Tatoueur then
+            Wait(1)
+            doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
+        end
+        if TattoJob3.Tatoueur then
             Wait(1)
             doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
         end
@@ -241,8 +257,8 @@ local function SeatChair()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
         SetEntityCollision(LocalPlayer().Ped, true)
     else
-        SetEntityCoords(LocalPlayer().Ped, 324.09, 181.24, 102.85)
-        SetEntityHeading(LocalPlayer().Ped, 113.84)
+        SetEntityCoords(LocalPlayer().Ped, 325.3215, 179.4357, 103.1064)
+        SetEntityHeading(LocalPlayer().Ped, 28.95)
         Wait(1)
 
         SetEntityCollision(LocalPlayer().Ped, false)
@@ -263,7 +279,7 @@ local function SeatChair2()
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
         SetEntityCollision(LocalPlayer().Ped, true)
     else
-        SetEntityCoords(LocalPlayer().Ped, 1864.006, 3745.933, 32.00)
+        SetEntityCoords(LocalPlayer().Ped, 1863.5434, 3745.1433, 32.00)
         SetEntityHeading(LocalPlayer().Ped, 359.587)
         Wait(1)
 
@@ -274,99 +290,100 @@ local function SeatChair2()
         doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
     end
 end
+local function SeatChair3()
+    Hint:RemoveAll()
+    local ped = LocalPlayer().Ped
+    local plyPos = LocalPlayer().Pos
+    if TattoJob3.Seated == true then
+        ClearPedTasks(ped)
+        FreezeEntityPosition(ped, false)
+        TattoJob3.Seated = not TattoJob3.Seated
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
+        SetEntityCollision(LocalPlayer().Ped, true)
+    else                                    
+        SetEntityCoords(LocalPlayer().Ped, 1320.4609, -1654.2133, 51.27)
+        SetEntityHeading(LocalPlayer().Ped, 268.9627)
+        Wait(1)
+
+        SetEntityCollision(LocalPlayer().Ped, false)
+        FreezeEntityPosition(ped, true)
+        TattoJob3.Seated = not TattoJob3.Seated
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
+        doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_customer"}, nil, 1)
+    end
+end
 local currentSitObj
 local fakeEnt
 local fpxm
 local function SeatTatoueur()
     Hint:RemoveAll()
-    local plyPos = LocalPlayer().Pos
     local ped = LocalPlayer().Ped
-    if TattoJob.Tatoueur then
+    local plyPos = LocalPlayer().Pos
+    if TattoJob.Tatoueur == true then
+        ClearPedTasks(ped)
+        FreezeEntityPosition(ped, false)
+        TattoJob.Tatoueur = not TattoJob.Tatoueur
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
         SetEntityCollision(LocalPlayer().Ped, true)
-
-        FreezeEntityPosition(ped, true)
-        ClearPedTasks(ped)
-        SetEntityAsMissionEntity(fakeEnt, true, true)
-        DeleteObject(fakeEnt)
-        SetEntityVisible(currentSitObj, true, true)
-        SetEntityVisible(ped, true, true)
-        SetEntityCollision(currentSitObj, true, true)
-        FreezeEntityPosition(ped, false)
-        DeleteObject(fpxm)
     else
-        local object = GetClosestObjectOfType(plyPos, 3.0, 1798189768, false, true, true)
+        SetEntityCoords(LocalPlayer().Ped, 325.7946, 180.3293, 102.75)
+        SetEntityHeading(LocalPlayer().Ped, 156.8171)
+        Wait(1)
 
-        currentSitObj = object
-        FreezeEntityPosition(object, true)
-        SetEntityVisible(object, false, false)
-        SetEntityCollision(object, false, false)
-
-        local objloc = GetEntityCoords(object)
-        local sitData = {x = objloc.x, y = objloc.y, z = objloc.z - .15, a = GetEntityHeading(object) + 180.0}
-        fakeEnt = Ora.World.Object:Create(GetEntityModel(object), objloc, true, 0, 0)
-        --PlaceObjectOnGroundProperly(fakeEnt)
-        FreezeEntityPosition(fakeEnt, true)
-        SetEntityHeading(fakeEnt, sitData.a - 180.0)
-
-        SetEntityCoords(ped, sitData.x, sitData.y, sitData.z)
-        SetEntityHeading(ped, sitData.a)
+        SetEntityCollision(LocalPlayer().Ped, false)
         FreezeEntityPosition(ped, true)
-
-        doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
-
+        TattoJob.Tatoueur = not TattoJob.Tatoueur 
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
-
-        fpxm = Ora.World.Object:Create(1334823285, LocalPlayer().Pos, true, 0, 0)
-        AttachEntityToEntity(fpxm,LocalPlayer().Ped,GetPedBoneIndex(LocalPlayer().Ped, 57005),vector3(0.15, 0.02, 0.02),vector3(-200.0, 0.0, -0.0),0,0,0,0,0,1)
+        doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
     end
-    TattoJob.Tatoueur = not TattoJob.Tatoueur
 end
 
 local function SeatTatoueur2()
     Hint:RemoveAll()
-    local plyPos = LocalPlayer().Pos
     local ped = LocalPlayer().Ped
-    if TattoJob2.Tatoueur then
+    local plyPos = LocalPlayer().Pos
+    if TattoJob2.Tatoueur == true then
+        ClearPedTasks(ped)
+        FreezeEntityPosition(ped, false)
+        TattoJob2.Tatoueur = not TattoJob2.Tatoueur
         Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
         SetEntityCollision(LocalPlayer().Ped, true)
-
-        FreezeEntityPosition(ped, true)
-        ClearPedTasks(ped)
-        SetEntityAsMissionEntity(fakeEnt, true, true)
-        DeleteObject(fakeEnt)
-        SetEntityVisible(currentSitObj, true, true)
-        SetEntityVisible(ped, true, true)
-        SetEntityCollision(currentSitObj, true, true)
-        FreezeEntityPosition(ped, false)
-        DeleteObject(fpxm)
     else
-        local object = GetClosestObjectOfType(plyPos, 3.0, 1798189768, false, true, true)
+        SetEntityCoords(LocalPlayer().Ped, 1864.1995, 3745.8034, 32.50)
+        SetEntityHeading(LocalPlayer().Ped, 113.2934)
+        Wait(1)
 
-        currentSitObj = object
-        FreezeEntityPosition(object, true)
-        SetEntityVisible(object, false, false)
-        SetEntityCollision(object, false, false)
-
-        local objloc = GetEntityCoords(object)
-        local sitData = {x = objloc.x, y = objloc.y, z = objloc.z - .15, a = GetEntityHeading(object) + 180.0}
-        fakeEnt = Ora.World.Object:Create(GetEntityModel(object), objloc, true, 0, 0)
-        --PlaceObjectOnGroundProperly(fakeEnt)
-        FreezeEntityPosition(fakeEnt, true)
-        SetEntityHeading(fakeEnt, sitData.a - 180.0)
-
-        SetEntityCoords(ped, sitData.x, sitData.y, sitData.z)
-        SetEntityHeading(ped, sitData.a)
+        SetEntityCollision(LocalPlayer().Ped, false)
         FreezeEntityPosition(ped, true)
-
+        TattoJob2.Tatoueur = not TattoJob2.Tatoueur
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
         doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
 
-        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
-
-        fpxm = Ora.World.Object:Create(1334823285, LocalPlayer().Pos, true, 0, 0)
-        AttachEntityToEntity(fpxm,LocalPlayer().Ped,GetPedBoneIndex(LocalPlayer().Ped, 57005),vector3(0.15, 0.02, 0.02),vector3(-200.0, 0.0, -0.0),0,0,0,0,0,1)
     end
-    TattoJob2.Tatoueur = not TattoJob2.Tatoueur
+end
+
+local function SeatTatoueur3()
+    Hint:RemoveAll()
+    local ped = LocalPlayer().Ped
+    local plyPos = LocalPlayer().Pos
+    if TattoJob3.Tatoueur == true then
+        ClearPedTasks(ped)
+        FreezeEntityPosition(ped, false)
+        TattoJob3.Tatoueur = not TattoJob3.Tatoueur
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour s'asseoir")
+        SetEntityCollision(LocalPlayer().Ped, true)
+    else
+        SetEntityCoords(LocalPlayer().Ped, 1320.6446, -1654.8449, 51.00)
+        SetEntityHeading(LocalPlayer().Ped, 9.6111)
+        Wait(1)
+
+        SetEntityCollision(LocalPlayer().Ped, false)
+        FreezeEntityPosition(ped, true)
+        TattoJob3.Tatoueur = not TattoJob3.Tatoueur
+        Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour se relever")
+        doAnim2({"misstattoo_parlour@shop_ig_4", "shop_ig_4_tattooist"}, nil, 1)
+
+    end
 end
 
 local obj = GetClosestObjectOfType(plyPos, 3.0, GetHashKey(k), false, true, true)
@@ -459,6 +476,45 @@ local function Create2()
             Rotate = false,
             visible = GetDistanceBetweenCoords(138.26, -1708.48, 28.30, x, y, z, true)
         }
+    )
+end
+
+local function Create3()
+    --print("create job tatoo")
+    Zone:Add(
+        TattoJob3.posChair,
+        function()
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
+            KeySettings:Add("keyboard", "E", SeatChair3, "PosChairX")
+            KeySettings:Add("controller", 46, SeatChair3, "PosChairX")
+            --print("asseoir")
+        end,
+        function()
+            Hint:RemoveAll()
+            KeySettings:Clear("keyboard", "E", "PosChairX")
+            KeySettings:Clear("controller", 46, "PosChairX")
+            --print("exit")
+        end,
+        "ssxxxx",
+        0.8
+    )
+
+    Zone:Add(
+        TattoJob3.posTatoo,
+        function()
+            --print("tattt")
+            Hint:Set("Appuyez sur ~INPUT_CONTEXT~ s'asseoir")
+            KeySettings:Add("keyboard", "E", SeatTatoueur3, "PosTatoueur")
+            KeySettings:Add("controller", 46, SeatTatoueur3, "PosTatoueur")
+        end,
+        function()
+            Hint:RemoveAll()
+            --print("exit")
+            KeySettings:Clear("keyboard", "E", "PosTatoueur")
+            KeySettings:Clear("controller", 46, "PosTatoueur")
+        end,
+        "3612",
+        0.8
     )
 end
 
@@ -665,6 +721,7 @@ Citizen.CreateThread(function()
     Wait(500)
     Create()
     Create2()
+    Create3()
     hairstyles = {}
     local newT = nil
     local tattooGun = nil

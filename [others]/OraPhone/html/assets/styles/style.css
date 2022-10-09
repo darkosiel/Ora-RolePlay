@@ -5253,8 +5253,6 @@ div#page div#image-fullscreen img {
 .contextMenu {
   height: 0;
   overflow: hidden;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
   position: fixed;
   top: var(--top);
   left: var(--left);
@@ -5266,14 +5264,14 @@ div#page div#image-fullscreen img {
   padding: 0;
   display: flex;
   flex-direction: column;
-  z-index: 999999999;
+  z-index: 999999;
 }
 .theme--default .contextMenu {
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.85) 100%);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.85) 0%, rgb(255, 255, 255) 100%);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.04), 0 10px 8px rgba(0, 0, 0, 0.05), 0 15px 15px rgba(0, 0, 0, 0.06), 0 30px 30px rgba(0, 0, 0, 0.07), 0 70px 65px rgba(0, 0, 0, 0.09);
 }
 .theme--dark .contextMenu {
-  background: linear-gradient(45deg, rgba(10, 20, 28, 0.2) 0%, rgba(10, 20, 28, 0.7) 100%);
+  background: linear-gradient(45deg, rgba(10, 20, 28, 0.7) 0%, rgb(10, 20, 28) 100%);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.04), 0 10px 8px rgba(0, 0, 0, 0.05), 0 15px 15px rgba(0, 0, 0, 0.06), 0 30px 30px rgba(0, 0, 0, 0.07), 0 70px 65px rgba(0, 0, 0, 0.09);
 }
 .contextMenu-item {

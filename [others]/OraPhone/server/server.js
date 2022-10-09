@@ -187,6 +187,20 @@ const crud = {
         imageLink: 'image_link',
         createTime: 'create_time',
     }),
+    notesfolder: generateCrud('phone_notes_folder', {
+        id: 'id',
+        phoneId: 'phone_id',
+        name: 'name',
+        createTime: 'create_time',
+    }),
+    notesnote: generateCrud('phone_notes_note', {
+        id: 'id',
+        folderId: 'folder_id',
+        name: 'name',
+        content: 'content',
+        updateTime: 'update_time',
+        createTime: 'create_time',
+    }),
 }
 
 /**
@@ -450,6 +464,21 @@ async function refreshGallery(phoneId) {
         return
     }
     return galleryImageResponse
+}
+
+/**
+ * Refresh all Notes app
+ * @param {array} data
+ */
+async function refreshNotes(phoneId) {
+    const notesFolderResponse = await crud.notesfolder.read({ phoneId: phoneId })
+    if(notesFolderResponse && notesFolderResponse.length > 0) {
+        for (let folder of notesFolderResponse) {
+            const notesNoteResponse = await crud.notesnote.read({ folderId: folder.id })
+            folder.notes = notesNoteResponse
+        }
+    }
+    return notesFolderResponse
 }
 
 /**
@@ -738,6 +767,19 @@ onNet('OraPhone:server:camera_add_image', async (data) => {
 onNet('OraPhone:server:refresh_gallery', async (data) => {
     const src = source
     emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+})
+
+// Notes
+
+onNet('OraPhone:server:refresh_notes', async (data) => {
+    const src = source
+    emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+})
+
+onNet('OraPhone:server:notes_add_folder', async (data) => {
+    const src = source
+    await crud.notesfolder.create({ phoneId: data.phoneId, name: data.name })
+    emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
 })
 
 // Create new phone

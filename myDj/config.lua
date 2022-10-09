@@ -84,9 +84,16 @@ Config.DJPositions = {
     },
     {
         name = 'Galaxy',
-        pos = vector3(-1603.9594, -3012.4260, -77.96 - 0.98),
+        pos = vector3(375.42, 275.95, 92.40 - 0.98),
         requiredJob = nil, 
-        range = 15.0, 
+        range = 26.5, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
+        name = 'Galaxy2',
+        pos = vector3(398.35, 251.16, 92.05 - 0.98),
+        requiredJob = nil, 
+        range = 25.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
@@ -124,13 +131,13 @@ Config.DJPositions = {
         range = 90.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
-    --{
-    --    name = 'cityhall',
-    --    pos = vector3(-544.977234, -202.915527, 52.203037 - 0.98),
-    --    requiredJob = nil, 
-    --    range = 85.0, 
-    --    volume = 1.0 --[[ do not touch the volume! --]]
-    --},
+    {
+       name = 'cityhall',
+       pos = vector3(198.31, -934.95, 49.89 - 0.98),
+       requiredJob = nil, 
+       range = 70.0, 
+       volume = 1.0 --[[ do not touch the volume! --]]
+    },
     {
         name = 'gouvhouse',
         pos = vector3(-1433.413208, 208.506119, 57.823853 - 0.98),

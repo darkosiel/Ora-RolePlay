@@ -1093,6 +1093,24 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.0
     },
+    {
+        objHash = -1989765534,
+        objHeading = 165.2,
+        objCoords = vector3(355.39, 301.58, 103.75),
+        textCoords = vector3(354.97, 301.32, 103.35),
+        authorizedJobs = {"night"},
+        locked = true,
+        maxDistance = 2.0
+    },
+    {
+        objHash = -1555108147,
+        objHeading = 75.0,
+        objCoords = vector3(378.21, 268.44, 94.99),
+        textCoords = vector3(378.21, 268.44, 94.75),
+        authorizedJobs = {"night"},
+        locked = true,
+        maxDistance = 2.0
+    },
     --  HARMONY REPAIRS / LARRY'S
     {
         textCoords = vector3(1187.202, 2644.949, 38.55),

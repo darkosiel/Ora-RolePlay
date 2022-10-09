@@ -454,15 +454,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Post OP",
-            Pos = {x = 1183.9031, y = -3236.6330, z = 5.029},
+            Pos = {x = 1222.9278, y = -3280.9433, z = 5.5155},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85}
+                spawnpos = {x = 1222.9278, y = -3280.9433, z = 5.5155, h = 179.85}
             },
             Blipdata = {
-                Pos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85},
+                Pos = {x = 1222.9278, y = -3280.9433, z = 5.5155, h = 179.85},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
@@ -1557,7 +1557,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Tattoo sud", "Annonce", text, "CHAR_TATTOO", 8, "Tatoueur")
+                            TriggerServerEvent("Job:Annonce", "Tattoo elburro", "Annonce", text, "CHAR_TATTOOELBOURO", 8, "Tatoueur El burro")
                         end
                     end
                 }
@@ -3350,8 +3350,8 @@ Jobs = {
     -- },
 
     journaliste = {
-        label = "Journaliste",
-        label2 = "Journaliste",
+        label = "Weazel News",
+        label2 = "Weazel News",
         iban = "journaliste",
         FreeAccess = false,
         grade = {
@@ -3388,7 +3388,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Journaliste",
+                title = "Weazel News",
                 subtitle = "Actions",
                 name = "journaliste_menuperso"
             },
@@ -3415,7 +3415,7 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Journaliste",
+            Name = "Garage Weazel News",
             Pos = {x = -535.52, y = -894.27, z = 24.22},
             Properties = {
                 type = 3,
@@ -3438,7 +3438,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "newsmav",
+                        name = "newsheli",
                         label = "Helicoptere Weazel",
                         job = true,
                         tuning = {
@@ -3958,8 +3958,8 @@ Jobs = {
                             -- { model="s_f_y_stripper_02", x=112.68, y=-1288.3, z=28.46, a=238.85, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
                             -- { model="s_f_y_stripperlite", x=111.99, y=-1286.03, z=28.46, a=308.8, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
                           --  { model="s_f_y_stripperlite", x=113.00, y=-1287.01, z=28.46, a=294.26, animation="mini@strip_club@pole_dance@pole_dance1", animationName="pd_dance_01"}
-                            { model="s_f_y_hooker_01", x=-1598.55, y=-3015.74, z=-78.21, a=312.43, animation="mini@strip_club@private_dance@part2", animationName="priv_dance_p2"},
-                            { model="a_f_y_clubcust_02", x=-1596.14, y=-3008.01, z=-78.21, a=173.43, animation="mini@strip_club@private_dance@part1", animationName="priv_dance_p1"},
+                            { model="s_f_y_hooker_01", x=372.91, y=280.18, z=91.97 - 0.98, a=101.25, animation="mini@strip_club@private_dance@part2", animationName="priv_dance_p2"},
+                            { model="a_f_y_clubcust_02", x=364.30, y=275.71, z=91.97 - 0.98, a=295.00, animation="mini@strip_club@private_dance@part1", animationName="priv_dance_p1"},
                             --{ model="s_f_y_stripper_02", x=104.66, y=-1294.46, z=29.26, a=287.12, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
                             --{ model="a_f_y_topless_01", x=102.26, y=-1289.92, z=29.26, a=292.05, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
                         }
@@ -3985,11 +3985,11 @@ Jobs = {
                                             Wait(1)
                                         end
                                         local storePed = Ora.World.Ped:Create(5, v.model, vector3(v.x, v.y, v.z), v.a)
-                                        SetBlockingOfNonTemporaryEvents(storePed, false)
+                                        SetBlockingOfNonTemporaryEvents(storePed, true)
                                         SetPedFleeAttributes(storePed, 0, 0)
                                         SetPedArmour(storePed, 100)
                                         SetPedMaxHealth(storePed, 100)
-                                        SetPedDiesWhenInjured(storePed, false)
+                                        SetPedDiesWhenInjured(storePed, true)
                                         SetAmbientVoiceName(storePed, v.voice)
 
                                         TaskPlayAnim(storePed, v.animation, v.animationName, 8.0, 0.0, -1, 1, 0, 0, 0, 0)
@@ -4006,12 +4006,12 @@ Jobs = {
         },
         garage = {
             Name = "Garage Galaxy",
-            Pos = {x = 367.85, y = 296.09, z = 102.50},
+            Pos = {x = 322.7271, y = 264.0486, z = 104.3781},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 367.85, y = 296.09, z = 102.50, h = 353.35}
+                spawnpos = {x = 322.72, y = 264.04, z = 104.37, h = 353.35}
             },
             Blipdata = {
                 Pos = "none"
@@ -4019,17 +4019,22 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -1619.848, y = -3020.409, z = -76.20},
+                Pos = {x = 393.50, y = 278.77, z = 94.10},
                 Limit = 500,
                 Name = "coffre_NightClub"
             },
             {
-                Pos = {x = -1583.104, y = -3012.27, z = -77.00},
+                Pos = {x = 354.91, y = 287.35, z = 90.40},
                 Limit = 1000,
                 Name = "Frigo_1"
             },
             {
-                Pos = {x = -1580.260, y = -3018.293, z = -80.00},
+                Pos = {x = 409.72, y = 248.17, z = 92.05 - 0.98},
+                Limit = 1000,
+                Name = "Frigo_3"
+            },
+            {
+                Pos = {x = 356.42, y = 282.57, z = 93.40},
                 Limit = 1000,
                 Name = "Frigo_2"
             }
@@ -4037,7 +4042,7 @@ Jobs = {
         Extrapos = {
             CraftSpiritueux = {
                 Pos = {
-                    {x = -1584.4697, y = -3015.2500, z = -76.0050}
+                    {x = 354.91, y = 279.98, z = 94.19}
                 },
                 restricted = {1, 2, 3, 4, 5},
                 Enter = function()
@@ -6958,31 +6963,31 @@ Jobs = {
         grade = {
             {
                 label = "Conseiller",
-                salary = 250,
+                salary = 350,
                 name = "agent",
                 show = true
             },
             {
                 label = "Secrétaire d'état",
-                salary = 300,
+                salary = 400,
                 name = "usdss",
                 show = true
             },
             {
                 label = "Chef de cabinet",
-                salary = 400,
+                salary = 430,
                 name = "drh",
                 show = true
             },
             {
                 label = "Vice-Gouverneur",
-                salary = 420,
+                salary = 450,
                 name = "drh",
                 show = true
             },
             {
                 label = "Gouverneur",
-                salary = 450,
+                salary = 500,
                 name = "boss",
                 show = true
             }

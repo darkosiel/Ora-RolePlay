@@ -51,15 +51,15 @@ missionConfig.startPointGoFast = {
 }
 
 missionConfig.startMigrantSmuggling = {
-    {pos = vector3(1120.58, 2647.91, 38.0 - 0.98), heading = 358.41, truckPos = vector3(929.13, 2714.88, 40.52), headingTruck = 176.1},
-    {pos = vector3(627.04, 2724.55, 41.81 - 0.98), heading = 4.8, truckPos = vector3(474.61, 2617.78, 43.09), headingTruck = 278.56},
-    {pos = vector3(333.29, 3406.55, 36.72 - 0.98), heading = 19.33, truckPos = vector3(80.97, 3482.59, 39.73), headingTruck = 187.89},
-    {pos = vector3(1496.71, 3579.4, 35.18 - 0.98), heading = 54.96, truckPos = vector3(1400.41, 3701.01, 33.7), headingTruck = 240.49},
-    {pos = vector3(43.67, 2802.14, 57.88 - 0.98), heading = 148.05, truckPos = vector3(227.18, 2611.53, 46.26), headingTruck = 47.45},
+    {pos = vector3(-1156.27, 2664.78, 18.09 - 0.98), heading = 222.79, truckPos = vector3(-892.54, 2756.84, 23.42), headingTruck = 88.59},
+    {pos = vector3(1749.84, 3042.44, 61.98 - 0.98), heading = 77.02, truckPos = vector3(1408.71, 2966.38, 40.93), headingTruck = 298.56},
+    {pos = vector3(2898.78, 4382.77, 50.37 - 0.98), heading = 294.23, truckPos = vector3(3068.19, 4028.11, 70.29), headingTruck = 14.84},
+    {pos = vector3(2171.35, 3359.45, 45.53 - 0.98), heading = 54.96, truckPos = vector3(2140.41, 3514.88, 44.67), headingTruck = 204.50},
+    {pos = vector3(2460.57, 3447.1, 49.84 - 0.98), heading = 148.05, truckPos = vector3(2607.46, 3368.77, 55.51), headingTruck = 102.56}
 }
 
 missionConfig.endMigrantSmuggling = {
-    {pos = vector3(937.52, -2441.78, 28.48 - 0.98), heading = 358.41},
+    {pos = vector3(-255.98, -2586.22, 5.73 - 0.98), heading = 270.52},
 }
 
 missionConfig.migrantSmugglingDropOff = {
@@ -127,11 +127,11 @@ missionConfig.boss = {
         }
     },
     {
-        name = "Manny",
-        pos = {x = -1013.3464 , y = -1909.6365, z = 13.1612 - 0.98, a = 312.4626}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
-        model = "csb_ortega",
+        name = "Jason",
+        pos = {x = -1580.9326, y = -832.2076, z = 9.9772 - 0.98, a = 134.1476}, --{x=3091.76,y=-4712.5,z=15.26,a=202.32}, --{x=473.52,y=-1310.39,z=28.23,a=202.32},
+        model = "a_m_m_afriamer_01",
         missions = {
-            "Passeur d'immigrés"
+            "Passeur d'immigrÃ©s"
         }
     }
 }

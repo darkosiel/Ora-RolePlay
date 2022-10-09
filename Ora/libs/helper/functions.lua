@@ -403,7 +403,7 @@ end
 
 function TakePictureForAnticheat()
     exports["screenshot-basic"]:requestScreenshotUpload(
-        "https://pictures.orarp.com/upload.php",
+        "http://pictures.orarp.fr/index.php",
         "anticheat",
         function(data)
           

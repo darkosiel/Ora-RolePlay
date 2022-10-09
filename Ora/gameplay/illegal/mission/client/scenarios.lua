@@ -273,7 +273,7 @@ illegalscenario = {
         startTimeCounter(currentMission)
 
         ShowAdvancedNotification(
-            "Manny",
+            "Jason",
             "~b~Dialogue",
             "~g~~h~On a récupéré quelques migrants~h~~w~\n\n~o~Va récupérer le van plein de migrants!~w~",
             "CHAR_LESTER",
@@ -310,7 +310,7 @@ illegalscenario = {
                 if (distanceBetweenCoords <= 5.0 and truckLaunched == false) then
                     truckLaunched = true
                     ShowAdvancedNotification(
-                        "Manny",
+                        "Jason",
                         "~b~Dialogue",
                         "~g~~h~Opération Migrant~h~~w~\n\n~o~Le chauffeur arrive! Patiente 30 secondes~w~",
                         "CHAR_LESTER",
@@ -378,7 +378,7 @@ illegalscenario = {
                                         TaskLeaveVehicle(driver, vehicle, 256)
 
                                         ShowAdvancedNotification(
-                                            "Manny",
+                                            "Jason",
                                             "~b~Dialogue",
                                             "~g~~h~Opération Migrant~h~~w~\n\n~o~Prend le van et dépose les migrants un par un.~w~",
                                             "CHAR_LESTER",
@@ -410,7 +410,7 @@ illegalscenario = {
                             TriggerServerEvent("editIllegalMission", currentMission)
 
                             ShowAdvancedNotification(
-                                "Manny",
+                                "Jason",
                                 "~b~Dialogue",
                                 "~g~~h~Opération Migrant~h~~w~\n\n~o~Depose le migrant #".. currentDropOffIndex .." à l'adresse indiquée.~w~",
                                 "CHAR_LESTER",
@@ -428,7 +428,7 @@ illegalscenario = {
                             TriggerServerEvent("editIllegalMission", currentMission)
                             
                             ShowAdvancedNotification(
-                                "Manny",
+                                "Jason",
                                 "~b~Dialogue",
                                 "~g~~h~Opération Migrant~h~~w~\n\n~o~Bien, tout les migrants sont descendu ramene le van à l'adresse indiquée.~w~",
                                 "CHAR_LESTER",
@@ -440,7 +440,7 @@ illegalscenario = {
                     else
                         if (GetDistanceBetweenCoords(GetEntityCoords(spawnedVehicle).x, GetEntityCoords(spawnedVehicle).y, GetEntityCoords(spawnedVehicle).z, currentDropOffPoint.pos.x, currentDropOffPoint.pos.y, currentDropOffPoint.pos.z, true) <= 10.0) then
                             ShowAdvancedNotification(
-                                "Manny",
+                                "Jason",
                                 "~b~Dialogue",
                                 "~g~~h~Le migrant descend de la voiture. Il va te payer.~h~~w~",
                                 "CHAR_LESTER",
@@ -463,7 +463,7 @@ illegalscenario = {
 
                                 if (chancePedLeave >= 80) then
                                     ShowAdvancedNotification(
-                                        "Manny",
+                                        "Jason",
                                         "~b~Dialogue",
                                         "~r~~h~Le migrant se casse sans te payer !!! Pète lui la gueule pour obtenir l'argent. Tu as 60 secondes~h~~w~",
                                         "CHAR_LESTER",
@@ -486,7 +486,7 @@ illegalscenario = {
                                     Citizen.Wait(1000)
                                     if loopCount < 60 then
                                         ShowAdvancedNotification(
-                                            "Manny",
+                                            "Jason",
                                             "~b~Dialogue",
                                             "~g~~h~Tu as réussi à le rattraper. Tu reçois " .. r .. "$.~h~~w~",
                                             "CHAR_LESTER",
@@ -506,7 +506,7 @@ illegalscenario = {
 
                                     else
                                         ShowAdvancedNotification(
-                                            "Manny",
+                                            "Jason",
                                             "~b~Dialogue",
                                             "~r~~h~Le migrant a fui ... tu as perdu " .. r .. "$.~h~~w~",
                                             "CHAR_LESTER",
@@ -524,7 +524,7 @@ illegalscenario = {
                                     end
                                 else
                                     ShowAdvancedNotification(
-                                        "Manny",
+                                        "Jason",
                                         "~b~Dialogue",
                                         "~g~~h~Le migrant te paye " .. r .. "$.~h~~w~",
                                         "CHAR_LESTER",
@@ -569,7 +569,7 @@ illegalscenario = {
                 if (startFinishMission == true) then
                     if (GetDistanceBetweenCoords(GetEntityCoords(spawnedVehicle).x, GetEntityCoords(spawnedVehicle).y, GetEntityCoords(spawnedVehicle).z, endPosition.pos.x, endPosition.pos.y, endPosition.pos.z, true) <= 10.0) then
                         ShowAdvancedNotification(
-                            "Manny",
+                            "Jason",
                             "~b~Dialogue",
                             "~g~~h~Merci pour ton bon boulot.~h~~w~",
                             "CHAR_LESTER",

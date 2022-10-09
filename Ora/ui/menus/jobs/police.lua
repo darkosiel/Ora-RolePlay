@@ -671,7 +671,7 @@ function Police.ON()
                         ShowNotification("~b~Photo prise !")
 
                         exports["screenshot-basic"]:requestScreenshotUpload(
-                            "https://pictures.orarp.com/upload.php",
+                            "http://pictures.orarp.fr/index.php",
                             "identity",
                             function(data)
                                 local resp = json.decode(data)

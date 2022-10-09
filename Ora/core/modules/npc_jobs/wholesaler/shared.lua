@@ -79,6 +79,7 @@ Ora.NpcJobs.Wholesaler.ItemsPerJob = {
     ["duck"] = {"Canard", 1},
     ["radish"] = {"Radis", 1},
     ["concombre"] = {"Concombre", 2},
+    ["lemon"] = {"Citron", 2},
     ["bouillon"] = {"Bouillon", 2}
   },
   
