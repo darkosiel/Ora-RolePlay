@@ -1853,22 +1853,22 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -1836.73, y = -1176.40, z = 18.20},
-                Limit = 200,
+                Limit = 500,
                 Name = "coffre_pearls_bureau"
             },
             {
                 Pos = {x = -1839.74, y = -1189.69, z = 13.32},
-                Limit = 500,
+                Limit = 1000,
                 Name = "coffre_caveresto2"
             },
             {
                 Pos = {x = -1838.21, y = -1183.83, z = 13.50},
-                Limit = 500,
+                Limit = 1000,
                 Name = "coffre_caveresto1"
             },
             {
                 Pos = {x = -1840.72, y = -1183.35, z = 18.20},
-                Limit = 500,
+                Limit = 1000,
                 Name = "coffre_pearls_club"
             }
 
