@@ -80,6 +80,9 @@ Citizen.CreateThread(
     end
 )
 
+local lastDeposit = 0
+local MIN_TIME_BETWEEN_DEPOSITS = 30000
+
 function EnterBankZone()
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour gérer les comptes en banques")
     KeySettings:Add("keyboard", "E", OpenBankMenu, "BANK")
@@ -1487,9 +1490,6 @@ local ATM = {
 }
 function UseBankCard()
     local bool, coords, heading = IsNearATM()
-    print(bool)
-    print(coords)
-    print(heading)
     if bool then
         TriggerEvent('Ora:hideInventory')
         fpxm = Ora.World.Object:Create(GetHashKey("prop_cs_credit_card"), LocalPlayer().Pos, true, 0, 0)
@@ -1513,6 +1513,12 @@ function UseBankCard()
                 DeleteEntity(fpxm)
             end
         )
+
+        if GetGameTimer() - lastDeposit < MIN_TIME_BETWEEN_DEPOSITS then
+            ShowNotification("~r~Vous avez déjà effectué un retrait ou un dépôt récemment. Veuillez patienter.")
+            return
+        end
+
         local currCARD = Ora.Inventory.SelectedItem.data
         ATM.Open(currCARD)
     else
@@ -1860,6 +1866,7 @@ Citizen.CreateThread(
                                                                     t[k] = v
                                                                 end
                                                             end
+                                                            lastDeposit = GetGameTimer()
                                                             Ora.Payment:PayMoney(t)
     
                                                             for k, v in pairs(m) do
