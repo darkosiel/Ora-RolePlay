@@ -12598,7 +12598,7 @@ Jobs = {
                 blipname = "Yellow Jack - Vente",
                 Pos = {x = 1964.8208, y = 3752.9167, z = 32.2464},
                 required = "saucissonsec",
-                price = math.random(12, 15),
+                price = math.random(13, 16),
                 add = "~p~- 1 Saucisson Sec"
             }
         }
@@ -12700,7 +12700,7 @@ Jobs = {
                 blipname = "Hen House  - Vente",
                 Pos = {x = -3.0644, y = 6488.3999, z = 31.5080},
                 required = "saucissonsec",
-                price = math.random(10,15),
+                price = math.random(13,16),
                 add = "~p~- 1 Saucisson sec"
             }
         },
