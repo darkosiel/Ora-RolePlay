@@ -428,16 +428,12 @@ function initializeApps() {
     $(".app-header-sound").click(function () {
         stopSounds();
     });
-    for(let element of $(".app-tab-button")) {
-        element.addEventListener("click", function() {
-            updateAppContent(element.id.split("-")[3]);
-        });
-    }
-    for(let item of $("#app-store .app-body-content-body-list-item")) {
-        item.addEventListener("click", function() {
-            updateAppContent("app");
-        });
-    }
+    $(".app-tab-button").click(function() {
+        updateAppContent(this.id.split("-")[3]);
+    });
+    $("#app-store .app-body-content-body-list-item").click(function() {
+        updateAppContent("app");
+    });
 }
 
 // Initialisation des applications
@@ -1436,7 +1432,7 @@ function initializeAppNotes() {
     // Inisialisation de la recherche de notes
     let searchInput = document.getElementById("app-notes-body-content-folder-search");
     searchInput.addEventListener('input', (e) => {
-        for(let elt of $("#notes-list-notes .notes-list-item")) {
+        for(let elt of $("#notes-list-notes").children()) {
             if(elt.querySelector(".notes-list-item-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "flex";
             } else {
@@ -1580,7 +1576,7 @@ function updateAppContacts() {
             $("#editcontact-icon-custom-input").val("");
         }
         $("#editcontact-icon-list").children().removeClass("active");
-        for(let icon of $("#editcontact-icon-list").children()) {
+        for(let icon of document.querySelectorAll("#editcontact-icon-list .newcontact-icon-list-item")) {
             if(icon.dataset.title == contactAvatar) {
                 icon.classList.add("active");
             }
@@ -1607,7 +1603,7 @@ function updateAppContacts() {
     });
     // Inisialisation de la liste de l'alphabet
     $("#contacts-list-alphabet span").click(function() {
-        for(let item of $(".contacts-list-row-letter")) {
+        for(let item of document.querySelectorAll(".contacts-list-row-letter")) {
             if(item.querySelector("span").innerText.charAt(0).toLowerCase() == this.title.toLowerCase()) {
                 document.getElementById("contacts-list").scrollTo({top: item.parentNode.offsetTop, behavior: 'smooth'});
                 return;
@@ -1617,7 +1613,7 @@ function updateAppContacts() {
     // Inisialisation de la recherche de contactes
     let searchInput = document.getElementById("app-contacts-body-content-list-search");
     searchInput.addEventListener('input', (e) => {
-        for(let elt of $(".contacts-list-row-item")) {
+        for(let elt of document.querySelectorAll(".contacts-list-row-item")) {
             if(elt.querySelector(".contacts-list-row-item-top-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "block";
             } else {
@@ -1648,7 +1644,7 @@ function updateAppMessage() {
         this.classList.toggle("active");
     });
     $("#newmessage-list-alphabet span").click(function() {
-        for(let item of $(".newmessage-list-item")) {
+        for(let item of document.querySelectorAll(".newmessage-list-item")) {
             if(item.querySelector(".newmessage-list-item-right-header-name").innerText.charAt(0).toLowerCase() == this.title.toLowerCase()) {
                 document.getElementById("newmessage-list").scrollTo({top: item.offsetTop, behavior: 'smooth'});
                 return;
@@ -1658,7 +1654,7 @@ function updateAppMessage() {
     let searchInput = document.getElementById("app-message-body-content-newmessage-search");
     searchInput.value = "";
     searchInput.addEventListener('input', (e) => {
-        for(let elt of $(".newmessage-list-item")) {
+        for(let elt of document.querySelectorAll(".newmessage-list-item")) {
             if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "flex";
             } else {
@@ -1851,7 +1847,7 @@ function updateAppRichterMotorsport() {
     });
     let searchInput = document.getElementById("app-richtermotorsport-body-content-advertisement-search");
     searchInput.addEventListener('input', (e) => {
-        for(let elt of $(".richtermotorsport-list-item")) {
+        for(let elt of document.querySelectorAll(".richtermotorsport-list-item")) {
             if(elt.querySelector(".richtermotorsport-list-item-description-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "block";
             } else {
@@ -1977,7 +1973,7 @@ function updateZoom() {
             generalZoom = generalZoomItem.value + "%";
         }
     }
-    for(let generalZoomItem of $("#settings-list-general-zoom").children()) {
+    for(let generalZoomItem of document.querySelectorAll("#settings-list-general-zoom .settings-list-item")) {
         if(generalZoomItem.dataset.generalzoom == generalZoomActive) {
             generalZoomItem.querySelector(".settings-list-item-right-button-check").classList.add("active");
         }
@@ -2052,7 +2048,7 @@ function updateWallpaper() {
         }
     }
     if(wallpaperElement) {
-        for(let wallpaper of $("#settings-wallpaper-list").children()) {
+        for(let wallpaper of document.querySelectorAll("#settings-wallpaper-list .settings-wallpaper-list-item")) {
             if(wallpaper.dataset.wallpaper == wallpaperActive) {
                 wallpaper.classList.add("active");
             }
@@ -2061,7 +2057,7 @@ function updateWallpaper() {
         $("#phone-screen").css("background-image", "url(" + wallpaperActive + ")");
     }
     if(wallpaperLockElement) {
-        for(let wallpaper of $("#settings-wallpaper-lock-list").children()) {
+        for(let wallpaper of document.querySelectorAll("#settings-wallpaper-lock-list .settings-wallpaper-list-item")) {
             if(wallpaper.dataset.wallpaper == wallpaperLockActive) {
                 wallpaper.classList.add("active");
             }
@@ -2074,7 +2070,7 @@ function updateWallpaper() {
 function updateSound() {
     soundNotification = new Audio(folderNotifications + soundNotificationActive + ".mp3");
     soundNotification.volume = soundNotificationVolume / 10;
-    for(let soundNotificationItem of $("#settings-list-sound-notification").children()) {
+    for(let soundNotificationItem of document.querySelectorAll("#settings-list-sound-notification .settings-list-item")) {
         let buttonCheck = soundNotificationItem.querySelector(".settings-list-item-right-button-check");
         if(buttonCheck.classList.contains("active")) {
             buttonCheck.classList.remove("active");
@@ -2086,7 +2082,7 @@ function updateSound() {
     }
     soundRinging = new Audio(folderRingings + soundRingingActive + ".mp3");
     soundRinging.volume = soundRingingVolume / 10;
-    for(let soundRingingItem of $("#settings-list-sound-ringing").children()) {
+    for(let soundRingingItem of document.querySelectorAll("#settings-list-sound-ringing .settings-list-item")) {
         let buttonCheck = soundRingingItem.querySelector(".settings-list-item-right-button-check");
         if(buttonCheck.classList.contains("active")) {
             buttonCheck.classList.remove("active");
@@ -2098,7 +2094,7 @@ function updateSound() {
     }
     soundAlarm = new Audio(folderAlarms + soundAlarmActive + ".mp3");
     soundAlarm.volume = soundAlarmVolume / 10;
-    for(let soundAlarmItem of $("#settings-list-sound-alarm").children()) {
+    for(let soundAlarmItem of document.querySelectorAll("#settings-list-sound-alarm .settings-list-item")) {
         let buttonCheck = soundAlarmItem.querySelector(".settings-list-item-right-button-check");
         if(buttonCheck.classList.contains("active")) {
             buttonCheck.classList.remove("active");
@@ -2377,7 +2373,7 @@ function updateConversationList() {
     let searchInput = document.getElementById("app-message-body-content-list-search");
     searchInput.value = "";
     searchInput.addEventListener('input', (e) => {
-        for(let elt of $("#message-list .app-body-content-body-list-item")) {
+        for(let elt of document.querySelectorAll("#message-list .app-body-content-body-list-item")) {
             if(elt.querySelector(".message-list-item-right-header-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "flex";
             } else {
@@ -2692,7 +2688,7 @@ function updateAppContent(element) {
     if(element == "newmessage") {
         let searchInput = document.getElementById("app-message-body-content-newmessage-search");
         searchInput.value = "";
-        for(let elt of $(".newmessage-list-item")) {
+        for(let elt of document.querySelectorAll(".newmessage-list-item")) {
             if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "flex";
             } else {
@@ -2710,7 +2706,7 @@ function updateAppContent(element) {
         $("#newcontact-profile-icon img").attr("src", folderContactsProfileIcon + "50-Animals-avatar_49.png");
         let searchInput = document.getElementById("app-contacts-body-content-list-search");
         searchInput.value = "";
-        for(let elt of $(".contacts-list-row-item")) {
+        for(let elt of document.querySelectorAll(".contacts-list-row-item")) {
             if(elt.querySelector(".contacts-list-row-item-top-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "block";
             } else {
