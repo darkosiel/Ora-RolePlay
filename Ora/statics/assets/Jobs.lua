@@ -11442,7 +11442,7 @@ Jobs = {
             }
         }
     },
-    hacker = {
+--[[    hacker = {
         label = "Hackeur",
         label2 = "hackeur",
         grade = {
@@ -11583,7 +11583,7 @@ Jobs = {
                 Name = "coffre_casino"
             }
         }
-    },
+    },]]
     pegasus = {
         label = "Pegasus",
         label2 = "Pegasus",

@@ -969,11 +969,11 @@ Items = {
     -- Items : bar chinois
     chairsaucisse = {
         label = "Chair à saucisse",
-        weight = 0.5
+        weight = 0.2
     },
     saucissonsec = {
         label = "saucisson sec",
-        weight = 0.5,
+        weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_food_bs_burger2",
         faim = 10,
