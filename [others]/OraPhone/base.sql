@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS ora_phone_contacts (
     `number` varchar(255) NOT NULL,
     `note` text,
     `avatar` varchar(255)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_conversations (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `target_number` VARCHAR(255) NOT NULL,
     `last_msg_time` DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_messages (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_messages (
     `img_id` INT DEFAULT NULL,
     `gps_json` VARCHAR(255) DEFAULT NULL,
     `is_read` TINYINT(1) NOT NULL DEFAULT 0
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_call_history (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -66,14 +66,14 @@ CREATE TABLE IF NOT EXISTS ora_phone_call_history (
     `accepted` BOOLEAN DEFAULT 0,
     `call_duration` INTEGER DEFAULT 0,
     `video` BOOLEAN DEFAULT 0
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_image (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `phone_id` INT NOT NULL,
     `image_link` VARCHAR(255) NOT NULL,
     `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -86,12 +86,29 @@ CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport (
     `price` INT NOT NULL,
     `advertisement_type` VARCHAR(255) NOT NULL,
     `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_richtermotorsport_favorite (
     `advertisement_id` INT NOT NULL,
     `phone_id` INT NOT NULL
-);
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ora_phone_notes_folder (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `phone_id` INT NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ora_phone_notes_note (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `folder_id` INT NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `content` VARCHAR(2000) NOT NULL,
+    `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (folder_id) REFERENCES ora_phone_notes_folder(id) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
 
 -- CREATE TABLE IF NOT EXISTS ora_phone_app_store (
 --     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,

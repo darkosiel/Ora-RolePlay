@@ -36,6 +36,8 @@ var phoneBottomShowNot = "-900px";
 var phoneLockToggle = false;
 var lockIconSnoozeEffect = false;
 var contextMenuItemClicked;
+var notificationMode = "normal"; // normal / nosound / none
+var phoneActive = false;
 
 // App Home
 var pageSelectedStart = 1;  
@@ -129,6 +131,8 @@ var canvasActivate = false;
 // App Notes
 var notesListItem = false;
 var notesNoteInputToggle = true;
+var notesFolderContextMenu; 
+var notesNoteContextMenu;
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
@@ -252,6 +256,13 @@ $(function(){
                         updateContent("home");
                         MainRender.stop();
                         break;
+                    case "updateNotes":
+                        userData.notes = item.notes;
+                        updateAppNotes();
+                        break;
+                    case "phoneActive":
+                        phoneActive = item.toggle;
+                        break;
                 }
             });
 
@@ -264,6 +275,10 @@ $(function(){
                 // Touche Entrer pour déverrouiller le téléphone
                 if (data.which == 13) {
                     unlockPhone();
+                }
+                // Touche Echap pour fermer le téléphone
+                if (data.which == 27) {
+                    $.post('https://OraPhone/phone_close', JSON.stringify({}));
                 }
             }
             // Gestion du clique droit
@@ -380,6 +395,7 @@ function updateUserData(data) {
     $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
     $.post('https://OraPhone/refresh_gallery', JSON.stringify({ phoneId: userData.phone.id }));
     $.post('https://OraPhone/refresh_richtermotorsport_advertisement', JSON.stringify({ phoneId: userData.phone.id }));
+    $.post('https://OraPhone/refresh_notes', JSON.stringify({ phoneId: userData.phone.id }));
 }
 
 function initializeApps() {
@@ -396,6 +412,7 @@ function initializeApps() {
     initializeAppCamera();
     initializeAppRichterMotorsport();
     initializeAppNotes();
+    initializeAppGallery();
 
     // Initialisation des boutons généraux de chaques applications
     $(".app-header-first").click(function () {
@@ -430,9 +447,10 @@ function initializeAppScreen() {
         displayTopbar();
     });
     $("#phone-screen-content-footer").click(function () {
-        updateContent("home");
         if(displayTopbarToggle) {
             displayTopbar();
+        } else {
+            updateContent("home");
         }
     });
     $("#topbar-box-music-button-play").click(function () {
@@ -446,8 +464,23 @@ function initializeAppScreen() {
     $("#topbar-box-button-bluetooth").click(function () {
         $("#topbar-box-button-bluetooth").toggleClass("active")
     });
+    $("#topbar-box-button-notification-mode").click(function () {
+        updateNotificationMode();
+    });
     $("#topbar-box-button-torch").click(function () {
         $("#topbar-box-button-torch").toggleClass("active")
+    });
+    $("#topbar-box-button-clock").click(function () {
+        updateContent("clock");
+        displayTopbar();
+    });
+    $("#topbar-box-button-calculator").click(function () {
+        updateContent("calculator");
+        displayTopbar();
+    });
+    $("#topbar-box-button-camera").click(function () {
+        updateContent("camera");
+        displayTopbar();
     });
     $("#topbar-box-button-update-thememode").click(function() {
         switchThemeMode();
@@ -589,6 +622,15 @@ function initializeAppMessage() {
     $("#app-message-body-content-list-search-reset").click(function() {
         $("#app-message-body-content-list-search").val("");
         $("#message-list .app-body-content-body-list-item").css("display", "flex");
+    });
+    $("#message-position-button-show").click(function () {
+        $("#app-message-position").toggleClass("active");
+    })
+    $("#message-position-button-marker").click(function () {
+
+    });
+    $("#message-position-button-myposition").click(function () {
+        $.post('https://OraPhone/message_send_myposition', JSON.stringify({}));
     });
 }
 
@@ -1328,10 +1370,14 @@ function initializeAppNotes() {
             </div>
         </div>`;
         $("#notes-list-folders").append(newDiv);
+        console.log($("#notes-list-folders").children().last());
         $("#notes-list-folders").children().last().click(function() {
+            console.log(this);
+            console.log($(this));
             updateAppContent("folder");
         });
         notesFolderContextMenu.updateTargetNode();
+        $.post('https://OraPhone/notes_add_folder', JSON.stringify({ phoneId: userData.phone.id, name: "Nouveau dossier" }));
     });
     $("#notes-folder-note-button-add").click(function() {
         let newDiv = `<div class="notes-list-item">
@@ -1373,11 +1419,11 @@ function initializeAppNotes() {
             class: "delete"
         },
     ];
-    const notesFolderContextMenu = new ContextMenu({
+    notesFolderContextMenu = new ContextMenu({
         target: "#notes-list-folders .notes-list-item:not(.disabled)",
         menuItems: notesFolderMenuItems
     });
-    const notesNoteContextMenu = new ContextMenu({
+    notesNoteContextMenu = new ContextMenu({
         target: "#notes-list-notes .notes-list-item:not(.disabled)",
         menuItems: notesNoteMenuItems
     });
@@ -1408,6 +1454,17 @@ function initializeAppNotes() {
     $("#notes-note-button-edit").click(function() {
         updateNotesNoteContent();
     });
+}
+
+function initializeAppGallery() {
+    $("#gallery-image").click(function () {
+        $("#image-fullscreen img").attr("src", $("#gallery-image").attr("src"));
+        $("#image-fullscreen").show();
+    });
+    $("#gallery-image-button-remove").click(function () {
+        updateAppContent("list");
+        $.post('https://OraPhone/gallery_image_remove', JSON.stringify({ phoneId: userData.phone.id, id: $("#gallery-image").data("id") }));
+    })
 }
 
 function updateNotesNoteContent() {
@@ -1462,6 +1519,7 @@ function removeNotesFolder() {
     }
     let folder = contextMenuItemClicked.target.closest(".notes-list-item");
     folder.remove();
+    $.post('https://OraPhone/notes_remove_folder', JSON.stringify({ phoneId: userData.phone.id, name: "Nouveau dossier" }));
 }
 
 function renameNotesFolder() {
@@ -1579,6 +1637,7 @@ function updateAppContacts() {
 }
 
 function updateAppMessage() {
+    $('#newmessage-list').empty();
     for(let contact of userData.contacts) {
         if(contact.number.toString().length == 7) {
             let div = "<div data-number='" + contact.number + "' data-name='" + contact.name + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + contact.name + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + contact.number.toString().substring(3) + "</span></div></div></div>";
@@ -1802,83 +1861,66 @@ function updateAppRichterMotorsport() {
     });
 }
 
-// function updateAppRichterMotorsportLoad(id) {
-//     if(id != "") {
-//         $('.app-message-conversation .messages').empty();
-//         for(let conversation of userData.conversations) {
-//             if(conversation.id == conversationId) {
-//                 let conversationAvatar = contactAvatarDefault;
-//                 let conversationName = "";
-//                 targetNumber = JSON.parse(conversation.target_number);
-//                 for(let user of JSON.parse(conversation.target_number)) {
-//                     if(user != userData.phone.number) {
-//                         let name = user;
-//                         for(let contact of userData.contacts) {
-//                             if(contact.number == user) {
-//                                 if(JSON.parse(conversation.target_number).length == 2) {
-//                                     if(contact.avatar.includes("http")) {
-//                                         conversationAvatar = contact.avatar;
-//                                     } else {
-//                                         conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
-//                                     }
-//                                 }
-//                                 name = contact.name;
-//                                 break;
-//                             }
-//                         }
-//                         conversationName += name + ", ";
-//                     }
-//                 }
-//                 conversationName = conversationName.slice(0, -2);
-//                 if(conversationAvatar.includes("http")) {
-//                     $(".app-body-content-header-profil-avatar").addClass("url");
-//                 } else {
-//                     $(".app-body-content-header-profil-avatar").removeClass("url");
-//                 }
-//                 $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
-//                 $(".app-body-content-header-profil-name span").html(conversationName);
-//                 for(let message of conversation.messages) {
-//                     let sourceName = "";
-//                     let sourceType = "";
-//                     let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
-//                     if(message.sourceNumber == userData.phone.number) {
-//                         sourceName = "Moi";
-//                         sourceType = "me";
-//                     } else {
-//                         sourceName = message.sourceNumber;
-//                         sourceType = "you";
-//                         for(let contact of userData.contacts) {
-//                             if(contact.number == message.sourceNumber) {
-//                                 sourceName = contact.name;
-//                             }
-//                         }
-//                     }
-//                     responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
-//                 }
-//             }
-//         }
-//         let messageInput = $("#app-message-footer-input");
-//         messageInput.on("keyup", function(e) {
-//             if (e.key === 'Enter' || e.keyCode === 13) {
-//                 if (messageInput.val() != "") {
-//                     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
-//                     messageInput.val("");
-//                 }
-//             }
-//         });
-//         let elementMessages = document.querySelector(".app-message-conversation .messages");
-//         elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
-//     }
-// }
+function updateAppNotes() {
+    $("#notes-list-folders").empty();
+    for(let folder of userData.notes) {
+        let newDivFolder = `<div data-id="` + folder.id + `" class="notes-list-item">
+            <div class="notes-list-item-left">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <input type="text" class="notes-list-item-title" disabled value="` + folder.name + `"/>
+            </div>
+            <div class="notes-list-item-right">
+                <span class="notes-list-item-count">` + folder.notes.length + `</span>
+                <i class="fa-solid fa-angle-right notes-list-item-arrow"></i>
+            </div>
+        </div>`;
+        $("#notes-list-folders").append(newDivFolder);
+        notesFolderContextMenu.updateTargetNode();
+    }
+    $("#notes-list-folders .notes-list-item").click(function() {
+        updateNotesFolderLoad($(this).data("id"));
+        updateAppContent("folder");
+    });
+}
+
+function updateNotesFolderLoad(id) {
+    let folder = userData.notes.find( folder => folder.id == id);
+    $("#notes-list-notes").empty();
+    for(let note of folder.notes) {
+        let noteDate = new Date(note.updateTime);
+        let newDivNote = `<div data-folderid="` + note.folderId + `" data-id="` + note.id + `" class="notes-list-item">
+                <span class="notes-list-item-title">` + note.name + `</span>
+                <span class="notes-list-item-date">` + noteDate.getHours() + ":" + noteDate.getMinutes() + `</span>
+            <div class="notes-list-item-bottom">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <span class="notes-list-item-folder">` + folder.name + `</span>
+            </div>
+        </div> `;
+        $("#notes-list-notes").append(newDivNote);
+    }
+    $("#notes-list-notes .notes-list-item").click(function() {
+        updateNotesNoteLoad($(this).data("folderid"), $(this).data("id"));
+        updateAppContent("note");
+    });
+    notesNoteContextMenu.updateTargetNode();
+}
+
+function updateNotesNoteLoad(folderId, id) {
+    let folder = userData.notes.find( folder => folder.id == folderId);
+    let note = folder.notes.find( note => note.id == id);
+    $("#notes-note-title").val(note.name);
+    $("#notes-note-content").val(note.content);
+}
 
 function updateAppGallery() {
     $("#gallery-image-list").empty();
     for(let image of userData.galleryPhoto) {
-        let divImage = "<div class='gallery-image-list-item'><img src='" + image.imageLink + "'/></div>";
+        let divImage = "<div data-id='" + image.id + "' class='gallery-image-list-item'><img src='" + image.imageLink + "'/></div>";
         $("#gallery-image-list").append(divImage);
         $("#gallery-image-list").children().last().click(function() {
-            $("#image-fullscreen img").attr("src", image.imageLink);
-            $("#image-fullscreen").show();
+            $("#gallery-image").attr("src", image.imageLink);
+            $("#gallery-image").data("id", image.id);
+            updateAppContent("image");
         });
     }
 }
@@ -2087,7 +2129,7 @@ function updateAppHomeOrder() {
     for(let app of userData.phone.appHomeOrder) {
         let divAppElement = "<li data-name='" + app + "'>";
         if(app != '') {
-            let label = config.apps.find( application => application.name == app).label;
+            let label = (config.apps.find( application => application.name == app).label ? config.apps.find( application => application.name == app).label : app);
             if(app == "clock") {
                 divAppElement += "<div id='app-home-list-item-" + app + "' class='app-home-list-item'><div id='centered'><div id='app'><div id='circle'><ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ul><div class='hand' id='hours'></div><div class='hand' id='minutes'></div><div class='hand' id='seconds'></div><div id='black-circle'></div><div id='red-circle'></div></div></div></div><span>" + label + "</span></div>";
             } else {
@@ -2098,14 +2140,15 @@ function updateAppHomeOrder() {
             divAppElement += "<div class='app-home-list-item empty-place'></div>";
         }
         $("#app-home-page-1 .app-home-list .icons-list > ul").append(divAppElement + "</li>");
-        $(".app-home-list .icons-list > ul li > div").click(function(e) {
-                if(longpress) {
-                    e.preventDefault();
-                } else {
-                    if(this.id) {
-                        updateContent(this.id.split("-")[4]);
-                    }
+        // $(".app-home-list .icons-list > ul li > div").click(function(e) {
+        $(".app-home-list .icons-list > ul > li").last().find("div").click(function(e) {
+            if(longpress) {
+                e.preventDefault();
+            } else {
+                if(this.id) {
+                    updateContent(this.id.split("-")[4]);
                 }
+            }
         });
     }
     // Création des application principales
@@ -2258,6 +2301,27 @@ function saveHomeOrder() {
     }
 }
 
+function updateNotificationMode() {
+    let notificationModeButtonParent = $("#topbar-box-button-notification-mode");
+    let notificationModeButton = $("#topbar-box-button-notification-mode i");
+    if (notificationMode == "normal") {
+        notificationMode = "nosound";
+        notificationModeButton.removeClass("fa-bell");
+        notificationModeButton.addClass("fa-volume-xmark");
+        notificationModeButtonParent.addClass("active");
+    } else if (notificationMode == "nosound") {
+        notificationMode = "none";
+        notificationModeButton.removeClass("fa-volume-xmark");
+        notificationModeButton.addClass("fa-bell-slash");
+        notificationModeButtonParent.removeClass("active");
+    } else if (notificationMode == "none") {
+        notificationMode = "normal";
+        notificationModeButton.removeClass("fa-bell-slash");
+        notificationModeButton.addClass("fa-bell");
+        notificationModeButtonParent.addClass("active");
+    }
+}
+
 // Application Message
 
 function responsiveChatPush(sender, origin, date, message) {
@@ -2341,8 +2405,9 @@ function receiveCall(data) {
         }
     }
     if(!displayToggle) {
-        addNotification("call", "callreceive", "Maintenant", "Appel", name, avatar);
+        addNotification("call", "callreceive", "Maintenant", "Appel", name, "", avatar);
     }
+    $("#call-callreceive-title").html("Appel de " + name);
     updateContent("call");
     updateAppContent("callreceive");
     soundRinging.currentTime = 0;
@@ -2538,6 +2603,12 @@ function timerStart() {
 // Fonctions d'affichage
 
 function updateContent(menu) {
+    for(let app of config.apps) {
+        if(menu == app.name && app.maintenance) {
+            menu = "maintenance";
+            break;
+        }
+    }
     let appSelected = document.getElementById("app-" + menu);
     if(!appSelected) {
         return;
@@ -2685,10 +2756,13 @@ function displayTopbar() {
 // Notification
 
 function addNotification(app, appSub, time, title, message, data, avatar = false) {
+    if (notificationMode == "none" || !phoneActive) {
+        return;
+    }
     let label = "Inconnu";
     let divNotification = "";
     let divNotificationLock = "";
-    if(!displayToggle) {
+    if (!displayToggle) {
         if(!phoneLockToggle) {
             $("#phone").css("bottom", "-670px");
         } else {
@@ -2700,7 +2774,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
             label = appItem.label;
         }
     }
-    if(app == "message") {
+    if (app == "message") {
         let messageName = "";
         for(let user of title) {
             if(user != userData.phone.number) {
@@ -2717,9 +2791,9 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
         title = messageName.slice(0, -2);
         updateAppMessageLoad(data.conversationId);
     }
-    if(app == "call") {
-        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
-        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar.includes("http") ? "url" : "") + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
+    if (app == "call") {
+        divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar && avatar != '' ? (avatar.includes('http') ? 'url' : '') : '')  + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
+        divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar && avatar != '' ? (avatar.includes('http') ? 'url' : '') : '') + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
     } else {
         divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-header'><div class='notification-item-background-blur'></div><div class='notification-item-header-content'><div class='notification-item-header-content-left'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/>" + label + "</div><div class='notification-item-header-content-right'>" + time + "</div></div></div><div class='notification-item-main'><span class='notification-item-main-header'>" + title + "</span><span class='notification-item-main-message'>" + message + "</span></div></div></div>";
         divNotificationLock = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-icon'><img src='"+ folderAppIcon + "app-" + app + "-icon.png'/></div><div class='notification-item-content-body'><div class='notification-item-content-body-header'><div class='notification-item-content-body-header-left'>" + label + "</div><div class='notification-item-content-body-header-right'>" + time + "</div></div><div class='notification-item-content-body-content'><div class='notification-item-content-body-content-message'>" + message + "</div></div></div></div></div>";
@@ -2728,7 +2802,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
     $("#notification-container-lock").prepend(divNotificationLock);
     let notification = document.getElementById("notification-container").firstElementChild;
     let notificationLock = document.getElementById("notification-container-lock").firstElementChild;
-    if(app == "call") {
+    if (app == "call") {
         callNotification = notification;
         callNotificationLock = notificationLock;
         $(".notification-item-main-pickup").click(function() {
@@ -2806,18 +2880,23 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
         notification.classList.remove("close");
         notificationLock.classList.remove("close");
         let notificationTime = "5000";
-        if(app == "call") {
-            soundRinging.currentTime = 0;
-            soundRinging.play();
+        if (app == "call") {
+            if (notificationMode != "nosound") {
+                soundRinging.currentTime = 0;
+                soundRinging.play();
+            }
             notificationTime = "10000";
-
-        } else if(app == "clock") {
-            soundAlarm.currentTime = 0;
-            soundAlarm.play();
+        } else if (app == "clock") {
+            if (notificationMode != "nosound") {
+                soundAlarm.currentTime = 0;
+                soundAlarm.play();
+            }
             notificationTime = "30000";
         } else {
-            soundNotification.currentTime = 0;
-            soundNotification.play();
+            if (notificationMode != "nosound") {
+                soundNotification.currentTime = 0;
+                soundNotification.play();
+            }
         }
         setTimeout(function() {
             if(app != "call") {
@@ -3177,11 +3256,13 @@ const config = {
         },
         {
             "name": "calandar",
-            "label": "Calendrier"
+            "label": "Calendrier",
+            "maintenance": true
         },
         {
             "name": "notes",
-            "label": "Notes"
+            "label": "Notes",
+            "maintenance": true
         },
         {
             "name": "calculator",
@@ -3189,16 +3270,18 @@ const config = {
         },
         {
             "name": "store",
-            "label": "Magasin"
+            "label": "Magasin",
+            "maintenance": true
         },
         {
             "name": "music",
-            "label": "Musique"
+            "label": "Musique",
+            "maintenance": true
         },
-        {
-            "name": "templatetabbed",
-            "label": "Template Tabbed"
-        },
+        // {
+        //     "name": "templatetabbed",
+        //     "label": "Template Tabbed"
+        // },
         {
             "name": "richtermotorsport",
             "label": "Richter Motorsport"

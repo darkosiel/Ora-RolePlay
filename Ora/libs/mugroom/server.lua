@@ -702,9 +702,7 @@ function Database:UnselectedPlayers(source, identifier)
             for i = 1, #_ do
                 MySQL.Sync.execute(
                     "UPDATE players SET is_active=0 WHERE uuid=@uuid",
-                    {["@uuid"] = _[i]},
-                    function()
-                    end
+                    {["@uuid"] = _[i]}
                 )
             end
         end
@@ -1225,7 +1223,7 @@ AddEventHandler(
                         },
                         function(insertId)
                             TriggerClientEvent('Ora::CE::Inventory:AddItems', _source, items)
-                            TriggerClientEvent('Ora:refreshStorage', _source)
+                            TriggerClientEvent('Ora:refreshStorage', -1, storageName)
                             TriggerClientEvent(
                                 'Ora:InvNotification', 
                                 _source, 
@@ -1332,7 +1330,7 @@ AddEventHandler(
                                             Items[itemName].label ..
                                                 " dans votre coffre."
                             )
-                            TriggerClientEvent('Ora:refreshStorage', _source)
+                            TriggerClientEvent('Ora:refreshStorage', -1, storageName)
                             QueueRunning[storageQueue[storageName]] = nil
                             storageQueue[storageName][itemName] = nil
                             storageQueue[storageName] = nil

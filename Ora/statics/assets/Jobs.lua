@@ -454,15 +454,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Post OP",
-            Pos = {x = 1183.9031, y = -3236.6330, z = 5.029},
+            Pos = {x = 1222.9278, y = -3280.9433, z = 5.5155},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85}
+                spawnpos = {x = 1222.9278, y = -3280.9433, z = 5.5155, h = 179.85}
             },
             Blipdata = {
-                Pos = {x = 1183.9031, y = -3236.6330, z = 5.029, h = 179.85},
+                Pos = {x = 1222.9278, y = -3280.9433, z = 5.5155, h = 179.85},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
@@ -1853,22 +1853,22 @@ Jobs = {
         Storage = {
             {
                 Pos = {x = -1836.73, y = -1176.40, z = 18.20},
-                Limit = 200,
+                Limit = 500,
                 Name = "coffre_pearls_bureau"
             },
             {
                 Pos = {x = -1839.74, y = -1189.69, z = 13.32},
-                Limit = 500,
+                Limit = 1000,
                 Name = "coffre_caveresto2"
             },
             {
                 Pos = {x = -1838.21, y = -1183.83, z = 13.50},
-                Limit = 500,
+                Limit = 1000,
                 Name = "coffre_caveresto1"
             },
             {
                 Pos = {x = -1840.72, y = -1183.35, z = 18.20},
-                Limit = 500,
+                Limit = 1000,
                 Name = "coffre_pearls_club"
             }
 
@@ -4006,12 +4006,12 @@ Jobs = {
         },
         garage = {
             Name = "Garage Galaxy",
-            Pos = {x = 322.7271, y = 264.0486, z = 104.3781},
+            Pos = {x = 359.9612, y = 272.1847, z = 103.1023},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 322.72, y = 264.04, z = 104.37, h = 353.35}
+                spawnpos = {x = 359.96, y = 272.18, z = 103.10, h = 353.35}
             },
             Blipdata = {
                 Pos = "none"
@@ -6963,31 +6963,31 @@ Jobs = {
         grade = {
             {
                 label = "Conseiller",
-                salary = 250,
+                salary = 350,
                 name = "agent",
                 show = true
             },
             {
                 label = "Secrétaire d'état",
-                salary = 300,
+                salary = 400,
                 name = "usdss",
                 show = true
             },
             {
                 label = "Chef de cabinet",
-                salary = 400,
+                salary = 430,
                 name = "drh",
                 show = true
             },
             {
                 label = "Vice-Gouverneur",
-                salary = 420,
+                salary = 450,
                 name = "drh",
                 show = true
             },
             {
                 label = "Gouverneur",
-                salary = 450,
+                salary = 500,
                 name = "boss",
                 show = true
             }

@@ -187,6 +187,20 @@ const crud = {
         imageLink: 'image_link',
         createTime: 'create_time',
     }),
+    notesfolder: generateCrud('phone_notes_folder', {
+        id: 'id',
+        phoneId: 'phone_id',
+        name: 'name',
+        createTime: 'create_time',
+    }),
+    notesnote: generateCrud('phone_notes_note', {
+        id: 'id',
+        folderId: 'folder_id',
+        name: 'name',
+        content: 'content',
+        updateTime: 'update_time',
+        createTime: 'create_time',
+    }),
 }
 
 /**
@@ -450,6 +464,21 @@ async function refreshGallery(phoneId) {
         return
     }
     return galleryImageResponse
+}
+
+/**
+ * Refresh all Notes app
+ * @param {array} data
+ */
+async function refreshNotes(phoneId) {
+    const notesFolderResponse = await crud.notesfolder.read({ phoneId: phoneId })
+    if(notesFolderResponse && notesFolderResponse.length > 0) {
+        for (let folder of notesFolderResponse) {
+            const notesNoteResponse = await crud.notesnote.read({ folderId: folder.id })
+            folder.notes = notesNoteResponse
+        }
+    }
+    return notesFolderResponse
 }
 
 /**
@@ -740,6 +769,25 @@ onNet('OraPhone:server:refresh_gallery', async (data) => {
     emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
 })
 
+onNet('OraPhone:server:gallery_image_remove', async (data) => {
+    const src = source
+    await crud.image.delete({ id: data.id })
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+})
+
+// Notes
+
+onNet('OraPhone:server:refresh_notes', async (data) => {
+    const src = source
+    emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+})
+
+onNet('OraPhone:server:notes_add_folder', async (data) => {
+    const src = source
+    await crud.notesfolder.create({ phoneId: data.phoneId, name: data.name })
+    emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+})
+
 // Create new phone
 
 function RegisterNewPhone(phoneNumber, identity) {
@@ -760,8 +808,6 @@ function RegisterNewPhone(phoneNumber, identity) {
     let wallpaper = 'wallpaper-ios15'
     let wallpaperLock = 'wallpaper-ios15'
     let luminosity = '100'
-    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"richtermotorsport\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
 }
-
-["clock","camera","gallery","calandar","","","","","notes","calculator","templatetabbed","store","","","","","music","","","","","","","","","","","","","","","","","","","","","","",""]

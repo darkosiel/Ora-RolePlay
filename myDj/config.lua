@@ -131,13 +131,13 @@ Config.DJPositions = {
         range = 90.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
-    --{
-    --    name = 'cityhall',
-    --    pos = vector3(-544.977234, -202.915527, 52.203037 - 0.98),
-    --    requiredJob = nil, 
-    --    range = 85.0, 
-    --    volume = 1.0 --[[ do not touch the volume! --]]
-    --},
+    {
+       name = 'cityhall',
+       pos = vector3(198.31, -934.95, 49.89 - 0.98),
+       requiredJob = nil, 
+       range = 70.0, 
+       volume = 1.0 --[[ do not touch the volume! --]]
+    },
     {
         name = 'gouvhouse',
         pos = vector3(-1433.413208, 208.506119, 57.823853 - 0.98),

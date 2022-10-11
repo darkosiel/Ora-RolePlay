@@ -45,10 +45,11 @@
                         </div>
                         <div id="phone-screen-content-header-right">
                             <div class="phone-screen-content-header-icon">
-                                <i class="fa-solid fa-signal"></i>
+                                <i class="fa-solid fa-4"></i>
+                                <i class="fa-solid fa-g"></i>
                             </div>
                             <div class="phone-screen-content-header-icon">
-                                <i class="fa-solid fa-wifi"></i>
+                                <i class="fa-solid fa-signal"></i>
                             </div>
                             <div class="phone-screen-content-header-icon">
                                 <i class="fa-solid fa-battery-full"></i>
@@ -87,8 +88,19 @@
                                     <div id="app-home-list-primary">
                                     </div>
                             </div>
+                            <div id="app-maintenance" class="app disable-select">
+                                <div id="app-maintenance-body" class="app-body">
+                                    <div id="app-maintenance-body-content-home" class="app-body-content">
+                                        <div class="app-body-content-body">
+                                            <img src="assets/images/apps/maintenance/maintenance.png"/>
+                                            <span class="maintenance-title">Maintenance</span>
+                                            <span class="maintenance-description">Cette application est en maintenance</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="app-store" class="app app-tabbed">
-                                    <div id="app-store-body" class="app-body">
+                                <div id="app-store-body" class="app-body">
                                         <div id="app-store-body-content-apps" class="app-body-content">
                                             <div class="app-body-content-header">
                                                 <div class="app-body-content-header-title">
@@ -189,8 +201,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="app-store-tab" class="app-tab">
+                                </div>
+                                <div id="app-store-tab" class="app-tab">
                                         <div id="app-tab-button-myapps" class="app-tab-button">
                                             <i class="fa-solid fa-window-maximize"></i>
                                             <span>Mes applis</span>
@@ -207,7 +219,7 @@
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                             <span>Chercher</span>
                                         </div>
-                                    </div>
+                                </div>
                             </div>
                             <div id="app-calculator" class="app">
                                 <div class="app-body">
@@ -620,8 +632,16 @@
                                             <div class="app-message-footer">
                                                 <div class="app-message-footer-input">
                                                     <i class="fa-solid fa-camera"></i>
-                                                    <i class="fa-solid fa-location-dot"></i>
+                                                    <i id="message-position-button-show" class="fa-solid fa-location-dot"></i>
                                                     <input id="app-message-footer-input" type="text" placeholder="Message...">
+                                                </div>
+                                            </div>
+                                            <div id="app-message-position">
+                                                <div id="message-position-button-marker">
+                                                    <span>Position marqueur</span>
+                                                </div>
+                                                <div id="message-position-button-myposition">
+                                                    <span>Ma position</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -796,7 +816,7 @@
                                                 <input type="text" id="editcontact-icon-custom-input" placeholder="URL de l'image"/>
                                             </div>
                                             <div class="editcontact-remove">
-                                                <button id="editcontact-remove-button">Supprimer le contacte</button>
+                                                <button id="editcontact-remove-button">Supprimer le contact</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1345,7 +1365,7 @@
                                     <div id="app-call-body-content-callreceive" class="app-body-content disable-select">
                                         <div class="app-body-content-body">
                                             <div class="callnumber-title">
-                                                <span>Appel de 555-5265</span>
+                                                <span id="call-callreceive-title">Appel de 555-XXXX</span>
                                             </div>
                                             <div class="callnumber-buttons">
                                                 <div id="callreceive-button-hangup" class="call-button call-button-hangup">
@@ -1792,10 +1812,10 @@
                             </div>
                             <div id="app-gallery" class="app app-tabbed">
                                 <div class="app-body">
-                                    <div id="app-gallery-body-content-image" class="app-body-content disable-select">
+                                    <div id="app-gallery-body-content-list" class="app-body-content disable-select">
                                         <div class="app-body-content-header">
                                             <div class="app-body-content-header-title">
-                                                <span>Image</span>
+                                                <span>Images</span>
                                             </div>
                                         </div>
                                         <div class="app-body-content-body">
@@ -1803,9 +1823,22 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="app-gallery-body-content-image" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-title">
+                                                <span>Image</span>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <img id="gallery-image" src=""/>
+                                            <div>
+                                                <i id="gallery-image-button-remove" class="fa-solid fa-trash-can"></i>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="app-tab">
-                                    <div id="app-tab-button-image" class="app-tab-button active">
+                                    <div id="app-tab-button-list" class="app-tab-button active">
                                         <i class="fa-solid fa-images"></i>
                                         <span>Image</span>
                                     </div>
@@ -1956,13 +1989,13 @@
                                     <div id="topbar-box-button-torch" class="topbar-box-button">
                                         <i class="fa-solid fa-lightbulb"></i>
                                     </div>
-                                    <div class="topbar-box-button">
-                                        <i class="fa-solid fa-rotate-right"></i>
+                                    <div id="topbar-box-button-clock" class="topbar-box-button">
+                                        <i class="fa-solid fa-clock"></i>
                                     </div>
-                                    <div class="topbar-box-button">
+                                    <div id="topbar-box-button-calculator" class="topbar-box-button">
                                         <i class="fa-solid fa-calculator"></i>
                                     </div>
-                                    <div class="topbar-box-button">
+                                    <div id="topbar-box-button-camera" class="topbar-box-button">
                                         <i class="fa-solid fa-camera"></i>
                                     </div>
                                 </div>
@@ -1978,8 +2011,8 @@
                             </div>
                             <div class="topbar-content-row">
                                 <div class="topbar-box topbar-box-nobackground">
-                                    <div class="topbar-box-button">
-                                        <i class="fa-solid fa-clock"></i>
+                                    <div id="topbar-box-button-notification-mode" class="topbar-box-button active">
+                                        <i class="fa-solid fa-bell"></i>
                                     </div>
                                     <div id="topbar-box-button-bluetooth" class="topbar-box-button">
                                         <i class="fa-brands fa-bluetooth-b"></i>

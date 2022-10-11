@@ -1507,6 +1507,47 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary {
   background-color: rgba(0, 0, 0, 0.26);
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body {
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 15px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body {
+  background-color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body {
+  background-color: #000000;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body img {
+  width: 70%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body span {
+  font-size: 32px;
+  font-family: "SF UI Text Bold";
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body span {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body span {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body span.maintenance-description {
+  font-size: 18px;
+  font-family: "SF UI Text Semibold";
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body span.maintenance-description {
+  color: #8E8E93;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maintenance div.app-body div.app-body-content div.app-body-content-body span.maintenance-description {
+  color: #8E8E93;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-calculator div.app-body {
   background-color: #000000;
   height: 100%;
@@ -2480,6 +2521,46 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   background: none;
   border: none;
   cursor: text;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  width: auto;
+  height: 58px;
+  bottom: 45px;
+  left: 55px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  z-index: 999;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #636366;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position {
+  background-color: rgba(217, 217, 217, 0.2);
+  color: #AEAEB2;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position.active {
+  display: flex;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position div:hover {
+  background-color: #636366;
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position div:hover {
+  background-color: #AEAEB2;
+  color: #FFFFFF;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content div.app-body-content-body {
   padding: 0;
@@ -3953,6 +4034,39 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content div.app-body-content-body div#gallery-image-list div.gallery-image-list-item img {
   width: 100%;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body img#gallery-image {
+  width: 100%;
+  margin-top: 150px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body div {
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body div {
+  background-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body div i {
+  font-size: 26px;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body div i {
+  color: #999999;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content#app-gallery-body-content-image div.app-body-content-body div i {
+  color: #999999;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-notes div.app-body {
   transition: background-color 0.3s ease-in-out;
 }
@@ -5194,6 +5308,20 @@ div#page div#image-fullscreen img {
 .theme--dark div#phone-screen-content.app-modal div#phone-screen-content-header {
   background-color: #151515 !important;
 }
+.theme--default div#phone-screen-content.app-maintenance div#phone-screen-content-footer, .theme--default div#phone-screen-content.app-maintenance div#phone-screen-content-header {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+.theme--dark div#phone-screen-content.app-maintenance div#phone-screen-content-footer, .theme--dark div#phone-screen-content.app-maintenance div#phone-screen-content-header {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+.theme--default div#phone-screen-content.app-maintenance div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--default div#phone-screen-content.app-maintenance div#phone-screen-content-header div#phone-screen-content-footer-bar {
+  background-color: #000000 !important;
+}
+.theme--dark div#phone-screen-content.app-maintenance div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--dark div#phone-screen-content.app-maintenance div#phone-screen-content-header div#phone-screen-content-footer-bar {
+  background-color: #FFFFFF !important;
+}
 .theme--default div#phone-screen-content.app-calculator div#phone-screen-content-footer, .theme--default div#phone-screen-content.app-calculator div#phone-screen-content-header {
   background-color: #FFFFFF !important;
   color: #000000 !important;
@@ -5253,8 +5381,6 @@ div#page div#image-fullscreen img {
 .contextMenu {
   height: 0;
   overflow: hidden;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
   position: fixed;
   top: var(--top);
   left: var(--left);
@@ -5266,14 +5392,14 @@ div#page div#image-fullscreen img {
   padding: 0;
   display: flex;
   flex-direction: column;
-  z-index: 999999999;
+  z-index: 999999;
 }
 .theme--default .contextMenu {
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.85) 100%);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.85) 0%, rgb(255, 255, 255) 100%);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.04), 0 10px 8px rgba(0, 0, 0, 0.05), 0 15px 15px rgba(0, 0, 0, 0.06), 0 30px 30px rgba(0, 0, 0, 0.07), 0 70px 65px rgba(0, 0, 0, 0.09);
 }
 .theme--dark .contextMenu {
-  background: linear-gradient(45deg, rgba(10, 20, 28, 0.2) 0%, rgba(10, 20, 28, 0.7) 100%);
+  background: linear-gradient(45deg, rgba(10, 20, 28, 0.7) 0%, rgb(10, 20, 28) 100%);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 2px 2px rgba(0, 0, 0, 0.03), 0 4px 4px rgba(0, 0, 0, 0.04), 0 10px 8px rgba(0, 0, 0, 0.05), 0 15px 15px rgba(0, 0, 0, 0.06), 0 30px 30px rgba(0, 0, 0, 0.07), 0 70px 65px rgba(0, 0, 0, 0.09);
 }
 .contextMenu-item {
