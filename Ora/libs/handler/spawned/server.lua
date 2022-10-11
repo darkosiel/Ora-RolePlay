@@ -101,7 +101,6 @@ function Query:GetAllCharacterIdentity(Source, Identifier, Callback)
         if (result ~= nil) then
             for i = 1, #result do
                 MySQL.Async.fetchAll('SELECT * FROM players_identity WHERE uuid = @uuid', { ["@uuid"] = result[i].uuid }, function(list)
-                    print("^1[HealthDebug] - (".. os.date()..") - Health was set to " .. list[1].health .. " for " .. list[1].first_name .. " " .. list[1].last_name .. " (" .. list[1].uuid .. ")^7")
                     Callback(list)
                 end)
             end
