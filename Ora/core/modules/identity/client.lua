@@ -9,7 +9,7 @@ Citizen.CreateThread(
 
     Ora.Identity.InitFunctions = {
       ['raffinerie'] = createFuelerJob,
-      --['hacker'] = createHackerMenu,
+      ['hacker'] = createHackerMenu,
       ['admin_drug'] = initAdminDrugMenu,
       ['police'] = Police.ON,
       ['lssd'] = Police.ON,
@@ -18,7 +18,7 @@ Citizen.CreateThread(
       ['immo'] = Ora.Jobs.Immo.INIT,
      -- ['bleacher'] = Ora.Jobs.Bleacher.INIT,
       ['lsfd'] = Ora.Jobs.Firefighter.INIT,
-      --['drivingschool'] = Ora.Jobs.DrivingSchool.INIT,
+      ['drivingschool'] = Ora.Jobs.DrivingSchool.INIT,
     }
   end
 )
