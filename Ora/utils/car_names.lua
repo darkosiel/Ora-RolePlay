@@ -106,5 +106,7 @@ Citizen.CreateThread(function()
     AddTextEntry("ARGENTO", "Obey Argento")
     AddTextEntry("pdumkstx", "Buffalo UMK 2018")
 
-    -- Vehicule DLC "The Criminal Entreprise"
+    -- Vehicule Gouvernement
+
+    AddTextEntry("pressuv", "Granger V.I.P")
 end)
