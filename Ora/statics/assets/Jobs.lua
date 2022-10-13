@@ -7022,42 +7022,54 @@ Jobs = {
             }
         },
         Storage = {
-            -- {
-            --     Pos = {x = -573.68, y = -200.23, z = 42.70 - 0.98},
-            --     Limit = 500,
-            --     Name = "coffre_gouvernement"
-            -- },
             {
-                Pos = {x = -559.25, y = -209.73, z = 47.54 - 0.98},
-                Limit = 500,
+                Pos = {x = -1289.1510, y = -567.5328, z = 41.1882 - 0.98}, -- Bon coffre
+                Limit = 2000,
                 Name = "coffre_gouvernement2"
             },
             {
-                Pos = {x = 2521.34, y = -336.70, z = 101.89 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement3"
+                Pos = {x = -1300.9404, y = -556.4752, z = 30.5667 - 0.98}, -- armurerie gouv
+                Limit = 2000,
+                Name = "coffre_gouvernement"
             },
             {
-                Pos = {x = 2525.34, y = -317.72, z = 101.89 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement4"
+                Pos = {x = -1305.1618, y = -566.6479, z = 41.1881 - 0.98},  -- Coffre privé gouv
+                Limit = 2000,
+                Name = "coffre_gouvernement3"
             }
         },
         garage = {
             Name = "Garage gouvernement",
-            Pos = {x = -570.89, y = -143.61, z = 37.50},
+            Pos = {x = -1322.3785, y = -541.9343, z = 20.8027},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = -585.5820, y = -157.4907, z = 37.88189, h = 113.5321}
+                spawnpos = {x = -1322.3785, y = -541.9343, z = 20.8027, h = 113.5321}
             },
             Blipdata = {
                 Pos = {},
                 Blipcolor = 7,
                 Blipname = "Garage Gouvernement"
+            }
+        },
+        garage2 = {
+            Name = "Garage saisies",
+            Pos = {x = -1339.5908, y = -557.0335, z = 20.8027},
+            Properties = {
+                type = 3,
+                Limit = 128,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -1339.5908, y = -557.0335, z = 20.8027, h = 241.20512}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage Gouvernement Saisies"
             }
         },
     },
@@ -7146,29 +7158,14 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -2513.32, y = -342.71, z = 94.09 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement"
-            },
-            {
-                Pos = {x = -534.46, y = -193.16, z = 47.54 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement2"
-            },
-            {
-                Pos = {x = 2521.34, y = -336.70, z = 101.89 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement3"
-            },
-            {
-                Pos = {x = 2525.34, y = -317.72, z = 101.89 - 0.98},
-                Limit = 500,
-                Name = "coffre_gouvernement4"
-            },
-            {
-                Pos = {x = -573.68, y = -200.23, z = 42.70 - 0.98},
-                Limit = 500,
+                Pos = {x = -1300.9404, y = -556.4752, z = 30.5667 - 0.98}, -- Armurerie
+                Limit = 2000,
                 Name = "coffre_usss"
+            },
+            {
+                Pos = {x = -1293.9604, y = -581.9467, z = 34.3748 - 0.98}, -- Coffre
+                Limit = 2000,
+                Name = "coffre_usss2"
             }
         },
         work = {
@@ -7314,14 +7311,14 @@ Jobs = {
         },
         garage = {
             Name = "Garage saisies",
-            Pos = {x = -575.95, y = -148.92, z = 37.02},
+            Pos = {x = -1339.5908, y = -557.0335, z = 20.8027},
             Properties = {
                 type = 3,
                 Limit = 128,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = -559.6959, y = -146.8721, z = 38.0890, h = 241.20512}
+                spawnpos = {x = -1339.5908, y = -557.0335, z = 20.8027, h = 241.20512}
             },
             Blipdata = {
                 Pos = {},
@@ -7331,14 +7328,14 @@ Jobs = {
         },
         garage2 = {
             Name = "Garage USSS",
-            Pos = {x = 2521.420, y = -311.329, z = 92.99},
+            Pos = {x = -1320.8983, y = -557.3989, z = 20.8027},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = 2520.2285, y = -310.5325, z = 92.686, h = 89.453}
+                spawnpos = {x = -1320.8983, y = -557.3989, z = 20.8027, h = 89.453}
             },
             Blipdata = {
                 Pos = {},
@@ -7346,7 +7343,23 @@ Jobs = {
                 Blipname = "Garage USSS"
             }
         },
-
+        garage3 = {
+            Name = "Héliport USSS",
+            Pos = {x = -724.4618, y = -1443.0279, z = 5},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -724.4618, y = -1443.0279, z = 5, h = 89.453}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Héliport USSS"
+            }
+        },
     },
     doj = {
         label = "Departement de la justice",
