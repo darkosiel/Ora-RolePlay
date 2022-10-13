@@ -109,4 +109,7 @@ Citizen.CreateThread(function()
     -- Vehicule Gouvernement
 
     AddTextEntry("pressuv", "Granger V.I.P")
+    AddTextEntry("usssvan2", "Rumpo USSS")
+    AddTextEntry("usssvan", "Rumpo UMK")
+    AddTextEntry("roadrunner3", "Granger USSS")
 end)
