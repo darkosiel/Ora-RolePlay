@@ -47,6 +47,8 @@ RegisterCommand('emote', function()
     end
 end, false)
 
+RegisterCommand('e', function(source, args, raw) EmoteStart(source, args, raw) end)
+
 function SetDisplay(status)
     SetNuiFocus(status, status)
     SetNuiFocusKeepInput(status)
@@ -372,6 +374,32 @@ function RequestWalking(set)
     while not HasAnimSetLoaded(set) do
         Citizen.Wait(1)
     end 
+end
+
+function EmoteCommandStart(source, args, raw)
+    if #args > 0 then
+    local name = string.lower(args[1])
+    if name == "c" then
+        if IsInAnimation then
+            EmoteCancel()
+        else
+            EmoteChatMessage(Config.Languages[lang]['nocancel'])
+        end
+      return
+    elseif name == "help" then
+      EmotesOnCommand()
+    return end
+
+    if DP.Emotes[name] ~= nil then
+      if OnEmotePlay(DP.Emotes[name]) then end return
+    elseif DP.Dances[name] ~= nil then
+      if OnEmotePlay(DP.Dances[name]) then end return
+    elseif DP.PropEmotes[name] ~= nil then
+      if OnEmotePlay(DP.PropEmotes[name]) then end return
+    else
+      EmoteChatMessage("'"..name.."' "..Config.Languages[lang]['notvalidemote'].."")
+    end
+  end
 end
 
 RegisterNetEvent("OraEmoteMenu:ClientGetFavoriteEmoteList")
