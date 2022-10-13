@@ -466,7 +466,8 @@ AddEventHandler(
         if inCall == false and USE_RTC == false then
             inCall = true
         --EstablishCall()
-        --exports["mumble-voip"]:SetCallChannel(infoCall.id + 1)
+            exports["pma-voice"]:SetCallChannel(infoCall.id + 1)
+        --exports["pma-voice"]:SetCallChannel(infoCall.id + 1)
         end
         if menuIsOpen == false then
             TooglePhone()
@@ -481,9 +482,10 @@ AddEventHandler(
     function(infoCall)
         if inCall == true then
             inCall = false
-        --Citizen.InvokeNative(0xE036A705F989E049)
-        -- NetworkSetTalkerProximity(2.5)
-        end
+            exports["pma-voice"]:SetCallChannel(0)
+            --Citizen.InvokeNative(0xE036A705F989E049)
+            --NetworkSetTalkerProximity(2.5)
+          end
         PhonePlayText()
         SendNUIMessage({event = "rejectCall", infoCall = infoCall})
     end
@@ -792,6 +794,10 @@ RegisterNUICallback(
 RegisterNUICallback(
     "closePhone",
     function(data, cb)
+        if UseMumble then 
+            exports["pma_voice"]:removePlayerFromCall()
+        else
+        end
         menuIsOpen = false
         SendNUIMessage({show = false})
         PhonePlayOut()

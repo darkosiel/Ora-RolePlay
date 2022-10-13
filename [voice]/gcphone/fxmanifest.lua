@@ -97,7 +97,7 @@ files {
 }
 
 dependencies {
-    "saltychat"
+    "pma-voice"
 }
 
 client_script {

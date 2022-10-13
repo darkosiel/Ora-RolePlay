@@ -9,18 +9,26 @@ version "2.2.1"
 ui_page "index.html"
 
 dependencies {
-    "saltychat"
+    "pma-voice"
 }
 
 files {
     "index.html",
     "on.ogg",
-    "off.ogg"
+    "off.ogg",
+    "radio_grunge.jpg",
+    "radio-off.jpg",
+    "radio-on.jpg",
+    "radio.js",
+    "style.css",
+    "style.css.map",
+    "style.scss"
 }
 
 client_scripts {
     "config.lua",
-    "client.lua"
+    "client.lua",
+    "c_radio.lua",
 }
 
 server_scripts {
