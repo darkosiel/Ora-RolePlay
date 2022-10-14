@@ -11648,6 +11648,22 @@ Jobs = {
                 Blipname = "Garage Pegasus"
             }
         },
+        garage2 = {
+            Name = "Garage Bateau",
+            Pos = {x = -806.63, y = -1491.58, z = 1.6},
+            Properties = {
+                type = 3,
+                Limit = 6,
+                zonesize = 5.0,
+                vehicles = {},
+                spawnpos = {x = -806.63, y = -1491.58, z = 0.12, h = 112.53}
+            },
+            Blipdata = {
+                Pos = {x = -806.63, y = -1491.58, z = 1.6},
+                Blipcolor = 5,
+                Blipname = "Pegasus - Bateaux"
+            }
+        },
         Storage = {
             {
                 Pos = {x = -1631.18, y = -3163.04, z = 12.99},
