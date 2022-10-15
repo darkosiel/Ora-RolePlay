@@ -3408,7 +3408,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Weazel News", "Annonce", text, "CHAR_WEAZEL", 8, "Journaliste")
+                            TriggerServerEvent("Job:Annonce", "Weazel News", "Annonce", text, "CHAR_WEAZEL", 8, "Weazel News")
                         end
                     end
                 }
