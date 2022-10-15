@@ -85,7 +85,6 @@ for _, v in pairs(FIRE_START_AROUND_TIMES) do
 	
 		table.insert(fireTimes, os.time(time))
 	
-		print("A fire will start at", os.date("%c", os.time(time)))
 	end
 end
 
