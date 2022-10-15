@@ -40,10 +40,10 @@ local Elevator = {
     {label = "2", pos = vector3(4990.48, -5717.98, 19.88), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
   },
 
-  ["ascenseur"] = {
+--[[  ["ascenseur"] = {
     {label = "Départ", pos = vector3(-144.33, -576.54, 32.42), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Arrivé", pos = vector3(-133.92,  -586.76, 201.73), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
-  },
+  },]]
 
   ["Cafe Coretto"] = {
     {label = "Rez-de-chaussé", pos = vector3(-1192.0448, -1399.7055, 4.4924), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
