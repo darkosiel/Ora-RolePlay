@@ -722,21 +722,21 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -36.48, y = -155.96, z = 57.07 - 0.98},
+                Pos = {x = 1215.9256, y = -475.6717, z = 66.20 - 0.98},
                 Limit = 100,
                 Name = "coffre_coiffeur3"
             }
         },
         garage = {
             Name = "Garage Coiffeurmiror",
-            Pos = {x = -19.92, y = -139.68, z = 56.83 - 0.98},
+            Pos = {x = 1225.0465, y = -433.5716, z = 67.53 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = -19.92, y = -139.68, z = 56.83 - 0.98, h = 337.18}
+                spawnpos = {x = 1225.0465, y = -433.5716, z = 67.53 - 0.98, h = 337.18}
             },
             Blipdata = {
                 Pos = {},
