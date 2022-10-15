@@ -8118,6 +8118,39 @@ Jobs = {
                         }
                     }
                 },
+                ["Action objets"] = {
+                    submenu = "ambulance_menuperso",
+                    title = "Placer objets",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Mettre un cone",
+                                onSelected = function()
+                                    useCone()
+                                end
+                            },
+                            {
+                                label = "Mettre une barriere",
+                                onSelected = function()
+                                    useBarrier()
+                                end
+                            },
+                            {
+                                label = "Supprimer un cone",
+                                onSelected = function()
+                                    DeleteCone()
+                                end
+                            },
+                            {
+                                label = "Supprimer une barriere",
+                                onSelected = function()
+                                    DeleteBarrier()
+                                end
+                            }
+                        },
+                        submenu = {}
+                    }
+                },
                 ["Actions brancard"] = {
                     submenu = "ambulance_menuperso",
                     title = "Actions brancard",
