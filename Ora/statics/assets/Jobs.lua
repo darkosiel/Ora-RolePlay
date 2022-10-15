@@ -11984,7 +11984,7 @@ Jobs = {
                 blipname = "Unicorn - Vente",
                 Pos = {x = 1093.24, y = -364.12, z = 67.04 - 0.98},
                 required = "cafe",
-                price = math.random(18, 25),
+                price = math.random(13, 16),
                 add = "~p~- 1 Café"
             }
         },
@@ -12404,7 +12404,7 @@ Jobs = {
                 blipname = "Bahama's - Vente",
                 Pos = {x = -1113.61, y = -1367.55, z = 5.01},
                 required = "tacos",
-                price = math.random(12, 15),
+                price = math.random(13, 16),
                 add = "~p~- 1 tacos"
             }
         },
@@ -12504,7 +12504,7 @@ Jobs = {
                 blipname = "Bar - Vente",
                 Pos = {x = -1113.61, y = -1367.55, z = 5.01},
                 required = "tacos",
-                price = math.random(8, 15),
+                price = math.random(13, 16),
                 add = "~p~- 1 tacos"
             }
         },
