@@ -97,8 +97,6 @@ local function generateFires()
 	local currentTime = getMyTime()
 	repeat
 		Citizen.Wait(60 * 1000)
-		print("Current time", os.date("%c", getMyTime()))
-		print("Next fire at", os.date("%c", fireTimes[1]))
 		currentTime = getMyTime()
 	until currentTime > fireTimes[1]
 
