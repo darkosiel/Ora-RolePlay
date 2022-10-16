@@ -3652,6 +3652,60 @@ Jobs = {
             }
         },
     },
+    avocat4 = {
+        label = "Cabinet Wistaria",
+        label2 = "Cabinet Wistaria",
+        iban = "avocat4",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "AVOCAT",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "ASSOCIE",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Cabinet Wistaria", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Wistaria")
+                        end
+                    end
+                }
+            }
+        },
+    },
     records = {
         label = "Stray Boyz Records",
         label2 = "Stray Boyz Records",
