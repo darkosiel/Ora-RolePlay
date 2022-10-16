@@ -3687,7 +3687,7 @@ Jobs = {
                 {
                     label = "Facturation",
                     onSelected = function()
-                        CreateFacture("avocat")
+                        CreateFacture("avocat4")
                     end,
                     ActiveFct = function()
                         HoverPlayer()
