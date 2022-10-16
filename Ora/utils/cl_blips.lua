@@ -91,7 +91,7 @@ local Blips = {
    -- {name = "SubUrban", color = 64, sprite = 366, Pos = {x = 618.1, y = 2759.32, z = 40.98}},
     {name = "Salon de tatouage", color = 1, sprite = 75, Pos = {x = -1149.7503, y = -1428.5909, z = 3.95}},
     {name = "Salon de tatouage el burro", color = 1, sprite = 75, Pos = {x = 1323.7127, y = -1652.8209, z = 3.95}},
-    {name = "Salon de tatouage Mirror Park", color = 1, sprite = 75, Pos = {x = 1212.6756, y = -472.9996, z = 3.95}},
+    {name = "Coiffeur Mirror Park", color = 1, sprite = 75, Pos = {x = 1212.6756, y = -472.9996, z = 3.95}},
     {name = "Post OP", color = 21, sprite = 616, Pos = {x = 1218.5623, y = -3274.3474, z = 29.7969}},
    -- {name = "Fujiwara Tofu", color = 63, sprite = 210, size = 1.0, Pos = {x = -165.19, y = 290.42, z = 93.76}},
     {name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
