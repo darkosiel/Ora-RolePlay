@@ -10,7 +10,7 @@ let myPedId = null
 // OR "prop_npc_phone"
 // OR "prop_cs_phone_01"
 // OR "prop_npc_phone_02"
-const phoneModel = "prop_npc_phone_02"
+const phoneModel = "prop_amb_phone"
 let phoneProp = 0
 
 let currentStatus = "out"

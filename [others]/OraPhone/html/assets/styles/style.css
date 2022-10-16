@@ -2528,7 +2528,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   flex-direction: column;
   width: auto;
   height: 58px;
-  bottom: 45px;
+  bottom: 55px;
   left: 55px;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;

@@ -16,6 +16,8 @@ client_scripts {
 ui_page "html/index.html"
 
 files {
+    "stream/prop_amb_phone.ydr",
+    "stream/prop_amb_phone.ytd",
     "html/module/*.js",
     "html/module/animation/tracks/*.js",
     "html/module/animation/*.js",

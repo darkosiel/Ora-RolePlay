@@ -218,7 +218,9 @@ onNet('OraPhone:client:callStarted', _ => {
 })
 
 onNet('OraPhone:client:callFinished', _ => {
-    anim.PhonePlayIn()
+    if (phoneVisible) {
+        anim.PhonePlayIn()
+    }
     SendNUIMessage({
         type: 'callEnded',
     })
@@ -387,6 +389,15 @@ on('__cfx_nui:message_create_conversation', data => {
         return
     }
     emitNet('OraPhone:server:message_create_conversation', data)
+})
+
+RegisterNuiCallbackType('message_delete_conversation')
+on('__cfx_nui:message_delete_conversation', data => {
+    if (!data.id && !data.number) { 
+        console.error('missing id')
+        return
+    }
+    emitNet('OraPhone:server:message_delete_conversation', data)
 })
 
 RegisterNuiCallbackType('refresh_conversations')

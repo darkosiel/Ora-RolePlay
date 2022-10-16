@@ -236,12 +236,10 @@ function Storage:TransferToInventory(count, item)
                         end
                         tempCount = tempCount - 1
                         if itemName == "tel" then
-                            if it.data.num == MyNumber then
-                                -- OraPhone
-                                -- MyNumber = nil
-                                -- MyBattery = 0
-                                -- TriggerEvent("OraPhone:client:phone_active", false)
-                            end
+                            -- OraPhone
+                            -- MyNumber = nil
+                            -- MyBattery = 0
+                            -- TriggerEvent("OraPhone:client:phone_active", false)
                         end
                     end
                 end

@@ -222,7 +222,7 @@ $(function(){
                         break;
                     case "update_conversations":
                         userData.conversations = item.conversations;
-                        updateAppMessageLoad();
+                        updateAppMessageLoad(conversationId);
                         updateConversationList();
                         break;
                     case "new_notification":
@@ -414,6 +414,8 @@ function initializeApps() {
     initializeAppNotes();
     initializeAppGallery();
 
+    conversationAuthors = "";
+
     // Initialisation des boutons généraux de chaques applications
     $(".app-header-first").click(function () {
         updateAppContent("first");
@@ -603,12 +605,14 @@ function initializeAppMessage() {
     });
     $("#newmessage-create-button").click(function() {
         conversationAuthors = [];
-        for(let contact of $("#newmessage-list").children()) {
+        conversationId = '';
+        for(let contact of document.querySelectorAll("#newmessage-list .newmessage-list-item")) {
             if(contact.classList.contains("active")) {
-                conversationAuthors.push(contact.dataset.number);
+                conversationAuthors.push(contact.dataset.number.toString());
+                contact.classList.remove("active");
             }
         }
-        conversationAuthors.push(userData.phone.number);
+        conversationAuthors.push(userData.phone.number.toString());
         if(conversationAuthors.length < 2) {
             return;
         }
@@ -622,11 +626,9 @@ function initializeAppMessage() {
     $("#message-position-button-show").click(function () {
         $("#app-message-position").toggleClass("active");
     })
-    $("#message-position-button-marker").click(function () {
-
-    });
-    $("#message-position-button-myposition").click(function () {
-        $.post('https://OraPhone/message_send_myposition', JSON.stringify({}));
+    $("#app-body-content-header-button-action-remove").click(function() {
+        $.post('https://OraPhone/message_delete_conversation', JSON.stringify({ id: $('.app-message-conversation .messages').data("conversation-id"), number: userData.phone.number }));
+        updateAppContent("list");
     });
 }
 
@@ -1366,7 +1368,6 @@ function initializeAppNotes() {
             </div>
         </div>`;
         $("#notes-list-folders").append(newDiv);
-        console.log($("#notes-list-folders").children().last());
         $("#notes-list-folders").children().last().click(function() {
             console.log(this);
             console.log($(this));
@@ -1432,7 +1433,7 @@ function initializeAppNotes() {
     // Inisialisation de la recherche de notes
     let searchInput = document.getElementById("app-notes-body-content-folder-search");
     searchInput.addEventListener('input', (e) => {
-        for(let elt of $("#notes-list-notes").children()) {
+        for(let elt of document.querySelectorAll("#notes-list-notes .notes-list-item")) {
             if(elt.querySelector(".notes-list-item-title").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "flex";
             } else {
@@ -1587,7 +1588,7 @@ function updateAppContacts() {
     });
     $(".message-contact").click(function() {
             conversationAuthors = [];
-            for(let contact of $("#newmessage-list").children()) {
+            for(let contact of document.querySelectorAll("#newmessage-list .newmessage-list-item")) {
                 if(contact.classList.contains("active")) {
                     conversationAuthors.push(contact.dataset.number);
                 }
@@ -1636,7 +1637,7 @@ function updateAppMessage() {
     $('#newmessage-list').empty();
     for(let contact of userData.contacts) {
         if(contact.number.toString().length == 7) {
-            let div = "<div data-number='" + contact.number + "' data-name='" + contact.name + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + contact.name + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + contact.number.toString().substring(3) + "</span></div></div></div>";
+            let div = "<div data-number='" + contact.number + "' data-name='" + contact.name + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + contact.name + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + contact.number.toString().substring(3) + "</span><span style='display:none;'>" + contact.number.toString() + "</span></div></div></div>";
             $('#newmessage-list').append(div);
         }
     }
@@ -1655,29 +1656,57 @@ function updateAppMessage() {
     searchInput.value = "";
     searchInput.addEventListener('input', (e) => {
         for(let elt of document.querySelectorAll(".newmessage-list-item")) {
-            if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+            if(elt.querySelector(".newmessage-list-item-right-header-name").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase()) || elt.querySelector(".newmessage-list-item-right-body-number").nextElementSibling.innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
                 elt.style.display = "flex";
             } else {
                 elt.style.display = "none";
             }
         }
+        if (/555\d{4}/.test(searchInput.value) && searchInput.value.length == 7) {
+            let canCreate = true;
+            for (let elt of document.querySelectorAll(".newmessage-list-item")) {
+                if (elt.querySelector(".newmessage-list-item-right-body-number").nextElementSibling.innerHTML == searchInput.value) {
+                    canCreate = false;
+                    break;
+                }
+            }
+            if (canCreate) {
+                let div = "<div id='newmessage-list-item-newnumber' data-number='" + searchInput.value + "' data-name='" + searchInput.value + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar'><img draggable='false' src='" + contactAvatarDefault + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + searchInput.value + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + searchInput.value.toString().substring(3) + "</span><span style='display:none;'>" + searchInput.value.toString() + "</span></div></div></div>";
+                $('#newmessage-list').append(div);
+                $("#newmessage-list-item-newnumber").click(function() {
+                    this.classList.toggle("active");
+                });
+            } else if ($("#newmessage-list-item-newnumber")) {
+                $("#newmessage-list-item-newnumber").remove();
+            }
+        } else {
+            if ($("#newmessage-list-item-newnumber")) {
+                $("#newmessage-list-item-newnumber").remove();
+            }
+        }
     });
 }
 
-function updateAppMessageLoad(id = false) {
-    if(!id) {
+function updateAppMessageLoad(id = null) {
+    if((id == '' || id == null) && conversationAuthors != '') {
         // Get conversationId from authors list
         for(let conversation of userData.conversations) {
-            if(conversationAuthors.every(i => JSON.parse(conversation.target_number).includes(i)) && conversationAuthors.length == JSON.parse(conversation.target_number).length) {
+            let targetNumbers = [];
+            JSON.parse(conversation.target_number).map(targetNumber => {
+                targetNumbers.push(targetNumber.number);
+            });
+            if(conversationAuthors.every(i => targetNumbers.includes(i)) && conversationAuthors.length == targetNumbers.length) {
                 conversationId = conversation.id;
                 break;
             }
         }
+        conversationAuthors = '';
     } else {
         conversationId = id;
     }
     if(conversationId != "") {
         let targetNumber = "";
+        $('.app-message-conversation .messages').data("conversation-id", conversationId);
         $('.app-message-conversation .messages').empty();
         for(let conversation of userData.conversations) {
             if(conversation.id == conversationId) {
@@ -1685,10 +1714,10 @@ function updateAppMessageLoad(id = false) {
                 let conversationName = "";
                 targetNumber = JSON.parse(conversation.target_number);
                 for(let user of JSON.parse(conversation.target_number)) {
-                    if(user != userData.phone.number) {
-                        let name = user;
+                    if(user.number != userData.phone.number) {
+                        let name = user.number;
                         for(let contact of userData.contacts) {
-                            if(contact.number == user) {
+                            if(contact.number == user.number) {
                                 if(JSON.parse(conversation.target_number).length == 2) {
                                     if(contact.avatar.includes("http")) {
                                         conversationAvatar = contact.avatar;
@@ -1740,6 +1769,14 @@ function updateAppMessageLoad(id = false) {
                 }
             }
         });
+        $("#message-position-button-myposition").click(function () {
+            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYPOSITION" }));
+            $("#app-message-position").toggleClass("active");
+        });
+        $("#message-position-button-marker").click(function () {
+            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYMARKER" }));
+            $("#app-message-position").toggleClass("active");
+        });
         let elementMessages = document.querySelector(".app-message-conversation .messages");
         elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
     }
@@ -1760,7 +1797,7 @@ function updateAppPhone() {
         let callContactNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
         let callName = callContactNumber
         for(let contact of userData.contacts) {
-            if(contact.number == callTarget) {
+            if(contact.number.toString() == callTarget.toString()) {
                 callName = contact.name;
                 break;
             }
@@ -2342,10 +2379,10 @@ function updateConversationList() {
             conversationMessage = conversation.messages[conversation.messages.length - 1].message;
         }
         for(let user of JSON.parse(conversation.target_number)) {
-            if(user != userData.phone.number) {
-                let name = user;
+            if(user.number != userData.phone.number) {
+                let name = user.number;
                 for(let contact of userData.contacts) {
-                    if(contact.number == user) {
+                    if(contact.number.toString() == user.number.toString()) {
                         if(JSON.parse(conversation.target_number).length == 2) {
                             if(contact.avatar.includes("http")) {
                                 conversationAvatar = contact.avatar;
@@ -2391,7 +2428,7 @@ function receiveCall(data) {
     let avatar = contactAvatarDefault;
     let name = callData.fromNumber;
     for(let contact of userData.contacts) {
-        if(contact.number == callData.fromNumber) {
+        if(contact.number.toString() == callData.fromNumber.toString()) {
             if(contact.avatar.includes("http")) {
                 avatar = contact.avatar;
             } else {
@@ -2421,7 +2458,7 @@ function callNumber(callNumber) {
     callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
     callAvatar = contactAvatarDefault;
     for(let contact of userData.contacts) {
-        if(contact.number == callNumber) {
+        if(contact.number.toString() == callNumber.toString()) {
             callAvatar = (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png");
             callName = contact.name;
             break;
@@ -2776,7 +2813,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
             if(user != userData.phone.number) {
                 let name = user;
                 for(let contact of userData.contacts) {
-                    if(contact.number == user) {
+                    if(contact.number.toString() == user.toString()) {
                         name = contact.name;
                         break;
                     }
