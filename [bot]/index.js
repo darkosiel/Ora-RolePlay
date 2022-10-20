@@ -11,7 +11,7 @@ const { pass } = require('./secret.js')
 // this is what we're refering to. Your client.
 const client = new Discord.Client();
 var con = mysql.createConnection({
-    host: "93.90.201.84",
+    host: "localhost",
     user: "admin",
     password: "orabdd",
     database: "ora"
