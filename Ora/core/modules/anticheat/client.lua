@@ -33,6 +33,7 @@ function Ora.Anticheat:Initialize()
                 local fullname = Ora.Identity:GetFullname(playerServerId)
                 if (Citizen.InvokeNative(0x048746E388762E11, Citizen.ReturnResultAnyway())) then
                     Ora.Anticheat:ReportCheat("error", string.format("[CHEAT] | le joueur %s | %s est en mode spectateur", playerServerId,fullname), true)
+                    TriggerServerEvent("banPlayer", GetPlayerServerId(PlayerId()), "Cheat - Mode Spectateur - Merci de venir en attente modérateur", 7200)
                 end
     
                 if GetPlayerVehicleDamageModifier(playerId) then
