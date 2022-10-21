@@ -3650,6 +3650,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class A Deputy I"] = {
         male = {
@@ -3682,6 +3683,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class A Deputy II"] = {
         male = {
@@ -3714,6 +3716,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class A Deputy III"] = {
         male = {
@@ -3746,6 +3749,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class A Sergent"] = {
         male = {
@@ -3773,11 +3777,12 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class A Lieutenant"] = {
         male = {
@@ -3790,7 +3795,7 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 2,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
@@ -3810,6 +3815,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class A Captain"] = {
         male = {
@@ -3822,7 +3828,7 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 3,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
@@ -3837,11 +3843,12 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
-        },  
+        },
+        
     },
     ["Class B Deputy I"] = {
         male = {
@@ -3874,6 +3881,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class B Deputy II"] = {
         male = {
@@ -3906,6 +3914,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class B Deputy III"] = {
         male = {
@@ -3938,6 +3947,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class B Sergent"] = {
         male = {
@@ -3950,26 +3960,27 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 49,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 195,   ['torso_2'] = 3,
             ['decals_1'] = 10,   ['decals_2'] = 4,
-            ['arms'] = 17,
-            ['pants_1'] = 66,   ['pants_2'] = 0,
-            ['shoes_1'] = 24,   ['shoes_2'] = 0,
-            ['helmet_1'] = 78,  ['helmet_2'] = 1,
+            ['arms'] = 14,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 48,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class B Lieutenant"] = {
         male = {
@@ -3988,20 +3999,21 @@ TenueBCSO = {
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 49,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 195,   ['torso_2'] = 3,
             ['decals_1'] = 52,   ['decals_2'] = 6,
-            ['arms'] = 17,
-            ['pants_1'] = 66,   ['pants_2'] = 0,
-            ['shoes_1'] = 24,   ['shoes_2'] = 0,
-            ['helmet_1'] = 78,  ['helmet_2'] = 1,
+            ['arms'] = 14,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 48,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class B Captain"] = {
         male = {
@@ -4014,26 +4026,27 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
-            ['tshirt_1'] = 49,  ['tshirt_2'] = 0,
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 195,   ['torso_2'] = 3,
-            ['decals_1'] = 52,   ['decals_2'] = 6,
-            ['arms'] = 17,
-            ['pants_1'] = 66,   ['pants_2'] = 0,
-            ['shoes_1'] = 24,   ['shoes_2'] = 0,
-            ['helmet_1'] = 78,  ['helmet_2'] = 1,
+            ['decals_1'] = 52,   ['decals_2'] = 7,
+            ['arms'] = 14,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 48,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class C Deputy I"] = {
         male = {
@@ -4066,6 +4079,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class C Deputy II"] = {
         male = {
@@ -4098,12 +4112,13 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class C Deputy III"] = {
         male = {
             ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
             ['torso_1'] = 190,   ['torso_2'] = 3,
-            ['decals_1'] = 8,   ['decals_2'] = 0,
+            ['decals_1'] = 15,   ['decals_2'] = 7,
             ['arms'] = 11,
             ['pants_1'] = 48,   ['pants_2'] = 0,
             ['shoes_1'] = 51,   ['shoes_2'] = 0,
@@ -4118,7 +4133,7 @@ TenueBCSO = {
         female = {
             ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 192,   ['torso_2'] = 3,
-            ['decals_1'] = 7,   ['decals_2'] = 0,
+            ['decals_1'] = 14,   ['decals_2'] = 7,
             ['arms'] = 14,
             ['pants_1'] = 41,   ['pants_2'] = 1,
             ['shoes_1'] = 52,   ['shoes_2'] = 0,
@@ -4130,19 +4145,20 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class C Sergent I"] = {
         male = {
             ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
             ['torso_1'] = 190,   ['torso_2'] = 3,
-            ['decals_1'] = 7,   ['decals_2'] = 0,
+            ['decals_1'] = 15,   ['decals_2'] = 8,
             ['arms'] = 11,
             ['pants_1'] = 48,   ['pants_2'] = 0,
             ['shoes_1'] = 51,   ['shoes_2'] = 0,
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
@@ -4150,18 +4166,19 @@ TenueBCSO = {
         female = {
             ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 192,   ['torso_2'] = 3,
-            ['decals_1'] = 6,   ['decals_2'] = 0,
+            ['decals_1'] = 14,   ['decals_2'] = 8,
             ['arms'] = 14,
             ['pants_1'] = 41,   ['pants_2'] = 1,
             ['shoes_1'] = 52,   ['shoes_2'] = 0,
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class C Lieutenant"] = {
         male = {
@@ -4194,6 +4211,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Class C Captain"] = {
         male = {
@@ -4206,7 +4224,7 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
@@ -4221,11 +4239,12 @@ TenueBCSO = {
             ['helmet_1'] = 13,  ['helmet_2'] = 1,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Moto Deputy I"] = {
         male = {
@@ -4235,7 +4254,7 @@ TenueBCSO = {
             ['arms'] = 19,
             ['pants_1'] = 32,   ['pants_2'] = 2,
             ['shoes_1'] = 33,   ['shoes_2'] = 0,
-            ['helmet_1'] = 19,  ['helmet_2'] = 3,
+            ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
             ['bags_1'] = 54,     ['bags_2'] = 0,
@@ -4258,6 +4277,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Moto Deputy II"] = {
         male = {
@@ -4267,7 +4287,7 @@ TenueBCSO = {
             ['arms'] = 19,
             ['pants_1'] = 32,   ['pants_2'] = 2,
             ['shoes_1'] = 33,   ['shoes_2'] = 0,
-            ['helmet_1'] = 19,  ['helmet_2'] = 3,
+            ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
             ['bags_1'] = 54,     ['bags_2'] = 0,
@@ -4290,16 +4310,17 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Moto Deputy III"] = {
         male = {
             ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
             ['torso_1'] = 190,   ['torso_2'] = 3,
-            ['decals_1'] = 8,   ['decals_2'] = 0,
+            ['decals_1'] = 15,   ['decals_2'] = 7,
             ['arms'] = 19,
             ['pants_1'] = 32,   ['pants_2'] = 2,
             ['shoes_1'] = 33,   ['shoes_2'] = 0,
-            ['helmet_1'] = 19,  ['helmet_2'] = 3,
+            ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
             ['bags_1'] = 54,     ['bags_2'] = 0,
@@ -4310,7 +4331,7 @@ TenueBCSO = {
         female = {
             ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 192,   ['torso_2'] = 3,
-            ['decals_1'] = 7,   ['decals_2'] = 0,
+            ['decals_1'] = 14,   ['decals_2'] = 7,
             ['arms'] = 20,
             ['pants_1'] = 31,   ['pants_2'] = 2,
             ['shoes_1'] = 34,   ['shoes_2'] = 0,
@@ -4322,19 +4343,20 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Moto Sergent I"] = {
         male = {
             ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
             ['torso_1'] = 190,   ['torso_2'] = 3,
-            ['decals_1'] = 7,   ['decals_2'] = 0,
+            ['decals_1'] = 15,   ['decals_2'] = 8,
             ['arms'] = 19,
             ['pants_1'] = 32,   ['pants_2'] = 2,
             ['shoes_1'] = 33,   ['shoes_2'] = 0,
-            ['helmet_1'] = 19,  ['helmet_2'] = 3,
+            ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
@@ -4342,18 +4364,19 @@ TenueBCSO = {
         female = {
             ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
             ['torso_1'] = 192,   ['torso_2'] = 3,
-            ['decals_1'] = 6,   ['decals_2'] = 0,
+            ['decals_1'] = 14,   ['decals_2'] = 8,
             ['arms'] = 20,
             ['pants_1'] = 31,   ['pants_2'] = 2,
             ['shoes_1'] = 34,   ['shoes_2'] = 0,
             ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Moto Lieutenant"] = {
         male = {
@@ -4363,7 +4386,7 @@ TenueBCSO = {
             ['arms'] = 19,
             ['pants_1'] = 32,   ['pants_2'] = 2,
             ['shoes_1'] = 33,   ['shoes_2'] = 0,
-            ['helmet_1'] = 19,  ['helmet_2'] = 3,
+            ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
             ['bags_1'] = 54,     ['bags_2'] = 0,
@@ -4386,6 +4409,7 @@ TenueBCSO = {
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
+        
     },
     ["Moto Captain"] = {
         male = {
@@ -4395,10 +4419,10 @@ TenueBCSO = {
             ['arms'] = 19,
             ['pants_1'] = 32,   ['pants_2'] = 2,
             ['shoes_1'] = 33,   ['shoes_2'] = 0,
-            ['helmet_1'] = 19,  ['helmet_2'] = 3,
+            ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
-            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
@@ -4413,10 +4437,242 @@ TenueBCSO = {
             ['helmet_1'] = 17,  ['helmet_2'] = 3,
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
+    ["Ceremonie Rookie"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
             ['bags_1'] = 54,     ['bags_2'] = 0,
             ['glasses_1'] = 5,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = -1,     ['mask_2'] = 0
         },
-    }
+        
+    },
+    ["Ceremonie Deputy I"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
+    ["Ceremonie Deputy II"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 0,   ['decals_2'] = 0,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
+    ["Ceremonie Deputy III"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 11,   ['decals_2'] = 1,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 10,   ['decals_2'] = 1,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
+    ["Ceremonie Sergent"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 11,   ['decals_2'] = 4,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 10,   ['decals_2'] = 4,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 1,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
+    ["Ceremonie Lieutenant"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 45,   ['decals_2'] = 6,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 53,   ['decals_2'] = 6,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 0,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
+    ["Ceremonie Captain"] = {
+        male = {
+            ['tshirt_1'] = 38,  ['tshirt_2'] = 0,
+            ['torso_1'] = 200,   ['torso_2'] = 3,
+            ['decals_1'] = 45,   ['decals_2'] = 7,
+            ['arms'] = 75,
+            ['pants_1'] = 48,   ['pants_2'] = 0,
+            ['shoes_1'] = 51,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
+            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        female = {
+            ['tshirt_1'] = 51,  ['tshirt_2'] = 0,
+            ['torso_1'] = 202,   ['torso_2'] = 3,
+            ['decals_1'] = 53,   ['decals_2'] = 7,
+            ['arms'] = 85,
+            ['pants_1'] = 41,   ['pants_2'] = 1,
+            ['shoes_1'] = 52,   ['shoes_2'] = 0,
+            ['helmet_1'] = 13,  ['helmet_2'] = 1,
+            ['ears_1'] = -1,     ['ears_2'] = 0,
+            ['bproof_1'] = 14,  ['bproof_2'] = 0,
+            ['bags_1'] = 54,     ['bags_2'] = 2,
+            ['glasses_1'] = 5,  ['glasses_2'] = 0,
+            ['chain_1'] = 8,    ['chain_2'] = 0,
+            ['mask_1'] = -1,     ['mask_2'] = 0
+        },
+        
+    },
 }
