@@ -4818,13 +4818,13 @@ Jobs = {
         }
     },
     lssd = {
-        label = "LSSD",
-        label2 = "LSSD",
-        iban = "lssd",
+        label = "BCSO",
+        label2 = "BCSO",
+        iban = "bcso",
         -- radios = {1,2},
         grade = {
             {
-                label = "Deputy Trainee",
+                label = "Rookie",
                 salary = 325,
                 name = "recrue"
             },
@@ -4850,37 +4850,17 @@ Jobs = {
             },
             {
                 label = "Lieutenant",
-                salary = 370,
-                name = "deputychef"
-            },
-            {
-                label = "Shérif Adjoint",
                 salary = 390,
                 name = "drh"
             },
             {
-                label = "Shérif",
+                label = "Capitaine",
                 salary = 430,
                 name = "boss"
             }
         },
         garage = {
-            Name = "Garage LSSD SandyShore",
-            Pos = {x = 1873.98, y = 3686.96, z = 32.59},
-            Properties = {
-                type = 3,
-                Limit = 64,
-                vehicles = {},
-                spawnpos = {x = 1873.98, y = 3686.96, z = 33.59, h = 197.337}
-            },
-            Blipdata = {
-                Pos = {x = 1873.98, y = 3686.96, z = 33.59},
-                Blipcolor = 5,
-                Blipname = "Garage LSSD SandyShore"
-            }
-        },
-        garage2 = {
-            Name = "Garage LSSD Paleto",
+            Name = "Garage BCSO Paleto",
             Pos = {x = -469.92, y = 6019.82, z = 30.34},
             Properties = {
                 type = 3,
@@ -4891,10 +4871,10 @@ Jobs = {
             Blipdata = {
                 Pos = {x = -469.92, y = 6019.82, z = 31.34},
                 Blipcolor = 5,
-                Blipname = "Garage LSSD Paleto"
+                Blipname = "Garage BCSO Paleto"
             }
         },
-        garage3 = {
+        garage2 = {
             Name = "Helipad Sherif",
             Pos = {x = -475.13, y = 5988.67, z = 31.34},
             Properties = {
@@ -4917,10 +4897,10 @@ Jobs = {
             Blipdata = {
                 Pos = {x = -475.13, y = 5988.67, z = 31.34},
                 Blipcolor = 5,
-                Blipname = "LSSD - Helipad Sherif"
+                Blipname = "BCSO - Helipad Sherif"
             }
         },
-        garage4 = {
+        garage3 = {
             Name = "Marina Sherif",
             Pos = {x = -1605.05, y = 5258.63, z = 2.08},
             Properties = {
@@ -4943,11 +4923,26 @@ Jobs = {
             Blipdata = {
                 Pos = {x = -1605.05, y = 5258.63, z = 2.08},
                 Blipcolor = 5,
-                Blipname = "LSSD - Marina Sherif"
+                Blipname = "BCSO - Marina Sherif"
+            }
+        },
+        garage4 = {
+            Name = "Garage Personnel BCSO",
+            Pos = {x = -445.601, y = 6047.075, z = 31.340},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = -445.601, y = 6047.075, z = 31.340, h = 303.109}
+            },
+            Blipdata = {
+                Pos = {x = -445.601, y = 6047.075, z = 31.340},
+                Blipcolor = 5,
+                Blipname = "BCSO - Garage Personnel"
             }
         },
         garage5 = {
-            Name = "Garage Personnel LSSD Sandy Shores",
+            Name = "Garage Personnel BCSO Sandy Shores",
             Pos = {x = 1872.247, y = 3705.467, z = 32.00},
             Properties = {
                 type = 3,
@@ -4958,7 +4953,7 @@ Jobs = {
             Blipdata = {
                 Pos = {x = 1872.247, y = 3705.467, z = 32.00},
                 Blipcolor = 5,
-                Blipname = "LSSD - Garage Personnel"
+                Blipname = "BCSO - Garage Personnel"
             }
         },
         Menu = {
