@@ -427,6 +427,18 @@ local VehShop =
                     {name = "pdumksx", price = 25000}
                     --{name = "lspdb", price = 25000}
                 },
+                ["BCSO"] = {
+                    {name = "bcsocara", price = 25000},
+                    {name = "bcsofugitive", price = 25000},
+                    {name = "bcsoscout", price = 25000},
+                    {name = "bcsogranger", price = 25000},
+                    {name = "bcsogranger2", price = 25000},
+                    {name = "bcsogranger3", price = 25000},
+                    {name = "bcsogranger4", price = 25000},
+                    {name = "bcsosandking", price = 25000},
+                    {name = "bcsostanier", price = 25000},
+                    {name = "bcsostanier2", price = 25000}
+                },
                 ["Gouvernement"] = {
                     {name = "idcar", price = 30000},
                     {name = "usssvan", price = 30000},
