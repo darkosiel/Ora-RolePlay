@@ -125,6 +125,13 @@ Config.DJPositions = {
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
+        name = 'yolac',
+        pos = vector3(-165.06, 866.18, 232.69 - 0.98),
+        requiredJob = nil, 
+        range = 35.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
         name = 'djset',
         pos = vector3(683.78, 569.74, 130.46 - 0.98),
         requiredJob = nil, 
