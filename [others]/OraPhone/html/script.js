@@ -5,7 +5,8 @@ const folderAssets = "./assets/";
 const folderImages = folderAssets + "images/";
 const folderWallpaper = folderImages + "wallpaper/";
 const folderAppIcon = folderImages + "app-icon/";
-const folderContactsProfileIcon = folderImages + "contacts-profile-icon/";
+const folderApps = folderImages + "apps/"
+const folderContactsProfileIcon = folderApps + "contacts/profile-icon/";
 const folderSounds = folderAssets + "sounds/";
 const folderAlarms = folderSounds + "alarms/";
 const folderNotifications = folderSounds + "notifications/";
@@ -38,6 +39,7 @@ var lockIconSnoozeEffect = false;
 var contextMenuItemClicked;
 var notificationMode = "normal"; // normal / nosound / none
 var phoneActive = false;
+var phoneTest = false;
 
 // App Home
 var pageSelectedStart = 1;  
@@ -118,6 +120,7 @@ var callNotificationLock;
 // App Message
 var conversationAuthors = [];
 var conversationId = "";
+var messageTargetNumber = "";
 var longpress = true;
 var startTime, endTime;
 var gridPage1 = "";
@@ -131,13 +134,21 @@ var canvasActivate = false;
 // App Notes
 var notesListItem = false;
 var notesNoteInputToggle = true;
-var notesFolderContextMenu; 
+var notesFolderContextMenu;
 var notesNoteContextMenu;
+
+// App Maps
+var map;
+var markerList = [];
+var markerFavoriteList = [];
+var mapsIntervalMyPosition;
+var markerMyPosition;
+var bounds;
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
 $(function(){
-    window.onload = (e) => {
+    window.onload = async (e) => {
 
         // --- Inisialisation du téléphone --- //
 
@@ -145,7 +156,7 @@ $(function(){
             // $.post('https://OraPhone/request_user_data', JSON.stringify({}));
 
             // Intérception fonction Lua
-            window.addEventListener('message', (event) => {
+            window.addEventListener('message', async (event) => {
                 var item = event.data;
                 if (item == undefined) {
                     return;
@@ -155,7 +166,7 @@ $(function(){
                         displayPhone();
                         break;
                     case "updateUserData":
-                        updateUserData(item.data);
+                        await updateUserData(item.data);
                         break;
                     case "receiveCall":
                         receiveCall(item);
@@ -203,7 +214,7 @@ $(function(){
                         }
                         $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
                         break;
-                    case "call_number_response":
+                    case "callNumberResponse":
                         updateContent("call");
                         updateAppContent("callnumber");
                         inCall = true;
@@ -263,6 +274,13 @@ $(function(){
                     case "phoneActive":
                         phoneActive = item.toggle;
                         break;
+                    case "updateMapsFavorite":
+                        userData.mapsFavorite = item.positions;
+                        updateAppMaps();
+                        break;
+                    case "updateMapsMyPosition":
+                        let newLatLng = new L.LatLng(item.position.playerX, item.position.playerY);
+                        markerMyPosition.setLatLng(newLatLng);
                 }
             });
 
@@ -319,16 +337,36 @@ $(function(){
             // Affichage de l'écran de test
             let dateTest = {
                 'phone': {
-                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': [ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'templatetabbed', 'richtermotorsport', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                    ]
+                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                    ])
                 }
             }
-            // updateUserData(dateTest);
-            // displayPhone();
-            // updateContent("notes");
-            // updateAppContent(menuAppSelected);
-            // lockPhone();
-            // unlockPhone();
+            if (phoneTest) {
+                await updateUserData(dateTest);
+                displayPhone();
+                updateContent("home");
+                updateAppContent("first");
+                $("#message-list").children().click(function () {
+                    updateAppContent("message");
+                });
+                let messageInput = $("#app-message-footer-input");
+                messageInput.on("keyup", function(e) {
+                    if (e.key === 'Enter' || e.keyCode === 13) {
+                        if (messageInput.val() != "") {
+                            // if (/^https:\/\/i.imgur.com\/[a-zA-Z0-9_.-]+.jpg$/.test(messageInput.val())) {
+                            //     let newMessageDiv = '<div class="myMessage"><p>Bonjour</p><date><b>Mike</b> 10:29</date></div>';
+                            //     $('.app-message-conversation .messages').append(newMessageDiv);
+                            // }
+                            messageInput.val("");
+                        }
+                    }
+                });
+                $("#message-photo-button-gallery").click(function () {
+                    updateContent("gallery");
+                    $("#gallery-image-list .gallery-image-list-item").addClass("bind-click");
+                    $("#gallery-image-list .gallery-image-list-item").bind("click", messageChooseImageGallery);
+                });
+            }
             // $("#add-notification").click(function() {
             //     // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
             //     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
@@ -358,11 +396,13 @@ $(function(){
 // --- Fonctions --- //
 
 // Mise à jour total
-function updateUserData(data) {
+async function updateUserData(data) {
     // Inisiialisation de l'accueil
-    updateContent("home");
-    updateAppContent("first");
-    lockPhone();
+    if (!phoneTest) {
+        updateContent("home");
+        updateAppContent("first");
+        lockPhone();
+    }
     // Update main variables
     userData = data;
     darkMode = (data.phone.darkMode == 1 ? true : false);
@@ -390,8 +430,8 @@ function updateUserData(data) {
     updateAppHomeOrder();
 
     // Mise à jour des applications
-    $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
-    $.post('https://OraPhone/refresh_conversations', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number }));
+    $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phoneId: userData.phone.id }));
+    $.post('https://OraPhone/refresh_conversations', JSON.stringify({ phoneId: userData.phone.id, number: userData.phone.number }));
     $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
     $.post('https://OraPhone/refresh_gallery', JSON.stringify({ phoneId: userData.phone.id }));
     $.post('https://OraPhone/refresh_richtermotorsport_advertisement', JSON.stringify({ phoneId: userData.phone.id }));
@@ -413,6 +453,7 @@ function initializeApps() {
     initializeAppRichterMotorsport();
     initializeAppNotes();
     initializeAppGallery();
+    initializeAppMaps();
 
     conversationAuthors = "";
 
@@ -511,6 +552,15 @@ function initializeAppScreen() {
             lockPhone();
         }
     });
+    $(window).click(function(e) {
+        let elementTarget = e.target;
+        if ($("#app-message-position").hasClass("active") && elementTarget != document.getElementById("message-position-button-show")) {
+            $("#app-message-position").removeClass("active");
+        }
+        if ($("#app-message-photo").hasClass("active") && elementTarget != document.getElementById("message-photo-button-show")) {
+            $("#app-message-photo").removeClass("active");
+        }
+    });
 }
 
 function initializeAppContacts() {
@@ -570,7 +620,7 @@ function initializeAppContacts() {
             let profileIcon = ($("#newcontact-icon-custom-input").val() != '' && $("#newcontact-icon-custom-input").val().includes('http') ? $("#newcontact-icon-custom-input").val() : $("#newcontact-profile-icon").data("title"));
             let profilePhoneNumber = "555" + $("#newcontact-phone-number-input").val();
             let profileName = ($("#newcontact-name-input").val() != '' ? $("#newcontact-name-input").val() : "Nouveau Contact");
-            $.post('https://OraPhone/add_contact', JSON.stringify({ phone_id: userData.phone.id, name: profileName, number: profilePhoneNumber, avatar: profileIcon }));
+            $.post('https://OraPhone/add_contact', JSON.stringify({ phoneId: userData.phone.id, name: profileName, number: profilePhoneNumber, avatar: profileIcon }));
             updateAppContent("list");
         }
     });
@@ -625,6 +675,9 @@ function initializeAppMessage() {
     });
     $("#message-position-button-show").click(function () {
         $("#app-message-position").toggleClass("active");
+    })
+    $("#message-photo-button-show").click(function () {
+        $("#app-message-photo").toggleClass("active");
     })
     $("#app-body-content-header-button-action-remove").click(function() {
         $.post('https://OraPhone/message_delete_conversation', JSON.stringify({ id: $('.app-message-conversation .messages').data("conversation-id"), number: userData.phone.number }));
@@ -1464,6 +1517,119 @@ function initializeAppGallery() {
     })
 }
 
+function initializeAppMaps() {
+    const center_x = 117.3;
+    const center_y = 172.8;
+    const scale_x = 0.02072;
+    const scale_y = 0.0205;
+    const southWest = new L.LatLng(-4050, 6680);
+    const northEast = new L.LatLng(8429.268292682927, -5650);
+
+    let CUSTOM_CRS = L.extend({}, L.CRS.Simple, {
+        projection: L.Projection.LonLat,
+        scale: function(zoom) {
+            return Math.pow(2, zoom);
+        },
+        zoom: function(sc) {
+            return Math.log(sc) / 0.6931471805599453;
+        },
+        distance: function(pos1, pos2) {
+            var x_difference = pos2.lng - pos1.lng; 
+            var y_difference = pos2.lat - pos1.lat;
+            return Math.sqrt(x_difference * x_difference + y_difference * y_difference);
+        },
+        transformation: new L.Transformation(scale_x, center_x, -scale_y, center_y),
+        infinite: true
+    });
+    let AtlasStyle = L.tileLayer('assets/images/apps/maps/mapStyles/styleAtlas/{z}/{x}/{y}.jpg', {minZoom: 0, maxZoom: 5, noWrap: true, continuousWorld: false, attribution: 'Online map GTA V', id: 'styleAtlas map', bounds: [northEast, southWest]});
+    map = L.map('map', {
+        crs: CUSTOM_CRS,
+        minZoom: 2,
+        maxZoom: 5,
+        Zoom: 5,
+        zoomSnap: 0.25,
+        dragging: true,
+        maxNativeZoom: 5,
+        preferCanvas: true,
+        layers: AtlasStyle,
+        attributionControl: false,
+        center: [0, 0],
+        zoom: 3,
+        zoomControl: false
+    });
+    function customIcon(icon){
+        return L.icon({
+            iconUrl: `./assets/images/apps/maps/marker-icons/${icon}.png`,
+            iconSize:     [32, 32],
+            iconAnchor:   [16, 16],
+            popupAnchor:  [0, -15]
+        });
+    }
+    
+    bounds = L.latLngBounds([northEast,southWest]);
+    map.setMaxBounds(bounds);
+    map.fitBounds(bounds);
+    map.on('drag', function() {
+        map.panInsideBounds(bounds, { animate: false });
+    }); 
+
+    markerMyPosition = L.marker([0, 0], {icon: customIcon("6")}).addTo(map).bindPopup("Ma position");
+
+    for (let blip of Blips) {
+        let marker = L.marker([blip.Pos.y, blip.Pos.x], {icon: customIcon(blip.sprite, blip.color), riseOnHover: true}).addTo(map).bindPopup(blip.name);
+        marker.on("click", function() {
+            map.setView([blip.Pos.y, blip.Pos.x], 4);
+        });
+    }
+
+    $("#map-tool-button").click(function() {
+        $("#map-tool-container").toggleClass("active");
+    });
+    $("#map-tool-container-button-remove-marker").click(function() {
+        $("#map-tool-container").removeClass("active");
+        for (let marker of markerList) {
+            map.removeLayer(marker);
+        }
+    });
+    $("#map-tool-container-button-add-marker").click(function() {
+        $("#map-tool-container").removeClass("active");
+        $("#map-add-marker-container").addClass("active");
+    });
+    $("#map-add-marker-container-button-cancel").click(function() {
+        $("#map-add-marker-container").removeClass("active");
+        $("#map-add-marker-container-name").val("");
+        for (let icon of $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item")) {
+            if ($(icon).hasClass("active")) {
+                $(icon).removeClass("active")
+                break;
+            }
+        }
+    });
+    $("#map-add-marker-container-button-add").click(function() {
+        let markerName = "Position";
+        let markerIcon = "162";
+        if ($("#map-add-marker-container-name").val() != "") {
+            markerName = $("#map-add-marker-container-name").val();
+        }
+        for (let icon of $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item")) {
+            if ($(icon).hasClass("active")) {
+                markerIcon = $(icon).data("id");
+                break;
+            }
+        }
+        $.post('https://OraPhone/maps_favorite_add_marker', JSON.stringify({ phoneId: userData.phone.id, name: markerName, icon: markerIcon }));
+        $("#map-add-marker-container").removeClass("active");
+    });
+    for (let icon of markerIcons) {
+        let newIcon = '<div data-id="' + icon + '" class="map-add-marker-container-icon-list-item"><img src="assets/images/apps/maps/marker-icons/' + icon + '.png"/></div>';
+        $("#map-add-marker-container-icon-list").append(newIcon);
+    }
+    $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item").click(function() {
+        $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item").removeClass("active");
+        $(this).addClass("active");
+    });
+}
+
 function updateNotesNoteContent() {
     $("#notes-note-content").toggle();
     $("#notes-note-container").toggle();
@@ -1542,11 +1708,11 @@ function removeNotesNote() {
 
 function updateAppContacts() {
     $("#contacts-list").empty();
-    for(var i = 65; i <= 90; i++) {
+    for(let i = 65; i <= 90; i++) {
         let divItem = "";
-        for(let contact of userData.contacts) {
-            if(contact.name.substring(0,1).toLowerCase() == String.fromCharCode(i).toLowerCase()) {
-                divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div><div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div><div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div></div></div>";
+        for (let contact of userData.contacts) {
+            if (contact.name.substring(0,1).toLowerCase() == String.fromCharCode(i).toLowerCase()) {
+                divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div><div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div>" + (!/[a-zA-Z]/.test(contact.number) ? "<div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div>" : "") + "</div></div>";
             }
         }
         if(divItem != "") {
@@ -1687,6 +1853,59 @@ function updateAppMessage() {
     });
 }
 
+function updateConversationList() {
+    $("#message-list").empty();
+    for(let conversation of userData.conversations) {
+        let conversationName = "";
+        let conversationTime = "";
+        let conversationMessage = "";
+        let conversationAvatar = contactAvatarDefault;
+        if(conversation.messages != "") {
+            conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
+            conversationMessage = conversation.messages[conversation.messages.length - 1].message;
+        }
+        for(let user of JSON.parse(conversation.target_number)) {
+            if(user.number != userData.phone.number) {
+                let name = user.number;
+                for(let contact of userData.contacts) {
+                    if(contact.number.toString() == user.number.toString()) {
+                        if(JSON.parse(conversation.target_number).length == 2) {
+                            if(contact.avatar.includes("http")) {
+                                conversationAvatar = contact.avatar;
+                            } else {
+                                conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                            }
+                        }
+                        name = contact.name;
+                        break;
+                    }
+                }
+                conversationName += name + ", ";
+            }
+        }
+        conversationName = conversationName.slice(0, -2);
+        let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div></div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
+        $("#message-list").append(divConversation);
+        $("#message-list").children().last().click(function () {
+            updateAppMessageLoad(conversation.id);
+            updateAppContent("message");
+            let elementMessages = document.querySelector(".app-message-conversation .messages");
+            elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
+        });
+    }
+    let searchInput = document.getElementById("app-message-body-content-list-search");
+    searchInput.value = "";
+    searchInput.addEventListener('input', (e) => {
+        for(let elt of document.querySelectorAll("#message-list .app-body-content-body-list-item")) {
+            if(elt.querySelector(".message-list-item-right-header-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                elt.style.display = "flex";
+            } else {
+                elt.style.display = "none";
+            }
+        }
+    });
+}
+
 function updateAppMessageLoad(id = null) {
     if((id == '' || id == null) && conversationAuthors != '') {
         // Get conversationId from authors list
@@ -1705,14 +1924,14 @@ function updateAppMessageLoad(id = null) {
         conversationId = id;
     }
     if(conversationId != "") {
-        let targetNumber = "";
+        messageTargetNumber = "";
         $('.app-message-conversation .messages').data("conversation-id", conversationId);
         $('.app-message-conversation .messages').empty();
         for(let conversation of userData.conversations) {
             if(conversation.id == conversationId) {
                 let conversationAvatar = contactAvatarDefault;
                 let conversationName = "";
-                targetNumber = JSON.parse(conversation.target_number);
+                messageTargetNumber = JSON.parse(conversation.target_number);
                 for(let user of JSON.parse(conversation.target_number)) {
                     if(user.number != userData.phone.number) {
                         let name = user.number;
@@ -1764,18 +1983,24 @@ function updateAppMessageLoad(id = null) {
         messageInput.on("keyup", function(e) {
             if (e.key === 'Enter' || e.keyCode === 13) {
                 if (messageInput.val() != "") {
-                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
+                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
                     messageInput.val("");
                 }
             }
         });
         $("#message-position-button-myposition").click(function () {
-            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYPOSITION" }));
-            $("#app-message-position").toggleClass("active");
+            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYPOSITION" }));
         });
         $("#message-position-button-marker").click(function () {
-            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: targetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYMARKER" }));
-            $("#app-message-position").toggleClass("active");
+            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYMARKER" }));
+        });
+        $("#message-photo-button-takephoto").click(function () {
+            activateAppCamera("message", "message");
+        });
+        $("#message-photo-button-gallery").click(function () {
+            updateContent("gallery");
+            $("#gallery-image-list .gallery-image-list-item").addClass("bind-click");
+            $("#gallery-image-list .gallery-image-list-item").bind("click", messageChooseImageGallery);
         });
         let elementMessages = document.querySelector(".app-message-conversation .messages");
         elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
@@ -1955,6 +2180,23 @@ function updateAppGallery() {
             $("#gallery-image").data("id", image.id);
             updateAppContent("image");
         });
+    }
+}
+
+function updateAppMaps() {
+    userData.mapsFavorite = item.positions;
+    for (let marker of markerFavoriteList) {
+        map.removeLayer(marker);
+    }
+    markerFavoriteList = [];
+    let test = favorite.name + `<br/><i onclick="mapsFavoriteRemove('` + favorite.id + `')" class="fa-solid fa-trash-can maps-marker-button-remove"></i>`;
+    for (let favorite of userData.mapsFavorite) {
+        let marker = L.marker([favorite.y, favorite.x], {icon: customIcon(favorite.icon)}).addTo(map).bindPopup(test);
+        marker.on("click", function() {
+            map.setView([favorite.y, favorite.x], 4);
+        });
+        favorite.marker = marker;
+        markerFavoriteList.push(marker);
     }
 }
 
@@ -2364,60 +2606,36 @@ function responsiveChatPush(sender, origin, date, message) {
     } else {
         originClass = 'fromThem';
     }
-    $('.app-message-conversation .messages').append('<div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div>');
+    let newMessageDiv = "";
+    if (/^GPS:\s\d+.\d+,\s\d+.\d+,\s\d+.\d+$/.test(message)) {
+        newMessageDiv = '<div class="' + originClass + '"><p>' + message + '<div class="message-button-list"><button class="message-button-show-map">Afficher carte</button><button class="message-button-add-marker">Appliquer point</button></div></p><date><b>' + sender + '</b> ' + date + '</date></div>';
+        $('.app-message-conversation .messages').append(newMessageDiv);
+        $('.app-message-conversation .messages').children().last().find(".message-button-show-map").click(function() {
+            let messagePos = message.replaceAll(/\s/g, '').substring(4).split(",");
+            addMarkerToMap(messagePos[0], messagePos[1]);
+            updateContent("maps");
+        });
+    } else if (/^https:\/\/i.imgur.com\/[a-zA-Z0-9_.-]+.jpg$/.test(message)) {
+        newMessageDiv = '<div class="' + originClass + '"><p><img src="' + message + '"/></p><date><b>' + sender + '</b> ' + date + '</date></div>';
+        $('.app-message-conversation .messages').append(newMessageDiv);
+        $('.app-message-conversation .messages').children().last().click(function() {
+            $("#image-fullscreen img").attr("src", message);
+            $("#image-fullscreen").show();
+        });
+    } else {
+        newMessageDiv = '<div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div>';
+        $('.app-message-conversation .messages').append(newMessageDiv);
+    }
 }
 
-function updateConversationList() {
-    $("#message-list").empty();
-    for(let conversation of userData.conversations) {
-        let conversationName = "";
-        let conversationTime = "";
-        let conversationMessage = "";
-        let conversationAvatar = contactAvatarDefault;
-        if(conversation.messages != "") {
-            conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
-            conversationMessage = conversation.messages[conversation.messages.length - 1].message;
-        }
-        for(let user of JSON.parse(conversation.target_number)) {
-            if(user.number != userData.phone.number) {
-                let name = user.number;
-                for(let contact of userData.contacts) {
-                    if(contact.number.toString() == user.number.toString()) {
-                        if(JSON.parse(conversation.target_number).length == 2) {
-                            if(contact.avatar.includes("http")) {
-                                conversationAvatar = contact.avatar;
-                            } else {
-                                conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
-                            }
-                        }
-                        name = contact.name;
-                        break;
-                    }
-                }
-                conversationName += name + ", ";
-            }
-        }
-        conversationName = conversationName.slice(0, -2);
-        let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div></div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
-        $("#message-list").append(divConversation);
-        $("#message-list").children().last().click(function () {
-            updateAppMessageLoad(conversation.id);
-            updateAppContent("message");
-            let elementMessages = document.querySelector(".app-message-conversation .messages");
-            elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
-        });
-    }
-    let searchInput = document.getElementById("app-message-body-content-list-search");
-    searchInput.value = "";
-    searchInput.addEventListener('input', (e) => {
-        for(let elt of document.querySelectorAll("#message-list .app-body-content-body-list-item")) {
-            if(elt.querySelector(".message-list-item-right-header-name span").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
-                elt.style.display = "flex";
-            } else {
-                elt.style.display = "none";
-            }
-        }
-    });
+function messageChooseImageGallery() {
+    let image = $(this).find("img").attr("src");
+    $("#gallery-image-list .gallery-image-list-item").removeClass("bind-click").unbind("click", messageChooseImageGallery);
+    $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: image }));
+    updateContent("message");
+    setTimeout(function() {
+        updateAppContent("message");
+    }, 500);
 }
 
 // Apllication Appel
@@ -2455,8 +2673,11 @@ function receiveCall(data) {
 
 function callNumber(callNumber) {
     callNumber = callNumber.toString();
-    callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
-    callAvatar = contactAvatarDefault;
+    let callName = callNumber;
+    let callAvatar = contactAvatarDefault;
+    if (!/[a-zA-Z]/.test(contact.number)) {
+        callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
+    }
     for(let contact of userData.contacts) {
         if(contact.number.toString() == callNumber.toString()) {
             callAvatar = (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png");
@@ -2481,20 +2702,22 @@ async function takeScreenshot(app, appSub) {
     updateAppContent(appSub);
     $("#camera-image").attr("src", "");
     let resp = await MainRender.requestScreenshot("https://api.imgur.com/3/image/", "image");
-    if(app == "camera") {
+    if (app == "camera") {
         $.post('https://OraPhone/camera_add_image', JSON.stringify({ phoneId: userData.phone.id, image: resp.data.link }));
-    } else if(appSub == "newcontact") {
+    } else if (appSub == "newcontact") {
         $("#newcontact-icon-custom-input").val(resp.data.link);
         $("#newcontact-profile-icon img").attr("src", resp.data.link);
         $("#newcontact-profile-icon").addClass("url");
-    } else if(appSub == "editcontact") {
+    } else if (appSub == "editcontact") {
         $("#editcontact-icon-custom-input").val(resp.data.link);
         $("#editcontact-profile-icon img").attr("src", resp.data.link);
         $("#editcontact-profile-icon").addClass("url");
-    } else if(app == "richtermotorsport" && appSub == "create") {
+    } else if (app == "richtermotorsport" && appSub == "create") {
         $("#richtermotorsport-create-image-takephoto").hide();
         $("#richtermotorsport-create-image-photo").attr("src", resp.data.link);
         $("#richtermotorsport-create-image-photo").show();
+    } else if (app == "message" && appSub == "message") {
+        $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: resp.data.link }));
     }
     $.post('https://OraPhone/close_camera', JSON.stringify({}));
     MainRender.stop();
@@ -2540,8 +2763,10 @@ function unlockPhone() {
         }
         $("#phone-screen-content").addClass("app-" + menuSelected);
     }
-    $("#phone-lock").hide();
     $("#phone-lock").css("transform", "translate(0, -100%)");
+    setTimeout(function() {
+        $("#phone-lock").css("visibility", "hidden");
+    }, 400);
     $("#app-content").css("transform", "scale(1)");
     $("#app-content").css("opacity", "1");
     phoneLockToggle = false;
@@ -2557,7 +2782,7 @@ function lockPhone() {
     if(menuSelectedLock != null && menuSelectedLock.id != "app-home") {
         $("#phone-screen-content").removeClass();
     }
-    $("#phone-lock").show();
+    $("#phone-lock").css("visibility", "visible");
     $("#phone-lock").css("transform", "translate(0, 0)");
     setTimeout(function() {
         $("#app-content").css("transform", "scale(3)");
@@ -2633,6 +2858,28 @@ function timerStart() {
         (timer.ss < 10 ? "0" + timer.ss : timer.ss));
 }
 
+// Application Maps
+
+function addMarkerToMap(x, y) {
+    let marker = L.marker([y, x]).addTo(map).bindPopup("Point GPS");
+    markerList.push(marker);
+    map.setView([y, x], 4);
+}
+
+function mapsFavoriteRemove(id) {
+    $.post('https://OraPhone/maps_favorite_remove_marker', JSON.stringify({ phoneId: userData.phone.id, id: id }));
+}
+
+function mapsUpdateMyPosition(toggle) {
+    if (toggle) {
+        mapsIntervalMyPosition = setInterval(function() {
+            $.post('https://OraPhone/maps_update_my_position', JSON.stringify({ }));
+        }, 2000);
+    } else {
+        clearInterval(mapsIntervalMyPosition);
+    }
+}
+
 // Fonctions d'affichage
 
 function updateContent(menu) {
@@ -2646,14 +2893,26 @@ function updateContent(menu) {
     if(!appSelected) {
         return;
     }
-    if(menu == "clock" && !activateAppClockToggle) {
+    if (menu == "clock" && !activateAppClockToggle) {
         activateAppClock();
-    } else if(menu == "richtermotorsport") {
+    } else if (menu == "richtermotorsport") {
         activateAppRichterMotorsport();
-    } else if(menu == "camera") {
+    } else if (menu == "camera") {
         if(!canvasActivate) {
             canvasActivate = true;
             activateAppCamera("camera", "photo");
+        }
+    } else if (menu == "maps") {
+        map.fitBounds(bounds);
+        mapsUpdateMyPosition(true);
+    }
+    if (menuSelected == "maps") {
+        mapsUpdateMyPosition(false);
+    } else if (menuSelected == "gallery") {
+        for (let item of $("#gallery-image-list .gallery-image-list-item")) {
+            if ($(item).hasClass("bind-click")) {
+                $(item).removeClass("bind-click").unbind("click", messageChooseImageGallery);
+            }
         }
     }
     switchFormatOrientation("portrait");
@@ -2684,10 +2943,10 @@ function updateContent(menu) {
     } else if(menu == "home") {
         $("#phone-screen-content").removeClass();
         canvasActivate = false;
-        setTimeout(function() {
-            updateAppContent("first");
-        }, 300);
     }
+    setTimeout(function() {
+        updateAppContent("first");
+    }, 300);
     menuSelectedLast = menuSelected;
     menuSelected = menu;
 }
@@ -2771,15 +3030,13 @@ function displayPhone() {
 function displayTopbar() {
     if(displayTopbarToggle) {
         $("#topbar-blur").css("opacity", "0");
-        setTimeout(function() {
-            $("#topbar-blur").hide();
-            $("#phone-screen-content-topbar").hide();
-        }, 300);
+        $("#topbar-blur").css("visibility", "hidden");
+        $("#phone-screen-content-topbar").css("visibility", "hidden");
         $("#topbar-content").css("top", "-700px");
         displayTopbarToggle = false;
     } else {
-        $("#phone-screen-content-topbar").show();
-        $("#topbar-blur").show();
+        $("#phone-screen-content-topbar").css("visibility", "visible");
+        $("#topbar-blur").css("visibility", "visible");
         $("#topbar-blur").css("opacity", "1");
         $("#topbar-content").css("top", "0px");
         displayTopbarToggle = true;
@@ -3318,6 +3575,10 @@ const config = {
         {
             "name": "richtermotorsport",
             "label": "Richter Motorsport"
+        },
+        {
+            "name": "maps",
+            "label": "Carte"
         },
         {
             "name": "phone",
@@ -4095,3 +4356,69 @@ class ContextMenu {
 //     menuItems
 // });
 // contextMenuHome.init();
+
+
+
+const Blips = [
+    {name: "Poste de police", color: 29, sprite: 60, size: 1.0, Pos: {x: -1072.52, y: -856.42, z: 4.87}},
+    {name: "Sherif - Paleto Bay", color: 70, sprite: 60, size: 1.0, Pos: {x: -440.43, y: 6019.48, z: 31.49}},
+    {name: "Vanilla Unicorn", color: 61, sprite: 121, size: 0.8, Pos: {x: 119.47, y: -1308.58, z: 29.71}},
+    {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: -526.065, y: -1221.99, z: 18.4549}},
+    {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: -2073.44, y: -317.245, z: 13.316}},
+    {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: -821.17, y: -1083.29, z: 11.1324}},
+    {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: 1686.4, y: 4816.36, z: 42.0092}},
+    {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: -95.90, y: 6455.62, z: 31.45}},
+    {name: "Pacific Banque", color: 2, sprite: 605, size: 0.80, Pos: {x: 227.49, y: 212.99, z: 105.53}},
+    {name: "Pawn Shop", color: 12, sprite: 587, Pos: {x: 105.43, y: 9.43, z: 67.86}},
+    {name: "Hôpital Los Santos", color: 5, sprite: 61, Pos: {x: -1858.35, y: -324.27, z: 53.77}},
+    {name: "LSFD", color: 1, sprite: 61, Pos: {x: 1196.3460, y: -1479.672851, z: 29.39}},
+    {name: "Mécano", color: 3, sprite: 777, Pos: {x: -351.73, y: -120.49, z: 38.43}},
+    {name: "Benny's", color: 63, sprite: 488, size: 1.05, Pos: {x: -207.31, y: -1305.09, z: 31.36}},
+    {name: "Weazel News", color: 2, sprite: 184, Pos: {x: -582.75, y: -927.19, z: 36.83}},
+    {name: "Taxi", color: 5, sprite: 198, Pos: {x: 909.18, y: -179.6, z: 74.17}},
+    {name: "Coiffeur", color: 64, sprite: 71, Pos: {x: 138.25, y: -1709.13, z: 29.42}},
+    {name: "Barber", color: 64, sprite: 71, Pos: {x: -36.48, y: -155.96, z: 57.07}},
+    {name: "Ponsonbys", color: 64, sprite: 366, Pos: {x: -716.84, y: -156.75, z: 36.98}},
+    {name: "Binco", color: 64, sprite: 366, Pos: {x: -829.413, y: -1073.710, z: 10.328}},
+    {name: "Agence immobilière", color: 64, sprite: 492, Pos: {x: -707.79388, y: 269.2157, z: 94.2941}},
+    {name: "Mirror Restaurant", color: 3, sprite: 304, Pos: {x: -1342.2145, y: -1075.8182, z: 6.93}},
+    {name: "Burger Shot", color: 75, sprite: 106, Pos: {x: -1182.10, y: -883.58, z: 13.78}},
+    {name: "LTD Davis", color: 3, sprite: 59, Pos: {x: 30.42, y: -1345.17, z: 29.5}},       
+    {name: "LTD Grove Street", color: 3, sprite: 59, Pos: {x: -49.9785, y: -1753.45, z: 29.42}},        
+    {name: "Le Pearls", color: 3, sprite: 267, Pos: {x: -1825.48, y: -1190.6, z: 14.44}}, 
+    {name: "Galaxy Club", color: 83, sprite: 614, Pos: {x: 356.18, y: 304.66, z: 103.72}},
+    {name: "Bahama's", color: 83, sprite: 766, Pos: {x: -1394.71, y: -608.88, z: 30.32}},
+    {name: "Gouvernement", color: 0, sprite: 419, Pos: {x: -1296.13, y: -575.13, z: 30.56}},
+    {name: "DOJ", color: 0, sprite: 419, Pos: {x: -544.45, y: -205.01, z: 38.214}},
+    {name: "Armurerie - Los Santos", color: 49, sprite: 313, Pos: {x: 812.04, y: -2145.56, z: 29.33}},
+    {name: "Stand de tir", color: 49, sprite: 458, Pos: {x: 17.3187, y: -1105.2624, z: 29.7969}},
+    {name: "Tequi-la-la", color: 5, sprite: 93, size: 0.80, Pos: {x: -557.66, y: 283.59, z: 82.08}},
+    {name: "Cabinet Lysias", color: 25, sprite: 77, Pos: {x: -1568.2102, y: -571.6326, z: 36.2807}},
+    {name: "Cabinet Hermerion", color: 25, sprite: 805, Pos: {x: -1038.0477, y: -411.1166, z: 39.27}},
+    {name: "Cabinet Genovese", color: 25, sprite: 738, Pos: {x: -1184.18, y: -1408.50, z: 4.47}},
+    {name: "Salon de tatouage", color: 1, sprite: 75, Pos: {x: -1149.7503, y: -1428.5909, z: 3.95}},
+    {name: "Salon de tatouage el burro", color: 1, sprite: 75, Pos: {x: 1323.7127, y: -1652.8209, z: 3.95}},
+    {name: "Coiffeur Mirror Park", color: 64, sprite: 71, Pos: {x: 1212.6756, y: -472.9996, z: 3.95}},
+    {name: "Post OP", color: 21, sprite: 616, Pos: {x: 1218.5623, y: -3274.3474, z: 29.7969}},
+    {name: "Car Wash", color: 27, sprite: 100, Pos: {x: 169.58, y: -1718.31, z: 29.29}},
+    {name: "Koi", color: 49, sprite: 439, Pos: {x: -1040.4300, y: -1475.1987, z: 5.5802}},
+    {name: "Bar - San-Inn", color: 59, sprite: 93, Pos: {x: -172.66, y: 291.57, z: 92.76}},
+    {name: "Taco Loco", color: 46, sprite: 79, Pos: {x: 417.2778, y: -1911.7052, z: 25.47}}
+];
+
+const markerIcons = [
+    40,
+    50,
+    162,
+    163,
+    164,
+    225,
+    523,
+    475,
+    492,
+    525,
+    568,
+    590,
+    617,
+    744
+];

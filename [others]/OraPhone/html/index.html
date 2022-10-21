@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <!-- <script src="nui://game/ui/jquery.js" type="text/javascript"></script> -->
     <script type="module" src="./utk_render.js"></script>
     <script src="./script.js" type="text/javascript"></script>
@@ -527,29 +530,6 @@
                                         </div>
                                         <div class="app-body-content-body">
                                             <div id="message-list" class="app-body-content-body-list">
-                                                <div class="app-body-content-body-list-item">
-                                                    <div class="message-list-item-left">
-                                                        <div class="message-list-item-left-avatar">
-                                                            <i class="fa-solid fa-user-astronaut"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="message-list-item-right">
-                                                        <div class="message-list-item-right-header">
-                                                            <div class="message-list-item-right-header-name">
-                                                                <span>Stephen Yustiono</span>
-                                                            </div>
-                                                            <div class="message-list-item-right-header-date">
-                                                                <span>18:35</span>
-                                                                <i class="fa-solid fa-chevron-right"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="message-list-item-right-body">
-                                                            <div class="message-list-item-right-body-text">
-                                                                <span>Nice. I don’t know why people get all worked up about hawaiian pizza. I like it.</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -634,17 +614,25 @@
                                             </div>
                                             <div class="app-message-footer">
                                                 <div class="app-message-footer-input">
-                                                    <i class="fa-solid fa-camera"></i>
+                                                    <i id="message-photo-button-show" class="fa-solid fa-camera"></i>
                                                     <i id="message-position-button-show" class="fa-solid fa-location-dot"></i>
                                                     <input id="app-message-footer-input" type="text" placeholder="Message...">
                                                 </div>
                                             </div>
-                                            <div id="app-message-position">
+                                            <div id="app-message-position" class="app-message-toolbox">
                                                 <div id="message-position-button-marker">
                                                     <span>Position marqueur</span>
                                                 </div>
                                                 <div id="message-position-button-myposition">
                                                     <span>Ma position</span>
+                                                </div>
+                                            </div>
+                                            <div id="app-message-photo" class="app-message-toolbox">
+                                                <div id="message-photo-button-takephoto">
+                                                    <span>Prendre photo</span>
+                                                </div>
+                                                <div id="message-photo-button-gallery">
+                                                    <span>Gallerie</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -667,32 +655,6 @@
                                         </div>
                                         <div class="app-body-content-body">
                                             <div id="contacts-list" class="app-body-content-body-list">
-                                                <div class="contacts-list-row">
-                                                    <div class="contacts-list-row-letter">
-                                                        <span>A</span>
-                                                    </div>
-                                                    <div class='contacts-list-row-item'>
-                                                        <div class='contacts-list-row-item-top'>
-                                                            <div class='contacts-list-row-item-top-avatar'>
-                                                                <img draggable='false' src='./assets/images/contacts-profile-icon/50-Animals-avatar_16.png'/>
-                                                            </div>
-                                                            <div class='contacts-list-row-item-top-name'>
-                                                                <span>Mike Bell</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class='contacts-list-row-item-bottom'>
-                                                            <div data-number='5559696' class='contacts-list-row-item-bottom-button'>
-                                                                <i class='fa-solid fa-envelope'></i>
-                                                            </div>
-                                                            <div data-number='5559696' class='contacts-list-row-item-bottom-button'>
-                                                                <i class='fa-solid fa-phone'></i>
-                                                            </div>
-                                                            <div data-id='1' class='contacts-list-row-item-bottom-button'>
-                                                                <i class='fa-solid fa-pen-to-square'></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div id="contacts-list-alphabet">
                                                 <span title="A">A</span>
@@ -1961,11 +1923,39 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="app-maps" class="app app-modal">
+                                <div class="app-body">
+                                    <div id="app-maps-body-content-home" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <i id="map-tool-button" class="fa-solid fa-ellipsis-vertical"></i>
+                                            <div id="map-tool-container">
+                                                <div id="map-tool-container-button-remove-marker" class="map-tool-container-button">
+                                                    <span>Supprimer marqueurs</span>
+                                                </div>
+                                                <div id="map-tool-container-button-add-marker" class="map-tool-container-button">
+                                                    <span>Ajouter marqueur</span>   
+                                                </div>
+                                            </div>
+                                            <div id="map-add-marker-container">
+                                                <span>Ajouter un marqueur</span>
+                                                <input id="map-add-marker-container-name" type="text" placeholder="Nom..."/>
+                                                <div id="map-add-marker-container-icon-list">
+                                                </div>
+                                                <button id="map-add-marker-container-button-cancel">Annuler</button>
+                                                <button id="map-add-marker-container-button-add">Ajouter</button>
+                                            </div>
+                                            <div id="map"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div id="notification-container">
                             </div>
                         </div>
                     </div>
-                    <div id="phone-lock" class="app-center" style="display:none;">
+                    <div id="phone-lock" class="app-center">
                         <div id="app-lock-icon-lock" class="app-element">
                             <i class="fa-solid fa-lock"></i>
                         </div>

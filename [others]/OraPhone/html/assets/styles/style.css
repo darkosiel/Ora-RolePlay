@@ -2223,8 +2223,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages {
   border-bottom-color: #1C1C1E;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
   max-width: 90%;
   word-wrap: break-word;
   margin-bottom: 20px;
@@ -2234,30 +2233,23 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   clear: both;
   font-size: 16px;
 }
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage,
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
   color: #FFFFFF;
 }
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage,
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
   color: #FFFFFF;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage date,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage date, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem date {
   top: -20px;
   font-size: 12px;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover {
   transform: translateY(18px);
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover date,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover date, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover date {
   opacity: 1;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:before, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:before,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:before, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:before, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
   content: "";
   position: absolute;
   z-index: 1;
@@ -2265,18 +2257,48 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   height: 19px;
   transform: translate(0, -2px);
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after,
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
   height: 20px;
   transform: translate(-30px, -2px);
 }
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after,
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
   background-color: #FFFFFF;
 }
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after,
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
   background-color: #000000;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-show-map, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-add-marker, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker {
+  width: auto;
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-show-map, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-add-marker, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-show-map, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-add-marker, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-show-map:hover, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-add-marker:hover, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map:hover, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker:hover {
+  border-color: #007AFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-show-map:hover, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage div.message-button-list button.message-button-add-marker:hover, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map:hover, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker:hover {
+  border-color: #0A84FF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage img, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem img {
+  width: 100%;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage {
   float: right;
@@ -2335,6 +2357,12 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   width: 26px;
   border-bottom-right-radius: 10px;
   transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map:hover, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker:hover {
+  border-color: #E5E5EA;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-show-map:hover, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem div.message-button-list button.message-button-add-marker:hover {
+  border-color: #E5E5EA;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .chat-bubble {
   display: flex;
@@ -2522,7 +2550,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   border: none;
   cursor: text;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox {
   position: absolute;
   display: none;
   flex-direction: column;
@@ -2535,18 +2563,18 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   overflow: hidden;
   z-index: 999;
 }
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position {
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox {
   background-color: rgba(0, 0, 0, 0.2);
   color: #636366;
 }
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position {
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox {
   background-color: rgba(217, 217, 217, 0.2);
   color: #AEAEB2;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position.active {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox.active {
   display: flex;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position div {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox div {
   display: flex;
   align-items: center;
   width: 100%;
@@ -2554,13 +2582,16 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   padding: 7px 12px;
   cursor: pointer;
 }
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position div:hover {
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox div:hover {
   background-color: #636366;
   color: #FFFFFF;
 }
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div#app-message-position div:hover {
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox div:hover {
   background-color: #AEAEB2;
   color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox#app-message-photo {
+  left: 15px;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content div.app-body-content-body {
   padding: 0;
@@ -4030,6 +4061,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content div.app-body-content-body div#gallery-image-list div.gallery-image-list-item {
   width: 33%;
   height: auto;
+  cursor: pointer;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-gallery div.app-body div.app-body-content div.app-body-content-body div#gallery-image-list div.gallery-image-list-item img {
   width: 100%;
@@ -4369,6 +4401,243 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-notes div.app-body div.app-body-content#app-notes-body-content-note div.app-body-content-tab {
   justify-content: space-around;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body {
+  transition: background-color 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body {
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body {
+  background-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-header {
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body {
+  height: 100%;
+  padding: 0;
+  overflow: visible;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map {
+  width: 100%;
+  height: calc(100% + 48px + 34px);
+  top: -48px;
+  z-index: 10;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map > div {
+  width: 100%;
+  height: 100%;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-content-wrapper, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-tip {
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-content-wrapper, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-tip {
+  color: #000000;
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-content-wrapper, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-tip {
+  color: #FFFFFF;
+  background-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-content-wrapper div.leaflet-popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map div.leaflet-popup-content-wrapper div.leaflet-popup-content i.maps-marker-button-remove {
+  margin-top: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map a.leaflet-popup-close-button {
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map a.leaflet-popup-close-button {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map a.leaflet-popup-close-button {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body i#map-tool-button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 50px;
+  top: 15px;
+  left: 20px;
+  font-size: 34px;
+  z-index: 20;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body i#map-tool-button {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body i#map-tool-button {
+  color: #000000;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-tool-container {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-tool-container {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-tool-container {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-tool-container div.map-tool-container-button {
+  width: 100%;
+  padding: 9px 10px;
+  cursor: pointer;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-tool-container.active {
+  left: 55px;
+  opacity: 1;
+  visibility: visible;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 15px;
+  width: 300px;
+  height: auto;
+  top: 10%;
+  left: 50%;
+  padding: 10px 30px;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container {
+  color: #000000;
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container {
+  color: #FFFFFF;
+  background-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container.active {
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container span {
+  font-family: "SF UI Text Semibold";
+  font-size: 22px;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container span {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container span {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container input#map-add-marker-container-name {
+  width: 100%;
+  height: 40px;
+  padding: 5px 15px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container input#map-add-marker-container-name {
+  color: #000000;
+  border-color: #000000;
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container input#map-add-marker-container-name {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  background-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 10px;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  width: 100%;
+  height: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list div.map-add-marker-container-icon-list-item {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list div.map-add-marker-container-icon-list-item {
+  border-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list div.map-add-marker-container-icon-list-item {
+  border-color: #151515;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list div.map-add-marker-container-icon-list-item img {
+  width: 100%;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list div.map-add-marker-container-icon-list-item.active {
+  border-color: #007AFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container div#map-add-marker-container-icon-list div.map-add-marker-container-icon-list-item.active {
+  border-color: #0A84FF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container button {
+  width: 100%;
+  height: 40px;
+  padding: 5px 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container button {
+  color: #000000;
+  border-color: #000000;
+  background-color: #eaeaea;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container button {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  background-color: #151515;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container button:hover {
+  color: #eaeaea;
+  border-color: #000000;
+  background-color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-maps div.app-body div.app-body-content div.app-body-content-body div#map-add-marker-container button:hover {
+  color: #151515;
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content #notification-container {
   width: 100%;
   height: auto;
@@ -4642,12 +4911,12 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   transition: all 0.3s ease-in-out;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-topbar {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  visibility: hidden;
   z-index: 80;
   transition: all 0.3s ease-in-out;
 }
@@ -4658,6 +4927,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   top: 0;
   left: 0;
   opacity: 0;
+  visibility: hidden;
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
   transition: all 0.3s ease-in-out;
@@ -5374,6 +5644,20 @@ div#page div#image-fullscreen img {
   background-color: #FFFFFF !important;
 }
 .theme--dark div#phone-screen-content.app-notes.notes-note div#phone-screen-content-footer, .theme--dark div#phone-screen-content.app-notes.notes-note div#phone-screen-content-header, .theme--dark div#phone-screen-content.app-notes.notes-note div.app-body {
+  background-color: #000000 !important;
+}
+.theme--default div#phone-screen-content.app-maps div#phone-screen-content-footer, .theme--default div#phone-screen-content.app-maps div#phone-screen-content-header {
+  color: #000000 !important;
+  background-color: transparent !important;
+}
+.theme--dark div#phone-screen-content.app-maps div#phone-screen-content-footer, .theme--dark div#phone-screen-content.app-maps div#phone-screen-content-header {
+  color: #000000 !important;
+  background-color: transparent !important;
+}
+.theme--default div#phone-screen-content.app-maps div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--default div#phone-screen-content.app-maps div#phone-screen-content-header div#phone-screen-content-footer-bar {
+  background-color: #000000 !important;
+}
+.theme--dark div#phone-screen-content.app-maps div#phone-screen-content-footer div#phone-screen-content-footer-bar, .theme--dark div#phone-screen-content.app-maps div#phone-screen-content-header div#phone-screen-content-footer-bar {
   background-color: #000000 !important;
 }
 

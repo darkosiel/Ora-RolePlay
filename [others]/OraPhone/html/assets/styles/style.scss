@@ -1933,7 +1933,7 @@ div#page {
                                                         font-family: $ora-font-bold;
                                                     }
                                                 }
-                                                .messages{
+                                                .messages {
                                                     overflow-x: hidden;
                                                     overflow-y: scroll;
                                                     width: 100%;
@@ -1944,8 +1944,7 @@ div#page {
                                                     @include themed() {
                                                         border-bottom-color: t($phone-system-color-gray-5);
                                                     }
-                                                    .myMessage,
-                                                    .fromThem {
+                                                    .myMessage, .fromThem {
                                                         max-width: 90%;
                                                         word-wrap: break-word;
                                                         margin-bottom: 20px;
@@ -1981,6 +1980,34 @@ div#page {
                                                             @include themed() {
                                                                 background-color: t($phone-app-background-color);
                                                             }
+                                                        }
+                                                        div.message-button-list {
+                                                            display: flex;
+                                                            flex-direction: row;
+                                                            justify-content: space-around;
+                                                            align-items: center;
+                                                            margin-top: 5px;
+                                                            button.message-button-show-map, button.message-button-add-marker {
+                                                                width: auto;
+                                                                height: 35px;
+                                                                padding: 5px 10px;
+                                                                border-radius: 15px;
+                                                                border: 2px solid #ffffff;
+                                                                cursor: pointer;
+                                                                transition: all 0.3s ease-in-out;
+                                                                @include themed() {
+                                                                    background-color: t($phone-system-color-white);
+                                                                    color: t($phone-system-color-black);
+                                                                }
+                                                                &:hover {
+                                                                    @include themed() {
+                                                                        border-color: t($phone-app-label-color-active);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        img {
+                                                            width: 100%;
                                                         }
                                                     }
                                                     .myMessage {
@@ -2030,6 +2057,15 @@ div#page {
                                                             width: 26px;
                                                             border-bottom-right-radius: 10px;
                                                             transition: all 0.3s ease-in-out;
+                                                        }
+                                                        div.message-button-list {
+                                                            button.message-button-show-map, button.message-button-add-marker {
+                                                                &:hover {
+                                                                    @include themed() {
+                                                                        border-color: #E5E5EA;
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                     .chat-bubble{
@@ -2166,7 +2202,7 @@ div#page {
                                                     }
                                                 }
                                             }
-                                            div#app-message-position {
+                                            div.app-message-toolbox {
                                                 position: absolute;
                                                 display: none;
                                                 flex-direction: column;
@@ -2199,7 +2235,11 @@ div#page {
                                                         }
                                                     }
                                                 }
+                                                &#app-message-photo {
+                                                    left: 15px;
+                                                }
                                             }
+                                            
                                         }
                                     }
                                 }
@@ -3563,6 +3603,7 @@ div#page {
                                                 div.gallery-image-list-item {
                                                     width: 33%;
                                                     height: auto;
+                                                    cursor: pointer;
                                                     img {
                                                         width: 100%;
                                                     }
@@ -3865,6 +3906,207 @@ div#page {
                                     }
                                 }
                             }
+                            &#app-maps {
+                                div.app-body {
+                                    transition: background-color 0.3s ease-in-out;
+                                    @include themed() {
+                                        background-color: t($phone-app-tab-background-color);
+                                    }
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            height: 0;
+                                            padding: 0;
+                                            margin: 0;
+                                        }
+                                        div.app-body-content-body {
+                                            height: 100%;
+                                            padding: 0;
+                                            overflow: visible;
+                                            div#map {
+                                                width: 100%;
+                                                height: calc(100% + 48px + 34px);
+                                                top: -48px;
+                                                z-index: 10;
+                                                > div {
+                                                    width: 100%;
+                                                    height: 100%;
+                                                }
+                                                div.leaflet-popup-content-wrapper, div.leaflet-popup-tip {
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                        background-color: t($phone-app-tab-background-color);
+                                                    }
+                                                }
+                                                div.leaflet-popup-content-wrapper {
+                                                    div.leaflet-popup-content {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        align-items: center;
+                                                        font-size: 14px;
+                                                        i.maps-marker-button-remove {
+                                                            margin-top: 5px;
+                                                            font-size: 20px;
+                                                            cursor: pointer;
+                                                        }
+                                                    }
+                                                }
+                                                a.leaflet-popup-close-button {
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                            }
+                                            i#map-tool-button {
+                                                position: absolute;
+                                                display: flex;
+                                                justify-content: center;
+                                                align-items: center;
+                                                width: 30px;
+                                                height: 50px;
+                                                top: 15px;
+                                                left: 20px;
+                                                font-size: 34px;
+                                                z-index: 20;
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    color: t($phone-system-color-black);
+                                                }
+                                            }
+                                            div#map-tool-container {
+                                                position: absolute;
+                                                top: 18px;
+                                                left: 0;
+                                                width: 200px;
+                                                height: auto;
+                                                border-radius: 8px;
+                                                opacity: 0;
+                                                visibility: hidden;
+                                                z-index: 20;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-system-color-white);
+                                                    background-color: t($phone-system-color-black);
+                                                }
+                                                div.map-tool-container-button {
+                                                    width: 100%;
+                                                    padding: 9px 10px;
+                                                    cursor: pointer;
+                                                }
+                                                &.active {
+                                                    left: 55px;
+                                                    opacity: 1;
+                                                    visibility: visible;
+                                                }
+                                            }
+                                            div#map-add-marker-container {
+                                                position: absolute;
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: center;
+                                                align-items: center;
+                                                row-gap: 15px;
+                                                width: 300px;
+                                                height: auto;
+                                                top: 10%;
+                                                left: 50%;
+                                                padding: 10px 30px;
+                                                border-radius: 15px;
+                                                transform: translate(-50%, -50%);
+                                                visibility: hidden;
+                                                opacity: 0;
+                                                z-index: 20;
+                                                transition: all 0.3s ease-in-out;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                    background-color: t($phone-app-tab-background-color);
+                                                }
+                                                &.active {
+                                                    top: 50%;
+                                                    visibility: visible;
+                                                    opacity: 1;
+                                                }
+                                                span {
+                                                    font-family: $ora-font-semibold;
+                                                    font-size: 22px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                input#map-add-marker-container-name {
+                                                    width: 100%;
+                                                    height: 40px;
+                                                    padding: 5px 15px;
+                                                    border-width: 2px;
+                                                    border-style: solid;
+                                                    border-radius: 10px;
+                                                    font-size: 18px;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                        border-color: t($phone-app-label-color-primary);
+                                                        background-color: t($phone-app-tab-background-color);
+                                                    }
+                                                }
+                                                div#map-add-marker-container-icon-list {
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                    flex-wrap: wrap;
+                                                    justify-content: space-between;
+                                                    align-items: center;
+                                                    row-gap: 10px;
+                                                    column-gap: 10px;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    div.map-add-marker-container-icon-list-item {
+                                                        width: 40px;
+                                                        height: 40px;
+                                                        border-width: 3px;
+                                                        border-style: solid;
+                                                        border-radius: 50%;
+                                                        cursor: pointer;
+                                                        @include themed() {
+                                                            border-color: t($phone-app-tab-background-color);
+                                                        }
+                                                        img {
+                                                            width: 100%;
+                                                        }
+                                                        &.active {
+                                                            @include themed() {
+                                                                border-color: t($phone-app-label-color-active);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                button {
+                                                    width: 100%;
+                                                    height: 40px;
+                                                    padding: 5px 10px;
+                                                    border-width: 2px;
+                                                    border-style: solid;
+                                                    border-radius: 10px;
+                                                    cursor: pointer;
+                                                    transition: all 0.3s ease-in-out;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                        border-color: t($phone-app-label-color-primary);
+                                                        background-color: t($phone-app-tab-background-color);
+                                                    }
+                                                    &:hover {
+                                                        @include themed() {
+                                                            color: t($phone-app-tab-background-color);
+                                                            border-color: t($phone-app-label-color-primary);
+                                                            background-color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         #notification-container {
                             width: 100%;
@@ -4049,12 +4291,12 @@ div#page {
                     }
                 }
                 div#phone-screen-content-topbar {
-                    display: none;
                     position: absolute;
                     top: 0;
                     left: 0;
                     width: 100%;
                     height: 100%;
+                    visibility: hidden;
                     z-index: 80;
                     transition: all 0.3s ease-in-out;
                     div#topbar-blur {
@@ -4064,6 +4306,7 @@ div#page {
                         top: 0;
                         left: 0;
                         opacity: 0;
+                        visibility: hidden;
                         backdrop-filter: blur(8px);
                         transition: all 0.3s ease-in-out;
                     }
@@ -4705,6 +4948,19 @@ div#phone-screen-content {
             div#phone-screen-content-footer, div#phone-screen-content-header, div.app-body {
                 @include themed() {
                     background-color: t($phone-app-background-color) !important;
+                }
+            }
+        }
+    }
+    &.app-maps {
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                color: t($phone-system-color-black) !important;
+                background-color: transparent !important;
+            }
+            div#phone-screen-content-footer-bar {
+                @include themed() {
+                    background-color: t($phone-system-color-black) !important;
                 }
             }
         }

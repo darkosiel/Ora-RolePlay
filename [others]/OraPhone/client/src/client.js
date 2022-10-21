@@ -285,6 +285,22 @@ onNet('OraPhone:client:notes_refresh', data => {
     })
 })
 
+// Maps
+
+onNet('OraPhone:client:maps_favorite_refresh', data => {
+    SendNUIMessage({
+        type: 'updateMapsFavorite',
+        positions: data
+    })
+})
+
+onNet('OraPhone:client:maps_update_my_position', data => {
+    SendNUIMessage({
+        type: 'updateMapsMyPosition',
+        position: data
+    })
+})
+
 /**
  * =============
  * Nui callbacks
@@ -355,9 +371,26 @@ on('__cfx_nui:call_number', data => {
     }
     anim.PhonePlayCall()
     SendNUIMessage({
-        type: 'call_number_response'
+        type: 'callNumberResponse'
     })
-    emitNet('OraPhone:server:call_number', data.fromNumber, data.targetNumber)
+    if (/[a-zA-Z]/.test(data.targetNumber)) {
+        let listJobPlayer = [];
+        for (let job of data.targetNumber.split('/')) {
+            exports.Ora.TriggerServerCallback(
+                "Ora::SVCB::Service:GetJobService",
+                function(job) {
+                    for (let player of job) {
+                        listJobPlayer.push(player);
+                    }
+                    emitNet('OraPhone:server:call_number', data.fromNumber, listJobPlayer, data.targetNumber)
+                },
+                job
+            );
+        }
+        
+    } else {
+        emitNet('OraPhone:server:call_number', data.fromNumber, data.targetNumber, "person")
+    }
 })
 
 RegisterNuiCallbackType('accept_call')
@@ -407,6 +440,15 @@ on('__cfx_nui:refresh_conversations', data => {
 
 RegisterNuiCallbackType('add_message')
 on('__cfx_nui:add_message', data => {
+    if (data.message === 'GPSMYMARKER') {
+        let WaypointHandle = GetFirstBlipInfoId(8)
+        if (DoesBlipExist(WaypointHandle)) {
+            let waypointCoords = GetBlipInfoIdCoord(WaypointHandle)
+            data.message = `GPS: ${waypointCoords["x"]}, ${waypointCoords["y"]}, ${waypointCoords["z"]}`;
+        } else {
+            return;
+        }
+    }
     emitNet('OraPhone:server:add_message', data)
 })
 
@@ -495,6 +537,28 @@ on('__cfx_nui:refresh_notes', data => {
 RegisterNuiCallbackType('notes_add_folder')
 on('__cfx_nui:notes_add_folder', data => {
     emitNet('OraPhone:server:notes_add_folder', data)
+})
+
+// Maps
+
+RegisterNuiCallbackType('maps_favorite_refresh')
+on('__cfx_nui:maps_favorite_refresh', data => {
+    emitNet('OraPhone:server:maps_favorite_refresh', data)
+})
+
+RegisterNuiCallbackType('maps_favorite_add_marker')
+on('__cfx_nui:maps_favorite_add_marker', data => {
+    emitNet('OraPhone:server:maps_favorite_add_marker', data)
+})
+
+RegisterNuiCallbackType('maps_favorite_remove_marker')
+on('__cfx_nui:maps_favorite_remove_marker', data => {
+    emitNet('OraPhone:server:maps_favorite_remove_marker', data)
+})
+
+RegisterNuiCallbackType('maps_update_my_position')
+on('__cfx_nui:maps_update_my_position', data => {
+    emitNet('OraPhone:server:maps_update_my_position', data)
 })
 
 // --- Tools
