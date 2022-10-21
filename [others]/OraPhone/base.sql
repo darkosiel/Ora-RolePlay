@@ -29,7 +29,9 @@ CREATE TABLE IF NOT EXISTS ora_phone (
     `wallpaper` varchar(1500) NOT NULL,
     `wallpaper_lock` varchar(1500) NOT NULL,
     `luminosity` int(11) NOT NULL,
-    `app_home_order` varchar(5000) NOT NULL
+    `app_home_order` varchar(5000) NOT NULL,
+    `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_contacts (
@@ -108,6 +110,17 @@ CREATE TABLE IF NOT EXISTS ora_phone_notes_note (
     `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (folder_id) REFERENCES ora_phone_notes_folder(id) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ora_phone_maps_favorite (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `phone_id` INT NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `icon` VARCHAR(255) NOT NULL,
+    'x' INT NOT NULL,
+    'y' INT NOT NULL,
+    'z' INT NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
 -- CREATE TABLE IF NOT EXISTS ora_phone_app_store (
