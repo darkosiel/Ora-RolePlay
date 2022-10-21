@@ -17,7 +17,7 @@ local PtfxPrompt = false
 local PtfxWait = 500
 local PtfxNoProp = false
 
-RegisterKeyMapping('emote', 'Menu emote', 'keyboard', 'f4')
+RegisterKeyMapping('emote', 'Menu emote', 'keyboard', 'f3')
 RegisterCommand('emote', function()
     SetDisplay(not display)
     display = not display

@@ -1073,6 +1073,62 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.5
     },
+    {
+        textCoords = vector3(-162.9, 891.82, 233.47),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5,
+        doors = {
+            {objHash = -1574510328, objHeading = 312.50, objCoords = vector3(-162.27, 891.07, 233.47)},
+            {objHash = -1574510328, objHeading = 135.50, objCoords = vector3(-162.9, 891.82, 233.47)}
+        }
+    },
+    {
+        textCoords = vector3(-162.9, 891.81, 237.14),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5,
+        doors = {
+            {objHash = -1574510328, objHeading = 135.50, objCoords = vector3(-163.59, 892.48, 237.14)},
+            {objHash = -1574510328, objHeading = 315.50, objCoords = vector3(-162.38, 891.24, 237.14)}
+        }
+    },
+    {
+        objHash = -770740285,
+        objHeading = 250.95,
+        objCoords = vector3(105.96, 14.36, 67.86),
+        textCoords = vector3(106.37, 14.54, 67.86),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = -711771128,
+        objHeading = 45.95,
+        objCoords = vector3(-143.34, 902.16, 235.64),
+        textCoords = vector3(-143.34, 902.16, 235.64),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = -1742794577,
+        objHeading = 45.95,
+        objCoords = vector3(-151.79, 910.72, 235.66),
+        textCoords = vector3(-151.79, 910.72, 235.66),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = 2040120023,
+        objHeading = 235.95,
+        objCoords = vector3(-130.4, 867.66, 232.76),
+        textCoords = vector3(-130.4, 867.66, 232.76),
+        authorizedJobs = {"pawnshop"},
+        locked = true,
+        maxDistance = 2.5
+    },
     --- BINCO NORD
     {
         objHash = GetHashKey("v_ilev_clothmiddoor"),
