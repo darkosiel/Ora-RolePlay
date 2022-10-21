@@ -5372,12 +5372,12 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+                Pos = {x = -454.86, y = 6015.88, z = 31.71},
                 vestiaire = {
                     type = "Vestiaire",
                     workSize = 1.45,
-                    Pos = {x = 1849.57, y = 3696.18, z = 33.27},
-                    Tenues = TenueLSSD
+                    Pos = {x = -454.86, y = 6015.88, z = 31.71},
+                    Tenues = TenueBCSO
                 }
             }
         },
