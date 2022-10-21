@@ -674,7 +674,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "pitollourd", byWeek = 1, price = 20000},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "acp45", byWeek = 500, price = 2},
-      {name = "stickybomb", byWeek = 3, price = 1500},
+      {name = "stickybomb", byWeek = 3, price = 4500},
       ----
       {name = "shootguncompact", byWeek = 0, price = 65000},
       {name = "revolver", byWeek = 0, price = 14000},
