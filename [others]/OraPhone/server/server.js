@@ -133,7 +133,9 @@ const crud = {
         wallpaper: 'wallpaper',
         wallpaperLock: 'wallpaper_lock',
         luminosity: 'luminosity',
-        appHomeOrder: 'app_home_order'
+        appHomeOrder: 'app_home_order',
+        updateTime: 'update_time',
+        createTime: 'create_time'
     }),
     contacts: generateCrud('phone_contacts', {
         id: 'id',
@@ -360,7 +362,7 @@ function getOnlinePlayerBySteamId(steamId) {
   * @param {object} source 
   * @returns {number}
   */
-function getNumberBySource(source) {
+async function getNumberBySource(source) {
     let steamId = getSteamId(source);
     // Identity
     const identityResponse = await fetchDb("SELECT u.uuid as uuid, u.identifier as steamId, u.phone_number as phoneNumber, p.first_name as firstName, p.last_name as lastName"
@@ -669,7 +671,7 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, callType, vide
     let playerList = [];
     let numberList = [];
 
-    const receiverOffline = (delay) => {
+    const receiverOffline = async (delay) => {
         await Delay(delay);
         if(inCall) {
             emitNet('OraPhone:client:receiver_offline', src);
@@ -993,6 +995,6 @@ function RegisterNewPhone(phoneNumber, identity) {
     let wallpaper = 'wallpaper-ios15'
     let wallpaperLock = 'wallpaper-ios15'
     let luminosity = '100'
-    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
 }
