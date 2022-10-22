@@ -479,14 +479,14 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     limitations = {
-        craft_time = 60,
+        craft_time = 90,
         item_quality = 35,
         required = {
           {name = "coke", count = 15},
           {name = "acidecoke", count = 15}
         },
         give_item = "coke1",
-        give_item_count = 20
+        give_item_count = 60
     },
     ingredients = {
         acidecoke = { price = 3, max_qty = 60 },
@@ -538,10 +538,10 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       },
       [4] = {
         label = "Production niveau 4",
-        description = "Pour 70 000$ vous produisez en 45 minutes au lieu de 1 heure",
+        description = "Pour 70 000$ vous produisez en 75 minutes au lieu de 1 heure",
         price = 70000,
         addon = {
-          craft_time = 45,
+          craft_time = 75,
           item_quality = 74,
           required = {
             {name = "coke", count = 12},
@@ -554,7 +554,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         description = "Pour 100 000$ vous produisez de la qualité : Excellente",
         price = 100000,
         addon = {
-          craft_time = 45,
+          craft_time = 75,
           item_quality = 90,
           required = {
             {name = "coke", count = 12},
@@ -564,10 +564,10 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       },
       [6] = {
         label = "Production niveau 6",
-        description = "Pour 70 000$ vous produisez en 30 minutes au lieu de 1 heure",
+        description = "Pour 70 000$ vous produisez en 60 minutes au lieu de 1 heure",
         price = 70000,
         addon = {
-          craft_time = 30,
+          craft_time = 60,
           item_quality = 90,
           required = {
             {name = "coke", count = 12},
@@ -580,7 +580,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           description = "Pour 100 000$ vous produisez de la qualité : Inegalable",
           price = 100000,
           addon = {
-            craft_time = 30,
+            craft_time = 60,
             item_quality = 100,
             required = {
               {name = "coke", count = 12},
