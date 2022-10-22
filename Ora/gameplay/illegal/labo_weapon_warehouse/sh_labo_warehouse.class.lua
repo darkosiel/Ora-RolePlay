@@ -482,8 +482,8 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         craft_time = 90,
         item_quality = 35,
         required = {
-          {name = "coke", count = 15},
-          {name = "acidecoke", count = 15}
+          {name = "coke", count = 25},
+          {name = "acidecoke", count = 25}
         },
         give_item = "coke1",
         give_item_count = 60
