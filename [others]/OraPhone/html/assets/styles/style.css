@@ -2564,12 +2564,12 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   z-index: 999;
 }
 .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #636366;
+  background-color: #8E8E93;
+  color: #FFFFFF;
 }
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox {
-  background-color: rgba(217, 217, 217, 0.2);
-  color: #AEAEB2;
+  background-color: #8E8E93;
+  color: #FFFFFF;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox.active {
   display: flex;

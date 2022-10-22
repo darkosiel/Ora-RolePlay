@@ -60,6 +60,12 @@ async function setPhoneVisible(visible = true) {
             EnableControlAction(1, 27)
             // move
             EnableControlAction(1, 30);EnableControlAction(1, 31);EnableControlAction(1, 32);EnableControlAction(1, 33);EnableControlAction(1, 34);EnableControlAction(1, 35)
+            // move vehicule car
+            EnableControlAction(1, 59);EnableControlAction(1, 60);EnableControlAction(1, 63);EnableControlAction(1, 64);EnableControlAction(1, 71);EnableControlAction(1, 72);EnableControlAction(1, 76);EnableControlAction(1, 129);EnableControlAction(1, 130);EnableControlAction(1, 133);EnableControlAction(1, 134)
+            // move vehicule fly
+            EnableControlAction(1, 87);EnableControlAction(1, 88);EnableControlAction(1, 89);EnableControlAction(1, 90);EnableControlAction(1, 107);EnableControlAction(1, 108);EnableControlAction(1, 109);EnableControlAction(1, 110);EnableControlAction(1, 111);EnableControlAction(1, 112)
+            // move parachute
+            EnableControlAction(1, 146);EnableControlAction(1, 147);EnableControlAction(1, 148);EnableControlAction(1, 149);EnableControlAction(1, 150);EnableControlAction(1, 151);EnableControlAction(1, 152)
             // push to talk
             EnableControlAction(1, 249);
         })
@@ -77,7 +83,7 @@ async function setPhoneVisible(visible = true) {
     SetNuiFocus(visible, visible)
      // Show & hide UI
     SendNUIMessage({
-        type: "ui",
+        type: "oraPhoneUI",
         display: visible
     })
     await Wait(600)
@@ -376,9 +382,11 @@ on('__cfx_nui:call_number', data => {
     if (/[a-zA-Z]/.test(data.targetNumber)) {
         let listJobPlayer = [];
         for (let job of data.targetNumber.split('/')) {
+            console.log("data targetNumber", job)
             exports.Ora.TriggerServerCallback(
-                "Ora::SVCB::Service:GetJobService",
+                "Ora::Service:GetJobService",
                 function(job) {
+                    console.log("in retunr functioin", job)
                     for (let player of job) {
                         listJobPlayer.push(player);
                     }
@@ -443,13 +451,19 @@ on('__cfx_nui:add_message', data => {
     if (data.message === 'GPSMYMARKER') {
         let WaypointHandle = GetFirstBlipInfoId(8)
         if (DoesBlipExist(WaypointHandle)) {
-            let waypointCoords = GetBlipInfoIdCoord(WaypointHandle)
-            data.message = `GPS: ${waypointCoords["x"]}, ${waypointCoords["y"]}, ${waypointCoords["z"]}`;
+            let waypointCoords = GetBlipInfoIdCoord(WaypointHandle) 
+            console.log(waypointCoords)
+            data.message = `GPS: ${waypointCoords[0]}, ${waypointCoords[1]}, ${waypointCoords[2]}`;
         } else {
             return;
         }
     }
     emitNet('OraPhone:server:add_message', data)
+})
+
+RegisterNuiCallbackType('add_potition_on_map')
+on('__cfx_nui:add_potition_on_map', data => {
+    SetNewWaypoint(parseInt(data.x), parseInt(data.y))
 })
 
 // Richter Motorsport

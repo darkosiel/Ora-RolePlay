@@ -2215,8 +2215,8 @@ div#page {
                                                 overflow: hidden;
                                                 z-index: 999;
                                                 @include themed() {
-                                                    background-color: t($phone-app-modal-header-input-background-color);
-                                                    color: t($phone-app-info-color);
+                                                    background-color: t($phone-system-color-gray);
+                                                    color: t($phone-system-color-white);
                                                 }
                                                 &.active {
                                                     display: flex;
