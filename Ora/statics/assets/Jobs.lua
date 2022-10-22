@@ -5372,21 +5372,21 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+                Pos = {x = -454.86, y = 6015.88, z = 31.71},
                 vestiaire = {
                     type = "Vestiaire",
                     workSize = 1.45,
-                    Pos = {x = 1849.57, y = 3696.18, z = 33.27},
-                    Tenues = TenueLSSD
+                    Pos = {x = -454.86, y = 6015.88, z = 31.71},
+                    Tenues = TenueBCSO
                 }
             }
         },
         Extrapos = {
             ExtraVehicle = {
                 Pos = {
-                    {x = 1864.83, y = 3700.57, z = 32.55}
+                    {x = -462.558, y = 6045.449, z = 31.340}
                 },
-                restricted = {1, 2, 3, 4, 5, 6, 7, 8},
+                restricted = {1, 2, 3, 4, 5, 6, 7},
                 Enter = function()
                     EnterExtraPoliceVehicleZone()
                 end,
@@ -5397,7 +5397,7 @@ Jobs = {
                 Blips = {
                     sprite = 402,
                     color = 81,
-                    name = "LSSD - Extras"
+                    name = "BCSO - Extras"
                 },
                 Marker = {
                     type = 1,

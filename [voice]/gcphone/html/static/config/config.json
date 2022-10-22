@@ -87,6 +87,19 @@
       ]
     },    
     {
+      "display": "Sheriff",
+      "icon": "/html/static/img/contact/lssd.png",
+      "subMenu": [
+        {
+          "title": "Envoyer un message",
+          "eventName": "esx_addons_gcphone:call",
+          "type": {
+            "number": "lssd"
+          }
+        }
+      ]
+    },
+    {
       "display": "Secours",
       "icon": "/html/static/img/contact/lsms.png",
       "subMenu": [

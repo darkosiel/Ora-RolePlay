@@ -12,7 +12,8 @@ Ora.World.VehicleGeneratorRemoved = { --Antispawn VOITURES
   {x = -102.858, y = -2071.420, z = 17.00, r = 100.0}, -- Karting
   {x = 205.28, y = -1651.42, z = 29.80, r = 200.0}, -- Caserne pompier
   {x = 1410.83, y = 1117.63, z = 114.83, r = 500}, -- Antispawn Fuente Blanca
-  {x = 31.7753, y = 6459.4218, z = 31.30, r = 500} --Dirty Punks
+  {x = 31.7753, y = 6459.4218, z = 31.30, r = 500}, --Dirty Punks
+  {x = -444.8722, y = 6010.3310, z = 36.50, r = 500} --BCSO
 }
 
 
