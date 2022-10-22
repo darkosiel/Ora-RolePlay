@@ -537,7 +537,7 @@ AddEventHandler(
         if extraData ~= nil and extraData.useNumber ~= nil then
             srcPhone = extraData.useNumber
         else
-            srcPhone = tostring(getNumberPhone(srcIdentifier))
+            srcPhone = getNumberPhone(srcIdentifier)
         end
         local destPlayer = getIdentifierByPhoneNumber(phone_number)
         local is_valid = destPlayer ~= nil and destPlayer ~= srcIdentifier
@@ -610,68 +610,69 @@ AddEventHandler(
 )
 
 RegisterServerEvent("gcPhone:acceptCall")
-AddEventHandler("gcPhone:acceptCall", function(infoCall, rtcAnswer)
-    local id = infoCall.id
-    if AppelsEnCours[id] ~= nil then
-        if PhoneFixeInfo[id] ~= nil then
-            onAcceptFixePhone(source, infoCall, rtcAnswer)
-            return
-        end
-        AppelsEnCours[id].receiver_src = infoCall.receiver_src or AppelsEnCours[id].receiver_src
-        if AppelsEnCours[id].transmitter_src ~= nil and AppelsEnCours[id].receiver_src~= nil then
-            AppelsEnCours[id].is_accepts = true
-            AppelsEnCours[id].rtcAnswer = rtcAnswer
-            TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].transmitter_src, AppelsEnCours[id], true)
-            TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
-            saveAppels(AppelsEnCours[id])
-        end
-    end
-end)
+AddEventHandler(
+    "gcPhone:acceptCall",
+    function(infoCall, rtcAnswer)
+        local id = infoCall.id
+        if AppelsEnCours[id] ~= nil then
+            if PhoneFixeInfo[id] ~= nil then
+                onAcceptFixePhone(source, infoCall, rtcAnswer)
+                return
+            end
+            AppelsEnCours[id].receiver_src = infoCall.receiver_src or AppelsEnCours[id].receiver_src
+            if AppelsEnCours[id].transmitter_src ~= nil and AppelsEnCours[id].receiver_src ~= nil then
+                AppelsEnCours[id].is_accepts = true
+                AppelsEnCours[id].rtcAnswer = rtcAnswer
+                TriggerClientEvent("gcPhone:acceptCall", AppelsEnCours[id].transmitter_src, AppelsEnCours[id], true)
+                SetTimeout(
+                    1000,
+                    function()
+                        -- change to +1000, if necessary.
+                        TriggerClientEvent(
+                            "gcPhone:acceptCall",
+                            AppelsEnCours[id].receiver_src,
+                            AppelsEnCours[id],
+                            false
+                        )
+                    end
+                )
+                saveAppels(AppelsEnCours[id])
 
-function EstablishCall(callId)
-    if Config.Script_Used == "saltychat" then
-        exports.saltychat:EstablishCall(AppelsEnCours[callId].transmitter_src, AppelsEnCours[callId].receiver_src)
-        exports.saltychat:EstablishCall(AppelsEnCours[callId].receiver_src, AppelsEnCours[callId].transmitter_src)
-    elseif Script_Used == "pma-voice" then
-        exports["pma-voice"]:setPlayerCall(AppelsEnCourss[callId].transmitter_src, callId)
-        exports["pma-voice"]:setPlayerCall(AppelsEnCourss[callId].receiver_src, callId)
-        print("callid : " ..callId)
-        print("transmitter : " ..transmitter_src)
-        print("receiver : " ..receiver_src)
+                exports.saltychat:EstablishCall(AppelsEnCours[id].transmitter_src, AppelsEnCours[id].receiver_src)
+                exports.saltychat:EstablishCall(AppelsEnCours[id].receiver_src, AppelsEnCours[id].transmitter_src)
+            end
+        end
     end
-end
+)
 
 RegisterServerEvent("gcPhone:rejectCall")
-AddEventHandler("gcPhone:rejectCall",function(infoCall)
-    local id = infoCall.id
-    if AppelsEnCours[id] ~= nil then
-        if PhoneFixeInfo[id] ~= nil then
-            onRejectFixePhone(source, infoCall)
-            return
-        end
-        if AppelsEnCours[id].transmitter_src ~= nil then
-            TriggerClientEvent('gcPhone:rejectCall', AppelsEnCours[id].transmitter_src)
-        end
-        if AppelsEnCours[id].receiver_src ~= nil then
-            TriggerClientEvent('gcPhone:rejectCall', AppelsEnCours[id].receiver_src)
-        end
+AddEventHandler(
+    "gcPhone:rejectCall",
+    function(infoCall)
+        local id = infoCall.id
+        if AppelsEnCours[id] ~= nil then
+            if PhoneFixeInfo[id] ~= nil then
+                onRejectFixePhone(source, infoCall)
+                return
+            end
+            if AppelsEnCours[id].transmitter_src ~= nil then
+                TriggerClientEvent("gcPhone:rejectCall", AppelsEnCours[id].transmitter_src)
+                exports.saltychat:EndCall(AppelsEnCours[id].transmitter_src, AppelsEnCours[id].receiver_src)
+            end
+            if AppelsEnCours[id].receiver_src ~= nil then
+                TriggerClientEvent("gcPhone:rejectCall", AppelsEnCours[id].receiver_src)
+                exports.saltychat:EndCall(AppelsEnCours[id].receiver_src, AppelsEnCours[id].transmitter_src)
+            end
 
-        if AppelsEnCours[id].is_accepts == false then 
-            saveAppels(AppelsEnCours[id])
-        end
-        TriggerEvent('gcPhone:removeCall', AppelsEnCours)
-        AppelsEnCours[id] = nil
-    end
-end)
+            if AppelsEnCours[id].is_accepts == false then
+                saveAppels(AppelsEnCours[id])
+            end
+            TriggerEvent("gcPhone:removeCall", AppelsEnCours)
 
-function EndCall(callId, transmitter, receiver)
-    if Config.Script_Used == "saltychat" then
-        exports.saltychat:EndCall(transmitter, receiver)
-    elseif Config.Script_Used == "pma-voice" then
-        -- Transmitter actually equals to the player1 in this case, to still keep the logic of the script
-        exports["pma-voice"]:setPlayerCall(transmitter, 0)
+            AppelsEnCours[id] = nil
+        end
     end
-end
+)
 
 RegisterServerEvent("gcPhone:appelsDeleteHistorique")
 AddEventHandler(
@@ -815,7 +816,7 @@ function onCallFixePhone(source, phone_number, rtcOffer, extraData)
     if extraData ~= nil and extraData.useNumber ~= nil then
         srcPhone = extraData.useNumber
     else
-        srcPhone = tostring(getNumberPhone(srcIdentifier))
+        srcPhone = getNumberPhone(srcIdentifier)
     end
 
     AppelsEnCours[indexCall] = {
