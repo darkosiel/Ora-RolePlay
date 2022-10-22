@@ -7,6 +7,7 @@ AddEventHandler(
         else
             print("Turning radio OFF for " .. source)
         end ]]
+        exports.saltychat:SetPlayerRadioSpeaker(source, false)
     end
 )
 
@@ -15,6 +16,7 @@ AddEventHandler(
     "rp-radio:setPlayerRadioChannel",
     function(channelName, isPrimary)
         --print("Added " .. source .. " to channel " .. channelName)
+        exports.saltychat:SetPlayerRadioChannel(source, channelName, isPrimary)
     end
 )
 
@@ -24,6 +26,7 @@ AddEventHandler(
     function(channelName)
         --print("removed " .. source .. " from channel " .. channelName)
         if (channelName ~= nil) then
+            exports.saltychat:RemovePlayerRadioChannel(source, channelName)
         end
     end
 )
