@@ -1,426 +1,544 @@
 local Radio = {
-	Has = true,
-	Open = false,
-	On = false,
-	Enabled = true,
-	Handle = nil,
-	Prop = GetHashKey('prop_cs_hand_radio'), -- only ran once and doesn't break my syntax viewer
-	Bone = 28422,
-	Offset = vector3(0.0, 0.0, 0.0),
-	Rotation = vector3(0.0, 0.0, 0.0),
-	Dictionary = {
-		"cellphone@",
-		"cellphone@in_car@ds",
-		"cellphone@str",    
-		"random@arrests",  
-	},
-	Animation = {
-		"cellphone_text_in",
-		"cellphone_text_out",
-		"cellphone_call_listen_a",
-		"generic_radio_chatter",
-	},
-	Clicks = true, -- Radio clicks
+    Has = false,
+    Open = false,
+    On = false,
+    Enabled = true,
+    Handle = nil,
+    Frequency = nil,
+    Prop = "prop_cs_hand_radio",
+    Bone = 28422,
+    Offset = vector3(0.0, 0.0, 0.0),
+    Rotation = vector3(0.0, 0.0, 0.0),
+    Dictionary = {
+        "cellphone@",
+        "cellphone@in_car@ds",
+        "cellphone@str",
+        "random@arrests"
+    },
+    Animation = {
+        "cellphone_text_in",
+        "cellphone_text_out",
+        "cellphone_call_listen_a",
+        "generic_radio_chatter"
+    },
+    Clicks = true -- Radio clicks
 }
-Radio.Labels = {        
-	{ "FRZL_RADIO_HELP", "~s~" .. (radioConfig.Controls.Secondary.Enabled and "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or "~" .. radioConfig.Controls.Activator.Name .. "~") .. " pour cacher.~n~~" .. radioConfig.Controls.Toggle.Name .. "~ pour ~g~allumer~s~.~n~~" .. radioConfig.Controls.Decrease.Name .. "~ ou ~" .. radioConfig.Controls.Increase.Name .. "~ changer de fréquence~n~~" .. radioConfig.Controls.Input.Name .. "~ pour choisir la fréquence~n~~" .. radioConfig.Controls.ToggleClicks.Name .. "~ pour ~a~ les bips~n~Fréquence: ~1~ MHz" },
-	{ "FRZL_RADIO_HELP2", "~s~" .. (radioConfig.Controls.Secondary.Enabled and "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or "~" .. radioConfig.Controls.Activator.Name .. "~") .. " pour cacher.~n~~" .. radioConfig.Controls.Toggle.Name .. "~ pour ~r~éteindre~s~.~n~~" .. radioConfig.Controls.Broadcast.Name .. "~ pour parler.~n~Fréquence: ~1~ MHz" },
-	{ "FRZL_RADIO_INPUT", "Entrer Fréquence" },
+
+local lastRadioId = nil
+
+Radio.Labels = {
+    {
+        "FRZL_RADIO_HELP",
+        "~s~" ..
+            (radioConfig.Controls.Secondary.Enabled and
+                "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or
+                "~" .. radioConfig.Controls.Activator.Name .. "~") ..
+                " pour cacher.~n~~" ..
+                    radioConfig.Controls.Toggle.Name ..
+                        "~ pour ~g~allumer~s~ la radio.~n~~" ..
+                            radioConfig.Controls.Decrease.Name ..
+                                "~ ou ~" ..
+                                    radioConfig.Controls.Increase.Name ..
+                                        "~ pour changer de fréquence~n~~" ..
+                                            radioConfig.Controls.Input.Name ..
+                                                "~ pour choisir une fréquence~n~~" ..
+                                                radioConfig.Controls.vIncrease.Name ..
+                                                "~ ou ~" ..
+                                                    radioConfig.Controls.vDecrease.Name ..
+                                                        "~ pour modifier le volume~n~~" ..
+                                                            radioConfig.Controls.ToggleClicks.Name ..
+                                                                "~ to ~a~ mic clicks~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
+    },
+    {
+        "FRZL_RADIO_HELP2",
+        "~s~" ..
+            (radioConfig.Controls.Secondary.Enabled and
+                "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or
+                "~" .. radioConfig.Controls.Activator.Name .. "~") ..
+                " pour cacher.~n~~" ..
+                    radioConfig.Controls.Toggle.Name ..
+                        "~ pour ~r~éteindre~s~ la radio.~n~~" ..
+                            radioConfig.Controls.Broadcast.Name .. 
+                            "~ pour émettre.~n~~"..
+                                radioConfig.Controls.vIncrease.Name ..
+                                    "~ ou ~" ..
+                                        radioConfig.Controls.vDecrease.Name ..
+                                            "~ pour modifier le volume~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
+    },
+    {"FRZL_RADIO_INPUT", "Entrez la fréquence (de 137 à 850 MHz)"}
 }
-local unarmed = GetHashKey('weapon_unarmed')
 Radio.Commands = {
-	{
-		Enabled = true, -- Add a command to be able to open/close the radio
-		Name = "radio", -- Command name
-		Help = "Toggle hand radio", -- Command help shown in chatbox when typing the command
-		Params = {},
-		Handler = function(src, args, raw)
-			local playerPed = PlayerPedId()
-			local isFalling = IsPedFalling(playerPed)
-			local isDead = IsEntityDead(playerPed)
+    {
+        Enabled = true, -- Add a command to be able to open/close the radio
+        Name = "radio", -- Command name
+        Help = "Toggle hand radio", -- Command help shown in chatbox when typing the command
+        Params = {},
+        Handler = function(src, args, raw)
+            local playerPed = PlayerPedId()
+            local isFalling = IsPedFalling(playerPed)
+            local isDead = IsEntityDead(playerPed)
 
-			if not isFalling and Radio.Enabled and Radio.Has and not isDead then
-				Radio:Toggle(not Radio.Open)
-			elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
-				Radio:Toggle(false)
-				Radio.On = false
-				Radio:Remove()
-				exports["pma-voice"]:setVoiceProperty("radioEnabled", false)
-			elseif Radio.Open and isFalling then
-				Radio:Toggle(false)
-			end            
-		end,
-	},
-	{
-		Enabled = true, -- Add a command to choose radio frequency
-		Name = "frequency", -- Command name
-		Help = "Changer de Fréquence", -- Command help shown in chatbox when typing the command
-		Params = {
-			{name = "number", "Mettre Fréquence"}
-		},
-		Handler = function(src, args, raw)
-			if Radio.Has then
-				if args[1] then
-					local newFrequency = tonumber(args[1])
-					if newFrequency then
-						local minFrequency = radioConfig.Frequency.List[1]
-						if newFrequency >= minFrequency and newFrequency <= radioConfig.Frequency.List[#radioConfig.Frequency.List] and newFrequency == math.floor(newFrequency) then
-							if not radioConfig.Frequency.Private[newFrequency] or radioConfig.Frequency.Access[newFrequency] then
-								local idx = nil
-					
-								for i = 1, #radioConfig.Frequency.List do
-									if radioConfig.Frequency.List[i] == newFrequency then
-										idx = i
-										break
-									end
-								end
-					
-								if idx ~= nil then
-									if Radio.Enabled then
-										Radio:Remove()
-									end
+            if not isFalling and Radio.Enabled and Radio.Has and not isDead then
+                Radio:Toggle(not Radio.Open)
+            elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
+                Radio:Toggle(false)
+                Radio.On = false
+                Radio:Remove()
+                TriggerServerEvent("rp-radio:turnOnRadio", false)
+            elseif Radio.Open and isFalling then
+                Radio:Toggle(false)
+            end
+        end
+    },
+    {
+        Enabled = true, -- Add a command to choose radio frequency
+        Name = "frequency", -- Command name
+        Help = "Entrez la fréquence (de 137 à 850 MHz)", -- Command help shown in chatbox when typing the command
+        Params = {
+            {name = "number", "Entrez la fréquence (de 137 à 850 MHz)"}
+        },
+        Handler = function(src, args, raw)
+            if Radio.Has then
+                if args[1] then
+                    local newFrequency = tonumber(args[1])
+                    if newFrequency then
+                        local minFrequency = radioConfig.Frequency.List[1]
+                        if
+                            newFrequency >= minFrequency and
+                                newFrequency <= radioConfig.Frequency.List[#radioConfig.Frequency.List] and
+                                newFrequency == math.floor(newFrequency)
+                         then
+                            if
+                                not radioConfig.Frequency.Private[newFrequency] or
+                                    radioConfig.Frequency.Access[newFrequency]
+                             then
+                                local idx = nil
 
-									radioConfig.Frequency.CurrentIndex = idx
-									radioConfig.Frequency.Current = newFrequency
+                                for i = 1, #radioConfig.Frequency.List do
+                                    if radioConfig.Frequency.List[i] == newFrequency then
+                                        idx = i
+                                        break
+                                    end
+                                end
 
-									if Radio.On then
-										Radio:Add(radioConfig.Frequency.Current)
-									end
-								end
-							end
-						end
-					end
-				end                    
-			end
-		end,
-	},
+                                if idx ~= nil then
+                                    if Radio.Enabled then
+                                        Radio:Remove()
+                                    end
+
+                                    radioConfig.Frequency.CurrentIndex = idx
+                                    radioConfig.Frequency.Current = newFrequency
+
+                                    if Radio.On then
+                                        Radio:Add(radioConfig.Frequency.Current)
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    }
 }
 
 -- Setup each radio command if enabled
 for i = 1, #Radio.Commands do
-	if Radio.Commands[i].Enabled then
-		RegisterCommand(Radio.Commands[i].Name, Radio.Commands[i].Handler, false)
-		TriggerEvent("chat:addSuggestion", "/" .. Radio.Commands[i].Name, Radio.Commands[i].Help, Radio.Commands[i].Params)
-	end
+    if Radio.Commands[i].Enabled then
+        RegisterCommand(Radio.Commands[i].Name, Radio.Commands[i].Handler, false)
+        TriggerEvent(
+            "chat:addSuggestion",
+            "/" .. Radio.Commands[i].Name,
+            Radio.Commands[i].Help,
+            Radio.Commands[i].Params
+        )
+    end
 end
 
 -- Create/Destroy handheld radio object
 function Radio:Toggle(toggle)
-	local playerPed = PlayerPedId()
-	local count = 0
+    local playerPed = PlayerPedId()
+    local count = 0
 
-	if not self.Has or IsEntityDead(playerPed) then
-		self.Open = false
-		
-		DetachEntity(self.Handle, true, false)
-		DeleteEntity(self.Handle)
-		
-		return
-	end
+    if not self.Has or IsEntityDead(playerPed) then
+        self.Open = false
 
-	if self.Open == toggle then
-		return
-	end
+        DetachEntity(self.Handle, true, false)
+        DeleteEntity(self.Handle)
 
-	self.Open = toggle
+        return
+    end
 
-	if self.On and not radioConfig.AllowRadioWhenClosed then
-		exports["pma-voice"]:setVoiceProperty("radioEnabled", toggle)
-	end
+    if self.Open == toggle then
+        return
+    end
 
-	local dictionaryType = 1 + (IsPedInAnyVehicle(playerPed, false) and 1 or 0)
-	local animationType = 1 + (self.Open and 0 or 1)
-	local dictionary = self.Dictionary[dictionaryType]
-	local animation = self.Animation[animationType]
+    self.Open = toggle
 
-	RequestAnimDict(dictionary)
+    if self.On and not radioConfig.AllowRadioWhenClosed then
+        TriggerServerEvent("rp-radio:turnOnRadio", toggle)
+    end
 
-	while not HasAnimDictLoaded(dictionary) do
-		Citizen.Wait(150)
-	end
+    local dictionaryType = 1 + (IsPedInAnyVehicle(playerPed, false) and 1 or 0)
+    local animationType = 1 + (self.Open and 0 or 1)
+    local dictionary = self.Dictionary[dictionaryType]
+    local animation = self.Animation[animationType]
 
-	if self.Open then
-		RequestModel(self.Prop)
+    RequestAnimDict(dictionary)
 
-		while not HasModelLoaded(self.Prop) do
-			Citizen.Wait(150)
-		end
+    while not HasAnimDictLoaded(dictionary) do
+        Citizen.Wait(150)
+    end
 
-		self.Handle = CreateObject(self.Prop, 0.0, 0.0, 0.0, true, true, false)
+    if self.Open then
 
-		local bone = GetPedBoneIndex(playerPed, self.Bone)
+        local modelHash = GetHashKey(self.Prop)
+        if modelHash and IsModelInCdimage(modelHash) and not HasModelLoaded(modelHash) then
+            RequestModel(modelHash)
+            while not HasModelLoaded(modelHash) do Citizen.Wait(100) end
+        end
+        local boneId = self.Bone
 
-		SetCurrentPedWeapon(playerPed, unarmed, true)
-		AttachEntityToEntity(self.Handle, playerPed, bone, self.Offset.x, self.Offset.y, self.Offset.z, self.Rotation.x, self.Rotation.y, self.Rotation.z, true, false, false, false, 2, true)
+        exports["Ora"]:TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
+            function()
+                local ped = PlayerPedId()
+                local x,y,z = table.unpack(GetEntityCoords(ped))
+                Radio.Handle = CreateObject(modelHash, x, y, z + 0.2, true, true, true)
+                local bone = GetPedBoneIndex(ped, boneId)
+                SetCurrentPedWeapon(ped, "weapon_unarmed", true)
+                AttachEntityToEntity(
+                    self.Handle,
+                    playerPed,
+                    bone,
+                    self.Offset.x,
+                    self.Offset.y,
+                    self.Offset.z,
+                    self.Rotation.x,
+                    self.Rotation.y,
+                    self.Rotation.z,
+                    true,
+                    false,
+                    false,
+                    false,
+                    2,
+                    true
+                )
+                SetModelAsNoLongerNeeded(Radio.Handle)
+                TaskPlayAnim(ped, dictionary, animation, 4.0, -1, -1, 50, 0, false, false, false)            
+            end,
+            modelHash
+        )
+    else
+        DetachEntity(self.Handle, true, false)
+        DeleteEntity(self.Handle)
+        TaskPlayAnim(playerPed, dictionary, animation, 4.0, -1, -1, 50, 0, false, false, false)
+        Citizen.Wait(700)
+        StopAnimTask(playerPed, dictionary, animation, 1.0)
+    end
+end
 
-		SetModelAsNoLongerNeeded(self.Handle)
+function Radio:ChangeVolume(vol)
+    if not self.On then
+        exports.saltychat:SetRadioVolume(vol)
+    else
+        Radio.Frequency = lastRadioId
+        lastRadioId = nil
+        self.Remove()
+        exports.saltychat:SetRadioVolume(vol)
+        Radio:Add(Radio.Frequency)
+    end
+end
 
-		TaskPlayAnim(playerPed, dictionary, animation, 4.0, -1, -1, 50, 0, false, false, false)
-	else
-		TaskPlayAnim(playerPed, dictionary, animation, 4.0, -1, -1, 50, 0, false, false, false)
+-- Decrease radio volume
+function Radio:VolumeDecrease()
+    if radioConfig.Volume.Current > 0.10 then
+        radioConfig.Volume.Current = radioConfig.Volume.Current - 0.10
+        self:ChangeVolume(radioConfig.Volume.Current)
+    end
+end
 
-		Citizen.Wait(700)
-
-		StopAnimTask(playerPed, dictionary, animation, 1.0)
-
-		NetworkRequestControlOfEntity(self.Handle)
-
-		while not NetworkHasControlOfEntity(self.Handle) and count < 5000 do
-			Citizen.Wait(0)
-			count = count + 1
-		end
-		
-		DetachEntity(self.Handle, true, false)
-		DeleteEntity(self.Handle)
-	end
+-- Increase radio volume
+function Radio:VolumeIncrease()
+    if radioConfig.Volume.Current < 1.6 then
+        radioConfig.Volume.Current = radioConfig.Volume.Current + 0.10
+        self:ChangeVolume(radioConfig.Volume.Current)
+    end
 end
 
 -- Add player to radio channel
 function Radio:Add(id)
-	exports["pma-voice"]:setRadioChannel(id)
+    if lastRadioId ~= id then
+        lastRadioId = id
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~ ~o~" .. id .. "~s~ MHz")
+        exports.saltychat:SetRadioChannel(id, false)
+        TriggerServerEvent("rp-radio:setPlayerRadioChannel", id, false)
+    else
+        lastRadioId = id
+        exports.saltychat:SetRadioChannel(id, false)
+        TriggerServerEvent("rp-radio:setPlayerRadioChannel", id, false)
+    end
 end
 
 -- Remove player from radio channel
 function Radio:Remove()
-	exports["pma-voice"]:setRadioChannel(0)
+    if (lastRadioId ~= nil) then
+        exports["Ora"]:ShowNotification("~r~Fréquence :~s~ ~o~" .. lastRadioId .. "~s~ MHz")
+        TriggerServerEvent("rp-radio:removePlayerRadioChannel", lastRadioId)
+        exports.saltychat:SetRadioChannel("", false)
+    else
+        TriggerServerEvent("rp-radio:removePlayerRadioChannel", Radio.Frequency)
+        exports.saltychat:SetRadioChannel("", false)
+    end
 end
 
 -- Increase radio frequency
 function Radio:Decrease()
-	if self.On then
-		if radioConfig.Frequency.CurrentIndex - 1 < 1 and radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] == radioConfig.Frequency.Current then
-			self:Remove(radioConfig.Frequency.Current)
-			radioConfig.Frequency.CurrentIndex = #radioConfig.Frequency.List
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-			self:Add(radioConfig.Frequency.Current)
-		elseif radioConfig.Frequency.CurrentIndex - 1 < 1 and radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] ~= radioConfig.Frequency.Current then
-			self:Remove(radioConfig.Frequency.Current)
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-			self:Add(radioConfig.Frequency.Current)
-		else
-			self:Remove(radioConfig.Frequency.Current)
-			radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex - 1
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-			self:Add(radioConfig.Frequency.Current)
-		end
-	else
-		if radioConfig.Frequency.CurrentIndex - 1 < 1 and radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] == radioConfig.Frequency.Current then
-			radioConfig.Frequency.CurrentIndex = #radioConfig.Frequency.List
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-		elseif radioConfig.Frequency.CurrentIndex - 1 < 1 and radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] ~= radioConfig.Frequency.Current then
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-		else
-			radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex - 1
+    if self.On then
+        if
+            radioConfig.Frequency.CurrentIndex - 1 < 1 and
+                radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] == radioConfig.Frequency.Current
+         then
+            self:Remove(radioConfig.Frequency.Current)
+            radioConfig.Frequency.CurrentIndex = #radioConfig.Frequency.List
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+            self:Add(radioConfig.Frequency.Current)
+        elseif
+            radioConfig.Frequency.CurrentIndex - 1 < 1 and
+                radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] ~= radioConfig.Frequency.Current
+         then
+            self:Remove(radioConfig.Frequency.Current)
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+            self:Add(radioConfig.Frequency.Current)
+        else
+            self:Remove(radioConfig.Frequency.Current)
+            radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex - 1
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+            self:Add(radioConfig.Frequency.Current)
+        end
+    else
+        if
+            radioConfig.Frequency.CurrentIndex - 1 < 1 and
+                radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] == radioConfig.Frequency.Current
+         then
+            radioConfig.Frequency.CurrentIndex = #radioConfig.Frequency.List
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+        elseif
+            radioConfig.Frequency.CurrentIndex - 1 < 1 and
+                radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] ~= radioConfig.Frequency.Current
+         then
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+        else
+            radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex - 1
 
-			if radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] == radioConfig.Frequency.Current then
-				radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex - 1
-			end
+            if radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex] == radioConfig.Frequency.Current then
+                radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex - 1
+            end
 
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-		end
-	end
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+        end
+    end
 end
 
 -- Decrease radio frequency
 function Radio:Increase()
-	if self.On then
-		if radioConfig.Frequency.CurrentIndex + 1 > #radioConfig.Frequency.List then
-			self:Remove(radioConfig.Frequency.Current)
-			radioConfig.Frequency.CurrentIndex = 1
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-			self:Add(radioConfig.Frequency.Current)
-		else
-			self:Remove(radioConfig.Frequency.Current)
-			radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex + 1
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-			self:Add(radioConfig.Frequency.Current)
-		end
-	else
-		if #radioConfig.Frequency.List == radioConfig.Frequency.CurrentIndex + 1 then            
-			if radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex + 1] == radioConfig.Frequency.Current then
-				radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex + 1
-			end
-		end
-		
-		if radioConfig.Frequency.CurrentIndex + 1 > #radioConfig.Frequency.List then
-			radioConfig.Frequency.CurrentIndex = 1
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-		else
-			radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex + 1
-			radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
-		end
-	end
+    if self.On then
+        if radioConfig.Frequency.CurrentIndex + 1 > #radioConfig.Frequency.List then
+            self:Remove(radioConfig.Frequency.Current)
+            radioConfig.Frequency.CurrentIndex = 1
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+            self:Add(radioConfig.Frequency.Current)
+        else
+            self:Remove(radioConfig.Frequency.Current)
+            radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex + 1
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+            self:Add(radioConfig.Frequency.Current)
+        end
+    else
+        if #radioConfig.Frequency.List == radioConfig.Frequency.CurrentIndex + 1 then
+            if radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex + 1] == radioConfig.Frequency.Current then
+                radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex + 1
+            end
+        end
+
+        if radioConfig.Frequency.CurrentIndex + 1 > #radioConfig.Frequency.List then
+            radioConfig.Frequency.CurrentIndex = 1
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+        else
+            radioConfig.Frequency.CurrentIndex = radioConfig.Frequency.CurrentIndex + 1
+            radioConfig.Frequency.Current = radioConfig.Frequency.List[radioConfig.Frequency.CurrentIndex]
+        end
+    end
 end
 
 -- Generate list of available frequencies
 function GenerateFrequencyList()
-	radioConfig.Frequency.List = {}
+    radioConfig.Frequency.List = {}
 
-	for i = radioConfig.Frequency.Min, radioConfig.Frequency.Max do
-		if not radioConfig.Frequency.Private[i] or radioConfig.Frequency.Access[i] then
-			radioConfig.Frequency.List[#radioConfig.Frequency.List + 1] = i
-		end
-	end
+    for i = radioConfig.Frequency.Min, radioConfig.Frequency.Max do
+        if not radioConfig.Frequency.Private[i] or radioConfig.Frequency.Access[i] then
+            radioConfig.Frequency.List[#radioConfig.Frequency.List + 1] = i
+        end
+    end
 end
 
 -- Check if radio is open
 function IsRadioOpen()
-	return Radio.Open
+    return Radio.Open
 end
 
 -- Check if radio is switched on
 function IsRadioOn()
-	return Radio.On
+    return Radio.On
 end
 
 -- Check if player has radio
 function IsRadioAvailable()
-	return Radio.Has
+    return Radio.Has
 end
 
 -- Check if radio is enabled or not
 function IsRadioEnabled()
-	return not Radio.Enabled
+    return not Radio.Enabled
 end
 
 -- Check if radio can be used
 function CanRadioBeUsed()
-	return Radio.Has and Radio.On and Radio.Enabled
+    return Radio.Has and Radio.On and Radio.Enabled
 end
 
 -- Set if the radio is enabled or not
 function SetRadioEnabled(value)
-	if type(value) == "string" then
-		value = value == "true"
-	elseif type(value) == "number" then
-		value = value == 1
-	end
-	
-	Radio.Enabled = value and true or false
+    if type(value) == "string" then
+        value = value == "true"
+    elseif type(value) == "number" then
+        value = value == 1
+    end
+
+    Radio.Enabled = value and true or false
 end
 
 -- Set if player has a radio or not
 function SetRadio(value)
-	if type(value) == "string" then
-		value = value == "true"
-	elseif type(value) == "number" then
-		value = value == 1
-	end
+    if type(value) == "string" then
+        value = value == "true"
+    elseif type(value) == "number" then
+        value = value == 1
+    end
 
-	Radio.Has = value and true or false
+    Radio.Has = value and true or false
 end
 
 -- Set if player has access to use the radio when closed
 function SetAllowRadioWhenClosed(value)
-	radioConfig.AllowRadioWhenClosed = value
+    radioConfig.AllowRadioWhenClosed = value
 
-	if Radio.On and not Radio.Open and radioConfig.AllowRadioWhenClosed then
-		exports["pma-voice"]:setVoiceProperty("radioEnabled", true)
-	end
+    if Radio.On and not Radio.Open and radioConfig.AllowRadioWhenClosed then
+        TriggerServerEvent("rp-radio:turnOnRadio", true)
+    end
 end
 
 -- Add new frequency
 function AddPrivateFrequency(value)
-	local frequency = tonumber(value)
+    local frequency = tonumber(value)
 
-	if frequency ~= nil then
-		if not radioConfig.Frequency.Private[frequency] then -- Only add new frequencies
-			radioConfig.Frequency.Private[frequency] = true
+    if frequency ~= nil then
+        if not radioConfig.Frequency.Private[frequency] then -- Only add new frequencies
+            radioConfig.Frequency.Private[frequency] = true
 
-			GenerateFrequencyList()
-		end
-	end
+            GenerateFrequencyList()
+        end
+    end
 end
 
 -- Remove private frequency
 function RemovePrivateFrequency(value)
-	local frequency = tonumber(value)
+    local frequency = tonumber(value)
 
-	if frequency ~= nil then
-		if radioConfig.Frequency.Private[frequency] then -- Only remove existing frequencies
-			radioConfig.Frequency.Private[frequency] = nil
+    if frequency ~= nil then
+        if radioConfig.Frequency.Private[frequency] then -- Only remove existing frequencies
+            radioConfig.Frequency.Private[frequency] = nil
 
-			GenerateFrequencyList()
-		end
-	end
+            GenerateFrequencyList()
+        end
+    end
 end
 
 -- Give access to a frequency
 function GivePlayerAccessToFrequency(value)
-	local frequency = tonumber(value)
+    local frequency = tonumber(value)
 
-	if frequency ~= nil then
-		if radioConfig.Frequency.Private[frequency] then -- Check if frequency exists
-			if not radioConfig.Frequency.Access[frequency] then -- Only add new frequencies
-				radioConfig.Frequency.Access[frequency] = true
+    if frequency ~= nil then
+        if radioConfig.Frequency.Private[frequency] then -- Check if frequency exists
+            if not radioConfig.Frequency.Access[frequency] then -- Only add new frequencies
+                radioConfig.Frequency.Access[frequency] = true
 
-				GenerateFrequencyList()
-			end
-		end
-	end 
+                GenerateFrequencyList()
+            end
+        end
+    end
 end
 
 -- Remove access to a frequency
 function RemovePlayerAccessToFrequency(value)
-	local frequency = tonumber(value)
+    local frequency = tonumber(value)
 
-	if frequency ~= nil then
-		if radioConfig.Frequency.Access[frequency] then -- Check if player has access to frequency
-			radioConfig.Frequency.Access[frequency] = nil
+    if frequency ~= nil then
+        if radioConfig.Frequency.Access[frequency] then -- Check if player has access to frequency
+            radioConfig.Frequency.Access[frequency] = nil
 
-			GenerateFrequencyList()
-		end
-	end 
+            GenerateFrequencyList()
+        end
+    end
 end
 
 -- Give access to multiple frequencies
 function GivePlayerAccessToFrequencies(...)
-	local frequencies = { ... }
-	local newFrequencies = {}
-	
-	for i = 1, #frequencies do
-		local frequency = tonumber(frequencies[i])
+    local frequencies = {...}
+    local newFrequencies = {}
 
-		if frequency ~= nil then
-			if radioConfig.Frequency.Private[frequency] then -- Check if frequency exists
-				if not radioConfig.Frequency.Access[frequency] then -- Only add new frequencies
-					newFrequencies[#newFrequencies + 1] = frequency
-				end
-			end
-		end
-	end
+    for i = 1, #frequencies do
+        local frequency = tonumber(frequencies[i])
 
-	if #newFrequencies > 0 then
-		for i = 1, #newFrequencies do
-			radioConfig.Frequency.Access[newFrequencies[i]] = true
-		end
+        if frequency ~= nil then
+            if radioConfig.Frequency.Private[frequency] then -- Check if frequency exists
+                if not radioConfig.Frequency.Access[frequency] then -- Only add new frequencies
+                    newFrequencies[#newFrequencies + 1] = frequency
+                end
+            end
+        end
+    end
 
-		GenerateFrequencyList()
-	end
+    if #newFrequencies > 0 then
+        for i = 1, #newFrequencies do
+            radioConfig.Frequency.Access[newFrequencies[i]] = true
+        end
+
+        GenerateFrequencyList()
+    end
 end
 
 -- Remove access to multiple frequencies
 function RemovePlayerAccessToFrequencies(...)
-	local frequencies = { ... }
-	local removedFrequencies = {}
+    local frequencies = {...}
+    local removedFrequencies = {}
 
-	for i = 1, #frequencies do
-		local frequency = tonumber(frequencies[i])
+    for i = 1, #frequencies do
+        local frequency = tonumber(frequencies[i])
 
-		if frequency ~= nil then
-			if radioConfig.Frequency.Access[frequency] then -- Check if player has access to frequency
-				removedFrequencies[#removedFrequencies + 1] = frequency
-			end
-		end
-	end
+        if frequency ~= nil then
+            if radioConfig.Frequency.Access[frequency] then -- Check if player has access to frequency
+                removedFrequencies[#removedFrequencies + 1] = frequency
+            end
+        end
+    end
 
-	if #removedFrequencies > 0 then
-		for i = 1, #removedFrequencies do
-			radioConfig.Frequency.Access[removedFrequencies[i]] = nil
-		end
+    if #removedFrequencies > 0 then
+        for i = 1, #removedFrequencies do
+            radioConfig.Frequency.Access[removedFrequencies[i]] = nil
+        end
 
-		GenerateFrequencyList()
-	end
+        GenerateFrequencyList()
+    end
 end
 
 -- Define exports
@@ -439,261 +557,361 @@ exports("RemovePlayerAccessToFrequency", RemovePlayerAccessToFrequency)
 exports("GivePlayerAccessToFrequencies", GivePlayerAccessToFrequencies)
 exports("RemovePlayerAccessToFrequencies", RemovePlayerAccessToFrequencies)
 
-local isBroadcasting = false
+Citizen.CreateThread(
+    function()
+        -- Add Labels
+        for i = 1, #Radio.Labels do
+            AddTextEntry(Radio.Labels[i][1], Radio.Labels[i][2])
+        end
 
-AddEventHandler('pma-voice:radioActive', function(broadCasting)
-	isBroadcasting = broadCasting
-end)
+        GenerateFrequencyList()
 
-Citizen.CreateThread(function()
-	-- Add Labels
-	for i = 1, #Radio.Labels do
-		AddTextEntry(Radio.Labels[i][1], Radio.Labels[i][2])
-	end
+        while true do
+            Citizen.Wait(0)
+            -- Init local vars
+            local playerPed = PlayerPedId()
+            local isActivatorPressed = IsControlJustPressed(0, radioConfig.Controls.Activator.Key)
+            local isSecondaryPressed =
+                (radioConfig.Controls.Secondary.Enabled == false and true or
+                IsControlPressed(0, radioConfig.Controls.Secondary.Key))
+            local isFalling = IsPedFalling(playerPed)
+            local isDead = IsEntityDead(playerPed)
+            local minFrequency = radioConfig.Frequency.List[1]
+            local broadcastType =
+                3 + (radioConfig.AllowRadioWhenClosed and 1 or 0) +
+                ((Radio.Open and radioConfig.AllowRadioWhenClosed) and -1 or 0)
+            local broadcastDictionary = Radio.Dictionary[broadcastType]
+            local broadcastAnimation = Radio.Animation[broadcastType]
+            local isBroadcasting = IsControlPressed(0, radioConfig.Controls.Broadcast.Key)
+            local isPlayingBroadcastAnim = IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
 
-	GenerateFrequencyList()
+            -- Open radio settings
+            if
+                isActivatorPressed and isSecondaryPressed and not isFalling and Radio.Enabled and Radio.Has and
+                    not isDead
+             then
+                Radio:Toggle(not Radio.Open)
+            elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
+                Radio:Remove()
+                TriggerServerEvent("rp-radio:turnOnRadio", false)
+                Radio:Toggle(false)
+                Radio.On = false
+            elseif Radio.Open and isFalling then
+                Radio:Toggle(false)
+            end
 
-	while true do
-		Citizen.Wait(0)
-		-- Init local vars
-		local playerPed = PlayerPedId()
-		local isActivatorPressed = IsControlJustPressed(0, radioConfig.Controls.Activator.Key)
-		local isSecondaryPressed = (radioConfig.Controls.Secondary.Enabled == false and true or IsControlPressed(0, radioConfig.Controls.Secondary.Key))
-		local isFalling = IsPedFalling(playerPed)
-		local isDead = IsEntityDead(playerPed)
-		local minFrequency = radioConfig.Frequency.List[1]
-		local broadcastType = 3 + (radioConfig.AllowRadioWhenClosed and 1 or 0) + ((Radio.Open and radioConfig.AllowRadioWhenClosed) and -1 or 0)
-		local broadcastDictionary = Radio.Dictionary[broadcastType]
-		local broadcastAnimation = Radio.Animation[broadcastType]
-		local isPlayingBroadcastAnim = IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
+            -- Remove player from private frequency that they don't have access to
+            if
+                not radioConfig.Frequency.Access[radioConfig.Frequency.Current] and
+                    radioConfig.Frequency.Private[radioConfig.Frequency.Current]
+             then
+                if Radio.On then
+                    Radio:Remove()
+                end
 
-		-- Open radio settings
-		if isActivatorPressed and isSecondaryPressed and not isFalling and Radio.Enabled and Radio.Has and not isDead then
-			Radio:Toggle(not Radio.Open)
-		elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
-			Radio:Remove()
-			exports["pma-voice"]:setVoiceProperty("radioEnabled", false)
-			Radio:Toggle(false)
-			Radio.On = false
-		elseif Radio.Open and isFalling then
-			Radio:Toggle(false)
-		end
-		
-		-- Remove player from private frequency that they don't have access to
-		if not radioConfig.Frequency.Access[radioConfig.Frequency.Current] and radioConfig.Frequency.Private[radioConfig.Frequency.Current] then
-			if Radio.On then
-				Radio:Remove()
-			end
+                radioConfig.Frequency.CurrentIndex = 1
+                radioConfig.Frequency.Current = minFrequency
 
-			radioConfig.Frequency.CurrentIndex = 1
-			radioConfig.Frequency.Current = minFrequency
+                if Radio.On then
+                    Radio:Add(radioConfig.Frequency.Current)
+                end
+            end
 
-			if Radio.On then
-				Radio:Add(radioConfig.Frequency.Current)
-			end
-		end
+            -- Check if player is holding radio
+            if Radio.Open then
+                local dictionaryType = 1 + (IsPedInAnyVehicle(playerPed, false) and 1 or 0)
+                local openDictionary = Radio.Dictionary[dictionaryType]
+                local openAnimation = Radio.Animation[1]
+                local isPlayingOpenAnim = IsEntityPlayingAnim(playerPed, openDictionary, openAnimation, 3)
+                local hasWeapon, currentWeapon = GetCurrentPedWeapon(playerPed, 1)
 
-		-- Check if player is holding radio
-		if Radio.Open then
-			local dictionaryType = 1 + (IsPedInAnyVehicle(playerPed, false) and 1 or 0)
-			local openDictionary = Radio.Dictionary[dictionaryType]
-			local openAnimation = Radio.Animation[1]
-			local isPlayingOpenAnim = IsEntityPlayingAnim(playerPed, openDictionary, openAnimation, 3)
-			local hasWeapon, currentWeapon = GetCurrentPedWeapon(playerPed, 1)
+                -- Remove weapon in hand as we are using the radio
+                if currentWeapon ~= "weapon_unarmed" then
+                    SetCurrentPedWeapon(playerPed, "weapon_unarmed", true)
+                end
 
-			-- Remove weapon in hand as we are using the radio
-			if currentWeapon ~= unarmed then
-				SetCurrentPedWeapon(playerPed, unarmed, true)
-			end
+                -- Display help text
+                BeginTextCommandDisplayHelp(Radio.Labels[Radio.On and 2 or 1][1])
 
-			-- Display help text
-			BeginTextCommandDisplayHelp(Radio.Labels[Radio.On and 2 or 1][1])
+                if not Radio.On then
+                    AddTextComponentSubstringPlayerName(Radio.Clicks and "~r~disable~w~" or "~g~enable~w~")
+                end
 
-			if not Radio.On then
-				AddTextComponentSubstringPlayerName(Radio.Clicks and "~r~désactiver~w~" or "~g~activer~w~")
-			end
+                AddTextComponentInteger(radioConfig.Frequency.Current)
+                AddTextComponentFloat(radioConfig.Volume.Current*100, 0)
+                EndTextCommandDisplayHelp(false, false, false, -1)
 
-			AddTextComponentInteger(radioConfig.Frequency.Current)
-			EndTextCommandDisplayHelp(false, false, false, -1)
+                -- Play animation if player is broadcasting to radio
+                if Radio.On then
+                    if isBroadcasting and not isPlayingBroadcastAnim then
+                        RequestAnimDict(broadcastDictionary)
 
-			-- Play animation if player is broadcasting to radio
-			if Radio.On then
-				if isBroadcasting and not isPlayingBroadcastAnim then
-					RequestAnimDict(broadcastDictionary)
-		
-					while not HasAnimDictLoaded(broadcastDictionary) do
-						Citizen.Wait(150)
-					end
-		
-					TaskPlayAnim(playerPed, broadcastDictionary, broadcastAnimation, 8.0, -8, -1, 49, 0, 0, 0, 0)
-				elseif not isBroadcasting and isPlayingBroadcastAnim then
-					StopAnimTask(playerPed, broadcastDictionary, broadcastAnimation, -4.0)
-				end
-			end
+                        while not HasAnimDictLoaded(broadcastDictionary) do
+                            Citizen.Wait(150)
+                        end
 
-			-- Play default animation if not broadcasting
-			if not isBroadcasting and not isPlayingOpenAnim then
-				RequestAnimDict(openDictionary)
-	
-				while not HasAnimDictLoaded(openDictionary) do
-					Citizen.Wait(150)
-				end
+                        TaskPlayAnim(playerPed, broadcastDictionary, broadcastAnimation, 8.0, -8, -1, 49, 0, 0, 0, 0)
+                    elseif not isBroadcasting and isPlayingBroadcastAnim then
+                        StopAnimTask(playerPed, broadcastDictionary, broadcastAnimation, -4.0)
+                    end
 
-				TaskPlayAnim(playerPed, openDictionary, openAnimation, 4.0, -1, -1, 50, 0, false, false, false)
-			end
+                    if not radioConfig.Controls.vDecrease.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.vDecrease.Key) then
+                            radioConfig.Controls.vDecrease.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    while IsControlPressed(0, radioConfig.Controls.vDecrease.Key) do
+                                        Radio:VolumeDecrease()
+                                        Citizen.Wait(125)
+                                    end
 
-			-- Turn radio on/off
-			if IsControlJustPressed(0, radioConfig.Controls.Toggle.Key) then
-				Radio.On = not Radio.On
+                                    radioConfig.Controls.vDecrease.Pressed = false
+                                end
+                            )
+                        end
+                    end
 
-				exports["pma-voice"]:setVoiceProperty("radioEnabled", Radio.On)
+                    if not radioConfig.Controls.vIncrease.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.vIncrease.Key) then
+                            radioConfig.Controls.vIncrease.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    while IsControlPressed(0, radioConfig.Controls.vIncrease.Key) do
+                                        Radio:VolumeIncrease()
+                                        Citizen.Wait(125)
+                                    end
 
-				if Radio.On then
-					SendNUIMessage({ sound = "audio_on", volume = 0.3})
-					Radio:Add(radioConfig.Frequency.Current)
-				else
-					SendNUIMessage({ sound = "audio_off", volume = 0.5})
-					Radio:Remove()
-				end
-			end
+                                    radioConfig.Controls.vIncrease.Pressed = false
+                                end
+                            )
+                        end
+                    end
+                end
 
-			-- Change radio frequency
-			if not Radio.On then
-				DisableControlAction(0, radioConfig.Controls.ToggleClicks.Key, false)
+                -- Play default animation if not broadcasting
+                if not isBroadcasting and not isPlayingOpenAnim then
+                    RequestAnimDict(openDictionary)
 
-				if not radioConfig.Controls.Decrease.Pressed then
-					if IsControlJustPressed(0, radioConfig.Controls.Decrease.Key) then
-						radioConfig.Controls.Decrease.Pressed = true
-						Citizen.CreateThread(function()
-							while IsControlPressed(0, radioConfig.Controls.Decrease.Key) do
-								Radio:Decrease()
-								Citizen.Wait(125)
-							end
+                    while not HasAnimDictLoaded(openDictionary) do
+                        Citizen.Wait(150)
+                    end
 
-							radioConfig.Controls.Decrease.Pressed = false
-						end)
-					end
-				end
+                    TaskPlayAnim(playerPed, openDictionary, openAnimation, 4.0, -1, -1, 50, 0, false, false, false)
+                end
 
-				if not radioConfig.Controls.Increase.Pressed then
-					if IsControlJustPressed(0, radioConfig.Controls.Increase.Key) then
-						radioConfig.Controls.Increase.Pressed = true
-						Citizen.CreateThread(function()
-							while IsControlPressed(0, radioConfig.Controls.Increase.Key) do
-								Radio:Increase()
-								Citizen.Wait(125)
-							end
+                -- Turn radio on/off
+                if IsControlJustPressed(0, radioConfig.Controls.Toggle.Key) then
+                    Radio.On = not Radio.On
+                    TriggerServerEvent("rp-radio:turnOnRadio", Radio.On)
 
-							radioConfig.Controls.Increase.Pressed = false
-						end)
-					end
-				end
+                    if Radio.On then
+                        SendNUIMessage({sound = "audio_on", volume = 0.3})
+                        Radio:Add(radioConfig.Frequency.Current)
+                    else
+                        SendNUIMessage({sound = "audio_off", volume = 0.5})
+                        Radio:Remove()
+                    end
+                end
 
-				if not radioConfig.Controls.Input.Pressed then
-					if IsControlJustPressed(0, radioConfig.Controls.Input.Key) then
-						radioConfig.Controls.Input.Pressed = true
-						Citizen.CreateThread(function()
-							DisplayOnscreenKeyboard(1, Radio.Labels[3][1], "", radioConfig.Frequency.Current, "", "", "", 3)
+                -- Change radio frequency
+                if not Radio.On then
+                    DisableControlAction(0, radioConfig.Controls.ToggleClicks.Key, false)
 
-							while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-								Citizen.Wait(150)
-							end
+                    if not radioConfig.Controls.Decrease.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.Decrease.Key) then
+                            radioConfig.Controls.Decrease.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    while IsControlPressed(0, radioConfig.Controls.Decrease.Key) do
+                                        Radio:Decrease()
+                                        Citizen.Wait(125)
+                                    end
 
-							local input = nil
+                                    radioConfig.Controls.Decrease.Pressed = false
+                                end
+                            )
+                        end
+                    end
 
-							if UpdateOnscreenKeyboard() ~= 2 then
-								input = GetOnscreenKeyboardResult()
-							end
+                    if not radioConfig.Controls.Increase.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.Increase.Key) then
+                            radioConfig.Controls.Increase.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    while IsControlPressed(0, radioConfig.Controls.Increase.Key) do
+                                        Radio:Increase()
+                                        Citizen.Wait(125)
+                                    end
 
-							Citizen.Wait(500)
-							
-							input = tonumber(input)
+                                    radioConfig.Controls.Increase.Pressed = false
+                                end
+                            )
+                        end
+                    end
 
-							if input ~= nil then
-								if input >= minFrequency and input <= radioConfig.Frequency.List[#radioConfig.Frequency.List] and input == math.floor(input) then
-									if not radioConfig.Frequency.Private[input] or radioConfig.Frequency.Access[input] then
-										local idx = nil
+                    if not radioConfig.Controls.vDecrease.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.vDecrease.Key) then
+                            radioConfig.Controls.vDecrease.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    while IsControlPressed(0, radioConfig.Controls.vDecrease.Key) do
+                                        Radio:VolumeDecrease()
+                                        Citizen.Wait(125)
+                                    end
 
-										for i = 1, #radioConfig.Frequency.List do
-											if radioConfig.Frequency.List[i] == input then
-												idx = i
-												break
-											end
-										end
+                                    radioConfig.Controls.vDecrease.Pressed = false
+                                end
+                            )
+                        end
+                    end
 
-										if idx ~= nil then
-											radioConfig.Frequency.CurrentIndex = idx
-											radioConfig.Frequency.Current = input
-										end
-									end
-								end
-							end
-							
-							radioConfig.Controls.Input.Pressed = false
-						end)
-					end
-				end
-				
-				-- Turn radio mic clicks on/off
-				if IsDisabledControlJustPressed(0, radioConfig.Controls.ToggleClicks.Key) then
-					Radio.Clicks = not Radio.Clicks
+                    if not radioConfig.Controls.vIncrease.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.vIncrease.Key) then
+                            radioConfig.Controls.vIncrease.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    while IsControlPressed(0, radioConfig.Controls.vIncrease.Key) do
+                                        Radio:VolumeIncrease()
+                                        Citizen.Wait(125)
+                                    end
 
-					SendNUIMessage({ sound = "audio_off", volume = 0.5})
-					
-					exports["pma-voice"]:setVoiceProperty("micClicks", Radio.Clicks)
-				end
-			end
-		else
-			-- Play emergency services radio animation
-			if radioConfig.AllowRadioWhenClosed then
-				if Radio.Has and Radio.On and isBroadcasting and not isPlayingBroadcastAnim then
-					RequestAnimDict(broadcastDictionary)
-	
-					while not HasAnimDictLoaded(broadcastDictionary) do
-						Citizen.Wait(150)
-					end
-		
-					TaskPlayAnim(playerPed, broadcastDictionary, broadcastAnimation, 8.0, 0.0, -1, 49, 0, 0, 0, 0)                    
-				elseif not isBroadcasting and isPlayingBroadcastAnim then
-					StopAnimTask(playerPed, broadcastDictionary, broadcastAnimation, -4.0)
-				end
-			end
-		end
-	end
-end)
+                                    radioConfig.Controls.vIncrease.Pressed = false
+                                end
+                            )
+                        end
+                    end
 
-AddEventHandler("onClientResourceStart", function(resName)
-	if GetCurrentResourceName() ~= resName and "pma-voice" ~= resName then
-		return
-	end
-	
-	exports["pma-voice"]:setVoiceProperty("radioEnabled", false) -- Disable radio control
+                    if not radioConfig.Controls.Input.Pressed then
+                        if IsControlJustPressed(0, radioConfig.Controls.Input.Key) then
+                            radioConfig.Controls.Input.Pressed = true
+                            Citizen.CreateThread(
+                                function()
+                                    DisplayOnscreenKeyboard(
+                                        1,
+                                        Radio.Labels[3][1],
+                                        "",
+                                        radioConfig.Frequency.Current,
+                                        "",
+                                        "",
+                                        "",
+                                        3
+                                    )
 
-	if Radio.Open then
-		Radio:Toggle(false)
-	end
-	
-	Radio.On = false
-end)
+                                    while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
+                                        Citizen.Wait(150)
+                                    end
+
+                                    local input = nil
+
+                                    if UpdateOnscreenKeyboard() ~= 2 then
+                                        input = GetOnscreenKeyboardResult()
+                                    end
+
+                                    Citizen.Wait(500)
+
+                                    input = tonumber(input)
+
+                                    if input ~= nil then
+                                        if
+                                            input >= minFrequency and
+                                                input <= radioConfig.Frequency.List[#radioConfig.Frequency.List] and
+                                                input == math.floor(input)
+                                         then
+                                            if
+                                                not radioConfig.Frequency.Private[input] or
+                                                    radioConfig.Frequency.Access[input]
+                                             then
+                                                local idx = nil
+
+                                                for i = 1, #radioConfig.Frequency.List do
+                                                    if radioConfig.Frequency.List[i] == input then
+                                                        idx = i
+                                                        break
+                                                    end
+                                                end
+
+                                                if idx ~= nil then
+                                                    radioConfig.Frequency.CurrentIndex = idx
+                                                    radioConfig.Frequency.Current = input
+                                                end
+                                            end
+                                        end
+                                    end
+
+                                    radioConfig.Controls.Input.Pressed = false
+                                end
+                            )
+                        end
+                    end
+
+                    -- Turn radio mic clicks on/off
+                    if IsDisabledControlJustPressed(0, radioConfig.Controls.ToggleClicks.Key) then
+                        Radio.Clicks = not Radio.Clicks
+
+                        SendNUIMessage({sound = "audio_off", volume = 0.5})
+                    end
+                end
+            else
+                -- Play emergency services radio animation
+                if radioConfig.AllowRadioWhenClosed then
+                    if Radio.Has and Radio.On and isBroadcasting and not isPlayingBroadcastAnim then
+                        RequestAnimDict(broadcastDictionary)
+
+                        while not HasAnimDictLoaded(broadcastDictionary) do
+                            Citizen.Wait(150)
+                        end
+
+                        TaskPlayAnim(playerPed, broadcastDictionary, broadcastAnimation, 8.0, 0.0, -1, 49, 0, 0, 0, 0)
+                    elseif not isBroadcasting and isPlayingBroadcastAnim then
+                        StopAnimTask(playerPed, broadcastDictionary, broadcastAnimation, -4.0)
+                    end
+                end
+            end
+        end
+    end
+)
+
+AddEventHandler(
+    "onClientResourceStart",
+    function(resName)
+        if GetCurrentResourceName() ~= resName and "saltychat" ~= resName then
+            return
+        end
+        TriggerServerEvent("rp-radio:turnOnRadio", false)
+        if Radio.Open then
+            Radio:Toggle(false)
+        end
+
+        Radio.On = false
+    end
+)
 
 RegisterNetEvent("Radio.Toggle")
-AddEventHandler("Radio.Toggle", function()
-	local playerPed = PlayerPedId()
-	local isFalling = IsPedFalling(playerPed)
-	local isDead = IsEntityDead(playerPed)
-	
-	if not isFalling and not isDead and Radio.Enabled and Radio.Has then
-		Radio:Toggle(not Radio.Open)
-	end
-end)
+AddEventHandler(
+    "Radio.Toggle",
+    function()
+        local playerPed = PlayerPedId()
+        local isFalling = IsPedFalling(playerPed)
+        local isDead = IsEntityDead(playerPed)
+
+        if not isFalling and not isDead and Radio.Enabled and Radio.Has then
+            Radio:Toggle(not Radio.Open)
+        end
+    end
+)
 
 RegisterNetEvent("Radio.Set")
-AddEventHandler("Radio.Set", function(value)
-	if type(value) == "string" then
-		value = value == "true"
-	elseif type(value) == "number" then
-		value = value == 1
-	end
+AddEventHandler(
+    "Radio.Set",
+    function(value)
+        if type(value) == "string" then
+            value = value == "true"
+        elseif type(value) == "number" then
+            value = value == 1
+        end
 
-	Radio.Has = value and true or false
-end)
+        Radio.Has = value and true or false
+    end
+)
+
+RegisterKeyMapping("radio", "radio", "keyboard", "F10")

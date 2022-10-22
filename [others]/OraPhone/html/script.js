@@ -162,8 +162,8 @@ $(function(){
                     return;
                 }
                 switch(item.type) {
-                    case "ui":
-                        displayPhone();
+                    case "oraPhoneUI":
+                        displayPhone(item.display);
                         break;
                     case "updateUserData":
                         await updateUserData(item.data);
@@ -279,7 +279,7 @@ $(function(){
                         updateAppMaps();
                         break;
                     case "updateMapsMyPosition":
-                        let newLatLng = new L.LatLng(item.position.playerX, item.position.playerY);
+                        let newLatLng = new L.LatLng(item.position[1], item.position[0]);
                         markerMyPosition.setLatLng(newLatLng);
                 }
             });
@@ -343,7 +343,7 @@ $(function(){
             }
             if (phoneTest) {
                 await updateUserData(dateTest);
-                displayPhone();
+                displayPhone(true);
                 updateContent("home");
                 updateAppContent("first");
                 $("#message-list").children().click(function () {
@@ -682,6 +682,12 @@ function initializeAppMessage() {
     $("#app-body-content-header-button-action-remove").click(function() {
         $.post('https://OraPhone/message_delete_conversation', JSON.stringify({ id: $('.app-message-conversation .messages').data("conversation-id"), number: userData.phone.number }));
         updateAppContent("list");
+    });
+    $("#message-position-button-myposition").click(function () {
+        $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYPOSITION" }));
+    });
+    $("#message-position-button-marker").click(function () {
+        $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYMARKER" }));
     });
 }
 
@@ -1557,15 +1563,6 @@ function initializeAppMaps() {
         zoom: 3,
         zoomControl: false
     });
-    function customIcon(icon){
-        return L.icon({
-            iconUrl: `./assets/images/apps/maps/marker-icons/${icon}.png`,
-            iconSize:     [32, 32],
-            iconAnchor:   [16, 16],
-            popupAnchor:  [0, -15]
-        });
-    }
-    
     bounds = L.latLngBounds([northEast,southWest]);
     map.setMaxBounds(bounds);
     map.fitBounds(bounds);
@@ -1988,12 +1985,6 @@ function updateAppMessageLoad(id = null) {
                 }
             }
         });
-        $("#message-position-button-myposition").click(function () {
-            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYPOSITION" }));
-        });
-        $("#message-position-button-marker").click(function () {
-            $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYMARKER" }));
-        });
         $("#message-photo-button-takephoto").click(function () {
             activateAppCamera("message", "message");
         });
@@ -2020,7 +2011,7 @@ function updateAppPhone() {
             callTarget = call.source_number.toString();
         }
         let callContactNumber = callTarget.length == 7 ? "555-" + callTarget.substring(3) : callTarget;
-        let callName = callContactNumber
+        let callName = callContactNumber;
         for(let contact of userData.contacts) {
             if(contact.number.toString() == callTarget.toString()) {
                 callName = contact.name;
@@ -2028,8 +2019,8 @@ function updateAppPhone() {
             }
         }
         callAccepted = call.accepted;
-        let callTime = new Date(call.call_time)
-        let nowTime = new Date()
+        let callTime = new Date(call.call_time);
+        let nowTime = new Date();
         if(callTime.toDateString() == nowTime.toDateString()) {
             callTime = callTime.toLocaleString('fr-FR', { timeStyle: 'short' });
         } else {
@@ -2184,14 +2175,13 @@ function updateAppGallery() {
 }
 
 function updateAppMaps() {
-    userData.mapsFavorite = item.positions;
     for (let marker of markerFavoriteList) {
         map.removeLayer(marker);
     }
     markerFavoriteList = [];
-    let test = favorite.name + `<br/><i onclick="mapsFavoriteRemove('` + favorite.id + `')" class="fa-solid fa-trash-can maps-marker-button-remove"></i>`;
     for (let favorite of userData.mapsFavorite) {
-        let marker = L.marker([favorite.y, favorite.x], {icon: customIcon(favorite.icon)}).addTo(map).bindPopup(test);
+        let popupText = favorite.name + `<br/><i onclick="mapsFavoriteRemove('` + favorite.id + `')" class="fa-solid fa-trash-can maps-marker-button-remove"></i>`;
+        let marker = L.marker([favorite.y, favorite.x], {icon: customIcon(favorite.icon)}).addTo(map).bindPopup(popupText);
         marker.on("click", function() {
             map.setView([favorite.y, favorite.x], 4);
         });
@@ -2607,13 +2597,17 @@ function responsiveChatPush(sender, origin, date, message) {
         originClass = 'fromThem';
     }
     let newMessageDiv = "";
-    if (/^GPS:\s\d+.\d+,\s\d+.\d+,\s\d+.\d+$/.test(message)) {
-        newMessageDiv = '<div class="' + originClass + '"><p>' + message + '<div class="message-button-list"><button class="message-button-show-map">Afficher carte</button><button class="message-button-add-marker">Appliquer point</button></div></p><date><b>' + sender + '</b> ' + date + '</date></div>';
+    if (/^GPS:\s-?\d+.?\d+,\s-?\d+.?\d+,\s-?\d+.?\d+$/.test(message)) {
+        newMessageDiv = '<div class="' + originClass + '"><p><div class="message-button-list"><button class="message-button-show-map">Afficher carte</button><button class="message-button-add-marker">Appliquer point</button></div></p><date><b>' + sender + '</b> ' + date + '</date></div>';
         $('.app-message-conversation .messages').append(newMessageDiv);
         $('.app-message-conversation .messages').children().last().find(".message-button-show-map").click(function() {
             let messagePos = message.replaceAll(/\s/g, '').substring(4).split(",");
             addMarkerToMap(messagePos[0], messagePos[1]);
             updateContent("maps");
+        });
+        $('.app-message-conversation .messages').children().last().find(".message-button-add-marker").click(function() {
+            let messagePos = message.replaceAll(/\s/g, '').substring(4).split(",");
+            $.post('https://OraPhone/add_potition_on_map', JSON.stringify({ x: messagePos[0], y: messagePos[1], z: messagePos[2] }));
         });
     } else if (/^https:\/\/i.imgur.com\/[a-zA-Z0-9_.-]+.jpg$/.test(message)) {
         newMessageDiv = '<div class="' + originClass + '"><p><img src="' + message + '"/></p><date><b>' + sender + '</b> ' + date + '</date></div>';
@@ -2675,7 +2669,7 @@ function callNumber(callNumber) {
     callNumber = callNumber.toString();
     let callName = callNumber;
     let callAvatar = contactAvatarDefault;
-    if (!/[a-zA-Z]/.test(contact.number)) {
+    if (!/[a-zA-Z]/.test(callNumber)) {
         callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
     }
     for(let contact of userData.contacts) {
@@ -2699,7 +2693,9 @@ function callNumber(callNumber) {
 
 async function takeScreenshot(app, appSub) {
     updateContent(app);
-    updateAppContent(appSub);
+    setTimeout(function() {
+        updateAppContent(appSub);
+    }, 400);
     $("#camera-image").attr("src", "");
     let resp = await MainRender.requestScreenshot("https://api.imgur.com/3/image/", "image");
     if (app == "camera") {
@@ -2773,7 +2769,7 @@ function unlockPhone() {
     $("#phone-lock-button i").removeClass("fa-lock-open");
     $("#phone-lock-button i").addClass("fa-lock");
     if(!displayToggle) {
-        displayPhone();
+        displayPhone(true);
     }
 }
 
@@ -2864,6 +2860,9 @@ function addMarkerToMap(x, y) {
     let marker = L.marker([y, x]).addTo(map).bindPopup("Point GPS");
     markerList.push(marker);
     map.setView([y, x], 4);
+    marker.on("click", function() {
+        map.setView([y, x], 4);
+    });
 }
 
 function mapsFavoriteRemove(id) {
@@ -2878,6 +2877,15 @@ function mapsUpdateMyPosition(toggle) {
     } else {
         clearInterval(mapsIntervalMyPosition);
     }
+}
+
+function customIcon(icon){
+    return L.icon({
+        iconUrl: `./assets/images/apps/maps/marker-icons/${icon}.png`,
+        iconSize:     [32, 32],
+        iconAnchor:   [16, 16],
+        popupAnchor:  [0, -15]
+    });
 }
 
 // Fonctions d'affichage
@@ -3013,17 +3021,17 @@ function updateAppContent(element) {
     }
 }
 
-function displayPhone() {
-    if(displayToggle) {
-        $("#phone").css("bottom", phoneBottomShowNot);
-        displayToggle = false;
-    } else {
+function displayPhone(visible) {
+    if(visible) {
         if(formatOrientation == "landscape") {
             $("#phone").css("bottom", phoneBottomShowLandscape);
         } else {
             $("#phone").css("bottom", phoneBottomShow);
         }
         displayToggle = true;
+    } else {
+        $("#phone").css("bottom", phoneBottomShowNot);
+        displayToggle = false;
     }
 }
 
@@ -3135,7 +3143,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
         notification.addEventListener("click", function() {
             if(!phoneLockToggle) {
                 if(!displayToggle) {
-                    displayPhone();
+                    displayPhone(true);
                 }
                 updateContent(app);
                 updateAppContent(appSub);
@@ -3150,7 +3158,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
         notificationLock.addEventListener("click", function() {
             if(phoneLockToggle) {
                 if(!displayToggle) {
-                    displayPhone();
+                    displayPhone(true);
                 }
                 if(!lockIconSnoozeEffect) {
                     lockIconSnoozeEffect = true;

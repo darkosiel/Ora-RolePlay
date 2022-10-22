@@ -117,9 +117,9 @@ CREATE TABLE IF NOT EXISTS ora_phone_maps_favorite (
     `phone_id` INT NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `icon` VARCHAR(255) NOT NULL,
-    'x' INT NOT NULL,
-    'y' INT NOT NULL,
-    'z' INT NOT NULL,
+    `x` INT NOT NULL,
+    `y` INT NOT NULL,
+    `z` INT NOT NULL,
     `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
