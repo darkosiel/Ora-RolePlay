@@ -23,12 +23,6 @@ local Radio = {
     },
     Clicks = true -- Radio clicks
 }
-<<<<<<< HEAD
-Radio.Labels = {        
-	{ "FRZL_RADIO_HELP", "~s~" .. (radioConfig.Controls.Secondary.Enabled and "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or "~" .. radioConfig.Controls.Activator.Name .. "~") .. " pour cacher.~n~~" .. radioConfig.Controls.Toggle.Name .. "~ pour ~g~allumer~s~.~n~~" .. radioConfig.Controls.Decrease.Name .. "~ ou ~" .. radioConfig.Controls.Increase.Name .. "~ changer de fréquence~n~~" .. radioConfig.Controls.Input.Name .. "~ pour choisir la fréquence~n~~" .. radioConfig.Controls.ToggleClicks.Name .. "~ pour ~a~ les bips~n~Fréquence: ~1~ MHz" },
-	{ "FRZL_RADIO_HELP2", "~s~" .. (radioConfig.Controls.Secondary.Enabled and "~" .. radioConfig.Controls.Secondary.Name .. "~ + ~" .. radioConfig.Controls.Activator.Name .. "~" or "~" .. radioConfig.Controls.Activator.Name .. "~") .. " pour cacher.~n~~" .. radioConfig.Controls.Toggle.Name .. "~ pour ~r~éteindre~s~.~n~~" .. radioConfig.Controls.Broadcast.Name .. "~ pour parler.~n~Fréquence: ~1~ MHz" },
-	{ "FRZL_RADIO_INPUT", "Entrer Fréquence" },
-=======
 
 local lastRadioId = nil
 
@@ -72,7 +66,6 @@ Radio.Labels = {
                                             "~ pour modifier le volume~n~Fréquence : ~1~ MHz~n~Volume : ~1~ %"
     },
     {"FRZL_RADIO_INPUT", "Entrez la fréquence (de 137 à 850 MHz)"}
->>>>>>> parent of 366c5f09 (pma voice)
 }
 Radio.Commands = {
     {
@@ -85,48 +78,6 @@ Radio.Commands = {
             local isFalling = IsPedFalling(playerPed)
             local isDead = IsEntityDead(playerPed)
 
-<<<<<<< HEAD
-			if not isFalling and Radio.Enabled and Radio.Has and not isDead then
-				Radio:Toggle(not Radio.Open)
-			elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
-				Radio:Toggle(false)
-				Radio.On = false
-				Radio:Remove()
-				exports["pma-voice"]:setVoiceProperty("radioEnabled", false)
-			elseif Radio.Open and isFalling then
-				Radio:Toggle(false)
-			end            
-		end,
-	},
-	{
-		Enabled = true, -- Add a command to choose radio frequency
-		Name = "frequency", -- Command name
-		Help = "Changer de Fréquence", -- Command help shown in chatbox when typing the command
-		Params = {
-			{name = "number", "Mettre Fréquence"}
-		},
-		Handler = function(src, args, raw)
-			if Radio.Has then
-				if args[1] then
-					local newFrequency = tonumber(args[1])
-					if newFrequency then
-						local minFrequency = radioConfig.Frequency.List[1]
-						if newFrequency >= minFrequency and newFrequency <= radioConfig.Frequency.List[#radioConfig.Frequency.List] and newFrequency == math.floor(newFrequency) then
-							if not radioConfig.Frequency.Private[newFrequency] or radioConfig.Frequency.Access[newFrequency] then
-								local idx = nil
-					
-								for i = 1, #radioConfig.Frequency.List do
-									if radioConfig.Frequency.List[i] == newFrequency then
-										idx = i
-										break
-									end
-								end
-					
-								if idx ~= nil then
-									if Radio.Enabled then
-										Radio:Remove()
-									end
-=======
             if not isFalling and Radio.Enabled and Radio.Has and not isDead then
                 Radio:Toggle(not Radio.Open)
             elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
@@ -162,7 +113,6 @@ Radio.Commands = {
                                     radioConfig.Frequency.Access[newFrequency]
                              then
                                 local idx = nil
->>>>>>> parent of 366c5f09 (pma voice)
 
                                 for i = 1, #radioConfig.Frequency.List do
                                     if radioConfig.Frequency.List[i] == newFrequency then
@@ -687,15 +637,9 @@ Citizen.CreateThread(
                     AddTextComponentSubstringPlayerName(Radio.Clicks and "~r~disable~w~" or "~g~enable~w~")
                 end
 
-<<<<<<< HEAD
-			if not Radio.On then
-				AddTextComponentSubstringPlayerName(Radio.Clicks and "~r~désactiver~w~" or "~g~activer~w~")
-			end
-=======
                 AddTextComponentInteger(radioConfig.Frequency.Current)
                 AddTextComponentFloat(radioConfig.Volume.Current*100, 0)
                 EndTextCommandDisplayHelp(false, false, false, -1)
->>>>>>> parent of 366c5f09 (pma voice)
 
                 -- Play animation if player is broadcasting to radio
                 if Radio.On then
