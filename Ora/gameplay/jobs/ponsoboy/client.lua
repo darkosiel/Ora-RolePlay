@@ -11,6 +11,7 @@ local pant = {}
 local chauss = {}
 local unders = {}
 local access = {}
+local sac = {}
 local tops = {}
 local pantcolor = {}
 local chausscolor = {}
@@ -19,6 +20,7 @@ local underscolor = {}
 local topcolor = {}
 local torsoPos = 1
 local pantPos = 1
+local sacPos = 1
 local chaussPos = 1
 local undersPos = 1
 local accessPos = 1
@@ -32,6 +34,7 @@ local topcolorPos = 1
 
 local lockedTorso = true
 local lockedPant = true
+local lockedSac = true
 local lockedPantColor = true
 local lockedchauss = true
 local lockedchaussColor = true
@@ -356,8 +359,23 @@ Citizen.CreateThread(function()
                             lockedchaussColor = false
                         end
                     end)
+
+                    RageUI.List("Sac ", sac, sacPos,nil, {},lockedSac, function(Hovered, Active, Selected, Index)
+                        if Active then
+                            if Index ~= sacPos then
+                                SetPedComponentVariation(manequin, 5, Index-1, 0)
+                            end
+                        end
+                        sacPos = Index
+                        if Selected and not lockedSac then
+                            lockedSac = true
+                        elseif Selected then
+                            lockedSac = false
+                        end
+                    end)
         
-                    if not lockedTorso and not lockedPant and not lockedPantColor and not lockedchauss and not lockedPant and not lockedchaussColor and not accessLocked and not accessColorLocked and not underscolorLocked and not topLocked and not topColorLocked  then
+        
+                    if not lockedTorso and not lockedPant and not lockedPantColor and not lockedSac and not lockedchauss and not lockedPant and not lockedchaussColor and not accessLocked and not accessColorLocked and not underscolorLocked and not topLocked and not topColorLocked  then
                         RageUI.Button("Valider" , nil, {}, true, function(Hovered, Active, Selected)
                             if Selected then
                                 local maxCraft = Ora.Inventory:GetItemCount("fabric")
@@ -375,7 +393,8 @@ Citizen.CreateThread(function()
                                         chausscolor = chausscolorPos - 1,
                                         underscolor = underscolorPos - 1,
                                         topcolor = topcolorPos - 1,
-                                        accesscolor = accesscolorPos - 1
+                                        accesscolor = accesscolorPos - 1,
+                                        sac = sacPos - 1
                                     }
                                     local item = {}
                                     item.name = "tenue"
@@ -418,11 +437,17 @@ function RegenMenu()
     accesscolorPos = 1
     underscolorPos = 1
     topcolorPos = 1
+    sacPos = 1
 	ped = pedPrev[manqidx]
 
 	torso = {}
 	for i = 0, GetNumberOfPedDrawableVariations(ped, 3), 1 do
 		table.insert(torso, i)
+	end
+
+    sac = {}
+	for i = 0, GetNumberOfPedDrawableVariations(ped, 5), 1 do
+		table.insert(sac, i)
 	end
 
 	pant = {}
@@ -486,4 +511,5 @@ function RegenMenu()
     undersLocked = true
     topLocked = true
     topColorLocked = true
+    lockedSac = true
 end
