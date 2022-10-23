@@ -212,6 +212,8 @@ function EquipTenue()
                 Wait(700)
                 SetPedComponentVariation(ped, 10, data.decals, data.decalscolor)
                 Wait(700)
+                SetPedComponentVariation(ped, 5, data.sac, data.saccolor)
+                Wait(700)
                 if data.chain ~= nil then
                     SetPedComponentVariation(ped, 7, data.chain, data.chaincolor)
                 end
