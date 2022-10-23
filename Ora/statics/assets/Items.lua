@@ -1002,13 +1002,13 @@ Items = {
     },
     coke1 = {
         label = "Pochon de Cocaïne",
-        weight = 0.5,
+        weight = 0.1,
         actionCl = "drug:Coke",
         category = "consumable"
     },
     acidecoke = {
         label = "Acide",
-        weight = 1.0,
+        weight = 0.1,
         actionCl = nil,
         category = "consumable"
     },

@@ -482,15 +482,15 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         craft_time = 90,
         item_quality = 35,
         required = {
-          {name = "coke", count = 25},
-          {name = "acidecoke", count = 25}
+          {name = "coke", count = 30},
+          {name = "acidecoke", count = 30}
         },
         give_item = "coke1",
         give_item_count = 60
     },
     ingredients = {
-        acidecoke = { price = 3, max_qty = 60 },
-        coke = { price = 5, max_qty = 60 },
+        acidecoke = { price = 3, max_qty = 125 },
+        coke = { price = 5, max_qty = 125 },
     },
     security = {
       [1] = {
@@ -526,26 +526,26 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       },
       [3] = {
         label = "Production niveau 3",
-        description = "Pour 100 000$ vous produisez autant avec moins de composants (-3 composants de chaque)",
+        description = "Pour 100 000$ vous produisez autant avec moins de composants (-5 composants de chaque)",
         price = 100000,
         addon = {
           item_quality = 74,
           required = {
-            {name = "coke", count = 12},
-            {name = "acidecoke", count = 12}
+            {name = "coke", count = 25},
+            {name = "acidecoke", count = 25}
           }
         }
       },
       [4] = {
         label = "Production niveau 4",
-        description = "Pour 70 000$ vous produisez en 75 minutes au lieu de 1 heure",
+        description = "Pour 70 000$ vous produisez en 75 minutes au lieu de 1h30",
         price = 70000,
         addon = {
           craft_time = 75,
           item_quality = 74,
           required = {
-            {name = "coke", count = 12},
-            {name = "acidecoke", count = 12}
+            {name = "coke", count = 25},
+            {name = "acidecoke", count = 25}
           }
         }
       },
@@ -557,21 +557,21 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           craft_time = 75,
           item_quality = 90,
           required = {
-            {name = "coke", count = 12},
-            {name = "acidecoke", count = 12}
+            {name = "coke", count = 25},
+            {name = "acidecoke", count = 25}
           }
         }
       },
       [6] = {
         label = "Production niveau 6",
-        description = "Pour 70 000$ vous produisez en 60 minutes au lieu de 1 heure",
+        description = "Pour 70 000$ vous produisez en 60 minutes au lieu de 1h15 heure",
         price = 70000,
         addon = {
           craft_time = 60,
           item_quality = 90,
           required = {
-            {name = "coke", count = 12},
-            {name = "acidecoke", count = 12}
+            {name = "coke", count = 25},
+            {name = "acidecoke", count = 25}
           }
         }
       },
@@ -583,8 +583,8 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
             craft_time = 60,
             item_quality = 100,
             required = {
-              {name = "coke", count = 12},
-              {name = "acidecoke", count = 12}
+              {name = "coke", count = 25},
+              {name = "acidecoke", count = 25}
             }
           }
       }
