@@ -429,6 +429,7 @@ local VehShop =
                 },
                 ["BCSO"] = {
                     {name = "bcsocara", price = 25000},
+                    {name = "bcsobison", price = 25000},
                     {name = "bcsofugitive", price = 25000},
                     {name = "bcsoscout", price = 25000},
                     {name = "bcsogranger", price = 25000},
@@ -448,6 +449,9 @@ local VehShop =
                     {name = "ussssuv2", price = 30000},
                     {name = "halfback2", price = 30000},
                     {name = "watchtower2", price = 30000},
+                    {name = "fibp3", price = 30000},
+                    {name = "fibp6", price = 30000},
+                    {name = "polnspeedo", price = 30000},
                     {name = "pressuv", price = 30000}
                 },
                 ["Vans"] = {
