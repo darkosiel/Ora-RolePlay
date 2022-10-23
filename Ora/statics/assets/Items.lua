@@ -1717,7 +1717,7 @@ Items = {
     -- Gun : Pistol
 
     pistol = {
-        label = "Pistolet",
+        label = "Glock",
         weight = 1.0,
         actionCl = "weapon:Equip",
         category = "weapon"
