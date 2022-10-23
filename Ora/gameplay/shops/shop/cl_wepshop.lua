@@ -151,7 +151,8 @@ weapon_name = {
     assaultshotgun = "weapon_assaultshotgun",
     apppistol = "weapon_appistol",
     marksmanpistol = "weapon_marksmanpistol",
-    fire_extinguisher = "WEAPON_FIREEXTINGUISHER"
+    fire_extinguisher = "WEAPON_FIREEXTINGUISHER",
+    lwrc = "weapon_LWRC"
 }
 
 weapon_munition = {
@@ -220,6 +221,7 @@ weapon_munition = {
     advancedrifle = "cab2",
     tacticalrifle = "cab2",
     bullpuprifle = "cab2",
+    lwrc = "cab2",
     musket = "cab",
     --- sniper
     heavysniper = "snip",

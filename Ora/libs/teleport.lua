@@ -82,6 +82,7 @@ local Elevator = {
   },
 
   ["Gouvernement"] = {
+    {label = "Etage  5 - Hélipad", pos = vector3(-1320.90, -567.29, 42.07), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage  3 - Bureaux", pos = vector3(-1309.52, -563.62, 37.37), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage  2 - USSS-Bureaux", pos = vector3(-1309.52, -563.62, 34.37), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
     {label = "Etage  1 - Accueil", pos = vector3(-1309.52, -563.62, 30.57), msg = "Appuyez sur ~INPUT_CONTEXT~ prendre l'ascenseur"},
