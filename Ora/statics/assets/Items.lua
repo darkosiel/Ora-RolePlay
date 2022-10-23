@@ -2062,6 +2062,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    lwrc = {
+        label = "LWRC",
+        weight = 3.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     advancedrifle = {
         label = "Fusil avancé",
         weight = 3.0,
