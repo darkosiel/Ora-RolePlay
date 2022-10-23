@@ -816,7 +816,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
   },
   gunlead2 = {
     label = "Gunlead 2",
-    description = "Beretta, Pistolet lourd, UZI, Fusil a pompe",
+    description = "Beretta, Pistolet lourd, Revolver, Pétoire, Calibre.50, C4",
     interior = vector3(179.17, -1000.68, -99.0),
     vault = vector3(169.76, -1005.82, -99.0 - 0.95),
     computer = vector3(172.92, -1000.34, -99.0 - 0.95),
@@ -828,15 +828,11 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {start = vector3(-761.56, -2288.9, 12.86), startHeading = 65.52, finish = vector3(-1013.16, -2223.1, 8.99)}
     },
     limitations = {
-      {name = "pistol", byWeek = 15, price = 5000},
-      {name = "snspistol", byWeek = 15, price = 3500},
-      {name = "pitollourd", byWeek = 3, price = 9000},
-      {name = "microsmg", byWeek = 1, price = 60000},
-      {name = "shootgun", byWeek = 2, price = 38500},
-      {name = "machete", byWeek = 15, price = 200},
-      {name = "dagger", byWeek = 15, price = 200},
-      {name = "combathatchet", byWeek =15, price = 200}, 
-      {name = "stickybomb", byWeek = 10, price = 1500},
+      {name = "snspistol", byWeek = 3, price = 10000},
+      {name = "revolver", byWeek = 1, price = 14000},
+      {name = "pistol", byWeek = 1, price = 14000},
+      {name = "pitollourd", byWeek = 1, price = 20000},
+      {name = "stickybomb", byWeek = 2, price = 1500},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "snip", byWeek = 108, price = 4},
       {name = "calibre12", byWeek = 50, price = 3},
@@ -859,34 +855,36 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [1] = {
           label = "Confiance commerciale 1",
-          description = "Pour 35 000$ vous obtenez 3 berettas, 3 Pétoires, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
+          description = "Pour 35 000$ vous obtenez 2 berettas, 2 Pétoires, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
           price = 35000,
           addon = {
             pistol = 3,
+            snspistol = 5,
             mm9 = 250,
             snip = 35,
           }
       },
       [2] = {
           label = "Confiance commerciale 2",
-          description = "Pour 75 000$ vous obtenez 6 berettas, 6 Pétoires, 6 Pistolets lourd, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
+          description = "Pour 75 000$ vous obtenez 3 berettas, 2 Pétoires, 2 Pistolets lourd, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
           price = 75000,
           addon = {
             pistol = 6,
             snspistol = 6,
-            pitollourd = 6,
+            pitollourd = 3,
             mm9 = 500,
             snip = 75,
           }
       },
       [3] = {
         label = "Confiance commerciale 3",
-        description = "Pour 55 000$ vous obtenez 15 berettas, 15 Pétoires, 20 Pistolets lourd, 750 balles de 9mm et 5 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        description = "Pour 55 000$ vous obtenez 1 beretta, 1 revolver, 2 Pétoires, 1 Pistolet lourd, 750 balles de 9mm et 3 Bombes artisanal en plus par semaine par rapport à la limite de base",
         price = 55000,
         addon = {
-          pistol = 15,
-          snspistol = 15,
-          pitollourd = 20,
+          pistol = 7,
+          revolver = 2,
+          snspistol = 8,
+          pitollourd = 4,
           mm9 = 750,
           snip = 75,
           stickybomb = 5,
@@ -894,42 +892,17 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [4] = {
         label = "Confiance commerciale 4",
-        description = "Pour 85 000$ vous obtenez 20 berettas, 20 Pétoires, 26 Pistolets lourd, 1000 balles de 9mm et 7 Bombes artisanal en plus par semaine par rapport à la limite de base",
-        price = 85000,
+        description = "Pour 65 000$ vous obtenez 1 beretta, 1 revolver, 1 Pétoire, 1 Pistolet lourd, 1000 balles de 9mm et 2 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        price = 65000,
         addon = {
-          pistol = 20,
-          snspistol = 20,
-          pitollourd = 26,
+          pistol = 8,
+          revolver = 3,
+          snspistol = 9,
+          pitollourd = 5,
           mm9 = 1000,
           snip = 75,
           stickybomb = 7,
         }
-      },
-      [5] = {
-        label = "Confiance commerciale 5",
-        description = "Pour 45 000$ vous obtenez 25 berettas, 25 Pétoires, 30 Pistolets lourd, 1500 balles de 9mm, 150 balles de .300 et 10 Bombes artisanal en plus par semaine par rapport à la limite de base",
-        price = 45000,
-        addon = {
-          pistol = 25,
-          snspistol = 25,
-          pitollourd = 30,
-          mm9 = 1500,
-          snip = 150,
-          stickybomb = 10,
-        }
-      },
-      -- This is not cumulative, so you always have to start from the base limitation
-      [6] = {
-          label = "Confiance commerciale 6",
-          description = "Pour 85 000$ vous obtenez 35 berettas, 35 Pétoires, 2500 balles de 9mm, 250 balles de .300 Magnum et 15 Bombes artisanal en plus par semaine par rapport à la limite de base",
-          price = 85000,
-          addon = {
-            pistol = 35,
-            snspistol = 35,
-            mm9 = 2500,
-            snip = 250,
-            stickybomb = 15,
-          }
       }
     }
   },
