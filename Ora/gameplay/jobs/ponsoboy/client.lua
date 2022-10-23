@@ -18,6 +18,7 @@ local chausscolor = {}
 local accesscolor = {}
 local underscolor = {}
 local topcolor = {}
+local saccolor = {}
 local torsoPos = 1
 local pantPos = 1
 local sacPos = 1
