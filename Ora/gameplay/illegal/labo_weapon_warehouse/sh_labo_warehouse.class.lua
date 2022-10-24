@@ -832,6 +832,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "revolver", byWeek = 1, price = 14000},
       {name = "pistol", byWeek = 1, price = 14000},
       {name = "pitollourd", byWeek = 1, price = 20000},
+      {name = "pistol50", byWeek = 0, price = 18000},
       {name = "stickybomb", byWeek = 2, price = 1500},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "snip", byWeek = 108, price = 4},
@@ -858,8 +859,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           description = "Pour 35 000$ vous obtenez 2 berettas, 2 Pétoires, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
           price = 35000,
           addon = {
-            pistol = 3,
-            snspistol = 5,
+            pistol = 1,
+            snspistol = 2,
             mm9 = 250,
             snip = 35,
           }
@@ -869,9 +870,9 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           description = "Pour 75 000$ vous obtenez 3 berettas, 2 Pétoires, 2 Pistolets lourd, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
           price = 75000,
           addon = {
-            pistol = 6,
-            snspistol = 6,
-            pitollourd = 3,
+            pistol = 2,
+            snspistol = 1,
+            pitollourd = 2,
             mm9 = 500,
             snip = 75,
           }
@@ -881,10 +882,10 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
         description = "Pour 55 000$ vous obtenez 1 beretta, 1 revolver, 2 Pétoires, 1 Pistolet lourd, 750 balles de 9mm et 3 Bombes artisanal en plus par semaine par rapport à la limite de base",
         price = 55000,
         addon = {
-          pistol = 7,
+          pistol = 2,
           revolver = 2,
-          snspistol = 8,
-          pitollourd = 4,
+          snspistol = 2,
+          pitollourd = 1,
           mm9 = 750,
           snip = 75,
           stickybomb = 5,
@@ -895,13 +896,14 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
         description = "Pour 65 000$ vous obtenez 1 beretta, 1 revolver, 1 Pétoire, 1 Pistolet lourd, 1000 balles de 9mm et 2 Bombes artisanal en plus par semaine par rapport à la limite de base",
         price = 65000,
         addon = {
-          pistol = 8,
+          pistol = 2,
           revolver = 3,
-          snspistol = 9,
-          pitollourd = 5,
+          snspistol = 1,
+          pitollourd = 2,
+          pistol50 = 2,
           mm9 = 1000,
           snip = 75,
-          stickybomb = 7,
+          stickybomb = 2,
         }
       }
     }
