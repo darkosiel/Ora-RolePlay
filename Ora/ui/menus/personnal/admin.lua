@@ -2847,12 +2847,12 @@ function admin_no_clip()
         Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), true)
         SetEntityVisible(ped, false, false)
         ShowNotification("Noclip ~g~activé")
-        exports['Ora_utils']:ToggleDrain(false)
+        exports['Ora_dep']:ToggleDrain(false)
     else -- désactivé
         SetEntityInvincible(ped, false)
         Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
         ShowNotification("Noclip ~r~désactivé")
-        exports['Ora_utils']:ToggleDrain(true)
+        exports['Ora_dep']:ToggleDrain(true)
     end
 end
 

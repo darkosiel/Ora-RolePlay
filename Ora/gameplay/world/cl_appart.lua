@@ -1216,7 +1216,7 @@ local permaLock = {
 
 Citizen.CreateThread(function()
     -- Getting the object to interact with
-    BikerClubhouse2 = exports['bob74_ipl']:GetBikerClubhouse2Object()
+    BikerClubhouse2 = exports['Ora_dep']:GetBikerClubhouse2Object()
     -- Setting red bricked walls
     BikerClubhouse2.Walls.Set(BikerClubhouse2.Walls.plain, BikerClubhouse2.Walls.Color.lightBlueAndSable)
     -- Setting furnitures A
@@ -1238,7 +1238,7 @@ end)
 
 Citizen.CreateThread(function()
     -- Getting the object to interact with
-    BikerClubhouse1 = exports['bob74_ipl']:GetBikerClubhouse1Object()
+    BikerClubhouse1 = exports['Ora_dep']:GetBikerClubhouse1Object()
 
     -- Setting red bricked walls
     BikerClubhouse1.Walls.Set(BikerClubhouse1.Walls.brick, 	BikerClubhouse1.Walls.Color.lightYellow)

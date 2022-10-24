@@ -25,7 +25,7 @@ function CloseAllMenus()
         end
     )
 end
-function Police.code99() exports["Ora_utils"]:sendME("* L'individu appuie sur un bouton de sa radio *") end
+function Police.code99() exports['Ora_dep']:sendME("* L'individu appuie sur un bouton de sa radio *") end
 function Police.PlateCheck()
     local veh = ClosestVeh()
     if veh ~= 0 then

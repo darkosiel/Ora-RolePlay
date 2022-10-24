@@ -248,7 +248,7 @@ end
 function IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateIPLForMeth(productionLevel, securityLevel)
   Citizen.CreateThread(function()
       -- Getting the object to interact with
-      BikerMethLab = exports['bob74_ipl']:GetBikerMethLabObject()
+      BikerMethLab = exports['Ora_dep']:GetBikerMethLabObject()
 
       if (productionLevel > 2 ) then
           -- Setting the style
@@ -277,7 +277,7 @@ function IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateIPLForCannabis(productionLe
   Citizen.CreateThread(function()
       -- Getting the object to interact with
      -- Getting the object to interact with
-      BikerWeedFarm = exports['bob74_ipl']:GetBikerWeedFarmObject()
+      BikerWeedFarm = exports['Ora_dep']:GetBikerWeedFarmObject()
       if (productionLevel > 2 ) then
           -- Setting the style
             BikerWeedFarm.Style.Set(BikerWeedFarm.Style.upgrade)
