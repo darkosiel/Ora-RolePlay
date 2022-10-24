@@ -474,6 +474,8 @@ client_script {
     "gameplay/civilian/shooting_range/client.lua",
     "gameplay/civilian/karting/config.lua",
     "gameplay/civilian/karting/client.lua",
+    "gameplay/civilian/wheelchair/client.lua",
+    "gameplay/civilian/bennys/client.lua",
     "gameplay/illegal/race/config.lua",
     "gameplay/illegal/race/races_cl.lua",
     "ui/menus/bossMenu/client/cl_boss.lua",
@@ -489,6 +491,7 @@ server_scripts {
 
     "gameplay/civilian/shooting_range/server.lua",
     "gameplay/civilian/karting/server.lua",
+    "gameplay/civilian/bennys/server.lua",
     "gameplay/illegal/drugs/sv_drugbuyer.lua",
     "gameplay/illegal/otage/sv_takehostage.lua",
     "gameplay/illegal/atm_robbery/config.lua",
