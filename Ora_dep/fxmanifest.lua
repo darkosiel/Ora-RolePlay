@@ -4,7 +4,7 @@ games { 'gta5', 'rdr3' }
 server_script 'MySQL/mysql-async.js'
 client_script 'MySQL/mysql-async-client.lua'
 
-server_script "@Ora_dep/MySQL/lib/MySQL.lua"
+server_script "@mysql-async/lib/MySQL.lua"
 server_script 'uuid.js'
 server_script 'server.lua'
 

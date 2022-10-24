@@ -34,15 +34,16 @@ RegisterNetEvent("Ora::CE::Game:InitGames")
 AddEventHandler("Ora::CE::Game:InitGames", function() InitGames() end)
 
 -- changes the auto-spawn flag
-function setAutoSpawn(enabled) 
+--[[function setAutoSpawn(enabled) 
     autoSpawnEnabled = enabled
-end
+end]]
 
 local firstSpawn = true
 AddEventHandler('playerSpawned', function(spawnInfo)
     if (firstSpawn) then
         InitGames()
-        setAutoSpawn(false)
+        --setAutoSpawn(false)
+        exports.spawnmanager:setAutoSpawn(false)
         firstSpawn = false
     end
 end)
