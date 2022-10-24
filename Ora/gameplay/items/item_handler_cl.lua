@@ -988,7 +988,7 @@ ItemsFunction = {
 
                 if (veh ~= 0 and GetVehiclePedIsIn(LocalPlayer().Ped, false) == 0) then
                     if (not DecorGetBool(veh, "drifttyres")) then
-                        exports['Ora_dep']:sendME("* L'individu change les roues du véhicule *")
+                        exports['Ora_utils']:sendME("* L'individu change les roues du véhicule *")
                         Ora.Inventory:RemoveFirstItem("driftwheels")
                         TriggerEvent("Ora:hideInventory")
 
@@ -1034,7 +1034,7 @@ ItemsFunction = {
 
                 if (veh ~= 0 and GetVehiclePedIsIn(LocalPlayer().Ped, false) == 0) then
                     if (DecorGetBool(veh, "drifttyres") or GetDriftTyresEnabled(veh, true)) then
-                        exports['Ora_dep']:sendME("* L'individu change les roues du véhicule *")
+                        exports['Ora_utils']:sendME("* L'individu change les roues du véhicule *")
 
                         Ora.Inventory:RemoveFirstItem("roadwheels")
                         TriggerEvent("Ora:hideInventory")
