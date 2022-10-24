@@ -5,6 +5,6 @@ client_scripts {
 }
 
 server_scripts {
-	'@Ora_dep/MySQL/lib/MySQL.lua',
+	'@mysql-async/lib/MySQL.lua',
 	'server.lua'
 }

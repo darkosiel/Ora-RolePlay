@@ -1,7 +1,7 @@
 fx_version "adamant"
 games {"gta5"}
 
-server_script "@Ora_dep/MySQL/lib/MySQL.lua"
+server_script "@mysql-async/lib/MySQL.lua"
 
 ui_page('ui/menus/ui_inventory/ui/dist/index.html')
 

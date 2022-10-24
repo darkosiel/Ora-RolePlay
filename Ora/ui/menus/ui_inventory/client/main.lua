@@ -7,7 +7,7 @@ local function HideInventory()
     if currentStorage and currentStorage.name ~= nil then currentStorage = {} end
     SetNuiFocus(false, false)
 	Ora.Inventory.State.IsOpen = false
-    if not washudoff then exports['Ora_dep']:SetPlayerHUD(true) end
+    if not washudoff then exports['Ora_utils']:SetPlayerHUD(true) end
 end
 
 local function OpenInventory()
@@ -31,16 +31,16 @@ local function OpenInventory()
             ShowNotification("Une erreur s'est produite ! Veuillez réessayer. Si le problème persiste, contactez un développeur.")
         end
     else
-        if not exports['Ora_dep']:GetPlayerHUD() then
+        if not exports['Ora_utils']:GetPlayerHUD() then
             washudoff = true
         else
-            exports['Ora_dep']:SetPlayerHUD(false)
+            exports['Ora_utils']:SetPlayerHUD(false)
             washudoff = false
         end
         SetNuiFocus(true, true)
         SendNUIMessage({
             eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
-            weapons = Ora.Inventory:GetWeapons(), bars = exports['Ora_dep'].GetPlayerBars()
+            weapons = Ora.Inventory:GetWeapons(), bars = exports['Ora_utils'].GetPlayerBars()
         })
     end
 end
@@ -54,7 +54,7 @@ local function RefreshSto()
         SendNUIMessage({
             eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
             weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-            bars = exports['Ora_dep'].GetPlayerBars()
+            bars = exports['Ora_utils'].GetPlayerBars()
         })
     end)
 end
@@ -80,12 +80,12 @@ local function Refresh()
         SendNUIMessage({
             eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
             weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-            bars = exports['Ora_dep'].GetPlayerBars()
+            bars = exports['Ora_utils'].GetPlayerBars()
         })
     else
         SendNUIMessage({
             eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, weapons = Ora.Inventory:GetWeapons(),
-            bars = exports['Ora_dep'].GetPlayerBars()
+            bars = exports['Ora_utils'].GetPlayerBars()
         })
     end
 end
@@ -101,7 +101,7 @@ local function RefreshStealing(closestPly)
             SendNUIMessage({
                 eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
                 weapons = Ora.Inventory:GetWeapons(), target = currPlayerInv, targWeight = {Ora.Inventory:GetTargetWeight(currPlayerInv), 40}, snoupix = true,
-                bars = exports['Ora_dep'].GetPlayerBars()
+                bars = exports['Ora_utils'].GetPlayerBars()
             })
         end,
         closestPly
@@ -109,10 +109,10 @@ local function RefreshStealing(closestPly)
 end
 
 local function OpenInvStorage()
-    if not exports['Ora_dep']:GetPlayerHUD() then
+    if not exports['Ora_utils']:GetPlayerHUD() then
         washudoff = true
     else
-        exports['Ora_dep']:SetPlayerHUD(false)
+        exports['Ora_utils']:SetPlayerHUD(false)
         washudoff = false
     end
     Ora.Inventory.State.IsOpen = true
@@ -120,15 +120,15 @@ local function OpenInvStorage()
     SendNUIMessage({
         eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
         weapons = Ora.Inventory:GetWeapons(), target = currentStorage.items, targWeight = {round(currentStorage.Weight), currentStorage.maxWeight},
-        bars = exports['Ora_dep'].GetPlayerBars()
+        bars = exports['Ora_utils'].GetPlayerBars()
     })
 end
 
 local function Fouilling(targetInv)
-    if not exports['Ora_dep']:GetPlayerHUD() then
+    if not exports['Ora_utils']:GetPlayerHUD() then
         washudoff = true
     else
-        exports['Ora_dep']:SetPlayerHUD(false)
+        exports['Ora_utils']:SetPlayerHUD(false)
         washudoff = false
     end
     Ora.Inventory.State.IsOpen = true
@@ -136,7 +136,7 @@ local function Fouilling(targetInv)
     SendNUIMessage({
         eventName = "showInventory", eventData = Ora.Inventory.Data, invWeight = Ora.Inventory.Weight, 
         weapons = Ora.Inventory:GetWeapons(), target = targetInv, targWeight = {Ora.Inventory:GetTargetWeight(targetInv), 40}, snoupix = true,
-        bars = exports['Ora_dep'].GetPlayerBars()
+        bars = exports['Ora_utils'].GetPlayerBars()
     })
 end
 
@@ -311,7 +311,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
                     if v ~= nil and v ~= false and v ~= 0 and GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()), GetEntityCoords(GetPlayerPed(v)), true) < 6.5 then
                         loadAnimDict("mp_common")
                         TaskPlayAnim(PlayerPedId(), "mp_common", "givetake1_b", 5.0, 1.0, 0.8, 48, 0.0, 0, 0, 0)
-                        if IsAWeapon(data.itemData.name) then exports['Ora_dep']:sendME('* L\'individu donne une arme à un autre individu. *') end
+                        if IsAWeapon(data.itemData.name) then exports['Ora_utils']:sendME('* L\'individu donne une arme à un autre individu. *') end
                         DeleteIfWeapon(data.itemData)
                         Ora.Inventory:GiveItemToPlayer(v, data.itemData, data.amount)
                         Refresh()
@@ -379,7 +379,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
         for i=1, #toDrop do
             DeleteIfWeapon(toDrop[i])
         end
-        if IsAWeapon(data.itemData.name) then exports['Ora_dep']:sendME('* L\'individu jette une arme par terre. *') end
+        if IsAWeapon(data.itemData.name) then exports['Ora_utils']:sendME('* L\'individu jette une arme par terre. *') end
         Ora.Inventory:Throw(toDrop)
         Refresh()
         toDrop = {}

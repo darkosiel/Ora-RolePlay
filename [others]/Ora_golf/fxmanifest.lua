@@ -22,7 +22,7 @@ server_scripts {
     'translations.lua',
     'config.lua',
     'shared/shared_utils.lua',
-    '@Ora_dep/MySQL/lib/MySQL.lua',
+    '@mysql-async/lib/MySQL.lua',
     'server/server.lua'
 }
 

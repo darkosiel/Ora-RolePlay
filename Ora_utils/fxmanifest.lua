@@ -18,7 +18,7 @@ client_scripts {
 server_scripts {
     --"sv_fuel.lua",
     "sv_alcohol.lua",
-    "@Ora_dep/MySQL/lib/MySQL.lua",
+    "@mysql-async/lib/MySQL.lua",
     "3dme_sv.lua",
     "sv_explosion.lua",
     "sv_utils.lua",

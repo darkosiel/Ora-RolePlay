@@ -111,7 +111,7 @@ client_script {
 }
 
 server_script {
-    "@Ora_dep/MySQL/lib/MySQL.lua",
+    "@mysql-async/lib/MySQL.lua",
     "config.lua",
     "server/server.lua",
     "server/app_tchat.lua",
