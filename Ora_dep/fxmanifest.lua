@@ -23,7 +23,7 @@ client_scripts {
     'module/activity/tv/config.lua',
     'module/activity/tv/client.lua',
 	'module/activity/3dme/3dme_cl.lua',
-	'module/activity/bennys/client.lua',
+	--'module/activity/bennys/client.lua',
 	'module/Utils/cl_status.lua',
 	'module/Utils/cl_utils.lua',
 	'weapon/client.lua',
@@ -32,7 +32,7 @@ server_scripts {
     'module/activity/tv/config.lua',
     'module/activity/tv/server.lua',
 	'module/activity/3dme/3dme_sv.lua',
-	'module/activity/bennys/server.lua',
+	--'module/activity/bennys/server.lua',
 	'module/Utils/sv_utils.lua',
 }
 
