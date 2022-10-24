@@ -26,6 +26,7 @@ client_scripts {
 	--'module/activity/bennys/client.lua',
 	'module/Utils/cl_status.lua',
 	'module/Utils/cl_utils.lua',
+	'module/Utils/clear_ped.lua.lua',
 	'weapon/client.lua',
 }
 server_scripts {
