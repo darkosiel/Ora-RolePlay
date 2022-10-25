@@ -152,7 +152,8 @@ weapon_name = {
     apppistol = "weapon_appistol",
     marksmanpistol = "weapon_marksmanpistol",
     fire_extinguisher = "WEAPON_FIREEXTINGUISHER",
-    lwrc = "weapon_LWRC"
+    lwrc = "WEAPON_LWRC",
+    vp9 = "WEAPON_VP9"
 }
 
 weapon_munition = {
@@ -160,6 +161,7 @@ weapon_munition = {
     ceramicpistol = "mm9",
     pistolcombat = "mm9",
     pitollourd = "mm9",
+    vp9 = "mm9",
     pistol50 = "snip",
     revolver = "snip",
     pistolvintage = "mm9",

@@ -2068,6 +2068,12 @@ Items = {
         actionCl = "weapon:Equip",
         category = "weapon"
     },
+    vp9 = {
+        label = "VP9",
+        weight = 3.0,
+        actionCl = "weapon:Equip",
+        category = "weapon"
+    },
     advancedrifle = {
         label = "Fusil avancé",
         weight = 3.0,
