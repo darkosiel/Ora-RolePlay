@@ -1709,7 +1709,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Fermier - Vente",
-                Pos = {x = 1677.87, y = 4881.57, z = 41.04},
+                Pos = {x = 1656.78, y = 4874.64, z = 42.04},
                 required = "farine",
                 price = math.random(18, 25),
                 add = "~p~- 1 Sac de farine"
