@@ -5301,7 +5301,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "LSSD", "Annonce", text, "CHAR_LSSD", 8)
+                            TriggerServerEvent("Job:Annonce", "BCSO", "Annonce", text, "CHAR_LSSD", 8)
                         end
                     end
                 },
@@ -5337,9 +5337,9 @@ Jobs = {
         Storage = {
             -- SandyShore
             {
-                Pos = {x = 1849.82, y = 3694.15, z = 29.27},
+                Pos = {x = -448.1734, y = 6013.8608, z = 36.00},
                 Limit = 99999999,
-                Name = "coffre Saisies"
+                Name = "coffre chef_bcso"
             },
             {
                 Pos = {x = 1860.7, y = 3688.35, z = 33.27},
