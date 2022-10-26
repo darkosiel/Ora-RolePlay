@@ -1768,6 +1768,16 @@ DP.Emotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
+   ["doglay"] = {"creatures@rottweiler@amb@sleep_in_kennel@", "sleep_in_kennel", "Dog Lay", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = false,
+   }},
+   ["dogsit"] = {"creatures@rottweiler@amb@world_dog_sitting@idle_a", "idle_b", "Dog Sit", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = false,
+   }},
    ["superhero"] = {"rcmbarry", "base", "Superhero", AnimationOptions =
    {
        EmoteLoop = true,
