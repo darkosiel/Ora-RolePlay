@@ -2962,7 +2962,7 @@ local Shops =
         --     Items = BasicShopsNorth,
         --     bzone = "lssd"
         -- }, --LTD NORD
-        --{
+        {
             Title = "LTD Grove Street",
             Pos = {x = -47.321, y = -1758.669, z = 28.45, a = 57.08},
             Blips = {
