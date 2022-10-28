@@ -1839,7 +1839,6 @@ DP.Emotes = {
        PtfxName = "ent_anim_dog_peeing",
        PtfxNoProp = true,
        PtfxPlacement = {-0.05, 0.3, 0.0, 0.0, 90.0, 90.0, 1.0},
-    --    PtfxInfo = "Config.Languages[Config.MenuLanguage]['pee']",
        PtfxWait = 3000,
    }},
 
@@ -2717,21 +2716,8 @@ DP.PropEmotes = {
        PtfxAsset = "scr_xs_celebration",
        PtfxName = "scr_xs_money_rain",
        PtfxPlacement = {0.0, 0.0, -0.09, -80.0, 0.0, 0.0, 1.0},
-    --    PtfxInfo = Config.Languages[Config.MenuLanguage]['makeitrain'],
+    --   PtfxInfo = Config.Languages[Config.MenuLanguage]['makeitrain'],
        PtfxWait = 500,
-   }},
-   ["camera"] = {"amb@world_human_paparazzi@male@base", "base", "Camera", AnimationOptions =
-   {
-       Prop = 'prop_pap_camera_01',
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-       EmoteLoop = true,
-       EmoteMoving = true,
-       PtfxAsset = "scr_bike_business",
-       PtfxName = "scr_bike_cfid_camera_flash",
-       PtfxPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0},
-    --    PtfxInfo = Config.Languages[Config.MenuLanguage]['camera'],
-       PtfxWait = 200,
    }},
    ["champagnespray"] = {"anim@mp_player_intupperspray_champagne", "idle_a", "Champagne Spray", AnimationOptions =
    {
@@ -2743,7 +2729,7 @@ DP.PropEmotes = {
        PtfxAsset = "scr_ba_club",
        PtfxName = "scr_ba_club_champagne_spray",
        PtfxPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-    --    PtfxInfo = Config.Languages[Config.MenuLanguage]['spraychamp'],
+       --PtfxInfo = Config.Languages[Config.MenuLanguage]['spraychamp'],
        PtfxWait = 500,
    }},
    ["joint"] = {"amb@world_human_smoking@male@male_a@enter", "enter", "Joint", AnimationOptions =
@@ -2826,38 +2812,6 @@ DP.PropEmotes = {
     EmoteLoop = true,
     EmoteMoving = true,
     }},
-    ["micro"] = {"anim@heists@humane_labs@finale@keycards", "ped_a_enter_loop", "Hold a microphone - ~g~ New", AnimationOptions =
-   {
-       Prop = "p_ing_microphonel_01",
-       PropBone = 18905,
-       PropPlacement = {0.11, 0.03, 0.03, -100.0, 0.0, -10.0},
-       EmoteMoving = true,
-       EmoteLoop = true
-   }},
-   ["micro2"] = {"anim@heists@humane_labs@finale@keycards", "ped_a_enter_loop", "Hold a microphone 2 - ~g~ New", AnimationOptions =
-   {
-       Prop = "prop_microphone_02",
-       PropBone = 18905,
-       PropPlacement = {0.11, 0.03, 0.03, -100.0, 0.0, -10.0},
-       EmoteMoving = true,
-       EmoteLoop = true
-   }},
-   ["micro3"] = {"missfra1", "mcs2_crew_idle_m_boom", "Hold a microphone 3 - ~g~ New", AnimationOptions =
-   {
-       Prop = "prop_v_bmike_01",
-       PropBone = 28422,
-       PropPlacement = {-0.08, 0.0, 0.0, 0.0, 0.0, 0.0},
-       EmoteMoving = true,
-       EmoteLoop = true
-   }},
-   ["camerabig"] = {"missfinale_c2mcs_1", "fin_c2_mcs_1_camman", "Hold A Camera - ~g~ New", AnimationOptions =
-   {
-       Prop = "prop_v_cam_01",
-       PropBone = 28422,
-       PropPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-       EmoteLoop = true,
-       EmoteMoving = true,
-   }},
    ["dgrave1"] = {"anim@amb@drug_field_workers@rake@male_a@base", "base", "Digging Grave ~g~ New", AnimationOptions =
    {
        EmoteMoving = true,
