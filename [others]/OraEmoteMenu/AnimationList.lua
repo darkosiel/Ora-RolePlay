@@ -45,7 +45,7 @@ DP.Walks = {
   ["Cop3"] = {"move_m@business@c"},
   ["Default Female"] = {"move_f@multiplayer"},
   ["Default Male"] = {"move_m@multiplayer"},
-  ["Drunk"] = {"move_m@drunk@a"},
+  --["Drunk"] = {"move_m@drunk@a"},
   ["Drunk"] = {"move_m@drunk@slightlydrunk"},
   ["Drunk2"] = {"move_m@buzzed"},
   ["Drunk3"] = {"move_m@drunk@verydrunk"},
@@ -195,6 +195,10 @@ DP.Shared = {
 
 DP.Dances = {
     ["uncle"] = {"anim@mp_player_intcelebrationfemale@uncle_disco", "uncle_disco", "Uncle Josh - ~g~ New", AnimationOptions =
+    {
+        EmoteLoop = true,
+    }},
+    ["respect"] = {"mp_player_int_upperbro_love", "mp_player_int_bro_love_fp", "Respect", AnimationOptions =
     {
         EmoteLoop = true,
     }},
@@ -372,6 +376,60 @@ DP.Dances = {
    {
        EmoteLoop = true
    }},
+   --Add emotes
+   ["woowalkinx"] = {"divined@rpack@new", "woowalkinx", "Woo Walk", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["bloodwalk"] = {"divined@rpack@new", "bloodwalk", "Blood Walk", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["cripwalk3"] = {"divined@rpack@new", "cripwalk3", "Crip Walk", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["shootit"] = {"divined@rpack@new", "shootit", "Shoot Dance", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["millyrocks"] = {"divined@rpack@new", "millyrocks", "Milly Rock", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["shmoney"] = {"divined@rpack@new", "shmoney", "Shmoney Dance", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["dougie"] = {"divined@rpack@new", "dougie", "Dougie", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["haiphuthon"] = {"divined@rpack@new", "haiphuthon", "Haiphuthon", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["curvette"] = {"divined@rpack@new", "curvette", "Curvette", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["tokyochall"] = {"divined@rpack@new", "tokyochall", "Tokyo Challenge", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["thotiana"] = {"divined@rpack@new", "thotiana", "Thotiana", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["moodswings"] = {"divined@rpack@new", "moodswings", "Moodswings Dance", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   ["whatyouknowboutlove"] = {"divined@rpack@new", "whatyouknowboutlove", "Pop Love", AnimationOptions =
+   {
+       EmoteLoop = true
+   }},
+   
    ["danceglowstick"] = {"anim@amb@nightclub@lazlow@hi_railing@", "ambclub_13_mi_hi_sexualgriding_laz", "Dance Glowsticks", AnimationOptions =
    {
        Prop = 'ba_prop_battle_glowstick_01',
@@ -1709,6 +1767,16 @@ DP.Emotes = {
    {
        EmoteLoop = true,
        EmoteMoving = true,
+   }},
+   ["doglay"] = {"creatures@rottweiler@amb@sleep_in_kennel@", "sleep_in_kennel", "Dog Lay", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = false,
+   }},
+   ["dogsit"] = {"creatures@rottweiler@amb@world_dog_sitting@idle_a", "idle_b", "Dog Sit", AnimationOptions =
+   {
+       EmoteLoop = true,
+       EmoteMoving = false,
    }},
    ["superhero"] = {"rcmbarry", "base", "Superhero", AnimationOptions =
    {
