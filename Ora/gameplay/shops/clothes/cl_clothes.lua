@@ -372,7 +372,7 @@ local accessToRemoveFemale = {
 }
 
 local chapeauToRemoveMale = {
-    [1] = true
+    [1] = false
 }
 local braseditInd = 1
 local tshirt1 = 1
@@ -439,10 +439,8 @@ local Clothes = {
             label = "Chapeau",
             component = 0,
             type = 1,
-            staticM = json.decode(Config.Hats),
-            staticF = json.decode(Config.HatsF),
-            remM = chapeauToRemoveMale,
-            remF = chapeauToRemoveFemale
+            staticM = {},
+            staticF = {}
         },
         {label = "Lunettes", component = 1, type = 1, staticM = j(Config.Glasses), staticF = j(Config.GlassesF)},
         {
@@ -745,6 +743,26 @@ Citizen.CreateThread(
                                     end
                                 end
 
+                                if (Clothes.component == 0) then
+                                    for hatIndex = 0,  GetNumberOfPedPropDrawableVariations(LocalPlayer().Ped, 0), 1 do 
+                                        if (Clothes.static[tostring(hatIndex)] == nil) then
+                                            Clothes.static[tostring(hatIndex)] = {}
+                                        end
+
+                                        local numberOfVariations = GetNumberOfPedPropTextureVariations(LocalPlayer().Ped, 0, hatIndex)
+                                    
+                                        if (numberOfVariations > 1) then
+                                            for y = 0, GetNumberOfPedPropTextureVariations(LocalPlayer().Ped, 0, hatIndex) - 1, 1 do 
+                                                Clothes.static[tostring(hatIndex)][tostring(y)] = {Label = "Chapeau #" .. hatIndex}
+                                            end
+                                        else
+                                            Clothes.static[tostring(hatIndex)][tostring(0)] = {Label = "Chapeau #" .. hatIndex}
+                                        end
+
+                                       
+                                    end
+                                end
+
                                 if (Clothes.component == 7) then
                                     for accessIndex = 0,  GetNumberOfPedDrawableVariations(LocalPlayer().Ped, 7), 1 do 
                                         if (Clothes.static[tostring(accessIndex)] == nil) then
@@ -775,10 +793,10 @@ Citizen.CreateThread(
                                     
                                         if (numberOfVariations > 1) then
                                             for y = 0, GetNumberOfPedTextureVariations(LocalPlayer().Ped, 6, oreilleIndex) - 1, 1 do 
-                                                Clothes.static[tostring(oreilleIndex)][tostring(y)] = {Label = "Chaussure #" .. oreilleIndex}
+                                                Clothes.static[tostring(oreilleIndex)][tostring(y)] = {Label = "Montre #" .. oreilleIndex}
                                             end
                                         else
-                                            Clothes.static[tostring(oreilleIndex)][tostring(0)] = {Label = "Chaussure #" .. oreilleIndex}
+                                            Clothes.static[tostring(oreilleIndex)][tostring(0)] = {Label = "Montre #" .. oreilleIndex}
                                         end
 
                                        
