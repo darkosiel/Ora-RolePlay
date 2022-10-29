@@ -25,7 +25,7 @@ Citizen.CreateThread(function()
 end)
 
 function nearAccessPoint(k, v, ped, pedCoords)
-    if exports["Ora"]:OraGetJob().name == "police" then
+    if exports["Ora"]:OraGetJob().name == "police" or "lssd"then
         Draw3DText(v.sign[1].x + config.main.signOffset[1], v.sign[1].y + config.main.signOffset[2], v.sign[1].z + config.main.signOffset[3], config.main.instructionalText, 4, 0.05, 0.05)
         if IsControlJustPressed(config.main.adjustButton[1], config.main.adjustButton[2]) then
             if config.main.developerMode then
