@@ -66,9 +66,9 @@ Citizen.CreateThread(
             
             HumeurInd = GetResourceKvpInt("Ora::CE::Humeur", 1)
 
-            local anim = emoteList[HumeurInd].dict
             ClearFacialIdleAnimOverride(ped)
             if HumeurInd >= 1 then
+                local anim = emoteList[HumeurInd].dict
                 SetFacialIdleAnimOverride(ped, anim, 0)
             end
         end)
