@@ -118,7 +118,7 @@ Ora.Config:SetDataCollection(
     [116] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Hair_M_000_M'},
     [117] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Hair_M_001_M'},
     --New
-    [118] = { library = 'mpbusiness_overlays', name = 'MP_Buis_M_Neck_000' },
+    --[[[118] = { library = 'mpbusiness_overlays', name = 'MP_Buis_M_Neck_000' },
     [119] = { library = 'mpbusiness_overlays', name = 'MP_Buis_M_Neck_001' },
     [120] = { library = 'mpbusiness_overlays', name = 'MP_Buis_M_Neck_002' },
     [121] = { library = 'mpbusiness_overlays', name = 'MP_Buis_M_Neck_003' },
@@ -564,7 +564,7 @@ Ora.Config:SetDataCollection(
     [558] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Tattoo_027_F'},
     [559] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Tattoo_028_F'},
     [560] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Tattoo_029_F'},
-    [561] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Tattoo_030_F'},
+    [561] = { library = 'mpgunrunning_overlays', name = 'MP_Gunrunning_Tattoo_030_F'},]]
 
   }
 )
