@@ -7277,6 +7277,19 @@ Jobs = {
                 Blipname = "USSS - Helipad"
             }
         },
+        work = {
+            vestiaire = {
+                type = "Vestiaire",
+                workSize = 1.45,
+                Pos = {x = -1290.15, y = -584.87, z = 34.37},
+                vestiaire = {
+                    type = "Vestiaire",
+                    workSize = 1.45,
+                    Pos = {x = -1290.15, y = -584.87, z = 34.37},
+                    Tenues = TenueUSSS
+                }
+            }
+        },
     },
     doj = {
         label = "Departement de la justice",
