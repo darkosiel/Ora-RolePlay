@@ -9,7 +9,7 @@ function OpenClotheRoom(type)
             ClotheTenues = TenueLSPD
         elseif Ora.Identity.Job:GetName() == "lssd" then
             ClotheTenues = TenueBCSO
-        elseif Ora.Identity.Orga:GetName() == "usss" then
+        elseif Ora.Identity.Job:GetName() == "usss" then
             ClotheTenues = TenueUSSS
         end
     else
