@@ -16,6 +16,9 @@ local PtfxNotif = false
 local PtfxPrompt = false
 local PtfxWait = 500
 local PtfxNoProp = false
+local lang = Config.MenuLanguage
+local isRequestAnim = false
+local requestedemote = ''
 
 RegisterKeyMapping('emote', 'Menu emote', 'keyboard', 'f3')
 RegisterCommand('emote', function()
@@ -84,6 +87,30 @@ Citizen.CreateThread(function()
     end
 end)
 
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(5)
+        if IsControlJustPressed(1, 246) and isRequestAnim then
+        target, distance = GetClosestPlayer()
+            if(distance ~= -1 and distance < 3) then
+                if DP.Shared[requestedemote] ~= nil then
+                    _,_,_,otheremote = table.unpack(DP.Shared[requestedemote])
+                elseif DP.Dances[requestedemote] ~= nil then
+                    _,_,_,otheremote = table.unpack(DP.Dances[requestedemote])
+                end
+                if otheremote == nil then otheremote = requestedemote end
+                TriggerServerEvent("OraEmoteMenu:ServerValidEmote", GetPlayerServerId(target), requestedemote, otheremote)
+                isRequestAnim = false
+            else
+                SimpleNotify(Config.Languages[lang]['nobodyclose'])
+            end
+        elseif IsControlJustPressed(1, 182) and isRequestAnim then
+            SimpleNotify(Config.Languages[lang]['refuseemote'])
+            isRequestAnim = false
+        end
+    end
+end)
+
 RegisterNUICallback("exit", function(data)
     display = false
     SetDisplay(false)
@@ -134,7 +161,9 @@ function EmoteStart(args)
             end
             return
         end
-        if DP.Emotes[name] ~= nil then
+        if DP.Shared[name] ~= nil then
+            if OnEmotePlay(DP.Shared[name], "shared") then end return
+        elseif DP.Emotes[name] ~= nil then
             if OnEmotePlay(DP.Emotes[name]) then end return
         elseif DP.Dances[name] ~= nil then
             if OnEmotePlay(DP.Dances[name]) then end return
@@ -148,7 +177,19 @@ function EmoteStart(args)
     end
 end
 
-function OnEmotePlay(EmoteName)
+function OnEmotePlay(EmoteName, type)
+
+    if (type == "shared") then
+        target, distance = GetClosestPlayer()
+        if(distance ~= -1 and distance < 3) then
+            _,_,rename = table.unpack(EmoteName)
+            TriggerServerEvent("OraEmoteMenu:ServerEmoteRequest", GetPlayerServerId(target), EmoteName)
+            SimpleNotify(Config.Languages[lang]['sentrequestto']..GetPlayerName(target))
+        else
+            SimpleNotify(Config.Languages[lang]['nobodyclose'])
+        end
+        return
+    end
 
     InVehicle = IsPedInAnyVehicle(PlayerPedId(), true)
     if not Config.AllowedInCars and InVehicle == 1 then
@@ -402,6 +443,42 @@ function EmoteCommandStart(source, args, raw)
   end
 end
 
+function SimpleNotify(message)
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(message)
+    DrawNotification(0,1)
+end
+
+function GetClosestPlayer()
+    local players = GetPlayers()
+    local closestDistance = -1
+    local closestPlayer = -1
+    local ply = GetPlayerPed(-1)
+    local plyCoords = GetEntityCoords(ply, 0)
+    for index,value in ipairs(players) do
+        local target = GetPlayerPed(value)
+        if(target ~= ply) then
+            local targetCoords = GetEntityCoords(GetPlayerPed(value), 0)
+            local distance = GetDistanceBetweenCoords(targetCoords["x"], targetCoords["y"], targetCoords["z"], plyCoords["x"], plyCoords["y"], plyCoords["z"], true)
+            if(closestDistance == -1 or closestDistance > distance) then
+                closestPlayer = value
+                closestDistance = distance
+            end
+        end
+    end
+    return closestPlayer, closestDistance
+end
+
+function GetPlayers()
+    local players = {}
+    for i = 0, 255 do
+        if NetworkIsPlayerActive(i) then
+            table.insert(players, i)
+        end
+    end
+    return players
+end
+
 RegisterNetEvent("OraEmoteMenu:ClientGetFavoriteEmoteList")
 AddEventHandler("OraEmoteMenu:ClientGetFavoriteEmoteList", function(status, data)
     if status == 'getFavorite' then
@@ -411,6 +488,56 @@ AddEventHandler("OraEmoteMenu:ClientGetFavoriteEmoteList", function(status, data
             type = "receiveFavorite",
             data = data
         })
+    end
+end)
+
+RegisterNetEvent("OraEmoteMenu:ClientEmoteRequestReceive")
+AddEventHandler("OraEmoteMenu:ClientEmoteRequestReceive", function(emotename, etype)
+    isRequestAnim = true
+    requestedemote = emotename
+
+    if etype == 'Dances' then
+        _,_,remote = table.unpack(requestedemote)
+    else
+        _,_,remote = table.unpack(requestedemote)
+    end
+
+    PlaySound(-1, "NAV", "HUD_AMMO_SHOP_SOUNDSET", 0, 0, 1)
+    SimpleNotify(Config.Languages[lang]['doyouwanna']..remote.."~w~)")
+end)
+
+RegisterNetEvent("OraEmoteMenu:SyncPlayEmote")
+AddEventHandler("OraEmoteMenu:SyncPlayEmote", function(emote, player)
+    EmoteCancel()
+    Wait(300)
+    -- wait a little to make sure animation shows up right on both clients after canceling any previous emote
+    if emote ~= nil then
+        if OnEmotePlay(emote) then end return
+    elseif emote ~= nil then
+        if OnEmotePlay(emote) then end return
+    end
+end)
+
+RegisterNetEvent("OraEmoteMenu:SyncPlayEmoteSource")
+AddEventHandler("OraEmoteMenu:SyncPlayEmoteSource", function(emote, player)
+    -- Thx to Poggu for this part!
+    local pedInFront = GetPlayerPed(GetClosestPlayer())
+    local heading = GetEntityHeading(pedInFront)
+    local coords = GetOffsetFromEntityInWorldCoords(pedInFront, 0.0, 1.0, 0.0)
+    if (emote) and (emote.AnimationOptions) then
+        local SyncOffsetFront = emote.AnimationOptions.SyncOffsetFront
+        if SyncOffsetFront then
+            coords = GetOffsetFromEntityInWorldCoords(pedInFront, 0.0, SyncOffsetFront, 0.0)
+        end
+    end
+    SetEntityHeading(PlayerPedId(), heading - 180.1)
+    SetEntityCoordsNoOffset(PlayerPedId(), coords.x, coords.y, coords.z, 0)
+    EmoteCancel()
+    Wait(300)
+    if emote ~= nil then
+        if OnEmotePlay(emote) then end return
+    elseif emote ~= nil then
+        if OnEmotePlay(emote) then end return
     end
 end)
 

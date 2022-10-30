@@ -9,17 +9,18 @@ const Wait = ms => new Promise(r=>setTimeout(r, ms))
 /**
   * Client
   */
-let phoneVisible = false
-let mouseFocus = false
-var frontCam = false
-var firstTime = false
-var takePictureBool = false
-var app = "";
-var appSub = "";
-var onTick
-var onTickCamera
-var phoneActive = false
-var canSetPhoneVisible = true
+let phoneVisible = false;
+let mouseFocus = false;
+let frontCam = false;
+let firstTime = false;
+let takePictureBool = false;
+let app = "";
+let appSub = "";
+let onTick;
+let onTickCamera;
+let onTickCallReceive;
+let phoneActive = false;
+let canSetPhoneVisible = true;
 
 RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'f2')
 RegisterCommand('phone', _=>setPhoneVisible(!phoneVisible))
@@ -75,7 +76,6 @@ async function setPhoneVisible(visible = true) {
         await anim.PhonePlayOut()
         // stop blocking controls on tick
         clearTick(onTick)
-        ClearAllPedProps(GetPlayerPed(GetPlayerFromServerId(source)));
         // bring them back
         EnableAllControlActions(1)
     }
@@ -98,7 +98,7 @@ function CellFrontCamActivate(activate) {
 DestroyMobilePhone()
 async function setCamera(activate) {
     if(activate) {
-        exports.Ora_utils.SetPlayerHUD(false)
+        exports.Ora_dep.SetPlayerHUD(false)
         onTickCamera = setTick(async () => {
             DisableControlAction(1, 200)
             if (IsControlJustPressed(1, 177)) { // -- CLOSE PHONE
@@ -109,22 +109,22 @@ async function setCamera(activate) {
                 })
                 setPhoneVisible(true)
                 stopTick();
-                exports.Ora_utils.SetPlayerHUD(true)
+                exports.Ora_dep.SetPlayerHUD(true)
             }
-            if (IsControlJustPressed(1, 27) && firstTime == false) { // -- SELFIE MODE
+            if (IsControlJustPressed(1, 27) && !firstTime) { // -- SELFIE MODE
                 firstTime = true
                 frontCam = !frontCam
                 CellFrontCamActivate(frontCam)
             }
-            if (IsControlJustPressed(1, 18) && takePictureBool == false) { // -- TAKE PICTURE
+            if (IsControlJustPressed(1, 18) && !takePictureBool) { // -- TAKE PICTURE
                 takePictureBool = true
                 takePicture()
             }
-            if (takePictureBool == false && phoneVisible == false) {
+            if (!takePictureBool && !phoneVisible) {
                 let text = "Appuyez sur ~INPUT_CELLPHONE_UP~ pour changer la caméra"
                 DisplayHelpText(text)
             }
-            if (phoneVisible == false) {
+            if (!phoneVisible) {
                 HideHudComponentThisFrame(1)
                 HideHudComponentThisFrame(2)
                 HideHudComponentThisFrame(3)
@@ -147,7 +147,7 @@ async function setCamera(activate) {
 }
 
 async function takePicture() {
-    await Wait(100)
+    await Wait(200)
     SendNUIMessage({
         type: "take_picture",
         app: app,
@@ -158,12 +158,13 @@ async function takePicture() {
     CellCamActivate(false, false)
     setPhoneVisible(true)
     await Wait(500)
-    exports.Ora_utils.SetPlayerHUD(true)
+    exports.Ora_dep.SetPlayerHUD(true)
 }
 
 async function stopTick() {
-    await Wait(100)
-    clearTick(onTickCamera)
+    await Wait(100);
+    clearTick(onTickCamera);
+    clearTick(onTickCallReceive);
 }
 
 function DisplayHelpText(str) {
@@ -217,9 +218,10 @@ onNet('OraPhone:client:updateCalls', data => {
 
 // Call
 
-onNet('OraPhone:client:callStarted', _ => {
+onNet('OraPhone:client:callStarted', async (targetNumber) => {
     SendNUIMessage({
         type: 'callStarted',
+        targetNumber: targetNumber,
     })
 })
 
@@ -232,13 +234,30 @@ onNet('OraPhone:client:callFinished', _ => {
     })
 })
 
-onNet('OraPhone:client:receiveCall', async (fromNumber, chan, video=false) => {
+onNet('OraPhone:client:receiveCall', async (fromNumber, targetNumber, chan, video=false) => {
     SendNUIMessage({
         type: 'receiveCall',
-        fromNumber,
+        fromNumber: fromNumber,
+        targetNumber: targetNumber,
         channel: chan,
-        video,
+        video: video,
     })
+    if (!phoneVisible) {
+        onTickCallReceive = setTick(async () => {
+            if (IsControlJustPressed(1, 201)) { // -- Press Enter
+                SendNUIMessage({
+                    type: "takeCall",
+                })
+                stopTick();
+            }
+            if (IsControlJustPressed(1, 202)) { // -- Press Enter
+                SendNUIMessage({
+                    type: "cancelCall",
+                })
+                stopTick();
+            }
+        })
+    }
 })
 
 onNet('OraPhone:client:receiver_offline', _ => {
@@ -250,10 +269,11 @@ onNet('OraPhone:client:receiver_offline', _ => {
 
 // Messages
 
-onNet('OraPhone:client:update_messages', data => {
+onNet('OraPhone:client:update_messages', async (data, type = false) => {
     SendNUIMessage({
         type: 'update_conversations',
-        conversations: data
+        conversations: data,
+        updatetype: type
     })
 })
 
@@ -379,26 +399,7 @@ on('__cfx_nui:call_number', data => {
     SendNUIMessage({
         type: 'callNumberResponse'
     })
-    if (/[a-zA-Z]/.test(data.targetNumber)) {
-        let listJobPlayer = [];
-        for (let job of data.targetNumber.split('/')) {
-            console.log("data targetNumber", job)
-            exports.Ora.TriggerServerCallback(
-                "Ora::Service:GetJobService",
-                function(job) {
-                    console.log("in retunr functioin", job)
-                    for (let player of job) {
-                        listJobPlayer.push(player);
-                    }
-                    emitNet('OraPhone:server:call_number', data.fromNumber, listJobPlayer, data.targetNumber)
-                },
-                job
-            );
-        }
-        
-    } else {
-        emitNet('OraPhone:server:call_number', data.fromNumber, data.targetNumber, "person")
-    }
+    emitNet('OraPhone:server:call_number', data.fromNumber, data.targetNumber)
 })
 
 RegisterNuiCallbackType('accept_call')
@@ -411,6 +412,7 @@ on('__cfx_nui:accept_call', channel => {
 RegisterNuiCallbackType('end_call')
 on('__cfx_nui:end_call', _ => {
     console.log('nui end call received')
+    stopTick();
     emitNet('OraPhone:server:end_call')
 })
 
@@ -441,6 +443,15 @@ on('__cfx_nui:message_delete_conversation', data => {
     emitNet('OraPhone:server:message_delete_conversation', data)
 })
 
+RegisterNuiCallbackType('message_update_read_conversation')
+on('__cfx_nui:message_update_read_conversation', data => {
+    if (!data.id && !data.number) { 
+        console.error('missing id and number')
+        return
+    }
+    emitNet('OraPhone:server:message_update_read_conversation', data)
+})
+
 RegisterNuiCallbackType('refresh_conversations')
 on('__cfx_nui:refresh_conversations', data => {
     emitNet('OraPhone:server:refresh_conversations', data)
@@ -452,10 +463,20 @@ on('__cfx_nui:add_message', data => {
         let WaypointHandle = GetFirstBlipInfoId(8)
         if (DoesBlipExist(WaypointHandle)) {
             let waypointCoords = GetBlipInfoIdCoord(WaypointHandle) 
-            console.log(waypointCoords)
             data.message = `GPS: ${waypointCoords[0]}, ${waypointCoords[1]}, ${waypointCoords[2]}`;
         } else {
             return;
+        }
+    }
+    for (let number of data.targetNumber) {
+        if (number.number != data.number && /[a-zA-Z]/.test(number.number)) {
+            let jobs = number.number.split("/")
+            const ped = GetPlayerPed(-1)
+            const [x, y, z] = GetEntityCoords(ped)
+            const position = {x: x, y: y, z: z}
+            for (let job of jobs) {
+                emitNet("call:makeCall2", job, position, data.message)
+            }
         }
     }
     emitNet('OraPhone:server:add_message', data)

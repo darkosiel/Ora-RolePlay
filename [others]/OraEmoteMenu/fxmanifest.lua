@@ -8,14 +8,13 @@ shared_scripts {
 }
 
 client_scripts {
-    "client/main.lua",
     "Config.lua",
+    "client/main.lua",
 }
 
 server_scripts {
     "server/main.lua",
-    -- '@Framework/lib/MySQL.lua',
-    '@mysql-async/lib/MySQL.lua',
+    "@Ora_dep/MySQL/lib/MySQL.lua"
 }
 
 files {

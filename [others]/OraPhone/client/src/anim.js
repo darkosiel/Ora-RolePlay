@@ -82,7 +82,7 @@ function deletePhone() {
 	out || text || Call ||
 //*///
 async function PhonePlayAnim(state, freeze, force) {
-    if(currentStatus == state && force != true) {
+    if(currentStatus == state && !force) {
         return
     }
 
@@ -100,7 +100,7 @@ async function PhonePlayAnim(state, freeze, force) {
         StopAnimTask(myPedId, lastDict, lastAnim, 1.0)
     }
     let flag = 50
-    if(freeze == true ) {
+    if(freeze) {
         flag = 14
     }
     TaskPlayAnim(myPedId, dict, anim, 3.0, -1, -1, flag, 0, false, false, false)

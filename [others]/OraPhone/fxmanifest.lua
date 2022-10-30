@@ -2,7 +2,7 @@ fx_version "cerulean"
 games { "gta5" }
 
 dependencies {
-    'pma-voice',
+    "saltychat"
 }
 
 server_scripts {

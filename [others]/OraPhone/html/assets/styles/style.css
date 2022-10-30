@@ -538,7 +538,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   font-size: 42px;
   line-height: 52px;
   font-weight: normal;
-  font-family: "Public Sans", sans-serif;
+  font-family: "Public Sans";
   transition: all 0.3s ease-in-out;
 }
 .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.app-body-content-body-list-item-time {
@@ -941,6 +941,26 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   color: #000000;
 }
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-left div.message-list-item-left-avatar i {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-left div.message-list-item-left-notread {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  bottom: 7px;
+  right: 7px;
+  text-align: center;
+  border-radius: 50%;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-left div.message-list-item-left-notread {
+  background-color: #FF3B30;
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-left div.message-list-item-left-notread {
+  background-color: #FF453A;
   color: #FFFFFF;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app.app-modal div.app-body div.app-body-content div.app-body-content-body div.app-body-content-body-list div.app-body-content-body-list-item div.message-list-item-right {
@@ -1392,6 +1412,26 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   height: 0.795px;
   background: red;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item div.app-home-list-item-notread, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item div.app-home-list-item-notread {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  bottom: 6px;
+  right: 6px;
+  text-align: center;
+  border-radius: 50%;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item div.app-home-list-item-notread, .theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item div.app-home-list-item-notread {
+  background-color: #FF3B30;
+  color: #FFFFFF;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list div.app-home-list-item div.app-home-list-item-notread, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary div.app-home-list-item div.app-home-list-item-notread {
+  background-color: #FF453A;
+  color: #FFFFFF;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div.app-home-list .icons-list, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-home div#app-home-list-primary .icons-list {
   width: 100%;
   height: 100%;
@@ -1739,7 +1779,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-clock div.app-body div.app-body-content div.app-body-content-body div.app-clock-time-select div.time-select div.time-select-number span {
   font-size: 50px;
-  font-family: "Public Sans", sans-serif;
+  font-family: "Public Sans";
   width: 63px;
   text-align: center;
   transition: all 0.3s ease-in-out;
@@ -1825,7 +1865,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   font-size: 70px;
   line-height: 84px;
   font-weight: 300;
-  font-family: "Public Sans", sans-serif;
+  font-family: "Public Sans";
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -1876,7 +1916,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   line-height: 24px;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-clock div.app-body div.app-body-content#app-clock-body-content-stopwatch div.app-body-content-body #stopwatch-list-loop .loop .time {
-  font-family: "Public Sans", sans-serif;
+  font-family: "Public Sans";
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-clock div.app-body div.app-body-content#app-clock-body-content-timer div.app-body-content-body {
   display: flex;
@@ -1891,7 +1931,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   font-size: 70px;
   line-height: 84px;
   font-weight: 300;
-  font-family: "Public Sans", sans-serif;
+  font-family: "Public Sans";
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -2188,7 +2228,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation * {
   transition: all 0.5s;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation span.date {
   position: absolute;
   top: 10px;
   font-size: 14px;
@@ -2198,13 +2238,13 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   opacity: 0;
   z-index: 4;
 }
-.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation date {
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation span.date {
   color: #3c3c43;
 }
-.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation date {
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation span.date {
   color: #ebebf5;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation date b {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation span.date b {
   font-weight: normal;
   font-family: "SF UI Text Bold";
 }
@@ -2239,14 +2279,14 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage, .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
   color: #FFFFFF;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage date, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage span.date, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem span.date {
   top: -20px;
   font-size: 12px;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover {
   transform: translateY(18px);
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover date, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:hover span.date, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:hover span.date {
   opacity: 1;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:before, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage:after, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:before, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem:after {
@@ -2309,7 +2349,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage {
   background-color: #0A84FF;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .myMessage span.date {
   left: auto;
   right: 0;
 }
@@ -2341,7 +2381,7 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 .theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem {
   color: #000000;
 }
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem date {
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-conversation .messages .fromThem span.date {
   right: auto;
   left: 0;
 }
@@ -2951,6 +2991,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   width: 220px;
   background-color: transparent;
   cursor: pointer;
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--value) - var(--min)) / var(--range));
+  --sx: calc(1 * (220px / var(--max)) + var(--ratio) * (100% - (220px / var(--max))));
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content div.app-body-content-body div.settings-list div.settings-list-item.column div.settings-list-item-bottom input.settings-slider::-webkit-slider-thumb, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content div.app-body-content-body div#settings-profile div.settings-list-item.column div.settings-list-item-bottom input.settings-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -2973,11 +3016,6 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   width: 100%;
   height: 3px;
   cursor: pointer;
-}
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content div.app-body-content-body div.settings-list div.settings-list-item.column div.settings-list-item-bottom input.settings-slider, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content div.app-body-content-body div#settings-profile div.settings-list-item.column div.settings-list-item-bottom input.settings-slider {
-  --range: calc(var(--max) - var(--min));
-  --ratio: calc((var(--value) - var(--min)) / var(--range));
-  --sx: calc(1 * (220px / var(--max)) + var(--ratio) * (100% - (220px / var(--max))));
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content div.app-body-content-body div.settings-list div.settings-list-item div.settings-list-item-left, div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-settings div.app-body div.app-body-content div.app-body-content-body div#settings-profile div.settings-list-item div.settings-list-item-left {
   display: flex;
@@ -5041,6 +5079,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   width: 155px;
   height: 70px;
   margin: 0;
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--value) - var(--min)) / var(--range));
+  --sx: calc(1 * (155px / var(--max)) + var(--ratio) * (100% - (155px / var(--max))));
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-topbar div#topbar-content div.topbar-content-row div.topbar-box#topbar-box-slider div.topbar-box-button input[type=range].topbar-box-button-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -5055,13 +5096,6 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   height: 70px;
   border: none;
   box-shadow: none;
-}
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-topbar div#topbar-content div.topbar-content-row div.topbar-box#topbar-box-slider div.topbar-box-button input[type=range].topbar-box-button-slider {
-  --range: calc(var(--max) - var(--min));
-  --ratio: calc((var(--value) - var(--min)) / var(--range));
-  --sx: calc(1 * (155px / var(--max)) + var(--ratio) * (100% - (155px / var(--max))));
-}
-div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-topbar div#topbar-content div.topbar-content-row div.topbar-box#topbar-box-slider div.topbar-box-button input[type=range].topbar-box-button-slider::-webkit-slider-runnable-track {
   background: linear-gradient(#ffffff, #ffffff) 0/var(--sx) 100% no-repeat, transparent;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-topbar div#topbar-content div.topbar-content-row div.topbar-box#topbar-box-slider div.topbar-box-button i {
@@ -5716,10 +5750,9 @@ div#page div#image-fullscreen img {
   display: flex;
   align-items: center;
   font-size: 14px;
-  width: 100%;
   -webkit-animation: menuItemAnimation 0.2s 0s both;
           animation: menuItemAnimation 0.2s 0s both;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter";
   cursor: pointer;
 }
 .theme--default .contextMenu-button {

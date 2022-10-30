@@ -24,40 +24,39 @@ const renameIcon =      `<svg viewBox="0 0 20 20" width="13" height="13" stroke-
 // --- Variables par défauts
 
 // Affichage
-var menuSelected = "home";
-var menuSelectedLast = "home";
-var menuAppSelected = "first";
-var menuAppSelectedLast = "first";
-var displayToggle = false;
-var displayTopbarToggle = false;
-var formatOrientation = "portrait"
-var phoneBottomShow = "30px";
-var phoneBottomShowLandscape = "-150px";
-var phoneBottomShowNot = "-900px";
-var phoneLockToggle = false;
-var lockIconSnoozeEffect = false;
-var contextMenuItemClicked;
-var notificationMode = "normal"; // normal / nosound / none
-var phoneActive = false;
-var phoneTest = false;
+let menuSelected = "home";
+let menuSelectedLast = "home";
+let menuAppSelected = "first";
+let menuAppSelectedLast = "first";
+let displayToggle = false;
+let displayTopbarToggle = false;
+let formatOrientation = "portrait"
+let phoneBottomShow = "30px";
+let phoneBottomShowLandscape = "-150px";
+let phoneBottomShowNot = "-900px";
+let phoneLockToggle = false;
+let lockIconSnoozeEffect = false;
+let contextMenuItemClicked;
+let notificationMode = "normal"; // normal / nosound / none
+let phoneActive = false;
+let phoneTest = false;
 
 // App Home
-var pageSelectedStart = 1;  
-var hasChangePageOnDrag = false;
-var mousePosition;
-var mousePosition = {
+let pageSelectedStart = 1;  
+let hasChangePageOnDrag = false;
+let mousePosition = {
     x: null,
     y: null
 };
-var offset = [0,0];
-var pageSelected;
-var isDown = false;
-var contextMenuHomeTarget;
+let offset = [0,0];
+let pageSelected;
+let isDown = false;
+let contextMenuHomeTarget;
 
 // App Clock
-var activateAppClockToggle = false;
-var alarmList = [];
-var stopWatch = {
+let activateAppClockToggle = false;
+let alarmList = [];
+let stopWatch = {
     stopStart: false,
     loopShow: false,
     loopNumber: 0,
@@ -66,7 +65,7 @@ var stopWatch = {
     mm: 0,
     ss: 0
 };
-var timer = {
+let timer = {
     stopStart: false,
     loopShow: false,
     isFinish: false,
@@ -77,73 +76,73 @@ var timer = {
 };
 
 // App Store
-var isDownloadApp = false;
+let isDownloadApp = false;
 
 // Settings / Data info
-var userData;
-var darkMode = false;
-var wallpaperActive = "wallpaper-midnight";
-var wallpaperLockActive = "wallpaper-midnight";
-var soundNotificationActive = "notification-magic";
-var soundNotification = "";
-var soundNotificationVolume = 5;
-var soundRingingActive = "ringing-iosoriginal";
-var soundRinging = "";
-var soundRingingVolume = 5;
-var soundAlarmActive = "alarm-iosradaroriginal";
-var soundAlarm = "";
-var soundAlarmVolume = 5;
-var soundCallWait = "";
-var generalZoomActive = "zoom100%";
-var generalZoom = "75%";
-var serialNumber = "";
-var firstName = "";
-var lastName = "";
-var phoneNumber = "";
-var luminosityActive = 10;
-var volumeActive = 10;
+let userData;
+let darkMode = false;
+let wallpaperActive = "wallpaper-midnight";
+let wallpaperLockActive = "wallpaper-midnight";
+let soundNotificationActive = "notification-magic";
+let soundNotification = "";
+let soundNotificationVolume = 5;
+let soundRingingActive = "ringing-iosoriginal";
+let soundRinging = "";
+let soundRingingVolume = 5;
+let soundAlarmActive = "alarm-iosradaroriginal";
+let soundAlarm = "";
+let soundAlarmVolume = 5;
+let soundCallWait = "";
+let generalZoomActive = "zoom100%";
+let generalZoom = "75%";
+let serialNumber = "";
+let firstName = "";
+let lastName = "";
+let phoneNumber = "";
+let luminosityActive = 10;
+let volumeActive = 10;
 
 // App Call
-var inReceiveCall = false;
-var inCall = false;
-var callData = "";
+let inReceiveCall = false;
+let inCall = false;
+let callData = "";
 
 // App Contact
-var contactId;
-var contactPhoneNumber;
-var contactName;
-var contactAvatar;
+let contactId;
+let contactPhoneNumber;
+let contactName;
+let contactAvatar;
 // Save Call Notification
-var callNotification;
-var callNotificationLock;
+let callNotification;
+let callNotificationLock;
 
 // App Message
-var conversationAuthors = [];
-var conversationId = "";
-var messageTargetNumber = "";
-var longpress = true;
-var startTime, endTime;
-var gridPage1 = "";
+let conversationAuthors = [];
+let conversationId = "";
+let messageTargetNumber = "";
+let longpress = true;
+let startTime, endTime;
+let gridPage1 = "";
 
 // App Richter Motorsport
-var RichterMotorSportCurrentAdvertisement;
+let RichterMotorSportCurrentAdvertisement;
 
 // App Camera
-var canvasActivate = false;
+let canvasActivate = false;
 
 // App Notes
-var notesListItem = false;
-var notesNoteInputToggle = true;
-var notesFolderContextMenu;
-var notesNoteContextMenu;
+let notesListItem = false;
+let notesNoteInputToggle = true;
+let notesFolderContextMenu;
+let notesNoteContextMenu;
 
 // App Maps
-var map;
-var markerList = [];
-var markerFavoriteList = [];
-var mapsIntervalMyPosition;
-var markerMyPosition;
-var bounds;
+let map;
+let markerList = [];
+let markerFavoriteList = [];
+let mapsIntervalMyPosition;
+let markerMyPosition;
+let bounds;
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 
@@ -157,7 +156,7 @@ $(function(){
 
             // Intérception fonction Lua
             window.addEventListener('message', async (event) => {
-                var item = event.data;
+                let item = event.data;
                 if (item == undefined) {
                     return;
                 }
@@ -174,6 +173,13 @@ $(function(){
                     case "callStarted":
                         updateAppContent("callstarted");
                         stopSounds();
+                        let name = item.targetNumber;
+                        for(let contact of userData.contacts) {
+                            if(contact.number.toString() == item.targetNumber.toString()) {
+                                name = contact.name;
+                            }
+                        }
+                        $("#callstarted-number").html("Appel en cours avec" + "<br/>" + name);
                         $("#callstarted-time").html("00:00");
                         let callStartedSec = 0
                         let callStartedMin = 0
@@ -233,7 +239,9 @@ $(function(){
                         break;
                     case "update_conversations":
                         userData.conversations = item.conversations;
-                        updateAppMessageLoad(conversationId);
+                        if (item.updatetype != "update_read") {
+                            updateAppMessageLoad(conversationId);
+                        }
                         updateConversationList();
                         break;
                     case "new_notification":
@@ -281,6 +289,13 @@ $(function(){
                     case "updateMapsMyPosition":
                         let newLatLng = new L.LatLng(item.position[1], item.position[0]);
                         markerMyPosition.setLatLng(newLatLng);
+                        break;
+                    case "takeCall":
+                        takeCall();
+                        break;
+                    case "cancelCall":
+                        $.post('https://OraPhone/end_call', JSON.stringify({}));
+                        break;
                 }
             });
 
@@ -301,7 +316,6 @@ $(function(){
             }
             // Gestion du clique droit
             $("#phone").bind("contextmenu",function() {
-                // updateContent(menuSelectedLast);
                 // return false;
             });
             // Gestion entrer/sortie des inputs
@@ -354,7 +368,7 @@ $(function(){
                     if (e.key === 'Enter' || e.keyCode === 13) {
                         if (messageInput.val() != "") {
                             // if (/^https:\/\/i.imgur.com\/[a-zA-Z0-9_.-]+.jpg$/.test(messageInput.val())) {
-                            //     let newMessageDiv = '<div class="myMessage"><p>Bonjour</p><date><b>Mike</b> 10:29</date></div>';
+                            //     let newMessageDiv = '<div class="myMessage"><p>Bonjour</p><span class="date"><b>Mike</b> 10:29</span></div>';
                             //     $('.app-message-conversation .messages').append(newMessageDiv);
                             // }
                             messageInput.val("");
@@ -369,7 +383,7 @@ $(function(){
             }
             // $("#add-notification").click(function() {
             //     // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
-            //     $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
+            //     $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
             // });
             // $("#add-call").click(function() {
             //     // callNumber("5556585");
@@ -377,7 +391,7 @@ $(function(){
             //     // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
             // });
             // $("#refresh-contacts").click(function() {
-            //     // $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phone_id: userData.phone.id }));
+            //     // $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phoneId: userData.phone.id }));
             // });
             // $("#save-home").click(function() {
             //     // saveHomeOrder();
@@ -629,12 +643,12 @@ function initializeAppContacts() {
             let profileIcon = ($("#editcontact-icon-custom-input").val() != '' && $("#editcontact-icon-custom-input").val().includes('http') ? $("#editcontact-icon-custom-input").val() : $("#editcontact-profile-icon").data("title"));
             let profilePhoneNumber = "555" + $("#editcontact-phone-number-input").val();
             let profileName = ($("#editcontact-name-input").val() != '' ? $("#editcontact-name-input").val() : "Nouveau Contact");
-            $.post('https://OraPhone/update_contact', JSON.stringify({ id: contactId, phone_id: userData.phone.id, data: { name: profileName, number: profilePhoneNumber, avatar: profileIcon } }));
+            $.post('https://OraPhone/update_contact', JSON.stringify({ id: contactId, phoneId: userData.phone.id, data: { name: profileName, number: profilePhoneNumber, avatar: profileIcon } }));
             updateAppContent("list");
         }
     });
     $("#editcontact-remove-button").click(function() {
-        $.post('https://OraPhone/delete_contact', JSON.stringify({ id: contactId, phone_id: userData.phone.id }));
+        $.post('https://OraPhone/delete_contact', JSON.stringify({ id: contactId, phoneId: userData.phone.id }));
         updateAppContent("list");
     });
     $("#app-contacts-body-content-list-search-reset").click(function() {
@@ -666,7 +680,7 @@ function initializeAppMessage() {
         if(conversationAuthors.length < 2) {
             return;
         }
-        $.post('https://OraPhone/message_create_conversation', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number , authors: conversationAuthors }));
+        $.post('https://OraPhone/message_create_conversation', JSON.stringify({ phoneId: userData.phone.id, number: userData.phone.number , authors: conversationAuthors }));
         updateAppContent("message");
     });
     $("#app-message-body-content-list-search-reset").click(function() {
@@ -699,37 +713,7 @@ function initializeAppCall() {
         $.post('https://OraPhone/end_call', JSON.stringify({}));
     });
     $("#callreceive-button-pickup").click(function() {
-        inReceiveCall = false;
-        inCall = true;
-        updateAppContent("callstarted");
-        stopSounds();
-        $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
-        if(callNotification != null && callNotification != undefined) {
-            callNotification.style.opacity = "0";
-            callNotificationLock.style.opacity = "0";
-            setTimeout(function() {
-                callNotification.remove();
-                callNotificationLock.remove();
-                if($("#notification-container").children().length == 0 && !displayToggle) {
-                    $("#phone").css("bottom", phoneBottomShowNot);
-                }
-            }, 750);
-        }
-        $("#callstarted-time").html("00:00");
-        let callStartedSec = 0
-        let callStartedMin = 0
-        let callStartedTimer = setInterval(function() {
-            $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
-            if(callStartedSec == 59) {
-                callStartedSec = 0;
-                callStartedMin++;
-            } else {
-                callStartedSec++;
-            }
-            if(!inCall) {
-                clearInterval(callStartedTimer);
-            }
-        }, 1000);
+        takeCall();
     });
     $("#callstarted-button-hangup").click(function() {
         $.post('https://OraPhone/end_call', JSON.stringify({}));
@@ -1185,16 +1169,16 @@ function initializeAppCalculator() {
         });
     });
     $(function(){
-        var OperatorStatus = false;
-        var OperatorEqualStage = false;
-        var historyReset = false;
-        var NumberValue_first = 0;
-        var NumberValue_secend = 0;
-        var ScreenTotal = 0;
-        var Operators = "";
-        var PointLength_first = 0;
-        var PointLength_secend = 0;
-        var PointLengthMax = Math.max(PointLength_first, PointLength_secend);
+        let OperatorStatus = false;
+        let OperatorEqualStage = false;
+        let historyReset = false;
+        let NumberValue_first = 0;
+        let NumberValue_secend = 0;
+        let ScreenTotal = 0;
+        let Operators = "";
+        let PointLength_first = 0;
+        let PointLength_secend = 0;
+        let PointLengthMax = Math.max(PointLength_first, PointLength_secend);
         $("#calculator-result span").text("0");
         $(".Number-btn").click(function() {
             if(historyReset) {
@@ -1540,8 +1524,8 @@ function initializeAppMaps() {
             return Math.log(sc) / 0.6931471805599453;
         },
         distance: function(pos1, pos2) {
-            var x_difference = pos2.lng - pos1.lng; 
-            var y_difference = pos2.lat - pos1.lat;
+            let x_difference = pos2.lng - pos1.lng; 
+            let y_difference = pos2.lat - pos1.lat;
             return Math.sqrt(x_difference * x_difference + y_difference * y_difference);
         },
         transformation: new L.Transformation(scale_x, center_x, -scale_y, center_y),
@@ -1573,7 +1557,7 @@ function initializeAppMaps() {
     markerMyPosition = L.marker([0, 0], {icon: customIcon("6")}).addTo(map).bindPopup("Ma position");
 
     for (let blip of Blips) {
-        let marker = L.marker([blip.Pos.y, blip.Pos.x], {icon: customIcon(blip.sprite, blip.color), riseOnHover: true}).addTo(map).bindPopup(blip.name);
+        let marker = L.marker([blip.Pos.y, blip.Pos.x], {icon: customIcon(blip.sprite), riseOnHover: true}).addTo(map).bindPopup(blip.name);
         marker.on("click", function() {
             map.setView([blip.Pos.y, blip.Pos.x], 4);
         });
@@ -1709,7 +1693,7 @@ function updateAppContacts() {
         let divItem = "";
         for (let contact of userData.contacts) {
             if (contact.name.substring(0,1).toLowerCase() == String.fromCharCode(i).toLowerCase()) {
-                divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div><div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div>" + (!/[a-zA-Z]/.test(contact.number) ? "<div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div>" : "") + "</div></div>";
+                divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div>" + (!/[a-zA-Z]/.test(contact.number) ? "<div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div>" : "") + (!/[a-zA-Z]/.test(contact.number) ? "<div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div>" : "") + "</div></div>";
             }
         }
         if(divItem != "") {
@@ -1750,20 +1734,18 @@ function updateAppContacts() {
         callNumber($(this).data("number"));
     });
     $(".message-contact").click(function() {
-            conversationAuthors = [];
-            for(let contact of document.querySelectorAll("#newmessage-list .newmessage-list-item")) {
-                if(contact.classList.contains("active")) {
-                    conversationAuthors.push(contact.dataset.number);
-                }
-            }
-            conversationAuthors.push($(this).data("number"));
-            conversationAuthors.push(userData.phone.number);
-            if(conversationAuthors.length < 2) {
-                return;
-            }
-            $.post('https://OraPhone/message_create_conversation', JSON.stringify({ phone_id: userData.phone.id, number: userData.phone.number , authors: conversationAuthors }));
-            updateContent("message")
-            updateAppContent("message");
+        conversationAuthors = [];
+        conversationAuthors.push($(this).data("number"));
+        conversationAuthors.push(userData.phone.number);
+        if(conversationAuthors.length < 2) {
+            return;
+        }
+        $.post('https://OraPhone/message_create_conversation', JSON.stringify({ phoneId: userData.phone.id, number: userData.phone.number , authors: conversationAuthors }));
+        updateAppMessageLoad();
+        updateContent("message");
+        updateAppContent("message");
+        let elementMessages = document.querySelector(".app-message-conversation .messages");
+        elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
     });
     // Inisialisation de la liste de l'alphabet
     $("#contacts-list-alphabet span").click(function() {
@@ -1799,7 +1781,7 @@ function updateAppContacts() {
 function updateAppMessage() {
     $('#newmessage-list').empty();
     for(let contact of userData.contacts) {
-        if(contact.number.toString().length == 7) {
+        if(contact.number.toString().length == 7 && /555\d{4}/.test(contact.number.toString())) {
             let div = "<div data-number='" + contact.number + "' data-name='" + contact.name + "' class='newmessage-list-item'><div class='newmessage-list-item-left'><div class='newmessage-list-item-left-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/><i class='fa-solid fa-check'></i></div></div><div class='newmessage-list-item-right'><div class='newmessage-list-item-right-header'><span class='newmessage-list-item-right-header-name'>" + contact.name + "</span></div><div class='newmessage-list-item-right-body'><span class='newmessage-list-item-right-body-number'>" + "555-" + contact.number.toString().substring(3) + "</span><span style='display:none;'>" + contact.number.toString() + "</span></div></div></div>";
             $('#newmessage-list').append(div);
         }
@@ -1852,11 +1834,13 @@ function updateAppMessage() {
 
 function updateConversationList() {
     $("#message-list").empty();
+    let conversationNotReadCount = 0;
     for(let conversation of userData.conversations) {
         let conversationName = "";
         let conversationTime = "";
         let conversationMessage = "";
         let conversationAvatar = contactAvatarDefault;
+        let conversationIsRead = true;
         if(conversation.messages != "") {
             conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
             conversationMessage = conversation.messages[conversation.messages.length - 1].message;
@@ -1878,10 +1862,13 @@ function updateConversationList() {
                     }
                 }
                 conversationName += name + ", ";
+            } else if (!user.isRead) {
+                conversationIsRead = false;
+                conversationNotReadCount += 1;
             }
         }
         conversationName = conversationName.slice(0, -2);
-        let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div></div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
+        let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div>" + (!conversationIsRead ? "<div class='message-list-item-left-notread'>1</div>" : "") + "</div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
         $("#message-list").append(divConversation);
         $("#message-list").children().last().click(function () {
             updateAppMessageLoad(conversation.id);
@@ -1889,6 +1876,14 @@ function updateConversationList() {
             let elementMessages = document.querySelector(".app-message-conversation .messages");
             elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
         });
+    }
+    if(conversationNotReadCount > 0) {
+        if ($("#app-home-list-item-message .app-home-list-item-notread")) {
+            $("#app-home-list-item-message .app-home-list-item-notread").remove();
+        }
+        $("#app-home-list-item-message").append("<div class='app-home-list-item-notread'>" + conversationNotReadCount + "</div>");
+    } else if ($("#app-home-list-item-message .app-home-list-item-notread")) {
+        $("#app-home-list-item-message .app-home-list-item-notread").remove();
     }
     let searchInput = document.getElementById("app-message-body-content-list-search");
     searchInput.value = "";
@@ -1946,6 +1941,10 @@ function updateAppMessageLoad(id = null) {
                             }
                         }
                         conversationName += name + ", ";
+                    } else {
+                        if (!user.isRead) {
+                            $.post('https://OraPhone/message_update_read_conversation', JSON.stringify({ id: conversation.id, number: userData.phone.number }));
+                        }
                     }
                 }
                 conversationName = conversationName.slice(0, -2);
@@ -1974,13 +1973,14 @@ function updateAppMessageLoad(id = null) {
                     }
                     responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
                 }
+                break;
             }
         }
         let messageInput = $("#app-message-footer-input");
         messageInput.on("keyup", function(e) {
             if (e.key === 'Enter' || e.keyCode === 13) {
                 if (messageInput.val() != "") {
-                    $.post('https://OraPhone/add_message', JSON.stringify({ phone_id: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
+                    $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
                     messageInput.val("");
                 }
             }
@@ -2018,7 +2018,7 @@ function updateAppPhone() {
                 break;
             }
         }
-        callAccepted = call.accepted;
+        let callAccepted = call.accepted;
         let callTime = new Date(call.call_time);
         let nowTime = new Date();
         if(callTime.toDateString() == nowTime.toDateString()) {
@@ -2029,7 +2029,7 @@ function updateAppPhone() {
             if(callTime.toDateString() == yesterday.toDateString()) {
                 callTime = "Hier";
             } else {
-                tmp = Math.ceil(Math.abs(nowTime - callTime) / (1000 * 60 * 60 * 24));
+                let tmp = Math.ceil(Math.abs(nowTime - callTime) / (1000 * 60 * 60 * 24));
                 if(tmp <= 7) {
                     callTime = callTime.toLocaleString('fr-FR', { weekday: 'long' });
                     callTime = callTime.charAt(0).toUpperCase() + callTime.slice(1);
@@ -2296,7 +2296,6 @@ function updateVolume() {
     slider.addEventListener('input', () => {
         slider.style.setProperty('--value', slider.value);
         volumeActive = slider.value;
-        // $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { volume: volumeActive } }));
     });
 }
 
@@ -2440,7 +2439,7 @@ function updateAppHomeOrder() {
                     };
         })();
         (function clock() { 
-            var hour = document.getElementById("hours"),
+            let hour = document.getElementById("hours"),
                 min = document.getElementById("minutes"),
                 sec = document.getElementById("seconds");
                 (function loop(){
@@ -2448,7 +2447,7 @@ function updateAppHomeOrder() {
                     draw();
                 })();
                 function draw(){
-                    var now = new Date(),
+                    let now = new Date(),
                         then = new Date(now.getFullYear(),now.getMonth(),now.getDate(),0,0,0),
                         diffInMil = (now.getTime() - then.getTime()),
                         h = (diffInMil/(1000*60*60)),
@@ -2590,7 +2589,7 @@ function updateNotificationMode() {
 // Application Message
 
 function responsiveChatPush(sender, origin, date, message) {
-    var originClass;
+    let originClass;
     if (origin == 'me') {
         originClass = 'myMessage';
     } else {
@@ -2598,7 +2597,7 @@ function responsiveChatPush(sender, origin, date, message) {
     }
     let newMessageDiv = "";
     if (/^GPS:\s-?\d+.?\d+,\s-?\d+.?\d+,\s-?\d+.?\d+$/.test(message)) {
-        newMessageDiv = '<div class="' + originClass + '"><p><div class="message-button-list"><button class="message-button-show-map">Afficher carte</button><button class="message-button-add-marker">Appliquer point</button></div></p><date><b>' + sender + '</b> ' + date + '</date></div>';
+        newMessageDiv = '<div class="' + originClass + '"><p><div class="message-button-list"><button class="message-button-show-map">Afficher carte</button><button class="message-button-add-marker">Appliquer point</button></div></p><span class="date"><b>' + sender + '</b> ' + date + '</span></div>';
         $('.app-message-conversation .messages').append(newMessageDiv);
         $('.app-message-conversation .messages').children().last().find(".message-button-show-map").click(function() {
             let messagePos = message.replaceAll(/\s/g, '').substring(4).split(",");
@@ -2610,14 +2609,14 @@ function responsiveChatPush(sender, origin, date, message) {
             $.post('https://OraPhone/add_potition_on_map', JSON.stringify({ x: messagePos[0], y: messagePos[1], z: messagePos[2] }));
         });
     } else if (/^https:\/\/i.imgur.com\/[a-zA-Z0-9_.-]+.jpg$/.test(message)) {
-        newMessageDiv = '<div class="' + originClass + '"><p><img src="' + message + '"/></p><date><b>' + sender + '</b> ' + date + '</date></div>';
+        newMessageDiv = '<div class="' + originClass + '"><p><img src="' + message + '"/></p><span class="date"><b>' + sender + '</b> ' + date + '</span></div>';
         $('.app-message-conversation .messages').append(newMessageDiv);
         $('.app-message-conversation .messages').children().last().click(function() {
             $("#image-fullscreen img").attr("src", message);
             $("#image-fullscreen").show();
         });
     } else {
-        newMessageDiv = '<div class="' + originClass + '"><p>' + message + '</p><date><b>' + sender + '</b> ' + date + '</date></div>';
+        newMessageDiv = '<div class="' + originClass + '"><p>' + message + '</p><span class="date"><b>' + sender + '</b> ' + date + '</span></div>';
         $('.app-message-conversation .messages').append(newMessageDiv);
     }
 }
@@ -2666,20 +2665,18 @@ function receiveCall(data) {
 }
 
 function callNumber(callNumber) {
-    callNumber = callNumber.toString();
-    let callName = callNumber;
+    let number = callNumber.toString();
+    callData.targetNumber = number;
+    let callName = (number.length == 7 ? "555-" + number.substring(3) : number);
     let callAvatar = contactAvatarDefault;
-    if (!/[a-zA-Z]/.test(callNumber)) {
-        callName = (callNumber.length == 7 ? "555-" + callNumber.substring(3) : callNumber);
-    }
     for(let contact of userData.contacts) {
-        if(contact.number.toString() == callNumber.toString()) {
+        if(contact.number.toString() == number.toString()) {
             callAvatar = (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png");
             callName = contact.name;
             break;
         }
     }
-    $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: callNumber, fromNumber: phoneNumber }));
+    $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: number, fromNumber: phoneNumber }));
     $("#callnumber-title-number").html("Appel vers " + callName);
     $("#callnumber-icon img").attr("src", callAvatar);
     if(callAvatar.includes("http")) {
@@ -2687,6 +2684,47 @@ function callNumber(callNumber) {
     } else {
         $("#callnumber-icon").removeClass("url");
     }
+}
+
+function takeCall() {
+    inReceiveCall = false;
+    inCall = true;
+    updateAppContent("callstarted");
+    stopSounds();
+    $.post('https://OraPhone/accept_call', JSON.stringify({ channel: callData.channel }));
+    if(callNotification != null && callNotification != undefined) {
+        callNotification.style.opacity = "0";
+        callNotificationLock.style.opacity = "0";
+        setTimeout(function() {
+            callNotification.remove();
+            callNotificationLock.remove();
+            if($("#notification-container").children().length == 0 && !displayToggle) {
+                $("#phone").css("bottom", phoneBottomShowNot);
+            }
+        }, 750);
+    }
+    let name = callData.fromNumber;
+    for(let contact of userData.contacts) {
+        if(contact.number.toString() == callData.fromNumber.toString()) {
+            name = contact.name;
+        }
+    }
+    $("#callstarted-number").html("Appel en cours avec" + "<br/>" + name);
+    $("#callstarted-time").html("00:00");
+    let callStartedSec = 0
+    let callStartedMin = 0
+    let callStartedTimer = setInterval(function() {
+        $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
+        if(callStartedSec == 59) {
+            callStartedSec = 0;
+            callStartedMin++;
+        } else {
+            callStartedSec++;
+        }
+        if(!inCall) {
+            clearInterval(callStartedTimer);
+        }
+    }, 1000);
 }
 
 // Application Camera
@@ -2948,13 +2986,14 @@ function updateContent(menu) {
             $("#phone-screen-content").addClass("app-modal");
         }
         $("#phone-screen-content").addClass("app-" + menu);
+        updateAppContent("first");
     } else if(menu == "home") {
         $("#phone-screen-content").removeClass();
         canvasActivate = false;
+        setTimeout(function() {
+            updateAppContent("first");
+        }, 300);
     }
-    setTimeout(function() {
-        updateAppContent("first");
-    }, 300);
     menuSelectedLast = menuSelected;
     menuSelected = menu;
 }
@@ -3120,6 +3159,13 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
                     }
                 }, 750);
             }
+            let name = callData.fromNumber;
+            for(let contact of userData.contacts) {
+                if(contact.number.toString() == callData.fromNumber.toString()) {
+                    name = contact.name;
+                }
+            }
+            $("#callstarted-number").html("Appel en cours avec" + "<br/>" + name);
             $("#callstarted-time").html("00:00");
             let callStartedSec = 0
             let callStartedMin = 0
@@ -3218,7 +3264,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
 // Fonctions diverses
 
 function dynamicSort(property) {
-    var sortOrder = 1;
+    let sortOrder = 1;
     if(property[0] === "-") {
         sortOrder = -1;
         property = property.substr(1);
@@ -3227,7 +3273,12 @@ function dynamicSort(property) {
         /* next line works with strings and numbers, 
          * and you may want to customize it to your needs
          */
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        let result = 0;
+        if (a[property] < b[property]) {
+            result = -1;
+        } else if (a[property] > b[property]) {
+            result = 1;
+        }
         return result * sortOrder;
     }
 }
@@ -3238,9 +3289,9 @@ function dynamicSortMultiple() {
      * note that arguments object is an array-like object
      * consisting of the names of the properties to sort by
      */
-    var props = arguments;
+    let props = arguments;
     return function (obj1, obj2) {
-        var i = 0, result = 0, numberOfProperties = props.length;
+        let i = 0, result = 0, numberOfProperties = props.length;
         /* try getting a different result from 0 (equal)
          * as long as we have extra properties to compare
          */
@@ -3253,7 +3304,7 @@ function dynamicSortMultiple() {
 }
 
 function numberWithSpaces(x) {
-    var parts = x.toString().split(".");
+    let parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     return parts.join(".");
 }
@@ -3264,13 +3315,17 @@ function isImage(url) {
 
 function stopSounds() {
     soundNotification.pause();
+    soundNotification.load();
     soundRinging.pause();
+    soundRinging.load();
     soundAlarm.pause();
+    soundAlarm.load();
     soundCallWait.pause();
+    soundCallWait.load();
 }
 
 function createShuffleGrid() {
-    var ShuffleGrid, addClass, grid, hasClass, iconsList, removeClass;
+    let ShuffleGrid, addClass, hasClass, iconsList, removeClass;
     addClass = function(el, className) {
         if (hasClass(el, className)) {
             return;
@@ -3298,36 +3353,35 @@ function createShuffleGrid() {
     ShuffleGrid = (function() {
         class ShuffleGrid {
             constructor(context, cols, rows, colSize, rowSize, paddingX = 0, paddingY = 0) {
-                    this.initIndex = this.initIndex.bind(this);
-                    this.addItem = this.addItem.bind(this);
-                    this.shuffleItems = this.shuffleItems.bind(this);
-                    this.snapToGrid = this.snapToGrid.bind(this);
-                    this.positionItem = this.positionItem.bind(this);
-                    this.getPosition = this.getPosition.bind(this);
-                    this.getCell = this.getCell.bind(this);
-                    this.onMousePress = this.onMousePress.bind(this);
-                    this.onMouseMove = this.onMouseMove.bind(this);
-                    this.onMouseRelease = this.onMouseRelease.bind(this);
-                    this.numCells = this.numCells.bind(this);
-                    this.startDrag = this.startDrag.bind(this);
-                    this.stopDrag = this.stopDrag.bind(this);
-                    this.context = context;
-                    this.cols = cols;
-                    this.rows = rows;
-                    this.colSize = colSize;
-                    this.rowSize = rowSize;
-                    this.paddingX = paddingX;
-                    this.paddingY = paddingY;
-                    this.numItems = 0;
-                    this.initIndex();
-                    this.items = [].slice.call(this.context.children);
-                    this.items.forEach((item, id) => {
-                        return this.addItem(item);
-                    });
-                return;
+                this.initIndex = this.initIndex.bind(this);
+                this.addItem = this.addItem.bind(this);
+                this.shuffleItems = this.shuffleItems.bind(this);
+                this.snapToGrid = this.snapToGrid.bind(this);
+                this.positionItem = this.positionItem.bind(this);
+                this.getPosition = this.getPosition.bind(this);
+                this.getCell = this.getCell.bind(this);
+                this.onMousePress = this.onMousePress.bind(this);
+                this.onMouseMove = this.onMouseMove.bind(this);
+                this.onMouseRelease = this.onMouseRelease.bind(this);
+                this.numCells = this.numCells.bind(this);
+                this.startDrag = this.startDrag.bind(this);
+                this.stopDrag = this.stopDrag.bind(this);
+                this.context = context;
+                this.cols = cols;
+                this.rows = rows;
+                this.colSize = colSize;
+                this.rowSize = rowSize;
+                this.paddingX = paddingX;
+                this.paddingY = paddingY;
+                this.numItems = 0;
+                this.initIndex();
+                this.items = [].slice.call(this.context.children);
+                this.items.forEach((item, id) => {
+                    return this.addItem(item);
+                });
             }
             initIndex() {
-                var i;
+                let i;
                 this.itemVOs = [];
                 this.index = new Array(this.rows);
                 i = 0;
@@ -3336,34 +3390,34 @@ function createShuffleGrid() {
                 }
             }
             addItem(item) {
-                    var col, id, itemVO, position, row;
-                    col = this.numItems % this.cols;
-                    row = Math.floor(this.numItems / this.cols);
-                    position = this.getPosition(row, col);
-                    id = this.numItems;
-                    this.numItems++;
-                    itemVO = {
+                let col, id, itemVO, position, row;
+                col = this.numItems % this.cols;
+                row = Math.floor(this.numItems / this.cols);
+                position = this.getPosition(row, col);
+                id = this.numItems;
+                this.numItems++;
+                itemVO = {
                         row: row,
                         col: col,
                         item: item,
                         id: id
-                    };
-                    item.style.width = `${this.colSize}px`;
-                    item.style.height = `${this.rowSize}px`;
-                    item.setAttribute('id', id);
-                    this.positionItem(item, position.x, position.y);
-                    this.index[row][col] = itemVO;
-                    this.itemVOs[id] = itemVO;
-                    if (hasClass(item, 'placeholder')) {
+                };
+                item.style.width = `${this.colSize}px`;
+                item.style.height = `${this.rowSize}px`;
+                item.setAttribute('id', id);
+                this.positionItem(item, position.x, position.y);
+                this.index[row][col] = itemVO;
+                this.itemVOs[id] = itemVO;
+                if (hasClass(item, 'placeholder')) {
                         return;
-                    }
-                    item.children[0].style.webkitAnimationDelay = Math.random() * 0.5 + 's';
-                    item.children[0].style.MozAnimationDelay = Math.random() * 0.5 + 's';
-                    item.addEventListener('mousedown', this.onMousePress, false);
-                    return item;
+                }
+                item.children[0].style.webkitAnimationDelay = Math.random() * 0.5 + 's';
+                item.children[0].style.MozAnimationDelay = Math.random() * 0.5 + 's';
+                item.addEventListener('mousedown', this.onMousePress, false);
+                return item;
             }
             shuffleItems() {
-                var cell, col, hMove, i, item, itemVO, move, row, vMove;
+                let cell, col, hMove, i, item, itemVO, move, row, vMove;
                 itemVO = this.itemVOs[this.currentItem.getAttribute('id')];
                 cell = this.getCell(parseInt(this.currentItem.getAttribute('x')), parseInt(this.currentItem.getAttribute('y')));
                 col = cell.x;
@@ -3429,41 +3483,38 @@ function createShuffleGrid() {
                 this.index[row][col] = itemVO;
             }
             snapToGrid(itemVO) {
-                var position;
-                position = this.getPosition(itemVO.row, itemVO.col);
+                let position = this.getPosition(itemVO.row, itemVO.col);
                 this.positionItem(itemVO.item, position.x, position.y);
             }
             positionItem(item, x, y) {
                 item.style.transform = `translateX(${x}px) translateY(${y}px)`;
             }
             getPosition(row, col) {
-                    var position;
-                    // Only used for the iOS demo
-                    position = {
-                        x: col * (this.colSize + this.paddingX),
-                        y: row * (this.rowSize + this.paddingY)
-                    };
-                    return position;
+                // Only used for the iOS demo
+                let position = {
+                    x: col * (this.colSize + this.paddingX),
+                    y: row * (this.rowSize + this.paddingY)
+                };
+                return position;
             }
             getCell(x, y) {
-                var cell;
-                cell = {
+                let cell = {
                     x: Math.max(0, Math.min(this.cols - 1, Math.round(x / (this.colSize + this.paddingX)))),
                     y: Math.max(0, Math.min(this.rows - 1, Math.round(y / (this.rowSize + this.paddingY))))
                 };
                 return cell;
             }
             onMousePress(event) {
-                    if(event.which != 1) {
+                if(event.which != 1) {
                         return;
-                    }
-                    startTime = new Date().getTime();
-                    let itemSave = this;
-                    let itemCurrent = event.currentTarget;
-                    if(itemCurrent.firstElementChild.classList.contains('empty-place')) {
+                }
+                startTime = new Date().getTime();
+                let itemSave = this;
+                let itemCurrent = event.currentTarget;
+                if(itemCurrent.firstElementChild.classList.contains('empty-place')) {
                         return;
-                    }
-                    this.context.addEventListener('mouseup', function() {
+                }
+                this.context.addEventListener('mouseup', function() {
                         endTime = new Date().getTime();
                         if (endTime - startTime < 250) {
                             longpress = false;
@@ -3471,8 +3522,8 @@ function createShuffleGrid() {
                                 longpress = true;
                             }, 300);
                         }
-                    }, false);
-                    setTimeout(function() {
+                }, false);
+                setTimeout(function() {
                         if(longpress) {
                             var contextOffset, left, top, zoom;
                             itemSave.currentItem = itemCurrent;
@@ -3490,24 +3541,24 @@ function createShuffleGrid() {
                             itemSave.context.addEventListener('mousemove', itemSave.onMouseMove, false);
                             itemSave.context.addEventListener('mouseleave', itemSave.onMouseRelease, false);
                         }
-                    }, 275);
+                }, 275);
             }
             onMouseMove(event) {
-                    var x, y, zoom, zoomPadding;
-                    x = event.clientX - this.originOffset.x;
-                    y = event.clientY - this.originOffset.y;
-                    zoom = parseFloat($("#phone").css("zoom"));
-                    for(let generalZoomItem of config.generalzoom) {
+                let x, y, zoom, zoomPadding;
+                x = event.clientX - this.originOffset.x;
+                y = event.clientY - this.originOffset.y;
+                zoom = parseFloat($("#phone").css("zoom"));
+                for(let generalZoomItem of config.generalzoom) {
                         if(generalZoomItem.title == generalZoomActive) {
                             zoomPadding = generalZoomItem.home;
                         }
-                    }
-                    x = x + (x / Math.exp((zoom * 100 - 50) / (this.paddingX - zoomPadding)));
-                    y = y + (y / Math.exp((zoom * 100 - 50) / (this.paddingY - zoomPadding)));
-                    this.currentItem.setAttribute('x', x);
-                    this.currentItem.setAttribute('y', y);
-                    this.positionItem(this.currentItem, x, y);
-                    this.shuffleItems();
+                }
+                x = x + (x / Math.exp((zoom * 100 - 50) / (this.paddingX - zoomPadding)));
+                y = y + (y / Math.exp((zoom * 100 - 50) / (this.paddingY - zoomPadding)));
+                this.currentItem.setAttribute('x', x);
+                this.currentItem.setAttribute('y', y);
+                this.positionItem(this.currentItem, x, y);
+                this.shuffleItems();
             }
             onMouseRelease(event) {
                 this.currentItem.removeEventListener('mouseout', this.onMouseRelease);
@@ -3519,10 +3570,10 @@ function createShuffleGrid() {
                 return this.rows * this.cols;
             }
             startDrag(item) {
-                    this.zIndex++;
-                    item.style.zIndex = this.zIndex;
-                    addClass(item, 'dragging');
-                    addClass(this.context, 'shaking');
+                this.zIndex++;
+                item.style.zIndex = this.zIndex;
+                addClass(item, 'dragging');
+                addClass(this.context, 'shaking');
             }
             stopDrag(item) {
                 removeClass(item, 'dragging');
@@ -4208,7 +4259,7 @@ class ContextMenu {
         this.menuItems = menuItems;
         this.targetNode = this.getTargetNode();
         this.menuItemsNode = this.getMenuItemsNode();
-        this.contextMenu;
+        this.contextMenu = null;
         this.isOpened = false;
     }
     getTargetNode() {

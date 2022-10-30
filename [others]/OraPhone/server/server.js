@@ -376,7 +376,7 @@ async function getNumberBySource(source) {
         return null;
     }
     let uuid = identityResponse[0].uuid;
-    const phoneResponse = await crud.phone.read({ player_uuid: uuid });
+    const phoneResponse = await crud.phone.read({ playerUuid: uuid });
     if (!phoneResponse || phoneResponse.length === 0) {
         console.log('Phone query failed, no phone with this uuid ', uuid);
         return null;
@@ -403,24 +403,19 @@ function getFreeChan() {
     return chan
 }
 
+//Map solo callers awaiting for an answer
+const callers = {
+}
+
 function purgeCaller (src, video = false) {
     for (const chan in callers) {
-        if (Array.isArray(callers[chan].receiverId)) {
-            if (callers[chan].callerId == src) {
-                endCall(chan, video);
-                return;
-            } else if (callers[chan].receiverId.includes(src)) {
-                callers[chan].receiverId = callers[chan].receiverId.filter((id) => id != src);
-            }
-        } else {
-            if (callers[chan].receiverId == src || callers[chan].callerId == src) {
-                endCall(chan, video);
-                return;
-            }
+        if (callers[chan].receiverId == src || callers[chan].callerId == src) {
+            endCall(chan, video)
+            return
         }
     }
-    inCall = false;
-    emitNet('OraPhone:client:callFinished', src);
+    inCall = false
+    emitNet('OraPhone:client:callFinished', src)
 }
 
 /**
@@ -429,31 +424,19 @@ function purgeCaller (src, video = false) {
  */
 async function endCall(chan, video = false) {
     console.log('remove callers from channel ', chan, callers[chan] || callers);
-    if (!callers[chan]) {
-        return;
-    }
-    exports["pma-voice"].setPlayerCall(callers[chan].callerId, 0);
-    if (!Array.isArray(callers[chan].receiverId)) {
-        exports["pma-voice"].setPlayerCall(callers[chan].receiverId, 0);
-    }
+    if (!callers[chan]) { return }
+    // PMA Voice
+    // exports["pma-voice"].setPlayerCall(callers[chan].callerId, 0);
+    // exports["pma-voice"].setPlayerCall(callers[chan].receiverId, 0);
+    // Salty Chat
+    exports["saltychat"].EndCall(callers[chan].receiverId, callers[chan].callerId);
+    exports["saltychat"].EndCall(callers[chan].callerId, callers[chan].receiverId);
     if (video) {
         emitNet('OraPhone:client:endVideoCall', callers[chan].callerId);
-        if (Array.isArray(callers[chan].receiverId)) {
-            for (let receiver of callers[chan].receiverId) {
-                emitNet('OraPhone:client:endVideoCall', receiver);
-            }
-        } else {
-            emitNet('OraPhone:client:endVideoCall', callers[chan].receiverId);
-        }
+        emitNet('OraPhone:client:endVideoCall', callers[chan].receiverId);
     } else {
         emitNet('OraPhone:client:callFinished', callers[chan].callerId);
-        if (Array.isArray(callers[chan].receiverId)) {
-            for (let receiver of callers[chan].receiverId) {
-                emitNet('OraPhone:client:callFinished', receiver);
-            }
-        } else {
-            emitNet('OraPhone:client:callFinished', callers[chan].receiverId);
-        }
+        emitNet('OraPhone:client:callFinished', callers[chan].receiverId);
     }
     const lastCallResponse = await crud.calls.read({ id: callers[chan].callId });
     if(lastCallResponse[0].accepted == 1) {
@@ -462,7 +445,7 @@ async function endCall(chan, video = false) {
         let secondsDuration = (endDuration.getTime() - startDuration.getTime()) / 1000;
         await crud.calls.update({ id: lastCallResponse[0].id }, { callDuration: secondsDuration });
     }
-    delete callers[chan]
+    delete callers[chan];
 }
 
 /**
@@ -665,86 +648,48 @@ onNet('OraPhone:server:update_contact', async data => {
 
 // Call
 
-onNet('OraPhone:server:call_number', async (sourceNum, targetNum, callType, video=false) => {
-    inCall = true;
-    const src = source;
-    let playerList = [];
-    let numberList = [];
-
-    const receiverOffline = async (delay) => {
-        await Delay(delay);
+onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) => {
+    inCall = true
+    const src = source
+    const res = await fetchSteamIdFromNumber(targetNum)
+    if (!res || res.length == 0) {
+        console.error('db gave no result for number ',targetNum, res)
+        await Delay(3000)
         if(inCall) {
-            emitNet('OraPhone:client:receiver_offline', src);
+            emitNet('OraPhone:client:receiver_offline', src)
         }
-        return;
+        return
     }
-
-    if (callType != 'person') {
-        if (targetNum || targetNum.length > 0) {
-            for (let player in targetNum) {
-                let playerNumber = getNumberBySource(player);
-                if (playerNumber) {
-                    let playerAvailable = true;
-                    for(let [chanIndex, chanValue] of Object.entries(callers)) {
-                        if(chanValue.receiverId == player || chanValue.receiverId.includes(player)) {
-                            playerAvailable = false;
-                            break;
-                        }
-                    }
-                    if (playerAvailable) {
-                        playerList.push(player);
-                        numberList.push(playerNumber);
-                    }
-                }
-            }
-            if (numberList.length > 0 && playerList.length > 0) {
-                // Save channel for the call and send call notif to receiver
-                const chan = getFreeChan();
-                await crud.calls.create({ sourceNumber: sourceNum, targetNumber: callType });
-                const lastCallResponse = await crud.calls.read({ sourceNumber: sourceNum, targetNumber: callType });
-                callers[chan] = { callerId: src, callerSteamId: onlinePlayers[src], receiverSteamId: null, receiverId: playerList, fromNum: sourceNum, targetNum: numberList, chan, callId: lastCallResponse[0].id };
-                for (let player of playerList) {
-                    emitNet('OraPhone:client:receiveCall', player, callType, chan, video);
-                }
-                console.log('call emitted from ', GetPlayerName(src), ' to ', callType, 'for channel ', chan);
-            } else {
-                console.log('All player is already on a channel');
-                await crud.calls.create({ sourceNumber: sourceNum, targetNumber: callType });
-                receiverOffline(5000);
-            }
-        } else {
-            console.error('no result online for job');
-            receiverOffline(3000);
+    const steamId = res[0]['identifier']
+    console.log('got a steamid', steamId)
+    const receiver = getOnlinePlayerBySteamId(steamId)
+    if (!receiver) {
+        console.error('Player with steamid', steamId ,'is not currently online')
+        await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
+        await Delay(3000)
+        if(inCall) {
+            emitNet('OraPhone:client:receiver_offline', src)
         }
-    } else {
-        const res = await fetchSteamIdFromNumber(targetNum);
-        if (!res || res.length == 0) {
-            console.error('db gave no result for number ', targetNum, res);
-            receiverOffline(3000);
-        }
-        const steamId = res[0]['identifier'];
-        console.log('got a steamid', steamId);
-        const receiver = getOnlinePlayerBySteamId(steamId);
-        if (!receiver) {
-            console.error('Player with steamid ', steamId ,' is not currently online');
-            await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum });
-            receiverOffline(3000);
-        }
-        for(let [chanIndex, chanValue] of Object.entries(callers)) {
-            if(chanValue.receiverId == receiver) {
-                console.log('Player is already on a channel', chanIndex, chanValue);
-                await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum });
-                receiverOffline(5000);
-            }
-        }
-        // Save channel for the call and send call notif to receiver
-        const chan = getFreeChan();
-        await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum });
-        const lastCallResponse = await crud.calls.read({ sourceNumber: sourceNum, targetNumber: targetNum });
-        callers[chan] = {callerId: src, callerSteamId: onlinePlayers[src], receiverSteamId: steamId, receiverId: receiver, fromNum: sourceNum, targetNum: targetNum, chan, callId: lastCallResponse[0].id };
-        emitNet('OraPhone:client:receiveCall', receiver, sourceNum, chan, video);
-        console.log('call emitted from ',GetPlayerName(src),' to ', GetPlayerName(receiver), 'for channel ', chan);
+        return
     }
+    for(let [chanIndex, chanValue] of Object.entries(callers)) {
+        if(chanValue.receiverId == receiver) {
+            console.log('Player is already on a channel', chanIndex, chanValue)
+            await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
+            await Delay(5000)
+            if(inCall) {
+                emitNet('OraPhone:client:receiver_offline', src)
+            }
+            return
+        }
+    }
+    const chan = getFreeChan();
+    // save channel for the call and send call notif to receiver
+    await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum });
+    const lastCallResponse = await crud.calls.read({ sourceNumber: sourceNum, targetNumber: targetNum });
+    callers[chan] = {callerId:src, callerSteamId: onlinePlayers[src], receiverSteamId: steamId, receiverId:receiver, fromNum: sourceNum, targetNum: targetNum, chan, callId: lastCallResponse[0].id };
+    emitNet('OraPhone:client:receiveCall', receiver, sourceNum, targetNum, chan, video);
+    console.log('call emitted from ',GetPlayerName(src),' to ', GetPlayerName(receiver), 'for channel ', chan);
 })
 
 onNet('OraPhone:server:accept_call', async (channel, video=false) => {
@@ -754,16 +699,19 @@ onNet('OraPhone:server:accept_call', async (channel, video=false) => {
         console.error('no registered channel to accept the call', channel);
         return;
     }
-    callers[channel].receiverId = src;
     console.log(GetPlayerName(src), ' accepted call, moving both in chan', channel, 'with ', GetPlayerName(callers[channel].callerId));
-    exports["pma-voice"].setPlayerCall(src, channel);
-    exports["pma-voice"].setPlayerCall(callers[channel].callerId, channel);
+    // PMA Voice
+    // exports["pma-voice"].setPlayerCall(src, channel);
+    // exports["pma-voice"].setPlayerCall(callers[channel].callerId, channel);
+    // Salty Chat
+    exports["saltychat"].EstablishCall(src, callers[channel].callerId);
+    exports["saltychat"].EstablishCall(callers[channel].callerId, src);
     await crud.calls.update({ id: callers[channel].callId }, { accepted: 1 });
     if (video) {
         emitNet('OraPhone:startVideoCall', callers[channel].callerId);
         // emitNet('phone_ora:startVideoCall', src);
     } else {
-        emitNet('OraPhone:client:callStarted', callers[channel].callerId);
+        emitNet('OraPhone:client:callStarted', callers[channel].callerId, callers[channel].targetNum);
     }
 })
 
@@ -810,7 +758,8 @@ onNet('OraPhone:server:message_create_conversation', async (data) => {
         for (let author of data.authors) {
             authorList.push({
                 number: author,
-                active: true
+                active: true,
+                isRead: true
             });
         }
         await crud.conversations.create({ targetNumber: JSON.stringify(authorList) });
@@ -836,6 +785,24 @@ onNet('OraPhone:server:message_delete_conversation', async (data) => {
     emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number))
 })
 
+onNet('OraPhone:server:message_update_read_conversation', async (data) => {
+    const src = source;
+    let conversationResponse = await crud.conversations.read({ id: data.id });
+    if (!conversationResponse || conversationResponse.length == 0) {
+        console.error('db gave no result for conversation ', data.id);
+        return;
+    }
+    let authorList = JSON.parse(conversationResponse[0].targetNumber);
+    for (let author of authorList) {
+        if (author.number == data.number) {
+            author.isRead = true;
+            break;
+        }
+    }
+    await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(authorList) });
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), "update_read");
+})
+
 onNet('OraPhone:server:refresh_conversations', async (data) => {
     const src = source
     emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number))
@@ -851,7 +818,18 @@ onNet('OraPhone:server:add_message', async (data) => {
     await crud.messages.create({ idConversation: data.conversationId, sourceNumber: data.number, message: data.message });
     let dateNow = new Date().toLocaleString('en-CA', { dateStyle: 'short', timeStyle: 'medium', hour12: false });
     dateNow = dateNow.replaceAll(",", "");
-    await crud.conversations.update({ id: data.conversationId }, { lastMsgTime: dateNow });
+    let conversationResponse = await crud.conversations.read({ id: data.conversationId });
+    let contactList = JSON.parse(conversationResponse[0].targetNumber);
+    for (let contact of contactList) {
+        if (contact.number != data.number) {
+            contact.isRead = false;
+        }
+    }
+    await crud.conversations.update({ id: data.conversationId }, { targetNumber: JSON.stringify(contactList), lastMsgTime: dateNow });
+    let numberList = [];
+    for (let number of data.targetNumber) {
+        numberList.push(number.number);
+    }
     for(let target of data.targetNumber) {
         const res = await fetchSteamIdFromNumber(target.number);
         if (!res || res.length == 0) {
@@ -869,7 +847,7 @@ onNet('OraPhone:server:add_message', async (data) => {
                 app: "message",
                 appSub: "message",
                 time: "Maintenant",
-                title: data.targetNumber,
+                title: numberList,
                 message: data.message,
                 conversationId: data.conversationId
             }
@@ -889,7 +867,6 @@ onNet('OraPhone:server:richtermotorsport_add_advertisement', async (data, player
     const src = source
     await crud.richtermotorsport.create({ phoneId: data.phoneId, imgUrl: data.image, model: data.model, category: data.category, description: data.description, registration: data.registration, price: data.price, advertisementType: data.advertisementType })
     emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
-    console.log(players)
     for(let player of players) {
         let notification = {
             app: "richtermotorsport",
@@ -898,7 +875,6 @@ onNet('OraPhone:server:richtermotorsport_add_advertisement', async (data, player
             title: "Nouvelle annonce",
             message: data.model
         }
-        console.log("envoie à " + player)
         emitNet('OraPhone:client:new_notification', player, notification)
     }
 })

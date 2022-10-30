@@ -1,4 +1,23 @@
 
+-----------------------------------------------------------------------------------------------------
+-- Shared Emotes Syncing  ---------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+RegisterServerEvent("OraEmoteMenu:ServerEmoteRequest")
+AddEventHandler("OraEmoteMenu:ServerEmoteRequest", function(target, emotename, etype)
+	TriggerClientEvent("OraEmoteMenu:ClientEmoteRequestReceive", target, emotename, etype)
+end)
+
+RegisterServerEvent("OraEmoteMenu:ServerValidEmote") 
+AddEventHandler("OraEmoteMenu:ServerValidEmote", function(target, requestedemote, otheremote)
+	TriggerClientEvent("OraEmoteMenu:SyncPlayEmote", source, otheremote, source)
+	TriggerClientEvent("OraEmoteMenu:SyncPlayEmoteSource", target, requestedemote)
+end)
+
+-----------------------------------------------------------------------------------------------------
+-- Favorite Emote  ----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
 RegisterServerEvent("OraEmoteMenu:ServerGetFavoriteEmoteList")
 AddEventHandler('OraEmoteMenu:ServerGetFavoriteEmoteList', function()
     local src = source local srcid = GetPlayerIdentifier(source)

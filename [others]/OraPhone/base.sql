@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_contacts (
 
 CREATE TABLE IF NOT EXISTS ora_phone_conversations (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `target_number` VARCHAR(255) NOT NULL,
+    `target_number` TEXT NOT NULL,
     `last_msg_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
@@ -148,27 +148,3 @@ CREATE TABLE IF NOT EXISTS ora_phone_maps_favorite (
 --     share_time DATETIME DEFAULT CURRENT_TIMESTAMP,
 --     PRIMARY KEY (image_id, player_id)
 -- );
-
-INSERT INTO `ora_phone` (
-    `id`, `player_uuid`, `serial_number`, `first_name`, `last_name`, `number`, `is_active`, `sound_notification`, `sound_ringing`, `sound_alarm`, `sound_notification_volume`, `sound_ringing_volume`, `sound_alarm_volume`, `dark_mode`, `zoom`, `wallpaper`, `wallpaper_lock`, `luminosity`, `app_home_order`) 
-    VALUES (
-        NULL, 
-        '1ed21a93-97e6-6dd0-2222-08e78d9135c4', 
-        '7676-8441', 
-        'Kaleo', 
-        'Alahe', 
-        '5558857',
-        '1', 
-        'notification-sms1', 
-        'ringing-iosoriginal', 
-        'alarm-iosradaroriginal', 
-        '5', 
-        '5', 
-        '5', 
-        '0', 
-        'zoom100%', 
-        'wallpaper-ios15', 
-        'wallpaper-ios15', 
-        '100', 
-        '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"templatetabbed\",\"store\",\"\",\"\",\"\",\"\",\"music\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
-);
