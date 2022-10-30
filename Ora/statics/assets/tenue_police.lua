@@ -5061,7 +5061,8 @@ TenueUSSS = {
             ['chain_1'] = 52,    ['chain_2'] = 0,
             ['mask_1'] = 0,     ['mask_2'] = 0
         },
-    },['UDO Utility - Classe C'] = {
+    },
+    ['UDO Utility - Classe C'] = {
         male = {
             ['tshirt_1'] = 280,  ['tshirt_2'] = 0,
             ['torso_1'] = 55,   ['torso_2'] = 0,
