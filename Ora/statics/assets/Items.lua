@@ -3122,6 +3122,14 @@ Items = {
         label = "Malette G6",
         weight = 1.0,
     },
+    bonbon = {
+        label = "Bonbon",
+        weight = 0.1,
+        actionCl = "miam:Eat",
+        props = "prop_plate_03",
+        faim = 10,
+        category = "food"
+    },
 }
 
 -- staticcc
