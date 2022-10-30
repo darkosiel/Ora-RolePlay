@@ -1773,6 +1773,14 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.0
     },
+    {
+        objHash = 1973208947,
+        objCoords = vector3(1284.107421875, -3198.490234375, 6.268798828125),
+        textCoords = vector3(1284.107421875, -3198.490234375, 6.268798828125),
+        authorizedJobs = {"admin_drug"},
+        locked = true,
+        maxDistance = 1.5
+    },
 }
 
 -- EXAMPLE HOW TO DO DOORS WITH OBJECT HASHES
