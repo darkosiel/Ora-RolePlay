@@ -166,27 +166,30 @@ Config.DJPositions = {
         range = 20.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
-    {
-        name = 'zeze',
-        pos = vector3(-1915.95, 2043.90, 140.73 - 0.98),
-        requiredJob = nil, 
-        range = 30.0, 
-        volume = 1.0 --[[ do not touch the volume! --]]
-    },
-    {
-        name = 'zeze2',
-        pos = vector3(-1883.45, 2062.95, 153.88 - 0.98),
-        requiredJob = nil, 
-        range = 350.0, 
-        volume = 1.0 --[[ do not touch the volume! --]]
-    },
-    {
-        name = 'zeze3',
-        pos = vector3(-1888.91, 2091.32, 141.66 - 0.98),
-        requiredJob = nil, 
-        range = 30.0, 
-        volume = 1.0 --[[ do not touch the volume! --]]
-    },
+    
+    -----------
+    -- Event Halloween ; Domaine Viticole
+    -- {
+    --     name = 'zeze',
+    --     pos = vector3(-1915.95, 2043.90, 140.73 - 0.98),
+    --     requiredJob = nil, 
+    --     range = 30.0, 
+    --     volume = 1.0 --[[ do not touch the volume! --]]
+    -- },
+    -- {
+    --     name = 'zeze2',
+    --     pos = vector3(-1883.45, 2062.95, 153.88 - 0.98),
+    --     requiredJob = nil, 
+    --     range = 350.0, 
+    --     volume = 1.0 --[[ do not touch the volume! --]]
+    -- },
+    -- {
+    --     name = 'zeze3',
+    --     pos = vector3(-1888.91, 2091.32, 141.66 - 0.98),
+    --     requiredJob = nil, 
+    --     range = 30.0, 
+    --     volume = 1.0 --[[ do not touch the volume! --]]
+    -- },
 
     --{name = 'bahama', pos = vector3(-1381.01, -616.17, 31.5), requiredJob = 'DJ', range = 25.0}
 }
