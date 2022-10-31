@@ -38,3 +38,5 @@ Ora/whitelist.json
 Ora/gameplay/jobs/fueler/station.json
 Ora/gameplay/jobs/g6/atm.json
 Ora/gameplay/jobs/g6/atms.json
+[devtool]/anim-viewer/**/*
+[cfx-server-data]/**/*
