@@ -606,7 +606,7 @@ Citizen.CreateThread(function()
                     local number = KeyboardInput("Numéro de téléphone", "", 7)
                     if number ~= nil and number ~= "" then
                         TriggerServerEvent("Ora:sendToDiscord", 34, "Lance la localisation sur le numéro de téléphone : "..number, "info")
-                        local phoneProp = Ora.World.Object:Create(`prop_police_phone`, GetEntityCoords(PlayerPedId()), true, true, false)
+                        local phoneProp = Ora.World.Object:Create(GetHashKey("prop_police_phone"), GetEntityCoords(PlayerPedId()), true, true, false)
                         local bone = GetPedBoneIndex(PlayerPedId(), 28422)
                         AttachEntityToEntity(phoneProp, PlayerPedId(), bone, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1, 1, 0, 0, 2, 1)
                         RequestAnimDict("cellphone@str")
