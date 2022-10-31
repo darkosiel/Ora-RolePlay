@@ -13,9 +13,9 @@ Citizen.CreateThread(
             SetDiscordRichPresenceAssetText("https://discord.gg/orarp")
 
             TriggerServerCallback(
-                "onlinePlayers:list",
-                function(users)
-                    SetRichPresence(GetPlayerName(PlayerId()) .. " 👥 " .. #users .. "/256")
+                "onlinePlayers:getNumberOfPlayer",
+                function(number)
+                    SetRichPresence(GetPlayerName(PlayerId()) .. " 👥 " .. number .. "/256")
                 end
             )
 
