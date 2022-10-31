@@ -64,13 +64,13 @@ function LeaveInstance()
             "onlinePlayers:list",
             function(users)
                 for userId, userValue in pairs(users) do
-                    if (NetworkIsPlayerActive(userValue.id)) then
-                        local otherPlayerPed = GetPlayerPed(userValue.id)
+                    if (NetworkIsPlayerActive(userValue)) then
+                        local otherPlayerPed = GetPlayerPed(userValue)
                         SetEntityVisible(otherPlayerPed, true, 0)
-                        SetEntityNoCollisionEntity(PlayerPedId(), userValue.id, false)
+                        SetEntityNoCollisionEntity(PlayerPedId(), userValue, false)
                     end
                 end
-            end
+            end, true --to only get players id
         )
 
         if registeredInstanceTypes[instance.type].exit then
