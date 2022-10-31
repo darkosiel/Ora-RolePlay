@@ -466,7 +466,15 @@ Citizen.CreateThread(
                                     RightLabel = "→"
                                 },
                                 true,
-                                function(_, _, _)
+                                function(_, _, Selected) 
+                                    if Selected then
+                                        TriggerServerCallback(
+                                            "onlinePlayers:list",
+                                            function(users)
+                                                connectedPlayers = users
+                                            end
+                                        )
+                                    end
                                 end,
                                 RMenu:Get("personnal", "admin_plylist")
                             )
@@ -2805,23 +2813,23 @@ TriggerServerCallback(
     end
 )
 
-Citizen.CreateThread(
-    function()
-        while (true) do
-            if RageUI.Visible(RMenu:Get("personnal", "admin_plylist")) then
-                Citizen.Wait(1000)
-                TriggerServerCallback(
-                    "onlinePlayers:list",
-                    function(users)
-                        connectedPlayers = users
-                    end
-                )
-            else
-                Citizen.Wait(2000)
-            end
-        end
-    end
-)
+-- Citizen.CreateThread(
+--     function()
+--         while (true) do
+--             if RageUI.Visible(RMenu:Get("personnal", "admin_plylist")) then
+--                 Citizen.Wait(1000)
+--                 TriggerServerCallback(
+--                     "onlinePlayers:list",
+--                     function(users)
+--                         connectedPlayers = users
+--                     end
+--                 )
+--             else
+--                 Citizen.Wait(2000)
+--             end
+--         end
+--     end
+-- )
 
 RMenu:Get("personnal", "world"):AddInstructionButton(
     {
