@@ -839,7 +839,7 @@ Config.DoorList = {
         objHash = GetHashKey("hei_v_ilev_bk_gate_pris"),
         objCoords = vector3(257.09, 220.59, 106.29),
         textCoords = vector3(257.09, 220.59, 106.29),
-        authorizedJobs = {"banker"},
+        authorizedJobs = {"mazegroup"},
         locked = true,
         maxDistance = 1.50
     },
@@ -847,7 +847,7 @@ Config.DoorList = {
         objHash = GetHashKey("v_ilev_bk_door"),
         objCoords = vector3(237.15, 228.26, 106.28),
         textCoords = vector3(237.15, 228.26, 106.28),
-        authorizedJobs = {"banker"},
+        authorizedJobs = {"mazegroup"},
         locked = true,
         maxDistance = 1.50
     },
@@ -1781,7 +1781,68 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.5
     },
+
+    -- Gouv
+
+    -- Porte Bureau Gourverneur
+    {
+        objHash = -88942360,
+        objCoords = vector3(-1292.257, -568.2955, 41.33635),
+        objHeading = 39.85,
+        textCoords = vector3(-1292.257, -568.2955, 41.33635),
+        authorizedJobs = {"gouv", "usss"},
+        locked = true,
+        maxDistance = 1.5
+    },
+    -- Porte Bureau Gouverneur Bibliotèque
+    {
+        objHash = 648668464,
+        objCoords = vector3(-1302.737, -569.4383, 40.18527),
+        textCoords = vector3(-1302.737, -569.4383, 41.18527),
+        authorizedJobs = {"gouv", "usss"},
+        shouldCorrectPosition = true,
+        locked = true,
+        maxDistance = 3.0
+    },
+    -- 1st Floor : Secured Room
+    {
+        objHash = -88942360,
+        objCoords = vector3(-1291.357, -579.2186, 34.52389),
+        objHeading = 130.0,
+        textCoords = vector3(-1291.357, -579.2186, 34.52389),
+        authorizedJobs = {"gouv", "usss"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
+    -- Ascenseur Secret Room
+    {
+        textCoords = vector3(-1306.4, -558.6, 20.7996),
+        authorizedJobs = {'gouv', 'usss'},
+        locked = true,
+        maxDistance = 3.0,
+        shouldCorrectPosition = true,
+        doors = {
+            {objHash = -1240156945, objCoords = vector3(-1305.896, -558.2148, 19.7996) },
+            {objHash = -1240156945, objCoords = vector3(-1307.047, -559.183, 19.79929) }
+        }
+    },
+
+    -- Back door
+
+    {
+        textCoords = vector3(-1298.4, -578, 30.72524),
+        authorizedJobs = {'gouv', 'usss'},
+        locked = true,
+        maxDistance = 3.0,
+        doors = {
+            {objHash = 320433149, objHeading = 310.0,  objCoords = vector3(-1297.908, -579.0725, 30.72524) },
+            {objHash = -1215222675, objHeading = 310.0, objCoords = vector3(-1299.579, -577.0803, 30.72524) }
+        }
+    },
+
 }
+
 
 -- EXAMPLE HOW TO DO DOORS WITH OBJECT HASHES
 --[[{
