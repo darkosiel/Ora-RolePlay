@@ -1863,16 +1863,18 @@ function updateConversationList() {
             if (user.number != userData.phone.number) {
                 let name = user.number;
                 for (let contact of userData.contacts) {
-                    if ((contact.number != undefined && user.number != undefined) && contact.number.toString() == user.number.toString()) {
-                        if (JSON.parse(conversation.target_number).length == 2) {
-                            if (contact.avatar.includes("http")) {
-                                conversationAvatar = contact.avatar;
-                            } else {
-                                conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                    if (user.number != undefined || user.number != null) {
+                        if (contact.number.toString() == user.number.toString()) {
+                            if (JSON.parse(conversation.target_number).length == 2) {
+                                if (contact.avatar.includes("http")) {
+                                    conversationAvatar = contact.avatar;
+                                } else {
+                                    conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
+                                }
                             }
+                            name = contact.name;
+                            break;
                         }
-                        name = contact.name;
-                        break;
                     }
                 }
                 conversationName += name + ", ";
@@ -1994,6 +1996,8 @@ function updateAppMessageLoad(id = null) {
         messageInput.on("keyup", function(e) {
             if (e.key === 'Enter' || e.keyCode === 13) {
                 if (messageInput.val() != "") {
+                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+                    responsiveChatPush("Moi", "me", sourceDateTime, messageInput.val());
                     $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
                     messageInput.val("");
                 }
@@ -3055,7 +3059,7 @@ function updateAppContent(element) {
         }
     }
     // Remise à zéro de la liste des contactes
-    if(menuSelected == "contacts") {
+    if(menuSelected == "contacts" && menuSelectedLast != "camera") {
         $("#newcontact-phone-number-input").val("");
         $("#newcontact-name-input").val("");
         $("#newcontact-icon-custom-input").val("");
