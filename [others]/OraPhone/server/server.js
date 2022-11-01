@@ -732,6 +732,7 @@ onNet('OraPhone:server:refresh_calls', async data => {
 onNet('OraPhone:server:message_create_conversation', async (data) => {
     const src = source;
     let where = "";
+    let dataConversation = {};
     let authorList = [];
     for(let author of data.authors) {
         where += " target_number LIKE '%" + author + "%' AND";
@@ -749,6 +750,7 @@ onNet('OraPhone:server:message_create_conversation', async (data) => {
                     break;
                 }
             }
+            dataConversation.id = conversation.id;
             await crud.conversations.update({ id: conversation.id }, { targetNumber: JSON.stringify(authorList) });
             break;
         }
@@ -763,8 +765,15 @@ onNet('OraPhone:server:message_create_conversation', async (data) => {
             });
         }
         await crud.conversations.create({ targetNumber: JSON.stringify(authorList) });
+        conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE" + where);
+        for(let conversation of conversationResponse) {
+            if(JSON.parse(conversation.target_number).length == data.authors.length) {
+                dataConversation.id = conversation.id;
+                break;
+            }
+        }
     }
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number));
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), dataConversation);
 })
 
 onNet('OraPhone:server:message_delete_conversation', async (data) => {
@@ -787,6 +796,7 @@ onNet('OraPhone:server:message_delete_conversation', async (data) => {
 
 onNet('OraPhone:server:message_update_read_conversation', async (data) => {
     const src = source;
+    let dataConversation = {};
     let conversationResponse = await crud.conversations.read({ id: data.id });
     if (!conversationResponse || conversationResponse.length == 0) {
         console.error('db gave no result for conversation ', data.id);
@@ -800,7 +810,8 @@ onNet('OraPhone:server:message_update_read_conversation', async (data) => {
         }
     }
     await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(authorList) });
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), "update_read");
+    dataConversation.type = "update_read";
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), dataConversation);
 })
 
 onNet('OraPhone:server:refresh_conversations', async (data) => {

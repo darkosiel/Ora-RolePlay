@@ -231,6 +231,7 @@ $(function(){
                         userData.contacts = item.contacts;
                         updateAppContacts();
                         updateAppMessage();
+                        $.post('https://OraPhone/refresh_conversations', JSON.stringify({ phoneId: userData.phone.id, number: userData.phone.number }));
                         $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
                         break;
                     case "updateCalls":
@@ -239,7 +240,10 @@ $(function(){
                         break;
                     case "update_conversations":
                         userData.conversations = item.conversations;
-                        if (item.updatetype != "update_read") {
+                        if (item.conversationId != 0) {
+                            conversationId = item.conversationId;
+                        }
+                        if (item.updatetype != "update_read" && menuAppSelected == "message") {
                             updateAppMessageLoad(conversationId);
                         }
                         updateConversationList();
@@ -1689,8 +1693,18 @@ function removeNotesNote() {
 
 function updateAppContacts() {
     $("#contacts-list").empty();
+    let divItem = "";
+    for (let contact of userData.contacts) {
+        if (!/^[a-zA-Z]/.test(contact.name.toLowerCase())) {
+            divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div>" + (!/[a-zA-Z]/.test(contact.number) ? "<div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div>" : "") + (!/[a-zA-Z]/.test(contact.number) ? "<div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div>" : "") + "</div></div>";
+        }
+    }
+    if(divItem != "") {
+        let divRow = "<div class='contacts-list-row'><div class='contacts-list-row-letter'><span>0-9</span></div>" + divItem + "</div>";
+        $('#contacts-list').append(divRow);
+    }
     for(let i = 65; i <= 90; i++) {
-        let divItem = "";
+        divItem = "";
         for (let contact of userData.contacts) {
             if (contact.name.substring(0,1).toLowerCase() == String.fromCharCode(i).toLowerCase()) {
                 divItem += "<div class='contacts-list-row-item'><div class='contacts-list-row-item-top'><div class='contacts-list-row-item-top-avatar " + (contact.avatar.includes("http") ? "url" : "") + "'><img draggable='false' src='" + (contact.avatar.includes("http") ? contact.avatar : folderContactsProfileIcon + contact.avatar + ".png") + "'/></div><div class='contacts-list-row-item-top-name'><span>" + contact.name + "</span></div></div><div class='contacts-list-row-item-bottom'><div data-number='" + contact.number + "' class='contacts-list-row-item-bottom-button message-contact'><i class='fa-solid fa-envelope'></i></div>" + (!/[a-zA-Z]/.test(contact.number) ? "<div data-number='" + contact.number + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button call-contact'><i class='fa-solid fa-phone'></i></div>" : "") + (!/[a-zA-Z]/.test(contact.number) ? "<div data-id='" + contact.id + "' data-number='" + contact.number + "' data-name='" + contact.name + "' data-avatar='" + contact.avatar + "' class='contacts-list-row-item-bottom-button edit-contact'><i class='fa-solid fa-pen-to-square'></i></div>" : "") + "</div></div>";
@@ -1835,23 +1849,23 @@ function updateAppMessage() {
 function updateConversationList() {
     $("#message-list").empty();
     let conversationNotReadCount = 0;
-    for(let conversation of userData.conversations) {
+    for (let conversation of userData.conversations) {
         let conversationName = "";
         let conversationTime = "";
         let conversationMessage = "";
         let conversationAvatar = contactAvatarDefault;
         let conversationIsRead = true;
-        if(conversation.messages != "") {
+        if (conversation.messages != "") {
             conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
             conversationMessage = conversation.messages[conversation.messages.length - 1].message;
         }
-        for(let user of JSON.parse(conversation.target_number)) {
-            if(user.number != userData.phone.number) {
+        for (let user of JSON.parse(conversation.target_number)) {
+            if (user.number != userData.phone.number) {
                 let name = user.number;
-                for(let contact of userData.contacts) {
-                    if(contact.number.toString() == user.number.toString()) {
-                        if(JSON.parse(conversation.target_number).length == 2) {
-                            if(contact.avatar.includes("http")) {
+                for (let contact of userData.contacts) {
+                    if ((contact.number != undefined && user.number != undefined) && contact.number.toString() == user.number.toString()) {
+                        if (JSON.parse(conversation.target_number).length == 2) {
+                            if (contact.avatar.includes("http")) {
                                 conversationAvatar = contact.avatar;
                             } else {
                                 conversationAvatar = folderContactsProfileIcon + contact.avatar + ".png";
@@ -2955,7 +2969,7 @@ function updateContent(menu) {
     if (menuSelected == "maps") {
         mapsUpdateMyPosition(false);
     } else if (menuSelected == "gallery") {
-        for (let item of $("#gallery-image-list .gallery-image-list-item")) {
+        for (let item of document.querySelectorAll("#gallery-image-list .gallery-image-list-item")) {
             if ($(item).hasClass("bind-click")) {
                 $(item).removeClass("bind-click").unbind("click", messageChooseImageGallery);
             }
@@ -2988,6 +3002,7 @@ function updateContent(menu) {
         $("#phone-screen-content").addClass("app-" + menu);
         updateAppContent("first");
     } else if(menu == "home") {
+        menuAppSelected = "first";
         $("#phone-screen-content").removeClass();
         canvasActivate = false;
         setTimeout(function() {
@@ -3126,7 +3141,6 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
             }
         }
         title = messageName.slice(0, -2);
-        updateAppMessageLoad(data.conversationId);
     }
     if (app == "call") {
         divNotification = "<div class='notification-item close'><div class='notification-item-content'><div class='notification-item-background-blur'></div><div class='notification-item-main call'><div class='notification-item-main-avatar " + (avatar && avatar != '' ? (avatar.includes('http') ? 'url' : '') : '')  + "'><img src='" + avatar + "'/></div><div class='notification-item-main-info'><span class='notification-item-main-info-header'>" + title + "</span><span class='notification-item-main-info-message'>" + message + "</span></div><div class='notification-item-main-hangup'><i class='fa-solid fa-phone-slash'></i></div><div class='notification-item-main-pickup'><i class='fa-solid fa-phone'></i></div></div></div></div>";
@@ -3196,6 +3210,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
                 notification.remove();
                 stopSounds();
                 if(app == "message") {
+                    updateAppMessageLoad(data.conversationId);
                     let elementMessages = document.querySelector(".app-message-conversation .messages");
                     elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
                 }

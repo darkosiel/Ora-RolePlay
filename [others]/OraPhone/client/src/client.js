@@ -269,11 +269,21 @@ onNet('OraPhone:client:receiver_offline', _ => {
 
 // Messages
 
-onNet('OraPhone:client:update_messages', async (data, type = false) => {
+onNet('OraPhone:client:update_messages', async (data, dataConversation = false) => {
+    if (!dataConversation) {
+        dataConversation = {};
+    }
+    if (!dataConversation.id) {
+        dataConversation.id = 0
+    }
+    if (!dataConversation.type) {
+        dataConversation.type = ''
+    }
     SendNUIMessage({
         type: 'update_conversations',
         conversations: data,
-        updatetype: type
+        conversationId: dataConversation.id,
+        updatetype: dataConversation.type
     })
 })
 

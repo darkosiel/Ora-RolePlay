@@ -50,7 +50,7 @@ RegisterCommand('emote', function()
     end
 end, false)
 
-RegisterCommand('e', function(source, args, raw) EmoteStart(source, args, raw) end)
+RegisterCommand('e', function(source, args, raw) EmoteStart(args[1]) end)
 
 function SetDisplay(status)
     SetNuiFocus(status, status)
@@ -152,9 +152,9 @@ function DebugPrint(args)
     end
 end
 
-function EmoteStart(args)
-    if #args > 0 then
-        local name = tostring(args)
+function EmoteStart(emoteName)
+    if emoteName ~= nil then
+        local name = tostring(emoteName)
         if name == "c" then
             if IsInAnimation then
                 EmoteCancel()
@@ -162,7 +162,7 @@ function EmoteStart(args)
             return
         end
         if DP.Shared[name] ~= nil then
-            if OnEmotePlay(DP.Shared[name], "shared") then end return
+            if OnEmotePlay(DP.Shared[name], name) then end return
         elseif DP.Emotes[name] ~= nil then
             if OnEmotePlay(DP.Emotes[name]) then end return
         elseif DP.Dances[name] ~= nil then
@@ -177,13 +177,13 @@ function EmoteStart(args)
     end
 end
 
-function OnEmotePlay(EmoteName, type)
+function OnEmotePlay(EmoteName, name)
 
-    if (type == "shared") then
+    if (name ~= nil) then
         target, distance = GetClosestPlayer()
         if(distance ~= -1 and distance < 3) then
-            _,_,rename = table.unpack(EmoteName)
-            TriggerServerEvent("OraEmoteMenu:ServerEmoteRequest", GetPlayerServerId(target), EmoteName)
+            _,_,rename = table.unpack(DP.Shared[name])
+            TriggerServerEvent("OraEmoteMenu:ServerEmoteRequest", GetPlayerServerId(target), name)
             SimpleNotify(Config.Languages[lang]['sentrequestto']..GetPlayerName(target))
         else
             SimpleNotify(Config.Languages[lang]['nobodyclose'])
@@ -497,9 +497,9 @@ AddEventHandler("OraEmoteMenu:ClientEmoteRequestReceive", function(emotename, et
     requestedemote = emotename
 
     if etype == 'Dances' then
-        _,_,remote = table.unpack(requestedemote)
+        _,_,remote = table.unpack(DP.Dances[requestedemote])
     else
-        _,_,remote = table.unpack(requestedemote)
+        _,_,remote = table.unpack(DP.Shared[requestedemote])
     end
 
     PlaySound(-1, "NAV", "HUD_AMMO_SHOP_SOUNDSET", 0, 0, 1)
@@ -511,10 +511,10 @@ AddEventHandler("OraEmoteMenu:SyncPlayEmote", function(emote, player)
     EmoteCancel()
     Wait(300)
     -- wait a little to make sure animation shows up right on both clients after canceling any previous emote
-    if emote ~= nil then
-        if OnEmotePlay(emote) then end return
-    elseif emote ~= nil then
-        if OnEmotePlay(emote) then end return
+    if DP.Shared[emote] ~= nil then
+        if OnEmotePlay(DP.Shared[emote]) then end return
+    elseif DP.Dances[emote] ~= nil then
+        if OnEmotePlay(DP.Dances[emote]) then end return
     end
 end)
 
@@ -524,8 +524,8 @@ AddEventHandler("OraEmoteMenu:SyncPlayEmoteSource", function(emote, player)
     local pedInFront = GetPlayerPed(GetClosestPlayer())
     local heading = GetEntityHeading(pedInFront)
     local coords = GetOffsetFromEntityInWorldCoords(pedInFront, 0.0, 1.0, 0.0)
-    if (emote) and (emote.AnimationOptions) then
-        local SyncOffsetFront = emote.AnimationOptions.SyncOffsetFront
+    if (DP.Shared[emote]) and (DP.Shared[emote].AnimationOptions) then
+        local SyncOffsetFront = DP.Shared[emote].AnimationOptions.SyncOffsetFront
         if SyncOffsetFront then
             coords = GetOffsetFromEntityInWorldCoords(pedInFront, 0.0, SyncOffsetFront, 0.0)
         end
@@ -534,10 +534,10 @@ AddEventHandler("OraEmoteMenu:SyncPlayEmoteSource", function(emote, player)
     SetEntityCoordsNoOffset(PlayerPedId(), coords.x, coords.y, coords.z, 0)
     EmoteCancel()
     Wait(300)
-    if emote ~= nil then
-        if OnEmotePlay(emote) then end return
-    elseif emote ~= nil then
-        if OnEmotePlay(emote) then end return
+    if DP.Shared[emote] ~= nil then
+        if OnEmotePlay(DP.Shared[emote]) then end return
+    elseif DP.Dances[emote] ~= nil then
+        if OnEmotePlay(DP.Dances[emote]) then end return
     end
 end)
 
