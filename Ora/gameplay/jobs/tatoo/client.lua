@@ -700,8 +700,8 @@ AddEventHandler(
 local translate = {
     ["ZONE_HEAD"] = "Tête ",
     ["ZONE_LEFT_ARM"] = "Bras gauche ",
-    ["ZONE_RIGHT_ARM"] = "Bras gauche ",
-    ["ZONE_RIGHT_LEG"] = "Jambe gauche ",
+    ["ZONE_RIGHT_ARM"] = "Bras droite ",
+    ["ZONE_RIGHT_LEG"] = "Jambe droite ",
     ["ZONE_LEFT_LEG"] = "Jambe gauche ",
     ["ZONE_TORSO"] = "Torse "
 }
