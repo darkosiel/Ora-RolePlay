@@ -64,7 +64,7 @@ local Blips = {
     -- {name = "LTD Grove Street", color = 3, sprite = 59, Pos = {x = -49.9785, y = -1753.45, z = 29.42}},        
     {name = "Auto Repairs", color = 1, sprite = 643, Pos = {x = 1172.9263, y = 2669.7465, z = 37.8209}},
     {name = "Le Pearls", color = 3, sprite = 267, Pos = {x = -1825.48, y = -1190.6, z = 14.44}}, 
-    --{name = "Stray Boyz Records", color = 3, sprite = 120, Pos = {x = -418.5053, y = -431.4420, z = 14.44}},  
+    {name = "Stray Boyz Records", color = 3, sprite = 120, Pos = {x = -418.5053, y = -431.4420, z = 14.44}},  
     --{name = "LTD Nord", color = 3, sprite = 59, Pos = {x = 161.89, y = 6642.98, z = 31.70}},
     {name = "Galaxy Club", color = 83, sprite = 614, Pos = {x = 356.18, y = 304.66, z = 103.72}},
     {name = "Bahama's", color = 83, sprite = 766, Pos = {x = -1394.71, y = -608.88, z = 30.32}},
