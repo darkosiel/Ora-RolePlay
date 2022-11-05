@@ -142,8 +142,6 @@ Config.blacklistedCars = {
     GetHashKey("fcr"),
     GetHashKey("fcr2"),
     GetHashKey("gargoyle"),
-    GetHashKey("hakuchou"),
-    GetHashKey("hakuchou2"),
     GetHashKey("hexer"),
     GetHashKey("innovation"),
     GetHashKey("lectro"),
