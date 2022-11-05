@@ -288,7 +288,7 @@ local VehShop =
                     --   {name="ardent",price=1},
                     {name = "casco", price = 108290},
                     {name = "cheetah2", price = 112200},
-                    {name = "tigon", price = 109200},
+                    {name = "tigon", price = 249200},
                     {name = "coquette2", price = 69135},
                     {name = "gt500", price = 112200},
                     {name = "infernus2", price = 99450},
