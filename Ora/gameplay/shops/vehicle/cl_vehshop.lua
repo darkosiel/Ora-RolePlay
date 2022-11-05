@@ -27,9 +27,6 @@ local VehShop =
                 ["Entreprise"] = {
                     {name = "newsvan", price = 30000},
                     {name = "rumpo2", price = 12000},
-                    {name = "emsnspeedo", price = 30000},
-                    {name = "emsroamer", price = 30000},
-                    {name = "safeteam", price = 25000},
                     {name = "corspeedo", price = 30000},
                    -- {name = "firetruk", price = 30000},
                    -- {name = "lsfd", price = 20000},
@@ -453,6 +450,14 @@ local VehShop =
                     {name = "fibp6", price = 30000},
                     {name = "polnspeedo", price = 30000},
                     {name = "pressuv", price = 30000}
+                },
+                ["SAMS"] = {
+                    {name = "samsbisonamb", price = 25000},
+                    {name = "samscara", price = 25000},
+                    {name = "samsroamer", price = 25000},
+                    {name = "samsspeedoamb", price = 25000},
+                    {name = "samsspeedoamb2", price = 25000},
+                    {name = "samsstanier", price = 25000}
                 },
                 ["Vans"] = {
                     {name = "minivan", price = 9100},

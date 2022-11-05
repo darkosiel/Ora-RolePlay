@@ -132,4 +132,18 @@ Citizen.CreateThread(function()
     AddTextEntry("bcsogranger2", "Granger BCSO")
     AddTextEntry("bcsogranger3", "Granger BCSO")
     AddTextEntry("bcsogranger4", "Granger BCSO")
+
+
+
+    ----- San Andreas Medical Service -----
+
+    AddTextEntry("samsbisonamb", "Bison SAMS")
+    AddTextEntry("samscara", "Caracara SAMS")
+    AddTextEntry("samsroamer", "Roamer SAMS")
+    AddTextEntry("samsspeedoamb", "Speedo SAMS")
+    AddTextEntry("samsspeedoamb2", "Speedo Retro SAMS")
+    AddTextEntry("samsstanier", "Stanier SAMS")
 end)
+
+
+

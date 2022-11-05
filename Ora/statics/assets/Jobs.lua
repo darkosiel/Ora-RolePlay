@@ -8588,6 +8588,35 @@ Jobs = {
                 },
             },
         },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = -1827.35, y = -385.51, z = 40.65}
+                },
+                restricted = {1, 2, 3, 4, 5, 6, 7},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "SAMS - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        }
     },
 
     lsfd = {
