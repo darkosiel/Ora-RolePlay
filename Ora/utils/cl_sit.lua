@@ -1,244 +1,439 @@
-local configSeats = {
-	-- BENCH
-	{prop = 'prop_bench_01a', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_01b', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_01c', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_04', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_05', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_05', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_07', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_08', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_09', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.65, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_10', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_bench_11', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_fib_3b_bench', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_ld_bench01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_wait_bench_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-
-	{prop = 'prop_bench_06', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0, canMove = true},
-	{prop = 'apa_mp_h_yacht_armchair_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	-- CHAIR
-	{prop = 'hei_prop_heist_off_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'hei_prop_hei_skid_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_01a', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_01b', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	--{prop = 'prop_chair_04a', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_04b', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_05', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_06', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_05', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_08', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_09', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chair_10', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_chateau_chair_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_clown_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_cs_office_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_direct_chair_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_direct_chair_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_gc_chair02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_off_chair_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_off_chair_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_off_chair_04', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_off_chair_04b', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_off_chair_04_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_off_chair_05', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_old_deck_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_old_wood_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_rock_chair_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_skid_chair_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_skid_chair_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_skid_chair_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_sol_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'ex_mp_h_din_chair_04', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-
-	{prop = 'p_armchair_01_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_clb_officechair_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_dinechair_01_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_ilev_p_easychair_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_soloffchair_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_yacht_chair_01_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_club_officechair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_corp_bk_chair3', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_corp_cd_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_corp_offchair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_chair02_ped', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	--{prop = 'v_ilev_hd_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_p_easychair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ret_gc_chair03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_ld_farm_chair01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_04_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_05_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_06_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_leath_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_01_chr_a', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_01_chr_b', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_02_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_03b_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_table_03_chr', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_torture_ch_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_fh_dineeamesa', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_serv_ct_chair02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
+RegisterCommand("sit", function(source, args, rawCommand)
+    SitChair()
+end, false)
 
 
-	{prop = 'v_ilev_fh_kitchenstool', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_tort_stool', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_fh_kitchenstool', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_fh_kitchenstool', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_fh_kitchenstool', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_fh_kitchenstool', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
+local chairs = {
+    [GetHashKey("cs1_02_chair_tarped001")] = true,
+    [GetHashKey("hei_heist_din_chair_01")] = true,
+    [GetHashKey("hei_heist_din_chair_02")] = true,
+    [GetHashKey("hei_heist_din_chair_03")] = true,
+    [GetHashKey("hei_heist_din_chair_04")] = true,
+    [GetHashKey("hei_heist_din_chair_05")] = true,
+    [GetHashKey("hei_heist_din_chair_06")] = true,
+    [GetHashKey("hei_heist_din_chair_08")] = true,
+    [GetHashKey("hei_heist_din_chair_09")] = true,
+    [GetHashKey("hei_heist_stn_chairarm_01")] = true,
+    [GetHashKey("hei_heist_stn_chairarm_03")] = true,
+    [GetHashKey("hei_heist_stn_chairarm_04")] = true,
+    [GetHashKey("hei_heist_stn_chairarm_06")] = true,
+    [GetHashKey("hei_heist_stn_chairstrip_01")] = true,
+    [GetHashKey("hei_prop_hei_skid_chair")] = true,
+    [GetHashKey("hei_prop_heist_off_chair")] = true,
+    [GetHashKey("p_armchair_01_s")] = true,
+    [GetHashKey("p_clb_officechair_s")] = true,
+    [GetHashKey("p_dinechair_01_s")] = true,
+    [GetHashKey("p_folding_chair_01_s")] = true,
+    [GetHashKey("p_ilev_p_easychair_s")] = true,
+    [GetHashKey("p_soloffchair_s")] = true,
+    [GetHashKey("p_yacht_chair_01_s")] = true,
+    [GetHashKey("prop_armchair_01")] = true,
+    [GetHashKey("prop_chair_01a")] = true,
+    [GetHashKey("prop_chair_01b")] = true,
+    [GetHashKey("prop_chair_02")] = true,
+    [GetHashKey("prop_chair_03")] = true,
+    [GetHashKey("prop_chair_04a")] = true,
+    [GetHashKey("prop_chair_04b")] = true,
+    [GetHashKey("prop_chair_05")] = true,
+    [GetHashKey("prop_chair_06")] = true,
+    [GetHashKey("prop_chair_07")] = true,
+    [GetHashKey("prop_chair_08")] = true,
+    [GetHashKey("prop_chair_09")] = true,
+    [GetHashKey("prop_chair_10")] = true,
+    [GetHashKey("prop_chair_pile_01")] = true,
+    [GetHashKey("prop_chateau_chair_01")] = true,
+    [GetHashKey("prop_clown_chair")] = true,
+    [GetHashKey("prop_cs_folding_chair_01")] = true,
+    [GetHashKey("prop_cs_office_chair")] = true,
+    [GetHashKey("prop_direct_chair_01")] = true,
+    [GetHashKey("prop_direct_chair_02")] = true,
+    [GetHashKey("prop_flipchair_01")] = true,
+    [GetHashKey("prop_gc_chair02")] = true,
+    [GetHashKey("prop_ld_farm_chair01")] = true,
+    [GetHashKey("prop_off_chair_01")] = true,
+    [GetHashKey("prop_off_chair_03")] = true,
+    [GetHashKey("prop_off_chair_04_s")] = true,
+    [GetHashKey("prop_off_chair_04")] = true,
+    [GetHashKey("prop_off_chair_04b")] = true,
+    [GetHashKey("prop_off_chair_05")] = true,
+    [GetHashKey("prop_old_deck_chair_02")] = true,
+    [GetHashKey("prop_old_deck_chair")] = true,
+    [GetHashKey("prop_old_wood_chair_lod")] = true,
+    [GetHashKey("prop_old_wood_chair")] = true,
+    [GetHashKey("prop_rock_chair_01")] = true,
+    [GetHashKey("prop_skid_chair_01")] = true,
+    [GetHashKey("prop_skid_chair_02")] = true,
+    [GetHashKey("prop_skid_chair_03")] = true,
+    [GetHashKey("prop_sol_chair")] = true,
+    [GetHashKey("prop_wheelchair_01_s")] = true,
+    [GetHashKey("prop_wheelchair_01")] = true,
+    [GetHashKey("prop_yaught_chair_01")] = true,
+    [GetHashKey("v_16_high_lng_armchairs")] = true,
+    [GetHashKey("v_16_low_lng_mesh_armchair")] = true,
+    [GetHashKey("v_3_main_mesh_chair")] = true,
+    [GetHashKey("v_49_tat2chair")] = true,
+    [GetHashKey("v_50_chairend")] = true,
+    [GetHashKey("v_50_chairend001")] = true,
+    [GetHashKey("v_50_chairend002")] = true,
+    [GetHashKey("v_50_chairend003")] = true,
+    [GetHashKey("v_50_chairend004")] = true,
+    [GetHashKey("v_50_chairend005")] = true,
+    [GetHashKey("v_50_chairend006")] = true,
+    [GetHashKey("v_50_chairend007")] = true,
+    [GetHashKey("v_50_chairend008")] = true,
+    [GetHashKey("v_50_chairend011")] = true,
+    [GetHashKey("v_50_chairend034")] = true,
+    [GetHashKey("v_50_chairend133")] = true,
+    [GetHashKey("v_50_chairend134")] = true,
+    [GetHashKey("v_50_chairs")] = true,
+    [GetHashKey("v_50_chairs1")] = true,
+    [GetHashKey("v_50_chairs3")] = true,
+    [GetHashKey("v_50_chairs4")] = true,
+    [GetHashKey("v_50_chairs6")] = true,
+    [GetHashKey("v_50_chairsingle")] = true,
+    [GetHashKey("v_50_chairsingle002")] = true,
+    [GetHashKey("v_50_chairsingle003")] = true,
+    [GetHashKey("v_50_chairsingle020")] = true,
+    [GetHashKey("v_50_chairsingle021")] = true,
+    [GetHashKey("v_50_chairsingle022")] = true,
+    [GetHashKey("v_50_chairsingle023")] = true,
+    [GetHashKey("v_50_chairsingle12")] = true,
+    [GetHashKey("v_50_chairsingle18")] = true,
+    [GetHashKey("v_50_chairsingle19")] = true,
+    [GetHashKey("v_50_chairsingle2")] = true,
+    [GetHashKey("v_58_soloff_gchair")] = true,
+    [GetHashKey("v_58_soloff_gchair2")] = true,
+    [GetHashKey("v_58_soloff_offchair")] = true,
+    [GetHashKey("v_club_barchair")] = true,
+    [GetHashKey("v_club_ch_armchair")] = true,
+    [GetHashKey("v_club_ch_briefchair")] = true,
+    [GetHashKey("v_club_officechair")] = true,
+    [GetHashKey("v_club_stagechair")] = true,
+    [GetHashKey("v_club_vuarmchair")] = true,
+    [GetHashKey("v_corp_bk_chair1")] = true,
+    [GetHashKey("v_corp_bk_chair2")] = true,
+    [GetHashKey("v_corp_bk_chair3")] = true,
+    [GetHashKey("v_corp_cd_chair")] = true,
+    [GetHashKey("v_corp_lazychair")] = true,
+    [GetHashKey("v_corp_lazychairfd")] = true,
+    [GetHashKey("v_corp_offchair")] = true,
+    [GetHashKey("v_corp_offchairfd")] = true,
+    [GetHashKey("v_corp_sidechair")] = true,
+    [GetHashKey("v_corp_sidechairfd")] = true,
+    [GetHashKey("v_ilev_chair02_ped")] = true,
+    [GetHashKey("v_ilev_hd_chair")] = true,
+    [GetHashKey("v_ilev_m_dinechair")] = true,
+    [GetHashKey("v_ilev_p_easychair")] = true,
+    [GetHashKey("v_ind_ss_chair01")] = true,
+    [GetHashKey("v_ind_ss_chair2")] = true,
+    [GetHashKey("v_ind_ss_chair3_cso")] = true,
+    [GetHashKey("v_med_fabricchair1")] = true,
+    [GetHashKey("v_med_p_deskchair")] = true,
+    [GetHashKey("v_med_p_easychair")] = true,
+    [GetHashKey("v_med_whickchair2")] = true,
+    [GetHashKey("v_med_whickchair2bit")] = true,
+    [GetHashKey("v_med_whickerchair1")] = true,
+    [GetHashKey("v_res_d_armchair")] = true,
+    [GetHashKey("v_res_d_highchair")] = true,
+    [GetHashKey("v_res_fa_chair01")] = true,
+    [GetHashKey("v_res_fa_chair02")] = true,
+    [GetHashKey("v_res_fh_barcchair")] = true,
+    [GetHashKey("v_res_fh_easychair")] = true,
+    [GetHashKey("v_res_j_dinechair")] = true,
+    [GetHashKey("v_res_jarmchair")] = true,
+    [GetHashKey("v_res_m_armchair")] = true,
+    [GetHashKey("v_res_m_dinechair")] = true,
+    [GetHashKey("v_res_mbchair")] = true,
+    [GetHashKey("v_res_mp_stripchair")] = true,
+    [GetHashKey("v_res_study_chair")] = true,
+    [GetHashKey("v_res_tre_chair")] = true,
+    [GetHashKey("v_res_tre_officechair")] = true,
+    [GetHashKey("v_res_trev_framechair")] = true,
+    [GetHashKey("v_ret_chair_white")] = true,
+    [GetHashKey("v_ret_chair")] = true,
+    [GetHashKey("v_ret_fh_chair01")] = true,
+    [GetHashKey("v_ret_gc_chair01")] = true,
+    [GetHashKey("v_ret_gc_chair02")] = true,
+    [GetHashKey("v_ret_gc_chair03")] = true,
+    [GetHashKey("v_ret_ps_chair")] = true,
+    [GetHashKey("v_serv_bs_barbchair")] = true,
+    [GetHashKey("v_serv_bs_barbchair2")] = true,
+    [GetHashKey("v_serv_bs_barbchair3")] = true,
+    [GetHashKey("v_serv_bs_barbchair5")] = true,
+    [GetHashKey("v_serv_ct_chair01")] = true,
+    [GetHashKey("v_serv_ct_chair02")] = true,
 
-	{prop = 'v_ret_chair_white', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.4, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ret_chair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.4, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'ex_prop_offchair_exec_04', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
+    [GetHashKey("v_ilev_leath_chr")] = true,
+    [GetHashKey("prop_bench_01a")] = true,
+    [GetHashKey("prop_bench_01b")] = true,
+    [GetHashKey("prop_bench_01c")] = true,
+    [GetHashKey("prop_bench_02")] = true,
+    [GetHashKey("prop_bench_03")] = true,
+    [GetHashKey("prop_bench_04")] = true,
+    [GetHashKey("prop_bench_05")] = true,
+    [GetHashKey("prop_bench_06")] = true,
+    [GetHashKey("prop_bench_08")] = true,
+    [GetHashKey("prop_bench_09")] = true,
+    [GetHashKey("prop_bench_10")] = true,
+    [GetHashKey("prop_bench_11")] = true,
+    [GetHashKey("prop_fib_3b_bench")] = true,
+    [GetHashKey("prop_ld_bench01")] = true,
+    [GetHashKey("prop_wait_bench_01")] = true,
+    [GetHashKey("prop_table_04_chr")] = true,
+    [GetHashKey("prop_table_05_chr")] = true,
+    [GetHashKey("prop_table_06_chr")] = true,
+    [GetHashKey("v_ilev_leath_chr")] = true,
+    [GetHashKey("prop_table_01_chr_a")] = true,
+    [GetHashKey("prop_table_01_chr_b")] = true,
+    [GetHashKey("prop_table_02_chr")] = true,
+    [GetHashKey("prop_table_03b_chr")] = true,
+    [GetHashKey("prop_table_03_chr")] = true,
+    [GetHashKey("prop_torture_ch_01")] = true,
+    [GetHashKey("v_ilev_fh_dineeamesa")] = true,
+    [GetHashKey("v_ilev_fh_kitchenstool")] = true,
+    [GetHashKey("v_ilev_tort_stool")] = true,
+    [GetHashKey("hei_prop_yah_seat_01")] = true,
+    [GetHashKey("hei_prop_yah_seat_02")] = true,
+    [GetHashKey("hei_prop_yah_seat_03")] = true,
+    [GetHashKey("prop_waiting_seat_01")] = true,
+    [GetHashKey("prop_yacht_seat_01")] = true,
+    [GetHashKey("prop_yacht_seat_02")] = true,
+    [GetHashKey("prop_yacht_seat_03")] = true,
+    [GetHashKey("prop_hobo_seat_01")] = true,
+    [GetHashKey("prop_rub_couch01")] = true,
+    [GetHashKey("miss_rub_couch_01")] = true,
+    [GetHashKey("prop_ld_farm_couch01")] = true,
+    [GetHashKey("prop_ld_farm_couch02")] = true,
+    [GetHashKey("prop_rub_couch03")] = true,
+    [GetHashKey("prop_rub_couch04")] = true,
+    [GetHashKey("p_lev_sofa_s")] = true,
+    [GetHashKey("p_res_sofa_l_s")] = true,
+    [GetHashKey("p_v_med_p_sofa_s")] = true,
+    [GetHashKey("p_yacht_sofa_01_s")] = true,
+    [GetHashKey("v_ilev_m_sofa")] = true,
+    [GetHashKey("v_res_tre_sofa_s")] = true,
+    [GetHashKey("v_tre_sofa_mess_a_s")] = true,
+    [GetHashKey("v_tre_sofa_mess_b_s")] = true,
+    [GetHashKey("v_tre_sofa_mess_c_s")] = true,
+    [GetHashKey("prop_roller_car_01")] = true,
+    [GetHashKey("prop_roller_car_02")] = true,
+    [GetHashKey("v_ilev_ph_bench")] = true,
+    [GetHashKey("ex_prop_offchair_exec_04")] = true,
+    [GetHashKey("ex_prop_offchair_exec_01")] = true,
+    [GetHashKey("vw_prop_vw_offchair_02")] = true,
 
-	-- SEAT
-	{prop = 'hei_prop_yah_seat_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'hei_prop_yah_seat_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'hei_prop_yah_seat_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_waiting_seat_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_yacht_seat_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_yacht_seat_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_yacht_seat_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_hobo_seat_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.65, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'gr_dlc_gr_yacht_props_seat_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.65, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'gr_dlc_gr_yacht_props_seat_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.65, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'gr_dlc_gr_yacht_props_seat_03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.65, forwardOffset = 0.0, leftOffset = 0.0},
-
-	-- COUCH
-	{prop = 'prop_rub_couch01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'miss_rub_couch_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_ld_farm_couch01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_ld_farm_couch02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_rub_couch02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_rub_couch03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_rub_couch04', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-
-	-- SOFA
-	{prop = 'p_lev_sofa_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_res_sofa_l_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_v_med_p_sofa_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_yacht_sofa_01_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_m_sofa', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_res_tre_sofa_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_tre_sofa_mess_a_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_tre_sofa_mess_b_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_tre_sofa_mess_c_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-
-	-- MISC
-	{prop = 'prop_roller_car_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'prop_roller_car_02', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'p_v_med_p_sofa_s', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-
-	{prop = 'v_med_p_sofa', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_ilev_ph_bench', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'hei_heist_bench03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_club_stagechair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_club_barchair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_club_officesofa', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_corp_lazychair', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'v_corp_cd_recseat', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
-	{prop = 'hei_heist_toilet03', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
+	[GetHashKey("prop_bench_01a")] = true,
+	[GetHashKey("prop_bench_01b")] = true,
+	[GetHashKey("prop_bench_01c")] = true,
+	[GetHashKey("prop_bench_02")] = true,
+	[GetHashKey("prop_bench_03")] = true,
+	[GetHashKey("prop_bench_04")] = true,
+	[GetHashKey("prop_bench_05")] = true,
+	[GetHashKey("prop_bench_06")] = true,
+	[GetHashKey("prop_bench_05")] = true,
+	[GetHashKey("prop_bench_08")] = true,
+	[GetHashKey("prop_bench_09")] = true,
+	[GetHashKey("prop_bench_10")] = true,
+	[GetHashKey("prop_bench_11")] = true,
+	[GetHashKey("prop_fib_3b_bench")] = true,
+	[GetHashKey("prop_ld_bench01")] = true,
+	[GetHashKey("prop_wait_bench_01")] = true,
+	[GetHashKey("hei_prop_heist_off_chair")] = true,
+	[GetHashKey("hei_prop_hei_skid_chair")] = true,
+	[GetHashKey("prop_chair_01a")] = true,
+	[GetHashKey("prop_chair_01b")] = true,
+	[GetHashKey("prop_chair_02")] = true,
+	[GetHashKey("prop_chair_03")] = true,
+	[GetHashKey("prop_chair_04a")] = true,
+	[GetHashKey("prop_chair_04b")] = true,
+	[GetHashKey("prop_chair_05")] = true,
+	[GetHashKey("prop_chair_06")] = true,
+	[GetHashKey("prop_chair_05")] = true,
+	[GetHashKey("prop_chair_08")] = true,
+	[GetHashKey("prop_chair_09")] = true,
+	[GetHashKey("prop_chair_10")] = true,
+	[GetHashKey("v_club_stagechair")] = true,
+	[GetHashKey("prop_chateau_chair_01")] = true,
+	[GetHashKey("prop_clown_chair")] = true,
+	[GetHashKey("prop_cs_office_chair")] = true,
+	[GetHashKey("prop_direct_chair_01")] = true,
+	[GetHashKey("prop_direct_chair_02")] = true,
+	[GetHashKey("prop_gc_chair02")] = true,
+	[GetHashKey("prop_off_chair_01")] = true,
+	[GetHashKey("prop_off_chair_03")] = true,
+	[GetHashKey("prop_off_chair_04")] = true,
+	[GetHashKey("prop_off_chair_04b")] = true,
+	[GetHashKey("prop_off_chair_04_s")] = true,
+	[GetHashKey("prop_off_chair_05")] = true,
+	[GetHashKey("prop_old_deck_chair")] = true,
+	[GetHashKey("prop_old_wood_chair")] = true,
+	[GetHashKey("prop_rock_chair_01")] = true,
+	[GetHashKey("prop_skid_chair_01")] = true,
+	[GetHashKey("prop_skid_chair_02")] = true,
+	[GetHashKey("prop_skid_chair_03")] = true,
+	[GetHashKey("prop_sol_chair")] = true,
+	[GetHashKey("prop_wheelchair_01")] = true,
+	[GetHashKey("prop_wheelchair_01_s")] = true,
+	[GetHashKey("p_armchair_01_s")] = true,
+	[GetHashKey("p_clb_officechair_s")] = true,
+	[GetHashKey("p_dinechair_01_s")] = true,
+	[GetHashKey("p_ilev_p_easychair_s")] = true,
+	[GetHashKey("p_soloffchair_s")] = true,
+	[GetHashKey("p_yacht_chair_01_s")] = true,
+	[GetHashKey("v_club_officechair")] = true,
+	[GetHashKey("v_corp_bk_chair3")] = true,
+	[GetHashKey("v_corp_cd_chair")] = true,
+	[GetHashKey("v_corp_offchair")] = true,
+	[GetHashKey("v_ilev_chair02_ped")] = true,
+	[GetHashKey("v_ilev_hd_chair")] = true,
+	[GetHashKey("v_ilev_p_easychair")] = true,
+	[GetHashKey("v_ret_gc_chair03")] = true,
+	[GetHashKey("prop_ld_farm_chair01")] = true,
+	[GetHashKey("prop_table_04_chr")] = true,
+	[GetHashKey("prop_table_05_chr")] = true,
+	[GetHashKey("prop_table_06_chr")] = true,
+	[GetHashKey("v_ilev_leath_chr")] = true,
+	[GetHashKey("prop_table_01_chr_a")] = true,
+	[GetHashKey("prop_table_01_chr_b")] = true,
+	[GetHashKey("prop_table_02_chr")] = true,
+	[GetHashKey("prop_table_03b_chr")] = true,
+	[GetHashKey("prop_table_03_chr")] = true,
+	[GetHashKey("prop_torture_ch_01")] = true,
+	[GetHashKey("v_ilev_fh_dineeamesa")] = true,
+	[GetHashKey("v_ilev_fh_kitchenstool")] = true,
+	[GetHashKey("v_ilev_tort_stool")] = true,
+	[GetHashKey("v_ilev_fh_kitchenstool")] = true,
+	[GetHashKey("v_ilev_fh_kitchenstool")] = true,
+	[GetHashKey("v_ilev_fh_kitchenstool")] = true,
+	[GetHashKey("v_ilev_fh_kitchenstool")] = true,
+	[GetHashKey("hei_prop_yah_seat_01")] = true,
+	[GetHashKey("hei_prop_yah_seat_02")] = true,
+	[GetHashKey("hei_prop_yah_seat_03")] = true,
+	[GetHashKey("prop_waiting_seat_01")] = true,
+	[GetHashKey("prop_yacht_seat_01")] = true,
+	[GetHashKey("prop_yacht_seat_02")] = true,
+	[GetHashKey("prop_yacht_seat_03")] = true,
+	[GetHashKey("prop_hobo_seat_01")] = true,
+	[GetHashKey("prop_rub_couch01")] = true,
+	[GetHashKey("miss_rub_couch_01")] = true,
+	[GetHashKey("prop_ld_farm_couch01")] = true,
+	[GetHashKey("prop_ld_farm_couch02")] = true,
+	[GetHashKey("prop_rub_couch02")] = true,
+	[GetHashKey("prop_rub_couch03")] = true,
+	[GetHashKey("prop_rub_couch04")] = true,
+	[GetHashKey("p_lev_sofa_s")] = true,
+	[GetHashKey("p_res_sofa_l_s")] = true,
+	[GetHashKey("p_v_med_p_sofa_s")] = true,
+	[GetHashKey("p_yacht_sofa_01_s")] = true,
+	[GetHashKey("v_ilev_m_sofa")] = true,
+	[GetHashKey("v_res_tre_sofa_s")] = true,
+	[GetHashKey("v_tre_sofa_mess_a_s")] = true,
+	[GetHashKey("v_tre_sofa_mess_b_s")] = true,
+	[GetHashKey("v_tre_sofa_mess_c_s")] = true,
+	[GetHashKey("prop_roller_car_01")] = true,
+    [GetHashKey("prop_roller_car_02")] = true,
+    [GetHashKey("apa_mp_h_yacht_armchair_03")] = true,
+    [GetHashKey("ex_mp_h_din_chair_04")] = true,
+    [GetHashKey("hei_heist_bench03")] = true,
+    [GetHashKey("v_club_officesofa")] = true,
+    [GetHashKey("v_corp_cd_recseat")] = true,
+    [GetHashKey("hei_heist_toilet03")] = true,
+    [GetHashKey("gr_dlc_gr_yacht_props_seat_01")] = true,
+    [GetHashKey("gr_dlc_gr_yacht_props_seat_02")] = true,
+    [GetHashKey("gr_dlc_gr_yacht_props_seat_03")] = true,
+    [-71417349] = true,
 }
 
-local sitting = false
-local currentSitObj
-local fakeEnt
+local isSit = false
+local oldCoords = vector3(0.0,0.0,0.0)
+local verticalOffsetX = 0.0
+local verticalOffsetY = 0.0
+local verticalOffsetZ = -0.45
+local direction = 180.0 
+local cam = nil
 
-
-local function sit(object)
-	local ped = LocalPlayer().Ped
-	currentSitObj = object
-	FreezeEntityPosition(object, true)
-	SetEntityVisible(object, false, false)
-	SetEntityCollision(object, false, false)
-
-	local objinfo = {}
-	for k,v in pairs(configSeats) do
-		if tostring(GetHashKey(v.prop)) == tostring(GetEntityModel(object)) then
-			objinfo = v
-			break
-		end
+function CheckInputRotation(cam, zoomvalue)
+	local rightAxisX = GetDisabledControlNormal(0, 220)
+	local rightAxisY = GetDisabledControlNormal(0, 221)
+	local rotation = GetCamRot(cam, 2)
+	if rightAxisX ~= 0.0 or rightAxisY ~= 0.0 then
+		new_z = rotation.z + rightAxisX*-1.0*(5.0)*(zoomvalue+0.1)
+		new_x = math.max(math.min(20.0, rotation.x + rightAxisY*-1.0*(5.0)*(zoomvalue+0.1)), -89.5)
+		SetCamRot(cam, new_x, 0.0, new_z, 2)
 	end
-
-	local objloc = GetEntityCoords(object)
-	local sitData = { x = objloc.x, y = objloc.y, z = objloc.z + (objinfo.verticalOffset or .0) - .15, a = GetEntityHeading(object) + 180.0 }
-
-	TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
-		function()
-			fakeEnt = CreateObject(GetEntityModel(object), objloc, true, 0, 0)
-			--PlaceObjectOnGroundProperly(fakeEnt)
-			FreezeEntityPosition(fakeEnt, true)
-			SetEntityHeading(fakeEnt, sitData.a - 180.0)
-		
-			SetEntityCoords(ped, sitData.x, sitData.y, sitData.z)
-			SetEntityHeading(ped, sitData.a)
-			FreezeEntityPosition(ped, true)
-			sitting = true
-			TaskStartScenarioAtPosition(ped, objinfo.scenario, sitData.x, sitData.y, sitData.z + 1.1, sitData.a, -1)
-		end,
-		GetEntityModel(object)
-	)
-
 end
 
-local closestObj = {}
 
+function SitChair()
+    if isSit then
+        isSit = false
+        local pPed = PlayerPedId()
+        ClearPedTasks(pPed)
+        SetEntityCoords(pPed, oldCoords.x, oldCoords.y, oldCoords.z - 1.0, 0.0, 0.0, 0.0, 0)
+        FreezeEntityPosition(pPed, false)
+        RenderScriptCams(0, 1, 1000, 1, 1)
+        SetCamActive(cam, false)
+        DestroyCam(cam, true)
+    else
+        local closetObj = nil
+        local closetDst = 100
+        local objCoords = vector3(0.0, 0.0, 0.0)
+        local dim = {}
+        local dimZ = 0
+        local pPed = PlayerPedId()
+        local pCoords = GetEntityCoords(pPed)
+        oldCoords = pCoords
 
+        for k,v in pairs(chairs) do
+            local closestObject = GetClosestObjectOfType(pCoords.x, pCoords.y, pCoords.z, 10.0, k, 0, 0, 0)
+            local coordsObject = GetEntityCoords(closestObject)
+            if coordsObject ~= vector3(0.0, 0.0, 0.0) then
+                local distanceDiff = #(coordsObject - pCoords)
+                local vDim, _ = GetModelDimensions(GetEntityModel(closestObject))
 
-Citizen.CreateThread(function()
-    while true do
-        Wait(1)
-        
-        if IsControlJustPressed(1, Keys["E"]) and not IsPedInAnyVehicle(LocalPlayer().Ped) then
-            --print("press")
-            plyPos = LocalPlayer().Pos
-            for k,v in pairs(configSeats) do
-				local obj = GetClosestObjectOfType(plyPos, 1.5, GetHashKey(v.prop), false, true, true)
-				if obj and DoesEntityExist(obj) and GetDistanceBetweenCoords(GetEntityCoords(obj), plyPos, true) < 1.5 and sitting == false and DoesEntityExist(obj) then
-					closestObj = { obj, 1, v.canMove }
-				end
-            end
-            if closestObj[2] == 1 then
-                if closestObj[1] ~= nil  and GetDistanceBetweenCoords(GetEntityCoords(closestObj[1]), plyPos, true) < 1.5 and IsEntityVisible(closestObj[1]) then
-                    
-                    if IsControlJustPressed(1, Keys["E"]) then
-                        --print("pressx")
-                        sit(closestObj[1])
-                        Citizen.Wait(1000)
-                    end
-                end
-            end
-            if closestObj[2] == 3 then
-                if Ora.Inventory:CanReceive(closestObj.it,1) then
-                    doAnim({"anim@mp_radio@high_apment", "button_press_bedroom"}, true)
-                    items = {name=closestObj.it,data={}}
-                    Ora.Inventory:AddItem(items)
-                    TriggerServerEvent("money:Pay", 10 )
-                    ShowNotification("~g~Vous avez payé 10$ pour 1" .. Items[closestObj.it].label)
+                if distanceDiff < closetDst then
+                    closetObj = closestObject
+                    closetDst = distanceDiff
+                    objCoords = coordsObject
+                    dim = vDim
                 end
             end
         end
-        if sitting then
-            local ped = LocalPlayer().Ped
-			DrawTopNotification("Appuyez sur " .. ("~INPUT_CONTEXT~") .. " pour ~b~vous lever~w~.")
-			if IsControlJustPressed(1, Keys["E"]) then
-				sitting = false
-				FreezeEntityPosition(ped, true)
-				ClearPedTasks(ped)
-				SetEntityAsMissionEntity(fakeEnt, true, true)
-				DeleteObject(fakeEnt)
-				SetEntityVisible(currentSitObj, true, true)
-				SetEntityVisible(ped, true, true)
-				SetEntityCollision(currentSitObj, true, true)
-				FreezeEntityPosition(ped, false)
-				currentSitObj = nil
-				fakeEnt = nil
-				movePoint = 0
-			end
+
+        if closetDst < 2.0 then
+            FreezeEntityPosition(closetObj, true)
+            FreezeEntityPosition(pPed, true)
+
+            dimZ = objCoords.z - verticalOffsetZ
+
+            if dim.z <= -0.3 then
+                dimZ = objCoords.z + verticalOffsetZ / 5
+            end
+
+            isSit = true
+            TaskStartScenarioAtPosition(pPed, "PROP_HUMAN_SEAT_CHAIR_MP_PLAYER", objCoords.x + verticalOffsetX, objCoords.y + verticalOffsetY, dimZ, GetEntityHeading(closetObj) + direction, 0, true, true)
+             
+            cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
+            SetCamCoord(cam, GetOffsetFromEntityInWorldCoords(pPed, 0.0, -1.0, 1.0))
+            SetCamActive(cam, true)
+            RenderScriptCams(1, 1, 1000, 1, 1)
+            PointCamAtEntity(cam, pPed, 1, 1, 1, 1)
+            Wait(500)
+            StopCamPointing(cam)
+            
+            Citizen.CreateThread(function()
+                
+                while isSit do
+                    ShowNotification("Faire /sit pour se lever de nouveau")
+                    CheckInputRotation(cam, 1.0)
+                    Wait(1)
+
+                end
+            end)
+        else
+            ShowNotification("Pas de chaise proche")
         end
     end
-end)
+end
+
+
