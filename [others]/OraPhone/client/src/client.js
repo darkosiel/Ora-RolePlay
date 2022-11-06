@@ -314,12 +314,12 @@ onNet('OraPhone:client:gallery_update_photo', data => {
 
 // Notes
 
-onNet('OraPhone:client:notes_refresh', data => {
-    SendNUIMessage({
-        type: 'updateNotes',
-        notes: data
-    })
-})
+// onNet('OraPhone:client:notes_refresh', data => {
+//     SendNUIMessage({
+//         type: 'updateNotes',
+//         notes: data
+//     })
+// })
 
 // Maps
 

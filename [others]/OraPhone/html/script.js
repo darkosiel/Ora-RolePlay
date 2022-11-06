@@ -434,7 +434,7 @@ async function updateUserData(data) {
     $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
     $.post('https://OraPhone/refresh_gallery', JSON.stringify({ phoneId: userData.phone.id }));
     $.post('https://OraPhone/refresh_richtermotorsport_advertisement', JSON.stringify({ phoneId: userData.phone.id }));
-    $.post('https://OraPhone/refresh_notes', JSON.stringify({ phoneId: userData.phone.id }));
+    // $.post('https://OraPhone/refresh_notes', JSON.stringify({ phoneId: userData.phone.id }));
 }
 
 function initializeApps() {

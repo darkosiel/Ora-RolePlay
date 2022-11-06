@@ -513,16 +513,16 @@ async function refreshGallery(phoneId) {
  * Refresh all Notes app
  * @param {array} data
  */
-async function refreshNotes(phoneId) {
-    const notesFolderResponse = await crud.notesfolder.read({ phoneId: phoneId })
-    if(notesFolderResponse && notesFolderResponse.length > 0) {
-        for (let folder of notesFolderResponse) {
-            const notesNoteResponse = await crud.notesnote.read({ folderId: folder.id })
-            folder.notes = notesNoteResponse
-        }
-    }
-    return notesFolderResponse
-}
+// async function refreshNotes(phoneId) {
+//     const notesFolderResponse = await crud.notesfolder.read({ phoneId: phoneId })
+//     if(notesFolderResponse && notesFolderResponse.length > 0) {
+//         for (let folder of notesFolderResponse) {
+//             const notesNoteResponse = await crud.notesnote.read({ folderId: folder.id })
+//             folder.notes = notesNoteResponse
+//         }
+//     }
+//     return notesFolderResponse
+// }
 
 /**
  * Refresh all Maps Favorite position
@@ -944,16 +944,16 @@ onNet('OraPhone:server:gallery_image_remove', async (data) => {
 
 // Notes
 
-onNet('OraPhone:server:refresh_notes', async (data) => {
-    const src = source
-    emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
-})
+// onNet('OraPhone:server:refresh_notes', async (data) => {
+//     const src = source
+//     emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+// })
 
-onNet('OraPhone:server:notes_add_folder', async (data) => {
-    const src = source
-    await crud.notesfolder.create({ phoneId: data.phoneId, name: data.name })
-    emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
-})
+// onNet('OraPhone:server:notes_add_folder', async (data) => {
+//     const src = source
+//     await crud.notesfolder.create({ phoneId: data.phoneId, name: data.name })
+//     emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+// })
 
 // Maps
 
