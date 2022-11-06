@@ -320,7 +320,7 @@ $(function(){
             }
             // Gestion du clique droit
             $("#phone").bind("contextmenu",function() {
-                // return false;
+                return false;
             });
             // Gestion entrer/sortie des inputs
             $(':input').on('blur', function() {
@@ -385,25 +385,6 @@ $(function(){
                     $("#gallery-image-list .gallery-image-list-item").bind("click", messageChooseImageGallery);
                 });
             }
-            // $("#add-notification").click(function() {
-            //     // addNotification("call", "message", "Sam 18:50", "Nathan D", "Yeah, that's sound with me. I'll see you in 10");
-            //     $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: 2, targetNumber: ["5559995","5556585"], number: 5559995, conversationId: 18, message: "Bonjour, ça va ?" }));
-            // });
-            // $("#add-call").click(function() {
-            //     // callNumber("5556585");
-            //     // receiveCall();
-            //     // $.post('https://OraPhone/call_number', JSON.stringify({ targetNumber: "5559995", fromNumber: phoneNumber }));
-            // });
-            // $("#refresh-contacts").click(function() {
-            //     // $.post('https://OraPhone/refresh_contacts', JSON.stringify({ phoneId: userData.phone.id }));
-            // });
-            // $("#save-home").click(function() {
-            //     // saveHomeOrder();
-            //     switchFormatOrientation();
-            // });
-            // $("#submit-choose-app").click(function() {
-            //     updateContent($("#choose-app").val());
-            // });
         
         // Ajout d'une bulle dans une conversation
         // $('.app-message-conversation .messages').append('<div class="chat-bubble"><div class="loading"><div class="dot one"></div><div class="dot two"></div><div class="dot three"></div></div><div class="tail"></div></div>');
@@ -697,9 +678,28 @@ function initializeAppMessage() {
     $("#message-photo-button-show").click(function () {
         $("#app-message-photo").toggleClass("active");
     })
-    $("#app-body-content-header-button-action-remove").click(function() {
+    $("#message-header-button-remove").click(function() {
         $.post('https://OraPhone/message_delete_conversation', JSON.stringify({ id: $('.app-message-conversation .messages').data("conversation-id"), number: userData.phone.number }));
         updateAppContent("list");
+    });
+    $("#message-header-button-edit").click(function() {
+        updateAppContent("editmessage");
+        for (let conversation of userData.conversations) {
+            if (conversation.id == $('.app-message-conversation .messages').data("conversation-id")) {
+                if (conversation.name != null) {
+                    $("#editmessage-list-item-rename input").val(conversation.name);
+                } else {
+                    $("#editmessage-list-item-rename input").val("");
+                }
+            }
+        }
+    });
+    $("#message-header-button-save").click(function() {
+        let conversationRenameInputVal = $("#editmessage-list-item-rename input").val();
+        if (conversationRenameInputVal != "" && conversationRenameInputVal != null) {
+            $.post('https://OraPhone/message_update_name_conversation', JSON.stringify({ id: $('.app-message-conversation .messages').data("conversation-id"), name: conversationRenameInputVal, number: userData.phone.number }));
+            updateAppContent("message");
+        }
     });
     $("#message-position-button-myposition").click(function () {
         $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYPOSITION" }));
@@ -1884,6 +1884,9 @@ function updateConversationList() {
             }
         }
         conversationName = conversationName.slice(0, -2);
+        if (conversation.name != null) {
+            conversationName = conversation.name;
+        }
         let divConversation = "<div class='app-body-content-body-list-item'><div class='message-list-item-left'><div class='message-list-item-left-avatar " + (conversationAvatar.includes('http') ? "url" : "") + "'><img src='" + conversationAvatar + "' /></div>" + (!conversationIsRead ? "<div class='message-list-item-left-notread'>1</div>" : "") + "</div><div class='message-list-item-right'><div class='message-list-item-right-header'><div class='message-list-item-right-header-name'><span>" + conversationName + "</span></div><div class='message-list-item-right-header-date'><span>" + conversationTime + "</span><i class='fa-solid fa-chevron-right'></i></div></div><div class='message-list-item-right-body'><div class='message-list-item-right-body-text'><span>" + conversationMessage + "</span></div></div></div></div>";
         $("#message-list").append(divConversation);
         $("#message-list").children().last().click(function () {
@@ -1940,6 +1943,11 @@ function updateAppMessageLoad(id = null) {
                 let conversationAvatar = contactAvatarDefault;
                 let conversationName = "";
                 messageTargetNumber = JSON.parse(conversation.target_number);
+                if (messageTargetNumber.length > 2) {
+                    $("#message-header-button-save").show();
+                } else {
+                    $("#message-header-button-save").hide();
+                }
                 for(let user of JSON.parse(conversation.target_number)) {
                     if(user.number != userData.phone.number) {
                         let name = user.number;
@@ -1964,6 +1972,9 @@ function updateAppMessageLoad(id = null) {
                     }
                 }
                 conversationName = conversationName.slice(0, -2);
+                if (conversation.name != null) {
+                    conversationName = conversation.name;
+                }
                 if(conversationAvatar.includes("http")) {
                     $(".app-body-content-header-profil-avatar").addClass("url");
                 } else {
@@ -1996,8 +2007,10 @@ function updateAppMessageLoad(id = null) {
         messageInput.on("keyup", function(e) {
             if (e.key === 'Enter' || e.keyCode === 13) {
                 if (messageInput.val() != "") {
-                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+                    let sourceDateTime = new Date().toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
                     responsiveChatPush("Moi", "me", sourceDateTime, messageInput.val());
+                    let elementMessages = document.querySelector(".app-message-conversation .messages");
+                    elementMessages.scroll({ top: elementMessages.scrollHeight, behavior: "instant"});
                     $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: messageInput.val() }));
                     messageInput.val("");
                 }
@@ -3075,7 +3088,6 @@ function updateAppContent(element) {
                 elt.style.display = "none";
             }
         }
-        
     }
 }
 

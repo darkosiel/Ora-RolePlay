@@ -148,6 +148,7 @@ const crud = {
     conversations: generateCrud('phone_conversations', {
         id: 'id',
         targetNumber: 'target_number',
+        name: 'name',
         lastMsgTime: 'last_msg_time',
     }),
     messages: generateCrud('phone_messages', {
@@ -812,6 +813,26 @@ onNet('OraPhone:server:message_update_read_conversation', async (data) => {
     await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(authorList) });
     dataConversation.type = "update_read";
     emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), dataConversation);
+})
+
+onNet('OraPhone:server:message_update_name_conversation', async (data) => {
+    const src = source;
+    await crud.conversations.update({ id: data.id }, { name: data.name });
+    let conversationResponse = await crud.conversations.read({ id: data.id });
+    let targetNumber = JSON.parse(conversationResponse[0].targetNumber);
+    for(let target of targetNumber) {
+        const res = await fetchSteamIdFromNumber(target.number);
+        if (!res || res.length == 0) {
+            continue;
+        }
+        const steamId = res[0]['identifier'];
+        const receiver = getOnlinePlayerBySteamId(steamId);
+        if (!receiver) {
+            continue;
+        }
+        emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number));
+    }
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number));
 })
 
 onNet('OraPhone:server:refresh_conversations', async (data) => {

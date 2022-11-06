@@ -462,6 +462,15 @@ on('__cfx_nui:message_update_read_conversation', data => {
     emitNet('OraPhone:server:message_update_read_conversation', data)
 })
 
+RegisterNuiCallbackType('message_update_name_conversation')
+on('__cfx_nui:message_update_name_conversation', data => {
+    if (!data.id && !data.name) { 
+        console.error('missing id and name')
+        return
+    }
+    emitNet('OraPhone:server:message_update_name_conversation', data)
+})
+
 RegisterNuiCallbackType('refresh_conversations')
 on('__cfx_nui:refresh_conversations', data => {
     emitNet('OraPhone:server:refresh_conversations', data)

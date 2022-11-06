@@ -289,6 +289,11 @@ div#page {
                                                 align-items: center;
                                                 column-gap: 5px;
                                             }
+                                            div.app-body-content-header-button-action {
+                                                i#message-header-button-edit {
+                                                    margin-right: 15px;
+                                                }
+                                            }
                                             div.app-body-content-header-button-logo {
                                                 display: flex;
                                                 img {
@@ -2272,6 +2277,52 @@ div#page {
                                                 }
                                             }
                                             
+                                        }
+                                    }
+                                    div#app-message-body-content-editmessage {
+                                        div.app-body-content-header {
+                                            height: 72px;
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 72px);
+                                            padding: 0;
+                                            div.editmessage-list {
+                                                display: flex;
+                                                flex-direction: column;
+                                                width: 100%;
+                                                height: auto;
+                                                div.editmessage-list-item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: space-evenly;
+                                                    width: 100%;
+                                                    height: 120px;
+                                                    padding: 0 10px;
+                                                    label {
+                                                        font-size: 20px;
+                                                        font-family: $ora-font-semibold;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                    input {
+                                                        width: 70%;
+                                                        height: 35px;
+                                                        border: 0;
+                                                        border-bottom-width: 2px;
+                                                        border-bottom-style: solid;
+                                                        font-size: 20px;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-app-label-color-primary);
+                                                            background: t($phone-app-background-color);
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

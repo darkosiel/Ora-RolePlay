@@ -449,6 +449,9 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
   -moz-column-gap: 5px;
        column-gap: 5px;
 }
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-button div.app-body-content-header-button-action i#message-header-button-edit {
+  margin-right: 15px;
+}
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app div.app-body div.app-body-content div.app-body-content-header div.app-body-content-header-button div.app-body-content-header-button-logo {
   display: flex;
 }
@@ -2632,6 +2635,58 @@ div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-co
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-message div.app-body-content-body div.app-message-toolbox#app-message-photo {
   left: 15px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-header {
+  height: 72px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body {
+  height: calc(100% - 72px);
+  padding: 0;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 120px;
+  padding: 0 10px;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item label {
+  font-size: 20px;
+  font-family: "SF UI Text Semibold";
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item label {
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item label {
+  color: #FFFFFF;
+}
+div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item input {
+  width: 70%;
+  height: 35px;
+  border: 0;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.theme--default div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item input {
+  border-bottom-color: #000000;
+  background: #FFFFFF;
+  color: #000000;
+}
+.theme--dark div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-message div.app-body div#app-message-body-content-editmessage div.app-body-content-body div.editmessage-list div.editmessage-list-item input {
+  border-bottom-color: #FFFFFF;
+  background: #000000;
+  color: #FFFFFF;
 }
 div#page div#phone div#phone-screen div#phone-screen-content div#phone-screen-content-body div#app-content div.app#app-contacts div.app-body div.app-body-content div.app-body-content-body {
   padding: 0;

@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_contacts (
 CREATE TABLE IF NOT EXISTS ora_phone_conversations (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `target_number` TEXT NOT NULL,
+    `name` VARCHAR(255) NULL,
     `last_msg_time` DATETIME DEFAULT CURRENT_TIMESTAMP
 )ENGINE=InnoDB;
 
