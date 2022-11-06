@@ -1944,9 +1944,9 @@ function updateAppMessageLoad(id = null) {
                 let conversationName = "";
                 messageTargetNumber = JSON.parse(conversation.target_number);
                 if (messageTargetNumber.length > 2) {
-                    $("#message-header-button-save").show();
+                    $("#message-header-button-edit").show();
                 } else {
-                    $("#message-header-button-save").hide();
+                    $("#message-header-button-edit").hide();
                 }
                 for(let user of JSON.parse(conversation.target_number)) {
                     if(user.number != userData.phone.number) {
