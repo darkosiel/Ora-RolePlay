@@ -98,7 +98,7 @@ function CellFrontCamActivate(activate) {
 DestroyMobilePhone()
 async function setCamera(activate) {
     if(activate) {
-        exports.Ora_dep.SetPlayerHUD(false)
+        exports.Ora_utils.SetPlayerHUD(false)
         onTickCamera = setTick(async () => {
             DisableControlAction(1, 200)
             if (IsControlJustPressed(1, 177)) { // -- CLOSE PHONE
@@ -109,7 +109,7 @@ async function setCamera(activate) {
                 })
                 setPhoneVisible(true)
                 stopTick();
-                exports.Ora_dep.SetPlayerHUD(true)
+                exports.Ora_utils.SetPlayerHUD(true)
             }
             if (IsControlJustPressed(1, 27) && !firstTime) { // -- SELFIE MODE
                 firstTime = true
@@ -158,7 +158,7 @@ async function takePicture() {
     CellCamActivate(false, false)
     setPhoneVisible(true)
     await Wait(500)
-    exports.Ora_dep.SetPlayerHUD(true)
+    exports.Ora_utils.SetPlayerHUD(true)
 }
 
 async function stopTick() {
