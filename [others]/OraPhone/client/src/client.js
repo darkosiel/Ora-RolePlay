@@ -101,7 +101,7 @@ async function setCamera(activate) {
         exports.Ora_utils.SetPlayerHUD(false)
         onTickCamera = setTick(async () => {
             DisableControlAction(1, 200)
-            if (IsControlJustPressed(1, 177)) { // -- CLOSE PHONE
+            if (IsControlJustPressed(1, 202)) { // -- CLOSE PHONE
                 DestroyMobilePhone()
                 CellCamActivate(false, false)
                 SendNUIMessage({
@@ -116,7 +116,7 @@ async function setCamera(activate) {
                 frontCam = !frontCam
                 CellFrontCamActivate(frontCam)
             }
-            if (IsControlJustPressed(1, 18) && !takePictureBool) { // -- TAKE PICTURE
+            if (IsControlJustPressed(1, 201) && !takePictureBool) { // -- TAKE PICTURE
                 takePictureBool = true
                 takePicture()
             }
@@ -159,6 +159,7 @@ async function takePicture() {
     setPhoneVisible(true)
     await Wait(500)
     exports.Ora_utils.SetPlayerHUD(true)
+    stopTick()
 }
 
 async function stopTick() {
@@ -567,6 +568,7 @@ on('__cfx_nui:open_camera', async (data) => {
 RegisterNuiCallbackType('close_camera')
 on('__cfx_nui:close_camera', async () => {
     setCamera(false)
+    stopTick()
 })
 
 // Gallery

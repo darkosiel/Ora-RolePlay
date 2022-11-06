@@ -1,6 +1,7 @@
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms))
 var inCall = false
+var modeTest = false
 
 /**
  * =============
@@ -250,15 +251,15 @@ async function requestUserData(steamId, number) {
             + " INNER JOIN players_identity p ON u.uuid = p.uuid"
             + " WHERE u.identifier = @id"
         , { id: steamId })
-        console.log(steamId)
         if (!identityResponse || identityResponse.length != 1) {
-            console.error('Identity query failed with steamid', steamId)
+            if (modeTest) {
+                console.error('Identity query failed with steamid', steamId)
+            }
             return
         }
         const userData = identityResponse[0]
         const id = userData.uuid
         // parameters
-        console.log(number)
         const phoneResponse = await crud.phone.read({ number: number })
         if (!phoneResponse || phoneResponse.length === 0) {
             console.log('Phone query failed, no phone with this number ', number)
@@ -352,7 +353,6 @@ function getSteamId(source) {
   */
 function getOnlinePlayerBySteamId(steamId) {
     for (const p in onlinePlayers) {
-        console.log('player', p, onlinePlayers[p])
         if (onlinePlayers[p] == steamId) { return p }
     }
     return null
@@ -371,15 +371,18 @@ async function getNumberBySource(source) {
     + " INNER JOIN players_identity p ON u.uuid = p.uuid"
     + " WHERE u.identifier = @id"
     , { id: steamId });
-    console.log(steamId);
     if (!identityResponse || identityResponse.length != 1) {
-        console.error('Identity query failed with steamid', steamId);
+        if (modeTest) {
+            console.error('Identity query failed with steamid', steamId);
+        }
         return null;
     }
     let uuid = identityResponse[0].uuid;
     const phoneResponse = await crud.phone.read({ playerUuid: uuid });
     if (!phoneResponse || phoneResponse.length === 0) {
-        console.log('Phone query failed, no phone with this uuid ', uuid);
+        if (modeTest) {
+            console.log('Phone query failed, no phone with this uuid ', uuid);
+        }
         return null;
     }
     return phoneResponse[0].number;
@@ -424,7 +427,9 @@ function purgeCaller (src, video = false) {
  * @param {number} chan 
  */
 async function endCall(chan, video = false) {
-    console.log('remove callers from channel ', chan, callers[chan] || callers);
+    if (modeTest) {
+        console.log('remove callers from channel ', chan, callers[chan] || callers);
+    }
     if (!callers[chan]) { return }
     // PMA Voice
     // exports["pma-voice"].setPlayerCall(callers[chan].callerId, 0);
@@ -593,7 +598,6 @@ on('playerDropped', _ => {
 })
 on("Ora::SE::PlayerLoaded", source => {
     onlinePlayers[source] = getSteamId(source)
-    console.log('player loaded', source, onlinePlayers[source])
 })
 
 /**
@@ -654,7 +658,9 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
     const src = source
     const res = await fetchSteamIdFromNumber(targetNum)
     if (!res || res.length == 0) {
-        console.error('db gave no result for number ',targetNum, res)
+        if (modeTest) {
+            console.error('db gave no result for number ',targetNum, res)
+        }
         await Delay(3000)
         if(inCall) {
             emitNet('OraPhone:client:receiver_offline', src)
@@ -662,10 +668,11 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
         return
     }
     const steamId = res[0]['identifier']
-    console.log('got a steamid', steamId)
     const receiver = getOnlinePlayerBySteamId(steamId)
     if (!receiver) {
-        console.error('Player with steamid', steamId ,'is not currently online')
+        if (modeTest) {
+            console.error('Player with steamid', steamId ,'is not currently online')
+        }
         await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
         await Delay(3000)
         if(inCall) {
@@ -675,7 +682,9 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
     }
     for(let [chanIndex, chanValue] of Object.entries(callers)) {
         if(chanValue.receiverId == receiver) {
-            console.log('Player is already on a channel', chanIndex, chanValue)
+            if (modeTest) {
+                console.log('Player is already on a channel', chanIndex, chanValue)
+            }
             await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
             await Delay(5000)
             if(inCall) {
@@ -690,17 +699,21 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
     const lastCallResponse = await crud.calls.read({ sourceNumber: sourceNum, targetNumber: targetNum });
     callers[chan] = {callerId:src, callerSteamId: onlinePlayers[src], receiverSteamId: steamId, receiverId:receiver, fromNum: sourceNum, targetNum: targetNum, chan, callId: lastCallResponse[0].id };
     emitNet('OraPhone:client:receiveCall', receiver, sourceNum, targetNum, chan, video);
-    console.log('call emitted from ',GetPlayerName(src),' to ', GetPlayerName(receiver), 'for channel ', chan);
+    if (modeTest) {
+        console.log('call emitted from ',GetPlayerName(src),' to ', GetPlayerName(receiver), 'for channel ', chan);
+    }
 })
 
 onNet('OraPhone:server:accept_call', async (channel, video=false) => {
     const src = source;
     channel = channel.channel;
-    if (!callers[channel]) { 
+    if (!callers[channel]) {
         console.error('no registered channel to accept the call', channel);
         return;
     }
-    console.log(GetPlayerName(src), ' accepted call, moving both in chan', channel, 'with ', GetPlayerName(callers[channel].callerId));
+    if (modeTest) {
+        console.log(GetPlayerName(src), ' accepted call, moving both in chan', channel, 'with ', GetPlayerName(callers[channel].callerId));
+    }
     // PMA Voice
     // exports["pma-voice"].setPlayerCall(src, channel);
     // exports["pma-voice"].setPlayerCall(callers[channel].callerId, channel);
@@ -870,7 +883,9 @@ onNet('OraPhone:server:add_message', async (data) => {
         const steamId = res[0]['identifier'];
         const receiver = getOnlinePlayerBySteamId(steamId);
         if (!receiver) {
-            console.error('Player with steamid', steamId ,'is not currently online');
+            if (modeTest) {
+                console.error('Player with steamid', steamId ,'is not currently online');
+            }
             continue;
         }
         emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number));

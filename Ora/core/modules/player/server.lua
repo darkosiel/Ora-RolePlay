@@ -52,7 +52,7 @@ end
 
 
 function Ora.Player:GenerateNewPhoneNumber()
-    local newNumber = string.format("555%04d", math.random(1, 9999))
+    local newNumber = string.format("555%04d", math.random(1111, 9999))
     local isValid = false
 
     while (isValid == false) do
@@ -65,7 +65,7 @@ function Ora.Player:GenerateNewPhoneNumber()
         )
 
         if (results ~= nil and results[1] ~= nil) then
-            newNumber = string.format("555%4d", math.random(1, 9999))
+            newNumber = string.format("555%4d", math.random(1111, 9999))
         else 
             isValid = true
         end
