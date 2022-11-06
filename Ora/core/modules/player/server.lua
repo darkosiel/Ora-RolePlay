@@ -126,8 +126,8 @@ RegisterServerCallback("Ora::SE::Player:Phone:GetNewPhoneNumber",
         local newPhoneNumber = Ora.Player:GenerateNewPhoneNumber()
         Ora.Player:RegisterPhoneNumberToPlayer(newPhoneNumber)
         -- OraPhone
-        -- local identity = Ora.Identity:GetIdentity(_source)
-        -- exports.OraPhone:RegisterNewPhone(newPhoneNumber, identity)
+        local identity = Ora.Identity:GetIdentity(_source)
+        exports.OraPhone:RegisterNewPhone(newPhoneNumber, identity)
         cb(newPhoneNumber)
     end
 )

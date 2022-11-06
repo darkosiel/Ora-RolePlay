@@ -301,11 +301,11 @@ function Storage:TransferToStorage(count, item)
                                 MyNumber = nil
                                 MyBattery = 0
                                 -- GC Phone
-                                TriggerEvent("gcphone:UpdateBattery", MyBattery)
-                                TriggerEvent("gcPhone:myPhoneNumber", MyNumber)
-                                TriggerServerEvent("gcPhone:allUpdate")
+                                -- TriggerEvent("gcphone:UpdateBattery", MyBattery)
+                                -- TriggerEvent("gcPhone:myPhoneNumber", MyNumber)
+                                -- TriggerServerEvent("gcPhone:allUpdate")
                                 -- OraPhone
-                                -- TriggerEvent("OraPhone:client:phone_active", false)
+                                TriggerEvent("OraPhone:client:phone_active", false)
                             end
                         end
 

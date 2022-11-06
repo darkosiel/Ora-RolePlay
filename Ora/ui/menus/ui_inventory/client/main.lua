@@ -367,7 +367,7 @@ RegisterNUICallback('inventoryInteraction', function(data)
                                     MyNumber = nil
                                     MyBattery = 0
                                     -- OraPhone
-                                    -- TriggerEvent("OraPhone:client:phone_active", false)
+                                    TriggerEvent("OraPhone:client:phone_active", false)
                                 end
                             end
                         end
