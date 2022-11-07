@@ -1,7 +1,7 @@
 
-const Delay = ms => new Promise(r=>setTimeout(r, ms))
-var inCall = false
-var modeTest = false
+const Delay = ms => new Promise(r=>setTimeout(r, ms));
+let inCall = false;
+let modeTest = false;
 
 /**
  * =============
@@ -17,7 +17,7 @@ var modeTest = false
  * @returns {void}
  */
 function sqlCallback(sql, params, cb = _ => {}) {
-    return exports["mysql-async"].mysql_fetch_all(sql, params, cb)
+    return exports["mysql-async"].mysql_fetch_all(sql, params, cb);
 }
 
 /**
@@ -26,7 +26,7 @@ function sqlCallback(sql, params, cb = _ => {}) {
  * @param {object} params 
  */
 function executeSql(sql, params) {
-    exports["mysql-async"].mysql_execute(sql, params)
+    exports["mysql-async"].mysql_execute(sql, params);
 }
 
 /**
@@ -39,10 +39,10 @@ function fetchDb(sql, params) {
     return new Promise((resolve, reject) => {
         try {
             return sqlCallback(sql, params, res => {
-                return resolve(res)
-            })
+                return resolve(res);
+            });
         } catch(e) {
-            reject(e)
+            reject(e);
         }
     })
 }
@@ -54,31 +54,31 @@ function fetchDb(sql, params) {
  * @returns Object
  */
 const generateCrud = (table_suffix, fieldsMap) => {
-    const table = "ora_"+table_suffix
+    const table = "ora_"+table_suffix;
     const sanitizeKeys = input => {
         for(const k in input) {
             if(!Object.keys(fieldsMap).includes(k)) {
-                throw new Error('Unknown field "'+ k + '" for ' + table_suffix)
+                throw new Error('Unknown field "'+ k + '" for ' + table_suffix);
             }
         }
-    }
-    const aliasKeys = map => Object.fromEntries(Object.entries(map).map(entr => ['@'+entr[0],entr[1]]))
-    const buildSqlCriteria = criteria => Object.keys(criteria).map(k => `${fieldsMap[k]} = @${k}`).join(' AND ')
+    };
+    const aliasKeys = map => Object.fromEntries(Object.entries(map).map(entr => ['@'+entr[0],entr[1]]));
+    const buildSqlCriteria = criteria => Object.keys(criteria).map(k => `${fieldsMap[k]} = @${k}`).join(' AND ');
 
     const crud = {
         create: values => {
-            sanitizeKeys(values)
-            let sql = `INSERT INTO ${table} (${Object.keys(values).map(k=>fieldsMap[k]).join(', ')})`
-            sql += ` VALUES (${Object.keys(aliasKeys(values)).join(', ')})`
-            return fetchDb(sql, values)
+            sanitizeKeys(values);
+            let sql = `INSERT INTO ${table} (${Object.keys(values).map(k=>fieldsMap[k]).join(', ')})`;
+            sql += ` VALUES (${Object.keys(aliasKeys(values)).join(', ')})`;
+            return fetchDb(sql, values);
         },
         read: criteria => {
-            sanitizeKeys(criteria)
-            let sql = ``
+            sanitizeKeys(criteria);
+            let sql = ``;
             if(criteria != null || criteria != undefined) {
-                sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table} WHERE ${buildSqlCriteria(criteria)}`
+                sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table} WHERE ${buildSqlCriteria(criteria)}`;
             } else {
-                sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table}`
+                sql = `SELECT ${Object.keys(fieldsMap).map(k => `${fieldsMap[k]} AS ${k}`).join(', ')} FROM ${table}`;
             }
             if(table == "ora_phone_contacts") {
                 sql += ` ORDER BY name ASC`;
@@ -89,28 +89,28 @@ const generateCrud = (table_suffix, fieldsMap) => {
             } else if(table == "ora_phone") {
                 sql += ` ORDER BY update_time DESC`;
             }
-            return fetchDb(sql, criteria)
+            return fetchDb(sql, criteria);
         },
         update: (criteria, values) => {
-            sanitizeKeys(criteria)
-            sanitizeKeys(values)
-            let sql = `UPDATE ${table} SET ${Object.keys(values).map(k => `${fieldsMap[k]} = @${k}`).join(',')} WHERE ${buildSqlCriteria(criteria)}`
-            return fetchDb(sql, {...values, ...criteria})
+            sanitizeKeys(criteria);
+            sanitizeKeys(values);
+            let sql = `UPDATE ${table} SET ${Object.keys(values).map(k => `${fieldsMap[k]} = @${k}`).join(',')} WHERE ${buildSqlCriteria(criteria)}`;
+            return fetchDb(sql, {...values, ...criteria});
         },
         delete: criteria => {
-            sanitizeKeys(criteria)
-            let sql = `DELETE FROM ${table} WHERE ${buildSqlCriteria(criteria)}`
-            return fetchDb(sql, criteria)
+            sanitizeKeys(criteria);
+            let sql = `DELETE FROM ${table} WHERE ${buildSqlCriteria(criteria)}`;
+            return fetchDb(sql, criteria);
         }
     }
-    return crud
+    return crud;
 }
 
 const upsert = (crud,values) => {
     if (values.id) {
-        crud.update({ id: values.id }, values)
+        crud.update({ id: values.id }, values);
     } else {
-        crud.create({...values, id: null })
+        crud.create({...values, id: null });
     }
 }
 
@@ -217,7 +217,7 @@ const crud = {
         z: 'z',
         createTime: 'create_time',
     }),
-}
+};
 
 /**
  * Description for the user data object
@@ -235,7 +235,7 @@ const crud = {
  */
 
 async function fetchSteamIdFromNumber(num) {
-    return fetchDb("SELECT identifier FROM users WHERE phone_number = @num", {num})
+    return fetchDb("SELECT identifier FROM users WHERE phone_number = @num", {num});
 }
 
 /**
@@ -250,25 +250,25 @@ async function requestUserData(steamId, number) {
             + " FROM users u"
             + " INNER JOIN players_identity p ON u.uuid = p.uuid"
             + " WHERE u.identifier = @id"
-        , { id: steamId })
+        , { id: steamId });
         if (!identityResponse || identityResponse.length != 1) {
             if (modeTest) {
-                console.error('Identity query failed with steamid', steamId)
+                console.error('Identity query failed with steamid', steamId);
             }
-            return
+            return;
         }
-        const userData = identityResponse[0]
-        const id = userData.uuid
+        const userData = identityResponse[0];
+        const id = userData.uuid;
         // parameters
-        const phoneResponse = await crud.phone.read({ number: number })
+        const phoneResponse = await crud.phone.read({ number: number });
         if (!phoneResponse || phoneResponse.length === 0) {
-            console.log('Phone query failed, no phone with this number ', number)
+            console.log('Phone query failed, no phone with this number ', number);
         }
-        userData.phone = phoneResponse[0]
-        await crud.phone.update({ number: number }, { playerUuid: id })
-        return userData
+        userData.phone = phoneResponse[0];
+        await crud.phone.update({ number: number }, { playerUuid: id });
+        return userData;
     } catch (e) {
-        console.error('Could not fetch user data with steamId "' + steamId + '"', e)
+        console.error('Could not fetch user data with steamId "' + steamId + '"', e);
     }
 }
 
@@ -278,39 +278,35 @@ async function requestUserData(steamId, number) {
  * ===============================
  */
 async function updateUserData(number) {
-    const src = source
-    const steamId = getSteamId(source)
-    const userData = await requestUserData(steamId, number)
+    const src = source;
+    const steamId = getSteamId(source);
+    const userData = await requestUserData(steamId, number);
     if (!userData) {
-        console.error('Could not get user data with steam id ', steamId, 'from source', src)
-        return
+        console.error('Could not get user data with steam id ', steamId, 'from source', src);
+        return;
     }
-    emitNet('OraPhone:updateUserData', src, { playerId: src, ...userData })
+    emitNet('OraPhone:updateUserData', src, { playerId: src, ...userData });
 }
 
 async function patchUserData(userData) {
-    let update = false
-    // if (!userData.uuid) { 
-    //     console.error('uuid is missing to patch user data')
-    //     return
-    // }
+    let update = false;
     if (!userData.id) {
-        console.error('id is missing to patch user data')
-        return
+        console.error('id is missing to patch user data');
+        return;
     }
     if (userData.phone) {
-        crud.phone.update({ id: userData.id }, userData.phone)
+        crud.phone.update({ id: userData.id }, userData.phone);
     }
     if (userData.contacts) {
         for (const c of userData.contacts) {
             if (c.id == null || c.id == undefined) {
-                update = true
+                update = true;
             }
-            upsert(crud.contacts, { ...c, playerUuid: userData.uuid, avatar: null, })
+            upsert(crud.contacts, { ...c, playerUuid: userData.uuid, avatar: null, });
         }
     }
     if (update) {
-        updateUserData()
+        updateUserData();
     }
 }
 
@@ -323,7 +319,7 @@ async function patchUserData(userData) {
 /**
  * Map connected players source & steamid
  */
-const onlinePlayers = {}
+const onlinePlayers = {};
 
 /**
   * Get steam id by source from the onlinePlayers map
@@ -332,18 +328,20 @@ const onlinePlayers = {}
   */
 function getSteamId(source) {
     if (!onlinePlayers.hasOwnProperty(source)) {
-        const idMax = GetNumPlayerIdentifiers(source)
-        let steamId
+        const idMax = GetNumPlayerIdentifiers(source);
+        let steamId;
         for (let i= 0; i < idMax; i ++) {
             if (GetPlayerIdentifier(source, i).startsWith('steam:')) {
-                steamId = GetPlayerIdentifier(source, i)
-                break
+                steamId = GetPlayerIdentifier(source, i);
+                break;
             }
         }
-        if (!steamId) { return null }
-        onlinePlayers[source] = steamId
+        if (!steamId) {
+            return null;
+        }
+        onlinePlayers[source] = steamId;
     }
-    return onlinePlayers[source]
+    return onlinePlayers[source];
 }
 
 /**
@@ -353,9 +351,11 @@ function getSteamId(source) {
   */
 function getOnlinePlayerBySteamId(steamId) {
     for (const p in onlinePlayers) {
-        if (onlinePlayers[p] == steamId) { return p }
+        if (onlinePlayers[p] == steamId) {
+            return p;
+        }
     }
-    return null
+    return null;
 }
 
 /**
@@ -401,25 +401,26 @@ async function getNumberBySource(source) {
 function getFreeChan() {
     let chan = 1
     while (chan < 100 && callers[chan] !== undefined) {
-        chan ++
+        chan ++;
     }
-    if (chan == 100) { return null }
-    return chan
+    if (chan == 100) {
+        return null;
+    }
+    return chan;
 }
 
 //Map solo callers awaiting for an answer
-const callers = {
-}
+const callers = {};
 
 function purgeCaller (src, video = false) {
     for (const chan in callers) {
         if (callers[chan].receiverId == src || callers[chan].callerId == src) {
-            endCall(chan, video)
-            return
+            endCall(chan, video);
+            return;
         }
     }
-    inCall = false
-    emitNet('OraPhone:client:callFinished', src)
+    inCall = false;
+    emitNet('OraPhone:client:callFinished', src);
 }
 
 /**
@@ -430,7 +431,9 @@ async function endCall(chan, video = false) {
     if (modeTest) {
         console.log('remove callers from channel ', chan, callers[chan] || callers);
     }
-    if (!callers[chan]) { return }
+    if (!callers[chan]) {
+        return;
+    }
     // PMA Voice
     // exports["pma-voice"].setPlayerCall(callers[chan].callerId, 0);
     // exports["pma-voice"].setPlayerCall(callers[chan].receiverId, 0);
@@ -461,8 +464,8 @@ async function endCall(chan, video = false) {
 async function refreshContacts(data) {
     const contactsResponse = await crud.contacts.read({ phoneId: data.phoneId });
     if (!contactsResponse) {
-        console.error('Contacts query failed with phoneId', data.phoneId)
-        return
+        console.error('Contacts query failed with phoneId', data.phoneId);
+        return;
     }
     const defaultContacts = [
         { id: -1, phoneId: data.phoneId, name: "LSPD", number: "police", avatar: "Law_and_order_35" },
@@ -489,13 +492,13 @@ async function refreshContacts(data) {
  * @param {array} data
  */
 async function refreshRichterMotorsport(phoneId) {
-    const richterMotorsportAdvertisementResponse = await crud.richtermotorsport.read()
-    const richterMotorsportFavoriteResponse = await crud.richtermotorsportfavorite.read({ phoneId: phoneId })
+    const richterMotorsportAdvertisementResponse = await crud.richtermotorsport.read();
+    const richterMotorsportFavoriteResponse = await crud.richtermotorsportfavorite.read({ phoneId: phoneId });
     if (!richterMotorsportFavoriteResponse) {
-        console.error('Richter Motorsport Favorite query failed with phoneId', phoneId)
-        return
+        console.error('Richter Motorsport Favorite query failed with phoneId', phoneId);
+        return;
     }
-    return { advertisement: richterMotorsportAdvertisementResponse, favorite: richterMotorsportFavoriteResponse }
+    return { advertisement: richterMotorsportAdvertisementResponse, favorite: richterMotorsportFavoriteResponse };
 }
 
 /**
@@ -503,12 +506,12 @@ async function refreshRichterMotorsport(phoneId) {
  * @param {array} data
  */
 async function refreshGallery(phoneId) {
-    const galleryImageResponse = await crud.image.read({ phoneId: phoneId })
+    const galleryImageResponse = await crud.image.read({ phoneId: phoneId });
     if (!galleryImageResponse) {
-        console.error('Photo query failed with phoneId', phoneId)
-        return
+        console.error('Photo query failed with phoneId', phoneId);
+        return;
     }
-    return galleryImageResponse
+    return galleryImageResponse;
 }
 
 /**
@@ -516,14 +519,14 @@ async function refreshGallery(phoneId) {
  * @param {array} data
  */
 // async function refreshNotes(phoneId) {
-//     const notesFolderResponse = await crud.notesfolder.read({ phoneId: phoneId })
+//     const notesFolderResponse = await crud.notesfolder.read({ phoneId: phoneId });
 //     if(notesFolderResponse && notesFolderResponse.length > 0) {
 //         for (let folder of notesFolderResponse) {
-//             const notesNoteResponse = await crud.notesnote.read({ folderId: folder.id })
-//             folder.notes = notesNoteResponse
+//             const notesNoteResponse = await crud.notesnote.read({ folderId: folder.id });
+//             folder.notes = notesNoteResponse;
 //         }
 //     }
-//     return notesFolderResponse
+//     return notesFolderResponse;
 // }
 
 /**
@@ -531,8 +534,8 @@ async function refreshGallery(phoneId) {
  * @param {array} data
  */
 async function refreshMapsFavorite(phoneId) {
-    const mapsFavoriteResponse = await crud.mapsfavorite.read({ phoneId: phoneId })
-    return mapsFavoriteResponse
+    const mapsFavoriteResponse = await crud.mapsfavorite.read({ phoneId: phoneId });
+    return mapsFavoriteResponse;
 }
 
 /**
@@ -540,12 +543,12 @@ async function refreshMapsFavorite(phoneId) {
  * @param {array} data
  */
 async function refreshCalls(data) {
-    const callsResponse = await fetchDb("SELECT * FROM ora_phone_call_history WHERE source_number = " + data.number + " OR target_number = " + data.number + " ORDER BY id DESC LIMIT 20")
+    const callsResponse = await fetchDb("SELECT * FROM ora_phone_call_history WHERE source_number = " + data.number + " OR target_number = " + data.number + " ORDER BY id DESC LIMIT 20");
     if (!callsResponse) {
-        console.error('Contacts query failed with number', data.number)
-        return
+        console.error('Contacts query failed with number', data.number);
+        return;
     }
-    return [...callsResponse]
+    return [...callsResponse];
 }
 
 /**
@@ -555,29 +558,29 @@ async function refreshCalls(data) {
 async function refreshConversations(number) {
     let conversationsResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
     if (!conversationsResponse) {
-        console.error('Contacts query failed with number', number)
-        return
+        console.error('Contacts query failed with number', number);
+        return;
     }
     for (let conversation of conversationsResponse) {
         let isActive = true;
-        let authorList = JSON.parse(conversation.target_number)
+        let authorList = JSON.parse(conversation.target_number);
         for (let author of authorList) {
             if (author.number == number && !author.active) {
-                isActive = false
-                break
+                isActive = false;
+                break;
             }
         }
         if (isActive) {
-            let messageResponse = await crud.messages.read({ idConversation: conversation.id })
-            conversation.messages = []
+            let messageResponse = await crud.messages.read({ idConversation: conversation.id });
+            conversation.messages = [];
             if (messageResponse) {
-                conversation.messages = messageResponse
+                conversation.messages = messageResponse;
             }
         } else {
-            conversationsResponse = conversationsResponse.filter((conv) => conv.id != conversation.id)
+            conversationsResponse = conversationsResponse.filter((conv) => conv.id != conversation.id);
         }
     }
-    return conversationsResponse
+    return conversationsResponse;
 }
 
 /**
@@ -587,14 +590,14 @@ async function refreshConversations(number) {
  */
 
 on('playerDropped', _ => {
-    const src = source
+    const src = source;
     if (onlinePlayers.hasOwnProperty(src)) {
-        delete onlinePlayers[source]
+        delete onlinePlayers[source];
     }
-    purgeCaller(src)
+    purgeCaller(src);
 })
 on("Ora::SE::PlayerLoaded", source => {
-    onlinePlayers[source] = getSteamId(source)
+    onlinePlayers[source] = getSteamId(source);
 })
 
 /**
@@ -604,90 +607,90 @@ on("Ora::SE::PlayerLoaded", source => {
  */
 
 onNet('OraPhone:server:request_user_data', async data => {
-    updateUserData(data)
+    updateUserData(data);
 })
 
 onNet('OraPhone:patch_user_data', async data => {
-    patchUserData(data)
+    patchUserData(data);
 })
 
 // Contacts
 
 onNet('OraPhone:server:refresh_contacts', async data => {
-    const src = source
-    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
+    const src = source;
+    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data));
 })
 
 onNet('OraPhone:add_contact', async data => {
-    const src = source
+    const src = source;
     if (!data.phoneId && !data.name && !data.number && !data.avatar) {
-        console.error('cannot add contact without phoneId, name, number and avatar')
-        return
+        console.error('cannot add contact without phoneId, name, number and avatar');
+        return;
     }
-    await crud.contacts.create({ phoneId: data.phoneId, name: data.name, number: data.number, avatar: data.avatar })
-    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
+    await crud.contacts.create({ phoneId: data.phoneId, name: data.name, number: data.number, avatar: data.avatar });
+    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data));
 })
 
 onNet('OraPhone:server:delete_contact', async data => {
-    const src = source
+    const src = source;
     if (!data.id) {
-        console.error('cannot delete contact without id')
-        return
+        console.error('cannot delete contact without id');
+        return;
     }
-    crud.contacts.delete({ id: data.id })
-    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
+    crud.contacts.delete({ id: data.id });
+    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data));
 })
 
 onNet('OraPhone:server:update_contact', async data => {
-    const src = source
+    const src = source;
     if (!data.id && !data.name && !data.number && !data.avatar) {
-        console.error('cannot add contact without id, name, number and avatar')
-        return
+        console.error('cannot add contact without id, name, number and avatar');
+        return;
     }
-    await crud.contacts.update({ id: data.id }, data.data)
-    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data))
+    await crud.contacts.update({ id: data.id }, data.data);
+    emitNet('OraPhone:client:updateContacts', src, await refreshContacts(data));
 })
 
 // Call
 
 onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) => {
-    inCall = true
-    const src = source
-    const res = await fetchSteamIdFromNumber(targetNum)
+    inCall = true;
+    const src = source;
+    const res = await fetchSteamIdFromNumber(targetNum);
     if (!res || res.length == 0) {
         if (modeTest) {
-            console.error('db gave no result for number ',targetNum, res)
+            console.error('db gave no result for number ',targetNum, res);
         }
-        await Delay(3000)
+        await Delay(3000);
         if(inCall) {
-            emitNet('OraPhone:client:receiver_offline', src)
+            emitNet('OraPhone:client:receiver_offline', src);
         }
         return
     }
-    const steamId = res[0]['identifier']
-    const receiver = getOnlinePlayerBySteamId(steamId)
+    const steamId = res[0]['identifier'];
+    const receiver = getOnlinePlayerBySteamId(steamId);
     if (!receiver) {
         if (modeTest) {
-            console.error('Player with steamid', steamId ,'is not currently online')
+            console.error('Player with steamid', steamId ,'is not currently online');
         }
-        await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
-        await Delay(3000)
+        await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum });
+        await Delay(3000);
         if(inCall) {
-            emitNet('OraPhone:client:receiver_offline', src)
+            emitNet('OraPhone:client:receiver_offline', src);
         }
-        return
+        return;
     }
     for(let [chanIndex, chanValue] of Object.entries(callers)) {
         if(chanValue.receiverId == receiver) {
             if (modeTest) {
-                console.log('Player is already on a channel', chanIndex, chanValue)
+                console.log('Player is already on a channel', chanIndex, chanValue);
             }
-            await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum })
-            await Delay(5000)
+            await crud.calls.create({ sourceNumber: sourceNum, targetNumber: targetNum });
+            await Delay(5000);
             if(inCall) {
-                emitNet('OraPhone:client:receiver_offline', src)
+                emitNet('OraPhone:client:receiver_offline', src);
             }
-            return
+            return;
         }
     }
     const chan = getFreeChan();
@@ -727,15 +730,15 @@ onNet('OraPhone:server:accept_call', async (channel, video=false) => {
 })
 
 onNet('OraPhone:server:end_call', (video=false) => {
-    const src = source
-    purgeCaller(src, video)
+    const src = source;
+    purgeCaller(src, video);
 })
 
 // Phone
 
 onNet('OraPhone:server:refresh_calls', async data => {
-    const src = source
-    emitNet('OraPhone:client:updateCalls', src, await refreshCalls(data))
+    const src = source;
+    emitNet('OraPhone:client:updateCalls', src, await refreshCalls(data));
 })
 
 // Message
@@ -788,21 +791,20 @@ onNet('OraPhone:server:message_create_conversation', async (data) => {
 })
 
 onNet('OraPhone:server:message_delete_conversation', async (data) => {
-    const src = source
-    let conversationResponse = await crud.conversations.read({ id: data.id })
+    const src = source;
+    let conversationResponse = await crud.conversations.read({ id: data.id });
     if (!conversationResponse || conversationResponse.length == 0) {
-        console.error('db gave no result for conversation ', data.id)
-        return
+        console.error('db gave no result for conversation ', data.id);
+        return;
     }
-    let authorList = JSON.parse(conversationResponse[0].targetNumber)
-    for (let author of authorList) {
+    for (let author of JSON.parse(conversationResponse[0].targetNumber)) {
         if (author.number == data.number) {
-            author.active = false
-            break
+            author.active = false;
+            break;
         }
     }
-    await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(authorList) })
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number))
+    await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(authorList) });
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number));
 })
 
 onNet('OraPhone:server:message_update_read_conversation', async (data) => {
@@ -846,8 +848,8 @@ onNet('OraPhone:server:message_update_name_conversation', async (data) => {
 })
 
 onNet('OraPhone:server:refresh_conversations', async (data) => {
-    const src = source
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number))
+    const src = source;
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number));
 })
 
 onNet('OraPhone:server:add_message', async (data) => {
@@ -894,7 +896,7 @@ onNet('OraPhone:server:add_message', async (data) => {
                 title: numberList,
                 message: data.message,
                 conversationId: data.conversationId
-            }
+            };
             emitNet('OraPhone:client:new_notification', receiver, notification);
         }
     }
@@ -903,14 +905,14 @@ onNet('OraPhone:server:add_message', async (data) => {
 // Richter Motorsport
 
 onNet('OraPhone:server:refresh_richtermotorsport_advertisement', async data => {
-    const src = source
-    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
+    const src = source;
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId));
 })
 
 onNet('OraPhone:server:richtermotorsport_add_advertisement', async (data, players) => {
-    const src = source
-    await crud.richtermotorsport.create({ phoneId: data.phoneId, imgUrl: data.image, model: data.model, category: data.category, description: data.description, registration: data.registration, price: data.price, advertisementType: data.advertisementType })
-    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
+    const src = source;
+    await crud.richtermotorsport.create({ phoneId: data.phoneId, imgUrl: data.image, model: data.model, category: data.category, description: data.description, registration: data.registration, price: data.price, advertisementType: data.advertisementType });
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId));
     for(let player of players) {
         let notification = {
             app: "richtermotorsport",
@@ -918,60 +920,60 @@ onNet('OraPhone:server:richtermotorsport_add_advertisement', async (data, player
             time: "Maintenant",
             title: "Nouvelle annonce",
             message: data.model
-        }
-        emitNet('OraPhone:client:new_notification', player, notification)
+        };
+        emitNet('OraPhone:client:new_notification', player, notification);
     }
 })
 
 onNet('OraPhone:server:richtermotorsport_favorite_advertisement', async (data) => {
-    const src = source
+    const src = source;
     if(data.favorite) {
-        await crud.richtermotorsportfavorite.create({ phoneId: data.phoneId, advertisementId: data.advertisementId })
+        await crud.richtermotorsportfavorite.create({ phoneId: data.phoneId, advertisementId: data.advertisementId });
     } else {
-        await crud.richtermotorsportfavorite.delete({ phoneId: data.phoneId, advertisementId: data.advertisementId })
+        await crud.richtermotorsportfavorite.delete({ phoneId: data.phoneId, advertisementId: data.advertisementId });
     }
-    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId))
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId));
 })
 
 // Camera
 
 onNet('OraPhone:server:camera_add_image', async (data) => {
-    const src = source
-    await crud.image.create({ phoneId: data.phoneId, imageLink: data.image })
-    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+    const src = source;
+    await crud.image.create({ phoneId: data.phoneId, imageLink: data.image });
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId));
 })
 
 // Gallery
 
 onNet('OraPhone:server:refresh_gallery', async (data) => {
-    const src = source
-    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+    const src = source;
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId));
 })
 
 onNet('OraPhone:server:gallery_image_remove', async (data) => {
-    const src = source
-    await crud.image.delete({ id: data.id })
-    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId))
+    const src = source;
+    await crud.image.delete({ id: data.id });
+    emitNet('OraPhone:client:gallery_update_photo', src, await refreshGallery(data.phoneId));
 })
 
 // Notes
 
 // onNet('OraPhone:server:refresh_notes', async (data) => {
-//     const src = source
-//     emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+//     const src = source;
+//     emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId));
 // })
 
 // onNet('OraPhone:server:notes_add_folder', async (data) => {
-//     const src = source
-//     await crud.notesfolder.create({ phoneId: data.phoneId, name: data.name })
-//     emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId))
+//     const src = source;
+//     await crud.notesfolder.create({ phoneId: data.phoneId, name: data.name });
+//     emitNet('OraPhone:client:notes_refresh', src, await refreshNotes(data.phoneId));
 // })
 
 // Maps
 
 onNet('OraPhone:server:maps_favorite_refresh', async (data) => {
-    const src = source
-    emitNet('OraPhone:client:maps_favorite_refresh', src, await refreshMapsFavorite(data.phoneId))
+    const src = source;
+    emitNet('OraPhone:client:maps_favorite_refresh', src, await refreshMapsFavorite(data.phoneId));
 })
 
 onNet('OraPhone:server:maps_favorite_add_marker', async (data) => {
@@ -979,42 +981,42 @@ onNet('OraPhone:server:maps_favorite_add_marker', async (data) => {
     const ped = GetPlayerPed(src);
     const [playerX, playerY, playerZ] = GetEntityCoords(ped);
     await crud.mapsfavorite.create({ phoneId: data.phoneId, name: data.name, icon: data.icon, x: playerX, y: playerY, z: playerZ });
-    emitNet('OraPhone:client:maps_favorite_refresh', src, await refreshMapsFavorite(data.phoneId))
+    emitNet('OraPhone:client:maps_favorite_refresh', src, await refreshMapsFavorite(data.phoneId));
 })
 
 onNet('OraPhone:server:maps_favorite_remove_marker', async (data) => {
     const src = source;
     await crud.mapsfavorite.delete({ id: data.id });
-    emitNet('OraPhone:client:maps_favorite_refresh', src, await refreshMapsFavorite(data.phoneId))
+    emitNet('OraPhone:client:maps_favorite_refresh', src, await refreshMapsFavorite(data.phoneId));
 })
 
 onNet('OraPhone:server:maps_update_my_position', async (data) => {
     const src = source;
     const ped = GetPlayerPed(src);
     const [playerX, playerY, playerZ] = GetEntityCoords(ped);
-    emitNet('OraPhone:client:maps_update_my_position', src, [playerX, playerY, playerZ])
+    emitNet('OraPhone:client:maps_update_my_position', src, [playerX, playerY, playerZ]);
 })
 
 // Create new phone
 
 function RegisterNewPhone(phoneNumber, identity) {
-    let playerUuid = identity.uuid
-    let serialNumber = Math.floor(Math.random() * (9999 - 1111 + 1) + 1111) + "-" + Math.floor(Math.random() * (9999 - 1111 + 1) + 1111)
-    let firstName = identity.first_name
-    let lastName = identity.last_name
-    let number = phoneNumber
-    let isActive = 0
-    let soundNotification = 'notification-sms1'
-    let soundRinging = 'ringing-iosoriginal'
-    let soundAlarm = 'alarm-iosradaroriginal'
-    let soundNotificationVolume = '5'
-    let soundRingingVolume = '5'
-    let soundAlarmVolume = '5'
-    let darkMode = '0'
-    let zoom = 'zoom100%'
-    let wallpaper = 'wallpaper-ios15'
-    let wallpaperLock = 'wallpaper-ios15'
-    let luminosity = '100'
-    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]'
-    crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder })
+    let playerUuid = identity.uuid;
+    let serialNumber = Math.floor(Math.random() * (9999 - 1111 + 1) + 1111) + "-" + Math.floor(Math.random() * (9999 - 1111 + 1) + 1111);
+    let firstName = identity.first_name;
+    let lastName = identity.last_name;
+    let number = phoneNumber;
+    let isActive = 0;
+    let soundNotification = 'notification-sms1';
+    let soundRinging = 'ringing-iosoriginal';
+    let soundAlarm = 'alarm-iosradaroriginal';
+    let soundNotificationVolume = '5';
+    let soundRingingVolume = '5';
+    let soundAlarmVolume = '5';
+    let darkMode = '0';
+    let zoom = 'zoom100%';
+    let wallpaper = 'wallpaper-ios15';
+    let wallpaperLock = 'wallpaper-ios15';
+    let luminosity = '100';
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]';
+    crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder });
 }

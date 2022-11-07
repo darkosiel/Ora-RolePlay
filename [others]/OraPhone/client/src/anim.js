@@ -2,22 +2,19 @@
 // To introduce async delay
 const Delay = (ms) => new Promise(res => setTimeout(res, ms));
 
-
-let myPedId = null
-
-
 //"prop_amb_phone"
 // OR "prop_npc_phone"
 // OR "prop_cs_phone_01"
 // OR "prop_npc_phone_02"
-const phoneModel = "prop_amb_phone"
-let phoneProp = 0
+const phoneModel = "prop_amb_phone";
+let phoneProp = 0;
+let myPedId = null;
 
-let currentStatus = "out"
-let lastDict = null
-let lastAnim = null
+let currentStatus = "out";
+let lastDict = null;
+let lastAnim = null;
 
-let ANIMS = {
+const ANIMS = {
     "cellphone@": {
         "out": {
             "text": "cellphone_text_in",
@@ -50,14 +47,16 @@ let ANIMS = {
             "call": "cellphone_text_to_call"
         }
     }
-}
+};
 
 async function newPhoneProp() {
-    deletePhone()
-    let modelHash = GetHashKey(phoneModel)
+    deletePhone();
+    let modelHash = GetHashKey(phoneModel);
     if(modelHash && IsModelInCdimage(modelHash) && !HasModelLoaded(modelHash)) {
-        RequestModel(modelHash)
-        while(!HasModelLoaded(modelHash)) { await Delay(100) }
+        RequestModel(modelHash);
+        while(!HasModelLoaded(modelHash)) {
+            await Delay(100);
+        }
     }
     exports["Ora"].TriggerServerCallback("Ora::SE::Anticheat:RegisterObject", 
         function() {
@@ -73,8 +72,8 @@ async function newPhoneProp() {
 
 function deletePhone() {
     if(phoneProp != 0) {
-        DeleteObject(phoneProp)
-        phoneProp = 0
+        DeleteObject(phoneProp);
+        phoneProp = 0;
     }
 }
 
@@ -83,79 +82,59 @@ function deletePhone() {
 //*///
 async function PhonePlayAnim(state, freeze, force) {
     if(currentStatus == state && !force) {
-        return
+        return;
     }
-
-    myPedId = PlayerPedId()
-    freeze = freeze ?? false
-
-    let dict = "cellphone@"
+    myPedId = PlayerPedId();
+    freeze = freeze ?? false;
+    let dict = "cellphone@";
     if(IsPedInAnyVehicle(myPedId, false)) {
-        dict = "anim@cellphone@in_car@ps"
+        dict = "anim@cellphone@in_car@ps";
     }
-    await loadAnimDict(dict)
-
-    let anim = ANIMS[dict][currentStatus][state]
+    await loadAnimDict(dict);
+    let anim = ANIMS[dict][currentStatus][state];
     if(currentStatus != "out") {
-        StopAnimTask(myPedId, lastDict, lastAnim, 1.0)
+        StopAnimTask(myPedId, lastDict, lastAnim, 1.0);
     }
-    let flag = 50
+    let flag = 50;
     if(freeze) {
-        flag = 14
+        flag = 14;
     }
-    TaskPlayAnim(myPedId, dict, anim, 3.0, -1, -1, flag, 0, false, false, false)
-
+    TaskPlayAnim(myPedId, dict, anim, 3.0, -1, -1, flag, 0, false, false, false);
     if(state != "out" && currentStatus == "out" ) {
-        await Delay(380)
-        await newPhoneProp()
+        await Delay(380);
+        await newPhoneProp();
     }
-
-    lastDict = dict
-    lastAnim = anim
-    currentStatus = state
-
+    lastDict = dict;
+    lastAnim = anim;
+    currentStatus = state;
     if(state == "out" ) {
-        await Delay(180)
-        deletePhone()
-        StopAnimTask(myPedId, lastDict, lastAnim, 1.0)
+        await Delay(180);
+        deletePhone();
+        StopAnimTask(myPedId, lastDict, lastAnim, 1.0);
     }
 }
 
 async function PhonePlayOut() {
-    await PhonePlayAnim("out")
+    await PhonePlayAnim("out");
 }
 
 async function PhonePlayText() {
-    await PhonePlayAnim("text", false, true)
+    await PhonePlayAnim("text", false, true);
 }
 
 async function PhonePlayCall(freeze) {
-    await PhonePlayAnim("call", freeze)
+    await PhonePlayAnim("call", freeze);
 }
 
 async function PhonePlayIn() {
-    await PhonePlayText()
+    await PhonePlayText();
 }
 
 async function loadAnimDict(dict) {
-    RequestAnimDict(dict)
+    RequestAnimDict(dict);
     while(!HasAnimDictLoaded(dict)) {
-        await Delay(1)
+        await Delay(1);
     }
 }
 
 export default { PhonePlayIn, PhonePlayOut, PhonePlayText, PhonePlayCall }
-
-// Citizen.CreateThread(function ()
-// 	await Delay(200)
-// 	PhonePlayCall()
-// 	await Delay(2000)
-// 	PhonePlayOut()
-// 	await Delay(2000)
-
-// 	PhonePlayText()
-// 	await Delay(2000)
-// 	PhonePlayCall()
-// 	await Delay(2000)
-// 	PhonePlayOut()
-// })

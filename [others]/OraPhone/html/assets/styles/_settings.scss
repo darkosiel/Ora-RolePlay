@@ -15,6 +15,9 @@ $ora-font-semibold: 'SF UI Text Semibold';
 $ora-font-bold: 'SF UI Text Bold';
 $ora-font-heavy: 'SF UI Text Heavy';
 
+$ora-font-display-thin: 'SF Pro Display Thin';
+$ora-font-display-regular: 'SF Pro Display Regular';
+
 //layout
 $ora-phone-screen-width: 390px;
 // $ora-phone-screen-width: 296px;
@@ -182,6 +185,13 @@ $phone--notes--input--border--color--light: rgba(255, 204, 0, 0.3);
 $phone--notes--input--border--color--dark: rgba(255, 214, 10, 0.3);
 $phone--notes--input--focus--border-color--light: rgba(255, 204, 0, 1);
 $phone--notes--input--focus--border-color--dark: rgba(255, 214, 10, 1);
+
+$phone--bank--background--color--light: #020202;
+$phone--bank--background--color--dark: #020202;
+$phone--bank--background--color--light--light: #131313;
+$phone--bank--background--color--light--dark: #131313;
+$phone--bank--active--color--light: #d68c17;
+$phone--bank--active--color--dark: #d68c17;
 
 // Multiple Attribut
 

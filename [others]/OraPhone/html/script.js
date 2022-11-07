@@ -144,7 +144,7 @@ let mapsIntervalMyPosition;
 let markerMyPosition;
 let bounds;
 
-const Delay = ms => new Promise(r=>setTimeout(r, ms))
+const Delay = ms => new Promise(r=>setTimeout(r, ms));
 
 $(function(){
     window.onload = async (e) => {
@@ -181,8 +181,8 @@ $(function(){
                         }
                         $("#callstarted-number").html("Appel en cours avec" + "<br/>" + name);
                         $("#callstarted-time").html("00:00");
-                        let callStartedSec = 0
-                        let callStartedMin = 0
+                        let callStartedSec = 0;
+                        let callStartedMin = 0;
                         let callStartedTimer = setInterval(function() {
                                 $("#callstarted-time").html((callStartedMin < 10 ? "0" + callStartedMin : callStartedMin) + ":" + (callStartedSec < 10 ? "0" + callStartedSec : callStartedSec));
                                 if(callStartedSec == 59) {
@@ -201,22 +201,22 @@ $(function(){
                         inReceiveCall = false;
                         callData = "";
                         if(menuAppSelectedLast != "call") {
-                                updateContent(menuSelectedLast);
+                            updateContent(menuSelectedLast);
                         } else {
-                                updateContent("home");
+                            updateContent("home");
                         }
                         updateAppContent("first");
                         stopSounds();
                         if(callNotification != null && callNotification != undefined) {
-                                callNotification.style.opacity = "0";
-                                callNotificationLock.style.opacity = "0";
-                                setTimeout(function() {
-                                    callNotification.remove();
-                                    callNotificationLock.remove();
-                                    if($("#notification-container").children().length == 0 && !displayToggle) {
-                                        $("#phone").css("bottom", phoneBottomShowNot);
-                                    }
-                                }, 750);
+                            callNotification.style.opacity = "0";
+                            callNotificationLock.style.opacity = "0";
+                            setTimeout(function() {
+                                callNotification.remove();
+                                callNotificationLock.remove();
+                                if($("#notification-container").children().length == 0 && !displayToggle) {
+                                    $("#phone").css("bottom", phoneBottomShowNot);
+                                }
+                            }, 750);
                         }
                         $.post('https://OraPhone/refresh_calls', JSON.stringify({ number: phoneNumber }));
                         break;
@@ -355,14 +355,14 @@ $(function(){
             // Affichage de l'écran de test
             let dateTest = {
                 'phone': {
-                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
                     ])
                 }
             }
             if (phoneTest) {
                 await updateUserData(dateTest);
                 displayPhone(true);
-                updateContent("home");
+                updateContent("bank");
                 updateAppContent("first");
                 $("#message-list").children().click(function () {
                     updateAppContent("message");
@@ -2239,7 +2239,7 @@ function activateAppClock() {
         document.querySelectorAll("#app-clock-body-content-clock .app-body-content-body-list-item")[i].querySelector(".app-body-content-body-list-item-time").innerHTML = time.now;
         i += 1;
     }
-	setInterval(function () {
+    setInterval(function () {
         let now = new Date();
         let i = 0;
         for(let time of config.timelist) {
@@ -3669,6 +3669,11 @@ const config = {
         {
             "name": "maps",
             "label": "Carte"
+        },
+        {
+            "name": "bank",
+            "label": "Banque",
+            "maintenance": true
         },
         {
             "name": "phone",

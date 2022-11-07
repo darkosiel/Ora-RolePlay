@@ -687,7 +687,6 @@ div#page {
                                                         margin: 0;
                                                         padding: 0;
                                                         font-size: 17px;
-                                                        font-family: "SF Pro Text Regular";
                                                         background: none;
                                                         border: none;
                                                     }
@@ -4673,14 +4672,14 @@ div#page {
                         margin-top: 20px;
                         span#app-lock-time-text {
                             font-size: 83px;
-                            font-family: "SF Pro Display Thin";
+                            font-family: $ora-font-display-thin;
                         }
                     }
                     div#app-lock-day {
                         margin-top: 10px;
                         span#app-lock-day-text {
                             font-size: 22px;
-                            font-family: "SF Pro Display Regular";
+                            font-family: $ora-font-display-regular;
                             text-transform: capitalize;
                         }
                     }
@@ -5038,6 +5037,24 @@ div#phone-screen-content {
             div#phone-screen-content-footer-bar {
                 @include themed() {
                     background-color: t($phone-system-color-black) !important;
+                }
+            }
+        }
+    }
+    &.app-bank {
+        div.app {
+            @include themed() {
+                background-color: t($phone-bank-background-color) !important;
+            }
+            div#phone-screen-content-footer, div#phone-screen-content-header {
+                @include themed() {
+                    background-color: t($phone-bank-background-color) !important;
+                    color: t($phone-system-color-white) !important;
+                }
+                div#phone-screen-content-footer-bar {
+                    @include themed() {
+                        background-color: t($phone-bank-background-color) !important;
+                    }
                 }
             }
         }

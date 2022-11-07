@@ -69,6 +69,10 @@ $phone-contextmenu-item-background-color: "phone-contextmenu-item-background-col
 $phone-notes-input-border-color: "phone-notes-input-border-color";
 $phone-notes-input-focus-border-color: "phone-notes-input-focus-border-color";
 
+$phone-bank-background-color: "phone-bank-background-color";
+$phone-bank-background-color-light: "phone-bank-background-color-light";
+$phone-bank-active-color: "phone-bank-active-color";
+
 //themes
 $themes: (
         default: (
@@ -139,6 +143,10 @@ $themes: (
 
                 phone-notes-input-border-color: $phone--notes--input--border--color--light,
                 phone-notes-input-focus-border-color: $phone--notes--input--focus--border-color--light,
+        
+                phone-bank-background-color: $phone--bank--background--color--light,
+                phone-bank-background-color-light: $phone--bank--background--color--light--light,
+                phone-bank-active-color: $phone--bank--active--color--light,
         ),
         dark: (
                 phone-background-default: url("../images/wallpaper/wallpaper-ios15-dark.jpg"),
@@ -208,6 +216,10 @@ $themes: (
 
                 phone-notes-input-border-color: $phone--notes--input--border--color--dark,
                 phone-notes-input-focus-border-color: $phone--notes--input--focus--border-color--dark,
+
+                phone-bank-background-color: $phone--bank--background--color--dark,
+                phone-bank-background-color-light: $phone--bank--background--color--light--dark,
+                phone-bank-active-color: $phone--bank--active--color--dark,
         ),
 );
 
