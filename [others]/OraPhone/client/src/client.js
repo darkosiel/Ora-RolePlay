@@ -361,11 +361,6 @@ on('__cfx_nui:patch_user_data', params => {
     emitNet('OraPhone:patch_user_data', params);
 });
 
-RegisterNuiCallbackType('send_message');
-on('__cfx_nui:send_message', msgData => {
-    emitNet('OraPhone:send_message', msgData);
-});
-
 // Contacts
 
 RegisterNuiCallbackType('refresh_contacts');
@@ -495,7 +490,7 @@ on('__cfx_nui:add_message', data => {
             const [x, y, z] = GetEntityCoords(ped);
             const position = {x: x, y: y, z: z};
             for (let job of jobs) {
-                emitNet("call:makeCall2", job, position, data.message);
+                emitNet("call:makeCall", job, position, data.message);
             }
         }
     }

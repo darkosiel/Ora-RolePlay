@@ -621,6 +621,12 @@ function initializeAppContacts() {
             let profileName = ($("#newcontact-name-input").val() != '' ? $("#newcontact-name-input").val() : "Nouveau Contact");
             $.post('https://OraPhone/add_contact', JSON.stringify({ phoneId: userData.phone.id, name: profileName, number: profilePhoneNumber, avatar: profileIcon }));
             updateAppContent("list");
+            $("#newcontact-phone-number-input").val("");
+            $("#newcontact-name-input").val("");
+            $("#newcontact-icon-custom-input").val("");
+            $("#newcontact-profile-name span").html("");
+            $("#newcontact-profile-icon").data("title", "50-Animals-avatar_49");
+            $("#newcontact-profile-icon img").attr("src", folderContactsProfileIcon + "50-Animals-avatar_49.png");
         }
     });
     $("#editcontact-save-button").click(function() {
@@ -1393,12 +1399,12 @@ function initializeAppRichterMotorsport() {
 }
 
 function initializeAppCamera() {
+    $("#image-fullscreen").click(function() {
+        document.getElementById("image-fullscreen").style.display = "none";
+    });
     $("#camera-image").click(function() {
         $("#image-fullscreen img").attr("src", $(this).attr("src"));
-        $("#image-fullscreen").show();
-    });
-    $("#image-fullscreen").click(function() {
-        $("#image-fullscreen").hide();
+        document.getElementById("image-fullscreen").style.display = "block";
     });
 }
 
@@ -1503,7 +1509,7 @@ function initializeAppNotes() {
 function initializeAppGallery() {
     $("#gallery-image").click(function () {
         $("#image-fullscreen img").attr("src", $("#gallery-image").attr("src"));
-        $("#image-fullscreen").show();
+        document.getElementById("image-fullscreen").style.display = "block";
     });
     $("#gallery-image-button-remove").click(function () {
         updateAppContent("list");
@@ -2644,7 +2650,7 @@ function responsiveChatPush(sender, origin, date, message) {
         $('.app-message-conversation .messages').append(newMessageDiv);
         $('.app-message-conversation .messages').children().last().click(function() {
             $("#image-fullscreen img").attr("src", message);
-            $("#image-fullscreen").show();
+            document.getElementById("image-fullscreen").style.display = "block";
         });
     } else {
         newMessageDiv = '<div class="' + originClass + '"><p>' + message + '</p><span class="date"><b>' + sender + '</b> ' + date + '</span></div>';
@@ -3073,12 +3079,6 @@ function updateAppContent(element) {
     }
     // Remise à zéro de la liste des contactes
     if(menuSelected == "contacts" && menuSelectedLast != "camera") {
-        $("#newcontact-phone-number-input").val("");
-        $("#newcontact-name-input").val("");
-        $("#newcontact-icon-custom-input").val("");
-        $("#newcontact-profile-name span").html("");
-        $("#newcontact-profile-icon").data("title", "50-Animals-avatar_49");
-        $("#newcontact-profile-icon img").attr("src", folderContactsProfileIcon + "50-Animals-avatar_49.png");
         let searchInput = document.getElementById("app-contacts-body-content-list-search");
         searchInput.value = "";
         for(let elt of document.querySelectorAll(".contacts-list-row-item")) {

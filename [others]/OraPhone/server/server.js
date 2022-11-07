@@ -797,7 +797,8 @@ onNet('OraPhone:server:message_delete_conversation', async (data) => {
         console.error('db gave no result for conversation ', data.id);
         return;
     }
-    for (let author of JSON.parse(conversationResponse[0].targetNumber)) {
+    let authorList = JSON.parse(conversationResponse[0].target_number);
+    for (let author of authorList) {
         if (author.number == data.number) {
             author.active = false;
             break;
@@ -867,6 +868,7 @@ onNet('OraPhone:server:add_message', async (data) => {
     for (let contact of contactList) {
         if (contact.number != data.number) {
             contact.isRead = false;
+            contact.active = true;
         }
     }
     await crud.conversations.update({ id: data.conversationId }, { targetNumber: JSON.stringify(contactList), lastMsgTime: dateNow });
