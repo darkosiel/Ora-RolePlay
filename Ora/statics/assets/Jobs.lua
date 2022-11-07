@@ -8403,7 +8403,9 @@ Jobs = {
                             ["chain_1"] = 0,
                             ["chain_2"] = 0,
                             ["ears_1"] = -1,
-                            ["ears_2"] = -1
+                            ["ears_2"] = -1,
+                            ["bags_1"] = 93,
+                            ["bags_2"] = 1
                         },
                         female = {
                             ["tshirt_1"] = 7,
@@ -8422,7 +8424,9 @@ Jobs = {
                             ["chain_1"] = 0,
                             ["chain_2"] = 0,
                             ["ears_1"] = 0,
-                            ["ears_2"] = 0
+                            ["ears_2"] = 0,
+                            ["bags_1"] = 93,
+                            ["bags_2"] = 1
                         }
                     },
                     ["Class B"] = {
@@ -8443,7 +8447,9 @@ Jobs = {
                             ["chain_1"] = 30,
                             ["chain_2"] = 0,
                             ["ears_1"] = -1,
-                            ["ears_2"] = -1
+                            ["ears_2"] = -1,
+                            ["bags_1"] = 93,
+                            ["bags_2"] = 1
                         },
                         female = {
                             ["tshirt_1"] = 6,
@@ -8462,7 +8468,9 @@ Jobs = {
                             ["chain_1"] = 14,
                             ["chain_2"] = 0,
                             ["ears_1"] = 0,
-                            ["ears_2"] = 0
+                            ["ears_2"] = 0,
+                            ["bags_1"] = 93,
+                            ["bags_2"] = 1
                         }
                     },
                     ["Class C"] = {
@@ -8483,7 +8491,9 @@ Jobs = {
                             ["chain_1"] = 30,
                             ["chain_2"] = 0,
                             ["ears_1"] = -1,
-                            ["ears_2"] = -1
+                            ["ears_2"] = -1,
+                            ["bags_1"] = 93,
+                            ["bags_2"] = 1
                         },
                         female = {
                             ["tshirt_1"] = 6,
@@ -8502,7 +8512,9 @@ Jobs = {
                             ["chain_1"] = 14,
                             ["chain_2"] = 0,
                             ["ears_1"] = 0,
-                            ["ears_2"] = 0
+                            ["ears_2"] = 0,
+                            ["bags_1"] = 93,
+                            ["bags_2"] = 1
                         }
                     },
                     ["Pull"] = {
