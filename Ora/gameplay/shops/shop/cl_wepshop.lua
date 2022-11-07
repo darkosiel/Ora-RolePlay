@@ -558,7 +558,7 @@ local kevlarConfig = {
         name = "Kevlar DB"
     },
     [8] = {
-        status = 0,
+        status = 100,
         name = "Gilet de sauvetage"
     },
     [9] = {
