@@ -166,6 +166,13 @@ Config.DJPositions = {
         range = 20.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
+    {
+        name = 'Houseplaya',
+        pos = vector3(-3022.3198, 39.7840, 10.1177 - 0.98),
+        requiredJob = nil, 
+        range = 60.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
     
     -----------
     -- Event Halloween ; Domaine Viticole
