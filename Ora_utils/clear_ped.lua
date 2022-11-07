@@ -20,9 +20,8 @@ local clearAreaOfPedsArray = { --Antispawn PNJ
     { pos = vector3(-1839.58, -360.67, 59.00), radius = 60.0 },-- Hopital
     { pos = vector3(-1912.3077, -388.1100, 48.95), radius = 60.0 },-- klébar
     { pos = vector3(2033.8979, 4984.5527, 40.73), radius = 60.0 },-- ferme
-    { pos = vector3(971.96, -1504.43, 31.30), radius = 60.0 },-- grim
     { pos = vector3(31.7753, 6459.4218, 31.30), radius = 80.0 },-- Dirty Punks
-    { pos = vector3(103.7815, -1936.8560, 20.0), radius = 80.0 },-- Ballas
+    { pos = vector3(331.1387, -2036.1582, 21.0161), radius = 80.0 },-- Vagos
 }
 
 Citizen.CreateThread(function()
