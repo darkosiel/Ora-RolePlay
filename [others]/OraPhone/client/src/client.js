@@ -29,7 +29,13 @@ function setMouseFocus(active = true) {
 
 // onTick timer ref
 async function setPhoneVisible(visible = true) {
-    if((!phoneActive && !phoneVisible) || !canSetPhoneVisible) {
+    if (!phoneActive && !phoneVisible) {
+        SendNUIMessage({
+            type: "phoneDisabled",
+        });
+        return;
+    }
+    if (!canSetPhoneVisible) {
         return;
     }
     canSetPhoneVisible = false;
