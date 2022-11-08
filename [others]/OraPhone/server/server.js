@@ -797,7 +797,7 @@ onNet('OraPhone:server:message_delete_conversation', async (data) => {
         console.error('db gave no result for conversation ', data.id);
         return;
     }
-    let authorList = JSON.parse(conversationResponse[0].target_number);
+    let authorList = JSON.parse(conversationResponse[0].targetNumber);
     for (let author of authorList) {
         if (author.number == data.number) {
             author.active = false;
