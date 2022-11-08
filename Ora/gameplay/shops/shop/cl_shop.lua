@@ -5630,75 +5630,92 @@ Citizen.CreateThread(
                                                     "getBankingAccountsPly2",
                                                     function(result)
                                                         local acc = result[1]
-                                                        if acc.amount >= dataonWait.price then
-                                                            ShowNotification("Paiement ~g~effectué")
-                                                            local x, y, z = LocalPlayer().Pos
-                                                            local current_zone = GetLabelText(GetNameOfZone(x, y, z))
-                                                            local price = {
-                                                                math.floor(
-                                                                    (dataonWait.price - (dataonWait.price / 100)) *
-                                                                        (100 - ConfigTax),
-                                                                    0
-                                                                ),
-                                                                math.floor(
-                                                                    (dataonWait.price - (dataonWait.price / 100)) *
-                                                                        ConfigTax,
-                                                                    0
+
+                                                        
+                                                        TriggerServerCallback("Ora_banking:getRatiosForCard",function(cardExist,maxDeposit,maxRemove,maxPayin,currentDeposit,currentRemove,currentPayin)
+                                                            if (cardExist == false) then
+                                                                ShowNotification("~r~Cette carte n'existe pas")
+                                                                return
+                                                            end
+                                                            local processPayment = true
+                                                            -- GetRatiosforcard
+
+                                                            if (dataonWait.price > (maxPayin - currentPayin)) then
+                                                                ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
+                                                                return
+                                                            end
+
+
+                                                            if acc.amount >= dataonWait.price and processPayment then
+                                                                ShowNotification("Paiement ~g~effectué")
+                                                                local x, y, z = LocalPlayer().Pos
+                                                                local current_zone = GetLabelText(GetNameOfZone(x, y, z))
+                                                                local price = {
+                                                                    math.floor(
+                                                                        (dataonWait.price - (dataonWait.price / 100)) *
+                                                                            (100 - ConfigTax),
+                                                                        0
+                                                                    ),
+                                                                    math.floor(
+                                                                        (dataonWait.price - (dataonWait.price / 100)) *
+                                                                            ConfigTax,
+                                                                        0
+                                                                    )
+                                                                }
+
+                                                                TriggerServerEvent(
+                                                                    "bankingRemoveFromAccount2",
+                                                                    acc.iban,
+                                                                    dataonWait.price
                                                                 )
-                                                            }
 
-                                                            TriggerServerEvent(
-                                                                "bankingRemoveFromAccount2",
-                                                                acc.iban,
-                                                                dataonWait.price
-                                                            )
-
-                                                            local accountLabel = getCompanyLabel(dataonWait.account) or dataonWait.account or dataonWait.title or "Service Ville"
-                                                            local transactionTitle = dataonWait.title or "Facture : "..current_zone
-                                                            TriggerServerEvent(
-                                                                "newTransaction",
-                                                                acc.iban,
-                                                                accountLabel,
-                                                                dataonWait.price,
-                                                                transactionTitle,
-                                                                "CB N°"..param.number
-                                                            )
-                                                            if dataonWait.item ~= nil and dataonWait.item.noItem ~= true then
-                                                                if type(dataonWait.count) == "number" then
-                                                                    local localItems = {}
-                                                                    for i = 1, dataonWait.count, 1 do
-                                                                        table.insert(
-                                                                            localItems,
-                                                                            {
-                                                                                id = nil,
-                                                                                name = dataonWait.item.name,
-                                                                                label = nil,
-                                                                                data = dataonWait.item.data
-                                                                            }
-                                                                        )
+                                                                local accountLabel = getCompanyLabel(dataonWait.account) or dataonWait.account or dataonWait.title or "Service Ville"
+                                                                local transactionTitle = dataonWait.title or "Facture : "..current_zone
+                                                                TriggerServerEvent(
+                                                                    "newTransaction",
+                                                                    acc.iban,
+                                                                    accountLabel,
+                                                                    dataonWait.price,
+                                                                    transactionTitle,
+                                                                    "CB N°"..param.number
+                                                                )
+                                                                if dataonWait.item ~= nil and dataonWait.item.noItem ~= true then
+                                                                    if type(dataonWait.count) == "number" then
+                                                                        local localItems = {}
+                                                                        for i = 1, dataonWait.count, 1 do
+                                                                            table.insert(
+                                                                                localItems,
+                                                                                {
+                                                                                    id = nil,
+                                                                                    name = dataonWait.item.name,
+                                                                                    label = nil,
+                                                                                    data = dataonWait.item.data
+                                                                                }
+                                                                            )
+                                                                        end
+                                                                        Ora.Inventory:AddItems(localItems)
                                                                     end
-                                                                    Ora.Inventory:AddItems(localItems)
                                                                 end
-                                                            end
 
-                                                            if dataonWait.fct ~= nil then
-                                                                dataonWait.fct("bank")
-                                                            end
+                                                                if dataonWait.fct ~= nil then
+                                                                    dataonWait.fct("bank")
+                                                                end
 
-                                                            if
-                                                                dataonWait.item ~= nil and
-                                                                    dataonWait.item.afterPayment ~= nil
-                                                             then
-                                                                dataonWait.item.afterPayment(dataonWait.item)
+                                                                if
+                                                                    dataonWait.item ~= nil and
+                                                                        dataonWait.item.afterPayment ~= nil
+                                                                then
+                                                                    dataonWait.item.afterPayment(dataonWait.item)
+                                                                end
+                                                                if dataonWait.tax ~= nil then
+                                                                    sendTax(dataonWait.price * dataonWait.tax)
+                                                                end
+                                                                --TriggerServerEvent("gcPhone:_internalAddMessage","Banque",ATM.Selected.phone_number,"Nouvel achat " .. amount .."$ vers " .. rib1 .. " à partir du compte " .. ATM.Selected.iban,false)
+                                                                RageUI.GoBack()
+                                                            else
+                                                                ShowNotification("Paiement ~g~refusé !")
                                                             end
-                                                            if dataonWait.tax ~= nil then
-                                                                sendTax(dataonWait.price * dataonWait.tax)
-                                                            end
-                                                            --TriggerServerEvent("gcPhone:_internalAddMessage","Banque",ATM.Selected.phone_number,"Nouvel achat " .. amount .."$ vers " .. rib1 .. " à partir du compte " .. ATM.Selected.iban,false)
-                                                            RageUI.GoBack()
-                                                        else
-                                                            ShowNotification("Paiement ~g~refusé !")
-                                                        end
+                                                        end, Ora.Inventory.Data["bank_card"][i].data.number)
                                                     end,
                                                     param.account
                                                 )

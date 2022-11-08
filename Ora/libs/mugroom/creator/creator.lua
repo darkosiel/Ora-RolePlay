@@ -7,11 +7,78 @@
 RegisterNetEvent("mugroom:Finish")
 
 Creator = {}
+local Z_Camera <const> = 58.25
+Camera  = {
+    Fov = 27.5,
+    ZoomFov = 15.0,
 
-local _Cam
+    -- BasePosition = vector3(1135.01, -698.39, Z_Camera),
+    -- BaseRotate = vector3(-7.5, 0.0, 293.79),
+    -- LeftPosition = vector3(1135.64, -694.88, Z_Camera),
+    -- LeftRotate = vector3(-7.5, 0.0, 233.79),
+    -- RightPosition = vector3(1138.43, -701.21, Z_Camera),
+    -- RightRotate = vector3(-7.5, 0.0, 353.79),
+
+    BasePosition = vector3(1078.4691162109, -707.59448242188, Z_Camera),
+    BaseRotate = vector3(-7.5, 0.0, 288.4817199707),
+    LeftPosition = vector3(1081.5592041016, -710.53045654297, Z_Camera),
+    LeftRotate = vector3(-7.5, 0.0, 348.4817199707),
+    RightPosition = vector3(1079.3629150391, -703.95959472656, Z_Camera),
+    RightRotate = vector3(-7.5, 0.0, 228.4817199707),
+}
+
+setmetatable({}, Camera)
+
+function Camera:Init()
+    self.Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA", false)
+    print(self.Camera)
+    
+    SetCamCoord(self.Camera, self.BasePosition)
+    SetCamRot(self.Camera, self.BaseRotate, 2)
+    SetCamFov(self.Camera, self.Fov)
+    SetCamActive(self.Camera, true)
+    return self
+end
+
+function Camera:Render()
+    SetCamActive(self.Camera, true)
+    RenderScriptCams(1, 0, 0, 1, 1)
+    return self
+end
+
+function Camera:Switch(which)
+    if which == "left" then
+        SetCamCoord(self.Camera, self.LeftPosition)
+        SetCamRot(self.Camera, self.LeftRotate, 2)
+    elseif which == "right" then
+        SetCamCoord(self.Camera, self.RightPosition)
+        SetCamRot(self.Camera, self.RightRotate, 2)
+    else 
+        SetCamCoord(self.Camera, self.BasePosition)
+        SetCamRot(self.Camera, self.BaseRotate, 2)
+    end
+    RenderScriptCams(1, 0, 0, 1, 1)
+    return self
+end
+
+function Camera:Zoom(zoom)
+    SetCamFov(self.Camera, zoom)
+    RenderScriptCams(1, 0, 0, 1, 1)
+    return self
+end
+
+function Camera:Delete()
+    DestroyCam(self.Camera, 0)
+    RenderScriptCams(0, 0, 0, 1, 1)
+    self.Camera = nil
+end
+
+_Cam = nil
 
 function RegenCreatorCam()
-    _Cam = CamCreatorInit()
+    --_Cam = CamCreatorInit()
+    _Cam = Camera:Init()
+    --_Cam:Render()
 end
 
 function GetCreatorCam()
@@ -21,9 +88,12 @@ end
 function Creator.LoadContent()
     SetOverrideWeather("EXTRASUNNY")
     SetWeatherTypePersist("EXTRASUNNY")
-
+    -- set a variable equals 16 hours into seconds
+    local time = 17 * 60 * 60
+    TriggerEvent("overwritteDate", true, time)
+    PauseClock(true)
     RegenCreatorCam()
-    CreatorRequestAssets()
+    --CreatorRequestAssets()
     Citizen.Wait(1000)
     DoScreenFadeIn(500)
     if isPed == false and sexIndex == 1 and GetEntityModel(PlayerPedId()) ~= GetHashKey("mp_f_freemode_01") then
@@ -51,13 +121,16 @@ function Creator.LoadContent()
     RemoveLoadingPrompt()
     Ora.Health:Revive(false)
     Ora.Health:SetMyHealthPercent(100)
-    Stage_01(_Cam)
-    Stage_01_A(_Cam)
-    RenderScriptCams(true, false, 3000, 1, 0, 0)
-    WalkToRoom()
-    Citizen.Wait(5000)
+    --Stage_01(_Cam)
+    --Stage_01_A(_Cam)
+    _Cam:Render()
+    --RenderScriptCams(true, false, 3000, 1, 0, 0)
+    --WalkToRoom()
+    --DoScreenFadeOut(500)
+    
+    --Citizen.Wait(5000)
     OpenCreatorMenu()
-    onCreatorTick.Tick = true
+    --onCreatorTick.Tick = true
 end
 
 AddEventHandler(
@@ -116,38 +189,62 @@ AddEventHandler(
     end
 )
 
-local lightTurnedOff = true
-Citizen.CreateThread(
-    function()
-        while true do
-            Citizen.Wait(1)
-            if (onCreatorTick.FaceTurnEnabled) then
-                --print("AA")
-                if IsControlJustReleased(2, 205) or IsDisabledControlJustReleased(1, 205) then
-                    -- run code here
-                    if not (isTurnedLeft) then
-                        func_1513(PlayerPedId(), false)
-                        isTurnedLeft = true
-                    else
-                        func_1514(PlayerPedId(), true)
-                        isTurnedLeft = false
-                    end
-                end
-                if IsControlJustReleased(1, 206) or IsDisabledControlJustReleased(1, 206) then
-                    if not (isTurnedRight) then
-                        func_1514(PlayerPedId(), false)
-                        isTurnedRight = true
-                    else
-                        func_1513(PlayerPedId(), true)
-                        isTurnedRight = false
-                    end
-                end
-            end
-            if (onCreatorTick.LightRemote) then
-            end
-            if (onCreatorTick.Scaleform) then
-                OnRenderCreatorScaleform()
-            end
-        end
-    end
-)
+-- local lightTurnedOff = true
+-- Citizen.CreateThread(
+--     function()
+--         while true do
+--             Citizen.Wait(1)
+--             if (onCreatorTick.FaceTurnEnabled) then
+--                 --print("AA")
+--                 if IsControlJustReleased(2, 205) or IsDisabledControlJustReleased(1, 205) then
+--                     -- run code here
+--                     if not (isTurnedLeft) then
+--                         func_1513(PlayerPedId(), false)
+--                         isTurnedLeft = true
+--                     else
+--                         func_1514(PlayerPedId(), true)
+--                         isTurnedLeft = false
+--                     end
+--                 end
+--                 if IsControlJustReleased(1, 206) or IsDisabledControlJustReleased(1, 206) then
+--                     if not (isTurnedRight) then
+--                         func_1514(PlayerPedId(), false)
+--                         isTurnedRight = true
+--                     else
+--                         func_1513(PlayerPedId(), true)
+--                         isTurnedRight = false
+--                     end
+--                 end
+--             end
+--             if (onCreatorTick.LightRemote) then
+--             end
+--             if (onCreatorTick.Scaleform) then
+--                 OnRenderCreatorScaleform()
+--             end
+--         end
+--     end
+-- )
+
+
+RegisterCommand("calculateCamCoords", function()
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
+    local heading = GetEntityHeading(ped)
+    local fwdVector = GetEntityForwardVector(ped)
+    local _, right, _ =  GetEntityMatrix(ped)
+    local camCoords = coords + right * 0.30
+    local camCoords = camCoords + fwdVector * 4.0
+    print("Front camCoords = " .. camCoords.x .. ", " .. camCoords.y .. ", " .. camCoords.z .. ", heading " .. heading + 180)
+
+    SetEntityHeading(ped, heading + 60)
+    fwdVector = GetEntityForwardVector(ped)
+    camCoords = coords + fwdVector * 4.0
+    print("Right camCoords = " .. camCoords.x .. ", " .. camCoords.y .. ", " .. camCoords.z .. ", heading " .. heading + 240)
+
+    SetEntityHeading(ped, heading - 60)
+    fwdVector = GetEntityForwardVector(ped)
+    camCoords = coords + fwdVector * 4.0
+    print("Left camCoords = " .. camCoords.x .. ", " .. camCoords.y .. ", " .. camCoords.z .. ", heading " .. heading + 120)
+
+end)
+

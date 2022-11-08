@@ -259,3 +259,35 @@ function CreatorMenuClothes(indexCharacter, createPlayer)
         end
     )
 end
+
+if GetConvar("env_dev", "false") == "true" then
+    RegisterCommand("saveOutfit", function()
+        -- Get the full outfit of the current player
+        local ped = PlayerPedId() 
+        local outfit = {
+            torso = {id = GetPedDrawableVariation(ped, 3), txt = GetPedTextureVariation(ped, 3)}, -- Mains
+            undershirt = {id = GetPedDrawableVariation(ped, 8), txt = GetPedTextureVariation(ped, 8)}, -- Shirt / Accessory
+            tops = {id = GetPedDrawableVariation(ped, 11), txt = GetPedTextureVariation(ped, 11)}, -- Shirt Overlay / Jackets
+            legs = {id = GetPedDrawableVariation(ped, 4), txt = GetPedTextureVariation(ped, 4)},
+            body_armor = {id = GetPedDrawableVariation(ped, 9), txt = GetPedTextureVariation(ped, 9)},
+            backpacks = {id = GetPedDrawableVariation(ped, 5), txt = GetPedTextureVariation(ped, 5)},
+            texture = {id = GetPedDrawableVariation(ped, 10), txt = GetPedTextureVariation(ped, 10)},
+            feet = {id = GetPedDrawableVariation(ped, 6), txt = GetPedTextureVariation(ped, 6)},
+            accessories = {id = GetPedDrawableVariation(ped, 7), txt = GetPedTextureVariation(ped, 7)},
+            mask = {toggle = false, id = 0, txt = 0},
+            hat = {toggle = true, id = GetPedPropIndex(ped, 0), txt = GetPedPropTextureIndex(ped, 0)},
+            glasses = {toggle = true, id = GetPedPropIndex(ped, 1), txt = GetPedPropTextureIndex(ped, 1)},
+            ears = {toggle = true, id = GetPedPropIndex(ped, 2), txt = GetPedPropTextureIndex(ped, 2)},
+            watches = {toggle = true, id = GetPedPropIndex(ped, 6), txt = GetPedPropTextureIndex(ped, 6)},
+            bracelets = {toggle = true, id = GetPedPropIndex(ped, 7), txt = GetPedPropTextureIndex(ped, 7)}
+        }
+
+        for k, v in pairs(outfit) do
+            if (v.toggle ~= nil) then
+                v.toggle = v.id ~= -1 and true or false
+            end
+        end
+
+        print("Outfit : ["..tostring(args).."]", json.encode(outfit))
+    end)
+end

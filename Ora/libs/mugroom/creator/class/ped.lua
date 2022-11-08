@@ -76,7 +76,7 @@ function AttachBoardToEntity(Entity, HeaderString, Substring, FooterString, Rank
     onCreatorTick.Scaleform = true
 end
 
-function UpdateBoardToEntity(Entity)
+function BoardToEntity(Entity)
     AttachEntityToEntity(overlay, board, -1, 4103, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
     SetModelAsNoLongerNeeded(prop_id_board)
     SetModelAsNoLongerNeeded(overlayModel)

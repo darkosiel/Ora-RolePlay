@@ -13,12 +13,13 @@ Citizen.CreateThread(
       ['admin_drug'] = initAdminDrugMenu,
       ['police'] = Police.ON,
       ['lssd'] = Police.ON,
-     -- ['casino'] = Ora.Jobs.Casino.INIT,
+      -- ['casino'] = Ora.Jobs.Casino.INIT,
       ['jetsam'] = Ora.Jobs.Jetsam.INIT,
-      ['immo'] = Ora.Jobs.Immo.INIT,
-     -- ['bleacher'] = Ora.Jobs.Bleacher.INIT,
+      --['immo'] = Ora.Jobs.Immo.INIT,
+      -- ['bleacher'] = Ora.Jobs.Bleacher.INIT,
       ['lsfd'] = Ora.Jobs.Firefighter.INIT,
       ['drivingschool'] = Ora.Jobs.DrivingSchool.INIT,
+      ["mazegroup"] = InitBankerJob,
     }
   end
 )
