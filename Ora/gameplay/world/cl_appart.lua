@@ -1,7 +1,4 @@
 Property = {}
-
-local realJob = true
-
 local sectorizedProperties = {}
 local currentProperty = {}
 local currentAppart = nil
@@ -148,10 +145,6 @@ local function Open()
     Ora.World.Appart.CURRENT.Property = currentProperty
     Ora.Jobs.Immo.Menu.Property = currentProperty
     RMenu:Get("appart", "main"):SetTitle(currentProperty.name)
-    
-    local job = Ora.Identity.Job:Get()
-    local orga = Ora.Identity.Orga:Get()
-    realJob = job.name == "mazegroup" and job or orga
     RageUI.Visible(RMenu:Get("appart", "main"), true)
     KeySettings:Clear("keyboard", "E", "Appart")
     KeySettings:Clear("controller", 46, "Appart")
@@ -189,12 +182,6 @@ function SetupApparts()
     end
 
     while (CanSetup == false) do Wait(0) end
-
-            
-    local job = Ora.Identity.Job:Get()
-    local orga = Ora.Identity.Orga:Get()
-    realJob = job.name == "mazegroup" and job or orga
-
 
     for propertyKey, propertyValue in pairs(Ora.World.Appart:GetList()) do
         local own = false
@@ -475,12 +462,7 @@ AddEventHandler(
         Ora.World.Appart:AddToList(propertyValue)
         local own = false
 
-                
-        local job = Ora.Identity.Job:Get()
-        local orga = Ora.Identity.Orga:Get()
-        realJob = job.name == "mazegroup" and job or orga
-
-        if Ora.Identity:GetMyUuid() == propertyValue.owner or realJob.name == propertyValue.owner then
+        if Ora.Identity:GetMyUuid() == propertyValue.owner or Ora.Identity.Job:GetName() == propertyValue.owner then
             own = true
         end
 
@@ -575,10 +557,8 @@ AddEventHandler(
             local coulour = 2
             local size = 0.6
             local name = appart.name
-            local job = Ora.Identity.Job:Get()
-            local orga = Ora.Identity.Orga:Get()
-            realJob = job.name == "mazegroup" and job or orga
-            if realJob.name == "mazegroup" and Jobs.mazegroup[realJob.rank].accessImmo then
+
+            if Ora.Identity.Job:GetName() == "immo" or Ora.Identity.Orga:GetName() == "immo" then
                 coulour = 55
                 name = nil
                 size = 0.45
@@ -651,7 +631,7 @@ function NoOwnerAppart()
         function(_, _, Selected)
         end
     )
-    if realJob.name == "mazegroup" and Jobs.mazegroup[realJob.rank].accessImmo then
+    if Ora.Identity.Job:GetName() == "immo" then
         RageUI.CenterButton(
             "~b~↓↓ ~s~Actions agent immo ~b~↓↓",
             nil,
@@ -742,7 +722,7 @@ function NoOwnerAppart()
             function(_, _, Selected)
                 if Selected then
                     ShowNotification("~g~Vous avez appellé un agent immobilier")
-                    MakeCall("mazegroup")
+                    MakeCall("immo")
                 end
             end
         )
@@ -842,7 +822,7 @@ function OwnAppart()
         end
     )
 
-    if currentProperty.owner ~= realJob.name or realJob.name == "chomeur" then
+    if currentProperty.owner ~= Ora.Identity.Job:GetName() or Ora.Identity.Job:GetName() == "chomeur" then
         RageUI.Button(
                 "Donner à l'entreprise",
                 nil,
@@ -1112,7 +1092,7 @@ Citizen.CreateThread(
                                 end
                             end
 
-                            if realJob.name == "mazegroup" and realJob.[realJob.rank] then
+                            if Ora.Identity.Job:GetName() == "immo" then
                                 RageUI.CenterButton(
                                     "~b~↓↓ ~s~Action immobilier ~b~↓↓",
                                     nil,
@@ -1318,7 +1298,7 @@ Citizen.CreateThread(
                 function(count)
                     realtorOnDuty = count
                 end,
-                "mazegroup"
+                "immo"
             )
 
             Wait(600000)

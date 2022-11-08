@@ -144,8 +144,8 @@ end
 ---@return void
 function CreatorZoomOut(_Cam)
     PlaySoundFrontend(-1, "Zoom_Out", "MUGSHOT_CHARACTER_CREATION_SOUNDS", 0, 0, 1)
-    --func_1678(_Cam)
-    --RenderScriptCams(true, false, 3000, 1, 0, 0)
+    func_1678(_Cam)
+    RenderScriptCams(true, false, 3000, 1, 0, 0)
 end
 
 ---CreatorTakePictureIn
