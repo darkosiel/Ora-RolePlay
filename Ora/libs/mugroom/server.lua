@@ -1429,21 +1429,3 @@ AddEventHandler(
     end
 )
 
--- Handle instances while in mugroom 
-
-RegisterServerEvent("mugroom:enterInstance", function()
-	-- TODO: Use routine buckets 
-	local serverId = source
-	-- note : we should use NetworkConceal in appartment instances instead of buckets
-	-- Use serverId as bucket because we're almost certain there won't be anyone near this point in this bucket
-	SetPlayerRoutingBucket(serverId, 500+serverId)
-    print("mugroom:enterInstance", GetPlayerRoutingBucket(serverId))
-end)
-
-RegisterServerEvent("mugroom:exitInstance", function()
-	local serverId = source
-	if GetPlayerRoutingBucket(serverId) ~= 0 then
-		SetPlayerRoutingBucket(serverId, 0)
-        print("mugroom:exitInstance", GetPlayerRoutingBucket(serverId))
-	end
-end)
