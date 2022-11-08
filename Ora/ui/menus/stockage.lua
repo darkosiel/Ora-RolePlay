@@ -237,9 +237,9 @@ function Storage:TransferToInventory(count, item)
                         tempCount = tempCount - 1
                         if itemName == "tel" then
                             -- OraPhone
-                            -- MyNumber = nil
-                            -- MyBattery = 0
-                            -- TriggerEvent("OraPhone:client:phone_active", false)
+                            MyNumber = nil
+                            MyBattery = 0
+                            TriggerEvent("OraPhone:client:phone_active", false)
                         end
                     end
                 end

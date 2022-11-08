@@ -356,8 +356,11 @@ function Ora.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to r
                     if itemName == "tel" then
                         if px[i].data.num == MyNumber then
                             MyNumber = nil
-                            TriggerEvent("gcPhone:myPhoneNumber", MyNumber)
-                            TriggerServerEvent("gcPhone:allUpdate")
+                            -- GC Phone
+                            -- TriggerEvent("gcPhone:myPhoneNumber", MyNumber)
+                            -- TriggerServerEvent("gcPhone:allUpdate")
+                            -- OraPhone
+                            TriggerEvent("OraPhone:client:phone_active", false)
                         end
                     end
                     table.remove(self.Data[itemName], i)
