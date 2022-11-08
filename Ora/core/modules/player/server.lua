@@ -127,7 +127,12 @@ RegisterServerCallback("Ora::SE::Player:Phone:GetNewPhoneNumber",
         Ora.Player:RegisterPhoneNumberToPlayer(newPhoneNumber)
         -- OraPhone
         local identity = Ora.Identity:GetIdentity(_source)
-        exports.OraPhone:RegisterNewPhone(newPhoneNumber, identity)
+        -- ¨Prevent error if OraPhone isn't started
+        if exports.OraPhone.RegisterNewPhone ~= nil then
+            exports.OraPhone:RegisterNewPhone(newPhoneNumber, identity)
+        else
+            error("OraPhone isn't started")
+        end
         cb(newPhoneNumber)
     end
 )
