@@ -226,14 +226,14 @@ Citizen.CreateThread(
     end
 )
 
-Citizen.CreateThread(
-    function()
-        while true do
-            Citizen.Wait(100)
-            TriggerEvent("updateStatus", soif, faim)
-        end
-    end
-)
+-- Citizen.CreateThread(
+--     function()
+--         while true do
+--             Citizen.Wait(1000)
+--             TriggerEvent("updateStatus", soif, faim)
+--         end
+--     end
+-- )
 
 local item = nil
 
@@ -601,7 +601,7 @@ Citizen.CreateThread(
             Wait(10000)
             --print(soif,faim)
             TriggerServerEvent("savefood", soif, faim)
-            TriggerEvent("updateStatus", soif, faim)
+            -- TriggerEvent("updateStatus", soif, faim)
         end
     end
 )

@@ -2,16 +2,24 @@ local frozen = false
 local client_date = {}
 local NEWsecondOfDay = 0
 local secondOfDay = 5000 -- this ensure's we are desynced
+local overwritten = false
 
 AddEventHandler( "onClientMapStart", function()
     TriggerServerEvent( "addTimeChatSuggests" )
 end)
 
+RegisterNetEvent("overwritteDate", function(bool, seconds)
+    overwritten = bool
+    NEWsecondOfDay = seconds
+end)
+
 RegisterNetEvent("updateFromServerTime")
 AddEventHandler("updateFromServerTime", function(serverSecondOfDay,serverDate,isTimeFrozen)
-    frozen = isTimeFrozen
-    NEWsecondOfDay = serverSecondOfDay
-    client_date = serverDate
+    if not overwritten then
+        frozen = isTimeFrozen
+        NEWsecondOfDay = serverSecondOfDay
+        client_date = serverDate
+    end
 end)
 
 Citizen.CreateThread( function()
@@ -25,7 +33,7 @@ Citizen.CreateThread( function()
             secondOfDay = NEWsecondOfDay 
         end 
         Citizen.Wait(33) -- (int)(GetMillisecondsPerGameMinute() / 60)
-        if not frozen then
+        if not frozen and not overwritten then
 			local gameSecond = 33.33 / ss_night_time_speed_mult
 			if secondOfDay >= 19800 and secondOfDay <= 75600 then
 				gameSecond = 33.333 / ss_day_time_speed_mult

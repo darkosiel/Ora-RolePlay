@@ -62,14 +62,14 @@ end)
 if gameVersion == 'fivem' then
 	radioEffectId = CreateAudioSubmix('Radio')
 	SetAudioSubmixEffectRadioFx(radioEffectId, 0)
-	SetAudioSubmixEffectParamInt(radioEffectId, 0, `default`, 1)
+	SetAudioSubmixEffectParamInt(radioEffectId, 0, GetHashKey("default"), 1)
 	AddAudioSubmixOutput(radioEffectId, 0)
 
 	callEffectId = CreateAudioSubmix('Call')
 	SetAudioSubmixEffectRadioFx(callEffectId, 1)
-	SetAudioSubmixEffectParamInt(callEffectId, 1, `default`, 1)
-	SetAudioSubmixEffectParamFloat(callEffectId, 1, `freq_low`, 300.0)
-	SetAudioSubmixEffectParamFloat(callEffectId, 1, `freq_hi`, 6000.0)
+	SetAudioSubmixEffectParamInt(callEffectId, 1, GetHashKey("default"), 1)
+	SetAudioSubmixEffectParamFloat(callEffectId, 1, GetHashKey("freq_low"), 300.0)
+	SetAudioSubmixEffectParamFloat(callEffectId, 1, GetHashKey("freq_hi"), 6000.0)
 	AddAudioSubmixOutput(callEffectId, 1)
 end
 

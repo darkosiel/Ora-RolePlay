@@ -211,7 +211,7 @@ RepairWhitelist =
 }
 
 blacklistedVehicle = {
-	`rcbandito`,
-	--`lspdb`,
-	`sheriffb3`
+	GetHashKey("rcbandito"),
+	--GetHashKey("lspdb"),
+	GetHashKey("sheriffb3")
 }

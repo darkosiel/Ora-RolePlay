@@ -1,7 +1,8 @@
-local function GenerateGamemodeContent()
+function GenerateGamemodeContent()
     return {
         Model = GenerateFreemodeModel(),
-        Position = {x = 399.9, y = -998.7, z = -100.0, heading = 180.086},
+        --Position = {x = 399.9, y = -998.7, z = -100.0, heading = 180.086},
+        Position = {x = 1082.362671, y = -706.602905, z = 57.372555, heading = 108.481727},
         mp_f_freemode_01 = {
             Face = GenerateEntityFace("mp_f_freemode_01"),
             Outfit = GenerateEntityOutfit("mp_f_freemode_01"),
@@ -78,14 +79,14 @@ AddEventHandler(
                 ClearPlayerWantedLevel(PlayerId())
                 ClearPedTasksImmediately(PlayerPed)
                 RemoveLoadingPrompt()
-                local interiorID = GetInteriorAtCoordsWithType(vector3(399.9, -998.7, -100.0), "v_mugshot")
-                LoadInterior(interiorID)
+                -- local interiorID = GetInteriorAtCoordsWithType(vector3(399.9, -998.7, -100.0), "v_mugshot")
+                -- LoadInterior(interiorID)
                 SetOverrideWeather("EXTRASUNNY")
                 SetWeatherTypePersist("EXTRASUNNY")
-
-                while not IsInteriorReady(interiorID) do
-                    Citizen.Wait(0)
-                end
+                
+                -- while not IsInteriorReady(interiorID) do
+                --     Citizen.Wait(0)
+                -- end
             end
         )
         Creator.LoadContent()

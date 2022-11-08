@@ -6887,75 +6887,118 @@ Jobs = {
     --         }
     --     }
     -- },
-    banker = {
-        label = "Banquier",
-        label2 = "Banquier",
-        iban = "banker",
+
+    --banker = {
+    mazegroup = {
+        label = "Maze Group",
+        label2 = "Maze Group",
+        iban = "mazegroup",
         grade = {
             {
                 label = "CDD",
                 salary = 0,
                 name = "cdd",
-                show = true
+                show = true,
+                accessImmo = true,
+                accessBank = false
             },
             {
-                label = "CDI",
+                label = "Conseiller",
                 salary = 0,
-                name = "cdi",
-                show = true
+                name = "adviser",
+                show = true,
+                accessImmo = true,
+                accessBank = false
             },
             {
-                label = "Chef",
+                label = "Banquier",
                 salary = 0,
-                name = "chef",
-                show = true
+                name = "banker",
+                show = true,
+                accessImmo = false,
+                accessBank = true
             },
             {
-                label = "DRH",
+                label = "Associé Junior",
                 salary = 0,
-                name = "drh",
-                show = true
+                name = "junior",
+                show = true,          
+                accessImmo = false,
+                accessBank = true
+            },
+            {
+                label = "Chef d'équipe Immo",
+                salary = 0,
+                name = "teamleader",
+                show = true,
+                accessImmo = true,
+                accessBank = false
+            },
+            {
+                label = "Associé Senior",
+                salary = 0,
+                name = "senior",
+                show = true,
+                accessImmo = false,
+                accessBank = true
+            },
+            {
+                label = "Managing Partner",
+                salary = 0,
+                name = "managing",
+                show = true,
+                accessImmo = true,
+                accessBank = true
             },
             {
                 label = "PDG",
                 salary = 0,
-                name = "boss",
-                show = true
+                name = "pdg",
+                show = true,
+                accessImmo = true,
+                accessBank = true
             }
+
         },
-        Menu = {
-            menu = {
-                title = "Banquier",
-                subtitle = "Actions disponibles",
-                name = "Banquier_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facture",
-                    onSelected = function()
-                        CreateFacture("banker")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Banque", "Annonce", text, "CHAR_PACIFIC", 8, "Banquier")
-                        end
-                    end
-                }
-            }
-        },
+        -- Menu = {
+        --     menu = {
+        --         --title = "Banquier",
+        --         title = "Maze Group"
+        --         subtitle = "Actions disponibles",
+        --         name = "Banquier_menuperso"
+        --     },
+        --     buttons = {
+        --         {
+        --             label = "Facture",
+        --             onSelected = function()
+        --                 CreateFacture("banker")
+        --             end,
+        --             ActiveFct = function()
+        --                 HoverPlayer()
+        --             end
+        --         },
+        --         {
+        --             label = "Annonce",
+        --             onSelected = function()
+        --                 exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+        --                 local text = exports['Snoupinput']:GetInput()
+        --                 if text ~= false and text ~= "" then
+        --                     TriggerServerEvent("Job:Annonce", "Banque", "Annonce", text, "CHAR_PACIFIC", 8, "Banquier")
+        --                 end
+        --             end
+        --         },
+        --     }
+        --},
         Storage = {
             {
                 Pos = {x = 262.56, y = 220.52, z = 100.75},
                 Limit = 200,
-                Name = "coffre_banque"
+                Name = "Coffre Maze Bank"
+            },
+            {
+                Pos = {x = -717.8853, y = 260.5183105, z = 83.1377},
+                Limit = 300,
+                Name = "Coffre Maze Immo"
             }
         },
         garage = {
@@ -6972,7 +7015,22 @@ Jobs = {
             Blipdata = {
                 Pos = {},
                 Blipcolor = 7,
-                Blipname = "Garage_banque"
+                Blipname = "Garage Maze Bank"
+            }
+        },
+        garage2 = {
+            Name = "Garage Immobilier",
+            Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -760.303405, y = 276.9277, z = 84.7320, h = 7.31228637}
+            },
+            Blipdata = {
+                Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
+                Blipcolor = 5,
+                Blipname = "Garage Maze Immo"
             }
         },
         Extrapos = {
@@ -6980,7 +7038,7 @@ Jobs = {
                 Pos = {
                     {x = 249.93, y = 230.25, z = 106.29}
                 },
-                restricted = {2, 3, 4, 5},
+                restricted = {3, 4, 6, 7, 8},
                 Enter = function()
                     EnterBankZone()
                 end,
@@ -7003,7 +7061,7 @@ Jobs = {
                     visible = true
                 }
             }
-        }
+        },
     },
     gouv = {
         label = "Gouvernement",
@@ -11691,65 +11749,65 @@ Jobs = {
             }
         }
     },
-    immo = {
-        label = "Agent Immobilier",
-        label2 = "Agent Immobilier",
-        iban = "immo",
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "Conseiller",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Responsable d'équipe",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        garage = {
-            Name = "Garage Immobilier",
-            Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -760.303405, y = 276.9277, z = 84.7320, h = 7.31228637}
-            },
-            Blipdata = {
-                Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
-                Blipcolor = 5,
-                Blipname = "Garage Immobilier"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -717.8853, y = 260.5183105, z = 83.1377},
-                Limit = 300,
-                Name = "Coffre Immobilier"
-            }
-        }
-    },
+    -- immo = {
+    --     label = "Agent Immobilier",
+    --     label2 = "Agent Immobilier",
+    --     iban = "immo",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Conseiller",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Responsable d'équipe",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Immobilier",
+    --         Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -760.303405, y = 276.9277, z = 84.7320, h = 7.31228637}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -760.303405, y = 276.9277, z = 84.7320},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage Immobilier"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -717.8853, y = 260.5183105, z = 83.1377},
+    --             Limit = 300,
+    --             Name = "Coffre Immobilier"
+    --         }
+    --     }
+    -- },
     unicorn = {
         label = "Unicorn",
         label2 = "Unicorn",
@@ -13106,6 +13164,12 @@ Jobs = {
                         HoverPlayer()
                     end
                 },
+                {
+                    label = "Gestion des missions",
+                    onSelected = function()
+                        OpenSessionMenu()
+                    end,
+                }
             },
             submenus = {
                 ["Actions citoyen"] = {

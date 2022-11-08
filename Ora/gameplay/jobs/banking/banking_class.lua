@@ -613,10 +613,10 @@ local function GenerateNumber(cv)
     )
 end
 local ratios = {
-    ["classic"] = {maxDeposit = 5000, maxRemove = 5000, deposit = 0, remove = 0},
-    ["gold"] = {maxDeposit = 15000, maxRemove = 15000, deposit = 0, remove = 0},
-    ["platinium"] = {maxDeposit = 50000, maxRemove = 50000, deposit = 0, remove = 0},
-    ["blackcard"] = {maxDeposit = 250000, maxRemove = 250000, deposit = 0, remove = 0}
+    ["classic"] = {maxDeposit = 5000, maxRemove = 5000, maxPayin = 10000, deposit = 0, remove = 0, payin = 0},
+    ["gold"] = {maxDeposit = 15000, maxRemove = 15000, maxPayin = 30000, deposit = 0, remove = 0, payin = 0},
+    ["platinium"] = {maxDeposit = 50000, maxRemove = 50000, maxPayin = 100000, deposit = 0, remove = 0, payin = 0},
+    ["blackcard"] = {maxDeposit = 250000, maxRemove = 250000, maxPayin = 500000, deposit = 0, remove = 0, payin = 0}
 }
 RegisterServerEvent("newCard")
 AddEventHandler(
@@ -661,7 +661,7 @@ RegisterServerCallback(
                     local info = json.decode(result[1].current_ratio)
 
                     if (info.maxPayin == nil) then
-                        info.maxPayin = 0
+                        info.maxPayin = ratios[result[1].type].maxPayin
                     end
 
                     if (info.payin == nil) then
@@ -714,7 +714,7 @@ AddEventHandler(
                 "RageUI:Popup",
                 _source,
                 {
-                    message = "💰 BANQUE\n~r~Probleme, si vous retirez cette somme vous serez en négatif. Opération annulée~s~"
+                    message = "💰 BANQUE\n~r~Probleme, vous n'avez pas les fonds nécessaires. Opération annulée~s~"
                 }
             )
         end
