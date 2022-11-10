@@ -16,6 +16,7 @@ Ora.DrugDealing.System = {
   LAST_FETCH = 0,
   CURRENT_ZONE_ID = nil,
   QUALITY_TYPES = nil,
+  HAS_BEEN_CALLED = false,
   CURRENT_DESTINATION_HEADING = 0.0,
   COUNTER_STARTED = false,
   PED_HAS_BEEN_CREATED = false

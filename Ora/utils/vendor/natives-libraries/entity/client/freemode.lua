@@ -33,33 +33,26 @@ function UpdateEntityFace(Ped, Table)
         f = true
     end
 
-    if (Table.razorCut ~= nil and Table.razorCut.index ~= nil) then
-        if (Table.razorCut.dict ~= nil and Table.razorCut.hash ~= nil) then
-            Ora.Config:SetDataCollection(
-                "AppliedHarcutTatoos",
-                {dict = Table.razorCut.dict, hash = Table.razorCut.hash}
-            )
-        end
-    end
-
     if (Table ~= nil and f) then
         if Table.face.face ~= nil then
             --    SetPedHeadBlendData(Ped, Character['face'], Character['face'], Character['face'], Character['skin'], Character['skin'], Character['skin'], 1.0, 1.0, 1.0, true)
             --  SetPedHeadBlendData(Ped, Table.face.face, Table.face.face, Table.face.face,Table.face.skin , Table.face.skin , Table.face.skin, 1.0,1.0, 0, false)
-            print(Table.face.face)
-            SetPedHeadBlendData(
-                Ped,
-                Table.face.face,
-                Table.face.face,
-                Table.face.face,
-                Table.face.skin,
-                Table.face.skin,
-                Table.face.skin,
-                1.0,
-                1.0,
-                1.0,
-                true
-            )
+            --print(Table.face.face, Table.face.skin)
+            -- SetPedHeadBlendData(
+            --     Ped,
+            --     Table.face.face,
+            --     Table.face.face,
+            --     Table.face.face,
+            --     Table.face.skin,
+            --     Table.face.skin,
+            --     Table.face.skin,
+            --     1.0,
+            --     1.0,
+            --     1.0,
+            --     true
+            -- )
+            SetPedHeadBlendData(GetPlayerPed(-1), Table.face.face, 0, 0, Table.face.skin, 0, 0, 0.0, 0.0, 0.0, true)
+
         else
             SetPedHeadBlendData(
                 Ped,
@@ -77,6 +70,19 @@ function UpdateEntityFace(Ped, Table)
         end
         SetPedComponentVariation(Ped, 2, Table.hair.style, 0, 0)
         SetPedHairColor(Ped, Table.hair.color[1], Table.hair.color[2])
+
+        if (Table.razorCut ~= nil and Table.razorCut.index ~= nil) then
+            if (Table.razorCut.dict ~= nil and Table.razorCut.hash ~= nil) then
+                ClearPedDecorations(Ped)
+                AddPedDecorationFromHashes(Ped, GetHashKey(Table.razorCut.dict), GetHashKey(Table.razorCut.hash))
+                Ora.Config:SetDataCollection(
+                    "AppliedHarcutTatoos",
+                    {dict = Table.razorCut.dict, hash = Table.razorCut.hash}
+                )
+            end
+        else
+            ClearPedDecorations(Ped)
+        end
 
         --   Citizen.Wait(100.0)
 
@@ -125,7 +131,7 @@ function UpdateEntityFace(Ped, Table)
         SetPedHeadOverlayColor(Ped, 10, 1, Table.chestHair.color[1], Table.chestHair.color[2])
 
         --Citizen.Wait(100.0)
-
+        
         SetPedFaceFeature(Ped, 0, Table.facial.features.nose.width)
         SetPedFaceFeature(Ped, 1, Table.facial.features.nose.peak.height)
         SetPedFaceFeature(Ped, 2, Table.facial.features.nose.peak.length)
@@ -260,100 +266,168 @@ function GenerateEntityFace(Model)
     if Model == "mp_m_freemode_01" then
         return {
             model = "mp_m_freemode_01",
-            face = {mom = 0, dad = 0},
-            resemblance = 0.5,
-            skinMix = 0.5,
+            face = { mom = 1, face = 0,  skin = 0,  dad = 1 },
+            resemblance = 0.8,
+            skinMix = 0.8,
             ageing = {style = 1, opacity = 0.0},
             lipstick = {style = 0, opacity = 0.0, color = {[1] = 0, [2] = 0}},
             eye = {style = 1},
             blemishes = {style = 0, opacity = 0.0},
             complexion = {style = 0, opacity = 0.0},
             freckles = {style = 0, opacity = 0.0},
-            skinAspect = {style = 0, opacity = 0.0},
-            chestHair = {style = 0, color = {[1] = 0, [2] = 0}, opacity = 0.0},
-            makeup = {style = 0, opacity = 0.0, color = {0, 0}},
-            blush = {style = 1, opacity = 0.0, color = {[1] = 0, [2] = 0}},
-            hair = {style = 1, color = {[1] = colors, [2] = colors}},
+            skinAspect = { style = 0, opacity = 1 },
+            chestHair = { opacity = 0, color = { 0, 0 }, style = 0 },
+            makeup = { style = 0, opacity = 0.0, color = {0, 0} },
+            blush = { opacity = 0, color = { 0, 0 }, style = 0 },
+            hair = { color = { 0, 0 }, style = 0 },
             facial = {
-                hair = {
-                    beard = {style = 1, color = {[1] = colors, [2] = colors}, opacity = 1.0},
-                    eyebrow = {style = 1, color = {[1] = colors, [2] = colors}, opacity = 1.0}
-                },
                 features = {
-                    nose = {
-                        width = 0.5,
-                        peak = {height = 0.5, length = 0.5, lowering = 0.5},
-                        bone = {height = 0.5, twist = 0.5}
-                    },
-                    eyebrow = {forward = 0.5, height = 0.5},
-                    cheeks = {
-                        width = 0.5,
-                        bone = {height = 0.5, width = 0.5}
-                    },
-                    eye = {opening = 0.5},
-                    lips = {thickness = 0.5},
-                    jaw = {
-                        bone = {width = 0.5, backLength = 0.5}
-                    },
                     chimp = {
-                        hole = 0.5,
-                        bone = {lowering = 0.5, length = 0.5, width = 0.5}
+                        bone = {
+                            length = 0,
+                            lowering = 0,
+                            width = 0
+                        },
+                        hole = 0
                     },
-                    neck = {thickness = 0.5}
+                    lips = {
+                        thickness = 0
+                    },
+                    nose = {
+                        bone = {
+                            height = 0,
+                            twist = 0
+                        },
+                        width = 0,
+                        peak = {
+                            height = 0,
+                            lowering = 0,
+                            length = 0
+                        }
+                    },
+                    cheeks = {
+                        bone = {
+                            height = 0,
+                            width = 0
+                        },
+                        width = 0
+                    },
+                    eyebrow = {
+                        forward = 0,
+                        height = 0
+                    },
+                    jaw = {
+                        bone = {
+                            backLength = 0,
+                            width = 0
+                        }
+                    },
+                    neck = {
+                        thickness = 0
+                    },
+                    eye = {
+                        opening = 0
+                    }
+                },
+                hair = {
+                    beard = {
+                        opacity = 0,
+                        color = { 0, 0 },
+                        style = 1
+                    },
+                    eyebrow = {
+                        opacity = 0,
+                        color = { 0, 0 },
+                        style = 1
+                    }
                 }
-            }
+            },
         }
     elseif Model == "mp_f_freemode_01" then
         return {
             model = "mp_m_freemode_01",
-            face = {mom = 0, dad = 0},
-            resemblance = 0.5,
-            skinMix = 0.5,
+            face = { mom = 1, face = 0,  skin = 0,  dad = 1 },
+            resemblance = 0.8,
+            skinMix = 0.8,
             ageing = {style = 1, opacity = 0.0},
             lipstick = {style = 0, opacity = 0.0, color = {[1] = 0, [2] = 0}},
             eye = {style = 1},
             blemishes = {style = 0, opacity = 0.0},
             complexion = {style = 0, opacity = 0.0},
             freckles = {style = 0, opacity = 0.0},
-            skinAspect = {style = 0, opacity = 0.0},
-            chestHair = {style = 0, color = {[1] = 0, [2] = 0}, opacity = 0.0},
-            makeup = {style = 0, opacity = 0.0, color = {0, 0}},
-            blush = {style = 1, opacity = 0.0, color = {[1] = 0, [2] = 0}},
-            hair = {style = 1, color = {[1] = colors, [2] = colors}},
+            skinAspect = { style = 0, opacity = 1 },
+            chestHair = { opacity = 0, color = { 0, 0 }, style = 0 },
+            makeup = { style = 0, opacity = 0.0, color = {0, 0} },
+            blush = { opacity = 0, color = { 0, 0 }, style = 0 },
+            hair = { color = { 0, 0 }, style = 0 },
             facial = {
-                hair = {
-                    beard = {style = 1, color = {[1] = colors, [2] = colors}, opacity = 0.0},
-                    eyebrow = {style = 1, color = {[1] = colors, [2] = colors}, opacity = 1.0}
-                },
                 features = {
-                    nose = {
-                        width = 0.5,
-                        peak = {height = 0.5, length = 0.5, lowering = 0.5},
-                        bone = {height = 0.5, twist = 0.5}
-                    },
-                    eyebrow = {forward = 0.5, height = 0.5},
-                    cheeks = {
-                        width = 0.5,
-                        bone = {height = 0.5, width = 0.5}
-                    },
-                    eye = {opening = 0.5},
-                    lips = {thickness = 0.5},
-                    jaw = {
-                        bone = {width = 0.5, backLength = 0.5}
-                    },
                     chimp = {
-                        hole = 0.5,
-                        bone = {lowering = 0.5, length = 0.5, width = 0.5}
+                        bone = {
+                            length = 0,
+                            lowering = 0,
+                            width = 0
+                        },
+                        hole = 0
                     },
-                    neck = {thickness = 0.5}
+                    lips = {
+                        thickness = 0
+                    },
+                    nose = {
+                        bone = {
+                            height = 0,
+                            twist = 0
+                        },
+                        width = 0,
+                        peak = {
+                            height = 0,
+                            lowering = 0,
+                            length = 0
+                        }
+                    },
+                    cheeks = {
+                        bone = {
+                            height = 0,
+                            width = 0
+                        },
+                        width = 0
+                    },
+                    eyebrow = {
+                        forward = 0,
+                        height = 0
+                    },
+                    jaw = {
+                        bone = {
+                            backLength = 0,
+                            width = 0
+                        }
+                    },
+                    neck = {
+                        thickness = 0
+                    },
+                    eye = {
+                        opening = 0
+                    }
+                },
+                hair = {
+                    beard = {
+                        opacity = 0,
+                        color = { 0, 0 },
+                        style = 1
+                    },
+                    eyebrow = {
+                        opacity = 0,
+                        color = { 0, 0 },
+                        style = 1
+                    }
                 }
-            }
+            },
         }
     else
         return {
             face = {mom = 0, dad = 0},
-            resemblance = "0." .. 0,
-            skinMix = "0." .. 0,
+            resemblance = 0.0,
+            skinMix = 0.0,
             ageing = {style = 0, opacity = 0.0},
             lipstick = {style = 0, opacity = 0.0, color = {[1] = 0, [2] = 0}},
             eye = {style = 0},
@@ -460,7 +534,7 @@ function GenerateEntityTattoo(Model)
     return {}
 end
 
-function UpdatePlayerPedFreemodeCharacter(Entity, Model, Face, Outfit, Tattoo)
+function UpdatePlayerPedFreemodeCharacter(Entity, Model, Face, Outfit, Tattoo, Anim)
     local hash = Model
     RequestModel(hash)
 
@@ -477,5 +551,9 @@ function UpdatePlayerPedFreemodeCharacter(Entity, Model, Face, Outfit, Tattoo)
     UpdateEntityFace(Entity, Face)
     UpdateEntityOutfit(Entity, Outfit)
     UpdateEntityTattoo(Entity, Tattoo)
+
+    if Anim then
+        StartAnimProcess()
+    end
     return true
 end

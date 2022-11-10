@@ -9,53 +9,55 @@ Ora.Jobs.Immo.SubMenu = {
 	UpdatedStuff = {}
 }
 
+function InitImmosMenus()
 
-RMenu.Add("immo", "main", RageUI.CreateMenu("Immobilier ", "Actions disponibles", 10, 100))
+	RMenu.Add("immo", "main", RageUI.CreateSubMenu(RMenu:Get("mazegroup", "main"), "Immobilier ", "Actions disponibles", 10, 100))
 
-RMenu.Add(
-	"immo",
-	"put_proprio",
-	RageUI.CreateSubMenu(RMenu:Get("immo", "main"), "Immobilier ", "Actions disponibles", 10, 100)
-)
+	RMenu.Add(
+		"immo",
+		"put_proprio",
+		RageUI.CreateSubMenu(RMenu:Get("immo", "main"), "Immobilier ", "Actions disponibles", 10, 100)
+	)
 
-RMenu.Add(
-    "Ora:Immo",
-    "Raids",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Perquisitions en cours", "Selectionner pour accéder aux détails")
-)
+	RMenu.Add(
+		"Ora:Immo",
+		"Raids",
+		RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Perquisitions en cours", "Selectionner pour accéder aux détails")
+	)
 
-RMenu.Add(
-    "Ora:Immo",
-    "Raids_confirm",
-    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "Raids"), "Perquisitions en cours", "Options")
-)
+	RMenu.Add(
+		"Ora:Immo",
+		"Raids_confirm",
+		RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "Raids"), "Perquisitions en cours", "Options")
+	)
 
-RMenu.Add(
-    "Ora:Immo",
-    "List",
-    RageUI.CreateSubMenu(RMenu:Get("immo", "main"), "Propriétés existantes", "Liste")
-)
+	RMenu.Add(
+		"Ora:Immo",
+		"List",
+		RageUI.CreateSubMenu(RMenu:Get("immo", "main"), "Propriétés existantes", "Liste")
+	)
 
-RMenu.Add(
-    "Ora:Immo",
-    "CurrentProperty",
-    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "List"), "Propriété sélectionnée", "Détails")
-)
+	RMenu.Add(
+		"Ora:Immo",
+		"CurrentProperty",
+		RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "List"), "Propriété sélectionnée", "Détails")
+	)
 
-RMenu.Add(
-    "Ora:Immo",
-	"Coowners",
-    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "CurrentProperty"), "Co-propriétaire(s)", "Noms")
-)
+	RMenu.Add(
+		"Ora:Immo",
+		"Coowners",
+		RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "CurrentProperty"), "Co-propriétaire(s)", "Noms")
+	)
 
-RMenu.Add(
-    "Ora:Immo:Update",
-	"Interior",
-    RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "CurrentProperty"), "Modifier l'intérieur", "Intérieurs disponibles")
-)
+	RMenu.Add(
+		"Ora:Immo:Update",
+		"Interior",
+		RageUI.CreateSubMenu(RMenu:Get("Ora:Immo", "CurrentProperty"), "Modifier l'intérieur", "Intérieurs disponibles")
+	)
+
+end
 
 RMenu.Add("appart", "main", RageUI.CreateMenu(nil, "Actions disponibles", 10, 100))
-
 
 function Ora.Jobs.Immo:RemoveExits()
 	for key, value in pairs(self:GetInteriors()) do
@@ -73,7 +75,11 @@ function Ora.Jobs.Immo:CreateExits()
 	end
 end
 
-function Ora.Jobs.Immo.INIT()
+local ThreadId = nil
+
+--function Ora.Jobs.Immo.INIT()
+function InitImmoJob()
+
 	Citizen.CreateThread(
 		function()
 			while (Ora.Player.HasLoaded == false) do Wait(500) end
@@ -104,29 +110,27 @@ function Ora.Jobs.Immo.INIT()
 				Ora.Jobs.Immo.SubMenu.UpdatedStuff = {}
 			end
 
-			if (Ora.Identity.Job:GetName() == "immo") then
-				KeySettings:Add(
-					"keyboard",
-					"F6",
-					function()
-						RageUI.Visible(RMenu:Get("immo", "main"), true)
-					end,
-					"immo"
-				)
-			else
-				KeySettings:Add(
-					"keyboard",
-					"F7",
-					function()
-						RageUI.Visible(RMenu:Get("immo", "main"), true)
-					end,
-					"immo"
-				)
-			end
-
+			-- if (Ora.Identity.Job:GetName() == "mazegroup") then
+			-- 	KeySettings:Add(
+			-- 		"keyboard",
+			-- 		"F6",
+			-- 		function()
+			-- 			RageUI.Visible(RMenu:Get("immo", "main"), true)
+			-- 		end,
+			-- 		"mazeimmo"
+			-- 	)
+			-- else
+			-- 	KeySettings:Add(
+			-- 		"keyboard",
+			-- 		"F7",
+			-- 		function()
+			-- 			RageUI.Visible(RMenu:Get("immo", "main"), true)
+			-- 		end,
+			-- 		"mazeimmo"
+			-- 	)
+			-- end
 			while true do
 				Wait(0)
-
 				if (RageUI.Visible(RMenu:Get("immo", "main"))) then
 					RageUI.DrawContent(
 						{header = true, glare = false},
@@ -147,20 +151,20 @@ function Ora.Jobs.Immo.INIT()
 								RMenu:Get("immo", "put_proprio")
 							)
 
-							RageUI.Button(
-								"Facture",
-								nil,
-								{},
-								true,
-								function(Hovered, Active, Selected)
-									if Selected then
-										CreateFacture("immo")
-									end
-									if Active then
-										HoverPlayer()
-									end
-								end
-							)
+							-- RageUI.Button(
+							-- 	"Facture",
+							-- 	nil,
+							-- 	{},
+							-- 	true,
+							-- 	function(Hovered, Active, Selected)
+							-- 		if Selected then
+							-- 			CreateFacture("immo")
+							-- 		end
+							-- 		if Active then
+							-- 			HoverPlayer()
+							-- 		end
+							-- 	end
+							-- )
 
 							RageUI.Button(
 								"Liste des propriétés existantes",
@@ -740,13 +744,13 @@ function Ora.Jobs.Immo.INIT()
 					)
 				end
 
-				if (Ora.Identity.Job:GetName() == "immo" and Ora.Identity.Job.ChangingJob) then
-					KeySettings:Clear("keyboard", "F6", "immo")
-					break
-				elseif (Ora.Identity.Orga:GetName() == "immo" and Ora.Identity.Orga.ChangingJob) then
-					KeySettings:Clear("keyboard", "F7", "immo")
-					break
-				end
+				-- if (Ora.Identity.Job:GetName() == "immo" and Ora.Identity.Job.ChangingJob) then
+				-- 	KeySettings:Clear("keyboard", "F6", "immo")
+				-- 	break
+				-- elseif (Ora.Identity.Orga:GetName() == "immo" and Ora.Identity.Orga.ChangingJob) then
+				-- 	KeySettings:Clear("keyboard", "F7", "immo")
+				-- 	break
+				-- end
 			end
 		end
 	)

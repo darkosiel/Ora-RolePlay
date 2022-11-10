@@ -19,76 +19,47 @@ indexCharacter = {
 local currentPlayerSex
 
 sexIndex = nil
-pedIndex = 1
-isPed = false
 
 local updateModelActive = false
 
-local spawnPoint = {
-    data = {
-        "Aeroport de los santos",
-        "Aeroport de sandy shore",
-        "Vinewood"
-    },
-    index = 1
-}
-
-AddEventHandler(
-    "mugroom:updatePlayerData",
-    function(Content)
-        createPlayer.Model = Content.Model
-        createPlayer.Position = Content.Position
-
-        createPlayer.mp_f_freemode_01 = Content.mp_f_freemode_01
-        indexCharacter.mp_f_freemode_01 = Content.mp_f_freemode_01
-
-        createPlayer.mp_m_freemode_01 = Content.mp_m_freemode_01
-        indexCharacter.mp_m_freemode_01 = Content.mp_m_freemode_01
-
-        currentPlayerSex = Content.Model
-
-        if createPlayer.Model == "mp_f_freemode_01" then
-            sexIndex = 1
-        else
-            sexIndex = 2
-        end
+AddEventHandler("mugroom:updatePlayerData",function(Content)
+    createPlayer.Model = Content.Model
+    createPlayer.Position = Content.Position
+    
+    createPlayer.mp_f_freemode_01 = Content.mp_f_freemode_01
+    indexCharacter.mp_f_freemode_01 = Content.mp_f_freemode_01
+    
+    createPlayer.mp_m_freemode_01 = Content.mp_m_freemode_01
+    indexCharacter.mp_m_freemode_01 = Content.mp_m_freemode_01
+    
+    currentPlayerSex = Content.Model
+    
+    if createPlayer.Model == "mp_f_freemode_01" then
+        sexIndex = 1
+    else
+        sexIndex = 2
     end
-)
+end)
 
 RMenu.Add("mugshot", "creator", RageUI.CreateMenu("Personnage", "~b~NOUVEAU PERSONNAGE"))
 RMenu:Get("mugshot", "creator").Closable = false
 
-RMenu.Add("mugshot", "heritage", RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~HÉRÉDITÉ"))
+RMenu.Add("mugshot", "character", RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~Personnage"))
 
-RMenu.Add(
-    "mugshot",
-    "faceFeature",
-    RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~TRAITS DU VISAGE")
-)
+RMenu.Add("mugshot", "heritage", RageUI.CreateSubMenu(RMenu:Get("mugshot", "character"), "Personnage", "~b~HÉRÉDITÉ"))
+
+RMenu.Add("mugshot","faceFeature",RageUI.CreateSubMenu(RMenu:Get("mugshot", "character"), "Personnage", "~b~TRAITS DU VISAGE"))
 RMenu:Get("mugshot", "faceFeature").EnableMouse = true
 
-RMenu.Add("mugshot", "apparence", RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~APPARENCE"))
+RMenu.Add("mugshot", "apparence", RageUI.CreateSubMenu(RMenu:Get("mugshot", "character"), "Personnage", "~b~APPARENCE"))
 RMenu:Get("mugshot", "apparence").EnableMouse = true
 
-RMenu.Add("mugshot", "clothes", RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~VÊTEMENTS"))
+RMenu.Add("mugshot", "clothes", RageUI.CreateSubMenu(RMenu:Get("mugshot", "character"), "Personnage", "~b~VÊTEMENTS"))
 
-RMenu.Add(
-    "mugshot",
-    "roleplayContent",
-    RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~INFORMATIONS PERSONNELLES")
-)
+RMenu.Add("mugshot","roleplayContent",RageUI.CreateSubMenu(RMenu:Get("mugshot", "creator"), "Personnage", "~b~INFORMATIONS PERSONNELLES"))
 
 RMenu:Settings("mugshot", "creator", "Closable", false)
 
-RMenu:Get("mugshot", "heritage").Closed = function()
-    CreatorZoomOut(GetCreatorCam())
-    UpdateCreatorTick("FaceTurnEnabled", false)
-end
-
-RMenu:Get("mugshot", "faceFeature").Closed = function()
-    CreatorZoomOut(GetCreatorCam())
-    UpdateCreatorTick("FaceTurnEnabled", false)
-end
 local function GetDictionary()
     if (GetEntityModel(PlayerPedId()) == GetHashKey("mp_m_freemode_01")) then
         return "mp_character_creation@customise@male_a"
@@ -97,9 +68,79 @@ local function GetDictionary()
     end
 end
 
-RMenu:Get("mugshot", "apparence").Closed = function()
-    CreatorZoomOut(GetCreatorCam())
-    UpdateCreatorTick("FaceTurnEnabled", false)
+local MenusCam = {
+    [1] = {
+        character = {
+            [4] = 1, [5] = 1, [6] = 1
+        },
+    },
+    [2] = {
+        character = {
+            [4] = 1, [5] = 1, [6] = 1, [7] = 1
+        },
+    },
+    [3] = {
+        character = {
+            [4] = 1, [5] = 1
+        }
+    }
+
+}
+local Zoom = false
+
+-- RMenu:Get("mugshot", "heritage").Closed = function()
+--     if not Zoom then
+--         --CreatorZoomOut(GetCreatorCam())
+--         _Cam:Zoom(_Cam.Fov)
+--         Zoom = false
+--     end
+--     --UpdateCreatorTick("FaceTurnEnabled", false)
+-- end
+
+-- RMenu:Get("mugshot", "faceFeature").Closed = function()
+--     if not Zoom then
+--         --CreatorZoomOut(GetCreatorCam())
+--         _Cam:Zoom(_Cam.Fov)
+--         Zoom = false
+--     end
+--     --UpdateCreatorTick("FaceTurnEnabled", false)
+-- end
+
+-- RMenu:Get("mugshot", "apparence").Closed = function()
+--     if not Zoom then
+--         --CreatorZoomOut(GetCreatorCam())
+--         _Cam:Zoom(_Cam.Fov)
+--         Zoom = false
+--     end
+--     parameters = {}
+--     UpdateEntityOutfit(PlayerPedId(), createPlayer[createPlayer.Model].Outfit)
+--     --UpdateCreatorTick("FaceTurnEnabled", false)
+-- end
+
+RMenu:Get("mugshot", "character").onIndexChange = function(Index)
+    if (MenusCam[indexC].character[Index] == 1 ) then
+        if not Zoom then
+            Zoom = true
+            --CreatorZoomIn(GetCreatorCam())
+            _Cam:Zoom(_Cam.ZoomFov)
+        end
+    else
+        if Zoom then
+            Zoom = false
+            -- CreatorZoomOut(GetCreatorCam())
+            _Cam:Zoom(_Cam.Fov)
+
+        end
+    end
+end
+
+RMenu:Get("mugshot", "character").Closed = function()
+    if Zoom then
+        --CreatorZoomOut(GetCreatorCam())
+        _Cam:Zoom(_Cam.Fov)
+        Zoom = false
+    end
+    --UpdateCreatorTick("FaceTurnEnabled", false)
 end
 
 RMenu:Get("mugshot", "clothes").Closed = function()
@@ -108,43 +149,50 @@ end
 
 function OpenCreatorMenu()
     --print("créa")
+    TriggerServerEvent("mugroom:enterInstance")
+    TriggerEvent("displayNourriture", false)
     TriggerEvent("localInstance", "créaperso")
     local playerPed = PlayerPedId()
-    SetEntityCoordsNoOffset(playerPed, 402.98, -996.39, -99.0, true, true, true)
-    TaskPlayAnimAdvanced(0, GetDictionary(), "Intro", func_1532(), func_1531(), 8.0, -8.0, -1, 4608, 0, 2, 0)
-    TaskPlayAnim(0, GetDictionary(), "Loop", 8.0, -4.0, -1, 513, 0, 0, 0, 0)
+    --SetEntityCoordsNoOffset(playerPed, 402.98, -996.39, -99.0, true, true, true)
+    --SetEntityCoordsNoOffset(playerPed, )
+    SetEntityCoordsNoOffset(playerPed, createPlayer.Position.x, createPlayer.Position.y, createPlayer.Position.z, true, true, true)
     RageUI.Visible(RMenu:Get("mugshot", "creator"), true)
     FreezeEntityPosition(playerPed, true)
+    StartAnimProcess()
     updateModelActive = true
     onCreatorTick.LightRemote = true
 end
+
 RegisterNetEvent("instance:onCreate")
 AddEventHandler(
-    "instance:onCreate",
-    function(instance)
-        if instance.type == "skin" then
-            TriggerEvent("instance:enter", instance)
-        end
+"instance:onCreate",
+function(instance)
+    if instance.type == "skin" then
+        TriggerEvent("instance:enter", instance)
     end
-)
+end)
+
 function CloseCreatorMenu()
+    TriggerServerEvent("mugroom:leaveInstance")
     TriggerEvent("exitInstance")
     TriggerEvent("instance:leave")
     RageUI.Visible(RMenu:Get("mugshot", "creator"), false)
+    RageUI.CloseAll()
+    TriggerEvent("displayNourriture", true)
     updateModelActive = false
-    FreezeEntityPosition(playerPed, false)
+    FreezeEntityPosition(PlayerPedId(), false)
     onCreatorTick.LightRemote = false
+    StopThis = true
 end
-local creating = false
-local endcreated = false
-local creating = false
-local endcreated = false
-local indexC = 1
-local torso1, torso2 = nil
-local undershit1, undershit2 = nil
-local tops1, tops2 = nil
-local legs1, legs2 = nil
-local feet1, feet2 = nil
+creating = false
+endcreated = false
+endcreated = false
+indexC = 1
+torso1, torso2 = nil, nil
+undershit1, undershit2 = nil, nil
+tops1, tops2 = nil, nil
+legs1, legs2 = nil, nil
+feet1, feet2 = nil, nil
 function OnSelectedClothes(k)
     skin = k
     torso1, torso2 = skin.torso.id, skin.torso.txt
@@ -176,7 +224,7 @@ function GiveClothes()
     RageUI.Popup({message = "Vous avez reçu une nouvelle tenue dans votre inventaire !"})
     Ora.Inventory:AddItem(item)
     item = {}
-
+    
     local data = {battery = 99, num = GeneratePhoneNumber()}
     local item = {}
     item.name = "tel"
@@ -184,40 +232,37 @@ function GiveClothes()
     RageUI.Popup({message = "Vous avez reçu un téléphone dans votre inventaire !"})
     Ora.Inventory:AddItem(item)
     item = {}
-    TriggerServerCallback(
-        "Ora::SE::Money:AuthorizePayment", 
-        function(token)
-            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = startMoney, SOURCE = "Argent de départ", LEGIT = false})
-            TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
-        end,
-        {}
-    )
+    TriggerServerCallback("Ora::SE::Money:AuthorizePayment", function(token)
+        TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = startMoney, SOURCE = "Argent de départ", LEGIT = false})
+        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
+    end,{})
 end
-function GetRPName()
 
-    if (createPlayer[createPlayer.Model].Identity.first_name == nil) then
+function GetRPName()
+    --print(json.encode(createPlayer))
+    if (createPlayer.Identity.first_name == nil) then
         createPlayer[createPlayer.Model].Identity.first_name = "Aucun"
     end
-
-    if (createPlayer[createPlayer.Model].Identity.last_name == nil) then
-        createPlayer[createPlayer.Model].Identity.last_name = "Aucun"
+    
+    if (createPlayer.Identity.last_name == nil) then
+        createPlayer.Identity.last_name = "Aucun"
     end
-
-    return createPlayer[createPlayer.Model].Identity.first_name ..
-        " " .. createPlayer[createPlayer.Model].Identity.last_name
+    
+    return createPlayer.Identity.first_name ..
+    " " .. createPlayer.Identity.last_name
 end
 createPed = {
     Face = {},
     Outfit = {},
     Identity = {}
 }
-local ZoomV = false
-local ZoomV2 = false
-local sexList = {
+ZoomV = false
+ZoomV2 = false
+sexList = {
     "mp_f_freemode_01",
     "mp_m_freemode_01",
 }
-local pedList = {
+pedList = {
     "csb_agent",
     "ig_amandatownley",
     "s_m_m_strpreach_01",
@@ -956,527 +1001,167 @@ local pedList = {
 
 local hasBeenLoaded = false
 
-Citizen.CreateThread(
-    function()
-        while true do
-            Citizen.Wait(0)
-            creating = false
-            if RageUI.Visible(RMenu:Get("mugshot", "creator")) and not endcreated then
-                creating = true
-                local Cped = false
-                RageUI.DrawContent(
-                    {header = true, instructionalButton = true},
-                    function()
-                        ---Items
-                        if sexIndex == 1 then
-                            --UpdatePlayerPedFreemodeCharacter(PlayerPedId(), "mp_f_freemode_01", createPlayer[createPlayer.Model].Face, createPlayer[createPlayer.Model].Outfit, createPlayer[createPlayer.Model].Tattoo)
-                        elseif sexIndex == 2 then
-                            -- UpdatePlayerPedFreemodeCharacter(PlayerPedId(), "mp_m_freemode_01", createPlayer[createPlayer.Model].Face, createPlayer[createPlayer.Model].Outfit, createPlayer[createPlayer.Model].Tattoo)
-                        else
-                            Cped = true
+local spawnPoint <const> = {
+    data = {
+        "Aéroport de Los Santos",
+        "Aéroport de Sandy Shore",
+        "Vinewood"
+    },
+    index = 1
+}
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        creating = false
+        if RageUI.Visible(RMenu:Get("mugshot", "creator")) and not endcreated then
+            RageUI.DrawContent({ header = true, glare = true, instructionalButton = true }, function()
+                RageUI.Button("Informations personnelles","Inscrivez les informations personnelles de votre personnage. ~o~(Nom, Prénom, Âge).",{},true,function(Hovered, Active, Selected)
+                end,RMenu:Get("mugshot", "roleplayContent"))
+
+                RageUI.Button("Personnage", "Créez votre personnage.", {}, true, function(Hovered, Active, Selected)
+                end, RMenu:Get("mugshot", "character"))
+
+                RageUI.List("Point d'arrivée", spawnPoint.data, spawnPoint.index, "Le lieu sur lequel vous allez faire vos premiers pas sur Ora.",{},true,function(Hovered, Active, Selected, Index)
+                    spawnPoint.index = Index
+                end)
+
+                RageUI.Button("~g~Finir la création de votre personnage", nil,{ Color = {} }, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        creating = false
+                        if createPlayer[createPlayer.Model] == nil then
+                            createPlayer[createPlayer.Model] = createPed
                         end
-
-                        RageUI.List(
-                            "Type de création",
-                            {"Héritage", "Normal", "Ped"},
-                            indexC,
-                            nil,
-                            {},
-                            true,
-                            function(Hovered, Active, Selected, Index)
-                                indexC = Index
+                        if (
+                            (createPlayer[createPlayer.Model].Identity.first_name ~= nil and createPlayer[createPlayer.Model].Identity.first_name ~= "") and
+                            (createPlayer[createPlayer.Model].Identity.last_name ~= nil and createPlayer[createPlayer.Model].Identity.last_name ~= "") and
+                            (createPlayer[createPlayer.Model].Identity.birth_date ~= nil and createPlayer[createPlayer.Model].Identity.birth_date ~= "") and
+                            (createPlayer[createPlayer.Model].Identity.origine ~= nil and createPlayer[createPlayer.Model].Identity.origine ~= "")
+                        ) then
+                            Ora.Inventory:Load()
+                            Wait(500)
+                            GiveClothes()
+                            Ora.Inventory:Save()
+                            CloseCreatorMenu()
+                            local ModelSelected = createPlayer[createPlayer.Model]
+                            if ModelSelected.Identity == nil then
+                                ModelSelected.Identity = createPed.Identity
                             end
-                        )
-
-                        if (indexC == 2 or indexC == 1) then
-                            isPed = false
-                            RageUI.CenterButton(
-                                "~b~_________________~b~",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, _)
+                            
+                            if (isPed == false) then
+                                --print(sexIndex)
+                                createPlayer.Model = createPlayer.Model
+                                createPlayer.Face = ModelSelected.Face
+                            else
+                                local Skin = {}
+                                createPlayer.Model = pedList[pedIndex]
+                                for i = 0, 12, 1 do
+                                    Skin[i] = {
+                                        v = GetPedDrawableVariation(PlayerPedId(), i),
+                                        c = GetPedTextureVariation(PlayerPedId(), i)
+                                    }
                                 end
-                            )
-
-                            RageUI.List(
-                                "Votre sexe",
-                                sexList,
-                                sexIndex,
-                                GetLabelText("FACE_MM_H2"),
-                                {},
-                                true,
-                                function(Hovered, Active, Selected, Index)
-                                    if Active and sexIndex ~= Index then
-                                        sexIndex = Index
-    
-                                        if Index == 1 then
-                                            createPlayer.Model = "mp_f_freemode_01"
-                                        elseif Index == 2 then
-                                            createPlayer.Model = "mp_m_freemode_01"
-                                        else
-                                            createPlayer.Model = pedList[sexIndex]
-                                        end
-    
-                                        
-                                        if createPlayer[createPlayer.Model] ~= nil then
-                                            UpdatePlayerPedFreemodeCharacter(
-                                                PlayerPedId(),
-                                                createPlayer.Model,
-                                                createPlayer[createPlayer.Model].Face,
-                                                createPlayer[createPlayer.Model].Outfit,
-                                                createPlayer[createPlayer.Model].Tattoo
-                                            )
-                                        else
-                                            RequestModel(createPlayer.Model)
-                                            while not HasModelLoaded(createPlayer.Model) do
-                                                Citizen.Wait(10)
-                                            end
-                                            SetPlayerModel(PlayerId(), GetHashKey(createPlayer.Model))
-                                        end
-                                        CreatorUpdateModelAnim()
-                                    end
-                                end
-                            )
+                                createPlayer.Face = Skin
+                            end
+                            createPlayer.Outfit = ModelSelected.Outfit
+                            createPlayer.Identity = ModelSelected.Identity
+                            
+                            --print(json.encode(createPlayer))
+                            
+                            TriggerServerEvent("mugroom:RegisterNewPlayer", createPlayer, spawnPoint)
+                            TakePictureAndExit()
+                            RageUI.GoBack()
+                            RageUI.GoBack()
+                            RageUI.GoBack()
+                            RageUI.GoBack()
+                            RageUI.GoBack()
+                            endcreated = true
+                            StopThis = true
+                            RageUI.GoBack()
+                            DoScreenFadeOut(10)
+                            Ora.Inventory:Save()
+                            TriggerEvent("mugroom:Finish", spawnPoint)
                         else
-                            isPed = true
-                            RageUI.CenterButton(
-                                "~b~_________________~b~",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, _)
-                                end
-                            )
-
-                            RageUI.List(
-                                "Modele de votre PED",
-                                pedList,
-                                pedIndex,
-                                GetLabelText("FACE_MM_H2"),
-                                {},
-                                true,
-                                function(Hovered, Active, Selected, Index)
-                                    if Active and pedIndex ~= Index then
-                                        if (hasBeenLoaded == false) then
-                                            hasBeenLoaded = true
-                                            RequestModel(createPlayer.Model)
-                                            while not HasModelLoaded(createPlayer.Model) do
-                                                Citizen.Wait(10)
-                                            end
-                                            SetPlayerModel(PlayerId(), GetHashKey(createPlayer.Model))
-                                        end
-                                        pedIndex = Index
-                                        createPlayer.Model = pedList[pedIndex]
-    
-                                        if createPlayer[createPlayer.Model] ~= nil then
-                                            UpdatePlayerPedFreemodeCharacter(
-                                                PlayerPedId(),
-                                                createPlayer.Model,
-                                                createPlayer[createPlayer.Model].Face,
-                                                createPlayer[createPlayer.Model].Outfit,
-                                                createPlayer[createPlayer.Model].Tattoo
-                                            )
-                                        else
-                                            RequestModel(createPlayer.Model)
-                                            while not HasModelLoaded(createPlayer.Model) do
-                                                Citizen.Wait(10)
-                                            end
-                                            SetPlayerModel(PlayerId(), GetHashKey(createPlayer.Model))
-                                            SetPedDefaultComponentVariation(PlayerPedId())
-                                            SetModelAsNoLongerNeeded(createPlayer.Model)
-                                        end
-                                        CreatorUpdateModelAnim()
-                                    end
-                                end
-                            )
-                        end
-
-                        
-                        if createPlayer[createPlayer.Model] ~= nil and not Cped then
-                            if indexC == 1 then
-                                RageUI.Button(
-                                    GetLabelText("FACE_HERI"),
-                                    GetLabelText("FACE_MM_H3"),
-                                    {},
-                                    true,
-                                    function(Hovered, Active, Selected)
-                                        if Selected then
-                                            CreatorZoomIn(GetCreatorCam())
-                                            UpdateCreatorTick("FaceTurnEnabled", true)
-                                        end
-                                    end,
-                                    RMenu:Get("mugshot", "heritage")
-                                )
-                            elseif (indexC == 2) then 
-                                if createPlayer[createPlayer.Model].Face.face.face == nil then
-                                    createPlayer[createPlayer.Model].Face.face.face = 1
-                                end
-                                local am = {}
-                                local amd = {}
-                                for i = 1, 46, 1 do
-                                    am[i] = i
-                                    amd[i] = i - 1
-                                end
-                                RageUI.List(
-                                    "Visage",
-                                    amd,
-                                    indexCharacter[createPlayer.Model].Face.face.face + 1,
-                                    nil,
-                                    {},
-                                    true,
-                                    function(Hovered, Active, Selected, Index)
-                                        createPlayer[createPlayer.Model].Face.face.face = amd[Index]
-                                        indexCharacter[createPlayer.Model].Face.face.face = amd[Index]
-                                        createPlayer[createPlayer.Model].Face.resemblance = sexIndex == 1 and 0.0 or 0.8
-                                        createPlayer[createPlayer.Model].Face.skinMix = sexIndex == 1 and 0.0 or 0.8
-                                        if Active then
-                                            UpdateEntityFace(PlayerPedId(), createPlayer[createPlayer.Model].Face)
-                                        end
-                                        if Active and not ZoomV then
-                                            --print("zooom")
-                                            CreatorZoomIn(GetCreatorCam())
-                                            UpdateCreatorTick("FaceTurnEnabled", true)
-                                            ZoomV = true
-                                        elseif not Active and ZoomV then
-                                            --print("zooom 2 ")
-                                            ZoomV = false
-                                            CreatorZoomOut(GetCreatorCam())
-                                            UpdateCreatorTick("FaceTurnEnabled", false)
-                                        end
-                                    end
-                                )
-                                local amX = {}
-                                for i = 1, 45, 1 do
-                                    amX[i] = i
-                                end
-                                if createPlayer[createPlayer.Model].Face.face.skin == nil then
-                                    createPlayer[createPlayer.Model].Face.face.skin = 1
-                                end
-                                RageUI.List(
-                                    "Teint",
-                                    amX,
-                                    createPlayer[createPlayer.Model].Face.face.skin,
-                                    nil,
-                                    {},
-                                    true,
-                                    function(Hovered, Active, Selected, Index)
-                                        createPlayer[createPlayer.Model].Face.face.skin = Index
-                                        createPlayer[createPlayer.Model].Face.resemblance = sexIndex == 1 and 0.0 or 0.8
-                                        createPlayer[createPlayer.Model].Face.skinMix = sexIndex == 1 and 0.0 or 0.8
-                                        if Active then
-                                            UpdateEntityFace(PlayerPedId(), createPlayer[createPlayer.Model].Face)
-                                        end
-                                        if Active and not ZoomV2 then
-                                            CreatorZoomIn(GetCreatorCam())
-                                            UpdateCreatorTick("FaceTurnEnabled", true)
-                                            ZoomV2 = true
-                                        elseif not Active and ZoomV2 then
-                                            ZoomV2 = false
-                                            CreatorZoomOut(GetCreatorCam())
-                                            UpdateCreatorTick("FaceTurnEnabled", false)
-                                        end
-                                    end
-                                )
-                            end
-                            RageUI.Button(
-                                GetLabelText("FACE_FEAT"),
-                                GetLabelText("FACE_MM_H4"),
-                                {},
-                                true,
-                                function(Hovered, Active, Selected)
-                                    if Selected then
-                                        CreatorZoomIn(GetCreatorCam())
-                                        UpdateCreatorTick("FaceTurnEnabled", true)
-                                    end
-                                end,
-                                RMenu:Get("mugshot", "faceFeature")
-                            )
-                            RageUI.Button(
-                                GetLabelText("FACE_APP"),
-                                GetLabelText("FACE_MM_H6"),
-                                {},
-                                true,
-                                function(Hovered, Active, Selected)
-                                    if Selected then
-                                        CreatorZoomIn(GetCreatorCam())
-                                        UpdateCreatorTick("FaceTurnEnabled", true)
-                                    end
-                                end,
-                                RMenu:Get("mugshot", "apparence")
-                            )
-
-                            RageUI.Button(
-                                GetLabelText("FACE_APPA"),
-                                GetLabelText("FACE_MM_H6"),
-                                {},
-                                true,
-                                function(Hovered, Active, Selected)
-                                    if Selected then
-                                        OnClothesOpen()
-                                        UpdateCreatorTick("FaceTurnEnabled", true)
-                                    end
-                                end,
-                                RMenu:Get("mugshot", "clothes")
-                            )
-                        else
-
-
-                            for i = 0, 11, 1 do
-                                local m = {}
-
-                                for i = 0, GetNumberOfPedDrawableVariations(PlayerPedId(), i) do
-                                    m[i + 1] = i + 1
-                                end
-                                if #m ~= 0 then
-                                    if (GetPedDrawableVariation(PlayerPedId(), i) + 1 >= 1) then
-                                        RageUI.List(
-                                            "Variation " .. i,
-                                            m,
-                                            GetPedDrawableVariation(PlayerPedId(), i) + 1,
-                                            GetLabelText("FACE_APP_H"),
-                                            {},
-                                            true,
-                                            function(Hovered, Active, Selected, Index)
-                                                if Active then
-                                                    if Index - 1 ~= GetPedDrawableVariation(PlayerPedId(), i) then
-                                                        SetPedComponentVariation(PlayerPedId(), i, Index - 1, 0, 0)
-                                                    end
-                                                end
-                                            end
-                                        )
-                                    end
-
-                                    local x = {}
-                                    for t = 0, GetNumberOfPedTextureVariations(
-                                        PlayerPedId(),
-                                        i,
-                                        GetPedDrawableVariation(PlayerPedId(), i)
-                                    ) - 1, 1 do
-                                        table.insert(x, t)
-                                    end
-                                    if tablelength(x) > 1 then
-                                        RageUI.List(
-                                            "Texture " .. i,
-                                            x,
-                                            GetPedTextureVariation(PlayerPedId(), i) + 1,
-                                            GetLabelText("FACE_APP_H"),
-                                            {},
-                                            true,
-                                            function(Hovered, Active, Selected, Index)
-                                                if Active then
-                                                    if Index - 1 ~= GetPedTextureVariation(PlayerPedId(), i) then
-                                                        SetPedComponentVariation(
-                                                            PlayerPedId(),
-                                                            i,
-                                                            GetPedDrawableVariation(PlayerPedId(), i),
-                                                            Index - 1,
-                                                            0
-                                                        )
-                                                    end
-                                                end
-                                            end
-                                        )
-                                    end
-                                end
-                            end
-                        end
-
-                        RageUI.CenterButton(
-                            "~b~_________________~b~",
-                            nil,
-                            {},
-                            true,
-                            function(_, _, _)
-                            end
-                        )
-
-                        RageUI.Button(
-                            "Informations personnelles",
-                            "Inscrivez les informations personnelles de votre personnage. ~o~(Nom, Prénom, Âge).",
-                            {},
-                            true,
-                            function(Hovered, Active, Selected)
-                            end,
-                            RMenu:Get("mugshot", "roleplayContent")
-                        )
-
-                        RageUI.List(
-                            "Point d'arrivée",
-                            spawnPoint.data,
-                            spawnPoint.index,
-                            "Le lieu sur lequel vous allez faire vos premiers pas sur Ora.",
-                            {},
-                            true,
-                            function(Hovered, Active, Selected, Index)
-                                spawnPoint.index = Index
-                            end
-                        )
-
-                        RageUI.Button(
-                            "~g~Finir la création de votre personnage",
-                            nil,
+                            RageUI.Popup(
                             {
-                                Color = {}
-                            },
-                            true,
-                            function(Hovered, Active, Selected)
-                                if Selected then
-                                    creating = false
-                                    if createPlayer[createPlayer.Model] == nil then
-                                        createPlayer[createPlayer.Model] = createPed
-                                    end
-                                    if (
-                                        (createPlayer[createPlayer.Model].Identity.first_name ~= nil and createPlayer[createPlayer.Model].Identity.first_name ~= "") and
-                                        (createPlayer[createPlayer.Model].Identity.last_name ~= nil and createPlayer[createPlayer.Model].Identity.last_name ~= "") and
-                                        (createPlayer[createPlayer.Model].Identity.birth_date ~= nil and createPlayer[createPlayer.Model].Identity.birth_date ~= "") and
-                                        (createPlayer[createPlayer.Model].Identity.origine ~= nil and createPlayer[createPlayer.Model].Identity.origine ~= "")
-                                    )
-                                    then
-                                        Ora.Inventory:Load()
-                                        Wait(500)
-                                        GiveClothes()
-                                        Ora.Inventory:Save()
-                                        CloseCreatorMenu()
-                                        local ModelSelected = createPlayer[createPlayer.Model]
-                                        if ModelSelected.Identity == nil then
-                                            ModelSelected = createPed.Identity
-                                        end
-
-                                        if (isPed == false) then
-                                            createPlayer.Model = sexList[sexIndex]
-                                            createPlayer.Face = ModelSelected.Face
-                                        else
-                                            local Skin = {}
-                                            createPlayer.Model = pedList[pedIndex]
-                                            for i = 0, 12, 1 do
-                                                Skin[i] = {
-                                                    v = GetPedDrawableVariation(PlayerPedId(), i),
-                                                    c = GetPedTextureVariation(PlayerPedId(), i)
-                                                }
-                                            end
-                                            createPlayer.Face = Skin
-                                        end
-
-                                        createPlayer.Outfit = ModelSelected.Outfit
-                                        createPlayer.Identity = ModelSelected.Identity
-
-                                        TriggerServerEvent("mugroom:RegisterNewPlayer", createPlayer, spawnPoint)
-                                        TakePictureAndExit()
-                                        RageUI.GoBack()
-                                        RageUI.GoBack()
-                                        RageUI.GoBack()
-                                        RageUI.GoBack()
-                                        RageUI.GoBack()
-                                        endcreated = true
-                                        RageUI.GoBack()
-                                        DoScreenFadeOut(10)
-                                        Ora.Inventory:Save()
-                                        TriggerEvent("mugroom:Finish", spawnPoint)
-                                    else
-                                        RageUI.Popup(
-                                            {
-                                                message = "Vous n'avez pas correctement rempli le formulaire d'identité",
-                                                colors = 130,
-                                                sound = {
-                                                    audio_name = "ERROR",
-                                                    audio_ref = "HUD_FRONTEND_DEFAULT_SOUNDSET"
-                                                }
-                                            }
-                                        )
-                                    end
-                                end
-                            end
-                        )
-
-                        RageUI.CenterButton(
-                            "~b~_________________~b~",
-                            nil,
-                            {},
-                            true,
-                            function(_, _, _)
-                            end
-                        )
-
-                        RageUI.CenterButton(
-                            "~o~Tout réinitialiser",
-                            nil,
-                            {
-                                Color = {}
-                            },
-                            true,
-                            function(Hovered, Active, Selected)
-                                if Selected then
-                                    CloseAllMenus()
-                                    ShowNotification("~g~Veuillez réessayer maintenant~s~")
-                                    Ora.Health:Revive(false)
-                                    Ora.Health:SetMyHealthPercent(100)
-                                    Creator.LoadContent()
-                                end
-                            end
-                        )
-                    end,
-                    function()
-                        ---Panels
+                                message = "Vous n'avez pas correctement rempli le formulaire d'identité",
+                                colors = 130,
+                                sound = {
+                                    audio_name = "ERROR",
+                                    audio_ref = "HUD_FRONTEND_DEFAULT_SOUNDSET"
+                                }
+                            })
+                        end
                     end
-                )
-            elseif endcreated and RageUI.Visible(RMenu:Get("mugshot", "creator")) then
-                RageUI.GoBack()
-                RageUI.GoBack()
-                RageUI.GoBack()
-                RageUI.GoBack()
-                RageUI.GoBack()
-                RageUI.GoBack()
-            end
-            if RageUI.Visible(RMenu:Get("mugshot", "heritage")) then
-                CreatorMenuHeritage(indexCharacter, createPlayer)
-                creating = true
-            end
-            if RageUI.Visible(RMenu:Get("mugshot", "faceFeature")) then
-                CreatorMenuFaceFeatures(indexCharacter, createPlayer)
-                creating = true
-            end
-            if RageUI.Visible(RMenu:Get("mugshot", "apparence")) then
-                creating = true
-                CreatorMenuAppearance(indexCharacter, createPlayer)
-            end
-            if RageUI.Visible(RMenu:Get("mugshot", "clothes")) then
-                creating = true
-                CreatorMenuClothes(indexCharacter, createPlayer)
-            end
-            if RageUI.Visible(RMenu:Get("mugshot", "roleplayContent")) then
-                CreatorMenuRoleplay(indexCharacter, createPlayer)
-                creating = true
-            end
+                end)
 
-            if creating then
-                DisableControlAction(0, 69, true)
-                DisableControlAction(0, 92, true)
-                DisableControlAction(0, 114, true)
-                DisableControlAction(0, 140, true)
-                DisableControlAction(0, 141, true)
-                DisableControlAction(0, 142, true)
-                DisableControlAction(0, 257, true)
-                DisableControlAction(0, 263, true)
-                DisableControlAction(0, 264, true)
-                DisableControlAction(0, 24, true)
-                DisableControlAction(0, 25, true)
-                DisableControlAction(0, 21, true)
-                DisableControlAction(0, 22, true)
-                DisableControlAction(0, 288, true)
-                DisableControlAction(0, 289, true)
-                DisableControlAction(0, 170, true)
-                DisableControlAction(0, 166, true)
-                DisableControlAction(0, 167, true)
-                DisableControlAction(0, 168, true)
-                DisableControlAction(0, 57, true)
-                DisableControlAction(0, 37, true)
-                DisableControlAction(0, 0, true)
-                DisableControlAction(0, 26, true)
-            end
+                RageUI.CenterButton("~b~-----------------~b~",nil,{},true,function(_, _, _) end)
+
+                RageUI.CenterButton("~o~Tout réinitialiser", nil, {Color = {}}, true, function(Hovered, Active, Selected)
+                    if Selected then
+                        CloseAllMenus()
+                        ShowNotification("~g~Veuillez réessayer maintenant~s~")
+                        --Ora.Health:Revive(false)
+                        --Ora.Health:SetMyHealthPercent(100)
+                        --Creator.LoadContent()
+                        TriggerEvent("spawnhandler:CharacterCreator")
+                    end
+                end)
+            end)
+        elseif endcreated and RageUI.Visible(RMenu:Get("mugshot", "creator")) then
+            RageUI.CloseAll()
+        end
+        if RageUI.Visible(RMenu:Get("mugshot", "character")) then
+            ProcessMenuCharacter(indexCharacter, createPlayer)
+        end
+        if RageUI.Visible(RMenu:Get("mugshot", "heritage")) then
+            CreatorMenuHeritage(indexCharacter, createPlayer)
+            creating = true
+        end
+        if RageUI.Visible(RMenu:Get("mugshot", "faceFeature")) then
+            CreatorMenuFaceFeatures(indexCharacter, createPlayer)
+            creating = true
+        end
+        if RageUI.Visible(RMenu:Get("mugshot", "apparence")) then
+            creating = true
+            CreatorMenuAppearance(indexCharacter, createPlayer)
+        end
+        if RageUI.Visible(RMenu:Get("mugshot", "clothes")) then
+            creating = true
+            CreatorMenuClothes(indexCharacter, createPlayer)
+        end
+        if RageUI.Visible(RMenu:Get("mugshot", "roleplayContent")) then
+            CreatorMenuRoleplay(indexCharacter, createPlayer)
+            creating = true
+        end
+
+        if creating then
+            DisableControlAction(0, 69, true)
+            DisableControlAction(0, 92, true)
+            DisableControlAction(0, 114, true)
+            DisableControlAction(0, 140, true)
+            DisableControlAction(0, 141, true)
+            DisableControlAction(0, 142, true)
+            DisableControlAction(0, 257, true)
+            DisableControlAction(0, 263, true)
+            DisableControlAction(0, 264, true)
+            DisableControlAction(0, 24, true)
+            DisableControlAction(0, 25, true)
+            DisableControlAction(0, 21, true)
+            DisableControlAction(0, 22, true)
+            DisableControlAction(0, 288, true)
+            DisableControlAction(0, 289, true)
+            DisableControlAction(0, 170, true)
+            DisableControlAction(0, 166, true)
+            DisableControlAction(0, 167, true)
+            DisableControlAction(0, 168, true)
+            DisableControlAction(0, 57, true)
+            DisableControlAction(0, 37, true)
+            DisableControlAction(0, 0, true)
+            DisableControlAction(0, 26, true)
         end
     end
-)
+end)
 
 function func_1532()
     return vector3(404.834, -997.838, -98.841)
@@ -1484,4 +1169,177 @@ end
 
 function func_1531()
     return vector3(0, 0, -38)
+end
+
+-- Let player stuck in an anim and freeze it just in case
+
+local lookOnTheSide = false
+StopThis = false
+
+function RestartAnimProcess()
+    StopThis = true
+    Wait(100)
+    StartAnimProcess()
+end
+
+function StartAnimProcess()
+    --local Position = func_1532()
+    --local Rotation = func_1531()
+    StopThis = false
+    local PlayerPed = PlayerPedId()
+    local dict = "amb@world_human_stand_impatient@male@no_sign@idle_a"
+    local anim = "idle_a"
+    -- local dict = "amb@world_human_aa_smoke@male"
+    -- local anim = "base"
+    loadAnimDict(dict)
+    TaskPlayAnim(PlayerPed, dict, anim, 8.0, 8.0, -1, 1, 0, false, false, false)
+
+    local Controls = {
+        Left = 35, Right = 34, Front = 32
+    }
+
+
+    Citizen.CreateThread(function()
+        while true do
+            Citizen.Wait(0)
+            if StopThis then
+                --print("Stop this")
+                break
+            end
+            HideHudAndRadarThisFrame()
+            ThefeedHideThisFrame()
+            if IsControlJustPressed(0, Controls.Left) then
+                if lookOnTheSide then
+                    _Cam:Switch("front")
+                    lookOnTheSide = false
+                else
+                    _Cam:Switch("left")
+                    lookOnTheSide = true
+                end
+                _Cam:Render()
+            elseif IsControlJustPressed(0, Controls.Right) then
+                if lookOnTheSide then
+                    _Cam:Switch("front")
+                    lookOnTheSide = false
+                else
+                    _Cam:Switch("right")
+                    lookOnTheSide = true
+                end
+                _Cam:Render()
+            elseif IsControlJustPressed(0, Controls.Front) and lookOnTheSide then
+                _Cam:Switch("front")
+                lookOnTheSide = false
+                _Cam:Render()
+            end
+            -- if IsControlJustPressed(0, 38) then
+            --     if lookOnTheSide then
+            --         lookOnTheSide = false
+            --         ClearPedTasks(PlayerPed)
+            --         TaskPlayAnim(PlayerPed, dict, anim, 8.0, 8.0, -1, 1, 0, false, false, false)
+            --     else
+            --         lookOnTheSide = true
+            --         ClearPedTasks(PlayerPed)
+            --         TaskPlayAnim(PlayerPed, dict, "exit", 8.0, 8.0, -1, 1, 0, false, false, false)
+            --     end
+            -- end
+        end
+    end)
+    
+    -------------------------
+    -- FreezeEntityPosition(PlayerPed, false)
+    --SetEntityCoords(PlayerPed, Position)
+    --SetEntityHeading(PlayerPed, Rotation.z)
+    -- SetEntityInvincible(PlayerPed, true)
+    -- FreezeEntityPosition(PlayerPed, true)
+    -- SetEntityCoordsNoOffset(playerPed, 402.98, -996.39, -99.0, true, true, true)
+
+
+    -- Citizen.CreateThread(function()
+    --     local a = {
+    --         normal = "",
+    --         left = "profile_l_",
+    --         right = 'profile_r_',
+    --     }
+    --     local dict = "mp_character_creation@customise@male_a"
+    --     local anim
+    --     local TaskPlayAnim = TaskPlayAnim
+    --     LoadAnim(dict)
+    --     TaskPlayAnim(PlayerPedId(), dict, "loop", -1, 1.0, -1, 1, 1, 0, 0, 0)
+    --     while true do
+    --         PlayerPed = PlayerPedId()
+    --         local IsControlJustPressed = IsControlEnabled(0, 35) and IsControlJustPressed or IsDisabledControlJustPressed
+    --         local IsControlPressed = IsControlEnabled(0, 35) and IsControlPressed or IsDisabledControlPressed
+    --         local IsControlJustReleased = IsControlEnabled(0, 35) and IsControlJustReleased or IsDisabledControlJustReleased
+    --         local Controls = {
+    --             Left = 35, Right = 34, Front = 32
+    --         }
+            
+    --         if parameters.chestHair and IsEntityPlayingAnim(PlayerPedId(), dict, "loop", 3) then
+    --             ClearPedTasks(PlayerPedId())
+    --             --TaskPlayAnim(PlayerPedId(), dict, "loop", -1, 1.0, -1, 1, 1, 0, 0, 0)
+    --         end 
+    --         if creating then
+    --             if IsControlJustPressed(0, Controls.Left) then
+    --                 anim = a.right
+    --                 TaskPlayAnim(PlayerPedId(), dict, anim.."intro", 1.0, 1.0, -1, 0, 0, 0, 0, 0)
+    --                 --StartAnimLoop(Controls.Left, dict, anim)
+    --                 Citizen.SetTimeout(GetEntityAnimTotalTime(PlayerPedId(), dict, anim.."outro"), function()
+    --                     TaskPlayAnim(PlayerPedId(), dict, anim.."loop", 8, -8, -1, 1, 1, 0, 0, 0)
+    --                 end)
+    --                 lookOnTheSide = true
+    --             elseif IsControlJustPressed(0, Controls.Right) then -- Control 'D' by default -> INPUT_MOVE_RIGHT_ONLY
+    --                 anim = a.left
+    --                 TaskPlayAnim(PlayerPedId(), dict, anim.."intro", 1.0, 1.0, -1, 0, 0, 0, 0, 0)
+    --                 Citizen.SetTimeout(GetEntityAnimTotalTime(PlayerPedId(), dict, anim.."outro"), function()
+    --                     TaskPlayAnim(PlayerPedId(), dict, anim.."loop", 8, -8, -1, 1, 1, 0, 0, 0)
+    --                 end)
+    --                 lookOnTheSide = true
+    --             elseif (IsControlJustPressed(0, Controls.Left) and lookOnTheSide and anim == a.left) or (IsControlJustPressed(0, Controls.Right) and lookOnTheSide and anim == a.right) or (IsControlJustPressed(0, Controls.Front) and lookOnTheSide) then
+    --                 lookOnTheSide = false
+    --                 TaskPlayAnim(0, dict, anim.."outro", 8, -8, -1, 512, 0, 0, 0, 0);
+    --                 Citizen.SetTimeout(GetEntityAnimTotalTime(PlayerPedId(), dict, anim.."outro"), function()
+    --                     TaskPlayAnim(PlayerPedId(), dict, "loop", 1.0, 1.0, -1, 1, 1, 0, 0, 0)
+    --                 end)
+    --             elseif not lookOnTheSide and not not IsEntityPlayingAnim(PlayerPedId(), dict, "loop", 3) then
+    --                 TaskPlayAnim(PlayerPedId(), dict, "loop", -1, 1.0, -1, 1, 1, 0, 0, 0)
+    --             end
+    --         end
+            
+    --         if StopThis then
+    --             ClearPedTasksImmediately(PlayerPedId())
+    --             break
+    --         end
+            
+    --         Citizen.Wait(1.0)
+    --     end
+    -- end)
+end
+
+function StartAnimLoop(control, dict, anim)
+    local IsControlJustPressed = IsControlEnabled(0, 35) and IsControlJustPressed or IsDisabledControlJustPressed
+    local IsControlPressed = IsControlEnabled(0, 35) and IsControlPressed or IsDisabledControlPressed
+    local IsControlJustReleased = IsControlEnabled(0, 35) and IsControlJustReleased or IsDisabledControlJustReleased
+    Citizen.CreateThread(function()
+        while lookOnTheSide do
+            if lookOnTheSide then
+                if not IsEntityPlayingAnim(PlayerPedId(), dict, anim.."intro", 3) then
+                    TaskPlayAnim(PlayerPedId(), dict, anim.."loop", 8, -8, -1, 513, 0, 0, 0, 0)
+                end
+            else
+                if not IsEntityPlayingAnim(PlayerPedId(), dict, anim.."intro", 3) or (IsEntityPlayingAnim(PlayerPedId(), dict, anim.."intro", 3) and GetEntityAnimCurrentTime(PlayerPedId(), dict, anim.."intro") >= 0.4 ) then
+                    TaskPlayAnim(0, dict, anim.."outro", 8, -8, -1, 512, 0, 0, 0, 0);
+                    Citizen.SetTimeout(GetEntityAnimTotalTime(PlayerPedId(), dict, anim.."outro"), function()
+                        TaskPlayAnim(PlayerPedId(), dict, "loop", 1.0, 1.0, -1, 1, 1, 0, 0, 0)
+                    end)
+                end
+                TaskPlayAnim(PlayerPedId(), dict, "loop", 1.0, 1.0, -1, 1, 1, 0, 0, 0)
+                lookOnTheSide = false
+            end
+            Wait(1.0)
+        end
+    end)
+end
+
+function SetPlayerInInstance()
+    TriggerServerEvent("mugroom:enterInstance")
 end

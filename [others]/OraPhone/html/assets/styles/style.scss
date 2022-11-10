@@ -4905,51 +4905,6 @@ div#page {
             object-fit: cover;
         }
     }
-    div#phone-popup {
-        position: absolute;
-        display: block;
-        bottom: -100px;
-        right: 40px;
-        width: auto;
-        height: 70px;
-        padding: 0 30px;
-        border-radius: 15px;
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        @include themed() {
-            background-color: t($phone-system-color-black);
-        }
-        &.active {
-            opacity: 0.8;
-            bottom: 40px;
-        }
-        &.error {
-            @include themed() {
-                background-color: t($phone-system-color-red);
-            }
-        }
-        div.phone-popup-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            width: auto;
-            height: 100%;
-            span {
-                font-size: 18px;
-                @include themed() {
-                    color: t($phone-system-color-white);
-                }
-                &.phone-popup-title {
-                    font-size: 20px;
-                    font-family: $ora-font-bold;
-                    i {
-                        margin-right: 5px;
-                    }
-                }
-            }
-        }
-    }
 }
 
 #add-notification, #add-call, #refresh-contacts, #save-home {

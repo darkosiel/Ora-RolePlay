@@ -1,5 +1,11 @@
 Banking = {}
 local Banks = {}
+local ratios = {
+    ["classic"] = {maxDeposit = 5000, maxRemove = 5000, maxPayin = 10000, deposit = 0, remove = 0, payin = 0},
+    ["gold"] = {maxDeposit = 15000, maxRemove = 15000, maxPayin = 30000, deposit = 0, remove = 0, payin = 0},
+    ["platinium"] = {maxDeposit = 50000, maxRemove = 50000, maxPayin = 100000, deposit = 0, remove = 0, payin = 0},
+    ["blackcard"] = {maxDeposit = 250000, maxRemove = 250000, maxPayin = 500000, deposit = 0, remove = 0, payin = 0}
+}
 
 Banking.GetAccount = function(name)
     if Banks[name] == nil then
@@ -277,42 +283,92 @@ RegisterServerCallback(
     end
 )
 
+RegisterServerCallback("getBanksSummaryInfo", function(source, cb)
+    local bankInfos = MySQL.Sync.fetchAll("SELECT id, label, amount, uuid FROM banking_account")
+    local accountsOwnerDetails = MySQL.Sync.fetchAll("SELECT uuid, first_name, last_name FROM players_identity WHERE uuid IN (SELECT uuid FROM banking_account WHERE uuid IS NOT NULL)")
+    cb(bankInfos, accountsOwnerDetails)
+end)
+
+RegisterServerCallback("getAccountInfo", function(source, cb, accountId)
+    local accountInfo = MySQL.Sync.fetchAll("SELECT * FROM banking_account WHERE id = @id", { ["@id"] = accountId })
+    local cards = MySQL.Sync.fetchAll("SELECT * FROM banking_cards WHERE account = @id", { ["@id"] = accountId })
+
+    for k, v in pairs(cards) do
+        local info = json.decode(v.current_ratio)
+        if (info.maxPayin == nil or info.maxPayin == "") then
+            info.maxPayin = ratios[v.type].maxPayin
+        end
+
+        if (info.payin == nil) then
+            info.payin = 0
+        end
+
+        v.current_ratio = info
+        
+    end
+
+    cb(accountInfo, cards)
+end)
+
+RegisterServerCallback("getLoansInfo", function(source, cb, type)
+    local loans = MySQL.Sync.fetchAll("SELECT * FROM banking_prets WHERE type = @type", { ["@type"] = type })
+    cb(loans)
+end)
+
+RegisterServerCallback("getBankInfoFromID", function(source, cb, accountId)
+    --print(accountId)
+    local bank = MySQL.Sync.fetchAll("SELECT * FROM banking_account WHERE id = @id", { ["@id"] = accountId })
+    print("Data ", json.encode(bank[1]))
+    cb(bank[1])
+end)
+
+RegisterServerCallback("bank:getHistory", function(source, cb, accountId)
+    local history = MySQL.Sync.fetchAll("SELECT * FROM banking_transactions WHERE src = @id OR dest = @id ORDER BY id DESC", { ["@id"] = accountId })
+    cb(history)
+end)
+
 RegisterServerCallback(
     "getAllBanks2",
     function(source, callback)
         MySQL.Async.fetchAll(
-            "SELECT * FROM banking_account",
+            "SELECT id, label, amount, uuid FROM banking_account",
             {},
             function(result)
                 MySQL.Async.fetchAll(
-                    "SELECT * FROM players_identity",
+                    "SELECT uuid, first_name, last_name FROM players_identity",
                     {},
                     function(_result)
-                        MySQL.Async.fetchAll(
-                            "SELECT * FROM banking_cards",
-                            {},
-                            function(dresult)
-                                MySQL.Async.fetchAll(
-                                    "SELECT * FROM banking_transactions",
-                                    {},
-                                    function(mresult)
-                                        MySQL.Async.fetchAll(
-                                            "SELECT * FROM banking_prets",
-                                            {},
-                                            function(presult)
-                                                callback(result, _result, dresult, mresult, presult)
-                                            end
-                                        )
-                                    end
-                                )
-                            end
-                        )
+                        callback(result, _result)
                     end
                 )
             end
         )
     end
 )
+
+RegisterServerCallback("getAccountsInfo", function(source, callback, id)
+    local accountId = id
+    MySQL.Async.fetchAll("SELECT * FROM banking_cards", {}, function(dresult)
+        MySQL.Async.fetchAll(
+            "SELECT * FROM banking_transactions",
+            {},
+            function(mresult)
+                
+            end
+        )
+    end)
+end)
+
+RegisterServerCallback("getLoanInfos", function()
+    MySQL.Async.fetchAll(
+        "SELECT * FROM banking_prets",
+        {},
+        function(presult)
+            callback(presult)
+        end
+    )
+end)
+
 --print('a')
 MySQL.ready(
     function()
@@ -372,10 +428,10 @@ MySQL.ready(
                                         MySQL.Async.execute(
                                             "INSERT INTO mailing (receiver,message,expeditor) VALUES(@mailTo,@Message,@mailFrom)",
                                             {
-                                                ["@mailTo"] = "banker",
+                                                ["@mailTo"] = "mazegroup",
                                                 ["@Message"] = _result[1].iban ..
                                                     " n'a pas pu payé le prêt, nom : " .. result[i].label,
-                                                ["@mailFrom"] = "banker"
+                                                ["@mailFrom"] = "mazegroup"
                                             }
                                         )
                                     end
@@ -528,7 +584,7 @@ AddEventHandler(
                 ["@dest"] = dest,
                 ["@montant"] = am,
                 ["@title"] = title,
-                ["@details"] = time.." - "..details
+                ["@details"] = time..((details ~= nil and details ~= "") and (" - "..details) or "")
             }
         )
     end
@@ -612,12 +668,7 @@ local function GenerateNumber(cv)
         end
     )
 end
-local ratios = {
-    ["classic"] = {maxDeposit = 5000, maxRemove = 5000, deposit = 0, remove = 0},
-    ["gold"] = {maxDeposit = 15000, maxRemove = 15000, deposit = 0, remove = 0},
-    ["platinium"] = {maxDeposit = 50000, maxRemove = 50000, deposit = 0, remove = 0},
-    ["blackcard"] = {maxDeposit = 250000, maxRemove = 250000, deposit = 0, remove = 0}
-}
+
 RegisterServerEvent("newCard")
 AddEventHandler(
     "newCard",
@@ -659,9 +710,8 @@ RegisterServerCallback(
                     callback(false, 0, 0, 0, 0, 0, 0)
                 else
                     local info = json.decode(result[1].current_ratio)
-
-                    if (info.maxPayin == nil) then
-                        info.maxPayin = 0
+                    if (info.maxPayin == nil or info.maxPayin == "") then
+                        info.maxPayin = ratios[result[1].type].maxPayin
                     end
 
                     if (info.payin == nil) then
@@ -714,7 +764,7 @@ AddEventHandler(
                 "RageUI:Popup",
                 _source,
                 {
-                    message = "💰 BANQUE\n~r~Probleme, si vous retirez cette somme vous serez en négatif. Opération annulée~s~"
+                    message = "💰 BANQUE\n~r~Probleme, vous n'avez pas les fonds nécessaires. Opération annulée~s~"
                 }
             )
         end
@@ -890,27 +940,27 @@ RegisterServerCallback(
     "createAccount",
     function(source, callback, tab)
         local unique = false
-        local table = nil
-        MySQL.Async.fetchAll(
-            "SELECT * FROM banking_account",
-            {},
-            function(result)
-                while not unique do
-                    Wait(1)
-                    math.randomseed(GetGameTimer())
-                    table = "LS-" .. math.random(11111111, 99999999)
-                    local found = false
-                    for i = 1, #result, 1 do
-                        if result[i].iban == table then
-                            found = true
-                        end
-                    end
-                    if not found then
-                        unique = true
-                    end
-                end
-            end
-        )
+        local table = Ora.NpcJobs.Bank:GenerateNewIban()
+        -- MySQL.Async.fetchAll(
+        --     "SELECT * FROM banking_account",
+        --     {},
+        --     function(result)
+        --         while not unique do
+        --             Wait(1)
+        --             math.randomseed(GetGameTimer())
+        --             table = "LS-" .. math.random(11111111, 99999999)
+        --             local found = false
+        --             for i = 1, #result, 1 do
+        --                 if result[i].iban == table then
+        --                     found = true
+        --                 end
+        --             end
+        --             if not found then
+        --                 unique = true
+        --             end
+        --         end
+        --     end
+        -- )
         while table == nil do
             Wait(1)
         end

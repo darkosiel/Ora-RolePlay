@@ -35,23 +35,23 @@ Ora.NpcJobs.Bank.Accounts = {
   \_____|_|\__,_|___/___/                                                   
 ]]
 
-function Ora.NpcJobs.Bank:Initialize()
-    self:Debug(string.format("Intializing peds for job ^5%s^3", self:GetJobName()))    
-    for key, value in pairs(self:GetPedPositions()) do
-      Ped:Add(
-          value.name,
-          self:GetRandomPed(),
-          {x = value.pos.x, y = value.pos.y, z = value.pos.z, a = value.heading},
-          nil
-      )
-      self:Debug(string.format("Added ped ^5%s^3 at position ^5%s %s %s^3 for job ^5%s^3", value.name,  value.pos.x,  value.pos.y,  value.pos.z, self:GetJobName()))    
-    end
+-- function Ora.NpcJobs.Bank:Initialize()
+--     self:Debug(string.format("Intializing peds for job ^5%s^3", self:GetJobName()))    
+--     for key, value in pairs(self:GetPedPositions()) do
+--       Ped:Add(
+--           value.name,
+--           self:GetRandomPed(),
+--           {x = value.pos.x, y = value.pos.y, z = value.pos.z, a = value.heading},
+--           nil
+--       )
+--       self:Debug(string.format("Added ped ^5%s^3 at position ^5%s %s %s^3 for job ^5%s^3", value.name,  value.pos.x,  value.pos.y,  value.pos.z, self:GetJobName()))    
+--     end
 
-    for key, value in pairs(self:GetZones()) do
-      Zone:Add(value.pos, Ora.NpcJobs.Bank.EnterZoneProxy, Ora.NpcJobs.Bank.ExitZoneProxy, value.name, 2.5)
-      self:Debug(string.format("Added zone ^5%s^3 at position ^5%s %s %s^3 for job ^5%s^3", value.name,  value.pos.x,  value.pos.y,  value.pos.z, self:GetJobName()))    
-    end
-end
+--     for key, value in pairs(self:GetZones()) do
+--       Zone:Add(value.pos, Ora.NpcJobs.Bank.EnterZoneProxy, Ora.NpcJobs.Bank.ExitZoneProxy, value.name, 2.5)
+--       self:Debug(string.format("Added zone ^5%s^3 at position ^5%s %s %s^3 for job ^5%s^3", value.name,  value.pos.x,  value.pos.y,  value.pos.z, self:GetJobName()))    
+--     end
+-- end
 
 function Ora.NpcJobs.Bank:GetBankAccounts()
   if (self.Accounts.LOADED == false) then

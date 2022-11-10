@@ -4,7 +4,7 @@
 --- DateTime: 31/08/2019 00:22
 ---
 
-local Cam = Camera.New()
+local Cam --= Camera.New()
 local SelectedEntity = 1
 local PedList = {}
 local ScaleformBoard = {}
@@ -190,8 +190,8 @@ end
 local function FocusAnotherPed()
     SelectedEntity = SelectedEntity == 1 and 2 or 1
     local Entity, bl = PedList[SelectedEntity].Entity, SelectedEntity == 2
-    Camera:Stage_03(Cam.cam_466, not bl)
-    Camera:Stage_03_A(Cam.cam_465, Cam.cam_466, not bl)
+    --Camera:Stage_03(Cam.cam_466, not bl)
+    --Camera:Stage_03_A(Cam.cam_465, Cam.cam_466, not bl)
     TaskRaiseBoard(Entity, bl)
     TaskHoldBoard(PedList[SelectedEntity == 1 and 2 or 1].Entity, bl)
     return SelectedEntity
@@ -235,22 +235,26 @@ function ExitPedFormRoom()
 end
 
 function StartScenario()
-    Cam.cam_466 = CreateCam("DEFAULT_SCRIPTED_CAMERA", false)
-    Cam.cam_465 = CreateCam("DEFAULT_SCRIPTED_CAMERA", false)
-    Camera:Stage_01(Cam.cam_465)
+    -- Cam.cam_466 = CreateCam("DEFAULT_SCRIPTED_CAMERA", false)
+    -- Cam.cam_465 = CreateCam("DEFAULT_SCRIPTED_CAMERA", false)
+    -- Camera:Stage_01(Cam.cam_465)
 
     DoScreenFadeIn(500)
     RemoveLoadingPrompt()
 
     CreatePeds()
-    Camera:func_1673(Cam.cam_465, 7.2, 1.0, 0.5, 1.0)
-    ShakeCam(Cam.cam_465, "HAND_SHAKE", 1.0)
-    RenderScriptCams(1, 0, 3000, 1, 0)
-    Citizen.Wait(5000)
-    Camera:Stage_02(Cam.cam_466)
-    Camera:Stage_02_A(Cam.cam_465, Cam.cam_466)
-    Citizen.Wait(3500)
-    PlaySoundFrontend(-1, "Lights_On", "GTAO_MUGSHOT_ROOM_SOUNDS", true)
+    Cam = Camera:Init()
+    print("Cam", Cam.Camera)
+    Cam:Render()
+
+    --Camera:func_1673(Cam.cam_465, 7.2, 1.0, 0.5, 1.0)
+    --ShakeCam(Cam.cam_465, "HAND_SHAKE", 1.0)
+    --RenderScriptCams(1, 0, 3000, 1, 0)
+    --Citizen.Wait(5000)
+    --Camera:Stage_02(Cam.cam_466)
+    --Camera:Stage_02_A(Cam.cam_465, Cam.cam_466)
+    --Citizen.Wait(3500)
+    --PlaySoundFrontend(-1, "Lights_On", "GTAO_MUGSHOT_ROOM_SOUNDS", true)
     ReactToLight()
 end
 
@@ -351,7 +355,8 @@ local function onExited()
     local interiorID = GetInteriorAtCoordsWithType(vector3(399.9, -998.7, -100.0), "v_mugshot")
     DeleteAssets()
     UnpinInterior(interiorID)
-    Camera:DeleteAll()
+    --Camera:DeleteAll()
+    --Cam:Delete()
     LocalPlayer().isBusy = false
     LocalPlayer().isCinematic = false
     TriggerEvent("es:setMoneyDisplay", 1.0)

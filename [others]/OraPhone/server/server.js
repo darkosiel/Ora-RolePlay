@@ -297,6 +297,14 @@ async function patchUserData(userData) {
     if (userData.phone) {
         crud.phone.update({ id: userData.id }, userData.phone);
     }
+    if (userData.contacts) {
+        for (const c of userData.contacts) {
+            if (c.id == null || c.id == undefined) {
+                update = true;
+            }
+            upsert(crud.contacts, { ...c, playerUuid: userData.uuid, avatar: null, });
+        }
+    }
     if (update) {
         updateUserData();
     }
@@ -994,15 +1002,10 @@ onNet('OraPhone:server:maps_update_my_position', async (data) => {
 // Create new phone
 
 function RegisterNewPhone(phoneNumber, identity) {
-    let playerUuid = "inconnu";
-    let firstName = "inconnu";
-    let lastName = "inconnu";
-    if (identity.uuid != null) {
-        playerUuid = identity.uuid;
-        firstName = identity.first_name;
-        lastName = identity.last_name;
-    }
+    let playerUuid = identity.uuid;
     let serialNumber = Math.floor(Math.random() * (9999 - 1111 + 1) + 1111) + "-" + Math.floor(Math.random() * (9999 - 1111 + 1) + 1111);
+    let firstName = identity.first_name;
+    let lastName = identity.last_name;
     let number = phoneNumber;
     let isActive = 0;
     let soundNotification = 'notification-sms1';

@@ -39,7 +39,6 @@ let lockIconSnoozeEffect = false;
 let contextMenuItemClicked;
 let notificationMode = "normal"; // normal / nosound / none
 let phoneActive = false;
-let phonePopupActive = false;
 let phoneTest = false;
 
 // App Home
@@ -164,9 +163,6 @@ $(function(){
                 switch(item.type) {
                     case "oraPhoneUI":
                         displayPhone(item.display);
-                        break;
-                    case "phoneDisabled":
-                        showPopup("Téléphone désactivé", "Activé le !", "error", 4000);
                         break;
                     case "updateUserData":
                         await updateUserData(item.data);
@@ -3125,7 +3121,7 @@ function displayTopbar() {
     }
 }
 
-/* Notification */
+// Notification
 
 function addNotification(app, appSub, time, title, message, data, avatar = false) {
     if (notificationMode == "none" || !phoneActive) {
@@ -3296,26 +3292,7 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
     }, 25);
 }
 
-function showPopup(title, message, type, time) {
-    if (phonePopupActive) {
-        return;
-    }
-    phonePopupActive = true;
-    let divPopup = `<div id="phone-popup" class="${type}"><div class="phone-popup-content"><span class="phone-popup-title"><i class="fas fa-exclamation-circle"></i>${title}</span><span class="phone-popup-message">${message}</span></div></div>`;
-    $("#page").append(divPopup);
-    setTimeout(function() {
-        $("#phone-popup").addClass("active");
-        setTimeout(function() {
-            $("#phone-popup").removeClass("active");
-            setTimeout(function() {
-                $("#phone-popup").remove();
-                phonePopupActive = false;
-            }, 300);
-        }, time);
-    }, 50);
-}
-
-/* Fonctions diverses */
+// Fonctions diverses
 
 function dynamicSort(property) {
     let sortOrder = 1;

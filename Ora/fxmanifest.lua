@@ -391,6 +391,8 @@ client_script {
     "utils/vendor/player-event/cl_trigger.lua"
 }
 
+file "gameplay/jobs/g6/atms.json"
+
 client_script {
     "gameplay/illegal/drugs/cl_drugbuyer.lua",
     "gameplay/illegal/atm_robbery/client.lua",
@@ -442,12 +444,19 @@ client_script {
     "gameplay/jobs/fueler/config.lua",
     "gameplay/jobs/fueler/client.lua",
     "gameplay/jobs/hacker/cl_hacker.lua",
+
+    "gameplay/jobs/g6/cl_camera.lua",
+    "gameplay/jobs/g6/cl_main.lua",
+    "gameplay/jobs/g6/cl_menu.lua",
+
+    "gameplay/jobs/g6/getAtmAvailable.lua",
+
     "gameplay/shops/clothes/*.lua",
     "gameplay/shops/shop/sh_illegal.lua",
     "gameplay/shops/shop/cl_*.lua",
     "gameplay/shops/vehicle/cl_vehshop.lua",
     "gameplay/shops/vehicle/cl_vehshop_nord.lua",
-    --"gameplay/shops/vehicle/cl_vehshop_jap.lua",
+    "gameplay/shops/vehicle/cl_vehshop_jap.lua",
     "gameplay/shops/vehicle/cl_motoshop.lua",
     "gameplay/world/cl_banweapon.lua",
     "gameplay/vehicle/cl_coffre.lua",
@@ -515,11 +524,12 @@ server_scripts {
     "gameplay/jobs/taxi/config.lua",
     "gameplay/jobs/taxi/server.lua",
     "gameplay/jobs/hacker/sv_hacker.lua",
+    "gameplay/jobs/g6/sv_main.lua",
     "gameplay/shops/shop/sh_illegal.lua",
     "gameplay/shops/shop/sv_*.lua",
     "gameplay/shops/vehicle/sv_vehshop.lua",
     "gameplay/shops/vehicle/sv_vehshop_nord.lua",
-    --"gameplay/shops/vehicle/sv_vehshop_jap.lua",
+    "gameplay/shops/vehicle/sv_vehshop_jap.lua",
     "gameplay/shops/vehicle/sv_motoshop.lua",
     "gameplay/vehicle/garage/sv_garage.lua",
     "gameplay/vehicle/sirene/server.lua",

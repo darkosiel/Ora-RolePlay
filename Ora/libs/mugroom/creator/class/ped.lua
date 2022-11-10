@@ -33,6 +33,7 @@ local function GetDictionary()
         return "mp_character_creation@customise@female_a"
     end
 end
+
 local _Substring, _FooterString, _Rank = nil
 function AttachBoardToEntity(Entity, HeaderString, Substring, FooterString, Rank)
     prop_id_board = GetHashKey("prop_police_id_board")
@@ -76,7 +77,7 @@ function AttachBoardToEntity(Entity, HeaderString, Substring, FooterString, Rank
     onCreatorTick.Scaleform = true
 end
 
-function UpdateBoardToEntity(Entity)
+function BoardToEntity(Entity)
     AttachEntityToEntity(overlay, board, -1, 4103, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
     SetModelAsNoLongerNeeded(prop_id_board)
     SetModelAsNoLongerNeeded(overlayModel)
@@ -160,7 +161,7 @@ function LoopInRoom()
 end
 
 function CreatorUpdateModelAnim()
-    UpdateBoardToEntity(PlayerPedId())
+    --UpdateBoardToEntity(PlayerPedId())
     local _, sequence = OpenSequenceTask(0)
     TaskPlayAnim(0, GetDictionary(), "loop", 4.0, -4.0, -1, 513, 0, 0, 0, 0)
     CloseSequenceTask(sequence)
