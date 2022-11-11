@@ -27,7 +27,6 @@ screenshot-basic/dist/
 es_mapper/
 \[test\]/
 \[tenue JEYSO ADDD\]/
-Ora/gameplay/jobs/fueler/station.json
 eup-stream/
 loadscreen/
 \[Clothes\]
@@ -41,3 +40,4 @@ Ora/gameplay/jobs/g6/atms.json
 [devtool]/anim-viewer/**/*
 [cfx-server-data]/**/*
 \[Ora-Extra\]/
+\[devtool\]/
