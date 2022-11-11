@@ -1,0 +1,230 @@
+
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<script src="./script.js" type="text/javascript"></script>
+	</head>
+	<body>
+        <div id="page">
+            <div id="menu-bank">
+                <div id="menu">
+                    <div id="navbar">
+                        <div id="navbar-icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <span>Banking</span>
+                        </div>
+                        <ul id="navbar-menu">
+                            <li id="menu-home">
+                                <i class="fa fa-home"></i>
+                                <span>Accueil</span>
+                            </li>
+                            <li id="menu-deposit">
+                                <i class="fa-solid fa-money-bill-1"></i>
+                                <span>Déposer</span>
+                            </li>
+                            <li id="menu-withdraw">
+                                <i class="fa-solid fa-credit-card"></i>
+                                <span>Retirer</span>
+                            </li>
+                            <li id="menu-send">
+                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                <span>Envoyer</span>
+                            </li>
+                            <li id="menu-account">
+                                <i class="fa-solid fa-user-large"></i>
+                                <span>Mon compte</span>
+                            </li>
+                            <li id="menu-history">
+                                <i class="fa-solid fa-list"></i>
+                                <span>Historique</span>
+                            </li>
+                            <li id="menu-newcode">
+                                <i class="fa-solid fa-xmarks-lines"></i>
+                                <span>Nouveau code</span>
+                            </li>
+                            <li id="menu-exit">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Déconnexion</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="separator"></div>
+                    <div class="container disable-select" id="home">
+                        <div class="content content-information">
+                            <h1>Accueil</h1>
+                            <p>Bienvenue <span id="player-name">aaaa bbbb</span>, tu peux en savoir plus sur ton compte, en cliquant sur le bouton juste en-dessous.</p>
+                            <button class="button-link" id="button-link-account">Mon compte</button>
+                            <i class="icon-float icon-float-1 fa-solid fa-money-bill-transfer"></i>
+                            <i class="icon-float icon-float-2 fa-solid fa-building-columns"></i>
+                            <i class="icon-float icon-float-3 fa-solid fa-piggy-bank"></i>
+                        </div>
+                        <div class="content content-balance">
+                            <i class="background-icon fa-solid fa-chart-line"></i>
+                            <h1>Solde du compte</h1>
+                            <p><span id="player-account-balance">0</span> $</p>
+                        </div>
+                        <div class="content content-card">
+                            <i class="background-icon fa-solid fa-credit-card"></i>
+                            <h1>Ma carte</h1>
+                            <div class="card">
+                                <img id="player-card-image" src="./assets/card-classic.png" alt="">
+                                <span id="player-card-number">0000 0000 0000 0000</span>
+                                <span id="player-card-name">xxxx xxxx</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container disable-select" id="deposit">
+                        <div class="content content-full">
+                            <h1>Déposer</h1>    
+                            <p>Vous pouvez déposer de l'argent sur votre compte ici.</span></p>
+                            <div class="bill-amount" id="bill-amount-dollar1" data-max="0">
+                                <span>Billet de 1$</span>
+                                <i id="bill-amount-minus-1" class="bill-amount-minus bill-amount-button fa-solid fa-minus"></i>
+                                <span class="bill-amount-value" id="bill-amount-value-1">0</span>
+                                <i id="bill-amount-plus-1" class="bill-amount-plus bill-amount-button fa-solid fa-plus"></i>
+                                <span class="bill-amount-total" id="bill-amount-total-1"></span>
+                            </div>
+                            <div class="bill-amount" id="bill-amount-dollar5" data-max="0">
+                                <span>Billet de 5$</span>
+                                <i id="bill-amount-minus-5" class="bill-amount-minus bill-amount-button fa-solid fa-minus"></i>
+                                <span class="bill-amount-value" id="bill-amount-value-5">0</span>
+                                <i id="bill-amount-plus-5" class="bill-amount-plus bill-amount-button fa-solid fa-plus"></i>
+                                <span class="bill-amount-total" id="bill-amount-total-5"></span>
+                            </div>
+                            <div class="bill-amount" id="bill-amount-dollar10" data-max="0">
+                                <span>Billet de 10$</span>
+                                <i id="bill-amount-minus-10" class="bill-amount-minus bill-amount-button fa-solid fa-minus"></i>
+                                <span class="bill-amount-value" id="bill-amount-value-10">0</span>
+                                <i id="bill-amount-plus-10" class="bill-amount-plus bill-amount-button fa-solid fa-plus"></i>
+                                <span class="bill-amount-total" id="bill-amount-total-10"></span>
+                            </div>
+                            <div class="bill-amount" id="bill-amount-dollar50" data-max="0">
+                                <span>Billet de 50$</span>
+                                <i id="bill-amount-minus-50" class="bill-amount-minus bill-amount-button fa-solid fa-minus"></i>
+                                <span class="bill-amount-value" id="bill-amount-value-50">0</span>
+                                <i id="bill-amount-plus-50" class="bill-amount-plus bill-amount-button fa-solid fa-plus"></i>
+                                <span class="bill-amount-total" id="bill-amount-total-50"></span>
+                            </div>
+                            <div class="bill-amount" id="bill-amount-dollar100" data-max="0">
+                                <span>Billet de 100$</span>
+                                <i id="bill-amount-minus-100" class="bill-amount-minus bill-amount-button fa-solid fa-minus"></i>
+                                <span class="bill-amount-value" id="bill-amount-value-100">0</span>
+                                <i id="bill-amount-plus-100" class="bill-amount-plus bill-amount-button fa-solid fa-plus"></i>
+                                <span class="bill-amount-total" id="bill-amount-total-100"></span>
+                            </div>
+                            <div class="bill-amount" id="bill-amount-dollar500" data-max="0">
+                                <span>Billet de 500$</span>
+                                <i id="bill-amount-minus-500" class="bill-amount-minus bill-amount-button fa-solid fa-minus"></i>
+                                <span class="bill-amount-value" id="bill-amount-value-500">0</span>
+                                <i id="bill-amount-plus-500" class="bill-amount-plus bill-amount-button fa-solid fa-plus"></i>
+                                <span class="bill-amount-total" id="bill-amount-total-500"></span>
+                            </div>
+                            <span>Total : <span id="bill-amount-deposit-total">0</span> €</span>
+                            <button class="button-submit" id="button-submit-deposit">DEPOSER</button>
+                        </div>
+                    </div>
+                    <div class="container disable-select" id="withdraw">
+                        <div class="content content-full">
+                            <h1>Retirer</h1>
+                            <p>Vous pouvez retirer de l'argent de votre compte ici.</span></p>
+                            <input type="number" class="input-amount" id="input-withdraw-amount" placeholder="Montant à retirer">
+                            <button class="button-submit" id="button-submit-withdraw">RETIRER</button>
+                        </div>
+                    </div>
+                    <div class="container" id="send">
+                        <div class="content content-full">
+                            <h1>Envoyer</h1>
+                            <p>Vous pouvez envoyer de l'argent de votre compte à un autre compte.</span></p>
+                            <input type="text" class="input-amount" id="input-send-rib1" placeholder="RIB du destinataire">
+                            <input type="text" class="input-amount" id="input-send-rib2" placeholder="Confirmation RIB du destinataire">
+                            <input type="number" class="input-amount" id="input-send-amount" placeholder="Montant à envoyer">
+                            <button class="button-submit" id="button-submit-send">ENVOYER</button>
+                        </div>
+                    </div>
+                    <div class="container" id="account">
+                        <div class="content content-full">
+                            <h1>Mon compte</h1>
+                            <div>
+                                <div>
+                                    <p>Nom du compte :</p>
+                                    <p>IBAN du compte :</p>
+                                    <p>Téléphone du compte :</p>
+                                </div>
+                                <div>
+                                    <p id="player-account-label">CC xxxx xxxx</p>
+                                    <p id="player-account-iban">LS-00000000</p>
+                                    <p id="player-account-phone-number">5550000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container disable-select" id="history">
+                        <div class="content content-full content-top">
+                            <h1>Historique</h1>
+                            <div id="history-container">
+                                <!-- <div class="history-item">
+                                    <div>
+                                        <p>Espèces (<span class="remove">-4000$</span>)</p>
+                                        <p>SA-587794 (<span class="add">+4000$</span>)</p>
+                                    </div>
+                                    <div class="history-item-titre">
+                                        <p>Titre : <span>Dépôt d'argent à partir CB 8765780757082804</span></p>
+                                    </div>
+                                    <div class="history-item-detail">
+                                        <p>Date : <span>09/07/22 19:15:53</span></p>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container disable-select" id="newcode">
+                        <div class="content content-full">
+                            <h1>Demander un nouveau code</h1>
+                            <p>Vous pouvez demander un nouveau code pour votre carte ici.</span></p>
+                            <button class="button-submit" id="button-submit-newcode">NOUVEAU CODE</button>
+                        </div>
+                    </div>
+                    <div class="container" id="exit"></div>
+                </div>
+            </div>
+            <div id="menu-login" class="disable-select">
+                <div id="menu-login-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>Banking</span>
+                </div>
+                <div id="menu-login-pad">
+                    <h1>Veuillez entrer le code</h1>
+                    <form>
+                        <input type="text" readonly placeholder="Entrez votre code" id="code-input" pattern="[0-9]{4}">
+                        <div id="code-locker">
+                            <div>
+                                <div class="code-button">1</div>
+                                <div class="code-button">2</div>
+                                <div class="code-button">3</div>
+                            </div>
+                            <div>
+                                <div class="code-button">4</div>
+                                <div class="code-button">5</div>
+                                <div class="code-button">6</div>
+                            </div>
+                            <div>
+                                <div class="code-button">7</div>
+                                <div class="code-button">8</div>
+                                <div class="code-button">9</div>
+                            </div>
+                            <div>
+                                <div id="login-input-clear">C</div>
+                                <div class="code-button">0</div>
+                                <div id="login-submit">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>

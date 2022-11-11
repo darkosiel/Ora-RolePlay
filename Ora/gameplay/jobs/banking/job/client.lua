@@ -168,6 +168,7 @@ local Identity = {}
 local Cards = {}
 local History = {}
 local Prets = {}
+
 function OpenBankMenu()
     RageUI.Visible(RMenu:Get("banks", "main"), false)
     Banks = nil
@@ -185,6 +186,7 @@ function OpenBankMenu()
 
     RageUI.Visible(RMenu:Get("banks", "main"), true)
 end
+
 local filterSearch = {
     search = nil,
     filter = nil,
@@ -198,6 +200,7 @@ local filterSearch = {
     Index = 4,
     filterASC = true
 }
+
 function spairs(t, order)
     -- collect the keys
     local keys = {}
@@ -227,9 +230,11 @@ function spairs(t, order)
         end
     end
 end
+
 function firstToUpper(str)
     return (str:gsub("^%l", string.upper))
 end
+
 local currentBank = nil
 local typeCarte = {
     Label = {"Classic", "Gold", "Platinium", "Blackcard"},
@@ -264,14 +269,15 @@ function GetBankInfoFromID(id)
     -- return data 
 
 end
+
 local typePret = {
     amount = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20},
     Index = 1
 }
+
 for i = 1, #typePret.amount, 1 do
     typePret.amount[i] = typePret.amount[i] .. "%"
 end
-
 
 local filter = {"dollar1", "dollar5", "dollar10", "dollar50", "dollar100", "dollar500"}
 local am = {1, 5, 10, 50, 100, 500}
@@ -1733,6 +1739,7 @@ local ATM = {
         coOwn = {}
     }
 }
+
 function UseBankCard()
     local bool, coords, heading = IsNearATM()
     if bool then
@@ -1758,12 +1765,6 @@ function UseBankCard()
                 DeleteEntity(fpxm)
             end
         )
-
-        if GetGameTimer() - lastDeposit < MIN_TIME_BETWEEN_DEPOSITS then
-            ShowNotification("~r~Vous avez déjà effectué un retrait ou un dépôt récemment. Veuillez patienter.")
-            return
-        end
-
         local currCARD = Ora.Inventory.SelectedItem.data
         ATM.Open(currCARD)
     else
@@ -1778,8 +1779,10 @@ local Atm = {
     {prop = "prop_atm_01"}
 }
 
+local paramLocal = {}
+
 function IsNearATM()
-   return Ora.World.Object:GetNearestAtm(1.8)
+    return Ora.World.Object:GetNearestAtm(1.8)
 end
 
 function getCompanyLabel(account)
@@ -1793,96 +1796,43 @@ function getCompanyLabel(account)
     return nil
 end
 
-local stillNear = true
 function ATM.Open(param)
+    paramLocal = param
     if IsNearATM() then
-        local code = KeyboardInput("Veuillez entrer le code", nil, 4)
-        code = tonumber(code)
-        if code ~= nil then
-            if code == param.code then
-                TriggerServerCallback(
-                    "getBankingAccountsPly2",
-                    function(result)
-                        TriggerServerCallback(
-                            "getBankingCard",
-                            function(_result)
-                                if result[1] == nil or _result[1] == nil then
-                                    ShowNotification("~r~Compte non reconnu")
-                                end
-                                local accountIBAN = getCompanyLabel(result[1].iban) or result[1].iban
-                                TriggerServerCallback(
-                                    "getHisto",
-                                    function(tresult)
-                                        stillNear = true
-                                        ATM.Accounts = result[1]
-                                        ATM.Cards = param
-                                        ATM.History = tresult
-                                        if _result[1].bloqued == 1 then
-                                            return ShowNotification("~r~La carte est bloquée")
-                                        end
-                                        if
-                                            result[1].bloqued == "true" or result[1].bloqued == 1 or
-                                                result[1].bloqued == true
-                                         then
-                                            return ShowNotification("~r~Le compte est bloqué")
-                                        end
-
-                                        ATM.Accounts.todayratio = Ora.Inventory.SelectedItem.data.current_ratio
-
-                                        for i = 1, 10, 1 do
-                                            Wait(1)
-                                            RageUI.GoBack()
-                                        end
-
-                                        RageUI.Visible(
-                                            RMenu:Get("banking", "main_atm"),
-                                            not RageUI.Visible(RMenu:Get("banking", "main_atm"))
-                                        )
-                                    end,
-                                    accountIBAN,
-                                    result[1].iban
-                                )
-                            end,
-                            param.number
-                        )
-                    end,
-                    param.account
-                )
-            else
-                if param.essai == nil then
-                    param.essai = 3
-                else
-                    param.essai = param.essai - 1
-                end
-                if param.essai == 0 then
-                    ShowNotification("~r~Code incorrect \n~o~La carte à été avalée")
-                    TriggerServerEvent("mail:AddMail", "mazegroup", "Carte N°" .. param.number .. " avalés", "ATM")
-                    Ora.Inventory:RemoveItem(Ora.Inventory.SelectedItem)
-
-                    RageUI.GoBack()
-                    RageUI.Refresh()
-                else
-                    ShowNotification("~r~Code incorrect \n~o~" .. param.essai .. " essai(s) restant(s)")
-                end
-            end
-        end
+        TriggerEvent("OraBankMenu:CheckCode", param)
     end
 end
 
-function GetCurrentMoneySelected()
-    local mo = 0
-    for k, v in pairs(m) do
-        if v.visible then
-            p = string.gsub(tostring(k), "dollar", "")
-            p = tonumber(p)
-            mo = mo + (p * (v.index - 1))
-        end
-    end
+local filter = {"dollar1", "dollar5", "dollar10", "dollar50", "dollar100", "dollar500"}
+local am = {1, 5, 10, 50, 100, 500}
+local m = {
+    dollar1 = {
+        index = 1,
+        label = {0}
+    },
+    dollar5 = {
+        index = 1,
+        label = {0}
+    },
+    dollar10 = {
+        index = 1,
+        label = {0}
+    },
+    dollar50 = {
+        index = 1,
+        label = {0}
+    },
+    dollar100 = {
+        index = 1,
+        label = {0}
+    },
+    dollar500 = {
+        index = 1,
+        label = {0}
+    }
+}
 
-    return mo
-end
-
-function Refresh()
+local function Refresh()
     for k, v in pairs(m) do
         if Ora.Inventory.Data[k] ~= nil then
             v.visible = true
@@ -1896,461 +1846,316 @@ function Refresh()
             v.visible = false
         end
     end
+    TriggerEvent("OraBankMenu:SetDollar", m)
 end
-Citizen.CreateThread(
-    function()
-        local transactionTime = nil
-        Wait(1500)
 
-        RMenu:Get("banking", "main_atm").Closed = function()
+RegisterNetEvent("Ora:CodeSubmit")
+AddEventHandler("Ora:CodeSubmit", function(code)
+    if code then
+        TriggerServerCallback(
+            "getBankingAccountsPly2",
+            function(result)
+                TriggerServerCallback(
+                    "getBankingCard",
+                    function(_result)
+                        if result[1] == nil or _result[1] == nil then
+                            ShowNotification("~r~Compte non reconnu")
+                        end
+                        local accountIBAN = getCompanyLabel(result[1].iban) or result[1].iban
+                        TriggerServerCallback(
+                            "getHisto",
+                            function(tresult)
+                                ATM.Accounts = result[1]
+                                ATM.Cards = paramLocal
+                                ATM.History = tresult
+                                if _result[1].bloqued == 1 then
+                                    return ShowNotification("~r~La carte est bloquée")
+                                end
+                                if
+                                    result[1].bloqued == "true" or result[1].bloqued == 1 or
+                                        result[1].bloqued == true
+                                then
+                                    return ShowNotification("~r~Le compte est bloqué")
+                                end
+
+                                ATM.Accounts.todayratio = Ora.Inventory.SelectedItem.data.current_ratio
+
+                                TriggerEvent("OraBankMenu:OpenATM", ATM)
+                            end,
+                            accountIBAN,
+                            result[1].iban
+                        )
+                    end,
+                    paramLocal.number
+                )
+            end,
+            paramLocal.account
+        )
+    else
+        if paramLocal.essai == nil then
+            paramLocal.essai = 3
+        else
+            paramLocal.essai = paramLocal.essai - 1
         end
+        if paramLocal.essai == 0 then
+            ShowNotification("~r~Code incorrect \n~o~La carte à été avalée")
+            TriggerServerEvent("mail:AddMail", "banker", "Carte N°" .. paramLocal.number .. " avalés", "ATM")
+            Ora.Inventory:RemoveItem(Ora.Inventory.SelectedItem)
+        else
+            ShowNotification("~r~Code incorrect \n~o~" .. paramLocal.essai .. " essai(s) restant(s)")
+        end
+    end
+end)
 
-        while true do
-            Wait(1)
+RegisterNetEvent("Ora:Refresh")
+AddEventHandler("Ora:Refresh", function()
+    Refresh()
+end)
 
-            if stillNear then
-                if RageUI.Visible(RMenu:Get("banking", "main_atm")) then
-                    RageUI.DrawContent(
-                        {header = false, glare = false},
-                        function()
-                            RageUI.CenterButton(
-                                "~b~↓↓↓ Votre compte ↓↓↓",
-                                nil,
-                                {},
-                                true,
-                                function()
+RegisterNetEvent("Ora:GetData")
+AddEventHandler("Ora:GetData", function()
+    TriggerServerCallback(
+            "getBankingAccountsPly2",
+            function(result)
+                TriggerServerCallback(
+                    "getBankingCard",
+                    function(_result)
+                        if result[1] == nil or _result[1] == nil then
+                            ShowNotification("~r~Compte non reconnu")
+                        end
+                        local accountIBAN = getCompanyLabel(result[1].iban) or result[1].iban
+                        TriggerServerCallback(
+                            "getHisto",
+                            function(tresult)
+                                ATM.Accounts = result[1]
+                                ATM.Cards = paramLocal
+                                ATM.History = tresult
+                                if _result[1].bloqued == 1 then
+                                    return ShowNotification("~r~La carte est bloquée")
                                 end
-                            )
-                            RageUI.Button(
-                                ATM.Accounts.label,
-                                "RIB : " .. ATM.Accounts.iban,
-                                {RightLabel = ATM.Accounts.amount .. "$"},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        ATM.Selected = ATM.Accounts
-                                        RMenu:Get("banking", "manage_account").Subtitle =
-                                            ATM.Accounts.label .. " " .. ATM.Accounts.amount .. "$"
-                                    end
-                                end,
-                                RMenu:Get("banking", "manage_account")
-                            )
-                            RageUI.Separator("~b~↓↓↓ Votre historique ↓↓↓")
-                            for i = 1, #ATM.History, 1 do
-                                local History = ATM.History
-                                if transactionTime == nil or transactionTime ~= string.sub(History[i].details, 1, 8) then
-                                    RageUI.Separator("~b~"..string.sub(History[i].details, 1, 8))
-                                    transactionTime = string.sub(History[i].details, 1, 8)
+                                if
+                                    result[1].bloqued == "true" or result[1].bloqued == 1 or
+                                        result[1].bloqued == true
+                                then
+                                    return ShowNotification("~r~Le compte est bloqué")
                                 end
-                                RageUI.Button(
-                                    History[i].src .. " (~r~-" .. History[i].montant .. "$~s~)",
-                                    "~b~Titre : ~s~"..History[i].title.."~n~~b~Détail : ~s~"..History[i].details,
-                                    {RightLabel = History[i].dest .. " (~g~+" .. History[i].montant .. "$~s~)"},
-                                    true,
-                                    function()
-                                    end
-                                )
+
+                                ATM.Accounts.todayratio = Ora.Inventory.SelectedItem.data.current_ratio
+                                TriggerEvent("OraBankMenu:SetData", ATM)
+                            end,
+                            accountIBAN,
+                            result[1].iban
+                        )
+                    end,
+                    paramLocal.number
+                )
+            end,
+            paramLocal.account
+        )
+end)
+
+RegisterNetEvent("Ora:Withdraw")
+AddEventHandler("Ora:Withdraw", function(amount)
+    ATM.Selected = ATM.Accounts
+    local data = ATM.Selected.todayratio
+    if amount ~= nil then
+        if amount <= ATM.Selected.amount then
+            ShowNotification(
+                "~g~Transaction bancaire en cours~w~\nContact du serveur bancaire"
+            )
+            TriggerServerCallback("Ora_banking:getRatiosForCard",
+                function(cardExist, maxDeposit, maxRemove, maxPayin, currentDeposit, currentRemove, currentPayin)
+                    if (cardExist == false) then
+                        ShowNotification(
+                            "~g~Retrait bancaire\n~s~Cette carte ne semble pas exister"
+                        )
+                    else
+                        processRemoving = true
+                        if (processRemoving == true) then
+                            ShowNotification(
+                                "~g~Retrait bancaire\n~s~" .. amount .. "$"
+                            )
+                            TriggerServerEvent(
+                                "Ora_bank:removeMoneyFromBankAccount",
+                                ATM.Selected.iban,
+                                amount
+                            )
+                            TriggerServerEvent(
+                                "newTransaction",
+                                ATM.Selected.iban,
+                                "Espèces",
+                                amount,
+                                "Retrait d'argent à partir de "..ATM.Cards.number,
+                                ""
+                            )
+                            local infoType = "info"
+                            if (amount < 5000) then
+                                infoType = "info"
+                            elseif (amount < 15000) then
+                                infoType = "success"
+                            elseif (amount < 30000) then
+                                infoType = "warning"
+                            else
+                                infoType = "error"
                             end
-                        end,
-                        function()
+                            TriggerServerEvent(
+                                'Ora:sendToDiscord',
+                                25,
+                                "Retrait ATM de $"
+                                    ..amount
+                                        .. " sur le compte "
+                                            ..ATM.Selected.iban,
+                                infoType
+                            )
                         end
-                    )
-                end
-                if RageUI.Visible(RMenu:Get("banking", "deposit_money")) then
-                    RageUI.DrawContent(
-                        {header = false, glare = false},
-                        function()
-                            for k, v in pairs(m) do
-                                RageUI.List(
-                                    Items[k].label .. " (" .. v.total .. "x)",
-                                    v.label,
-                                    v.index,
-                                    nil,
-                                    {},
-                                    v.visible,
-                                    function(_, Active, Selected, Index)
-                                        v.index = Index
-                                        if Selected then
-                                            local ask = KeyboardInput("Combien ? ~r~(MAX " .. v.total .. ")", nil)
+                    end
+                    TriggerEvent("OraBankMenu:EventReturn", false)
+                end,
+                ATM.Cards.number
+            )
+        else
+            ShowNotification("Montant du compte ~r~insuffisant")
+        end
+    end
+    ATM.Selected.todayratio = data
+end)
 
-                                            ask = tonumber(ask)
-                                            if ask ~= nil then
-                                                if ask <= v.total then
-                                                    v.index = ask + 1
-                                                end
-                                            end
-                                        end
-                                    end
-                                )
-                            end
-
-                            RageUI.Button(
-                                "Déposer ",
-                                nil,
-                                {RightLabel = "~g~" .. GetCurrentMoneySelected() .. "$"},
-                                true,
-                                function(_, H, S)
-                                    if S then
-                                        if ((GetGameTimer() - GUI.Time) > 2000 ) then
-                                            GUI.Time = GetGameTimer()
-                                            local amount = GetCurrentMoneySelected()
-                                            ShowNotification(
-                                                "~g~Transaction bancaire en cours~w~\nContact du serveur bancaire"
-                                            )
-    
-                                            TriggerServerCallback("Ora_banking:getRatiosForCard", function(cardExist,maxDeposit,maxRemove,maxPayin,currentDeposit,currentRemove,currentPayin)
-                                                if (cardExist == false) then
-                                                    RageUI.Popup(
-                                                        {
-                                                            message = "~g~💰 Dépot bancaire\n~s~Cette carte ne semble pas exister"
-                                                        }
-                                                    )
-                                                else
-                                                    if (amount <= (maxDeposit - currentDeposit)) then
-                                                        processDeposit = true
-                                                    end
-                                                    if (processDeposit == true) then
-
-                                                        RageUI.CloseAll()
-                                                        RageUI.Popup(
-                                                            {
-                                                                message = "~g~💰 Dépot bancaire\n~s~" .. amount .. "$"
-                                                            }
-                                                        )
-
-                                                        ATM.Selected.amount = ATM.Selected.amount + amount
-                                                        RMenu:Get("banking", "manage_account").Subtitle =
-                                                            ATM.Selected.label .. " " .. ATM.Selected.amount .. "$"
-
-                                                        TriggerServerEvent(
-                                                            "Ora_bank:addMoneyToBankAccount",
-                                                            ATM.Selected.iban,
-                                                            amount
-                                                        )
-
-                                                        TriggerServerEvent(
-                                                            "newTransaction",
-                                                            "Espèces",
-                                                            ATM.Selected.iban,
-                                                            amount,
-                                                            "Dépôt d'argent à partir CB "..ATM.Cards.number,
-                                                            ""
-                                                        )
-
-                                                        TriggerServerEvent(
-                                                            "gcPhone:_internalAddMessage",
-                                                            "Banque",
-                                                            ATM.Selected.phone_number,
-                                                            "Dépot de " ..
-                                                                amount .. "$ à partir du compte " .. ATM.Selected.iban,
-                                                            false
-                                                        )
-
-                                                        local infoType = "info"
-                                                        if (amount < 5000) then
-                                                            infoType = "info"
-                                                        elseif (amount < 15000) then
-                                                            infoType = "success"
-                                                        elseif (amount < 30000) then
-                                                            infoType = "warning"
-                                                        else
-                                                            infoType = "error"
-                                                        end
-
-                                                        TriggerServerEvent(
-                                                            'Ora:sendToDiscord',
-                                                            25,
-                                                            "Dépôt ATM de $"
-                                                                ..amount
-                                                                    .. " sur le compte "
-                                                                        ..ATM.Selected.iban,
-                                                            infoType
-                                                        )
-                                                        TriggerServerEvent("gcPhone:allUpdate")
-
-                                                        local t = {}
-
-                                                        for k, v in pairs(m) do
-                                                            if #v.label > 1 then
-                                                                t[k] = v
-                                                            end
-                                                        end
-                                                        lastDeposit = GetGameTimer()
-                                                        Ora.Payment:PayMoney(t)
-                                                        TriggerServerEvent("Ora_bank:addDepositQuotaToCard", ATM.Cards.number, amount)
-                                                        for k, v in pairs(m) do
-                                                            v.index = 1
-                                                        end
-                                                        GUI.Time = GetGameTimer()
-                                                    else
-                                                        RageUI.Popup(
-                                                            {
-                                                                message = "~r~💰 Dépot bancaire\n~s~Vous avez atteint le plafond de dépot pour cette carte"
-                                                            }
-                                                        )
-                                                    end
-                                                end
-                                            end,ATM.Cards.number)
-                                        else
-                                            ShowNotification("~r~Tentative de spam~s~")
-                                        end
-                                    end
-                                end
-                            )
-                        end,
-                        function()
-                        end
-                    )
-                end
-                if RageUI.Visible(RMenu:Get("banking", "manage_account")) then
-                    RageUI.DrawContent(
-                        {header = false, glare = false},
-                        function()
-                            RageUI.Button(
-                                "Envoyer de l'argent",
-                                nil,
-                                {RightLabel = nil},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        local finish = false
-                                        local rib1 = KeyboardInput("RIB du bénéficiaire ?", nil, 255)
-                                        local rib2 = KeyboardInput("Confirmez svp", nil, 255)
-                                        if rib1 == rib2 then
-                                            local amount = KeyboardInput("Montant ? ", nil, 100)
-                                            local amount = tonumber(amount)
-                                            if amount ~= nil then
-                                                if amount <= ATM.Selected.amount then
-                                                    TriggerServerCallback(
-                                                        "banksExists",
-                                                        function(bool)
-                                                            if bool then
-                                                                TriggerServerEvent(
-                                                                    "bankingSendMoney",
-                                                                    rib1,
-                                                                    amount,
-                                                                    ATM.Selected.iban
-                                                                )
-                                                                RageUI.Popup(
-                                                                    {
-                                                                        message = "Virement effectué vers " ..
-                                                                            rib1 .. " " .. amount .. "$"
-                                                                    }
-                                                                )
-                                                                TriggerServerEvent(
-                                                                    "newTransaction",
-                                                                    ATM.Selected.iban,
-                                                                    rib1,
-                                                                    amount,
-                                                                    "Virement",
-                                                                    "CB N° "..ATM.Cards.number
-                                                                )
-                                                                TriggerServerEvent(
-                                                                    "gcPhone:_internalAddMessage",
-                                                                    "Banque",
-                                                                    ATM.Selected.phone_number,
-                                                                    "Nouveau virement de " ..
-                                                                        amount ..
-                                                                            "$ vers " ..
-                                                                                rib1 ..
-                                                                                    " à partir du compte " ..
-                                                                                        ATM.Selected.iban,
-                                                                    false
-                                                                )
-                                                                TriggerServerEvent("gcPhone:allUpdate")
-                                                            else
-                                                                RageUI.Popup({message = "Le compte n'existe pas"})
-                                                            end
-                                                        end,
-                                                        rib1
-                                                    )
-                                                end
-                                            end
-                                        else
-                                            RageUI.Popup({message = "Les deux rib sont différents"})
-                                        end
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Déposer de l'argent",
-                                nil,
-                                {RightLabel = nil},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        Refresh()
-                                    end
-                                end,
-                                RMenu:Get("banking", "deposit_money")
-                            )
-                            RageUI.Button(
-                                "Retirer de l'argent",
-                                nil,
-                                {RightLabel = nil},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        local data = ATM.Selected.todayratio
-                                        local amount = KeyboardInput("Combien ?", nil, 255)
-                                        local amount = tonumber(amount)
-
-                                        if amount ~= nil then
-                                            if amount <= ATM.Selected.amount then
-                                                ShowNotification(
-                                                    "~g~Transaction bancaire en cours~w~\nContact du serveur bancaire"
-                                                )
-
-                                                TriggerServerCallback(
-                                                    "Ora_banking:getRatiosForCard",
-                                                    function(
-                                                        cardExist,
-                                                        maxDeposit,
-                                                        maxRemove,
-                                                        maxPayin,
-                                                        currentDeposit,
-                                                        currentRemove,
-                                                        currentPayin)
-                                                        if (cardExist == false) then
-                                                            RageUI.Popup(
-                                                                {
-                                                                    message = "~g~Retrait bancaire\n~s~Cette carte ne semble pas exister"
-                                                                }
-                                                            )
-                                                        else
-                                                            local processRemoving = false
-                                                            if (amount <= (maxRemove - currentRemove)) then
-                                                                processRemoving = true
-                                                            end
-
-                                                            if (processRemoving == true) then
-                                                                RMenu:Get("banking", "manage_account").Subtitle =
-                                                                    ATM.Selected.label ..
-                                                                    " " .. ATM.Selected.amount .. "$"
-
-                                                                RageUI.Popup(
-                                                                    {
-                                                                        message = "~g~Retrait bancaire\n~s~" ..
-                                                                            amount .. "$"
-                                                                    }
-                                                                )
-
-                                                                TriggerServerEvent(
-                                                                    "Ora_bank:removeMoneyFromBankAccount",
-                                                                    ATM.Selected.iban,
-                                                                    amount
-                                                                )
-
-                                                                TriggerServerEvent(
-                                                                    "newTransaction",
-                                                                    ATM.Selected.iban,
-                                                                    "Espèces",
-                                                                    amount,
-                                                                    "Retrait d'argent à partir de "..ATM.Cards.number,
-                                                                    ""
-                                                                )
-
-                                                                TriggerServerEvent(
-                                                                    "gcPhone:_internalAddMessage",
-                                                                    "Banque",
-                                                                    ATM.Selected.phone_number,
-                                                                    "Retrait de " ..
-                                                                        amount ..
-                                                                            "$ à partir du compte " .. ATM.Selected.iban,
-                                                                    false
-                                                                )
-
-                                                                local infoType = "info"
-                                                                if (amount < 5000) then
-                                                                    infoType = "info"
-                                                                elseif (amount < 15000) then
-                                                                    infoType = "success"
-                                                                elseif (amount < 30000) then
-                                                                    infoType = "warning"
-                                                                else
-                                                                    infoType = "error"
-                                                                end
-
-                                                                TriggerServerEvent(
-                                                                    'Ora:sendToDiscord',
-                                                                    25,
-                                                                    "Retrait ATM de $"
-                                                                        ..amount
-                                                                            .. " sur le compte "
-                                                                                ..ATM.Selected.iban,
-                                                                    infoType
-                                                                )
-                                                                TriggerServerEvent("Ora_bank:addRemoveQuotaToCard", ATM.Cards.number, amount)
-                                                                RageUI.CloseAll()
-                                                            else
-                                                                RageUI.Popup(
-                                                                    {
-                                                                        message = "~r~Retrait bancaire\n~s~Vous avez atteint votre limite de retrait pour cette carte"
-                                                                    }
-                                                                )
-                                                            end
-                                                        end
-                                                    end,
-                                                    ATM.Cards.number
-                                                )
-                                            else
-                                                RageUI.Popup({message = "Montant du compte ~r~insuffisant"})
-                                            end
-                                        end
-                                        ATM.Selected.todayratio = data
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Informations",
-                                nil,
-                                {RightLabel = nil},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        local data = ATM.Selected.todayratio
-                                        RageUI.Popup(
-                                            {
-                                                message = "~b~Informations du compte:~s~\nRIB ~b~" ..
-                                                    ATM.Selected.iban .. ""
-                                            }
-                                        )
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Demander un nouveau code",
-                                nil,
-                                {RightLabel = nil},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        math.randomseed(GetGameTimer())
-                                        local newCode = math.random(1111, 9999)
-                                        TriggerServerEvent(
-                                            "gcPhone:_internalAddMessage",
-                                            "Banque",
-                                            ATM.Selected.phone_number,
-                                            "Votre nouveau code est " .. newCode,
-                                            false
-                                        )
-                                        TriggerServerEvent("gcPhone:allUpdate")
-                                        RageUI.Popup({message = "Réception du ~g~nouveau code~s~ sur votre télephone"})
-                                        TriggerServerEvent("newCode", newCode, Ora.Inventory.SelectedItem.data.number)
-                                        Ora.Inventory.SelectedItem.data.code = newCode
-                                    end
-                                end
-                            )
-                        end,
-                        function()
-                        end
-                    )
-                end
+RegisterNetEvent("Ora:Deposit")
+AddEventHandler("Ora:Deposit", function(amount, billList)
+    for k, v in pairs(m) do
+        local number = tonumber(billList[string.gsub(tostring(k), "dollar", "")])
+        if number ~= nil then
+            if number <= v.total then
+                v.index = number + 1
             end
         end
     end
-)
+    ATM.Selected = ATM.Accounts
+    if ((GetGameTimer() - GUI.Time) > 15000 ) then
+        GUI.Time = GetGameTimer()
+        ShowNotification(
+            "~g~Transaction bancaire en cours~w~\nContact du serveur bancaire"
+        )
+        TriggerServerCallback("Ora_banking:getRatiosForCard",
+            function(cardExist, maxDeposit, maxRemove, maxPayin, currentDeposit, currentRemove, currentPayin)
+                if (cardExist == false) then
+                    ShowNotification(
+                        "~g~💰 Dépot bancaire\n~s~Cette carte ne semble pas exister"
+                    )
+                else
+                    processDeposit = true
+                    if (processDeposit == true) then
+
+                        ShowNotification(
+                            "~g~💰 Dépot bancaire\n~s~" .. amount .. "$"
+                        )
+                        ATM.Selected.amount = ATM.Selected.amount + amount
+                        TriggerServerEvent(
+                            "Ora_bank:addMoneyToBankAccount",
+                            ATM.Selected.iban,
+                            amount
+                        )
+                        TriggerServerEvent(
+                            "newTransaction",
+                            "Espèces",
+                            ATM.Selected.iban,
+                            amount,
+                            "Dépôt d'argent à partir CB "..ATM.Cards.number,
+                            ""
+                        )
+                        local infoType = "info"
+                        if (amount < 5000) then
+                            infoType = "info"
+                        elseif (amount < 15000) then
+                            infoType = "success"
+                        elseif (amount < 30000) then
+                            infoType = "warning"
+                        else
+                            infoType = "error"
+                        end
+                        TriggerServerEvent(
+                            'Ora:sendToDiscord',
+                            25,
+                            "Dépôt ATM de $"
+                                ..amount
+                                    .. " sur le compte "
+                                        ..ATM.Selected.iban,
+                            infoType
+                        )
+                        local t = {}
+                        for k, v in pairs(m) do
+                            if #v.label > 1 then
+                                t[k] = v
+                            end
+                        end
+                        Ora.Payment:PayMoney(t)
+                        for k, v in pairs(m) do
+                            v.index = 1
+                        end
+                        GUI.Time = GetGameTimer()
+                    end
+                end
+                TriggerEvent("OraBankMenu:EventReturn", false)
+            end,
+            ATM.Cards.number
+        )
+    else
+        ShowNotification("~r~Tentative de spam~s~")
+    end
+end)
+
+RegisterNetEvent("Ora:Send")
+AddEventHandler("Ora:Send", function(amount, rib1, rib2)
+    ATM.Selected = ATM.Accounts
+    local finish = false
+    if rib1 == rib2 then
+        if amount ~= nil then
+            if amount <= ATM.Selected.amount then
+                TriggerServerCallback(
+                    "banksExists",
+                    function(bool)
+                        if bool then
+                            TriggerServerEvent(
+                                "bankingSendMoney",
+                                rib1,
+                                amount,
+                                ATM.Selected.iban
+                            )
+                            ShowNotification("Virement effectué vers " .. rib1 .. " " .. amount .. "$")
+                            TriggerServerEvent(
+                                "newTransaction",
+                                ATM.Selected.iban,
+                                rib1,
+                                amount,
+                                "Virement",
+                                "CB N° "..ATM.Cards.number
+                            )
+                        else
+                            ShowNotification("Le compte n'existe pas")
+                        end
+                    end,
+                    rib1
+                )
+            end
+            TriggerEvent("OraBankMenu:EventReturn", false)
+        end
+    else
+        ShowNotification("Les deux rib sont différents")
+    end
+end)
+
+RegisterNetEvent("Ora:NewCode")
+AddEventHandler("Ora:NewCode", function()
+    ATM.Selected = ATM.Accounts
+    math.randomseed(GetGameTimer())
+    local newCode = math.random(1111, 9999)
+    ShowNotification("Votre ~g~nouveau code~s~ est ~g~" .. newCode)
+    TriggerServerEvent("newCode", newCode, Ora.Inventory.SelectedItem.data.number)
+    print(Ora.Inventory.SelectedItem.data.code)
+    Ora.Inventory.SelectedItem.data.code = newCode
+    print(Ora.Inventory.SelectedItem.data.code)
+    TriggerEvent("OraBankMenu:EventReturn", false)
+end)
 
 local ThreadId = nil
 
@@ -2447,34 +2252,7 @@ function InitBankerJob()
     end)
 end
 
-Citizen.CreateThread(
-    function()
-        while true do
-            Wait(1000)
-            if RageUI.Visible(RMenu:Get("banking", "main_atm")) then
-                stillNear = IsNearATM()
-
-                if not stillNear then
-                    RageUI.Visible(RMenu:Get("banking", "main_atm"), false)
-                end
-            end
-        end
-    end
-)
-
-
 function getLastFourDigits(number)
     local lastFourDigits = string.sub(number, -4)
     return lastFourDigits
-end
-
-function mysplit (inputstr, sep)
-    if sep == nil then
-            sep = "%s"
-    end
-    local t={}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-        table.insert(t, str)
-    end
-    return t
 end

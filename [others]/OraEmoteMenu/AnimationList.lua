@@ -1907,7 +1907,7 @@ DP.Emotes = {
        PtfxName = "ent_anim_dog_peeing",
        PtfxNoProp = true,
        PtfxPlacement = {-0.05, 0.3, 0.0, 0.0, 90.0, 90.0, 1.0},
-       PtfxInfo = Config.Languages[Config.MenuLanguage]['pee'],
+    --    PtfxInfo = Config.Languages[Config.MenuLanguage]['pee'],
        PtfxWait = 3000,
    }},
 
@@ -2785,7 +2785,7 @@ DP.PropEmotes = {
        PtfxAsset = "scr_xs_celebration",
        PtfxName = "scr_xs_money_rain",
        PtfxPlacement = {0.0, 0.0, -0.09, -80.0, 0.0, 0.0, 1.0},
-       PtfxInfo = Config.Languages[Config.MenuLanguage]['makeitrain'],
+    --    PtfxInfo = Config.Languages[Config.MenuLanguage]['makeitrain'],
        PtfxWait = 500,
    }},
    ["champagnespray"] = {"anim@mp_player_intupperspray_champagne", "idle_a", "Champagne Spray", AnimationOptions =
@@ -2798,7 +2798,7 @@ DP.PropEmotes = {
        PtfxAsset = "scr_ba_club",
        PtfxName = "scr_ba_club_champagne_spray",
        PtfxPlacement = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-       PtfxInfo = Config.Languages[Config.MenuLanguage]['spraychamp'],
+    --    PtfxInfo = Config.Languages[Config.MenuLanguage]['spraychamp'],
        PtfxWait = 500,
    }},
    ["joint"] = {"amb@world_human_smoking@male@male_a@enter", "enter", "Joint", AnimationOptions =

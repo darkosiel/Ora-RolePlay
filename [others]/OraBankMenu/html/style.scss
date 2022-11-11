@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$color-ora-dark: #020202;
+$color-ora-dark-light: #131313;
+$color-ora-primary: #ececec;
+$color-ora-primary-light: rgba(236, 236, 236, 0.5);
+$color-ora-secondary: #d68c17;
+$color-ora-success: #00b300;
+$color-ora-error: #ff0000;
+
+* {
+    position: relative;
+    box-sizing: border-box;
+	color: $color-ora-primary;
+	font-family: 'Poppins', sans-serif;
+}
+
+.disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+body {
+    max-height: 100vh;
+    background: transparent;
+}
+
+button#button-switch {
+    background: $color-ora-secondary;
+    border: none;
+    color: $color-ora-primary;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#page {
+    opacity: 1;
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 740px;
+    overflow: hidden;
+    background-color: $color-ora-dark;
+    border-radius: 30px;
+    transition: all 0.5s ease-in-out;
+    div#menu-login {
+        display: block;
+        div#menu-login-icon {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            margin-left: 20px;
+            i {
+                font-size: 70px;
+                margin-right: 10px;
+            }
+            span {
+                font-size: 32px;
+                font-weight: 500;
+            }
+        }
+        div#menu-login-pad {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        form {
+            width: 300px;
+            input {
+                width: 100%;
+                height: 50px;
+                border: 2px solid $color-ora-primary-light;
+                font-size: 26px;
+                font-weight: 600;
+                text-align: center;
+                color: $color-ora-primary;
+                border-radius: 10px;
+                margin-bottom: 10px;
+                background-color: $color-ora-dark-light;
+                &:focus-visible, &:hover {
+                    outline: none;
+                    border-color: $color-ora-primary;
+                }
+            }
+            div#code-locker {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 70px;
+                        height: 70px;
+                        color: $color-ora-primary;
+                        background-color: $color-ora-dark-light;
+                        border: 2px solid $color-ora-primary-light;
+                        font-size: 26px;
+                        font-weight: 700;
+                        border-radius: 50%;
+                        margin: 5px;
+                        cursor: pointer;
+                        transition: all 0.2s ease-in-out;
+                        i {
+                            color: $color-ora-primary;
+                        }
+                        &:hover {
+                            color: $color-ora-dark;	
+                            background-color: #d7d7d7;
+                            i {
+                                color: $color-ora-dark;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    div#menu-bank {
+        display: none;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+    }
+    div#menu {
+        display: flex;
+        padding: 40px 50px;
+        width: 100%;
+        height: 100%;
+        div#navbar {
+            display: flex;
+            flex-direction: column;
+            row-gap: 40px;
+            padding: 10px;
+            width: 20%;
+            height: 100%;
+            div#navbar-icon {
+                display: flex;
+                align-items: center;
+                i {
+                    font-size: 50px;
+                    margin-right: 10px;
+                }
+                span {
+                    font-size: 22px;
+                    font-weight: 500;
+                }
+            }
+            ul#navbar-menu {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                li {
+                    cursor: pointer;
+                    margin-bottom: 15px;
+                    padding: 10px;
+                    border-radius: 5px;
+                    transition: all 0.2s ease-in-out;
+                    i {
+                        font-size: 22px;
+                        margin-right: 15px;
+                    }
+                    span {
+                        font-size: 22px;
+                        font-weight: 500;
+                    }
+                    &:hover, &.active {
+                        background-color: $color-ora-secondary;
+                        transform: translate(20px,0);
+                    }
+                }
+            }
+        }
+        div#separator {
+            display: block;
+            width: 5px;
+            height: 100%;
+            background-color: $color-ora-dark-light;
+            border-radius: 5px;
+            margin: 0 50px;
+        }
+        div.container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            column-gap: 20px;
+            row-gap: 20px;
+            width: 80%;
+            height: 100%;
+            div.content {
+                background-color: $color-ora-dark-light;
+                border-radius: 40px;
+                padding: 20px 30px;
+                height: min-content;
+                height: auto;
+                overflow: hidden;
+                width: calc(50% - 10px);
+                h1 {
+                    margin: 0;
+                    font-weight: 500;
+                    font-size: 36px;
+                }
+                p {
+                    width: 70%;
+                    margin: 30px 0;
+                }
+                i.background-icon {
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%) rotate(-15deg);
+                    position: absolute;
+                    font-size: 350px;
+                    color: $color-ora-dark-light;
+                    z-index: 0;
+                }
+                &.content-information {
+                    width: 100%;
+                    background: linear-gradient(45deg, $color-ora-dark-light 0%, $color-ora-dark 50%, $color-ora-dark-light 100%);
+                    i.icon-float {
+                        top: -20px;
+                        right: 210px;
+                        position: absolute;
+                        font-size: 100px;
+                        color: $color-ora-secondary;
+                        transform: rotate(35deg);
+                        text-shadow: 10px -10px 20px rgba(0, 0, 0, 0.6);
+                        &.icon-float-2 {
+                            font-size: 160px;
+                            top: 30px;
+                            right: -30px;
+                            transform: rotate(-20deg);
+                        }
+                        &.icon-float-3 {
+                            top: auto;
+                            bottom: -30px;
+                            right: 240px;
+                            font-size: 140px;
+                            transform: rotate(-35deg);
+                        }
+                    }
+                }
+                &.content-balance {
+                    background: linear-gradient(45deg, $color-ora-dark-light 0%, $color-ora-dark 100%);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    p {
+                        font-size: 60px;
+                        font-weight: 700;
+                        color: $color-ora-secondary;
+                        span {
+                            color: $color-ora-secondary;
+                        }
+                    }
+                }
+                &.content-card {
+                    background: linear-gradient(45deg, $color-ora-dark-light 0%, $color-ora-dark 50%, $color-ora-dark-light 100%);
+                    div.card {
+                        border: 4px solid transparent;
+                        transition: all 0.2s ease-in-out;
+                        border-radius: 20px;
+                        &:hover {
+                            transform: scale(1.03);
+                            border: 4px solid $color-ora-secondary;
+                        }
+                        img {
+                            width: 100%;
+                        }
+                        span {
+                            position: absolute;
+                            top: 51%;
+                            left: 20%;
+                            &#player-card-name {
+                                top: 70%;
+                            }
+                        }
+                    }
+                }
+                &.content-full {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    h1 {
+                        font-size: 50px;
+                        margin-bottom: 15px;
+                    }
+                    p {
+                        margin: 0;
+                        text-align: center;
+                        font-size: 24px;
+                        margin-bottom: 10px;
+                    }
+                    > div {
+                        display: flex;
+                        flex-direction: row;
+                        p {
+                            text-align: left;
+                            width: auto;
+                            margin-right: 40px;
+                        }
+                    }
+                    span {
+                        font-size: 22px;
+                    }
+                }
+                &.content-top {
+                    justify-content: flex-start !important;
+                    height: 100%;
+                }
+                div#history-container {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+                    width: 100%;
+                    height: auto;
+                    padding: 20px;
+                    overflow-y: auto;
+                    div.history-item {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        width: 100%;
+                        height: auto;
+                        background-color: $color-ora-secondary;
+                        padding: 10px;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        div {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: center;
+                            column-gap: 15px;
+                            transition: all 0.2s ease-in-out;
+                            &.history-item-titre, &.history-item-detail {
+                                max-height: 0;
+                                opacity: 0;
+                            }
+                        }
+                        &:hover {
+                            div.history-item-titre, div.history-item-detail {
+                                max-height: 33px;
+                                opacity: 1;
+                            }
+                        }
+                        p {
+                            margin: 0;
+                            font-size: 22px;
+                            font-weight: 500;
+                        }
+                        span {
+                            &.remove {
+                                color: $color-ora-error;
+                            }
+                            &.add {
+                                color: $color-ora-success;
+                            }
+                        }
+                    }
+                }
+            }
+            button {
+                padding: 10px 30px;
+                border-radius: 10px;
+                border: none;
+                background-color: $color-ora-secondary;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                &.button-submit {
+                    font-size: 30px;
+                    padding: 10px 100px;
+                    margin-top: 10px;
+                }
+            }
+            input.input-amount {
+                width: 400px;
+                padding: 10px;
+                border-radius: 10px;
+                border: 2px solid $color-ora-primary-light;
+                background-color: $color-ora-dark-light;
+                color: $color-ora-primary;
+                -webkit-appearance: none;
+                text-align: center;
+                font-size: 22px;
+                font-weight: 600;
+                margin-bottom: 30px;
+                &:focus, &:hover {
+                    outline: none;
+                    border-color: $color-ora-primary;
+                }
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                }
+            }
+            div.bill-amount {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                span {
+                    font-size: 22px;
+                }
+                i {
+                    padding: 12px;
+                    background-color: $color-ora-dark-light;
+                    border: 2px solid $color-ora-primary-light;
+                    border-radius: 50%;
+                    margin: 0 10px;
+                    cursor: pointer;
+                    transition: all 0.2s ease-in-out;
+                    &:hover {
+                        border-color:$color-ora-primary;
+                    }
+                }
+            }
+        }
+    }
+}
+
+*::-webkit-scrollbar {
+    width: 20px;
+}
+
+*::-webkit-scrollbar-track {
+    background: $color-ora-dark;
+    border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: $color-ora-primary;
+    border-radius: 20px;
+    border: 3px solid $color-ora-dark-light;
+}
