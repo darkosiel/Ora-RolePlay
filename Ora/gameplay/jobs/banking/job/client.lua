@@ -365,7 +365,7 @@ Citizen.CreateThread(
                                 if Selected then
                                     PretsTermine, PretsCours = nil, nil
                                     TriggerServerCallback("getLoansInfo", function(prets)
-                                        print(json.encode(prets))
+                                        --print(json.encode(prets))
                                         _, PretsCours = Format3(prets)
                                     end, 0)
                                 end
@@ -404,7 +404,7 @@ Citizen.CreateThread(
                                 for i = 1, #PretsCours, 1 do
                                     local firstname = "Citoyen"
                                     local lastname = "Expulsé"
-                                    print(json.encode(PretsCours[i]))
+                                    --print(json.encode(PretsCours[i]))
 
                                     local bankInfo = GetBankInfoFromID(PretsCours[i].account)
 
@@ -446,7 +446,7 @@ Citizen.CreateThread(
                                 for i = 1, #PretsTermine, 1 do
                                     local v = PretsTermine[i]
                                     local account = GetBankInfoFromID(v.account)
-                                    print("Account : ", json.encode(account))
+                                    --print("Account : ", json.encode(account))
                                     local uuid = account.uuid
                                     local identity = Identity[uuid]
                                     RageUI.Button(
@@ -662,7 +662,7 @@ Citizen.CreateThread(
                                                     }
                                                 )
                                                 local digits = getLastFourDigits(number)
-                                                print(digits)
+                                                --print(digits)
                                                 local items = {
                                                     name = "bank_card",
                                                     label = "CB #" .. digits,
@@ -2151,9 +2151,9 @@ AddEventHandler("Ora:NewCode", function()
     local newCode = math.random(1111, 9999)
     ShowNotification("Votre ~g~nouveau code~s~ est ~g~" .. newCode)
     TriggerServerEvent("newCode", newCode, Ora.Inventory.SelectedItem.data.number)
-    print(Ora.Inventory.SelectedItem.data.code)
+    --print(Ora.Inventory.SelectedItem.data.code)
     Ora.Inventory.SelectedItem.data.code = newCode
-    print(Ora.Inventory.SelectedItem.data.code)
+    --print(Ora.Inventory.SelectedItem.data.code)
     TriggerEvent("OraBankMenu:EventReturn", false)
 end)
 
