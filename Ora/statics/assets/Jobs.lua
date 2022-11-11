@@ -13066,8 +13066,8 @@ Jobs = {
     --     }
     -- }
     g6 = {
-        label = "Gruppe Seichs",
-        label2 = "Gruppe Seichs",
+        label = "Gruppe Sechs",
+        label2 = "Gruppe Sechs",
         iban = "g6",
         grade = {
             {
@@ -13140,7 +13140,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Gruppe Seichs",
+                title = "Gruppe Sechs",
                 subtitle = "Actions disponibles",
                 name = "g6_menujob"
             },
@@ -13151,7 +13151,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Gruppe Seichs", "Annonce", text, "CHAR_G6", 8, "Gruppe Seichs")
+                            TriggerServerEvent("Job:Annonce", "Gruppe Sechs", "Annonce", text, "CHAR_G6", 8, "Gruppe Sechs")
                         end
                     end
                 },
