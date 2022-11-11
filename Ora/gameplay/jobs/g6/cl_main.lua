@@ -69,7 +69,7 @@ function StartSessionThread(sessionData)
 					if distance < 25 then
 						DrawMarker(1, Current_Session_Data.depotCoords, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 0, 255, 0, 100, 0, 0, 0, 0)
 						if distance < 5.0  then
-							DisplayHelpText("Press ~INPUT_CONTEXT~ to get the cases in your trunk")
+							DisplayHelpText("Appuyez sur ~INPUT_CONTEXT~ pour charger les malettes dans votre coffre.")
 							if IsControlJustPressed(0, 51) then
 								TriggerServerEvent("g6:fillTheTrunk")
 							end
@@ -83,7 +83,7 @@ function StartSessionThread(sessionData)
 				if distanceToNextPoint <= 10.0 then
 					DrawMarker(1, table.unpack(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords), 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 255, 0, 0, 0, 0)
 					if distanceToNextPoint <= 2.0 then
-						DisplayHelpText("Press ~INPUT_CONTEXT~ to fill the ATM")
+						DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ pour remplir les ATMS.")
 						if IsControlJustPressed(0, 38) then
 							FillATM(Current_Session_Data)
 						end
@@ -197,50 +197,63 @@ local function getAtmInFrontOfMe()
 	local plyOffset = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2, 0.0)
 	local rayHandle = StartShapeTestCapsule(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 2.5, 16, PlayerPedId(), 0)
 	local retval, hit, endCoords, _, result = GetShapeTestResult(rayHandle)
-	print(retval, hit, endCoords, _, result)
 	return retval, hit, endCoords, _, result
 end
 
--- RegisterCommand("animAtm", function()
--- 	local timer = 0
--- 	local AnimTime = 10000
--- 	local dict, anim_intro, anim_loop = "mp_take_money_mg", "stand_cash_in_bag_intro", "stand_cash_in_bag_loop"
--- 	if not HasAnimDictLoaded(dict) then
--- 		RequestAnimDict(dict)
--- 		while not HasAnimDictLoaded(dict) do Citizen.Wait(1) end
--- 	end
+RegisterCommand("animAtm", function()
+	local timer = 0
+	local AnimTime = 10000
+	local dict, anim_intro, anim_loop = "mp_take_money_mg", "stand_cash_in_bag_intro", "stand_cash_in_bag_loop"
+	if not HasAnimDictLoaded(dict) then
+		RequestAnimDict(dict)
+		while not HasAnimDictLoaded(dict) do Citizen.Wait(1) end
+	end
 
--- 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
--- 	local _, _, _, _, atm = getAtmInFrontOfMe()
--- 	local pos = GetEntityCoords(atm, false)
--- 	local atmHeading = GetEntityHeading(atm)
--- 	local atmCoords = GetOffsetFromEntityInWorldCoords(atm, 0.0, -1.0, 0.0)
--- 	local groundZ = Player.Pos.z
+	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
+	local _, _, _, _, atm = getAtmInFrontOfMe()
+	if AtmModels[GetEntityModel(atm)] and #(GetEntityCoords(GetEntityModel(atm)) - v.coords) then
+		local pos = GetEntityCoords(atm, false)
+		local atmHeading = GetEntityHeading(atm)
+		local atmForwardVector = GetEntityForwardVector(atm)
+		local atmCoords = GetEntityCoords(atm, false) + atmForwardVector * - 1.0
+		local groundZ = Player.Pos.z
 
--- 	if #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) > 0.02 then
--- 		TaskGoStraightToCoord(Player.Ped, atmCoords.x, atmCoords.y, groundZ, 0.8, 1000, atmHeading, 0.0)
--- 		print("hello")
--- 	end
--- 	repeat
--- 		Citizen.Wait(10.0)
--- 		print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
--- 	until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
--- 	SetEntityHeading(Player.Ped, atmHeading)
--- 	Citizen.Wait(500.0)
--- 	TaskPlayAnim(Player.Ped, dict, anim_loop, 8.0, 8.0, AnimTime, 17, 1, 0, 0, 0)
--- 	--TaskPlayAnimAdvanced(Player.Ped, dict, anim_loop, atmCoords.x, atmCoords.y, groundZ, 0.0, 0.0, Player.Heading , 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
--- 	repeat
--- 		timer = timer + 1000
--- 		Wait(1000)
--- 	until not IsEntityPlayingAnim(Player.Ped, dict, anim_loop, 3)
+		if #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) > 0.02 then
+			TaskGoStraightToCoord(Player.Ped, atmCoords.x, atmCoords.y, groundZ, 0.8, 1000, atmHeading, 0.0)
+			print("hello")
+		end
+		repeat
+			Citizen.Wait(10.0)
+			print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
+		until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
+		SetEntityHeading(Player.Ped, atmHeading)
+		Citizen.Wait(1500.0)
+		TaskPlayAnim(Player.Ped, dict, anim_loop, 8.0, 8.0, AnimTime, 17, 1, 0, 0, 0)
+		--TaskPlayAnimAdvanced(Player.Ped, dict, anim_loop, atmCoords.x, atmCoords.y, groundZ, 0.0, 0.0, Player.Heading , 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
+		repeat
+			timer = timer + 1000
+			Wait(1000)
+		until not IsEntityPlayingAnim(Player.Ped, dict, anim_loop, 3)
 
 
--- 	if timer < AnimTime then
--- 		ShowNotification("~r~Vous avez interrompu l'action. Veillez à ne pas interrompre l'animation.")
--- 		return
--- 	end
--- 	ShowNotification("YOUHOU")
--- end)
+		if timer < AnimTime then
+			ShowNotification("~r~Vous avez interrompu l'action. Veillez à ne pas interrompre l'animation.")
+			return
+		end
+		ShowNotification("YOUHOU")
+	else
+		ShowNotification("~r~Vous devez être devant un ATM")
+	end
+end)
+
+
+RegisterCommand("getAtmHeading", function()
+	local _, _, _, _, atm = getAtmInFrontOfMe()
+	local atmHeading = GetEntityHeading(atm)
+	local forwardVector = GetEntityForwardVector(atm)
+	local atmCoords = GetOffsetFromEntityInWorldCoords(atm, 0.0, -1.0, 0.0)
+	print(atmHeading, LocalPlayer().Heading)
+end)
 
 RegisterNetEvent("g6:fillATM")
 AddEventHandler("g6:fillATM", function()
@@ -253,8 +266,6 @@ AddEventHandler("g6:fillATM", function()
 		ShowNotification("Vous n'êtes pas à la bonne position pour remplir l'ATM")
 		return
 	end
-
-
 
 	-- Check if the ATM is in the right position
 	local distanceToATM = #(Player.Pos - vector3(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.x, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.y, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.z))
@@ -275,7 +286,7 @@ AddEventHandler("g6:fillATM", function()
 end)
 
 RegisterNetEvent("g6:fillATM_cb", function()
-	print("Player been authorized to fill the ATM")
+	--print("Le joueur a été autorisé à remplir l'ATM.")
 
 	-- Play an animation for about 20 seconds
 	local timer = 0
@@ -286,47 +297,53 @@ RegisterNetEvent("g6:fillATM_cb", function()
 		while not HasAnimDictLoaded(dict) do Citizen.Wait(1) end
 	end
 
+	local currentAtm = Current_Session_Data.route[Current_Session_Data.currentRouteStop]
+	
 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
 	local _, _, _, _, atm = getAtmInFrontOfMe()
-	local pos = GetEntityCoords(atm, false)
-	local atmHeading = GetEntityHeading(atm)
-	local atmCoords = GetOffsetFromEntityInWorldCoords(atm, 0.0, -1.0, 0.0)
-	local groundZ = Player.Pos.z
+	local distanceToATM = #( - vector3(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.x, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.y, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.z))
+	if AtmModels[GetEntityModel(atm)] and distanceToATM < 0.5 then
+		local pos = GetEntityCoords(atm, false)
+		local atmHeading = GetEntityHeading(atm)
+		local atmCoords = GetOffsetFromEntityInWorldCoords(atm, 0.0, -1.0, 0.0)
+		local groundZ = Player.Pos.z
 
-	if #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) > 0.02 then
-		TaskGoStraightToCoord(Player.Ped, atmCoords.x, atmCoords.y, groundZ, 0.8, 1000, atmHeading, 0.0)
-		print("hello")
+		if #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) > 0.02 then
+			TaskGoStraightToCoord(Player.Ped, atmCoords.x, atmCoords.y, groundZ, 0.8, 1000, atmHeading, 0.0)
+		end
+		repeat
+			Citizen.Wait(10.0)
+			print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
+		until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
+		SetEntityHeading(Player.Ped, atmHeading)
+
+		Citizen.Wait(500.0)
+
+		TaskPlayAnim(Player.Ped, dict, anim_loop, 8.0, 8.0, AnimTime, 17, 1, 0, 0, 0)
+		--TaskPlayAnimAdvanced(Player.Ped, dict, anim_loop, atmCoords.x, atmCoords.y, groundZ, 0.0, 0.0, Player.Heading , 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
+		repeat
+			timer = timer + 1000
+			Wait(1000)
+		until not IsEntityPlayingAnim(Player.Ped, dict, anim_loop, 3)
+
+
+		if timer < AnimTime then
+			ShowNotification("~r~Vous avez interrompu l'action. Veillez à ne pas interrompre l'animation.")
+			return
+		end
+		ShowNotification("~g~Vous avez rempli l'ATM. Allez au prochain ATM.")
+
+		Ora.Inventory:RemoveFirstItem(ITEM_NAME_FOR_CASES)
+
+		-- Update the current point of the route
+		TriggerServerEvent("g6:nextRouteStop")
+	else
+		ShowNotification("~r~Vous devez être devant l'ATM.")
 	end
-	repeat
-		Citizen.Wait(10.0)
-		print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
-	until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
-	SetEntityHeading(Player.Ped, atmHeading)
-
-	Citizen.Wait(500.0)
-
-	TaskPlayAnim(Player.Ped, dict, anim_loop, 8.0, 8.0, AnimTime, 17, 1, 0, 0, 0)
-	--TaskPlayAnimAdvanced(Player.Ped, dict, anim_loop, atmCoords.x, atmCoords.y, groundZ, 0.0, 0.0, Player.Heading , 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
-	repeat
-		timer = timer + 1000
-		Wait(1000)
-	until not IsEntityPlayingAnim(Player.Ped, dict, anim_loop, 3)
-
-
-	if timer < AnimTime then
-		ShowNotification("~r~Vous avez interrompu l'action. Veillez à ne pas interrompre l'animation.")
-		return
-	end
-	ShowNotification("~g~Vous avez rempli l'ATM. Allez au prochain ATM.")
-
-	Ora.Inventory:RemoveFirstItem(ITEM_NAME_FOR_CASES)
-
-	-- Update the current point of the route
-	TriggerServerEvent("g6:nextRouteStop")
 end)
 
 RegisterNetEvent("g6:fillTheTrunk_cb", function(qty)
-	print("Player been authorized to fill the trunk")
+	--print("Player been authorized to fill the trunk")
 	Citizen.Wait(1000)
 	ShowNotification("~g~Vous avez rempli le coffre du stockade. Allez au prochain point de livraison.")
 	RemoveBlip(Current_Blip)
@@ -473,7 +490,7 @@ AddEventHandler("Ora::CE::PlayerLoaded", function()
 						if #(Player.Pos - v.pos) < v.radius*5 then
 							--DrawMarker(1, v.pos.x, v.pos.y, v.pos.z, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0)
 							if #(Player.Pos - v.pos) < v.radius then
-								DisplayHelpText("Press ~INPUT_CONTEXT~ to "..v.name)
+								DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ to "..v.name)
 								if IsControlJustPressed(0, 38) then
 									v.onPressAction()
 								end
@@ -608,7 +625,7 @@ Citizen.CreateThread(function()
 		local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
 		--SetBlipHiddenOnLegend(blip, true)
 		SetBlipSprite(blip, 434)
-		
+
 		SetBlipScale(blip, 0.6)
 		SetBlipDisplay(blip, 5)
 		SetBlipAsFriendly(blip, true)
@@ -637,18 +654,18 @@ local function Start()
 	Citizen.CreateThread(function()
 		local Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
 		function SetCamCoordsRelitavely(cam, coords, rotation)
-			
+
 			-- calculate forward vector base on coords and rotation
 			local forward = vector3( math.sin(math.rad(rotation.z)) * math.abs(math.cos(math.rad(rotation.x))), math.cos(math.rad(rotation.z)) * math.abs(math.cos(math.rad(rotation.x))), math.sin(math.rad(rotation.x)))
-			
+
 			local target = coords + forward * 2.5
-			
+
 			SetCamCoord(cam, coords)
 			PointCamAtCoord(cam, target)
 			SetCamRot(cam, rotation, 2)
 			SetCamFov(cam, 60.0)
 		end
-		
+
 		local coords = currentAtm.coords
 		local heading = currentAtm.heading
 		local fov = currentAtm.fov
