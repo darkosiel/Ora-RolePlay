@@ -947,6 +947,9 @@ ItemsFunction = {
             function()
                 local animDict = "move_crouch_proto"
                 local dispatchMessage = "Un fou viens de mettre le feu ici, venez vite !"
+                local plyPos = LocalPlayer().Pos
+                local street, crossing = GetStreetNameAtCoord(plyPos.x, plyPos.y, plyPos.z)
+                local names = GetStreetNameFromHashKey(street) .. (crossing ~= 0 and (" / " .. GetStreetNameFromHashKey(crossing)) or "") 
 
                 Ora.Inventory:RemoveFirstItem("allumette")
                 TriggerEvent("Ora:hideInventory")
@@ -958,6 +961,12 @@ ItemsFunction = {
                 Wait(2000)
                 TriggerServerEvent('fireManager:command:startfire', GetEntityCoords(LocalPlayer().Ped) + GetEntityForwardVector(LocalPlayer().Ped), 2, 75, true, nil)
                 RageUI.Popup({message = "~r~Vous avez allumé un feu espèce de pyromane !"})
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    "Feu",
+                    "Viens d'allumer un feu avec une allumette. \n Position : ".. plyPos .. "\n("..names..").", 
+                    "info"
+                )
             end
         )
     end,
@@ -966,6 +975,9 @@ ItemsFunction = {
             function()
                 local animDict = "cover@first_person@weapon@grenade"
                 local dispatchMessage = "Un fou viens de mettre le feu ici, venez vite !"
+                local plyPos = LocalPlayer().Pos
+                local street, crossing = GetStreetNameAtCoord(plyPos.x, plyPos.y, plyPos.z)
+                local names = GetStreetNameFromHashKey(street) .. (crossing ~= 0 and (" / " .. GetStreetNameFromHashKey(crossing)) or "") 
                 
                 Ora.Inventory:RemoveFirstItem("molotovartisanal")
                 TriggerEvent("Ora:hideInventory")
@@ -977,6 +989,12 @@ ItemsFunction = {
                 Wait(2000)
                 TriggerServerEvent('fireManager:command:startfire', GetEntityCoords(LocalPlayer().Ped) + (GetEntityForwardVector(LocalPlayer().Ped) * 5), 5, 90, true, nil)
                 RageUI.Popup({message = "~r~Vous avez allumé un feu espèce de pyromane !"})
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    "Feu",
+                    "Viens d'allumer un feu avec un molotov artisanal. \n Position : ".. plyPos .. "\n("..names..").", 
+                    "info"
+                )
             end
         )
     end,
