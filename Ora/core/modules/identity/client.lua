@@ -112,7 +112,7 @@ RegisterNetEvent("Ora::CE::Identity:SetUuid")
 AddEventHandler(
   "Ora::CE::Identity:SetUuid",
   function(uuid)
-    print("Received my UUID", uuid)
+    --print("Received my UUID", uuid)
     PlyUuid = uuid
   end
 )

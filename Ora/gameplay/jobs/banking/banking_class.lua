@@ -228,7 +228,7 @@ RegisterServerCallback(
     "banksExists",
     function(source, callback, name)
         MySQL.Async.fetchAll(
-            "SELECT * FROM banking_account WHERE iban = @name",
+            "SELECT uuid FROM banking_account WHERE iban = @name",
             {
                 ["@name"] = name
             },
@@ -284,7 +284,7 @@ RegisterServerCallback(
 )
 
 RegisterServerCallback("getBanksSummaryInfo", function(source, cb)
-    local bankInfos = MySQL.Sync.fetchAll("SELECT id, label, amount, uuid FROM banking_account")
+    local bankInfos = MySQL.Sync.fetchAll("SELECT id, label, amount, iban, uuid FROM banking_account")
     local accountsOwnerDetails = MySQL.Sync.fetchAll("SELECT uuid, first_name, last_name FROM players_identity WHERE uuid IN (SELECT uuid FROM banking_account WHERE uuid IS NOT NULL)")
     cb(bankInfos, accountsOwnerDetails)
 end)
