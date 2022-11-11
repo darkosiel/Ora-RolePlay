@@ -4187,6 +4187,166 @@ div#page {
                                     }
                                 }
                             }
+                            &#app-bank {
+                                div.app-body, div.app-tab {
+                                    transition: background-color 0.3s ease-in-out;
+                                    @include themed() {
+                                        background-color: t($phone-bank-background-color);
+                                    }
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            height: 130px;
+                                            @include themed() {
+                                                background-color: t($phone-bank-background-color);
+                                            }
+                                            div.app-body-content-header-title {
+                                                i {
+                                                    font-size: 50px;
+                                                    margin-right: 15px;
+                                                }
+                                                span, i {
+                                                    @include themed() {
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                    &.app-body-content-header-title-app {
+                                                        font-size: 38px;
+                                                    }
+                                                    &.app-body-content-header-title-tab {
+                                                        font-size: 34px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 130px);
+                                            div.bank-content {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: center;
+                                                row-gap: 15px;
+                                                margin-bottom: 20px;
+                                                padding: 30px 20px;
+                                                border-radius: 15px;
+                                                overflow: hidden;
+                                                @include themed() {
+                                                    background: linear-gradient(45deg, t($phone-bank-background-color-light) 0%, t($phone-bank-background-color) 100%);
+                                                }
+                                                i {
+                                                    left: 50%;
+                                                    top: 50%;
+                                                    -webkit-transform: translate(-50%, -50%) rotate(-15deg);
+                                                    transform: translate(-50%, -50%) rotate(-15deg);
+                                                    position: absolute;
+                                                    font-size: 250px;
+                                                    z-index: 0;
+                                                    @include themed() {
+                                                        color: t($phone-bank-background-color-light);
+                                                    }
+                                                }
+                                                h1 {
+                                                    font-size: 26px;
+                                                    font-family: $ora-font-bold;
+                                                    @include themed() {
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                }
+                                                span {
+                                                    font-size: 30px;
+                                                    font-family: $ora-font-bold;
+                                                    @include themed() {
+                                                        color: t($phone-bank-active-color);
+                                                    }
+                                                    &#bank-content-solde {
+                                                        font-size: 48px;
+                                                    }
+                                                }
+                                            }
+                                            div.bank-list {
+                                                display: flex;
+                                                flex-direction: column;
+                                                row-gap: 15px;
+                                                width: 100%;
+                                                height: auto;
+                                                padding: 20px;
+                                                overflow-y: auto;
+                                                div.bank-list-item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: space-between;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    padding: 10px;
+                                                    border-radius: 10px;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        background-color: t($phone-bank-active-color);
+                                                    }
+                                                    div {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: space-between;
+                                                        align-items: center;
+                                                        column-gap: 15px;
+                                                        transition: all 0.2s ease-in-out;
+                                                        &.history-item-titre, &.history-item-detail {
+                                                            max-height: 0;
+                                                            opacity: 0;
+                                                        }
+                                                        div {
+                                                            flex-direction: column;
+                                                            align-items: flex-start;
+                                                            &:last-child {
+                                                                align-items: flex-end;
+                                                            }
+                                                        }
+                                                    }
+                                                    &:hover {
+                                                        div.history-item-titre, div.history-item-detail {
+                                                            max-height: 33px;
+                                                            opacity: 1;
+                                                        }
+                                                    }
+                                                    p {
+                                                        margin: 0;
+                                                        font-size: 22px;
+                                                        font-weight: 500;
+                                                    }
+                                                    span {
+                                                        font-size: 20px;
+                                                        &.remove {
+                                                            color: $color-ora-error;
+                                                        }
+                                                        &.add {
+                                                            color: $color-ora-success;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                div.app-body {
+                                    height: calc(100% - 70px);
+                                }
+                                div.app-tab {
+                                    height: 70px;
+                                    div.app-tab-button {
+                                        padding: 10px;
+                                        border-radius: 10px;
+                                        transition: all 0.3s ease-in-out;
+                                        &.active {
+                                            @include themed() {
+                                                background-color: t($phone-bank-active-color);
+                                            }
+                                        }
+                                        span, i {
+                                            @include themed() {
+                                                color: t($phone-system-color-white);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         #notification-container {
                             width: 100%;
@@ -4905,6 +5065,51 @@ div#page {
             object-fit: cover;
         }
     }
+    div#phone-popup {
+        position: absolute;
+        display: block;
+        bottom: -100px;
+        right: 40px;
+        width: auto;
+        height: 70px;
+        padding: 0 30px;
+        border-radius: 15px;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        @include themed() {
+            background-color: t($phone-system-color-black);
+        }
+        &.active {
+            opacity: 0.8;
+            bottom: 40px;
+        }
+        &.error {
+            @include themed() {
+                background-color: t($phone-system-color-red);
+            }
+        }
+        div.phone-popup-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: auto;
+            height: 100%;
+            span {
+                font-size: 18px;
+                @include themed() {
+                    color: t($phone-system-color-white);
+                }
+                &.phone-popup-title {
+                    font-size: 20px;
+                    font-family: $ora-font-bold;
+                    i {
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 #add-notification, #add-call, #refresh-contacts, #save-home {
@@ -5046,15 +5251,15 @@ div#phone-screen-content {
             @include themed() {
                 background-color: t($phone-bank-background-color) !important;
             }
-            div#phone-screen-content-footer, div#phone-screen-content-header {
+        }
+        div#phone-screen-content-footer, div#phone-screen-content-header {
+            @include themed() {
+                background-color: t($phone-bank-background-color) !important;
+                color: t($phone-system-color-white) !important;
+            }
+            div#phone-screen-content-footer-bar {
                 @include themed() {
-                    background-color: t($phone-bank-background-color) !important;
-                    color: t($phone-system-color-white) !important;
-                }
-                div#phone-screen-content-footer-bar {
-                    @include themed() {
-                        background-color: t($phone-bank-background-color) !important;
-                    }
+                    background-color: t($phone-system-color-white) !important;
                 }
             }
         }

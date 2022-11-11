@@ -39,6 +39,7 @@ let lockIconSnoozeEffect = false;
 let contextMenuItemClicked;
 let notificationMode = "normal"; // normal / nosound / none
 let phoneActive = false;
+let phonePopupActive = false;
 let phoneTest = false;
 
 // App Home
@@ -163,6 +164,9 @@ $(function(){
                 switch(item.type) {
                     case "oraPhoneUI":
                         displayPhone(item.display);
+                        break;
+                    case "phoneDisabled":
+                        showPopup("Téléphone désactivé", "Activé le !", "error", 4000);
                         break;
                     case "updateUserData":
                         await updateUserData(item.data);
@@ -314,7 +318,7 @@ $(function(){
                     unlockPhone();
                 }
                 // Touche Echap pour fermer le téléphone
-                if (data.which == 27) {
+                if (data.which == 27 || (data.which == 8 && menuSelected == "home")) {
                     $.post('https://OraPhone/phone_close', JSON.stringify({}));
                 }
             }
@@ -1524,7 +1528,6 @@ function initializeAppMaps() {
     const scale_y = 0.0205;
     const southWest = new L.LatLng(-4050, 6680);
     const northEast = new L.LatLng(8429.268292682927, -5650);
-
     let CUSTOM_CRS = L.extend({}, L.CRS.Simple, {
         projection: L.Projection.LonLat,
         scale: function(zoom) {
@@ -1563,16 +1566,13 @@ function initializeAppMaps() {
     map.on('drag', function() {
         map.panInsideBounds(bounds, { animate: false });
     }); 
-
     markerMyPosition = L.marker([0, 0], {icon: customIcon("6")}).addTo(map).bindPopup("Ma position");
-
     for (let blip of Blips) {
         let marker = L.marker([blip.Pos.y, blip.Pos.x], {icon: customIcon(blip.sprite), riseOnHover: true}).addTo(map).bindPopup(blip.name);
         marker.on("click", function() {
             map.setView([blip.Pos.y, blip.Pos.x], 4);
         });
     }
-
     $("#map-tool-button").click(function() {
         $("#map-tool-container").toggleClass("active");
     });
@@ -1596,13 +1596,17 @@ function initializeAppMaps() {
             }
         }
     });
+    for (let icon of markerIcons) {
+        let newIcon = '<div data-id="' + icon + '" class="map-add-marker-container-icon-list-item"><img src="assets/images/apps/maps/marker-icons/' + icon + '.png"/></div>';
+        $("#map-add-marker-container-icon-list").append(newIcon);
+    }
     $("#map-add-marker-container-button-add").click(function() {
         let markerName = "Position";
         let markerIcon = "162";
         if ($("#map-add-marker-container-name").val() != "") {
             markerName = $("#map-add-marker-container-name").val();
         }
-        for (let icon of $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item")) {
+        for (let icon of document.querySelectorAll(".map-add-marker-container-icon-list-item")) {
             if ($(icon).hasClass("active")) {
                 markerIcon = $(icon).data("id");
                 break;
@@ -1611,10 +1615,6 @@ function initializeAppMaps() {
         $.post('https://OraPhone/maps_favorite_add_marker', JSON.stringify({ phoneId: userData.phone.id, name: markerName, icon: markerIcon }));
         $("#map-add-marker-container").removeClass("active");
     });
-    for (let icon of markerIcons) {
-        let newIcon = '<div data-id="' + icon + '" class="map-add-marker-container-icon-list-item"><img src="assets/images/apps/maps/marker-icons/' + icon + '.png"/></div>';
-        $("#map-add-marker-container-icon-list").append(newIcon);
-    }
     $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item").click(function() {
         $("#map-add-marker-container-icon-list .map-add-marker-container-icon-list-item").removeClass("active");
         $(this).addClass("active");
@@ -3121,7 +3121,7 @@ function displayTopbar() {
     }
 }
 
-// Notification
+/* Notification */
 
 function addNotification(app, appSub, time, title, message, data, avatar = false) {
     if (notificationMode == "none" || !phoneActive) {
@@ -3292,7 +3292,26 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
     }, 25);
 }
 
-// Fonctions diverses
+function showPopup(title, message, type, time) {
+    if (phonePopupActive) {
+        return;
+    }
+    phonePopupActive = true;
+    let divPopup = `<div id="phone-popup" class="${type}"><div class="phone-popup-content"><span class="phone-popup-title"><i class="fas fa-exclamation-circle"></i>${title}</span><span class="phone-popup-message">${message}</span></div></div>`;
+    $("#page").append(divPopup);
+    setTimeout(function() {
+        $("#phone-popup").addClass("active");
+        setTimeout(function() {
+            $("#phone-popup").removeClass("active");
+            setTimeout(function() {
+                $("#phone-popup").remove();
+                phonePopupActive = false;
+            }, 300);
+        }, time);
+    }, 50);
+}
+
+/* Fonctions diverses */
 
 function dynamicSort(property) {
     let sortOrder = 1;
