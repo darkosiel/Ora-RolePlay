@@ -1525,6 +1525,21 @@ Jobs = {
                 Name = "coffre_tatoo4"
             }
         },
+        garage = {
+            Name = "Garage Tatoueur",
+            Pos = {x = 1316.29, y = -1665.51, z = 51.23},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 1316.29, y = -1665.51, z = 51.23, h = 221.53}
+            },
+            Blipdata = {
+                Pos = {x = 1316.29, y = -1665.51, z = 51.23},
+                Blipcolor = 5,
+                Blipname = "Garage tatoueur"
+            }
+        },
         Menu = {
             menu = {
                 title = "Tatoueur",
