@@ -1067,7 +1067,7 @@ Citizen.CreateThread(
                                             --     end
                                             -- )
 
-                                            RageUI.GoBack()
+                                            RageUI.CloseAll()
                                             v = nil
                                             ShowNotification("Compte ~r~cloturé")
                                         end
@@ -1089,10 +1089,9 @@ Citizen.CreateThread(
                                 end,
                                 RMenu:Get("banks", "historiques")
                             )
-                            local label1 =
-                                v.coowner ~= nil and "Modifier le co-propriétaire" or "Ajouter un co-propriétaire"
+                            
                             RageUI.Button(
-                                label1,
+                                v.coowner ~= nil and "Modifier le co-propriétaire" or "Ajouter un co-propriétaire",
                                 nil,
                                 {},
                                 true,
