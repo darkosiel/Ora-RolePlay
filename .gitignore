@@ -35,8 +35,7 @@ loadscreen/
 Ora/core/test.cfg
 Ora/whitelist.json
 Ora/gameplay/jobs/fueler/station.json
-Ora/gameplay/jobs/g6/atm.json
-Ora/gameplay/jobs/g6/atms.json
+Ora/gameplay/jobs/g6/old_atm.json
 [devtool]/anim-viewer/**/*
 [cfx-server-data]/**/*
 \[Ora-Extra\]/
