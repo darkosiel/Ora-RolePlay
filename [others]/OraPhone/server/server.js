@@ -462,6 +462,7 @@ async function refreshContacts(data) {
     const defaultContacts = [
         { id: -1, phoneId: data.phoneId, name: "LSPD", number: "police", avatar: "Law_and_order_35" },
         { id: -1, phoneId: data.phoneId, name: "BCSO", number: "lssd", avatar: "Law_and_order_3" },
+        { id: -1, phoneId: data.phoneId, name: "Group 6", number: "g6", avatar: "g6-icon" },
         { id: -1, phoneId: data.phoneId, name: "SAMS/LSFD", number: "lsms/lsfd", avatar: "Pharmacy_20" },
         { id: -1, phoneId: data.phoneId, name: "Weazel News", number: "journaliste", avatar: "Creative_Design_2" },
         { id: -1, phoneId: data.phoneId, name: "LS Customs", number: "mecano", avatar: "Cars_14" },
@@ -855,6 +856,7 @@ onNet('OraPhone:server:add_message', async (data) => {
     await crud.messages.create({ idConversation: data.conversationId, sourceNumber: data.number, message: data.message });
     let dateNow = new Date().toLocaleString('en-CA', { dateStyle: 'short', timeStyle: 'medium', hour12: false });
     dateNow = dateNow.replaceAll(",", "");
+    dateNow = dateNow.replace(" 24:", " 00:");
     let conversationResponse = await crud.conversations.read({ id: data.conversationId });
     let contactList = JSON.parse(conversationResponse[0].targetNumber);
     for (let contact of contactList) {
