@@ -682,6 +682,10 @@ function initializeAppMessage() {
         $("#app-message-body-content-list-search").val("");
         $("#message-list .app-body-content-body-list-item").css("display", "flex");
     });
+    $("#app-message-body-content-newmessage-search-reset").click(function() {
+        $("#app-message-body-content-newmessage-search").val("");
+        $("#newmessage-list .newmessage-list-item").css("display", "flex");
+    });
     $("#message-position-button-show").click(function () {
         $("#app-message-position").toggleClass("active");
     })
@@ -2368,7 +2372,7 @@ function updateWallpaper() {
             }
         }
     } else if(wallpaperLockActive.length > 0) {
-        $("#phone-screen").css("background-image", "url(" + wallpaperLockActive + ")");
+        $("#phone-lock").css("background-image", "url(" + wallpaperLockActive + ")");
     }
 }
 
@@ -4162,6 +4166,9 @@ const config = {
         },
         {
             "title": "Creative_Design_49"
+        },
+        {
+            "title": "g6-icon"
         },
         {
             "title": "Law_and_order_1"

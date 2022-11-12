@@ -61,7 +61,9 @@ async function setPhoneVisible(visible = true) {
             // sprint
             EnableControlAction(1, 21);
             // right click to switch focus back on ui
-            EnableControlAction(1, 25);
+            // EnableControlAction(1, 25);
+            // enter vehicule
+            EnableControlAction(1, 23);
             EnableControlAction(1, 27);
             // move
             EnableControlAction(1, 30);EnableControlAction(1, 31);EnableControlAction(1, 32);EnableControlAction(1, 33);EnableControlAction(1, 34);EnableControlAction(1, 35);
