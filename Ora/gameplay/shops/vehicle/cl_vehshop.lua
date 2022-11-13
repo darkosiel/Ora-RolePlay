@@ -422,7 +422,7 @@ local VehShop =
 
                 },
                 ["SAMS"] = {
-                    {name = "samsbison", price = 25000},
+                    {name = "samsbisonamb", price = 25000},
                     {name = "samscara", price = 25000},
                     {name = "samsroamer", price = 25000},
                     {name = "samsspeedoamb", price = 25000},

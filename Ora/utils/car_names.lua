@@ -106,6 +106,10 @@ Citizen.CreateThread(function()
     AddTextEntry("ARGENTO", "Obey Argento")
     AddTextEntry("pdumkstx", "Buffalo UMK 2018")
 
+    -- Véhicule G6
+    AddTextEntry("g6scout", "Scout G6")
+    AddTextEntry("g6buffalo", "Buffalo G6")
+
     -- Vehicule Gouvernement
 
     AddTextEntry("pressuv", "Granger V.I.P")
@@ -120,16 +124,6 @@ Citizen.CreateThread(function()
     AddTextEntry("polnspeedo", "Speedo USSS")
 
     -- Véhicule BCSO
+    AddTextEntry("bcsostanier", "Stanier BCSO")
 
-    -- AddTextEntry("bcsostanier", "Stanier BCSO")
-    -- AddTextEntry("bcsostanier2", "Stanier BCSO")
-    -- AddTextEntry("bcsoscout", "Scout BCSO")
-    -- AddTextEntry("bcsofugitive", "Fugitive BCSO")
-    -- AddTextEntry("bcsosandking", "Sandking BCSO")
-    -- AddTextEntry("bcsocara", "Caracara BCSO")
-    -- AddTextEntry("bcsobison", "Bison BCSO")
-    -- AddTextEntry("bcsogranger", "Granger BCSO")
-    -- AddTextEntry("bcsogranger2", "Granger BCSO")
-    -- AddTextEntry("bcsogranger3", "Granger BCSO")
-    -- AddTextEntry("bcsogranger4", "Granger BCSO")
 end)
