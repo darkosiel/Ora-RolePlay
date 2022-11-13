@@ -141,6 +141,18 @@ RMenu.Add(
 
 RMenu.Add(
     "personnal",
+    "settings_organisation_influence",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "settings_organisation"), "Paramètres", "Faction > Influence")
+)
+
+RMenu.Add(
+    "personnal",
+    "settings_orga_influence_zone",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "settings_organisation_influence"), "Paramètres", "Faction > Influence sur zone")
+)
+
+RMenu.Add(
+    "personnal",
     "settings_organisation_members",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "settings_organisation"), "Paramètres", "Faction > Membres")
 )
@@ -1241,6 +1253,255 @@ Citizen.CreateThread(
                 )
             end
 
+            if RageUI.Visible(RMenu:Get("personnal", "settings_organisation_influence")) then
+                if (IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS ~= nil) then
+                    IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS = nil
+                end
+                RageUI.DrawContent({header = true, glare = true},
+                    function()
+                        local zones = Ora.DrugDealing:GetZones()
+                        for key, value in ipairs(zones) do
+                            RageUI.Button(
+                                value.name,
+                                "Influence à " .. value.name,
+                                {
+                                    RightLabel = " →"
+                                },
+                                true,
+                                function(_, _, Selected)
+                                    if (Selected) then
+                                        IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS = key
+                                    end
+                                end,
+                                RMenu:Get("personnal", "settings_orga_influence_zone")
+                            )
+                        end
+                    end
+                )
+            end
+            
+            if RageUI.Visible(RMenu:Get("personnal", "settings_orga_influence_zone")) then
+                RageUI.DrawContent({header = true, glare = true},
+                    function()
+                        local zoneId = IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS
+                        local zone = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                        local zoneName = Ora.DrugDealing:GetZones()[zoneId].name
+                        RageUI.Button(
+                            "Influence à " .. zoneName .. " : " .. zone.influence .. "%",
+                            nil,
+                            {},
+                            true,
+                            function(_, _, _)
+                            end
+                        )
+                        RageUI.Button(
+                            "Monopole : " .. (zone.monopoly and "Actif" or "Inactif"),
+                            nil,
+                            {},
+                            true,
+                            function(_, _, _)
+                            end
+                        )
+                        local modif = (zone.priceModifier - 1)*100
+                        RageUI.Button(
+                            "Influence sur les prix : " .. modif .. "%" .. (zone.double and " x 2" or ""),
+                            nil,
+                            {},
+                            true,
+                            function(_, _, _)
+                            end
+                        )
+                        RageUI.Button(
+                            "Vendre génère de l'influence : " .. (zone.influenceLock and "Non" or "Oui"),
+                            nil,
+                            {},
+                            true,
+                            function(_, _, _)
+                            end
+                        )
+                        RageUI.Button(
+                            "Vendre génère des $ : " .. (zone.dollarLock and "Non" or "Oui"),
+                            nil,
+                            {},
+                            true,
+                            function(_, _, _)
+                            end
+                        )
+                        if zone.monopoly then
+                            RageUI.CenterButton(
+                                "~h~Options de monopole~h~~s~",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, _)
+                                end
+                            )
+                            if not zone.canActivateOption then
+                                RageUI.Button(
+                                    "Une option a été activée il y a moins de 24h",
+                                    nil,
+                                    {},
+                                    true,
+                                    function(_, _, _)
+                                    end
+                                )
+                            end
+                            if zone.canActivateOption and IllegalOrga.GetMyRank().can_activate_option then
+                                if zone.options.slowRaise.step == 1 then
+                                    RageUI.Button(
+                                        "~g~Hausse des prix raisonnée (conseillé) [" .. zone.options.slowRaise.value .. "%]",
+                                        "Augmente les prix de vente lentement et progressivement.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'slow_raise')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                elseif zone.options.slowRaise.step == 2 then
+                                    RageUI.Button(
+                                        "~g~Hausse des prix déplafonnée (risqué) [" .. zone.options.slowRaise.value .. "%]",
+                                        "Augmente les prix de vente malgré les remarques de certains clients.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'slow_raise')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                end
+                                if zone.options.fastRaise.step == 1 then
+                                    RageUI.Button(
+                                        "~g~Négociation agressive ["  .. zone.options.fastRaise.value .. "%]",
+                                        "Augmente les prix de vente rapidement, mais les ventes ne donneront plus d'influence.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'fast_raise')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                elseif zone.options.fastRaise.step == 2 then
+                                    RageUI.Button(
+                                        "~g~Négociation menaçante (très risqué) [" .. zone.options.fastRaise.value .. "%]",
+                                        "Augmente les prix de vente rapidement. Les clients pourraient perdre patience.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'fast_raise')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                end
+                                if zone.options.loss.step == 1 then
+                                    RageUI.Button(
+                                        "~g~Vente à pertes [" .. zone.options.loss.value .. "%]",
+                                        "Diminue les prix de vente pour toutes les factions.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'loss')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                elseif zone.options.loss.step == 2 then
+                                    RageUI.Button(
+                                        "~g~Couper les produits (risqué) [" .. zone.options.loss.value .. "%]",
+                                        "Amortit la baisse de prix pour ta faction.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'cut')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                    if zone.options.loss.double == 0 then
+                                        RageUI.Button(
+                                            "~g~Vendre au détail (très risqué)",
+                                            "Double les quantités vendues pour toutes les factions",
+                                            {},
+                                            false,
+                                            function(_, _, Selected)
+                                                if Selected then
+                                                    TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'double')
+                                                    RageUI.GoBack()
+                                                end
+                                            end
+                                        )
+                                    end
+                                end
+                                if zone.options.invest.step == 1 then
+                                    RageUI.Button(
+                                        "~g~Vente à crédit (risqué) [" .. zone.options.invest.value .. "%]",
+                                        "Autorise les clients à payer plus tard.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'invest')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                elseif zone.options.invest.step == 2 then
+                                    if zone.options.invest.losing == 1 then
+                                        RageUI.Button(
+                                            "~g~Sauver l'investissement (risqué) [" .. zone.options.invest.value .. "%]",
+                                            "Intimide les clients qui veulent pas payer plus cher.",
+                                            {},
+                                            false,
+                                            function(_, _, Selected)
+                                                if Selected then
+                                                    TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'save_invest')
+                                                    RageUI.GoBack()
+                                                end
+                                            end
+                                        )
+                                    else
+                                        RageUI.Button(
+                                            "~g~Augmenter les intérêts (risqué) [" .. zone.options.invest.value .. "%]",
+                                            "Informe les clients que leur dette vient d'augmenter.",
+                                            {},
+                                            false,
+                                            function(_, _, Selected)
+                                                if Selected then
+                                                    TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'invest')
+                                                    RageUI.GoBack()
+                                                end
+                                            end
+                                        )
+                                    end
+                                    RageUI.Button(
+                                        "~g~Récolter les dettes [" .. zone.options.invest.amount .. "$]",
+                                        "Collecte les dettes au prix du marché, et termine la vente à crédit.",
+                                        {},
+                                        false,
+                                        function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerEvent("drug_monopoly:activateOption", zoneId, 'collect')
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )
+                                end
+                            end
+                        end
+                    end
+                )
+            end
+
             if RageUI.Visible(RMenu:Get("personnal", "settings_organisation_members")) then
 
                 if (IllegalOrga.MENU.INDEX_ORGA_RANKS ~= nil) then
@@ -1579,6 +1840,43 @@ Citizen.CreateThread(
                     end
 
                     RageUI.CenterButton(
+                        "~r~↓↓↓ ~r~ Permissions de monopole ~r~↓↓↓",
+                        nil,
+                        {},
+                        true,
+                        function(_, _, _)
+                        end
+                    )
+                    if (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence == nil) then
+                        IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence = 0 
+                    end
+                    RageUI.Checkbox(
+                        "Peut gérer les monopoles ?",
+                        "Permet de choisir et activer une option de monopole",
+                        (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence == 1 or IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence == true) and true or false,
+                        {},
+                        function(Hovered, Ative, Selected, Checked)
+                            if Selected then
+                                IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence = Checked
+                            end
+                        end
+                    )
+                    if (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option == nil) then
+                        IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option = 0 
+                    end
+                    RageUI.Checkbox(
+                        "Peut gérer les monopoles ?",
+                        "Permet de choisir et activer une option de monopole",
+                        (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option == 1 or IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option == true) and true or false,
+                        {},
+                        function(Hovered, Ative, Selected, Checked)
+                            if Selected then
+                                IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option = Checked
+                            end
+                        end
+                    )
+
+                    RageUI.CenterButton(
                         "~h~~b~----------------~h~~s~",
                         nil,
                         {},
@@ -1768,7 +2066,45 @@ Citizen.CreateThread(
                                 end
                             end
                         )
-                        
+                        RageUI.CenterButton(
+                        "~r~↓↓↓ ~r~ Permissions de monopole ~r~↓↓↓",
+                        nil,
+                        {},
+                        true,
+                        function(_, _, _)
+                        end
+                    )
+                    if (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence == nil) then
+                        IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence = 0 
+                    end
+                    local currentValue = IllegalOrga.MENU.CURRENT_RANK.can_read_influence == 1 and "Oui" or "Non"
+                    RageUI.Checkbox(
+                        "Peut analyser l'influence ? (Actuel : " .. currentValue .. ")",
+                        "Permet de consulter les scores d'influence de la faction",
+                        (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence == 1 or IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence == true) and true or false,
+                        {},
+                        function(Hovered, Ative, Selected, Checked)
+                            if Selected then
+                                IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_read_influence = Checked
+                            end
+                        end
+                    )
+                    if (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option == nil) then
+                        IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option = 0 
+                    end 
+                    local currentValue = IllegalOrga.MENU.CURRENT_RANK.can_activate_option == 1 and "Oui" or "Non"
+                    RageUI.Checkbox(
+                        "Peut gérer les monopoles ? (Actuel : " .. currentValue .. ")",
+                        "Permet de choisir et activer une option de monopole",
+                        (IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option == 1 or IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option == true) and true or false,
+                        {},
+                        function(Hovered, Ative, Selected, Checked)
+                            if Selected then
+                                IllegalOrga.MENU.CURRENT_RANK.NEW_VALUES.can_activate_option = Checked
+                            end
+                        end
+                    )
+
                         RageUI.CenterButton(
                             "~h~~b~----------------~h~~s~",
                             nil,
@@ -1925,6 +2261,21 @@ Citizen.CreateThread(
                                         end,
                                         RMenu:Get("personnal", "settings_organisation_informations")
                                     )
+
+                                if IllegalOrga.GetMyRank().can_read_influence == 1 then
+                                    RageUI.Button(
+                                        "~b~Influence sur zones de deal",
+                                        "Consulter et gérer l'influence de la faction",
+                                        {
+                                            RightLabel = "→"
+                                        },
+                                        true,
+                                        function(_, _, Selected)
+                                            -- Hover
+                                        end,
+                                        RMenu:Get("personnal", "settings_organisation_influence")
+                                    )
+                                end
 
                                 if IllegalOrga.GetMyRank().can_manage_member == 1 then
                                     RageUI.Button(
