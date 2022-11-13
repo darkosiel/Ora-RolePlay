@@ -194,11 +194,19 @@ end)
 
 local function getAtmInFrontOfMe()
 	local plyCoords = GetEntityCoords(PlayerPedId(), false)
+	plyCoords = vector3(plyCoords.x, plyCoords.y, plyCoords.z-0.5)
 	local plyOffset = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2, 0.0)
 	local rayHandle = StartShapeTestCapsule(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 2.5, 16, PlayerPedId(), 0)
 	local retval, hit, endCoords, _, result = GetShapeTestResult(rayHandle)
 	return retval, hit, endCoords, _, result
 end
+
+local AtmModels = {
+	[GetHashKey("prop_atm_01")] = true,
+	[GetHashKey("prop_atm_02")] = true,
+	[GetHashKey("prop_atm_03")] = true,
+	[GetHashKey("prop_fleeca_atm")] = true,
+}
 
 RegisterCommand("animAtm", function()
 	local timer = 0
@@ -211,6 +219,7 @@ RegisterCommand("animAtm", function()
 
 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
 	local _, _, _, _, atm = getAtmInFrontOfMe()
+	print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], #(GetEntityCoords(GetEntityModel(atm)) - v.coords))
 	if AtmModels[GetEntityModel(atm)] and #(GetEntityCoords(GetEntityModel(atm)) - v.coords) then
 		local pos = GetEntityCoords(atm, false)
 		local atmHeading = GetEntityHeading(atm)
@@ -301,7 +310,8 @@ RegisterNetEvent("g6:fillATM_cb", function()
 	
 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
 	local _, _, _, _, atm = getAtmInFrontOfMe()
-	local distanceToATM = #( - vector3(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.x, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.y, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.z))
+	local distanceToATM = #(GetEntityCoords(atm) - vector3(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.x, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.y, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.z))
+	print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], distanceToATM)
 	if AtmModels[GetEntityModel(atm)] and distanceToATM < 0.5 then
 		local pos = GetEntityCoords(atm, false)
 		local atmHeading = GetEntityHeading(atm)
@@ -390,35 +400,35 @@ end)
 -- Process players unlocking the cases
 
 local zones = {
-	getCases = {
-		name = "Louis",
+	-- getCases = {
+	-- 	name = "Louis",
 
-		pos = vector3(-27.347029, -665.625549, 32.442867),
-		radius = 1.5,
-		restrictedJob = {g6 = true},
-		onPressAction = function()
-			-- Ask how many cases to get
-			local input = KeyboardInput("How many cases?", "", 3)
-			if input ~= nil then
-				local cases = tonumber(input)
-				if cases ~= nil then
-					if cases > 0 and cases <= 20 then
-						TriggerServerEvent("g6:getCases", cases)
-					else
-						Notification("Vous ne pouvez pas prendre plus de 20 caisses")
-					end
-				else
-					Notification("Vous devez entrer un nombre")
-				end
-			end
-		end
-	},
+	-- 	pos = vector3(-27.347029, -665.625549, 32.442867),
+	-- 	radius = 1.5,
+	-- 	restrictedJob = {g6 = true},
+	-- 	onPressAction = function()
+	-- 		-- Ask how many cases to get
+	-- 		local input = KeyboardInput("How many cases?", "", 3)
+	-- 		if input ~= nil then
+	-- 			local cases = tonumber(input)
+	-- 			if cases ~= nil then
+	-- 				if cases > 0 and cases <= 20 then
+	-- 					TriggerServerEvent("g6:getCases", cases)
+	-- 				else
+	-- 					Notification("Vous ne pouvez pas prendre plus de 20 caisses")
+	-- 				end
+	-- 			else
+	-- 				Notification("Vous devez entrer un nombre")
+	-- 			end
+	-- 		end
+	-- 	end
+	-- },
 
 	crackCase = {
 		name = "Joshua",
 		model = GetHashKey("s_m_y_dealer_01"),
 		heading = 0.0,
-		pos = vector3(-25.888226, -693.963806, 32.495075),
+		pos = vector3(1218.1278, 2741.9743, 38.005398),
 		radius = 1.5,
 		restrictedJob = {},
 		onPressAction = function()
@@ -441,13 +451,10 @@ local zones = {
 				local money = input * 1000
 				-- Give the money to the player
 
-				TriggerServerCallback(
-					"Ora::SE::Money:AuthorizePayment",
-					function(token)
-						TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = money, SOURCE = "G6 Opening", LEGIT = true})
-					end,
-					{}
-				)
+				TriggerServerCallback("Ora::SE::Money:AuthorizePayment", function(token)
+					TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = money, SOURCE = "Breaking case G6", LEGIT = false})
+					TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", money, false)
+				end,{})
 
 				-- Show a notification
 				ShowNotification("~g~Vous avez reçu ~g~" .. money .. "$~g~ pour avoir ouvert " .. input .. " caisses")

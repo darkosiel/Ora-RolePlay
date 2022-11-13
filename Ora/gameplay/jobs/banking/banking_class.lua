@@ -323,7 +323,9 @@ RegisterServerCallback("getBankInfoFromID", function(source, cb, accountId)
 end)
 
 RegisterServerCallback("bank:getHistory", function(source, cb, accountId)
+    --print(accountId)
     local history = MySQL.Sync.fetchAll("SELECT * FROM banking_transactions WHERE src = @id OR dest = @id ORDER BY id DESC", { ["@id"] = accountId })
+    --print(json.encode(history))
     cb(history)
 end)
 

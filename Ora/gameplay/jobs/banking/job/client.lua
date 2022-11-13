@@ -130,7 +130,7 @@ end
 
 local function FormatBankAccounts(bankAccounts)
     for k, v in pairs(bankAccounts) do
-        if v.uuid == "0" then
+        if v.uuid == "0" or v.uuid == 0 then
             v.uuid = v.iban
         end
     end
@@ -318,14 +318,12 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = false},
                     function()
-                        RageUI.Button("Comptes",nil,{},true,function(_, _, Selected)    
-                            TriggerServerCallback("getBanksSummaryInfo", function(accounts, identities)
-                                Banks = FormatBankAccounts(accounts)
-                                Identity = Format(identities)
-                            end)
-
-                            while Banks == nil do
-                                Wait(1)
+                        RageUI.Button("Comptes",nil,{},true,function(_, _, Selected) 
+                            if Selected then   
+                                TriggerServerCallback("getBanksSummaryInfo", function(accounts, identities)
+                                    Banks = FormatBankAccounts(accounts)
+                                    Identity = Format(identities)
+                                end)
                             end
                         end, RMenu:Get("banks", "list_main"))
 
@@ -1084,8 +1082,9 @@ Citizen.CreateThread(
                                     if Selected then
                                         TriggerServerCallback("bank:getHistory", function(result)
                                             History = result
+                                            print(json.encode(History))
                                             RageUI.Visible(RMenu:Get("banks", "historique"), true)
-                                        end, v.id)
+                                        end, v.iban)
                                     end
                                 end,
                                 RMenu:Get("banks", "historiques")
@@ -1231,6 +1230,7 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
+                            
                             RageUI.Button(
                                 "Propriétaire",
                                 nil,
@@ -1684,45 +1684,53 @@ Citizen.CreateThread(
                             function(_, _, _)
                             end
                         )
-                        for k, v in spairs(Banks, filterSearch.filter) do
-                            local label = ""
-                            --v.label .. " - " .. Identity[v.uuid].first_name .. " " .. Identity[v.uuid].last_name
-                            local RLabel = v.iban
-                            if Identity[v.uuid] ~= nil then
-                                if filterSearch.display.amount then
-                                    local amount = false
-                                    if v.amount < 0 then
-                                        amount = "~r~" .. v.amount .. "$"
-                                    else
-                                        amount = "~g~" .. v.amount .. "$"
-                                    end
-                                    RLabel = RLabel .. " " .. amount 
-                                end
-
-                                if filterSearch.display.label then
-                                    label = label .. "" .. v.label .. " - "
-                                end
-
-                                if filterSearch.display.name then
-                                    label = label .. (Identity[v.uuid].first_name .. " " .. Identity[v.uuid].last_name)
-                                end
-
-                                if filterSearch.search == nil or string.match(label:lower(), filterSearch.search:lower()) then
-                                    RageUI.Button(label, nil, {RightLabel = RLabel}, true, function(_, _, Selected)
-                                        if Selected then
-                                            TriggerServerCallback("getAccountInfo", function(accountInfo, cards)
-                                                for _i, i in pairs(accountInfo[1]) do
-                                                    v[_i] = i
-                                                end
-                                                Cards = Format2(cards)
-
-                                                currentBank = v
-                                            end, v.id)
+                        if Banks ~= nil then
+                            for k, v in spairs(Banks, filterSearch.filter) do
+                                local label = ""
+                                --v.label .. " - " .. Identity[v.uuid].first_name .. " " .. Identity[v.uuid].last_name
+                                local RLabel = v.iban
+                                if Identity[v.uuid] ~= nil then
+                                    if filterSearch.display.amount then
+                                        local amount = false
+                                        if v.amount < 0 then
+                                            amount = "~r~" .. v.amount .. "$"
+                                        else
+                                            amount = "~g~" .. v.amount .. "$"
                                         end
-                                    end,
-                                    RMenu:Get("banks", "gestion_comptes"))
+                                        RLabel = RLabel .. " " .. amount 
+                                    end
+
+                                    if filterSearch.display.label then
+                                        label = label .. "" .. v.label .. " - "
+                                    end
+
+                                    if filterSearch.display.name then
+                                        label = label .. (Identity[v.uuid].first_name .. " " .. Identity[v.uuid].last_name)
+                                    end
+
+                                    if filterSearch.search == nil or string.match(label:lower(), filterSearch.search:lower()) then
+                                        RageUI.Button(label, nil, {RightLabel = RLabel}, true, function(_, _, Selected)
+                                            if Selected then
+                                                TriggerServerCallback("getAccountInfo", function(accountInfo, cards)
+                                                    for _i, i in pairs(accountInfo[1]) do
+                                                        v[_i] = i
+                                                    end
+                                                    if v.uuid == "0" then
+                                                        v.uuid = v.iban
+                                                    end
+                                                    Cards = Format2(cards)
+
+                                                    currentBank = v
+                                                end, v.id)
+                                            end
+                                        end,
+                                        RMenu:Get("banks", "gestion_comptes"))
+                                    end
                                 end
                             end
+                        else
+                            RageUI.Button("Chargement...", nil, {}, true, function(_, _, _)
+                            end)
                         end
                     end,
                     function()
