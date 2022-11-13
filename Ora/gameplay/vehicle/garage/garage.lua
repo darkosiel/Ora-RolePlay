@@ -999,14 +999,14 @@ PublicGarage = {
         Name = "garage_4"
     },
     {
-        Pos = {x=-1676.84,y=-3118.71,z=12.99,h=243.91},
+        Pos = {x=-681.6707,y=-1407.4106,z=4.57,h=243.91},
         Properties = {
             type = 0,
-            spawnpos ={x=-1676.84,y=-3118.71,z=12.99,h=243.91},
+            Pos = {x=-681.6707,y=-1407.4106,z=4.57,h=243.91},
             Limit = 2
         },
         Blipdata = {
-            Pos = {x=-1676.84,y=-3118.71,z=12.99,h=243.91},
+            Pos = {x=-681.6707,y=-1407.4106,z=4.57,h=243.91},
             Blipcolor  =84,
             BlipId = 524,
             Blipname = "Parkings Pegasus"
