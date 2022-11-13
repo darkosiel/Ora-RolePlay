@@ -7,12 +7,11 @@ const DAYS_INFLUENCE = 15
 
 // monopoly can be challenged after x days
 const DAYS_SECURE_MONOPOLY = 2
-const SECONDS_SECURE_MONOPOLY = 5 // DAYS_SECURE_MONOPOLY * 24 * 60 * 60
+const SECONDS_SECURE_MONOPOLY = DAYS_SECURE_MONOPOLY * 24 * 60 * 60
 
 // option can be activated after x hours
 const HOURS_COOLDOWN_OPTION = 24
-
-const SECONDS_COOLDOWN_OPTION = 5 // HOURS_COOLDOWN_OPTION * 60 * 60
+const SECONDS_COOLDOWN_OPTION = HOURS_COOLDOWN_OPTION * 60 * 60
 
 // TODO import zone id / names dynamically from Ora core
 // Or make a selling_zones database table
@@ -730,7 +729,6 @@ function MonopolyService(influenceCalculator, clientNotif) {
                     }
                 } else {
                     console.error('Cannot read player bank account', uuid)
-                    message = "ERREUR - Tu n'as pas de compte bancaire"
                     return
                 }
                 m.investStack = 0
