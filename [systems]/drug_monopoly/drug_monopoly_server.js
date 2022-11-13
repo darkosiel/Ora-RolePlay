@@ -778,11 +778,11 @@ function MonopolyService(influenceCalculator, clientNotif) {
         }
         // monopoly is not owned by this orga => they get double quantity info
         data.double = !!m.quantityDouble
-        data.influenceLock = !!m.influenceLock
-        data.dollarLock = !!m.dollarLock
         if (m.organisationId != orgaId) {
             return data
         }
+        data.influenceLock = !!m.influenceLock
+        data.dollarLock = !!m.dollarLock
         // orga is monopoly owner => they get options details
         data.monopoly = true
         data.canActivateOption = (Date.now() - m.timeLastActivation)/1000 > SECONDS_COOLDOWN_OPTION
