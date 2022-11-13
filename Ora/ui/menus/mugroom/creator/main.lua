@@ -1067,7 +1067,7 @@ Citizen.CreateThread(function()
                             createPlayer.Identity = ModelSelected.Identity
                             
                             --print(json.encode(createPlayer))
-                            
+                            _Cam:Delete()
                             TriggerServerEvent("mugroom:RegisterNewPlayer", createPlayer, spawnPoint)
                             --TakePictureAndExit()
                             RageUI.GoBack()
