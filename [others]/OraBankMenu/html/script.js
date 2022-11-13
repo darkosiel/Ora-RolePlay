@@ -204,7 +204,7 @@ function setData() {
     let number = param.Cards.number.toString().match(/.{1,4}/g);
     $("#player-card-number").html(number.join(" "));
     $("#player-card-name").html(param.Cards.name);
-    $("#player-card-image").attr('src', './assets/card-' + param.Cards.type + '.png');
+    $("#player-card-image").attr('src', './assets/' + param.Cards.type + '.png');
     let balance = (param.Accounts.amount).toLocaleString(undefined, 'en-US');
     balance = balance.replace(/,/g, " ");
     $("#player-account-balance").html(balance);
