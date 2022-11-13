@@ -330,6 +330,7 @@ async function getOrgaId(playerId) {
     const orga = await crud.organisationMember.read({ playerUuid: uuid })
     if (!orga.length) {
         console.error('Organisation id not found with player uuid ', uuid)
+        return
     }
     return orga[0].id
 }
@@ -721,9 +722,16 @@ function MonopolyService(influenceCalculator, clientNotif) {
                 const account = await crud.bankAccount.read({ uuid })
                 if (account && account[0]) {
                     await crud.bankAccount.update({ id: account[0].id } , { amount: account[0].amount + totalValue })
-                    const oldIllegalAmount = (await crud.bankAccount.read({ iban: 'illegalaccount' })[0]).amount
-                    await crud.bankAccount.update({ iban: 'illegalaccount' } ,
-                        { amount: oldIllegalAmount - totalValue })
+                    const oldIllegalAmount = (await crud.bankAccount.read({ iban: 'illegalaccount' }))
+                    if (oldIllegalAmount && oldIllegalAmount[0]) {
+                        console.error('Cannot read illegal account')
+                        await crud.bankAccount.update({ iban: 'illegalaccount' } ,
+                            { amount: oldIllegalAmount - totalValue })
+                    }
+                } else {
+                    console.error('Cannot read player bank account', uuid)
+                    message = "ERREUR - Tu n'as pas de compte bancaire"
+                    return
                 }
                 m.investStack = 0
                 m.investAmount = 0
