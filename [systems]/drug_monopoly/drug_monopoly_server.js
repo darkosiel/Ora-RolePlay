@@ -600,7 +600,7 @@ function MonopolyService(influenceCalculator, clientNotif) {
      * @param {string} optionCode 
      * @param {string} uuid 
      * @param {number} orgaId 
-     * @returns {string} a message for success or failure
+     * @returns {Promise} a message for success or failure
      */
     this.activateOption = async (zoneId, optionCode, uuid=null, orgaId = null) => {
         const raw = await crud.monopoly.read({ zoneId })
@@ -720,7 +720,7 @@ function MonopolyService(influenceCalculator, clientNotif) {
                 const totalValue = Math.floor(m.investAmount * this.getPriceModifier(zoneId, orgaId))
                 const account = await crud.bankAccount.read({ uuid })
                 if (account && account[0]) {
-                    await crud.bankAccount.update({ id: account.id } , { amount: account.amount + totalValue })
+                    await crud.bankAccount.update({ id: account[0].id } , { amount: account[0].amount + totalValue })
                     const oldIllegalAmount = (await crud.bankAccount.read({ iban: 'illegalaccount' })[0]).amount
                     await crud.bankAccount.update({ iban: 'illegalaccount' } ,
                         { amount: oldIllegalAmount - totalValue })
