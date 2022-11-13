@@ -1618,18 +1618,18 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 2030.2197, y = 4980.3559, z = 41.09},
-                Limit = 800,
+                Pos = {x = 2878.1599, y = 4488.7207, z = 47.25},
+                Limit = 1000,
                 Name = "coffre_fermier"
             },
             {
-                Pos = {x = 1982.9498, y = 5029.49121, z = 40.0901},
-                Limit = 500,
+                Pos = {x = 2896.8911, y = 4480.5156, z = 47.2669},
+                Limit = 1000,
                 Name = "coffre_fermier1"
             },
             {
-                Pos = {x = 1992.7322, y = 5018.8325, z = 40.07768},
-                Limit = 500,
+                Pos = {x = 2909.3869, y = 4467.7944, z = 47.1664},
+                Limit = 1000,
                 Name = "coffre_fermier2"
             }
         },
@@ -1638,7 +1638,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 645.62, y = 6470.61, z = 30.6},
+                Pos = {x = 2567, y = 4446.8232, z = 38.3462},
                 giveitem = "blez",
                 blipcolor = 7,
                 blipname = "Fermier - Récolte du blé",
@@ -1651,7 +1651,7 @@ Jobs = {
             recolte2 = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 1869.3, y = 4814.88, z = 44.05},
+                Pos = {x = 1854.73, y = 4826.85, z = 44.80},
                 giveitem = "pommeterre",
                 blipcolor = 7,
                 blipname = "Fermier - Récolte de pomme de terre",
@@ -1663,8 +1663,8 @@ Jobs = {
             },
             recolte3 = {
                 type = "recolte",
-                workSize = 2.0,
-                Pos = {x = 2306.9, y = 4881.98, z = 41.81},
+                workSize = 6.0,
+                Pos = {x = 2309.68, y = 4890.52, z = 41.80},
                 giveitem = "milk",
                 blipcolor = 7,
                 blipname = "Fermier - Récupérer du lait",
@@ -1676,12 +1676,90 @@ Jobs = {
             },
             recolte4 = {
                 type = "recolte",
-                workSize = 2.0,
-                Pos = {x = 2313.76, y = 4888.14, z = 41.81},
+                workSize = 6.0,
+                Pos = {x = 2099.47, y = 5007.82, z = 41.10},
                 giveitem = "chicken",
                 blipcolor = 7,
                 blipname = "Fermier - Récupérer du Poulet",
                 add = "~p~+ 1 Poulet",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            recolte5 = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 1974.08, y = 4868.47, z = 45.45},
+                giveitem = "salade",
+                blipcolor = 7,
+                blipname = "Fermier - Récupérer de la salade",
+                add = "~p~+ 1 Salade",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            recolte6 = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 2163.14, y = 5179.13, z = 56.82},
+                giveitem = "levure",
+                blipcolor = 7,
+                blipname = "Fermier - Récupérer de la levure",
+                add = "~p~+ 1 Levure",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            recolte7 = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 1935.30, y = 5044.97, z = 43.52},
+                giveitem = "tomate",
+                blipcolor = 7,
+                blipname = "Fermier - Récupérer de la Tomate",
+                add = "~p~+ 1 Tomate",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            recolte8 = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 2128.30, y = 4979.23, z = 41.31},
+                giveitem = "meat6",
+                blipcolor = 7,
+                blipname = "Fermier - Récupérer de la viande de porc",
+                add = "~p~+ 1 Viande de porc",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            recolte9 = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 2319.59, y = 4926.21, z = 41.42},
+                giveitem = "meat7",
+                blipcolor = 7,
+                blipname = "Fermier - Récupérer de la viande de boeuf",
+                add = "~p~+ 1 Viande de boeuf",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            recolte9 = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 1822.59, y = 5017.86, z = 57.54},
+                giveitem = "fraise",
+                blipcolor = 7,
+                blipname = "Fermier - Récupérer des fraises",
+                add = "~p~+ 1 Fraise",
                 anim = {
                     lib = "anim@mp_snowball",
                     anim = "pickup_snowball"
@@ -1692,7 +1770,7 @@ Jobs = {
                 workSize = 7.45,
                 blipcolor = 7,
                 blipname = "Fermier - Produire des céréales",
-                Pos = {x = 2553.31, y = 4670.74, z = 32.95},
+                Pos = {x = 2034.79, y = 4981.47, z = 41.09},
                 required = "blez",
                 giveitem = "cereale",
                 add = "~p~+ 1  Céréale"
@@ -1731,18 +1809,33 @@ Jobs = {
             }
         },
         garage = {
-            Name = "Garage Fermier",
-            Pos = {x = 2022.3651, y = 4973.0253, z = 41.269},
+            Name = "Garage Ferme",
+            Pos = {x = 2891.3745, y = 4468.7949, z = 48.1319},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 2022.3651, y = 4973.0253, z = 41.269, h = 221.53}
+                spawnpos = {x = 2891.3745, y = 4468.7949, z = 48.1319, h = 221.53}
             },
             Blipdata = {
-                Pos = {x = 2022.3651, y = 4973.0253, z = 41.269},
+                Pos = {x = 2891.3745, y = 4468.7949, z = 48.1319},
                 Blipcolor = 5,
-                Blipname = "Garage Fermier"
+                Blipname = "Garage Ferme"
+            }
+        },
+        garage2 = {
+            Name = "Garage employés Ferme",
+            Pos = {x = 2930.9077, y = 4312.9755, z = 50.7443},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 2930.9077, y = 4312.9755, z = 50.7443, h = 221.53}
+            },
+            Blipdata = {
+                Pos = {x = 2930.9077, y = 4312.9755, z = 50.7443},
+                Blipcolor = 5,
+                Blipname = "Garage employés"
             }
         },
         Menu = {
