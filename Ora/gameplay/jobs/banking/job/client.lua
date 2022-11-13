@@ -1751,7 +1751,6 @@ local ATM = {
 function UseBankCard()
     local bool, coords, heading = IsNearATM()
     if bool then
-        TriggerEvent('Ora:hideInventory')
         fpxm = Ora.World.Object:Create(GetHashKey("prop_cs_credit_card"), LocalPlayer().Pos, true, 0, 0)
         AttachEntityToEntity(
             fpxm,
@@ -1809,6 +1808,7 @@ function ATM.Open(param)
     if IsNearATM() then
         TriggerEvent("OraBankMenu:CheckCode", param)
     end
+    TriggerEvent('Ora:hideInventory')
 end
 
 local filter = {"dollar1", "dollar5", "dollar10", "dollar50", "dollar100", "dollar500"}
