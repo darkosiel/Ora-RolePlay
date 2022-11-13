@@ -14,6 +14,8 @@ Ora.World.VehicleGeneratorRemoved = { --Antispawn VOITURES
   {x = 1410.83, y = 1117.63, z = 114.83, r = 500}, -- Antispawn Fuente Blanca
   {x = 31.7753, y = 6459.4218, z = 31.30, r = 500}, --Dirty Punks
   {x = -444.8722, y = 6010.3310, z = 36.50, r = 500} --BCSO
+  {x = -224.6694, y = -833.0028, z = 30.6836, r = 500} -- Antispawn G6
+  {x = -1364.5490, y = -494.0451, z = 33.1696, r = 500}
 }
 
 
