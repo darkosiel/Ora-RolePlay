@@ -419,18 +419,9 @@ local VehShop =
                     {name = "bcsoscout", price = 25000},
                     {name = "bcsostanier2", price = 25000},
                     {name = "bcsotarv", price = 25000}
-
                 },
                 ["SAMS"] = {
                     {name = "samsbisonamb", price = 25000},
-                    {name = "samscara", price = 25000},
-                    {name = "samsroamer", price = 25000},
-                    {name = "samsspeedoamb", price = 25000},
-                    {name = "samsspeedoamb2", price = 25000},
-                    {name = "samsstanier", price = 25000}
-                },
-                ["SAMS"] = {
-                    {name = "samsbison", price = 25000},
                     {name = "samscara", price = 25000},
                     {name = "samsroamer", price = 25000},
                     {name = "samsspeedoamb", price = 25000},

@@ -111,7 +111,6 @@ Citizen.CreateThread(function()
     AddTextEntry("g6buffalo", "Buffalo G6")
 
     -- Vehicule Gouvernement
-
     AddTextEntry("pressuv", "Granger V.I.P")
     AddTextEntry("usssvan2", "Rumpo USSS")
     AddTextEntry("usssvan", "Rumpo UMK")
@@ -122,8 +121,50 @@ Citizen.CreateThread(function()
     AddTextEntry("fibp3", "Torrence USSS")
     AddTextEntry("fibp6", "Scout USSS")
     AddTextEntry("polnspeedo", "Speedo USSS")
+    AddTextEntry("hazard2", "Ambulance USSS")
+    
+
+    -- Véhicule LSPD 
+    AddTextEntry("lspdalamo", "Alamo LSPD")
+    AddTextEntry("lspdbuffalos", "Buffalo 2014 LSPD")
+    AddTextEntry("lspdbuffalosum", "Buffalo UMK 2014 LSPD")
+    AddTextEntry("lspdcycle", "Velo LSPD")
+    AddTextEntry("lspdeveron", "Everon LSPD")
+    AddTextEntry("lspdexecutioner", "Executioner LSPD")
+    AddTextEntry("lspdfugitiveum", "Fugitive UMK LSPD")
+    AddTextEntry("lspdlandstalerum", "Landstalker UMK LSPD")
+    AddTextEntry("lspdmerit", "Merit LSPD")
+    AddTextEntry("lspdpark2", "Park LSPD")
+    AddTextEntry("lspdraiden", "Raiden LSPD")
+    AddTextEntry("lspdscout4", "Scout LSPD")
+    AddTextEntry("lspdspeedo", "Speedo LSPD")
+    AddTextEntry("lspdswattruck", "Camion SWAT LSPD")
+    AddTextEntry("lspdswatutil", "Camion équipement SWAT")
+    AddTextEntry("lspdtarv", "Tarv LSPD")
+    AddTextEntry("lspdtorrence", "Torrence LSPD")
+    AddTextEntry("lspdtorrenceslick", "Torrence Slick LSPD")
+    AddTextEntry("lspdtorrenceum", "Torrence UMK LSPD")
+
 
     -- Véhicule BCSO
     AddTextEntry("bcsostanier", "Stanier BCSO")
+    AddTextEntry("bcsoalamo5", "Alamo BCSO")
+    AddTextEntry("bcsoalamo2", "Alamo BCSO")
+    AddTextEntry("bcsoalamo6", "Alamo BCSO")
+    AddTextEntry("bcsocara", "Caracara BCSO")
+    AddTextEntry("bcsofugitive", "Fugitive BCSO")
+    AddTextEntry("bcsolandstalker2", "Landstalker BCSO")
+    AddTextEntry("bcsonalamo", "Alamo BCSO")
+    AddTextEntry("bcsosadler", "Sadler BCSO")
+    AddTextEntry("bcsostanier2", "Stanier BCSO")
+    AddTextEntry("bcsotarv", "Tarv BCSO")
+
+    -- Véhicule SAMS
+    AddTextEntry("samsbisonamb", "Ambulance SAMS")
+    AddTextEntry("samscara", "Caracara SAMS")
+    AddTextEntry("samsroamer", "Roamer SAMS")
+    AddTextEntry("samsspeedoamb", "Speedo SAMS")
+    AddTextEntry("samsspeedoamb2", "Speedo old SAMS")
+    AddTextEntry("samsstanier", "Stanier SAMS")
 
 end)
