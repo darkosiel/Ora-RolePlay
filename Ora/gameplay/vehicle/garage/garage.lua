@@ -1020,30 +1020,6 @@ PublicGarage = {
             Rotate = false,
             visible = true
         },
-        Name = "garage_5"
-    },
-    {
-        Pos = {x=-744.01,y=-1499.91,z=5.00,h=264.24},
-        Properties = {
-            type = 0,
-            spawnpos ={x=-744.01,y=-1499.91,z=5.00,h=264.24},
-            Limit = 2
-        },
-        Blipdata = {
-            Pos = {x=-744.01,y=-1499.91,z=5.00,h=264.24},
-            Blipcolor  =84,
-            BlipId = 524,
-            Blipname = "Parkings Pegasus"
-        },
-        Marker = {
-            type = 1,
-            scale = {x=2.5,y=2.5,z=0.2},
-            color = {r=255,g=255,b=255,a=120},
-            Up = false,
-            Cam = false,
-            Rotate = false,
-            visible = true
-        },
         Name = "garage_8"
     },
     {
