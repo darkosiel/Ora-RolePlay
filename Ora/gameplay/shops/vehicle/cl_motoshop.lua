@@ -87,8 +87,8 @@ local bikershop =
                     {name = "verus", price = 5500}
                 },
                 ["Police/BCSO"] = {
-                    {name = "lspdthrust", price = 25000}
-                    {name = "lspdwintergreen", price = 25000}
+                    {name = "lspdthrust", price = 25000},
+                    {name = "lspdwintergreen", price = 25000},
                     {name = "bcsothrust", price = 25000}
                 },
                 ["Velo"] = {
