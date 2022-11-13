@@ -921,7 +921,7 @@ on('playerDropped', async _ => {
     if (organisationId) {
         const idx = playersList[organisationId].indexOf(playerId)
         if (idx > -1) {
-            playersList.splice(idx, 1)
+            playersList[organisationId].splice(idx, 1)
         }
     }
 })
