@@ -136,7 +136,7 @@ RMenu.Add(
 RMenu.Add(
     "personnal",
     "dealer_mode",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "settings"), "Paramètres", "Mode dealer")
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "settings_organisation"), "Paramètres", "Faction > Mode dealer")
 )
 
 RMenu.Add(
@@ -841,33 +841,6 @@ Citizen.CreateThread(
                                 end
                             end
                         )
-
-                        if (Ora.DrugDealing:ImDealing()) then
-                            RageUI.Button(
-                                "Arreter de dealer",
-                                "Arret du mode ~o~dealer~s~",
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if (Selected) then
-                                        Ora.DrugDealing:StopDealing()
-                                        Wait(10)
-                                        RageUI.GoBack()
-                                    end
-                                end
-                            )
-                                 
-                        else
-                            RageUI.Button(
-                                "Commencer a dealer",
-                                "Démarrer le mode ~o~dealer~s~",
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                end,
-                                RMenu:Get("personnal", "dealer_mode")
-                            )  
-                        end
 
                         RageUI.Button(
                             "Créer/Gérer votre faction",
@@ -2182,6 +2155,31 @@ Citizen.CreateThread(
                                     function(_, _, _)
                                     end
                                 )
+                                if (Ora.DrugDealing:ImDealing()) then
+                                    RageUI.Button(
+                                        "Arreter de dealer",
+                                        "Arret du mode ~o~dealer~s~",
+                                        {},
+                                        true,
+                                        function(_, _, Selected)
+                                            if (Selected) then
+                                                Ora.DrugDealing:StopDealing()
+                                                Wait(10)
+                                                RageUI.GoBack()
+                                            end
+                                        end
+                                    )  
+                                else
+                                    RageUI.Button(
+                                        "Commencer a dealer",
+                                        "Démarrer le mode ~o~dealer~s~",
+                                        {},
+                                        true,
+                                        function(_, _, Selected)
+                                        end,
+                                        RMenu:Get("personnal", "dealer_mode")
+                                    )  
+                                end        
 
                                 if IllegalOrga.GetMyRank().can_add_members == 1 then
                                     if IllegalOrga.MENU.INDEX_ORGA_RANKS == nil then
