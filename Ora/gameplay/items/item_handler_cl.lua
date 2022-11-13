@@ -923,17 +923,11 @@ ItemsFunction = {
             EquipClothes()
         end
     end,
-    bank_card = function(item)
-        if item then
-            for i = 1, #Ora.Inventory.Data[item.name] do
-                if Ora.Inventory.Data[item.name][i].id == item.id then
-                    SelectedItem = Ora.Inventory.Data[item.name][i]
-                    Ora.Inventory.SelectedItem = SelectedItem
-                end
-            end
-            UseBankCard()
-        end
-    end,
+    -- bank_card = bankCardsAction,
+    classic_card = function(item) bankCardsAction(item) end,
+    gold_card = function(item) bankCardsAction(item) end,
+    platinium_card = function(item) bankCardsAction(item) end,
+    black_card = function(item) bankCardsAction(item) end,
     speaker = function()
         Ora.Inventory:RemoveAnyItemsFromName("speaker", 1)
         TriggerEvent("Ora:hideInventory")
@@ -3093,6 +3087,20 @@ function GetBags()
 end
 
 exports("GetBags", GetBags)
+
+-- Bank cards
+
+function bankCardsAction(item)
+    if item then
+        for i = 1, #Ora.Inventory.Data[item.name] do
+            if Ora.Inventory.Data[item.name][i].id == item.id then
+                SelectedItem = Ora.Inventory.Data[item.name][i]
+                Ora.Inventory.SelectedItem = SelectedItem
+            end
+        end
+        UseBankCard()
+    end
+end
 
 
 -- Speaker

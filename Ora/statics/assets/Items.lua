@@ -663,11 +663,11 @@ Items = {
         category = "docs"
     },
     --+--+--+--+--+--+--+--+--+--+--
-    bank_card = {
-        label = "Carte bancaire",
-        weight = 0.1,
-        category = "docs"
-    },
+    -- bank_card = {
+    --     label = "Carte bancaire",
+    --     weight = 0.1,
+    --     category = "docs"
+    -- },
     -- ----- Tabac
 
     -- feuillecigarette = {
@@ -3129,6 +3129,55 @@ Items = {
         props = "prop_plate_03",
         faim = 10,
         category = "food"
+    },
+
+    -- jewelry_heist
+
+    jh_brooch   = {
+        label = "Broche",
+        weight = 0.5,
+    },
+    jh_necklace = {
+        label = "Collier",
+        weight = 1.0,
+    },
+    jh_bracelet = {
+        label = "Bracelet",
+        weight = 0.8,
+    },
+    jh_ring     = {
+        label = "Bague",
+        weight = 0.2,
+    },
+    jh_watch    = {
+        label = "Montre",
+        weight = 1,
+    },
+    jh_earings  = {
+        label = "Boucles d'oreilles",
+        weight = 0.4,
+    },
+
+    -- Bank cards
+    classic_card = {
+        label = "Carte bancaire classique",
+        weight = 0.1,
+        category = "docs"
+    },
+    gold_card = {
+        label = "Carte bancaire dorée",
+        weight = 0.1,
+        category = "docs"
+    },
+    platinium_card = {
+        label = "Carte bancaire platinum",
+        weight = 0.1,
+        category = "docs"
+    },
+    black_card = {
+        label = "Carte bancaire noire",
+        weight = 0.1,
+        category = "docs"
     },
 }
 

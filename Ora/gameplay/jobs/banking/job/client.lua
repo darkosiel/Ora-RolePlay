@@ -238,6 +238,7 @@ end
 local currentBank = nil
 local typeCarte = {
     Label = {"Classic", "Gold", "Platinium", "Blackcard"},
+    Types = {Classic = "classic_card", Gold = "gold_card", Platinium = "platinium_card", Blackcard = "black_card"},
     Index = 1,
     total = 1
 }
@@ -562,7 +563,7 @@ Citizen.CreateThread(
                                         TriggerServerCallback(
                                             "createAccount",
                                             function(result)
-                                                ShowNotification("~b~Compte créer")
+                                                ShowNotification("~b~Compte créé")
                                                 ShowNotification("~s~Adresse : ~b~" .. result)
                                                 ShowNotification("~s~Nom du compte : ~b~" .. creatingAcc.name)
                                                 ShowNotification("~s~Titulaire : ~b~" .. rightL)
@@ -664,7 +665,7 @@ Citizen.CreateThread(
                                                 local digits = getLastFourDigits(number)
                                                 --print(digits)
                                                 local items = {
-                                                    name = "bank_card",
+                                                    name = typeCarte.Types[typeCarte.Label[typeCarte.Index]],
                                                     label = "CB #" .. digits,
                                                     data = {
                                                         name = Identity[currentBank.uuid].first_name ..
