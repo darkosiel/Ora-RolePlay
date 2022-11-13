@@ -632,6 +632,13 @@ function Ora.DrugDealing:StartDealerThread()
                                           Ora.Inventory:RemoveFirstItem(Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG)
                                       end
 
+                                      -- monopoly logic
+                                      local zoneId = self.System.CURRENT_ZONE_ID
+                                      local info = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                                      price = math.ceil(info.priceModifier * price * (info.double and 2 or 1))
+                                      TriggerServerEvent("drug_monopoly:newTransaction", zoneId, price)
+                                      -- end monopoly logic
+                                      
                                       ShowAdvancedNotification(
                                           "Client",
                                           "~b~Dialogue",
@@ -651,14 +658,17 @@ function Ora.DrugDealing:StartDealerThread()
                                       ClearPedSecondaryTask(LocalPlayer().Ped)
                                       FreezeEntityPosition(Ora.DrugDealing.System.NEXT_MISSION_PED, false)
                                       
-                                      TriggerServerCallback(
-                                        "Ora::SE::Money:AuthorizePayment", 
-                                        function(token)
-                                          TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
-                                          TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
-                                        end,
-                                        {}
-                                      )
+                                      -- monopoly can block payments
+                                      if not (info.monopoly and info.dollarLock) then
+                                        TriggerServerCallback(
+                                          "Ora::SE::Money:AuthorizePayment", 
+                                          function(token)
+                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
+                                            TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
+                                          end,
+                                          {}
+                                        )
+                                      end
 
                                       Citizen.Wait(1200)
                                       DeleteObject(_prop)

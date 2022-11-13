@@ -33,7 +33,7 @@ end
   -- it is used as a fallback when a rank is unknown
   -- @returns table
 function IllegalOrga.GetUnkownRank()
-    return { id = nil, name = "Inconnu", position = 1, can_add_members = 0, can_remove_members = 0, can_see_lab = 0, can_manage_member = 0, can_manage_rank = 0, can_delete_orga = 0, can_receive_notif = 0, can_enter_lab = 0}
+    return { id = nil, name = "Inconnu", position = 1, can_add_members = 0, can_remove_members = 0, can_see_lab = 0, can_manage_member = 0, can_manage_rank = 0, can_delete_orga = 0, can_receive_notif = 0, can_enter_lab = 0, can_read_influence = 0, can_activate_option = 0}
 end
 
 -- Returns the name of the current organisation (string).
