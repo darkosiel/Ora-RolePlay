@@ -5373,25 +5373,25 @@ end
 AddEventHandler(
     "payByCard",
     function()
-        if Ora.Inventory:GetItemCount("classic_card") < 1 then
+        if Ora.Inventory:GetItemCount("classic_card") < 0 then
             if dataonWait.no ~= nil then
                 dataonWait.no()
             end
             dataonWait = {}
             return ShowNotification("~r~Vous n'avez pas de cartes bancaires")
-        elseif Ora.Inventory:GetItemCount("gold_card") < 1 then
+        elseif Ora.Inventory:GetItemCount("gold_card") < 0 then
             if dataonWait.no ~= nil then
                 dataonWait.no()
             end
             dataonWait = {}
             return ShowNotification("~r~Vous n'avez pas de cartes bancaires")
-        elseif Ora.Inventory:GetItemCount("platinium_card") < 1 then
+        elseif Ora.Inventory:GetItemCount("platinium_card") < 0 then
             if dataonWait.no ~= nil then
                 dataonWait.no()
             end
             dataonWait = {}
             return ShowNotification("~r~Vous n'avez pas de cartes bancaires")
-        elseif Ora.Inventory:GetItemCount("black_card") < 1 then
+        elseif Ora.Inventory:GetItemCount("black_card") < 0 then
             if dataonWait.no ~= nil then
                 dataonWait.no()
             end
