@@ -73,7 +73,9 @@ local function getOrgaObjectForOrganisationId(orgaId)
           can_manage_rank = value.can_manage_rank,
           can_delete_orga = value.can_delete_orga,
           can_enter_lab = value.can_enter_lab,
-          can_receive_notif = value.can_receive_notif
+          can_receive_notif = value.can_receive_notif,
+          can_read_influence = value.can_read_influence,
+          can_activate_option = value.can_activate_option
         }  
       )
     end
@@ -356,7 +358,7 @@ AddEventHandler(
         newlyCreatedOrg.MY_UUID = uuid
 
         local organisationRankId = MySQL.Sync.insert(
-            "INSERT INTO organisation_rank (organisation_id, name, position, can_add_members, can_remove_members, can_see_lab, can_manage_rank, can_manage_member, can_delete_orga, can_receive_notif, can_enter_lab) VALUES (@organisation_id, @name, @position, @can_add_members, @can_remove_members, @can_see_lab, @can_manage_rank, @can_manage_member, @can_delete_orga, @can_receive_notif, @can_enter_lab)",
+            "INSERT INTO organisation_rank (organisation_id, name, position, can_add_members, can_remove_members, can_see_lab, can_manage_rank, can_manage_member, can_delete_orga, can_receive_notif, can_enter_lab, can_read_influence, can_activate_option) VALUES (@organisation_id, @name, @position, @can_add_members, @can_remove_members, @can_see_lab, @can_manage_rank, @can_manage_member, @can_delete_orga, @can_receive_notif, @can_enter_lab, @can_read_influence, @can_activate_option)",
             {
                 ["@organisation_id"] = organisationId,
                 ["@name"] = "Admin",
@@ -369,6 +371,8 @@ AddEventHandler(
                 ["@can_delete_orga"] = 1,
                 ["@can_receive_notif"] = 1,
                 ["@can_enter_lab"] = 1,
+                ["@can_read_influence"] = 1,
+                ["@can_activate_option"] = 1,
             }
         )
 
@@ -577,7 +581,7 @@ AddEventHandler(
         end
 
         local organisationRankId = MySQL.Sync.insert(
-            "INSERT INTO organisation_rank (organisation_id, name, position, can_add_members, can_remove_members, can_see_lab, can_manage_rank, can_manage_member, can_delete_orga, can_receive_notif, can_enter_lab) VALUES (@organisation_id, @name, @position, @can_add_members, @can_remove_members, @can_see_lab, @can_manage_rank, @can_manage_member, @can_delete_orga, @can_receive_notif, @can_enter_lab)",
+            "INSERT INTO organisation_rank (organisation_id, name, position, can_add_members, can_remove_members, can_see_lab, can_manage_rank, can_manage_member, can_delete_orga, can_receive_notif, can_enter_lab, can_read_influence, can_activate_option) VALUES (@organisation_id, @name, @position, @can_add_members, @can_remove_members, @can_see_lab, @can_manage_rank, @can_manage_member, @can_delete_orga, @can_receive_notif, @can_enter_lab, @can_read_influence, @can_activate_option)",
             {
                 ["@organisation_id"] = organisationId,
                 ["@name"] = currentRank.NEW_VALUES.name,
@@ -589,7 +593,9 @@ AddEventHandler(
                 ["@can_manage_member"] = currentRank.NEW_VALUES.can_manage_member,
                 ["@can_delete_orga"] = currentRank.NEW_VALUES.can_delete_orga,
                 ["@can_receive_notif"] = currentRank.NEW_VALUES.can_receive_notif,
-                ["@can_enter_lab"] = currentRank.NEW_VALUES.can_enter_lab
+                ["@can_enter_lab"] = currentRank.NEW_VALUES.can_enter_lab,
+                ["@can_read_influence"] = currentRank.NEW_VALUES.can_read_influence,
+                ["@can_activate_option"] = currentRank.NEW_VALUES.can_activate_option
             }
         )
       

@@ -25,12 +25,6 @@ local VehShop =
             },
             Vehicles = {
                 ["Entreprise"] = {
-                    {name = "newsvan", price = 30000},
-                    {name = "rumpo2", price = 12000},
-                    {name = "emsnspeedo", price = 30000},
-                    {name = "emsroamer", price = 30000},
-                    {name = "safeteam", price = 25000},
-                    {name = "corspeedo", price = 30000},
                    -- {name = "firetruk", price = 30000},
                    -- {name = "lsfd", price = 20000},
                    -- {name = "lsfd2", price = 30000},
@@ -61,14 +55,7 @@ local VehShop =
                     {name = "brickade", price = 27000},
                     {name = "utillitruck3", price = 30000},
                     {name = "phantom", price = 40000},
-                    {name = "phantom3", price = 40000},
-                    {name = "lsfd", price = 25000},
-                    {name = "lsfd2", price = 25000},
-                    {name = "lsfd3", price = 25000},
-                    {name = "lsfd5", price = 25000},
-                    {name = "lsfdtruck", price = 25000},
-                    {name = "lsfdtruck2", price = 25000},
-                    {name = "lsfdtruck3", price = 25000}
+                    {name = "phantom3", price = 40000}
                 },
                 ["Compacts"] = {
                     {name = "issi2", price = 2250},
@@ -400,45 +387,60 @@ local VehShop =
                     {name = "verus", price = 5500}
                 },]]
                 ["Police"] = {
-                    {name = "police", price = 25000},
-                    {name = "policeslick", price = 25000},
-                    --{name = "police2", price = 25000},
-                    {name = "police2new", price = 25000},
-                    {name = "pdumkbuffalo", price = 25000},
-                    {name = "police3", price = 25000},
-                    {name = "police3slick", price = 25000},
-                    {name = "police3umk", price = 25000},
-                    {name = "police4", price = 25000},
-                    {name = "pscout", price = 25000},
-                    --{name = "pscoutnew", price = 25000},
-                    {name = "sheriffscoutnew", price = 25000},
-                    {name = "umkscout", price = 25000},
-                    {name = "poleveron", price = 25000},
-                    {name = "polalamo", price = 25000},
-                    --{name = "polriot", price = 25000},
-                    {name = "polspeedo", price = 25000},
-                    {name = "polraiden", price = 25000},
-                    {name = "suppressor", price = 25000},
-                    {name = "sebalamo2", price = 25000},
-                    {name = "prevolter", price = 25000},
-                    {name = "polalamoold", price = 25000},
-                    {name = "polbuffals", price = 25000},
-                    --{name = "nscoutlspd", price = 25000},
-                    {name = "pdumksx", price = 25000}
-                    --{name = "lspdb", price = 25000}
+                    {name = "lspdalamo", price = 25000},
+                    {name = "lspdbuffalos", price = 25000},
+                    {name = "lspdbuffalosum", price = 25000},
+                    {name = "lspdcycle", price = 5000},
+                    {name = "lspdeveron", price = 25000},
+                    {name = "lspdexecutioner", price = 25000},
+                    {name = "lspdfugitiveum", price = 25000},
+                    {name = "lspdlandstalkerum", price = 25000},
+                    {name = "lspdmerit", price = 25000},
+                    {name = "lspdpark2", price = 25000},
+                    {name = "lspdraiden", price = 25000},
+                    {name = "lspdscout4", price = 25000},
+                    {name = "lspdspeedo", price = 25000},
+                    {name = "lspdswattruck", price = 25000},
+                    {name = "lspdswatutil", price = 25000},
+                    {name = "lspdtarv", price = 25000},
+                    {name = "lspdtorrence", price = 25000},
+                    {name = "lspdtorrenceslick", price = 25000},
+                    {name = "lspdtorrenceum", price = 25000}
                 },
                 ["BCSO"] = {
+                    {name = "bcsoalamo5", price = 25000},
+                    {name = "bcsoalamo2", price = 25000},
+                    {name = "bcsoalamo6", price = 25000},
                     {name = "bcsocara", price = 25000},
-                    {name = "bcsobison", price = 25000},
                     {name = "bcsofugitive", price = 25000},
+                    {name = "bcsolandstalker2", price = 25000},
+                    {name = "bcsonalamo", price = 25000},
+                    {name = "bcsosadler", price = 25000},
                     {name = "bcsoscout", price = 25000},
-                    {name = "bcsogranger", price = 25000},
-                    {name = "bcsogranger2", price = 25000},
-                    {name = "bcsogranger3", price = 25000},
-                    {name = "bcsogranger4", price = 25000},
-                    {name = "bcsosandking", price = 25000},
-                    {name = "bcsostanier", price = 25000},
-                    {name = "bcsostanier2", price = 25000}
+                    {name = "bcsostanier2", price = 25000},
+                    {name = "bcsotarv", price = 25000}
+
+                },
+                ["SAMS"] = {
+                    {name = "samsbison", price = 25000},
+                    {name = "samscara", price = 25000},
+                    {name = "samsroamer", price = 25000},
+                    {name = "samsspeedoamb", price = 25000},
+                    {name = "samsspeedoamb2", price = 25000},
+                    {name = "samsstanier", price = 25000}
+                },
+                ["SAMS"] = {
+                    {name = "samsbison", price = 25000},
+                    {name = "samscara", price = 25000},
+                    {name = "samsroamer", price = 25000},
+                    {name = "samsspeedoamb", price = 25000},
+                    {name = "samsspeedoamb2", price = 25000},
+                    {name = "samsstanier", price = 25000}
+                },
+                ["G6"] = {
+                    {name = "g6scout", price = 25000},
+                    {name = "g6buffalo", price = 25000},
+                    {name = "stockade", price = 25000}
                 },
                 ["Gouvernement"] = {
                     {name = "idcar", price = 30000},

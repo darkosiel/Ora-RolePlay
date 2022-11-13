@@ -10,21 +10,6 @@ RMenu.Add(
     RageUI.CreateSubMenu(RMenu:Get("personnal", "main"), "Animations", "Animations disponibles")
 )
 
-function StopAnimation()
-    local ped = LocalPlayer().Ped
-    if ped then
-        ClearPedTasks(ped)
-    end
-    SetEnableHandcuffs(ped, false)
-end
-
-for k, v in pairs(Animations) do
-    RMenu.Add(
-        "personnal",
-        "animations_" .. k,
-        RageUI.CreateSubMenu(RMenu:Get("personnal", "animations"), k, "Animations disponibles")
-    )
-end
 RegisterCommand(
     "playanim",
     function(source, args)
@@ -80,17 +65,6 @@ Citizen.CreateThread(
                     {header = true, glare = true},
                     function()
                         RageUI.Button(
-                            "Arrêter l'animation",
-                            nil,
-                            {},
-                            true,
-                            function(Hovered, Active, Selected)
-                                if Selected then
-                                    StopAnimation()
-                                end
-                            end
-                        )
-                        RageUI.Button(
                             "Dormir/se réveiller",
                             nil,
                             {},
@@ -101,18 +75,6 @@ Citizen.CreateThread(
                                 end
                             end
                         )
-                        for k, v in pairs(Animations) do
-                            RageUI.Button(
-                                k,
-                                nil,
-                                {},
-                                true,
-                                function()
-                                end,
-                                RMenu:Get("personnal", "animations_" .. k)
-                            )
-                        end
-
                         RageUI.List(
                             "Démarche",
                             Demarche,
@@ -170,31 +132,6 @@ Citizen.CreateThread(
                     function()
                     end
                 ) 
-            end
-
-            for k, v in pairs(Animations) do
-                if RageUI.Visible(RMenu:Get("personnal", "animations_" .. k)) then
-                    RageUI.DrawContent(
-                        {header = true, glare = true},
-                        function()
-                            for i = 1, #v, 1 do
-                                RageUI.Button(
-                                    v[i].name,
-                                    nil,
-                                    {},
-                                    true,
-                                    function(Hovered, Active, Selected)
-                                        if Selected and not LocalPlayer().Handcuff then
-                                            doAnim(v[i].anim, nil, v[i].func)
-                                        end
-                                    end
-                                )
-                            end
-                        end,
-                        function()
-                        end
-                    )
-                end
             end
         end
     end
