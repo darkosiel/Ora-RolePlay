@@ -8774,6 +8774,35 @@ Jobs = {
                 },
             },
         },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = -1826.30, y = -387.30, z = 40.64}
+                },
+                restricted = {1, 2, 3, 4, 5, 6, 7},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "SAMS - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        }
     },
 
     lsfd = {
@@ -13341,6 +13370,35 @@ Jobs = {
                 Pos = {x = -226.38, y = -842.34, z = 30.68 - 0.9},
                 Limit = 1000,
                 Name = "Armurerie G6"
+            }
+        },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = 0.89, y = -701.03, z = 32.33}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "G6 - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
             }
         }
     }
