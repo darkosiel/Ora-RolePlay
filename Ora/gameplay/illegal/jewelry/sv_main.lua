@@ -104,7 +104,7 @@ function StartAlarmAndGas(source)
             gasMultiplier = gasMultiplier - 0.5
         end
     end
-    print("Gas multiplier = " .. gasMultiplier)
+    --print("Gas multiplier = " .. gasMultiplier)
     TriggerClientEvent("jewellery_heist:startAlarm", source, gasMultiplier)
 end
 
@@ -134,7 +134,7 @@ end)
 
 local function CalculatesRewards(caseId)
     local type = C.Cases[caseId].Type
-    print(caseId, type)
+    --print(caseId, type)
     local probabilitiesOfThisCaseType = rewardsProbability[type]
 
     local prob_quantity_of_items      = probabilitiesOfThisCaseType.quantity_of_items
@@ -176,7 +176,7 @@ local function CalculatesRewards(caseId)
 
     for k, v in pairs(rewards) do
         table.insert(PlayersRewards[source], v)
-        print(json.encode(v))
+        --print(json.encode(v))
     end
 
     return rewards
@@ -186,10 +186,10 @@ end
 ---- Events ----
 ----------------
 RegisterServerEvent("jewellery_heist:askForConfigData", function()
-    print(source .. " asked for config data")
+    --print(source .. " asked for config data")
     TriggerClientEvent("jewellery_heist:receiveConfigData", source, json.encode(C.Cases))
     if isRobberyInProgress then
-        print("Uptated state of the alarm to player #" .. source)
+        --print("Uptated state of the alarm to player #" .. source)
         StartAlarmAndGas(source)
         TriggerClientEvent("jewellery_heist:startAlarm", source)
     end
@@ -206,7 +206,7 @@ RegisterServerEvent("jewellery_heist:brokenCase:Request", function(caseId, coord
     end
     -- If there isn't enough cops, don't allow the player to break the case
     if not checkIfThereIsEnoughCops() then
-        print("Not enough cops to break the case")
+        --print("Not enough cops to break the case")
         TriggerClientEvent("jewellery_heist:notEnoughCops", source)
         return
     end
@@ -215,7 +215,7 @@ RegisterServerEvent("jewellery_heist:brokenCase:Request", function(caseId, coord
         v = C.Cases[caseId]
         if coords == v.Coords_1 then
             if getDistanceBetweenCoords(coords, pCoords) <= 1.5 then
-                print("Player #" .. source .. " is breaking the case #" .. caseId)
+                --print("Player #" .. source .. " is breaking the case #" .. caseId)
                 TriggerClientEvent("jewellery_heist:brokenCase:Allow", source, caseId)
             end
         else
@@ -225,21 +225,18 @@ RegisterServerEvent("jewellery_heist:brokenCase:Request", function(caseId, coord
         print(("Case ID doesn't match. The player is probably cheating. (Player id : %s, CaseId : [%s], Coords : [%s])"):format(source, caseId, coords))
     end
 
-    for k, v in pairs(C.Cases) do
-    end
-
     if not isRobberyInProgress then
         isRobberyInProgress = true
         SaveLastTimeRobbery()
         StartAlarmAndGas()
-        Citizen.Wait(C.WaitToCallCops)
+        --Citizen.Wait(C.WaitToCallCops)
         AlertCops()
     end
 end)
 
 RegisterServerEvent("jewellery_heist:brokenCase:Done", function(caseId)
     local source = source
-    print("Player #" .. source .. " is done with the case #" .. caseId)
+    --print("Player #" .. source .. " is done with the case #" .. caseId)
     C.Cases[caseId].Broken = true
     TriggerClientEvent("jewellery_heist:updateCase", -1, caseId)
 

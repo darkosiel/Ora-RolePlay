@@ -229,7 +229,7 @@ function StartSoporificGazEffect(gasMultiplier)
 end
 
 function StopSoporificGazEffect()
-    if ParticleGasMultiplier > 0 then
+    if ParticleGasMultiplier ~= nil and ParticleGasMultiplier > 0 then
         for i = 100, 1, -1 do
             SetParticleFxLoopedAlpha(ParticleFX, i * 0.1 * ParticleGasMultiplier)
             Citizen.Wait(100)

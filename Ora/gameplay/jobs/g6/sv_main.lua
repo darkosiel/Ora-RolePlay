@@ -373,12 +373,26 @@ RegisterServerEvent("g6:endSession", function()
 	--TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 
 	-- Calculate reward
-	local reward = REWARD_AMOUNT * G6_Current_Session.currentRouteStop - 1
+	local reward = REWARD_AMOUNT * (G6_Current_Session.currentRouteStop - 1)
 	-- for i = 1, #G6_Current_Session.route, 1 do
 	-- 	reward = reward + G6_Current_Session.route[i].reward
 	-- end
 
-	print("Reward: "..reward)
+	-- Add the money to the g6 account
+	TriggerEvent(
+		"bankingSendMoney",
+		"mazegroup",
+		reward,
+		"centralbank"
+	)
+	TriggerEvent(
+		"newTransaction",
+		"mazegroup",
+		"Pacific Bank",
+		reward,
+		"Prime versée par l'entreprise.",
+		""
+	)
 
 	-- Delete the Session
 	G6_Current_Session = nil
