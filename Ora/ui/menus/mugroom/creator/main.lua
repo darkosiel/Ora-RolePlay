@@ -1069,7 +1069,7 @@ Citizen.CreateThread(function()
                             --print(json.encode(createPlayer))
                             
                             TriggerServerEvent("mugroom:RegisterNewPlayer", createPlayer, spawnPoint)
-                            TakePictureAndExit()
+                            --TakePictureAndExit()
                             RageUI.GoBack()
                             RageUI.GoBack()
                             RageUI.GoBack()
