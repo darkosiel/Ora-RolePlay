@@ -201,7 +201,7 @@ function updateAmountSelector(m) {
 
 function setData() {
     $("#player-name").html(param.Cards.name);
-    let number = param.Cards.number.match(/.{1,4}/g);
+    let number = param.Cards.number.toString().match(/.{1,4}/g);
     $("#player-card-number").html(number.join(" "));
     $("#player-card-name").html(param.Cards.name);
     $("#player-card-image").attr('src', './assets/card-' + param.Cards.type + '.png');
