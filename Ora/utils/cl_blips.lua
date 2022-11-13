@@ -38,6 +38,8 @@ local Blips = {
     },
     {name = "Distributeur de Billets", color = 2, sprite = 434, size = 0.80, Pos = {x = -95.90, y = 6455.62, z = 31.45}},
     {name = "Pacific Banque", color = 2, sprite = 605, size = 0.80, Pos = {x = 227.49, y = 212.99, z = 105.53}},
+    {name = "Maze Group", color = 49, sprite = 78, size = 0.80, Pos = {x = -1376.18, y = -491.93, z = 33.16}},
+    {name = "Gruppe Sechs", color = 69, sprite = 67, size = 0.80, Pos = {x = -231.46, y = -851.80, z = 30.68}},
     {name = "Pawn Shop", color = 12, sprite = 587, Pos = {x = 105.43, y = 9.43, z = 67.86}},
     --{name = "Blaine County Banque", color = 2, sprite = 108, size = 0.80, Pos = {x = -114.82, y = 6459.21, z = 142.89}},
     {name = "Ocean medical Center", color = 5, sprite = 61, Pos = {x = -1858.35, y = -324.27, z = 53.77}},
