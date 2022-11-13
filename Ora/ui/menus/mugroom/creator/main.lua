@@ -155,9 +155,9 @@ function OpenCreatorMenu()
     local playerPed = PlayerPedId()
     --SetEntityCoordsNoOffset(playerPed, 402.98, -996.39, -99.0, true, true, true)
     --SetEntityCoordsNoOffset(playerPed, )
+    FreezeEntityPosition(playerPed, true)
     SetEntityCoordsNoOffset(playerPed, createPlayer.Position.x, createPlayer.Position.y, createPlayer.Position.z, true, true, true)
     RageUI.Visible(RMenu:Get("mugshot", "creator"), true)
-    FreezeEntityPosition(playerPed, true)
     StartAnimProcess()
     updateModelActive = true
     onCreatorTick.LightRemote = true
@@ -234,7 +234,7 @@ function GiveClothes()
     item = {}
     TriggerServerCallback("Ora::SE::Money:AuthorizePayment", function(token)
         TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = startMoney, SOURCE = "Argent de départ", LEGIT = false})
-        TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
+        --TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
     end,{})
 end
 
