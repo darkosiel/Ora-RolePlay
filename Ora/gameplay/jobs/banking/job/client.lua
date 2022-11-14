@@ -2176,6 +2176,7 @@ function InitBankerJob()
     function openMenu()
         currentJob = Ora.Identity.Job:Get()
         currentOrga = Ora.Identity.Orga:Get()
+        repeat Wait(1.0) until currentJob ~= nil and currentOrga ~= nil
         RageUI.Visible(RMenu:Get("mazegroup", "main"), true)
     end
 
