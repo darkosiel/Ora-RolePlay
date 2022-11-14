@@ -1356,8 +1356,8 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1865.211, y = 3749.206, z = 32.30},
-                Limit = 100,
+                Pos = {x = -294.3665, y = 6198.5332, z = 31.5136},
+                Limit = 500,
                 Name = "coffre_tatoo_nord"
             }
         },
