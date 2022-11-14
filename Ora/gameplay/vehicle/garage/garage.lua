@@ -1009,7 +1009,7 @@ PublicGarage = {
             Pos = {x=-681.6707,y=-1407.4106,z=4.57,h=243.91},
             Blipcolor  =84,
             BlipId = 524,
-            Blipname = "Parkings Pegasus"
+            Blipname = "Parkings Pegasus Marina"
         },
         Marker = {
             type = 1,
@@ -1021,6 +1021,30 @@ PublicGarage = {
             visible = true
         },
         Name = "garage_8"
+    },
+    {
+        Pos = {x=-1674.0949,y=-3116.4467,z=13.9907,h=327.4691},
+        Properties = {
+            type = 0,
+            Pos = {x=-1674.0949,y=-3116.4467,z=13.9907,h=327.4691},
+            Limit = 2
+        },
+        Blipdata = {
+            Pos = {x=-1674.0949,y=-3116.4467,z=13.9907,h=327.4691},
+            Blipcolor  =84,
+            BlipId = 524,
+            Blipname = "Parkings Pegasus LSIA"
+        },
+        Marker = {
+            type = 1,
+            scale = {x=2.5,y=2.5,z=0.2},
+            color = {r=255,g=255,b=255,a=120},
+            Up = false,
+            Cam = false,
+            Rotate = false,
+            visible = true
+        },
+        Name = "garage_9"
     },
     {
         Pos = {x= -1793.3376,y= -1181.8843,z= 12.99,h= 243.91},
