@@ -5659,10 +5659,10 @@ Citizen.CreateThread(
                                                                 local processPayment = true
                                                                 -- GetRatiosforcard
 
-                                                                if (dataonWait.price > (maxPayin - currentPayin)) then
-                                                                    ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
-                                                                    return
-                                                                end
+                                                                -- if (dataonWait.price > (maxPayin - currentPayin)) then
+                                                                --     ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
+                                                                --     return
+                                                                -- end
 
 
                                                                 if acc.amount >= dataonWait.price and processPayment then
@@ -5769,7 +5769,6 @@ Citizen.CreateThread(
                                                         "getBankingAccountsPly2",
                                                         function(result)
                                                             local acc = result[1]
-
                                                             
                                                             TriggerServerCallback("Ora_banking:getRatiosForCard",function(cardExist,maxDeposit,maxRemove,maxPayin,currentDeposit,currentRemove,currentPayin)
                                                                 if (cardExist == false) then
@@ -5779,10 +5778,10 @@ Citizen.CreateThread(
                                                                 local processPayment = true
                                                                 -- GetRatiosforcard
 
-                                                                if (dataonWait.price > (maxPayin - currentPayin)) then
-                                                                    ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
-                                                                    return
-                                                                end
+                                                                -- if (dataonWait.price > (maxPayin - currentPayin)) then
+                                                                --     ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
+                                                                --     return
+                                                                -- end
 
 
                                                                 if acc.amount >= dataonWait.price and processPayment then
@@ -5899,10 +5898,10 @@ Citizen.CreateThread(
                                                                 local processPayment = true
                                                                 -- GetRatiosforcard
 
-                                                                if (dataonWait.price > (maxPayin - currentPayin)) then
-                                                                    ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
-                                                                    return
-                                                                end
+                                                                -- if (dataonWait.price > (maxPayin - currentPayin)) then
+                                                                --     ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
+                                                                --     return
+                                                                -- end
 
 
                                                                 if acc.amount >= dataonWait.price and processPayment then
@@ -6019,10 +6018,10 @@ Citizen.CreateThread(
                                                                 local processPayment = true
                                                                 -- GetRatiosforcard
 
-                                                                if (dataonWait.price > (maxPayin - currentPayin)) then
-                                                                    ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
-                                                                    return
-                                                                end
+                                                                -- if (dataonWait.price > (maxPayin - currentPayin)) then
+                                                                --     ShowNotification("~r~Vous ne pouvez pas payer plus de " .. (maxPayin - currentPayin) .. "$ avec cette carte")
+                                                                --     return
+                                                                -- end
 
 
                                                                 if acc.amount >= dataonWait.price and processPayment then
