@@ -2246,15 +2246,15 @@ function InitBankerJob()
                 )
             end
 
-            if (Ora.Identity.Job.ChangingOldName == "mazegroup") then
-                KeySettings:Clear("keyboard", "F6", "mazegroup")
-                Ora.Identity.Job.ChangingOldName = ""
-                break
-            elseif (Ora.Identity.Orga.Data.ChangingOldName == "mazegroup") then
-                KeySettings:Clear("keyboard", "F7", "mazegroup")
-                Ora.Identity.Orga.ChangingOldName = ""
-                break
-            end
+            -- if (Ora.Identity.Job.ChangingOldName == "mazegroup") then
+            --     KeySettings:Clear("keyboard", "F6", "mazegroup")
+            --     Ora.Identity.Job.ChangingOldName = ""
+            --     break
+            -- elseif (Ora.Identity.Orga.Data.ChangingOldName == "mazegroup") then
+            --     KeySettings:Clear("keyboard", "F7", "mazegroup")
+            --     Ora.Identity.Orga.ChangingOldName = ""
+            --     break
+            -- end
 
             Citizen.Wait(1.0)
         end
