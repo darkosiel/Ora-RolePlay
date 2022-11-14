@@ -1356,8 +1356,8 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1865.211, y = 3749.206, z = 32.30},
-                Limit = 100,
+                Pos = {x = -294.3665, y = 6198.5332, z = 31.5136},
+                Limit = 500,
                 Name = "coffre_tatoo_nord"
             }
         },
@@ -8774,6 +8774,35 @@ Jobs = {
                 },
             },
         },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = -1826.30, y = -387.30, z = 40.64}
+                },
+                restricted = {1, 2, 3, 4, 5, 6, 7},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "SAMS - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        }
     },
 
     lsfd = {
@@ -10438,7 +10467,7 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                    {x = -1052.71, y = -858.48, z = 4.88}
+                    {x = -162.45, y = -1304.8, z = 30.31}
                 },
                 Enter = EnterZoneTow,
                 Exit = ExitZoneTow,
@@ -13217,39 +13246,54 @@ Jobs = {
                 show = true
             }
         },
-        work = {
-            vestiaire = {
-                type = "Vestiaire",
-                workSize = 1.45,
-                Pos = {x = 1849.57, y = 3696.18, z = 33.27},
-                vestiaire = {
-                    type = "Vestiaire",
-                    workSize = 1.45,
-                    Pos = {x = 1849.57, y = 3696.18, z = 33.27},
-                    Tenues = {
-                        ["Tenue de service"] = {
-                            male = {
+        -- work = {
+        --     vestiaire = {
+        --         type = "Vestiaire",
+        --         workSize = 1.45,
+        --         Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+        --         vestiaire = {
+        --             type = "Vestiaire",
+        --             workSize = 1.45,
+        --             Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+        --             Tenues = {
+        --                 ["Tenue de service"] = {
+        --                     male = {
 
-                            },
-                            female = {
+        --                     },
+        --                     female = {
                                 
-                            },
-                        }
-                    }
-                } 
-            }
-        },
+        --                     },
+        --                 }
+        --             }
+        --         } 
+        --     }
+        -- },
         garage = {
-            Name = "Garage G6",
-            Pos = {x = 232.67, y = 385.44, z = 106.42},
+            Name = "Garage employé G6",
+            Pos = {x = -284.51, y = -918.18, z = 31.08},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 232.67, y = 385.44, z = 106.42, h = 76.92}
+                spawnpos = {x = -284.51, y = -918.18, z = 31.08, h = 76.92}
             },
             Blipdata = {
-                Pos = {x = 232.67, y = 385.44, z = 106.42},
+                Pos = {x = -284.51, y = -918.18, z = 31.08},
+                Blipcolor = 5,
+                Blipname = "Garage employé G6"
+            }
+        },
+        garage2 = {
+            Name = "Garage G6",
+            Pos = {x = -18.33, y = -699.53, z = 32.33},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -18.33, y = -699.53, z = 32.33, h = 76.92}
+            },
+            Blipdata = {
+                Pos = {x = -18.33, y = -699.53, z = 32.33},
                 Blipcolor = 5,
                 Blipname = "Garage G6"
             }
@@ -13315,14 +13359,47 @@ Jobs = {
                     }
                 }
             },
-            Storage = {
-                {
-                    --TODO : def pos of storage
-                    Pos = {x = -196.01, y = -1340.04, z = 33.9},
-                    Limit = 100,
-                    Name = "coffre_bennys"
-                }
+        },
+        Storage = {
+            {
+                Pos = {x = -224.65, y = -822.10, z = 30.68 - 0.9},
+                Limit = 1000,
+                Name = "Frigo G6"
             },
+            {
+                Pos = {x = -226.38, y = -842.34, z = 30.68 - 0.9},
+                Limit = 1000,
+                Name = "Armurerie G6"
+            }
+        },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = 0.89, y = -701.03, z = 32.33}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "G6 - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
         }
     }
 }

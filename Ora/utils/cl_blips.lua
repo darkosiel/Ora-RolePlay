@@ -51,6 +51,7 @@ local Blips = {
    -- {name = "Harmony Repairs", color = 61, sprite = 488, size = 1.05, Pos = {x = 1178.06, y = 2646.36, z = 37.75}},
     {name = "Weazel News", color = 2, sprite = 184, Pos = {x = -582.75, y = -927.19, z = 36.83}},
     {name="Taxi", color = 5, sprite=198, Pos = {x=909.18, y=-179.6, z=74.17}},
+    {name="Bijouterie", color = 43, sprite = 617, Pos = {x = -624.17, y = -231.99, z = 38.05}},
     --{name ="District Records", color = 63, sprite=136, Pos = {x = -1012.5096, y= -268.2939, z=39.03}},
     --{name="Tabac", color = 2, sprite=79, Pos = {x=2010.8, y=3076.6, z=47.06}},
 
@@ -93,6 +94,7 @@ local Blips = {
    -- {name = "SubUrban", color = 64, sprite = 366, Pos = {x = 618.1, y = 2759.32, z = 40.98}},
     {name = "Salon de tatouage", color = 1, sprite = 75, Pos = {x = -1149.7503, y = -1428.5909, z = 3.95}},
     {name = "Salon de tatouage el burro", color = 1, sprite = 75, Pos = {x = 1323.7127, y = -1652.8209, z = 3.95}},
+    {name = "Salon de tatouage Peleto Bay", color = 1, sprite = 75, Pos = {x = -289.2180, y = 6200.0078, z = 31.4650}},
     {name = "Coiffeur Mirror Park", color = 64, sprite = 71, Pos = {x = 1212.6756, y = -472.9996, z = 3.95}},
     {name = "Post OP", color = 21, sprite = 616, Pos = {x = 1218.5623, y = -3274.3474, z = 29.7969}},
    -- {name = "Fujiwara Tofu", color = 63, sprite = 210, size = 1.0, Pos = {x = -165.19, y = 290.42, z = 93.76}},

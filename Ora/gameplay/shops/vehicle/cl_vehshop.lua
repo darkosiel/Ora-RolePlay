@@ -428,6 +428,18 @@ local VehShop =
                     {name = "samsspeedoamb2", price = 25000},
                     {name = "samsstanier", price = 25000}
                 },
+                ["LSFD"] = {
+                    {name = "lsfdbison2", price = 25000},
+                    {name = "lsfdbisoncmd", price = 25000},
+                    {name = "lsfdbisonamb", price = 25000},
+                    {name = "lsfdgranger", price = 25000},
+                    {name = "lsfdstanier", price = 25000},
+                    {name = "lsfdsadler", price = 25000},
+                    {name = "lsfdhazmat", price = 25000},
+                    {name = "lsfdusar", price = 25000},
+                    {name = "lsfdtruck", price = 25000},
+                    {name = "lsfdladder", price = 25000}
+                },
                 ["G6"] = {
                     {name = "g6scout", price = 25000},
                     {name = "g6buffalo", price = 25000},
