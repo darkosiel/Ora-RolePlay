@@ -429,7 +429,7 @@ local VehShop =
                     {name = "samsstanier", price = 25000}
                 },
                 ["LSFD"] = {
-                    {name = "lsfdbidon2", price = 25000},
+                    {name = "lsfdbison2", price = 25000},
                     {name = "lsfdbisoncmd", price = 25000},
                     {name = "lsfdbisonamb", price = 25000},
                     {name = "lsfdgranger", price = 25000},
