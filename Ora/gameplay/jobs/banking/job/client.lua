@@ -2176,6 +2176,7 @@ function InitBankerJob()
     function openMenu()
         currentJob = Ora.Identity.Job:Get()
         currentOrga = Ora.Identity.Orga:Get()
+        repeat Wait(1.0) until currentJob ~= nil and currentOrga ~= nil
         RageUI.Visible(RMenu:Get("mazegroup", "main"), true)
     end
 
@@ -2245,15 +2246,15 @@ function InitBankerJob()
                 )
             end
 
-            if (Ora.Identity.Job.ChangingOldName == "mazegroup") then
-                KeySettings:Clear("keyboard", "F6", "mazegroup")
-                Ora.Identity.Job.ChangingOldName = ""
-                break
-            elseif (Ora.Identity.Orga.Data.ChangingOldName == "mazegroup") then
-                KeySettings:Clear("keyboard", "F7", "mazegroup")
-                Ora.Identity.Orga.ChangingOldName = ""
-                break
-            end
+            -- if (Ora.Identity.Job.ChangingOldName == "mazegroup") then
+            --     KeySettings:Clear("keyboard", "F6", "mazegroup")
+            --     Ora.Identity.Job.ChangingOldName = ""
+            --     break
+            -- elseif (Ora.Identity.Orga.Data.ChangingOldName == "mazegroup") then
+            --     KeySettings:Clear("keyboard", "F7", "mazegroup")
+            --     Ora.Identity.Orga.ChangingOldName = ""
+            --     break
+            -- end
 
             Citizen.Wait(1.0)
         end
