@@ -15,10 +15,10 @@ end)
 
 local REQUIRED_VEHICLE_HASH <const> = GetHashKey("stockade")
 local DEPOT_COORDS <const> = vector3(-3.433605, -672.838806, 31.946930)
-local MIN_NUMBER_IN_SERVICE <const> = 1
-local MIN_NUMBER_IN_SESSION <const> = 1
-local G6_MAX_STOPS_PER_DAY <const> = 10
-local REWARD_AMOUNT <const> = 1000
+local MIN_NUMBER_IN_SERVICE <const> = 3
+local MIN_NUMBER_IN_SESSION <const> = 3
+local G6_MAX_STOPS_PER_DAY <const> = 60
+local REWARD_AMOUNT <const> = 1500
 
 local AtmIsBeingFilled = false
 local G6_Current_Session = nil
