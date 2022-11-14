@@ -379,11 +379,14 @@ RegisterServerEvent("g6:endSession", function()
 	-- end
 
 	-- Add the money to the g6 account
+	--print("Reward: " .. reward)
+	if reward == nil then
+		reward = 0
+	end
 	TriggerEvent(
-		"bankingSendMoney",
-		"mazegroup",
-		reward,
-		"centralbank"
+		"Ora_bank:addMoneyToBankAccount",
+		"g6",
+		reward
 	)
 	TriggerEvent(
 		"newTransaction",
