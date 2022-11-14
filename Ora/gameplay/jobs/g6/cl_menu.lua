@@ -14,15 +14,17 @@ function OpenSessionMenu()
 end
 
 Citizen.CreateThread(function()
+	local visible = false
 	while true do
 		if RageUI.Visible(RMenu:Get("g6", "main")) then
+			visible = true
 			RageUI.DrawContent({header = true, glare = true}, function()
 				if Current_Session_Data == nil then	
 					RageUI.Button("Générer une nouvelle mission", nil, {RightLabel = "→→→"}, true, function(Hovered, Active, Selected)
 						if Selected then
 							Player.Vehicle = GetVehiclePedIsIn(Player.Ped, false)
 							if Player.Vehicle == 0 then
-								ShowNotification("Vous devez être dans un véhicule compatible (Stockade) pour créer une nouvell mission")
+								ShowNotification("Vous devez être dans un véhicule compatible (Stockade) pour créer une nouvelle mission")
 							end
 							TriggerServerEvent("g6:createSession", NetworkGetNetworkIdFromEntity(Player.Vehicle))
 						end
@@ -76,7 +78,13 @@ Citizen.CreateThread(function()
 				RageUI.Visible(RMenu:Get('jobs',"g6_menujob"), true)
 				RMenu:Get("g6", "main").Controls.Back.Enabled = true
 			end
+		else
+			if visible then
+				RMenu:Get("g6", "main").Controls.Back.Enabled = true
+				visible = false
+			end
 		end
+
 		--print("thread runnig")
 		Citizen.Wait(0)
 	end
