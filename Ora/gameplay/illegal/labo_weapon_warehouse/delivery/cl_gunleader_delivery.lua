@@ -39,9 +39,132 @@ end
 function IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeading, positionEnd, order)
     IllegalGunleadDelivery.DELIVERY = {}
 
-    local discordChannel = 22
-    if (order.property_type == "drug") then
-        discordChannel = 21
+    exports['Snoupinput']:ShowInput("Numéro à appeler", 25, "text")
+    phoneNumber = exports['Snoupinput']:GetInput()
+
+    IllegalGunleadDelivery.LOADED = false
+
+    TriggerServerCallback("Ora:Illegal:GetWaitingOrderByPhoneNumber", function(order)
+        local localOrder =  json.decode(order)
+        IllegalGunleadDelivery.CAN_SHIP = true 
+        if (localOrder.id == nil) then 
+            -- Show Error Message
+            ShowAdvancedNotification(
+                "Vitaly",
+                "~b~Dialogue",
+                "~r~~h~Je ne sais pas qui t'a filé ce num, mais j'ai rien pour toi~h~",
+                "CHAR_LESTER_DEATHWISH",
+                1
+            )  
+            IllegalGunleadDelivery.CAN_SHIP = false
+            TriggerServerEvent(
+                "Ora:sendToDiscord",
+                22,
+                "A tenté d'appeler un numéro où la commande est déjà en livraison ou livré.", 
+                "error"
+            )
+        else 
+            if (localOrder.delivery_position == nil) then 
+                -- Show Error Message
+                ShowNotification("~r~Erreur #2 : Point de livraison manquant. Veuillez faire un ticket~s~")
+                IllegalGunleadDelivery.CAN_SHIP = false
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    22,
+                    "[ERROR] aucun point de livraison défini pour cette commande. Il faut rembourser.", 
+                    "error"
+                )
+            end
+    
+            if (localOrder.order_detail == nil) then 
+                -- Show Error Message
+                ShowNotification("~r~Erreur #3 : Détails de la commande manquant. Veuillez faire un ticket~s~")
+                IllegalGunleadDelivery.CAN_SHIP = false
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    22,
+                    "[ERROR] Le détail de la commande n'existe pas. Il faut rembourser.", 
+                    "error"
+                )
+            end
+        end
+
+        if (IllegalGunleadDelivery.CAN_SHIP) then
+            IllegalGunleadDelivery.DELIVERY = {}
+            IllegalGunleadDelivery.ORDER = localOrder
+        end
+
+        IllegalGunleadDelivery.LOADED = true
+    end, phoneNumber)
+
+    while (IllegalGunleadDelivery.LOADED == false) do
+        Wait(10)
+    end
+
+    if (IllegalGunleadDelivery.CAN_SHIP == true) then
+        local ped = LocalPlayer().Ped
+        local pedPosition = GetEntityCoords(ped)
+        local deliveryPositionDistanceFromPed = GetDistanceBetweenCoords(pedPosition, IllegalGunleadDelivery.ORDER.delivery_position.finish.x, IllegalGunleadDelivery.ORDER.delivery_position.finish.y, IllegalGunleadDelivery.ORDER.delivery_position.finish.z, true)  
+        
+        if (deliveryPositionDistanceFromPed <= 25.0) then
+            ShowAdvancedNotification(
+                "Vitaly",
+                "~b~Dialogue",
+                "~b~~h~Super, t'es en place, mes guetteurs te voient. On arrive dans 1 minute.~h~",
+                "CHAR_LESTER_DEATHWISH",
+                1
+            )
+            ShowAdvancedNotification(
+                "Vitaly",
+                "~b~Dialogue",
+                "~b~~h~On te laisse le véhicule, tout est dans le coffre. Ne te fais pas péter~h~",
+                "CHAR_LESTER_DEATHWISH",
+                1
+            )
+            local startPosition = vector3(IllegalGunleadDelivery.ORDER.delivery_position.start.x, IllegalGunleadDelivery.ORDER.delivery_position.start.y, IllegalGunleadDelivery.ORDER.delivery_position.start.z)
+            local endPosition = vector3(IllegalGunleadDelivery.ORDER.delivery_position.finish.x, IllegalGunleadDelivery.ORDER.delivery_position.finish.y, IllegalGunleadDelivery.ORDER.delivery_position.finish.z)
+
+            IllegalGunleadDelivery.CAN_START = nil
+            TriggerServerCallback("Ora:Illegal:OrderCanBeDelivered", function(canDeliver)
+                IllegalGunleadDelivery.CAN_START = canDeliver
+            end, IllegalGunleadDelivery.ORDER.id)
+    
+            while (IllegalGunleadDelivery.CAN_START == nil) do
+                Wait(10)
+            end
+
+            local discordChannel = 22
+            if (IllegalGunleadDelivery.ORDER.property_type == "drug") then
+                discordChannel = 21
+            end
+
+            if (IllegalGunleadDelivery.CAN_START == true) then
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    discordChannel,
+                    "[COMMANDE #".. IllegalGunleadDelivery.ORDER.id .."]\nLancement de la livraison.", 
+                    "info"
+                )
+                IllegalGunleadDelivery.startDelivery(startPosition, IllegalGunleadDelivery.ORDER.delivery_position.startHeading, endPosition, IllegalGunleadDelivery.ORDER)
+            else
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    discordChannel,
+                    "[WARNING][COMMANDE #".. IllegalGunleadDelivery.ORDER.id .."]\nSuspicion de tentative de multiple appel en même temps.", 
+                    "error"
+                )
+                ShowNotification("~r~Tentative de multiple appel détecté.\nSignalement réalisé.~s~")
+            end
+
+        else
+            ShowAdvancedNotification(
+                "Vitaly",
+                "~b~Dialogue",
+                "~r~~h~Mes guetteurs te voient pas au point de RDV. Rappelle moi quand tu y seras!~h~",
+                "CHAR_LESTER_DEATHWISH",
+                1
+            )
+        end
     end
 
     vehicleFct.SpawnVehicle(
@@ -191,129 +314,6 @@ RegisterNetEvent("Ora::Illegal:Gunleader:GetOrder")
 AddEventHandler(
     "Ora::Illegal:Gunleader:GetOrder",
     function(phoneNumber)
-        IllegalGunleadDelivery.LOADED = false
-
-        TriggerServerCallback("Ora:Illegal:GetWaitingOrderByPhoneNumber", function(order)
-            local localOrder =  json.decode(order)
-            IllegalGunleadDelivery.CAN_SHIP = true 
-            if (localOrder.id == nil) then 
-                -- Show Error Message
-                ShowAdvancedNotification(
-                    "Vitaly",
-                    "~b~Dialogue",
-                    "~r~~h~Je ne sais pas qui t'a filé ce num, mais j'ai rien pour toi~h~",
-                    "CHAR_LESTER_DEATHWISH",
-                    1
-                )  
-                IllegalGunleadDelivery.CAN_SHIP = false
-                TriggerServerEvent(
-                    "Ora:sendToDiscord",
-                    22,
-                    "A tenté d'appeler un numéro où la commande est déjà en livraison ou livré.", 
-                    "error"
-                )
-            else 
-                if (localOrder.delivery_position == nil) then 
-                    -- Show Error Message
-                    ShowNotification("~r~Erreur #2 : Point de livraison manquant. Veuillez faire un ticket~s~")
-                    IllegalGunleadDelivery.CAN_SHIP = false
-                    TriggerServerEvent(
-                        "Ora:sendToDiscord",
-                        22,
-                        "[ERROR] aucun point de livraison défini pour cette commande. Il faut rembourser.", 
-                        "error"
-                    )
-                end
-        
-                if (localOrder.order_detail == nil) then 
-                    -- Show Error Message
-                    ShowNotification("~r~Erreur #3 : Détails de la commande manquant. Veuillez faire un ticket~s~")
-                    IllegalGunleadDelivery.CAN_SHIP = false
-                    TriggerServerEvent(
-                        "Ora:sendToDiscord",
-                        22,
-                        "[ERROR] Le détail de la commande n'existe pas. Il faut rembourser.", 
-                        "error"
-                    )
-                end
-            end
-
-            if (IllegalGunleadDelivery.CAN_SHIP) then
-                IllegalGunleadDelivery.DELIVERY = {}
-                IllegalGunleadDelivery.ORDER = localOrder
-            end
-
-            IllegalGunleadDelivery.LOADED = true
-        end, phoneNumber)
-
-        while (IllegalGunleadDelivery.LOADED == false) do
-            Wait(10)
-        end
-
-        if (IllegalGunleadDelivery.CAN_SHIP == true) then
-            local ped = LocalPlayer().Ped
-            local pedPosition = GetEntityCoords(ped)
-            local deliveryPositionDistanceFromPed = GetDistanceBetweenCoords(pedPosition, IllegalGunleadDelivery.ORDER.delivery_position.finish.x, IllegalGunleadDelivery.ORDER.delivery_position.finish.y, IllegalGunleadDelivery.ORDER.delivery_position.finish.z, true)  
-            
-            if (deliveryPositionDistanceFromPed <= 25.0) then
-                ShowAdvancedNotification(
-                    "Vitaly",
-                    "~b~Dialogue",
-                    "~b~~h~Super, t'es en place, mes guetteurs te voient. On arrive dans 1 minute.~h~",
-                    "CHAR_LESTER_DEATHWISH",
-                    1
-                )
-                ShowAdvancedNotification(
-                    "Vitaly",
-                    "~b~Dialogue",
-                    "~b~~h~On te laisse le véhicule, tout est dans le coffre. Ne te fais pas péter~h~",
-                    "CHAR_LESTER_DEATHWISH",
-                    1
-                )
-                local startPosition = vector3(IllegalGunleadDelivery.ORDER.delivery_position.start.x, IllegalGunleadDelivery.ORDER.delivery_position.start.y, IllegalGunleadDelivery.ORDER.delivery_position.start.z)
-                local endPosition = vector3(IllegalGunleadDelivery.ORDER.delivery_position.finish.x, IllegalGunleadDelivery.ORDER.delivery_position.finish.y, IllegalGunleadDelivery.ORDER.delivery_position.finish.z)
-    
-                IllegalGunleadDelivery.CAN_START = nil
-                TriggerServerCallback("Ora:Illegal:OrderCanBeDelivered", function(canDeliver)
-                    IllegalGunleadDelivery.CAN_START = canDeliver
-                end, IllegalGunleadDelivery.ORDER.id)
-        
-                while (IllegalGunleadDelivery.CAN_START == nil) do
-                    Wait(10)
-                end
-    
-                local discordChannel = 22
-                if (IllegalGunleadDelivery.ORDER.property_type == "drug") then
-                    discordChannel = 21
-                end
-
-                if (IllegalGunleadDelivery.CAN_START == true) then
-                    TriggerServerEvent(
-                        "Ora:sendToDiscord",
-                        discordChannel,
-                        "[COMMANDE #".. IllegalGunleadDelivery.ORDER.id .."]\nLancement de la livraison.", 
-                        "info"
-                    )
-                    IllegalGunleadDelivery.startDelivery(startPosition, IllegalGunleadDelivery.ORDER.delivery_position.startHeading, endPosition, IllegalGunleadDelivery.ORDER)
-                else
-                    TriggerServerEvent(
-                        "Ora:sendToDiscord",
-                        discordChannel,
-                        "[WARNING][COMMANDE #".. IllegalGunleadDelivery.ORDER.id .."]\nSuspicion de tentative de multiple appel en même temps.", 
-                        "error"
-                    )
-                    ShowNotification("~r~Tentative de multiple appel détecté.\nSignalement réalisé.~s~")
-                end
-    
-            else
-                ShowAdvancedNotification(
-                    "Vitaly",
-                    "~b~Dialogue",
-                    "~r~~h~Mes guetteurs te voient pas au point de RDV. Rappelle moi quand tu y seras!~h~",
-                    "CHAR_LESTER_DEATHWISH",
-                    1
-                )
-            end
-        end
+       
     end
 )

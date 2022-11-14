@@ -2179,7 +2179,20 @@ Citizen.CreateThread(
                                         end,
                                         RMenu:Get("personnal", "dealer_mode")
                                     )  
-                                end        
+                                end      
+                                RageUI.Button(
+                                    "Récupérer ma commande",
+                                    "Test",
+                                    {},
+                                    true,
+                                    function(_, _, Selected)
+                                        if (Selected) then
+                                            IllegalGunleadDelivery.startDelivery(positionStart, positionStartHeading, positionEnd, order)
+                                            Wait(10)
+                                            RageUI.GoBack()
+                                        end
+                                    end
+                                )    
 
                                 if IllegalOrga.GetMyRank().can_add_members == 1 then
                                     if IllegalOrga.MENU.INDEX_ORGA_RANKS == nil then
