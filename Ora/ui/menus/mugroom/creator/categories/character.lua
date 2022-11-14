@@ -124,7 +124,7 @@ local defaultFaceData <const> = {
     },
 }
 
-local pedIndex = 1
+pedIndex = 1
 isPed = false
 
 function ProcessMenuCharacter(indexCharacter, createPlayer)

@@ -5,7 +5,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
-local pedindex = {}
+--local pedindex = {}
 
 function SetWeaponDrops()
 	local handle, ped = FindFirstPed()
