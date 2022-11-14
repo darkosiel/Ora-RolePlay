@@ -5651,7 +5651,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "as350",
+                        name = "lspdmav",
                         label = "Helicoptere de police",
                         job = true,
                         tuning = {
