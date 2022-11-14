@@ -1638,7 +1638,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 2567.00, y = 4446.8232, z = 38.3462},
+                Pos = {x = 2567., y = 4446.8232, z = 38.3462},
                 giveitem = "blez",
                 blipcolor = 7,
                 blipname = "Fermier - Récolte du blé",
@@ -4991,8 +4991,8 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "as350",
-                        label = "Helicoptere de police",
+                        name = "bcsomav",
+                        label = "Helicoptere du BCSO",
                         job = true,
                         tuning = {
                             modXenon = false,
