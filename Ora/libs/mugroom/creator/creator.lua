@@ -163,6 +163,8 @@ AddEventHandler(
                 Ora.Identity.Job:Set(Jobs[1].name, Jobs[1].rank)
                 Ora.Identity.Orga:Set(Jobs[1].orga, Jobs[1].orga_rank)
                 XNL_SetInitialXPLevels(tonumber(Users[1].xp))
+                Citizen.Wait(1000)
+                GiveClothes()
                 StartEverything()
                 if (ifModuleLoaded("Player")) then
                     Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)

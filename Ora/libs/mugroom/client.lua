@@ -136,7 +136,7 @@ AddEventHandler(
                 )
                 while not loadedCharacter do
                     Citizen.Wait(100)
-                    print("Waiting for player Loading")
+                    --print("Waiting for player Loading")
                     --print("sorry im waiting")
                 end
                 LocalPlayer().FarmLimit = Users[1].farm_limit
