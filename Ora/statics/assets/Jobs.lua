@@ -10467,7 +10467,7 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                    {x = -477.22, y = 6001.70, z = 31.32}
+                    {x = 205.39, y = -1677.30, z = 29.80}
                 },
                 Enter = EnterZoneTow,
                 Exit = ExitZoneTow,
