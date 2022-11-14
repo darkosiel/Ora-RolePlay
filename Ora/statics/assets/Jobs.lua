@@ -13333,7 +13333,7 @@ Jobs = {
             },
             submenus = {
                 ["Actions citoyen"] = {
-                    submenu = "g6_menu_citoyen",
+                    submenu = "g6_menujob",
                     title = "Actions citoyen",
                     menus = {
                         buttons = {
@@ -13355,7 +13355,8 @@ Jobs = {
                                     HoverPlayer()
                                 end
                             },
-                        }
+                        },
+                        submenus = {}
                     }
                 }
             },
