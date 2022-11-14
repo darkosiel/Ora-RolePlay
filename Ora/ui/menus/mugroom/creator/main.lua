@@ -217,21 +217,22 @@ function GiveClothes()
         topcolor = tops2,
         accesscolor = -1
     }
-    local item = {}
-    item.name = "tenue"
-    item.data = data
-    item.label = "Tenues d'arrivé en ville"
+    local item_tenue = {}
+    item_tenue.name = "tenue"
+    item_tenue.data = data
+    item_tenue.label = "Tenues d'arrivé en ville"
     RageUI.Popup({message = "Vous avez reçu une nouvelle tenue dans votre inventaire !"})
-    Ora.Inventory:AddItem(item)
-    item = {}
+    Ora.Inventory:AddItem(item_tenue)
     
-    local data = {battery = 99, num = GeneratePhoneNumber()}
-    local item = {}
-    item.name = "tel"
-    item.data = data
+    Citizen.Wait(1000.0)
+    
+    local data_telephone = {battery = 99, num = GeneratePhoneNumber()}
+    local item_telephone = {}
+    item_telephone.name = "tel"
+    item_telephone.data = data_telephone
     RageUI.Popup({message = "Vous avez reçu un téléphone dans votre inventaire !"})
-    Ora.Inventory:AddItem(item)
-    item = {}
+    Ora.Inventory:AddItem(item_telephone)
+    Citizen.Wait(1000.0)
     TriggerServerCallback("Ora::SE::Money:AuthorizePayment", function(token)
         TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = startMoney, SOURCE = "Argent de départ", LEGIT = false})
         --TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", startMoney, false)
@@ -1040,7 +1041,6 @@ Citizen.CreateThread(function()
                         ) then
                             Ora.Inventory:Load()
                             Wait(500)
-                            GiveClothes()
                             Ora.Inventory:Save()
                             CloseCreatorMenu()
                             local ModelSelected = createPlayer[createPlayer.Model]
