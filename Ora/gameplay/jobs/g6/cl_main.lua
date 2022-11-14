@@ -123,7 +123,6 @@ function UpdateSession(sessionData)
 
 			ShowNotification("~g~Vous devez vous rendre au prochain point de livraison")
 		end
-
 	end
 	print("Updating session", json.encode(sessionData), Current_Blip)
 	if (sessionData == nil or sessionData.clientInSession == nil) and Current_Blip ~= nil then
@@ -642,115 +641,115 @@ Citizen.CreateThread(function()
 end)
 
 
-------------------------------------
---------- ATM LIST CLEANER ---------
-------------------------------------
+-- ------------------------------------
+-- --------- ATM LIST CLEANER ---------
+-- ------------------------------------
 
-local atms = json.decode(LoadResourceFile(GetCurrentResourceName(), "gameplay/jobs/g6/atms.json"))
+-- local atms = json.decode(LoadResourceFile(GetCurrentResourceName(), "gameplay/jobs/g6/atms.json"))
 
-local atmsCleaned = {}
+-- local atmsCleaned = {}
 
--- Do a camera framework to get the next atm
-
-
-local currentAtmIndex = 1
-local currentAtm = atms[currentAtmIndex]
-local cleanListAtm = {}
-
-local function Start()
-	Citizen.CreateThread(function()
-		local Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
-		function SetCamCoordsRelitavely(cam, coords, rotation)
-
-			-- calculate forward vector base on coords and rotation
-			local forward = vector3( math.sin(math.rad(rotation.z)) * math.abs(math.cos(math.rad(rotation.x))), math.cos(math.rad(rotation.z)) * math.abs(math.cos(math.rad(rotation.x))), math.sin(math.rad(rotation.x)))
-
-			local target = coords + forward * 2.5
-
-			SetCamCoord(cam, coords)
-			PointCamAtCoord(cam, target)
-			SetCamRot(cam, rotation, 2)
-			SetCamFov(cam, 60.0)
-		end
-
-		local coords = currentAtm.coords
-		local heading = currentAtm.heading
-		local fov = currentAtm.fov
-
-		while true do
-			-- Get the direction of the camera
-			local direction = GetCamRot(Camera, 2)
-			-- Get the coords of the camera
-			local camCoords = GetCamCoord(Camera)
-
-			-- Get the forward vector of the camera
-			local forwardVector = GetEntityForwardVector(Camera)
-
-			-- Get the right vector of the camera
-			local rightVector = GetEntityRightVector(Camera)
-
-			-- Get the up vector of the camera
-			local upVector = GetEntityUpVector(Camera)
-
-			-- Move the camera forward
-			if IsControlPressed(0, 32) then
-				local newCoords = camCoords + forwardVector * 0.1
-				SetCamCoord(Camera, newCoords)
-			end
-
-			-- Move the camera backward
-			if IsControlPressed(0, 32) then
-				local newCoords = camCoords - forwardVector * 0.1
-				SetCamCoord(Camera, newCoords)
-			end
-
-			-- Move the camera left
-			if IsControlPressed(0, 32) then
-				local newCoords = camCoords - rightVector * 0.1
-				SetCamCoord(Camera, newCoords)
-			end
-
-			-- Move the camera right
-			if IsControlPressed(0, 32) then
-				local newCoords = camCoords + rightVector * 0.1
-				SetCamCoord(Camera, newCoords)
-			end
-
-			-- Move the camera up
-			if IsControlPressed(0, 32) then
-				local newCoords = camCoords + upVector * 0.1
-				SetCamCoord(Camera, newCoords)
-			end
-
-			-- Move the camera down
-			if IsControlPressed(0, 32) then
-				local newCoords = camCoords - upVector * 0.1
-				SetCamCoord(Camera, newCoords)
-			end
-
-			-- Rotate the camera based on the mouse
-			if IsControlPressed(0, 32) then
-				local mouseX, mouseY = GetDisabledControlNormal(0, 1), GetDisabledControlNormal(0, 2)
-				local newDirection = direction + vector3(mouseY * 0.5, mouseX * 0.5, 0)
-				SetCamRot(Camera, newDirection, 2)
-			end
-
-			-- Do not insert it to the clean list of atm, next one
-			if IsControlJustPressed(0, "SUPPR") then
-				currentAtmIndex = currentAtmIndex + 1
-				SetCamCoordsRelitavely(Camera, currentAtm.coords, vector3(0, 0, currentAtm.rot.z))
-			end
-
-			if IsControlJustPressed(0, "enter") then
-				table.insert(cleanListAtm, currentAtm)
-				currentAtmIndex = currentAtmIndex + 1
-				SetCamCoordsRelitavely(Camera, currentAtm.coords, vector3(0, 0, currentAtm.rot.z))
-			end
-		end
-	end)
-end
+-- -- Do a camera framework to get the next atm
 
 
-RegisterCommand("startCleaning", function()
+-- local currentAtmIndex = 1
+-- local currentAtm = atms[currentAtmIndex]
+-- local cleanListAtm = {}
 
-end)
+-- local function Start()
+-- 	Citizen.CreateThread(function()
+-- 		local Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
+-- 		function SetCamCoordsRelitavely(cam, coords, rotation)
+
+-- 			-- calculate forward vector base on coords and rotation
+-- 			local forward = vector3( math.sin(math.rad(rotation.z)) * math.abs(math.cos(math.rad(rotation.x))), math.cos(math.rad(rotation.z)) * math.abs(math.cos(math.rad(rotation.x))), math.sin(math.rad(rotation.x)))
+
+-- 			local target = coords + forward * 2.5
+
+-- 			SetCamCoord(cam, coords)
+-- 			PointCamAtCoord(cam, target)
+-- 			SetCamRot(cam, rotation, 2)
+-- 			SetCamFov(cam, 60.0)
+-- 		end
+
+-- 		local coords = currentAtm.coords
+-- 		local heading = currentAtm.heading
+-- 		local fov = currentAtm.fov
+
+-- 		while true do
+-- 			-- Get the direction of the camera
+-- 			local direction = GetCamRot(Camera, 2)
+-- 			-- Get the coords of the camera
+-- 			local camCoords = GetCamCoord(Camera)
+
+-- 			-- Get the forward vector of the camera
+-- 			local forwardVector = GetEntityForwardVector(Camera)
+
+-- 			-- Get the right vector of the camera
+-- 			local rightVector = GetEntityRightVector(Camera)
+
+-- 			-- Get the up vector of the camera
+-- 			local upVector = GetEntityUpVector(Camera)
+
+-- 			-- Move the camera forward
+-- 			if IsControlPressed(0, 32) then
+-- 				local newCoords = camCoords + forwardVector * 0.1
+-- 				SetCamCoord(Camera, newCoords)
+-- 			end
+
+-- 			-- Move the camera backward
+-- 			if IsControlPressed(0, 32) then
+-- 				local newCoords = camCoords - forwardVector * 0.1
+-- 				SetCamCoord(Camera, newCoords)
+-- 			end
+
+-- 			-- Move the camera left
+-- 			if IsControlPressed(0, 32) then
+-- 				local newCoords = camCoords - rightVector * 0.1
+-- 				SetCamCoord(Camera, newCoords)
+-- 			end
+
+-- 			-- Move the camera right
+-- 			if IsControlPressed(0, 32) then
+-- 				local newCoords = camCoords + rightVector * 0.1
+-- 				SetCamCoord(Camera, newCoords)
+-- 			end
+
+-- 			-- Move the camera up
+-- 			if IsControlPressed(0, 32) then
+-- 				local newCoords = camCoords + upVector * 0.1
+-- 				SetCamCoord(Camera, newCoords)
+-- 			end
+
+-- 			-- Move the camera down
+-- 			if IsControlPressed(0, 32) then
+-- 				local newCoords = camCoords - upVector * 0.1
+-- 				SetCamCoord(Camera, newCoords)
+-- 			end
+
+-- 			-- Rotate the camera based on the mouse
+-- 			if IsControlPressed(0, 32) then
+-- 				local mouseX, mouseY = GetDisabledControlNormal(0, 1), GetDisabledControlNormal(0, 2)
+-- 				local newDirection = direction + vector3(mouseY * 0.5, mouseX * 0.5, 0)
+-- 				SetCamRot(Camera, newDirection, 2)
+-- 			end
+
+-- 			-- Do not insert it to the clean list of atm, next one
+-- 			if IsControlJustPressed(0, "SUPPR") then
+-- 				currentAtmIndex = currentAtmIndex + 1
+-- 				SetCamCoordsRelitavely(Camera, currentAtm.coords, vector3(0, 0, currentAtm.rot.z))
+-- 			end
+
+-- 			if IsControlJustPressed(0, "enter") then
+-- 				table.insert(cleanListAtm, currentAtm)
+-- 				currentAtmIndex = currentAtmIndex + 1
+-- 				SetCamCoordsRelitavely(Camera, currentAtm.coords, vector3(0, 0, currentAtm.rot.z))
+-- 			end
+-- 		end
+-- 	end)
+-- end
+
+
+-- RegisterCommand("startCleaning", function()
+
+-- end)
