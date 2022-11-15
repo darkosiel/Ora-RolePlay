@@ -289,6 +289,11 @@ RegisterServerCallback("getBanksSummaryInfo", function(source, cb)
     cb(bankInfos, accountsOwnerDetails)
 end)
 
+RegisterServerCallback("g6:getIdentitesList", function(source, cb)
+    local identites = MySQL.Sync.fetchAll("SELECT uuid, first_name, last_name FROM players_identity")
+    cb(identites)
+end)
+
 RegisterServerCallback("getAccountInfo", function(source, cb, accountId)
     local accountInfo = MySQL.Sync.fetchAll("SELECT * FROM banking_account WHERE id = @id", { ["@id"] = accountId })
     local cards = MySQL.Sync.fetchAll("SELECT * FROM banking_cards WHERE account = @id", { ["@id"] = accountId })

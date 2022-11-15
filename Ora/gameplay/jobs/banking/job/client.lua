@@ -343,6 +343,11 @@ Citizen.CreateThread(
                             {},
                             true,
                             function(_, _, Selected)
+                                if Selected then
+                                    TriggerServerCallback("g6:getIdentitesList", function(result)
+                                        Identity = Format(result)
+                                    end)
+                                end
                             end,
                             RMenu:Get("banks", "create_acc")
                         )
