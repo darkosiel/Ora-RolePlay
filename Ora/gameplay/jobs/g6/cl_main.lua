@@ -124,7 +124,7 @@ function UpdateSession(sessionData)
 			ShowNotification("~g~Vous devez vous rendre au prochain point de livraison")
 		end
 	end
-	print("Updating session", json.encode(sessionData), Current_Blip)
+	--print("Updating session", json.encode(sessionData), Current_Blip)
 	if (sessionData == nil or sessionData.clientInSession == nil) and Current_Blip ~= nil then
 		-- Remove the blip
 		SetBlipRoute(Current_Blip, false)
@@ -207,61 +207,61 @@ local AtmModels = {
 	[GetHashKey("prop_fleeca_atm")] = true,
 }
 
-RegisterCommand("animAtm", function()
-	local timer = 0
-	local AnimTime = 10000
-	local dict, anim_intro, anim_loop = "mp_take_money_mg", "stand_cash_in_bag_intro", "stand_cash_in_bag_loop"
-	if not HasAnimDictLoaded(dict) then
-		RequestAnimDict(dict)
-		while not HasAnimDictLoaded(dict) do Citizen.Wait(1) end
-	end
+-- RegisterCommand("animAtm", function()
+-- 	local timer = 0
+-- 	local AnimTime = 10000
+-- 	local dict, anim_intro, anim_loop = "mp_take_money_mg", "stand_cash_in_bag_intro", "stand_cash_in_bag_loop"
+-- 	if not HasAnimDictLoaded(dict) then
+-- 		RequestAnimDict(dict)
+-- 		while not HasAnimDictLoaded(dict) do Citizen.Wait(1) end
+-- 	end
 
-	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
-	local _, _, _, _, atm = getAtmInFrontOfMe()
-	print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], #(GetEntityCoords(GetEntityModel(atm)) - v.coords))
-	if AtmModels[GetEntityModel(atm)] and #(GetEntityCoords(GetEntityModel(atm)) - v.coords) then
-		local pos = GetEntityCoords(atm, false)
-		local atmHeading = GetEntityHeading(atm)
-		local atmForwardVector = GetEntityForwardVector(atm)
-		local atmCoords = GetEntityCoords(atm, false) + atmForwardVector * - 1.0
-		local groundZ = Player.Pos.z
+-- 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
+-- 	local _, _, _, _, atm = getAtmInFrontOfMe()
+-- 	print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], #(GetEntityCoords(GetEntityModel(atm)) - v.coords))
+-- 	if AtmModels[GetEntityModel(atm)] and #(GetEntityCoords(GetEntityModel(atm)) - v.coords) then
+-- 		local pos = GetEntityCoords(atm, false)
+-- 		local atmHeading = GetEntityHeading(atm)
+-- 		local atmForwardVector = GetEntityForwardVector(atm)
+-- 		local atmCoords = GetEntityCoords(atm, false) + atmForwardVector * - 1.0
+-- 		local groundZ = Player.Pos.z
 
-		if #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) > 0.02 then
-			TaskGoStraightToCoord(Player.Ped, atmCoords.x, atmCoords.y, groundZ, 0.8, 1000, atmHeading, 0.0)
-			print("hello")
-		end
-		repeat
-			Citizen.Wait(10.0)
-			print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
-		until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
-		SetEntityHeading(Player.Ped, atmHeading)
-		Citizen.Wait(1500.0)
-		TaskPlayAnim(Player.Ped, dict, anim_loop, 8.0, 8.0, AnimTime, 17, 1, 0, 0, 0)
-		--TaskPlayAnimAdvanced(Player.Ped, dict, anim_loop, atmCoords.x, atmCoords.y, groundZ, 0.0, 0.0, Player.Heading , 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
-		repeat
-			timer = timer + 1000
-			Wait(1000)
-		until not IsEntityPlayingAnim(Player.Ped, dict, anim_loop, 3)
-
-
-		if timer < AnimTime then
-			ShowNotification("~r~Vous avez interrompu l'action. Veillez à ne pas interrompre l'animation.")
-			return
-		end
-		ShowNotification("YOUHOU")
-	else
-		ShowNotification("~r~Vous devez être devant un ATM")
-	end
-end)
+-- 		if #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) > 0.02 then
+-- 			TaskGoStraightToCoord(Player.Ped, atmCoords.x, atmCoords.y, groundZ, 0.8, 1000, atmHeading, 0.0)
+-- 			print("hello")
+-- 		end
+-- 		repeat
+-- 			Citizen.Wait(10.0)
+-- 			print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
+-- 		until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
+-- 		SetEntityHeading(Player.Ped, atmHeading)
+-- 		Citizen.Wait(1500.0)
+-- 		TaskPlayAnim(Player.Ped, dict, anim_loop, 8.0, 8.0, AnimTime, 17, 1, 0, 0, 0)
+-- 		--TaskPlayAnimAdvanced(Player.Ped, dict, anim_loop, atmCoords.x, atmCoords.y, groundZ, 0.0, 0.0, Player.Heading , 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
+-- 		repeat
+-- 			timer = timer + 1000
+-- 			Wait(1000)
+-- 		until not IsEntityPlayingAnim(Player.Ped, dict, anim_loop, 3)
 
 
-RegisterCommand("getAtmHeading", function()
-	local _, _, _, _, atm = getAtmInFrontOfMe()
-	local atmHeading = GetEntityHeading(atm)
-	local forwardVector = GetEntityForwardVector(atm)
-	local atmCoords = GetOffsetFromEntityInWorldCoords(atm, 0.0, -1.0, 0.0)
-	print(atmHeading, LocalPlayer().Heading)
-end)
+-- 		if timer < AnimTime then
+-- 			ShowNotification("~r~Vous avez interrompu l'action. Veillez à ne pas interrompre l'animation.")
+-- 			return
+-- 		end
+-- 		ShowNotification("YOUHOU")
+-- 	else
+-- 		ShowNotification("~r~Vous devez être devant un ATM")
+-- 	end
+-- end)
+
+
+-- RegisterCommand("getAtmHeading", function()
+-- 	local _, _, _, _, atm = getAtmInFrontOfMe()
+-- 	local atmHeading = GetEntityHeading(atm)
+-- 	local forwardVector = GetEntityForwardVector(atm)
+-- 	local atmCoords = GetOffsetFromEntityInWorldCoords(atm, 0.0, -1.0, 0.0)
+-- 	print(atmHeading, LocalPlayer().Heading)
+-- end)
 
 RegisterNetEvent("g6:fillATM")
 AddEventHandler("g6:fillATM", function()
@@ -310,7 +310,7 @@ RegisterNetEvent("g6:fillATM_cb", function()
 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
 	local _, _, _, _, atm = getAtmInFrontOfMe()
 	local distanceToATM = #(GetEntityCoords(atm) - vector3(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.x, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.y, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.z))
-	print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], distanceToATM)
+	--print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], distanceToATM)
 	if AtmModels[GetEntityModel(atm)] and distanceToATM < 0.5 then
 		local pos = GetEntityCoords(atm, false)
 		local atmHeading = GetEntityHeading(atm)
@@ -322,7 +322,7 @@ RegisterNetEvent("g6:fillATM_cb", function()
 		end
 		repeat
 			Citizen.Wait(10.0)
-			print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
+			--print(#(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)))
 		until #(Player.Pos - vector3(atmCoords.x, atmCoords.y, groundZ)) <= 0.02
 		SetEntityHeading(Player.Ped, atmHeading)
 
@@ -527,7 +527,7 @@ AddEventHandler("Ora::CE::PlayerLoaded", function()
 						end
 						if not HasModelLoaded(v.model) then RequestModel(v.model) end
 						while not HasModelLoaded(v.model) do
-							print("Waiting for model to load")
+							--print("Waiting for model to load")
 							Citizen.Wait(0)
 						end
 						local ped = CreatePed(4, v.model, v.pos.x, v.pos.y, v.pos.z-0.99, v.heading, false, false)
