@@ -468,32 +468,6 @@ AddEventHandler(
     end
 )
 
-Citizen.CreateThread(
-    function()
-        while true do
-            Wait(0)
-            local ped = Player.Ped
-
-            if IsPedArmed(ped, 6) then
-                DisableControlAction(1, 140, true)
-                DisableControlAction(1, 141, true)
-                DisableControlAction(1, 142, true)
-                if GetVehiclePedIsUsing(ped) ~= 0 then
-                    DisableControlAction(1, 25, true)
-                    DisableControlAction(1, 68, true)
-                end
-                if IsPlayerFreeAiming(Player.PlayerId) then
-                    DisableControlAction(1, 22, true)
-                    DisableControlAction(1, 36, true)
-                end
-            end
-
-            HideHudComponentThisFrame(141)
-            HideHudComponentThisFrame(2)
-        end
-    end
-)
-
 AddEventHandler(
     "playerSpawned",
     function()

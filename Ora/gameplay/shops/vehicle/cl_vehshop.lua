@@ -388,6 +388,8 @@ local VehShop =
                 },]]
                 ["Police"] = {
                     {name = "lspdalamo", price = 25000},
+                    {name = "lspdstanier", price = 25000},
+                    {name = "lspdstanierum", price = 25000},
                     {name = "lspdbuffalos", price = 25000},
                     {name = "lspdbuffalosum", price = 25000},
                     {name = "lspdcycle", price = 5000},
@@ -398,7 +400,10 @@ local VehShop =
                     {name = "lspdmerit", price = 25000},
                     {name = "lspdpark2", price = 25000},
                     {name = "lspdraiden", price = 25000},
+                    {name = "lspdscout", price = 25000},
+                    {name = "lspdscout3", price = 25000},
                     {name = "lspdscout4", price = 25000},
+                    {name = "lspdscoutum", price = 25000},
                     {name = "lspdspeedo", price = 25000},
                     {name = "lspdswattruck", price = 25000},
                     {name = "lspdswatutil", price = 25000},
@@ -447,6 +452,7 @@ local VehShop =
                 },
                 ["Gouvernement"] = {
                     {name = "idcar", price = 30000},
+                    {name = "dppdscoutum", price = 25000},
                     {name = "usssvan", price = 30000},
                     {name = "usssvan2", price = 30000},
                     {name = "roadrunner", price = 30000},
