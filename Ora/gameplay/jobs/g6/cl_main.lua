@@ -447,7 +447,7 @@ local zones = {
 					Ora.Inventory:RemoveFirstItem(cases[i].name)
 				end
 				-- Calculate the amount of money the player will get
-				local money = input * 1000
+				local money = input * 3000
 				-- Give the money to the player
 
 				TriggerServerCallback("Ora::SE::Money:AuthorizePayment", function(token)
@@ -591,7 +591,6 @@ function GetClosestPedInArea(pos, radius)
 	end
 
 	return closestPed, closestDistance
-
 end
 
 --[[

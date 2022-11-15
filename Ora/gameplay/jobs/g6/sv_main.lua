@@ -18,7 +18,7 @@ local DEPOT_COORDS <const> = vector3(-3.433605, -672.838806, 31.946930)
 local MIN_NUMBER_IN_SERVICE <const> = 3
 local MIN_NUMBER_IN_SESSION <const> = 3
 local G6_MAX_STOPS_PER_DAY <const> = 60
-local REWARD_AMOUNT <const> = 1500
+local REWARD_AMOUNT <const> = 1700
 
 local AtmIsBeingFilled = false
 local G6_Current_Session = nil
@@ -39,6 +39,10 @@ local function notifyPlayer(src, message)
 	TriggerClientEvent("g6:notifyPlayer", src, message)
 	print(message)
 end
+
+RegisterServerCallback("g6:getSessionProgression", function(source, cb)
+	cb(json.encode({progression = G6_Number_Of_Sessions_Of_The_Day, maxProgression = G6_MAX_STOPS_PER_DAY}))
+end)
 
 RegisterServerEvent("g6:createSession", function(vehicle)
 	local src = source
@@ -254,7 +258,7 @@ RegisterServerEvent("g6:nextRouteStop", function()
 	G6_Current_Session.currentRouteStop = G6_Current_Session.currentRouteStop + 1
 
 	-- Check if the Session is not finished
-	if G6_Current_Session.currentRouteStop >= #G6_Current_Session.route then
+	if G6_Current_Session.currentRouteStop > #G6_Current_Session.route then
 		notifyPlayer(src, "~g~Vous avez effectué tous les arrêts. La session est terminée.")
 		TriggerEvent("g6:endSession")
 		return

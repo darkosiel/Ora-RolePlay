@@ -69,6 +69,17 @@ Citizen.CreateThread(function()
 						end
 					end)
 				end
+				RageUI.CenterButton("------", nil, {}, false, function(Hovered, Active, Selected)
+				end)
+				RageUI.Button("Progression actuelle", "Avoir la progression actuelle de la mission en cours.", {RightLabel = "→"}, true, function(Hovered, Active, Selected)
+					if Selected then
+						TriggerServerCallback("g6:getSessionProgression", function(callback)
+							print(callback)
+							callback = json.decode(callback)
+							ShowNotification("Progression actuelle : " .. (callback.progression ~= nil and tostring(callback.progression) or "0") .. "/" .. (callback.maxProgression ~= nil and tostring(callback.maxProgression) or "Erreur"))
+						end)
+					end
+				end)
 			end, function()
 			
 			end)
