@@ -1231,6 +1231,7 @@ Citizen.CreateThread(
                                         num = tonumber(num)
                                         if num ~= nil then
                                             TriggerServerEvent("bankUpdateNum", num, v.id)
+                                            v.phone_number = num
                                         end
                                     end
                                 end
