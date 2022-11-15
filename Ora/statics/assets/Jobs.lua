@@ -13316,7 +13316,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Gruppe Sechs", "Annonce", text, "CHAR_G6", 8, "Gruppe Sechs")
+                            TriggerServerEvent("Job:Annonce", "Gruppe Sechs", "Annonce", text, "CHAR_BLANK_ENTRY", 8, "Gruppe Sechs")
                         end
                     end
                 },
@@ -13334,7 +13334,7 @@ Jobs = {
                     onSelected = function()
                         OpenSessionMenu()
                     end,
-                }
+                },
             },
             submenus = {
                 ["Actions citoyen"] = {
@@ -13362,6 +13362,50 @@ Jobs = {
                             },
                         },
                         submenus = {}
+                    }
+                },
+                ["Appels d'urgence"] = {
+                    submenu = "g6_menujob",
+                    title = "Appels d'urgence",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Demande de renfort",
+                                onSelected = function()
+                                    local plyCoords = GetEntityCoords(PlayerPedId())
+                                    local x, y, z = table.unpack(plyCoords)
+                                    TriggerServerEvent(
+                                        "call:makeCall",
+                                        "g6",
+                                        {x = x, y = y, z = z},
+                                        "Demande de renfort"
+                                    )
+                                end
+                            },
+                            {
+                                label = "Appel LSPD",
+                                onSelected = function()
+                                    local plyCoords = GetEntityCoords(PlayerPedId())
+                                    local x, y, z = table.unpack(plyCoords)
+                                    TriggerServerEvent(
+                                        "call:makeCall",
+                                        "police",
+                                        {x = x, y = y, z = z},
+                                        "S.O.S G6"
+                                    )
+                                    TriggerServerEvent(
+                                        "call:makeCall",
+                                        "lssd", 
+                                        {x = x, y = y, z = z},
+                                        "S.O.S G6"
+                                    )
+                                    -- Basically the same behaviour as the police functionnality
+                                    exports['Ora_utils']:sendME("* L'individu appuie sur un bouton de sa radio *")
+                                end,
+                                ActiveFct = function()
+                                end
+                            }
+                        }
                     }
                 }
             },
