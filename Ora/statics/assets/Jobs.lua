@@ -13321,6 +13321,12 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Agents en service",
+                    onSelected = function()
+                        TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "g6")
+                    end
+                },
+                {
                     label = "Facturation",
                     onSelected = function()
                         CreateFacture("g6")
