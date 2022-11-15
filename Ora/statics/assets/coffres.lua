@@ -442,6 +442,9 @@ vehCoffres = {
     ["cognoscenti"] = 62,
     ["xls2"] = 80,
     ["cognoscenti2"] = 57,
+    ["lspdswattruck"] = 200,
+    ["lspdswatutil"] = 200,
+    ["lspdspeedo"] = 200,
     -- trucks
     ["camper"] = 100,
     ["benson"] = 180,
