@@ -129,29 +129,49 @@ function Ora.World.Object:LoadObjectsForZone(zoneId)
   return canSend
 end
 
+local AtmModels = {
+  [GetHashKey("prop_atm_01")] = true,
+  [GetHashKey("prop_atm_02")] = true,
+  [GetHashKey("prop_atm_03")] = true,
+  [GetHashKey("prop_fleeca_atm")] = true,
+}
+
 function Ora.World.Object:GetNearestAtm(distanceLimit)
-  local distanceLimitForObject = distanceLimit and distanceLimit or 5.0 
-  if (Ora.World.Object.LazyLoading.Data["atm"] == nil) then
-    return false, vector(0, 0, 0), 0.0
+  -- local distanceLimitForObject = distanceLimit and distanceLimit or 5.0 
+  -- if (Ora.World.Object.LazyLoading.Data["atm"] == nil) then
+  --   return false, vector(0, 0, 0), 0.0
+  -- end
+
+  -- local playerCoords = LocalPlayer().Pos
+  -- local minDistance = nil
+  -- local nearestAtm = nil
+  -- local nearestAtmHeading = nil
+
+  -- for key, value in pairs(Ora.World.Object.LazyLoading.Data["atm"]) do
+  --   local distanceBetweenCoords = GetDistanceBetweenCoords(playerCoords, vector3(value.position.x, value.position.y, value.position.z))
+  --   if (distanceBetweenCoords <= distanceLimitForObject and (minDistance == nil or distanceLimitForObject < minDistance)) then
+  --     minDistance = distanceBetweenCoords
+  --     nearestAtmCoords = vector3(value.position.x, value.position.y, value.position.z)
+  --     nearestAtmHeading = value.rotation.z
+  --   end
+  -- end
+
+  -- if (minDistance == nil) then
+  --   return false, vector(0, 0, 0), 0.0
+  -- end
+
+  -- return true, nearestAtmCoords, nearestAtmHeading
+
+  local plyCoords = GetEntityCoords(PlayerPedId(), false)
+	plyCoords = vector3(plyCoords.x, plyCoords.y, plyCoords.z-0.5)
+	local plyOffset = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, distanceLimit, 0.0)
+	local rayHandle = StartShapeTestCapsule(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 2.5, 16, PlayerPedId(), 0)
+	local retval, hit, endCoords, _, result = GetShapeTestResult(rayHandle)
+	
+  if AtmModels[GetEntityModel(result)] then
+    return true, endCoords, GetEntityHeading(result)
   end
+  
+  return false
 
-  local playerCoords = LocalPlayer().Pos
-  local minDistance = nil
-  local nearestAtm = nil
-  local nearestAtmHeading = nil
-
-  for key, value in pairs(Ora.World.Object.LazyLoading.Data["atm"]) do
-    local distanceBetweenCoords = GetDistanceBetweenCoords(playerCoords, vector3(value.position.x, value.position.y, value.position.z))
-    if (distanceBetweenCoords <= distanceLimitForObject and (minDistance == nil or distanceLimitForObject < minDistance)) then
-      minDistance = distanceBetweenCoords
-      nearestAtmCoords = vector3(value.position.x, value.position.y, value.position.z)
-      nearestAtmHeading = value.rotation.z
-    end
-  end
-
-  if (minDistance == nil) then
-    return false, vector(0, 0, 0), 0.0
-  end
-
-  return true, nearestAtmCoords, nearestAtmHeading
 end
