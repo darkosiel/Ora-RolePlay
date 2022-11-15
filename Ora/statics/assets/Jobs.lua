@@ -5651,7 +5651,7 @@ Jobs = {
                 zonesize = 1.5,
                 vehicles = {
                     {
-                        name = "lspdmav",
+                        name = "as350",
                         label = "Helicoptere de police",
                         job = true,
                         tuning = {
@@ -7099,14 +7099,19 @@ Jobs = {
         --},
         Storage = {
             {
-                Pos = {x = 262.56, y = 220.52, z = 100.75},
-                Limit = 200,
-                Name = "Coffre Maze Bank"
+                Pos = {x = -1348.28, y = -491.69, z = 33.17},
+                Limit = 500,
+                Name = "Coffre PDG"
             },
             {
-                Pos = {x = -717.8853, y = 260.5183105, z = 83.1377},
-                Limit = 300,
-                Name = "Coffre Maze Immo"
+                Pos = {x = -1336.92, y = -493.50, z = 33.44},
+                Limit = 500,
+                Name = "Coffre Nourriture"
+            },
+            {
+                Pos = {x = -1385.3851, y = -487.7128, z = 33.3436},
+                Limit = 500,
+                Name = "Coffre Cartes"
             }
         },
         garage = {
