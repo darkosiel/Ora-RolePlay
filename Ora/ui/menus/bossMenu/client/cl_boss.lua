@@ -272,11 +272,12 @@ RegisterNUICallback('set_business', function(data, cb)
 					"banksExists",
 					function(bool)
 						if bool then
+							local job = orgas and Ora.Identity.Orga:Get() or Ora.Identity.Job:Get()
 							TriggerServerEvent(
 								"bankingSendMoney",
 								data.rib,
 								data.amount,
-								orgas and Ora.Identity.Orga:GetName() or Ora.Identity.Job:GetName()
+								job.iban ~= nil and job.iban or job.name
 							)
 							--[[ TriggerServerEvent(
 								"gcPhone:_internalAddMessage",
