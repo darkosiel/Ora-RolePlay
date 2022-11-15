@@ -8849,15 +8849,15 @@ Jobs = {
         },
         garage2 = {
             Name = "Garage LSFD 1",
-            Pos = {x = 194.76, y = -1664.81, z = 29.80},
+            Pos = {x = 1208.38, y = -1504.45, z = 34.69 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 194.76, y = -1664.81, z = 29.80, h = 136.94}
+                spawnpos = {x = 1208.38, y = -1504.45, z = 34.69 - 0.98, h = 98.28}
             },
             Blipdata = {
-                Pos = {x = 194.76, y = -1664.81, z = 29.80 - 0.98},
+                Pos = {x = 1208.38, y = -1504.45, z = 34.69 - 0.98},
                 Blipcolor = 7,
                 Blipname = "LSFD - Garage 1"
             }
@@ -8865,7 +8865,7 @@ Jobs = {
         Storage = {
             -- Garage
             {
-                Pos = {x = 215.71, y = -1648.99, z = 29.80 - 0.90},
+                Pos = {x = 1211.65, y = -1487.35, z = 34.69 - 0.90},
                 Limit = 9999,
                 Name = "Coffre LSFD"
             }
@@ -9127,7 +9127,7 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 198.65, y = -1650.97, z = 29.8},
+                Pos = {x = 1227.15, y = -1491.41, z = 34.49},
                 Tenues = {
                     ["Batallion chief chemise"] = {
                         male = {
@@ -10283,7 +10283,7 @@ Jobs = {
         Extrapos = {
             ExtraVehicle = {
                 Pos = {
-                    {x = 175.37, y = -1658.81, z = 29.80 - 0.98}
+                    {x = 1219.14, y = -1522.11, z = 34.69 - 0.98}
                 },
                 restricted = {1, 2, 3, 4, 5, 6, 7},
                 Enter = function()
