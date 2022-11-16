@@ -292,6 +292,26 @@ crud.transaction.createToday = values => {
     return crud.transaction.create(values)
 }
 
+
+/**
+ * Get mariadb timestamp value
+ */
+ function toIsoString(timestamp) {
+    const date = new Date(timestamp)
+    var tzo = -date.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            return (num < 10 ? '0' : '') + num;
+        };
+    return date.getFullYear() +
+        '-' + pad(date.getMonth() + 1) +
+        '-' + pad(date.getDate()) +
+        ' ' + pad(date.getHours()) +
+        ':' + pad(date.getMinutes()) +
+        ':' + pad(date.getSeconds())
+  }
+
+
 /**
  * ==========
  * Get useful player data
@@ -331,7 +351,7 @@ async function getOrgaId(playerId) {
         console.error('Organisation id not found with player uuid ', uuid)
         return
     }
-    return orga[0].id
+    return orga[0].organisationId
 }
 
 /**
@@ -352,8 +372,8 @@ function InfluenceDataCollector () {
         const rawData = await fetchDb(`SELECT
             stats.*,
             stats.total_price / stats.total_quantity price_per_item,
-            sum(tr.quantity - stats.quantity_per_day) quantity_diff,
-            sum(tr.price - stats.price_per_day) price_diff,
+            sum(abs(tr.quantity - stats.quantity_per_day)) quantity_diff,
+            sum(abs(tr.price - stats.price_per_day)) price_diff,
             stats.max_quantity - stats.min_quantity quantity_spread,
             stats.max_price - stats.min_price price_spread
         FROM drug_transaction tr
@@ -374,7 +394,7 @@ function InfluenceDataCollector () {
                 ${zoneId ? 'AND tr.zone_id = @id' : ''}
                 GROUP BY tr.zone_id, tr.organisation_id
             ) stats on stats.zone_id = tr.zone_id and stats.organisation_id = tr.organisation_id
-        WHERE stats.days_number > 1 AND stats.total_quantity > 2 `, zoneId ? { '@id': zoneId } : {})
+        WHERE stats.days_number > 1 AND stats.total_quantity > 2 GROUP BY tr.zone_id, tr.organisation_id`, zoneId ? { '@id': zoneId } : {})
         if (!rawData) {
             console.error('Could not read transactions for zone id ', zoneId)
             return
@@ -451,25 +471,26 @@ function InfluenceCalculator (influenceDataCollector) {
             if (categoryName == 'domination') { continue }
             const category = INFLUENCE_INDICATORS[categoryName]
             for (const i of category) {
-                const scores = []
+                let scores = []
                 for (const line of data) {
                     scores.push({ organisation_id: line.organisation_id, score: i.fn(line) })
                 }
-                scores.filter(s => s.score > 0)
+                scores = scores.filter(s => s.score > 0)
                     .sort((a,b) => i.desc ? (b.score - a.score) : (a.score - b.score))
                 if (scores.length > 1) {
                     const diff = scores[1].score / scores[0].score
                     let ratio1 = 100
                     let ratio2 = 0
                     if (diff == 1) {
-                        ratio2 = 40
-                        ratio1 = 80
-                    } else if (diff >= 90) {
-                        ratio2 = 40
-                    } else if (diff >= 75) {
+                        ratio2 = 50
+                        ratio1 = 50
+                    } else if (diff >= 0.9) {
+                        ratio2 = 30
+                        ratio1 = 70
+                    } else if (diff >= 0.75) {
                         ratio2 = 20
+                        ratio1 = 80
                     }
-                    ratio1 -= ratio2
                     this.addOrgaInfluence(zoneId, scores[0].organisation_id, categoryName, i.points * ratio1 / 100, i.name)
                     this.addOrgaInfluence(zoneId, scores[1].organisation_id, categoryName, i.points * ratio2 / 100, i.name)
                 } else if (scores.length == 1) {
@@ -489,7 +510,7 @@ function InfluenceCalculator (influenceDataCollector) {
             }
             for (const categoryName in criteriaMap) {
                 if (orga[categoryName] > 10) {
-                    this.addOrgaInfluence(zoneId, orgaId, categoryName, 5, 'Meilleur score '+criteriaMap[categoryName], )
+                    this.addOrgaInfluence(zoneId, orgaId, 'Domination', 5, 'Meilleur score '+criteriaMap[categoryName], )
                 }
             }
         }
@@ -508,9 +529,13 @@ function MonopolyService(influenceCalculator, clientNotif) {
 
     this.monopolyData = []
     
-    this.dataChanged = async zoneId => {
+    this.influenceChanged = async zoneId => {
         await this.influenceCalculator.refreshInfluenceResults(zoneId)
         await this.updateMonopolyFromInfluence(zoneId)
+        await this.monopolyChanged()
+    }
+
+    this.monopolyChanged = async zoneId => {
         await this.fetchDbMonopolyData(zoneId)
         for (const orgaId in playersList) {
             for (const playerId of playersList[orgaId]) {
@@ -520,8 +545,19 @@ function MonopolyService(influenceCalculator, clientNotif) {
     }
 
     this.fetchDbMonopolyData = async (zoneId = null)  => {
-        if (zoneId) { this.monopolyData = await crud.monopoly.read({ zoneId }) }
-        else { this.monopolyData = await crud.monopoly.read() }
+        if (zoneId) {
+            const res = await crud.monopoly.read({ zoneId })
+            const currentIndex = this.monopolyData.findIndex(m => m.zoneId == zoneId)
+            if (currentIndex > -1) {
+                if (res && res[0]) {
+                    this.monopolyData.splice(currentIndex, 1, res[0])
+                } else {
+                    this.monopolyData.splice(currentIndex, 1)
+                }
+            } else if (res && res[0]) {
+                this.monopolyData.push(res[0])
+            }
+        } else { this.monopolyData = await crud.monopoly.read() }
     }
 
     this.findMonopolyData = zoneId => {
@@ -609,8 +645,6 @@ function MonopolyService(influenceCalculator, clientNotif) {
             return
         }
         const m = raw[0]
-        delete m.timeBegin
-        delete m.timeLastActivation
         const reinit = (...keys) => keys.forEach(k => ({
             slowRaiseStack: _ => {
                 if (m[k] < 10) {
@@ -723,9 +757,8 @@ function MonopolyService(influenceCalculator, clientNotif) {
                     await crud.bankAccount.update({ id: account[0].id } , { amount: account[0].amount + totalValue })
                     const oldIllegalAmount = (await crud.bankAccount.read({ iban: 'illegalaccount' }))
                     if (oldIllegalAmount && oldIllegalAmount[0]) {
-                        console.error('Cannot read illegal account')
                         await crud.bankAccount.update({ iban: 'illegalaccount' } ,
-                            { amount: oldIllegalAmount - totalValue })
+                            { amount: oldIllegalAmount[0].amount - totalValue })
                     }
                 } else {
                     console.error('Cannot read player bank account', uuid)
@@ -742,8 +775,10 @@ function MonopolyService(influenceCalculator, clientNotif) {
                 console.error('Unknown monopoly option code "'+ optionCode +'"')
                 break
         }
+        delete m.timeBegin
+        m.timeLastActivation = toIsoString(Date.now())
         await crud.monopoly.update({ id: m.id }, m)
-        await this.dataChanged(zoneId)
+        await this.monopolyChanged(zoneId)
         return message
     }
 
@@ -853,7 +888,7 @@ function MonopolyService(influenceCalculator, clientNotif) {
                 await crud.transaction.createToday({ zoneId, organisationId, quantity, price })
             }
         }
-        await this.dataChanged(zoneId)
+        await this.influenceChanged(zoneId)
         this.maybeNotifyEnemies(zoneId, organisationId)
     }
 }
@@ -900,9 +935,11 @@ const monopolyService = new MonopolyService(influenceCalculator, clientNotif)
 
 
 // Apply new data, new script update, new timeframe when script was restarted
-monopolyService.fetchDbMonopolyData().then(_ => 
-    monopolyService.dataChanged()
-)
+monopolyService.fetchDbMonopolyData().then(_ => {
+    for (const zone in ZONE_NAMES) {
+        monopolyService.influenceChanged(zone)
+    }
+})
 
 
 /**
@@ -924,7 +961,7 @@ onNet('Ora::CE::Character:Loaded', async _ => {
 on('playerDropped', async _ => {
     const playerId = source
     const organisationId = await getOrgaId(playerId)
-    if (organisationId) {
+    if (organisationId && playersList[organisationId]) {
         const idx = playersList[organisationId].indexOf(playerId)
         if (idx > -1) {
             playersList[organisationId].splice(idx, 1)
@@ -932,8 +969,8 @@ on('playerDropped', async _ => {
     }
 })
 
-onNet('drug_monopoly:requestMonopolyUpdate', async _ => {
-    clientNotif.emitZoneData(source, null, monopolyService.getAllZonesFormattedData(await getOrgaId(source)))
+onNet('drug_monopoly:requestMonopolyUpdate', async zoneId => {
+    clientNotif.emitZoneData(source, zoneId, monopolyService.formatMonopolyData(zoneId, await getOrgaId(source)))
 })
 
 onNet('drug_monopoly:newTransaction', async (zoneId, price) => {
@@ -952,16 +989,4 @@ onNet('drug_monopoly:activateOption', async (zoneId, optionCode) => {
     const organisationId = await getOrgaId(playerId)
     const message = await monopolyService.activateOption(zoneId, optionCode, uuid, organisationId)
     clientNotif.notifyOrga(organisationId, "Option activée à " + ZONE_NAMES[zoneId] + " : " + message)
-})
-
-/**
- * Test command
- */
-RegisterCommand('drugsell', async (src, args) => {
-    if (args.length < 2) {
-        clientNotif.notifyPlayer(src, 'Syntaxe incorrecte : /drugsell [zone id] [price]')
-    }
-    const orgaId = await getOrgaId(src)
-    
-    await monopolyService.registerTransaction(args[0], orgaId, +(args[1]))
 })

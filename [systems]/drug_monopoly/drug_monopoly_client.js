@@ -21,7 +21,7 @@ let lastRequest = null
 function getZoneInfo(zoneId) {
     if (!lastRequest || Date.now() - lastRequest > MONOPOLY_REFRESH_RATE_SECONDS * 1000) {
         lastRequest = Date.now()
-        emitNet('drug_monopoly:requestMonopolyUpdate')
+        emitNet('drug_monopoly:requestMonopolyUpdate', zoneId)
     }
     if (!zoneInformations[zoneId]) { 
         console.error('No data in zone ', zoneId)

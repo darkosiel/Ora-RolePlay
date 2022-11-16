@@ -1258,6 +1258,10 @@ Citizen.CreateThread(
                     function()
                         local zoneId = IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS
                         local zone = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                        if zone == nil then
+                            RageUI.Button("Chargement en cours...", nil, {}, true, function(_,_,_) end)
+                            return
+                        end
                         local zoneName = Ora.DrugDealing:GetZones()[zoneId].name
                         RageUI.Button(
                             "Influence à " .. zoneName .. " : " .. zone.influence .. "%",

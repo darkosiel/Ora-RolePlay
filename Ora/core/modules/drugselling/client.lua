@@ -630,44 +630,49 @@ function Ora.DrugDealing:StartDealerThread()
                                           end
 
                                           Ora.Inventory:RemoveFirstItem(Ora.DrugDealing.System.NEXT_MISSION_SELECTED_DRUG)
-                                      end
+                                          -- monopoly logic
+                                          local zoneId = self.System.CURRENT_ZONE_ID
+                                          local info = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                                          if info == nil then
+                                            Wait(1000)
+                                            info = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                                          end
+                                          if info then
+                                            price = math.ceil(info.priceModifier * price * (info.double and 2 or 1))
+                                          end
+                                          TriggerServerEvent("drug_monopoly:newTransaction", zoneId, price)
+                                          -- end monopoly logic
+                                          
+                                          ShowAdvancedNotification(
+                                              "Client",
+                                              "~b~Dialogue",
+                                              "Merci mon pote !\n~g~+" .. price .."$\n~y~+" .. xp .. " points d'expérience~s~\nQualité : " .. qualitySummary,
+                                              character,
+                                              1
+                                          )
 
-                                      -- monopoly logic
-                                      local zoneId = self.System.CURRENT_ZONE_ID
-                                      local info = exports["drug_monopoly"]:getZoneInfo(zoneId)
-                                      price = math.ceil(info.priceModifier * price * (info.double and 2 or 1))
-                                      TriggerServerEvent("drug_monopoly:newTransaction", zoneId, price)
-                                      -- end monopoly logic
-                                      
-                                      ShowAdvancedNotification(
-                                          "Client",
-                                          "~b~Dialogue",
-                                          "Merci mon pote !\n~g~+" .. price .."$\n~y~+" .. xp .. " points d'expérience~s~\nQualité : " .. qualitySummary,
-                                          character,
-                                          1
-                                      )
+                                          XNL_AddPlayerXP(math.floor(xp))
+                                          ClearPedSecondaryTask(LocalPlayer().Ped)
 
-                                      XNL_AddPlayerXP(math.floor(xp))
-                                      ClearPedSecondaryTask(LocalPlayer().Ped)
+                                          PlayAmbientSpeech2(Ora.DrugDealing.System.NEXT_MISSION_PED, "GENERIC_HI", "SPEECH_PARAMS_FORCE")
+                                          show = false
 
-                                      PlayAmbientSpeech2(Ora.DrugDealing.System.NEXT_MISSION_PED, "GENERIC_HI", "SPEECH_PARAMS_FORCE")
-                                      show = false
+                                          Wait(800)
 
-                                      Wait(800)
-
-                                      ClearPedSecondaryTask(LocalPlayer().Ped)
-                                      FreezeEntityPosition(Ora.DrugDealing.System.NEXT_MISSION_PED, false)
-                                      
-                                      -- monopoly can block payments
-                                      if not (info.monopoly and info.dollarLock) then
-                                        TriggerServerCallback(
-                                          "Ora::SE::Money:AuthorizePayment", 
-                                          function(token)
-                                            TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
-                                            TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
-                                          end,
-                                          {}
-                                        )
+                                          ClearPedSecondaryTask(LocalPlayer().Ped)
+                                          FreezeEntityPosition(Ora.DrugDealing.System.NEXT_MISSION_PED, false)
+                                          
+                                          -- monopoly can block payments
+                                          if not (info and info.dollarLock) then
+                                            TriggerServerCallback(
+                                              "Ora::SE::Money:AuthorizePayment", 
+                                              function(token)
+                                                TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = price, SOURCE = "Vente drogue", LEGIT = false})
+                                                TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "illegalaccount", price, false)
+                                              end,
+                                              {}
+                                            )
+                                          end
                                       end
 
                                       Citizen.Wait(1200)
