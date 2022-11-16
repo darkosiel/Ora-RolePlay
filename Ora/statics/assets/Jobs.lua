@@ -7469,6 +7469,35 @@ Jobs = {
                 }
             }
         },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = -1330.87, y = -584.88, z = 20.80}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "USSS - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        }
     },
     doj = {
         label = "Departement de la justice",
