@@ -5064,6 +5064,7 @@ TenueUSSS = {
     }          
 }
 
+
 TenueG6 = {
     ['Tenue sécurité'] = {
         male = {
