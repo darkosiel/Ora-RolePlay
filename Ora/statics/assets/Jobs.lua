@@ -13280,19 +13280,28 @@ Jobs = {
                 show = true
             }
         },
-        work = {
-            vestiaire = {
-                type = "Vestiaire",
-                workSize = 1.45,
-                Pos = {x = -219.14, y = -823.18, z = 30.68},
-                vestiaire = {
-                    type = "Vestiaire",
-                    workSize = 1.45,
-                    Pos = {x = -219.14, y = -823.18, z = 30.68},
-                    Tenues = TenueG6
-                }
-            }
-        },
+        -- work = {
+        --     vestiaire = {
+        --         type = "Vestiaire",
+        --         workSize = 1.45,
+        --         Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+        --         vestiaire = {
+        --             type = "Vestiaire",
+        --             workSize = 1.45,
+        --             Pos = {x = 1849.57, y = 3696.18, z = 33.27},
+        --             Tenues = {
+        --                 ["Tenue de service"] = {
+        --                     male = {
+
+        --                     },
+        --                     female = {
+                                
+        --                     },
+        --                 }
+        --             }
+        --         } 
+        --     }
+        -- },
         garage = {
             Name = "Garage employé G6",
             Pos = {x = -284.51, y = -918.18, z = 31.08},
