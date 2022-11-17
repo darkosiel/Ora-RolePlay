@@ -5051,15 +5051,15 @@ Jobs = {
         },
         garage5 = {
             Name = "Garage Personnel BCSO Sandy Shores",
-            Pos = {x = 1872.247, y = 3705.467, z = 32.00},
+            Pos = {x = 1868.2619, y = 3682.0087, z = 33.70},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 1872.247, y = 3705.467, z = 32.00, h = 303.109}
+                spawnpos = {x = 1868.2619, y = 3682.0087, z = 33.70, h = 303.109}
             },
             Blipdata = {
-                Pos = {x = 1872.247, y = 3705.467, z = 32.00},
+                Pos = {x = 1868.2619, y = 3682.0087, z = 33.70},
                 Blipcolor = 5,
                 Blipname = "BCSO - Garage Personnel"
             }
