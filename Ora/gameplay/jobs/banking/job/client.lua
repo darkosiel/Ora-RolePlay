@@ -1811,10 +1811,10 @@ end
 
 function ATM.Open(param)
     paramLocal = param
+    TriggerEvent('Ora:hideInventory')
     if IsNearATM() then
         TriggerEvent("OraBankMenu:CheckCode", param)
     end
-    TriggerEvent('Ora:hideInventory')
 end
 
 local filter = {"dollar1", "dollar5", "dollar10", "dollar50", "dollar100", "dollar500"}
