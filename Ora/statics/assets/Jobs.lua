@@ -13446,6 +13446,11 @@ Jobs = {
                 Pos = {x = -226.38, y = -842.34, z = 30.68 - 0.9},
                 Limit = 1000,
                 Name = "Armurerie G6"
+            },
+            {
+                Pos = {x = 11.7070, y = -661.5366, z = 33.44 - 0.9},
+                Limit = 1000,
+                Name = "dépot G6"
             }
         },
         Extrapos = {
