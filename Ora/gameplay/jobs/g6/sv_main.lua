@@ -19,7 +19,7 @@ local MIN_NUMBER_IN_SERVICE <const> = 3
 local MIN_NUMBER_IN_SESSION <const> = 3
 local G6_MAX_STOPS_PER_DAY <const> = 60
 local REWARD_AMOUNT <const> = 1700
-
+ 
 local AtmIsBeingFilled = false
 local G6_Current_Session = nil
 local G6_Number_Of_Stops_Of_The_Day = 0
@@ -35,9 +35,13 @@ local function IsEnoughInSession()
 	return numberOfAgentsInSession >= MIN_NUMBER_IN_SESSION
 end
 
-local function notifyPlayer(src, message)
+local function notifyPlayer(src, message, ignoreDiscord)
 	TriggerClientEvent("g6:notifyPlayer", src, message)
-	print(message)
+	--print(message)
+	if ignoreDiscord ~= true then
+		local serverId, fullName = src, Ora.Identity:GetFullname(src)
+		TriggerEvent("Ora:sendToDiscord", "G6", ("%s - %s : \n%s"):format(serverId, fullName, message) , "warning")
+	end
 end
 
 RegisterServerCallback("g6:getSessionProgression", function(source, cb)
@@ -100,13 +104,16 @@ RegisterServerEvent("g6:createSession", function(vehicle)
 	table.insert(G6_Current_Session.agents, src )
 
 	G6_Current_Session.route = CalculateGpsRoute()
-	notifyPlayer(src, "~g~Session créée avec succès.")
-	--TriggerClientEvent("g6:debugRoute", -1, json.encode(G6_Current_Session.route))
+	notifyPlayer(src, "~g~Session créée avec succès.", true)
 
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a crée une session de runs. \nDétails de la session:\nNombre d'arrêts (ATM): %s\nVéhicule associé : %s"):format(("%s - %s"):format(serverId, fullName), #G6_Current_Session.route, G6_Current_Session.vehicle.plate), "info")
+	
 	-- Tell every g6 employees in service that a Session has been created
 
 	TriggerMultiClientsEvent("g6:sessionCreated", Ora.Service:GetServiceArray()["g6"], G6_Current_Session)
-
+	
+	-- Log discord
 	-- for _, ply in pairs(Ora.Service:GetServiceArray()["g6"]) do
 	-- 	TriggerClientEvent("g6:sessionCreated", ply, G6_Current_Session)
 	-- end
@@ -156,6 +163,9 @@ RegisterServerEvent("g6:startSession", function()
 		G6_Current_Session = nil
 		return
 	end
+	
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a lancé la session créée à : %s"):format(("%s - %s"):format(serverId, fullName), G6_Current_Session.startTime), "info")
 
 	G6_Current_Session.startTime = os.date("%H:%M:%S")
 	G6_Current_Session.hasStarted = true
@@ -165,7 +175,7 @@ RegisterServerEvent("g6:startSession", function()
 	-- for k, v in pairs(G6_Current_Session.agents) do
 	-- 	TriggerClientEvent("g6:SessionStarted", src, G6_Current_Session)
 	-- end
-
+	
 	Citizen.CreateThread(function()
 		while G6_Current_Session do
 			if not IsEnoughInService() or not IsEnoughInSession() then
@@ -253,6 +263,10 @@ RegisterServerEvent("g6:nextRouteStop", function()
 		notifyPlayer(src, "~r~Vous n'êtes pas dans la session.")
 		return
 	end
+
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a effectué l'arrêt %s"):format(("%s - %s"):format(serverId, fullName), G6_Current_Session.currentRouteStop), "info")
+
 	-- Increment the currentRouteStop
 	G6_Number_Of_Stops_Of_The_Day = G6_Number_Of_Stops_Of_The_Day + (G6_Current_Session.currentRouteStop <= 0 and 0 or 1)
 	G6_Current_Session.currentRouteStop = G6_Current_Session.currentRouteStop + 1
@@ -263,6 +277,7 @@ RegisterServerEvent("g6:nextRouteStop", function()
 		TriggerEvent("g6:endSession")
 		return
 	end
+
 
 	TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 
@@ -332,6 +347,9 @@ RegisterServerEvent("g6:fillTheTrunk", function()
 
 	local quantity = #G6_Current_Session.route
 
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a rempli le coffre du véhicule avec %s sacs."):format(("%s - %s"):format(serverId, fullName), quantity), "info")
+
 	TriggerClientEvent("g6:fillTheTrunk_cb", src, quantity)
 end)
 
@@ -397,9 +415,12 @@ RegisterServerEvent("g6:endSession", function()
 		"mazegroup",
 		"Pacific Bank",
 		reward,
-		"Prime versée par l'entreprise.",
+		"Circuit de remplissage des ATMs.",
 		""
 	)
+
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a terminé la session après %s arrêts."):format(("%s - %s"):format(serverId, fullName), G6_Current_Session.currentRouteStop - 1), "info")
 
 	-- Delete the Session
 	G6_Current_Session = nil
@@ -431,6 +452,8 @@ RegisterServerEvent("g6:joinSession", function()
 	if G6_Current_Session.hasStarted then
 		TriggerClientEvent("g6:sessionStarted", src, G6_Current_Session)
 	end
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a rejoint la session."):format(("%s - %s"):format(serverId, fullName)), "info")
 
 	TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 end)
@@ -495,6 +518,9 @@ function RemovePlayerFromSession(source)
 		TriggerEvent("g6:endSession")
 		return
 	end
+
+	local serverId, fullName = src, Ora.Identity:GetFullname(src)
+	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a quitté la session."):format(("%s - %s"):format(serverId, fullName)), "info")
 
 	TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 	TriggerClientEvent("g6:sessionUpdated", src, G6_Current_Session)
