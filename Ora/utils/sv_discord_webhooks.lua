@@ -39,7 +39,8 @@ local discordWBK = {
     "https://discord.com/api/webhooks/957344621229379645/VPVZunSJPZ71odvV9e3tN48oTQ7shv3GSW5hZfvfMK9kHYbo-d6i0xyNEF8X27kN1EAt", -- 38   Immo
     "https://discord.com/api/webhooks/988384634675003422/ZTrhCGJipu7RqkCJnEhvjz6wQTvtxTpmxl7pRr565Dq0S7-aRYMaf7mhowZFlui0iC6R",
     ["Pneu"] = "https://discord.com/api/webhooks/1015596307534053437/DWRGGHo7A9MyTrgA7hFf_wCgCSAc5utOcD8LPVLw8hZ7ZlF1tZaceK4_uHqsWq-5U11w", -- ["Pneu"] : Pneu
-    ["Feu"] = "https://discord.com/api/webhooks/1040654955184406619/PFhkNGyUPdW142_gaSZQxMa0NVz26NfzwkirMMFxXrE8TfQaouYKTd8ZITSP6Vt7JYGe" -- ["Pneu"] : Pneu
+    ["Feu"] = "https://discord.com/api/webhooks/1040654955184406619/PFhkNGyUPdW142_gaSZQxMa0NVz26NfzwkirMMFxXrE8TfQaouYKTd8ZITSP6Vt7JYGe", -- ["Pneu"] : Pneu
+    ["G6"] = "https://discord.com/api/webhooks/1043938526477164694/szANCOAswiWY2TFuhaydXnqaOhX2nBjSfg5zHGnliSFPQSMgKD5A5cUEepNt7g3-uVAS" -- ["G6"] : Gruppe Sechs
 }
 
 local LSPDwbk = {
@@ -59,8 +60,9 @@ RegisterServerEvent("Ora:sendToDiscord")
 AddEventHandler(
     "Ora:sendToDiscord",
     function(_webhook, message, type)
+        -- print("Ora:sendToDiscord")
+        -- print(_webhook, message, type, tostring(source))
         local webhook = discordWBK[_webhook]
-
         -- if (GetConvar("current_env", "dev") == "dev") then
         --     webhook = discordWBK[29]
         -- end
@@ -71,6 +73,10 @@ AddEventHandler(
         end
         if (fullname == nil and source ~= nil) then
             fullname = GetPlayerName(source)
+        end
+
+        if source == 0 then
+            fullname = "Serveur"
         end
 
         local color = 9936031
@@ -91,10 +97,15 @@ AddEventHandler(
                 }
             }
         else
-            if (fullname == nil and source ~= nil) then return end
+            if (fullname == nil and source ~= nil and source ~= 0) then return end
             embeds = {
                 {
-                    ["title"] = source .. " | " .. fullname,
+                    ["title"] = ((source ~= nil and source > 0) and (source .. " | " .. fullname) or "Serveur"),
+                    ["type"] = "rich",
+                    ["color"] = color,
+                    ["footer"] = {
+                        ["text"] = message
+                    },
                     ["type"] = "rich",
                     ["color"] = color,
                     ["footer"] = {
@@ -103,7 +114,7 @@ AddEventHandler(
                 }
             }
         end
-
+        --print("Sending to discord : " .. json.encode(embeds))
         PerformHttpRequest(
             webhook,
             function(err, text, headers)
