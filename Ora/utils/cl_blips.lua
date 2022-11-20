@@ -85,7 +85,7 @@ local Blips = {
    -- {name = "Larry's", color = 47, sprite = 225, Pos = {x = 1222.595, y = 2718.108, z = 37.50}},
    -- {name = "US MARSHALS", color = 0, sprite = 419, size = 0.60, Pos = {x = 414.89, y = -981.22, z = 29.44}},
     {name = "Tequi-la-la", color = 5, sprite = 93, size = 0.80, Pos = {x = -557.66, y = 283.59, z = 82.08}},
-   -- {name = "Hen House", color = 17, sprite = 93, size = 0.80, Pos = {x = -302.70, y = 6259.21, z = 31.48}},
+    {name = "Hen House", color = 17, sprite = 93, size = 0.80, Pos = {x = -302.70, y = 6259.21, z = 31.48}},
     --{name = "Yellow Jack", color = 46, sprite = 93, size = 0.80, Pos = {x = 1990.88, y = 3054.02, z = 47.21}},
     --{name = "Cabinet Lysias", color = 25, sprite = 77, Pos = {x = -1568.2102, y = -571.6326, z = 36.2807}},
     {name = "Cabinet Hermerion", color = 25, sprite = 805, Pos = {x = -1038.0477, y = -411.1166, z = 39.27}},
