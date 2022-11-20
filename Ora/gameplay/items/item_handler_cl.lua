@@ -1207,14 +1207,18 @@ ItemsFunction = {
     gants = toggleGloves,
     bandage = function(i)
         if i then
-            local vie = GetEntityHealth(LocalPlayer().Ped)
-            SetEntityHealth(LocalPlayer().Ped, vie + 25)
-            Ora.Inventory:RemoveItem(i)
-            TriggerServerEvent(
-                "Ora:sendToDiscord",
-                39,
-                "Utilise un bandage \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
-            )
+            if GetEntityHealth(LocalPlayer().Ped) > 100 then
+                local vie = GetEntityHealth(LocalPlayer().Ped)
+                SetEntityHealth(LocalPlayer().Ped, vie + 25)
+                Ora.Inventory:RemoveItem(i)
+                TriggerServerEvent(
+                    "Ora:sendToDiscord",
+                    39,
+                    "Utilise un bandage \nVie :  " ..GetEntityHealth(LocalPlayer().Ped).. " / 200"
+                )
+            else
+                ShowNotification("~r~Vous devez aller voir un médecin, votre santé est trop mauvaise.")
+            end
         end
     end,
     medica1 = function(i)
