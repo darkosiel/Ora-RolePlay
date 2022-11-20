@@ -343,6 +343,19 @@ function Ora.Inventory:GetItemCount(itemName)
     return found
 end
 
+function Ora.Inventory:RemoveItemByIndex(name, index)
+    if self.Data[name] ~= nil then
+        if self.Data[name][index] ~= nil then
+            -- if self.Data[name][index].data.equipedSlot ~= nil then
+            --     self:SetWeapon(nil, self.Data[name][index].data.equipedSlot)
+            -- end
+            table.remove(self.Data[name], index)
+            -- self:RefreshWeight()
+            -- self:Save()
+        end
+    end
+end
+
 ---@param item itemObject at least name & id
 ---@param notrefreshing Boolean optionnal
 function Ora.Inventory:RemoveItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
