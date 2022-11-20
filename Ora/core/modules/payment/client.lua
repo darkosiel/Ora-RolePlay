@@ -131,7 +131,7 @@ function Ora.Payment:PayMoney(tablee)
         --     end
         -- end
         print(k, v.index)
-        for i = v.index, 1, -1 do
+        for i = v.index-1, 1, -1 do
             Ora.Inventory:RemoveItemByIndex(k, 1)
         end
 
