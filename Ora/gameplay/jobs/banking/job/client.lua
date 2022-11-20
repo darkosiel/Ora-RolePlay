@@ -309,6 +309,36 @@ local m = {
     }
 }
 
+local function Refresh()
+    for k, v in pairs(m) do
+        if Ora.Inventory.Data[k] ~= nil then
+            v.visible = true
+            v.total = #Ora.Inventory.Data[k]
+            v.label = {0}
+            for i = 0, #Ora.Inventory.Data[k], 1 do
+                v.label[i + 1] = i
+            end
+        else
+            v.total = 0
+            v.visible = false
+        end
+    end
+    TriggerEvent("OraBankMenu:SetDollar", m)
+end
+
+function GetCurrentMoneySelected()
+    local mo = 0
+    for k, v in pairs(m) do
+        if v.visible then
+            p = string.gsub(tostring(k), "dollar", "")
+            p = tonumber(p)
+            mo = mo + (p * (v.index - 1))
+        end
+    end
+
+    return mo
+end
+
 local currentPrets = {}
 Citizen.CreateThread(
     function()
@@ -1096,7 +1126,7 @@ Citizen.CreateThread(
                             )
                             
                             RageUI.Button(
-                                v.coowner ~= nil and "Modifier le co-propriétaire" or "Ajouter un co-propriétaire",
+                                (v ~= nil and v.coowner ~= nil) and "Modifier le co-propriétaire" or "Ajouter un co-propriétaire",
                                 nil,
                                 {},
                                 true,
@@ -1811,57 +1841,13 @@ end
 
 function ATM.Open(param)
     paramLocal = param
+    TriggerEvent('Ora:hideInventory')
     if IsNearATM() then
         TriggerEvent("OraBankMenu:CheckCode", param)
     end
-    TriggerEvent('Ora:hideInventory')
 end
 
-local filter = {"dollar1", "dollar5", "dollar10", "dollar50", "dollar100", "dollar500"}
-local am = {1, 5, 10, 50, 100, 500}
-local m = {
-    dollar1 = {
-        index = 1,
-        label = {0}
-    },
-    dollar5 = {
-        index = 1,
-        label = {0}
-    },
-    dollar10 = {
-        index = 1,
-        label = {0}
-    },
-    dollar50 = {
-        index = 1,
-        label = {0}
-    },
-    dollar100 = {
-        index = 1,
-        label = {0}
-    },
-    dollar500 = {
-        index = 1,
-        label = {0}
-    }
-}
 
-local function Refresh()
-    for k, v in pairs(m) do
-        if Ora.Inventory.Data[k] ~= nil then
-            v.visible = true
-            v.total = #Ora.Inventory.Data[k]
-            v.label = {0}
-            for i = 0, #Ora.Inventory.Data[k], 1 do
-                v.label[i + 1] = i
-            end
-        else
-            v.total = 0
-            v.visible = false
-        end
-    end
-    TriggerEvent("OraBankMenu:SetDollar", m)
-end
 
 RegisterNetEvent("Ora:CodeSubmit")
 AddEventHandler("Ora:CodeSubmit", function(code)

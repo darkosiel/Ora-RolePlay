@@ -2198,26 +2198,6 @@ local Shops =
             }
         },
         {
-            Title = "Casino",
-            Pos = {x = -1633.951, y = -2994.321, z = -79.15, a = 181.00},
-            Blips = {},
-            Ped = {
-                model = "s_f_y_clubbar_01"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = false
-            },
-            braquable = false,
-            Items = {
-                {
-                    name = "casinopiece",
-                    price = 10,
-                    data = {}
-                }
-            }
-        },
-        {
             Title = "Golfeur",
             Pos = {x = -1340.67, y = 82.81, z = 53.50, a = 272.68},
             Blips = {
@@ -2238,27 +2218,6 @@ local Shops =
                 {
                     name = "golfball",
                     price = 20,
-                    data = {}
-                }
-            }
-        },
-        {
-            Title = "Casino",
-            Pos = {x = 967.82, y = 46.80, z = 71.70 - 0.98, a = 145.76},
-            Blips = {},
-            Ped = {
-                model = "s_f_y_clubbar_01"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = false
-            },
-            braquable = false,
-            isCasino = true,
-            Items = {
-                {
-                    name = "casinopiece",
-                    price = 10,
                     data = {}
                 }
             }
@@ -2337,11 +2296,6 @@ local Shops =
                 {
                     name = "knife1",
                     price = 8000,
-                    data = {}
-                },
-                {
-                    name = "casinopiece",
-                    price = 10,
                     data = {}
                 },
                 {
@@ -5650,7 +5604,6 @@ Citizen.CreateThread(
                                                         function(result)
                                                             local acc = result[1]
 
-                                                            
                                                             TriggerServerCallback("Ora_banking:getRatiosForCard",function(cardExist,maxDeposit,maxRemove,maxPayin,currentDeposit,currentRemove,currentPayin)
                                                                 if (cardExist == false) then
                                                                     ShowNotification("~r~Cette carte n'existe pas")
@@ -5751,7 +5704,8 @@ Citizen.CreateThread(
                                     end
                                 )
                             end
-                        elseif Ora.Inventory:GetItemCount("platinium_card") > 0 then
+                        end
+                        if Ora.Inventory:GetItemCount("platinium_card") > 0 then
                             for i = 1, #Ora.Inventory.Data["platinium_card"], 1 do
                                 RageUI.Button(
                                     Items["platinium_card"].label .. " #" .. Ora.Inventory.Data["platinium_card"][i].data.number,
@@ -5870,7 +5824,8 @@ Citizen.CreateThread(
                                     end
                                 )
                             end
-                        elseif Ora.Inventory:GetItemCount("black_card") > 0 then
+                        end
+                        if Ora.Inventory:GetItemCount("black_card") > 0 then
                             for i = 1, #Ora.Inventory.Data["black_card"], 1 do
                                 RageUI.Button(
                                     Items["black_card"].label .. " #" .. Ora.Inventory.Data["black_card"][i].data.number,
@@ -5990,7 +5945,8 @@ Citizen.CreateThread(
                                     end
                                 )
                             end
-                        elseif Ora.Inventory:GetItemCount("classic_card") > 0 then
+                        end
+                        if Ora.Inventory:GetItemCount("classic_card") > 0 then
                             for i = 1, #Ora.Inventory.Data["classic_card"], 1 do
                                 RageUI.Button(
                                     Items["classic_card"].label .. " #" .. Ora.Inventory.Data["classic_card"][i].data.number,

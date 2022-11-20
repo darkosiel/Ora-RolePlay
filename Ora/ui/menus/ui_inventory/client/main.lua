@@ -271,7 +271,10 @@ RegisterNUICallback('inventoryInteraction', function(data)
             data.itemData.name ~= "sac" and
             data.itemData.name ~= "mask" and
             data.itemData.name ~= "access" and
-            data.itemData.name ~= "bank_card" and
+            data.itemData.name ~= "classic_card" and
+            data.itemData.name ~= "gold_card" and
+            data.itemData.name ~= "platinium_card" and
+            data.itemData.name ~= "black_card" and
             data.itemData.name ~= "speaker" and
             data.itemData.name ~= "molotovartisanal" and
             data.itemData.name ~= "allumette" and

@@ -388,9 +388,11 @@ RegisterNetEvent("g6:fillTheTrunk_cb", function(qty)
 	-- DetachEntity(trolley, true, true)
 	-- FreezeEntityPosition(trolley, true)
 
-	for i = 1, #Current_Session_Data.route do
-		Ora.World.Vehicle:AddItemIntoTrunk(NetworkGetEntityFromNetworkId(Current_Session_Data.vehicle.serverId), ITEM_NAME_FOR_CASES)
-	end
+	local vehId = NetworkGetEntityFromNetworkId(Current_Session_Data.vehicle.serverId)
+	-- print("Current Player Vehicle Server Id", NetworkGetNetworkIdFromEntity(vehId))
+	-- print("Current_Session_Data.vehicle.serverId", Current_Session_Data.vehicle.serverId)
+	-- print("Number of stops ", #Current_Session_Data.route)
+	Ora.World.Vehicle:AddItemsIntoTrunk(vehId, ITEM_NAME_FOR_CASES, #Current_Session_Data.route)
 
 	TriggerServerEvent("g6:nextRouteStop")
 
