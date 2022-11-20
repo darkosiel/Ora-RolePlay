@@ -1971,6 +1971,14 @@ AddEventHandler("Ora:Withdraw", function(amount)
                         )
                     else
                         processRemoving = true
+                        
+                        if (currentRemove + amount > maxRemove) then
+                            ShowNotification(
+                                "~g~Retrait bancaire\n~s~Vous avez atteint votre limite de retrait"
+                            )
+                            processRemoving = false
+                        end
+
                         if (processRemoving == true) then
                             ShowNotification(
                                 "~g~Retrait bancaire\n~s~" .. amount .. "$"
@@ -1988,6 +1996,7 @@ AddEventHandler("Ora:Withdraw", function(amount)
                                 "Retrait d'argent à partir de "..ATM.Cards.number,
                                 ""
                             )
+                            TriggerServerEvent("Ora_bank:addRemoveQuotaToCard", ATM.Cards.number, amount)
                             local infoType = "info"
                             if (amount < 5000) then
                                 infoType = "info"
@@ -2044,6 +2053,12 @@ AddEventHandler("Ora:Deposit", function(amount, billList)
                     )
                 else
                     processDeposit = true
+
+                    if (currentDeposit + amount > maxDeposit) then
+                        ShowNotification("~g~💰 Dépot bancaire\n~s~Vous avez atteint votre limite de dépot")
+                        processDeposit = false
+                    end
+
                     if (processDeposit == true) then
 
                         ShowNotification(
@@ -2089,6 +2104,7 @@ AddEventHandler("Ora:Deposit", function(amount, billList)
                             end
                         end
                         Ora.Payment:PayMoney(t)
+                        TriggerServerEvent("Ora_bank:addDepositQuotaToCard", ATM.Cards.number, amount)
                         for k, v in pairs(m) do
                             v.index = 1
                         end
