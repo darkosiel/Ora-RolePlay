@@ -452,13 +452,6 @@ function loadAnimDict(dict)
     end
 end
 
-function DisableActions(ped)
-    DisableControlAction(1, 140, true)
-    DisableControlAction(1, 141, true)
-    DisableControlAction(1, 142, true)
-    DisableControlAction(1, 37, true)
-    DisablePlayerFiring(ped, true)
-end
 
 RegisterNetEvent("core:HandCuff")
 AddEventHandler(

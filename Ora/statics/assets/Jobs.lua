@@ -5051,15 +5051,15 @@ Jobs = {
         },
         garage5 = {
             Name = "Garage Personnel BCSO Sandy Shores",
-            Pos = {x = 1872.247, y = 3705.467, z = 32.00},
+            Pos = {x = 1868.2619, y = 3682.0087, z = 33.70},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 1872.247, y = 3705.467, z = 32.00, h = 303.109}
+                spawnpos = {x = 1868.2619, y = 3682.0087, z = 33.70, h = 303.109}
             },
             Blipdata = {
-                Pos = {x = 1872.247, y = 3705.467, z = 32.00},
+                Pos = {x = 1868.2619, y = 3682.0087, z = 33.70},
                 Blipcolor = 5,
                 Blipname = "BCSO - Garage Personnel"
             }
@@ -7469,6 +7469,35 @@ Jobs = {
                 }
             }
         },
+        Extrapos = {
+            ExtraVehicle = {
+                Pos = {
+                    {x = -1330.87, y = -584.88, z = 20.80}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EnterExtraPoliceVehicleZone()
+                end,
+                Exit = function()
+                    ExitExtraPoliceVehicleZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 402,
+                    color = 81,
+                    name = "USSS - Extras"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 3.5, y = 3.5, z = 0.1},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        }
     },
     doj = {
         label = "Departement de la justice",
@@ -13251,28 +13280,19 @@ Jobs = {
                 show = true
             }
         },
-        -- work = {
-        --     vestiaire = {
-        --         type = "Vestiaire",
-        --         workSize = 1.45,
-        --         Pos = {x = 1849.57, y = 3696.18, z = 33.27},
-        --         vestiaire = {
-        --             type = "Vestiaire",
-        --             workSize = 1.45,
-        --             Pos = {x = 1849.57, y = 3696.18, z = 33.27},
-        --             Tenues = {
-        --                 ["Tenue de service"] = {
-        --                     male = {
-
-        --                     },
-        --                     female = {
-                                
-        --                     },
-        --                 }
-        --             }
-        --         } 
-        --     }
-        -- },
+        work = {
+            vestiaire = {
+                type = "Vestiaire",
+                workSize = 1.45,
+                Pos = {x = -219.14, y = -823.18, z = 30.68},
+                vestiaire = {
+                    type = "Vestiaire",
+                    workSize = 1.45,
+                    Pos = {x = -219.14, y = -823.18, z = 30.68},
+                    Tenues = TenueG6
+                }
+            }
+        },
         garage = {
             Name = "Garage employé G6",
             Pos = {x = -284.51, y = -918.18, z = 31.08},
@@ -13426,6 +13446,11 @@ Jobs = {
                 Pos = {x = -226.38, y = -842.34, z = 30.68 - 0.9},
                 Limit = 1000,
                 Name = "Armurerie G6"
+            },
+            {
+                Pos = {x = 11.7070, y = -661.5366, z = 33.44 - 0.9},
+                Limit = 1000,
+                Name = "dépot G6"
             }
         },
         Extrapos = {

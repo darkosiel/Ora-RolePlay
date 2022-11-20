@@ -260,12 +260,12 @@ async function requestUserData(steamId, number) {
         const userData = identityResponse[0];
         const id = userData.uuid;
         // parameters
+        await crud.phone.update({ number: number }, { playerUuid: id });
         const phoneResponse = await crud.phone.read({ number: number });
         if (!phoneResponse || phoneResponse.length === 0) {
             console.log('Phone query failed, no phone with this number ', number);
         }
         userData.phone = phoneResponse[0];
-        await crud.phone.update({ number: number }, { playerUuid: id });
         return userData;
     } catch (e) {
         console.error('Could not fetch user data with steamId "' + steamId + '"', e);
