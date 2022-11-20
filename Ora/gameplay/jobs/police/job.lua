@@ -6,7 +6,7 @@ Citizen.CreateThread(function()
     while RMenu:Get("jobs", "police_menuperso") == nil do
         Wait(100)
     end
-    RMenu.Add("jobs", "police_supervisor", RageUI.CreateSubMenu(RMenu:Get("jobs", "police_menuperso"), "Units", "Listes", 1350, 50))
+    RMenu.Add("jobs", "police_supervisor", RageUI.CreateSubMenu(RMenu:Get("jobs", "police_menuperso"), "Units", "Listes"))
     RMenu.Add("jobs", "police_create_unit", RageUI.CreateSubMenu(RMenu:Get("jobs", "police_supervisor"), "Unit", "Listes"))
     RMenu.Add("jobs", "police_change_status", RageUI.CreateSubMenu(RMenu:Get("jobs", "police_supervisor"), "Status", "Listes"))
     RMenu.Add("jobs", "dispatch_police_supervisor", RageUI.CreateSubMenu(RMenu:Get("jobs", "police_supervisor"), "Dispatch", "Listes"))
