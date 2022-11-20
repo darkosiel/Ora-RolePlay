@@ -392,6 +392,7 @@ local VehShop =
                     {name = "lspdstanierum", price = 25000},
                     {name = "lspdbuffalos", price = 25000},
                     {name = "lspdbuffalosum", price = 25000},
+                    {name = "pdumksx", price = 25000},
                     {name = "lspdcycle", price = 5000},
                     {name = "lspdeveron", price = 25000},
                     {name = "lspdexecutioner", price = 25000},
