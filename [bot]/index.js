@@ -184,6 +184,11 @@ client.on("message", async message => {
                         con.query(sql, function (err, result) {
                             if (err) message.channel.send("Erreur : "+err.message);
                         });
+
+                        var sql = "DELETE FROM organisation_member WHERE uuid = '"+result[0].uuid+"'";
+                        con.query(sql, function (err, result) {
+                            if (err) message.channel.send("Erreur : "+err.message);
+                        });
                         
                         var sql = "DELETE FROM players_appearance WHERE uuid = '"+result[0].uuid+"'";
                         con.query(sql, function (err, result) {
