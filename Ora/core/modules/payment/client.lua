@@ -107,31 +107,36 @@ local am = {1, 5, 10, 50, 100, 500}
 
 function Ora.Payment:PayMoney(tablee)
     local Data = Ora.Inventory.Data
-    --print("Starting timer")
-    --local startTimer = GetGameTimer()
+    print("Starting timer")
+    local startTimer = GetGameTimer()
     for k, v in pairs(tablee) do
-        for i = 1, v.index - 1, 1 do
-            local t = 0
-            local skip = false
-            while Data[k][t] == nil do
-                t = t + 1
-                --print("t : " .. t)
-                Wait(0)
-                if t > 100 then
-                    skip = true
-                    --print("t > 100")
-                    break
-                end
-            end
-            if not skip then
-                local Item = Data[k][t]
-            --if Data[k] ~= nil then
-                Ora.Inventory:RemoveItem({id = Item.id, name = Item.name})
-            --end
-            end
+                -- for i = 1, v.index - 1, 1 do
+        --     local t = 0
+        --     local skip = false
+        --     while Data[k][t] == nil do
+        --         t = t + 1
+        --         --print("t : " .. t)
+        --         Wait(0)
+        --         if t > 100 then
+        --             skip = true
+        --             --print("t > 100")
+        --             break
+        --         end
+        --     end
+        --     if not skip then
+        --         local Item = Data[k][t]
+        --     --if Data[k] ~= nil then
+        --         Ora.Inventory:RemoveItem({id = Item.id, name = Item.name})
+        --     --end
+        --     end
+        -- end
+        print(k, v.index)
+        for i = v.index, 1, -1 do
+            Ora.Inventory:RemoveItemByIndex(k, 1)
         end
+
     end
-    --print("Ending timer : " .. GetGameTimer() - startTimer )
+    print("Ending timer : " .. GetGameTimer() - startTimer )
 end
 
 function Ora.Payment:GetTotalCash()
