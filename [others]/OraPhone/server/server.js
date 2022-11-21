@@ -251,10 +251,8 @@ async function requestUserData(steamId, number) {
             + " INNER JOIN players_identity p ON u.uuid = p.uuid"
             + " WHERE u.identifier = @id"
         , { id: steamId });
-        if (!identityResponse || identityResponse.length != 1) {
-            if (modeTest) {
-                console.error('Identity query failed with steamid', steamId);
-            }
+        if (!identityResponse) {
+            console.error('Identity query failed with steamid', steamId);
             return;
         }
         const userData = identityResponse[0];
