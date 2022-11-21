@@ -5093,7 +5093,7 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
             ['mask_1'] = 121,     ['mask_2'] = 0
         },
@@ -5112,7 +5112,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5125,9 +5125,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Pull Col Vert'] = {
@@ -5144,7 +5144,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5157,9 +5157,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Chemise Cravate Verte'] = {
@@ -5176,7 +5176,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5189,9 +5189,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Chemise Cravate Blanche'] = {
@@ -5208,7 +5208,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5221,9 +5221,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Chemise Longue Verte'] = {
@@ -5240,7 +5240,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5253,9 +5253,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Chemise Longue Blanc'] = {
@@ -5272,7 +5272,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5285,9 +5285,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Chemise courte verte'] = {
@@ -5304,7 +5304,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5317,9 +5317,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Convoi Chemise courte Blanc'] = {
@@ -5336,7 +5336,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5349,9 +5349,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Veste Neige Fermée'] = {
@@ -5368,7 +5368,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5381,9 +5381,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 8,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
     ['Tenue Training G6'] = {
@@ -5400,7 +5400,7 @@ TenueG6 = {
             ['bags_1'] = 0,     ['bags_2'] = 0,
             ['glasses_1'] = 0,  ['glasses_2'] = 0,
             ['chain_1'] = 9,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
         female = {
             ['tshirt_1'] = 19,  ['tshirt_2'] = 3,
@@ -5413,9 +5413,9 @@ TenueG6 = {
             ['ears_1'] = -1,     ['ears_2'] = 0,
             ['bproof_1'] = 0,  ['bproof_2'] = 0,
             ['bags_1'] = 0,     ['bags_2'] = 0,
-            ['glasses_1'] = 0,  ['glasses_2'] = 0,
+            ['glasses_1'] = -1,  ['glasses_2'] = 0,
             ['chain_1'] = 9,    ['chain_2'] = 0,
-            ['mask_1'] = 121,     ['mask_2'] = 0
+            ['mask_1'] = -1,     ['mask_2'] = 0
         },
     },
 }
