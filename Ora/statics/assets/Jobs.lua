@@ -7004,7 +7004,7 @@ Jobs = {
         grade = {
             {
                 label = "CDD",
-                salary = 0,
+                salary = 120,
                 name = "cdd",
                 show = true,
                 accessImmo = true,
@@ -7012,7 +7012,7 @@ Jobs = {
             },
             {
                 label = "Conseiller",
-                salary = 0,
+                salary = 140,
                 name = "adviser",
                 show = true,
                 accessImmo = true,
@@ -7020,7 +7020,7 @@ Jobs = {
             },
             {
                 label = "Banquier",
-                salary = 0,
+                salary = 140,
                 name = "banker",
                 show = true,
                 accessImmo = false,
@@ -7028,7 +7028,7 @@ Jobs = {
             },
             {
                 label = "Associé Junior",
-                salary = 0,
+                salary = 160,
                 name = "junior",
                 show = true,          
                 accessImmo = false,
@@ -7036,7 +7036,7 @@ Jobs = {
             },
             {
                 label = "Chef d'équipe Immo",
-                salary = 0,
+                salary = 170,
                 name = "teamleader",
                 show = true,
                 accessImmo = true,
@@ -7044,7 +7044,7 @@ Jobs = {
             },
             {
                 label = "Associé Senior",
-                salary = 0,
+                salary = 180,
                 name = "senior",
                 show = true,
                 accessImmo = false,
@@ -7052,7 +7052,7 @@ Jobs = {
             },
             {
                 label = "Managing Partner",
-                salary = 0,
+                salary = 190,
                 name = "managing",
                 show = true,
                 accessImmo = true,
@@ -7060,7 +7060,7 @@ Jobs = {
             },
             {
                 label = "PDG",
-                salary = 0,
+                salary = 200,
                 name = "pdg",
                 show = true,
                 accessImmo = true,
@@ -11496,23 +11496,24 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 278.43, y = -1152.22, z = 28.24},
+                Pos = {x = -234.456, y = 6216.920, z = 30.90},
                 Limit = 100,
-                Name = "coffre bikershop"
+                Name = "coffre autoshop"
             }
         },
         garage = {
-            Name = "Garage Moto Shop",
-            Pos = {x = 256.07, y = -1162.07, z = 28.17},
+            Name = "Garage Autoshop",
+            Pos = {x = 54.06, y = 6459.83, z = 31.37},
+            illimity = true,
             Properties = {
                 type = 3,
                 -- = garage societe
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 256.07, y = -1162.07, z = 28.17}
+                spawnpos = {x = 54.06, y = 6459.83, z = 31.37, a = 243.75}
             },
             Blipdata = {
-                Pos = {x = 256.07, y = -1162.07, z = 28.17},
+                Pos = {x = 54.06, y = 6459.83, z = 31.37},
                 Blipcolor = 7,
                 Blipname = "Garage"
             }

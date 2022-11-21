@@ -367,7 +367,7 @@ $(function(){
                 await updateUserData(dateTest);
                 displayPhone(true);
                 updateContent("bank");
-                updateAppContent("first");
+                updateAppContent("history");
                 $("#message-list").children().click(function () {
                     updateAppContent("message");
                 });
@@ -400,6 +400,10 @@ $(function(){
 
 // Mise à jour total
 async function updateUserData(data) {
+    if (!data.phone || !data.phoneNumber) {
+        console.error("Erreur de chargement des données utilisateur");
+        return;
+    }
     // Inisiialisation de l'accueil
     if (!phoneTest) {
         updateContent("home");
@@ -3060,7 +3064,7 @@ function updateAppContent(element) {
             }
         }
     } else {
-        document.getElementById("app-"+ menuSelected  + "-body-content-" + element).style.display = "block";
+        document.getElementById("app-"+ menuSelected + "-body-content-" + element).style.display = "block";
         elementSelected = element;
         $("#app-tab-button-" + element).addClass("active");
     }
