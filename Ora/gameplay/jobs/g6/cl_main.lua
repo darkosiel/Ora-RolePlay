@@ -427,6 +427,7 @@ local zones = {
 
 	crackCase = {
 		name = "Joshua",
+		displayLabel = "parler à Joshua",
 		model = GetHashKey("s_m_y_dealer_01"),
 		heading = 0.0,
 		pos = vector3(1218.1278, 2741.9743, 38.005398),
@@ -456,6 +457,8 @@ local zones = {
 					TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = money, SOURCE = "Breaking case G6", LEGIT = false})
 					TriggerServerEvent("Ora::SE::NpcJobs:Bank:UpdateMainAccount", "centralbank", money, false)
 				end,{})
+				
+				TriggerServerEvent("Ora:sendToDiscord", "G6", "Le joueur a cassé " .. input .. " caisses pour un total de " .. money .. "$", "warning")
 
 				-- Show a notification
 				ShowNotification("~g~Vous avez reçu ~g~" .. money .. "$~g~ pour avoir ouvert " .. input .. " caisses")
@@ -498,7 +501,7 @@ AddEventHandler("Ora::CE::PlayerLoaded", function()
 						if #(Player.Pos - v.pos) < v.radius*5 then
 							--DrawMarker(1, v.pos.x, v.pos.y, v.pos.z, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 1.0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0)
 							if #(Player.Pos - v.pos) < v.radius then
-								DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ to "..v.name)
+								DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ pour "..v.displayLabel)
 								if IsControlJustPressed(0, 38) then
 									v.onPressAction()
 								end

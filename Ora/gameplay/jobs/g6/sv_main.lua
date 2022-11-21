@@ -1,5 +1,5 @@
 RegisterNetEvent("Ora:Jobs:G6:GenerateAtms", function(atms)
-	print(atms)
+	--print(atms)
 	SaveResourceFile(GetCurrentResourceName(), "gameplay/jobs/g6/atms.json", atms, -1)
 end)
 
@@ -15,10 +15,10 @@ end)
 
 local REQUIRED_VEHICLE_HASH <const> = GetHashKey("stockade")
 local DEPOT_COORDS <const> = vector3(-3.433605, -672.838806, 31.946930)
-local MIN_NUMBER_IN_SERVICE <const> = 3
-local MIN_NUMBER_IN_SESSION <const> = 3
+local MIN_NUMBER_IN_SERVICE <const> = 1
+local MIN_NUMBER_IN_SESSION <const> = 1
 local G6_MAX_STOPS_PER_DAY <const> = 60
-local REWARD_AMOUNT <const> = 1700
+local REWARD_AMOUNT <const> = 2600
  
 local AtmIsBeingFilled = false
 local G6_Current_Session = nil
@@ -270,6 +270,7 @@ RegisterServerEvent("g6:nextRouteStop", function()
 	-- Increment the currentRouteStop
 	G6_Number_Of_Stops_Of_The_Day = G6_Number_Of_Stops_Of_The_Day + (G6_Current_Session.currentRouteStop <= 0 and 0 or 1)
 	G6_Current_Session.currentRouteStop = G6_Current_Session.currentRouteStop + 1
+	table.remove(points, closestPoints[randomIndex].index)
 
 	-- Check if the Session is not finished
 	if G6_Current_Session.currentRouteStop > #G6_Current_Session.route then
@@ -468,7 +469,7 @@ AddEventHandler("playerDropped", function()
 	local src = source
 	-- Check if the player has the job
 	-- If the job is not g6, return
-	print("Player "..src.." dropped and left the G6 session.")
+	--print("Player "..src.." dropped and left the G6 session.")
 	-- Check if there is a Session in progress
 	
 	RemovePlayerFromSession(src)
@@ -476,11 +477,11 @@ end)
 
 function RemovePlayerFromSession(source)
 	local src = source
-	notifyPlayer(src, "~r~Vous avez quitté la session.")
 	if G6_Current_Session == nil then
-		notifyPlayer(src, "~r~Il n'y a pas de session en cours.")
+		notifyPlayer(src, "~r~Il n'y a pas de session en cours.", true)
 		return
 	end
+	notifyPlayer(src, "~r~Vous avez quitté la session.", true)
 
 	-- Check if the player is already in the Session
 	for i, agent in pairs(G6_Current_Session.agents) do
@@ -565,6 +566,9 @@ function CalculateGpsRoute()
 	local startPointIndex = math.random(1, #points)
 	local currentPoint = points[startPointIndex]
 	local numberOfPoints = G6_MAX_STOPS_PER_DAY - G6_Number_Of_Stops_Of_The_Day
+	print("----- CALULATING G6 ROUTE -----")
+	print("[G6] Number of points: "..numberOfPoints)
+	print("[G6] Number of points available in the table: "..#points)
 	for i = 1, numberOfPoints, 1 do
 		local closestPoints = {}
 		for j = 1, #points, 1 do
@@ -594,9 +598,9 @@ function CalculateGpsRoute()
 		table.insert(route, {
 			coords = closestPoints[randomIndex].point.coords,
 			distance = closestPoints[randomIndex].distance,
-			reward = math.random(100, 1000)
+			--reward = math.random(100, 1000),
+			index = closestPoints[randomIndex].index
 		})
-		table.remove(points, closestPoints[randomIndex].index)
 		currentPoint = closestPoints[randomIndex].point
 	end
 	return route
