@@ -254,7 +254,7 @@ function RageUI.Menus:Closable(boolean)
 end
 
 function RageUI.Menus:AddInstructionButton(button)
-    if type(button) == "table" and #button == 2 then
+    if type(button) == "table" and #button >= 2 then
         table.insert(self.InstructionalButtons, button)
         self.UpdateInstructionalButtons(true);
     end
@@ -314,10 +314,14 @@ function RageUI.Menus:UpdateInstructionalButtons(Visible)
     if (self.InstructionalButtons ~= nil) then
         for i = 1, #self.InstructionalButtons do
             if self.InstructionalButtons[i] then
-                if #self.InstructionalButtons[i] == 2 then
+                if #self.InstructionalButtons[i] >= 2 then
                     BeginScaleformMovieMethod(self.InstructionalScaleform, "SET_DATA_SLOT")
                     ScaleformMovieMethodAddParamInt(count)
                     PushScaleformMovieMethodParameterButtonName(self.InstructionalButtons[i][1])
+                    if self.InstructionalButtons[i][3] then
+                        print("Pushing 2nd button name")
+                        PushScaleformMovieMethodParameterButtonName(self.InstructionalButtons[i][3])
+                    end
                     PushScaleformMovieMethodParameterString(self.InstructionalButtons[i][2])
                     EndScaleformMovieMethod()
                     count = count + 1
