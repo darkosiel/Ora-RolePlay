@@ -7834,7 +7834,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 619.16, y = 2767.06, z = 42.09},
+                Pos = {x = 612.56, y = 2765.39, z = 41.09},
                 Limit = 200,
                 Name = "coffre_binco_nord"
             }
