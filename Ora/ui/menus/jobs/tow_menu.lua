@@ -38,8 +38,8 @@ end
 RMenu.Add('jobs',"tow", RageUI.CreateMenu(nil, "Joueurs disponibles",10,100,"shopui_title_carmod2","shopui_title_carmod2"))
 RMenu.Add('jobs',"tow_vehicle", RageUI.CreateSubMenu(RMenu:Get('jobs',"tow"),nil, "Vehicles de",10,100))
 
-RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 241, 0), "+"})
-RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 210, 0), "Atteindre la première ligne"})
+--RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 241, 0), "+"})
+RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 27, 0), "Atteindre la première ligne", GetControlInstructionalButton(0, 36, 0)})
 
 RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 214, 0), "Supprimer le filtre"})
 
@@ -57,7 +57,8 @@ Citizen.CreateThread(function()
 		Wait(1)
 		if RageUI.Visible(RMenu:Get('jobs',"tow")) then
 			RageUI.DrawContent({ header = true, glare = false }, function()
-				if IsControlPressed(0, 210) and (IsDisabledControlJustPressed(0, 241) or IsDisabledControlJustPressed(0, 172)) then
+				DisableControlAction(0, 36)
+				if IsControlPressed(0, 36) and (IsDisabledControlJustPressed(0, 241) or IsDisabledControlJustPressed(0, 172)) then
 					print("test")
 					RageUI.Refresh()
 				end
