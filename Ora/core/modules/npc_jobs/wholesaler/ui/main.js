@@ -56,14 +56,44 @@ function ToggleMenu(open) {
 }
 
 
+function SortObject(data) {
+//   return Object.keys(object).sort().reduce((result, key) => (result[key] = object[key], result), {});
+// }
+  
+  let objectToarray = Object.entries(data)
+  //sort by name
+  objectToarray.sort(function(a, b) {
+    var nameA = a[1][0].toUpperCase(); // ignore upper and lowercase
+    var nameB = b[1][0].toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    } 
+    if (nameA > nameB) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  });
 
+  let objSorted = {}
+  objectToarray.forEach(function(item){
+      objSorted[item[0]]=item[1]
+  })
+  return objSorted
+}
 
 // Event listeners
 
 window.addEventListener('message', event => {
   if (event.data.eventName == "openWholesalerMenu") {
-    JobItems = event.data.JobItems
-    OrgaItems = event.data.OrgaItems
+    // convert to an array
+    console.log(event.data)
+    if (event.data.JobItems != null) {
+      JobItems = SortObject(event.data.JobItems)
+    }
+    if (event.data.OrgaItems != null) {
+      OrgaItems = SortObject(event.data.OrgaItems)
+    }
     job = event.data.Job
     orga = event.data.Orga
     ToggleMenu(true)
