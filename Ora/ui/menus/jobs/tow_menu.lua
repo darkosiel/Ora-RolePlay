@@ -37,11 +37,37 @@ end
 
 RMenu.Add('jobs',"tow", RageUI.CreateMenu(nil, "Joueurs disponibles",10,100,"shopui_title_carmod2","shopui_title_carmod2"))
 RMenu.Add('jobs',"tow_vehicle", RageUI.CreateSubMenu(RMenu:Get('jobs',"tow"),nil, "Vehicles de",10,100))
+
+RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 241, 0), "+"})
+RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 210, 0), "Atteindre la première ligne"})
+
+RMenu:Get('jobs',"tow"):AddInstructionButton({GetControlInstructionalButton(0, 214, 0), "Supprimer le filtre"})
+
+RMenu:Get('jobs',"tow").Closed = function()
+	Data = {
+		PlayersIdentities = {},
+		Companies = {},
+		Vehicles = {}
+	}
+	collectgarbage()	
+end
+
 Citizen.CreateThread(function()
 	while true do
 		Wait(1)
 		if RageUI.Visible(RMenu:Get('jobs',"tow")) then
 			RageUI.DrawContent({ header = true, glare = false }, function()
+				if IsControlPressed(0, 210) and (IsDisabledControlJustPressed(0, 241) or IsDisabledControlJustPressed(0, 172)) then
+					print("test")
+					RageUI.Refresh()
+				end
+
+				if IsControlJustPressed(0, 214) then
+					RageUI.Refresh()
+					filterTow = nil
+					filterTowRegex = nil
+				end
+
 				if LocalPlayer().InVehicle then
 					RageUI.Button("Rentrer véhicule",nil,{},true,function(_,_,Selected)
 						if Selected then
@@ -49,7 +75,7 @@ Citizen.CreateThread(function()
 							TriggerServerEvent("storevehicletow",GetVehicleNumberPlateText(veh))
 							DeleteEntity(veh)
 						end
-					end)
+					end, nil)
 				end
 				
 				if #Data.PlayersIdentities == 0 then
@@ -71,7 +97,7 @@ Citizen.CreateThread(function()
 							end
 							RageUI.Refresh()
 						end
-					end)
+					end, nil)
 					
 					if ownerCategory == 1 then
 						for k, v in pairs(Data.PlayersIdentities) do
@@ -96,7 +122,7 @@ Citizen.CreateThread(function()
 						end
 					end
 				end
-			end)
+			end, function() end)
 		end
 	
 		if RageUI.Visible(RMenu:Get('jobs',"tow_vehicle")) then
@@ -126,7 +152,7 @@ Citizen.CreateThread(function()
 						end
 					end
 				end
-			end)
+			end, function() end)
 		end
 	end
 end)
