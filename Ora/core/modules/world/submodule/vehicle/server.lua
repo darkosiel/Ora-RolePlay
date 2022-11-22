@@ -50,7 +50,7 @@ function Ora.World.Vehicle:IsVehicleInParking(vehicleIdentifier)
 end
 
 function Ora.World.Vehicle:SetVehicleToPound(vehicleIdentifier)
-    MySQL.Sync.insert(
+    MySQL.Sync.execute(
         "UPDATE players_vehicles SET pound = 1 WHERE plate_identifier = @vehicleIdentifier",
         {
             ["@vehicleIdentifier"] = vehicleIdentifier
