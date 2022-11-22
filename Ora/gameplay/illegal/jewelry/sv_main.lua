@@ -191,7 +191,7 @@ RegisterServerEvent("jewellery_heist:askForConfigData", function()
     if isRobberyInProgress then
         --print("Uptated state of the alarm to player #" .. source)
         StartAlarmAndGas(source)
-        TriggerClientEvent("jewellery_heist:startAlarm", source)
+        --TriggerClientEvent("jewellery_heist:startAlarm", source)
     end
 end)
 

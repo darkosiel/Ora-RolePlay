@@ -32,7 +32,7 @@ Ora.Illegal.CopsLimitation = {
     ['drugcomponent'] = 0, --3
     ['atm'] = 6, --6
     ['fleeca'] = 8, --8
-    ['jewelry'] = 1, --8
+    ['jewelry'] = 8, --8
 } 
 
 function Ora.Illegal:GetCopsRequired(missionName)

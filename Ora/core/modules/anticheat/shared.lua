@@ -41,6 +41,7 @@ Ora.Anticheat.ObjectWhitelist = {
   [-2098426548] = true,
   [-1964402432] = true,
   [155046858] = true,
+  [-472443277] = true,
   [1053267296] = true,
   [-1910604593] = true,
   [-1036807324] = true,
