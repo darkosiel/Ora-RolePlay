@@ -459,6 +459,17 @@ function Ora.World.Vehicle:AddItemIntoTrunk(vehicle, itemName)
   TriggerServerEvent("rage-reborn:TransfertToStorage", items, itemName, vehicleStorageName)
 end
 
+function Ora.World.Vehicle:AddItemsIntoTrunk(vehicle, itemName, quantity)
+    local vehicleStorageName = self:GetIdentifier(vehicle)
+    local items = {}
+    
+    for i = 1, quantity do
+        table.insert(items, {id = generateUUIDV2(), name = itemName, metadata = {}, label = nil})
+    end
+    
+    TriggerServerEvent("rage-reborn:TransfertToStorage", items, itemName, vehicleStorageName)
+end
+
 function Ora.World.Vehicle:RemoveAllItemsNameFromTrunk(vehicle, itemName)
   local vehicleStorageName = self:GetIdentifier(vehicle)
   TriggerServerEvent("Ora::SE::World:Vehicle:RemoveAllItemsNameFromTrunk", vehicleStorageName, itemName)
