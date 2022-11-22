@@ -642,22 +642,24 @@ RegisterServerCallback(
     function(source, callback)
         local _source = source
         local identifers = GetIdentifiers(_source).steam
-
-        MySQL.Async.fetchAll(
-            "SELECT * FROM players_identity",
-            {},
-            function(result)
-                MySQL.Async.fetchAll(
-                    "SELECT * FROM players_vehicles",
-                    {},
-                    function(_result)
-                        callback(_result, result)
-                    end
-                )
-            end
-        )
+        local result = MySQL.Sync.fetchAll("SELECT DISTINCT players_identity.uuid AS uuid, last_name, first_name FROM players_identity, players_vehicles WHERE players_identity.uuid = players_vehicles.uuid AND players_vehicles.pound = 1")
+        
+        local jobsKeysString = "\"first\""
+        for k, v in pairs(Jobs) do
+            jobsKeysString = jobsKeysString .. ", \"" .. k .. "\""
+        end
+        local jobsThatHaveVehicleInPound = MySQL.Sync.fetchAll("SELECT DISTINCT uuid FROM players_vehicles WHERE pound = 1 AND uuid IN (" .. jobsKeysString .. ")")
+        
+        callback(result, jobsThatHaveVehicleInPound)
     end
 )
+
+RegisterServerCallback("core:GetVehicleInPound", function(source, cb, uuid)
+    local _source = source
+    local identifers = GetIdentifiers(_source).steam
+    local result = MySQL.Sync.fetchAll("SELECT * FROM players_vehicles WHERE uuid = @uuid AND pound = 1", {["@uuid"] = uuid})
+    cb(result)
+end)
 
 ----
 
