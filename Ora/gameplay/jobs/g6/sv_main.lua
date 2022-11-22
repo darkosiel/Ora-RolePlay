@@ -501,7 +501,7 @@ function RemovePlayerFromSession(source)
 
 	if #G6_Current_Session.agents == 0 then
 		-- If there is no more agents in the Session, delete the Session
-		notifyPlayer(src, "~r~Session deleted because there is no more agents in the Session")
+		notifyPlayer(src, "~r~Il n'y a plus de joueurs dans la session")
 		TriggerEvent("g6:endSession")
 		return
 	end
