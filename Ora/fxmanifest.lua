@@ -261,6 +261,7 @@ client_script {
     "core/modules/jobs/firefighter/client/main.lua",
     "core/modules/jobs/drivingschool/shared.lua",
     "core/modules/jobs/drivingschool/client.lua",
+    "core/modules/jobs/clothe_seller/cl_menu.lua",
     "core/modules/npc_jobs/shared.lua",
     "core/modules/npc_jobs/client.lua",
     "core/modules/npc_jobs/bank/shared.lua",
