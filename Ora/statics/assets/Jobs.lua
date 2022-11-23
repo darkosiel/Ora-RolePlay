@@ -2742,40 +2742,40 @@ Jobs = {
     --             }
     --         }
     --     },
-        garage = {
-            Name = "Garage District Records",
-            Pos = {x = -973.4893, y = -269.6187, z = 37.31},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -973.4893, y = -269.6187, z = 37.31, h = 179.85}
-            },
-            Blipdata = {
-                Pos = {x =  -973.4893, y = -269.6187, z = 37.31, h = 179.85},
-                Blipcolor = 5,
-                Blipname = "Garage"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -996.6784, y = -257.2656, z = 39.03 - 0.98},
-                Limit = 200,
-                Name = "coffre_rappeur"
-            },
-            {
-                Pos = {x = -977.5216, y = -257.2708, z = 38.47 - 0.98},
-                Limit = 2000,
-                Name = "coffre_rappeur1"
-            },
-            {
-                Pos = {x = -1008.1710, y = -265.2815, z = 44.79 - 0.98},
-                Limit = 2000,
-                Name = "coffre_rappeur2"
-            }
-        },
-        requiredService = false
-    },
+    --     garage = {
+    --         Name = "Garage District Records",
+    --         Pos = {x = -973.4893, y = -269.6187, z = 37.31},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -973.4893, y = -269.6187, z = 37.31, h = 179.85}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x =  -973.4893, y = -269.6187, z = 37.31, h = 179.85},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -996.6784, y = -257.2656, z = 39.03 - 0.98},
+    --             Limit = 200,
+    --             Name = "coffre_rappeur"
+    --         },
+    --         {
+    --             Pos = {x = -977.5216, y = -257.2708, z = 38.47 - 0.98},
+    --             Limit = 2000,
+    --             Name = "coffre_rappeur1"
+    --         },
+    --         {
+    --             Pos = {x = -1008.1710, y = -265.2815, z = 44.79 - 0.98},
+    --             Limit = 2000,
+    --             Name = "coffre_rappeur2"
+    --         }
+    --     },
+    --     requiredService = false
+    -- },
     ltdnord = {
         label = "LTD Nord",
         label2 = "ltd nord",
