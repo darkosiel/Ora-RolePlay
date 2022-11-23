@@ -58,7 +58,7 @@ local Blips = {
     --{name = "Chez Larry", color = 2, sprite = 77, Pos = {x = 1224.63, y = 2727.31, z = 38.00}},
     {name = "Coiffeur", color = 64, sprite = 71, Pos = {x = 138.25, y = -1709.13, z = 29.42}},
     {name = "Barber", color = 64, sprite = 71, Pos = {x = -36.48, y = -155.96, z = 57.07}},
-    {name = "Ponsonbys", color = 64, sprite = 366, Pos = {x = -716.84, y = -156.75, z = 36.98}},
+    -- {name = "Ponsonbys", color = 64, sprite = 366, Pos = {x = -716.84, y = -156.75, z = 36.98}},
     {name = "Binco", color = 64, sprite = 366, Pos = {x = -829.413, y = -1073.710, z = 10.328}},
     --{name = "Agence immobilière", color = 64, sprite = 492, Pos = {x = -707.79388, y = 269.2157, z = 94.2941}},
     --{name = "Mirror Restaurant", color = 3, sprite = 304, Pos = {x = -1342.2145, y = -1075.8182, z = 6.93}},
@@ -101,7 +101,7 @@ local Blips = {
     --{name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
     --{name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},
     --{name = "Koi", color = 49, sprite = 439, Pos = {x = -1040.4300, y = -1475.1987, z = 5.5802}},
-    {name = "Bar - San-Inn", color = 59, sprite = 93, Pos = {x = -172.66, y = 291.57, z = 92.76}},
+    -- {name = "Bar - San-Inn", color = 59, sprite = 93, Pos = {x = -172.66, y = 291.57, z = 92.76}},
     --{name = "Taco Loco", color = 46, sprite = 79, Pos = {x = 417.2778, y = -1911.7052, z = 25.47}},
     --{name = "Armurerie - Paleto Bay", color = 49, sprite = 313, Pos = {x = -326.78, y = 6080.18, z = 31.45}}
    -- {name = "Death Row Records", color = 49, sprite = 355, Pos = {x = -1441.7468, y = -546.6607, z = 34.7418}}
