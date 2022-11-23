@@ -450,7 +450,7 @@ client_script {
     "gameplay/jobs/g6/cl_main.lua",
     "gameplay/jobs/g6/cl_menu.lua",
 
-    "gameplay/jobs/g6/getAtmAvailable.lua",
+    --"gameplay/jobs/g6/getAtmAvailable.lua",
 
     "gameplay/shops/clothes/*.lua",
     "gameplay/shops/shop/sh_illegal.lua",
