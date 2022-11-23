@@ -476,7 +476,7 @@ function InfluenceCalculator (influenceDataCollector) {
                     scores.push({ organisation_id: line.organisation_id, score: i.fn(line) })
                 }
                 scores = scores.filter(s => s.score > 0)
-                    .sort((a,b) => i.desc ? (b.score - a.score) : (a.score - b.score))
+                    .sort((a,b) => i.negative ? (a.score - b.score) : (b.score - a.score))
                 if (scores.length > 1) {
                     const diff = scores[1].score / scores[0].score
                     let ratio1 = 100
