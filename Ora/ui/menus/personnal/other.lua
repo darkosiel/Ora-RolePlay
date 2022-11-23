@@ -1227,6 +1227,7 @@ Citizen.CreateThread(
             end
 
             if RageUI.Visible(RMenu:Get("personnal", "settings_organisation_influence")) then
+                IllegalOrga.MENU.CURRENT_INFLUENCE_MSG = 1
                 if (IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS ~= nil) then
                     IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS = nil
                 end
@@ -1254,6 +1255,9 @@ Citizen.CreateThread(
             end
             
             if RageUI.Visible(RMenu:Get("personnal", "settings_orga_influence_zone")) then
+                if IllegalOrga.MENU.CURRENT_INFLUENCE_MSG == nil then
+                    IllegalOrga.MENU.CURRENT_INFLUENCE_MSG = 1
+                end
                 RageUI.DrawContent({header = true, glare = true},
                     function()
                         local zoneId = IllegalOrga.MENU.CURRENT_ZONE_ANALYSIS
@@ -1263,12 +1267,27 @@ Citizen.CreateThread(
                             return
                         end
                         local zoneName = Ora.DrugDealing:GetZones()[zoneId].name
+                        local influenceMessages = {
+                            [1] = "Influence totale : " .. (zone.influence or 0).. "%",
+                            [2] = "Score quantité : " .. (zone.scores.quantity or 0) .. "%",
+                            [3] = "Score qualité : " .. (zone.scores.quality or 0) .. "%",
+                            [4] = "Score stabilité : " .. (zone.scores.stability or 0) .. "%",
+                            [5] = "Score fréquence : " .. (zone.scores.frequency or 0) .. "%",
+                            [6] = "Score domination : " .. (zone.scores.domination or 0) .. "%"
+                        }
                         RageUI.Button(
-                            "Influence à " .. zoneName .. " : " .. zone.influence .. "%",
+                            influenceMessages[IllegalOrga.MENU.CURRENT_INFLUENCE_MSG],
                             nil,
                             {},
                             true,
-                            function(_, _, _)
+                            function(_, _, Selected)
+                                if Selected then
+                                    if IllegalOrga.MENU.CURRENT_INFLUENCE_MSG == 6 then
+                                        IllegalOrga.MENU.CURRENT_INFLUENCE_MSG = 1
+                                    else
+                                        IllegalOrga.MENU.CURRENT_INFLUENCE_MSG = IllegalOrga.MENU.CURRENT_INFLUENCE_MSG + 1
+                                    end
+                                end
                             end
                         )
                         RageUI.Button(
