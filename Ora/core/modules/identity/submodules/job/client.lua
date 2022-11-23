@@ -280,14 +280,14 @@ function Ora.Identity.Job:Set(name, rank)
 	
 	local data = copy1(self.Data)
 	self.ChangingOldName = tostring(data.name)
-	print("Old Job" .. self.ChangingOldName)
+	--print("Old Job" .. self.ChangingOldName)
 	self.Data = Jobs[name]
 	self.Data.grades = Jobs[name].grade
 	self.Data.gradelabel = Jobs[name].grade[tonumber(rank)].label
 	self.Data.gradenum = tonumber(rank) -- check to delete that useless shit
 	self.Data.name = name
 	self.Data.rank = rank
-	print("Old Job 2" .. self.ChangingOldName)
+	--print("Old Job 2" .. self.ChangingOldName)
 	
 	if self.Data.Blips == nil then self.Data.Blips = {} end
 	
