@@ -358,6 +358,7 @@ $(function(){
 
             // Affichage de l'écran de test
             let dateTest = {
+                'phoneNumber': '5556585',
                 'phone': {
                     'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
                     ])
@@ -366,8 +367,8 @@ $(function(){
             if (phoneTest) {
                 await updateUserData(dateTest);
                 displayPhone(true);
-                updateContent("bank");
-                updateAppContent("history");
+                updateContent("home");
+                updateAppContent("first");
                 $("#message-list").children().click(function () {
                     updateAppContent("message");
                 });
@@ -3691,7 +3692,7 @@ const config = {
         // },
         {
             "name": "richtermotorsport",
-            "label": "Richter Motorsport"
+            "label": "Evans Motorsport"
         },
         {
             "name": "maps",

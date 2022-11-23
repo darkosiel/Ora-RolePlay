@@ -176,8 +176,6 @@ Station = {
         id = 9,
         coords = vector3(179.769, 6604.841, 31.40),
         radius = 10.50,
-        coords2 = vector3(181.265, 6632.941, 31.10),
-        radius2 = 3.00,
         pedPos = vector4(175.087, 6643.103, 31.00, 314.00),
         priceL = 1.20
       }, -- Paleto

@@ -2049,337 +2049,337 @@ Jobs = {
             }
         }
     },
-    tacoloco = {
-        label = "Taco Loco",
-        label2 = "Taco Loco",
-        iban = "tacoloco",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Taco Loco",
-                subtitle = "Actions disponibles",
-                name = "restaurant_menuperso"
-            },
-            buttons = {
-                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("tacoloco")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Taco Loco", "Annonce", text, "CHAR_TACOLOCO", 8, "Taco Loco")
-                        end
-                    end
-                }
-            }
-        },
-        garage = {
-            Name = "Garage Taco Loco",
-            Pos = {x = 416.2844, y = -1929.2210, z = 23.43},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24}
-            },
-            Blipdata = {
-                Pos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24},
-                Blipcolor = 5,
-                Blipname = "Garage"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = 426.0520, y = -1911.7979, z = 24.47},
-                Limit = 500,
-                Name = "coffre_tacoloco2"
-            },
-            {
-                Pos = {x = 418.2400, y = -1916.0034, z = 24.47},
-                Limit = 500,
-                Name = "coffre_tacoloco1"
-            },
-            {
-                Pos = {x = 429.8100, y = -1915.5762, z = 24.47},
-                Limit = 500,
-                Name = "coffre_tacoloco"
-            }
-        },
-        Extrapos = {
-            CraftSpiritueux = {
-                Pos = {
-                    {x = 425.4309, y = -1917.5015, z = 25.47}
-                },
-                restricted = {1, 2, 3, 4, 5},
-                Enter = function()
-                    EntercrafttacoZone()
-                end,
-                Exit = function()
-                    ExitcrafttacoZone()
-                end,
-                zonesize = 3.5,
-                Blips = {
-                    sprite = 93,
-                    color = 81,
-                    name = "Taco Loco - Alambique"
-                },
-                Marker = {
-                    type = 1,
-                    scale = {x = 1.5, y = 1.5, z = 0.2},
-                    color = {r = 255, g = 255, b = 255, a = 120},
-                    Up = false,
-                    Cam = false,
-                    Rotate = false,
-                    visible = true
-                }
-            }
-        },
-        requiredService = false,
-        work = {
-            recolte = {
-                type = "recolte",
-                workSize = 10.0,
-                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
-                giveitem = "graincafe1",
-                blipcolor = 7,
-                blipname = "Taco Loco - Récolte du café",
-                add = "~p~+ 1 Graine de Café",
-                anim = {
-                    lib = "anim@mp_snowball",
-                    anim = "pickup_snowball"
-                }
-            },
-            traitement = {
-                type = "traitement",
-                workSize = 10.0,
-                blipcolor = 7,
-                blipname = "Taco Loco - Traitement Café",
-                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
-                required = "graincafe1",
-                giveitem = "cafe",
-                RemoveItem = "graincafe1",
-                add = "~p~+ 1  Café"
-            },
-            vente = {
-                type = "vente",
-                blipcolor = 7,
-                workSize = 7.45,
-                blipname = "Taco Loco - Vente",
-                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
-                required = "cafe",
-                price = math.random(13,16),
-                add = "~p~- 1 Café"
-            }
-        }
-    },
-    restaurant = {
-        label = "Mirror",
-        label2 = "Mirror",
-        iban = "restaurant",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "CDD",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Mirror",
-                subtitle = "Actions disponibles",
-                name = "restaurant_menuperso"
-            },
-            buttons = {
-                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("restaurant")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Mirror", "Annonce", text, "CHAR_MIROR", 8, "Mirror")
-                        end
-                    end
-                }
-            }
-        },
-        garage = {
-            Name = "Garage Mirror",
-            Pos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98, h = 118.64}
-            },
-            Blipdata = {
-                Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64},
-                Blipcolor = 5,
-                Blipname = "Garage"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -1338.05, y = -1072.20, z = 6.98 - 0.98},
-                Limit = 500,
-                Name = "coffre_restaurant"
-            },
-            {
-                Pos = {x = -1353.03, y = -1055.21, z = 3.51 - 0.98},
-                Limit = 500,
-                Name = "coffre_caveresto"
-            },
-            {
-                Pos = {x = -1351.72, y = -1064.70, z = 11.46 - 0.98},
-                Limit = 500,
-                Name = "coffre_Mirror_club"
-            }
-        },
-        Extrapos = {
-            CraftSpiritueux = {
-                Pos = {
-                    {x = -1352.6164, y = -1068.4773, z = 6.98}
-                },
-                restricted = {1, 2, 3, 4, 5},
-                Enter = function()
-                    EntercraftmirorZone()
-                end,
-                Exit = function()
-                    ExitcraftmirorZone()
-                end,
-                zonesize = 3.5,
-                Blips = {
-                    sprite = 93,
-                    color = 81,
-                    name = "Mirror - Alambique"
-                },
-                Marker = {
-                    type = 1,
-                    scale = {x = 1.5, y = 1.5, z = 0.2},
-                    color = {r = 255, g = 255, b = 255, a = 120},
-                    Up = false,
-                    Cam = false,
-                    Rotate = false,
-                    visible = true
-                }
-            }
-        },
-        requiredService = false,
-        work = {
-            recolte = {
-                type = "recolte",
-                workSize = 10.0,
-                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
-                giveitem = "graincafe1",
-                blipcolor = 7,
-                blipname = "Miror - Récolte du café",
-                add = "~p~+ 1 Graine de Café",
-                anim = {
-                    lib = "anim@mp_snowball",
-                    anim = "pickup_snowball"
-                }
-            },
-            traitement6 = {
-                --Café
-                type = "traitement",
-                workSize = 10.0,
-                blipcolor = 7,
-                blipname = "Miror - Traitement Café",
-                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
-                required = "graincafe1",
-                giveitem = "cafe",
-                RemoveItem = "graincafe1",
-                add = "~p~+ 1  Café"
-            },
-            vente = {
-                type = "vente",
-                blipcolor = 7,
-                workSize = 7.45,
-                blipname = "Miror - Vente",
-                Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
-                required = "cafe",
-                price = math.random(13,16),
-                add = "~p~- 1 Café"
-            }
-        }
-    },
+    -- tacoloco = {
+    --     label = "Taco Loco",
+    --     label2 = "Taco Loco",
+    --     iban = "tacoloco",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Taco Loco",
+    --             subtitle = "Actions disponibles",
+    --             name = "restaurant_menuperso"
+    --         },
+    --         buttons = {
+    --             -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("tacoloco")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Taco Loco", "Annonce", text, "CHAR_TACOLOCO", 8, "Taco Loco")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Taco Loco",
+    --         Pos = {x = 416.2844, y = -1929.2210, z = 23.43},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x =  416.2844, y = -1929.2210, z = 23.43, h = 318.24},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = 426.0520, y = -1911.7979, z = 24.47},
+    --             Limit = 500,
+    --             Name = "coffre_tacoloco2"
+    --         },
+    --         {
+    --             Pos = {x = 418.2400, y = -1916.0034, z = 24.47},
+    --             Limit = 500,
+    --             Name = "coffre_tacoloco1"
+    --         },
+    --         {
+    --             Pos = {x = 429.8100, y = -1915.5762, z = 24.47},
+    --             Limit = 500,
+    --             Name = "coffre_tacoloco"
+    --         }
+    --     },
+    --     Extrapos = {
+    --         CraftSpiritueux = {
+    --             Pos = {
+    --                 {x = 425.4309, y = -1917.5015, z = 25.47}
+    --             },
+    --             restricted = {1, 2, 3, 4, 5},
+    --             Enter = function()
+    --                 EntercrafttacoZone()
+    --             end,
+    --             Exit = function()
+    --                 ExitcrafttacoZone()
+    --             end,
+    --             zonesize = 3.5,
+    --             Blips = {
+    --                 sprite = 93,
+    --                 color = 81,
+    --                 name = "Taco Loco - Alambique"
+    --             },
+    --             Marker = {
+    --                 type = 1,
+    --                 scale = {x = 1.5, y = 1.5, z = 0.2},
+    --                 color = {r = 255, g = 255, b = 255, a = 120},
+    --                 Up = false,
+    --                 Cam = false,
+    --                 Rotate = false,
+    --                 visible = true
+    --             }
+    --         }
+    --     },
+    --     requiredService = false,
+    --     work = {
+    --         recolte = {
+    --             type = "recolte",
+    --             workSize = 10.0,
+    --             Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+    --             giveitem = "graincafe1",
+    --             blipcolor = 7,
+    --             blipname = "Taco Loco - Récolte du café",
+    --             add = "~p~+ 1 Graine de Café",
+    --             anim = {
+    --                 lib = "anim@mp_snowball",
+    --                 anim = "pickup_snowball"
+    --             }
+    --         },
+    --         traitement = {
+    --             type = "traitement",
+    --             workSize = 10.0,
+    --             blipcolor = 7,
+    --             blipname = "Taco Loco - Traitement Café",
+    --             Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+    --             required = "graincafe1",
+    --             giveitem = "cafe",
+    --             RemoveItem = "graincafe1",
+    --             add = "~p~+ 1  Café"
+    --         },
+    --         vente = {
+    --             type = "vente",
+    --             blipcolor = 7,
+    --             workSize = 7.45,
+    --             blipname = "Taco Loco - Vente",
+    --             Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+    --             required = "cafe",
+    --             price = math.random(13,16),
+    --             add = "~p~- 1 Café"
+    --         }
+    --     }
+    -- },
+    -- restaurant = {
+    --     label = "Mirror",
+    --     label2 = "Mirror",
+    --     iban = "restaurant",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Mirror",
+    --             subtitle = "Actions disponibles",
+    --             name = "restaurant_menuperso"
+    --         },
+    --         buttons = {
+    --             -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("restaurant")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Mirror", "Annonce", text, "CHAR_MIROR", 8, "Mirror")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Mirror",
+    --         Pos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -1330.91149, y = -1035.2799, z = 7.37 - 0.98, h = 118.64}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -1321.20, y = -1051.51, z = 7.37 - 0.98, h = 118.64},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -1338.05, y = -1072.20, z = 6.98 - 0.98},
+    --             Limit = 500,
+    --             Name = "coffre_restaurant"
+    --         },
+    --         {
+    --             Pos = {x = -1353.03, y = -1055.21, z = 3.51 - 0.98},
+    --             Limit = 500,
+    --             Name = "coffre_caveresto"
+    --         },
+    --         {
+    --             Pos = {x = -1351.72, y = -1064.70, z = 11.46 - 0.98},
+    --             Limit = 500,
+    --             Name = "coffre_Mirror_club"
+    --         }
+    --     },
+    --     Extrapos = {
+    --         CraftSpiritueux = {
+    --             Pos = {
+    --                 {x = -1352.6164, y = -1068.4773, z = 6.98}
+    --             },
+    --             restricted = {1, 2, 3, 4, 5},
+    --             Enter = function()
+    --                 EntercraftmirorZone()
+    --             end,
+    --             Exit = function()
+    --                 ExitcraftmirorZone()
+    --             end,
+    --             zonesize = 3.5,
+    --             Blips = {
+    --                 sprite = 93,
+    --                 color = 81,
+    --                 name = "Mirror - Alambique"
+    --             },
+    --             Marker = {
+    --                 type = 1,
+    --                 scale = {x = 1.5, y = 1.5, z = 0.2},
+    --                 color = {r = 255, g = 255, b = 255, a = 120},
+    --                 Up = false,
+    --                 Cam = false,
+    --                 Rotate = false,
+    --                 visible = true
+    --             }
+    --         }
+    --     },
+    --     requiredService = false,
+    --     work = {
+    --         recolte = {
+    --             type = "recolte",
+    --             workSize = 10.0,
+    --             Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+    --             giveitem = "graincafe1",
+    --             blipcolor = 7,
+    --             blipname = "Miror - Récolte du café",
+    --             add = "~p~+ 1 Graine de Café",
+    --             anim = {
+    --                 lib = "anim@mp_snowball",
+    --                 anim = "pickup_snowball"
+    --             }
+    --         },
+    --         traitement6 = {
+    --             --Café
+    --             type = "traitement",
+    --             workSize = 10.0,
+    --             blipcolor = 7,
+    --             blipname = "Miror - Traitement Café",
+    --             Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+    --             required = "graincafe1",
+    --             giveitem = "cafe",
+    --             RemoveItem = "graincafe1",
+    --             add = "~p~+ 1  Café"
+    --         },
+    --         vente = {
+    --             type = "vente",
+    --             blipcolor = 7,
+    --             workSize = 7.45,
+    --             blipname = "Miror - Vente",
+    --             Pos = {x = 1249.4327, y = -349.8305, z = 69.20 - 0.98},
+    --             required = "cafe",
+    --             price = math.random(13,16),
+    --             add = "~p~- 1 Café"
+    --         }
+    --     }
+    -- },
     -- fujiwaratofu = {
     --     label = "Fujiwara Tofu",
     --     label2 = "Fujiwara Tofu",
@@ -2677,71 +2677,71 @@ Jobs = {
         },
         requiredService = true
     },
-    rappeur = {
-        label = "District Records",
-        label2 = "District Records",
-        iban = "rappeur",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "Employé",
-                salary = 150,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "Responsable de projet",
-                salary = 160,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Directeur artistique",
-                salary = 170,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "District Records",
-                subtitle = "Actions disponibles",
-                name = "rappeur_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("rappeur")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "District Records", "Annonce", text, "CHAR_RAPPEUR", 8, "District Records")
-                        end
-                    end
-                }
-            }
-        },
+    -- rappeur = {
+    --     label = "District Records",
+    --     label2 = "District Records",
+    --     iban = "rappeur",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "Employé",
+    --             salary = 150,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Responsable de projet",
+    --             salary = 160,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Directeur artistique",
+    --             salary = 170,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "District Records",
+    --             subtitle = "Actions disponibles",
+    --             name = "rappeur_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("rappeur")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "District Records", "Annonce", text, "CHAR_RAPPEUR", 8, "District Records")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
         garage = {
             Name = "Garage District Records",
             Pos = {x = -973.4893, y = -269.6187, z = 37.31},
@@ -3625,195 +3625,195 @@ Jobs = {
             }
         },
     },
-    avocat2 = {
-        label = "Cabinet Lysias",
-        label2 = "Cabinet Lysias",
-        iban = "avocat2",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "AVOCAT",
-                salary = 150,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "ASSOCIE",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Avocat",
-                subtitle = "Actions",
-                name = "avocat_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("avocat2")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Cabinet Lysias", "Annonce", text, "CHAR_WALTER", 8, "Cabinet Lysias")
-                        end
-                    end
-                }
-            }
-        },
-    },
-    avocat3 = {
-        label = "Cabinet Genovese",
-        label2 = "Cabinet Genovese",
-        iban = "avocat3",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "AVOCAT",
-                salary = 150,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "ASSOCIE",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Avocat",
-                subtitle = "Actions",
-                name = "avocat_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("avocat3")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Cabinet Genovese", "Annonce", text, "CHAR_GENOVESE", 8, "Cabinet Genovese")
-                        end
-                    end
-                }
-            }
-        },
-        garage = {
-            Name = "Garage Avocat",
-            Pos = {x = -1171.73, y = -1390.28, z = 4.20},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = -1171.73, y = -1390.28, z = 4.20, h = 166.45}
-            },
-            Blipdata = {
-                Pos = {x = -1171.73, y = -1390.28, z = 4.20},
-                Blipcolor = 5,
-                Blipname = "Garage"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = -1180.58, y = -1406.70, z = 13.22},
-                Limit = 500,
-                Name = "coffre_avocatge"
-            },
-            {
-                Pos = {x = -1194.90, y = -1397.00, z = 9.80},
-                Limit = 500,
-                Name = "coffre_avocatge2"
-            }
-        },
-    },
-    avocat4 = {
-        label = "Cabinet Wistaria",
-        label2 = "Cabinet Wistaria",
-        iban = "avocat4",
-        FreeAccess = false,
-        grade = {
-            {
-                label = "AVOCAT",
-                salary = 150,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "ASSOCIE",
-                salary = 180,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 200,
-                name = "boss",
-                show = true
-            }
-        },
-        Menu = {
-            menu = {
-                title = "Avocat",
-                subtitle = "Actions",
-                name = "avocat_menuperso"
-            },
-            buttons = {
-                {
-                    label = "Facturation",
-                    onSelected = function()
-                        CreateFacture("avocat4")
-                    end,
-                    ActiveFct = function()
-                        HoverPlayer()
-                    end
-                },
-                {
-                    label = "Annonce",
-                    onSelected = function()
-                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-                        local text = exports['Snoupinput']:GetInput()
-                        if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Cabinet Wistaria", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Wistaria")
-                        end
-                    end
-                }
-            }
-        },
-    },
+    -- avocat2 = {
+    --     label = "Cabinet Lysias",
+    --     label2 = "Cabinet Lysias",
+    --     iban = "avocat2",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "AVOCAT",
+    --             salary = 150,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "ASSOCIE",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Avocat",
+    --             subtitle = "Actions",
+    --             name = "avocat_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("avocat2")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Cabinet Lysias", "Annonce", text, "CHAR_WALTER", 8, "Cabinet Lysias")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    -- },
+    -- avocat3 = {
+    --     label = "Cabinet Genovese",
+    --     label2 = "Cabinet Genovese",
+    --     iban = "avocat3",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "AVOCAT",
+    --             salary = 150,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "ASSOCIE",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Avocat",
+    --             subtitle = "Actions",
+    --             name = "avocat_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("avocat3")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Cabinet Genovese", "Annonce", text, "CHAR_GENOVESE", 8, "Cabinet Genovese")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Avocat",
+    --         Pos = {x = -1171.73, y = -1390.28, z = 4.20},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = -1171.73, y = -1390.28, z = 4.20, h = 166.45}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = -1171.73, y = -1390.28, z = 4.20},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = -1180.58, y = -1406.70, z = 13.22},
+    --             Limit = 500,
+    --             Name = "coffre_avocatge"
+    --         },
+    --         {
+    --             Pos = {x = -1194.90, y = -1397.00, z = 9.80},
+    --             Limit = 500,
+    --             Name = "coffre_avocatge2"
+    --         }
+    --     },
+    -- },
+    -- avocat4 = {
+    --     label = "Cabinet Wistaria",
+    --     label2 = "Cabinet Wistaria",
+    --     iban = "avocat4",
+    --     FreeAccess = false,
+    --     grade = {
+    --         {
+    --             label = "AVOCAT",
+    --             salary = 150,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "ASSOCIE",
+    --             salary = 180,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 200,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     Menu = {
+    --         menu = {
+    --             title = "Avocat",
+    --             subtitle = "Actions",
+    --             name = "avocat_menuperso"
+    --         },
+    --         buttons = {
+    --             {
+    --                 label = "Facturation",
+    --                 onSelected = function()
+    --                     CreateFacture("avocat4")
+    --                 end,
+    --                 ActiveFct = function()
+    --                     HoverPlayer()
+    --                 end
+    --             },
+    --             {
+    --                 label = "Annonce",
+    --                 onSelected = function()
+    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+    --                     local text = exports['Snoupinput']:GetInput()
+    --                     if text ~= false and text ~= "" then
+    --                         TriggerServerEvent("Job:Annonce", "Cabinet Wistaria", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Wistaria")
+    --                     end
+    --                 end
+    --             }
+    --         }
+    --     },
+    -- },
     records = {
         label = "Stray Boyz Records",
         label2 = "Stray Boyz Records",
@@ -11498,22 +11498,22 @@ Jobs = {
             {
                 Pos = {x = -234.456, y = 6216.920, z = 30.90},
                 Limit = 100,
-                Name = "coffre autoshop"
+                Name = "coffre Moto"
             }
         },
         garage = {
-            Name = "Garage Autoshop",
-            Pos = {x = 54.06, y = 6459.83, z = 31.37},
+            Name = "Garage Moto",
+            Pos = {x = 11.28, y = 6478.80, z = 31.42},
             illimity = true,
             Properties = {
                 type = 3,
                 -- = garage societe
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 54.06, y = 6459.83, z = 31.37, a = 243.75}
+                spawnpos = {x = 11.28, y = 6478.80, z = 31.42, a = 243.75}
             },
             Blipdata = {
-                Pos = {x = 54.06, y = 6459.83, z = 31.37},
+                Pos = {x = 11.28, y = 6478.80, z = 31.42},
                 Blipcolor = 7,
                 Blipname = "Garage"
             }
@@ -13139,65 +13139,65 @@ Jobs = {
             }
         }
     },
-    jetsam = {
-        label = "Jetsam",
-        label2 = "Jetsam",
-        iban = "jetsam",
-        grade = {
-            {
-                label = "CDD",
-                salary = 0,
-                name = "cdd",
-                show = true
-            },
-            {
-                label = "CDI",
-                salary = 0,
-                name = "cdi",
-                show = true
-            },
-            {
-                label = "Chef",
-                salary = 0,
-                name = "chef",
-                show = true
-            },
-            {
-                label = "DRH",
-                salary = 0,
-                name = "drh",
-                show = true
-            },
-            {
-                label = "PDG",
-                salary = 0,
-                name = "boss",
-                show = true
-            }
-        },
-        garage = {
-            Name = "Garage Jetsam",
-            Pos = {x = 814.74, y = -2941.26, z = 5.9},
-            Properties = {
-                type = 3,
-                Limit = 20,
-                vehicles = {},
-                spawnpos = {x = 814.74, y = -2941.26, z = 5.9, h = 269.7}
-            },
-            Blipdata = {
-                Pos = {x = 814.74, y = -2941.26, z = 5.9},
-                Blipcolor = 5,
-                Blipname = "Garage Jetsam"
-            }
-        },
-        Storage = {
-            {
-                Pos = {x = 813.4, y = -2982.56, z = 6.02 - 0.9},
-                Limit = 100,
-                Name = "Coffre Jetsam"
-            }
-        }
-    },
+    -- jetsam = {
+    --     label = "Jetsam",
+    --     label2 = "Jetsam",
+    --     iban = "jetsam",
+    --     grade = {
+    --         {
+    --             label = "CDD",
+    --             salary = 0,
+    --             name = "cdd",
+    --             show = true
+    --         },
+    --         {
+    --             label = "CDI",
+    --             salary = 0,
+    --             name = "cdi",
+    --             show = true
+    --         },
+    --         {
+    --             label = "Chef",
+    --             salary = 0,
+    --             name = "chef",
+    --             show = true
+    --         },
+    --         {
+    --             label = "DRH",
+    --             salary = 0,
+    --             name = "drh",
+    --             show = true
+    --         },
+    --         {
+    --             label = "PDG",
+    --             salary = 0,
+    --             name = "boss",
+    --             show = true
+    --         }
+    --     },
+    --     garage = {
+    --         Name = "Garage Jetsam",
+    --         Pos = {x = 814.74, y = -2941.26, z = 5.9},
+    --         Properties = {
+    --             type = 3,
+    --             Limit = 20,
+    --             vehicles = {},
+    --             spawnpos = {x = 814.74, y = -2941.26, z = 5.9, h = 269.7}
+    --         },
+    --         Blipdata = {
+    --             Pos = {x = 814.74, y = -2941.26, z = 5.9},
+    --             Blipcolor = 5,
+    --             Blipname = "Garage Jetsam"
+    --         }
+    --     },
+    --     Storage = {
+    --         {
+    --             Pos = {x = 813.4, y = -2982.56, z = 6.02 - 0.9},
+    --             Limit = 100,
+    --             Name = "Coffre Jetsam"
+    --         }
+    --     }
+    -- },
     -- drivingschool = {
     --     label = "Auto school",
     --     label2 = "Auto school",

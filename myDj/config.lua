@@ -173,6 +173,13 @@ Config.DJPositions = {
         range = 60.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
+    {
+        name = 'Cayo',
+        pos = vector3(4893.51, -4904.50, 3.48 - 0.98),
+        requiredJob = nil, 
+        range = 80.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
     
     -----------
     -- Event Halloween ; Domaine Viticole
