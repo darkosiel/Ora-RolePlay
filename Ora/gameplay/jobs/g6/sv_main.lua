@@ -271,7 +271,8 @@ RegisterServerEvent("g6:nextRouteStop", function()
 	G6_Number_Of_Stops_Of_The_Day = G6_Number_Of_Stops_Of_The_Day + (G6_Current_Session.currentRouteStop <= 0 and 0 or 1)
 	G6_Current_Session.currentRouteStop = G6_Current_Session.currentRouteStop + 1
 	table.remove(points, closestPoints[randomIndex].index)
-
+	
+	TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 	-- Check if the Session is not finished
 	if G6_Current_Session.currentRouteStop > #G6_Current_Session.route then
 		notifyPlayer(src, "~g~Vous avez effectué tous les arrêts. La session est terminée.")
@@ -280,7 +281,6 @@ RegisterServerEvent("g6:nextRouteStop", function()
 	end
 
 
-	TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 
 	-- -- Tell every g6 employees in the Session that
 	-- for _, ply in pairs(G6_Current_Session.agents) do
@@ -560,22 +560,40 @@ end)
 
 local points = json.decode(LoadResourceFile(GetCurrentResourceName(), "gameplay/jobs/g6/atms.json"))
 
+-- function that do a deepcopy of a table
+function deepcopy(orig)
+	local orig_type = type(orig)
+	local copy
+	if orig_type == 'table' then
+		copy = {}
+		for orig_key, orig_value in next, orig, nil do
+			copy[deepcopy(orig_key)] = deepcopy(orig_value)
+		end
+		setmetatable(copy, deepcopy(getmetatable(orig)))
+	else -- number, string, boolean, etc
+		copy = orig
+	end
+	return copy
+end
+
+
 function CalculateGpsRoute()
 	-- Algo that generate route randomly between points, but choose from one of the five closest points
 	local route = {}
-	local startPointIndex = math.random(1, #points)
-	local currentPoint = points[startPointIndex]
+	local _points = deepcopy(points)
+	local startPointIndex = math.random(1, #_points)
+	local currentPoint = _points[startPointIndex]
 	local numberOfPoints = G6_MAX_STOPS_PER_DAY - G6_Number_Of_Stops_Of_The_Day
 	print("----- CALULATING G6 ROUTE -----")
 	print("[G6] Number of points: "..numberOfPoints)
-	print("[G6] Number of points available in the table: "..#points)
+	print("[G6] Number of points available in the table: "..#_points)
 	for i = 1, numberOfPoints, 1 do
 		local closestPoints = {}
-		for j = 1, #points, 1 do
-			local distance = CalculateDistanceBetweenVectors(currentPoint.coords, points[j].coords)
+		for j = 1, #_points, 1 do
+			local distance = CalculateDistanceBetweenVectors(currentPoint.coords, _points[j].coords)
 			if #closestPoints < 5 then
 				table.insert(closestPoints, {
-					point = points[j],
+					point = _points[j],
 					distance = distance,
 					index = j
 				})
@@ -587,7 +605,7 @@ function CalculateGpsRoute()
 				end)
 				if distance < closestPoints[5].distance then
 					closestPoints[5] = {
-						point = points[j],
+						point = _points[j],
 						distance = distance,
 						index = j
 					}
@@ -601,6 +619,7 @@ function CalculateGpsRoute()
 			--reward = math.random(100, 1000),
 			index = closestPoints[randomIndex].index
 		})
+		table.remove(_points, closestPoints[randomIndex].index)
 		currentPoint = closestPoints[randomIndex].point
 	end
 	return route
