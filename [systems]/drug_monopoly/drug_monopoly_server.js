@@ -276,7 +276,7 @@ const crud = {
         investLosing: 'invest_losing',
         investAmount: 'invest_amount',
         dollarLock: 'dollar_lock',
-    })
+    }),
 }
 
 // custom crud helpers
@@ -441,7 +441,7 @@ function InfluenceCalculator (influenceDataCollector) {
     }
 
 
-    this.computeAllZones = async _ => {
+    this.computeAllZones = _ => {
         for (const zoneId in ZONE_NAMES) {
             this.computeZone(zoneId)
         }
@@ -451,10 +451,9 @@ function InfluenceCalculator (influenceDataCollector) {
     this.addOrgaInfluence = (zoneId, orgaId, category, points, title) => {
         const init = (s,k,v) => { if (!s[k]) { s[k] = v } }
         init(this.influenceResults, zoneId, {})
-        init(this.influenceResults[zoneId], orgaId, { organisation_id: orgaId, total: 0, monopoly: false })
-        init(this.influenceResults[zoneId][orgaId], category, 0)
-        this.influenceResults[zoneId][orgaId][category] += points
-        this.influenceResults[zoneId][orgaId].total += points
+        init(this.influenceResults[zoneId], orgaId, { organisation_id: orgaId, scores: { total: 0, quantity: 0, quality: 0, stability: 0, frequency: 0, domination: 0 } })
+        this.influenceResults[zoneId][orgaId].scores[category] += points
+        this.influenceResults[zoneId][orgaId].scores.total += points
         // debug
         // console.log(orgaId, zoneId, title, '+'+points+'='+this.influenceResults[zoneId][orgaId].total)
     }
@@ -500,8 +499,8 @@ function InfluenceCalculator (influenceDataCollector) {
         }
 
         for (const orgaId in this.influenceResults[zoneId]) {
-            const orga = this.influenceResults[zoneId][orgaId]
-            if (orga.total === 0) { continue }
+            const orgaScores = this.influenceResults[zoneId][orgaId].scores
+            if (orgaScores.total === 0) { continue }
             const criteriaMap = {
                 quantity: 'quantité',
                 quality: 'qualité',
@@ -509,8 +508,8 @@ function InfluenceCalculator (influenceDataCollector) {
                 frequency: 'fréquence',
             }
             for (const categoryName in criteriaMap) {
-                if (orga[categoryName] > 10) {
-                    this.addOrgaInfluence(zoneId, orgaId, 'Domination', 5, 'Meilleur score '+criteriaMap[categoryName], )
+                if (orgaScores[categoryName] > 10) {
+                    this.addOrgaInfluence(zoneId, orgaId, 'domination', 5, 'Meilleur score '+criteriaMap[categoryName], )
                 }
             }
         }
@@ -573,7 +572,7 @@ function MonopolyService(influenceCalculator, clientNotif) {
         }
         const zoneData = this.getZoneInfluences(zoneId)
         let bestOrga = []
-        // get winner (sort organisations by total influence)
+        // get winner (sort organisations by total influence desc)
         if (zoneData) {
             bestOrga = Object.values(zoneData).sort((a,b) => b.total - a.total)
         }
@@ -788,16 +787,23 @@ function MonopolyService(influenceCalculator, clientNotif) {
         }
         return this.influenceCalculator.influenceResults[zoneId]
     }
-    this.getOrgaInfluence = (zoneId, orgaId) => {
+    this.getOrgaInfluenceScores = (zoneId, orgaId) => {
+        const defaultScores = {
+            quantity: 0,
+            quality: 0,
+            stability: 0,
+            frequency: 0,
+            domination: 0,
+        }
         const zone = this.getZoneInfluences(zoneId)
-        if (!zone) { return null }
+        if (!zone) { return defaultScores }
         const orgaInfluenceData = zone[orgaId]
-        if (!orgaInfluenceData) { return null }
-        return orgaInfluenceData
+        if (!orgaInfluenceData) { return defaultScores }
+        return orgaInfluenceData.scores
     }
 
     this.getTotalInfluence = (zoneId, orgaId) => {
-        const orga = this.getOrgaInfluence(zoneId, orgaId)
+        const orga = this.getOrgaInfluenceScores(zoneId, orgaId)
         if (!orga) { return 0 }
         return orga.total
     }
@@ -805,6 +811,7 @@ function MonopolyService(influenceCalculator, clientNotif) {
     this.formatMonopolyData = (zoneId, orgaId) => {
         const data = {
             influence: this.getTotalInfluence(zoneId, orgaId),
+            scores: this.getOrgaInfluenceScores(zoneId, orgaId),
             priceModifier: this.getPriceModifier(zoneId, orgaId),
             monopoly: false,
             canActivateOption: false,
@@ -970,6 +977,7 @@ on('playerDropped', async _ => {
 })
 
 onNet('drug_monopoly:requestMonopolyUpdate', async zoneId => {
+    if (!source) { return }
     clientNotif.emitZoneData(source, zoneId, monopolyService.formatMonopolyData(zoneId, await getOrgaId(source)))
 })
 
