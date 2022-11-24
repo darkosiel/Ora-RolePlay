@@ -15,8 +15,8 @@ end)
 
 local REQUIRED_VEHICLE_HASH <const> = GetHashKey("stockade")
 local DEPOT_COORDS <const> = vector3(-3.433605, -672.838806, 31.946930)
-local MIN_NUMBER_IN_SERVICE <const> = 2
-local MIN_NUMBER_IN_SESSION <const> = 2
+local MIN_NUMBER_IN_SERVICE <const> = 3
+local MIN_NUMBER_IN_SESSION <const> = 3
 local G6_MAX_STOPS_PER_DAY <const> = 60
 local REWARD_AMOUNT <const> = 2600
  
@@ -24,6 +24,8 @@ local AtmIsBeingFilled = false
 local G6_Current_Session = nil
 local G6_Number_Of_Stops_Of_The_Day = 0
 local G6_Session_ROUTES = {}
+
+local points = json.decode(LoadResourceFile(GetCurrentResourceName(), "gameplay/jobs/g6/atms.json"))
 
 local function IsEnoughInService()
 	local numberOfAgentsInService = Ora.Service:GetTotalServiceCountForJob("g6")
@@ -45,7 +47,7 @@ local function notifyPlayer(src, message, ignoreDiscord)
 end
 
 RegisterServerCallback("g6:getSessionProgression", function(source, cb)
-	cb(json.encode({progression = G6_Number_Of_Sessions_Of_The_Day, maxProgression = G6_MAX_STOPS_PER_DAY}))
+	cb(json.encode({progression = G6_Number_Of_Stops_Of_The_Day, maxProgression = G6_MAX_STOPS_PER_DAY}))
 end)
 
 RegisterServerEvent("g6:createSession", function(vehicle)
@@ -269,8 +271,11 @@ RegisterServerEvent("g6:nextRouteStop", function()
 
 	-- Increment the currentRouteStop
 	G6_Number_Of_Stops_Of_The_Day = G6_Number_Of_Stops_Of_The_Day + (G6_Current_Session.currentRouteStop <= 0 and 0 or 1)
+	if G6_Current_Session.currentRouteStop > 0 then -- 0 = depot coords to fill the trunk, we can't delete it
+		table.remove(points, G6_Current_Session.route[G6_Current_Session.currentRouteStop].index)
+	end
+	
 	G6_Current_Session.currentRouteStop = G6_Current_Session.currentRouteStop + 1
-	table.remove(points, closestPoints[randomIndex].index)
 	
 	TriggerMultiClientsEvent("g6:sessionUpdated", G6_Current_Session.agents, G6_Current_Session)
 	-- Check if the Session is not finished
@@ -378,17 +383,14 @@ RegisterServerEvent("g6:endSession", function()
 			notifyPlayer(src, "~r~Vous n'êtes pas dans la session.")
 			return
 		end
-	else
-		print("Event called from the server")
+	-- else
+	-- 	print("Event called from the server")
 	end
 	-- -- Check if the Session is not finished
 	-- if G6_Current_Session.currentRouteStop < #G6_Current_Session.route then
 	-- 	notifyPlayer(src, "Session is not finished")
 	-- 	return
 	-- end
-
-	-- Increment the number of Sessions of the day
-	--G6_Number_Of_Sessions_Of_The_Day = G6_Number_Of_Sessions_Of_The_Day + 1
 
 	-- Tell every g6 employees in the Session that the Session has ended
 	TriggerMultiClientsEvent("g6:sessionEnded", G6_Current_Session.agents)
@@ -485,9 +487,9 @@ function RemovePlayerFromSession(source)
 
 	-- Check if the player is already in the Session
 	for i, agent in pairs(G6_Current_Session.agents) do
-		print("Agent: "..agent)
 		if agent == src then
-			print("Removing player "..src.." from the session.")
+			-- print("Agent: "..agent)
+			-- print("Removing player "..src.." from the session.")
 			-- Remove the player from the Session
 			table.remove(G6_Current_Session.agents, i)
 			break
@@ -558,8 +560,6 @@ RegisterServerCallback("g6:getPlayersInSession", function(source, cb)
 	cb(msg)
 end)
 
-local points = json.decode(LoadResourceFile(GetCurrentResourceName(), "gameplay/jobs/g6/atms.json"))
-
 -- function that do a deepcopy of a table
 function deepcopy(orig)
 	local orig_type = type(orig)
@@ -584,9 +584,9 @@ function CalculateGpsRoute()
 	local startPointIndex = math.random(1, #_points)
 	local currentPoint = _points[startPointIndex]
 	local numberOfPoints = G6_MAX_STOPS_PER_DAY - G6_Number_Of_Stops_Of_The_Day
-	print("----- CALULATING G6 ROUTE -----")
-	print("[G6] Number of points: "..numberOfPoints)
-	print("[G6] Number of points available in the table: "..#_points)
+	-- print("----- CALULATING G6 ROUTE -----")
+	-- print("[G6] Number of points: "..numberOfPoints)
+	-- print("[G6] Number of points available in the table: "..#_points)
 	for i = 1, numberOfPoints, 1 do
 		local closestPoints = {}
 		for j = 1, #_points, 1 do

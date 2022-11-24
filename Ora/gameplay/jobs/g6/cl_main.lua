@@ -184,6 +184,7 @@ RegisterNetEvent("g6:sessionStarted", function(data)
 end)
 
 RegisterNetEvent("g6:sessionUpdated", function(data)
+	--print("Session updated", json.encode(data))
 	UpdateSession(data)
 end)
 
@@ -191,21 +192,38 @@ RegisterNetEvent("g6:sessionEnded", function()
 	EndSession()
 end)
 
-local function getAtmInFrontOfMe()
-	local plyCoords = GetEntityCoords(PlayerPedId(), false)
-	plyCoords = vector3(plyCoords.x, plyCoords.y, plyCoords.z-0.5)
-	local plyOffset = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2, 0.0)
-	local rayHandle = StartShapeTestCapsule(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 2.5, 16, PlayerPedId(), 0)
-	local retval, hit, endCoords, _, result = GetShapeTestResult(rayHandle)
-	return retval, hit, endCoords, _, result
-end
-
 local AtmModels = {
 	[GetHashKey("prop_atm_01")] = true,
 	[GetHashKey("prop_atm_02")] = true,
 	[GetHashKey("prop_atm_03")] = true,
 	[GetHashKey("prop_fleeca_atm")] = true,
 }
+
+local function getAtmInFrontOfMe()
+	-- local plyCoords = GetEntityCoords(PlayerPedId(), false)
+	-- plyCoords = vector3(plyCoords.x, plyCoords.y, plyCoords.z)
+	-- local plyOffset = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2.0, 0.0)
+	-- --local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 16, PlayerPedId(), 1)
+	-- local rayHandle = StartShapeTestCapsule(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 0.5, 16, PlayerPedId(), 1)
+	-- for i = 1, 200 do
+	-- 	Wait(1.0)
+	-- 	DrawLine(plyCoords.x, plyCoords.y, plyCoords.z, plyOffset.x, plyOffset.y, plyOffset.z, 255, 0, 0, 255)
+	-- end
+	
+	-- local retval, hit, endCoords, _, result = GetShapeTestResult(rayHandle)
+	-- return retval, hit, endCoords, _, result
+	
+	for k, v in pairs(AtmModels) do
+		local obj = GetClosestObjectOfType(Player.Pos.x, Player.Pos.y, Player.Pos.z, 2.0, k, false, false, false)
+		if obj ~= 0 then
+			return obj
+		end
+	end
+	return 0
+	-- enumerate entities around the player and check for the model and pos
+	
+end
+
 
 -- RegisterCommand("animAtm", function()
 -- 	local timer = 0
@@ -265,7 +283,7 @@ local AtmModels = {
 
 RegisterNetEvent("g6:fillATM")
 AddEventHandler("g6:fillATM", function()
-	local _, _, _, _, atm = getAtmInFrontOfMe()
+	local atm = getAtmInFrontOfMe()
 	local player = PlayerPedId()
 	local playerCoords = GetEntityCoords(player, false)
 	local atmCoords = GetEntityCoords(atm, false)
@@ -308,7 +326,7 @@ RegisterNetEvent("g6:fillATM_cb", function()
 	local currentAtm = Current_Session_Data.route[Current_Session_Data.currentRouteStop]
 	
 	--TaskPlayAnim(Player.Ped, dict, anim, 8.0, 8.0, AnimTime, 29, 1, 0, 0, 0)
-	local _, _, _, _, atm = getAtmInFrontOfMe()
+	local atm = getAtmInFrontOfMe()
 	local distanceToATM = #(GetEntityCoords(atm) - vector3(Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.x, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.y, Current_Session_Data.route[Current_Session_Data.currentRouteStop].coords.z))
 	--print(atm, GetEntityModel(atm), AtmModels[GetEntityModel(atm)], distanceToATM)
 	if AtmModels[GetEntityModel(atm)] and distanceToATM < 0.5 then
