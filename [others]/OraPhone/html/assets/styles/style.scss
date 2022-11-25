@@ -4287,7 +4287,15 @@ div#page {
                                                         justify-content: space-between;
                                                         align-items: center;
                                                         column-gap: 15px;
+                                                        border-bottom-width: 0px;
+                                                        border-bottom-style: solid;
                                                         transition: all 0.2s ease-in-out;
+                                                        @include themed() {
+                                                            border-bottom-color: t($phone-bank-background-color);
+                                                        }
+                                                        &:last-child {
+                                                            border: 0;
+                                                        }
                                                         &.history-item-titre, &.history-item-detail {
                                                             max-height: 0;
                                                             opacity: 0;
@@ -4301,8 +4309,11 @@ div#page {
                                                         }
                                                     }
                                                     &:hover {
+                                                        div {
+                                                            border-bottom-width: 1px;
+                                                        }
                                                         div.history-item-titre, div.history-item-detail {
-                                                            max-height: 33px;
+                                                            max-height: 50px;
                                                             opacity: 1;
                                                         }
                                                     }
