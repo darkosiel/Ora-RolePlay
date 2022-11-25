@@ -221,6 +221,8 @@ local chairs = {
     [GetHashKey("ex_prop_offchair_exec_04")] = true,
     [GetHashKey("ex_prop_offchair_exec_01")] = true,
     [GetHashKey("vw_prop_vw_offchair_02")] = true,
+    [-997157373] = true,
+    
 
 	-- SEAT
 	{prop = 'hei_prop_yah_seat_01', scenario = 'PROP_HUMAN_SEAT_BENCH', verticalOffset = -0.5, forwardOffset = 0.0, leftOffset = 0.0},
