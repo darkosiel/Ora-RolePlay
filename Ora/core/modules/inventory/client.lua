@@ -484,7 +484,7 @@ end
 
 ---@param item itemObject at least name
 ---@param notrefreshing Boolean optionnal
-function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
+function Ora.Inventory:AddItem(item, notrefreshing, doNotif) -- if you don't want to refresh, put true as a last arg. If you wanna refresh, just keep 1 arg
     local isntRefreshing = notrefreshing or false
     self:Debug(string.format("Adding one %s id: %s", item.name, item.id))
     if item.id == nil then
@@ -510,7 +510,9 @@ function Ora.Inventory:AddItem(item, notrefreshing) -- if you don't want to refr
         self.CurrentAmmo = #self.Data[item.name]
         SetPedAmmo(LocalPlayer().Ped, self.CurrentWeapon.Name, self.CurrentAmmo)
     end
-    RageUI.Popup({message = "Vous avez reçu un(e) ~b~" .. string.lower(Items[item.name].label) .. "(s)"})
+    if doNotif or doNotif == nil then
+        RageUI.Popup({message = "Vous avez reçu un(e) ~b~" .. string.lower(Items[item.name].label) .. "(s)"})
+    end
     if not isntRefreshing then
         self:RefreshWeight()
     end
@@ -522,8 +524,9 @@ function Ora.Inventory:AddItems(items)
         if itemValue.id == nil then
             itemValue.id = generateUUIDV2()
         end
-        self:AddItem(itemValue, true)
+        self:AddItem(itemValue, true, false)
     end
+    RageUI.Popup({message = "Vous avez reçu ".. #items .. "x ~b~" .. string.lower(Items[items[1].name].label) .. "(s)"})
     self:RefreshWeight()
 end
 
