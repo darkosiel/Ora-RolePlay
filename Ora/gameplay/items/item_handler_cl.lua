@@ -1337,7 +1337,36 @@ ItemsFunction = {
             TriggerEvent('Ora:hideInventory')
             RageUI.Visible(RMenu:Get('makeup', "main"), true)
         end)
-    end
+    end,
+    mg_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    mg_flashlight = function(item) weaponAccessoriesAction(item) end,
+    mg_grip = function(item) weaponAccessoriesAction(item) end,
+    mg_scope = function(item) weaponAccessoriesAction(item) end,
+    --mg_suppressor = function(item) weaponAccessoriesAction(item) end,
+    p_extendedclip = function(item) weaponAccessoriesAction(item) end,
+    p_flashlight = function(item) weaponAccessoriesAction(item) end,
+    p_scope = function(item) weaponAccessoriesAction(item) end,
+    p_suppressor = function(item) weaponAccessoriesAction(item) end,
+    rifle_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    rifle_flashlight = function(item) weaponAccessoriesAction(item) end,
+    rifle_grip = function(item) weaponAccessoriesAction(item) end,
+    rifle_scope = function(item) weaponAccessoriesAction(item) end,
+    rifle_suppressor = function(item) weaponAccessoriesAction(item) end,
+    shotgun_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    shotgun_flashlight = function(item) weaponAccessoriesAction(item) end,
+    shotgun_grip = function(item) weaponAccessoriesAction(item) end,
+    shotgun_scope = function(item) weaponAccessoriesAction(item) end,
+    shotgun_suppressor = function(item) weaponAccessoriesAction(item) end,
+    smg_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    smg_flashlight = function(item) weaponAccessoriesAction(item) end,
+    smg_grip = function(item) weaponAccessoriesAction(item) end,
+    smg_scope = function(item) weaponAccessoriesAction(item) end,
+    smg_suppressor = function(item) weaponAccessoriesAction(item) end,
+    sniper_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    --sniper_flashlight = function(item) weaponAccessoriesAction(item) end,
+    sniper_scope = function(item) weaponAccessoriesAction(item) end,
+    sniper_suppressor = function(item) weaponAccessoriesAction(item) end,
+
 }
 function ppppp(objectData)
     local ped = LocalPlayer().Ped
@@ -1478,8 +1507,10 @@ function EquipWeapon(weapon)
             SetPedWeaponTintIndex(playerPed, GetHashKey(name), data.tint)
         end
         if data ~= nil and data.access ~= nil then
-            for i = 1, #data.access, 1 do
-                GiveWeaponComponentToPed(LocalPlayer().Ped, GetHashKey(name), GetHashKey(data.access[i]))
+            for component, bool in pairs(data.access) do
+                if bool then
+                    GiveWeaponComponentToPed(LocalPlayer().Ped, GetHashKey(name), tonumber(component))
+                end
             end
         end
 
@@ -1511,6 +1542,8 @@ function EquipWeapon(weapon)
 
         Ora.Inventory.CurrentWeapon.Name = GetHashKey(name)
         Ora.Inventory.CurrentWeapon.Label = name
+        Ora.Inventory.CurrentWeapon.id = weapon.id
+        Ora.Inventory.CurrentWeapon.itemName = weapon.name
         Ora.Inventory.CurrentMunition = weapon_munition[cp]
         Ora.Inventory.IsArmed = true
     end
@@ -3222,4 +3255,272 @@ Citizen.CreateThread(
 	end
 )
 
+-- Weapons accessories
 
+function weaponAccessoriesAction(item)
+    if item then
+        UseWeaponAccessory(item)
+    end
+end
+
+local componentsHashes = {
+    [GetHashKey("WEAPON_PISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_extendedclip = GetHashKey("COMPONENT_PISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_COMBATPISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_extendedclip = GetHashKey("COMPONENT_COMBATPISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_APPISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_extendedclip = GetHashKey("COMPONENT_APPISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_PISTOL50")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        p_extendedclip = GetHashKey("COMPONENT_PISTOL50_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_SNSPISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_extendedclip = GetHashKey("COMPONENT_SNSPISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_HEAVYPISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_extendedclip = GetHashKey("COMPONENT_HEAVYPISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_VINTAGEPISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_extendedclip = GetHashKey("COMPONENT_VINTAGEPISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_MARKSMANPISTOL")] = {
+        p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_extendedclip = GetHashKey("COMPONENT_MARKSMANPISTOL_CLIP_02"),
+    },
+    -- SMG
+    [GetHashKey("WEAPON_MACHINEPISTOL")] = {
+        smg_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        smg_extendedclip = GetHashKey("COMPONENT_MACHINEPISTOL_CLIP_02"),
+    },
+    [GetHashKey("WEAPON_MICROSMG")] = {
+        smg_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        smg_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        smg_extendedclip = GetHashKey("COMPONENT_MICROSMG_CLIP_02"),
+        smg_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO"),
+    },
+    [GetHashKey("WEAPON_SMG")] = {
+        smg_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        smg_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        smg_extendedclip = GetHashKey("COMPONENT_SMG_CLIP_02"),
+        smg_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO_02"),
+    },
+    [GetHashKey("WEAPON_ASSAULTSMG")] = {
+        smg_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
+        smg_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        smg_extendedclip = GetHashKey("COMPONENT_ASSAULTSMG_CLIP_02"),
+        smg_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO"),
+    },
+    [GetHashKey("WEAPON_COMBATPDW")] = {
+        smg_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        smg_extendedclip = GetHashKey("COMPONENT_COMBATPDW_CLIP_02"),
+        smg_scope = GetHashKey("COMPONENT_AT_SCOPE_SMALL"),
+        smg_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },
+    [GetHashKey("WEAPON_MINISMG")] = {
+        smg_extendedclip = GetHashKey("COMPONENT_MINISMG_CLIP_02"),
+    },
+    -- Rifles
+    [GetHashKey("WEAPON_ASSAULTRIFLE")] = {
+        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        rifle_extendedclip = GetHashKey("COMPONENT_ASSAULTRIFLE_CLIP_02"),
+        rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP"),
+        rifle_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },
+    [GetHashKey("WEAPON_CARBINERIFLE")] = {
+        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        rifle_extendedclip = GetHashKey("COMPONENT_CARBINERIFLE_CLIP_02"),
+        rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_MEDIUM"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        rifle_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },
+    [GetHashKey("WEAPON_ADVANCEDRIFLE")] = {
+        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        rifle_extendedclip = GetHashKey("COMPONENT_ADVANCEDRIFLE_CLIP_02"),
+        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_SMALL"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP"),
+    },
+    [GetHashKey("WEAPON_SPECIALCARBINE")] = {
+        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        rifle_extendedclip = GetHashKey("COMPONENT_SPECIALCARBINE_CLIP_02"),
+        rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_MEDIUM"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        rifle_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },
+    [GetHashKey("WEAPON_BULLPUPRIFLE")] = {
+        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        rifle_extendedclip = GetHashKey("COMPONENT_BULLPUPRIFLE_CLIP_02"),
+        rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_SMALL"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP"),
+        rifle_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },
+    [GetHashKey("WEAPON_COMPACTRIFLE")] = {
+        rifle_extendedclip = GetHashKey("COMPONENT_COMPACTRIFLE_CLIP_02"),
+    },
+    -- Shotguns
+    [GetHashKey("WEAPON_PUMPSHOTGUN")] = {
+        shotgun_extendedclip = GetHashKey("COMPONENT_PUMPSHOTGUN_CLIP_02"),
+        shotgun_suppressor = GetHashKey("COMPONENT_AT_SR_SUPP"),
+    },
+    [GetHashKey("WEAPON_BULLPUPSHOTGUN")] = {
+        shotgun_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        shotgun_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+    },
+    [GetHashKey("WEAPON_ASSAULTSHOTGUN")] = {
+        shotgun_extendedclip = GetHashKey("COMPONENT_ASSAULTSHOTGUN_CLIP_02"),
+        shotgun_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        shotgun_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+    },
+    [GetHashKey("WEAPON_HEAVYSHOTGUN")] = {
+        shotgun_extendedclip = GetHashKey("COMPONENT_HEAVYSHOTGUN_CLIP_02"),
+        shotgun_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        shotgun_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        shotgun_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },    
+
+    -- Sniper Rifles
+    [GetHashKey("WEAPON_SNIPERRIFLE")] = {
+        sniper_scope = GetHashKey("COMPONENT_AT_SCOPE_LARGE"),
+        sniper_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+    },
+    [GetHashKey("WEAPON_HEAVYSNIPER")] = {
+        sniper_scope = GetHashKey("COMPONENT_AT_SCOPE_LARGE"),
+    },
+    -- [GetHashKey("WEAPON_MARKSMANRIFLE")] = {
+    --     sniper_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+    --     sniper_extendedclip = GetHashKey("COMPONENT_MARKSMANRIFLE_CLIP_02"),
+    --     sniper_scope = GetHashKey("COMPONENT_AT_SCOPE_LARGE_FIXED_ZOOM"),
+    --     sniper_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+    --     sniper_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    -- },
+
+    -- Machine guns
+    [GetHashKey("WEAPON_MG")] = {
+        mg_extendedclip = GetHashKey("COMPONENT_MG_CLIP_02"),
+        mg_scope = GetHashKey("COMPONENT_AT_SCOPE_SMALL_02"),
+    },
+    [GetHashKey("WEAPON_COMBATMG")] = {
+        mg_extendedclip = GetHashKey("COMPONENT_COMBATMG_CLIP_02"),
+        mg_scope = GetHashKey("COMPONENT_AT_SCOPE_MEDIUM"),
+        mg_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
+    },
+    [GetHashKey("WEAPON_GUSENBERG")] = {
+        mg_extendedclip = GetHashKey("COMPONENT_GUSENBERG_CLIP_02"),
+    },
+
+}
+
+function UseWeaponAccessory(item)
+    --print(json.encode(item))
+    local weaponHash = LocalPlayer().Weapon
+
+    if item == nil then
+        return
+    end
+
+    if componentsHashes[weaponHash] == nil then
+        return
+    end
+
+    if componentsHashes[weaponHash][item.name] == nil then
+        return
+    end
+
+    local componentHash = componentsHashes[weaponHash][item.name]
+
+    if DoesWeaponTakeWeaponComponent(weaponHash, componentHash) and not HasPedGotWeaponComponent(LocalPlayer().Ped, weaponHash, componentHash) then
+        GiveWeaponComponentToPed(LocalPlayer().Ped, weaponHash, componentHash)
+        Ora.Inventory:RemoveItem(item)
+        -- Add to the weapon metadata the component
+        local weapon = {}
+
+        for k, v in pairs(Ora.Inventory.Data[Ora.Inventory.CurrentWeapon.itemName]) do
+            if v.id == Ora.Inventory.CurrentWeapon.id then
+                weapon = v
+                break
+            end
+        end
+
+        if weapon.data == nil then
+            weapon.data = {}
+        end
+
+        if weapon.data.access == nil then
+            weapon.data.access = {}
+        end
+
+
+        --table.insert(weapon.data.access, componentHash)
+        weapon.data.access[tostring(componentHash)] = true
+        
+        --print(json.encode(weapon))
+        local label = Items[item.name].label
+        ShowNotification("Vous avez équipé : ~g~" .. label .. "~w~.")
+    else
+        SendNotification("~r~Vous avez déjà équipé cet accessoire.")
+    end
+
+    Ora.Inventory.SelectedItem = nil
+end
+
+local menu = RageUI.CreateMenu("Weapon Accessories", "Select an accessory to unequip")
+
+Citizen.CreateThread(function() while true do
+    Wait(1.0)
+    if RageUI.Visible(menu) then
+        RageUI.DrawContent({ header = true, glare = true, instructionalButton = true }, function()
+            local weapon = LocalPlayer().Weapon
+            for k, curr_comp in pairs(componentsHashes[weapon]) do
+                if HasPedGotWeaponComponent(LocalPlayer().Ped, weapon, curr_comp) then
+                    RageUI.Button(Items[k].label, nil, {}, true, function(_, _, s)
+                        if s then
+                            RemoveWeaponComponentFromPed(LocalPlayer().Ped,weapon, curr_comp)
+                            local weapon_item
+                            for _, item in pairs(Ora.Inventory.Data[Ora.Inventory.CurrentWeapon.itemName]) do
+                                if item.id == Ora.Inventory.CurrentWeapon.id then
+                                    weapon_item = item
+                                    break
+                                end
+                            end
+                            for comp, bool in pairs(weapon_item.data.access) do
+                                if tostring(curr_comp) == tostring(comp) then
+                                    --table.remove(weapon_item.data, k)
+                                    weapon_item.data.access[tostring(comp)] = nil
+                                    break
+                                end
+                            end
+
+                            Ora.Inventory:AddItem({name = k})
+                        end
+                    end)
+                end
+            end
+        end, function() end)
+    end
+end end)
+
+
+RegisterCommand("weaponAccessories", function()
+    if LocalPlayer().Weapon > 0 then
+        RageUI.Visible(menu, not RageUI.Visible(menu))
+    else
+        SendNotification("~r~Vous n'avez pas d'arme en main")
+    end
+end, false)
