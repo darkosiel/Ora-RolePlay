@@ -3179,6 +3179,132 @@ Items = {
         weight = 0.1,
         category = "docs"
     },
+
+    -- Weapon accessories for each weapon category
+    -- pistols
+    p_suppressor = {
+        label = "Silencieur (P)",
+        weight = 0.1,
+    },
+    p_flashlight = {
+        label = "Lampe torche (P)",
+        weight = 0.1,
+    },
+    p_extendedclip = {
+        label = "Chargeur étendu (P)",
+        weight = 0.1,
+    },
+    p_scope = {
+        label = "Lunette (P)",
+        weight = 0.1,
+    },
+
+    -- smgs
+    smg_suppressor = {
+        label = "Silencieur (SMG)",
+        weight = 0.1,
+    },
+    smg_flashlight = {
+        label = "Lampe torche (SMG)",
+        weight = 0.1,
+    },
+    smg_extendedclip = {
+        label = "Chargeur étendu (SMG)",
+        weight = 0.1,
+    },
+    smg_scope = {
+        label = "Lunette (SMG)",
+        weight = 0.1,
+    },
+    smg_grip = {
+        label = "Poignée (SMG)",
+        weight = 0.1,
+    },
+
+    -- shotguns
+    shotgun_suppressor = {
+        label = "Silencieur (Fusil à pompe)",
+        weight = 0.1,
+    },
+    shotgun_flashlight = {
+        label = "Lampe torche (Fusil à pompe)",
+        weight = 0.1,
+    },
+    shotgun_extendedclip = {
+        label = "Chargeur étendu (Fusil à pompe)",
+        weight = 0.1,
+    },
+    shotgun_scope = {
+        label = "Lunette (Fusil à pompe)",
+        weight = 0.1,
+    },
+    shotgun_grip = {
+        label = "Poignée (Fusil à pompe)",
+        weight = 0.1,
+    },
+
+    -- rifles
+    rifle_suppressor = {
+        label = "Silencieur (Fusil)",
+        weight = 0.1,
+    },
+    rifle_flashlight = {
+        label = "Lampe torche (Fusil)",
+        weight = 0.1,
+    },
+    rifle_extendedclip = {
+        label = "Chargeur étendu (Fusil)",
+        weight = 0.1,
+    },
+    rifle_scope = {
+        label = "Lunette (Fusil)",
+        weight = 0.1,
+    },
+    rifle_grip = {
+        label = "Poignée (Fusil)",
+        weight = 0.1,
+    },
+
+    -- sniper
+    sniper_suppressor = {
+        label = "Silencieur (Fusil de sniper)",
+        weight = 0.1,
+    },
+    -- sniper_flashlight = {
+    --     label = "Lampe torche (Fusil de sniper)",
+    --     weight = 0.1,
+    -- },
+    sniper_extendedclip = {
+        label = "Chargeur étendu (Fusil de sniper)",
+        weight = 0.1,
+    },
+    sniper_scope = {
+        label = "Lunette (Fusil de sniper)",
+        weight = 0.1,
+    },
+
+    -- machine guns
+    -- mg_suppressor = {
+    --     label = "Silencieur (MG)",
+    --     weight = 0.1,
+    -- },
+    mg_flashlight = {
+        label = "Lampe torche (MG)",
+        weight = 0.1,
+    },
+    mg_extendedclip = {
+        label = "Chargeur étendu (MG)",
+        weight = 0.1,
+    },
+    mg_scope = {
+        label = "Lunette (MG)",
+        weight = 0.1,
+    },
+    mg_grip = {
+        label = "Poignée (MG)",
+        weight = 0.1,
+    },
+
 }
 
 -- staticcc
