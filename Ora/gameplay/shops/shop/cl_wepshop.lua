@@ -1432,78 +1432,78 @@ Citizen.CreateThread(
                                 end
                             end
                         )
-                        for k, attachmentObject in ipairs(globalAttachmentTable) do
-                            ----dump(attachmentObject))
+                        -- for k, attachmentObject in ipairs(globalAttachmentTable) do
+                        --     ----dump(attachmentObject))
 
-                            if DoesWeaponTakeWeaponComponent(weapon_name[CurrentWeapon.name], attachmentObject[1]) then
-                                data = myweapIn.data
-                                if data.access ~= nil then
-                                    if indexOf(data.access, attachmentObject[1]) then
-                                        xp[k] = RageUI.BadgeStyle.Gun
-                                    end
-                                end
-                                RageUI.Button(
-                                    attachmentObject[2],
-                                    nil,
-                                    {
-                                        LeftBadge = xp[k],
-                                        RightLabel = attachmentObject[3] .. "$"
-                                    },
-                                    true,
-                                    function(Hovered, Active, Selected)
-                                        if Active then
-                                            if DoesEntityExist(wObj) then
-                                                if not HasWeaponGotWeaponComponent(wObj, attachmentObject[1]) then
-                                                    RequestModel(GetWeaponComponentTypeModel(attachmentObject[1]))
-                                                    while not HasModelLoaded(
-                                                        GetWeaponComponentTypeModel(attachmentObject[1])
-                                                    ) do
-                                                        RequestModel(GetWeaponComponentTypeModel(attachmentObject[1]))
-                                                        Wait(100)
-                                                    end
-                                                    GiveWeaponComponentToWeaponObject(wObj, attachmentObject[1])
-                                                end
-                                            end
-                                        end
-                                        if Selected then
-                                            TriggerEvent('Ora:inventory:deleteIfWeapon', CurrentWeapon)
-                                            if DoesEntityExist(wObj) then
-                                                DeleteObject(wObj)
-                                            end
-                                            dataonWait = {
-                                                title = "Achat accessoire d'arme",
-                                                price = attachmentObject[3],
-                                                fct = function()
-                                                    xp[k] = RageUI.BadgeStyle.Gun
-                                                    if CurrentWeapon.data["access"] == nil then
-                                                        CurrentWeapon.data["access"] = {}
-                                                    end
-                                                    table.insert(CurrentWeapon.data["access"], attachmentObject[1])
-                                                    Ora.Inventory.Data[inv_name][inv_index].data = CurrentWeapon.data
-                                                    --TriggerServerEvent("inventory:editData",CurrentWeapon.id,CurrentWeapon.data)
+                        --     if DoesWeaponTakeWeaponComponent(weapon_name[CurrentWeapon.name], attachmentObject[1]) then
+                        --         data = myweapIn.data
+                        --         if data.access ~= nil then
+                        --             if indexOf(data.access, attachmentObject[1]) then
+                        --                 xp[k] = RageUI.BadgeStyle.Gun
+                        --             end
+                        --         end
+                        --         RageUI.Button(
+                        --             attachmentObject[2],
+                        --             nil,
+                        --             {
+                        --                 LeftBadge = xp[k],
+                        --                 RightLabel = attachmentObject[3] .. "$"
+                        --             },
+                        --             true,
+                        --             function(Hovered, Active, Selected)
+                        --                 if Active then
+                        --                     if DoesEntityExist(wObj) then
+                        --                         if not HasWeaponGotWeaponComponent(wObj, attachmentObject[1]) then
+                        --                             RequestModel(GetWeaponComponentTypeModel(attachmentObject[1]))
+                        --                             while not HasModelLoaded(
+                        --                                 GetWeaponComponentTypeModel(attachmentObject[1])
+                        --                             ) do
+                        --                                 RequestModel(GetWeaponComponentTypeModel(attachmentObject[1]))
+                        --                                 Wait(100)
+                        --                             end
+                        --                             GiveWeaponComponentToWeaponObject(wObj, attachmentObject[1])
+                        --                         end
+                        --                     end
+                        --                 end
+                        --                 if Selected then
+                        --                     TriggerEvent('Ora:inventory:deleteIfWeapon', CurrentWeapon)
+                        --                     if DoesEntityExist(wObj) then
+                        --                         DeleteObject(wObj)
+                        --                     end
+                        --                     dataonWait = {
+                        --                         title = "Achat accessoire d'arme",
+                        --                         price = attachmentObject[3],
+                        --                         fct = function()
+                        --                             xp[k] = RageUI.BadgeStyle.Gun
+                        --                             if CurrentWeapon.data["access"] == nil then
+                        --                                 CurrentWeapon.data["access"] = {}
+                        --                             end
+                        --                             table.insert(CurrentWeapon.data["access"], attachmentObject[1])
+                        --                             Ora.Inventory.Data[inv_name][inv_index].data = CurrentWeapon.data
+                        --                             --TriggerServerEvent("inventory:editData",CurrentWeapon.id,CurrentWeapon.data)
 
-                                                    if
-                                                        HasPedGotWeapon(
-                                                            playerPed,
-                                                            GetHashKey(weapon_name[CurrentWeapon.name]),
-                                                            false
-                                                        )
-                                                     then
-                                                        GiveWeaponComponentToPed(
-                                                            playerPed,
-                                                            GetHashKey(weapon_name[CurrentWeapon.name]),
-                                                            GetHashKey(attachmentObject[1])
-                                                        )
-                                                    end
-                                                end
-                                            }
-                                            CloseAllMenus()
-                                            TriggerEvent("payWith?")
-                                        end
-                                    end
-                                )
-                            end
-                        end
+                        --                             if
+                        --                                 HasPedGotWeapon(
+                        --                                     playerPed,
+                        --                                     GetHashKey(weapon_name[CurrentWeapon.name]),
+                        --                                     false
+                        --                                 )
+                        --                              then
+                        --                                 GiveWeaponComponentToPed(
+                        --                                     playerPed,
+                        --                                     GetHashKey(weapon_name[CurrentWeapon.name]),
+                        --                                     GetHashKey(attachmentObject[1])
+                        --                                 )
+                        --                             end
+                        --                         end
+                        --                     }
+                        --                     CloseAllMenus()
+                        --                     TriggerEvent("payWith?")
+                        --                 end
+                        --             end
+                        --         )
+                        --     end
+                        -- end
                     end,
                     function()
                     end
