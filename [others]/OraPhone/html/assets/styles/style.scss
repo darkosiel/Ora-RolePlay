@@ -4274,47 +4274,46 @@ div#page {
                                                     flex-direction: column;
                                                     justify-content: space-between;
                                                     width: 100%;
-                                                    height: auto;
+                                                    max-height: 66px;
                                                     padding: 10px;
                                                     border-radius: 10px;
                                                     cursor: pointer;
+                                                    transition: all 0.3s ease-in-out;
                                                     @include themed() {
                                                         background-color: t($phone-bank-active-color);
                                                     }
-                                                    div {
+                                                    > div {
                                                         display: flex;
                                                         flex-direction: row;
                                                         justify-content: space-between;
                                                         align-items: center;
                                                         column-gap: 15px;
-                                                        border-bottom-width: 0px;
+                                                        border-bottom-width: 1px;
                                                         border-bottom-style: solid;
-                                                        transition: all 0.2s ease-in-out;
+                                                        transition: all 0.3s ease-in-out;
                                                         @include themed() {
-                                                            border-bottom-color: t($phone-bank-background-color);
+                                                            border-bottom-color: t($phone-bank-active-color);
                                                         }
                                                         &:last-child {
                                                             border: 0;
                                                         }
-                                                        &.history-item-titre, &.history-item-detail {
-                                                            max-height: 0;
-                                                            opacity: 0;
-                                                        }
                                                         div {
+                                                            display: flex;
                                                             flex-direction: column;
+                                                            justify-content: space-between;
                                                             align-items: flex-start;
+                                                            transition: all .2s ease-in-out;
                                                             &:last-child {
                                                                 align-items: flex-end;
                                                             }
                                                         }
                                                     }
                                                     &:hover {
-                                                        div {
-                                                            border-bottom-width: 1px;
-                                                        }
-                                                        div.history-item-titre, div.history-item-detail {
-                                                            max-height: 50px;
-                                                            opacity: 1;
+                                                        max-height: 154px;
+                                                        > div {
+                                                            @include themed() {
+                                                                border-bottom-color: t($phone-bank-background-color);
+                                                            }
                                                         }
                                                     }
                                                     p {
