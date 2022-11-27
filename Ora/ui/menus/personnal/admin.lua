@@ -3,7 +3,6 @@ RMenu.Add(
     "admin",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "main"), "Administration", "Actions disponibles")
 )
-
 RMenu.Add(
     "personnal",
     "admin_plylist",
@@ -16,18 +15,18 @@ RMenu.Add(
 )
 RMenu.Add(
     "personnal",
-    "vehicle",
+    "activity",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
-    "jobs",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Administration", "Métiers disponibles")
+    "admin_activity",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "activity"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
-    "jobs2",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Administration", "Métiers disponibles")
+    "vehicle",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
@@ -40,15 +39,6 @@ RMenu.Add(
     RageUI.CreateSubMenu(RMenu:Get("personnal", "admin"), "Administration", "Actions disponibles")
 )
 
-joueurs = false
-local pblips = false
-imWaiting = false
-local filterString = nil
-local connectedPlayers = {}
-local treport = {}
-local webhookadmin = 15
-local taketicket = false
-
 RMenu.Add(
     "personnal",
     "admin_plyaction",
@@ -56,23 +46,43 @@ RMenu.Add(
 )
 RMenu.Add(
     "personnal",
-    "admin_items",
+    "admin_action",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+)
+RMenu.Add(
+    "personnal",
+    "admin_money",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+)
+RMenu.Add(
+    "personnal",
+    "admin_jobs",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+)
+RMenu.Add(
+    "personnal",
+    "admin_banned",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+)
+RMenu.Add(
+    "personnal",
+    "admin_items",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_money"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
     "admin_drug_item",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_money"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
     "admin_banlist",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_banned"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
     "admin_warnlist",
-    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_plyaction"), "Administration", "Actions disponibles")
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_banned"), "Administration", "Actions disponibles")
 )
 RMenu.Add(
     "personnal",
@@ -81,49 +91,103 @@ RMenu.Add(
 )
 RMenu.Add(
     "personnal",
-    "admin_reportitems",
+    "admin_action_report",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_reportaction"), "Administration", "Actions disponibles")
 )
-
+RMenu.Add(
+    "personnal",
+    "admin_money_report",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_reportaction"), "Administration", "Actions disponibles")
+)
+RMenu.Add(
+    "personnal",
+    "admin_reportitems",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_money_report"), "Administration", "Actions disponibles")
+)
 RMenu.Add(
     "personnal",
     "admin_reportitemdrug",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_money_report"), "Administration", "Actions disponibles")
+)
+RMenu.Add(
+    "personnal",
+    "admin_jobs_report",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "admin_reportaction"), "Administration", "Actions disponibles")
 )
 
+joueurs = false
+local pblips = false
+imWaiting = false
+local filterString = nil
+local connectedPlayers = {}
+local treport = {}
+local webhookadmin = 15
+local taketicket = false
+local TargetSpectate = nil
+local LastPosition = nil
+local polarAngleDeg = 0
+local azimuthAngleDeg = 90
+local radius = -3.5
+local cam = nil
+local PlayerDate = {}
+local ShowInfos = false
+local group
+local lastModel = nil
+
 RegisterNetEvent("addReportMenu")
-AddEventHandler(
-    "addReportMenu",
-    function(player, name, message, date, job, orga)
-        if Ora.Identity:GetMyGroup() == "superadmin" then
-            RageUI.Popup({message = "~b~Nouveau report enregistré"})
-            table.insert(treport, {etat = "❌", id = player, name = name, msg = message, date = date, who = "Personne", job = job, orga = orga})
-        end
+AddEventHandler("addReportMenu",function(player, name, message, date, job, orga)
+    if Ora.Identity:GetMyGroup() == "superadmin" then
+         RageUI.Popup({message = "~r~Nouveau report enregistré"})
+        table.insert(treport, {etat = "❌", id = player, name = name, msg = message, date = date, who = "Personne", job = job, orga = orga})
     end
-)
+end)
 
 RegisterNetEvent("closeReport")
-AddEventHandler(
-    "closeReport",
-    function(index)
-        if Ora.Identity:GetMyGroup() == "superadmin" then
-            table.remove(treport, index)
-        end
+AddEventHandler("closeReport",function(index)
+    if Ora.Identity:GetMyGroup() == "superadmin" then
+        table.remove(treport, index)
     end
-)
+end)
 
 RegisterNetEvent("takeReport")
+AddEventHandler("takeReport",function(index, id, name, msg, date, who, take)
+    if Ora.Identity:GetMyGroup() == "superadmin" then
+        if take == "true" then
+            ett = "✅"
+        else
+            ett = "❌"
+            who = "Personne"
+        end
+        treport[index] = {etat = ett, id = id, name = name, msg = msg, date = date, who = who}
+    end
+end)
+
+local object = UIInstructionalButton.__constructor()
+local noclip_speed = 1.0
+
+local function veh(vehicle)
+    SetEntityAsMissionEntity(vehicle, false, true)
+    DeleteVehicle(veh)
+end
+local Freeze = false
+RegisterNetEvent("admin:Freeze")
 AddEventHandler(
-    "takeReport",
-    function(index, id, name, msg, date, who, take)
-        if Ora.Identity:GetMyGroup() == "superadmin" then
-            if take == "true" then
-                ett = "✅"
-            else
-                ett = "❌"
-                who = "Personne"
+    "admin:Freeze",
+    function()
+        FreezeEntityPosition(LocalPlayer().Ped, not Freeze)
+        Freeze = not Freeze
+    end
+)
+Citizen.CreateThread(
+    function()
+        while true do
+            local sleep_adminfreeze = 200
+            object:onTick()
+            if Freeze then
+                sleep_adminfreeze = 0
+                drawTxt(0.5, 0.5, .9, "Vous êtes freeze", 4, 1, nil, 180, 255, 0, 0)
             end
-            treport[index] = {etat = ett, id = id, name = name, msg = msg, date = date, who = who}
+            Wait(sleep_adminfreeze)
         end
     end
 )
@@ -162,34 +226,19 @@ function Text(text)
     EndTextCommandDisplayText(0.017, 0.977)
 end
 
-local object = UIInstructionalButton.__constructor()
-local noclip_speed = 1.0
+function polar3DToWorld3D(entityPosition, radius, polarAngleDeg, azimuthAngleDeg)
+    -- convert degrees to radians
+    local polarAngleRad = polarAngleDeg * math.pi / 180.0
+    local azimuthAngleRad = azimuthAngleDeg * math.pi / 180.0
 
-local function veh(vehicle)
-    SetEntityAsMissionEntity(vehicle, false, true)
-    DeleteVehicle(veh)
+    local pos = {
+        x = entityPosition.x + radius * (math.sin(azimuthAngleRad) * math.cos(polarAngleRad)),
+        y = entityPosition.y - radius * (math.sin(azimuthAngleRad) * math.sin(polarAngleRad)),
+        z = entityPosition.z - radius * math.cos(azimuthAngleRad)
+    }
+
+    return pos
 end
-local Freeze = false
-RegisterNetEvent("admin:Freeze")
-AddEventHandler(
-    "admin:Freeze",
-    function()
-        FreezeEntityPosition(LocalPlayer().Ped, not Freeze)
-        Freeze = not Freeze
-    end
-)
-Citizen.CreateThread(
-    function()
-        while true do
-            Wait(1)
-
-            object:onTick()
-            if Freeze then
-                drawTxt(0.5, 0.5, .9, "Vous êtes freeze", 4, 1, nil, 180, 255, 0, 0)
-            end
-        end
-    end
-)
 
 RegisterNetEvent("admin:changePed")
 AddEventHandler(
@@ -258,156 +307,6 @@ AddEventHandler(
     end
 )
 
-local InSpectatorMode = false
-local TargetSpectate = nil
-local LastPosition = nil
-local polarAngleDeg = 0
-local azimuthAngleDeg = 90
-local radius = -3.5
-local cam = nil
-local PlayerDate = {}
-local ShowInfos = false
-local group
-
-Citizen.CreateThread(
-    function()
-        while true do
-            Wait(0)
-
-            if InSpectatorMode then
-                local targetPlayerId = GetPlayerFromServerId(TargetSpectate)
-                local playerPed = PlayerPedId()
-                local targetPed = GetPlayerPed(targetPlayerId)
-                local coords = GetEntityCoords(targetPed)
-
-                for i = 0, 32, 1 do
-                    if i ~= PlayerId() then
-                        local otherPlayerPed = GetPlayerPed(i)
-                        SetEntityNoCollisionEntity(playerPed, otherPlayerPed, true)
-                    end
-                end
-
-                if IsControlPressed(2, 241) then
-                    radius = radius + 2.0
-                end
-
-                if IsControlPressed(2, 242) then
-                    radius = radius - 2.0
-                end
-
-                if radius > -1 then
-                    radius = -1
-                end
-
-                local xMagnitude = GetDisabledControlNormal(0, 1)
-                local yMagnitude = GetDisabledControlNormal(0, 2)
-
-                polarAngleDeg = polarAngleDeg + xMagnitude * 10
-
-                if polarAngleDeg >= 360 then
-                    polarAngleDeg = 0
-                end
-
-                azimuthAngleDeg = azimuthAngleDeg + yMagnitude * 10
-
-                if azimuthAngleDeg >= 360 then
-                    azimuthAngleDeg = 0
-                end
-
-                local nextCamLocation = polar3DToWorld3D(coords, radius, polarAngleDeg, azimuthAngleDeg)
-
-                SetCamCoord(cam, nextCamLocation.x, nextCamLocation.y, nextCamLocation.z)
-                PointCamAtEntity(cam, targetPed)
-                SetEntityCoords(playerPed, coords.x - 10.0, coords.y + 10.0, coords.z - 17.5)
-
-                -- taken from Easy Admin (thx to Bluethefurry)  --
-                local text = {}
-                -- cheat checks
-                local targetGod = GetPlayerInvincible(targetPlayerId)
-                if targetGod then
-                    table.insert(text, "Godmode: ~r~ON~w~")
-                else
-                    table.insert(text, "Godmode: ~g~OFF~w~")
-                end
-                if
-                    not CanPedRagdoll(targetPed) and not IsPedInAnyVehicle(targetPed, false) and
-                        (GetPedParachuteState(targetPed) == -1 or GetPedParachuteState(targetPed) == 0) and
-                        not IsPedInParachuteFreeFall(targetPed)
-                 then
-                    table.insert(text, "~r~Anti-Ragdoll~w~")
-                end
-                -- health info
-                table.insert(text, "Vie " .. ": " .. GetEntityHealth(targetPed) .. "/" .. GetEntityMaxHealth(targetPed))
-                table.insert(text, "Armure " .. ": " .. GetPedArmour(targetPed))
-                table.insert(text, "Vitesse " .. ": " .. GetEntitySpeed(targetPed))
-                for i, theText in pairs(text) do
-                    SetTextFont(0)
-                    SetTextProportional(1)
-                    SetTextScale(0.0, 0.30)
-                    SetTextDropshadow(0, 0, 0, 0, 255)
-                    SetTextEdge(1, 0, 0, 0, 255)
-                    SetTextDropShadow()
-                    SetTextOutline()
-                    SetTextEntry("STRING")
-                    AddTextComponentString(theText)
-                    EndTextCommandDisplayText(0.3, 0.7 + (i / 30))
-                end
-            -- end of taken from easyadmin --
-            end
-        end
-    end
-)
-local lastModel = nil
-function resetNormalCamera()
-    InSpectatorMode = false
-    TargetSpectate = nil
-    local playerPed = PlayerPedId()
-
-    SetCamActive(cam, false)
-    RenderScriptCams(false, false, 0, true, true)
-
-    SetEntityCollision(PlayerPedId(), true, true)
-    SetEntityVisible(PlayerPedId(), true)
-    SetEntityCoords(PlayerPedId(), LastPosition.x, LastPosition.y, LastPosition.z)
-end
-function polar3DToWorld3D(entityPosition, radius, polarAngleDeg, azimuthAngleDeg)
-    -- convert degrees to radians
-    local polarAngleRad = polarAngleDeg * math.pi / 180.0
-    local azimuthAngleRad = azimuthAngleDeg * math.pi / 180.0
-
-    local pos = {
-        x = entityPosition.x + radius * (math.sin(azimuthAngleRad) * math.cos(polarAngleRad)),
-        y = entityPosition.y - radius * (math.sin(azimuthAngleRad) * math.sin(polarAngleRad)),
-        z = entityPosition.z - radius * math.cos(azimuthAngleRad)
-    }
-
-    return pos
-end
-function spectate(target)
-    if not InSpectatorMode then
-        LastPosition = GetEntityCoords(PlayerPedId())
-    end
-
-    local playerPed = PlayerPedId()
-
-    SetEntityCollision(playerPed, false, false)
-    SetEntityVisible(playerPed, false)
-
-    Citizen.CreateThread(
-        function()
-            if not DoesCamExist(cam) then
-                cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", true)
-            end
-
-            SetCamActive(cam, true)
-            RenderScriptCams(true, false, 0, true, true)
-
-            InSpectatorMode = true
-            TargetSpectate = target
-        end
-    )
-end
-
 local function SortByName(a, b)
     return a < b
 end
@@ -416,9 +315,15 @@ Citizen.CreateThread(
     function()
         local CurrentPlayer = {}
         local ReportPly = {}
-        local invisible, sprint, jump, spectatemod, showcoords = false, false, false, false, false
+        local invisible, showcoords = false, false
         local labels = {"1H", "2H", "8H", "12H", "1 jour", "3 jours", "7 jours", "14 jours", "1 mois", "Permanent"}
-        local hours = {3600, 7200, 28800, 86400, 259200, 604800, 1210000, 2628000, 99999999}
+        local hours = {3600, 7200, 28800, 86400, 259200, 604800, 1210000, 2628000, 99999999,999999999999999999999999999999999999999}
+        --
+        local jobListLabel = {}
+        local jobList = {}
+        local indexJob = 1
+        local indexOrga = 1
+        --
         local index = 1
         local indexTP = 1
         local indexDrugType = 1
@@ -426,12 +331,11 @@ Citizen.CreateThread(
         local bList = {}
         local wList = {}
         local myGroup = Ora.Identity:GetMyGroup()
-        local JobNames = {}
-        for k, _ in pairs(Jobs) do
-            table.insert(JobNames, k)
+        for k, v in pairs(Jobs) do
+            table.insert(jobListLabel, v.label)
+            table.insert(jobList, k)
         end
         Wait(100)
-        table.sort(JobNames, SortByName)
         while true do
             Wait(0)
             if myGroup == "superadmin" then
@@ -449,10 +353,6 @@ Citizen.CreateThread(
 
                 if invisible then
                     SetEntityVisible(PlayerPedId(), false, false)
-                end
-
-                if jump then
-                    SetSuperJumpThisFrame(PlayerId())
                 end
 
                 if RageUI.Visible(RMenu:Get("personnal", "admin")) then
@@ -525,13 +425,15 @@ Citizen.CreateThread(
                             )
 
                             RageUI.Button(
-                                "Perquisitions en cours",
+                                "Activité",
                                 nil,
-                                {RightLabel = "→"},
+                                {
+                                    RightLabel = "→"
+                                },
                                 true,
                                 function(_, _, _)
                                 end,
-                                RMenu:Get("Ora:Immo", "Raids")
+                                RMenu:Get("personnal", "activity")
                             )
 
                             RageUI.Button(
@@ -561,6 +463,516 @@ Citizen.CreateThread(
                         end
                     )
                 end
+                if RageUI.Visible(RMenu:Get("personnal", "admin_action")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button(
+                                "Envoyer un message",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Message", 100, "text", "", true)
+                                        local message = exports['Snoupinput']:GetInput()
+                                        if message ~= false and message ~= "" then
+                                        	TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, message)
+											ShowNotification(string.format('~g~Vous avez envoyé ~s~%s~g~ à ~s~%s', message, CurrentPlayer.name))
+										end
+                                    end
+                                end
+                            )
+                            RageUI.List(
+                                "Téléportation",
+                                {
+                                    "Sur le joueur",
+                                    "Sur vous",
+                                    "Sur le marqueur",
+                                    "Location - Los Santos",
+                                    "Location - Sandy Shore"
+                                },
+                                indexTP,
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected, Index)
+                                    indexTP = Index
+                                    if Selected then
+                                        if Index == 1 then
+											ShowNotification(string.format('~g~Vous avez été TP à ~s~%s', CurrentPlayer.name))
+                                            TriggerPlayerEvent(
+                                                "admin:tp2",
+                                                CurrentPlayer.serverId,
+                                                GetPlayerServerId(PlayerId())
+                                            )
+                                        elseif Index == 2 then
+											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à vous', CurrentPlayer.name))
+                                            TriggerPlayerEvent("admin:tp", CurrentPlayer.serverId, LocalPlayer().Pos)
+                                        elseif Index == 3 then
+                                            local blipCoord = GetBlipCoords(GetFirstBlipInfoId(8))
+                                            local foundGround, zCoords, zPos = false, -500.0, 0.0
+                                            while not foundGround do
+                                                zCoords = zCoords + 10.0
+                                                RequestCollisionAtCoord(blipCoord.x, blipCoord.y, zCoords)
+                                                foundGround, zPos =
+                                                    GetGroundZFor_3dCoord(blipCoord.x, blipCoord.y, zCoords)
+                                                if not foundGround and zCoords >= 2000.0 then
+                                                    foundGround = true
+                                                end
+                                                Wait(0)
+                                            end
+                                            if blipCoord ~= nil and blipCoord ~= vector3(0, 0, 0) then
+												ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à la position du marqueur', CurrentPlayer.name))
+                                                TriggerPlayerEvent(
+                                                    "admin:tp",
+                                                    CurrentPlayer.serverId,
+                                                    vector3(blipCoord.x, blipCoord.y, zPos)
+                                                )
+                                            else
+                                                ShowNotification("~r~Aucun marqueur")
+                                            end
+                                        elseif Index == 4 then
+											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Los Santos', CurrentPlayer.name))
+                                            TriggerPlayerEvent(
+                                                "admin:tp",
+                                                CurrentPlayer.serverId,
+                                                vector3(-274.11, -904.78, 31.22)
+                                            )
+                                        elseif Index == 5 then
+                                            ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Sandy Shores', CurrentPlayer.name))
+                                            TriggerPlayerEvent(
+                                                "admin:tp",
+                                                CurrentPlayer.serverId,
+                                                vector3(1709.4, 3595.95, 35.42)
+                                            )
+                                        end
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Heal le joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("player:Heal", CurrentPlayer.serverId)
+                                        TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() .. " a heal " .. CurrentPlayer.name
+                                        )
+										ShowNotification(string.format('~g~Vous avez heal ~s~%s', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+
+                            RageUI.Button(
+                                "Revive le joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("player:Revive", CurrentPlayer.serverId)
+                                        TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() .. " a revive " .. CurrentPlayer.name
+                                        )
+										ShowNotification(string.format('~g~Vous avez revive ~s~%s', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+
+                            RageUI.Button(
+                                "Changer en Ped",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Nom du ped", 100, "text", "", true)
+                                        local pedModel = exports['Snoupinput']:GetInput()
+                                        if pedModel ~= false and pedModel ~= "" and #pedModel ~= 0 then
+											if IsModelValid(GetHashKey(pedModel)) then
+												TriggerPlayerEvent(
+													"admin:changePed",
+													CurrentPlayer.serverId,
+													GetHashKey(pedModel)
+												)
+
+												TriggerServerEvent(
+													"Ora:sendToDiscord",
+													webhookadmin,
+													Ora.Identity:GetMyName() ..
+														" a changer le ped de " ..
+															CurrentPlayer.name .. " en " .. pedModel
+												)
+												ShowNotification(string.format('~g~Vous avez changé ~s~%s~g~ en ~s~%s', CurrentPlayer.name, pedModel))
+											else
+												ShowNotification("~r~Model de ped invalide.")
+											end
+										else
+											ShowNotification("~r~Model de ped invalide.")
+										end
+                                    end
+                                end
+                            )
+
+                            RageUI.Button(
+                                "Redonner son apparence",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("admin:restoreAppearance", CurrentPlayer.serverId)
+                                        TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() ..
+                                                " a restauré l'apparence de " .. CurrentPlayer.name
+                                        )
+										ShowNotification(string.format('Vous avez rendu l\'apparence à ~s~%s', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Freeze",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        ShowNotification("~r~Joueur Freeze (" .. CurrentPlayer.name .. ")")
+                                        TriggerPlayerEvent("admin:Freeze", CurrentPlayer.serverId)
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Inventaire",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        CloseAllMenus()
+                                        FouilleAdmin(CurrentPlayer.serverId)
+                                        TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() .. " a fouillé " .. CurrentPlayer.name
+                                        )
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Réinitialiser le personnage",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("Ora::CE::Game:InitGames", CurrentPlayer.serverId)
+										ShowNotification(string.format('~g~Le personnage de ~s~%s~g~ a été réinitialisé', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Prendre un screenshot",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("Ora::CE::General:Snap", CurrentPlayer.serverId, {TOKEN = "Screenshot réclamé par " .. Ora.Identity:GetMyName(), SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotTaken"})
+										ShowNotification(string.format('~g~Vous avez prit un Screenshot de ~s~%s', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end
+
+                if RageUI.Visible(RMenu:Get("personnal", "admin_money")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button(
+                                "Donner argent",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Montant", 100, "number", "", true)
+                                        local Reason = exports['Snoupinput']:GetInput()
+                                        if Reason ~= false and Reason ~= "" then
+											Reason = tonumber(Reason)
+											TriggerServerEvent("money:Add2", Reason, CurrentPlayer.serverId)
+											TriggerServerEvent(
+												"Ora:sendToDiscord",
+												webhookadmin,
+												Ora.Identity:GetMyName() ..
+													" a give " .. Reason .. "$ à " .. CurrentPlayer.name
+											)
+											ShowNotification(string.format('~g~Vous avez give $%s d\'argent à ~s~%s', Reason, CurrentPlayer.name))
+										end
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Donner un item",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_items")
+                            )
+                            RageUI.Button(
+                                "Donner de l'XP illégal",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Valeur : (Bonne valeur entre 5000 & 10000)", 100, "number", "", true)
+                                        local level = exports['Snoupinput']:GetInput()
+                                        if level ~= false and level ~= "" and #level ~= 0 then
+											TriggerPlayerEvent("XNL_NET:AddPlayerXP", CurrentPlayer.serverId, math.tointeger(level))
+											TriggerServerEvent(
+												"Ora:sendToDiscord",
+												webhookadmin,
+												Ora.Identity:GetMyName() ..
+													" a donné ".. level .." points d'XP illégal à " .. CurrentPlayer.name
+											)
+											ShowNotification(string.format('~g~Vous avez donné ~s~%sxp~g~ à ~s~%s', level, CurrentPlayer.name))
+										end
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Donner Drogue et Qualité",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_drug_item")
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end 
+
+                if RageUI.Visible(RMenu:Get("personnal", "admin_jobs")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button(
+                                "Récupérer les métiers",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected, _)
+                                    if Selected then
+                                        TriggerServerCallback(
+                                            "Ora::SVCB::Identity:Job:Get",
+                                            function(job)
+                                                ShowNotification(string.format('~y~Métier 1:~s~\n%s %s', Jobs[job.name].label, Jobs[job.name].grade[job.rank].label))
+                                            end,
+                                            CurrentPlayer.serverId
+                                        )
+                                        TriggerServerCallback(
+                                            "Ora::SVCB::Identity:Orga:Get",
+                                            function(orga)
+                                                ShowNotification(string.format('~y~Métier 2:~s~\n%s %s', Jobs[orga.name].label, Jobs[orga.name].grade[orga.rank].label))
+                                            end,
+                                            CurrentPlayer.serverId
+                                        )
+                                    end
+                                end
+                            )
+
+                            RageUI.List("Changer le métier",jobListLabel,indexJob,nil,{},true,
+                                function(_, _, Selected, Index)
+                                    indexJob = Index
+                                    if Selected then
+                                        currentId = CurrentPlayer.serverId
+                                        currentName = CurrentPlayer.name
+                                        local NameJob = jobList[indexJob]
+                                        local Grade =
+                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                                        TriggerServerEvent("Ora::SE::Identity:Job:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
+                                        TriggerPlayerEvent("Ora::CE::Identity:Job:Set", currentId, NameJob, Grade, true)
+                                        ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
+                                        TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..currentName .." en " ..NameJob .." " ..Grade)
+                                    end
+                                end
+                            )
+                            
+                            RageUI.List("Changer le second métier",jobListLabel,indexOrga,nil,{},true,
+                                function(_, _, Selected, Index)
+                                    indexOrga = Index
+                                    if Selected then
+                                        currentId = CurrentPlayer.serverId
+                                        currentName = CurrentPlayer.name
+                                        local NameJob = jobList[indexOrga]
+                                        local Grade =
+                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                                        TriggerServerEvent("Ora::SE::Identity:Orga:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
+                                        TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", currentId, NameJob, Grade, true)
+                                        ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
+                                        TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..currentName .." en " ..NameJob .." " ..Grade)
+                                    end
+                                end
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end 
+                if RageUI.Visible(RMenu:Get("personnal", "admin_banned")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button(
+                                "Avertir le joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Raison (obligatoire)", 100, "text", "", true)
+                                        local Reason = exports['Snoupinput']:GetInput()
+                                        if Reason ~= false and Reason ~= "" then
+											TriggerServerEvent("warnPlayer", CurrentPlayer.serverId, Reason)
+											ShowNotification(string.format('~g~Vous avez warn ~s~%s~g~ pour ~s~%s', CurrentPlayer.name, Reason))
+										end
+                                    end
+                                end
+                            )
+
+                            RageUI.Button(
+                                "Exclure le joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Raison (obligatoire)", 100, "text", "", true)
+                                        local Reason = exports['Snoupinput']:GetInput()
+                                        if Reason ~= false and Reason ~= "" then
+											TriggerServerEvent("kickPlayer", CurrentPlayer.serverId, Reason)
+											ShowNotification(string.format('~g~Vous avez kick ~s~%s~g~ pour ~s~%s', CurrentPlayer.name, Reason))
+										end
+                                    end
+                                end
+                            )
+
+                            RageUI.Button(
+                                "Ban Arme Joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerServerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, true)
+                                        TriggerPlayerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, true)
+                                        TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, "Vous êtes désormais Ban armes à feu pendant 1 semaine.")
+										ShowNotification(string.format('~g~Vous avez ban arme ~s~%s', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+
+                            RageUI.Button(
+                                "Unban Arme Joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerServerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, false)
+                                        TriggerPlayerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, false)
+                                        TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, "Vous n'êtes plus Ban armes à feu.")
+										ShowNotification(string.format('~g~Vous avez unban arme ~s~%s', CurrentPlayer.name))
+                                    end
+                                end
+                            )
+
+                            RageUI.List(
+                                "Bannir le joueur",
+                                labels,
+                                index,
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected, Index)
+                                    index = Index
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Raison (obligatoire)", 100, "text", "", true)
+                                        local Reason = exports['Snoupinput']:GetInput()
+                                        if Reason ~= false and Reason ~= "" then
+                                        	TriggerServerEvent("banPlayer", CurrentPlayer.serverId, Reason, hours[index])
+											ShowNotification(string.format("~g~Le joueur ~s~%s~g~, a été banni ~y~%s~g~ pour ~y~%s", CurrentPlayer.name, labels[index], Reason))
+										end
+                                    end
+                                end
+                            )
+
+                            RageUI.CenterButton("~b~↓↓↓ ~s~Historique ~b~↓↓↓",nil,{},true,function(_, _, _)end)
+                            RageUI.Button(
+                                "Historique bannissement",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerServerCallback(
+                                            "GetHistoBan",
+                                            function(ban)
+                                                bList = ban
+                                            end,
+                                            CurrentPlayer.serverId
+                                        )
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_banlist")
+                            )
+
+                            RageUI.Button(
+                                "Avertissements",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerServerCallback(
+                                            "GetHistoWarn",
+                                            function(warns)
+                                                wList = warns
+                                            end,
+                                            CurrentPlayer.serverId
+                                        )
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_warnlist")
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end 
 
                 if RageUI.Visible(RMenu:Get("personnal", "admin_items")) then
                     RageUI.DrawContent(
@@ -834,6 +1246,7 @@ Citizen.CreateThread(
                         end
                     )
                 end
+
                 if RageUI.Visible(RMenu:Get("personnal", "admin_warnlist")) then
                     RageUI.DrawContent(
                         {header = true, glare = true},
@@ -853,44 +1266,12 @@ Citizen.CreateThread(
                         function()
                         end
                     )
-                end
+                end 
 
-                if RageUI.Visible(RMenu:Get("personnal", "admin_reportaction")) then
+                if RageUI.Visible(RMenu:Get("personnal", "admin_action_report")) then
                     RageUI.DrawContent(
                         {header = true, glare = true},
                         function()
-                            RageUI.Checkbox(
-                                "Prendre le ticket",
-                                nil,
-                                taketicket,
-                                {},
-                                function(Hovered, Ative, Selected, Checked)
-                                    if Selected then
-                                        if not taketicket then
-                                            TriggerServerEvent(
-                                                "takeReportS",
-                                                ReportPly.index,
-                                                ReportPly.id,
-                                                ReportPly.name,
-                                                ReportPly.msg,
-                                                ReportPly.date,
-                                                "true"
-                                            )
-                                        else
-                                            TriggerServerEvent(
-                                                "takeReportS",
-                                                ReportPly.index,
-                                                ReportPly.id,
-                                                ReportPly.name,
-                                                ReportPly.msg,
-                                                ReportPly.date,
-                                                "false"
-                                            )
-                                        end
-                                        taketicket = not taketicket
-                                    end
-                                end
-                            )
                             RageUI.Button(
                                 "Envoyer un message",
                                 nil,
@@ -907,164 +1288,6 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
-                            RageUI.Button(
-                                "Prendre un screenshot",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("Ora::CE::General:Snap", ReportPly.id, {TOKEN = "Screenshot réclamé par " .. Ora.Identity:GetMyName(), SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotTaken"})
-										ShowNotification(string.format('~g~Vous avez prit un Screenshot de ~s~%s', ReportPly.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Réinitialiser le personnage",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("Ora::CE::Game:InitGames", ReportPly.id)
-										ShowNotification(string.format('~g~Vous avez réinitialisé le personnage de ~s~%s', ReportPly.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.Checkbox(
-                                "Spectate",
-                                nil,
-                                spectating,
-                                {},
-                                function(Hovered, Ative, Selected, Checked)
-                                    if Selected then
-                                        if not spectating then
-                                            spectate(ReportPly.id)
-                                        else
-                                            resetNormalCamera()
-                                        end
-                                        spectating = not spectating
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Revive le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("player:Revive", ReportPly.id)
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() ..
-                                                " a revive " ..
-                                                    ReportPly.name .. " pour le ticket n°" .. ReportPly.index
-                                        )
-										ShowNotification(string.format('~g~Vous avez revie ~s~%s', ReportPly.name))
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Heal le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("player:Heal", ReportPly.id)
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() ..
-                                                " a heal " .. ReportPly.name .. " pour le ticket n°" .. ReportPly.index
-                                        )
-										ShowNotification(string.format('~g~Vous avez heal ~s~%s', ReportPly.name))
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Give argent",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Montant", 100, "number", nil, true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-											Reason = tonumber(Reason)
-											TriggerServerEvent("money:Add2", Reason, ReportPly.id)
-											TriggerServerEvent(
-												"Ora:sendToDiscord",
-												webhookadmin,
-												Ora.Identity:GetMyName() ..
-													" a give " ..
-														Reason ..
-															"$ à " ..
-																ReportPly.name ..
-																	" pour le ticket n°" .. ReportPly.index
-											)
-											ShowNotification(string.format('~g~Vous avez give $%s d\'argent à ~s~%s', Reason, ReportPly.name))
-										end
-                                    end
-                                end
-                            )
---[[                            RageUI.Button(
-                                "Give argent sale",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Montant", 100, "number", 0, true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-											Reason = tonumber(Reason)
-											TriggerServerEvent("black_money:Add2", Reason, ReportPly.id)
-											TriggerServerEvent(
-												"Ora:sendToDiscord",
-												webhookadmin,
-												Ora.Identity:GetMyName() ..
-													" a give " ..
-														Reason ..
-															"$ d'argent sale à " ..
-																ReportPly.name ..
-																	" pour le ticket n°" .. ReportPly.index
-											)
-                                            ShowNotification(string.format('~g~Vous avez give $%s d\'argent sale à ~s~%s', Reason, ReportPly.name))
-										end
-                                    end
-                                end
-                            )]]
-                            RageUI.Button(
-                                "Donner Item",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        CurrentPlayer.serverId = nil
-                                    end
-                                end,
-                                RMenu:Get("personnal", "admin_reportitems")
-                            )
-
-                            RageUI.Button(
-                                "Donner Drogue et Qualité",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                    end
-                                end,
-                                RMenu:Get("personnal", "admin_reportitemdrug")
-                            )
-
                             RageUI.List(
                                 "Téléportation",
                                 {
@@ -1128,7 +1351,127 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
+                            RageUI.Button(
+                                "Revive le joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("player:Revive", ReportPly.id)
+                                        TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() ..
+                                                " a revive " ..
+                                                    ReportPly.name .. " pour le ticket n°" .. ReportPly.index
+                                        )
+										ShowNotification(string.format('~g~Vous avez revie ~s~%s', ReportPly.name))
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Heal le joueur",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("player:Heal", ReportPly.id)
+                                        TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() ..
+                                                " a heal " .. ReportPly.name .. " pour le ticket n°" .. ReportPly.index
+                                        )
+										ShowNotification(string.format('~g~Vous avez heal ~s~%s', ReportPly.name))
+                                    end
+                                end
+                            )
 
+                            RageUI.Button(
+                                "Réinitialiser le personnage",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        TriggerPlayerEvent("Ora::CE::Game:InitGames", ReportPly.id)
+										ShowNotification(string.format('~g~Vous avez réinitialisé le personnage de ~s~%s', ReportPly.name))
+                                    end
+                                end
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end
+
+                if RageUI.Visible(RMenu:Get("personnal", "admin_money_report")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button(
+                                "Give argent",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+										exports['Snoupinput']:ShowInput("Montant", 100, "number", nil, true)
+                                        local Reason = exports['Snoupinput']:GetInput()
+                                        if Reason ~= false and Reason ~= "" then
+											Reason = tonumber(Reason)
+											TriggerServerEvent("money:Add2", Reason, ReportPly.id)
+											TriggerServerEvent(
+												"Ora:sendToDiscord",
+												webhookadmin,
+												Ora.Identity:GetMyName() ..
+													" a give " ..
+														Reason ..
+															"$ à " ..
+																ReportPly.name ..
+																	" pour le ticket n°" .. ReportPly.index
+											)
+											ShowNotification(string.format('~g~Vous avez give $%s d\'argent à ~s~%s', Reason, ReportPly.name))
+										end
+                                    end
+                                end
+                            )
+                            RageUI.Button(
+                                "Donner Item",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        CurrentPlayer.serverId = nil
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_reportitems")
+                            )
+
+                            RageUI.Button(
+                                "Donner Drogue et Qualité",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_reportitemdrug")
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end
+
+                if RageUI.Visible(RMenu:Get("personnal", "admin_jobs_report")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
                             local rightlbl = ReportPly.job and ReportPly.job.label .. " | " .. Jobs[ReportPly.job.name].grade[ReportPly.job.gradenum].label or nil
                             local rightlbl2 = ReportPly.orga and ReportPly.orga.label .. " | " .. Jobs[ReportPly.orga.name].grade[ReportPly.orga.gradenum].label or nil
 
@@ -1157,30 +1500,126 @@ Citizen.CreateThread(
                                 end
                             )
 
-                            RageUI.Button(
-                                "Changer le métier",
+                            RageUI.List("Changer le métier",jobListLabel,indexJob,nil,{},true,
+                                function(_, _, Selected, Index)
+                                    indexJob = Index
+                                    if Selected then
+                                        local NameJob = jobList[indexJob]
+                                        local Grade =
+                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                                        if ReportPly and ReportPly.id ~= nil then
+                                            currentId = ReportPly.id
+                                            currentName = ReportPly.name
+                                            TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..ReportPly.name .." en " ..NameJob .. " " ..Grade .." pour le ticket n° " .. ReportPly.index)
+                                            rightlbl = nil
+                                        end
+                                        TriggerServerEvent("Ora::SE::Identity:Job:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
+                                        TriggerPlayerEvent("Ora::CE::Identity:Job:Set", currentId, NameJob, Grade, true)
+                                        ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
+                                        TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..currentName .." en " ..NameJob .." " ..Grade)
+                                    end
+                                end
+                            )
+                            
+                            RageUI.List("Changer le second métier",jobListLabel,indexOrga,nil,{},true,
+                                function(_, _, Selected, Index)
+                                    indexOrga = Index
+                                    if Selected then
+                                        local NameJob = jobList[indexOrga]
+                                        local Grade =
+                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                                        local currentId
+                                        local currentName
+                                        if ReportPly and ReportPly.id ~= nil then
+                                            currentId = ReportPly.id
+                                            currentName = ReportPly.name
+                                            TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..ReportPly.name .." en " ..NameJob .. " " ..Grade .." pour le ticket n° " .. ReportPly.index)
+                                            rightlbl2 = nil
+                                        end
+                                        TriggerServerEvent("Ora::SE::Identity:Orga:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
+                                        TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", currentId, NameJob, Grade, true)
+                                        ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
+                                    end
+                                end
+                            )
+                        end,
+                        function()
+                        end
+                    )
+                end
+
+                if RageUI.Visible(RMenu:Get("personnal", "admin_reportaction")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Checkbox(
+                                "Prendre le ticket",
                                 nil,
-                                {
-                                    RightLabel = rightlbl
-                                },
-                                true,
-                                function(_, _, _, _)
-                                end,
-                                RMenu:Get("personnal", "jobs")
+                                taketicket,
+                                {},
+                                function(Hovered, Ative, Selected, Checked)
+                                    if Selected then
+                                        if not taketicket then
+                                            TriggerServerEvent(
+                                                "takeReportS",
+                                                ReportPly.index,
+                                                ReportPly.id,
+                                                ReportPly.name,
+                                                ReportPly.msg,
+                                                ReportPly.date,
+                                                "true"
+                                            )
+                                        else
+                                            TriggerServerEvent(
+                                                "takeReportS",
+                                                ReportPly.index,
+                                                ReportPly.id,
+                                                ReportPly.name,
+                                                ReportPly.msg,
+                                                ReportPly.date,
+                                                "false"
+                                            )
+                                        end
+                                        taketicket = not taketicket
+                                    end
+                                end
                             )
 
                             RageUI.Button(
-                                "Changer le second métier",
+                                "Actions",
                                 nil,
-                                {
-                                    RightLabel = rightlbl2
-                                },
+                                {RightLabel = "→"},
                                 true,
-                                function(_, _, _, _)
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
                                 end,
-                                RMenu:Get("personnal", "jobs2")
+                                RMenu:Get("personnal", "admin_action_report")
                             )
 
+                            RageUI.Button(
+                                "Remboursement",
+                                nil,
+                                {RightLabel = "→"},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_money_report")
+                            )
+
+                            RageUI.Button(
+                                "Gestions Job",
+                                nil,
+                                {RightLabel = "→"},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_jobs_report")
+                            )
                             RageUI.Button(
                                 "Clôturer le report",
                                 nil,
@@ -1468,555 +1907,55 @@ Citizen.CreateThread(
                     RageUI.DrawContent(
                         {header = true, glare = true},
                         function()
-                            RageUI.CenterButton(
-                                "~b~↓↓↓ ~s~Interactions ~b~↓↓↓",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, _)
-                                end
-                            )
 
                             RageUI.Button(
-                                "Envoyer un message",
+                                "Actions",
                                 nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Message", 100, "text", "", true)
-                                        local message = exports['Snoupinput']:GetInput()
-                                        if message ~= false and message ~= "" then
-                                        	TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, message)
-											ShowNotification(string.format('~g~Vous avez envoyé ~s~%s~g~ à ~s~%s', message, CurrentPlayer.name))
-										end
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Prendre un screenshot",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("Ora::CE::General:Snap", CurrentPlayer.serverId, {TOKEN = "Screenshot réclamé par " .. Ora.Identity:GetMyName(), SERVER_EVENT = "Ora::SE::Anticheat:ScreenshotTaken"})
-										ShowNotification(string.format('~g~Vous avez prit un Screenshot de ~s~%s', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            
-                            RageUI.Button(
-                                "Réinitialiser le personnage",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("Ora::CE::Game:InitGames", CurrentPlayer.serverId)
-										ShowNotification(string.format('~g~Le personnage de ~s~%s~g~ a été réinitialisé', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.List(
-                                "Téléportation",
-                                {
-                                    "Sur le joueur",
-                                    "Sur vous",
-                                    "Sur le marqueur",
-                                    "Location - Los Santos",
-                                    "Location - Sandy Shore"
-                                },
-                                indexTP,
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected, Index)
-                                    indexTP = Index
-                                    if Selected then
-                                        if Index == 1 then
-											ShowNotification(string.format('~g~Vous avez été TP à ~s~%s', CurrentPlayer.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp2",
-                                                CurrentPlayer.serverId,
-                                                GetPlayerServerId(PlayerId())
-                                            )
-                                        elseif Index == 2 then
-											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à vous', CurrentPlayer.name))
-                                            TriggerPlayerEvent("admin:tp", CurrentPlayer.serverId, LocalPlayer().Pos)
-                                        elseif Index == 3 then
-                                            local blipCoord = GetBlipCoords(GetFirstBlipInfoId(8))
-                                            local foundGround, zCoords, zPos = false, -500.0, 0.0
-                                            while not foundGround do
-                                                zCoords = zCoords + 10.0
-                                                RequestCollisionAtCoord(blipCoord.x, blipCoord.y, zCoords)
-                                                foundGround, zPos =
-                                                    GetGroundZFor_3dCoord(blipCoord.x, blipCoord.y, zCoords)
-                                                if not foundGround and zCoords >= 2000.0 then
-                                                    foundGround = true
-                                                end
-                                                Wait(0)
-                                            end
-                                            if blipCoord ~= nil and blipCoord ~= vector3(0, 0, 0) then
-												ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à la position du marqueur', CurrentPlayer.name))
-                                                TriggerPlayerEvent(
-                                                    "admin:tp",
-                                                    CurrentPlayer.serverId,
-                                                    vector3(blipCoord.x, blipCoord.y, zPos)
-                                                )
-                                            else
-                                                ShowNotification("~r~Aucun marqueur")
-                                            end
-                                        elseif Index == 4 then
-											ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Los Santos', CurrentPlayer.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp",
-                                                CurrentPlayer.serverId,
-                                                vector3(-274.11, -904.78, 31.22)
-                                            )
-                                        elseif Index == 5 then
-                                            ShowNotification(string.format('~g~Vous avez TP ~s~%s~g~ à Sandy Shores', CurrentPlayer.name))
-                                            TriggerPlayerEvent(
-                                                "admin:tp",
-                                                CurrentPlayer.serverId,
-                                                vector3(1709.4, 3595.95, 35.42)
-                                            )
-                                        end
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Changer en Ped",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Nom du ped", 100, "text", "", true)
-                                        local pedModel = exports['Snoupinput']:GetInput()
-                                        if pedModel ~= false and pedModel ~= "" and #pedModel ~= 0 then
-											if IsModelValid(GetHashKey(pedModel)) then
-												TriggerPlayerEvent(
-													"admin:changePed",
-													CurrentPlayer.serverId,
-													GetHashKey(pedModel)
-												)
-
-												TriggerServerEvent(
-													"Ora:sendToDiscord",
-													webhookadmin,
-													Ora.Identity:GetMyName() ..
-														" a changer le ped de " ..
-															CurrentPlayer.name .. " en " .. pedModel
-												)
-												ShowNotification(string.format('~g~Vous avez changé ~s~%s~g~ en ~s~%s', CurrentPlayer.name, pedModel))
-											else
-												ShowNotification("~r~Model de ped invalide.")
-											end
-										else
-											ShowNotification("~r~Model de ped invalide.")
-										end
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Redonner son apparence",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("admin:restoreAppearance", CurrentPlayer.serverId)
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() ..
-                                                " a restauré l'apparence de " .. CurrentPlayer.name
-                                        )
-										ShowNotification(string.format('Vous avez rendu l\'apparence à ~s~%s', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Fouiller le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        CloseAllMenus()
-                                        FouilleAdmin(CurrentPlayer.serverId)
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() .. " a fouillé " .. CurrentPlayer.name
-                                        )
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Heal le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("player:Heal", CurrentPlayer.serverId)
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() .. " a heal " .. CurrentPlayer.name
-                                        )
-										ShowNotification(string.format('~g~Vous avez heal ~s~%s', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Revive le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerPlayerEvent("player:Revive", CurrentPlayer.serverId)
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() .. " a revive " .. CurrentPlayer.name
-                                        )
-										ShowNotification(string.format('~g~Vous avez revive ~s~%s', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Donner argent",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Montant", 100, "number", "", true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-											Reason = tonumber(Reason)
-											TriggerServerEvent("money:Add2", Reason, CurrentPlayer.serverId)
-											TriggerServerEvent(
-												"Ora:sendToDiscord",
-												webhookadmin,
-												Ora.Identity:GetMyName() ..
-													" a give " .. Reason .. "$ à " .. CurrentPlayer.name
-											)
-											ShowNotification(string.format('~g~Vous avez give $%s d\'argent à ~s~%s', Reason, CurrentPlayer.name))
-										end
-                                    end
-                                end
-                            )
-
---[[                            RageUI.Button(
-                                "Donner argent sale",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Montant", 100, "number", nil, true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-											Reason = tonumber(Reason)
-											TriggerServerEvent("black_money:Add2", Reason, CurrentPlayer.serverId)
-											TriggerServerEvent(
-												"Ora:sendToDiscord",
-												webhookadmin,
-												Ora.Identity:GetMyName() ..
-													" a give " ..
-														Reason ..
-															"$ d'argent sale à " ..
-																CurrentPlayer.name
-											)
-											ShowNotification(string.format('~g~Vous avez give $%s d\'argent sale à ~s~%s', Reason, CurrentPlayer.name))
-										end
-                                    end
-                                end
-                            )]]
-
-                            RageUI.Button(
-                                "Donner de l'XP illégal",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Valeur : (Bonne valeur entre 5000 & 10000)", 100, "number", "", true)
-                                        local level = exports['Snoupinput']:GetInput()
-                                        if level ~= false and level ~= "" and #level ~= 0 then
-											TriggerPlayerEvent("XNL_NET:AddPlayerXP", CurrentPlayer.serverId, math.tointeger(level))
-											TriggerServerEvent(
-												"Ora:sendToDiscord",
-												webhookadmin,
-												Ora.Identity:GetMyName() ..
-													" a donné ".. level .." points d'XP illégal à " .. CurrentPlayer.name
-											)
-											ShowNotification(string.format('~g~Vous avez donné ~s~%sxp~g~ à ~s~%s', level, CurrentPlayer.name))
-										end
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Donner un item",
-                                nil,
-                                {},
+                                {RightLabel = "→"},
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
                                     end
                                 end,
-                                RMenu:Get("personnal", "admin_items")
+                                RMenu:Get("personnal", "admin_action")
                             )
 
                             RageUI.Button(
-                                "Donner Drogue et Qualité",
+                                "Remboursement",
                                 nil,
-                                {},
+                                {RightLabel = "→"},
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
                                     end
                                 end,
-                                RMenu:Get("personnal", "admin_drug_item")
+                                RMenu:Get("personnal", "admin_money")
                             )
 
                             RageUI.Button(
-                                "Récupérer les métiers",
+                                "Gestions Job",
                                 nil,
-                                {},
-                                true,
-                                function(_, _, Selected, _)
-                                    if Selected then
-                                        TriggerServerCallback(
-                                            "Ora::SVCB::Identity:Job:Get",
-                                            function(job)
-                                                ShowNotification(string.format('~y~Métier 1:~s~\n%s %s', Jobs[job.name].label, Jobs[job.name].grade[job.rank].label))
-                                            end,
-                                            CurrentPlayer.serverId
-                                        )
-                                        TriggerServerCallback(
-                                            "Ora::SVCB::Identity:Orga:Get",
-                                            function(orga)
-                                                ShowNotification(string.format('~y~Métier 2:~s~\n%s %s', Jobs[orga.name].label, Jobs[orga.name].grade[orga.rank].label))
-                                            end,
-                                            CurrentPlayer.serverId
-                                        )
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Changer le métier",
-                                nil,
-                                {
-                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Ora.Identity.Job:Get().label ..
-                                        " | " .. Jobs[Ora.Identity.Job:GetName()].grade[Ora.Identity.Job:Get().gradenum].label
-                                            or nil
-                                },
-                                true,
-                                function(_, _, _, _)
-                                end,
-                                RMenu:Get("personnal", "jobs")
-                            )
-
-                            RageUI.Button(
-                                "Changer le second métier",
-                                nil,
-                                {
-                                    RightLabel = tonumber(GetPlayerServerId(PlayerId())) == tonumber(CurrentPlayer.serverId) and Ora.Identity.Orga:Get().label ..
-                                        " | " .. Jobs[Ora.Identity.Orga:GetName()].grade[Ora.Identity.Orga:Get().gradenum].label
-                                            or nil
-                                },
-                                true,
-                                function(_, _, _, _)
-                                end,
-                                RMenu:Get("personnal", "jobs2")
-                            )
-
-                            RageUI.CenterButton(
-                                "~b~↓↓↓ ~s~Informations ~b~↓↓↓",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, _)
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Historique bannissement",
-                                nil,
-                                {},
+                                {RightLabel = "→"},
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerServerCallback(
-                                            "GetHistoBan",
-                                            function(ban)
-                                                bList = ban
-                                            end,
-                                            CurrentPlayer.serverId
-                                        )
                                     end
                                 end,
-                                RMenu:Get("personnal", "admin_banlist")
+                                RMenu:Get("personnal", "admin_jobs")
                             )
 
                             RageUI.Button(
-                                "Avertissements",
+                                "Gestions ban",
                                 nil,
-                                {},
+                                {RightLabel = "→"},
                                 true,
                                 function(_, _, Selected)
                                     if Selected then
-                                        TriggerServerCallback(
-                                            "GetHistoWarn",
-                                            function(warns)
-                                                wList = warns
-                                            end,
-                                            CurrentPlayer.serverId
-                                        )
                                     end
                                 end,
-                                RMenu:Get("personnal", "admin_warnlist")
+                                RMenu:Get("personnal", "admin_banned")
                             )
 
-                            RageUI.CenterButton(
-                                "~b~↓↓↓ ~s~Modération ~b~↓↓↓",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, _)
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Avertir le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Raison (obligatoire)", 100, "text", "", true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-											TriggerServerEvent("warnPlayer", CurrentPlayer.serverId, Reason)
-											ShowNotification(string.format('~g~Vous avez warn ~s~%s~g~ pour ~s~%s', CurrentPlayer.name, Reason))
-										end
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Exclure le joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Raison (obligatoire)", 100, "text", "", true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-											TriggerServerEvent("kickPlayer", CurrentPlayer.serverId, Reason)
-											ShowNotification(string.format('~g~Vous avez kick ~s~%s~g~ pour ~s~%s', CurrentPlayer.name, Reason))
-										end
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Ban Arme Joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerServerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, true)
-                                        TriggerPlayerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, true)
-                                        TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, "Vous êtes désormais Ban armes à feu pendant 1 semaine.")
-										ShowNotification(string.format('~g~Vous avez ban arme ~s~%s', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Unban Arme Joueur",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        TriggerServerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, false)
-                                        TriggerPlayerEvent("Ora::Player:banWeapon", CurrentPlayer.serverId, false)
-                                        TriggerServerEvent("sendMessageReport", CurrentPlayer.serverId, "Vous n'êtes plus Ban armes à feu.")
-										ShowNotification(string.format('~g~Vous avez unban arme ~s~%s', CurrentPlayer.name))
-                                    end
-                                end
-                            )
-
-                            RageUI.List(
-                                "Bannir le joueur",
-                                labels,
-                                index,
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected, Index)
-                                    index = Index
-                                    if Selected then
-										exports['Snoupinput']:ShowInput("Raison (obligatoire)", 100, "text", "", true)
-                                        local Reason = exports['Snoupinput']:GetInput()
-                                        if Reason ~= false and Reason ~= "" then
-                                        	TriggerServerEvent("banPlayer", CurrentPlayer.serverId, Reason, hours[index])
-											ShowNotification(string.format("~g~Le joueur ~s~%s~g~, a été banni ~y~%s~g~ pour ~y~%s", CurrentPlayer.name, labels[index], Reason))
-										end
-                                    end
-                                end
-                            )
-
-                            RageUI.Checkbox(
-                                "Spectate",
-                                nil,
-                                spectating,
-                                {},
-                                function(Hovered, Ative, Selected, Checked)
-                                    if Selected then
-                                        if not spectating then
-                                            spectate(CurrentPlayer.serverId)
-                                        else
-                                            resetNormalCamera()
-                                        end
-                                        spectating = not spectating
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Freeze",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        ShowNotification("~r~Joueur Freeze (" .. CurrentPlayer.name .. ")")
-                                        TriggerPlayerEvent("admin:Freeze", CurrentPlayer.serverId)
-                                    end
-                                end
-                            )
                         end,
                         function()
                         end
@@ -2043,7 +1982,6 @@ Citizen.CreateThread(
                                                 WaypointHandle,
                                                 Citizen.ResultAsVector()
                                             )
-                                            --SetEntityCoordsNoOffset(playerPed, coord.x, coord.y, coord.z, false, false, false, true)
                                             SetEntityCoordsNoOffset(
                                                 playerPed,
                                                 coord.x,
@@ -2105,6 +2043,7 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
+                            
                             RageUI.Button(
                                 "Changer son ped",
                                 nil,
@@ -2154,7 +2093,6 @@ Citizen.CreateThread(
                                                 Citizen.CreateThread(
                                                     function()
                                                         Wait(500)
-
                                                         UpdateEntityFace(PlayerPedId(), json.decode(skin))
                                                         RefreshClothes()
                                                     end
@@ -2164,7 +2102,6 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
-
                             RageUI.Checkbox(
                                 "Nom des joueurs",
                                 nil,
@@ -2351,27 +2288,42 @@ Citizen.CreateThread(
                                     end
                                 end
                             )
-                            RageUI.Button(
-                                "Réparer véhicule",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        local veh = GetVehiclePedIsUsing(LocalPlayer().Ped)
-                                        if IsPedInVehicle(PlayerPedId(), veh, false) then
-                                            SetVehicleFixed(veh)
-                                            SetVehicleDirtLevel(veh, 0.0)
-                                        else
-                                            veh = ClosestVeh()
-                                            if veh ~= 0 then
+                            if IsPedSittingInAnyVehicle(GetPlayerPed(-1)) then 
+                                RageUI.Button(
+                                    "Réparer véhicule",
+                                    nil,
+                                    {},
+                                    true,
+                                    function(_, _, Selected)
+                                        if Selected then
+                                            local veh = GetVehiclePedIsUsing(LocalPlayer().Ped)
+                                            if IsPedInVehicle(PlayerPedId(), veh, false) then
                                                 SetVehicleFixed(veh)
                                                 SetVehicleDirtLevel(veh, 0.0)
+                                            else
+                                                veh = ClosestVeh()
+                                                if veh ~= 0 then
+                                                    SetVehicleFixed(veh)
+                                                    SetVehicleDirtLevel(veh, 0.0)
+                                                end
                                             end
                                         end
                                     end
-                                end
-                            )
+                                )
+                                RageUI.Button(
+                                    "Supprimer véhicule",
+                                    nil,
+                                    {},
+                                    true,
+                                    function(_, _, Selected)
+                                        if Selected then
+                                            local veh = GetVehicleInDirection(5.0)
+                                            ShowNotification(string.format("Véhicule ~h~%s~h~ a été ~g~%s~s~",  GetVehicleNumberPlateText(veh),"supprimé"))
+                                            DeleteEntity(veh)
+                                        end
+                                    end
+                                )
+                            end    
                             RageUI.Button(
                                 "Retourner le véhicule",
                                 nil,
@@ -2382,19 +2334,6 @@ Citizen.CreateThread(
                                         local veh = GetVehicleInDirection(5.0)
                                         SetVehicleOnGroundProperly(veh)
                                         ShowNotification(string.format("Véhicule ~h~%s~h~ a été ~g~%s~s~",  GetVehicleNumberPlateText(veh),"retourné"))
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Supprimer véhicule",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        local veh = GetVehicleInDirection(5.0)
-                                        ShowNotification(string.format("Véhicule ~h~%s~h~ a été ~g~%s~s~",  GetVehicleNumberPlateText(veh),"supprimé"))
-                                        DeleteEntity(veh)
                                     end
                                 end
                             )
@@ -2456,6 +2395,57 @@ Citizen.CreateThread(
                             end
                         end,
                         function()
+                        end
+                    )
+                end
+
+                if RageUI.Visible(RMenu:Get("personnal", "activity")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button(
+                                "Perquisitions en cours",
+                                nil,
+                                {RightLabel = "→"},
+                                true,
+                                function(_, _, _)
+                                end,
+                                RMenu:Get("Ora:Immo", "Raids")
+                            )
+
+                            RageUI.Button(
+                                "Feu",
+                                nil,
+                                {RightLabel = "→"},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                    end
+                                end,
+                                RMenu:Get("personnal", "admin_activity")
+                            )
+
+                        end
+                    )
+                end
+                if RageUI.Visible(RMenu:Get("personnal", "admin_activity")) then
+                    RageUI.DrawContent(
+                        {header = true, glare = true},
+                        function()
+                            RageUI.Button("Démarrer un feu", nil,{},true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        ExecuteCommand("startfire 1 2 3")
+                                    end
+                                end
+                            )
+                            RageUI.Button("Stopper le feu ",nil,{},true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        ExecuteCommand("stopallfires")
+                                    end
+                                end
+                            )
                         end
                     )
                 end
@@ -2676,132 +2666,6 @@ Citizen.CreateThread(
                     )
                 end
             end
-
-            if RageUI.Visible(RMenu:Get("personnal", "jobs")) then
-                RageUI.DrawContent(
-                    {header = true, glare = true},
-                    function()
-                        for i = 1, #JobNames do
-                            RageUI.Button(
-                                Jobs[JobNames[i]].label,
-                                nil,
-                                {},
-                                true,
-                                function(_, Active, Selected)
-                                    if Selected then
-                                        exports['Snoupinput']:ShowInput("Grade (MAX : " .. #Jobs[JobNames[i]].grade .. ")", 2, "number", "", true)
-                                        local Grade = exports['Snoupinput']:GetInput()
-                                        if Grade ~= false and Grade ~= "" and tonumber(Grade) > 0 then
-                                            local currentId
-                                            local currentName
-                                            if ReportPly and ReportPly.id ~= nil then
-                                                currentId = ReportPly.id
-                                                currentName = ReportPly.name
-                                                TriggerServerEvent(
-                                                    "Ora:sendToDiscord",
-                                                    webhookadmin,
-                                                    Ora.Identity:GetMyName() ..
-                                                        " a setjob " ..
-                                                            ReportPly.name ..
-                                                                " en " ..
-                                                                    JobNames[i] ..
-                                                                        " " ..
-                                                                            Grade ..
-                                                                                " pour le ticket n° " ..
-                                                                                    ReportPly.index
-                                                )
-                                                ReportPly = nil
-                                            else
-                                                currentId = CurrentPlayer.serverId
-                                                currentName = CurrentPlayer.name
-                                                TriggerServerEvent(
-                                                    "Ora:sendToDiscord",
-                                                    webhookadmin,
-                                                    Ora.Identity:GetMyName() ..
-                                                        " a setjob " ..
-                                                            CurrentPlayer.name ..
-                                                                " en " ..
-                                                                    JobNames[i] ..
-                                                                        " " ..
-                                                                            Grade
-                                                )
-                                            end
-                                            ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, JobNames[i], Grade))
-                                            TriggerServerEvent("Ora::SE::Identity:Job:Save", JobNames[i], Grade, Ora.Identity:GetUuid(currentId))
-                                            TriggerPlayerEvent("Ora::CE::Identity:Job:Set", currentId, JobNames[i], Grade, true)
-                                        end
-                                    end
-                                end
-                            )
-                        end
-                    end,
-                    function()
-                    end
-                )
-            end
-
-            if RageUI.Visible(RMenu:Get("personnal", "jobs2")) then
-                RageUI.DrawContent(
-                    {header = true, glare = true},
-                    function()
-                        for i = 1, #JobNames do
-                            RageUI.Button(
-                                Jobs[JobNames[i]].label,
-                                nil,
-                                {},
-                                true,
-                                function(_, Active, Selected)
-                                    if Selected then
-                                        exports['Snoupinput']:ShowInput("Grade (MAX : " .. #Jobs[JobNames[i]].grade .. ")", 2, "number", "", true)
-                                        local Grade = exports['Snoupinput']:GetInput()
-                                        if Grade ~= false and Grade ~= "" and tonumber(Grade) > 0 then
-                                            local currentId
-                                            local currentName
-                                            if ReportPly and ReportPly.id ~= nil then
-                                                currentId = ReportPly.id
-                                                currentName = ReportPly.name
-                                                TriggerServerEvent(
-                                                    "Ora:sendToDiscord",
-                                                    webhookadmin,
-                                                    Ora.Identity:GetMyName() ..
-                                                        " a setjob " ..
-                                                            ReportPly.name ..
-                                                                " en " ..
-                                                                    JobNames[i] ..
-                                                                        " " ..
-                                                                            Grade ..
-                                                                                " pour le ticket n° " ..
-                                                                                    ReportPly.index
-                                                )
-                                                ReportPly = nil
-                                            else
-                                                currentId = CurrentPlayer.serverId
-                                                currentName = CurrentPlayer.name
-                                                TriggerServerEvent(
-                                                    "Ora:sendToDiscord",
-                                                    webhookadmin,
-                                                    Ora.Identity:GetMyName() ..
-                                                        " a setjob " ..
-                                                            CurrentPlayer.name ..
-                                                                " en " ..
-                                                                    JobNames[i] ..
-                                                                        " " ..
-                                                                            Grade
-                                                )
-                                            end
-                                            ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, JobNames[i], Grade))
-                                            TriggerServerEvent("Ora::SE::Identity:Orga:Save", JobNames[i], Grade, Ora.Identity:GetUuid(currentId))
-                                            TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", currentId, JobNames[i], Grade, true)
-                                        end
-                                    end
-                                end
-                            )
-                        end
-                    end,
-                    function()
-                    end
-                )
-            end
         end
     end
 )
@@ -2812,24 +2676,6 @@ TriggerServerCallback(
         connectedPlayers = users
     end
 )
-
--- Citizen.CreateThread(
---     function()
---         while (true) do
---             if RageUI.Visible(RMenu:Get("personnal", "admin_plylist")) then
---                 Citizen.Wait(1000)
---                 TriggerServerCallback(
---                     "onlinePlayers:list",
---                     function(users)
---                         connectedPlayers = users
---                     end
---                 )
---             else
---                 Citizen.Wait(2000)
---             end
---         end
---     end
--- )
 
 RMenu:Get("personnal", "world"):AddInstructionButton(
     {
@@ -2890,6 +2736,8 @@ end
 function isNoclip()
     return noclip
 end
+
+
 
 -- noclip/invisible
 Citizen.CreateThread(
@@ -2961,15 +2809,6 @@ Citizen.CreateThread(
                                     ShowHeadingIndicatorOnBlip(blip, false)
                                 end
                             elseif veh then
-                                --passengers = GetVehicleNumberOfPassengers(veh)
-                                --if passengers then
-                                --	if not IsVehicleSeatFree(veh, -1) then
-                                --		passengers = passengers + 1
-                                --	end
-                                --	ShowNumberOnBlip(blip, passengers)
-                                --else
-                                --	HideNumberOnBlip(blip)
-                                --end
                                 vehClass = GetVehicleClass(veh)
                                 vehModel = GetEntityModel(veh)
                                 if vehClass == 15 then
