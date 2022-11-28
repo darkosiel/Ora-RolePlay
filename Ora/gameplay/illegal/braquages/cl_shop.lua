@@ -512,6 +512,12 @@ function StartBraquo(zone)
                 {x = x, y = y, z = z},
                 "\n[ALARME SILENCIEUSE " .. Random(1000, 9999) .. "]\n ~r~BRAQUAGE DE SUPERETTE~s~"
             )
+            TriggerServerEvent(
+                "call:makeCall2",
+                "police",
+                {x = x, y = y, z = z},
+                "\n[ALARME SILENCIEUSE " .. Random(1000, 9999) .. "]\n ~r~BRAQUAGE DE SUPERETTE~s~"
+            )
             startRobberyFunc(currentApuBraquable)
         elseif zone == "all" then
             TriggerServerEvent(
