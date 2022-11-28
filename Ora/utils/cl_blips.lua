@@ -1,8 +1,9 @@
 local Blips = {
-    {Pos = {x = -1072.52, y = -856.42, z = 4.87}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
+    --{Pos = {x = -1072.52, y = -856.42, z = 4.87}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
+    {Pos = {x = 832.2272, y = -1289.9152, z = 28.2331}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
     --{Pos = {x = 382.8338, y = -1590.8780, z = 29.2795}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
     -- {Pos = {x = 367.5, y = -1591.53, z = 36.95}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Davis"},
-    {Pos = {x = -440.43, y = 6019.48, z = 31.49}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Paleto Bay"},
+    --{Pos = {x = -440.43, y = 6019.48, z = 31.49}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Paleto Bay"},
     --{Pos = {x = 1856.64, y = 3679.66, z = 33.79}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Sandy Shores"},
     {Pos = {x = 119.47, y = -1308.58, z = 29.71}, sprite = 121, size = 0.8, color = 61, name = "Vanilla Unicorn"},
     --{name="Aéroport", color=3, sprite=90, Pos = {x=-1336.25, y=-3043.99, z=13.9444}},
