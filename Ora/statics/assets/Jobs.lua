@@ -5571,7 +5571,7 @@ Jobs = {
             Pos = {x = 823.2741, y = -1369.5996, z = 26.1356},
             Properties = {
                 type = 3,
-                Limit = 64,
+                Limit = 99,
                 vehicles = {},
                 spawnpos = {x = 823.2741, y = -1369.5996, z = 26.1356, h = 2.5655}
             },
@@ -5586,7 +5586,7 @@ Jobs = {
             Pos = {x = 832.5797, y = -1369.8060, z = 26.1322},
             Properties = {
                 type = 3,
-                Limit = 64,
+                Limit = 99,
                 vehicles = {},
                 spawnpos = {x = 832.5797, y = -1369.8060, z = 26.1322, h = 359.4103}
             },
@@ -10501,7 +10501,7 @@ Jobs = {
         Extrapos = {
             Tow = {
                 Pos = {
-                    {x = 822.67, y = -1352.32, z = 26.10}
+                    {x = -162.45, y = -1304.8, z = 30.31}
                 },
                 Enter = EnterZoneTow,
                 Exit = ExitZoneTow,
