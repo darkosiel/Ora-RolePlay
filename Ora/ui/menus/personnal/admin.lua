@@ -805,38 +805,43 @@ Citizen.CreateThread(
                             )
 
                             RageUI.List("Changer le métier",jobListLabel,indexJob,nil,{},true,
-                                function(_, _, Selected, Index)
-                                    indexJob = Index
-                                    if Selected then
-                                        currentId = CurrentPlayer.serverId
-                                        currentName = CurrentPlayer.name
-                                        local NameJob = jobList[indexJob]
-                                        local Grade =
-                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                            function(_, _, Selected, Index)
+                                indexJob = Index
+                                if Selected then
+                                    currentId = CurrentPlayer.serverId
+                                    currentName = CurrentPlayer.name
+                                    local NameJob = jobList[indexJob]
+                                    exports['Snoupinput']:ShowInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", 2, "number", "", true)
+                                    local Grade = exports['Snoupinput']:GetInput()
+                                    if Grade ~= false and Grade ~= "" and tonumber(Grade) > 0 then
                                         TriggerServerEvent("Ora::SE::Identity:Job:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
                                         TriggerPlayerEvent("Ora::CE::Identity:Job:Set", currentId, NameJob, Grade, true)
                                         ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
                                         TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..currentName .." en " ..NameJob .." " ..Grade)
-                                    end
+                                    end    
                                 end
-                            )
-                            
-                            RageUI.List("Changer le second métier",jobListLabel,indexOrga,nil,{},true,
-                                function(_, _, Selected, Index)
-                                    indexOrga = Index
-                                    if Selected then
-                                        currentId = CurrentPlayer.serverId
-                                        currentName = CurrentPlayer.name
-                                        local NameJob = jobList[indexOrga]
-                                        local Grade =
-                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                            end
+                        )
+                        
+                        RageUI.List("Changer le second métier",jobListLabel,indexOrga,nil,{},true,
+                            function(_, _, Selected, Index)
+                                indexOrga = Index
+                                if Selected then
+                                    currentId = CurrentPlayer.serverId
+                                    currentName = CurrentPlayer.name
+                                    local NameJob = jobList[indexOrga]
+                                
+                                    exports['Snoupinput']:ShowInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", 2, "number", "", true)
+                                    local Grade = exports['Snoupinput']:GetInput()
+                                    if Grade ~= false and Grade ~= "" and tonumber(Grade) > 0 then
                                         TriggerServerEvent("Ora::SE::Identity:Orga:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
                                         TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", currentId, NameJob, Grade, true)
                                         ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
                                         TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..currentName .." en " ..NameJob .." " ..Grade)
-                                    end
+                                    end    
                                 end
-                            )
+                            end
+                        )
                         end,
                         function()
                         end
@@ -1501,12 +1506,13 @@ Citizen.CreateThread(
                             )
 
                             RageUI.List("Changer le métier",jobListLabel,indexJob,nil,{},true,
-                                function(_, _, Selected, Index)
-                                    indexJob = Index
-                                    if Selected then
-                                        local NameJob = jobList[indexJob]
-                                        local Grade =
-                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                            function(_, _, Selected, Index)
+                                indexJob = Index
+                                if Selected then
+                                    local NameJob = jobList[indexJob]
+                                    exports['Snoupinput']:ShowInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", 2, "number", "", true)
+                                    local Grade = exports['Snoupinput']:GetInput()
+                                    if Grade ~= false and Grade ~= "" and tonumber(Grade) > 0 then
                                         if ReportPly and ReportPly.id ~= nil then
                                             currentId = ReportPly.id
                                             currentName = ReportPly.name
@@ -1517,17 +1523,19 @@ Citizen.CreateThread(
                                         TriggerPlayerEvent("Ora::CE::Identity:Job:Set", currentId, NameJob, Grade, true)
                                         ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
                                         TriggerServerEvent("Ora:sendToDiscord",webhookadmin,Ora.Identity:GetMyName() .." a setjob " ..currentName .." en " ..NameJob .." " ..Grade)
-                                    end
+                                    end    
                                 end
-                            )
-                            
-                            RageUI.List("Changer le second métier",jobListLabel,indexOrga,nil,{},true,
-                                function(_, _, Selected, Index)
-                                    indexOrga = Index
-                                    if Selected then
-                                        local NameJob = jobList[indexOrga]
-                                        local Grade =
-                                        KeyboardInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", "", 2)
+                            end
+                        )
+                        
+                        RageUI.List("Changer le second métier",jobListLabel,indexOrga,nil,{},true,
+                            function(_, _, Selected, Index)
+                                indexOrga = Index
+                                if Selected then
+                                    local NameJob = jobList[indexOrga]
+                                    exports['Snoupinput']:ShowInput("Grade (MAX : " .. #Jobs[NameJob].grade .. ")", 2, "number", "", true)
+                                    local Grade = exports['Snoupinput']:GetInput()
+                                    if Grade ~= false and Grade ~= "" and tonumber(Grade) > 0 then
                                         local currentId
                                         local currentName
                                         if ReportPly and ReportPly.id ~= nil then
@@ -1539,9 +1547,10 @@ Citizen.CreateThread(
                                         TriggerServerEvent("Ora::SE::Identity:Orga:Save", NameJob, Grade, Ora.Identity:GetUuid(currentId))
                                         TriggerPlayerEvent("Ora::CE::Identity:Orga:Set", currentId, NameJob, Grade, true)
                                         ShowNotification(string.format('~g~Vous avez changé le job de ~s~%s~g~ en ~s~%s %s', currentName, NameJob, Grade))
-                                    end
+                                    end    
                                 end
-                            )
+                            end
+                        )
                         end,
                         function()
                         end
