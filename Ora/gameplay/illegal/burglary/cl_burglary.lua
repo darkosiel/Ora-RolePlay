@@ -692,7 +692,7 @@ AddEventHandler(
             function(availablePlayers) 
                 StartBurglary("north", availablePlayers)
             end,
-            {"lssd"}
+            {"police"}
         )
     end
 )
