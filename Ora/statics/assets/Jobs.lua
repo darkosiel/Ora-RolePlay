@@ -6113,7 +6113,7 @@ Jobs = {
                     type = "Vestiaire",
                     workSize = 1.45,
                     Pos = {x = 844.9340, y = -1284.5042, z = 24.3187},
-                    Tenues = TenueLSPD
+                    Tenues = TenueSAHP
                 }
             }
         },
