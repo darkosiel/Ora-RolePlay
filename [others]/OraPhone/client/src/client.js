@@ -81,6 +81,7 @@ async function setPhoneVisible(visible = true) {
         // Play some fivem anim
         await anim.PhonePlayOut();
         // stop blocking controls on tick
+        await Wait(200);
         clearTick(onTick);
         // bring them back
         EnableAllControlActions(1);
