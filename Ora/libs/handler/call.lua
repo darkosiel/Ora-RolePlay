@@ -212,7 +212,7 @@ AddEventHandler(
             title = "Centrale"
             subject = "~b~Appel d'urgence: 911"
             msg = string.format("~b~Distance: (~s~%sm~b~)\nLocalisation: ~s~%s - %s\n", math.ceil(dist), zone, streetname)
-            icon = "CHAR_LSPD"
+            icon = "CHAR_sahp"
             iconType = 1
         elseif work == "lssd" then
             title = "Centrale"
