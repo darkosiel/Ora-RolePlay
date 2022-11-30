@@ -316,8 +316,8 @@ Citizen.CreateThread(
         local CurrentPlayer = {}
         local ReportPly = {}
         local invisible, showcoords = false, false
-        local labels = {"1H", "2H", "8H", "12H", "1 jour", "3 jours", "7 jours", "14 jours", "1 mois", "Permanent"}
-        local hours = {3600, 7200, 28800, 86400, 259200, 604800, 1210000, 2628000, 99999999,999999999999999999999999999999999999999}
+        local labels = {"1H", "2H", "8H", "12H", "1 jour", "3 jours", "7 jours", "14 jours", "1 mois", "Permanent","Ne rien faire"}
+        local hours = {3600, 7200, 28800, 86400, 259200, 604800, 1210000, 2628000, 1210000,999999999999999999999999999999999999999}
         --
         local jobListLabel = {}
         local jobList = {}
