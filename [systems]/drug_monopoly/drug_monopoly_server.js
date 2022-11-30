@@ -574,7 +574,7 @@ function MonopolyService(influenceCalculator, clientNotif) {
         let bestOrga = []
         // get winner (sort organisations by total influence desc)
         if (zoneData) {
-            bestOrga = Object.values(zoneData).sort((a,b) => b.total - a.total)
+            bestOrga = Object.values(zoneData).sort((a,b) => b.scores.total - a.scores.total)
         }
         // if there is no winner, remove monopoly and stop
         if (!bestOrga.length || bestOrga[0] <= 50) {
