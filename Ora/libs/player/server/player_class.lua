@@ -789,7 +789,8 @@ function BanPlayer(src, timestamp, reason, _source)
             ["@unbandate"] = timestamp,
             ["@reason"] = reason,
             ["@banfrom"] = GetPlayerName(_source),
-            ["@date"] = os.time()
+            ["@date"] = os.date("%Y-%m-%d %H:%M:%S", os.time())
+        
         }
     )
 
@@ -818,7 +819,7 @@ function WarnPlayer(src, reason, _source)
             ["@unbandate"] = timestamp,
             ["@reason"] = reason,
             ["@banfrom"] = GetPlayerName(_source),
-            ["@date"] = os.time()
+            ["@date"] = os.date("%Y-%m-%d %H:%M:%S", os.time())
         }
     )
 end
