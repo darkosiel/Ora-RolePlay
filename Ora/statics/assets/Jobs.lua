@@ -5626,7 +5626,7 @@ Jobs = {
                 Blipname = "SAHP - Garage"
             }
         },
-        garage8 = {
+        garagesed = {
             Name = "Garage SED",
             Pos = {x = 853.6597, y = -1357.9885, z = 26.0939},
             Properties = {
