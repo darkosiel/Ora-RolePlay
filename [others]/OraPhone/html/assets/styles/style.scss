@@ -45,11 +45,15 @@ $ora-app-clock-icon-width: 53px;
 }
 
 .success {
-    color: $color-ora-success !important;
+    @include themed() {
+        color: t($phone-system-color-green) !important;
+    }
 }
 
 .error {
-    color: $color-ora-error !important;
+    @include themed() {
+        color: t($phone-system-color-red) !important;
+    }
 }
 
 body {
@@ -4294,6 +4298,11 @@ div#page {
                                                         @include themed() {
                                                             border-bottom-color: t($phone-bank-active-color);
                                                         }
+                                                        &.history-item-titre {
+                                                            p {
+                                                                @extend %text-max-line-2;
+                                                            }
+                                                        }
                                                         &:last-child {
                                                             border: 0;
                                                         }
@@ -4324,11 +4333,71 @@ div#page {
                                                     span {
                                                         font-size: 20px;
                                                         &.remove {
-                                                            color: $color-ora-error;
+                                                            @include themed() {
+                                                                color: t($phone-system-color-red);
+                                                            }
                                                         }
                                                         &.add {
-                                                            color: $color-ora-success;
+                                                            @include themed() {
+                                                                color: t($phone-system-color-green);
+                                                            }
                                                         }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        &#app-bank-body-content-transfer {
+                                            div.app-body-content-body {
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-items: center;
+                                                row-gap: 15px;
+                                                input {
+                                                    width: 90%;
+                                                    padding: 10px;
+                                                    border-radius: 10px;
+                                                    border-width: 2px;
+                                                    border-style: solid;
+                                                    -webkit-appearance: none;
+                                                    text-align: center;
+                                                    font-size: 22px;
+                                                    font-weight: 600;
+                                                    margin-bottom: 30px;
+                                                    @include themed() {
+                                                        color: t($phone-system-color-white);
+                                                        border-color: t($phone-bank-border-color);
+                                                        background-color: t($phone-bank-background-color-light);
+                                                    }
+                                                    &:focus, &:hover {
+                                                        outline: none;
+                                                        @include themed {
+                                                            border-color: t($phone-system-color-white);
+                                                        }
+                                                    }
+                                                    &::-webkit-outer-spin-button,
+                                                    &::-webkit-inner-spin-button {
+                                                        -webkit-appearance: none;
+                                                    }
+                                                }
+                                                button {
+                                                    width: 90%;
+                                                    padding: 15px 30px;
+                                                    border-radius: 10px;
+                                                    border: none;
+                                                    font-size: 18px;
+                                                    font-weight: 600;
+                                                    cursor: pointer;
+                                                    @include themed() {
+                                                        background-color: t($phone-bank-active-color);
+                                                        color: t($phone-system-color-white);
+                                                    }
+                                                }
+                                                div {
+                                                    p {
+                                                        margin-top: 15px;
+                                                        text-align: center;
+                                                        font-size: 24px;
+                                                        font-weight: 600;
                                                     }
                                                 }
                                             }

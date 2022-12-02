@@ -367,8 +367,8 @@ $(function(){
             if (phoneTest) {
                 await updateUserData(dateTest);
                 displayPhone(true);
-                updateContent("home");
-                updateAppContent("first");
+                updateContent("bank");
+                updateAppContent("transfer");
                 $("#message-list").children().click(function () {
                     updateAppContent("message");
                 });

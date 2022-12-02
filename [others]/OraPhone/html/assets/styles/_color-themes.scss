@@ -73,6 +73,7 @@ $phone-bank-background-color: "phone-bank-background-color";
 $phone-bank-background-color-light: "phone-bank-background-color-light";
 $phone-bank-color: "phone-bank-color";
 $phone-bank-active-color: "phone-bank-active-color";
+$phone-bank-border-color: "phone-bank-border-color";
 
 //themes
 $themes: (
@@ -149,6 +150,7 @@ $themes: (
                 phone-bank-background-color-light: $phone--bank--background--color--light--light,
                 phone-bank-color: $phone--bank--color--light,
                 phone-bank-active-color: $phone--bank--active--color--light,
+                phone-bank-border-color: $label--color--secondary--light,
         ),
         dark: (
                 phone-background-default: url("../images/wallpaper/wallpaper-ios15-dark.jpg"),
@@ -223,6 +225,7 @@ $themes: (
                 phone-bank-background-color-light: $phone--bank--background--color--light--dark,
                 phone-bank-color: $phone--bank--color--dark,
                 phone-bank-active-color: $phone--bank--active--color--dark,
+                phone-bank-border-color: $label--color--secondary--dark,
         ),
 );
 

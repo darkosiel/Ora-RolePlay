@@ -434,7 +434,7 @@
                                                 <span>Tab 2</span>
                                             </div>
                                         </div>
-                                        <div id="alarm-list" class="app-body-content-body">
+                                        <div class="app-body-content-body">
                                             
                                         </div>
                                     </div>
@@ -453,7 +453,7 @@
                                                 <span>Tab 3</span>
                                             </div>
                                         </div>
-                                        <div id="alarm-list" class="app-body-content-body">
+                                        <div class="app-body-content-body">
                                             
                                         </div>
                                     </div>
@@ -472,7 +472,7 @@
                                                 <span>Tab 4</span>
                                             </div>
                                         </div>
-                                        <div id="alarm-list" class="app-body-content-body">
+                                        <div class="app-body-content-body">
                                             
                                         </div>
                                     </div>
@@ -1927,21 +1927,20 @@
                                     </div>
                                     <div id="app-bank-body-content-transfer" class="app-body-content disable-select">
                                         <div class="app-body-content-header">
-                                            <div class="app-body-content-header-button">
-                                                <div class="app-body-content-header-button-parent">
-                                                    <i class="fa-solid fa-angle-left"></i>
-                                                    <span>Parent Title</span>
-                                                </div>
-                                                <div class="app-body-content-header-button-action">
-                                                    <span>Action</span>
-                                                </div>
-                                            </div>
                                             <div class="app-body-content-header-title">
-                                                <span>Tab 3</span>
+                                                <i class="fa-solid fa-building-columns"></i><span class="app-body-content-header-title-app">Banking</span><br/><hr/>
+                                                <span class="app-body-content-header-title-tab">Virement</span>
                                             </div>
                                         </div>
-                                        <div id="alarm-list" class="app-body-content-body">
-                                            
+                                        <div class="app-body-content-body">
+                                            <input type="text" placeholder="RIB du destinataire" id="bank-transfer-rib1"/>
+                                            <input type="text" placeholder="Confirmation RIB du destinataire" id="bank-transfer-rib2"/>
+                                            <input type="number" placeholder="Montant à envoyer" id="bank-transfer-amount"/>
+                                            <button id="bank-transfer-button">Envoyer</button>
+                                            <div>
+                                                <p id="bank-transfer-error" class="success">Virement effectué</p>
+                                                <p id="bank-transfer-error" class="error">Remplissez les champs</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
