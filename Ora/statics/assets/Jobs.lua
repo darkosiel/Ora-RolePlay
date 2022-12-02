@@ -1700,19 +1700,19 @@ Jobs = {
                     anim = "pickup_snowball"
                 }
             },
-            recolte6 = {
-                type = "recolte",
-                workSize = 10.0,
-                Pos = {x = 2163.14, y = 5179.13, z = 56.82},
-                giveitem = "levure",
-                blipcolor = 7,
-                blipname = "Fermier - Récupérer de la levure",
-                add = "~p~+ 1 Levure",
-                anim = {
-                    lib = "anim@mp_snowball",
-                    anim = "pickup_snowball"
-                }
-            },
+            -- recolte6 = {
+            --     type = "recolte",
+            --     workSize = 10.0,
+            --     Pos = {x = 2163.14, y = 5179.13, z = 56.82},
+            --     giveitem = "levure",
+            --     blipcolor = 7,
+            --     blipname = "Fermier - Récupérer de la levure",
+            --     add = "~p~+ 1 Levure",
+            --     anim = {
+            --         lib = "anim@mp_snowball",
+            --         anim = "pickup_snowball"
+            --     }
+            -- },
             recolte7 = {
                 type = "recolte",
                 workSize = 10.0,
