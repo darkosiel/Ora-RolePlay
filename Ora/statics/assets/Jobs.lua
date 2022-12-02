@@ -3348,6 +3348,177 @@ Jobs = {
             }
         }
     },
+    malonebar = {
+        label = "Malone's Bar",
+        label2 = "Malone's Bar",
+        iban = "malonebar",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Malone's Bar",
+                subtitle = "Actions disponibles",
+                name = "malonebar_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("malonebar")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Malone's Bar", "Annonce", text, "CHAR_BURGERSHOT", 8, "Malone's Bar")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Malone's Bar",
+            Pos = {x = 412.89, y = -1515.52, z = 29.29 - 0.98},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 412.89, y = -1515.52, z = 29.29 - 0.98, h = 215.81}
+            },
+            Blipdata = {
+                Pos = {x = 412.89, y = -1515.52, z = 29.29 - 0.98, h = 215.81},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 414.65, y = -1499.45, z = 30.15 - 0.98}, -- Bar
+                Limit = 1000,
+                Name = "coffre_malonebar"
+            },
+            {
+                Pos = {x = 418.18, y = -1502.47, z = 30.15 - 0.98},  -- Cuisine
+                Limit = 1000,
+                Name = "coffre_malonebar1"
+            },
+            {
+                Pos = {x = 427.69, y = -1505.58, z = 29.31 - 0.98}, -- Vestiaire
+                Limit = 1000,
+                Name = "coffre_malonebar2"
+            },
+            {
+                Pos = {x = 411.78, y = -1503.82, z = 33.80 - 0.98}, -- Patron
+                Limit = 100,
+                Name = "coffre_restaurantfood3"
+            } 
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = 413.60, y = -1504.81, z = 30.15}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercraftMaloneZone()
+                end,
+                Exit = function()
+                    ExitcraftMaloneZone()
+                end,
+                zonesize = 3.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Malone's Bar - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
+            }
+        },
+        requiredService = false,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 803.1325, y = 2175.2553, z = 53.0708 - 0.98},
+                giveitem = "graincafe1",
+                blipcolor = 7,
+                blipname = "Malone's Bar - Récolte du café",
+                add = "~p~+ 1 Graine de Café",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                --Café
+                type = "traitement",
+                workSize = 10.0,
+                blipcolor = 7,
+                blipname = "Malone's Bar - Traitement Café",
+                Pos = {x = 2542.21, y = 2584.90, z = 37.00},
+                required = "graincafe1",
+                giveitem = "cafe",
+                RemoveItem = "graincafe1",
+                add = "~p~+ 1  Café"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Malone's Bar - Vente",
+                Pos = {x = -423.8536, y = 284.0237, z = 83.19 - 0.98},
+                required = "cafe",
+                price = math.random(13,16),
+                add = "~p~- 1 Café"
+            }
+        }
+    },
     -- tabac = {
     -- 	label = "Tabac",
     -- 	FreeAccess = false,
@@ -5627,7 +5798,7 @@ Jobs = {
             }
         },
         garagesed = {
-            Name = "Garage SED",
+            Name = "Garage sed",
             Pos = {x = 853.6597, y = -1357.9885, z = 26.0939},
             Properties = {
                 type = 3,
@@ -12926,6 +13097,35 @@ Jobs = {
                 Pos = {x = -292.31, y = 6265.57, z = 33.80},
                 Limit = 100,
                 Name = "Coffre Boss Hen House"
+            }
+        },
+        Extrapos = {
+            CraftSpiritueux = {
+                Pos = {
+                    {x = -296.95, y = 6262.42, z = 31.48}
+                },
+                restricted = {1, 2, 3, 4, 5},
+                Enter = function()
+                    EntercrafthenhouseZone()
+                end,
+                Exit = function()
+                    ExitcrafthenhouseZone()
+                end,
+                zonesize = 1.5,
+                Blips = {
+                    sprite = 93,
+                    color = 81,
+                    name = "Hen House - Alambique"
+                },
+                Marker = {
+                    type = 1,
+                    scale = {x = 1.5, y = 1.5, z = 0.2},
+                    color = {r = 255, g = 255, b = 255, a = 120},
+                    Up = false,
+                    Cam = false,
+                    Rotate = false,
+                    visible = true
+                }
             }
         },
         requiredService = false,
