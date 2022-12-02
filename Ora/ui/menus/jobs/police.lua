@@ -1906,7 +1906,8 @@ end
 function Police.PutPortWeapon()
     local playerId = GetPlayerServerIdInDirection(5.0)
     if (playerId ~= false) then
-        local txtt = KeyboardInput("Numéro de série", nil, 2)
+        exports['Snoupinput']:ShowInput("Numéro de série", nil, 2)
+        local txtt = exports['Snoupinput']:GetInput()
 
         items = {name = "weapon_licences", data = {serial = txtt}}
         Ora.Inventory:AddItem(items)
