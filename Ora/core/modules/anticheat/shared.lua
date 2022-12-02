@@ -30,6 +30,7 @@ Ora.Anticheat.ObjectWhitelist = {
   [GetHashKey("prop_golf_wood_01")] = true,
   [-1124612472] = true,
   [974883178] = true,
+  [1511282135] = true,
   [-303457828] = true,
   [-901038522] = true,
   [1463746489] = true,

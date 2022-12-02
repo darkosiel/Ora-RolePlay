@@ -240,6 +240,10 @@ function IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateInteriorIPL()
       IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateIPLForCocaineAndLSD(IllegalLabsAndWarehouse.CURRENT_PROPERTY.production_level, IllegalLabsAndWarehouse.CURRENT_PROPERTY.security_level)
     elseif (IllegalLabsAndWarehouse.CURRENT_PROPERTY.business_id == "weed") then
       IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateIPLForCannabis(IllegalLabsAndWarehouse.CURRENT_PROPERTY.production_level, IllegalLabsAndWarehouse.CURRENT_PROPERTY.security_level)
+    elseif (IllegalLabsAndWarehouse.CURRENT_PROPERTY.business_id == "crack") then
+        IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateIPLForCocaineAndLSD(IllegalLabsAndWarehouse.CURRENT_PROPERTY.production_level, IllegalLabsAndWarehouse.CURRENT_PROPERTY.security_level)
+    elseif (IllegalLabsAndWarehouse.CURRENT_PROPERTY.business_id == "matiere") then
+        IllegalLabsAndWarehouse.MENUS.DRUGLAB.UpdateIPLForCocaineAndLSD(IllegalLabsAndWarehouse.CURRENT_PROPERTY.production_level, IllegalLabsAndWarehouse.CURRENT_PROPERTY.security_level)
     else
         ShowNotification("Cette drogue n'est pas connue.")
     end
@@ -971,6 +975,29 @@ Citizen.CreateThread(function()
                     true,
                     function(_, _, Selected)
                         if (Selected) then
+
+                            closedCommand = {
+                                20, --21h00 IRL
+                                21,
+                                22,
+                                23,
+                                00
+                            }
+                            
+                            isOpen = false
+
+                            TriggerServerEvent("Ora::Illegal:checkTime", currentHour)
+
+                            if(not isOpen) then
+                                for i = 1, #closedCommand, 1 do
+                                    if (tostring(closedCommand[i]) == tostring(currentHour)) then
+                                        isOpen = true
+                                    else
+                                        ShowNotification("~r~Mes gars sont disponibles seulement entre 21h et 1h.")
+                                        break
+                                    end
+                                end
+                            end
                             
                             TriggerServerCallback(
                                 "Ora::SE::Service:GetTotalServiceCountForJobs",

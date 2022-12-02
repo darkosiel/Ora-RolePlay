@@ -149,6 +149,19 @@ AddEventHandler("Ora::Illegal:SEDefenderCount",function(resultsAsJson)
     end
 end)
 
+RegisterServerEvent("Ora::Illegal:checkTime")
+AddEventHandler("Ora::Illegal:checkTime",function(closedCommand)
+  local currentHour = os.date("%H", os.time())
+  local isOpen = true
+
+  for i = 1, #closedCommand, 1 do
+      if (tostring(closedCommand[i]) == tostring(currentHour)) then
+          isOpen = false
+          break
+      end
+  end
+end)
+
 RegisterServerEvent("Ora::Illegal:SEAttackerCount")
 AddEventHandler("Ora::Illegal:SEAttackerCount",function(resultsAsJson)
     local _source = source

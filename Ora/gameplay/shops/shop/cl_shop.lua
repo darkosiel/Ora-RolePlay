@@ -2121,6 +2121,121 @@ local Shops =
             }
         },
         {
+            Title = "Yann",
+            Pos = {x = 165.35, y = 2227.18, z = 90.79 - 0.98, a = 52.10},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "cocafeuille",
+                    price = 15,
+                    data = {}
+                },
+                {
+                    name = "eaudechaux",
+                    price = 5,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Matthieu",
+            Pos = {x = -124.67, y = 2794.33, z = 53.10 - 0.98, a = 102.96},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "acidecoke",
+                    price = 55,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Quentin",
+            Pos = {x = 1444.36, y = 6333.60, z = 23.86 - 0.98, a = 90.73},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "ammoniac",
+                    price = 17,
+                    data = {}
+                }
+            }
+        },
+        {
+            Title = "Joseph",
+            Pos = {x = 2727.66, y = 4139.82, z = 44.03 - 0.98, a = 83.62},
+            Blips = {
+                Enabled = false
+                -- sprite = 1,
+                -- color = 6,
+                -- name = "Joé"
+            },
+            Ped = {
+                model = "a_m_m_skater_01"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Items = {
+                {
+                    name = "weed_pot",
+                    price = 15,
+                    data = {}
+                },
+                {
+                    name = "water",
+                    price = 5,
+                    data = {}
+                },
+                {
+                    name = "fertz",
+                    price = 15,
+                    data = {}
+                },
+            }
+        },
+        {
             Title = "Louis",
             RestrictedJob = {"pawnshop"},
             RestrictedGrade = {"cdd", "cdi", "chef", "drh", "boss"},
@@ -2610,181 +2725,7 @@ local Shops =
                     data = {}
                 },
 
-                -- -- Shotgun
-                -- {
-                --     name = "p_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "p_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "p_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "p_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- -- SMG
-                -- {
-                --     name = "smg_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "smg_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "smg_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "smg_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "smg_grip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- -- Assault Rifle
-                -- {
-                --     name = "rifle_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_grip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- -- Shotguns
-                -- {
-                --     name = "shotgun_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "shotgun_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "shotgun_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "shotgun_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "shotgun_grip",
-                --     price = 500,
-                --     data = {}
-                -- },
 
-                -- -- Rifles
-                -- {
-                --     name = "rifle_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "rifle_grip",
-                --     price = 500,
-                --     data = {}
-                -- },
-
-                -- -- Sniper
-                -- {
-                --     name = "sniper_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "sniper_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "sniper_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "sniper_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                
-                -- -- MG
-                -- {
-                --     name = "mg_suppressor",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "mg_flashlight",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "mg_extendedclip",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "mg_scope",
-                --     price = 500,
-                --     data = {}
-                -- },
-                -- {
-                --     name = "mg_grip",
-                --     price = 500,
-                --     data = {}
-                -- },
             }
         },
         -- {

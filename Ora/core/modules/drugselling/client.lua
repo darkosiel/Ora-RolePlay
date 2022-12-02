@@ -58,7 +58,9 @@ Ora.DrugDealing.AvailableDrugs = {
   "coke1",
   "meth",
   "weed_pooch",
-  "lsd_pooch"
+  "lsd_pooch",
+  "crack",
+  "matiere"
 }
 
 Ora.DrugDealing.PolicePhrase = {
@@ -70,21 +72,24 @@ Ora.DrugDealing.Props = {
   weed_pooch = "bkr_prop_weed_bag_01a",
   meth = "p_meth_bag_01_s",
   coke1 = "bkr_prop_coke_cutblock_01",
-  lsd_pooch = "bkr_prop_coke_cutblock_01"
+  lsd_pooch = "bkr_prop_coke_cutblock_01",
+  crack = "bkr_prop_coke_cutblock_01"
 }
 
 Ora.DrugDealing.Prices = {
-    weed_pooch = {20, 25},
-    coke1 = {120, 130},
+    weed_pooch = {30, 50},
+    coke1 = {250, 280},
     meth = {60, 80},
-    lsd_pooch = {130, 150}
+    lsd_pooch = {130, 150},
+    crack = {200, 230}
 }
 
 Ora.DrugDealing.Demand = {
   weed_pooch = {4, 5},
   coke1 = {3, 4},
   meth = {3, 4},
-  lsd_pooch = {1, 2}
+  lsd_pooch = {1, 2},
+  crack = {1 ,2}
 }
 
 

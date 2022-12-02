@@ -59,17 +59,17 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         give_item_count = 40
     },
     delivery = {
-      {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
-      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
-      {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
-      {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
-      {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
-      {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
-      {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-486.6180, -2170.4899, 9.2401)},
-      {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
+      -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
+      -- {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
+      -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
+      {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)}
+    --   {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
+    --   {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
+    --   {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-486.6180, -2170.4899, 9.2401)},
+    --   {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
-      weed_plant = { price = 7, max_qty = 35 }
+      water = { price = 7, max_qty = 35 }
     },
     security = {
       [1] = {
@@ -205,13 +205,13 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         acetone = { price = 2, max_qty = 90 },
     },
     delivery = {
-      {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
-      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
-      {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
-      {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
-      {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
-      {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
-      {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
+      -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
+      -- {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
+      -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
+      -- {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
+      -- {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
+      -- {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
+      -- {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
       {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     security = {
@@ -331,14 +331,14 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         give_item_count = 20
     },
     delivery = {
-      {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
-      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
-      {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
-      {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
-      {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
-      {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
-      {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
-      {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
+      -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
+      -- {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
+      -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
+      -- {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
+      {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)}
+      -- {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
+      -- {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
+      -- {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
         acidecoke = { price = 3, max_qty = 60 },
@@ -460,37 +460,35 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         }
     }
   },
-   -- COCAINE
-   cocaine = {
-    label = "COCAINE",
-    description = "Cocaine (Necessite cocaine pure, et acide sulfurique)",
+  crack = {
+    label = "CRACK",
+    description = "CRACK (Necessite coke traitée + acide sulfurique)",
     interior = vector3(1088.51, -3188.0, -38.99),
     vault = vector3(1100.64, -3198.39, -38.99 - 0.95),
     computer = vector3(1087.27, -3194.23, -38.99 - 0.95),
     attackTime = 900,
-    delivery = {
-      {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
-      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
-      {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
-      {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
-      {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
-      {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
-      {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
-      {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
-    },
     limitations = {
-        craft_time = 90,
+        craft_time = 60,
         item_quality = 35,
         required = {
-          {name = "coke", count = 30},
-          {name = "acidecoke", count = 30}
+          {name = "ammoniac", count = 20},
+          {name = "coke1", count = 10}
         },
-        give_item = "coke1",
-        give_item_count = 60
+        give_item = "crack",
+        give_item_count = 30
+    },
+    delivery = {
+      -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
+      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)}
+      -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
+      -- {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
+      -- {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
+      -- {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
+      -- {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
+      -- {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
-        acidecoke = { price = 3, max_qty = 125 },
-        coke = { price = 5, max_qty = 125 },
+        water = { price = 3, max_qty = 60 }
     },
     security = {
       [1] = {
@@ -526,13 +524,242 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       },
       [3] = {
         label = "Production niveau 3",
-        description = "Pour 100 000$ vous produisez autant avec moins de composants (-5 composants de chaque)",
+        description = "Pour 100 000$ vous produisez autant avec moins de composants (-3 composants de chaque)",
         price = 100000,
         addon = {
           item_quality = 74,
           required = {
-            {name = "coke", count = 25},
-            {name = "acidecoke", count = 25}
+            {name = "ammoniac", count = 17},
+            {name = "coke1", count = 12}
+          }
+        }
+      },
+      [4] = {
+        label = "Production niveau 4",
+        description = "Pour 70 000$ vous produisez en 45 minutes au lieu de 1 heure",
+        price = 70000,
+        addon = {
+          craft_time = 45,
+          item_quality = 74,
+          required = {
+            {name = "ammoniac", count = 17},
+            {name = "coke1", count = 12}
+          }
+        }
+      },
+      [5] = {
+        label = "Production niveau 5",
+        description = "Pour 100 000$ vous produisez de la qualité : Excellente",
+        price = 100000,
+        addon = {
+          craft_time = 45,
+          item_quality = 90,
+          required = {
+            {name = "ammoniac", count = 17},
+            {name = "coke1", count = 12}
+          }
+        }
+      },
+      [6] = {
+        label = "Production niveau 6",
+        description = "Pour 70 000$ vous produisez en 30 minutes au lieu de 1 heure",
+        price = 70000,
+        addon = {
+          craft_time = 30,
+          item_quality = 90,
+          required = {
+            {name = "ammoniac", count = 17},
+            {name = "coke1", count = 12}
+          }
+        }
+      },
+      [7] = {
+          label = "Production niveau 7",
+          description = "Pour 100 000$ vous produisez de la qualité : Inegalable",
+          price = 100000,
+          addon = {
+            craft_time = 30,
+            item_quality = 100,
+            required = {
+              {name = "ammoniac", count = 17},
+              {name = "coke1", count = 12}
+            }
+          }
+      },
+    },
+    workplaces = {
+        [1] = {
+            id = "workplace_1",
+            pos = vector3(1095.34, -3197.0, -38.99 - 0.95)
+        },
+        [2] = {
+            id = "workplace_2",
+            pos = vector3(1090.38,-3196.86,-38.99 - 0.95)
+        },
+        [3] = {
+            id = "workplace_3",
+            pos = vector3(1090.31,-3194.7,-38.99 - 0.95)
+        },
+        [4] = {
+            id = "workplace_4",
+            pos = vector3(1095.26,-3194.59, -38.99 - 0.95)
+        }
+    }
+  },
+  matiere = {
+    label = "Matière Première",
+    description = "Matière Première",
+    interior = vector3(1088.51, -3188.0, -38.99),
+    vault = vector3(1100.64, -3198.39, -38.99 - 0.95),
+    computer = vector3(1087.27, -3194.23, -38.99 - 0.95),
+    attackTime = 900,
+    limitations = {
+        craft_time = 60,
+        item_quality = 35,
+        required = {
+          {name = "cocafeuille", count = 20},
+          {name = "eaudechaux", count = 20}
+        },
+        give_item = "chlorycoke",
+        give_item_count = 20
+    },
+    delivery = {
+      -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
+      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)}
+      -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
+      -- {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
+      -- {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
+      -- {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
+      -- {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
+      -- {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
+    },
+    ingredients = {
+        water = { price = 3, max_qty = 60 }
+    },
+    security = {
+      [1] = {
+          label = "Sécurité améliorée niveau 1",
+          description = "Pour 100 000$ vous obtenez 20 minutes au total pour défendre votre labo en cas d'attaque (15 minutes de base)",
+          price = 100000,
+          time = 300
+      },
+      [2] = {
+          label = "Sécurité améliorée niveau 2",
+          description = "Pour 150 000$ vous obtenez 30 minutes au total pour défendre votre labo en cas d'attaque (15 minutes de base)",
+          price = 150000,
+          time = 900
+      }
+    },
+    production = {
+      -- This is not cumulative, so you always have to start from the base limitation
+      [1] = {
+          label = "Production niveau 1",
+          description = "Pour 30 000$ vous produisez plus rapidement",
+          price = 30000,
+          addon = {
+            craft_time = 50,
+          }
+      },
+      [2] = {
+          label = "Production niveau 2",
+          description = "Pour 70 000$ vous produisez plus rapidement",
+          price = 70000,
+          addon = {
+            craft_time = 40,
+          }
+      },
+
+    },
+    workplaces = {
+        [1] = {
+            id = "workplace_1",
+            pos = vector3(1095.34, -3197.0, -38.99 - 0.95)
+        },
+        [2] = {
+            id = "workplace_2",
+            pos = vector3(1090.38,-3196.86,-38.99 - 0.95)
+        },
+        [3] = {
+            id = "workplace_3",
+            pos = vector3(1090.31,-3194.7,-38.99 - 0.95)
+        },
+        [4] = {
+            id = "workplace_4",
+            pos = vector3(1095.26,-3194.59, -38.99 - 0.95)
+        }
+    }
+  },
+   -- COCAINE
+   cocaine = {
+    label = "COCAINE",
+    description = "Cocaine (Necessite chlorydrate de cocaine, et acide sulfurique)",
+    interior = vector3(1088.51, -3188.0, -38.99),
+    vault = vector3(1100.64, -3198.39, -38.99 - 0.95),
+    computer = vector3(1087.27, -3194.23, -38.99 - 0.95),
+    attackTime = 900,
+    delivery = {
+      -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
+      -- {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
+      -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
+      -- {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)},
+      -- {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
+      -- {start = vector3(1146.39, -1481.27, 34.69), startHeading = 352.06, finish = vector3(1206.02, -1269.38, 35.23)},
+      -- {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-611.46, -2169.79, 5.99)},
+      {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
+    },
+    limitations = {
+        craft_time = 90,
+        item_quality = 35,
+        required = {
+          {name = "chlorycoke", count = 60},
+          {name = "acidecoke", count = 30},
+        },
+        give_item = "coke1",
+        give_item_count = 60
+    },
+    ingredients = {
+      chlorycoke = { price = 80, max_qty = 125 },
+    },
+    security = {
+      [1] = {
+          label = "Sécurité améliorée niveau 1",
+          description = "Pour 100 000$ vous obtenez 20 minutes au total pour défendre votre labo en cas d'attaque (15 minutes de base)",
+          price = 100000,
+          time = 300
+      },
+      [2] = {
+          label = "Sécurité améliorée niveau 2",
+          description = "Pour 150 000$ vous obtenez 30 minutes au total pour défendre votre labo en cas d'attaque (15 minutes de base)",
+          price = 150000,
+          time = 900
+      }
+    },
+    production = {
+      -- This is not cumulative, so you always have to start from the base limitation
+      [1] = {
+          label = "Production niveau 1",
+          description = "Pour 30 000$ vous produisez de la qualité : Moyenne",
+          price = 30000,
+          addon = {
+            item_quality = 49
+          }
+      },
+      [2] = {
+          label = "Production niveau 2",
+          description = "Pour 70 000$ vous produisez de la qualité : Bonne",
+          price = 70000,
+          addon = {
+            item_quality = 74
+          }
+      },
+      [3] = {
+        label = "Production niveau 3",
+        description = "Pour 100 000$ vous produisez autant avec moins de composants (-10 composants de chaque)",
+        price = 100000,
+        addon = {
+          item_quality = 74,
+          required = {
+            {name = "chlorycoke", count = 50}
           }
         }
       },
@@ -544,8 +771,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           craft_time = 75,
           item_quality = 74,
           required = {
-            {name = "coke", count = 25},
-            {name = "acidecoke", count = 25}
+            {name = "chlorycoke", count = 50}
           }
         }
       },
@@ -557,8 +783,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           craft_time = 75,
           item_quality = 90,
           required = {
-            {name = "coke", count = 25},
-            {name = "acidecoke", count = 25}
+            {name = "chlorycoke", count = 50}
           }
         }
       },
@@ -570,8 +795,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           craft_time = 60,
           item_quality = 90,
           required = {
-            {name = "coke", count = 25},
-            {name = "acidecoke", count = 25}
+            {name = "chlorycoke", count = 50}
           }
         }
       },
@@ -583,8 +807,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
             craft_time = 60,
             item_quality = 100,
             required = {
-              {name = "coke", count = 25},
-              {name = "acidecoke", count = 25}
+              {name = "chlorycoke", count = 50}
             }
           }
       }

@@ -1006,6 +1006,12 @@ Items = {
         actionCl = "drug:Coke",
         category = "consumable"
     },
+    crack = {
+        label = "Pochon de Crack",
+        weight = 0.1,
+        actionCl = "drug:Coke",
+        category = "consumable"
+    },
     acidecoke = {
         label = "Acide",
         weight = 0.1,
@@ -1020,6 +1026,30 @@ Items = {
     },
     acetone = {
         label = "Acetone",
+        weight = 1.0,
+        actionCl = nil,
+        category = "consumable"
+    },
+    cocafeuille = {
+        label = "Feuille de Cocaïne",
+        weight = 1.0,
+        actionCl = nil,
+        category = "consumable"
+    },
+    eaudechaux = {
+        label = "Eau de chaux",
+        weight = 1.0,
+        actionCl = nil,
+        category = "consumable"
+    },
+    ammoniac = {
+        label = "Ammoniac",
+        weight = 1.0,
+        actionCl = nil,
+        category = "consumable"
+    },
+    chlorycoke = {
+        label = "Chlorhydrate de Cocaïne",
         weight = 1.0,
         actionCl = nil,
         category = "consumable"
@@ -3131,55 +3161,6 @@ Items = {
         category = "food"
     },
 
-    -- jewelry_heist
-
-    jh_brooch   = {
-        label = "Broche",
-        weight = 0.5,
-    },
-    jh_necklace = {
-        label = "Collier",
-        weight = 1.0,
-    },
-    jh_bracelet = {
-        label = "Bracelet",
-        weight = 0.8,
-    },
-    jh_ring     = {
-        label = "Bague",
-        weight = 0.2,
-    },
-    jh_watch    = {
-        label = "Montre",
-        weight = 1,
-    },
-    jh_earings  = {
-        label = "Boucles d'oreilles",
-        weight = 0.4,
-    },
-
-    -- Bank cards
-    classic_card = {
-        label = "Carte bancaire classique",
-        weight = 0.1,
-        category = "docs"
-    },
-    gold_card = {
-        label = "Carte bancaire dorée",
-        weight = 0.1,
-        category = "docs"
-    },
-    platinium_card = {
-        label = "Carte bancaire platinum",
-        weight = 0.1,
-        category = "docs"
-    },
-    black_card = {
-        label = "Carte bancaire noire",
-        weight = 0.1,
-        category = "docs"
-    },
-
     -- Weapon accessories for each weapon category
     -- pistols
     p_suppressor = {
@@ -3304,7 +3285,55 @@ Items = {
         label = "Poignée (MG)",
         weight = 0.1,
     },
+    
+    -- jewelry_heist
 
+    jh_brooch   = {
+        label = "Broche",
+        weight = 0.5,
+    },
+    jh_necklace = {
+        label = "Collier",
+        weight = 1.0,
+    },
+    jh_bracelet = {
+        label = "Bracelet",
+        weight = 0.8,
+    },
+    jh_ring     = {
+        label = "Bague",
+        weight = 0.2,
+    },
+    jh_watch    = {
+        label = "Montre",
+        weight = 1,
+    },
+    jh_earings  = {
+        label = "Boucles d'oreilles",
+        weight = 0.4,
+    },
+
+    -- Bank cards
+    classic_card = {
+        label = "Carte bancaire classique",
+        weight = 0.1,
+        category = "docs"
+    },
+    gold_card = {
+        label = "Carte bancaire dorée",
+        weight = 0.1,
+        category = "docs"
+    },
+    platinium_card = {
+        label = "Carte bancaire platinum",
+        weight = 0.1,
+        category = "docs"
+    },
+    black_card = {
+        label = "Carte bancaire noire",
+        weight = 0.1,
+        category = "docs"
+    },
 }
 
 -- staticcc
