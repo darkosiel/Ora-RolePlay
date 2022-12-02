@@ -3343,7 +3343,7 @@ Jobs = {
                 blipname = "BurgerShot - Vente",
                 Pos = {x = -423.8536, y = 284.0237, z = 83.19 - 0.98},
                 required = "cafe",
-                price = math.random(20,30),
+                price = math.random(13,16),
                 add = "~p~- 1 Café"
             }
         }
