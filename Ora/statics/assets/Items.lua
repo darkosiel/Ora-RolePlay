@@ -1026,31 +1026,31 @@ Items = {
     },
     acetone = {
         label = "Acetone",
-        weight = 1.0,
+        weight = 0.1,
         actionCl = nil,
         category = "consumable"
     },
     cocafeuille = {
         label = "Feuille de Cocaïne",
-        weight = 1.0,
+        weight = 0.1,
         actionCl = nil,
         category = "consumable"
     },
     eaudechaux = {
         label = "Eau de chaux",
-        weight = 1.0,
+        weight = 0.5,
         actionCl = nil,
         category = "consumable"
     },
     ammoniac = {
         label = "Ammoniac",
-        weight = 1.0,
+        weight = 0.5,
         actionCl = nil,
         category = "consumable"
     },
     chlorycoke = {
         label = "Chlorhydrate de Cocaïne",
-        weight = 1.0,
+        weight = 0.5,
         actionCl = nil,
         category = "consumable"
     },
@@ -1105,7 +1105,7 @@ Items = {
 
     fertz = {
         label = "Fertilisant",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = nil,
         category = "consumable"
     },
@@ -1720,7 +1720,7 @@ Items = {
     },
     weed_pot = {
         label = "Pot graines cannabis",
-        weight = 1.0
+        weight = 0.5
     },
     weed_plant = {
         label = "Feuille de cannabis",
