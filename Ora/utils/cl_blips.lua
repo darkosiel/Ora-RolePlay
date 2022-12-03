@@ -38,7 +38,7 @@ local Blips = {
         Pos = {x = 1686.4, y = 4816.36, z = 42.0092}
     },
     {name = "Distributeur de Billets", color = 2, sprite = 434, size = 0.80, Pos = {x = -95.90, y = 6455.62, z = 31.45}},
-    {name = "Pacific Banque", color = 2, sprite = 605, size = 0.80, Pos = {x = 227.49, y = 212.99, z = 105.53}},
+    --{name = "Pacific Banque", color = 2, sprite = 605, size = 0.80, Pos = {x = 227.49, y = 212.99, z = 105.53}},
     {name = "Maze Group", color = 49, sprite = 78, size = 0.80, Pos = {x = -1376.18, y = -491.93, z = 33.16}},
     {name = "Gruppe Sechs", color = 69, sprite = 67, size = 0.80, Pos = {x = -231.46, y = -851.80, z = 30.68}},
     {name = "Pawn Shop", color = 12, sprite = 587, Pos = {x = 105.43, y = 9.43, z = 67.86}},
@@ -64,6 +64,7 @@ local Blips = {
     --{name = "Agence immobilière", color = 64, sprite = 492, Pos = {x = -707.79388, y = 269.2157, z = 94.2941}},
     --{name = "Mirror Restaurant", color = 3, sprite = 304, Pos = {x = -1342.2145, y = -1075.8182, z = 6.93}},
     {name = "Burger Shot", color = 75, sprite = 106, Pos = {x = -1182.10, y = -883.58, z = 13.78}},
+    {name = "Malone's Bar", color = 49, sprite = 78, size = 0.80, Pos = {x = 416.29, y = -1487.15, z = 30.40}},
     {name = "LTD Davis", color = 3, sprite = 59, Pos = {x = 30.42, y = -1345.17, z = 29.5}},       
     -- {name = "LTD Grove Street", color = 3, sprite = 59, Pos = {x = -49.9785, y = -1753.45, z = 29.42}},        
     {name = "Auto Repairs", color = 1, sprite = 643, Pos = {x = 1172.9263, y = 2669.7465, z = 37.8209}},
