@@ -45,7 +45,7 @@ MySQL.ready(
                             },
                             function(inserted)
                                 print(
-                                    "[MIGRATION] ^2 Adedd plate to vehicle id " ..
+                                    "[MIGRATION] ^2 Added plate to vehicle id " ..
                                         vehicleData.plate ..
                                             " set : " .. vehicleData.model .. "|" .. vehicleData.plate .. "^0"
                                 )
@@ -55,7 +55,8 @@ MySQL.ready(
                 end
 
                 
-
+                
+                
                 MySQL.Async.execute(
                     "UPDATE players_vehicles SET pound = 1 WHERE id IN (SELECT pv.id FROM `players_vehicles` AS pv LEFT JOIN players_parking AS pp ON pp.label = pv.label AND pp.plate LIKE CONCAT('%', pv.plate, '%') WHERE pv.pound = 0 AND pp.garage IS NULL AND (pv.label IS NOT NULL OR pv.label != \"NULL\"));",
                     {},
@@ -63,6 +64,15 @@ MySQL.ready(
                         print("[TOW] ^2 " .. modifiedRows .. " has been sent to tow")
                     end
                 )
+
+                MySQL.Async.execute(
+                    "DELETE FROM players_vehicles WHERE id IN (SELECT pv.id FROM `players_vehicles` AS pv, `players_parking` AS pp WHERE pv.plate = pp.plate AND pv.pound = 1)",
+                    {},
+                    function(deletedRows)
+                        print("[TOW] ^2 " .. deletedRows .. " has been deleted^0")
+                    end
+                )
+
             end
         )
     end

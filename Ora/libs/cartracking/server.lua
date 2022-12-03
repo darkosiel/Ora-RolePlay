@@ -16,12 +16,7 @@ AddEventHandler(
     function(carIdentifier)
         local explodedPlate = explode(carIdentifier, "|")
 
-        MySQL.Async.execute(
-            "UPDATE players_vehicles set pound = 1 WHERE plate = @plate",
-            {
-                ["@plate"] = explodedPlate[1]
-            }
-        )
+        Ora.World.Vehicle:SetVehicleToPound_Plate(explodedPlate[1])
     end
 )
 
@@ -64,29 +59,16 @@ RegisterServerCallback(
                                         callback("parked", nil)
                                     elseif (result[1].numberOfCar == 0) then
                                         callback("outside", vehiclesLocalisation[finalIdentifier])
-                                        MySQL.Async.execute(
-                                            "UPDATE players_vehicles set pound = 1 WHERE plate = @plate",
-                                            {
-                                                ["@plate"] = carIdentifier
-                                            }
-                                        )
+                                        Ora.World.Vehicle:SetVehicleToPound_Plate(carIdentifier)
                                     else
-                                        MySQL.Async.execute(
-                                            "UPDATE players_vehicles set pound = 1 WHERE plate = @plate",
-                                            {
-                                                ["@plate"] = carIdentifier
-                                            }
-                                        )
+                                        Ora.World.Vehicle:SetVehicleToPound_Plate(carIdentifier)
                                         callback("pounded", nil)
                                     end
                                 end
                             )
                         end
                     else
-                        MySQL.Async.execute(
-                            "UPDATE players_vehicles set pound = 1 WHERE plate = @plate",
-                            {
-                                ["@plate"] = carIdentifier
+                        Ora.World.Vehicle:SetVehicleToPound_Plate(carIdentifier
                             }
                         )
                         callback("pounded", nil)
@@ -116,24 +98,14 @@ RegisterServerCallback(
                         callback("outside", vehiclesLocalisation[carIdentifier])
                     else
                         local explodedPlate = explode(carIdentifier, "|")
-                        MySQL.Async.execute(
-                            "UPDATE players_vehicles set pound = 1 WHERE plate = @plate",
-                            {
-                                ["@plate"] = explodedPlate[1]
-                            }
-                        )
+                        Ora.World.Vehicle:SetVehicleToPound_Plate(explodedPlate[1])
                         callback("pounded", nil)
                     end
                 end
             )
         else
             local explodedPlate = explode(carIdentifier, "|")
-            MySQL.Async.execute(
-                "UPDATE players_vehicles set pound = 1 WHERE plate = @plate",
-                {
-                    ["@plate"] = explodedPlate[1]
-                }
-            )
+            Ora.World.Vehicle:SetVehicleToPound_Plate(explodedPlate[1])
             callback("pounded", nil)
         end
     end

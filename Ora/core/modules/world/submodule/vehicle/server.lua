@@ -49,7 +49,7 @@ function Ora.World.Vehicle:IsVehicleInParking(vehicleIdentifier)
     return false
 end
 
-function Ora.World.Vehicle:SetVehicleToPound(vehicleIdentifier)
+function Ora.World.Vehicle:SetVehicleToPound_Identifier(vehicleIdentifier)
     MySQL.Sync.execute(
         "UPDATE players_vehicles SET pound = 1 WHERE plate_identifier = @vehicleIdentifier",
         {
@@ -58,6 +58,14 @@ function Ora.World.Vehicle:SetVehicleToPound(vehicleIdentifier)
     )
 end
 
+function Ora.World.Vehicle:SetVehicleToPound_Plate(plate)
+    MySQL.Sync.execute(
+        "UPDATE players_vehicles SET pound = 1 WHERE plate = @plate",
+        {
+            ["@plate"] = plate
+        }
+    )
+end
 
 RegisterServerEvent("Ora::SE::World:Garage:StoreVehicle")
 AddEventHandler(

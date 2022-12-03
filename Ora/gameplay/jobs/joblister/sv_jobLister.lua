@@ -24,13 +24,7 @@ end)
 
 RegisterServerEvent("storevehicletow")
 AddEventHandler("storevehicletow",function(pl)
-    MySQL.Async.execute(
-        "UPDATE players_vehicles SET pound=1 where plate=@id",
-        {
-            ["@id"] = pl,
-            ["@data"] = pl,
-        }
-    )
+    Ora.World.Vehicle:SetVehicleToPound_Plate(pl)
 end)
 
 RegisterServerEvent("facture:pay")
