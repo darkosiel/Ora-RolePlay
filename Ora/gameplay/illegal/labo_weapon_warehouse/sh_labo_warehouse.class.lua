@@ -69,7 +69,8 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
     --   {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
-      water = { price = 7, max_qty = 35 }
+      weed_pot = { price = 10, max_qty = 35 },
+      fertz = { price = 5, max_qty = 60 },
     },
     security = {
       [1] = {
@@ -488,7 +489,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       -- {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
-        water = { price = 3, max_qty = 60 }
+      ammoniac = { price = 17, max_qty = 60 }
     },
     security = {
       [1] = {
@@ -634,7 +635,8 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
       -- {start = vector3(1247.91, -3143.93, 5.75), startHeading = 287.09, finish = vector3(1184.32, -3021.78, 5.9)}
     },
     ingredients = {
-        water = { price = 3, max_qty = 60 }
+      cocafeuille = { price = 15, max_qty = 60 },
+      eaudechaux = { price = 5, max_qty = 60 }
     },
     security = {
       [1] = {
@@ -718,7 +720,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
         give_item_count = 60
     },
     ingredients = {
-      chlorycoke = { price = 80, max_qty = 125 },
+      acidecoke = { price = 15, max_qty = 125 },
     },
     security = {
       [1] = {
@@ -894,7 +896,6 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "combathatchet", byWeek =30, price = 200},
       {name = "snspistol", byWeek = 6, price = 10000},
       {name = "pistol", byWeek = 2, price = 14000},
-      {name = "pitollourd", byWeek = 1, price = 20000},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "acp45", byWeek = 500, price = 2},
       {name = "stickybomb", byWeek = 3, price = 4500},
@@ -904,13 +905,8 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {name = "pistol50", byWeek = 0, price = 18000},
       {name = "dbshotgun", byWeek = 0, price = 70000},
       {name = "ceramicpistol", byWeek = 0, price = 12000},
-      {name = "minismg", byWeek = 0, price = 45000},
-      {name = "machinepistol", byWeek = 0, price = 85000},
-      {name = "microsmg", byWeek = 0, price = 85000},
-      {name = "gusenberg", byWeek = 0, price = 100000},
       {name = "snip", byWeek = 0, price = 4},
       {name = "calibre12", byWeek = 0, price = 3},
-
 
     },
     security = {
@@ -935,7 +931,6 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           price = 35000,
           addon = {
             pistol = 2,
-            pitollourd = 1,
             mm9 = 250,
             stickybomb = 3,
           }
@@ -946,11 +941,10 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           price = 75000,
           addon = {
             pistol = 2,
-            pitollourd = 1,
             mm9 = 750,
             calibre12 = 150,
             shootguncompact = 1,
-            --dbshotgun = 2,
+            dbshotgun = 2,
             stickybomb = 2,
           }
       },
@@ -960,16 +954,11 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
         price = 55000,
         addon = {
           pistol = 2,
-          pitollourd = 1,
-          --shootguncompact = 4,
-          -- dbshotgun = 4,
           calibre12 = 150,
           revolver = 1,
           pistol50 = 1,
-          --minismg = 1,
           mm9 = 1500,
           stickybomb = 2,
-          --snip = 200,
         }
       },
       [4] = {
@@ -978,14 +967,11 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
         price = 85000,
         addon = {
           pistol = 2,
-          pitollourd = 1,
           --shootguncompact = 1,
           -- dbshotgun = 4,
           calibre12 = 210,
           --revolver = 1,
           --pistol50 = 1,
-          minismg = 1,
-          machinepistol = 1,
           mm9 = 2250,
           stickybomb = 2,
           snip = 200,
@@ -1006,7 +992,6 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           --pistol50 = 1,
           --minismg = 1,
           --machinepistol = 1,
-          microsmg = 1,
           mm9 = 3750,
           stickybomb = 3,
           snip = 200,
@@ -1029,7 +1014,6 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
             --minismg = 1,
             --machinepistol = 1,
             --microsmg = 1,
-            gusenberg = 1,
             mm9 = 6250,
             stickybomb = 3,
             snip = 200,
@@ -1051,12 +1035,12 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       {start = vector3(-761.56, -2288.9, 12.86), startHeading = 65.52, finish = vector3(-1013.16, -2223.1, 8.99)}
     },
     limitations = {
-      {name = "snspistol", byWeek = 3, price = 10000},
-      {name = "revolver", byWeek = 1, price = 14000},
-      {name = "pistol", byWeek = 1, price = 14000},
-      {name = "pitollourd", byWeek = 1, price = 20000},
-      {name = "pistol50", byWeek = 0, price = 18000},
+      {name = "pitollourd", byWeek = 2, price = 20000},
+      {name = "pistol50", byWeek = 2, price = 18000},
       {name = "stickybomb", byWeek = 2, price = 1500},
+      {name = "machinepistol", byWeek = 1, price = 20000},
+      {name = "minismg", byWeek = 0, price = 18000},
+      {name = "microsmg", byWeek = 1, price = 1500},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "snip", byWeek = 108, price = 4},
       {name = "calibre12", byWeek = 50, price = 3},
@@ -1079,22 +1063,20 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       -- This is not cumulative, so you always have to start from the base limitation
       [1] = {
           label = "Confiance commerciale 1",
-          description = "Pour 35 000$ vous obtenez 2 berettas, 2 Pétoires, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
+          description = "Pour 35 000$ vous obtenez 1 minismg, 2 Pétoires, 250 balles de 9mm et 35 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
           price = 35000,
           addon = {
-            pistol = 1,
-            snspistol = 2,
+            minismg = 1,
+            machinepistol = 1,
             mm9 = 250,
             snip = 35,
           }
       },
       [2] = {
           label = "Confiance commerciale 2",
-          description = "Pour 75 000$ vous obtenez 3 berettas, 2 Pétoires, 2 Pistolets lourd, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
+          description = "Pour 75 000$ vous obtenez 2 Pistolets lourd, 500 balles de 9mm et 75 balles de .300 Magnum en plus par semaine par rapport à la limite de base",
           price = 75000,
           addon = {
-            pistol = 2,
-            snspistol = 1,
             pitollourd = 2,
             mm9 = 500,
             snip = 75,
@@ -1102,13 +1084,12 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [3] = {
         label = "Confiance commerciale 3",
-        description = "Pour 55 000$ vous obtenez 1 beretta, 1 revolver, 2 Pétoires, 1 Pistolet lourd, 750 balles de 9mm et 3 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        description = "Pour 55 000$ vous obtenez 1 Pistolet lourd, 1 Mini SMG, 1 Machine Pistol 750 balles de 9mm et 3 Bombes artisanal en plus par semaine par rapport à la limite de base",
         price = 55000,
         addon = {
-          pistol = 2,
-          revolver = 2,
-          snspistol = 2,
           pitollourd = 1,
+          minismg = 1,
+          machinepistol = 1,
           mm9 = 750,
           snip = 75,
           stickybomb = 5,
@@ -1116,14 +1097,14 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [4] = {
         label = "Confiance commerciale 4",
-        description = "Pour 65 000$ vous obtenez 1 beretta, 1 revolver, 1 Pétoire, 1 Pistolet lourd, 1000 balles de 9mm et 2 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        description = "Pour 65 000$ vous obtenez 2 Pistolet lourd, 2 Calibre 50, 1 Tec-9, 1 Skorpion, 1 Uzi, 1000 balles de 9mm et 2 Bombes artisanal en plus par semaine par rapport à la limite de base",
         price = 65000,
         addon = {
-          pistol = 2,
-          revolver = 3,
-          snspistol = 1,
           pitollourd = 2,
           pistol50 = 2,
+          minismg = 1,
+          machinepistol = 1,
+          microsmg = 1,
           mm9 = 1000,
           snip = 75,
           stickybomb = 2,
