@@ -1841,6 +1841,43 @@ Config.DoorList = {
         }
     },
 
+
+    --G6
+
+    {
+        objHash = GetHashKey("v_ilev_fib_door1"),
+        objCoords = vector3(-225.36578369140625, -850.4068603515625, 30.79456329345703),
+        textCoords = vector3(-225.36578369140625, -850.4068603515625, 30.79456329345703),
+        authorizedJobs = {"g6"},
+        locked = true,
+        maxDistance = 3.0
+    },
+    {
+        objHash = GetHashKey("v_ilev_fib_door1"),
+        objCoords = vector3(-224.48020935058594, -847.9667358398438, 30.795902252197266),
+        textCoords = vector3(-224.48020935058594, -847.9667358398438, 30.795902252197266),
+        authorizedJobs = {"g6"},
+        locked = true,
+        maxDistance = 3.0
+    },
+
+    {
+        objHash = GetHashKey("v_ilev_fib_door1"),
+        objCoords = vector3(-234.9197540283203, -846.9386596679688, 30.832172393798828 ),
+        textCoords = vector3(-234.9197540283203, -846.9386596679688, 30.832172393798828),
+        authorizedJobs = {"g6"},
+        locked = true,
+        maxDistance = 3.0
+    },
+    {
+        objHash = GetHashKey("v_ilev_fib_door1"),
+        objCoords = vector3(-234.028076171875, -844.4890747070312, 30.832172393798828 ),
+        textCoords = vector3(-234.028076171875, -844.4890747070312, 30.832172393798828),
+        authorizedJobs = {"g6"},
+        locked = true,
+        maxDistance = 3.0
+    },
+
 }
 
 
