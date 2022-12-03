@@ -1455,9 +1455,12 @@ Citizen.CreateThread(
                             label = "Non définie"
 
                             if
-                                (masks.array[tostring(i)] ~= nil and
+                                (
+                                    masks.array[tostring(i)] ~= nil and
                                     masks.array[tostring(i)][tostring(masks.Indexes[i] - 1)] ~= nil and
-                                    masks.array[tostring(i)][tostring(masks.Indexes[i] - 1)]["GXT"] ~= nil)
+                                    masks.array[tostring(i)][tostring(masks.Indexes[i] - 1)]["GXT"] ~= nil and 
+                                    masks.array[tostring(i)][tostring(masks.Indexes[i] - 1)]["GXT"] ~= "NO_LABEL"
+                                )
                              then
                                 label = GetLabelText(masks.array[tostring(i)][tostring(masks.Indexes[i] - 1)]["GXT"])
                             end
