@@ -893,18 +893,16 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
     limitations = {
       {name = "machete", byWeek = 30, price = 200},
       {name = "dagger", byWeek = 30, price = 200},
-      {name = "combathatchet", byWeek =30, price = 200},
+      {name = "combathatchet", byWeek = 30, price = 200},
       {name = "snspistol", byWeek = 6, price = 10000},
       {name = "pistol", byWeek = 2, price = 14000},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "acp45", byWeek = 500, price = 2},
       {name = "stickybomb", byWeek = 3, price = 4500},
+      {name = "revolver", byWeek = 2, price = 10000},
       ----
-      {name = "shootguncompact", byWeek = 0, price = 65000},
-      {name = "revolver", byWeek = 0, price = 14000},
-      {name = "pistol50", byWeek = 0, price = 18000},
-      {name = "dbshotgun", byWeek = 0, price = 70000},
-      {name = "ceramicpistol", byWeek = 0, price = 12000},
+      {name = "shootguncompact", byWeek = 1, price = 65000},
+      {name = "dbshotgun", byWeek = 1, price = 70000},
       {name = "snip", byWeek = 0, price = 4},
       {name = "calibre12", byWeek = 0, price = 3},
 
@@ -937,23 +935,22 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [2] = {
           label = "Confiance commerciale 2",
-          description = "Pour 75 000$ vous obtenez 2 Berettas, 1 pistolets lourds, 1 Fusil à canon scié, 500 balles de 9mm, 150 balles de calibre 12 et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+          description = "Pour 75 000$ vous obtenez 1 Berettas, 1 pistolets lourds, 1 Fusil à canon scié, 500 balles de 9mm, 150 balles de calibre 12 et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
           price = 75000,
           addon = {
-            pistol = 2,
+            pistol = 1,
             mm9 = 750,
             calibre12 = 150,
-            shootguncompact = 1,
             dbshotgun = 2,
             stickybomb = 2,
           }
       },
       [3] = {
         label = "Confiance commerciale 3",
-        description = "Pour 55 000$ vous obtenez 2 Berettas, 1 pistolet lourd, 1 Revolver, 1 Pistolet calibre 50,  750 balles de 9mm, 200 balles de .45 ACP et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+        description = "Pour 55 000$ vous obtenez 1 Berettas, 1 pistolet lourd, 1 Revolver, 1 Pistolet calibre 50,  750 balles de 9mm, 200 balles de .45 ACP et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
         price = 55000,
         addon = {
-          pistol = 2,
+          pistol = 1,
           calibre12 = 150,
           revolver = 1,
           pistol50 = 1,
@@ -963,15 +960,14 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [4] = {
         label = "Confiance commerciale 4",
-        description = "Pour 85 000$ vous obtenez 2 Berettas, 1 pistolet lourd, 1 Skorpion, 1 Tec-9, 60 Calibre 12, 750 balles de 9mm et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+        description = "Pour 85 000$ vous obtenez 1 Berettas, 1 pistolet lourd, 1 Skorpion, 1 Tec-9, 60 Calibre 12, 750 balles de 9mm et 2 explosifs artisanaux en plus par semaine par rapport à la limite de base",
         price = 85000,
         addon = {
-          pistol = 2,
-          --shootguncompact = 1,
-          -- dbshotgun = 4,
+          pistol = 1,
+          shootguncompact = 1,
           calibre12 = 210,
-          --revolver = 1,
-          --pistol50 = 1,
+          dbshotgun = 1,
+          revolver = 2,
           mm9 = 2250,
           stickybomb = 2,
           snip = 200,
@@ -979,19 +975,11 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [5] = {
         label = "Confiance commerciale 5",
-        description = "Pour 45 000$ vous obtenez 2 berettas, 1 Uzi, 1500 balles de 9mm, 60 Calibre 12, et 3 explosifs artisanaux en plus par semaine par rapport à la limite de base",
+        description = "Pour 45 000$ vous obtenez 1 berettas, 1 Uzi, 1500 balles de 9mm, 60 Calibre 12, et 3 explosifs artisanaux en plus par semaine par rapport à la limite de base",
         price = 45000,
         addon = {
-          pistol = 2,
-          -- ceramicpistol = 5,
-          --pitollourd = 3,
-          --shootguncompact = 1,
-          -- dbshotgun = 4,
+          pistol = 1,
           calibre12 = 270,
-          --revolver = 1,
-          --pistol50 = 1,
-          --minismg = 1,
-          --machinepistol = 1,
           mm9 = 3750,
           stickybomb = 3,
           snip = 200,
@@ -1003,17 +991,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           description = "Pour 85 000$ vous obtenez 2500 balles de 9mm, 1 Gusenberg, 60 Calibre 12 et 3 explosifs artisanaux en plus par semaine par rapport à la limite de base",
           price = 85000,
           addon = {
-            --pistol = 10,
-            -- ceramicpistol = 15,
-            --pitollourd = 3,
-            --shootguncompact = 1,
-            -- dbshotgun = 4,
             calibre12 = 330,
-            --revolver = 1,
-            --pistol50 = 1,
-            --minismg = 1,
-            --machinepistol = 1,
-            --microsmg = 1,
             mm9 = 6250,
             stickybomb = 3,
             snip = 200,
@@ -1036,11 +1014,10 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
     },
     limitations = {
       {name = "pitollourd", byWeek = 2, price = 20000},
-      {name = "pistol50", byWeek = 2, price = 18000},
-      {name = "stickybomb", byWeek = 2, price = 1500},
-      {name = "machinepistol", byWeek = 1, price = 20000},
-      {name = "minismg", byWeek = 0, price = 18000},
-      {name = "microsmg", byWeek = 1, price = 1500},
+      {name = "pistol50", byWeek = 2, price = 25000},
+      {name = "machinepistol", byWeek = 1, price = 37000},
+      {name = "minismg", byWeek = 0, price = 28000},
+      {name = "microsmg", byWeek = 1, price = 30000},
       {name = "mm9", byWeek = 1000, price = 2},
       {name = "snip", byWeek = 108, price = 4},
       {name = "calibre12", byWeek = 50, price = 3},
@@ -1084,7 +1061,7 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
       },
       [3] = {
         label = "Confiance commerciale 3",
-        description = "Pour 55 000$ vous obtenez 1 Pistolet lourd, 1 Mini SMG, 1 Machine Pistol 750 balles de 9mm et 3 Bombes artisanal en plus par semaine par rapport à la limite de base",
+        description = "Pour 55 000$ vous obtenez 1 Pistolet lourd, 1 Mini SMG, 1 Machine Pistol 750 balles de 9mm en plus par semaine par rapport à la limite de base",
         price = 55000,
         addon = {
           pitollourd = 1,
@@ -1092,7 +1069,6 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           machinepistol = 1,
           mm9 = 750,
           snip = 75,
-          stickybomb = 5,
         }
       },
       [4] = {
@@ -1107,7 +1083,6 @@ IllegalLabsAndWarehouse.AVAILABLE_GUNLEADS = {
           microsmg = 1,
           mm9 = 1000,
           snip = 75,
-          stickybomb = 2,
         }
       }
     }
