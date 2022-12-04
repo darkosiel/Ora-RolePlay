@@ -5446,21 +5446,21 @@ Jobs = {
                                 end
                             },
                             {
-                                label = "[COOP] Agents LSPD en service",
+                                label = "[COOP] Agents SAHP en service",
                                 onSelected = function()
                                     TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "police")
                                 end
                             },
                             {
-                                label = "Recevoir/Ne plus recevoir les appels LSPD",
+                                label = "Recevoir/Ne plus recevoir les appels SAHP",
                                 onSelected = function()
                                     if not getOtherPoliceCalls then
                                         TriggerServerEvent("Ora::SE::Service:SetPlayerInService", "police")
-                                        RageUI.Popup({message = "~g~Vous recevez désormais les appels LSPD"})
+                                        RageUI.Popup({message = "~g~Vous recevez désormais les appels SAHP"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     else
                                         TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", "police")
-                                        RageUI.Popup({message = "~r~Vous ne recevez plus désormais les appels LSPD"})
+                                        RageUI.Popup({message = "~r~Vous ne recevez plus désormais les appels SAHP"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     end
                                 end
@@ -13552,7 +13552,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Gruppe Sechs", "Annonce", text, "CHAR_BLANK_ENTRY", 8, "Gruppe Sechs")
+                            TriggerServerEvent("Job:Annonce", "Gruppe Sechs", "Annonce", text, "CHAR_g6", 8, "Gruppe Sechs")
                         end
                     end
                 },
@@ -13625,7 +13625,7 @@ Jobs = {
                                 end
                             },
                             {
-                                label = "Appel LSPD",
+                                label = "Appel SAHP",
                                 onSelected = function()
                                     local plyCoords = GetEntityCoords(PlayerPedId())
                                     local x, y, z = table.unpack(plyCoords)
