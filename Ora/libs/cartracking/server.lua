@@ -68,9 +68,7 @@ RegisterServerCallback(
                             )
                         end
                     else
-                        Ora.World.Vehicle:SetVehicleToPound_Plate(carIdentifier
-                            }
-                        )
+                        Ora.World.Vehicle:SetVehicleToPound_Plate(carIdentifier)
                         callback("pounded", nil)
                     end
                 else
