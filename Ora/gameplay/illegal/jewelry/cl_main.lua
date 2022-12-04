@@ -4,12 +4,12 @@
 -----------------------------
 
 -- Give a hammer to a player (for dev use only)
-if isDev then
-    RegisterCommand("hammer", function(source)
-        -- Give riffle to player ped
-        GiveWeaponToPed(Player.Ped, GetHashKey("WEAPON_HAMMER"), 1000, false, true)
-    end)
-end
+-- if isDev then
+--     RegisterCommand("hammer", function(source)
+--         -- Give riffle to player ped
+--         GiveWeaponToPed(Player.Ped, GetHashKey("WEAPON_HAMMER"), 1000, false, true)
+--     end, true)
+-- end
 local dict, effect = "scr_jewelheist", "scr_jewel_fog_volume"
 
 local print2       = print
