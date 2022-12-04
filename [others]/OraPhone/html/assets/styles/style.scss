@@ -4227,9 +4227,9 @@ div#page {
                                                 display: flex;
                                                 flex-direction: column;
                                                 justify-content: center;
-                                                row-gap: 15px;
-                                                margin-bottom: 20px;
-                                                padding: 30px 20px;
+                                                row-gap: 10px;
+                                                margin-bottom: 15px;
+                                                padding: 15px 20px;
                                                 border-radius: 15px;
                                                 overflow: hidden;
                                                 @include themed() {
@@ -4257,11 +4257,24 @@ div#page {
                                                 span {
                                                     font-size: 30px;
                                                     font-family: $ora-font-bold;
+                                                    @extend %text-max-line-1;
                                                     @include themed() {
                                                         color: t($phone-bank-active-color);
                                                     }
                                                     &#bank-content-solde {
-                                                        font-size: 48px;
+                                                        font-size: 46px;
+                                                    }
+                                                }
+                                                select {
+                                                    width: auto;
+                                                    height: 50px;
+                                                    padding: 10px;
+                                                    border: 0;
+                                                    border-radius: 15px;
+                                                    font-size: 24px;
+                                                    @include themed() {
+                                                        background-color: t($phone-bank-background-color-light);
+                                                        color: t($phone-bank-active-color);
                                                     }
                                                 }
                                             }
@@ -4393,11 +4406,16 @@ div#page {
                                                     }
                                                 }
                                                 div {
-                                                    p {
+                                                    p#bank-transfer-error {
                                                         margin-top: 15px;
                                                         text-align: center;
                                                         font-size: 24px;
                                                         font-weight: 600;
+                                                        visibility: hidden;
+                                                        transition: all 0.3s ease-in-out;
+                                                        &.active {
+                                                            visibility: visible;
+                                                        }
                                                     }
                                                 }
                                             }

@@ -1863,17 +1863,21 @@
                                         </div>
                                         <div class="app-body-content-body">
                                             <div class="bank-content">
+                                                <select id="bank-select-account">
+                                                </select>
+                                            </div>
+                                            <div class="bank-content">
                                                 <i class="background-icon fa-solid fa-chart-line"></i>
                                                 <h1>Solde du compte</h1>
-                                                <span id="bank-content-solde">24 500$</span>
+                                                <span id="bank-content-solde">0 $</span>
                                             </div>
                                             <div class="bank-content">
                                                 <h1>Nom du compte</h1>
-                                                <span>CC Mike Bell</span>
+                                                <span id="bank-content-label">Aucun compte</span>
                                                 <h1>IBAN du compte</h1>
-                                                <span>LS-00000000</span>
+                                                <span id="bank-content-iban">Aucun compte</span>
                                                 <h1>Téléphone du compte</h1>
-                                                <span>555-5867</span>
+                                                <span id="bank-content-phone-number">Aucun compte</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1885,44 +1889,7 @@
                                             </div>
                                         </div>
                                         <div class="app-body-content-body">
-                                            <div id="bank-list-history" class="bank-list">
-                                                <div class="bank-list-item">
-                                                    <div>
-                                                        <div>
-                                                            <p>Espèces</p>
-                                                            <span class="remove">-4000$</span>
-                                                        </div>
-                                                        <div>
-                                                            <p>SA-587794</p>
-                                                            <span class="add">+4000$</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="history-item-titre">
-                                                        <p>Titre : <span>Dépôt d'argent à partir CB 8765780757082804</span></p>
-                                                    </div>
-                                                    <div class="history-item-detail">
-                                                        <p>Date : <span>09/07/22 19:15:53</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="bank-list-item">
-                                                    <div>
-                                                        <div>
-                                                            <p>Espèces</p>
-                                                            <span class="remove">-4000$</span>
-                                                        </div>
-                                                        <div>
-                                                            <p>SA-587794</p>
-                                                            <span class="add">+4000$</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="history-item-titre">
-                                                        <p>Titre : <span>Dépôt d'argent à partir CB 8765780757082804</span></p>
-                                                    </div>
-                                                    <div class="history-item-detail">
-                                                        <p>Date : <span>09/07/22 19:15:53</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div id="bank-list-history" class="bank-list"></div>
                                         </div>
                                     </div>
                                     <div id="app-bank-body-content-transfer" class="app-body-content disable-select">
@@ -1938,8 +1905,7 @@
                                             <input type="number" placeholder="Montant à envoyer" id="bank-transfer-amount"/>
                                             <button id="bank-transfer-button">Envoyer</button>
                                             <div>
-                                                <p id="bank-transfer-error" class="success">Virement effectué</p>
-                                                <p id="bank-transfer-error" class="error">Remplissez les champs</p>
+                                                <p id="bank-transfer-error"></p>
                                             </div>
                                         </div>
                                     </div>

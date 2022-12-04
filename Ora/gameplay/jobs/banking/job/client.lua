@@ -1847,8 +1847,6 @@ function ATM.Open(param)
     end
 end
 
-
-
 RegisterNetEvent("Ora:CodeSubmit")
 AddEventHandler("Ora:CodeSubmit", function(code)
     if code then
@@ -2158,6 +2156,55 @@ AddEventHandler("Ora:Send", function(amount, rib1, rib2)
     else
         ShowNotification("Les deux rib sont différents")
     end
+end)
+
+RegisterNetEvent("Ora:SendFromPhone")
+AddEventHandler("Ora:SendFromPhone", function(amount, rib1, rib2, sourceId)
+    TriggerServerCallback(
+        "getBankingAccountsPly2",
+        function(account)
+            account = account[1]
+            if rib1 == rib2 then
+                if amount ~= nil then
+                    if amount <= account.amount then
+                        TriggerServerCallback(
+                            "banksExists",
+                            function(bool)
+                                if bool then
+                                    TriggerServerEvent(
+                                        "bankingSendMoney",
+                                        rib1,
+                                        amount,
+                                        account.iban
+                                    )
+                                    ShowNotification("Virement effectué vers " .. rib1 .. " " .. amount .. "$")
+                                    TriggerServerEvent(
+                                        "newTransaction",
+                                        account.iban,
+                                        rib1,
+                                        amount,
+                                        "Virement"
+                                    )
+                                    Citizen.Wait(500)
+                                    TriggerEvent("OraPhone:client:bank_send")
+                                else
+                                    ShowNotification("Le compte n'existe pas")
+                                end
+                            end,
+                            rib1
+                        )
+                    else
+                        ShowNotification("Montant du compte ~r~insuffisant")
+                    end
+                else
+                    ShowNotification("Montant invalide")
+                end
+            else
+                ShowNotification("Les deux rib sont différents")
+            end
+        end,
+        sourceId
+    )
 end)
 
 RegisterNetEvent("Ora:NewCode")

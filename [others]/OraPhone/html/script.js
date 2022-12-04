@@ -145,6 +145,11 @@ let mapsIntervalMyPosition;
 let markerMyPosition;
 let bounds;
 
+// App Bank
+
+let bankAccountIdSelected = null;
+let bankTransferError = false;
+
 const Delay = ms => new Promise(r=>setTimeout(r, ms));
 
 $(function(){
@@ -304,6 +309,10 @@ $(function(){
                     case "cancelCall":
                         $.post('https://OraPhone/end_call', JSON.stringify({}));
                         break;
+                    case "bankGetAccounts":
+                        userData.bankAccounts = item.accounts;
+                        activateAppBank();
+                        break;
                 }
             });
 
@@ -367,8 +376,8 @@ $(function(){
             if (phoneTest) {
                 await updateUserData(dateTest);
                 displayPhone(true);
-                updateContent("bank");
-                updateAppContent("transfer");
+                updateContent("home");
+                updateAppContent("first");
                 $("#message-list").children().click(function () {
                     updateAppContent("message");
                 });
@@ -462,6 +471,7 @@ function initializeApps() {
     initializeAppNotes();
     initializeAppGallery();
     initializeAppMaps();
+    initializeAppBank();
 
     conversationAuthors = "";
 
@@ -1630,78 +1640,47 @@ function initializeAppMaps() {
     });
 }
 
-function updateNotesNoteContent() {
-    $("#notes-note-content").toggle();
-    $("#notes-note-container").toggle();
-    notesNoteInputToggle = !notesNoteInputToggle;
-    if(notesNoteInputToggle) {
-        $("#notes-note-content").focus();
-    } else {
-        $("#notes-note-container").empty();
-        let lines = $("#notes-note-content").val().split("\n");
-        let newContent = "";
-        for(let line of lines) {
-            if(line.startsWith("- [ ]")) {
-                line = line.replace("- [ ]", "<li><input type='checkbox' class='notes-checklist-item-checkbox unchecked'/><span class='notes-checklist-item-text'>");
-                line += "</span></li>";
-            } else if(line.startsWith("- [x]")) {
-                line = line.replace("- [x]", "<li><input type='checkbox' class='notes-checklist-item-checkbox checked' checked/><span class='notes-checklist-item-text'>");
-                line += "</span></li>";
-            }
-            newContent += line + "<br/>";
-        }
-        $("#notes-note-container").empty();
-        $("#notes-note-container").append(newContent);
-        $("#notes-note-container input").on("input", function() {
-            let find = "";
-            let replacement = "";
-            let index = "";
-            if(this.checked) {
-                find = "- [ ]";
-                replacement = "- [x]";
-                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.unchecked").index(this) + 1).join(find).length;
-                $(this).removeClass("unchecked");
-                $(this).addClass("checked");
+function initializeAppBank() {
+    $("#bank-select-account").change(function() {
+        bankAccountIdSelected = parseInt($(this).val());
+        bankUpdateAccount();
+    });
+    $("#bank-transfer-button").click(function() {
+        let error = false;
+        if (bankAccountIdSelected != null) {
+            let amount = $("#bank-transfer-amount").val();
+            let rib1 = $("#bank-transfer-rib1").val();
+            let rib2 = $("#bank-transfer-rib2").val();
+            if (amount != '' && rib1 != '' && rib2 != '') {
+                amount = parseInt(amount);
+                if (amount > 0) {
+                    if (rib1 == rib2) {
+                        $.post('https://OraPhone/bank_send', JSON.stringify({ amount: amount, rib1: rib1, rib2: rib2, sourceId: bankAccountIdSelected }));
+                        $("#bank-transfer-amount").val("");
+                        $("#bank-transfer-rib1").val("");
+                        $("#bank-transfer-rib2").val("");
+                    } else {
+                        error = "Les RIB ne correspondent pas";
+                    }
+                } else {
+                    error = "Le montant doit être supérieur à 0";
+                }
             } else {
-                find = "- [x]";
-                replacement = "- [ ]";
-                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.checked").index(this) + 1).join(find).length;
-                $(this).removeClass("checked");
-                $(this).addClass("unchecked");
+                error = "Remplissez tous les champs";
             }
-            $("#notes-note-content").val($("#notes-note-content").val().substring(0, index) + replacement + $("#notes-note-content").val().substring(index + replacement.length));
-        });
-    }
-}
-
-function removeNotesFolder() {
-    if(notesListItem) {
-        notesListItem.disabled = true;
-        notesListItem.classList.remove("active");
-        notesListItem = false;
-    }
-    let folder = contextMenuItemClicked.target.closest(".notes-list-item");
-    folder.remove();
-    $.post('https://OraPhone/notes_remove_folder', JSON.stringify({ phoneId: userData.phone.id, name: "Nouveau dossier" }));
-}
-
-function renameNotesFolder() {
-    if(notesListItem) {
-        notesListItem.disabled = true;
-        notesListItem.classList.remove("active");
-        notesListItem = false;
-    }
-    let input = contextMenuItemClicked.target.closest(".notes-list-item").querySelector(".notes-list-item-title");
-    input.disabled = false;
-    input.focus();
-    input.classList.add("active");
-    notesListItem = input;
-    
-}
-
-function removeNotesNote() {
-    let note = contextMenuItemClicked.target.closest(".notes-list-item");
-    note.remove();
+        } else {
+            error = "Aucun compte sélectionné";
+        }
+        if (error && !bankTransferError) {
+            bankTransferError = true;
+            $("#bank-transfer-error").html(error);
+            $("#bank-transfer-error").addClass("error active");
+            setTimeout(function() {
+                $("#bank-transfer-error").removeClass();
+                bankTransferError = false;
+            }, 3000);
+        }
+    });
 }
 
 // Mise à jour des applications
@@ -2178,35 +2157,6 @@ function updateAppNotes() {
     });
 }
 
-function updateNotesFolderLoad(id) {
-    let folder = userData.notes.find( folder => folder.id == id);
-    $("#notes-list-notes").empty();
-    for(let note of folder.notes) {
-        let noteDate = new Date(note.updateTime);
-        let newDivNote = `<div data-folderid="` + note.folderId + `" data-id="` + note.id + `" class="notes-list-item">
-                <span class="notes-list-item-title">` + note.name + `</span>
-                <span class="notes-list-item-date">` + noteDate.getHours() + ":" + noteDate.getMinutes() + `</span>
-            <div class="notes-list-item-bottom">
-                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
-                <span class="notes-list-item-folder">` + folder.name + `</span>
-            </div>
-        </div> `;
-        $("#notes-list-notes").append(newDivNote);
-    }
-    $("#notes-list-notes .notes-list-item").click(function() {
-        updateNotesNoteLoad($(this).data("folderid"), $(this).data("id"));
-        updateAppContent("note");
-    });
-    notesNoteContextMenu.updateTargetNode();
-}
-
-function updateNotesNoteLoad(folderId, id) {
-    let folder = userData.notes.find( folder => folder.id == folderId);
-    let note = folder.notes.find( note => note.id == id);
-    $("#notes-note-title").val(note.name);
-    $("#notes-note-content").val(note.content);
-}
-
 function updateAppGallery() {
     $("#gallery-image-list").empty();
     for(let image of userData.galleryPhoto) {
@@ -2236,7 +2186,7 @@ function updateAppMaps() {
     }
 }
 
-// Activer les applications
+// Activation des applications
 
 function activateAppClock() {
     activateAppClockToggle = true;
@@ -2276,6 +2226,15 @@ function activateAppCamera(app, appSub) {
     $.post('https://OraPhone/open_camera', JSON.stringify({ app, appSub }));
     const canvas = document.getElementById("videocall-canvas");
     MainRender.renderToTarget(canvas);
+}
+
+function activateAppBank() {
+    $("#bank-select-account").empty();
+    for (let account of userData.bankAccounts) {
+        let newOption = `<option value="` + account.id + `" ` + (bankAccountIdSelected == account.id ? 'selected' : '') + `>` + account.label + `</option>`;
+        $("#bank-select-account").append(newOption);
+    }
+    bankUpdateAccount();
 }
 
 // Application paramètre
@@ -2938,6 +2897,111 @@ function timerStart() {
         (timer.ss < 10 ? "0" + timer.ss : timer.ss));
 }
 
+// Application notes
+
+function updateNotesFolderLoad(id) {
+    let folder = userData.notes.find( folder => folder.id == id);
+    $("#notes-list-notes").empty();
+    for(let note of folder.notes) {
+        let noteDate = new Date(note.updateTime);
+        let newDivNote = `<div data-folderid="` + note.folderId + `" data-id="` + note.id + `" class="notes-list-item">
+                <span class="notes-list-item-title">` + note.name + `</span>
+                <span class="notes-list-item-date">` + noteDate.getHours() + ":" + noteDate.getMinutes() + `</span>
+            <div class="notes-list-item-bottom">
+                <i class="fa-regular fa-folder-closed notes-list-item-icon"></i>
+                <span class="notes-list-item-folder">` + folder.name + `</span>
+            </div>
+        </div> `;
+        $("#notes-list-notes").append(newDivNote);
+    }
+    $("#notes-list-notes .notes-list-item").click(function() {
+        updateNotesNoteLoad($(this).data("folderid"), $(this).data("id"));
+        updateAppContent("note");
+    });
+    notesNoteContextMenu.updateTargetNode();
+}
+
+function updateNotesNoteLoad(folderId, id) {
+    let folder = userData.notes.find( folder => folder.id == folderId);
+    let note = folder.notes.find( note => note.id == id);
+    $("#notes-note-title").val(note.name);
+    $("#notes-note-content").val(note.content);
+}
+
+function updateNotesNoteContent() {
+    $("#notes-note-content").toggle();
+    $("#notes-note-container").toggle();
+    notesNoteInputToggle = !notesNoteInputToggle;
+    if(notesNoteInputToggle) {
+        $("#notes-note-content").focus();
+    } else {
+        $("#notes-note-container").empty();
+        let lines = $("#notes-note-content").val().split("\n");
+        let newContent = "";
+        for(let line of lines) {
+            if(line.startsWith("- [ ]")) {
+                line = line.replace("- [ ]", "<li><input type='checkbox' class='notes-checklist-item-checkbox unchecked'/><span class='notes-checklist-item-text'>");
+                line += "</span></li>";
+            } else if(line.startsWith("- [x]")) {
+                line = line.replace("- [x]", "<li><input type='checkbox' class='notes-checklist-item-checkbox checked' checked/><span class='notes-checklist-item-text'>");
+                line += "</span></li>";
+            }
+            newContent += line + "<br/>";
+        }
+        $("#notes-note-container").empty();
+        $("#notes-note-container").append(newContent);
+        $("#notes-note-container input").on("input", function() {
+            let find = "";
+            let replacement = "";
+            let index = "";
+            if(this.checked) {
+                find = "- [ ]";
+                replacement = "- [x]";
+                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.unchecked").index(this) + 1).join(find).length;
+                $(this).removeClass("unchecked");
+                $(this).addClass("checked");
+            } else {
+                find = "- [x]";
+                replacement = "- [ ]";
+                index = $("#notes-note-content").val().split(find, $(".notes-checklist-item-checkbox.checked").index(this) + 1).join(find).length;
+                $(this).removeClass("checked");
+                $(this).addClass("unchecked");
+            }
+            $("#notes-note-content").val($("#notes-note-content").val().substring(0, index) + replacement + $("#notes-note-content").val().substring(index + replacement.length));
+        });
+    }
+}
+
+function removeNotesFolder() {
+    if(notesListItem) {
+        notesListItem.disabled = true;
+        notesListItem.classList.remove("active");
+        notesListItem = false;
+    }
+    let folder = contextMenuItemClicked.target.closest(".notes-list-item");
+    folder.remove();
+    $.post('https://OraPhone/notes_remove_folder', JSON.stringify({ phoneId: userData.phone.id, name: "Nouveau dossier" }));
+}
+
+function renameNotesFolder() {
+    if(notesListItem) {
+        notesListItem.disabled = true;
+        notesListItem.classList.remove("active");
+        notesListItem = false;
+    }
+    let input = contextMenuItemClicked.target.closest(".notes-list-item").querySelector(".notes-list-item-title");
+    input.disabled = false;
+    input.focus();
+    input.classList.add("active");
+    notesListItem = input;
+    
+}
+
+function removeNotesNote() {
+    let note = contextMenuItemClicked.target.closest(".notes-list-item");
+    note.remove();
+}
+
 // Application Maps
 
 function addMarkerToMap(x, y) {
@@ -2972,6 +3036,56 @@ function customIcon(icon){
     });
 }
 
+// Application Bank
+
+function bankUpdateAccount() {
+    let find = false;
+    if (userData.bankAccounts.length > 0 ) {
+        for (let account of userData.bankAccounts) {
+            if (account.id == bankAccountIdSelected || bankAccountIdSelected == null) {
+                bankAccountIdSelected = account.id;
+                $("#bank-content-solde").html(numberWithSpaces(account.amount) + " $");
+                $("#bank-content-label").html(account.label);
+                $("#bank-content-iban").html(account.iban);
+                $("#bank-content-phone-number").html(account.phone_number);
+                $("#bank-list-history").empty();
+                for (let history of account.history) {
+                        let newDiv = `
+                        <div data-id="` + history.id + `" class="bank-list-item">
+                            <div>
+                                <div>
+                                    <p>` + history.src + `</p>
+                                    <span class="remove">-` + numberWithSpaces(history.montant) + `$</span>
+                                </div>
+                                <div>
+                                    <p>` + history.dest + `</p>
+                                    <span class="add">+` + numberWithSpaces(history.montant) + `$</span>
+                                </div>
+                            </div>
+                            <div class="history-item-titre">
+                                <p>Titre : <span>` + history.title + `</span></p>
+                            </div>
+                            <div class="history-item-detail">
+                                <p>Date : <span>` + history.details + `</span></p>
+                            </div>
+                        </div>`;
+                        $("#bank-list-history").append(newDiv);
+                }
+                return;
+            }
+        }
+        bankAccountIdSelected = null;
+        bankUpdateAccount();
+    } else {
+        bankAccountIdSelected = null;
+        $("#bank-content-solde").html("0 $");
+        $("#bank-content-label").html("Aucun compte");
+        $("#bank-content-iban").html("Aucun compte");
+        $("#bank-content-phone-number").html("Aucun compte");
+        $("#bank-list-history").empty();
+    }
+}
+
 // Fonctions d'affichage
 
 function updateContent(menu) {
@@ -2997,6 +3111,8 @@ function updateContent(menu) {
     } else if (menu == "maps") {
         map.fitBounds(bounds);
         mapsUpdateMyPosition(true);
+    } else if (menu == "bank") {
+        $.post('https://OraPhone/bank_get_accounts', JSON.stringify({ phoneId: userData.phone.id }));
     }
     if (menuSelected == "maps") {
         mapsUpdateMyPosition(false);
@@ -3701,7 +3817,7 @@ const config = {
         {
             "name": "bank",
             "label": "Banque",
-            "maintenance": true
+            "maintenance": false
         },
         {
             "name": "phone",

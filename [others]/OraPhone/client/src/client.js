@@ -181,6 +181,43 @@ function DisplayHelpText(str) {
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1);
 }
 
+function bankGetAccounts() {
+    exports.Ora.TriggerServerCallback(
+        "getBankingAccountsPly",
+        async function(val) {
+            let result = [
+                val.own,
+                val.coOwn
+            ];
+            let accounts = [];
+            for (let accountType of result) {
+                for (let account of accountType) {
+                    accounts.push(account);
+                }
+            }
+            for (let account of accounts) {
+                await exports.Ora.TriggerServerCallback(
+                    "getHisto",
+                    function(val) {
+                        account.history = val;
+                    },
+                    account.label,
+                    account.iban
+                );
+            }
+            if (accounts.length > 0) {
+                while (accounts[accounts.length - 1].history == undefined) {
+                    await Wait(100);
+                }
+            }
+            SendNUIMessage({
+                type: 'bankGetAccounts',
+                accounts: accounts,
+            });
+        }
+    );
+}
+
 /**
  * ========================
  * onNet events from server
@@ -343,6 +380,12 @@ onNet('OraPhone:client:maps_update_my_position', data => {
         type: 'updateMapsMyPosition',
         position: data
     });
+});
+
+// Bank
+
+onNet('OraPhone:client:bank_send', () => {
+    bankGetAccounts();
 });
 
 /**
@@ -619,6 +662,18 @@ on('__cfx_nui:maps_favorite_remove_marker', data => {
 RegisterNuiCallbackType('maps_update_my_position');
 on('__cfx_nui:maps_update_my_position', data => {
     emitNet('OraPhone:server:maps_update_my_position', data);
+});
+
+// Bank
+
+RegisterNuiCallbackType('bank_get_accounts');
+on('__cfx_nui:bank_get_accounts', async data => {
+    bankGetAccounts();
+});
+
+RegisterNuiCallbackType('bank_send');
+on('__cfx_nui:bank_send', data => {
+    TriggerEvent("Ora:SendFromPhone", data.amount, data.rib1, data.rib2, data.sourceId);
 });
 
 // --- Tools
