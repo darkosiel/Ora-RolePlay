@@ -88,6 +88,27 @@ Station = {
         title2 = "Borne électrique"
       },
       {
+        id = nil,
+        coords = vector3(818.988, -1028.414, 26.40),
+        radius = 11.00,
+        pedPos = vector4(818.099, -1040.414, 25.80, 6.30),
+        priceL = 2.50
+      }, --La mesa
+      {
+        id = nil,
+        coords = vector3(1687.271, 4929.771, 42.07),
+        radius = 6.50,
+        pedPos = vector4(1707.588, 4918.836, 41.50, 53.25),
+        priceL = 2.30
+      }, --Grapeseed
+      {
+        id = nil,
+        coords = vector3(-1436.879, -276.893, 45.80),
+        radius = 11.00,
+        pedPos = vector4(-1428.467, -268.639, 45.50, 140.00),
+        priceL = 2.80
+      }, --Rockford Hills
+      {
         id = 1,
         coords = vector3(265.02, -1262.519, 29.00),
         radius = 15.00,
@@ -178,119 +199,6 @@ Station = {
         pedPos = vector4(2674.089, 3287.093, 54.50, 154.00), 
         priceL = 1.10
       } --Sandy Shores You tool
-            --Newww
-      {
-        id = 12, 
-        coords = vector3(49.4187, 2778.793, 58.043), 
-        radius = 5.00, 
-        pedPos = vector4(59.1960, 2795.3947, 57.87, 302.7285), 
-        priceL = 1.10
-      }, 
-      {
-        id = 13, 
-        coords = vector3(263.894, 2606.463, 44.983), 
-        radius = 5.00, 
-        pedPos = vector4(265.9018, 2598.2233, 44.8427, 22.30), 
-        priceL = 1.10
-      },
-      {
-        id = 14, 
-        coords = vector3(1207.260, 2660.175, 37.899), 
-        radius = 5.00, 
-        pedPos = vector4(1202.1508, 2654.2246, 37.85, 330.9847), 
-        priceL = 1.10
-      },
-      {
-        id = 15, 
-        coords = vector3(2539.685, 2594.192, 37.944), 
-        radius = 5.00, 
-        pedPos = vector4(2549.0190, 2581.6379, 37.95, 103.3665), 
-        priceL = 1.10
-      },
-      {
-        id = 16, 
-        coords = vector3(-94.4619, 6419.594, 31.489), 
-        radius = 5.00, 
-        pedPos = vector4(-92.6918, 6409.9794, 31.64, 38.87), 
-        priceL = 1.10
-      },
-      {
-        id = 17, 
-        coords = vector3(-1800.375, 803.661, 138.651), 
-        radius = 15.00, 
-        pedPos = vector4(-1829.5999, 801.5898, 138.4157, 31.70), 
-        priceL = 1.10
-      },
-      {
-        id = 18, 
-        coords = vector3(-526.019, -1211.003, 18.184), 
-        radius = 15.00, 
-        pedPos = vector4(-532.1085, -1220.6647, 18.45, 327.0500), 
-        priceL = 1.10
-      },
-      {
-        id = 19, 
-        coords = vector3(-70.2148, -1761.792, 29.534), 
-        radius = 15.00, 
-        pedPos = vector4(-40.8526, -1747.4045, 29.30, 259.77), 
-        priceL = 1.10
-      },
-      {
-        id = 20, 
-        coords = vector3(1208.951, -1402.567,35.224),
-        radius = 15.00, 
-        pedPos = vector4(1211.3699, -1389.2189, 35.37, 175.0447), 
-        priceL = 1.10
-      },
-      {
-        id = 21, 
-        coords = vector3(1181.381, -330.847, 69.316),
-        radius = 15.00, 
-        pedPos = vector4(1160.6176, -311.9264, 69.27, 332.35), 
-        priceL = 1.10
-      },
-      {
-        id = 22, 
-        coords = vector3(176.631, -1562.025, 29.263),
-        radius = 15.00, 
-        pedPos = vector4(167.0162, -1553.1114, 29.26, 228.2322), 
-        priceL = 1.10
-      },
-      {
-        id = 23, 
-        coords = vector3(-319.292, -1471.715, 30.549),
-        radius = 15.00, 
-        pedPos = vector4(-342.3093, -1474.9770, 30.74, 276.07), 
-        priceL = 1.10
-      },
-      {
-        id = 24, 
-        coords = vector3(1784.324, 3330.55, 41.253),
-        radius = 5.00, 
-        pedPos = vector4(1776.3747, 3327.7448, 41.4332, 301.8170), 
-        priceL = 1.10
-      },
-      {
-        id = 25,
-        coords = vector3(818.988, -1028.414, 26.40),
-        radius = 11.00,
-        pedPos = vector4(818.099, -1040.414, 25.80, 6.30),
-        priceL = 2.50
-      }, --La mesa
-      {
-        id = 26,
-        coords = vector3(1687.271, 4929.771, 42.07),
-        radius = 6.50,
-        pedPos = vector4(1707.588, 4918.836, 41.50, 53.25),
-        priceL = 2.30
-      }, --Grapeseed
-      {
-        id = 27,
-        coords = vector3(-1436.879, -276.893, 45.80),
-        radius = 11.00,
-        pedPos = vector4(-1428.467, -268.639, 45.50, 140.00),
-        priceL = 2.80
-      }, --Rockford Hills
     },
 
     boats = {
