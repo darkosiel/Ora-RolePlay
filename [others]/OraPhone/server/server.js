@@ -238,6 +238,24 @@ async function fetchSteamIdFromNumber(num) {
     return fetchDb("SELECT identifier FROM users WHERE phone_number = @num", {num});
 }
 
+async function fetchUuidFromNumber(num) {
+    let phone = fetchDb("SELECT player_uuid FROM ora_phone WHERE number = @num", {num});
+    if (phone) {
+        return phone[0].player_uuid;
+    } else {
+        return null;
+    }
+}
+
+async function fetchSteamIdFromUuid(uuid) {
+    let user = fetchDb("SELECT identifier FROM users WHERE uuid = @uuid", {uuid});
+    if (user) {
+        return user[0].identifier;
+    } else {
+        return null;
+    }
+}
+
 /**
  * Get full phone data from db in a structured object
  * @param {string} steamId 
@@ -647,18 +665,17 @@ onNet('OraPhone:server:update_contact', async data => {
 onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) => {
     inCall = true;
     const src = source;
-    const res = await fetchSteamIdFromNumber(targetNum);
-    if (!res || res.length == 0) {
+    const steamId = await fetchSteamIdFromUuid(await fetchUuidFromNumber(targetNum));
+    if (!steamId || steamId == null) {
         if (modeTest) {
-            console.error('db gave no result for number ',targetNum, res);
+            console.error('db gave no result for number ',targetNum, steamId);
         }
         await Delay(3000);
         if(inCall) {
             emitNet('OraPhone:client:receiver_offline', src);
         }
-        return
+        return;
     }
-    const steamId = res[0]['identifier'];
     const receiver = getOnlinePlayerBySteamId(steamId);
     if (!receiver) {
         if (modeTest) {
@@ -698,7 +715,7 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
 onNet('OraPhone:server:accept_call', async (channel, video=false) => {
     const src = source;
     channel = channel.channel;
-    if (!callers[channel]) {
+    if (!callers[channel] || !callers[channel].callerId || !callers[channel].targetNum) {
         console.error('no registered channel to accept the call', channel);
         return;
     }
@@ -825,11 +842,10 @@ onNet('OraPhone:server:message_update_name_conversation', async (data) => {
     let conversationResponse = await crud.conversations.read({ id: data.id });
     let targetNumber = JSON.parse(conversationResponse[0].targetNumber);
     for(let target of targetNumber) {
-        const res = await fetchSteamIdFromNumber(target.number);
-        if (!res || res.length == 0) {
+        const steamId = await fetchSteamIdFromUuid(await fetchUuidFromNumber(target.number));
+        if (!steamId || steamId == null) {
             continue;
         }
-        const steamId = res[0]['identifier'];
         const receiver = getOnlinePlayerBySteamId(steamId);
         if (!receiver) {
             continue;
@@ -869,11 +885,10 @@ onNet('OraPhone:server:add_message', async (data) => {
         numberList.push(number.number);
     }
     for(let target of data.targetNumber) {
-        const res = await fetchSteamIdFromNumber(target.number);
-        if (!res || res.length == 0) {
+        const steamId = await fetchSteamIdFromUuid(await fetchUuidFromNumber(target.number));
+        if (!steamId || steamId == null) {
             continue;
         }
-        const steamId = res[0]['identifier'];
         const receiver = getOnlinePlayerBySteamId(steamId);
         if (!receiver) {
             if (modeTest) {

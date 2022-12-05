@@ -84,6 +84,7 @@ async function setPhoneVisible(visible = true) {
         await Wait(200);
         clearTick(onTick);
         // bring them back
+        SetNuiFocusKeepInput(true)
         EnableAllControlActions(1);
     }
     // Give & remove focus
