@@ -177,7 +177,7 @@ Station = {
         radius = 5.00, 
         pedPos = vector4(2674.089, 3287.093, 54.50, 154.00), 
         priceL = 1.10
-      } --Sandy Shores You tool
+      }, --Sandy Shores You tool
             --Newww
       {
         id = 12, 
