@@ -239,8 +239,8 @@ async function fetchSteamIdFromNumber(num) {
 }
 
 async function fetchUuidFromNumber(num) {
-    let phone = fetchDb("SELECT player_uuid FROM ora_phone WHERE number = @num", {num});
-    if (phone) {
+    const phone = await fetchDb("SELECT player_uuid FROM ora_phone WHERE number = @num", {num:  num});
+    if (phone.length > 0 || phone[0]) {
         return phone[0].player_uuid;
     } else {
         return null;
@@ -248,8 +248,8 @@ async function fetchUuidFromNumber(num) {
 }
 
 async function fetchSteamIdFromUuid(uuid) {
-    let user = fetchDb("SELECT identifier FROM users WHERE uuid = @uuid", {uuid});
-    if (user) {
+    const user = await fetchDb("SELECT identifier FROM users WHERE uuid = @uuid", {uuid: uuid});
+    if (user.length > 0 || user[0]) {
         return user[0].identifier;
     } else {
         return null;
@@ -677,7 +677,7 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
         return;
     }
     const receiver = getOnlinePlayerBySteamId(steamId);
-    if (!receiver) {
+    if (!receiver || receiver == src) {
         if (modeTest) {
             console.error('Player with steamid', steamId ,'is not currently online');
         }
