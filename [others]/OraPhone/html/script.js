@@ -41,6 +41,7 @@ let notificationMode = "normal"; // normal / nosound / none
 let phoneActive = false;
 let phonePopupActive = false;
 let phoneTest = false;
+let inputToggle = false;
 
 // App Home
 let pageSelectedStart = 1;  
@@ -327,7 +328,7 @@ $(function(){
                     unlockPhone();
                 }
                 // Touche Echap pour fermer le téléphone
-                if (data.which == 27 || (data.which == 8 && menuSelected == "home")) {
+                if (data.which == 27 && !$inputToggle || (data.which == 8 && menuSelected == "home")) {
                     $.post('https://OraPhone/phone_close', JSON.stringify({}));
                 }
             }
@@ -337,9 +338,11 @@ $(function(){
             });
             // Gestion entrer/sortie des inputs
             $(':input').on('blur', function() {
+                $inputToggle = false;
                 $.post('https://OraPhone/EnableInput', JSON.stringify({}));
             });
             $(':input').on('focus', function() {
+                $inputToggle = true;
                 $.post('https://OraPhone/DisableInput', JSON.stringify({}));
             });
 

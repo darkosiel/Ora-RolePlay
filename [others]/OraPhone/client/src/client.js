@@ -100,7 +100,7 @@ async function setPhoneVisible(visible = true) {
         })
     // When we wanna hide the phone
     } else {
-        SetNuiFocusKeepInput(true)
+        SetNuiFocusKeepInput(visible)
         // Play some fivem anim
         await anim.PhonePlayOut();
         // stop blocking controls on tick
