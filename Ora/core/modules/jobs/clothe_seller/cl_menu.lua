@@ -248,31 +248,31 @@ function CreateClotheSellerMenu(jobName, menuTitle, modelPositions, clearParamet
 					end)
 
 					if pedPrev[manqidx] == nil then
-						local isAbleTo = false
-						if Ora.Identity.Job:GetName() == jobName then
-							isAbleTo = (Ora.Identity.Job:IsCoBoss() or Ora.Identity.Job:IsBoss())
-						else
-							isAbleTo = (Ora.Identity.Orga:IsCoBoss() or Ora.Identity.Orga:IsBoss())
-						end
+						-- local isAbleTo = false
+						-- if Ora.Identity.Job:GetName() == jobName then
+						-- 	isAbleTo = (Ora.Identity.Job:IsCoBoss() or Ora.Identity.Job:IsBoss())
+						-- else
+						-- 	isAbleTo = (Ora.Identity.Orga:IsCoBoss() or Ora.Identity.Orga:IsBoss())
+						-- end
 
-						if isAbleTo then
-							RageUI.Button(
-								"Enregistrer la position du mannequin en face de vous",
-								nil,
-								{},
-								true,
-								function(_, Active, Selected)
-									if Selected then
-										local coords = GetEntityCoords(LocalPlayer().Ped)
-										manPos[4][1] = GetEntityForwardX(LocalPlayer().Ped) + coords.x
-										manPos[4][2] = GetEntityForwardY(LocalPlayer().Ped) + coords.y
-										manPos[4][3] = coords.z
-										manPos[4][4] = GetEntityHeading(LocalPlayer().Ped) + 180
-										RageUI.Popup({message = "~g~Position enregistrée pour le mennequin !"})
-									end
-								end
-							)
-						end
+						-- if isAbleTo then
+						-- 	RageUI.Button(
+						-- 		"Enregistrer la position du mannequin en face de vous",
+						-- 		nil,
+						-- 		{},
+						-- 		true,
+						-- 		function(_, Active, Selected)
+						-- 			if Selected then
+						-- 				local coords = GetEntityCoords(LocalPlayer().Ped)
+						-- 				manPos[4][1] = GetEntityForwardX(LocalPlayer().Ped) + coords.x
+						-- 				manPos[4][2] = GetEntityForwardY(LocalPlayer().Ped) + coords.y
+						-- 				manPos[4][3] = coords.z
+						-- 				manPos[4][4] = GetEntityHeading(LocalPlayer().Ped) + 180
+						-- 				RageUI.Popup({message = "~g~Position enregistrée pour le mennequin !"})
+						-- 			end
+						-- 		end
+						-- 	)
+						-- end
 					else
 						manequin = pedPrev[manqidx]
 						RageUI.List("Haut ", tops, topsPos,nil, {},topLocked, function(Hovered, Active, Selected, Index)
