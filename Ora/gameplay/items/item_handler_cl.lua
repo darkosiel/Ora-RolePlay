@@ -423,7 +423,8 @@ local removeHair = {
 local doNotChangeFace = {
     [101] = true,
     [124] = true,
-    [127] = true
+    [121] = true,
+    [127] = true,
 }
 
 function EquipMasks()
