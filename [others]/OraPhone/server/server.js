@@ -327,7 +327,7 @@ async function patchUserData(userData) {
 /**
  * Map connected players source & steamid
  */
-const onlinePlayers = {};
+let onlinePlayers = {};
 
 /**
   * Get steam id by source from the onlinePlayers map
@@ -621,6 +621,13 @@ onNet('OraPhone:server:request_user_data', async data => {
 
 onNet('OraPhone:patch_user_data', async data => {
     patchUserData(data);
+})
+
+onNet('OraPhone:server:refresh_players_loaded', async (data) => {
+    onlinePlayers = {};
+    for (let player of data) {
+        onlinePlayers[player.id] = getSteamId(player.id);
+    }
 })
 
 // Contacts

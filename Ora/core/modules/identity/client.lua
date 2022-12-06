@@ -99,6 +99,10 @@ function Ora.Identity:GetMyGroup()
   return identity.group
 end
 
+function GetMyGroup()
+  local identity = Ora.Identity:GetMyIdentity()
+  return identity.group
+end
 
 function Ora.Identity:HasAnyJob(job)
 	if (job == self.Job:GetName() or job == self.Orga:GetName()) then

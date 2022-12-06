@@ -24,6 +24,27 @@ let OraUtilsPlayerHud = true;
 RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'f2')
 RegisterCommand('phone', _=>setPhoneVisible(!phoneVisible))
 
+let myGroup = exports.Ora.GetMyGroup();
+if (myGroup && myGroup == "superadmin") {
+    RegisterCommand('oraphonerefreshplayer', _=>GetPlayers())
+}
+
+function GetPlayers() {
+    myGroup = exports.Ora.GetMyGroup();
+    if (myGroup && myGroup == "superadmin") {
+        let players = [];
+        exports.Ora.TriggerServerCallback(
+            "onlinePlayers:list",
+            function(users) {
+                for (let user of users) {
+                    players.push(user);
+                }
+                emitNet("OraPhone:server:refresh_players_loaded", players);
+            }
+        );
+    }
+}
+
 function setMouseFocus(active = true) {
     mouseFocus = active;
 }
@@ -79,13 +100,13 @@ async function setPhoneVisible(visible = true) {
         })
     // When we wanna hide the phone
     } else {
+        SetNuiFocusKeepInput(true)
         // Play some fivem anim
         await anim.PhonePlayOut();
         // stop blocking controls on tick
         await Wait(200);
         clearTick(onTick);
         // bring them back
-        SetNuiFocusKeepInput(true)
         EnableAllControlActions(1);
     }
     // Give & remove focus

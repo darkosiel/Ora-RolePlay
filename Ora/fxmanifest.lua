@@ -609,6 +609,7 @@ export "GetItemsData"
 export "TriggerPlayerEvent"
 server_export "RegisterServerCallback"
 export "GetGroup"
+export "GetMyGroup"
 export "OpenCar"
 
 -- Inventory exports
