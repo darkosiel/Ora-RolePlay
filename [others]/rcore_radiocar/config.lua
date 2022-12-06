@@ -174,7 +174,14 @@ Config.blacklistedCars = {
 -- if you set for an example "anyBoat = false"
 -- you can allow one boat from other many to use radio.
 Config.whitelistedCars = {-- car
-    --GetHashKey("car name here"),
+    GetHashKey("LSFDTRUCK3"),    
+    GetHashKey("LSFDTRUCK2"),
+    GetHashKey("LSFDTRUCK"),
+    GetHashKey("LSFD"),
+    GetHashKey("LSFD2"),
+    GetHashKey("LSFD3"),
+    GetHashKey("LSFD4"),
+    GetHashKey("LSFD5"),
 }
 
 -- Blacklisted categories vehicles
