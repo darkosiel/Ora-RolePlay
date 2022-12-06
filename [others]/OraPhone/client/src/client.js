@@ -19,6 +19,7 @@ let onTickCamera;
 let onTickCallReceive;
 let phoneActive = false;
 let canSetPhoneVisible = true;
+let OraUtilsPlayerHud = true;
 
 RegisterKeyMapping('phone', 'Téléphone', 'keyboard', 'f2')
 RegisterCommand('phone', _=>setPhoneVisible(!phoneVisible))
@@ -106,6 +107,7 @@ function CellFrontCamActivate(activate) {
 DestroyMobilePhone()
 async function setCamera(activate) {
     if(activate) {
+        OraUtilsPlayerHud = exports.Ora_utils.GetPlayerHUD();
         exports.Ora_utils.SetPlayerHUD(false);
         onTickCamera = setTick(async () => {
             DisableControlAction(1, 200);
@@ -166,7 +168,9 @@ async function stopCamera() {
     CellCamActivate(false, false);
     setPhoneVisible(true);
     await Wait(500);
-    exports.Ora_utils.SetPlayerHUD(true);
+    if (OraUtilsPlayerHud) {
+        exports.Ora_utils.SetPlayerHUD(true);
+    }
     stopTick();
 }
 
