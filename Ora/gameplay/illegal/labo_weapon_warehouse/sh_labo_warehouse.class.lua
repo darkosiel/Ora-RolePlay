@@ -615,14 +615,14 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
     computer = vector3(1087.27, -3194.23, -38.99 - 0.95),
     attackTime = 900,
     limitations = {
-        craft_time = 60,
+        craft_time = 90,
         item_quality = 35,
         required = {
           {name = "cocafeuille", count = 20},
           {name = "eaudechaux", count = 20}
         },
         give_item = "chlorycoke",
-        give_item_count = 20
+        give_item_count = 60
     },
     delivery = {
       -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
@@ -659,7 +659,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           description = "Pour 30 000$ vous produisez plus rapidement",
           price = 30000,
           addon = {
-            craft_time = 50,
+            craft_time = 70,
           }
       },
       [2] = {
@@ -667,7 +667,7 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
           description = "Pour 70 000$ vous produisez plus rapidement",
           price = 70000,
           addon = {
-            craft_time = 40,
+            craft_time = 60,
           }
       },
 
