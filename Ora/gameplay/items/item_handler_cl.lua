@@ -1508,6 +1508,7 @@ function EquipWeapon(weapon)
             SetPedWeaponTintIndex(playerPed, GetHashKey(name), data.tint)
         end
         if data ~= nil and data.access ~= nil then
+            print("Access: ", data.access)
             for component, bool in pairs(data.access) do
                 if bool then
                     GiveWeaponComponentToPed(LocalPlayer().Ped, GetHashKey(name), tonumber(component))
@@ -3481,13 +3482,12 @@ function UseWeaponAccessory(item)
     Ora.Inventory.SelectedItem = nil
 end
 
-local menu = RageUI.CreateMenu("Weapon Accessories", "Select an accessory to unequip")
 
-Citizen.CreateThread(function() while true do
-    Wait(1.0)
-    if RageUI.Visible(menu) then
-        RageUI.DrawContent({ header = true, glare = true, instructionalButton = true }, function()
-            local weapon = LocalPlayer().Weapon
+function WeaponsAccessoriesMenu()
+    RageUI.DrawContent({ header = true, glare = true, instructionalButton = true }, function()
+        local weapon = LocalPlayer().Weapon
+        local none = true
+        if componentsHashes[weapon] ~= nil then
             for k, curr_comp in pairs(componentsHashes[weapon]) do
                 if HasPedGotWeaponComponent(LocalPlayer().Ped, weapon, curr_comp) then
                     RageUI.Button(Items[k].label, nil, {}, true, function(_, _, s)
@@ -3507,21 +3507,25 @@ Citizen.CreateThread(function() while true do
                                     break
                                 end
                             end
-
+                            
                             Ora.Inventory:AddItem({name = k})
                         end
                     end)
+                    none = false
                 end
-            end
-        end, function() end)
-    end
-end end)
+            end    
+        end  
+        if none then
+            RageUI.Button("Aucun accessoire", nil, {}, true, function(_, _, s)
+            end)
+        end
+    end, function() end )
+end
 
-
-RegisterCommand("weaponAccessories", function()
-    if LocalPlayer().Weapon > 0 then
-        RageUI.Visible(menu, not RageUI.Visible(menu))
-    else
-        SendNotification("~r~Vous n'avez pas d'arme en main")
-    end
-end, false)
+-- RegisterCommand("weaponAccessories", function()
+--     if LocalPlayer().Weapon > 0 then
+--         RageUI.Visible(menu, not RageUI.Visible(menu))
+--     else
+--         SendNotification("~r~Vous n'avez pas d'arme en main")
+--     end
+-- end, false)

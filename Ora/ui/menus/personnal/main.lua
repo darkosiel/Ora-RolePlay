@@ -72,10 +72,7 @@ Citizen.CreateThread(
                             nil,
                             {RightBadge = RageUI.BadgeStyle.Question},
                             true,
-                            function(_, _, Selected)
-                                if Selected then
-                                end
-                            end,
+                            function(_, _, Selected) end,
                             RMenu:Get("personnal", "infos")
                         )
 

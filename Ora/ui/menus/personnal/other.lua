@@ -103,6 +103,12 @@ RMenu.Add(
 )
 
 RMenu.Add(
+    "personnal_actions",
+    "weapons",
+    RageUI.CreateSubMenu(RMenu:Get("personnal", "actions"), "Mon arme", "Gérer les accessoires de mon arme")
+)
+
+RMenu.Add(
     "personnal",
     "infos",
     RageUI.CreateSubMenu(RMenu:Get("personnal", "main"), "Informations", "Informations disponibles")
@@ -441,6 +447,9 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = true},
                     function()
+                        -- RageUI.Button("Mon arme", "Permet de gérer les équipements d'armes", {RightLabel = ">"}, true, function(_, _, Selected)
+                        -- end, RMenu:Get("personnal_actions", "weapons"))
+
                         RageUI.Checkbox(
                             "Visière",
                             "Permet d'activer/désactiver la visière de votre casque si il le permet",
@@ -573,6 +582,11 @@ Citizen.CreateThread(
                     end
                 )
             end
+
+            if RageUI.Visible(RMenu:Get("personnal_actions", "weapons")) then
+                WeaponsAccessoriesMenu()              
+            end
+
             if RageUI.Visible(RMenu:Get("personnal", "actions_mykey")) then
                 RageUI.DrawContent(
                     {header = true, glare = true},
