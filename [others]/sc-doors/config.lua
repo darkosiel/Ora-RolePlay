@@ -1878,6 +1878,16 @@ Config.DoorList = {
         maxDistance = 3.0
     },
 
+    --Galaxy
+    {
+        objHash = -957944942,
+        objCoords = vector3(403.9532165527344, 248.79542541503906, 92.18533325195312),
+        textCoords = vector3(403.9532165527344, 248.79542541503906, 92.18533325195312),
+        authorizedJobs = {"night"},
+        locked = true,
+        maxDistance = 1.5
+    },
+
 }
 
 
