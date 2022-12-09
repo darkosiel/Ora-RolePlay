@@ -6285,7 +6285,7 @@ Jobs = {
                 Name = "coffre Saisies DB"
             },
             {
-                Pos = {x = -1079.99, y = -823.06, z = 13.88},
+                Pos = {x = 876.19, y = -1352.45, z = 26.32},
                 Limit = 99999999,
                 Name = "coffre SWAT"
             }
