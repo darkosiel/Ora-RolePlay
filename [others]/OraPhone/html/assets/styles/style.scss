@@ -2324,6 +2324,19 @@ div#page {
                                                             color: t($phone-app-label-color-primary);
                                                         }
                                                     }
+                                                    button {
+                                                        width: 70%;
+                                                        height: 40px;
+                                                        border: 0;
+                                                        border-radius: 10px;
+                                                        font-size: 20px;
+                                                        cursor: pointer;
+                                                        transition: all 0.3s ease-in-out;
+                                                        @include themed() {
+                                                            background: t($phone-app-label-color-primary);
+                                                            color: t($phone-app-background-color);
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }

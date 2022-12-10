@@ -580,6 +580,15 @@ on('__cfx_nui:add_potition_on_map', data => {
     SetNewWaypoint(parseInt(data.x), parseInt(data.y));
 });
 
+RegisterNuiCallbackType('message_add_author_conversation');
+on('__cfx_nui:message_add_author_conversation', data => {
+    if (!data.id && !data.author) { 
+        console.error('missing id and name');
+        return;
+    }
+    emitNet('OraPhone:server:message_add_author_conversation', data);
+});
+
 // Richter Motorsport
 
 RegisterNuiCallbackType('refresh_richtermotorsport_advertisement');

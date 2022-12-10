@@ -918,6 +918,34 @@ onNet('OraPhone:server:add_message', async (data) => {
     }
 })
 
+onNet('OraPhone:server:message_add_author_conversation', async (data) => {
+    const src = source;
+    let conversationResponse = await crud.conversations.read({ id: data.id });
+    let targetNumber = JSON.parse(conversationResponse[0].targetNumber);
+    for (let target of targetNumber) {
+        if (target.number == data.author) {
+            if (modeTest) {
+                console.error('author already in conversation');
+            }
+            return;
+        }
+    }
+    targetNumber.push({ number: data.author, active: true, isRead: true });
+    await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(targetNumber) });
+    for(let target of targetNumber) {
+        const steamId = await fetchSteamIdFromUuid(await fetchUuidFromNumber(target.number));
+        if (!steamId || steamId == null) {
+            continue;
+        }
+        const receiver = getOnlinePlayerBySteamId(steamId);
+        if (!receiver) {
+            continue;
+        }
+        emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number));
+    }
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.author));
+})
+
 // Richter Motorsport
 
 onNet('OraPhone:server:refresh_richtermotorsport_advertisement', async data => {

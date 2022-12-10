@@ -739,6 +739,13 @@ function initializeAppMessage() {
     $("#message-position-button-marker").click(function () {
         $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: "GPSMYMARKER" }));
     });
+    $("#editmessage-list-item-addcontact-button").click(function() {
+        let conversationAddContactInputVal = $("#editmessage-list-item-addcontact input").val().toString();
+        if(conversationAddContactInputVal.length == 7 && /555\d{4}/.test(conversationAddContactInputVal)) {
+            $.post('https://OraPhone/message_add_author_conversation', JSON.stringify({ id: $('.app-message-conversation .messages').data("conversation-id"), author: conversationAddContactInputVal, number: userData.phone.number }));
+            $("#editmessage-list-item-addcontact input").val("");
+        }
+    });
 }
 
 function initializeAppCall() {
