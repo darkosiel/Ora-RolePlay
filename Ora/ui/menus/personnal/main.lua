@@ -57,14 +57,7 @@ Citizen.CreateThread(
                             nil,
                             {RightBadge = RageUI.BadgeStyle.Chapeau},
                             true,
-                            function(_, _, Selected)
-                                if Selected then
-                                    if LocalPlayer().Handcuff then
-                                        CloseAllMenus()
-                                        ShowNotification("~r~Vous ne pouvez pas faire ça")
-                                    end
-                                end
-                            end,
+                            function(_, _, Selected) end,
                             RMenu:Get("personnal", "actions")
                         )
 
