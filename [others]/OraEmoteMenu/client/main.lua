@@ -50,29 +50,6 @@ local function DoNotifAndRemove(text, timer)
     end)
 end
 
-    --             DemarcheInd = GetResourceKvpInt("Ora::CE::Demarche", 1)
-    
-    --             -- To actualize de value of LocalPlayer().Ped to make sure we do have to right ped
-    --             LocalPlayer().Ped = PlayerPedId()
-    --             local ped = LocalPlayer().Ped
-    --             ResetPedMovementClipset(ped, 0)
-    --             if DemarcheInd >= 1 then
-    --                 local clipset = demarcheAnim[DemarcheInd].dict
-    --                 RequestAnimSet(clipset)
-    --                 while not HasAnimSetLoaded(clipset) do
-    --                     Citizen.Wait(100)
-    --                 end
-    --                 SetPedMovementClipset(ped, clipset, 0)
-    --             end
-                
-    --             HumeurInd = GetResourceKvpInt("Ora::CE::Humeur", 1)
-    
-    --             ClearFacialIdleAnimOverride(ped)
-    --             if HumeurInd >= 1 then
-    --                 local anim = emoteList[HumeurInd].dict
-    --                 SetFacialIdleAnimOverride(ped, anim, 0)
-    --             end
-    --         end)
 RegisterKeyMapping('emote', 'Menu emote', 'keyboard', 'f3')
 RegisterCommand('emote', function()
     SetDisplay(not display)
@@ -109,9 +86,9 @@ AddEventHandler("Ora::CE::Character:Loaded", function()
     TriggerServerEvent("OraEmoteMenu:ServerGetPreferences")
 end)    
 
-AddEventHandler("onResourceStart", function()
+AddEventHandler("onResourceStart", function(resourceName)
     -- check if the player is already loaded
-    if (GetCurrentResourceName() == "OraEmoteMenu") and exports.Ora:IsInitialized() then
+    if (GetCurrentResourceName() == resourceName) and exports.Ora:IsInitialized() then
         TriggerServerEvent("OraEmoteMenu:ServerGetFavoriteEmoteList")
         TriggerServerEvent("OraEmoteMenu:ServerGetPreferences")
     end
@@ -584,7 +561,6 @@ AddEventHandler("OraEmoteMenu:ClientEmoteRequestReceive", function(emotename, et
 end)
 
 RegisterNetEvent("OraEmoteMenu:ClientGetPreferences", function(data)
-    print("Received preferences: "..data)
     local data = json.decode(data)
     for k, v in pairs(data) do
         if v ~= preferences[k] then
