@@ -183,7 +183,7 @@ Ora.Consumable.Alcohol = {
     }, 
     ["pink_wine"] = {
       bottle = "prop_wine_rose",
-      glass = "prop_wine_rose",
+      glass = "p_wine_glass_s",
       anim = {
         dict = "mp_safehousewine@",
         ped = "drinking_wine",
