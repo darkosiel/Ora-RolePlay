@@ -1,6 +1,8 @@
 fx_version "cerulean"
 games { "gta5" }
 
+lua54 'yes'
+
 ui_page "html/index.html"
 
 client_scripts {
@@ -20,6 +22,6 @@ server_scripts {
 
 files {
     "html/style.css",
-    "html/script.js",
+    "html/script_unminified.js",
     "html/index.html",
 }

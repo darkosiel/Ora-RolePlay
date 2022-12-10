@@ -2,6 +2,8 @@
 var emoteFavoriteList = [];
 var tabOpen = "expressions";
 
+var preferences = {};
+
 $(function(){
 	window.onload = (e) => {
 		window.addEventListener('message', (event) => {
@@ -22,6 +24,11 @@ $(function(){
                 }
                 createEmoteList();
                 updateFavoriteStatus();
+            }
+            if (item !== undefined && item.type === "receivePreferences") {
+                preferences = JSON.parse(item.data);
+                createEmoteList();
+
             }
 		});
         $('#expressions').show();
@@ -104,9 +111,12 @@ function searchEmote() {
 }
 
 function createEmoteList() {
+    let stopButton = '<div class="content-item" data-name="stop-current"><div class="content-item-name reset-button"> <span>Réinitialiser</span></div></div>';
+
     for(let elt of animationType) {
         let id = "#" + elt.toLowerCase();
         $(id).empty();
+        animThatHaveOptionButtons[elt] && $(id).append(stopButton)
         for(let emote of emotes[elt]) {
             let favorite = false;
             for(let emoteFavorite of emoteFavoriteList) {
@@ -114,15 +124,37 @@ function createEmoteList() {
                     favorite = true;
                 }
             }
-            let emoteTemplate = `<div class="content-item" data-name="` + emote + `">` + (favorite ? `<div class="content-item-favorite-button favorite-active">` : `<div class="content-item-favorite-button favorite-inactive">`)+ (favorite ? `<i class="fa-solid fa-star"></i>` : `<i class="fa-regular fa-star"></i>`) + `</div><div class="content-item-name"> <span>` + emote.charAt(0).toUpperCase() + emote.slice(1) + `</span></div></div>`;
+            let emoteTemplate = `<div class="content-item" data-name="` + emote + `">` + (favorite ? `<div class="content-item-favorite-button favorite-active">` : `<div class="content-item-favorite-button favorite-inactive">`)+ (favorite ? `<i class="fa-solid fa-star"></i>` : `<i class="fa-regular fa-star"></i>`) + `</div><div class="content-item-name"> <span>` + emote.charAt(0).toUpperCase() + emote.slice(1) + `</span></div>` + (animThatHaveOptionButtons[elt] ? '<div class="content-item-save ' + (preferences[elt.toLowerCase()] == emote ? 'checked"> <i class="fa-solid fa-check' : '"> <i class="fa-solid fa-check') + '"></i></div>' : "") + `</div>`;
             $(id).append(emoteTemplate);
         }
     }
-    for(let emote of document.getElementsByClassName('content-item-name')) {
-        emote.addEventListener('click', (e) => {
-            $.post('https://OraEmoteMenu/playEmote', JSON.stringify({name: emote.parentNode.dataset.name}));
-        })
+    for (let elt of document.getElementsByClassName("content-item-name")) {
+        elt.addEventListener("click", (e) => {
+            if ("stop-current" == elt.parentNode.dataset.name) {
+                if ("expressions" === tabOpen && "" === preferences[tabOpen]) {
+                    $.post("https://OraEmoteMenu/playEmote", JSON.stringify({ name: "Défaut" }));
+                    return;
+                }
+                if ("walks" === tabOpen && "" !== preferences[tabOpen]) $.post("https://OraEmoteMenu/playEmote", JSON.stringify({ name: "Défaut" })), 
+                
+                $.post("https://OraEmoteMenu/playEmote", JSON.stringify({ name: preferences[tabOpen] }));
+            } else {
+                $.post("https://OraEmoteMenu/playEmote", JSON.stringify({ name: elt.parentNode.dataset.name }));
+            }
+        });
     }
+    for (let saveBtn of document.getElementsByClassName("content-item-save")) {
+        saveBtn.addEventListener("click", (e) => {
+            let a = saveBtn.parentNode.dataset.name,
+                t = tabOpen;
+            void 0 === preferences[t] && (preferences[t] = ""), (preferences[t] = preferences[t] === a ? "" : a), $.post("https://OraEmoteMenu/savePreferences", JSON.stringify({ data: preferences }));
+        });
+    }
+}
+
+const animThatHaveOptionButtons = {
+    "Expressions": true,
+    "Walks": true,
 }
 
 const animationType = [

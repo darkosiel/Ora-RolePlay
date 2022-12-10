@@ -19,7 +19,60 @@ local PtfxNoProp = false
 local lang = Config.MenuLanguage
 local isRequestAnim = false
 local requestedemote = ''
+local preferences = {}
 
+local notificationPatterns <const> = {
+    default_walk = "Votre nouvelle démarche par défaut est : ~b~%s~s~.",
+    default_expression = "Votre nouvelle expression par défaut est : ~b~%s~s~.",
+    new_walk = "Votre nouvelle démarche est : ~b~%s~s~.",
+    new_expression = "Votre nouvelle expression est : ~b~%s~s~.",
+}
+
+local notifId = nil
+
+local function DoNotif(text)
+    if notifId ~= nil then
+        RemoveNotification(notifId)
+    end
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(text)
+    return DrawNotification(false, false)
+end
+
+local function DoNotifAndRemove(text, timer)
+    notifId = DoNotif(text)
+    local oldNotif = notifId
+    Citizen.SetTimeout((timer ~= nil and tonumber(timer) > 1500) and timer or 2500, function()
+        if oldNotif == notifId then
+            RemoveNotification(notifId)
+            notifId = nil
+        end
+    end)
+end
+
+    --             DemarcheInd = GetResourceKvpInt("Ora::CE::Demarche", 1)
+    
+    --             -- To actualize de value of LocalPlayer().Ped to make sure we do have to right ped
+    --             LocalPlayer().Ped = PlayerPedId()
+    --             local ped = LocalPlayer().Ped
+    --             ResetPedMovementClipset(ped, 0)
+    --             if DemarcheInd >= 1 then
+    --                 local clipset = demarcheAnim[DemarcheInd].dict
+    --                 RequestAnimSet(clipset)
+    --                 while not HasAnimSetLoaded(clipset) do
+    --                     Citizen.Wait(100)
+    --                 end
+    --                 SetPedMovementClipset(ped, clipset, 0)
+    --             end
+                
+    --             HumeurInd = GetResourceKvpInt("Ora::CE::Humeur", 1)
+    
+    --             ClearFacialIdleAnimOverride(ped)
+    --             if HumeurInd >= 1 then
+    --                 local anim = emoteList[HumeurInd].dict
+    --                 SetFacialIdleAnimOverride(ped, anim, 0)
+    --             end
+    --         end)
 RegisterKeyMapping('emote', 'Menu emote', 'keyboard', 'f3')
 RegisterCommand('emote', function()
     SetDisplay(not display)
@@ -32,6 +85,8 @@ RegisterCommand('emote', function()
         DisableControlAction(0, 18, display) -- Enter
         DisableControlAction(0, 322, display) -- ESC
         DisableControlAction(0, 106, display) -- VehicleMouseControlOverride
+        DisableControlAction(0, 24, display) -- Attack
+        DisableControlAction(0, 25, display) -- Aim
         DisableControlAction(0, 3, true) -- disable mouse look
         DisableControlAction(0, 4, true) -- disable mouse look
         DisableControlAction(0, 5, true) -- disable mouse look
@@ -49,6 +104,18 @@ RegisterCommand('emote', function()
         DisableControlAction(0, 245, true) -- disable chat
     end
 end, false)
+AddEventHandler("Ora::CE::Character:Loaded", function()
+    TriggerServerEvent("OraEmoteMenu:ServerGetFavoriteEmoteList")
+    TriggerServerEvent("OraEmoteMenu:ServerGetPreferences")
+end)    
+
+AddEventHandler("onResourceStart", function()
+    -- check if the player is already loaded
+    if (GetCurrentResourceName() == "OraEmoteMenu") and exports.Ora:IsInitialized() then
+        TriggerServerEvent("OraEmoteMenu:ServerGetFavoriteEmoteList")
+        TriggerServerEvent("OraEmoteMenu:ServerGetPreferences")
+    end
+end)
 
 RegisterCommand('e', function(source, args, raw) EmoteStart(args[1]) end)
 
@@ -61,10 +128,6 @@ function SetDisplay(status)
     })
 end
 
-Citizen.CreateThread(function()
-    Citizen.Wait(500)
-    TriggerServerEvent("OraEmoteMenu:ServerGetFavoriteEmoteList")
-end)
 
 Citizen.CreateThread(function()
     while true do
@@ -170,16 +233,16 @@ function EmoteStart(emoteName)
         elseif DP.PropEmotes[name] ~= nil then
             if OnEmotePlay(DP.PropEmotes[name]) then end return
         elseif DP.Expressions[name] ~= nil then
-            if OnEmotePlay(DP.Expressions[name]) then end return
+            if OnEmotePlay(DP.Expressions[name], name) then end return
         elseif DP.Walks[name] ~= nil then
-            if WalkMenuStart(DP.Walks[name]) then end return
+            if WalkMenuStart(DP.Walks[name], name) then end return
         end
     end
 end
 
 function OnEmotePlay(EmoteName, name)
 
-    if (name ~= nil) then
+    if (name ~= nil and DP.Shared[name] ~= nil) then
         target, distance = GetClosestPlayer()
         if(distance ~= -1 and distance < 3) then
             _,_,rename = table.unpack(DP.Shared[name])
@@ -214,8 +277,15 @@ function OnEmotePlay(EmoteName, name)
     end
 
     if ChosenDict == "Expression" then
-        SetFacialIdleAnimOverride(PlayerPedId(), ChosenAnimation, 0)
-        return
+        if ChosenAnimation ~= "default" then
+            SetFacialIdleAnimOverride(PlayerPedId(), ChosenAnimation, 0)
+            DoNotifAndRemove(notificationPatterns.new_expression:format(name))
+            return
+        else
+            ClearFacialIdleAnimOverride(PlayerPedId())
+            DoNotifAndRemove(notificationPatterns.new_expression:format(name))
+            return
+        end
     end
 
     if ChosenDict == "MaleScenario" or "Scenario" then 
@@ -327,6 +397,12 @@ function OnEmotePlay(EmoteName, name)
     return true
 end
 
+function IsInAnim()
+    return IsInAnimation
+end
+
+exports('IsInAnim', IsInAnim)
+
 function CheckGender()
     local hashSkinMale = GetHashKey("mp_m_freemode_01")
     local hashSkinFemale = GetHashKey("mp_f_freemode_01")
@@ -403,11 +479,12 @@ function PtfxStop()
     end
 end
 
-function WalkMenuStart(EmoteName)
-    name = table.unpack(EmoteName)
+function WalkMenuStart(EmoteName, Label)
+    local name = table.unpack(EmoteName)
     RequestWalking(name)
     SetPedMovementClipset(PlayerPedId(), name, 0.2)
-    RemoveAnimSet(name)
+    RemoveAnimSet(name)        
+    DoNotifAndRemove(notificationPatterns.new_walk:format(Label))
 end
 
 function RequestWalking(set)
@@ -506,6 +583,33 @@ AddEventHandler("OraEmoteMenu:ClientEmoteRequestReceive", function(emotename, et
     SimpleNotify(Config.Languages[lang]['doyouwanna']..remote.."~w~)")
 end)
 
+RegisterNetEvent("OraEmoteMenu:ClientGetPreferences", function(data)
+    print("Received preferences: "..data)
+    local data = json.decode(data)
+    for k, v in pairs(data) do
+        if v ~= preferences[k] then
+            if v == "" then
+                if k == "walks" then
+                    ResetPedMovementClipset(PlayerPedId())
+                    DoNotifAndRemove(notificationPatterns.default_walk:format("Défaut"))
+                elseif k == "expressions" then
+                    ClearFacialIdleAnimOverride(PlayerPedId())
+                    DoNotifAndRemove(notificationPatterns.default_expression:format("Défaut"))
+                end
+                preferences[k] = v
+            else
+                preferences[k] = v
+                EmoteStart(v)
+                DoNotifAndRemove(notificationPatterns[k == "walks" and "default_walk" or "default_expression"]:format(v))
+            end
+        end
+    end
+    SendNUIMessage({
+        type = "receivePreferences",
+        data = json.encode(data)
+    })
+end)
+
 RegisterNetEvent("OraEmoteMenu:SyncPlayEmote")
 AddEventHandler("OraEmoteMenu:SyncPlayEmote", function(emote, player)
     EmoteCancel()
@@ -549,6 +653,17 @@ RegisterNUICallback("removeFavoriteEmote", function(data)
     TriggerServerEvent('OraEmoteMenu:ServerRemoveFavoriteEmote', data.emote)
 end)
 
+RegisterNUICallback("savePreferences", function(data)
+    if data.data.walks == "" then
+        if GetEntityModel(PlayerPedId()) == GetHashKey("mp_f_freemode_01") then
+            data.data.walks = "Default Female"
+        else
+            data.data.walks = "Default Male"
+        end
+    end
+    TriggerServerEvent('OraEmoteMenu:ServerSavePreferences', json.encode(data.data))
+end)
+
 RegisterNUICallback('EnableInput', function()
     Citizen.Trace("EnableInput")
     SetNuiFocusKeepInput(true)
@@ -559,7 +674,7 @@ RegisterNUICallback('DisableInput', function()
 end)
 
 RegisterNUICallback('DisableWalkExpression', function()
-    ResetPedMovementClipset(PlayerPedId())
-    ClearFacialIdleAnimOverride(PlayerPedId())
+    -- ResetPedMovementClipset(PlayerPedId())
+    -- ClearFacialIdleAnimOverride(PlayerPedId())
     EmoteCancel()
 end)

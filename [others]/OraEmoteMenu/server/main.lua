@@ -43,3 +43,30 @@ AddEventHandler("OraEmoteMenu:ServerRemoveFavoriteEmote", function(emote)
         TriggerClientEvent("OraEmoteMenu:ClientGetFavoriteEmoteList", src, 'getFavorite')
     end)
 end)
+
+-----------------------------------------------------------------------------------------------------
+-- Preferences (Walks and Expression) --------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+RegisterServerEvent("OraEmoteMenu:ServerGetPreferences", function()
+    local src = source local srcid = GetPlayerIdentifier(source)
+    print("ServerGetPreferences: " .. srcid)
+    MySQL.Async.fetchScalar('SELECT preferences FROM ora_emote_menu_preferences WHERE `player_id`=@id;', {id = srcid}, function(result)
+        if result == nil then 
+            result = "{}" 
+            -- Insert default preferences
+            MySQL.Async.execute('INSERT INTO ora_emote_menu_preferences (`player_id`, `preferences`) VALUES (@id, @preferences);',
+                {id = srcid, preferences = result}, function(created)
+            end)
+        end
+        TriggerClientEvent("OraEmoteMenu:ClientGetPreferences", src, result)
+    end)
+end)
+
+RegisterServerEvent("OraEmoteMenu:ServerSavePreferences", function(preferences)
+    local src = source local srcid = GetPlayerIdentifier(source)
+    MySQL.Async.execute('INSERT INTO ora_emote_menu_preferences (`player_id`, `preferences`) VALUES (@id, @preferences) ON DUPLICATE KEY UPDATE `preferences`=@preferences;',
+        {id = srcid, preferences = preferences}, function(created)
+        TriggerClientEvent("OraEmoteMenu:ClientGetPreferences", src, preferences)
+    end)
+end)
