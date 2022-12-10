@@ -943,7 +943,7 @@ onNet('OraPhone:server:message_add_author_conversation', async (data) => {
         }
         emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number));
     }
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.author));
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number));
 })
 
 // Richter Motorsport
