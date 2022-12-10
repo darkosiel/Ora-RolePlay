@@ -3164,7 +3164,7 @@ Items = {
     -- Weapon accessories for each weapon category
     -- pistols
     p_suppressor = {
-        label = "Silencieur (P)",
+        label = "Silencieux (P)",
         weight = 0.1,
     },
     p_flashlight = {
@@ -3182,7 +3182,7 @@ Items = {
 
     -- smgs
     smg_suppressor = {
-        label = "Silencieur (SMG)",
+        label = "Silencieux (SMG)",
         weight = 0.1,
     },
     smg_flashlight = {
@@ -3204,7 +3204,7 @@ Items = {
 
     -- shotguns
     shotgun_suppressor = {
-        label = "Silencieur (Fusil à pompe)",
+        label = "Silencieux (Fusil à pompe)",
         weight = 0.1,
     },
     shotgun_flashlight = {
@@ -3226,7 +3226,7 @@ Items = {
 
     -- rifles
     rifle_suppressor = {
-        label = "Silencieur (Fusil)",
+        label = "Silencieux (Fusil)",
         weight = 0.1,
     },
     rifle_flashlight = {
@@ -3248,7 +3248,7 @@ Items = {
 
     -- sniper
     sniper_suppressor = {
-        label = "Silencieur (Fusil de sniper)",
+        label = "Silencieux (Fusil de sniper)",
         weight = 0.1,
     },
     -- sniper_flashlight = {
@@ -3266,7 +3266,7 @@ Items = {
 
     -- machine guns
     -- mg_suppressor = {
-    --     label = "Silencieur (MG)",
+    --     label = "Silencieux (MG)",
     --     weight = 0.1,
     -- },
     mg_flashlight = {
