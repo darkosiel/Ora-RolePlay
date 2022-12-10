@@ -34,6 +34,9 @@ $(function(){
         $('#expressions').show();
         $('#expressions').addClass("active");
         for(let elt of document.getElementsByClassName('navbar-item')) {
+            if(elt.dataset.name === "expressions") {
+                elt.classList.add("active");
+            }
             elt.addEventListener('click', (e) => {
                 let type = elt.dataset.name;
                 let id = "#" + type;
@@ -41,11 +44,14 @@ $(function(){
                 document.getElementById("search-input").value = "";
                 $(id).show();
                 $(id).addClass("active");
+                //Show wich tab is open
+                elt.classList.add("active");
                 for(let eltm of document.getElementsByClassName('navbar-item')) {
                     if(eltm.dataset.name !== type) {
                         let id = "#" + eltm.dataset.name;
                         $(id).hide();
                         $(id).removeClass("active");
+                        eltm.classList.remove("active");
                     }
                 }
                 for(let eltm of document.getElementsByClassName('content')) {
