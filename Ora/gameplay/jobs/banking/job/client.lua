@@ -2272,11 +2272,11 @@ function InitBankerJob()
 
                         RageUI.Separator("----- Menu de filiales -----", nil, {}, false, function() end)
 
-                        if (currentJob.name == "mazegroup" and Jobs.mazegroup.grade[currentJob.gradenum].accessBank) or (currentOrga.name == "mazegroup" and Jobs.mazegroup.gradenum[currentOrga.rank].accessBank) then
+                        if (currentJob.name == "mazegroup" and Jobs.mazegroup.grade[currentJob.gradenum].accessBank) or (currentOrga.name == "mazegroup" and Jobs.mazegroup.grade[currentOrga.gradenum].accessBank) then
                             RageUI.Button("Maze Bank", nil, {}, true, function(_, _, Selected)
                             end, RMenu:Get("bank", "main"))
                         end
-                        if (currentJob.name == "mazegroup" and Jobs.mazegroup.grade[currentJob.gradenum].accessImmo) or (currentOrga.name == "mazegroup" and Jobs.mazegroup.gradenum[currentOrga.rank].accessImmo) then
+                        if (currentJob.name == "mazegroup" and Jobs.mazegroup.grade[currentJob.gradenum].accessImmo) or (currentOrga.name == "mazegroup" and Jobs.mazegroup.grade[currentOrga.gradenum].accessImmo) then
                             RageUI.Button("Maze Immo", nil, {}, true, function(_, _, Selected)
                             end, RMenu:Get("immo", "main"))
                         end
