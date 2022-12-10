@@ -2609,7 +2609,147 @@ local Shops =
                     price = 100,
                     data = {}
                 },
+                --Pistols
+                {
+                    name = "p_suppressor",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "p_flashlight",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "p_scope",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "p_extendedclip",
+                    price = 100,
+                    data = {}
+                },
 
+                -- SMGS
+                {
+                    name = "smg_suppressor",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "smg_flashlight",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "smg_scope",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "smg_extendedclip",
+                    price = 100,
+                    data = {}
+                },
+
+                --Shotguns
+                {
+                    name = "shotgun_suppressor",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "shotgun_flashlight",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "shotgun_scope",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "shotgun_extendedclip",
+                    price = 100,
+                    data = {}
+                },               
+                {
+                    name = "shotgun_grip",
+                    price = 100,
+                    data = {}
+                },
+
+                -- rifles
+                {
+                    name = "rifle_suppressor",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "rifle_flashlight",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "rifle_scope",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "rifle_extendedclip",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "rifle_grip",
+                    price = 100,
+                    data = {}
+                },
+
+                -- Sniper
+                {
+                    name = "sniper_suppressor",
+                    price = 100,
+                    data = {}
+                },
+                -- {
+                --     name = "sniper_flashlight",
+                --     price = 100,
+                --     data = {}
+                -- },
+                {
+                    name = "sniper_scope",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "sniper_extendedclip",
+                    price = 100,
+                    data = {}
+                },
+
+                -- MG
+                {
+                    name = "mg_flashlight",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "mg_scope",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "mg_extendedclip",
+                    price = 100,
+                    data = {}
+                },
+                {
+                    name = "mg_grip",
+                    price = 100,
+                    data = {}
+                },
 
             }
         },
