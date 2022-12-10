@@ -17,6 +17,7 @@ RMenu.Add(
 Citizen.CreateThread(
     function()
         local myGroup = Ora.Identity:GetMyGroup()
+        local Player = LocalPlayer()
         while true do
             Wait(1)
 
@@ -35,21 +36,21 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = true},
                     function()
-                        RageUI.Button(
-                            "Animations",
-                            nil,
-                            {RightBadge = RageUI.BadgeStyle.Danse},
-                            true,
-                            function(_, _, Selected)
-                                if Selected then
-                                    if LocalPlayer().Handcuff then
-                                        CloseAllMenus()
-                                        ShowNotification("~r~Vous ne pouvez pas faire ça")
-                                    end
-                                end
-                            end,
-                            RMenu:Get("personnal", "animations")
-                        )
+                        -- RageUI.Button(
+                        --     "Animations",
+                        --     nil,
+                        --     {RightBadge = RageUI.BadgeStyle.Danse},
+                        --     true,
+                        --     function(_, _, Selected)
+                        --         if Selected then
+                        --             if LocalPlayer().Handcuff then
+                        --                 CloseAllMenus()
+                        --                 ShowNotification("~r~Vous ne pouvez pas faire ça")
+                        --             end
+                        --         end
+                        --     end,
+                        --     RMenu:Get("personnal", "animations")
+                        -- )
 
                         RageUI.Button(
                             "Actions",
@@ -85,7 +86,7 @@ Citizen.CreateThread(
                             end,
                             RMenu:Get("personnal", "settings")
                         )
-                        if GetVehiclePedIsIn(PlayerPedId()) ~= 0 then
+                        if Player.InVehicle then
                             RageUI.Button(
                                 "Véhicule",
                                 nil,
