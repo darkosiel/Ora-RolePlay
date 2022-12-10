@@ -214,12 +214,12 @@ div.content div.content-item * {
 div.content div.content-item span {
   font-weight: 500;
 }
-div.content div.content-item div.checked i {
-  color: #fff;
-}
 div.content div.content-item div.content-item-save i {
   /* opacity: 0%; */
   color: #272727;
+}
+div.content div.content-item div.checked i {
+  color: #fff;
 }
 
 *::-webkit-scrollbar {

@@ -207,16 +207,16 @@ div.content {
         span {
             font-weight: 500;
         }
-        div.checked {
-            i {
-                //opacity: 100%;
-                color: #fff;
-            }
-        }
         div.content-item-save {
             i {
                 /* opacity: 0%; */
                 color: #272727;
+            }
+        }
+        div.checked {
+            i {
+                //opacity: 100%;
+                color: #fff;
             }
         }
     }
