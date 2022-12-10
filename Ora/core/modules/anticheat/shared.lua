@@ -60,6 +60,7 @@ Ora.Anticheat.ObjectWhitelist = {
   [GetHashKey("prop_shield_three")] = true,
   [GetHashKey("prop_shield_four")] = true,
   [GetHashKey("prop_riot_shield")] = true,
+  [GetHashKey("prop_ballistic_shield")] = true,
 }
 
 Ora.Anticheat.WeaponBlacklist = {
