@@ -62,6 +62,8 @@ function checkIfThereIsEnoughCops()
     return nbCops >= Ora.Illegal:GetCopsRequired("jewelry")
 end
 
+-- RegisterCommand("testCallCops", function() AlertCops() end)
+
 function AlertCops()
     print("Alerting the cops")
     local message = "Bijouterie Vangelico : l'alarme a été déclanchée."
@@ -81,7 +83,6 @@ function AlertCops()
         "\n" .. C.Alert.Message,
         "Bijouterie Vangelico"
     )
-
 end
 
 function ResetAlarmByCop(source)
