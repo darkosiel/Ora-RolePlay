@@ -26,6 +26,8 @@ function Ora.Core:IsInitialized()
     return Ora.State.Initializing == false
 end
 
+exports("IsInitialized", Ora.Core.IsInitialized)
+
 function Ora.Core:GetItemLabel(itemName)
     if Items ~= nil and Items[itemName] ~= nil and Items[itemName].label ~= nil then
         return Items[itemName].label
