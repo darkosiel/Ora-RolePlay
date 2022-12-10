@@ -1339,7 +1339,7 @@ ItemsFunction = {
             RageUI.Visible(RMenu:Get('makeup', "main"), true)
         end)
     end,
-    mg_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    mg_extendedclip = function(item) weaponAccessoriesAction(item) end,
     mg_flashlight = function(item) weaponAccessoriesAction(item) end,
     mg_grip = function(item) weaponAccessoriesAction(item) end,
     mg_scope = function(item) weaponAccessoriesAction(item) end,
@@ -1348,22 +1348,22 @@ ItemsFunction = {
     p_flashlight = function(item) weaponAccessoriesAction(item) end,
     p_scope = function(item) weaponAccessoriesAction(item) end,
     p_suppressor = function(item) weaponAccessoriesAction(item) end,
-    rifle_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    rifle_extendedclip = function(item) weaponAccessoriesAction(item) end,
     rifle_flashlight = function(item) weaponAccessoriesAction(item) end,
     rifle_grip = function(item) weaponAccessoriesAction(item) end,
     rifle_scope = function(item) weaponAccessoriesAction(item) end,
     rifle_suppressor = function(item) weaponAccessoriesAction(item) end,
-    shotgun_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    shotgun_extendedclip = function(item) weaponAccessoriesAction(item) end,
     shotgun_flashlight = function(item) weaponAccessoriesAction(item) end,
     shotgun_grip = function(item) weaponAccessoriesAction(item) end,
     shotgun_scope = function(item) weaponAccessoriesAction(item) end,
     shotgun_suppressor = function(item) weaponAccessoriesAction(item) end,
-    smg_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    smg_extendedclip = function(item) weaponAccessoriesAction(item) end,
     smg_flashlight = function(item) weaponAccessoriesAction(item) end,
     smg_grip = function(item) weaponAccessoriesAction(item) end,
     smg_scope = function(item) weaponAccessoriesAction(item) end,
     smg_suppressor = function(item) weaponAccessoriesAction(item) end,
-    sniper_extentedclip = function(item) weaponAccessoriesAction(item) end,
+    sniper_extendedclip = function(item) weaponAccessoriesAction(item) end,
     --sniper_flashlight = function(item) weaponAccessoriesAction(item) end,
     sniper_scope = function(item) weaponAccessoriesAction(item) end,
     sniper_suppressor = function(item) weaponAccessoriesAction(item) end,
@@ -3268,7 +3268,7 @@ end
 local componentsHashes = {
     [GetHashKey("WEAPON_PISTOL")] = {
         p_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
-        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
+        p_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP_02"),
         p_extendedclip = GetHashKey("COMPONENT_PISTOL_CLIP_02"),
     },
     [GetHashKey("WEAPON_COMBATPISTOL")] = {
@@ -3317,8 +3317,8 @@ local componentsHashes = {
         smg_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO"),
     },
     [GetHashKey("WEAPON_SMG")] = {
-        smg_flashlight = GetHashKey("COMPONENT_AT_PI_FLSH"),
-        smg_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        smg_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
+        smg_suppressor = GetHashKey("COMPONENT_AT_PI_SUPP"),
         smg_extendedclip = GetHashKey("COMPONENT_SMG_CLIP_02"),
         smg_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO_02"),
     },
@@ -3338,24 +3338,27 @@ local componentsHashes = {
         smg_extendedclip = GetHashKey("COMPONENT_MINISMG_CLIP_02"),
     },
     -- Rifles
+    -- [GetHashKey("WEAPON_LWRC")] = {
+    --     rifle_scope = GetHashKey("COMPONENT_AT_LWRC_FLSH"),
+    --     rifle_flashlight = GetHashKey("COMPONENT_AT_LWRC_FLSH"),
+    -- },
     [GetHashKey("WEAPON_ASSAULTRIFLE")] = {
         rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
         rifle_extendedclip = GetHashKey("COMPONENT_ASSAULTRIFLE_CLIP_02"),
         rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_MACRO"),
-        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
         rifle_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
     },
     [GetHashKey("WEAPON_CARBINERIFLE")] = {
         rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
         rifle_extendedclip = GetHashKey("COMPONENT_CARBINERIFLE_CLIP_02"),
         rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_MEDIUM"),
-        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),
+        rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP"),
         rifle_grip = GetHashKey("COMPONENT_AT_AR_AFGRIP"),
     },
     [GetHashKey("WEAPON_ADVANCEDRIFLE")] = {
         rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
         rifle_extendedclip = GetHashKey("COMPONENT_ADVANCEDRIFLE_CLIP_02"),
-        rifle_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
         rifle_scope = GetHashKey("COMPONENT_AT_SCOPE_SMALL"),
         rifle_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP"),
     },
@@ -3378,8 +3381,8 @@ local componentsHashes = {
     },
     -- Shotguns
     [GetHashKey("WEAPON_PUMPSHOTGUN")] = {
-        shotgun_extendedclip = GetHashKey("COMPONENT_PUMPSHOTGUN_CLIP_02"),
         shotgun_suppressor = GetHashKey("COMPONENT_AT_SR_SUPP"),
+        shotgun_flashlight = GetHashKey("COMPONENT_AT_AR_FLSH"),
     },
     [GetHashKey("WEAPON_BULLPUPSHOTGUN")] = {
         shotgun_suppressor = GetHashKey("COMPONENT_AT_AR_SUPP_02"),

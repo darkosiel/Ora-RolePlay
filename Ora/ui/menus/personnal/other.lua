@@ -447,8 +447,8 @@ Citizen.CreateThread(
                 RageUI.DrawContent(
                     {header = true, glare = true},
                     function()
-                        -- RageUI.Button("Mon arme", "Permet de gérer les équipements d'armes", {RightLabel = ">"}, true, function(_, _, Selected)
-                        -- end, RMenu:Get("personnal_actions", "weapons"))
+                        RageUI.Button("Mon arme", "Permet de gérer les équipements d'armes", {RightLabel = ">"}, true, function(_, _, Selected)
+                        end, RMenu:Get("personnal_actions", "weapons"))
 
                         RageUI.Checkbox(
                             "Visière",
@@ -818,6 +818,10 @@ Citizen.CreateThread(
                             end
                         )
 
+                        RageUI.Button("Historique des appels", nil, {}, true, function(_, _, Selected)
+                            if Selected then end
+                        end, RMenu:Get("personnal", "settings_call_history"))
+
                         RageUI.Button(
                             "Annuler votre appel en cours",
                             nil,
@@ -832,7 +836,7 @@ Citizen.CreateThread(
                         )
 
                         RageUI.Button(
-                            "Gérer vos armes",
+                            "Animations d'armes",
                             nil,
                             {},
                             true,
@@ -969,6 +973,7 @@ Citizen.CreateThread(
                     end
                 )
             end
+
             if RageUI.Visible(RMenu:Get("personnal", "settings_map")) then
                 RageUI.DrawContent(
                     {header = true, glare = true},

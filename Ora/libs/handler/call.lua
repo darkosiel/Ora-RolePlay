@@ -1,9 +1,10 @@
 local callActive = false
 local haveTarget = false
-local isCall = false
 local ttak2 = false
 local work = {}
 local target = {}
+
+PreviousCalls = {}
 
 function AddLongString(txt)
     AddTextComponentSubstringPlayerName(txt)
@@ -20,6 +21,7 @@ ShowAdvancedNotification = function(title, subject, msg, icon, iconType)
     SetNotificationMessage(icon, icon, false, iconType, title, subject)
     EndTextCommandThefeedPostTicker(true, false)
 end
+
 Citizen.CreateThread(
     function()
         while true do
@@ -30,7 +32,7 @@ Citizen.CreateThread(
             -- end
 
             if IsControlJustPressed(1, 246) and callActive then
-                if isCall == false then
+            --[[if isCall == false then
                     if work == "uber" then
                         TriggerServerCallback('Ora:call:uber:isTaken', function(taken)
                             if taken then
@@ -46,7 +48,6 @@ Citizen.CreateThread(
                                     SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
                                     haveTarget = false
                                 end
-                                isCall = true
                                 callActive = false
                             end
                         end)
@@ -61,22 +62,20 @@ Citizen.CreateThread(
                             SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
                             haveTarget = false
                         end
-                        isCall = true
                         callActive = false
                     end
                 else
                     SendNotification("~r~Vous avez déjà un appel en cours !")
                 end
-            elseif IsControlJustPressed(1, 303) and callActive then
+            elseif IsControlJustPressed(1, 303) and callActive then]]
                 if work == "uber" then
                     TriggerServerCallback('Ora:call:uber:isTaken', function(taken)
                         if taken then
                             SendNotification("~r~L'appel a déjà été prit par un autre chauffeur Uber.")
                         else
-                            SendNotification("~o~Vous avez remplacé l'appel.")
+                            --SendNotification("~o~Vous avez remplacé l'appel.")
                             RemoveBlip(target.blip)
                             haveTarget = false
-                            isCall = false
                             callActive = false
 
                             TriggerServerEvent("call:getCall", work, ttak2)
@@ -89,15 +88,13 @@ Citizen.CreateThread(
                                 SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
                                 haveTarget = false
                             end
-                            isCall = true
                             callActive = false
                         end
                     end)
                 else
-                    SendNotification("~o~Vous avez remplacé l'appel.")
+                    --SendNotification("~o~Vous avez remplacé l'appel.")
                     RemoveBlip(target.blip)
                     haveTarget = false
-                    isCall = false
                     callActive = false
 
                     TriggerServerEvent("call:getCall", work, ttak2)
@@ -110,7 +107,6 @@ Citizen.CreateThread(
                         SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
                         haveTarget = false
                     end
-                    isCall = true
                     callActive = false
                 end
             elseif IsControlJustPressed(1, 83) and callActive then
@@ -155,7 +151,6 @@ Citizen.CreateThread(
                  then
                     RemoveBlip(target.blip)
                     haveTarget = false
-                    isCall = false
                 end
             end
         end
@@ -169,7 +164,6 @@ AddEventHandler(
         if haveTarget then
             RemoveBlip(target.blip)
             haveTarget = false
-            isCall = false
         else
             TriggerEvent("itinerance:notif", "~r~Vous n'avez aucun appel en cours !")
         end
@@ -303,11 +297,57 @@ AddEventHandler(
         end
 
         SendNotification(
-            "Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
+            "Appuyer sur ~b~Y~s~ pour prendre l'appel / ~r~=~s~ pour le refuser"    
+            --"Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
         )
         ttak2 = true
+
+        PreviousCalls = PreviousCalls or {}
+
+        local function MeasureStringWidth(str, font, scale)
+            BeginTextCommandWidth("CELL_EMAIL_BCON")
+            AddTextComponentSubstringPlayerName(str)
+            SetTextFont(font or 0)
+            SetTextScale(1.0, scale or 0)
+            return EndTextCommandGetWidth(true) * 1920
+        end
+
+        -- Get lenght of message and cut it if too long
+        local displayedMessage = message
+        -- remove any "\n" from the message
+        displayedMessage = string.gsub(displayedMessage, "\n", "")
+        local _, _, _, h, m, s = GetUtcTime()
+        local time = string.format("%02d:%02d:%02d", h, m, s)
+        local messageLength = MeasureStringWidth((displayedMessage.."...  " .. time), 0, 0.35)
+        repeat
+            displayedMessage = string.sub(displayedMessage, 0, -2)
+            messageLength = MeasureStringWidth((displayedMessage.."...  " .. time), 0, 0.35)
+        until messageLength < 431+100
+        --Clear space at the end of the message
+        displayedMessage = string.gsub(displayedMessage, "%s+$", "")
+        displayedMessage = displayedMessage .. "..."
+
+        table.insert(
+            PreviousCalls,
+            {
+                job = job,
+                pos = pos,
+                message = message:gsub("\n", ""),
+                displayedMessage = displayedMessage,
+                streetname = streetname,
+                time = time,
+                notif = {
+                    title = title, 
+                    subject = subject, 
+                    msg = msg, 
+                    icon = icon, 
+                    iconType = iconType
+                }
+            }
+        )
     end
 )
+
 RegisterNetEvent("call:callIncoming")
 AddEventHandler(
     "call:callIncoming",
@@ -420,12 +460,120 @@ AddEventHandler(
         end
 
         SendNotification(
-            "Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
+            "Appuyer sur ~b~Y~s~ pour prendre l'appel / ~r~=~s~ pour le refuser"    
+            --"Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
         )
-        ttak2 = false
+        ttak2 = true
+
+        PreviousCalls = PreviousCalls or {}
+
+        local function MeasureStringWidth(str, font, scale)
+            BeginTextCommandWidth("CELL_EMAIL_BCON")
+            AddTextComponentSubstringPlayerName(str)
+            SetTextFont(font or 0)
+            SetTextScale(1.0, scale or 0)
+            return EndTextCommandGetWidth(true) * 1920
+        end
+
+        -- Get lenght of message and cut it if too long
+        local displayedMessage = message
+        -- remove any "\n" from the message
+        displayedMessage = string.gsub(displayedMessage, "\n", "")
+        local _, _, _, h, m, s = GetUtcTime()
+        local time = string.format("%02d:%02d:%02d", h, m, s)
+        local messageLength = MeasureStringWidth((displayedMessage.."...  " .. time), 0, 0.35)
+        repeat
+            displayedMessage = string.sub(displayedMessage, 0, -2)
+            messageLength = MeasureStringWidth((displayedMessage.."...  " .. time), 0, 0.35)
+        until messageLength < 431+100
+        --Clear space at the end of the message
+        displayedMessage = string.gsub(displayedMessage, "%s+$", "")
+        displayedMessage = displayedMessage .. "..."
+
+        table.insert(
+            PreviousCalls,
+            {
+                job = job,
+                pos = pos,
+                --message = message,
+                displayedMessage = displayedMessage,
+                streetname = streetname,
+                time = time,
+                notif = {
+                    title = title, 
+                    subject = subject, 
+                    msg = msg, 
+                    icon = icon, 
+                    iconType = iconType
+                }
+            }
+        )
     end
 )
 
+Citizen.CreateThread(function()
+    repeat Wait(0) until RMenu ~= nil
+    print("RMenu loaded")
+    RMenu.Add("personnal", "settings_call_history", RageUI.CreateSubMenu(RMenu:Get("personnal", "settings"), "Historique des appels", "Historique des appels"))
+
+    RegisterCommand("appels", function()
+        RageUI.Visible(RMenu:Get("personnal", "settings_call_history"), not RageUI.Visible(RMenu:Get("personnal", "settings_call_history")))
+    end, false)
+
+    Citizen.CreateThread(function() while true do Wait(1.0)
+        if RageUI.Visible(RMenu:Get("personnal", "settings_call_history")) then
+            RageUI.DrawContent({header = true, glare = true},function()
+                if #PreviousCalls > 0 then
+                    for k, call in pairs(PreviousCalls) do
+                        RageUI.Button(call.displayedMessage, ("~b~Détails:~s~ %s\n~b~Localisation:~s~ %s"):format(call.message, call.streetname), {RightLabel = call.time}, true, function(_, _, s)
+                            if s then
+                                
+                                ShowAdvancedNotification(call.notif.title, call.notif.subject, call.notif.msg, call.notif.icon, call.notif.iconType)
+
+                                if call.job == "uber" then
+                                    --SendNotification("~o~Vous avez remplacé l'appel.")
+                                    RemoveBlip(target.blip)
+                                    haveTarget = false
+                                    callActive = false
+
+                                    if (target.pos ~= nil) then
+                                        target.blip = AddBlipForCoord(target.pos.x, target.pos.y, target.pos.z)
+                                        SetBlipRoute(target.blip, true)
+                                        haveTarget = true
+                                    else
+                                        SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
+                                        haveTarget = false
+                                    end
+                                    callActive = false
+                                    SendNotification("~b~Vous avez pris l'appel !\nAttention, quelqu'un a peut être déjà répondu à cet appel.")
+                                else
+                                    RemoveBlip(target.blip)
+                                    haveTarget = false
+                                    callActive = false
+                
+                                    SendNotification("~b~Vous avez pris l'appel !")
+                                    if (target.pos ~= nil) then
+                                        target.blip = AddBlipForCoord(target.pos.x, target.pos.y, target.pos.z)
+                                        SetBlipRoute(target.blip, true)
+                                        haveTarget = true
+                                    else
+                                        SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
+                                        haveTarget = false
+                                    end
+                                    callActive = false
+                                end
+
+                            end
+                        end)
+                    end
+                else
+                    RageUI.Button("Aucun appel", nil, {}, false, function(_, _, s) end)
+                end
+            end)
+
+        end
+    end end)
+end)
 RegisterNetEvent("call:taken")
 AddEventHandler(
     "call:taken",
