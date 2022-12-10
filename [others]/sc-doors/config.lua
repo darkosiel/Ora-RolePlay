@@ -1887,6 +1887,15 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.5
     },
+    --PatocheGang
+    {
+        objHash = -69870955,
+        objCoords = vector3(-348.03662109375, 48.77885818481445, 44.076019287109375),
+        textCoords = vector3(-348.03662109375, 48.77885818481445, 44.076019287109375),
+        authorizedJobs = {"admin_drug"},
+        locked = true,
+        maxDistance = 1.5
+    },
 
 }
 
