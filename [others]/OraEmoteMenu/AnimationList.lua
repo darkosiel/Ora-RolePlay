@@ -1911,6 +1911,16 @@ DP.Emotes = {
        PtfxWait = 3000,
    }},
 
+   ["secretservice"] = {"anim@secret_service","open_door","Secret Service",AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = false,
+        }
+    },
+    ["suit"] = {"anim@suit","holding_suit","Holding Suit",AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = false,
+        }
+    },
 -----------------------------------------------------------------------------------------------------------
 ------ These are Scenarios, some of these dont work on women and some other issues, but still good to have.
 -----------------------------------------------------------------------------------------------------------

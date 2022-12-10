@@ -22,6 +22,6 @@ server_scripts {
 
 files {
     "html/style.css",
-    "html/script_unminified.js",
+    "html/script.js",
     "html/index.html",
 }
