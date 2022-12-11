@@ -478,6 +478,7 @@ client_script {
     "gameplay/civilian/Carry/cl_carry.lua",
     "gameplay/civilian/gym/gym_cfg.lua",
     "gameplay/civilian/gym/gym_cl.lua",
+    "gameplay/civilian/carwash/cl_carwash.lua",
     "gameplay/civilian/fishing/fishing_cfg.lua",
     "gameplay/civilian/fishing/fishing_cl.lua", 
     --"gameplay/civilian/clubspeaker/config.lua",
