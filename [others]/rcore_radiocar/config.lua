@@ -63,7 +63,7 @@ Config.CommandLabel = "radiocar"
 Config.KeyForRadio = "."
 
 -- Distance playing from car
-Config.DistancePlaying = 4.0
+Config.DistancePlaying = 8.0
 
 -- Distance playing from car if windows are closed / or if he has open any door
 Config.DistancePlayingWindowsOpen  = 10.0
