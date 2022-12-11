@@ -1050,19 +1050,19 @@ Items = {
     },
     chlorycoke = {
         label = "Chlorhydrate de Cocaïne",
-        weight = 0.5,
+        weight = 0.2,
         actionCl = nil,
         category = "consumable"
     },
     ephedrine = {
         label = "Ephedrine",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = nil,
         category = "consumable"
     },
     lsd = {
         label = "lsd pure",
-        weight = 1.0,
+        weight = 0.5,
         actionCl = nil,
         category = "consumable"
     },
@@ -1716,7 +1716,7 @@ Items = {
     },
     ciseaux = {
         label = "Ciseaux",
-        weight = 1.0
+        weight = 0.5
     },
     weed_pot = {
         label = "Pot graines cannabis",
@@ -1724,7 +1724,7 @@ Items = {
     },
     weed_plant = {
         label = "Feuille de cannabis",
-        weight = 1.0,
+        weight = 0.2,
         actionCl = nil,
         category = "consumable"
     },
