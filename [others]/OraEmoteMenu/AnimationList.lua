@@ -1918,7 +1918,7 @@ DP.Emotes = {
     },
     ["suit"] = {"anim@suit","holding_suit","Holding Suit",AnimationOptions = {
             EmoteLoop = true,
-            EmoteMoving = false,
+            EmoteMoving = true,
         }
     },
 -----------------------------------------------------------------------------------------------------------
