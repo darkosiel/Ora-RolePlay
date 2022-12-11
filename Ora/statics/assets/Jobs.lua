@@ -11682,7 +11682,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -234.456, y = 6216.920, z = 30.90},
+                Pos = {x = 292.54, y = -1166.52, z = 29.24},
                 Limit = 100,
                 Name = "coffre Moto"
             }
