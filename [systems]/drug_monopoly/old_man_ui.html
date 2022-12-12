@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body class="hide">
+        <h1>Dialogue avec l'Ancien</h1>
+        <p id="output"></p>
+        <nav id="choices"></nav>
+        <div id="close_btn">Quitter la conversation</div>
+        <script>
+            class State {
+                constructor({ text, choices }) {
+                    this.text = text;
+                    this.choices = choices;
+                }
+            }
+
+            class Choice {
+                constructor({ text, next }) {
+                    this.text = text;
+                    this.next = next;
+                }
+            }
+
+            function update(state) {
+                document.getElementById("output").innerHTML = state.text;
+                document.getElementById("choices").innerHTML = "";
+                state.choices.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.innerHTML = choice.text;
+                    button.classList.add("btn");
+                    button.addEventListener("click", () => {
+                        const fnResult = choice.next;
+                        if (typeof(choice.next) === 'function') {
+                            fnResult = choice.next();
+                        }
+                        if (typeof(fnResult) === 'string') {
+                            update(inflate(dialogs[choice.next]))
+                        } else if (typeof(fnResult) === 'object') {
+                            update(inflate(choice.next));
+                        }
+                    });
+                    document.getElementById("choices").appendChild(button);
+                });
+            }
+
+            const ok = (msg, next, nextTxt = "Ok") => {
+                return ({ [msg]: { [nextTxt]: next } })
+            }
+
+            const seq = (next, ...msg) => {
+                const message = msg[0]
+                if (msg.length === 1) {
+                    return ok(message, next)
+                } else {
+                    return ok(message, seq(next, ...msg.slice(1)), "... (silence)")
+                }
+            }
+
+            const offended = (...msg) => seq({
+                    "Tu devrais t'excuser.": {
+                        "Je suis désolé": seq("listen", "C'est mieux."),
+                        "J'en ai rien à foutre": "blocked",
+                    }
+                }, ...msg, "Tu vas commencer par me respecter, gamin.", "Tu risquerais d'avoir des problèmes."
+            )
+
+            const dialogs = {
+                root: { "Bonjour, gamin.": {
+                        "Salut vieux": offended("Comment tu causes gamin ? Je suis pas ton vieux, même si j'ai baisé ta mère."),
+                        "Bonjour L'Ancien": "listen",
+                        "Je ne suis plus un gamin": {
+                            "Peut-être, mais j'en ai rien à foutre, gamin.": {
+                                "... (silence)": seq("root", "Reprenons sur de meilleures bases."),
+                                "Arrête de m'appeler gamin.": offended("Tu veux plus que je t'appelle gamin, gamin ?", "Tu crois que t'es un bonhomme, gamin ?", "Regardez tous, le gamin se prend pour un dur."),
+                            }
+                        }
+                    }
+                },
+                listen: {
+                    "Je t'écoute. Qu'est-ce que tu veux savoir ?": {
+                        "Comment faire un max de blé ?": "money",
+                        "Comment devenir un bon vendeur ?": "sell",
+                        "Commment influencer les clients ?": "influence",
+                        "Comment modifier l'économie d'une zone ?": "monopoly",
+                        "Rien de plus, merci l'Ancien": "bye",
+                    }
+                },
+                money: {
+                    "Pour faire un max de blé, il faut devenir un bon vendeur aux yeux de tes clients.": {
+                        "Comment devenir un bon vendeur ?": "sell",
+                        "Je suis meilleur vendeur que toi, L'Ancien.": offended(
+                            "Tu crois que t'es le meilleur, gamin ?",
+                            "Tu crois que t'es meilleur que moi ?",
+                            "J'étais là avant que tu vienne au monde.",
+                            "J'ai des yeux partout. Je sais qui tu es, gamin. Tu es personne.",
+                        ),
+                        "Je suis déjà respecté dans cette ville.": "best",
+                        "J'ai une autre question.": "listen",
+                    },
+                },
+                best: {
+                    "Tu crois que t'es le meilleur, gamin ?": {
+                        "Oui, je suis le meilleur de la ville.": "influence_city",
+                        "Bien sûr, gamin.": offended(
+                            "T'es un bon, toi. T'es un bon.",
+                            "Tu veux crever, gamin ?",
+                            "Me prend pas pour un con. Je te préviens.",
+                            "J'ai des contacts dans toute la ville. Tu veux pas qu'on se trouve.",
+                            "Si on se trouve, c'est que je te cherche.",
+                            "Si je te cherche, c'est que t'es mort.",
+                            "Si t'es mort, c'est que t'as fait le con.",
+                            "Fais pas le con, gamin.",
+                        ),
+                        "Le meilleur de ma zone pour l'instant, oui.": "risk_profit",
+                        "Non, je plaisantais": seq("money", "Tu devrais faire moins d'humour, et vendre plus de matos."),
+                    }
+                },
+                risk_profit: seq("listen",
+                    "T'en as dans le crâne. Je vais t'expliquer un truc.",
+                    "La vie, c'est comme la roulette russe.",
+                    "Tu peux gagner beaucoup d'argent, mais tu peux perdre encore plus.",
+                    "Si tu veux gagner gros, tu dois prendre des risques. Tu peux t'enrichir rapidement, mais aussi tout perdre alors sois intelligent.",
+                    "Ne fais confiance à personne. Un tien vaut mieux que deux tu l'auras. Fais pas crédit à moins de bien contrôler ta zone.",
+
+                ),
+                sell: {
+                    "Tu veux devenir un grand trafiquant ? Commence par influencer tes clients": {
+                        "Comment influencer mes clients ?": "influence",
+                        "J'ai déjà influencé mes clients.": "best",
+                        "J'ai une autre question.": "listen",
+                    },
+                },
+                influence: {
+                    "Pour influencer tes clients, ils doivent comprendre que c'est toi le meilleur.": {
+                        "Comment devenir le meilleur de la ville ?": "influence_city",
+                        "Comment devenir le meilleur dans un quartier ?": "influence_zone",
+                        "A quoi ça sert d'être le meilleur ?": {
+                            "Si tu es le meilleur, tu gagnes le monopole de la zone.": {
+                                "A quoi ça sert, d'avoir le monopole ?": "monopoly",
+                                "Ok.": "listen",
+                            }
+                        },
+                        "Comment savoir si c'est moi le meilleur ?": {
+                            "T'as qu'à me demander, gamin, je te dirai quelle est ton influence dans chaque zone.": {
+                                "Comment je peux connaître mon influence ?": ok("Choisis une zone dans ton menu faction, j'y noterai ton influence.", "listen", "Ok, merci"),
+                                "Comment tu peux connaître mon influence ?": {
+                                  "On a pas gardé les putes ensemble, tu me dis \"vous\".":
+                                    {
+                                        "Pardon, l'Ancien. Comment vous connaissez mon influence ?": ok("J'ai des yeux partout. Je connais tout le monde. J'ai des micros dans ton trou de balle.", "listen", "Ah ouais... Ok."),
+                                        "Ferme ta gueule": "blocked",
+                                        "Ok, laisse tomber...": seq("blocked",
+                                            "Que je laisse tomber ??",
+                                            "Que je laisse tomber quoi, gamin ?",
+                                            "Que je te laisse tomber, toi ? Du haut d'une grue ? D'un pont ?",
+                                        )
+                                    },
+                                },
+                                "J'ai une autre question.": "listen",
+                            }
+                        },
+                        "J'ai une autre question.": "listen",
+                    },
+                },
+                influence_city: seq("influence_city_2", "T'as pas compris, gamin.", "C'est pas possible d'être le meilleur de toute la ville",
+                    "Quand un client est content, il va pas le crier sur tous les toits, gamin.", "Un client content, il va juste te recommander dans son quartier, à ses voisins.", 
+                ),
+                influence_city_2: {
+                    "Tu comprends, gamin ?": {
+                        "Oui, je comprends.": "influence",
+                        "Pourquoi ils appellent pas tous leurs potes?": seq("influence_city_2",
+                            "Parce que le téléphone, ça rameute les flics, gamin. Et les flics, ils sont pas contents quand tu livres ta merde.",
+                            "Et puis, les clients, ils ont pas envie de se faire choper, gamin. Ils veulent pas que leurs potes se fassent choper, non plus.",
+                            "Mais surtout, ils veulent pas que tu te fasse choper toi, gamin.",
+                            "Si tu te fais choper, tu vas pas pouvoir continuer à leur livrer ta merde, et alors ils vont pas être contents.",
+                        ),
+                        "Pourquoi ils vont pas voir leurs potes dans les autres quartiers ?": seq("influence_city_2",
+                            "Parce que les autres quartiers, c'est pas leur quartier. C'est loin de chez eux, tu vois.",
+                            "Ils ont pas envie de se déplacer. Tes clients sont des flemmards, gamin. Ils sont fatigués à cause de ta merde.",
+                            "Ceux qui sont pas assignés à résidence, ils sont trop défoncés pour se déplacer.",
+                        ),
+                    },
+                },
+                influence_zone: seq("influence_zone_2",
+                    "Les clients peuvent être influencés par tes ventes. Les clients aiment plusieurs choses.",
+                    "Ils aiment les vendeurs de grosses quantités. Quand ils paient cher, ils ont l'impression que c'est de la qualité.",
+                    "Ils préfèrent ceux qui reviennent souvent. Entendre parler d'un type tous les jours ça leur donne confiance.",
+                    "Ils aiment bien ceux qui sont réguliers. Ils savent à quoi s'attendre et ça les rassure.",
+                    "Et puis si t'es vraiment le meilleur sur un de ces critères, ils vont t'aimer encore plus, juste parce que tu domines la concurrence.",
+                    "Bref, vends le plus possible, plus cher, plus vite, plus souvent que les autres. Tu seras vu comme le meilleur.",
+                ),
+                influence_zone_2: {
+                    "Tu as compris ?": {
+                        "Non": seq("influence_zone", "Bon ok, on reprend, gamin. Tais toi et sois un peu attentif."),
+                        "Oui, merci": "influence",
+                    }
+                },
+                monopoly: {
+                    "En monopolisant un quartier tu peux jouer sur son économie, en activant des options.": {
+                        "Comment je peux savoir si j'ai un monopole ?": ok("L'Ancien sait tout, gamin. Je te donnerai l'info dans ton menu faction.", "monopoly"),
+                        "Comment j'active les options ?": ok("Tu vas voir l'Ancien, gamin. Tu choisis une option et tu l'actives.", "monopoly"),
+                        "J'ai des questions sur les options": "options",
+                        "J'avais une autre question": "listen",
+                    },
+                },
+                options: {
+                    "Les options de monopole, c'est moi qui les propose. Dis-moi ce que tu veux savoir.": {
+                        "Qu'est-ce que c'est, les options ?": ok("Les options sont des actions que tu peux faire sur ton quartier, gamin. Tu peux les activer dans ton menu faction.", "options"),
+                        "Hausse raisonnable ?": seq("options",
+                            "La hausse raisonnable te permet d'augmenter légèrement tes prix sans effrayer les clients. Tu peux aller jusqu'à 10% sans que ça ne les choque.",
+                            "Au delà ça commence à se voir. Je te conseille de commencer par cette option jusqu'à 10%.",
+                        ),
+                        "Négociation agressive ?": seq("options",
+                            "Si tu choisis de négocier, j'envoie une équipe avec une batte de baseball pour faire monter les prix.",
+                            "Parfois les clients sont pas contents, et faut leur péter les genoux. En général, ils la ferment et ils paient.",
+                            "Quand ça marche, les prix augmentent vite. Je décline toute responsabilité en cas d'échec.",
+                        ),
+                        "Vente à perte ?": seq("options",
+                            "La vente à perte, c'est quand tu vends ta merde moins cher qu'elle vaut, gamin.",
+                            "C'est pas très rentable, mais ça permet de faire baisser les prix des autres vendeurs.",
+                            "C'est une option qui peut être utile si tu veux faire baisser les prix de tes concurrents.",
+                            "Ensuite, la vente à pertes débloque 2 autres options: Couper les produits, et Vendre au détail.",
+                            "Je peux t'en parler aussi, si tu veux. Ce sont des options avancées.",
+                        ),
+                        "Vente à crédit ?": seq("options",
+                            "Vendre à crédits, c'est quand tu vends ta merde à des gens qui n'ont pas d'argent.",
+                            "Tu leur donne ta marchandise et tu réclames le paiement plus tard.",
+                            "C'est moi qui m'occupe de la facturation, gamin. Tu me demandes et je vais chercher la somme pour toi.",
+                            "Ensuite, la vente à crédit débloque 2 autres options: Augmenter les intérêts et Récolter les dettes.",
+                            "Je peux t'en parler aussi, si tu veux. Ce sont des options avancées.",
+                        ),
+                        "Options avancées ?": {
+                            "Les options avancées, c'est quand tu veux faire des trucs compliqués, gamin.": {
+                                "Couper les produits ?": seq("options",
+                                    "Couper les produits, c'est pour diminuer le malus d'une vente à pertes.",
+                                    "Je mets mes meilleurs agents de coupe dans ton produit, et les clients ne voient pas la différence.",
+                                    "Bon, c'est pas tout à fait vrai, parfois ils s'en rendent compte, mais c'est pas grave, gamin.",
+                                    "Au pire le malus pourrait augmenter un peu, mais ça reste une option intéressante.",
+                                ),
+                                "Vendre au détail ?": seq("options",
+                                    "Vendre au détail, ça double les quantités vendues, du coup ça double les bénéfices.",
+                                    "J'autorise personne à faire de la vente au détail, sauf ceux qui vendent à perte.",
+                                    "Sinon quelqu'un pourrait faire des bénéfices de malade. Quelqu'un pourrait même me doubler. Personne double l'Ancien, gamin.",
+                                    "Bref. De toute façon c'est très risqué. Tu peux avantager tes concurrents, et ça peut te coûter cher.",
+                                ),
+                                "Augmenter les intérêts ?": seq("options",
+                                    "Augmenter les intérêts, c'est quand tu veux faire payer plus cher à tes clients qui ont des dettes.",
+                                    "Le problème c'est que ça peut les pousser à pas vouloir payer du tout. Et ils parlent entre eux, gamin.",
+                                    "Si tu vois que ça part en couille, on essaiera de sauver ton investissement mais rien n'est garanti.",
+                                ),
+                                "Récolter les dettes ?": seq("options",
+                                    "Récolter les dettes, c'est quand tu veux récupérer l'argent que tes clients te doivent.",
+                                    "Je vais chercher l'argent pour toi, et je te le donne. C'est pas très compliqué.",
+                                    "Un petit conseil : ne perds pas ton monopole avant d'avoir récupéré tes dettes, gamin. Ce serait dommage.",
+                                ),
+                                "J'avais d'autres questions": "listen",
+                            },
+                        },
+                        "J'avais d'autres questions": "listen",
+                    }
+                },
+                bye: {
+                    "A plus tard, gamin.": {
+                        "Je suis de retour.": "root",
+                    }
+                },
+                blocked: { "Tu m'as soûlé. Casse-toi.": {} },
+            }
+
+            const inflate = dialog => {
+                const text = Object.keys(dialog)[0]
+                const choices = Object.keys(dialog[text]).map(choice => {
+                    const next = dialog[text][choice];
+                    return new Choice({ text: choice, next });
+                });
+                return new State({ text, choices });
+            }
+
+            update(inflate(dialogs.root))
+
+            window.addEventListener('message', e => {
+                const data = e.data;
+                if (data.show == true) {
+                    document.body.classList.remove("hide");
+                } else if (data.show == false) {
+                    document.body.classList.add("hide");
+                }
+            });
+
+            function close() {
+                // send request with fetch
+                try {
+                    // if choices nav not empty
+                    if (document.getElementById('choices').innerHTML.length > 0) {
+                        // go to bye
+                        update(inflate(dialogs.bye))
+                    }
+
+                    // send request with fetch
+                    fetch('https://drug_monopoly/closeOldMan', {
+                        method: 'POST',
+                        body: JSON.stringify({}),
+                    })
+                } catch (_e) {
+                    // ignore e
+                }
+            }
+
+            window.addEventListener('keydown', e => {
+                switch(e.key) {
+                    case "Escape":
+                        close()
+                        break;
+                }
+            })
+
+            document.getElementById('close_btn').addEventListener('click', close)
+
+            // create canvas for smoke effect
+            const c = document.createElement('canvas');
+            c.style.position = "absolute";
+            c.style.top = 0;
+            c.style.left = 0;
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+            c.id = "smoke"
+            document.body.appendChild(c);
+        </script>
+        <script src="ui_assets/smoke.js"></script>
+
+        <style>
+        /* body fullscreen */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+            background-image: url('ui_assets/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        /* text */
+        h1 {
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 50px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* p is quote */
+        p {
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 25px;
+            text-align: center;
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        /* add stylized quotes */
+        p:before {
+            content: "«";
+            padding: 0 10px;
+        }
+        p:after {
+            content: "»";
+            padding: 0 10px;
+        }
+
+        canvas {
+            z-index: -1;
+        }
+        /* choices */
+        #choices {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* buttons */
+        .btn {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 50px;
+        }
+
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+
+        .btn:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        .btn:focus {
+            outline: none;
+        }
+
+        div#close_btn {
+            position: absolute;
+            top: 1em;
+            right: 0;
+            margin: 10px;
+            color: red;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        </style>
+    </body>
+</html>
