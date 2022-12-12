@@ -1252,6 +1252,18 @@ Citizen.CreateThread(
                 end
                 RageUI.DrawContent({header = true, glare = true},
                     function()
+                        
+                        RageUI.Button(
+                            "Parler avec l'Ancien",
+                            "L'Ancien a des informations sur l'influence et les monopoles",
+                            {},
+                            true,
+                            function(_, _, Selected)
+                                if Selected then
+                                    TriggerEvent("drug_monopoly:askOldMan")
+                                end
+                            end
+                        )
                         local zones = Ora.DrugDealing:GetZones()
                         for key, value in ipairs(zones) do
                             RageUI.Button(
@@ -1296,7 +1308,7 @@ Citizen.CreateThread(
                         }
                         RageUI.Button(
                             influenceMessages[IllegalOrga.MENU.CURRENT_INFLUENCE_MSG],
-                            nil,
+                            "Cliquer pour voir les détails du score",
                             {},
                             true,
                             function(_, _, Selected)
