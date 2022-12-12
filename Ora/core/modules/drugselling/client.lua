@@ -447,9 +447,8 @@ function Ora.DrugDealing:StartDealerThread()
                                           1
                                       )
                                   else
-                                    
+                                    -- police call
                                     if (Ora.DrugDealing.System.HAS_BEEN_CALLED == false) then
-                                      -- probability of police call =0,5 - 0,6*(MIN(influence;0,5))
                                       local zoneId = self.System.CURRENT_ZONE_ID
                                       local info = exports["drug_monopoly"]:getZoneInfo(zoneId)
                                       -- Wait for the exports to be loaded
@@ -460,7 +459,9 @@ function Ora.DrugDealing:StartDealerThread()
                                       local callPolice = true
                                       local proba = 0.5
                                       if info then
-                                        proba = 0.5 - 0.6 * math.min(info.influence, 0.5)
+                                        if info.monopoly then proba = 0.2
+                                        else proba = 0.5 - 0.3 * math.min(info.influence, 0.5)
+                                        end
                                       end
                                       callPolice = math.random() < proba
                                       Ora.DrugDealing.System.HAS_BEEN_CALLED = true
