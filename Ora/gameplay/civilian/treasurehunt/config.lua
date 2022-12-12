@@ -118,7 +118,7 @@ Config.Peds = {
         model = 'a_m_m_tranvest_01',
         anim = "amb@world_human_cheering@male_a",
         anim2 = "base",
-        txt4 = '13e Informatrice : "Comment ça je suis pas une princesse ? Monte le Mont Chiliad en motocross"',
+        txt = '13e Informatrice : "Comment ça je suis pas une princesse ? Monte le Mont Chiliad en motocross"',
     },
     [14] = {
         coords = vector3(501.62, 5599.82, 796.42), -- Moto Mount Chiliad
