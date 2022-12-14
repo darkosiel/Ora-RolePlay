@@ -3,8 +3,8 @@ local autoshop =
     {
         --veh
         {
-            Pos = {x = -251.134, y = 6224.524, z = 30.50, a = 138.00},
-            SpawnPos = {x = -226.135, y = 6247.7001, z = 31.48, a = 132.60},
+            Pos = {x = -229.18, y = 6223.23, z = 31.51, a = 46.18},
+            SpawnPos = {x = -248.48, y = 6227.20, z = 31.45, a = 134.03},
             Blips = {
                 sprite = 523,
                 color = 84,
@@ -194,8 +194,6 @@ local autoshop =
                     {name = "hustler", price = 20800},
                     {name = "impaler", price = 12480},
                     {name = "lurcher", price = 55250},
-                    {name = "moonbeam", price = 9360},
-                    {name = "moonbeam2", price = 11440},
                     {name = "nightshade", price = 104975},
                     {name = "peyote", price = 31200},
                     {name = "peyote2", price = 45200},
@@ -279,6 +277,8 @@ local autoshop =
                     {name = "rumpo3", price = 55250},
                     {name = "speedo", price = 11960},
                     {name = "gburrito", price = 26000},
+                    {name = "moonbeam", price = 9360},
+                    {name = "moonbeam2", price = 11440},
                     {name = "youga4", price = 10000}
                 }
             }

@@ -11809,6 +11809,46 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Sortir la remorque à camions",
+                    onSelected = function()
+                        if (Ora.Identity.Job:GetRank() >= 3) then
+                            Mecano.SpawnTruckRemorqueN()
+                        else
+                            RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                        end
+                    end
+                },
+                {
+                    label = "Ranger la remorque",
+                    onSelected = function()
+                        Mecano.RangerRemorqueN()
+                    end
+                },
+                {
+                    label = "Sortir la rampe",
+                    onSelected = function()
+                        Mecano.SortirRampe()
+                    end
+                },
+                {
+                    label = "Ranger la rampe",
+                    onSelected = function()
+                        Mecano.RangerRampe()
+                    end
+                },
+                {
+                    label = "Attacher le véhicule",
+                    onSelected = function()
+                        Mecano.AttacherVehicle()
+                    end
+                },
+                {
+                    label = "Détacher le véhicule",
+                    onSelected = function()
+                        Mecano.DetacherVehicle()
+                    end
+                },
+                {
                     label = "Retourner le véhicule",
                     onSelected = function()
                         SetVehicleOnGroundProperly(GetVehicleInDirection(5.0))
