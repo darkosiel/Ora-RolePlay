@@ -4,7 +4,7 @@ local autoshop =
         --veh
         {
             Pos = {x = -229.18, y = 6223.23, z = 31.51, a = 46.18},
-            SpawnPos = {x = -248.48, y = 6227.20, z = 31.45, a = 134.03},
+            SpawnPos = {x = -248.48, y = 6227.20, z = 31.45, a = 132.03},
             Blips = {
                 sprite = 523,
                 color = 84,
