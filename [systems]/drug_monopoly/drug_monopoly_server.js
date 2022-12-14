@@ -663,7 +663,9 @@ function MonopolyService(influenceCalculator, clientNotif) {
             },
             investStack: _ => {
                 m[k] = Math.min(0, m[k])
-                m.investLosing = false
+                if (m.investLosing && this.risk(67)) {
+                    m.investLosing = false
+                }
             }
         }[k]()))
         // notification de retour pour le joueur
@@ -723,7 +725,9 @@ function MonopolyService(influenceCalculator, clientNotif) {
                     message = "ECHEC - Baisse des prix pour ta faction. Quantités doublées."
                 }
                 m.quantityDouble = true
-                message = "SUCCES - Quantités doublées."
+                if (message.length == 0) {
+                    message = "SUCCES - Quantités doublées."
+                }
                 break
             case 'invest':
                 m.dollarLock = true
