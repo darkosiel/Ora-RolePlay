@@ -460,7 +460,7 @@ function Ora.DrugDealing:StartDealerThread()
                                       local proba = 0.5
                                       if info then
                                         if info.monopoly then proba = 0.2
-                                        else proba = 0.5 - 0.3 * math.min(info.influence, 0.5)
+                                        else proba = 0.5 - 0.3 * math.min((info.influence or 0), 0.5)
                                         end
                                       end
                                       callPolice = math.random() < proba
