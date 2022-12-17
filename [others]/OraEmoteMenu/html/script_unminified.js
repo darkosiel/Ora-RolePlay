@@ -23,12 +23,10 @@ $(function(){
                     $('#favorite').append(emoteTemplate);
                 }
                 createEmoteList();
-                updateFavoriteStatus();
             }
             if (item !== undefined && item.type === "receivePreferences") {
                 preferences = JSON.parse(item.data);
                 createEmoteList();
-
             }
 		});
         $('#expressions').show();
@@ -91,12 +89,14 @@ function updateFavoriteStatus() {
     for(let emoteFavorite of document.getElementsByClassName('favorite-inactive')) {
         emoteFavorite.addEventListener('click', (e) => {
             let emote = emoteFavorite.parentElement.dataset.name;
+            console.log("Add " + emote + " to favorite");
             $.post('https://OraEmoteMenu/addFavoriteEmote', JSON.stringify({emote: emote}));
         })
     }
     for(let emoteFavorite of document.getElementsByClassName('favorite-active')) {
         emoteFavorite.addEventListener('click', (e) => {
             let emote = emoteFavorite.parentElement.dataset.name;
+            console.log("remove " + emote);
             $.post('https://OraEmoteMenu/removeFavoriteEmote', JSON.stringify({emote: emote}));
         })
     }
@@ -156,6 +156,7 @@ function createEmoteList() {
             void 0 === preferences[t] && (preferences[t] = ""), (preferences[t] = preferences[t] === a ? "" : a), $.post("https://OraEmoteMenu/savePreferences", JSON.stringify({ data: preferences }));
         });
     }
+    updateFavoriteStatus();
 }
 
 const animThatHaveOptionButtons = {
