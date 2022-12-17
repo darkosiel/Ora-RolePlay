@@ -30,4 +30,25 @@ function getZoneInfo(zoneId) {
     return zoneInformations[zoneId]
 }
 
+on('drug_monopoly:askOldMan', _ => {
+    SetNuiFocus(true, true)
+    SendNUIMessage({
+        show: true,
+    })
+})
+
+function NuiCallback(name, callback) {
+  RegisterNuiCallbackType(name);
+  on(`__cfx_nui:${name}`, (data) => {
+    callback(data);
+  });
+}
+
+NuiCallback('closeOldMan', _ => {
+    SetNuiFocus(false, false)
+    SendNUIMessage({
+        show: false,
+    })
+})
+
 exports("getZoneInfo", getZoneInfo)

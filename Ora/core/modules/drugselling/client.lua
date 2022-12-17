@@ -447,11 +447,25 @@ function Ora.DrugDealing:StartDealerThread()
                                           1
                                       )
                                   else
-                                    
+                                    -- police call
                                     if (Ora.DrugDealing.System.HAS_BEEN_CALLED == false) then
-                                      local random = math.random(1, 20)
+                                      local zoneId = self.System.CURRENT_ZONE_ID
+                                      local info = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                                      -- Wait for the exports to be loaded
+                                      if info == nil then
+                                        Wait(1000)
+                                        info = exports["drug_monopoly"]:getZoneInfo(zoneId)
+                                      end
+                                      local callPolice = true
+                                      local proba = 0.5
+                                      if info then
+                                        if info.monopoly then proba = 0.2
+                                        else proba = 0.5 - 0.3 * math.min((info.influence or 0), 0.5)
+                                        end
+                                      end
+                                      callPolice = math.random() < proba
                                       Ora.DrugDealing.System.HAS_BEEN_CALLED = true
-                                      if random > 10 then 
+                                      if callPolice then
                                           Citizen.SetTimeout(
                                               math.random(2500, 3500),
                                               function()

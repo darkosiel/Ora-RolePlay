@@ -3,8 +3,8 @@ local autoshop =
     {
         --veh
         {
-            Pos = {x = -251.134, y = 6224.524, z = 30.50, a = 138.00},
-            SpawnPos = {x = -226.135, y = 6247.7001, z = 31.48, a = 132.60},
+            Pos = {x = -229.18, y = 6223.23, z = 31.51, a = 46.18},
+            SpawnPos = {x = -248.48, y = 6227.20, z = 31.45, a = 132.03},
             Blips = {
                 sprite = 523,
                 color = 84,
@@ -58,8 +58,8 @@ local autoshop =
                      {name = "phantom3", price = 40000}
                  },
                  ["SAHP"] = {
-                    {name = "sahpalamao", price = 25000},
-                    {name = "sahpalamao2", price = 25000},
+                    {name = "sahpalamo", price = 25000},
+                    {name = "sahpalamo2", price = 25000},
                     {name = "sahpbuffalostx", price = 25000},
                     {name = "sahpbuffalostx2", price = 25000},
                     {name = "sahpbuffalostx3", price = 25000},
@@ -93,6 +93,51 @@ local autoshop =
                     {name = "squaddie", price = 56500},
                     {name = "winky", price = 36500},
                     {name = "sadler", price = 76500}
+                },
+                ["Classique"] = {
+                    {name = "tornado", price = 4095},
+                    {name = "tornado2", price = 4095},
+                    {name = "tornado5", price = 4322},
+                    {name = "tornado3", price = 2730},
+                    {name = "tornado4", price = 2730},
+                    {name = "tornado6", price = 2730},
+                    {name = "cheburek", price = 5005},
+                    {name = "fagaloa", price = 6370},
+                    {name = "dynasty", price = 9880},
+                    {name = "nebula", price = 18920},
+                    --   {name="ardent",price=1},
+                    {name = "casco", price = 108290},
+                    {name = "cheetah2", price = 112200},
+                    {name = "tigon", price = 249200},
+                    {name = "coquette2", price = 69135},
+                    {name = "gt500", price = 112200},
+                    {name = "infernus2", price = 99450},
+                    {name = "manana", price = 8320},
+                    {name = "manana2", price = 10320},
+                    {name = "michelli", price = 21440},
+                    {name = "monroe", price = 104975},
+                    {name=  "stafford",price=112500},
+                    {name = "peyote", price = 3640},
+                    {name = "peyote3", price = 7640},
+                    {name = "pigalle", price = 23660},
+                    {name = "rapidgt3", price = 104975},
+                    {name = "retinue", price = 23920},
+                    {name = "retinue2", price = 24400},
+                    {name = "savestra", price = 24960},
+                    {name = "btype", price = 88400},
+                    {name = "stinger", price = 88400},
+                    {name = "stingergt", price = 110500},
+                    {name = "swinger", price = 112200},
+                    {name = "torero", price = 107100},
+                    {name = "ztype", price = 194400},
+                    {name = "z190", price = 88400},
+                    {name = "btype3", price = 110500},
+                    {name = "mamba", price = 112200},
+                    {name = "weevil", price = 46700},
+                    {name = "btype2", price = 119000},
+                    {name = "feltzer3", price = 140400},
+                    {name = "turismo2", price = 140400},
+                    {name = "torero2", price = 130000}
                 },
                 --[[["Velo"] = {
                     {name = "bmx", price = 70},
@@ -194,8 +239,6 @@ local autoshop =
                     {name = "hustler", price = 20800},
                     {name = "impaler", price = 12480},
                     {name = "lurcher", price = 55250},
-                    {name = "moonbeam", price = 9360},
-                    {name = "moonbeam2", price = 11440},
                     {name = "nightshade", price = 104975},
                     {name = "peyote", price = 31200},
                     {name = "peyote2", price = 45200},
@@ -279,6 +322,8 @@ local autoshop =
                     {name = "rumpo3", price = 55250},
                     {name = "speedo", price = 11960},
                     {name = "gburrito", price = 26000},
+                    {name = "moonbeam", price = 9360},
+                    {name = "moonbeam2", price = 11440},
                     {name = "youga4", price = 10000}
                 }
             }

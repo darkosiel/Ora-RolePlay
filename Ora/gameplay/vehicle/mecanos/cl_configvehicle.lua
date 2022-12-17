@@ -448,6 +448,7 @@ VehiclePrices = {
     {name = "hotring", price = 46750},
     {name = "nscoutlspd", price = 25000},
     {name = "polbuffals", price = 25000},
+    {name = "bloodline", price = 15000},
 
     -- Custom business véhicule japonais
     {name = "primo3", price = 9000},

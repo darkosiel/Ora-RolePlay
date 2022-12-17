@@ -11,9 +11,6 @@ RegisterNetEvent('chasse:server:CreateLog', function(name, title, color, message
             ['description'] = message,
         }
     }
-
-	print("[chasse] Sending webhook to " .. webHook)
-	print("message : " .. message)
     PerformHttpRequest(webHook, function(err, text, headers) end, 'POST', json.encode({ username = 'Notification', embeds = embedData}), { ['Content-Type'] = 'application/json' })
     Citizen.Wait(100)
 end)

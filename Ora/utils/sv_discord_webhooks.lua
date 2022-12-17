@@ -39,7 +39,8 @@ local discordWBK = {
     "https://discord.com/api/webhooks/957344621229379645/VPVZunSJPZ71odvV9e3tN48oTQ7shv3GSW5hZfvfMK9kHYbo-d6i0xyNEF8X27kN1EAt", -- 38   Immo
     "https://discord.com/api/webhooks/988384634675003422/ZTrhCGJipu7RqkCJnEhvjz6wQTvtxTpmxl7pRr565Dq0S7-aRYMaf7mhowZFlui0iC6R",
     ["Pneu"] = "https://discord.com/api/webhooks/1015596307534053437/DWRGGHo7A9MyTrgA7hFf_wCgCSAc5utOcD8LPVLw8hZ7ZlF1tZaceK4_uHqsWq-5U11w", -- ["Pneu"] : Pneu
-    ["Feu"] = "https://discord.com/api/webhooks/1040654955184406619/PFhkNGyUPdW142_gaSZQxMa0NVz26NfzwkirMMFxXrE8TfQaouYKTd8ZITSP6Vt7JYGe", -- ["Pneu"] : Pneu
+    ["Feu"] = "https://discord.com/api/webhooks/1040654955184406619/PFhkNGyUPdW142_gaSZQxMa0NVz26NfzwkirMMFxXrE8TfQaouYKTd8ZITSP6Vt7JYGe", -- ["Feu"] : Feu
+    ["Event"] = "https://discord.com/api/webhooks/1014923964864278579/rs6Hn5yglx38b0aus1WAeXla6sfHhizWMkfzk_S7lxwmMtsp9v434yEvjeK483KA-hLY", --[Event] : Event
     ["G6"] = "https://discord.com/api/webhooks/1043938526477164694/szANCOAswiWY2TFuhaydXnqaOhX2nBjSfg5zHGnliSFPQSMgKD5A5cUEepNt7g3-uVAS" -- ["G6"] : Gruppe Sechs
 }
 
