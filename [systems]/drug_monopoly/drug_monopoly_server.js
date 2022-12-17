@@ -348,7 +348,8 @@ async function getOrgaId(playerId) {
     const uuid = await getUuid(playerId)
     const orga = await crud.organisationMember.read({ playerUuid: uuid })
     if (!orga.length) {
-        console.error('Organisation id not found with player uuid ', uuid)
+        // debug
+        // console.error('Organisation id not found with player uuid ', uuid)
         return
     }
     return orga[0].organisationId

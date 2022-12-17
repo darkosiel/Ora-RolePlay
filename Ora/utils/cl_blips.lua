@@ -103,7 +103,7 @@ local Blips = {
     --{name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
     --{name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},
     --{name = "Koi", color = 49, sprite = 439, Pos = {x = -1040.4300, y = -1475.1987, z = 5.5802}},
-    -- {name = "Bar - San-Inn", color = 59, sprite = 93, Pos = {x = -172.66, y = 291.57, z = 92.76}},
+    {name = "San-Inn", color = 59, sprite = 93, Pos = {x = -172.66, y = 291.57, z = 92.76}},
     --{name = "Taco Loco", color = 46, sprite = 79, Pos = {x = 417.2778, y = -1911.7052, z = 25.47}},
     --{name = "Armurerie - Paleto Bay", color = 49, sprite = 313, Pos = {x = -326.78, y = 6080.18, z = 31.45}}
    -- {name = "Death Row Records", color = 49, sprite = 355, Pos = {x = -1441.7468, y = -546.6607, z = 34.7418}}
