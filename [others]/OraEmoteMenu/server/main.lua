@@ -50,7 +50,6 @@ end)
 
 RegisterServerEvent("OraEmoteMenu:ServerGetPreferences", function()
     local src = source local srcid = GetPlayerIdentifier(source)
-    print("ServerGetPreferences: " .. srcid)
     MySQL.Async.fetchScalar('SELECT preferences FROM ora_emote_menu_preferences WHERE `player_id`=@id;', {id = srcid}, function(result)
         if result == nil then 
             result = "{}" 

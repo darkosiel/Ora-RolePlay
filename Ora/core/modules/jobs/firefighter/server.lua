@@ -100,9 +100,7 @@ local function generateFires()
 	until currentTime > fireTimes[1]
 
 	if Ora.Service:GetTotalServiceCountForJob(JOB_FIREFIGHTER) >= MINIMUM_FIREFIGHTER then
-		print("Start fire that was supposed to start at ".. os.date("%c", fireTimes[1]) .. ", at " .. os.date("%c", currentTime))
 		local firePosition = FIRE_POSITIONS[math.random(1, #FIRE_POSITIONS)]
-		print('Fire position is ', firePosition)
 		TriggerEvent("fireManager:command:startfire", firePosition, FIRE_SPREAD, FIRE_SPREAD_SPEED, true, "Un incendie s'est déclenché dans la ville !")
 	end
 
