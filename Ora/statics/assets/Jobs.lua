@@ -3742,6 +3742,95 @@ Jobs = {
             }
         },
     },
+    goldstallion = {
+        label = "Gold Stallion",
+        label2 = "Gold Stallion",
+        iban = "goldstallion",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 120,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 140,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 160,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 190,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Gold Stallion",
+                subtitle = "Actions",
+                name = "journaliste_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("goldstallion")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Gold Stallion", "Annonce", text, "CHAR_stallion", 8, "Gold Stallion")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Gold Stallion",
+            Pos = {x = -579.1892, y = -726.4684, z = 26.73},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -579.1892, y = -726.4684, z = 26.73, h = 10.2296}
+            },
+            Blipdata = {
+                Pos = {x = -579.1892, y = -726.4684, z = 26.73},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+    
+        Storage = {
+            {
+                Pos = {x = -601.0551 y = -709.7877, z = 121.6045},
+                Limit = 1000,
+                Name = "coffre_stallion"
+            }
+        },
+    },
     avocat = {
         label = "Cabinet Hermerion",
         label2 = "Cabinet Hermerion",
