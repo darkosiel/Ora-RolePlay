@@ -3801,7 +3801,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Gold Stallion", "Annonce", text, "CHAR_LAWYER", 8, "Gold Stallion")
+                            TriggerServerEvent("Job:Annonce", "Gold Stallion", "Annonce", text, "CHAR_STALLION", 8, "Gold Stallion")
                         end
                     end
                 }
@@ -3825,7 +3825,7 @@ Jobs = {
     
         Storage = {
             {
-                Pos = {x = -601.0551 y = -709.7877, z = 121.6045},
+                Pos = {x = -601.0551, y = -709.7877, z = 121.6045},
                 Limit = 1000,
                 Name = "coffre_stallion"
             }
