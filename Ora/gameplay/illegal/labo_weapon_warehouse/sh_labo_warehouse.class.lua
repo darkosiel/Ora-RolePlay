@@ -60,9 +60,9 @@ IllegalLabsAndWarehouse.AVAILABLE_DRUGS = {
     },
     delivery = {
       -- {start = vector3(-39.71, -2531.21, 6.01), startHeading = 320.88, finish = vector3(-159.7, -2401.63, 6.0)},
-      -- {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)},
+      {start = vector3(115.55, -2635.47, 6.03), startHeading = 177.85, finish = vector3(-120.16, -2675.29, 6.01)}
       -- {start = vector3(-887.01, -2270.08, 6.71), startHeading = 340.05, finish = vector3(-911.71, -2051.22, 9.3)},
-      {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)}
+      -- {start = vector3(-1037.67, -1441.2, 5.09), startHeading = 202.0, finish = vector3(-969.22, -1583.45, 5.02)}
     --   {start = vector3(697.2, -845.69, 24.32), startHeading = 273.09, finish = vector3(803.83, -818.15, 26.18)},
     --   {start = vector3(892.8580, -2249.0532, 30.5401), startHeading = 352.06, finish = vector3(893.3366, -2355.1560, 30.4310)},
     --   {start = vector3(-332.61, -2171.81, 10.32), startHeading = 359.17, finish = vector3(-486.6180, -2170.4899, 9.2401)},
