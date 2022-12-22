@@ -1,7 +1,7 @@
 local PawnShops = {
     pawnshop_4 = {
-        position = vector3(103.48, 19.88, 66.90),
-        heading = 163.62,
+        position = vector3(112.33, -5.95, 67.84-0.98),
+        heading = 161.47,
         seller_ped = "cs_bankman",
         seller_name = "Edouard",
         pawnshop_receipt = "PawnShop",
@@ -516,15 +516,21 @@ Citizen.CreateThread(
                                                             )
                                                         elseif (PawnShops[CurrentZone].isPawnshop) then
                                                             Ora.Inventory:RemoveAnyItemsFromName(tmpKey, itemCount)
-                                                            TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "pawnshop", finalPrice, true)
-                                                            TriggerServerEvent("entreprise:Add", "pawnshop", finalPrice)
 
-                                                            ShowNotification(
-                                                                "~h~~b~L'acheteur vous achete ~r~" ..
-                                                                    itemCount ..
-                                                                        "x~s~ " ..
-                                                                            Items[tmpKey].label ..
-                                                                                "~s~ pour ~g~" .. finalPrice .. "$~s~"
+                                                            TriggerServerCallback(
+                                                                "Ora::SE::Money:AuthorizePayment", 
+                                                                function(token)
+                                                                    ShowNotification(
+                                                                        "~h~~b~L'acheteur vous achete ~r~" ..
+                                                                            itemCount ..
+                                                                                "x~s~ " ..
+                                                                                    Items[tmpKey].label ..
+                                                                                        "~s~ pour ~g~" .. finalPrice .. "$~s~"
+                                                                    )
+                                                                    TriggerServerEvent("Ora::SE::Receipt:CreateReceipt", {PRICE = finalPrice, PAWNSHOP = PawnShops[CurrentZone]})
+                                                                    TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = finalPrice, SOURCE = PawnShops[CurrentZone].pawnshop_receipt, LEGIT = true})
+                                                                end,
+                                                                {}
                                                             )
 
                                                         else
