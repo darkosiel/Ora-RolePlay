@@ -3801,7 +3801,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Gold Stallion", "Annonce", text, "CHAR_stallion", 8, "Gold Stallion")
+                            TriggerServerEvent("Job:Annonce", "Gold Stallion", "Annonce", text, "CHAR_LAWYER", 8, "Gold Stallion")
                         end
                     end
                 }
@@ -3829,7 +3829,7 @@ Jobs = {
                 Limit = 1000,
                 Name = "coffre_stallion"
             }
-        },
+        }
     },
     avocat = {
         label = "Cabinet Hermerion",
