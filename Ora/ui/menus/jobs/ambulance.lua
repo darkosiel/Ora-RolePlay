@@ -148,7 +148,7 @@ end
 function Ambulance.GetOffStretcher()
     local stretcherHash = GetHashKey("prop_ld_binbag_01")
     local veh = GetVehicleInDirection()
-    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("samsbisonamb") or GetEntityModel(veh) == GetHashKey("samsspeedoamb") or GetEntityModel(veh) == GetHashKey("samsspeedoamb2") or GetEntityModel(veh) == GetHashKey("Romero") or GetEntityModel(veh) == GetHashKey("medevac") then
+    if veh ~= 0 and GetEntityModel(veh) == GetHashKey("samsbisonamb") or GetEntityModel(veh) == GetHashKey("samsspeedoamb") or GetEntityModel(veh) == GetHashKey("samsspeedoamb2") or GetEntityModel(veh) == GetHashKey("Romero") or GetEntityModel(veh) == GetHashKey("medevac") or GetEntityModel(veh) == GetHashKey("lsfdbisonamb") or GetEntityModel(veh) == GetHashKey("lsfdbisoncmd") or GetEntityModel(veh) == GetHashKey("lsfdbison2") then
         local vehCoords = GetEntityCoords(veh)
         local forward = GetEntityForwardVector(veh)
         local behind = vehCoords - (forward * 6.0)
