@@ -417,7 +417,6 @@ local removeHair = {
     [177] = true,
     [178] = true,
     [189] = true,
-
 }
 
 local doNotChangeFace = {
@@ -425,6 +424,7 @@ local doNotChangeFace = {
     [124] = true,
     [121] = true,
     [127] = true,
+    [186] = true,
 }
 
 function EquipMasks()
@@ -724,74 +724,25 @@ ItemsFunction = {
     herse = function()
         useHerse()
     end,
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
-    end,
     roulant = function(i)
         if i then
             useChaise(i)
         end
     end,
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
-    end,
     armoire = function()
         useArmoire()
-    end,
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
     end,
     fauteuil = function()
         useFauteuil()
     end,
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
-    end,
     commode = function()
         useCommode()
-    end,
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
     end,
 --[[    tablefbi = function()
         useTablefbi()
     end,]]
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
-    end,
     cone = function()
         useCone()
-    end,
-    usbkey = function()
-        local bool, m = isNearComputer()
-        if bool then
-            Wait(100)
-            AddHackButton()
-        end
     end,
     barrier = function()
         useBarrier()
