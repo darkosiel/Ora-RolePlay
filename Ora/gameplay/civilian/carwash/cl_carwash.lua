@@ -30,7 +30,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(1.0)
 		if Player.InVehicle then 
 			for _, coords in pairs(vehicleWashStation) do
-				DrawMarker(1, coords[1], coords[2], coords[3], 0, 0, 0, 0, 0, 0, 5.0, 5.0, 2.0, 0, 157, 0, 155, 0, 0, 2, 0, 0, 0, 0)
+				DrawMarker(25, coords[1], coords[2], coords[3], 0, 0, 0, 0, 0, 0, 5.0, 5.0, 2.0, 0, 255, 255, 255, 0, 0, 2, 0, 0, 0, 0)
 				if GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed(-1)), coords[1], coords[2], coords[3], true ) < 5 then
 					AddTextEntry("HELP", "Appuyer sur ~INPUT_CONTEXT~ pour commencer le lavage ! " .. price .. "$")
 					DisplayHelpTextThisFrame("HELP", false)
