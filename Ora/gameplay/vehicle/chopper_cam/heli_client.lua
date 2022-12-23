@@ -41,7 +41,7 @@ local vision_state = 0 -- 0 is normal, 1 is nightmode, 2 is thermal vision
 
 Citizen.CreateThread(function() -- Register ped decorators used to pass some variables from heli pilot to other players (variable settings: 1=false, 2=true)
 	while true do
-	Citizen.Wait(0)
+		Citizen.Wait(0)
 		if NetworkIsSessionStarted() then
 			DecorRegister("SpotvectorX", 3) -- For direction of manual spotlight
 			DecorRegister("SpotvectorY", 3)
@@ -53,9 +53,11 @@ Citizen.CreateThread(function() -- Register ped decorators used to pass some var
 end)
 
 Citizen.CreateThread(function()
+	local GetPlayerPed = GetPlayerPed
+
 	while true do
     Citizen.Wait(0)
-		if IsPlayerInPolmav() then
+		if Player.InVehicle and IsPlayerInPolmav() then
 			local lPed = GetPlayerPed(-1)
 			local heli = GetVehiclePedIsIn(lPed)
 			
@@ -135,7 +137,8 @@ Citizen.CreateThread(function()
 					PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
 				end
 			end
-
+		else
+			Citizen.Wait(1000)
 		end
 		
 		if helicam then
@@ -492,16 +495,33 @@ AddEventHandler('heli:radius.down', function(serverID)
 	end
 end) ]]
 
+local helicoptersModels = {
+	[GetHashKey("as350")] = true,
+	[GetHashKey("polmav")] = true,
+	[GetHashKey("buzzard")] = true,
+	[GetHashKey("buzzard2")] = true,
+	[GetHashKey("frogger")] = true,
+	[GetHashKey("frogger2")] = true,
+	[GetHashKey("maverick")] = true,
+	[GetHashKey("savage")] = true,
+	[GetHashKey("valkyrie")] = true,
+	[GetHashKey("valkyrie2")] = true,
+	[GetHashKey("volatus")] = true,
+}
+
 function IsPlayerInPolmav()
+
+
 	local lPed = GetPlayerPed(-1)
 	local vehicle = GetVehiclePedIsIn(lPed)
-	return IsVehicleModel(vehicle, polmav_hash) or IsVehicleModel(vehicle, frogger_hash) or
-        IsVehicleModel(vehicle, buzzart_hash) or
-        IsVehicleModel(vehicle, aw139_hash) or
-        IsVehicleModel(vehicle, seasparrow_hash) or
-				IsVehicleModel(vehicle, anni_hash) or
-				IsVehicleModel(vehicle, wzl_hash) or
-				IsVehicleModel(vehicle, wzl_hash2)
+	return helicoptersModels[GetEntityModel(vehicle)]
+	--return IsVehicleModel(vehicle, polmav_hash) or IsVehicleModel(vehicle, frogger_hash) or
+    --    IsVehicleModel(vehicle, buzzart_hash) or
+    --    IsVehicleModel(vehicle, aw139_hash) or
+    --    IsVehicleModel(vehicle, seasparrow_hash) or
+	--			IsVehicleModel(vehicle, anni_hash) or
+	--			IsVehicleModel(vehicle, wzl_hash) or
+	--			IsVehicleModel(vehicle, wzl_hash2)
 end
 
 function IsHeliHighEnough(heli)
