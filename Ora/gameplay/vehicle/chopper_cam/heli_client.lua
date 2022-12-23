@@ -54,7 +54,7 @@ end)
 
 Citizen.CreateThread(function()
 	local GetPlayerPed = GetPlayerPed
-
+	local Player = LocalPlayer()
 	while true do
     Citizen.Wait(0)
 		if Player.InVehicle and IsPlayerInPolmav() then
@@ -496,17 +496,14 @@ AddEventHandler('heli:radius.down', function(serverID)
 end) ]]
 
 local helicoptersModels = {
-	[GetHashKey("as350")] = true,
-	[GetHashKey("polmav")] = true,
-	[GetHashKey("buzzard")] = true,
-	[GetHashKey("buzzard2")] = true,
-	[GetHashKey("frogger")] = true,
-	[GetHashKey("frogger2")] = true,
-	[GetHashKey("maverick")] = true,
-	[GetHashKey("savage")] = true,
-	[GetHashKey("valkyrie")] = true,
-	[GetHashKey("valkyrie2")] = true,
-	[GetHashKey("volatus")] = true,
+	[polmav_hash] = true,
+	[aw139_hash] = true,
+	[buzzart_hash] = true,
+	[seasparrow_hash] = true,
+	[frogger_hash] = true,
+	[anni_hash] = true,
+	[wzl_hash] = true,
+	[wzl_hash2] = true,
 }
 
 function IsPlayerInPolmav()
