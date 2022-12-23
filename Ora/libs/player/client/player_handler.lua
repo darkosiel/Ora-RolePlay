@@ -97,7 +97,6 @@ Citizen.CreateThread(function()
     while true do
 		Player.Pos = GetEntityCoords(Player.Ped)
 		Player.Heading = GetEntityHeading(Player.Ped)
-		Player.InVehicle = IsPedInAnyVehicle(Player.Ped)
 
         if Player.Weapon ~= WEAPON_UNARMED_HASH and Player.Weapon ~= WEAPON_HOSE_HASH and not IsPedArmed(Player.Ped, 1) then
             DisableControlAction(0, 140, true)
@@ -116,6 +115,8 @@ Citizen.CreateThread(
             Player.Pos = GetEntityCoords(Player.Ped)
             Player.ZoneId = Ora.Core:GetGridZoneId(Player.Pos.x, Player.Pos.y)
             Player.Hud = exports['Ora_utils']:GetPlayerHUD()
+            
+            Player.InVehicle = IsPedInAnyVehicle(Player.Ped)
             SetPedSuffersCriticalHits(Player.Ped, false)
 
             if (IsPedFalling(Player.Ped) or IsPedInParachuteFreeFall(Player.Ped)) then
