@@ -331,6 +331,115 @@ local autoshop =
     },
     autoshop
 )
+function debugMessage(...)
+    local resourceName = GetCurrentResourceName()
+    local args = {...}
+
+    for idx, val in pairs(args) do
+        if val == nil then
+            args[idx] = 'nil'
+        else
+            args[idx] = tostring(val)
+        end
+    end
+
+    print(("^2[%s] ^3%s^7"):format(resourceName, table.concat(args, "\t")))
+end
+
+function netDebugMessage(msg)
+    local inf = debug.getinfo(3)
+
+    local line = inf.currentline
+    local source = inf.source
+
+    debugMessage(msg .. '(' .. string.gsub(source, "@@", "@") .. ':' .. line .. ')')
+end
+
+if not IsDuplicityVersion() then
+    OGNetToVeh = NetToVeh
+    function NetToVeh(serverId)
+        if serverId then
+            if NetworkDoesEntityExistWithNetworkId(serverId) then
+                return OGNetToVeh(serverId)
+            else
+                netDebugMessage('(NetToVeh) Entity with netId #' .. serverId .. ' not found')
+            end
+        else
+            netDebugMessage('(NetToVeh) Trying to get entity from nil!')
+        end
+    end
+
+    OGNetToPed = NetToPed
+    function NetToPed(serverId)
+        if serverId then
+            if NetworkDoesEntityExistWithNetworkId(serverId) then
+                return OGNetToPed(serverId)
+            else
+                netDebugMessage('(NetToPed) Entity with netId #' .. serverId .. ' not found ')
+            end
+        else
+            netDebugMessage('(NetToPed) Trying to get entity from nil!')
+        end
+    end
+
+    OGNetworkGetNetworkIdFromEntity = NetworkGetNetworkIdFromEntity
+    function NetworkGetNetworkIdFromEntity(serverId)
+        if serverId then
+            if NetworkGetEntityIsNetworked(serverId) then
+                return OGNetworkGetNetworkIdFromEntity(serverId)
+            else
+                netDebugMessage('(NetworkGetNetworkIdFromEntity) Entity  #' .. serverId .. ' is not networked ')
+            end
+        else
+            netDebugMessage('(NetworkGetNetworkIdFromEntity) Trying to get entity from nil!')
+        end
+    end
+
+    OGSetNuiFocus = SetNuiFocus
+    function SetNuiFocus(hasFocus, hasCursor)
+        TriggerEvent('lsrp_base:setNuiFocus', GetCurrentResourceName(), hasFocus, hasCursor, function(a, b)
+            OGSetNuiFocus(a, b)
+        end)
+    end
+end
+
+
+local CurrentZone = nil
+local currentHeader = true
+local currentveh = 0
+local function DrawVehicle(vehicleName)
+    local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
+    if veh ~= nil then
+        DeleteEntity(veh)
+    end
+    vehicleFct.SpawnLocalVehicle(
+            vehicleName,
+            autoshop[CurrentZone].Pos,
+            autoshop[CurrentZone].Pos.a,
+            function(veh)
+                SetPedIntoVehicle(LocalPlayer().Ped, veh, -1)
+                FreezeEntityPosition(veh, true)
+                SetVehicleDoorsLocked(veh, 4)
+                currentveh = veh
+            end
+    )
+    t = vehicleFct.GetVehiclesInArea(autoshop[CurrentZone].Pos, 8.0)
+
+    for i = 1, #t, 1 do
+        DeleteEntity(t[i])
+    end
+    RMenu:Get("autoshop", CurrentZone).Closed = function()
+        local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
+        if veh ~= nil then
+            DeleteEntity(veh)
+        end
+        t = vehicleFct.GetVehiclesInArea(autoshop[CurrentZone].Pos, 8.0)
+        Marker:Visible(autoshop[CurrentZone].Pos, true)
+        for i = 1, #t, 1 do
+            DeleteEntity(t[i])
+        end
+    end
+end
 
 function autoshop:CreateShops()
     for i = 1, #self, 1 do
@@ -356,6 +465,16 @@ function autoshop:CreateShops()
 
         for k, v in pairs(v.Vehicles) do
             RMenu.Add("autoshop_sub", k, RageUI.CreateSubMenu(RMenu:Get("autoshop", i), nil, k))
+            RMenu:Get("autoshop_sub", k).Closed = function()
+                CurrentVehicle = nil
+                DeleteEntity(GetVehiclePedIsIn(PlayerPedId(), false))
+            end
+
+            RMenu:Get("autoshop_sub", k).onIndexChange = function(Index)
+                CurrentVehicle = v[Index].name
+                DrawVehicle(CurrentVehicle)
+            end
+
         end
         RMenu.Add("autoshop_sub", "list", RageUI.CreateSubMenu(RMenu:Get("autoshop", i), nil, "Actions disponibles"))
         RMenu.Add(
@@ -376,7 +495,6 @@ function autoshop:CreateShops()
     end
 end
 
-local CurrentZone = nil
 
 function autoshop.EnterZone(zone)
     Hint:Set("Appuyez sur ~INPUT_CONTEXT~ pour ouvrir la boutique")
@@ -407,41 +525,8 @@ function autoshop.Close()
     end
 end
 
-local currentHeader = true
-local currentveh = 0
-local function DrawVehicle(vehicleName)
-    local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
-    if veh ~= nil then
-        DeleteEntity(veh)
-    end
-    vehicleFct.SpawnLocalVehicle(
-        vehicleName,
-        autoshop[CurrentZone].Pos,
-        autoshop[CurrentZone].Pos.a,
-        function(veh)
-            SetPedIntoVehicle(LocalPlayer().Ped, veh, -1)
-            FreezeEntityPosition(veh, true)
-            SetVehicleDoorsLocked(veh, 4)
-            currentveh = veh
-        end
-    )
-    t = vehicleFct.GetVehiclesInArea(autoshop[CurrentZone].Pos, 8.0)
 
-    for i = 1, #t, 1 do
-        DeleteEntity(t[i])
-    end
-    RMenu:Get("autoshop", CurrentZone).Closed = function()
-        local veh = GetVehiclePedIsIn(LocalPlayer().Ped)
-        if veh ~= nil then
-            DeleteEntity(veh)
-        end
-        t = vehicleFct.GetVehiclesInArea(autoshop[CurrentZone].Pos, 8.0)
-        Marker:Visible(autoshop[CurrentZone].Pos, true)
-        for i = 1, #t, 1 do
-            DeleteEntity(t[i])
-        end
-    end
-end
+
 local CurrentVehicle = nil
 local menu = nil
 local currentInd = {}
@@ -700,29 +785,12 @@ Citizen.CreateThread(
                                             {RightLabel = p},
                                             true,
                                             function(_, Active, Selected)
-                                                if Ora.Identity:HasAnyJob("autoshop") then
-                                                    menu = RMenu:Get("autoshop_sub", "list")
-                                                else
-                                                    menu = nil
-                                                end
                                                 if Active then
-                                                            Citizen.CreateThread(function()
-                                                    if IsModelValid(v[i].name) and CurrentVehicle ~= v[i].name then
-                                                        --("oload")
-                                                        RequestModel(v[i].name)
-
-                                                        while not HasModelLoaded(v[i].name) do
-                                                            Citizen.Wait(0)
-                                                        end
-                                                        CurrentVehicle = v[i].name
-                                                        DrawVehicle(CurrentVehicle)
-                                                        if (type(v[i].name) == "string") then
-                                                            SetModelAsNoLongerNeeded(GetHashKey(v[i].name))
-                                                        else
-                                                            SetModelAsNoLongerNeeded(v[i].name)
-                                                        end
+                                                    if Ora.Identity:HasAnyJob("autoshop") then
+                                                        menu = RMenu:Get("autoshop_sub", "list")
+                                                    else
+                                                        menu = nil
                                                     end
-                                                      end)
                                                 end
 
                                                 if Selected then
