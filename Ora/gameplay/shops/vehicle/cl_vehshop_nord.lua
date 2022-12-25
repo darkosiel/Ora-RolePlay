@@ -395,12 +395,12 @@ if not IsDuplicityVersion() then
         end
     end
 
-    OGSetNuiFocus = SetNuiFocus
-    function SetNuiFocus(hasFocus, hasCursor)
-        TriggerEvent('lsrp_base:setNuiFocus', GetCurrentResourceName(), hasFocus, hasCursor, function(a, b)
-            OGSetNuiFocus(a, b)
-        end)
-    end
+    -- OGSetNuiFocus = SetNuiFocus
+    -- function SetNuiFocus(hasFocus, hasCursor)
+    --     TriggerEvent('lsrp_base:setNuiFocus', GetCurrentResourceName(), hasFocus, hasCursor, function(a, b)
+    --         OGSetNuiFocus(a, b)
+    --     end)
+    -- end
 end
 
 
