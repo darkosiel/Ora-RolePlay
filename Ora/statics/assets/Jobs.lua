@@ -6349,32 +6349,32 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 834.8974, y = -1299.3896, z = 24.3203}, -- Coffre armurerie
+                Pos = {x = 834.8974, y = -1299.3896, z = 24.3203-0.99}, -- Coffre armurerie
                 Limit = 99999999,
                 Name = "coffre"
             },
             {
-                Pos = {x = 843.1442, y = -1307.0839, z = 24.3203},
+                Pos = {x = 843.1442, y = -1307.0839, z = 24.3203-0.99},
                 Limit = 1000,
                 Name = "coffre cellules"
             },
             {
-                Pos = {x = 854.1108, y = -1318.2130, z = 24.3203}, -- Saisie SAHP
+                Pos = {x = 854.1108, y = -1318.2130, z = 24.3203-0.99}, -- Saisie SAHP
                 Limit = 5000,
                 Name = "coffre des saisies"
             },
             {
-                Pos = {x = 846.6671, y = -1282.4407, z = 24.3203},  -- Coffre vestiaire 
+                Pos = {x = 846.6671, y = -1282.4407, z = 24.3203-0.99},  -- Coffre vestiaire 
                 Limit = 99999999,
                 Name = "coffre personnel"
             },
             {
-                Pos = {x = -1087.4049, y = -820.5991, z = 11.0358},  -- Saisie DB
+                Pos = {x = -1087.4049, y = -820.5991, z = 11.0358-0.99},  -- Saisie DB
                 Limit = 2000,
                 Name = "coffre Saisies DB"
             },
             {
-                Pos = {x = 876.19, y = -1352.45, z = 26.32},
+                Pos = {x = 876.19, y = -1352.45, z = 26.32-0.99},
                 Limit = 99999999,
                 Name = "coffre SWAT"
             }
@@ -6383,7 +6383,7 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 844.9340, y = -1284.5042, z = 24.3187},
+                Pos = {x = 844.9340, y = -1284.5042, z = 24.3187-0.99},
                 vestiaire = {
                     type = "Vestiaire",
                     workSize = 1.45,
