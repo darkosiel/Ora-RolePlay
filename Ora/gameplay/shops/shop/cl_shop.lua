@@ -2543,11 +2543,11 @@ local Shops =
                     price = 100,
                     data = {}
                 },
-                {
-                    name = "p_scope",
-                    price = 100,
-                    data = {}
-                },
+                -- {
+                --     name = "p_scope",
+                --     price = 100,
+                --     data = {}
+                -- },
                 {
                     name = "p_extendedclip",
                     price = 100,
@@ -2587,11 +2587,11 @@ local Shops =
                     price = 100,
                     data = {}
                 },
-                {
-                    name = "shotgun_scope",
-                    price = 100,
-                    data = {}
-                },
+                -- {
+                --     name = "shotgun_scope",
+                --     price = 100,
+                --     data = {}
+                -- },
                 {
                     name = "shotgun_extendedclip",
                     price = 100,
