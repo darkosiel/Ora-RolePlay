@@ -3409,26 +3409,27 @@ function UseWeaponAccessory(item)
 
         for k, v in pairs(Ora.Inventory.Data[Ora.Inventory.CurrentWeapon.itemName]) do
             if v.id == Ora.Inventory.CurrentWeapon.id then
-                weapon = v
+                --weapon = v
+                
+                if v.data == nil then
+                    v.data = {}
+                end
+
+                if v.data.access == nil then
+                    v.data.access = {}
+                end
+
+
+                --table.insert(v.data.access, componentHash)
+                v.data.access[tostring(componentHash)] = true
+                
+                --print(json.encode(v))
+                local label = Items[item.name].label
+                ShowNotification("Vous avez équipé : ~g~" .. label .. "~w~.")
                 break
             end
         end
 
-        if weapon.data == nil then
-            weapon.data = {}
-        end
-
-        if weapon.data.access == nil then
-            weapon.data.access = {}
-        end
-
-
-        --table.insert(weapon.data.access, componentHash)
-        weapon.data.access[tostring(componentHash)] = true
-        
-        --print(json.encode(weapon))
-        local label = Items[item.name].label
-        ShowNotification("Vous avez équipé : ~g~" .. label .. "~w~.")
     else
         SendNotification("~r~Vous avez déjà équipé cet accessoire.")
     end
