@@ -1087,7 +1087,7 @@ Citizen.CreateThread(
                         function()
                             RageUI.List(
                                 "Type de drogue",
-                                {"Weed", "Meth", "Cocaine", "Lsd"},
+                                {"Weed", "Meth", "Cocaine", "Crack"},
                                 indexDrugType,
                                 nil,
                                 {},
@@ -1129,8 +1129,8 @@ Citizen.CreateThread(
                                             item["name"] = "coke1"
                                             itemName = "coke1"
                                         else
-                                            item["name"] = "lsd_pooch"
-                                            itemName = "lsd_pooch"
+                                            item["name"] = "crack"
+                                            itemName = "crack"
                                         end
 
                                         if Index == 1 then
