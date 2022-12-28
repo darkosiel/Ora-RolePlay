@@ -11092,7 +11092,7 @@ Jobs = {
             {
                 Pos = {x = -330.9582, y = -112.9150, z = 39.0097},
                 Limit = 1000,
-                Name = "coffre_mecano2"
+                Name = "coffre_mecano4"
             }
         },
         work = {
