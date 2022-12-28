@@ -13448,7 +13448,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Bar Little Seoul - Vente",
-                Pos = {x = 61.8119, y = -1726.7955, z = 29.4971},
+                Pos = {x = -1113.61, y = -1367.55, z = 5.01},
                 required = "saucissonsec",
                 price = math.random(13,16),
                 add = "~p~- 1 Saucisson sec"
