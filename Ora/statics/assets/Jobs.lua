@@ -1797,6 +1797,18 @@ Jobs = {
                 },
                 add = "~p~+ 2  Pain"
             },
+            traitement4 = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor =7,
+                blipname = "Fabrication de Galette",
+                Pos =  {x=2242.60,y=5153.31,z=57.3},
+                required = "farine",
+                giveitem = {
+                    {name = "galette", count = 2},
+                },
+                add = "~p~+ 2  Galettes"
+            },
             vente = {
                 type = "vente",
                 blipcolor = 7,

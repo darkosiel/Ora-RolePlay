@@ -1148,6 +1148,14 @@ Items = {
         faim = 5,
         category = "food"
     },
+    galette = {
+        label = "Part de Galette",
+        weight = 0.2,
+        actionCl = "miam:Eat",
+        props = "prop_cs_hotdog_01",
+        faim = 25,
+        category = "food"
+    },
     tapas = {
         label = "Tapas",
         weight = 0.2,
