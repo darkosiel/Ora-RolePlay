@@ -527,6 +527,15 @@ Config.DoorList = {
         locked = true,
         maxDistance = 2.5
     },
+    {
+        objHash = -1635579193,
+        objHeading = 124.62,
+        objCoords = vector3(-1178.57, -891.74, 13.74),
+        textCoords = vector3(-1178.57, -891.74, 13.74),
+        authorizedJobs = {"burgershot"},
+        locked = true,
+        maxDistance = 2.5
+    },
 
 
     -------- PDM
