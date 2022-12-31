@@ -75,6 +75,10 @@ $phone-bank-color: "phone-bank-color";
 $phone-bank-active-color: "phone-bank-active-color";
 $phone-bank-border-color: "phone-bank-border-color";
 
+$phone-lifeinvader-background-color: "phone-lifeinvader-background-color";
+$phone-lifeinvader-list-item-box-shadow-color: "phone-lifeinvader-list-item-box-shadow-color";
+$phone-lifeinvader-list-item-hover: "phone-lifeinvader-list-item-hover";
+
 //themes
 $themes: (
         default: (
@@ -151,6 +155,10 @@ $themes: (
                 phone-bank-color: $phone--bank--color--light,
                 phone-bank-active-color: $phone--bank--active--color--light,
                 phone-bank-border-color: $label--color--secondary--light,
+
+                phone-lifeinvader-background-color: $phone--lifeinvader--background--color--light,
+                phone-lifeinvader-list-item-box-shadow-color: $system--material--fill--secondary--light,
+                phone-lifeinvader-list-item-hover: $system--gray--5--light,
         ),
         dark: (
                 phone-background-default: url("../images/wallpaper/wallpaper-ios15-dark.jpg"),
@@ -226,6 +234,10 @@ $themes: (
                 phone-bank-color: $phone--bank--color--dark,
                 phone-bank-active-color: $phone--bank--active--color--dark,
                 phone-bank-border-color: $label--color--secondary--dark,
+
+                phone-lifeinvader-background-color: $phone--lifeinvader--background--color--dark,
+                phone-lifeinvader-list-item-box-shadow-color: $system--material--fill--secondary--dark,
+                phone-lifeinvader-list-item-hover: $system--gray--5--dark,
         ),
 );
 

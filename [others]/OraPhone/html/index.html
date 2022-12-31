@@ -191,19 +191,19 @@
                                         </div>
                                 </div>
                                 <div id="app-store-tab" class="app-tab">
-                                        <div id="app-tab-button-myapps" class="app-tab-button">
+                                        <div id="app-tab-button-store-myapps" class="app-tab-button">
                                             <i class="fa-solid fa-window-maximize"></i>
                                             <span>Mes applis</span>
                                         </div>
-                                        <div id="app-tab-button-games" class="app-tab-button">
+                                        <div id="app-tab-button-store-games" class="app-tab-button">
                                             <i class="fa-solid fa-gamepad"></i>
                                             <span>Jeux</span>
                                         </div>
-                                        <div id="app-tab-button-apps" class="app-tab-button">
+                                        <div id="app-tab-button-store-apps" class="app-tab-button">
                                             <i class="fa-solid fa-box-open"></i>
                                             <span>Applis</span>
                                         </div>
-                                        <div id="app-tab-button-search" class="app-tab-button">
+                                        <div id="app-tab-button-store-search" class="app-tab-button">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                             <span>Chercher</span>
                                         </div>
@@ -380,19 +380,19 @@
                                     </div>
                                 </div>
                                 <div class="app-tab">
-                                    <div id="app-tab-button-clock" class="app-tab-button">
+                                    <div id="app-tab-button-clock-clock" class="app-tab-button">
                                         <i class="fa-solid fa-globe"></i>
                                         <span>Horloge</span>
                                     </div>
-                                    <div id="app-tab-button-alarm" class="app-tab-button">
+                                    <div id="app-tab-button-clock-alarm" class="app-tab-button">
                                         <i class="fa-regular fa-clock"></i>
                                         <span>Alarme</span>
                                     </div>
-                                    <div id="app-tab-button-stopwatch" class="app-tab-button">
+                                    <div id="app-tab-button-clock-stopwatch" class="app-tab-button">
                                         <i class="fa-solid fa-stopwatch"></i>
                                         <span>Chronomètre</span>
                                     </div>
-                                    <div id="app-tab-button-timer" class="app-tab-button">
+                                    <div id="app-tab-button-clock-timer" class="app-tab-button">
                                         <i class="fa-regular fa-hourglass-half"></i>
                                         <span>Minuteur</span>
                                     </div>
@@ -478,19 +478,19 @@
                                     </div>
                                 </div>
                                 <div class="app-tab">
-                                    <div id="app-tab-button-tab1" class="app-tab-button active">
+                                    <div id="app-tab-button-templatetabbed-tab1" class="app-tab-button active">
                                         <i class="fa-solid fa-star"></i>
                                         <span>Tab 1</span>
                                     </div>
-                                    <div id="app-tab-button-tab2" class="app-tab-button">
+                                    <div id="app-tab-button-templatetabbed-tab2" class="app-tab-button">
                                         <i class="fa-solid fa-star"></i>
                                         <span>Lablel</span>
                                     </div>
-                                    <div id="app-tab-button-tab3" class="app-tab-button">
+                                    <div id="app-tab-button-templatetabbed-tab3" class="app-tab-button">
                                         <i class="fa-solid fa-star"></i>
                                         <span>Lablel</span>
                                     </div>
-                                    <div id="app-tab-button-tab4" class="app-tab-button">
+                                    <div id="app-tab-button-templatetabbed-tab4" class="app-tab-button">
                                         <i class="fa-solid fa-star"></i>
                                         <span>Lablel</span>
                                     </div>
@@ -1456,11 +1456,11 @@
                                     </div>
                                 </div>
                                 <div class="app-tab">
-                                    <div id="app-tab-button-phonepad" class="app-tab-button">
+                                    <div id="app-tab-button-phone-phonepad" class="app-tab-button">
                                         <i class="fa-solid fa-keyboard"></i>
                                         <span>Clavier</span>
                                     </div>
-                                    <div id="app-tab-button-phonehistory" class="app-tab-button">
+                                    <div id="app-tab-button-phone-phonehistory" class="app-tab-button">
                                         <i class="fa-solid fa-clock"></i>
                                         <span>Historique</span>
                                     </div>
@@ -1703,13 +1703,18 @@
                                         <div class="app-body-content-body">
                                             <img alt="Image gallery" id="gallery-image" src=""/>
                                             <div>
-                                                <i id="gallery-image-button-remove" class="fa-solid fa-trash-can"></i>
+                                                <div>
+                                                    <input id="gallery-image-lien" type="text" disabled/>
+                                                </div>
+                                                <div>
+                                                    <i id="gallery-image-button-remove" class="fa-solid fa-trash-can"></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="app-tab">
-                                    <div id="app-tab-button-list" class="app-tab-button active">
+                                    <div id="app-tab-button-gallery-list" class="app-tab-button active">
                                         <i class="fa-solid fa-images"></i>
                                         <span>Image</span>
                                     </div>
@@ -1916,17 +1921,171 @@
                                     </div>
                                 </div>
                                 <div class="app-tab">
-                                    <div id="app-tab-button-home" class="app-tab-button active">
+                                    <div id="app-tab-button-bank-home" class="app-tab-button active">
                                         <i class="fa-solid fa-house"></i>
                                         <span>Accueil</span>
                                     </div>
-                                    <div id="app-tab-button-history" class="app-tab-button">
+                                    <div id="app-tab-button-bank-history" class="app-tab-button">
                                         <i class="fa-solid fa-clock-rotate-left"></i>
                                         <span>Historique</span>
                                     </div>
-                                    <div id="app-tab-button-transfer" class="app-tab-button">
+                                    <div id="app-tab-button-bank-transfer" class="app-tab-button">
                                         <i class="fa-solid fa-money-bill-transfer"></i>
                                         <span>Virement</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="app-lifeinvader" class="app app-tabbed">
+                                <div class="app-body">
+                                    <div id="app-lifeinvader-body-content-selectprofile" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <div id="lifeinvader-selectprofile-list" class="lifeinvader-list"></div>
+                                        </div>
+                                    </div>
+                                    <div id="app-lifeinvader-body-content-home" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <div class="lifeinvader-header-profile-image">
+                                                        <img src="assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
+                                                    </div>
+                                                    <div class="lifeinvader-header-profile-name">
+                                                        <span class="lifeinvader-header-profile-name-pseudo">xxxx xxxx</span>
+                                                        <span class="lifeinvader-header-profile-name-username">@xxxx xxxx</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-solid fa-right-from-bracket exit-profile"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="lifeinvader-home-list" class="lifeinvader-list"></div>
+                                        </div>
+                                    </div>
+                                    <div id="app-lifeinvader-body-content-post" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <div class="lifeinvader-header-profile-image">
+                                                        <img src="assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
+                                                    </div>
+                                                    <div class="lifeinvader-header-profile-name">
+                                                        <span class="lifeinvader-header-profile-name-pseudo">xxxx xxxx</span>
+                                                        <span class="lifeinvader-header-profile-name-username">@xxxx xxxx</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-solid fa-right-from-bracket exit-profile"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div id="lifeinvader-post-list" class="lifeinvader-list"></div>
+                                            <textarea id="lifeinvader-post-response-textarea" maxlength="280" rows="6" placeholder="Répondre à la publication..."></textarea>
+                                            <button id="lifeinvader-post-response-button">Répondre</button>
+                                        </div>
+                                    </div>
+                                    <div id="app-lifeinvader-body-content-profile" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i id="lifeinvader-settings-button" class="fa-solid fa-gear"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-solid fa-right-from-bracket exit-profile"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="lifeinvader-profile">
+                                                <div class="lifeinvader-profile-image">
+                                                    <img src="assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
+                                                </div>
+                                                <div class="lifeinvader-profile-name">
+                                                    <span class="lifeinvader-profile-name-pseudo">xxxx xxxx</span>
+                                                    <span class="lifeinvader-profile-name-username">@xxxx xxxx</span>
+                                                </div>
+                                                <div class="lifeinvader-profile-bio">
+                                                    <span>xxxxxx</span>
+                                                </div>
+                                            </div>
+                                            <div id="lifeinvader-profile-list" class="lifeinvader-list"></div>
+                                        </div>
+                                    </div>
+                                    <div id="app-lifeinvader-body-content-settings" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <i class="fa-solid fa-gear"></i>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-solid fa-right-from-bracket exit-profile"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <div class="lifeinvader-profile">
+                                                <div class="lifeinvader-profile-image">
+                                                    <img src="assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
+                                                </div>
+                                                <input id="lifeinvader-settings-avatar" type="text" class="lifeinvader-profile-name-pseudo" placeholder="Lien de l'avatar..."/>
+                                                <input id="lifeinvader-settings-pseudo" type="text" class="lifeinvader-profile-name-pseudo" maxlength="20" placeholder="Votre pseudo..."/>
+                                                <input id="lifeinvader-settings-username" type="text" class="lifeinvader-profile-name-username" disabled/>
+                                                <textarea id="lifeinvader-settings-bio" maxlength="160" rows="5" placeholder="Votre bio..."></textarea>
+                                            </div>
+                                            <button id="lifeinvader-settings-save-button">Sauvegarder</button>
+                                        </div>
+                                    </div>
+                                    <div id="app-lifeinvader-body-content-newpost" class="app-body-content disable-select">
+                                        <div class="app-body-content-header">
+                                            <div class="app-body-content-header-button">
+                                                <div class="app-body-content-header-button-parent">
+                                                    <div class="lifeinvader-header-profile-image">
+                                                        <img src="assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
+                                                    </div>
+                                                    <div class="lifeinvader-header-profile-name">
+                                                        <span class="lifeinvader-header-profile-name-pseudo">xxxx xxxx</span>
+                                                        <span class="lifeinvader-header-profile-name-username">@xxxx xxxx</span>
+                                                    </div>
+                                                </div>
+                                                <div class="app-body-content-header-button-action">
+                                                    <i class="fa-solid fa-right-from-bracket exit-profile"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="app-body-content-body">
+                                            <textarea id="lifeinvader-newpost-response-textarea" maxlength="280" rows="10" placeholder="Nouvelle publication..."></textarea>
+                                            <button id="lifeinvader-newpost-response-button">Publier</button>
+                                        </div>
+                                    </div>
+                                    <div id="app-lifeinvader-body-content-createprofile" class="app-body-content disable-select">
+                                        <div class="app-body-content-body">
+                                            <div class="lifeinvader-profile">
+                                                <div class="lifeinvader-profile-image">
+                                                    <img src="assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
+                                                </div>
+                                                <input type="text" id="lifeinvader-createprofile-pseudo" class="lifeinvader-profile-name-pseudo" maxlength="20" placeholder="Votre pseudo..."/>
+                                                <input type="text" id="lifeinvader-createprofile-username" class="lifeinvader-profile-name-username" maxlength="20" placeholder="Votre utilisateur..."/>
+                                                <span class="lifeinvader-profile-info">Le nom d'utilisateur ne peut pas être changer</span>
+                                                <textarea id="lifeinvader-createprofile-bio" maxlength="160" rows="5" placeholder="Votre bio..."></textarea>
+                                            </div>
+                                            <button id="lifeinvader-createprofile-save-button">Créer profil</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="app-tab">
+                                    <div id="app-tab-button-lifeinvader-home" class="app-tab-button active">
+                                        <i class="fa-solid fa-house"></i>
+                                        <span>Accueil</span>
+                                    </div>
+                                    <div id="app-tab-button-lifeinvader-profile" class="app-tab-button">
+                                        <i class="fa-solid fa-user"></i>
+                                        <span>Profil</span>
+                                    </div>
+                                    <div id="app-tab-button-lifeinvader-newpost" class="app-tab-button">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                        <span>Poster</span>
                                     </div>
                                 </div>
                             </div>

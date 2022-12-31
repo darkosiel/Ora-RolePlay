@@ -217,6 +217,33 @@ const crud = {
         z: 'z',
         createTime: 'create_time',
     }),
+    lifeinvaderUser: generateCrud('phone_lifeinvader_user', {
+        id: 'id',
+        phoneId: 'phone_id',
+        pseudo: 'pseudo',
+        username: 'username',
+        bio: 'bio',
+        avatar: 'avatar',
+    }),
+    lifeinvaderPost: generateCrud('phone_lifeinvader_post', {
+        id: 'id',
+        userId: 'user_id',
+        content: 'content',
+        createTime: 'create_time',
+    }),
+    lifeinvaderComment: generateCrud('phone_lifeinvader_comment', {
+        id: 'id',
+        postId: 'post_id',
+        userId: 'user_id',
+        content: 'content',
+        createTime: 'create_time',
+    }),
+    lifeinvaderLike: generateCrud('phone_lifeinvader_like', {
+        id: 'id',
+        postId: 'post_id',
+        userId: 'user_id',
+        createTime: 'create_time',
+    }),
 };
 
 /**
@@ -521,6 +548,116 @@ async function refreshGallery(phoneId) {
         return;
     }
     return galleryImageResponse;
+}
+
+/**
+ * Refresh user for Lifeinvader app
+ * @param {array} data
+ */
+async function refreshLifeinvaderUser(phoneId) {
+    const users = await crud.lifeinvaderUser.read({ phoneId: phoneId });
+    return await crud.lifeinvaderUser.read({ phoneId: phoneId });
+}
+
+async function refreshLifeinvaderAppContent(data) {
+    let responsePosts;
+    switch (data.content) {
+        case 'home':
+            responsePosts = await fetchDb(`
+                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                    u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
+                    c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
+                    uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
+                    l.id as 'like_id', l.user_id as 'like_user_id', l.create_time as 'like_create_time'
+                FROM ora_phone_lifeinvader_post p
+                JOIN ora_phone_lifeinvader_user u ON p.user_id = u.id
+                LEFT JOIN ora_phone_lifeinvader_comment c ON p.id = c.post_id
+                LEFT JOIN ora_phone_lifeinvader_user uc ON c.user_id = uc.id
+                LEFT JOIN ora_phone_lifeinvader_like l ON p.id = l.post_id
+                ORDER BY p.create_time DESC, c.create_time DESC
+                LIMIT 30`
+            );
+            break;
+        case 'profile':
+            responsePosts = await fetchDb(`
+                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                    u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
+                    c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
+                    uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
+                    l.id as 'like_id', l.user_id as 'like_user_id', l.create_time as 'like_create_time'
+                FROM ora_phone_lifeinvader_post p
+                JOIN ora_phone_lifeinvader_user u ON p.user_id = u.id
+                LEFT JOIN ora_phone_lifeinvader_comment c ON p.id = c.post_id
+                LEFT JOIN ora_phone_lifeinvader_user uc ON c.user_id = uc.id
+                LEFT JOIN ora_phone_lifeinvader_like l ON p.id = l.post_id
+                WHERE u.id = @userId
+                ORDER BY p.create_time DESC, c.create_time DESC`,
+                { userId: data.userId }
+            );
+            break;
+        case 'post':
+            responsePosts = await fetchDb(`
+                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                    u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
+                    c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
+                    uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
+                    l.id as 'like_id', l.user_id as 'like_user_id', l.create_time as 'like_create_time'
+                FROM ora_phone_lifeinvader_post p
+                JOIN ora_phone_lifeinvader_user u ON p.user_id = u.id
+                LEFT JOIN ora_phone_lifeinvader_comment c ON p.id = c.post_id
+                LEFT JOIN ora_phone_lifeinvader_user uc ON c.user_id = uc.id
+                LEFT JOIN ora_phone_lifeinvader_like l ON p.id = l.post_id
+                WHERE p.id = @postId
+                ORDER BY c.create_time DESC`,
+                { postId: data.postId }
+            );
+            break;
+    }
+    const posts = processDataLifeinvaderPost(responsePosts);
+    return posts;
+}
+
+function processDataLifeinvaderPost(data) {
+    let posts = [];
+    data.forEach((row) => {
+        let postId = row['post_id'];
+        let commentId = row['comment_id'];
+        let likeId = row['like_id'];
+        if (posts.find(post => post.id == postId) == undefined) {
+            posts.push({
+                id: postId,
+                content: row['post_content'],
+                createTime: row['post_create_time'],
+                user: {
+                    pseudo: row['user_pseudo'],
+                    username: row['user_username'],
+                    avatar: row['user_avatar'],
+                },
+                comments: [],
+                likes: []
+            });
+        }
+        if (posts.find(post => post.id == postId).comments.find(comment => comment.id == commentId) == undefined && commentId != null) {
+            posts.find(post => post.id == postId).comments.push({
+                id: commentId,
+                content: row['comment_content'],
+                createTime: row['comment_create_time'],
+                user: {
+                    pseudo: row['comment_user_pseudo'],
+                    username: row['comment_user_username'],
+                    avatar: row['comment_user_avatar'],
+                }
+            });
+        }
+        if (posts.find(post => post.id == postId).likes.find(like => like.id == likeId) == undefined && likeId != null) {
+            posts.find(post => post.id == postId).likes.push({
+                id: likeId,
+                userId: row['like_user_id'],
+                createTime: row['like_create_time']
+            });
+        }
+    });
+    return posts;
 }
 
 /**
@@ -1039,7 +1176,51 @@ onNet('OraPhone:server:maps_update_my_position', async (data) => {
     const ped = GetPlayerPed(src);
     const [playerX, playerY, playerZ] = GetEntityCoords(ped);
     emitNet('OraPhone:client:maps_update_my_position', src, [playerX, playerY, playerZ]);
-})
+});
+
+// Lifeinvader
+
+onNet('OraPhone:server:refresh_lifeinvader_user', async (data) => {
+    const src = source;
+    emitNet('OraPhone:client:refresh_lifeinvader_user', src, await refreshLifeinvaderUser(data.phoneId));
+});
+
+onNet('OraPhone:server:lifeinvader_add_user', async (data) => {
+    const src = source;
+    await crud.lifeinvaderUser.create({ phoneId: data.phoneId, pseudo: data.pseudo, username: data.username, bio: data.bio });
+    emitNet('OraPhone:client:refresh_lifeinvader_user', src, await refreshLifeinvaderUser(data.phoneId));
+});
+
+onNet('OraPhone:server:lifeinvader_fetch_app_content', async (data) => {
+    const src = source;
+    emitNet('OraPhone:client:lifeinvader_update_app_content', src, await refreshLifeinvaderAppContent({ phoneId: data.phoneId, userId: data.userId, content: data.content, postId: data.postId }), data.content);
+});
+
+onNet('OraPhone:server:lifeinvader_like_post', async (data) => {
+    const src = source;
+    if (data.liked) {
+        await crud.lifeinvaderLike.create({ postId: data.postId, userId: data.userId });
+    } else {
+        await crud.lifeinvaderLike.delete({ postId: data.postId, userId: data.userId });
+    }
+    emitNet('OraPhone:client:lifeinvader_update_app_content', src, await refreshLifeinvaderAppContent({ phoneId: data.phoneId, userId: data.userId, content: data.content, postId: data.postId }), data.content);
+});
+
+onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
+    const src = source;
+    await crud.lifeinvaderComment.create({ postId: data.postId, userId: data.userId, content: data.response });
+    emitNet('OraPhone:client:lifeinvader_update_app_content', src, await refreshLifeinvaderAppContent({ phoneId: data.phoneId, userId: data.userId, content: data.content, postId: data.postId }), data.content);
+});
+
+onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
+    await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
+});
+
+onNet('OraPhone:server:lifeinvader_update_user', async (data) => {
+    const src = source;
+    await crud.lifeinvaderUser.update({ id: data.userId }, { pseudo: data.pseudo, bio: data.bio, avatar: data.avatar });
+    emitNet('OraPhone:client:refresh_lifeinvader_user', src, await refreshLifeinvaderUser(data.phoneId), "update");
+});
 
 // Create new phone
 

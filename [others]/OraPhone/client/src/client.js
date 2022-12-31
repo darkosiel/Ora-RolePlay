@@ -86,6 +86,7 @@ async function setPhoneVisible(visible = true) {
             // EnableControlAction(1, 25);
             // enter vehicule
             EnableControlAction(1, 23);
+            EnableControlAction(1, 49);
             EnableControlAction(1, 27);
             // move
             EnableControlAction(1, 30);EnableControlAction(1, 31);EnableControlAction(1, 32);EnableControlAction(1, 33);EnableControlAction(1, 34);EnableControlAction(1, 35);
@@ -414,6 +415,24 @@ onNet('OraPhone:client:bank_send', () => {
     bankGetAccounts();
 });
 
+// Lifeinvader
+
+onNet('OraPhone:client:refresh_lifeinvader_user', (data, status = null) => {
+    SendNUIMessage({
+        type: 'updateLifeinvaderUser',
+        users: data,
+        status: status
+    });
+});
+
+onNet('OraPhone:client:lifeinvader_update_app_content', (posts, content) => {
+    SendNUIMessage({
+        type: 'lifeinvaderUpdateAppContent',
+        posts: posts,
+        content: content
+    });
+});
+
 /**
  * =============
  * Nui callbacks
@@ -709,6 +728,43 @@ on('__cfx_nui:bank_get_accounts', async data => {
 RegisterNuiCallbackType('bank_send');
 on('__cfx_nui:bank_send', data => {
     TriggerEvent("Ora:SendFromPhone", data.amount, data.rib1, data.rib2, data.sourceId);
+});
+
+// Lifeinvader
+
+RegisterNuiCallbackType('refresh_lifeinvader_user');
+on('__cfx_nui:refresh_lifeinvader_user', data => {
+    emitNet('OraPhone:server:refresh_lifeinvader_user', data);
+});
+
+RegisterNuiCallbackType('lifeinvader_add_user');
+on('__cfx_nui:lifeinvader_add_user', data => {
+    emitNet('OraPhone:server:lifeinvader_add_user', data);
+});
+
+RegisterNuiCallbackType('lifeinvader_fetch_app_content');
+on('__cfx_nui:lifeinvader_fetch_app_content', data => {
+    emitNet('OraPhone:server:lifeinvader_fetch_app_content', data);
+});
+
+RegisterNuiCallbackType('lifeinvader_like_post');
+on('__cfx_nui:lifeinvader_like_post', data => {
+    emitNet('OraPhone:server:lifeinvader_like_post', data);
+});
+
+RegisterNuiCallbackType('lifeinvader_add_post_response');
+on('__cfx_nui:lifeinvader_add_post_response', data => {
+    emitNet('OraPhone:server:lifeinvader_add_post_response', data);
+});
+
+RegisterNuiCallbackType('lifeinvader_add_post');
+on('__cfx_nui:lifeinvader_add_post', data => {
+    emitNet('OraPhone:server:lifeinvader_add_post', data);
+});
+
+RegisterNuiCallbackType('lifeinvader_update_user');
+on('__cfx_nui:lifeinvader_update_user', data => {
+    emitNet('OraPhone:server:lifeinvader_update_user', data);
 });
 
 // --- Tools

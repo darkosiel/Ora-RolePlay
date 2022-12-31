@@ -3718,19 +3718,27 @@ div#page {
                                                     margin-top: 150px;
                                                 }
                                                 div {
-                                                    display: flex;
-                                                    justify-content: center;
-                                                    align-items: center;
                                                     width: 100%;
-                                                    height: 70px;
-                                                    @include themed() {
-                                                        background-color: t($phone-app-tab-background-color);
-                                                    }
-                                                    i {
-                                                        font-size: 26px;
-                                                        cursor: pointer;
+                                                    div {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        width: 100%;
+                                                        height: 70px;
                                                         @include themed() {
-                                                            color: t($phone-app-tab-button-color);
+                                                            background-color: t($phone-app-tab-background-color);
+                                                        }
+                                                        i {
+                                                            font-size: 26px;
+                                                            cursor: pointer;
+                                                            @include themed() {
+                                                                color: t($phone-app-tab-button-color);
+                                                            }
+                                                        }
+                                                        input {
+                                                            width: 90%;
+                                                            height: 35px;
+                                                            font-size: 18px;
                                                         }
                                                     }
                                                 }
@@ -4452,6 +4460,368 @@ div#page {
                                         span, i {
                                             @include themed() {
                                                 color: t($phone-system-color-white);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#app-lifeinvader {
+                                div.app-body {
+                                    div.app-body-content {
+                                        div.app-body-content-header {
+                                            height: 80px;
+                                            padding: 8px 25px;
+                                            div.app-body-content-header-button {
+                                                span, i {
+                                                    @extend %transition;
+                                                }
+                                                i {
+                                                    font-size: 30px;
+                                                    @include themed() {
+                                                        color: t($phone-lifeinvader-background-color);
+                                                    }
+                                                }
+                                                div.app-body-content-header-button-parent {
+                                                    column-gap: 15px;
+                                                    div.lifeinvader-header-profile-image {
+                                                        width: 60px;
+                                                        height: 60px;
+                                                        border-radius: 50%;
+                                                        overflow: hidden;
+                                                        img {
+                                                            width: 100%;
+                                                            height: 100%;
+                                                            object-fit: cover;
+                                                        }
+                                                    }
+                                                    div.lifeinvader-header-profile-name {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        span {
+                                                            font-size: 26px;
+                                                            font-weight: 600;
+                                                            @include themed() {
+                                                                color: t($phone-app-label-color-primary);
+                                                            }
+                                                            &.lifeinvader-header-profile-name-username {
+                                                                font-size: 22px;
+                                                                font-weight: 500;
+                                                                @include themed() {
+                                                                    color: t($phone-system-color-gray);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        div.app-body-content-body {
+                                            height: calc(100% - 80px);
+                                            padding: 16px;
+                                            span, input, textarea, button, i {
+                                                @extend %transition;
+                                            }
+                                            div.lifeinvader-list, div.lifeinvader-list-response {
+                                                display: flex;
+                                                flex-direction: column;
+                                                row-gap: 15px;
+                                                width: 100%;
+                                                height: auto;
+                                                div.lifeinvader-list-item {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    row-gap: 10px;
+                                                    width: 100%;
+                                                    height: auto;
+                                                    padding: 14px;
+                                                    border-radius: 20px;
+                                                    overflow: hidden;
+                                                    @extend %transition;
+                                                    @include themed() {
+                                                        background-color: t($phone-app-background-color);
+                                                        box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
+                                                    }
+                                                    div.lifeinvader-list-item-header {
+                                                        div.lifeinvader-list-item-header-profile {
+                                                            display: flex;
+                                                            column-gap: 15px;
+                                                            div.lifeinvader-list-item-header-profile-image {
+                                                                width: 50px;
+                                                                height: 50px;
+                                                                border-radius: 50%;
+                                                                overflow: hidden;
+                                                                img {
+                                                                    width: 100%;
+                                                                    height: 100%;
+                                                                    object-fit: cover;
+                                                                }
+                                                            }
+                                                            div.lifeinvader-list-item-header-profile-name {
+                                                                display: flex;
+                                                                flex-direction: column;
+                                                                span {
+                                                                    font-size: 22px;
+                                                                    font-weight: 600;
+                                                                    @include themed() {
+                                                                        color: t($phone-app-label-color-primary);
+                                                                    }
+                                                                    &.lifeinvader-list-item-header-profile-name-username {
+                                                                        font-size: 18px;
+                                                                        font-weight: 500;
+                                                                        @include themed() {
+                                                                            color: t($phone-system-color-gray);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.lifeinvader-list-item-body {
+                                                        div.lifeinvader-list-item-body-content {
+                                                            span {
+                                                                font-size: 20px;
+                                                                font-weight: 500;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div.lifeinvader-list-item-footer {
+                                                        display: flex;
+                                                        justify-content: space-between;
+                                                        div.lifeinvader-list-item-footer-left {
+                                                            display: flex;
+                                                            column-gap: 20px;
+                                                            div.lifeinvader-list-item-footer-left-like,
+                                                            div.lifeinvader-list-item-footer-left-comment {
+                                                                display: flex;
+                                                                align-items: center;
+                                                                column-gap: 5px;
+                                                                i, span {
+                                                                    font-size: 22px;
+                                                                    @extend %transition;
+                                                                    @include themed() {
+                                                                        color: t($phone-app-label-color-primary);
+                                                                    }
+                                                                }
+                                                                i {
+                                                                    cursor: pointer;
+                                                                }
+                                                            }
+                                                        }
+                                                        div.lifeinvader-list-item-footer-right {
+                                                            div.lifeinvader-list-item-footer-right-date {
+                                                                span {
+                                                                    font-size: 20px;
+                                                                    @include themed() {
+                                                                        color: t($phone-system-color-gray);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                div.lifeinvader-list-response {
+                                                    padding: 0 16px;
+                                                }
+                                                &#lifeinvader-selectprofile-list {
+                                                    justify-content: center;
+                                                    height: 100%;
+                                                    div.lifeinvader-list-item {
+                                                        flex-direction: row;
+                                                        column-gap: 15px;
+                                                        align-items: center;
+                                                        cursor: pointer;
+                                                        div.lifeinvader-list-item-image {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                            width: 70px;
+                                                            height: 70px;
+                                                            border-radius: 50%;
+                                                            overflow: hidden;
+                                                            @extend %transition;
+                                                            @include themed() {
+                                                                background-color: t($phone-lifeinvader-list-item-box-shadow-color);
+                                                                box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
+                                                            }
+                                                            img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: cover;
+                                                            }
+                                                            i {
+                                                                font-size: 46px;
+                                                                @include themed() {
+                                                                    color: t($phone-lifeinvader-background-color);
+                                                                }
+                                                            }
+                                                        }
+                                                        div.lifeinvader-list-item-name {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            span {
+                                                                font-size: 26px;
+                                                                font-weight: 600;
+                                                                @include themed() {
+                                                                    color: t($phone-app-label-color-primary);
+                                                                }
+                                                                &.lifeinvader-list-item-name-username {
+                                                                    font-size: 24px;
+                                                                    font-weight: 500;
+                                                                    @include themed() {
+                                                                        color: t($phone-system-color-gray);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        &:hover {
+                                                            @include themed() {
+                                                                background-color: t($phone-lifeinvader-list-item-hover);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            div.lifeinvader-profile {
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-items: center;
+                                                row-gap: 15px;
+                                                margin-bottom: 20px;
+                                                input, textarea {
+                                                    width: 90%;
+                                                    height: auto;
+                                                    padding: 10px 15px;
+                                                    border: 0;
+                                                    border-radius: 15px;
+                                                    font-size: 22px;
+                                                    text-align: center;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                        background-color: t($phone-app-background-color);
+                                                        box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
+                                                    }
+                                                    &.lifeinvader-profile-name-username {
+                                                        @include themed() {
+                                                            color: t($phone-system-color-gray);
+                                                        }
+                                                    }
+                                                }
+                                                textarea {
+                                                    resize: none;
+                                                }
+                                                div.lifeinvader-profile-image {
+                                                    width: 160px;
+                                                    height: 160px;
+                                                    border-radius: 50%;
+                                                    overflow: hidden;
+                                                    img {
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        object-fit: cover;
+                                                    }
+                                                }
+                                                div.lifeinvader-profile-name {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    span {
+                                                        font-size: 28px;
+                                                        font-weight: 600;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                        &.lifeinvader-profile-name-username {
+                                                            font-size: 24px;
+                                                            font-weight: 500;
+                                                            @include themed() {
+                                                                color: t($phone-system-color-gray);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                div.lifeinvader-profile-bio {
+                                                    span {
+                                                        font-size: 20px;
+                                                        font-weight: 500;
+                                                        @include themed() {
+                                                            color: t($phone-app-label-color-primary);
+                                                        }
+                                                    }
+                                                }
+                                                span.lifeinvader-profile-info {
+                                                    width: 90%;
+                                                    font-size: 20px;
+                                                    font-weight: 600;
+                                                    text-align: center;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                            }
+                                            button#lifeinvader-post-response-button,
+                                            button#lifeinvader-newpost-response-button,
+                                            button#lifeinvader-settings-save-button,
+                                            button#lifeinvader-createprofile-save-button {
+                                                display: block;
+                                                width: auto;
+                                                height: auto;
+                                                margin: auto;
+                                                padding: 12px 60px;
+                                                border: 0;
+                                                border-radius: 30px;
+                                                font-size: 24px;
+                                                font-weight: 600;
+                                                cursor: pointer;
+                                                @include themed() {
+                                                    color: t($phone-system-color-white);
+                                                    background-color: t($phone-lifeinvader-background-color);
+                                                }
+                                            }
+                                            textarea#lifeinvader-post-response-textarea,
+                                            textarea#lifeinvader-newpost-response-textarea {
+                                                display: block;
+                                                width: 100%;
+                                                height: auto;
+                                                margin: 15px 0;
+                                                padding: 10px 15px;
+                                                border: 0;
+                                                border-radius: 10px;
+                                                font-size: 18px;
+                                                resize: none;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                    background-color: t($phone-app-background-color);
+                                                    box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
+                                                }
+                                            }
+                                        }
+                                        &#app-lifeinvader-body-content-profile,
+                                        &#app-lifeinvader-body-content-settings {
+                                            div.app-body-content-header {
+                                                height: 50px;
+                                            }
+                                            div.app-body-content-body {
+                                                height: calc(100% - 50px);
+                                            }
+                                        }
+                                        &#app-lifeinvader-body-content-selectprofile,
+                                        &#app-lifeinvader-body-content-createprofile {
+                                            div.app-body-content-body {
+                                                height: 100%;
+                                            }
+                                        }
+                                    }
+                                }
+                                div.app-tab {
+                                    div.app-tab-button {
+                                        &.active {
+                                            i, span, img {
+                                                @include themed() {
+                                                    color: t($phone-lifeinvader-background-color);
+                                                }
                                             }
                                         }
                                     }
@@ -5370,6 +5740,21 @@ div#phone-screen-content {
             div#phone-screen-content-footer-bar {
                 @include themed() {
                     background-color: t($phone-system-color-white) !important;
+                }
+            }
+        }
+    }
+    &.app-lifeinvader {
+        &.lifeinvader-selectprofile, &.lifeinvader-createprofile {
+            div#phone-screen-content-footer, div#phone-screen-content-header {
+                @include themed() {
+                    background-color: t($phone-app-background-color) !important;
+                    color: t($phone-app-label-color-primary) !important;
+                }
+                div#phone-screen-content-footer-bar {
+                    @include themed() {
+                        background-color: t($phone-app-label-color-primary) !important;
+                    }
                 }
             }
         }

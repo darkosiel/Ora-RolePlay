@@ -1,15 +1,17 @@
-/*Warning this is a kind of destructive operation*/
+-- Suppression des tables
 DROP TABLE IF EXISTS ora_phone;
 DROP TABLE IF EXISTS ora_phone_contacts;
+DROP TABLE IF EXISTS ora_phone_conversations;
 DROP TABLE IF EXISTS ora_phone_messages;
 DROP TABLE IF EXISTS ora_phone_call_history;
-DROP TABLE IF EXISTS ora_phone_app_store;
-DROP TABLE IF EXISTS ora_phone_players_apps;
-DROP TABLE IF EXISTS ora_phone_images;
-DROP TABLE IF EXISTS ora_phone_images_shares;
-/**/
+DROP TABLE IF EXISTS ora_phone_image;
+DROP TABLE IF EXISTS ora_phone_richtermotorsport;
+DROP TABLE IF EXISTS ora_phone_richtermotorsport_favorite;
+DROP TABLE IF EXISTS ora_phone_maps_favorite;
+DROP TABLE IF EXISTS ora_phone_notes_folder;
+DROP TABLE IF EXISTS ora_phone_notes_note;
 
--- Tables creation
+-- Création des tables
 CREATE TABLE IF NOT EXISTS ora_phone (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `player_uuid` VARCHAR(255) NOT NULL,
@@ -124,15 +126,41 @@ CREATE TABLE IF NOT EXISTS ora_phone_notes_note (
     FOREIGN KEY (folder_id) REFERENCES ora_phone_notes_folder(id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB;
 
--- CREATE TABLE IF NOT EXISTS ora_phone_app_store (
---     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
---     owner_uuid VARCHAR(255) DEFAULT NULL,
---     owner_name VARCHAR(255) DEFAULT "iOS",
---     owner_tax_percent INT DEFAULT 0,
---     app_id VARCHAR(255) NOT NULL,
---     app_name VARCHAR(255) NOT NULL,
---     price INT DEFAULT 0,
--- );
+CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_user (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `phone_id` INT(11) NOT NULL,
+    `pseudo` varchar(255) NOT NULL,
+    `username` varchar(255) NOT NULL,
+    `bio` text,
+    `avatar` varchar(255)
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_post (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `content` VARCHAR(400) NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES ora_phone_lifeinvader_user(id) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_comment (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `post_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `content` VARCHAR(400) NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES ora_phone_lifeinvader_post(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES ora_phone_lifeinvader_user(id) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_like (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `post_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES ora_phone_lifeinvader_post(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES ora_phone_lifeinvader_user(id) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
 
 -- CREATE TABLE IF NOT EXISTS ora_phone_players_apps (
 --     app_id INT NOT NULL,
@@ -140,8 +168,6 @@ CREATE TABLE IF NOT EXISTS ora_phone_notes_note (
 --     download_time DATETIME DEFAULT CURRENT_TIMESTAMP,
 --     PRIMARY KEY(app_id, player_id)
 -- );
-
-
 
 -- CREATE TABLE IF NOT EXISTS ora_phone_images_shares (
 --     image_id INT NOT NULL,
