@@ -387,7 +387,7 @@ $(function(){
             let dateTest = {
                 'phoneNumber': '5556585',
                 'phone': {
-                    'darkMode': 0, 'wallpaper': "wallpaper-midnight", 'wallpaperLock': "wallpaper-midnight", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', 'lifeinvader', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                    'darkMode': 0, 'wallpaper': "wallpaper-ios16", 'wallpaperLock': "wallpaper-ios16", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', 'lifeinvader', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
                     ])
                 }
             }
@@ -812,7 +812,12 @@ function initializeAppSettings() {
         updateAppContent($(this).attr("id").split("-")[3]);
     });
     for(let wallpaper of config.wallpaper) {
-        let divWallpaper = "<div data-wallpaper='" + wallpaper.title + "' class='settings-wallpaper-list-item'><div class='settings-wallpaper-list-item-img'><div class='settings-wallpaper-list-item-img-light'><img src='./assets/images/wallpaper/" + wallpaper.title + "-light.jpg' /></div><div class='settings-wallpaper-list-item-img-dark'><img src='./assets/images/wallpaper/" + wallpaper.title + "-dark.jpg' /></div><i class='fa-solid fa-circle-check wallpaper-active'></i><i class='fa-solid fa-circle-half-stroke'></i></div><span>" + wallpaper.label + "</span></div>";
+        let divWallpaper = "";
+        if (wallpaper.theme) {
+            divWallpaper = "<div data-wallpaper='" + wallpaper.title + "' class='settings-wallpaper-list-item'><div class='settings-wallpaper-list-item-img'><div class='settings-wallpaper-list-item-img-light'><img src='./assets/images/wallpaper/" + wallpaper.title + "-light.jpg' /></div><div class='settings-wallpaper-list-item-img-dark'><img src='./assets/images/wallpaper/" + wallpaper.title + "-dark.jpg' /></div><i class='fa-solid fa-circle-check wallpaper-active'></i><i class='fa-solid fa-circle-half-stroke'></i></div><span>" + wallpaper.label + "</span></div>";
+        } else {
+            divWallpaper = "<div data-wallpaper='" + wallpaper.title + "' class='settings-wallpaper-list-item'><div class='settings-wallpaper-list-item-img'><div class='settings-wallpaper-list-item-notheme'><img src='./assets/images/wallpaper/" + wallpaper.title + ".jpg' /></div><i class='fa-solid fa-circle-check wallpaper-active'></i></div><span>" + wallpaper.label + "</span></div>";
+        }
         $("#settings-wallpaper-list").append(divWallpaper);
         $("#settings-wallpaper-lock-list").append(divWallpaper);
         let wallpaperElement = $("#settings-wallpaper-list").children().last();
@@ -4094,6 +4099,46 @@ const config = {
         { day: "Ajourd'hui", gym: "-7h", timezone: "Europe/London", zone: "Londre", now: 0 }
     ],
     "wallpaper": [
+        {
+            "title": "wallpaper-ios16",
+            "label": "IOS 16",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-blue",
+            "label": "IOS 16 Blue",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-red",
+            "label": "IOS 16 Red",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-starlight",
+            "label": "IOS 16 Starlight",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-spaceblack",
+            "label": "IOS 16 Spaceblack",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-silver",
+            "label": "IOS 16 Silver",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-deeppurple",
+            "label": "IOS 16 Deeppurple",
+            "theme": false
+        },
+        {
+            "title": "wallpaper-ios16-gold",
+            "label": "IOS 16 Gold",
+            "theme": false
+        },
         {
             "title": "wallpaper-ios15",
             "label": "IOS 15",

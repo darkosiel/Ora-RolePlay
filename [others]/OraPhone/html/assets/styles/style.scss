@@ -207,6 +207,30 @@ div#page {
                     background-image: t($phone-wallpaper-alpineGreen);
                 }
             }
+            &.wallpaper-ios16, div#phone-lock.wallpaper-ios16 {
+                background-image: url("../images/wallpaper/wallpaper-ios16.jpg") !important;
+            }
+            &.wallpaper-ios16-red, div#phone-lock.wallpaper-ios16-red {
+                background-image: url("../images/wallpaper/wallpaper-ios16-red.jpg") !important;
+            }
+            &.wallpaper-ios16-blue, div#phone-lock.wallpaper-ios16-blue {
+                background-image: url("../images/wallpaper/wallpaper-ios16-blue.jpg") !important;
+            }
+            &.wallpaper-ios16-starlight, div#phone-lock.wallpaper-ios16-starlight {
+                background-image: url("../images/wallpaper/wallpaper-ios16-starlight.jpg") !important;
+            }
+            &.wallpaper-ios16-spaceblack, div#phone-lock.wallpaper-ios16-spaceblack {
+                background-image: url("../images/wallpaper/wallpaper-ios16-spaceblack.jpg") !important;
+            }
+            &.wallpaper-ios16-silver, div#phone-lock.wallpaper-ios16-silver {
+                background-image: url("../images/wallpaper/wallpaper-ios16-silver.jpg") !important;
+            }
+            &.wallpaper-ios16-deeppurple, div#phone-lock.wallpaper-ios16-deeppurple {
+                background-image: url("../images/wallpaper/wallpaper-ios16-deeppurple.jpg") !important;
+            }
+            &.wallpaper-ios16-gold, div#phone-lock.wallpaper-ios16-gold {
+                background-image: url("../images/wallpaper/wallpaper-ios16-gold.jpg") !important;
+            }
             div#phone-screen-content {
                 width: 100%;
                 height: 100%;
@@ -227,6 +251,16 @@ div#page {
                     transition: all 0.3s ease-in-out;
                     @include themed() {
                         color: t($phone-screen-content-header-color);
+                    }
+                    svg {
+                        @extend %transition;
+                        path {
+                            @extend %transition;
+                            @include themed() {
+                                stroke: t($phone-screen-content-header-color);
+                                fill: t($phone-screen-content-header-color);
+                            }
+                        }
                     }
                     div#phone-screen-content-header-left, div#phone-screen-content-header-right {
                         .phone-screen-content-header-icon {
@@ -1302,7 +1336,7 @@ div#page {
                                     height: $ora-phone-app-home-list-primary-height;
                                     padding: 17px 18px 19px 18px;
                                     border-radius: 35px;
-                                    backdrop-filter: blur(4px);
+                                    backdrop-filter: blur(8px);
                                     @include themed() {
                                         background-color: t($phone-app-home-list-primary-background-color);
                                     }
@@ -2994,6 +3028,12 @@ div#page {
                                                             &.settings-wallpaper-list-item-img-dark {
                                                                 img {
                                                                     right: 0;
+                                                                }
+                                                            }
+                                                            &.settings-wallpaper-list-item-notheme {
+                                                                width: 100%;
+                                                                img {
+                                                                    width: 100%;
                                                                 }
                                                             }
                                                         }
@@ -4989,7 +5029,7 @@ div#page {
                 }
                 div#phone-screen-content-footer {
                     display: flex;
-                    align-items: flex-end;
+                    align-items: center;
                     width: 100%;
                     height: $ora-phone-screen-footer-height;
                     cursor: pointer;
@@ -5210,68 +5250,9 @@ div#page {
                         background-image: t($phone-lock-background-default);
                         color: t($phone-screen-content-lock-color);
                     }
-                    &.wallpaper-ios15 {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-ios15);
-                        }
-                    }
-                    &.wallpaper-starlight {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-starlight);
-                        }
-                    }
-                    &.wallpaper-midnight {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-midnight);
-                        }
-                    }
-                    &.wallpaper-blue {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-blue);
-                        }
-                    }
-                    &.wallpaper-pink {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-pink);
-                        }
-                    }
-                    &.wallpaper-red {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-red);
-                        }
-                    }
-                    &.wallpaper-green {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-green);
-                        }
-                    }
-                    &.wallpaper-silver {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-silver);
-                        }
-                    }
-                    &.wallpaper-graphite {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-graphite);
-                        }
-                    }
-                    &.wallpaper-gold {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-gold);
-                        }
-                    }
-                    &.wallpaper-sierraBlue {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-sierraBlue);
-                        }
-                    }
-                    &.wallpaper-alpineGreen {
-                        @include themed() {
-                            background-image: t($phone-wallpaper-alpineGreen);
-                        }
-                    }
                     div#app-lock-icon-lock {
                         margin-top: 30px;
+                        display: none;
                         i {
                             font-size: 32px;
                             &.snooze {
@@ -5309,16 +5290,17 @@ div#page {
                         }
                     }
                     div#app-lock-time {
-                        margin-top: 20px;
                         span#app-lock-time-text {
-                            font-size: 83px;
-                            font-family: $ora-font-display-thin;
+                            opacity: 0.7;
+                            font-size: 100px;
+                            font-family: $ora-font-semibold;
                         }
                     }
                     div#app-lock-day {
-                        margin-top: 10px;
+                        margin-top: 55px;
                         span#app-lock-day-text {
-                            font-size: 22px;
+                            opacity: 0.7;
+                            font-size: 27px;
                             font-family: $ora-font-display-regular;
                             text-transform: capitalize;
                         }
@@ -5617,10 +5599,12 @@ div#page {
 
 div#phone-screen-content {
     &.app-tabbed {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-app-tab-background-color) !important;
                 color: t($phone-app-label-color-primary) !important;
+                stroke: t($phone-app-label-color-primary) !important;
+                fill: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5630,10 +5614,12 @@ div#phone-screen-content {
         }
     }
     &.app-modal {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-app-background-color) !important;
                 color: t($phone-app-label-color-primary) !important;
+                stroke: t($phone-app-label-color-primary) !important;
+                fill: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5648,10 +5634,12 @@ div#phone-screen-content {
         }
     }
     &.app-maintenance {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-app-background-color) !important;
                 color: t($phone-app-label-color-primary) !important;
+                stroke: t($phone-app-label-color-primary) !important;
+                fill: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5661,10 +5649,12 @@ div#phone-screen-content {
         }
     }
     &.app-calculator {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-app-background-color) !important;
                 color: t($phone-app-label-color-primary) !important;
+                stroke: t($phone-app-label-color-primary) !important;
+                fill: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5674,10 +5664,12 @@ div#phone-screen-content {
         }
     }
     &.app-settings {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-app-tab-background-color) !important;
                 color: t($phone-app-label-color-primary) !important;
+                fill: t($phone-app-label-color-primary) !important;
+                stroke: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5687,10 +5679,12 @@ div#phone-screen-content {
         }
     }
     &.app-richtermotorsport {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-system-color-gray-6) !important;
                 color: t($phone-app-label-color-primary) !important;
+                fill: t($phone-app-label-color-primary) !important;
+                stroke: t($phone-app-label-color-primary) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5706,7 +5700,7 @@ div#phone-screen-content {
             }
         }
         &.notes-note {
-            div#phone-screen-content-footer, div#phone-screen-content-header, div.app-body {
+            div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path, div.app-body {
                 @include themed() {
                     background-color: t($phone-app-background-color) !important;
                 }
@@ -5714,9 +5708,11 @@ div#phone-screen-content {
         }
     }
     &.app-maps {
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 color: t($phone-system-color-black) !important;
+                stroke: t($phone-system-color-black) !important;
+                fill: t($phone-system-color-black) !important;
                 background-color: transparent !important;
             }
             div#phone-screen-content-footer-bar {
@@ -5732,10 +5728,12 @@ div#phone-screen-content {
                 background-color: t($phone-bank-background-color) !important;
             }
         }
-        div#phone-screen-content-footer, div#phone-screen-content-header {
+        div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
             @include themed() {
                 background-color: t($phone-bank-background-color) !important;
                 color: t($phone-system-color-white) !important;
+                stroke: t($phone-system-color-white) !important;
+                fill: t($phone-system-color-white) !important;
             }
             div#phone-screen-content-footer-bar {
                 @include themed() {
@@ -5746,10 +5744,12 @@ div#phone-screen-content {
     }
     &.app-lifeinvader {
         &.lifeinvader-selectprofile, &.lifeinvader-createprofile {
-            div#phone-screen-content-footer, div#phone-screen-content-header {
+            div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
                 @include themed() {
                     background-color: t($phone-app-background-color) !important;
                     color: t($phone-app-label-color-primary) !important;
+                    stroke: t($phone-app-label-color-primary) !important;
+                    fill: t($phone-app-label-color-primary) !important;
                 }
                 div#phone-screen-content-footer-bar {
                     @include themed() {
