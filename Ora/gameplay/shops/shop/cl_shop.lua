@@ -148,7 +148,7 @@ local BasicShopsNorth = {
     },
     {
         name = "gascan",
-        price = 35,
+        price = 150,
         data = {},
         tax = 1.00,
         fct = GenerateApuSerial,
@@ -256,7 +256,7 @@ local BasicShopsSouth = {
     },
     {
         name = "gascan",
-        price = 35,
+        price = 150,
         data = {},
         tax = 1.00,
         fct = GenerateApuSerial,
@@ -344,7 +344,7 @@ local LittleSeoulShop = {
     },
     {
         name = "gascan",
-        price = 35,
+        price = 150,
         data = {},
         tax = 1.00,
         fct = GenerateApuSerial,
