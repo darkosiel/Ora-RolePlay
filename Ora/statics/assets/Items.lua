@@ -2506,11 +2506,11 @@ Items = {
     },
     driftwheels = {
         label = "4 Roues de drift",
-        weight = 30.0
+        weight = 15.0
     },
     roadwheels = {
         label = "4 Roues de route",
-        weight = 30.0
+        weight = 15.0
     },
     ----
     fish15 = {
