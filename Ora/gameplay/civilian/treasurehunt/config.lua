@@ -378,7 +378,7 @@ Config.Peds = {
         txt2 = 'Participant : "Putain gros ! J`le trouve pas bordel ! Dis moi où il est ! Vite !"',
     },
     [39] = {
-        coords = vector3(851.86, -1321.84, 26.23), -- SAHP
+        coords = vector3(851.86, -1321.84, 26.23), -- LSPD
         heading = 81.9,
         distancespawn = 100,
         model = 's_m_y_hwaycop_01',
@@ -389,7 +389,7 @@ Config.Peds = {
         txt2 = 'Traffic Officer : "100 000$ à gagner, c`est du jamais vu ! Pearce à gérer pour le coup"',
     },
     [40] = {
-        coords = vector3(851.06, -1320.98, 26.24), -- SAHP
+        coords = vector3(851.06, -1320.98, 26.24), -- LSPD
         heading = 200.45,
         distancespawn = 100,
         model = 's_m_y_hwaycop_01',

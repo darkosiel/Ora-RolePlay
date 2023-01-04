@@ -5547,21 +5547,21 @@ Jobs = {
                                 end
                             },
                             {
-                                label = "[COOP] Agents SAHP en service",
+                                label = "[COOP] Agents LSPD en service",
                                 onSelected = function()
                                     TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "police")
                                 end
                             },
                             {
-                                label = "Recevoir/Ne plus recevoir les appels SAHP",
+                                label = "Recevoir/Ne plus recevoir les appels LSPD",
                                 onSelected = function()
                                     if not getOtherPoliceCalls then
                                         TriggerServerEvent("Ora::SE::Service:SetPlayerInService", "police")
-                                        RageUI.Popup({message = "~g~Vous recevez désormais les appels SAHP"})
+                                        RageUI.Popup({message = "~g~Vous recevez désormais les appels LSPD"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     else
                                         TriggerServerEvent("Ora::SE::Service:RemovePlayerFromService", "police")
-                                        RageUI.Popup({message = "~r~Vous ne recevez plus désormais les appels SAHP"})
+                                        RageUI.Popup({message = "~r~Vous ne recevez plus désormais les appels LSPD"})
                                         getOtherPoliceCalls = not getOtherPoliceCalls
                                     end
                                 end
@@ -5792,25 +5792,25 @@ Jobs = {
         }
     },
     police = {
-        label = "SAHP",
-        label2 = "SAHP",
+        label = "LSPD",
+        label2 = "LSPD",
         iban = "police",
         radios = {1, 2},
         grade = {
             {
-                label = "Cadet",
+                label = "Rookie",
                 salary = 325,
                 name = "cadet"
             },
             {
-                label = "Traffic Officer",
+                label = "Officier I",
                 salary = 340,
                 name = "officier1"
             },
             {
-                label = "Sergent",
+                label = "Officier II",
                 salary = 340,
-                name = "sergent1"
+                name = "officier2"
             },
             {
                 label = "Officier III",
@@ -5818,69 +5818,69 @@ Jobs = {
                 name = "officier3"
             },
             {
-                label = "Lieutenant",
+                label = "Sergent I",
                 salary = 360,
                 name = "sergent1"
             },
             {
-                label = "Capitaine",
+                label = "Sergent II",
                 salary = 360,
                 name = "sergent2"
             },
             {
-                label = "Assistant Chief",
+                label = "Lieutenant",
                 salary = 390,
                 name = "boss"
             },
             {
-                label = "Chief",
+                label = "Capitaine",
                 salary = 430,
                 name = "boss"
             }
         },
         garage = {
             Name = "Garage police",
-            Pos = {x = 823.2741, y = -1369.5996, z = 26.1356},
+            Pos = {x = 405.8645, y = -975.0119, z = 23.3264},
             Properties = {
                 type = 3,
                 Limit = 99,
                 vehicles = {},
-                spawnpos = {x = 823.2741, y = -1369.5996, z = 26.1356, h = 2.5655}
+                spawnpos = {x = 405.8645, y = -975.0119, z = 23.3264, h = 266.5975}
             },
             Blipdata = {
-                Pos = {x = 823.2741, y = -1369.5996, z = 26.1356},
+                Pos = {x = 405.8645, y = -975.0119, z = 23.3264},
                 Blipcolor = 5,
-                Blipname = "SAHP - Garage Marked"
+                Blipname = "LSPD - Garage Marked"
             }
         },
         garage2 = {
             Name = "Garage police2",
-            Pos = {x = 832.5797, y = -1369.8060, z = 26.1322},
+            Pos = {x = 419.7828, y = -982.8714, z =  23.3264},
             Properties = {
                 type = 3,
                 Limit = 99,
                 vehicles = {},
-                spawnpos = {x = 832.5797, y = -1369.8060, z = 26.1322, h = 359.4103}
+                spawnpos = {x = 419.7828, y = -982.8714, z =  23.3264, h = 96.8802}
             },
             Blipdata = {
-                Pos = {x = 832.5797, y = -1369.8060, z = 26.1322},
+                Pos = {x = 419.7828, y = -982.8714, z =  23.3264},
                 Blipcolor = 5,
-                Blipname = "SAHP - Garage Unmarked"
+                Blipname = "LSPD - Garage Unmarked"
             }
         },
         garage6 = {
             Name = "Garage police6",
-            Pos = {x = 855.8529, y = -1301.9434, z = 24.3203},
+            Pos = {x = 471.0599, y = -1026.2103, z = 28,1970},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 855.8529, y = -1301.9434, z = 24.3203, h = 2.5217}
+                spawnpos = {x = 471.0599, y = -1026.2103, z = 28,1970, h = 320.1126}
             },
             Blipdata = {
-                Pos = {x = 855.8529, y = -1301.9434, z = 24.3203},
+                Pos = {x = 471.0599, y = -1026.2103, z = 28,1970},
                 Blipcolor = 5,
-                Blipname = "SAHP - Garage Saisie"
+                Blipname = "LSPD - Garage Saisie"
             }
         },
         garage7 = {
@@ -5895,22 +5895,7 @@ Jobs = {
             Blipdata = {
                 Pos = {x = -1645.1019, y = 269.5713, z = 58.57},
                 Blipcolor = 5,
-                Blipname = "SAHP - Garage"
-            }
-        },
-        garagesed = {
-            Name = "Garage sed",
-            Pos = {x = 853.6597, y = -1357.9885, z = 26.0939},
-            Properties = {
-                type = 3,
-                Limit = 30,
-                vehicles = {},
-                spawnpos = {x = 853.6597, y = -1357.9885, z = 26.0939, h = 77.3380}
-            },
-            Blipdata = {
-                Pos = {x = 853.6597, y = -1357.9885, z = 26.0939},
-                Blipcolor = 5,
-                Blipname = "SAHP - Garage SED"
+                Blipname = "LSPD - Garage"
             }
         },
         garage3 = {
@@ -5926,12 +5911,12 @@ Jobs = {
             Blipdata = {
                 Pos = {x = -800.45, y = -1514.03, z = 1.6},
                 Blipcolor = 5,
-                Blipname = "SAHP - Bateaux"
+                Blipname = "LSPD - Bateaux"
             }
         },
         garage4 = {
             Name = "Garage Helipad",
-            Pos = {x = -745.6586, y = -1468.9907, z = 5},
+            Pos = {x = 481.8389, y = -982.3056, z = 41.0068},
             Properties = {
                 type = 2,
                 Limit = 10,
@@ -5947,32 +5932,32 @@ Jobs = {
                         }
                     }
                 },
-                spawnpos = {x = -745.6586, y = -1468.9907, z = 5, h = 318.5589}
+                spawnpos = {x = 481.8389, y = -982.3056, z = 41.0068, h = 84.1288}
             },
             Blipdata = {
-                Pos = {x = -745.6586, y = -1468.9907, z = 5},
+                Pos = {x = 449.1987, y = -981.2350, z = 43.6910},
                 Blipcolor = 5,
-                Blipname = "SAHP - Helipad"
+                Blipname = "LSPD - Helipad"
             }
         },
         garage5 = {
             Name = "Garage police3",
-            Pos = {x = 862.3458, y = -1382.8272, z = 26.1439},
+            Pos = {x = 453.4955, y = -1017.9683, z = 28.4484},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {},
-                spawnpos = {x = 862.3458, y = -1382.8272, z = 26.1439},
+                spawnpos = {x = 453.4955, y = -1017.9683, z = 28.4484},
             },
             Blipdata = {
-                Pos = {x = 862.3458, y = -1382.8272, z = 26.1439},
+                Pos = {x = 453.4955, y = -1017.9683, z = 28.4484},
                 Blipcolor = 5,
-                Blipname = "SAHP - Garage Personnel"
+                Blipname = "LSPD - Garage Personnel"
             }
         },
         Menu = {
             menu = {
-                title = "SAHP",
+                title = "LSPD",
                 subtitle = "Actions disponibles",
                 name = "police_menuperso"
             },
@@ -6231,7 +6216,7 @@ Jobs = {
                     menus = {
                         buttons = {
                             {
-                                label = "Agents SAHP en service",
+                                label = "Agents LSPD en service",
                                 onSelected = function()
                                     TriggerServerEvent("Ora::SE::Service:ShowOnDutyPlayers", "police")
                                 end
@@ -6326,7 +6311,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "SAHP", "Annonce", text, "CHAR_sahp", 8)
+                            TriggerServerEvent("Job:Annonce", "LSPD", "Annonce", text, "CHAR_lspd", 8)
                         end
                     end
                 },
@@ -6361,32 +6346,32 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 834.8974, y = -1299.3896, z = 24.3203-0.99}, -- Coffre armurerie
+                Pos = {x = 480.8720, y  = -1003.3590, z = 29.6894}, -- Coffre armurerie
                 Limit = 99999999,
                 Name = "coffre"
             },
             {
-                Pos = {x = 843.1442, y = -1307.0839, z = 24.3203-0.99},
+                Pos = {x = 473.6131, y  = -1006.2954, z = 25.2075}, -- Coffre cellule
                 Limit = 1000,
                 Name = "coffre cellules"
             },
             {
-                Pos = {x = 854.1108, y = -1318.2130, z = 24.3203-0.99}, -- Saisie SAHP
+                Pos = {x = 464.0292, y = -1000.1713, z = 25.20753}, -- Saisie LSPD
                 Limit = 5000,
                 Name = "coffre des saisies"
             },
             {
-                Pos = {x = 846.6671, y = -1282.4407, z = 24.3203-0.99},  -- Coffre vestiaire 
+                Pos = {x = 472.2973, y = -1009.0873, z = 29.6894},  -- Coffre vestiaire 
                 Limit = 99999999,
                 Name = "coffre personnel"
             },
+            -- {
+            --     Pos = {x = 464.0292, y = -1000.1713, z = 25.2075},  -- Saisie DB Davis
+            --     Limit = 20000,
+            --     Name = "coffre Saisies DB"
+            -- },
             {
-                Pos = {x = -1087.4049, y = -820.5991, z = 11.0358-0.99},  -- Saisie DB
-                Limit = 2000,
-                Name = "coffre Saisies DB"
-            },
-            {
-                Pos = {x = 876.19, y = -1352.45, z = 26.32-0.99},
+                Pos = {x = 442.4073, y = -974.4786, z = 25.2075}, -- Coffre SWAT
                 Limit = 99999999,
                 Name = "coffre SWAT"
             }
@@ -6395,19 +6380,19 @@ Jobs = {
             vestiaire = {
                 type = "Vestiaire",
                 workSize = 1.45,
-                Pos = {x = 844.9340, y = -1284.5042, z = 24.3187-0.99},
+                Pos = {x = 462.2230, y = -1005.0394, z = 30.6894},
                 vestiaire = {
                     type = "Vestiaire",
                     workSize = 1.45,
-                    Pos = {x = 844.9340, y = -1284.5042, z = 24.3187},
-                    Tenues = TenueSAHP
+                    Pos = {x = 462.2230, y = -1005.0394, z = 30.6894},
+                    Tenues = TenueLSPD
                 }
             }
         },
         Extrapos = {
             ExtraVehicle = {
                 Pos = {
-                    {x = 827.7247, y = -1351.0211, z = 26.0985}
+                    {x = 419.5081, y = -996.0058, z = 23.3264}
                 },
                 restricted = {1, 2, 3, 4, 5, 6, 7, 8},
                 Enter = function()
@@ -6420,7 +6405,7 @@ Jobs = {
                 Blips = {
                     sprite = 402,
                     color = 81,
-                    name = "SAHP - Extras"
+                    name = "LSPD - Extras"
                 },
                 Marker = {
                     type = 1,
@@ -13773,7 +13758,7 @@ Jobs = {
                                 end
                             },
                             {
-                                label = "Appel SAHP",
+                                label = "Appel LSPD",
                                 onSelected = function()
                                     local plyCoords = GetEntityCoords(PlayerPedId())
                                     local x, y, z = table.unpack(plyCoords)

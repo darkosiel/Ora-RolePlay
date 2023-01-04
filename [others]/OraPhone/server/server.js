@@ -503,7 +503,7 @@ async function refreshContacts(data) {
         return;
     }
     const defaultContacts = [
-        { id: -1, phoneId: data.phoneId, name: "SAHP", number: "police", avatar: "sahp" },
+        { id: -1, phoneId: data.phoneId, name: "LSPD", number: "police", avatar: "lspd" },
         // { id: -1, phoneId: data.phoneId, name: "BCSO", number: "lssd", avatar: "Law_and_order_3" },
         { id: -1, phoneId: data.phoneId, name: "Gruppe Sechs", number: "g6", avatar: "g6-icon" },
         { id: -1, phoneId: data.phoneId, name: "SAMS/LSFD", number: "lsms/lsfd", avatar: "Pharmacy_20" },
