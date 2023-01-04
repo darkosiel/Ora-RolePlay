@@ -198,6 +198,16 @@ Config.DoorList = {
         locked = false,
         maxDistance = 1.25
     },
+    {
+        textCoords = vector3(478.43, -979.82, 28.00),
+        authorizedJobs = {"police", "lssd"},
+        locked = true,
+        maxDistance = 2.25,
+        doors = {
+            {objHash = 1918799109, objHeading = 0.0, objCoords = vector3(477.57, -979.71, 28.00)},
+            {objHash = 1918799109, objHeading = 180.0, objCoords = vector3(479.20, -979.83, 28.00)}
+        }
+    },
     --
     -- Paleto Bay
     --
