@@ -1,6 +1,6 @@
 local Blips = {
     --{Pos = {x = -1072.52, y = -856.42, z = 4.87}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
-    {Pos = {x = 832.2272, y = -1289.9152, z = 28.2331}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
+    {Pos = {x = 433.33, y = -982.26, z = 30.71}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
     --{Pos = {x = 382.8338, y = -1590.8780, z = 29.2795}, sprite = 60, size = 1.0, color = 29, name = "Poste de police"},
     -- {Pos = {x = 367.5, y = -1591.53, z = 36.95}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Davis"},
     --{Pos = {x = -440.43, y = 6019.48, z = 31.49}, sprite = 60, size = 1.0, color = 70, name = "Sherif - Paleto Bay"},
