@@ -503,7 +503,7 @@ local VehShop =
                     {name = "fibp6", price = 30000},
                     {name = "polnspeedo", price = 30000},
                     {name = "pressuv", price = 30000}
-                }
+                },
                 ["Vans"] = {
                     {name = "minivan", price = 9100},
                     {name = "paradise", price = 10140},
