@@ -41,6 +41,7 @@ let contextMenuItemClicked;
 let notificationMode = "normal"; // normal / nosound / none
 let phoneActive = false;
 let phonePopupActive = false;
+let phoneContentPopupActive = false;
 let phoneTest = false;
 let inputToggle = false;
 
@@ -103,7 +104,9 @@ let firstName = "";
 let lastName = "";
 let phoneNumber = "";
 let luminosityActive = 10;
+let luminosityPatch = true;
 let volumeActive = 10;
+let bluetoothActive = false;
 
 // App Call
 let inReceiveCall = false;
@@ -387,7 +390,7 @@ $(function(){
             let dateTest = {
                 'phoneNumber': '5556585',
                 'phone': {
-                    'darkMode': 0, 'wallpaper': "wallpaper-ios16", 'wallpaperLock': "wallpaper-ios16", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', 'lifeinvader', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
+                    'id': 1, 'darkMode': 0, 'wallpaper': "wallpaper-ios16", 'wallpaperLock': "wallpaper-ios16", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', 'lifeinvader', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
                     ])
                 }
             }
@@ -540,7 +543,8 @@ function initializeAppScreen() {
         $("#topbar-box-music-button-play").show();
     });
     $("#topbar-box-button-bluetooth").click(function () {
-        $("#topbar-box-button-bluetooth").toggleClass("active")
+        $("#topbar-box-button-bluetooth").toggleClass("active");
+        bluetoothActive = !bluetoothActive;
     });
     $("#topbar-box-button-notification-mode").click(function () {
         updateNotificationMode();
@@ -598,6 +602,19 @@ function initializeAppScreen() {
         }
         if ($("#app-message-photo").hasClass("active") && elementTarget != document.getElementById("message-photo-button-show")) {
             $("#app-message-photo").removeClass("active");
+        }
+        if ($(".popup-item").length != 0 && elementTarget != document.getElementById("gallery-image-button-bluetoothshare")) {
+            for (const elt of document.querySelectorAll("#popup-container *")) {
+                if (elementTarget == elt) {
+                    return;
+                }
+            }
+            $("#popup-container").removeClass("active");
+            $(".popup-item").addClass("close");
+            setTimeout(function() {
+                $(".popup-item").remove();
+                phoneContentPopupActive = false;
+            }, 750);
         }
     });
 }
@@ -1569,6 +1586,14 @@ function initializeAppGallery() {
         updateAppContent("list");
         $.post('https://OraPhone/gallery_image_remove', JSON.stringify({ phoneId: userData.phone.id, id: $("#gallery-image").data("id") }));
     })
+    // $("#gallery-image-button-bluetoothshare").click(function () {
+    //     let imageId = $("#gallery-image").data("id");
+    //     if (bluetoothActive) {
+    //         addPopup("bluetooth");
+    //     } else {
+    //         addNotification("settings", "home", "Maintenant", "Bluetooth", "Activer le bluetooth pour partager");
+    //     }
+    // });
 }
 
 function initializeAppMaps() {
@@ -2294,7 +2319,7 @@ function updateAppMaps() {
 
 function updateAppLifeinvader() {
     $("#lifeinvader-selectprofile-list").empty();
-    if (userData.lifeinvader.users.length == undefined || userData.lifeinvader.users.length == 0) {
+    if (!userData.lifeinvader.users || userData.lifeinvader.users == null || userData.lifeinvader.users.length == undefined || userData.lifeinvader.users.length == 0) {
         const divNewUsers = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-image"><i class="fa-solid fa-plus"></i></div><div class="lifeinvader-list-item-name"><span class="lifeinvader-list-item-name-new">Nouveau compte</span></div></div><div class="lifeinvader-list-item"><div class="lifeinvader-list-item-image"><i class="fa-solid fa-plus"></i></div><div class="lifeinvader-list-item-name"><span class="lifeinvader-list-item-name-new">Nouveau compte</span></div></div>`;
         $("#lifeinvader-selectprofile-list").append(divNewUsers);
     } else {
@@ -2430,7 +2455,13 @@ function updateLuminosity() {
         slider.style.setProperty('--value', slider.value);
         $("#phone-screen").css("filter", "brightness(" + (slider.value) + "%)");
         luminosityActive = slider.value;
-        $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { luminosity: luminosityActive } }));
+        if (luminosityPatch) {
+            luminosityPatch = false;
+            setTimeout(function () {
+                $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { luminosity: luminosityActive } }));
+                luminosityPatch = true;
+            }, 2000);
+        }
     });
 }
 
@@ -3496,7 +3527,7 @@ function displayTopbar() {
 
 /* Notification */
 
-function addNotification(app, appSub, time, title, message, data, avatar = false) {
+function addNotification(app, appSub, time, title, message, data = false, avatar = false) {
     if (notificationMode == "none" || !phoneActive) {
         return;
     }
@@ -3663,6 +3694,38 @@ function addNotification(app, appSub, time, title, message, data, avatar = false
             }
         }, notificationTime);
     }, 25);
+}
+
+function addPopup(type) {
+    if (!phoneContentPopupActive) {
+        phoneContentPopupActive = true;
+        let divPopup;
+        switch (type) {
+            case "bluetooth":
+                divPopup = `<div class='popup-item enable-select close'>
+                    <div class='popup-item-content'>
+                        <div class='popup-item-background-blur'></div>
+                        <div class='popup-item-header'>
+                            <div class='popup-item-background-blur'></div>
+                            <div class='popup-item-header-content'>
+                                <img src='./assets/images/app-icon/app-settings-icon.png'/>
+                                <span>Bluetooth</span>
+                            </div>
+                        </div>
+                        <div class='popup-item-main'>
+                            <span class="popup-item-main-item">Mike Bell</span>
+                            <span class="popup-item-main-item">Mike Bell</span>
+                        </div>
+                    </div>
+                </div>`;
+                break;
+        }
+        $("#popup-container").append(divPopup);
+        $("#popup-container").addClass("active");
+        setTimeout(function() {
+            $(".popup-item").removeClass("close");
+        }, 25);
+    }
 }
 
 function showPopup(title, message, type, time) {

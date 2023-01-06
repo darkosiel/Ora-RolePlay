@@ -3761,7 +3761,7 @@ div#page {
                                                     width: 100%;
                                                     div {
                                                         display: flex;
-                                                        justify-content: center;
+                                                        justify-content: space-around;
                                                         align-items: center;
                                                         width: 100%;
                                                         height: 70px;
@@ -3769,7 +3769,7 @@ div#page {
                                                             background-color: t($phone-app-tab-background-color);
                                                         }
                                                         i {
-                                                            font-size: 26px;
+                                                            font-size: 28px;
                                                             cursor: pointer;
                                                             @include themed() {
                                                                 color: t($phone-app-tab-button-color);
@@ -4406,6 +4406,10 @@ div#page {
                                                     }
                                                     span {
                                                         font-size: 20px;
+                                                        &.remove, &.add {
+                                                            font-size: 24px;
+                                                            text-shadow: 0 0 20px black;
+                                                        }
                                                         &.remove {
                                                             @include themed() {
                                                                 color: t($phone-system-color-red);
@@ -4872,7 +4876,7 @@ div#page {
                             width: 100%;
                             height: auto;
                             max-height: 28%;
-                            padding: 10px;
+                            padding: 15px;
                             overflow: hidden;
                             z-index: 70;
                             pointer-events: none;
@@ -5019,6 +5023,114 @@ div#page {
                                         div.notification-item-main-pickup {
                                             @include themed() {
                                                 background-color: t($phone-system-color-green);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        #popup-container {
+                            position: absolute;
+                            width: 100%;
+                            height: -webkit-fill-available;
+                            max-height: 0;
+                            top: 0;
+                            padding: 0px;
+                            border-radius: 15px;
+                            backdrop-filter: blur(0px);
+                            overflow: hidden;
+                            z-index: 70;
+                            transition: all 0.75s ease-in-out;
+                            &.active {
+                                max-height: 100%;
+                                padding: 15px;
+                                backdrop-filter: blur(15px);
+                            }
+                            .popup-item {
+                                margin-top: 0;
+                                border-radius: 10px;
+                                overflow: hidden;
+                                transition: box-shadow 1.5s ease-in-out, margin-top .75s ease-in-out, transform .75s ease-in-out, visibility .75s ease-in-out, opacity .75s ease-in-out;
+                                cursor: pointer;
+                                pointer-events: auto;
+                                &.close {
+                                    margin-top: -200px;
+                                    transition: box-shadow 0.4s ease-in-out, margin-top .75s ease-in-out, transform .75s ease-in-out, visibility .75s ease-in-out, opacity .75s ease-in-out;
+                                    box-shadow: none;
+                                    .popup-item-content {
+                                            transform: scale(0);
+                                    }
+                                }
+                                @include themed() {
+                                    box-shadow: 0 0 20px 2px t($phone-popup-box-shadow-color);
+                                }
+                                .popup-item-content {
+                                    height: 100%;
+                                    cursor: pointer;
+                                    overflow: hidden;
+                                    transform: scale(1);
+                                    transition: transform .75s ease-in-out;
+                                    @include themed() {
+                                        color: t($phone-notification-color);
+                                    }
+                                    > .popup-item-background-blur {
+                                        border-radius: 10px;
+                                    }
+                                    .popup-item-background-blur {
+                                        position: absolute;
+                                        width: 100%;
+                                        height: 100%;
+                                        border-radius: 10px 10px 0px 0px;
+                                        @include themed() {
+                                            background-color: t($phone-notification-background-color);
+                                        }
+                                    }
+                                    .popup-item-header {
+                                        height: 30px;
+                                        .popup-item-header-content {
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            column-gap : 15px;
+                                            padding: 5px 10px;
+                                            font-size: 16px;
+                                            position: inherit;
+                                            width: 100%;
+                                            height: 100%;
+                                            img {
+                                                width: auto;
+                                                height: 100%;
+                                            }
+                                        }
+                                    }
+                                    .popup-item-main {
+                                        row-gap: 10px;
+                                        position: inherit;
+                                        width: 100%;
+                                        height: calc(100% - 30px);
+                                        max-height: 150px;
+                                        padding: 20px 10px;
+                                        font-size: 16px;
+                                        overflow: scroll;
+                                        span {
+                                            display: block;
+                                            width: 85%;
+                                            margin: 0 auto 10px auto;
+                                            padding: 5px;
+                                            border-radius: 10px;
+                                            text-align: center;
+                                            font-size: 24px;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                            white-space: nowrap;
+                                            @extend %transition;
+                                            @include themed() {
+                                                background-color: t($phone-app-background-color);
+                                                box-shadow: 0 0 20px 2px t($phone-popup-box-shadow-color);
+                                            }
+                                            &:hover {
+                                                width: 90%;
+                                                box-shadow: 0 0 20px 2px rgb(0, 0, 0, 0.2);
                                             }
                                         }
                                     }

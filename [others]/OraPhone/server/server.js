@@ -555,7 +555,6 @@ async function refreshGallery(phoneId) {
  * @param {array} data
  */
 async function refreshLifeinvaderUser(phoneId) {
-    const users = await crud.lifeinvaderUser.read({ phoneId: phoneId });
     return await crud.lifeinvaderUser.read({ phoneId: phoneId });
 }
 
@@ -1244,8 +1243,8 @@ function RegisterNewPhone(phoneNumber, identity) {
     let soundAlarmVolume = '5';
     let darkMode = '0';
     let zoom = 'zoom100%';
-    let wallpaper = 'wallpaper-ios15';
-    let wallpaperLock = 'wallpaper-ios15';
+    let wallpaper = 'wallpaper-ios16';
+    let wallpaperLock = 'wallpaper-ios16';
     let luminosity = '100';
     let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"bank\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]';
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder });

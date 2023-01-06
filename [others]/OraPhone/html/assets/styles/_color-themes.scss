@@ -52,6 +52,7 @@ $phone-app-clock-color-active: "phone-app-clock-color-active";
 $phone-app-clock-addalarm-input: "phone-app-clock-addalarm-input";
 $phone-notification-background-color: "phone-notification-background-color";
 $phone-notification-color: "phone-notification-color";
+$phone-popup-box-shadow-color: "phone-popup-box-shadow-color";
 $phone-app-modal-header-input-background-color: "phone-app-modal-header-input-background-color";
 $phone-app-message-footer-icon-color: "phone-app-message-footer-icon-color";
 $phone-input-switch-background-color: "phone-input-switch-background-color";
@@ -133,6 +134,7 @@ $themes: (
                 phone-app-clock-addalarm-input: $app--clock--gray--light,
                 phone-notification-background-color: $system-notification--background--color--light,
                 phone-notification-color: $system-notification--color--light,
+                phone-popup-box-shadow-color: $system--material--fill--secondary--light,
                 phone-app-modal-header-input-background-color: $system--material--fill--secondary--light,
                 phone-app-message-footer-icon-color: $system--material--fill--primary--light,
                 phone-input-switch-background-color: $phone--input--switch--background--color--light,
@@ -212,6 +214,7 @@ $themes: (
                 phone-app-clock-addalarm-input: $app--clock--gray--dark,
                 phone-notification-background-color: $system-notification--background--color--dark,
                 phone-notification-color: $system-notification--color--dark,
+                phone-popup-box-shadow-color: $system--material--fill--secondary--dark,
                 phone-app-modal-header-input-background-color: $system--material--fill--secondary--dark,
                 phone-app-message-footer-icon-color: $system--material--fill--primary--dark,
                 phone-input-switch-background-color: $phone--input--switch--background--color--dark,
