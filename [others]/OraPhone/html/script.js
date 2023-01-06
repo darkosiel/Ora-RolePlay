@@ -4896,7 +4896,7 @@ class ContextMenu {
 // contextMenuHome.init();
 
 const Blips = [
-    {name: "Poste de police", color: 29, sprite: 60, size: 1.0, Pos: {x: -1072.52, y: -856.42, z: 4.87}},
+    {name: "Poste de police", color: 29, sprite: 60, size: 1.0, Pos: {x: 433.33, y: -982.26, z: 30.71}},
     {name: "Sherif - Paleto Bay", color: 70, sprite: 60, size: 1.0, Pos: {x: -440.43, y: 6019.48, z: 31.49}},
     {name: "Maze Group", color: 69, sprite: 67, size: 1.0, Pos: {x: -1376.18, y: -491.93, z: 33.16}},
     {name: "Gruppe Sechs", color: 49, sprite: 78, size: 1.0, Pos: {x: -231.46, y: -851.80, z: 30.68}},
