@@ -3626,7 +3626,9 @@ function addNotification(app, appSub, time, title, message, data = false, avatar
                     displayPhone(true);
                 }
                 updateContent(app);
-                updateAppContent(appSub);
+                if (appSub != null && appSub != undefined) {
+                    updateAppContent(appSub);
+                }
                 notification.remove();
                 stopSounds();
                 if(app == "message") {

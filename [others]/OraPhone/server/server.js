@@ -1213,6 +1213,16 @@ onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
 
 onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
     await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
+    let notification = {
+        app: "lifeinvader",
+        appSub: null,
+        time: "Maintenant",
+        title: "Nouveau post",
+        message: "Un nouveau post est disponible"
+    };
+    for (const player in onlinePlayers) {
+        emitNet('OraPhone:client:new_notification', player, notification);
+    }
 });
 
 onNet('OraPhone:server:lifeinvader_update_user', async (data) => {
@@ -1246,6 +1256,6 @@ function RegisterNewPhone(phoneNumber, identity) {
     let wallpaper = 'wallpaper-ios16';
     let wallpaperLock = 'wallpaper-ios16';
     let luminosity = '100';
-    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"bank\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]';
+    let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"bank\",\"lifeinvader\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]';
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder });
 }
