@@ -134,6 +134,7 @@ const crud = {
         wallpaper: 'wallpaper',
         wallpaperLock: 'wallpaper_lock',
         luminosity: 'luminosity',
+        notification: 'notification',
         appHomeOrder: 'app_home_order',
         updateTime: 'update_time',
         createTime: 'create_time'
@@ -573,8 +574,8 @@ async function refreshLifeinvaderAppContent(data) {
                 LEFT JOIN ora_phone_lifeinvader_comment c ON p.id = c.post_id
                 LEFT JOIN ora_phone_lifeinvader_user uc ON c.user_id = uc.id
                 LEFT JOIN ora_phone_lifeinvader_like l ON p.id = l.post_id
-                ORDER BY p.create_time DESC, c.create_time DESC
-                LIMIT 30`
+                WHERE p.create_time > NOW() - INTERVAL 1 DAY
+                ORDER BY p.create_time DESC, c.create_time DESC`
             );
             break;
         case 'profile':
@@ -1231,6 +1232,12 @@ onNet('OraPhone:server:lifeinvader_update_user', async (data) => {
     emitNet('OraPhone:client:refresh_lifeinvader_user', src, await refreshLifeinvaderUser(data.phoneId), "update");
 });
 
+onNet('OraPhone:server:lifeinvader_delete_post', async (data) => {
+    const src = source;
+    await crud.lifeinvaderPost.delete({ id: data.postId });
+    emitNet('OraPhone:client:lifeinvader_update_app_content', src, await refreshLifeinvaderAppContent({ phoneId: data.phoneId, userId: data.userId, content: data.content }), data.content);
+});
+
 // Create new phone
 
 function RegisterNewPhone(phoneNumber, identity) {
@@ -1256,6 +1263,7 @@ function RegisterNewPhone(phoneNumber, identity) {
     let wallpaper = 'wallpaper-ios16';
     let wallpaperLock = 'wallpaper-ios16';
     let luminosity = '100';
+    let notification = '{"lifeinvader":true}';
     let appHomeOrder = '[\"clock\",\"camera\",\"gallery\",\"calandar\",\"\",\"\",\"\",\"\",\"notes\",\"calculator\",\"music\",\"store\",\"\",\"\",\"\",\"\",\"richtermotorsport\",\"maps\",\"bank\",\"lifeinvader\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"]';
     crud.phone.create({ playerUuid: playerUuid, serialNumber: serialNumber, firstName: firstName, lastName: lastName, number: number, isActive: isActive, soundNotification: soundNotification, soundRinging: soundRinging, soundAlarm: soundAlarm, soundNotificationVolume: soundNotificationVolume, soundRingingVolume: soundRingingVolume, soundAlarmVolume: soundAlarmVolume, darkMode: darkMode, zoom: zoom, wallpaper: wallpaper, wallpaperLock: wallpaperLock, luminosity: luminosity, appHomeOrder: appHomeOrder });
 }

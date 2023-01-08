@@ -105,6 +105,7 @@ let lastName = "";
 let phoneNumber = "";
 let luminosityActive = 10;
 let luminosityPatch = true;
+let appNotification = {};
 let volumeActive = 10;
 let bluetoothActive = false;
 
@@ -458,6 +459,7 @@ async function updateUserData(data) {
     lastName = data.phone.lastName;
     phoneNumber = data.phone.number;
     luminosityActive = data.phone.luminosity;
+    appNotification = JSON.parse(data.phone.notification);
     conversationAuthors = "";
     userData.lifeinvader = {};
     lifeinvaderUserSelected = null;
@@ -467,6 +469,7 @@ async function updateUserData(data) {
     updateZoom();
     updateProfile();
     updateLuminosity();
+    updateAppNotification();
     updateVolume();
     updateAppHomeOrder();
 
@@ -824,6 +827,10 @@ function initializeAppPhone() {
 function initializeAppSettings() {
     $("#settings-list-item-thememode label").change(function() {
         switchThemeMode();
+    });
+    $("#settings-list-item-notification-lifeinvader label").change(function() {
+        appNotification.lifeinvader = !appNotification.lifeinvader;
+        $.post('https://OraPhone/patch_user_data', JSON.stringify({ id: userData.phone.id, phone: { notification: JSON.stringify(appNotification) } }));
     });
     $(".settings-list-item.child").click(function () {
         updateAppContent($(this).attr("id").split("-")[3]);
@@ -2465,6 +2472,14 @@ function updateLuminosity() {
     });
 }
 
+function updateAppNotification() {
+    if(appNotification.lifeinvader) {
+        $("#settings-list-item-notification-lifeinvader label input").prop("checked", true);
+    } else {
+        $("#settings-list-item-notification-lifeinvader label input").prop("checked", false);
+    }
+}
+
 function updateVolume() {
     let slider = document.getElementById("topbar-box-button-slider-volume");
     slider.value = volumeActive;
@@ -3288,6 +3303,13 @@ function lifeinvaderUpdateAppContent(posts, content) {
         }
         let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (post.user.avatar != null && post.user.avatar != '' ? post.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + post.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + post.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + post.content + `</span></div></div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"><div class="lifeinvader-list-item-footer-left-like"><i class="fa-` + (post.likes.find(like => like.userId == lifeinvaderUserSelected) ? "solid" : "regular") + ` fa-heart post-like"></i><span>` + post.likes.length + `</span></div><div class="lifeinvader-list-item-footer-left-comment"><i class="fa-regular fa-comment post-comment"></i><span>` + post.comments.length + `</span></div></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
         $("#lifeinvader-" + content + "-list").append(newItem);
+        if (content == "profile") {
+            let newDeleteButton = `<div class="lifeinvader-list-item-header-delete"><i class="fa-solid fa-trash"></i></div>`;
+            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-header").append(newDeleteButton);
+            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-header-delete").click(function() {
+                $.post('https://OraPhone/lifeinvader_delete_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, postId: post.id, content: content }));
+            });
+        }
         $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .post-like").click(function() {
             let liked = false;
             if ($(this).hasClass("fa-regular")) {
@@ -3528,7 +3550,7 @@ function displayTopbar() {
 /* Notification */
 
 function addNotification(app, appSub, time, title, message, data = false, avatar = false) {
-    if (notificationMode == "none" || !phoneActive) {
+    if (notificationMode == "none" || !phoneActive || (app == "lifeinvader" && !appNotification.lifeinvader)) {
         return;
     }
     let label = "Inconnu";

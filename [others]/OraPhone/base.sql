@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS ora_phone (
     `wallpaper` varchar(1500) NOT NULL,
     `wallpaper_lock` varchar(1500) NOT NULL,
     `luminosity` int(11) NOT NULL,
+    `notification` TEXT NOT NULL,
     `app_home_order` varchar(5000) NOT NULL,
     `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_messages (
     `id_conversation` INT NOT NULL,
     `source_number` VARCHAR(255) NOT NULL,
     `msg_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
-    `message` VARCHAR(255) DEFAULT NULL,
+    `message` VARCHAR(1000) DEFAULT NULL,
     `img_id` INT DEFAULT NULL,
     `gps_json` VARCHAR(255) DEFAULT NULL,
     `is_read` TINYINT(1) NOT NULL DEFAULT 0
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_user (
     `pseudo` varchar(255) NOT NULL,
     `username` varchar(255) NOT NULL,
     `bio` text,
-    `avatar` varchar(255)
+    `avatar` text
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_post (

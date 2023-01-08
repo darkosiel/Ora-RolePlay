@@ -2740,6 +2740,11 @@ div#page {
                                                                     color: t($phone-system-color-white);
                                                                 }
                                                             }
+                                                            img {
+                                                                width: 100%;
+                                                                height: 100%;
+                                                                object-fit: cover;
+                                                            }
                                                         }
                                                         div.settings-list-item-left-title {
                                                             span {
@@ -4586,6 +4591,10 @@ div#page {
                                                         box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
                                                     }
                                                     div.lifeinvader-list-item-header {
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: space-between;
+                                                        align-items: center;
                                                         div.lifeinvader-list-item-header-profile {
                                                             display: flex;
                                                             column-gap: 15px;
@@ -4616,6 +4625,14 @@ div#page {
                                                                             color: t($phone-system-color-gray);
                                                                         }
                                                                     }
+                                                                }
+                                                            }
+                                                        }
+                                                        div.lifeinvader-list-item-header-delete {
+                                                            i {
+                                                                font-size: 28px;
+                                                                @include themed() {
+                                                                    color: t($phone-lifeinvader-background-color);
                                                                 }
                                                             }
                                                         }
