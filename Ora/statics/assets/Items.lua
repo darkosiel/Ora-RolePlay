@@ -119,59 +119,59 @@ Items = {
     },
     fish1 = {
         label = "Carpe",
-        weight = 1.0
+        weight = 0.2
     },
     fish2 = {
         label = "Merlan",
-        weight = 1.0
+        weight = 0.2
     },
     fish3 = {
         label = "Esturgeon",
-        weight = 1.0
+        weight = 0.2
     },
     fish4 = {
         label = "Thon rouge",
-        weight = 1.0
+        weight = 0.2
     },
     fish5 = {
         label = "Bonite",
-        weight = 1.0
+        weight = 0.2
     },
     fish6 = {
         label = "Daurade",
-        weight = 1.0
+        weight = 0.2
     },
     fish7 = {
         label = "Congre",
-        weight = 1.0
+        weight = 0.2
     },
     fish8 = {
         label = "Anguille",
-        weight = 1.0
+        weight = 0.2
     },
     fish9 = {
         label = "Bouviere",
-        weight = 1.0
+        weight = 0.2
     },
     fish10 = {
         label = "Bar",
-        weight = 1.0
+        weight = 0.2
     },
     fish11 = {
         label = "Brochet",
-        weight = 1.0
+        weight = 0.2
     },
     fish12 = {
         label = "Saumon",
-        weight = 1.0
+        weight = 0.2
     },
     fish13 = {
         label = "Goujon",
-        weight = 1.0
+        weight = 0.2
     },
     fish14 = {
         label = "Beluga",
-        weight = 1.0
+        weight = 0.2
     },
     fishilleg1 = {
         label = "Mérou protégé",
