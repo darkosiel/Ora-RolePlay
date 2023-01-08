@@ -8377,6 +8377,21 @@ Jobs = {
                 Blipname = "SAMS - Garage Los Santos 3"
             }
         },
+        garage5 = {
+            Name = "Garage SAMS Perso",
+            Pos = {x = -1820.9343, y = -374.2449, z = 40.6693 - 0.98},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = -1820.9343, y = -374.2449, z = 40.6693, h = 112.5330}
+            },
+            Blipdata = {
+                Pos = {x = -1820.9343, y = -374.2449, z = 40.6693},
+                Blipcolor = 7,
+                Blipname = "SAMS - Garage Perso"
+            }
+        },
         Storage = {
             {
                 Pos = {x = -1870.05, y = -338.50, z = 53.75 - 0.98},
