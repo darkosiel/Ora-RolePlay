@@ -38,6 +38,7 @@ local discordWBK = {
     "https://discord.com/api/webhooks/957345819315568770/DH2-Dng4lVIMnjy-YniBOSIse3Zm1trUzCA-uRpNQepN-VT4md9KWzJUP5uVMJEHvwp-", -- 37   Raids
     "https://discord.com/api/webhooks/957344621229379645/VPVZunSJPZ71odvV9e3tN48oTQ7shv3GSW5hZfvfMK9kHYbo-d6i0xyNEF8X27kN1EAt", -- 38   Immo
     "https://discord.com/api/webhooks/988384634675003422/ZTrhCGJipu7RqkCJnEhvjz6wQTvtxTpmxl7pRr565Dq0S7-aRYMaf7mhowZFlui0iC6R",
+    ["OraPhoneLifeInvader"] = "https://discord.com/api/webhooks/1061998247620653137/YtAxg4H-N27Zcq20dznrMXhIYA7Bng5P3q8ItmCOoR4h6QtSMyStpFp0J9riRL0ousYK", -- ["OraPhoneLifeInvader"] : OraPhone - LifeInvader Add Post
     ["Pneu"] = "https://discord.com/api/webhooks/1015596307534053437/DWRGGHo7A9MyTrgA7hFf_wCgCSAc5utOcD8LPVLw8hZ7ZlF1tZaceK4_uHqsWq-5U11w", -- ["Pneu"] : Pneu
     ["Feu"] = "https://discord.com/api/webhooks/1040654955184406619/PFhkNGyUPdW142_gaSZQxMa0NVz26NfzwkirMMFxXrE8TfQaouYKTd8ZITSP6Vt7JYGe", -- ["Feu"] : Feu
     ["Event"] = "https://discord.com/api/webhooks/1014923964864278579/rs6Hn5yglx38b0aus1WAeXla6sfHhizWMkfzk_S7lxwmMtsp9v434yEvjeK483KA-hLY", --[Event] : Event

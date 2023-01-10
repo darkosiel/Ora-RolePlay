@@ -159,6 +159,7 @@ let bankTransferError = false;
 let lifeinvaderUserSelected = null;
 let lifeinvaderFetchAppContentCan = true;
 let lifeinvaderCurrentPostId = null;
+let lifeinvaderCurrentUserId = null;
 
 const Delay = ms => new Promise(r=>setTimeout(r, ms));
 
@@ -352,18 +353,20 @@ $(function(){
                 }
             }
             // Gestion du clique droit
-            $("#phone").bind("contextmenu",function() {
-                return false;
-            });
-            // Gestion entrer/sortie des inputs
-            $(':input').on('blur', function() {
-                $inputToggle = false;
-                $.post('https://OraPhone/EnableInput', JSON.stringify({}));
-            });
-            $(':input').on('focus', function() {
-                $inputToggle = true;
-                $.post('https://OraPhone/DisableInput', JSON.stringify({}));
-            });
+            if (!phoneTest) {
+                $("#phone").bind("contextmenu",function() {
+                    return false;
+                });
+                // Gestion entrer/sortie des inputs
+                $(':input').on('blur', function() {
+                    $inputToggle = false;
+                    $.post('https://OraPhone/EnableInput', JSON.stringify({}));
+                });
+                $(':input').on('focus', function() {
+                    $inputToggle = true;
+                    $.post('https://OraPhone/DisableInput', JSON.stringify({}));
+                });
+            }
 
             // Heure Téléphone
             setInterval(function () {
@@ -388,18 +391,48 @@ $(function(){
         // --- Inisialisation de test --- //
 
             // Affichage de l'écran de test
-            let dateTest = {
+            let dataTest = {
                 'phoneNumber': '5556585',
                 'phone': {
-                    'id': 1, 'darkMode': 0, 'wallpaper': "wallpaper-ios16", 'wallpaperLock': "wallpaper-ios16", 'soundNotification': "notification-magic", 'soundNotificationVolume': 5, 'soundRinging': "ringing-iosoriginal", 'soundRingingVolume': 5, 'soundAlarm': "alarm-iosradaroriginal", 'soundAlarmVolume': 5, 'zoom': "zoom100%", 'serialNumber': "5555-5555", 'firstName': "Mike", 'lastName': "Bell", 'number': "5556868", 'luminosity': 100, 'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', 'lifeinvader', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                    ])
+                    'id': 1,
+                    'darkMode': 0,
+                    'wallpaper': "wallpaper-ios16",
+                    'wallpaperLock': "wallpaper-ios16",
+                    'soundNotification': "notification-magic",
+                    'soundNotificationVolume': 5,
+                    'soundRinging': "ringing-iosoriginal",
+                    'soundRingingVolume': 5,
+                    'soundAlarm': "alarm-iosradaroriginal",
+                    'soundAlarmVolume': 5,
+                    'zoom': "zoom150%",
+                    'serialNumber': "5555-5555",
+                    'firstName': "Mike",
+                    'lastName': "Bell",
+                    'number': "5556868",
+                    'luminosity': 100,
+                    'notification': JSON.stringify({'lifeinvader':true}),
+                    'appHomeOrder': JSON.stringify([ 'clock', 'camera', 'gallery', 'calandar', '', '', '', '', 'store', 'music', 'notes', 'calculator', '', '', '', '', 'richtermotorsport', 'maps', 'bank', 'lifeinvader', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '' ])
+                },
+                'lifeinvader': {
+                    'users': [
+                        {
+                            'id': 1,
+                            'phoneId': 1,
+                            'pseudo': 'Extalion',
+                            'username': 'extalion',
+                            'bio': 'C\'est moi',
+                            'avatar': null
+                        }
+                    ]
                 }
             }
             if (phoneTest) {
-                await updateUserData(dateTest);
+                await updateUserData(dataTest);
                 displayPhone(true);
                 updateContent("home");
                 updateAppContent("first");
+                userData.lifeinvader = dataTest.lifeinvader;
+                updateAppLifeinvader();
                 $("#message-list").children().click(function () {
                     updateAppContent("message");
                 });
@@ -461,7 +494,9 @@ async function updateUserData(data) {
     luminosityActive = data.phone.luminosity;
     appNotification = JSON.parse(data.phone.notification);
     conversationAuthors = "";
-    userData.lifeinvader = {};
+    if (!phoneTest) {
+        userData.lifeinvader = {};
+    }
     lifeinvaderUserSelected = null;
     updateSound();
     updateWallpaper();
@@ -3281,84 +3316,118 @@ function bankUpdateAccount() {
 
 function lifeinvaderUpdateAppContent(posts, content) {
     $("#lifeinvader-" + content + "-list").empty();
-    for (const post of posts) {
-        let postTime = new Date(post.createTime);
-        let nowTime = new Date();
-        if(postTime.toDateString() == nowTime.toDateString()) {
-            postTime = postTime.toLocaleString('fr-FR', { timeStyle: 'short' });
-        } else {
-            let yesterday = new Date();
-            yesterday.setDate(nowTime.getDate() - 1);
-            if(postTime.toDateString() == yesterday.toDateString()) {
-                postTime = "Hier";
-            } else {
-                let tmp = Math.ceil(Math.abs(nowTime - postTime) / (1000 * 60 * 60 * 24));
-                if(tmp <= 7) {
-                    postTime = postTime.toLocaleString('fr-FR', { weekday: 'long' });
-                    postTime = postTime.charAt(0).toUpperCase() + postTime.slice(1);
-                } else {
-                    postTime = postTime.toLocaleString('fr-FR', { dateStyle: 'short' });
-                }
-            }
-        }
-        let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (post.user.avatar != null && post.user.avatar != '' ? post.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + post.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + post.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + post.content + `</span></div></div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"><div class="lifeinvader-list-item-footer-left-like"><i class="fa-` + (post.likes.find(like => like.userId == lifeinvaderUserSelected) ? "solid" : "regular") + ` fa-heart post-like"></i><span>` + post.likes.length + `</span></div><div class="lifeinvader-list-item-footer-left-comment"><i class="fa-regular fa-comment post-comment"></i><span>` + post.comments.length + `</span></div></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
-        $("#lifeinvader-" + content + "-list").append(newItem);
-        if (content == "profile") {
-            let newDeleteButton = `<div class="lifeinvader-list-item-header-delete"><i class="fa-solid fa-trash"></i></div>`;
-            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-header").append(newDeleteButton);
-            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-header-delete").click(function() {
-                $.post('https://OraPhone/lifeinvader_delete_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, postId: post.id, content: content }));
+    $("#lifeinvader-" + content + "-list").css("display", "none");
+    if (content == "search") {
+        userData.lifeinvader.userList = posts;
+        let searchInput = $("#lifeinvader-search-input");
+        searchInput.val("");
+        for (const user of posts) {
+            let newItem = `<div data-id="" class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (user.avatar != null && user.avatar != '' ? user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + user.pseudo + `</span></div></div></div></div>`;
+            $("#lifeinvader-" + content + "-list").append(newItem);
+            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child").click(function() {
+                $.post('https://OraPhone/lifeinvader_fetch_app_content', JSON.stringify({ phoneId: userData.phone.id, userId: user.id, content: "user" }));
+                lifeinvaderCurrentUserId = user.id;
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-user-image img").attr("src", (user.avatar != null && user.avatar != '' ? user.avatar : lifeinvaderUserAvatarDefault));
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-user-name-pseudo").html(user.pseudo);
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-user-name-username").html("@" + user.username);
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-user-bio").html(user.bio);
             });
         }
-        $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .post-like").click(function() {
-            let liked = false;
-            if ($(this).hasClass("fa-regular")) {
-                liked = true;
-                $(this).addClass("fa-solid");
-                $(this).removeClass("fa-regular");
-                $(this).next().html(parseInt($(this).next().html()) + 1);
-            } else {
-                $(this).addClass("fa-regular");
-                $(this).removeClass("fa-solid");
-                $(this).next().html(parseInt($(this).next().html()) - 1);
-            }
-            $.post('https://OraPhone/lifeinvader_like_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, postId: post.id, liked: liked, content: menuAppSelected }));
-        });
-        $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .post-comment").click(function() {
-            lifeinvaderCurrentPostId = post.id;
-            updateAppContent("post");
-        });
-        if (content == "post") {
-            $("#lifeinvader-" + content + "-list").append(`<div class="lifeinvader-list-response"></div>`);
-            for (const comment of post.comments) {
-                let postTime = new Date(comment.createTime);
-                let nowTime = new Date();
-                if(postTime.toDateString() == nowTime.toDateString()) {
-                    postTime = postTime.toLocaleString('fr-FR', { timeStyle: 'short' });
-                } else {
-                    let yesterday = new Date();
-                    yesterday.setDate(nowTime.getDate() - 1);
-                    if(postTime.toDateString() == yesterday.toDateString()) {
-                        postTime = "Hier";
+        searchInput.addEventListener('input', (e) => {
+            if (searchInput.value.length >= 2) {
+                $("#lifeinvader-" + content + "-list").css("display", "block");
+                for(let elt of document.querySelectorAll("#lifeinvader-" + content + "-list .lifeinvader-list-item")) {
+                    if(elt.querySelector(".lifeinvader-list-item-header-profile-name-pseudo").innerHTML.toLowerCase().includes(searchInput.value.toLowerCase())) {
+                        elt.style.display = "block";
                     } else {
-                        let tmp = Math.ceil(Math.abs(nowTime - postTime) / (1000 * 60 * 60 * 24));
-                        if(tmp <= 7) {
-                            postTime = postTime.toLocaleString('fr-FR', { weekday: 'long' });
-                            postTime = postTime.charAt(0).toUpperCase() + postTime.slice(1);
-                        } else {
-                            postTime = postTime.toLocaleString('fr-FR', { dateStyle: 'short' });
-                        }
+                        elt.style.display = "none";
                     }
                 }
-                let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (comment.user.avatar != null && comment.user.avatar != '' ? comment.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + comment.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + comment.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + comment.content + `</span></div></div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
-                $(".lifeinvader-list-response").append(newItem);
+            } else {
+                $("#lifeinvader-" + content + "-list").css("display", "none");
+            }
+        });
+    } else {
+        for (const post of posts) {
+            let postTime = new Date(post.createTime);
+            let nowTime = new Date();
+            if(postTime.toDateString() == nowTime.toDateString()) {
+                postTime = postTime.toLocaleString('fr-FR', { timeStyle: 'short' });
+            } else {
+                let yesterday = new Date();
+                yesterday.setDate(nowTime.getDate() - 1);
+                if(postTime.toDateString() == yesterday.toDateString()) {
+                    postTime = "Hier";
+                } else {
+                    let tmp = Math.ceil(Math.abs(nowTime - postTime) / (1000 * 60 * 60 * 24));
+                    if(tmp <= 7) {
+                        postTime = postTime.toLocaleString('fr-FR', { weekday: 'long' });
+                        postTime = postTime.charAt(0).toUpperCase() + postTime.slice(1);
+                    } else {
+                        postTime = postTime.toLocaleString('fr-FR', { dateStyle: 'short' });
+                    }
+                }
+            }
+            let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (post.user.avatar != null && post.user.avatar != '' ? post.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + post.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + post.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + post.content + `</span></div></div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"><div class="lifeinvader-list-item-footer-left-like"><i class="fa-` + (post.likes.find(like => like.userId == lifeinvaderUserSelected) ? "solid" : "regular") + ` fa-heart post-like"></i><span>` + post.likes.length + `</span></div><div class="lifeinvader-list-item-footer-left-comment"><i class="fa-regular fa-comment post-comment"></i><span>` + post.comments.length + `</span></div></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
+            $("#lifeinvader-" + content + "-list").append(newItem);
+            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .post-like").click(function() {
+                let liked = false;
+                if ($(this).hasClass("fa-regular")) {
+                    liked = true;
+                    $(this).addClass("fa-solid");
+                    $(this).removeClass("fa-regular");
+                    $(this).next().html(parseInt($(this).next().html()) + 1);
+                } else {
+                    $(this).addClass("fa-regular");
+                    $(this).removeClass("fa-solid");
+                    $(this).next().html(parseInt($(this).next().html()) - 1);
+                }
+                $.post('https://OraPhone/lifeinvader_like_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, postId: post.id, liked: liked, content: menuAppSelected }));
+            });
+            $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .post-comment").click(function() {
+                lifeinvaderCurrentPostId = post.id;
+                updateAppContent("post");
+            });
+            if (content == "profile") {
+                let newDeleteButton = `<div class="lifeinvader-list-item-header-delete"><i class="fa-solid fa-trash"></i></div>`;
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-header").append(newDeleteButton);
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-header-delete").click(function() {
+                    $.post('https://OraPhone/lifeinvader_delete_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, postId: post.id, content: content }));
+                });
+            } else if (content == "post") {
+                $("#lifeinvader-" + content + "-list").append(`<div class="lifeinvader-list-response"></div>`);
+                for (const comment of post.comments) {
+                    let postTime = new Date(comment.createTime);
+                    let nowTime = new Date();
+                    if(postTime.toDateString() == nowTime.toDateString()) {
+                        postTime = postTime.toLocaleString('fr-FR', { timeStyle: 'short' });
+                    } else {
+                        let yesterday = new Date();
+                        yesterday.setDate(nowTime.getDate() - 1);
+                        if(postTime.toDateString() == yesterday.toDateString()) {
+                            postTime = "Hier";
+                        } else {
+                            let tmp = Math.ceil(Math.abs(nowTime - postTime) / (1000 * 60 * 60 * 24));
+                            if(tmp <= 7) {
+                                postTime = postTime.toLocaleString('fr-FR', { weekday: 'long' });
+                                postTime = postTime.charAt(0).toUpperCase() + postTime.slice(1);
+                            } else {
+                                postTime = postTime.toLocaleString('fr-FR', { dateStyle: 'short' });
+                            }
+                        }
+                    }
+                    let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (comment.user.avatar != null && comment.user.avatar != '' ? comment.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + comment.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + comment.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + comment.content + `</span></div></div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
+                    $(".lifeinvader-list-response").append(newItem);
+                }
+            } else if (content == "user") {
+                updateAppContent("user");
             }
         }
     }
 }
 
 function lifeInvaderFetchAppContent(content) {
-    if ((content == "home" && lifeinvaderFetchAppContentCan) || content == "post" || content == "profile") {
+    if ((content == "home" && lifeinvaderFetchAppContentCan) || content == "post" || content == "profile" || content == "search") {
         lifeinvaderFetchAppContentCan = false;
         $.post('https://OraPhone/lifeinvader_fetch_app_content', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, content: content, postId: lifeinvaderCurrentPostId }));
         setTimeout(function() {

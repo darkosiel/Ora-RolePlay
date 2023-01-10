@@ -4745,35 +4745,35 @@ div#page {
                                                     }
                                                 }
                                             }
-                                            div.lifeinvader-profile {
+                                            input, textarea {
+                                                width: 90%;
+                                                height: auto;
+                                                padding: 10px 15px;
+                                                border: 0;
+                                                border-radius: 15px;
+                                                font-size: 22px;
+                                                text-align: center;
+                                                @include themed() {
+                                                    color: t($phone-app-label-color-primary);
+                                                    background-color: t($phone-app-background-color);
+                                                    box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
+                                                }
+                                                &.lifeinvader-profile-name-username {
+                                                    @include themed() {
+                                                        color: t($phone-system-color-gray);
+                                                    }
+                                                }
+                                            }
+                                            textarea {
+                                                resize: none;
+                                            }
+                                            div.lifeinvader-profile, div.lifeinvader-user {
                                                 display: flex;
                                                 flex-direction: column;
                                                 align-items: center;
                                                 row-gap: 15px;
                                                 margin-bottom: 20px;
-                                                input, textarea {
-                                                    width: 90%;
-                                                    height: auto;
-                                                    padding: 10px 15px;
-                                                    border: 0;
-                                                    border-radius: 15px;
-                                                    font-size: 22px;
-                                                    text-align: center;
-                                                    @include themed() {
-                                                        color: t($phone-app-label-color-primary);
-                                                        background-color: t($phone-app-background-color);
-                                                        box-shadow: 0 0 40px 8px t($phone-lifeinvader-list-item-box-shadow-color);
-                                                    }
-                                                    &.lifeinvader-profile-name-username {
-                                                        @include themed() {
-                                                            color: t($phone-system-color-gray);
-                                                        }
-                                                    }
-                                                }
-                                                textarea {
-                                                    resize: none;
-                                                }
-                                                div.lifeinvader-profile-image {
+                                                div.lifeinvader-profile-image, div.lifeinvader-user-image {
                                                     width: 160px;
                                                     height: 160px;
                                                     border-radius: 50%;
@@ -4784,7 +4784,7 @@ div#page {
                                                         object-fit: cover;
                                                     }
                                                 }
-                                                div.lifeinvader-profile-name {
+                                                div.lifeinvader-profile-name, div.lifeinvader-user-name {
                                                     display: flex;
                                                     flex-direction: column;
                                                     align-items: center;
@@ -4794,7 +4794,7 @@ div#page {
                                                         @include themed() {
                                                             color: t($phone-app-label-color-primary);
                                                         }
-                                                        &.lifeinvader-profile-name-username {
+                                                        &.lifeinvader-profile-name-username, &.lifeinvader-user-name-username {
                                                             font-size: 24px;
                                                             font-weight: 500;
                                                             @include themed() {
@@ -4803,7 +4803,7 @@ div#page {
                                                         }
                                                     }
                                                 }
-                                                div.lifeinvader-profile-bio {
+                                                div.lifeinvader-profile-bio, div.lifeinvader-user-bio {
                                                     span {
                                                         font-size: 20px;
                                                         font-weight: 500;
@@ -4872,6 +4872,15 @@ div#page {
                                         &#app-lifeinvader-body-content-createprofile {
                                             div.app-body-content-body {
                                                 height: 100%;
+                                            }
+                                        }
+                                        &#app-lifeinvader-body-content-search {
+                                            div.app-body-content-body {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: flex-start;
+                                                align-items: center;
+                                                row-gap: 15px;
                                             }
                                         }
                                     }

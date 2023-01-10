@@ -88,6 +88,8 @@ const generateCrud = (table_suffix, fieldsMap) => {
                 sql += ` ORDER BY id DESC`;
             } else if(table == "ora_phone") {
                 sql += ` ORDER BY update_time DESC`;
+            } else if(table == "ora_phone_lifeinvader_user") {
+                sql += ` ORDER BY pseudo ASC`;
             }
             return fetchDb(sql, criteria);
         },
@@ -561,6 +563,8 @@ async function refreshLifeinvaderUser(phoneId) {
 
 async function refreshLifeinvaderAppContent(data) {
     let responsePosts;
+    let responseUsers;
+    let result;
     switch (data.content) {
         case 'home':
             responsePosts = await fetchDb(`
@@ -612,9 +616,34 @@ async function refreshLifeinvaderAppContent(data) {
                 { postId: data.postId }
             );
             break;
+        case 'search':
+            responseUsers = await crud.lifeinvaderUser.read();
+            break;
+        case 'user':
+            responsePosts = await fetchDb(`
+                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                    u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
+                    c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
+                    uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
+                    l.id as 'like_id', l.user_id as 'like_user_id', l.create_time as 'like_create_time'
+                FROM ora_phone_lifeinvader_post p
+                JOIN ora_phone_lifeinvader_user u ON p.user_id = u.id
+                LEFT JOIN ora_phone_lifeinvader_comment c ON p.id = c.post_id
+                LEFT JOIN ora_phone_lifeinvader_user uc ON c.user_id = uc.id
+                LEFT JOIN ora_phone_lifeinvader_like l ON p.id = l.post_id
+                WHERE u.id = @userId
+                ORDER BY p.create_time DESC, c.create_time DESC`,
+                { userId: data.userId }
+            );
+            break;
     }
-    const posts = processDataLifeinvaderPost(responsePosts);
-    return posts;
+    if (responsePosts != undefined || responsePosts != null || responsePosts != "") {
+        result = responseUsers;
+    }
+    if (responsePosts != undefined || responsePosts != null || responsePosts != "") {
+        result = processDataLifeinvaderPost(responsePosts);
+    }
+    return result;
 }
 
 function processDataLifeinvaderPost(data) {
@@ -1214,6 +1243,7 @@ onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
 
 onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
     await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
+    emitNet("Ora:sendToDiscord", "OraPhoneLifeInvader", "UserId: " + data.userId + " : " + data.response);
     let notification = {
         app: "lifeinvader",
         appSub: null,
