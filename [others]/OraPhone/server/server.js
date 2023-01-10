@@ -562,9 +562,8 @@ async function refreshLifeinvaderUser(phoneId) {
 }
 
 async function refreshLifeinvaderAppContent(data) {
-    let responsePosts;
-    let responseUsers;
-    let result;
+    let responsePosts = null;
+    let responseUsers = null;
     switch (data.content) {
         case 'home':
             responsePosts = await fetchDb(`
@@ -637,13 +636,11 @@ async function refreshLifeinvaderAppContent(data) {
             );
             break;
     }
-    if (responsePosts != undefined || responsePosts != null || responsePosts != "") {
-        result = responseUsers;
+    if (responseUsers != null || responseUsers != undefined) {
+        return responseUsers;
+    } else if (responsePosts != null || responsePosts != undefined) {
+        return processDataLifeinvaderPost(responsePosts);
     }
-    if (responsePosts != undefined || responsePosts != null || responsePosts != "") {
-        result = processDataLifeinvaderPost(responsePosts);
-    }
-    return result;
 }
 
 function processDataLifeinvaderPost(data) {
@@ -1243,7 +1240,7 @@ onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
 
 onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
     await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
-    emitNet("Ora:sendToDiscord", "OraPhoneLifeInvader", "UserId: " + data.userId + " : " + data.response);
+    emit("Ora:sendToDiscord", "OraPhoneLifeInvader", "[UserId: " + data.userId + "/Pseudo: " + data.userPseudo + "/Username: " + data.userUsername + "] : " + data.response);
     let notification = {
         app: "lifeinvader",
         appSub: null,
