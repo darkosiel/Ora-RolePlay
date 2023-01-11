@@ -1240,7 +1240,6 @@ onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
 
 onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
     await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
-    emit("Ora:sendToDiscord", "OraPhoneLifeInvader", "[UserId: " + data.userId + "/Pseudo: " + data.userPseudo + "/Username: " + data.userUsername + "] : " + data.response);
     let notification = {
         app: "lifeinvader",
         appSub: null,

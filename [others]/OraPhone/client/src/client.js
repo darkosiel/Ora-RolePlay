@@ -759,6 +759,7 @@ on('__cfx_nui:lifeinvader_add_post_response', data => {
 
 RegisterNuiCallbackType('lifeinvader_add_post');
 on('__cfx_nui:lifeinvader_add_post', data => {
+    emitNet("Ora:sendToDiscord", "OraPhoneLifeInvader", "[UserId: " + data.userId + "/Pseudo: " + data.userPseudo + "/Username: " + data.userUsername + "] : " + data.response);
     emitNet('OraPhone:server:lifeinvader_add_post', data);
 });
 
