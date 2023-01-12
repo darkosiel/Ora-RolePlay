@@ -7437,12 +7437,13 @@ Jobs = {
             Banker = {
                 Pos = {
                     --{x = 249.93, y = 230.25, z = 106.29}
-                    {x = -1343.753296, y = -486.443207, z = 33.175743},
-                    {x = -1332.736084, y = -500.569305, z = 33.175232},
-                    {x = -1341.557617, y = -502.238342, z = 33.175751},
-                    {x = -1350.048096, y = -503.473572, z = 33.175739},
-                    {x = -1357.767456, y = -489.018005, z = 33.175743},
-                    {x = -1380.793945, y = -486.817902, z = 33.343670},
+                    {x = -1378.4331, y = -486.8629, z = 33.3436}, -- accueil 1
+                    {x = -1382.2896, y = -487.4740, z = 33.3436}, -- accueil 2
+                    {x = -1357.5483, y = -491.3497, z = 33.1757}, -- Bureau gérant
+                    {x = -1342.4935, y = -489.2805, z = 33.1757}, -- Bureau PDG
+                    {x = -1352.7640, y = -503.2805, z = 33.1757}, -- Bureau 1 
+                    {x = -1343.9407, y = -501.8134, z = 33.1757}, -- Bureau 2 
+                    {x = -1333.9194, y = -499.3476, z = 33.1752}, -- Bureau 3
 
                     --{x = -1303.006348, y = -498.962677, z = 33.761589}
                 },
@@ -10929,8 +10930,8 @@ Jobs = {
         }
     },
     mecano = {
-        label = "Mécano Sud",
-        label2 = "Mécano Sud",
+        label = "LS Customs",
+        label2 = "LS Customs",
         iban = "mecano",
         isMechanics = true,
         grade = {
@@ -10997,7 +10998,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Mécano",
+                title = "LS Customs",
                 subtitle = "Actions disponibles",
                 name = "mecano_menuperso"
             },
@@ -11075,7 +11076,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "LS Custom", "Annonce", text, "CHAR_LSCUSTOM", 8, "Mécano Sud")
+                            TriggerServerEvent("Job:Annonce", "LS Custom", "Annonce", text, "CHAR_LSCUSTOM", 8, "LS Customs")
                         end
                     end
                 },
