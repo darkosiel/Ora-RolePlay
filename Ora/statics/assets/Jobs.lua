@@ -10684,6 +10684,21 @@ Jobs = {
                 Blipname = "Garage"
             }
         },
+        garage2 = {
+            Name = "Garage Benny's 2",
+            Pos = {x = -237.0476, y = -1328.0479, z = 18.3923},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -237.0476, y = -1328.0479, z = 18.3923, h = 356.4321}
+            },
+            Blipdata = {
+                Pos = {x = -237.0476, y = -1328.0479, z = 18.3923},
+                Blipcolor = 5,
+                Blipname = "Garage2"
+            }
+        },
         Menu = {
             menu = {
                 title = "Benny's",
@@ -10810,6 +10825,7 @@ Jobs = {
             },
             LSCustoms = {
                 Pos = {
+                    {x = -199.0915, y = -1324.3952, z = 31.1268},
                     {x = -182.26, y = -1320.08, z = 31.3},
                     {x = -233.87, y = -1317.19, z = 30.9},
                     {x = -237.23, y = -1337.12, z = 30.9},
@@ -10840,6 +10856,11 @@ Jobs = {
                 Pos = {x = -196.01, y = -1340.04, z = 33.9},
                 Limit = 100,
                 Name = "coffre_bennys"
+            },
+            {
+                Pos = {x = -196.7652, y = -1315.3574, z = 30.0892},
+                Limit = 5000,
+                Name = "coffre_bennys2"
             }
         },
         work = {
