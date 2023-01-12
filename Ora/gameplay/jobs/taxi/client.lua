@@ -94,8 +94,8 @@ function StartTaxiMission(param)
                             1
                         )
 
-                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "taxi", 120, true)
-                        TriggerServerEvent("entreprise:Add", "taxi", 120)
+                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "taxi", 200, true)
+                        TriggerServerEvent("entreprise:Add", "taxi", 200)
 
                         SetVehicleUndriveable(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
                         FreezeEntityPosition(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
