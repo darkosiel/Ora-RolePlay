@@ -94,8 +94,8 @@ function StartpegasusMission(param)
                             1
                         )
 
-                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "pegasus", 120, true)
-                        TriggerServerEvent("entreprise:Add", "pegasus", 120)
+                        TriggerServerEvent("business:SetProductivity", GetPlayerServerId(PlayerId()), "pegasus", 250, true)
+                        TriggerServerEvent("entreprise:Add", "pegasus", 250)
 
                         SetVehicleUndriveable(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
                         FreezeEntityPosition(GetVehiclePedIsIn(LocalPlayer().Ped, false), true)
