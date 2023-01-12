@@ -163,7 +163,7 @@ Config.DJPositions = {
         name = 'gouvhouse',
         pos = vector3(-1433.413208, 208.506119, 57.823853 - 0.98),
         requiredJob = nil, 
-        range = 20.0, 
+        range = 30.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
@@ -191,7 +191,14 @@ Config.DJPositions = {
         name = 'Bennys',
         pos = vector3(-214.7577, -1313.6761, 34.6970 - 0.98),
         requiredJob = nil, 
-        range = 12000.0, 
+        range = 70.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
+        name = 'LS Custom',
+        pos = vector3(-319.4890, -120.8948,  39.0096 - 0.98),
+        requiredJob = nil, 
+        range = 70.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     
