@@ -7371,17 +7371,17 @@ Jobs = {
         --},
         Storage = {
             {
-                Pos = {x = -1348.28, y = -491.69, z = 33.17},
+                Pos = {x = -1348.28, y = -491.69, z = 32.17},
                 Limit = 500,
                 Name = "Coffre PDG"
             },
             {
-                Pos = {x = -1336.92, y = -493.50, z = 33.44},
+                Pos = {x = -1336.92, y = -493.50, z = 32.44},
                 Limit = 500,
                 Name = "Coffre Nourriture"
             },
             {
-                Pos = {x = -1385.3851, y = -487.7128, z = 33.3436},
+                Pos = {x = -1385.3851, y = -487.7128, z = 32.3436},
                 Limit = 500,
                 Name = "Coffre Cartes"
             }
