@@ -10880,52 +10880,39 @@ Jobs = {
             }
         },
         work = {
-            vestiaire = {
-                type = "Vestiaire",
-                workSize = 1.45,
-                Pos = {x = -212.92, y = -1331.96, z = 22.14},
-                Tenues = {
-                    ["Tenue de services"] = {
-                        male = {
-                            ["tshirt_1"] = 15,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 65,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 17,
-                            ["pants_1"] = 38,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = 0,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 0,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = 0,
-                            ["ears_2"] = 0
-                        },
-                        female = {
-                            ["tshirt_1"] = 14,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 59,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 18,
-                            ["pants_1"] = 38,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = 0,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 0,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = 0,
-                            ["ears_2"] = 0
-                        }
-                    }
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 2339.3137, y = 3049.5485, z = 48.1517 - 0.98},
+                giveitem = "ferraille",
+                blipcolor = 7,
+                blipname = "Benny's - Récolte de ferraille",
+                add = "~p~+ 1 Ferraille",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
                 }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 4.0,
+                blipcolor = 7,
+                blipname = "Benny's - Traitement ferraille",
+                Pos = {x = -215.5557, y = -1318.9282, z = 30.8902},
+                required = "ferraille",
+                giveitem = "piecedetache",
+                RemoveItem = "ferraille",
+                add = "~p~+ 1  Pièce détachée"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Benny's - Vente",
+                Pos = {x = 540.4106, y = -177.1227, z = 54.4813 - 0.98},
+                required = "piecedetache",
+                price = math.random(9, 11),
+                add = "~p~- 1 Pièce détachée"
             }
         }
     },
@@ -11163,52 +11150,39 @@ Jobs = {
             }
         },
         work = {
-            vestiaire = {
-                type = "Vestiaire",
-                workSize = 1.45,
-                Pos = {x = -350.3051, y = -123.6559, z = 39.0530},
-                Tenues = {
-                    ["Tenue de services"] = {
-                        male = {
-                            ["tshirt_1"] = 15,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 65,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 17,
-                            ["pants_1"] = 38,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = 0,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 0,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = 0,
-                            ["ears_2"] = 0
-                        },
-                        female = {
-                            ["tshirt_1"] = 14,
-                            ["tshirt_2"] = 0,
-                            ["torso_1"] = 59,
-                            ["torso_2"] = 0,
-                            ["decals_1"] = 0,
-                            ["decals_2"] = 0,
-                            ["arms"] = 18,
-                            ["pants_1"] = 38,
-                            ["pants_2"] = 0,
-                            ["shoes_1"] = 25,
-                            ["shoes_2"] = 0,
-                            ["helmet_1"] = 0,
-                            ["helmet_2"] = 0,
-                            ["chain_1"] = 0,
-                            ["chain_2"] = 0,
-                            ["ears_1"] = 0,
-                            ["ears_2"] = 0
-                        }
-                    }
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 2339.3137, y = 3049.5485, z = 48.1517 - 0.98},
+                giveitem = "ferraille",
+                blipcolor = 7,
+                blipname = "LS Customs - Récolte de ferraille",
+                add = "~p~+ 1 Ferraille",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
                 }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 4.0,
+                blipcolor = 7,
+                blipname = "LS Customs - Traitement ferraille",
+                Pos = {x = -329.1960, y = -163.7890, z = 39.0085},
+                required = "ferraille",
+                giveitem = "piecedetache",
+                RemoveItem = "ferraille",
+                add = "~p~+ 1  Pièce détachée"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Ls Customs - Vente",
+                Pos = {x = 540.4106, y = -177.1227, z = 54.4813 - 0.98},
+                required = "piecedetache",
+                price = math.random(9, 11),
+                add = "~p~- 1 Pièce détachée"
             }
         }
     },
