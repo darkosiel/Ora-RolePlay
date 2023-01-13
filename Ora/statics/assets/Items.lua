@@ -3342,6 +3342,26 @@ Items = {
         weight = 0.1,
         category = "docs"
     },
+
+     -- Mécano run
+     ferraille = {
+        label = "Ferraille",
+        weight = 0.1,
+    },
+    piecedetache = {
+        label = "Pièce détachée",
+        weight = 0.1,
+    },
+
+    -- Binco run
+    soie = {
+        label = "Soie",
+        weight = 0.1,
+    },
+    tenueluxe = {
+        label = "Tenue de Lux",
+        weight = 0.1,
+    },
 }
 
 -- staticcc

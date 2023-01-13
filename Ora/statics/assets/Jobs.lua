@@ -7947,6 +7947,42 @@ Jobs = {
                     {x = -168.4, y = -298.3, z = 39.79}
                 }
             }
+        },
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 830.8237, y = -3209.3627, z = 5.9008 - 0.98},
+                giveitem = "soie",
+                blipcolor = 7,
+                blipname = "Binco - Récolte de soie",
+                add = "~p~+ 1 Soie",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 4.0,
+                blipcolor = 7,
+                blipname = "Binco - Traitement soie",
+                Pos = {x = 713.9973, y = -962.6809, z = 30.3953},
+                required = "soie",
+                giveitem = "tenueluxe",
+                RemoveItem = "soie",
+                add = "~p~+ 1  Tenue de Luxe"
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Binco - Vente",
+                Pos = {x = -164.8125, y = -310.4215, z = 39.7332 - 0.98},
+                required = "tenueluxe",
+                price = math.random(16, 18),
+                add = "~p~- 1 Tenue de Luxe"
+            }
         }
     },
     -- binconord = {
