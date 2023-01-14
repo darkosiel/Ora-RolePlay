@@ -1832,8 +1832,10 @@ function initializeAppLifeinvader() {
         let response = $("#lifeinvader-newpost-response-textarea").val();
         if (response != "") {
             let user = userData.lifeinvader.users.find(user => user.id == lifeinvaderUserSelected);
-            $.post('https://OraPhone/lifeinvader_add_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, userPseudo: user.pseudo, userUsername: user.username, response: response }));
+            $.post('https://OraPhone/lifeinvader_add_post', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, userPseudo: user.pseudo, userUsername: user.username, response: response, image: $("#lifeinvader-image-input").val() }));
             $("#lifeinvader-newpost-response-textarea").val("");
+            document.getElementById("lifeinvader-newpost-image").style.display = "none";
+            $("#lifeinvader-image-input").val("");
         }
     });
     $("#lifeinvader-settings-button").click(function() {
@@ -1852,6 +1854,19 @@ function initializeAppLifeinvader() {
         if (pseudo != "") {
             $.post('https://OraPhone/lifeinvader_update_user', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected, avatar: avatar, pseudo: pseudo, bio: bio }));
             updateAppContent("profile");
+        }
+    });
+    $("#lifeinvader-button-takephoto").click(function() {
+        activateAppCamera("lifeinvader", "newpost");
+    });
+    $("#lifeinvader-image-input").on("input", function() {
+        let imageSrc = $("#lifeinvader-image-input").val();
+        if (imageSrc.length > 0) {
+            $("#lifeinvader-newpost-image").attr("src", imageSrc);
+            document.getElementById("lifeinvader-newpost-image").style.display = "block";
+        } else {
+            $("#lifeinvader-newpost-image").attr("src", "");
+            document.getElementById("lifeinvader-newpost-image").style.display = "none";
         }
     });
 }
@@ -2984,6 +2999,10 @@ async function takeScreenshot(app, appSub) {
         $("#richtermotorsport-create-image-photo").show();
     } else if (app == "message" && appSub == "message") {
         $.post('https://OraPhone/add_message', JSON.stringify({ phoneId: userData.phone.id, targetNumber: messageTargetNumber, number: userData.phone.number, conversationId: conversationId, message: resp.data.link }));
+    } else if (app == "lifeinvader" && appSub == "newpost") {
+        $("#lifeinvader-image-input").val(resp.data.link);
+        $("#lifeinvader-newpost-image").attr("src", resp.data.link);
+        document.getElementById("lifeinvader-newpost-image").style.display = "block";
     }
     $.post('https://OraPhone/close_camera', JSON.stringify({}));
     MainRender.stop();
@@ -3369,8 +3388,14 @@ function lifeinvaderUpdateAppContent(posts, content) {
                     }
                 }
             }
-            let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (post.user.avatar != null && post.user.avatar != '' ? post.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + post.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + post.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + post.content + `</span></div></div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"><div class="lifeinvader-list-item-footer-left-like"><i class="fa-` + (post.likes.find(like => like.userId == lifeinvaderUserSelected) ? "solid" : "regular") + ` fa-heart post-like"></i><span>` + post.likes.length + `</span></div><div class="lifeinvader-list-item-footer-left-comment"><i class="fa-regular fa-comment post-comment"></i><span>` + post.comments.length + `</span></div></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
+            let newItem = `<div class="lifeinvader-list-item"><div class="lifeinvader-list-item-header"><div class="lifeinvader-list-item-header-profile"><div class="lifeinvader-list-item-header-profile-image"><img src="` + (post.user.avatar != null && post.user.avatar != '' ? post.user.avatar : lifeinvaderUserAvatarDefault) + `" alt="Image de profile"/></div><div class="lifeinvader-list-item-header-profile-name"><span class="lifeinvader-list-item-header-profile-name-pseudo">` + post.user.pseudo + `</span><span class="lifeinvader-list-item-header-profile-name-username">@` + post.user.username + `</span></div></div></div><div class="lifeinvader-list-item-body"><div class="lifeinvader-list-item-body-content"><span>` + post.content + `</span></div>` + (post.image != '' && post.image != null ? '<div class="lifeinvader-list-item-body-image"><img src="' + post.image + '"/></div>' : '') + `</div><div class="lifeinvader-list-item-footer"><div class="lifeinvader-list-item-footer-left"><div class="lifeinvader-list-item-footer-left-like"><i class="fa-` + (post.likes.find(like => like.userId == lifeinvaderUserSelected) ? "solid" : "regular") + ` fa-heart post-like"></i><span>` + post.likes.length + `</span></div><div class="lifeinvader-list-item-footer-left-comment"><i class="fa-regular fa-comment post-comment"></i><span>` + post.comments.length + `</span></div></div><div class="lifeinvader-list-item-footer-right"><div class="lifeinvader-list-item-footer-right-date"><span>` + postTime + `</span></div></div></div></div>`;
             $("#lifeinvader-" + content + "-list").append(newItem);
+            if (post.image != '' && post.image != null) {
+                $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .lifeinvader-list-item-body-image img").click(function () {
+                    $("#image-fullscreen img").attr("src", post.image);
+                    document.getElementById("image-fullscreen").style.display = "block";
+                });
+            }
             $("#lifeinvader-" + content + "-list .lifeinvader-list-item:last-child .post-like").click(function() {
                 let liked = false;
                 if ($(this).hasClass("fa-regular")) {

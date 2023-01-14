@@ -2089,6 +2089,11 @@
                                         </div>
                                         <div class="app-body-content-body">
                                             <textarea id="lifeinvader-newpost-response-textarea" maxlength="280" rows="10" placeholder="Nouvelle publication..."></textarea>
+                                            <div class="lifeinvader-button-photo">
+                                                <i id="lifeinvader-button-takephoto" class="fa-solid fa-camera"></i>
+                                            </div>
+                                            <img id="lifeinvader-newpost-image" src="" alt="Image nouvelle publication"/>
+                                            <input id="lifeinvader-image-input" type="text" placeholder="Lien image..."/>
                                             <button id="lifeinvader-newpost-response-button">Publier</button>
                                         </div>
                                     </div>
@@ -2125,21 +2130,7 @@
                                         </div>
                                         <div class="app-body-content-body">
                                             <input id="lifeinvader-search-input" placeholder="Rechercher..."/>
-                                            <div id="lifeinvader-search-list" class="lifeinvader-list">
-                                                <div data-id="" class="lifeinvader-list-item">
-                                                    <div class="lifeinvader-list-item-header">
-                                                        <div class="lifeinvader-list-item-header-profile">
-                                                            <div class="lifeinvader-list-item-header-profile-image">
-                                                                <img src="./assets/images/apps/lifeinvader/avatar-default.png" alt="Image de profile"/>
-                                                            </div>
-                                                            <div class="lifeinvader-list-item-header-profile-name">
-                                                                <span class="lifeinvader-list-item-header-profile-name-pseudo">ExTalion</span>
-                                                                <span class="lifeinvader-list-item-header-profile-name-username">@extalion</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div id="lifeinvader-search-list" class="lifeinvader-list"></div>
                                         </div>
                                     </div>
                                     <div id="app-lifeinvader-body-content-user" class="app-body-content disable-select">

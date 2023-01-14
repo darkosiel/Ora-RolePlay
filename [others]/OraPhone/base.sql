@@ -140,6 +140,7 @@ CREATE TABLE IF NOT EXISTS ora_phone_lifeinvader_post (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `user_id` INT NOT NULL,
     `content` VARCHAR(400) NOT NULL,
+    `image` TEXT NULL,
     `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES ora_phone_lifeinvader_user(id) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB;

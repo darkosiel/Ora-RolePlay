@@ -232,6 +232,7 @@ const crud = {
         id: 'id',
         userId: 'user_id',
         content: 'content',
+        image: 'image',
         createTime: 'create_time',
     }),
     lifeinvaderComment: generateCrud('phone_lifeinvader_comment', {
@@ -567,7 +568,7 @@ async function refreshLifeinvaderAppContent(data) {
     switch (data.content) {
         case 'home':
             responsePosts = await fetchDb(`
-                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                SELECT p.id as 'post_id', p.content as 'post_content', p.image as 'post_image', p.create_time as 'post_create_time',
                     u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
                     c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
                     uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
@@ -583,7 +584,7 @@ async function refreshLifeinvaderAppContent(data) {
             break;
         case 'profile':
             responsePosts = await fetchDb(`
-                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                SELECT p.id as 'post_id', p.content as 'post_content', p.image as 'post_image', p.create_time as 'post_create_time',
                     u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
                     c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
                     uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
@@ -600,7 +601,7 @@ async function refreshLifeinvaderAppContent(data) {
             break;
         case 'post':
             responsePosts = await fetchDb(`
-                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                SELECT p.id as 'post_id', p.content as 'post_content', p.image as 'post_image', p.create_time as 'post_create_time',
                     u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
                     c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
                     uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
@@ -620,7 +621,7 @@ async function refreshLifeinvaderAppContent(data) {
             break;
         case 'user':
             responsePosts = await fetchDb(`
-                SELECT p.id as 'post_id', p.content as 'post_content', p.create_time as 'post_create_time',
+                SELECT p.id as 'post_id', p.content as 'post_content', p.image as 'post_image', p.create_time as 'post_create_time',
                     u.id as 'user_id', u.pseudo as 'user_pseudo', u.username as 'user_username', u.avatar as 'user_avatar',
                     c.id as 'comment_id', c.content as 'comment_content', c.create_time as 'comment_create_time',
                     uc.id as 'comment_user_id', uc.pseudo as 'comment_user_pseudo', uc.username as 'comment_user_username', uc.avatar as 'comment_user_avatar',
@@ -653,6 +654,7 @@ function processDataLifeinvaderPost(data) {
             posts.push({
                 id: postId,
                 content: row['post_content'],
+                image: row['post_image'],
                 createTime: row['post_create_time'],
                 user: {
                     pseudo: row['user_pseudo'],
@@ -1240,6 +1242,11 @@ onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
 
 onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
     await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
+    if (data.image != "") {
+        await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response, image: data.image });
+    } else {
+        await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
+    }
     let notification = {
         app: "lifeinvader",
         appSub: null,
