@@ -1241,7 +1241,6 @@ onNet('OraPhone:server:lifeinvader_add_post_response', async (data) => {
 });
 
 onNet('OraPhone:server:lifeinvader_add_post', async (data) => {
-    await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response });
     if (data.image != "") {
         await crud.lifeinvaderPost.create({ userId: data.userId, content: data.response, image: data.image });
     } else {
