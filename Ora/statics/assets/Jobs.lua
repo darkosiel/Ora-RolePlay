@@ -11838,89 +11838,89 @@ Jobs = {
             }
         }
     },
-    -- hacker = {
-    --     label = "Hackeur",
-    --     label2 = "hackeur",
-    --     grade = {
-    --         {
-    --             label = "Hackeur",
-    --             salary = 0,
-    --             name = "recrue"
-    --         },
-    --         {
-    --             label = "Chef Hackeur",
-    --             salary = 0,
-    --             name = "boss"
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage Cerberus",
-    --         Pos = {x = 4971.57, y = -5746.44, z = 19.88},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = 4971.57, y = -5746.44, z = 19.88, h = 1.17}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = 4971.57, y = -5746.44, z = 19.88},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage Cerberus"
-    --         }
-    --     },
-    --     garage2 = {
-    --         Name = "Garage Cerberus2",
-    --         Pos = {x = 4487.63, y = -4465.17, z = 4.22},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = 4487.63, y = -4465.17, z = 4.22, h = 1.17}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = 4487.63, y = -4465.17, z = 4.22},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage Cerberus2"
-    --         }
-    --     },
-    --     garage3 = {
-    --         Name = "Garage Cerberus3",
-    --         Pos = {x = -970.16, y = -3000.53, z = 13.94},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = -970.16, y = -3000.53, z = 13.94, h = 1.17}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = -970.16, y = -3000.53, z = 13.94},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage Cerberus3"
-    --         }
-    --     },
-    --     garage4 = {
-    --         Name = "Garage Cerberus3",
-    --         Pos = {x = -169.15, y =  -589.18, z = 32.42},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x =  -169.15, y =  -589.18, z = 32.42, h = 1.17}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x =  -169.15, y =  -589.18, z = 32.42},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage Cerberus3"
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = 5005.33, y = -5754.53, z = 28.84},
-    --             Limit = 5000,
-    --             Name = "coffre cerberus"
-    --         }
-    --     }
-    -- },
+    hacker = {
+        label = "Hackeur",
+        label2 = "hackeur",
+        grade = {
+            {
+                label = "Hackeur",
+                salary = 0,
+                name = "recrue"
+            },
+            {
+                label = "Chef Hackeur",
+                salary = 0,
+                name = "boss"
+            }
+        },
+        garage = {
+            Name = "Garage Cerberus",
+            Pos = {x = 4971.57, y = -5746.44, z = 19.88},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 4971.57, y = -5746.44, z = 19.88, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x = 4971.57, y = -5746.44, z = 19.88},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus"
+            }
+        },
+        garage2 = {
+            Name = "Garage Cerberus2",
+            Pos = {x = 4487.63, y = -4465.17, z = 4.22},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 4487.63, y = -4465.17, z = 4.22, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x = 4487.63, y = -4465.17, z = 4.22},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus2"
+            }
+        },
+        garage3 = {
+            Name = "Garage Cerberus3",
+            Pos = {x = -970.16, y = -3000.53, z = 13.94},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -970.16, y = -3000.53, z = 13.94, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x = -970.16, y = -3000.53, z = 13.94},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus3"
+            }
+        },
+        garage4 = {
+            Name = "Garage Cerberus3",
+            Pos = {x = -169.15, y =  -589.18, z = 32.42},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x =  -169.15, y =  -589.18, z = 32.42, h = 1.17}
+            },
+            Blipdata = {
+                Pos = {x =  -169.15, y =  -589.18, z = 32.42},
+                Blipcolor = 5,
+                Blipname = "Garage Cerberus3"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 5005.33, y = -5754.53, z = 28.84},
+                Limit = 5000,
+                Name = "coffre cerberus"
+            }
+        }
+    },
     casino = {
         label = "Casino",
         label2 = "Casino",
