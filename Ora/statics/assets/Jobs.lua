@@ -7658,7 +7658,7 @@ Jobs = {
         iban = "doj",
         grade = {
             {
-                label = "Agent de Sécurité",
+                label = "Avocat",
                 salary = 230,
                 name = "agent",
                 show = true
@@ -7670,15 +7670,15 @@ Jobs = {
                 show = true
             },
             {
-                label = "avocat",
+                label = "Procureur",
                 salary = 250,
                 name = "avocat",
                 show = true
             },
             {
-                label = "procureur",
-                salary = 350,
-                name = "avocat",
+                label = "Procureur général",
+                salary = 400,
+                name = "boss",
                 show = true
             },
             {
@@ -7719,36 +7719,36 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -528.69, y = -192.78, z = 37.21},
-                Limit = 200,
-                Name = "coffre_avocat"
+                Pos = {x = -535.0230, y = -191.1450, z = 42.3659},
+                Limit = 500,
+                Name = "coffre_avocat" -- Procureur général
             },
             {
-                Pos = {x = -517.31, y = -172.85, z = 37.21},
-                Limit = 200,
-                Name = "coffre_juge"
+                Pos = {x = -586.3870, y = -203.7735, z = 37.2270},
+                Limit = 1000,
+                Name = "coffre_juge" -- Coffre juge 
             },
             {
-                Pos = {x = -512.66, y = -181.99, z = 37.21},
-                Limit = 200,
-                Name = "coffre_juge_sup"
+                Pos = {x = -535.7814, y = -195.3055, z = 37.2270},
+                Limit = 500,
+                Name = "coffre_juge_sup" -- Procureur
             },
             {
-                Pos = {x = -574.15, y = -198.90, z = 41.70},
-                Limit = 200,
-                Name = "coffre_irs"
+                Pos = {x = -581.6694, y = -212.1169, z = 37.2270},
+                Limit = 500,
+                Name = "coffre_irs" -- Salle de jury
             }
         },
         garage = {
             Name = "Garage DOJ",
-            Pos = {x = -569.09, y = -149.74, z = 37.02},
+            Pos = {x = -498.8083, y = -177.7057, z = 37.6154},
             Properties = {
                 type = 3,
                 Limit = 64,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = -569.01, y = -149.74, z = 37.02, h = 209.11}
+                spawnpos = {x = -498.8083, y = -177.7057, z = 37.6154, h = 215.5266}
             },
             Blipdata = {
                 Pos = {},
