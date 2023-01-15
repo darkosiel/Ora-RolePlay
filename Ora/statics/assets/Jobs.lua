@@ -7846,8 +7846,8 @@ Jobs = {
     --     }
     -- },
     binco = {
-        label = "Binco",
-        label2 = "Binco",
+        label = "KribySness",
+        label2 = "KribySness",
         iban = "Binco",
         grade = {
             {
@@ -7900,12 +7900,12 @@ Jobs = {
             Blipdata = {
                 Pos = {x = -826.17, y = -1063.7, z = 10.61},
                 Blipcolor = 7,
-                Blipname = "Garage Binco"
+                Blipname = "Garage KribySness"
             }
         },
         Menu = {
             menu = {
-                title = "Binco",
+                title = "KribySness",
                 subtitle = "Action",
                 name = "binco_menuperso"
             },
@@ -7925,7 +7925,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "binco", "Annonce", text, "CHAR_BINCO", 8)
+                            TriggerServerEvent("Job:Annonce", "KribySness", "Annonce", text, "CHAR_BINCO", 8)
                         end
                     end
                 },
@@ -7955,7 +7955,7 @@ Jobs = {
                 Pos = {x = 830.8237, y = -3209.3627, z = 5.9008 - 0.98},
                 giveitem = "soie",
                 blipcolor = 7,
-                blipname = "Binco - Récolte de soie",
+                blipname = "KribySness - Récolte de soie",
                 add = "~p~+ 1 Soie",
                 anim = {
                     lib = "anim@mp_snowball",
@@ -7966,7 +7966,7 @@ Jobs = {
                 type = "traitement",
                 workSize = 4.0,
                 blipcolor = 7,
-                blipname = "Binco - Traitement soie",
+                blipname = "KribySness - Traitement soie",
                 Pos = {x = 713.9973, y = -962.6809, z = 30.3953},
                 required = "soie",
                 giveitem = "tenueluxe",
@@ -7977,7 +7977,7 @@ Jobs = {
                 type = "vente",
                 blipcolor = 7,
                 workSize = 7.45,
-                blipname = "Binco - Vente",
+                blipname = "KribySness - Vente",
                 Pos = {x = -164.8125, y = -310.4215, z = 39.7332 - 0.98},
                 required = "tenueluxe",
                 price = math.random(16, 18),
