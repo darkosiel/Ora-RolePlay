@@ -259,9 +259,13 @@ $(function(){
                         updateAppPhone();
                         break;
                     case "update_conversations":
-                        userData.conversations = item.conversations;
                         if (item.conversationId != 0) {
                             conversationId = item.conversationId;
+                        }
+                        if (item.oneConversation) {
+                            userData.conversations.find(conversation => conversation.id == conversationId) = item.conversations[0];
+                        } else {
+                            userData.conversations = item.conversations;
                         }
                         if (item.updatetype != "update_read" && menuAppSelected == "message") {
                             updateAppMessageLoad(conversationId);
@@ -2037,7 +2041,7 @@ function updateConversationList() {
         let conversationMessage = "";
         let conversationAvatar = contactAvatarDefault;
         let conversationIsRead = true;
-        if (conversation.messages != "") {
+        if (conversation.messages != "" && conversation.messages != undefined) {
             conversationTime = new Date(conversation.messages[conversation.messages.length - 1].msgTime).toLocaleString('fr-FR', { timeStyle: 'short' });
             conversationMessage = conversation.messages[conversation.messages.length - 1].message;
         }

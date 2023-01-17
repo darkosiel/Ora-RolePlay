@@ -729,13 +729,18 @@ async function refreshCalls(data) {
  * Refresh all conversations
  * @param {array} data
  */
-async function refreshConversations(number) {
-    let conversationsResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
-    if (!conversationsResponse) {
+async function refreshConversations(number, conversationId = null) {
+    conversationResponse = null;
+    if (conversationId != null) {
+        conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE id = " + conversationId);
+    } else {
+        conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
+    }
+    if (!conversationResponse) {
         console.error('Contacts query failed with number', number);
         return;
     }
-    for (let conversation of conversationsResponse) {
+    for (let conversation of conversationResponse) {
         let isActive = true;
         let authorList = JSON.parse(conversation.target_number);
         for (let author of authorList) {
@@ -751,10 +756,10 @@ async function refreshConversations(number) {
                 conversation.messages = messageResponse;
             }
         } else {
-            conversationsResponse = conversationsResponse.filter((conv) => conv.id != conversation.id);
+            conversationResponse = conversationResponse.filter((conv) => conv.id != conversation.id);
         }
     }
-    return conversationsResponse;
+    return { conversations: conversationResponse, conversationId: conversationId };
 }
 
 /**
@@ -967,7 +972,7 @@ onNet('OraPhone:server:message_create_conversation', async (data) => {
             }
         }
     }
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), dataConversation);
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number, dataConversation.id), dataConversation);
 })
 
 onNet('OraPhone:server:message_delete_conversation', async (data) => {
@@ -1005,7 +1010,7 @@ onNet('OraPhone:server:message_update_read_conversation', async (data) => {
     }
     await crud.conversations.update({ id: data.id }, { targetNumber: JSON.stringify(authorList) });
     dataConversation.type = "update_read";
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number), dataConversation);
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number, data.id), dataConversation);
 })
 
 onNet('OraPhone:server:message_update_name_conversation', async (data) => {
@@ -1022,9 +1027,9 @@ onNet('OraPhone:server:message_update_name_conversation', async (data) => {
         if (!receiver) {
             continue;
         }
-        emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number));
+        emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number, data.id));
     }
-    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number));
+    emitNet('OraPhone:client:update_messages', src, await refreshConversations(data.number, data.id));
 })
 
 onNet('OraPhone:server:refresh_conversations', async (data) => {
@@ -1068,7 +1073,7 @@ onNet('OraPhone:server:add_message', async (data) => {
             }
             continue;
         }
-        emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number));
+        emitNet('OraPhone:client:update_messages', receiver, await refreshConversations(target.number, data.conversationId));
         if(target.number != data.number) {
             let notification = {
                 app: "message",

@@ -346,14 +346,18 @@ onNet('OraPhone:client:update_messages', async (data, dataConversation = false) 
         dataConversation = {};
     }
     if (!dataConversation.id) {
-        dataConversation.id = 0;
+        if (data.conversationId != null) {
+            dataConversation.id = data.conversationId;
+        } else {
+            dataConversation.id = 0;
+        }
     }
     if (!dataConversation.type) {
         dataConversation.type = '';
     }
     SendNUIMessage({
         type: 'update_conversations',
-        conversations: data,
+        conversations: data.conversations,
         conversationId: dataConversation.id,
         updatetype: dataConversation.type
     });
