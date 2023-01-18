@@ -736,7 +736,7 @@ async function refreshConversations(number, conversationId = null) {
     } else {
         conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
     }
-    if (!conversationResponse) {
+    if (!conversationResponse && conversationResponse == null) {
         console.error('Contacts query failed with number', number);
         return;
     }
