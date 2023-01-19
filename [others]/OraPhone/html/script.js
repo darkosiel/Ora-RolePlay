@@ -263,7 +263,8 @@ $(function(){
                             conversationId = item.conversationId;
                         }
                         if (item.oneConversation) {
-                            userData.conversations.find(conversation => conversation.id == conversationId) = item.conversations[0];
+                            let conversationIndex = userData.conversations.findIndex(conversation => conversation.id == conversationId);
+                            userData.conversations[conversationIndex] = item.conversations[0];
                         } else {
                             userData.conversations = item.conversations;
                         }
