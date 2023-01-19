@@ -732,7 +732,7 @@ async function refreshCalls(data) {
 async function refreshConversations(number, conversationId = null) {
     conversationResponse = null;
     if (conversationId != null) {
-        conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE id = " + conversationId);
+        conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE id = " + conversationId + " AND target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
     } else {
         conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
     }

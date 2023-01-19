@@ -359,7 +359,8 @@ onNet('OraPhone:client:update_messages', async (data, dataConversation = false) 
         type: 'update_conversations',
         conversations: data.conversations,
         conversationId: dataConversation.id,
-        updatetype: dataConversation.type
+        updatetype: dataConversation.type,
+        oneConversation: (data.conversationId != null ? true : false)
     });
 });
 
