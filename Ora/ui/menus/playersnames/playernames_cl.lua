@@ -26,6 +26,7 @@ OraAdmin.TAGS = {
 
 TagColors = {
     ["animator"] = 200,
+    ["staff"] = 200,
     ["superadmin"] = 18
 }
 

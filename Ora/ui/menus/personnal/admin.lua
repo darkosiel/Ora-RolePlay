@@ -136,7 +136,7 @@ local lastModel = nil
 
 RegisterNetEvent("addReportMenu")
 AddEventHandler("addReportMenu",function(player, name, message, date, job, orga)
-    if Ora.Identity:GetMyGroup() == "superadmin" then
+    if Ora.Identity:GetMyGroup() == "superadmin" or Ora.Identity:GetMyGroup() == "staff" then
          RageUI.Popup({message = "~r~Nouveau report enregistré"})
         table.insert(treport, {etat = "❌", id = player, name = name, msg = message, date = date, who = "Personne", job = job, orga = orga})
     end
@@ -144,14 +144,14 @@ end)
 
 RegisterNetEvent("closeReport")
 AddEventHandler("closeReport",function(index)
-    if Ora.Identity:GetMyGroup() == "superadmin" then
+    if Ora.Identity:GetMyGroup() == "superadmin" or Ora.Identity:GetMyGroup() == "staff" then
         table.remove(treport, index)
     end
 end)
 
 RegisterNetEvent("takeReport")
 AddEventHandler("takeReport",function(index, id, name, msg, date, who, take)
-    if Ora.Identity:GetMyGroup() == "superadmin" then
+    if Ora.Identity:GetMyGroup() == "superadmin" or Ora.Identity:GetMyGroup() == "staff" then
         if take == "true" then
             ett = "✅"
         else
@@ -338,7 +338,7 @@ Citizen.CreateThread(
         Wait(100)
         while true do
             Wait(0)
-            if myGroup == "superadmin" then
+            if myGroup == "superadmin" or myGroup == "staff" then
                 if showcoords then
                     local ped = PlayerPedId()
                     local plyCoords = GetEntityCoords(ped, false)
