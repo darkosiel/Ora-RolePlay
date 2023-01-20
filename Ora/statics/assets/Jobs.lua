@@ -3944,7 +3944,7 @@ Jobs = {
     },
     avocat = {
         label = "Jack Gab & associates",
-        label2 = "Jack Gab & associates,
+        label2 = "Jack Gab & associates",
         iban = "avocat",
         FreeAccess = false,
         grade = {
