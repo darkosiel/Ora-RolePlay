@@ -7,7 +7,14 @@ function DebugPrint(str)
 end
 
 tables = {
-
+	{
+		coords = vector4(993.30, 43.51, 70.23 - 0.98, 290.54),
+		highStakes = false
+	},
+	{
+		coords = vector4(988.83, 45.66, 70.23 - 0.98, 20.54),
+		highStakes = false
+	},
 }
 
 --[[
@@ -19,11 +26,11 @@ tables = {
 --]]
 
 customTables = {
- 	{
-		coords = vector4(1036.58, 51.76, 69.06 - 0.98, 190.43),
-		highStakes = false,
-		color = 0,
-	}
+ 	-- {
+	-- 	coords = vector4(994.02, 43.81, 70.23 - 0.98, 260.54),
+	-- 	highStakes = false,
+	-- 	color = 0,
+	-- }
 	-- {
 	-- 	coords = vector4(-1641.894, -3002.178, -79.15, 92.00),
 	-- 	highStakes = false,
