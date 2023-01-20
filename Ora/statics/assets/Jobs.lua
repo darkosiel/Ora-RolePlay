@@ -3942,60 +3942,60 @@ Jobs = {
             }
         }
     },
-    -- avocat = {
-    --     label = "Cabinet Hermerion",
-    --     label2 = "Cabinet Hermerion",
-    --     iban = "avocat",
-    --     FreeAccess = false,
-    --     grade = {
-    --         {
-    --             label = "AVOCAT",
-    --             salary = 150,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "ASSOCIE",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "Avocat",
-    --             subtitle = "Actions",
-    --             name = "avocat_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("avocat")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "Cabinet Hermerion", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Hermerion")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     },
-    -- },
+    avocat = {
+        label = "Jack Gab & associates",
+        label2 = "Jack Gab & associates,
+        iban = "avocat",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "AVOCAT",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "ASSOCIE",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Jack Gab & associates", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Hermerion")
+                        end
+                    end
+                }
+            }
+        },
+    },
     -- avocat2 = {
     --     label = "Cabinet Lysias",
     --     label2 = "Cabinet Lysias",
