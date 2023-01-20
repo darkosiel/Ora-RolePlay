@@ -58,6 +58,7 @@ local Blips = {
 
     --{name = "Chez Larry", color = 2, sprite = 77, Pos = {x = 1224.63, y = 2727.31, z = 38.00}},
     {name = "Coiffeur", color = 64, sprite = 71, Pos = {x = 138.25, y = -1709.13, z = 29.42}},
+    {name = "Bob Mulet", color = 64, sprite = 71, Pos = {x = -808.63, y = -179.98, z = 37.56}},
     {name = "Barber", color = 64, sprite = 71, Pos = {x = -36.48, y = -155.96, z = 57.07}},
     -- {name = "Ponsonbys", color = 64, sprite = 366, Pos = {x = -716.84, y = -156.75, z = 36.98}},
     {name = "KirbySness", color = 64, sprite = 366, Pos = {x = -829.413, y = -1073.710, z = 10.328}},
@@ -66,7 +67,7 @@ local Blips = {
     {name = "Burger Shot", color = 75, sprite = 106, Pos = {x = -1182.10, y = -883.58, z = 13.78}},
     {name = "Malone's Bar", color = 49, sprite = 78, size = 0.80, Pos = {x = 416.29, y = -1487.15, z = 30.40}},
     --{name = "LTD Davis", color = 3, sprite = 59, Pos = {x = 30.42, y = -1345.17, z = 29.5}},       
-    -- {name = "LTD Grove Street", color = 3, sprite = 59, Pos = {x = -49.9785, y = -1753.45, z = 29.42}},        
+    {name = "24/7 Vinewood", color = 3, sprite = 59, Pos = {x = 380.7298, y = 332.7571, z = 103.5663}},        
     {name = "Auto Repairs", color = 1, sprite = 643, Pos = {x = 1172.9263, y = 2669.7465, z = 37.8209}},
     {name = "Le Pearls", color = 3, sprite = 267, Pos = {x = -1825.48, y = -1190.6, z = 14.44}}, 
     --{name = "Stray Boyz Records", color = 3, sprite = 120, Pos = {x = -418.5053, y = -431.4420, z = 14.44}},  
