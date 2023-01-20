@@ -506,7 +506,7 @@ Config.DoorList = {
 
     {
         textCoords = vector3(-822.75, -187.48, 37.57),
-        authorizedJobs = {'coiffeur'},
+        authorizedJobs = {'coiffeur4'},
         locked = true,
         maxDistance = 2.0,
         doors = {
