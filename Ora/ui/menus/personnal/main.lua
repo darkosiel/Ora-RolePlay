@@ -90,7 +90,7 @@ Citizen.CreateThread(
                                 RMenu:Get("personnal", "vehicule")
                             )
                         end
-                        if myGroup == "superadmin" or myGroup == "animator" then
+                        if myGroup == "superadmin" or myGroup == "animator" or myGroup == "staff" then
                             RageUI.Button(
                                 myGroup == "superadmin" and "Administration" or "Droits d'animation",
                                 nil,
