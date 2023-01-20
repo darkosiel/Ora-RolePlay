@@ -182,7 +182,7 @@ function CheckPlayerBet(i, bet)
     local _source = source
     DebugPrint("TABLE " .. i .. ": CHECKING " .. GetPlayerName(source):upper() .. "'s CHIPS")
 
-    local playerChips = 0 -- Get money
+    local playerChips = 1500 -- Get money
 
     if getChipsCallback ~= nil then
         playerChips = getChipsCallback(source)
