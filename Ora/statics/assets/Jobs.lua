@@ -3199,95 +3199,95 @@ Jobs = {
         --     }
         -- }
     },
-    -- ltdsud2 = {
-    --     label = "LTD Grove Street",
-    --     label2 = "LTD Grove Street",
-    --     iban = "ltdsud2",
-    --     FreeAccess = false,
-    --     grade = {
-    --         {
-    --             label = "CDD",
-    --             salary = 150,
-    --             name = "cdd",
-    --             show = true
-    --         },
-    --         {
-    --             label = "CDI",
-    --             salary = 160,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "Chef",
-    --             salary = 170,
-    --             name = "chef",
-    --             show = true
-    --         },
-    --         {
-    --             label = "DRH",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "LTD Grove Street",
-    --             subtitle = "Actions disponibles",
-    --             name = "ltdsud2_menuperso"
-    --         },
-    --         buttons = {
-    --             -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("ltdsud2")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "LTD Grove Street", "Annonce", text, "CHAR_LTDSUD2", 8, "LTD Grove Street")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage LTD Grove Street",
-    --         Pos = {x = -46.9176, y = -1738.4676, z = 29.1648},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = -46.9176, y = -1738.4676, z = 29.1648, h = 229.7284}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = -46.9176, y = -1738.4676, z = 29.1648, h = 229.7284},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage"
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = -42.3382, y = -1748.9405, z = 29.4210, h = 167.2710},
-    --             Limit = 2000,
-    --             Name = "coffre_ltdsud2"
-    --         }
-    --     },
-    -- },
+    vinewood247 = {
+        label = "24/7 Vinewood",
+        label2 = "24/7 Vinewood",
+        iban = "vinewood247",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 150,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 160,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef",
+                salary = 170,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "24/7 Vinewood",
+                subtitle = "Actions disponibles",
+                name = "vinewood247_menuperso"
+            },
+            buttons = {
+                -- {label="Craft",onSelected=function() ToggleCraftMenu() end},
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("vinewood247")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "24/7 Vinewood", "Annonce", text, "CHAR_ltd", 8, "24/7 Vinewood")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage 24/7 Vinewood",
+            Pos = {x = 368.4117, y = 340.0303, z = 103.2311},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = 368.4117, y = 340.0303, z = 103.2311, h = 164.6489}
+            },
+            Blipdata = {
+                Pos = {x = 368.4117, y = 340.0303, z = 103.2311, h = 164.6489},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = 380.7298, y = 332.7571, z = 102.5663, h = 70.6295},
+                Limit = 5000,
+                Name = "coffre_vinewood247"
+            }
+        },
+    },
     burgershot = {
         label = "BurgerShot",
         label2 = "BurgerShot",
