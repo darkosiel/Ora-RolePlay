@@ -2,6 +2,7 @@ Ora.Anticheat = {}
 Ora.Anticheat.GroupsWhitelist = {
   ["superadmin"] = true,
   ["animator"] = true,
+  ["staff"] = true,
   ["user"] = false,
 }
 
