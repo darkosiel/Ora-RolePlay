@@ -1426,7 +1426,7 @@ Items = {
     },
     jus_raisin = {
         label = "Jus de raisin",
-        weight = 1.0,
+        weight = 0.3,
         actionCl = "miam:Drink",
         props = "v_ret_fh_bscup",
         soif = 30,
