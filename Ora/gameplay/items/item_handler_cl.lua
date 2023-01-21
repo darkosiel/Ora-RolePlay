@@ -420,6 +420,7 @@ local removeHair = {
 }
 
 local doNotChangeFace = {
+    [90] = true,
     [101] = true,
     [124] = true,
     [121] = true,
@@ -1459,10 +1460,14 @@ function EquipWeapon(weapon)
             SetPedWeaponTintIndex(playerPed, GetHashKey(name), data.tint)
         end
         if data ~= nil and data.access ~= nil then
-            print("Access: ", data.access)
+            print("Access: ", json.encode(data.access))
             for component, bool in pairs(data.access) do
-                if bool then
+                if type(bool) == "boolean" and bool then
                     GiveWeaponComponentToPed(LocalPlayer().Ped, GetHashKey(name), tonumber(component))
+                else
+                    --Probably an old component
+                    data.access[component] = nil
+                    print("Removed old component: ", component)
                 end
             end
         end
