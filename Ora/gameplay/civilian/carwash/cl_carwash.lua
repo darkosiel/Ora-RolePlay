@@ -37,24 +37,24 @@ Citizen.CreateThread(function()
 					if IsControlJustPressed(1, Key) then
 						dataonWait = {
 							title = "Achat Lavage",
-							price = 85,
-							fct = function()        
+							price = price,
+							fct = function()    
+								local veh = GetVehiclePedIsIn(GetPlayerPed(-1), true)
+								if GetVehicleDirtLevel(veh) <= 3.0 then
+									SendNotification("~b~Votre voiture est déjà propre !")
+								else
+									SetVehicleEngineOn(veh, false, true, false)
+									FreezeEntityPosition(veh, true)
+									SendNotification("~b~Lavage en cours")
+									Wzait(8000)
+									SendNotification("~g~Votre voiture est lavée !")
+									SetVehicleDirtLevel(veh, 1.0)
+									SetVehicleEngineOn(veh, true, true, true)
+									FreezeEntityPosition(veh, false)
+								end    
 							end
 						  }
 						TriggerEvent("payWith?")
-						local veh = GetVehiclePedIsIn(GetPlayerPed(-1), true)
-						if GetVehicleDirtLevel(veh) <= 3.0 then
-							SendNotification("~b~Votre voiture est déjà propre !")
-						else
-							SetVehicleEngineOn(veh, false, true, false)
-							FreezeEntityPosition(veh, true)
-							SendNotification("~b~Lavage en cours")
-							Wait(8000)
-							SendNotification("~g~Votre voiture est lavée !")
-							SetVehicleDirtLevel(veh, 1.0)
-							SetVehicleEngineOn(veh, true, true, true)
-							FreezeEntityPosition(veh, false)
-						end
 					end
 				end
 			end
