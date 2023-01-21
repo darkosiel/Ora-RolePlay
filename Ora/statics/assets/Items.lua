@@ -972,7 +972,7 @@ Items = {
         weight = 0.2
     },
     saucissonsec = {
-        label = "saucisson sec",
+        label = "Saucisson sec",
         weight = 0.2,
         actionCl = "miam:Eat",
         props = "prop_food_bs_burger2",
