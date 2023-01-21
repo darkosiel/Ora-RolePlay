@@ -534,7 +534,7 @@ local kevlarConfig = {
         name = "Kevlar DB lourd"
     },
     [2] = {
-        status = 10,
+        status = 100,
         name = "Kevlar SWAT"
     },
     [3] = {
