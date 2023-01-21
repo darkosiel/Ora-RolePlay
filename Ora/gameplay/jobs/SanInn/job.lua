@@ -164,7 +164,7 @@ sanCrafts["recettes"] = {
             craftRecettes(data)
         end
     },
-        perlecoco = {
+    perlecoco = {
         title = "Perle de coco",
         label = "Perle de coco",
         item = "perlecoco",
