@@ -326,6 +326,10 @@ function EquipClothes()
         end
     end
 
+    if Ora.Inventory.Data["tenue"] == nil then
+        Ora.Inventory.Data["tenue"] = {}
+    end
+
     for k, v in pairs(Ora.Inventory.Data["tenue"]) do
         if v.data.equiped then
             v.data.equiped = false
@@ -3215,11 +3219,11 @@ Citizen.CreateThread(
 
 -- Weapons accessories
 
-function weaponAccessoriesAction(item)
-    if item then
-        UseWeaponAccessory(item)
-    end
-end
+-- function weaponAccessoriesAction(item)
+--     if item then
+--         UseWeaponAccessory(item)
+--     end
+-- end
 
 local componentsHashes = {
     [GetHashKey("WEAPON_PISTOL")] = {
@@ -3388,8 +3392,10 @@ local componentsHashes = {
 
 }
 
-function UseWeaponAccessory(item)
+--function UseWeaponAccessory(item)
+function weaponAccessoriesAction(item)
     --print(json.encode(item))
+    local startTime = GetGameTimer()
     local weaponHash = LocalPlayer().Weapon
 
     if item == nil then
@@ -3439,6 +3445,7 @@ function UseWeaponAccessory(item)
         SendNotification("~r~Vous avez déjà équipé cet accessoire.")
     end
 
+    print("Time to equip weapon accessory : " .. GetGameTimer() - startTime .. "ms")
     Ora.Inventory.SelectedItem = nil
 end
 
@@ -3452,6 +3459,7 @@ function WeaponsAccessoriesMenu()
                 if HasPedGotWeaponComponent(LocalPlayer().Ped, weapon, curr_comp) then
                     RageUI.Button(Items[k].label, nil, {}, true, function(_, _, s)
                         if s then
+                            local startTime = GetGameTimer()
                             RemoveWeaponComponentFromPed(LocalPlayer().Ped,weapon, curr_comp)
                             local weapon_item
                             for _, item in pairs(Ora.Inventory.Data[Ora.Inventory.CurrentWeapon.itemName]) do
@@ -3469,6 +3477,7 @@ function WeaponsAccessoriesMenu()
                             end
                             
                             Ora.Inventory:AddItem({name = k})
+                            print("Time to unequip weapon accessory : " .. GetGameTimer() - startTime .. "ms")
                         end
                     end)
                     none = false
