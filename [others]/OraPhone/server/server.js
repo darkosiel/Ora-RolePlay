@@ -731,6 +731,7 @@ async function refreshCalls(data) {
  */
 async function refreshConversations(number, conversationId = null) {
     conversationResponse = null;
+    let conversations = [];
     if (conversationId != null) {
         conversationResponse = await fetchDb("SELECT * FROM ora_phone_conversations WHERE id = " + conversationId + " AND target_number LIKE '%" + number + "%' ORDER BY last_msg_time DESC");
     } else {
@@ -755,11 +756,10 @@ async function refreshConversations(number, conversationId = null) {
             if (messageResponse) {
                 conversation.messages = messageResponse;
             }
-        } else {
-            conversationResponse = conversationResponse.filter((conv) => conv.id != conversation.id);
+            conversations.push(conversation);
         }
     }
-    return { conversations: conversationResponse, conversationId: conversationId };
+    return { conversations: conversations, conversationId: conversationId };
 }
 
 /**

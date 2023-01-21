@@ -263,8 +263,28 @@ $(function(){
                             conversationId = item.conversationId;
                         }
                         if (item.oneConversation) {
-                            let conversationIndex = userData.conversations.findIndex(conversation => conversation.id == conversationId);
-                            userData.conversations[conversationIndex] = item.conversations[0];
+                            let isExist = false;
+                            let isAfter = false;
+                            for (let conversation of userData.conversations) {
+                                if (conversation.id == item.conversations[0].id) {
+                                    isExist = true;
+                                }
+                                if (conversation.last_msg_time > item.conversations[0].last_msg_time) {
+                                    isAfter = true;
+                                }
+                            }
+                            if (!isAfter) {
+                                let conversationIndex = userData.conversations.findIndex(conversation => conversation.id == item.conversations[0].id);
+                                userData.conversations.splice(conversationIndex, 1);
+                                userData.conversations.unshift(item.conversations[0]);
+                            } else {
+                                if (isExist) {
+                                    let conversationIndex = userData.conversations.findIndex(conversation => conversation.id == conversationId);
+                                    userData.conversations[conversationIndex] = item.conversations[0];
+                                } else {
+                                    userData.conversations.unshift(item.conversations[0]);
+                                }
+                            }
                         } else {
                             userData.conversations = item.conversations;
                         }
@@ -2169,23 +2189,25 @@ function updateAppMessageLoad(id = null) {
                 }
                 $(".app-body-content-header-profil-avatar img").attr("src", conversationAvatar);
                 $(".app-body-content-header-profil-name span").html(conversationName);
-                for(let message of conversation.messages) {
-                    let sourceName = "";
-                    let sourceType = "";
-                    let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
-                    if(message.sourceNumber == userData.phone.number) {
-                        sourceName = "Moi";
-                        sourceType = "me";
-                    } else {
-                        sourceName = message.sourceNumber;
-                        sourceType = "you";
-                        for(let contact of userData.contacts) {
-                            if(contact.number == message.sourceNumber) {
-                                sourceName = contact.name;
+                if (conversation.messages != null && conversation.messages != "" && conversation.messages != undefined)  {
+                    for(let message of conversation.messages) {
+                        let sourceName = "";
+                        let sourceType = "";
+                        let sourceDateTime = new Date(message.msgTime).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'medium' });
+                        if(message.sourceNumber == userData.phone.number) {
+                            sourceName = "Moi";
+                            sourceType = "me";
+                        } else {
+                            sourceName = message.sourceNumber;
+                            sourceType = "you";
+                            for(let contact of userData.contacts) {
+                                if(contact.number == message.sourceNumber) {
+                                    sourceName = contact.name;
+                                }
                             }
                         }
+                        responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
                     }
-                    responsiveChatPush(sourceName, sourceType, sourceDateTime, message.message);
                 }
                 break;
             }
