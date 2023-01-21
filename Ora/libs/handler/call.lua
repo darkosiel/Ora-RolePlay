@@ -536,9 +536,9 @@ Citizen.CreateThread(function()
                                     haveTarget = false
                                     callActive = false
 
-                                    if (target.pos ~= nil) then
-                                        target.blip = AddBlipForCoord(target.pos.x, target.pos.y, target.pos.z)
-                                        SetBlipRoute(target.blip, true)
+                                    if (call.pos ~= nil) then
+                                        call.blip = AddBlipForCoord(call.pos.x, call.pos.y, call.pos.z)
+                                        SetBlipRoute(call.blip, true)
                                         haveTarget = true
                                     else
                                         SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
@@ -552,14 +552,15 @@ Citizen.CreateThread(function()
                                     callActive = false
                 
                                     SendNotification("~b~Vous avez pris l'appel !")
-                                    if (target.pos ~= nil) then
-                                        target.blip = AddBlipForCoord(target.pos.x, target.pos.y, target.pos.z)
-                                        SetBlipRoute(target.blip, true)
+                                    if (call.pos ~= nil) then
+                                        call.blip = AddBlipForCoord(call.pos.x, call.pos.y, call.pos.z)
+                                        SetBlipRoute(call.blip, true)
                                         haveTarget = true
                                     else
                                         SendNotification("~b~Il n'y a pas de position indiquée, fiez vous aux informations du central")
                                         haveTarget = false
                                     end
+                                    target = call
                                     callActive = false
                                 end
 
