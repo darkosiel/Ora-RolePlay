@@ -23,6 +23,13 @@ Citizen.CreateThread(function()
 	end
 end)
 
+RegisterCommand("dirt", function(source, args, raw)
+	local dirt = tonumber(args[1])
+	dirt = dirt + 0.1
+	if dirt ~= nil then
+		SetVehicleDirtLevel(GetVehiclePedIsIn(GetPlayerPed(-1), true), dirt)
+	end
+end)
 
 Citizen.CreateThread(function()
 	local Player = LocalPlayer()
@@ -46,7 +53,7 @@ Citizen.CreateThread(function()
 									SetVehicleEngineOn(veh, false, true, false)
 									FreezeEntityPosition(veh, true)
 									SendNotification("~b~Lavage en cours")
-									Wzait(8000)
+									Wait(8000)
 									SendNotification("~g~Votre voiture est lavée !")
 									SetVehicleDirtLevel(veh, 1.0)
 									SetVehicleEngineOn(veh, true, true, true)
