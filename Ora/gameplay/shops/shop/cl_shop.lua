@@ -101,14 +101,14 @@ local BasicShopsNorth = {
     -- },
     {
         name = "tapas",
-        price = 8,
+        price = 120,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
     },
     {
         name = "cafe",
-        price = 20,
+        price = 50,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
@@ -120,28 +120,28 @@ local BasicShopsNorth = {
     -- },
     {
         name = "jus",
-        price = 30,
+        price = 150,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
     },
     {
         name = "cola",
-        price = 15,
+        price = 100,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
     },
     {
         name = "water",
-        price = 45,
+        price = 130,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
     },
     {
         name = "fishingrod",
-        price = 50,
+        price = 150,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
@@ -209,14 +209,14 @@ local BasicShopsSouth = {
     -- },
     {
         name = "tapas",
-        price = 8,
+        price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "cafe",
-        price = 20,
+        price = 80,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
@@ -228,28 +228,28 @@ local BasicShopsSouth = {
     -- },
     {
         name = "jus",
-        price = 30,
+        price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "cola",
-        price = 15,
+        price = 100,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "water",
-        price = 45,
+        price = 130,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "fishingrod",
-        price = 50,
+        price = 100,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
@@ -302,42 +302,42 @@ local LittleSeoulShop = {
     },
     {
         name = "nem",
-        price = 8,
+        price = 80,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "ricemilk",
-        price = 6,
+        price = 100,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "mentos",
-        price = 3,
+        price = 15,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "jus",
-        price = 30,
+        price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "water",
-        price = 45,
+        price = 130,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "fishingrod",
-        price = 50,
+        price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
