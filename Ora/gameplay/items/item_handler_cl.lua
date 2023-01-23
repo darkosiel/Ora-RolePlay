@@ -426,6 +426,7 @@ local removeHair = {
 local doNotChangeFace = {
     [90] = true,
     [101] = true,
+    [6] = true,
     [124] = true,
     [121] = true,
     [127] = true,
