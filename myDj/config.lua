@@ -201,6 +201,13 @@ Config.DJPositions = {
         range = 50.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
+    {
+        name = 'Tatoo plage',
+        pos = vector3(-1150.2399, -1425.6680, 4.9559 - 0.98),
+        requiredJob = nil, 
+        range = 13.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
     
     -----------
     -- Event Halloween ; Domaine Viticole
