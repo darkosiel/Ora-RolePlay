@@ -3,7 +3,7 @@ Station = {
   decor_harvest = "FUEL_HA",
   decor_treatment = "FUEL_TR",
   max_fuel = 10000,
-  limitLiters = 400/7500, --400 limite de farm / 7500 nombres de litres max pour atteindre la limite de farm - valeur x 7500 = limite de farm
+  limitLiters = 600/7500, --400 limite de farm / 7500 nombres de litres max pour atteindre la limite de farm - valeur x 7500 = limite de farm
 
   -- MASSE RP
   autoFuel = true,
