@@ -7763,6 +7763,11 @@ Jobs = {
                 Pos = {x = -1293.9604, y = -581.9467, z = 34.3748 - 0.98}, -- Coffre
                 Limit = 2000,
                 Name = "coffre_usss2"
+            },
+            {
+                Pos = {x = -1305.2213, y = -569.4633, z = 37.3764 - 0.98}, -- Coffre 2 
+                Limit = 2000,
+                Name = "coffre_usss3"
             }
         },
         garage = {
@@ -7823,6 +7828,40 @@ Jobs = {
                 Pos = {x = -1311.5385, y = -551.7341, z = 43.9235},
                 Blipcolor = 5,
                 Blipname = "USSS - Helipad"
+            }
+        },
+        garage4 = {
+            Name = "Garage USSS2",
+            Pos = {x = -1333.9357, y = -569.8605, z = 20.8027},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -1333.9357, y = -569.8605, z = 20.8027, h = 216.9468}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage USSS"
+            }
+        },
+        garage5 = {
+            Name = "Garage USSS3",
+            Pos = {x = -1325.3789, y = -580.0983, z = 20.8027},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -1325.3789, y = -580.0983, z = 20.8027, h = 32.0288}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage USSS"
             }
         },
         work = {
