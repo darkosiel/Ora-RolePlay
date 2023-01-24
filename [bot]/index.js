@@ -114,6 +114,18 @@ client.on("message", async message => {
                 });
             }
         }
+        if (command == "debugorga") {
+            if (args[0] != undefined) {
+                var sql = "DELETE FROM organisation_member WHERE uuid ='"+args[0]+"'";
+                con.query(sql, function (err, result) {
+                    if (err) { 
+                        message.channel.send("Erreur : "+err.message);
+                    } else {
+                        message.channel.send("Utilisateur ("+args[0]+") débug faction !")
+                    }
+                });
+            }
+        }
         if (command == "unwl") {
             if (args[0] != undefined) {
                 var sql = "DELETE FROM whitelist WHERE identifier ='"+args[0]+"'";
