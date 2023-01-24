@@ -141,14 +141,14 @@ local BasicShopsNorth = {
     },
     {
         name = "fishingrod",
-        price = 150,
+        price = 500,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
     },
     {
         name = "gascan",
-        price = 150,
+        price = 350,
         data = {},
         tax = 1.00,
         fct = GenerateApuSerial,
@@ -156,14 +156,14 @@ local BasicShopsNorth = {
     },
     {
         name = "blocnote",
-        price = 10,
+        price = 200,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
     },
     {
         name = "makeup",
-        price = 50,
+        price = 500,
         data = {},
         beforePayment = HasNoLtdNorth,
         tax = 1.00
@@ -249,14 +249,14 @@ local BasicShopsSouth = {
     },
     {
         name = "fishingrod",
-        price = 100,
+        price = 500,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "gascan",
-        price = 150,
+        price = 350,
         data = {},
         tax = 1.00,
         fct = GenerateApuSerial,
@@ -264,14 +264,14 @@ local BasicShopsSouth = {
     },
     {
         name = "blocnote",
-        price = 10,
+        price = 200,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "makeup",
-        price = 50,
+        price = 500,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
@@ -337,14 +337,14 @@ local LittleSeoulShop = {
     },
     {
         name = "fishingrod",
-        price = 120,
+        price = 500,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
     },
     {
         name = "gascan",
-        price = 150,
+        price = 350,
         data = {},
         tax = 1.00,
         fct = GenerateApuSerial,
@@ -352,7 +352,7 @@ local LittleSeoulShop = {
     },
     {
         name = "blocnote",
-        price = 10,
+        price = 200,
         data = {},
         beforePayment = HasNoLtdSouth,
         tax = 1.00
