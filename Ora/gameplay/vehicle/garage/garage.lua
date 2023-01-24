@@ -1071,6 +1071,30 @@ PublicGarage = {
         Name = "garage_6"
     },
     {
+        Pos = {x= -213.4224,y= -1941.0734,z= 27.6207,h= 212.5752},
+        Properties = {
+            type = 0,
+            spawnpos ={x= -213.4224,y= -1941.0734,z= 27.6207,h= 212.5752},
+            Limit = 2
+        },
+        Blipdata = {
+            Pos = {x= -213.4224,y= -1941.0734,z= 27.6207,h= 212.5752},
+            Blipcolor  =84,
+            BlipId = 524,
+            Blipname = "Parkings Maze Bank Arena"
+        },
+        Marker = {
+            type = 1,
+            scale = {x = 2.5, y = 2.5, z = 0.0},
+            color = {r = 255, g = 255, b = 255, a = 120},
+            Up = false,
+            Cam = false,
+            Rotate = false,
+            visible = true
+        },
+        Name = "garage_10"
+    },
+    {
         Pos = {x= 374.0743,y= 289.4802,z= 102.8247,h= 243.91},
         Properties = {
             type = 0,

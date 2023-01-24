@@ -87,7 +87,7 @@ Items = {
 
     meat = {
         label = "Viande Crue",
-        weight = 1.0
+        weight = 0.3
     },
     meat1 = {
         label = "Viande de Biche",

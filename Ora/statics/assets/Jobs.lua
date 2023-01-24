@@ -486,6 +486,123 @@ Jobs = {
         },
         requiredService = false
     },
+    lsevent = {
+        label = "Los Santos Event",
+        label2 = "Los Sabtos Event",
+        iban = "lsevent",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "CDD",
+                salary = 120,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "CDI",
+                salary = 140,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Chef d'équipe",
+                salary = 160,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Los Santos Event",
+                subtitle = "Actions",
+                name = "lsevent_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("lsevent")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Evenement", "Annonce", text, "CHAR_lsevent", 8, "Evenement")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage LS Event",
+            Pos = {x = -366.1341, y = -1866.8317, z = 20.5280},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -366.1341, y = -1866.8317, z = 20.5280, h = 20.1553}
+            },
+            Blipdata = {
+                Pos = {},
+                Blipcolor = 7,
+                Blipname = "Garage Los Santos Event"
+            }
+        },
+        garage2 = {
+            Name = "Garage MBA",
+            Pos = {x = -385.5406, y = -1926.9276, z = 20.5273},
+            Properties = {
+                type = 3,
+                Limit = 64,
+                vehicles = {
+                    {}
+                },
+                spawnpos = {x = -358.5406, y = -1926.9276, z = 20.5273, h = 314.5522}
+            },
+            Blipdata = {
+                Pos = {x = -358.5406, y = -1926.9276, z = 20.5273},
+                Blipcolor = 7,
+                Blipname = "LS Event - MBA"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -276.1977, y = -1932.0134, z = 30.1456 - 0.98}, -- Coffre entrée
+                Limit = 2000,
+                Name = "coffre_lsevent"
+            },
+            {
+                Pos = {x = -286.6044, y = -2015.3984, z = 21.6034 - 0.98}, -- Coffre backstage
+                Limit = 2000,
+                Name = "coffre_lsevent2"
+            },
+            {
+                Pos = {x = -290.1055, y = -1936.6005, z = 42.0453 - 0.98}, -- Coffre loge luxe
+                Limit = 2000,
+                Name = "coffre_lsevent3"
+            }
+        }
+    },
     coiffeur = {
         label = "Coiffeur",
         label2 = "Coiffeur",
