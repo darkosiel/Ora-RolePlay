@@ -186,7 +186,7 @@ function InitImmoJob()
 										exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
 										local text = exports['Snoupinput']:GetInput()
 										if (text ~= false and text ~= "") then
-											TriggerServerEvent("Job:Annonce", "Agence Immobilière", "Annonce", text, "CHAR_IMMO", 8)
+											TriggerServerEvent("Job:Annonce", "Maze Immobilier", "Annonce", text, "CHAR_IMMO", 8)
 										end
 									end
 								end
