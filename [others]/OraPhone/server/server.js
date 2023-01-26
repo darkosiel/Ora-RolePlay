@@ -903,14 +903,16 @@ onNet('OraPhone:server:accept_call', async (channel, video=false) => {
     // exports["pma-voice"].setPlayerCall(src, channel);
     // exports["pma-voice"].setPlayerCall(callers[channel].callerId, channel);
     // Salty Chat
-    exports["saltychat"].EstablishCall(src, callers[channel].callerId);
-    exports["saltychat"].EstablishCall(callers[channel].callerId, src);
-    await crud.calls.update({ id: callers[channel].callId }, { accepted: 1 });
-    if (video) {
-        emitNet('OraPhone:startVideoCall', callers[channel].callerId);
-        // emitNet('phone_ora:startVideoCall', src);
-    } else {
-        emitNet('OraPhone:client:callStarted', callers[channel].callerId, callers[channel].targetNum);
+    if (src != undefined && src != null && callers[channel].callerId != undefined && callers[channel].callerId != null) {
+        exports["saltychat"].EstablishCall(src, callers[channel].callerId);
+        exports["saltychat"].EstablishCall(callers[channel].callerId, src);
+        await crud.calls.update({ id: callers[channel].callId }, { accepted: 1 });
+        if (video) {
+            emitNet('OraPhone:startVideoCall', callers[channel].callerId);
+            // emitNet('phone_ora:startVideoCall', src);
+        } else {
+            emitNet('OraPhone:client:callStarted', callers[channel].callerId, callers[channel].targetNum);
+        }
     }
 })
 
@@ -1273,6 +1275,12 @@ onNet('OraPhone:server:lifeinvader_delete_post', async (data) => {
     const src = source;
     await crud.lifeinvaderPost.delete({ id: data.postId });
     emitNet('OraPhone:client:lifeinvader_update_app_content', src, await refreshLifeinvaderAppContent({ phoneId: data.phoneId, userId: data.userId, content: data.content }), data.content);
+});
+
+onNet('OraPhone:server:lifeinvader_delete_user', async (data) => {
+    const src = source;
+    await crud.lifeinvaderUser.delete({ id: data.userId });
+    emitNet('OraPhone:client:refresh_lifeinvader_user', src, await refreshLifeinvaderUser(data.phoneId));
 });
 
 // Create new phone

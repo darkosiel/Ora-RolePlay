@@ -778,6 +778,11 @@ on('__cfx_nui:lifeinvader_delete_post', data => {
     emitNet('OraPhone:server:lifeinvader_delete_post', data);
 });
 
+RegisterNuiCallbackType('lifeinvader_delete_user');
+on('__cfx_nui:lifeinvader_delete_user', data => {
+    emitNet('OraPhone:server:lifeinvader_delete_user', data);
+});
+
 // --- Tools
 
 RegisterNuiCallbackType('right_click');

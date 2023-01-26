@@ -4833,7 +4833,9 @@ div#page {
                                             button#lifeinvader-post-response-button,
                                             button#lifeinvader-newpost-response-button,
                                             button#lifeinvader-settings-save-button,
-                                            button#lifeinvader-createprofile-save-button {
+                                            button#lifeinvader-settings-delete-button,
+                                            button#lifeinvader-createprofile-save-button,
+                                            button.lifeinvader-button {
                                                 display: block;
                                                 width: auto;
                                                 height: auto;
@@ -4848,6 +4850,11 @@ div#page {
                                                     color: t($phone-system-color-white);
                                                     background-color: t($phone-lifeinvader-background-color);
                                                 }
+                                            }
+                                            button#lifeinvader-settings-delete-button {
+                                                margin-top: 10px;
+                                                padding: 6px 30px;
+                                                font-size: 18px;
                                             }
                                             textarea#lifeinvader-post-response-textarea,
                                             textarea#lifeinvader-newpost-response-textarea {
@@ -4877,9 +4884,30 @@ div#page {
                                             }
                                         }
                                         &#app-lifeinvader-body-content-selectprofile,
-                                        &#app-lifeinvader-body-content-createprofile {
+                                        &#app-lifeinvader-body-content-createprofile,
+                                        &#app-lifeinvader-body-content-deleteprofile {
                                             div.app-body-content-body {
                                                 height: 100%;
+                                            }
+                                        }
+                                        &#app-lifeinvader-body-content-deleteprofile {
+                                            div.app-body-content-body {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: center;
+                                                align-items: center;
+                                                row-gap: 20px;
+                                                span {
+                                                    font-size: 22px;
+                                                    font-weight: 600;
+                                                    text-align: center;
+                                                    @include themed() {
+                                                        color: t($phone-app-label-color-primary);
+                                                    }
+                                                }
+                                                button {
+                                                    margin: 0;
+                                                }
                                             }
                                         }
                                         &#app-lifeinvader-body-content-search {
@@ -5918,7 +5946,7 @@ div#phone-screen-content {
         }
     }
     &.app-lifeinvader {
-        &.lifeinvader-selectprofile, &.lifeinvader-createprofile {
+        &.lifeinvader-selectprofile, &.lifeinvader-createprofile, &.lifeinvader-deleteprofile {
             div#phone-screen-content-footer, div#phone-screen-content-header, div#phone-screen-content-header path {
                 @include themed() {
                     background-color: t($phone-app-background-color) !important;
