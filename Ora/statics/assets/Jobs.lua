@@ -12170,7 +12170,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 5005.33, y = -5754.53, z = 28.84},
+                Pos = {x = 53.64, y = 1952.75, z = -79.08},
                 Limit = 5000,
                 Name = "coffre cerberus"
             }
