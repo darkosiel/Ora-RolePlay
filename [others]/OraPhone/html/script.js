@@ -1861,6 +1861,7 @@ function initializeAppLifeinvader() {
             $("#lifeinvader-newpost-response-textarea").val("");
             document.getElementById("lifeinvader-newpost-image").style.display = "none";
             $("#lifeinvader-image-input").val("");
+            updateAppContent("home");
         }
     });
     $("#lifeinvader-settings-button").click(function() {
@@ -1893,6 +1894,16 @@ function initializeAppLifeinvader() {
             $("#lifeinvader-newpost-image").attr("src", "");
             document.getElementById("lifeinvader-newpost-image").style.display = "none";
         }
+    });
+    $("#lifeinvader-settings-delete-button").click(function() {
+        updateAppContent("deleteprofile");
+    });
+    $("#lifeinvader-deleteprofile-yes-button").click(function() {
+        $.post('https://OraPhone/lifeinvader_delete_user', JSON.stringify({ phoneId: userData.phone.id, userId: lifeinvaderUserSelected }));
+        updateAppContent("selectprofile");
+    });
+    $("#lifeinvader-deleteprofile-no-button").click(function() {
+        updateAppContent("settings");
     });
 }
 
@@ -3632,7 +3643,7 @@ function updateAppContent(element) {
     } else if (menuSelected == "lifeinvader") {
         lifeInvaderFetchAppContent(element);
         $("#app-lifeinvader .app-tab").show();
-        if (element == "selectprofile" || element == "createprofile") {
+        if (element == "selectprofile" || element == "createprofile" || element == "deleteprofile") {
             $("#app-lifeinvader .app-tab").hide();
         }
     }
