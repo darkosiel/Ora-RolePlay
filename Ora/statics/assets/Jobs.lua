@@ -12110,15 +12110,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage Cerberus",
-            Pos = {x = 4971.57, y = -5746.44, z = 19.88},
+            Pos = {x = 67.40, y = 1964.11, z = -79.03},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 4971.57, y = -5746.44, z = 19.88, h = 1.17}
+                spawnpos = {x = 67.40, y = 1964.11, z = -79.03, h = 1.17}
             },
             Blipdata = {
-                Pos = {x = 4971.57, y = -5746.44, z = 19.88},
+                Pos = {x = 67.40, y = 1964.11, z = -79.03},
                 Blipcolor = 5,
                 Blipname = "Garage Cerberus"
             }
