@@ -591,6 +591,34 @@ local Shops =
         },
         {
             Title = "Préfecture",
+            Pos = {x = 378.5736, y = -1606.9127, z = 30.1976 -0.98, a = 58.5412},
+            Blips = {
+                sprite = nil,
+                color = 17,
+                name = "Préfecture"
+            },
+            Ped = {
+                model = "s_m_y_cop_01",
+                name = "Richard"
+            },
+            Menus = {
+                Sprite = "shopui_title_conveniencestore",
+                Enabled = false
+            },
+            braquable = false,
+            Hidden = true,
+            Items = {
+                {
+                    name = "identity",
+                    price = 15,
+                    data = {},
+                    type = "identity",
+                    fct = GetIdentity
+                }
+            }
+        },
+        {
+            Title = "Préfecture",
             Pos = {x = 482.9660, y = -987.7573, z = 25.2075, a = 86.2769},
             Blips = {
                 sprite = nil,
