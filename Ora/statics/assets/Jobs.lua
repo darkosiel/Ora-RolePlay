@@ -11495,8 +11495,8 @@ Jobs = {
     -- },
     
     concess = {
-        label = "Concessionnaire",
-        label2 = "Concessionnaire",
+        label = "Hiretsuna Motorsport",
+        label2 = "Hiretsuna Motorsport",
         iban = "concess",
         grade = {
             {
@@ -11532,7 +11532,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Concessionnaire",
+                title = "Hiretsuna Motorsport",
                 subtitle = "Actions disponibles",
                 name = "Concessionnaire_menuperso"
             },
@@ -11685,7 +11685,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "EVANS MotorSport", "Annonce", text, "CHAR_EVANS", 8, "Concessionnaire")
+                            TriggerServerEvent("Job:Annonce", "Hiretsuna Motorsport", "Annonce", text, "CHAR_EVANS", 8, "Hiretsuna Motorsport")
                         end
                     end
                 }
