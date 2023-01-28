@@ -129,7 +129,7 @@ AddEventHandler(
             end
         end
         -- Say to a target that someone come
-        if not callActive[job].taken and y then
+        if not callActive[job].taken and not y then
             TriggerClientEvent("target:call:taken", callActive[job].target, 1)
         end
     end

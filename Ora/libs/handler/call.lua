@@ -463,7 +463,7 @@ AddEventHandler(
             "Appuyer sur ~b~Y~s~ pour prendre l'appel / ~r~=~s~ pour le refuser"    
             --"Appuyez sur ~b~Y~s~ pour prendre l'appel ou ~o~U~s~ pour remplacer l'appel ~r~=~s~ pour le refuser"
         )
-        ttak2 = true
+        ttak2 = false
 
         PreviousCalls = PreviousCalls or {}
 
