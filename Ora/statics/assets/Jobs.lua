@@ -6131,29 +6131,18 @@ Jobs = {
             }
         },
         garage4 = {
-            Name = "Garage Helipad",
+            Name = "Garage police4",
             Pos = {x = 481.8389, y = -982.3056, z = 41.0068},
             Properties = {
-                type = 2,
-                Limit = 10,
-                zonesize = 1.5,
-                vehicles = {
-                    {
-                        name = "as350",
-                        label = "Helicoptere de police",
-                        job = true,
-                        tuning = {
-                            modXenon = false,
-                            modLivery = 0
-                        }
-                    }
-                },
-                spawnpos = {x = 481.8389, y = -982.3056, z = 41.0068, h = 84.1288}
+                type = 3,
+                Limit = 64,
+                vehicles = {},
+                spawnpos = {x = 481.8389, y = -982.3056, z = 41.0068},
             },
             Blipdata = {
-                Pos = {x = 449.1987, y = -981.2350, z = 43.6910},
+                Pos = {x = 481.8389, y = -982.3056, z = 41.0068},
                 Blipcolor = 5,
-                Blipname = "LSPD - Helipad"
+                Blipname = "LSPD - Hélipad"
             }
         },
         garage5 = {

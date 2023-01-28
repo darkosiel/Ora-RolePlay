@@ -47,6 +47,7 @@ Citizen.CreateThread(function()
     AddTextEntry("POLALAMOOLD", "Alamo OLD LSPD")
     AddTextEntry("POLBUFFALS", "Buffalo LSPD 2018")
     AddTextEntry("NCOUTLSPD", "Scout 2018 LSPD")
+    AddTextEntry("as350", "AS 350 LSPD")
     --SAMS
     AddTextEntry("EMSNSPEEDO", "Speedo SAMS") 
     AddTextEntry("EMSROAMER", "Roamer SAMS")
