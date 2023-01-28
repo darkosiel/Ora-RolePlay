@@ -2307,25 +2307,25 @@ local Shops =
         --     Items = BasicShopsSouth,
         --     bzone = "police"
         -- },
-        {
-            Title = "LTD Vinewood",
-            Pos = {x = 373.015, y = 328.332, z = 102.566, a = 257.309},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_m_indian_01",
-                name = "Apu"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = BasicShopsSouth,
-            bzone = "police"
-        },
+        -- {
+        --     Title = "LTD Vinewood",
+        --     Pos = {x = 373.015, y = 328.332, z = 102.566, a = 257.309},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_m_indian_01",
+        --         name = "Apu"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = BasicShopsSouth,
+        --     bzone = "police"
+        -- },
         { --LTD NORD
             Title = "LTD Grapeseed",
             Pos = {x = 1697.58, y = 4923.24, z = 41.06, a = 328.71},
@@ -2998,25 +2998,25 @@ local Shops =
         --     Items = BasicShopsNorth,
         --     bzone = "lssd"
         -- },
-        { -- LTD SUD
-            Title = "LTD Little Seoul",
-            Pos = {x = -705.9, y = -913.5, z = 18.22, a = 92.47},
-            Blips = {
-                sprite = 59,
-                color = 43,
-                name = "Magasin"
-            },
-            Ped = {
-                model = "a_m_y_ktown_01",
-                name = "Tao"
-            },
-            Menus = {
-                Sprite = "shopui_title_conveniencestore",
-                Enabled = true
-            },
-            Items = LittleSeoulShop,
-            bzone = "police"
-        },
+        -- { -- LTD SUD
+        --     Title = "LTD Little Seoul",
+        --     Pos = {x = -705.9, y = -913.5, z = 18.22, a = 92.47},
+        --     Blips = {
+        --         sprite = 59,
+        --         color = 43,
+        --         name = "Magasin"
+        --     },
+        --     Ped = {
+        --         model = "a_m_y_ktown_01",
+        --         name = "Tao"
+        --     },
+        --     Menus = {
+        --         Sprite = "shopui_title_conveniencestore",
+        --         Enabled = true
+        --     },
+        --     Items = LittleSeoulShop,
+        --     bzone = "police"
+        -- },
         -- {
         --     Pos = {x = 161.89, y = 6642.98, z = 30.71, a = 218.23},
         --     Blips = {

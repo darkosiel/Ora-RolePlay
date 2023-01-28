@@ -3161,8 +3161,8 @@ Jobs = {
         -- }
     },
     ltdsud = {
-        label = "LTD Davis",
-        label2 = "LTD Davis",
+        label = "LTD little Seoul",
+        label2 = "LTD little Seoul",
         iban = "ltdsud",
         FreeAccess = false,
         grade = {
@@ -3199,7 +3199,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "LTD Davis",
+                title = "LTD little Seoul",
                 subtitle = "Actions disponibles",
                 name = "ltdsud_menuperso"
             },
@@ -3220,7 +3220,7 @@ Jobs = {
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "LTD Davis", "Annonce", text, "CHAR_LTDSUD", 8, "LTD Davis")
+                            TriggerServerEvent("Job:Annonce", "LTD little Seoul", "Annonce", text, "CHAR_LTDSUD", 8, "LTD little Seoul")
                         end
                     end
                 }
@@ -3228,22 +3228,22 @@ Jobs = {
         },
         garage = {
             Name = "Garage LTD Davis",
-            Pos = {x = 15.9, y = -1350.09, z = 28.32},
+            Pos = {x = -728.73, y = -911.26, z = 19.01},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = 15.9, y = -1350.09, z = 28.32, h = 179.85}
+                spawnpos = {x = -728.73, y = -911.26, z = 19.01, h = 182.68}
             },
             Blipdata = {
-                Pos = {x = 15.9, y = -1350.09, z = 28.32, h = 179.85},
+                Pos = {x = -728.73, y = -911.26, z = 19.01, h = 182.68},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = 26.69, y = -1339.10, z = 29.49 - 0.98},
+                Pos = {x = -708.30, y = -904.05, z = 19.21 - 0.98},
                 Limit = 2000,
                 Name = "coffre_ltdsud"
             }
