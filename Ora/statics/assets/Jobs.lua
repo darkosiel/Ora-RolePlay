@@ -7810,28 +7810,19 @@ Jobs = {
             }
         },
         garage3 = {
-            Name = "Garage Helipad",
+            Name = "Garage USSShelipad",
             Pos = {x = -1311.5385, y = -551.7341, z = 43.9235},
             Properties = {
-                type = 2,
-                Limit = 10,
-                zonesize = 1.5,
+                type = 3,
+                Limit = 64,
                 vehicles = {
-                    {
-                        name = "presheli2",
-                        label = "Helicoptere Marine One",
-                        job = true,
-                        tuning = {
-                            modXenon = false,
-                            modLivery = 0
-                        }
-                    }
+                    {}
                 },
-                spawnpos = {x = -1311.5385, y = -551.7341, z = 43.9235, h = 128.28}
+                spawnpos = {x = -1311.5385, y = -551.7341, z = 43.9235, h = 216.9468}
             },
             Blipdata = {
-                Pos = {x = -1311.5385, y = -551.7341, z = 43.9235},
-                Blipcolor = 5,
+                Pos = {},
+                Blipcolor = 7,
                 Blipname = "USSS - Helipad"
             }
         },

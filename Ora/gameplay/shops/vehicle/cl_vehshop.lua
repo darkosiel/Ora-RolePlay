@@ -437,10 +437,12 @@ local VehShop =
                     {name = "lspdspeedo", price = 25000},
                     {name = "lspdswattruck", price = 25000},
                     {name = "lspdswatutil", price = 25000},
-                    {name = "lspdtarv", price = 25000},
+                    -- {name = "lspdtarv", price = 25000},
                     {name = "lspdtorrence", price = 25000},
                     {name = "lspdtorrenceslick", price = 25000},
                     {name = "sahpbuffalostxum", price = 25000},
+                    {name = "polmobile1", price = 25000},
+                    {name = "centurionlspd", price = 25000},
                     {name = "lspdtorrenceum", price = 25000}
                 },
                 -- ["BCSO"] = {
@@ -502,6 +504,7 @@ local VehShop =
                     {name = "fibp3", price = 30000},
                     {name = "fibp6", price = 30000},
                     {name = "polnspeedo", price = 30000},
+                    {name = "polmobile1", price = 25000},
                     {name = "pressuv", price = 30000}
                 },
                 ["Vans"] = {
