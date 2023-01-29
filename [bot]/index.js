@@ -82,48 +82,6 @@ client.on("message", async message => {
                 }
             }
         }
-        if (message.channel.id != "1067138325900689478") {
-            return}
-            if (command == "staff") {
-                if (args[0] !== undefined) {
-                    var sql1 = `SELECT identifier, pound FROM users WHERE identifier = '${args[0]}'`;
-                    con.query(sql1, function (err, result) {
-                        if (err) { console.log('Error while performing Query.'); } 
-                        if (result[0] !== undefined) {
-                            if (result[0].pound == 0) {
-                                var sql = "UPDATE users SET group = 'staff' WHERE identifier = '"+args[0]+"'";
-                                con.query(sql, function (err, result) {
-                                    if (err) console.log(err);
-                                    msg = "Utilisateur : ("+args[0]+") mit staff !"    
-                                });
-                            }
-                        } else {
-                            message.channel.send("<@"+message.author.id+"> **Attention : ** : Utilisateur ("+args[0]+") introuvable !")
-                        }
-                    });
-                }
-            }
-            if (message.channel.id != "1067138325900689478") {
-                return}
-                if (command == "unstaff") {
-                    if (args[0] !== undefined) {
-                        var sql1 = `SELECT identifier, pound FROM users WHERE identifier = '${args[0]}'`;
-                        con.query(sql1, function (err, result) {
-                            if (err) { console.log('Error while performing Query.'); } 
-                            if (result[0] !== undefined) {
-                                if (result[0].pound == 0) {
-                                    var sql = "UPDATE users SET group = 'user' WHERE identifier = '"+args[0]+"'";
-                                    con.query(sql, function (err, result) {
-                                        if (err) console.log(err);
-                                        msg = "Utilisateur : ("+args[0]+") retrait de perm ok !"    
-                                    });
-                                }
-                            } else {
-                                message.channel.send("<@"+message.author.id+"> **Attention : ** : Utilisateur ("+args[0]+") introuvable !")
-                            }
-                        });
-                    }
-                }
         if (command == "tow") {
             if (args[0] !== undefined) {
                 var sql1 = `SELECT plate, pound FROM players_vehicles WHERE plate = '${args[0]}'`;
