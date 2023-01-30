@@ -501,9 +501,9 @@ local VehShop =
                     {name = "ussssuv2", price = 30000},
                     {name = "halfback2", price = 30000},
                     {name = "watchtower2", price = 30000},
-                    {name = "fibp3", price = 30000},
-                    {name = "fibp6", price = 30000},
-                    {name = "polnspeedo", price = 30000},
+                    {name = "lssdtorrence", price = 30000},
+                    {name = "lssdscout", price = 30000},
+                    {name = "lspdspeedo", price = 30000},
                     {name = "polmobile1", price = 25000},
                     {name = "pressuv", price = 30000}
                 },
