@@ -11,6 +11,8 @@ Citizen.CreateThread(
         Ped:Add("Tyler", "cs_casey", {x = 257.82, y = 219.45, z = 105.29, a = 153.7}, nil)
         Ped:Add("Sven", "a_m_m_rurmeth_01", {x = 1713.21, y = 3600.36, z = 34.2, a = 179.19}, nil)
         Ped:Add("Daria", "ig_maude", {x = 2441.3916, y = 4976.86, z = 46.4106 - 0.98, a = 216.3385}, nil)
+        Ped:Add("Mimosa", "a_c_hen", {x = -310.70, y = 2779.66, z = 60.63 - 0.98, a = 317.23}, nil)
+        Ped:Add("Mimolette", "a_c_hen", {x = -307.07, y = 2778.87, z = 60.90 - 0.98, a = 27.09}, nil)
 
         Ped:Add("Grisouille", "a_c_rottweiler", {x = 1416.05, y = 1132.65, z = 114.35 -0.98, a = 23.87}, nil)
         --   QG MAFIA ITALIEN --
