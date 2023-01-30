@@ -6160,22 +6160,6 @@ Jobs = {
                 Blipname = "LSPD - Garage Personnel"
             }
         },
-        garage6 = {
-            Name = "GarageBateauUSSS",
-            Pos = {x = -800.45, y = -1514.03, z = 1.6},
-            Properties = {
-                type = 3,
-                Limit = 6,
-                zonesize = 5.0,
-                vehicles = {},
-                spawnpos = {x = -795.98, y = -1515.0, z = 0.12, h = 112.53}
-            },
-            Blipdata = {
-                Pos = {x = -800.45, y = -1514.03, z = 1.6},
-                Blipcolor = 5,
-                Blipname = "LSPD - Bateaux"
-            }
-        },
         Menu = {
             menu = {
                 title = "LSPD",
@@ -7858,6 +7842,22 @@ Jobs = {
                 Pos = {},
                 Blipcolor = 7,
                 Blipname = "Garage USSS"
+            }
+        },
+        garage6 = {
+            Name = "GarageBateauUSSS",
+            Pos = {x = -800.45, y = -1514.03, z = 1.6},
+            Properties = {
+                type = 3,
+                Limit = 6,
+                zonesize = 5.0,
+                vehicles = {},
+                spawnpos = {x = -795.98, y = -1515.0, z = 0.12, h = 112.53}
+            },
+            Blipdata = {
+                Pos = {x = -800.45, y = -1514.03, z = 1.6},
+                Blipcolor = 5,
+                Blipname = "USSS - Bateaux"
             }
         },
         work = {
