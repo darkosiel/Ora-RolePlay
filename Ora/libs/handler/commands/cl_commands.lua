@@ -138,7 +138,7 @@ local commands = {
 Citizen.CreateThread(
     function()
         for i = 1, #commands, 1 do
-            if Ora.Identity:GetMyGroup() == "superadmin" then
+            if Ora.Identity:GetMyGroup() == "superadmin" or Ora.Identity:GetMyGroup() == "staff" then
                 RegisterCommand(
                     commands[i].text,
                     function(_, args)
