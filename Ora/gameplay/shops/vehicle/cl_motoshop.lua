@@ -34,7 +34,6 @@ local bikershop =
                     {name = "carbonrs", price = 9000},
                     {name = "chimera", price = 17000},
                     {name = "cliffhanger", price = 6400},
-                    {name = "daemon", price = 2600},
                     {name = "daemon2", price = 3000},
                     {name = "diablous", price = 7500},
                     {name = "diablous2", price = 7900},
@@ -78,6 +77,7 @@ local bikershop =
                     {name = "dyna", price = 15000},
                     {name = "bloodline", price = 15000},
                     {name = "lv", price = 15000},
+                    {name = "daemon", price = 2600},
                     {name = "softail2", price = 15000}
                 },
                 ["Quad"] = {
