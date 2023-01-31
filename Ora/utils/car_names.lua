@@ -106,6 +106,7 @@ Citizen.CreateThread(function()
     -- Véhicule addon Sport
     AddTextEntry("ARGENTO", "Obey Argento")
     AddTextEntry("pdumkstx", "Buffalo UMK 2018")
+    AddTextEntry("STEED2", "Camionnette B.Fox")
 
     -- Véhicule G6
     AddTextEntry("g6scout", "Scout G6")

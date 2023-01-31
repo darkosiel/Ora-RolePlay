@@ -2358,8 +2358,8 @@ local Shops =
                 name = "Post Op"
             },
             Ped = {
-                model = "s_m_y_airworker",
-                name = "Henry"
+                model = "s_m_m_ups_02",
+                name = "Pascal"
             },
             Menus = {
                 Sprite = "shopui_title_conveniencestore",

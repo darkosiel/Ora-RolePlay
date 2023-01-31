@@ -675,6 +675,9 @@ vehCoffres = {
     ["imperator"] = 60,
     ["cavalcade"] = 80,
     ["romero"] = 70,
+    ["steed2"] = 200,
+    ["taco"] = 350,
+    ["trailers2"] = 1000,
     --
     ["issi4"] = 40,
     ["issi5"] = 40,

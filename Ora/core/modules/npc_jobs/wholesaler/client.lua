@@ -1,8 +1,8 @@
 Ora.NpcJobs.Wholesaler.E_Thread = false
 Ora.NpcJobs.Wholesaler.Peds = {
     {
-        Name = "Nathan",
-        PedModel = "s_m_m_dockwork_01",
+        Name = "Alphonse",
+        PedModel = "s_m_m_ups_01",
         Pos = {x = 1235.4223, y = -3273.4953, z = 5.51 - 0.98, a = 91.33},
         Blip = {name = "Grossiste Général SUD", color = 47, size = 0.8, sprite = 52}
     },

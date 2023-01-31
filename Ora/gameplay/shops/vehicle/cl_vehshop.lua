@@ -54,6 +54,7 @@ local VehShop =
                     {name = "tractor2", price = 30000},
                     {name = "brickade", price = 27000},
                     {name = "utillitruck3", price = 30000},
+                    {name = "steed2", price = 30000},
                     {name = "phantom", price = 40000},
                     {name = "phantom3", price = 40000}
                 },
