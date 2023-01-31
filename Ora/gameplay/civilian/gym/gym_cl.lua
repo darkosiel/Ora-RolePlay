@@ -336,6 +336,21 @@ RegisterCommand(
                         doingMotion = false
                         motionProcent = 0
                         ShowNotification("Tu as ~g~terminé~w~ ta course.")
+                        local newStrength = 2
+                        TriggerServerEvent("newStrength", newStrength)
+
+                        RageUI.Popup({message = "💪 ~b~Course~s~"})
+                        RageUI.Popup({message = "~b~Tu viens de gagner ~g~+" .. newStrength .. "%~b~ de force~s~"})
+
+                        TriggerServerCallback(
+                            "Ora:getStrength",
+                            function(strength, isFull)
+                                LocalPlayer().Strength = strength * 10
+
+                                RageUI.Popup({message = "~b~Progression actuelle ~g~+" .. strength .. "/100%~s~"})
+
+                            end
+                        )
                     end
                 end
             end
