@@ -377,7 +377,7 @@ vehCoffres = {
     ["graintraile"] = 80,
     ["hauler"] = 35,
     ["trailer"] = 100,
-    ["trailers2"] = 100,
+    ["trailers2"] = 2000,
     ["trailers3"] = 100,
     ["towtruck"] = 40,
     ["flatbed"] = 45,
@@ -677,7 +677,6 @@ vehCoffres = {
     ["romero"] = 70,
     ["steed2"] = 200,
     ["taco"] = 350,
-    ["trailers2"] = 1000,
     --
     ["issi4"] = 40,
     ["issi5"] = 40,
