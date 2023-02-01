@@ -388,8 +388,8 @@ Jobs = {
         }
     },
     grossiste = {
-        label = "Post OP",
-        label2 = "Post OP",
+        label = "B.Fox",
+        label2 = "B.Fox",
         iban = "grossiste",
         FreeAccess = false,
         grade = {
@@ -426,7 +426,7 @@ Jobs = {
         },
         Menu = {
             menu = {
-                title = "Post OP",
+                title = "B.Fox",
                 subtitle = "Actions disponibles",
                 name = "grossiste_menuperso"
             },
@@ -441,12 +441,28 @@ Jobs = {
                     end
                 },
                 {
+                    label = "Sortir la remorque",
+                    onSelected = function()
+                        if (Ora.Identity.Job:GetRank() >= 1) then
+                            Mecano.SpawnFoxRemorque()
+                        else
+                            RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                        end
+                    end
+                },
+                {
+                    label = "Ranger la remorque",
+                    onSelected = function()
+                        Mecano.RangerRemorqueM()
+                    end
+                },
+                {
                     label = "Annonce",
                     onSelected = function()
                         exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
                         local text = exports['Snoupinput']:GetInput()
                         if text ~= false and text ~= "" then
-                            TriggerServerEvent("Job:Annonce", "Post OP", "Annonce", text, "CHAR_POSTOP", 8, "Post OP")
+                            TriggerServerEvent("Job:Annonce", "B.Fox", "Annonce", text, "CHAR_bfox", 8, "B.Fox")
                         end
                     end
                 }
@@ -469,7 +485,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 1211.4298, y = -3254.6970, z = 7.08 - 0.98},
+                Pos = {x = 1207.2757, y = -3253.8742, z = 7.08 - 0.98},
                 Limit = 200,
                 Name = "coffre_grossiste"
             },
