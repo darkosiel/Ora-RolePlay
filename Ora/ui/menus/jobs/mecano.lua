@@ -299,6 +299,30 @@ function Mecano.SpawnFoxRemorque()
 
 end
 
+function Mecano.SpawnSmallRemorque()
+
+    Ora.Jobs.Jetsam.Trailer = Ora.World.Vehicle:Create("trailersmall", {x = -364.06, y = -145.50, z = 38.26}, 16.24, {customs = {}, warp_into_vehicle = false, maxFuel = true, health = {}})
+    SetNewWaypoint(-364.06, -145.50)
+    RageUI.Popup({message = "~b~Votre remorque est sortie ici, ~h~attachez-là à votre camion avant de la remplir~h~"})
+
+end
+
+function Mecano.RangerRemorqueS()
+
+    if (#(vector3(-364.06, -145.50, 38.26) - GetEntityCoords(GetPlayerPed(-1))) > 15.0) then
+        return RageUI.Popup({message = "~r~Vous êtes trop loin du garage entreprise"})
+    end
+
+    if (GetVehicleInDirection(15.0) == Ora.Jobs.Jetsam.Trailer) then
+        DeleteEntity(Ora.Jobs.Jetsam.Trailer)
+        Ora.Jobs.Jetsam.Trailer = nil
+        RageUI.Popup({message = "~b~Vous avez rangé votre remorque"})
+    else
+        RageUI.Popup({message = "~r~Vous n'avez pas sorti de remorque vous-même ou alors elle n'est pas en face de vous"})
+    end
+
+end
+
 function Mecano.RangerRemorqueM()
 
     if (#(vector3(1223.69, -3304.70, 5.51) - GetEntityCoords(GetPlayerPed(-1))) > 15.0) then

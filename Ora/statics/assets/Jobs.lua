@@ -11226,6 +11226,46 @@ Jobs = {
                                 end
                             },
                             {
+                                label = "Sortir la remorque",
+                                onSelected = function()
+                                    if (Ora.Identity.Job:GetRank() >= 5) then
+                                        Mecano.SpawnSmallRemorque()
+                                    else
+                                        RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                                    end
+                                end
+                            },
+                            {
+                                label = "Ranger la remorque",
+                                onSelected = function()
+                                    if (Ora.Identity.Job:GetRank() >= 5) then
+                                        Mecano.RangerRemorqueS()
+                                    else
+                                        RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                                    end
+                                end
+                            },
+                            {
+                                label = "Attacher le véhicule",
+                                onSelected = function()
+                                    if (Ora.Identity.Job:GetRank() >= 5) then
+                                        Mecano.AttacherVehicle()
+                                    else
+                                        RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                                    end
+                                end
+                            },
+                            {
+                                label = "Détacher le véhicule",
+                                onSelected = function()
+                                    if (Ora.Identity.Job:GetRank() >= 5) then    
+                                        Mecano.DetacherVehicle()
+                                    else
+                                        RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
+                                    end
+                                end
+                            },
+                            {
                                 label = "Mise en fourière",
                                 onSelected = function()
                                     Mecano.Fouriere()
