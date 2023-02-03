@@ -13,6 +13,8 @@ function OpenClotheRoom(type)
             ClotheTenues = TenueUSSS
         elseif Ora.Identity.Job:GetName() == "g6" then
             ClotheTenues = TenueG6
+        elseif Ora.Identity.Job:GetName() == "lsms" then
+            ClotheTenues = TenueSAMS
         end
     else
         ClotheTenues = Ora.Identity.Orga.Data.work.vestiaire.Tenues
@@ -25,6 +27,8 @@ function OpenClotheRoom(type)
             ClotheTenues = TenueUSSS
         elseif Ora.Identity.Orga:GetName() == "g6" then
             ClotheTenues = TenueG6
+        elseif Ora.Identity.Orga:GetName() == "lsms" then
+            ClotheTenues = TenueSAMS
         end
     end
     
