@@ -73,13 +73,13 @@ local bikershop =
                     {name = "reever", price = 8000},
                     {name = "shinobi", price = 12000}
                 },
-                ["Motos Biker"] = {
-                    {name = "dyna", price = 15000},
-                    {name = "bloodline", price = 15000},
-                    {name = "lv", price = 15000},
-                    {name = "daemon", price = 2600},
-                    {name = "softail2", price = 15000}
-                },
+                -- ["Motos Biker"] = {
+                --     {name = "dyna", price = 15000},
+                --     {name = "bloodline", price = 15000},
+                --     {name = "lv", price = 15000},
+                --     {name = "daemon", price = 2600},
+                --     {name = "softail2", price = 15000}
+                -- },
                 ["Quad"] = {
                     {name = "blazer", price = 2700},
                     {name = "blazer2", price = 2000},
