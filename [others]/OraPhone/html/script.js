@@ -767,10 +767,10 @@ function initializeAppContacts() {
         $(".contacts-list-row-item").css("display", "block");
     });
     $("#newcontact-button-takephoto").click(function() {
-        activateAppCamera("contact", "newcontact");
+        activateAppCamera("contacts", "newcontact");
     });
     $("#editcontact-button-takephoto").click(function() {
-        activateAppCamera("contact", "editcontact");
+        activateAppCamera("contacts", "editcontact");
     });
 }
 
@@ -3016,9 +3016,7 @@ function takeCall() {
 
 async function takeScreenshot(app, appSub) {
     updateContent(app);
-    setTimeout(function() {
-        updateAppContent(appSub);
-    }, 400);
+    updateAppContent(appSub);
     $("#camera-image").attr("src", "");
     let resp = await MainRender.requestScreenshot("https://api.imgur.com/3/image/", "image");
     if (app == "camera") {
@@ -4804,9 +4802,6 @@ const config = {
         {
             "title": "g6-icon"
         },
-	{
-            "title": "lspd"
-        },
         {
             "title": "Law_and_order_1"
         },
@@ -5118,8 +5113,8 @@ class ContextMenu {
 const Blips = [
     {name: "Poste de police", color: 29, sprite: 60, size: 1.0, Pos: {x: 433.33, y: -982.26, z: 30.71}},
     {name: "Sherif - Paleto Bay", color: 70, sprite: 60, size: 1.0, Pos: {x: -440.43, y: 6019.48, z: 31.49}},
-    {name: "Maze Group", color: 69, sprite: 67, size: 1.0, Pos: {x: -1376.18, y: -491.93, z: 33.16}},
-    {name: "Gruppe Sechs", color: 49, sprite: 78, size: 1.0, Pos: {x: -231.46, y: -851.80, z: 30.68}},
+    {name: "Maze Group", color: 69, sprite: 78, size: 1.0, Pos: {x: -1376.18, y: -491.93, z: 33.16}},
+    {name: "Gruppe Sechs", color: 49, sprite: 67, size: 1.0, Pos: {x: -231.46, y: -851.80, z: 30.68}},
     {name: "Vanilla Unicorn", color: 61, sprite: 121, size: 0.8, Pos: {x: 119.47, y: -1308.58, z: 29.71}},
     {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: -526.065, y: -1221.99, z: 18.4549}},
     {name: "Distributeur de Billets", color: 2, sprite: 434, size: 0.80, Pos: {x: -2073.44, y: -317.245, z: 13.316}},

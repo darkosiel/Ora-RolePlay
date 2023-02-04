@@ -507,7 +507,7 @@ async function refreshContacts(data) {
         return;
     }
     const defaultContacts = [
-        { id: -1, phoneId: data.phoneId, name: "LSPD", number: "police", avatar: "lspd" },
+        { id: -1, phoneId: data.phoneId, name: "LSPD", number: "police", avatar: "Law_and_order_35" },
         // { id: -1, phoneId: data.phoneId, name: "BCSO", number: "lssd", avatar: "Law_and_order_3" },
         { id: -1, phoneId: data.phoneId, name: "Gruppe Sechs", number: "g6", avatar: "g6-icon" },
         { id: -1, phoneId: data.phoneId, name: "SAMS/LSFD", number: "lsms/lsfd", avatar: "Pharmacy_20" },
@@ -866,7 +866,7 @@ onNet('OraPhone:server:call_number', async (sourceNum, targetNum, video=false) =
         return;
     }
     for(let [chanIndex, chanValue] of Object.entries(callers)) {
-        if(chanValue.receiverId == receiver) {
+        if(chanValue.receiverId == receiver || chanValue.callerId == receiver) {
             if (modeTest) {
                 console.log('Player is already on a channel', chanIndex, chanValue);
             }

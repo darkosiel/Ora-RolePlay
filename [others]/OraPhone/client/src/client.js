@@ -72,20 +72,16 @@ async function setPhoneVisible(visible = true) {
         SetNuiFocusKeepInput(visible);
         // lock controls, focus nui
         onTick = setTick( async () => {
-            // On right click in fivem focus back to the phone
-            // if (IsControlJustReleased(1, 25) && phoneVisible) {
-            //     setMouseFocus(true);
-            // }
             // Enforce nui focus on or off
             // SetNuiFocus(mouseFocus, mouseFocus);
             // https://docs.fivem.net/docs/game-references/controls/
             DisableAllControlActions(1);
             // sprint
             EnableControlAction(1, 21);
-            // right click to switch focus back on ui
-            // EnableControlAction(1, 25);
             // enter vehicule
             EnableControlAction(1, 23);
+            // exit vehicule
+            EnableControlAction(1, 75);
             EnableControlAction(1, 49);
             EnableControlAction(1, 27);
             // move
