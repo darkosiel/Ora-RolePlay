@@ -1890,7 +1890,7 @@ function Police.CutMenottes()
     if (playerId ~= false) then
         local isHandcuff = IsPlyHandcuff(playerId)
         if isHandcuff then
-            if Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "lssd" then
+            if Ora.Identity.Job:GetName() == "police" or Ora.Identity.Job:GetName() == "usss" then
                 TriggerServerEvent("player:Handcuff", playerId, false)
                 Ora.Inventory:AddItem(item)
             else
