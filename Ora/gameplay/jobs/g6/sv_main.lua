@@ -413,14 +413,14 @@ RegisterServerEvent("g6:endSession", function()
 		"g6",
 		reward
 	)
-	TriggerEvent(
+	--[[TriggerEvent(
 		"newTransaction",
 		"mazegroup",
 		"Pacific Bank",
 		reward,
 		"Circuit de remplissage des ATMs.",
 		""
-	)
+	)]]
 
 	local serverId, fullName = src, Ora.Identity:GetFullname(src)
 	TriggerEvent("Ora:sendToDiscord", "G6", ("%s a terminé la session après %s arrêts."):format(("%s - %s"):format(serverId, fullName), G6_Current_Session.currentRouteStop - 1), "info")
