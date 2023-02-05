@@ -3680,6 +3680,11 @@ div#page {
                                                             transition: all 0.3s ease-in-out;
                                                         }
                                                     }
+                                                    div.richtermotorsport-detail-body-button {
+                                                        button {
+                                                            margin: 10px auto;
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -5148,8 +5153,9 @@ div#page {
                                     margin-top: -200px;
                                     transition: box-shadow 0.4s ease-in-out, margin-top .75s ease-in-out, transform .75s ease-in-out, visibility .75s ease-in-out, opacity .75s ease-in-out;
                                     box-shadow: none;
+                                    transform: scale(0);
                                     .popup-item-content {
-                                            transform: scale(0);
+                                        transform: scale(0);
                                     }
                                 }
                                 @include themed() {
@@ -5174,6 +5180,7 @@ div#page {
                                         border-radius: 10px 10px 0px 0px;
                                         @include themed() {
                                             background-color: t($phone-notification-background-color);
+                                            box-shadow: 0 0 20px 2px t($phone-popup-box-shadow-color);
                                         }
                                     }
                                     .popup-item-header {

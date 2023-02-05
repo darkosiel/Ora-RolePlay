@@ -309,9 +309,11 @@ $(function(){
                                 userData.richterMotorsportRole = job;
                                 if(job.name == "concess") {
                                     $("#richtermotorsport-button-create-advertisement").css("display", "flex");
+                                    $("#richtermotorsport-detail-button-delete").css("display", "block");
                                     break;
                                 } else {
                                     $("#richtermotorsport-button-create-advertisement").css("display", "none");
+                                    $("#richtermotorsport-detail-button-delete").css("display", "none");
                                     break;
                                 }
                         }
@@ -1536,6 +1538,10 @@ function initializeAppRichterMotorsport() {
     $("#richtermotorsport-create-image-takephoto").click(function() {
         activateAppCamera("richtermotorsport", "create");
     });
+    $("#richtermotorsport-detail-button-delete").click(function() {
+        $.post('https://OraPhone/richtermotorsport_delete_advertisement', JSON.stringify({ phoneId: userData.phone.id, advertisementId: RichterMotorSportCurrentAdvertisement.id }));
+        updateAppContent("home");
+    });
 }
 
 function initializeAppCamera() {
@@ -1653,14 +1659,15 @@ function initializeAppGallery() {
         updateAppContent("list");
         $.post('https://OraPhone/gallery_image_remove', JSON.stringify({ phoneId: userData.phone.id, id: $("#gallery-image").data("id") }));
     })
-    // $("#gallery-image-button-bluetoothshare").click(function () {
-    //     let imageId = $("#gallery-image").data("id");
-    //     if (bluetoothActive) {
-    //         addPopup("bluetooth");
-    //     } else {
-    //         addNotification("settings", "home", "Maintenant", "Bluetooth", "Activer le bluetooth pour partager");
-    //     }
-    // });
+    $("#gallery-image-button-bluetoothshare").click(function () {
+        let imageId = $("#gallery-image").data("id");
+        if (bluetoothActive) {
+            $.post('https://OraPhone/bluetooth_find_player', JSON.stringify({ phoneId: userData.phone.id, id: imageId }));
+            addPopup("bluetooth");
+        } else {
+            addNotification("settings", "home", "Maintenant", "Bluetooth", "Activer le bluetooth pour partager");
+        }
+    });
 }
 
 function initializeAppMaps() {

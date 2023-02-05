@@ -90,6 +90,8 @@ const generateCrud = (table_suffix, fieldsMap) => {
                 sql += ` ORDER BY update_time DESC`;
             } else if(table == "ora_phone_lifeinvader_user") {
                 sql += ` ORDER BY pseudo ASC`;
+            } else if(table == "ora_phone_richtermotorsport") {
+                sql += ` ORDER BY create_time DESC`;
             }
             return fetchDb(sql, criteria);
         },
@@ -1148,6 +1150,12 @@ onNet('OraPhone:server:richtermotorsport_favorite_advertisement', async (data) =
     } else {
         await crud.richtermotorsportfavorite.delete({ phoneId: data.phoneId, advertisementId: data.advertisementId });
     }
+    emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId));
+})
+
+onNet('OraPhone:server:richtermotorsport_delete_advertisement', async (data) => {
+    const src = source;
+    await crud.richtermotorsport.delete({ id: data.advertisementId });
     emitNet('OraPhone:client:richtermotorsport_update_advertisement', src, await refreshRichterMotorsport(data.phoneId));
 })
 

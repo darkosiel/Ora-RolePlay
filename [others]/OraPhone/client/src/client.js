@@ -649,6 +649,11 @@ on('__cfx_nui:richtermotorsport_find_job', data => {
     );
 });
 
+RegisterNuiCallbackType('richtermotorsport_delete_advertisement');
+on('__cfx_nui:richtermotorsport_delete_advertisement', data => {
+    emitNet('OraPhone:server:richtermotorsport_delete_advertisement', data);
+});
+
 // Camera
 
 RegisterNuiCallbackType('camera_add_image');
@@ -777,6 +782,13 @@ on('__cfx_nui:lifeinvader_delete_post', data => {
 RegisterNuiCallbackType('lifeinvader_delete_user');
 on('__cfx_nui:lifeinvader_delete_user', data => {
     emitNet('OraPhone:server:lifeinvader_delete_user', data);
+});
+
+// Bluetooth
+
+RegisterNuiCallbackType('bluetooth_find_player');
+on('__cfx_nui:bluetooth_find_player', data => {
+    emitNet('OraPhone:server:bluetooth_find_player', data);
 });
 
 // --- Tools
