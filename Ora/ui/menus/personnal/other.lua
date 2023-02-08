@@ -917,13 +917,17 @@ Citizen.CreateThread(
                         RageUI.Checkbox(
                             "HUD",
                             "Permet d'activer/désactiver ~o~l'HUD",
-                            HUD,
+                            hud,
                             {},
                             function(Hovered, Ative, Selected, Checked)
+                                hud = Checked
                                 if Selected then
-                                    HUD = Checked
-                                    Player.Hud = Checked
-                                    TriggerEvent("displayNourriture", Checked)
+                                    Player.Hud = false
+                                    if not Checked then
+                                        Player.Hud = true
+                                    end
+                                    Player.UpdateHud()
+                                    TriggerEvent("displayNourriture", not Checked)
                                 end
                             end
                         )
