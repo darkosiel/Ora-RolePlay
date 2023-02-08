@@ -690,6 +690,76 @@ DP.Emotes = {
    {
        EmoteLoop = true,
    }},
+   ["shakasitting"] = {"anim@shaka_sit", "shaka_clip", "Kicked Back Shaka (Smos)", AnimationOptions =
+{
+	EmoteLoop = loop,
+	EmoteMoving = false,
+}},
+
+["mstance1"] = {"anim@male_casual_stance", "casual_stance", "Casual Male Stance (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+
+["mselfie1"] = {"anim@male_insta_selfie", "insta_selfie_clip", "Male Selfie 1 (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+
+["bskball1"] = {"anim@male_bskball_dunk", "bskball_dunk_clip", "Basketball Dunk (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+
+["bskball2"] = {"anim@male_bskball_photo_pose", "photo_pose_clip", "Basketball Photo Pose (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+
+["bskball3"] = {"anim@male_bskball_hold", "bskball_hold_clip", "Basketbal Hold (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+["highlow3"] = {"anim@tactical_highlow_high_leftlean", "high_leftlean_clip", "Highlow Left Lean High (Smos)", AnimationOptions =
+{
+	EmoteLoop = false,
+	EmoteMoving = false,
+}},
+
+["highlow4"] = {"anim@tactical_highlow_low_leftlean", "low_leftlean_clip", "Highlow Left Lean Low (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+
+["kneeltalkie"] = {"anim@tactical_kneel_walkie", "kneel_walkie_clip", "Communication Relaxed Rifle (Smos)", AnimationOptions =
+{
+	EmoteLoop = false,
+	EmoteMoving = false,
+}},
+
+["aimkneel"] = {"anim@tactical_kneel_aiming", "kneel_aiming_clip", "Kneeling and Aiming Rifle (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
+
+["riflerelax1"] = {"anim@male_tactical_collapsed_lowready", "collapsed_lowready_clip", "Collapsed Lowready Relaxed Rifle (Smos)", AnimationOptions =
+{
+	EmoteLoop = false,
+	EmoteMoving = false,
+}},
+
+["riflerelax2"] = {"anim@male_tactical_highready_relaxed", "highready_relaxed_clip", "Highready Relaxed Rifle (Smos)", AnimationOptions =
+{
+	EmoteLoop = true,
+	EmoteMoving = false,
+}},
    ["cloudgaze"] = {"switch@trevor@annoys_sunbathers", "trev_annoys_sunbathers_loop_girl", "Cloudgaze", AnimationOptions =
    {
        EmoteLoop = true,
@@ -818,6 +888,116 @@ DP.Emotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
+   ["handspocket"] = {"anim@lunyx@rgmp03", "rgmp03", "Mains dans les poches", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = true,
+}},
+["waittac1"] = {"anim@male_tactical_collapsed_lowready", "collapsed_lowready_clip", "Attente tactique 1", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["waittac2"] = {"anim@male_tactical_highready_relaxed", "highready_relaxed_clip", "Attente tactique 1", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["waittac3"] = {"anim@male@holding_weapon_2", "holding_weapon_2_clip", "Attente tactique 3", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["waittac4"] = {"anim@male@hug_weapon", "hug_weapon_clip", "Attente tactique 4", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["weaponpose1"] = {"anim@male@pose_weapon", "pose_weapon_clip", "Pose d'arme 1", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["gilet1"] = {"anim@male@holding_vest", "holding_vest_clip", "Tenir son gilet", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["gilet2"] = {"anim@holding_side_vest", "holding_side_vest_clip", "Mains sous le gilet", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["gilet3"] = {"anim@holding_siege_vest_side", "holding_siege_vest_side_clip", "Mains sous le gilet 2", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["gilet4"] = {"anim@male@holding_vest_2", "holding_vest_2_clip", "Mains sous le gilet 4", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["gilet5"] = {"anim@male@holding_vest_siege", "holding_vest_siege_clip", "Mains sous le gilet 5", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["gilet6"] = {"anim@male@holding_vest_siege_2", "holding_vest_siege_2_clip", "Mains sous le gilet 6", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["radio2"] = {"anim@radio_left", "radio_left_clip", "Parler à la radio", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+["radio3"] = {"anim@male@holding_radio", "holding_radio_clip", "Parler à la radio", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = true,
+}},
+["tacradio"] = {"anim@tactical_kneel_walkie", "kneel_walkie_clip", "Tac Radio Com", AnimationOptions =
+{
+   EmoteLoop = true,
+   EmoteMoving = false,
+}},
+   ["hlstwalk"] = {"anim@hlstr_7360_walk","holster_walk","Main sur le holster",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = true,
+        }},
+    ["hlststop"] = {"anim@hlstr_7360_hold","holster_stop","Halte",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = true,
+        }},
+    ["torche"] = {"anim@hlstr_7360_torch","flsh_ps","Torche et main sur le holster",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = true,
+        }},
+    ["hltwalk"] = { "anim@holster_walk","holster_walk","Main sur le holster léger",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = true,
+        }},
+    ["hlthold"] = {"anim@holster_hold_there","holster_hold","Main sur le holster old",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = true,
+        }},
+    ["k9pose"] = { "anim@k9_pose", "hug_dog","Pose avec le chien",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = false,
+        }},
+    ["maleprepgears"] = {"anim@male@prep_gears","prep_gears_clip","Vérif chargeur",
+        AnimationOptions = {
+            EmoteLoop = true,
+            EmoteMoving = true,
+        }},
    ["pls"] = {"timetable@tracy@sleep@", "idle_c", "PLS", AnimationOptions =
    {
        EmoteLoop = false,
@@ -2581,6 +2761,47 @@ DP.PropEmotes = {
        EmoteLoop = true,
        EmoteMoving = true,
    }},
+   ["bskball1"] = {"anim@male_bskball_dunk", "bskball_dunk_clip", "Basket Dunk", AnimationOptions =
+{
+ Prop = 'prop_bskball_01',
+ PropBone = 28422,
+ PropPlacement = {0.05, 0.010, -0.12, 40.0, 140.0, 430.0},
+--  POS DU PROPS -> X     Y      Z   | X       Y      Z  <- Rotation du Props
+--               HAUTEUR D/G   AV/AR
+ EmoteLoop = true,
+ EmoteMoving = false,
+}},
+
+["bskball2"] = {"anim@male_bskball_photo_pose", "photo_pose_clip", "Basket Ballon sur Épaule", AnimationOptions =
+{
+ Prop = 'prop_bskball_01',
+ PropBone = 18905,
+ PropPlacement = {0.04, 0.010, 0.12, 40.0, 140.0, 100.0},
+--  POS DU PROPS -> X     Y      Z   | X       Y      Z  <- Rotation du Props
+--               HAUTEUR D/G   AV/AR  
+ EmoteLoop = true,
+ EmoteMoving = false,
+}},
+["bskball3"] = {"anim@male_bskball_hold", "bskball_hold_clip", "Basket ballon en main", AnimationOptions =
+{
+    Prop = 'prop_bskball_01',
+    PropBone = 18905,
+    PropPlacement = {0.10, 0.030, 0.12, 40.0, 140.0, 430.0},
+--     POS DU PROPS -> X     Y      Z   | X       Y      Z  <- Rotation du Props
+--                    HAUTEUR D/G   AV/AR
+    EmoteLoop = true,
+    EmoteMoving = false,
+}},
+["mselfie1"] = {"anim@male_insta_selfie", "insta_selfie_clip", "Pose selfie", AnimationOptions =
+{
+ Prop = 'prop_phone_ing_03',
+ PropBone = 18905,
+ PropPlacement = {0.10, 0.005, 0.060,  -10.0, -80.0, -180.0},
+--  POS DU PROPS -> X     Y      Z   | X       Y      Z  <- Rotation du Props
+--               HAUTEUR D/G   AV/AR  
+ EmoteLoop = true,
+ EmoteMoving = false,
+}},
    ["mugshot"] = {"mp_character_creation@customise@male_a", "loop", "Mugshot", AnimationOptions =
    {
        Prop = 'prop_police_id_board',
