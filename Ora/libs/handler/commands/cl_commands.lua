@@ -100,13 +100,7 @@ local commands = {
     {
         text = "dv",
         fct = function(args)
-            if IsPedInAnyVehicle(LocalPlayer().Ped) then
-                DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
-            else
-                if ClosestVeh() ~= 0 then
-                    DeleteEntity(ClosestVeh())
-                end
-            end
+            Admin_DeleteVehicle()
         end
     },
     {

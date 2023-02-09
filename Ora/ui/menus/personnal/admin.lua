@@ -2319,20 +2319,24 @@ Citizen.CreateThread(
                                         end
                                     end
                                 )
-                                RageUI.Button(
-                                    "Supprimer véhicule",
-                                    nil,
-                                    {},
-                                    true,
-                                    function(_, _, Selected)
-                                        if Selected then
-                                            local veh = GetVehicleInDirection(5.0)
-                                            ShowNotification(string.format("Véhicule ~h~%s~h~ a été ~g~%s~s~",  GetVehicleNumberPlateText(veh),"supprimé"))
-                                            DeleteEntity(veh)
-                                        end
+                            end     
+                            RageUI.Button(
+                                "Supprimer véhicule",
+                                nil,
+                                {},
+                                true,
+                                function(_, _, Selected)
+                                    if Selected then
+                                        Admin_DeleteVehicle()
+                                            TriggerServerEvent(
+                                            "Ora:sendToDiscord",
+                                            webhookadmin,
+                                            Ora.Identity:GetMyName() .. " a dv un véhicule"
+                                        )
                                     end
-                                )
-                            end    
+                                end
+                            )
+                              
                             RageUI.Button(
                                 "Retourner le véhicule",
                                 nil,
@@ -2597,83 +2601,6 @@ Citizen.CreateThread(
                         end
                     )
                 end
-
-                if RageUI.Visible(RMenu:Get("personnal", "vehicle")) then
-                    RageUI.DrawContent(
-                        {header = true, glare = true},
-                        function()
-                            RageUI.Button(
-                                "Spawn Véhicule",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        exports['Snoupinput']:ShowInput("Véhicule", 100, "text", "", true)
-                                        local ModelName = exports['Snoupinput']:GetInput()
-                                        if ModelName ~= false and ModelName ~= "" then
-                                            Ora.World.Vehicle:Create(ModelName, LocalPlayer().Pos, GetEntityHeading(LocalPlayer().Ped), {customs = {}, warp_into_vehicle = true, maxFuel = true, health = {}})
-                                            TriggerServerEvent(
-                                                "Ora:sendToDiscord",
-                                                webhookadmin,
-                                                Ora.Identity:GetMyName() .. " a fait spawn une " .. ModelName
-                                            )
-                                        end
-                                    end
-                                end
-                            )
-                            RageUI.Button(
-                                "Supprimer véhicule",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        if IsPedInAnyVehicle(LocalPlayer().Ped) then
-                                            DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
-                                        else
-                                            if ClosestVeh() ~= 0 then
-                                                DeleteEntity(ClosestVeh())
-                                            end
-                                        end
-                                        TriggerServerEvent(
-                                            "Ora:sendToDiscord",
-                                            webhookadmin,
-                                            Ora.Identity:GetMyName() .. " a dv un véhicule"
-                                        )
-                                    end
-                                end
-                            )
-
-                            RageUI.Button(
-                                "Crocheter véhicule",
-                                nil,
-                                {},
-                                true,
-                                function(_, _, Selected)
-                                    if Selected then
-                                        local veh = ClosestVeh()
-                                        if veh ~= 0 then
-                                            SetVehicleDoorsLockedForAllPlayers(veh, false)
-                                            SetVehicleDoorsLocked(veh, 1)
-                                            SetEntityAsMissionEntity(veh, true, true)
-                                            SetVehicleHasBeenOwnedByPlayer(veh, true)
-                                            TriggerServerEvent(
-                                                "Ora:sendToDiscord",
-                                                webhookadmin,
-                                                Ora.Identity:GetMyName() .. " a crocheté un véhicule"
-                                            )
-                                        else
-                                            ShowNotification(string.format("~r~Aucun véhicule trouvé~s~"))
-                                        end
-                                    end
-                                end
-                            )
-                        end,
-                        function()
-                        end
-                    )
-                end
             end
         end
     end
@@ -2698,6 +2625,18 @@ RMenu:Get("personnal", "world"):AddInstructionButton(
         [2] = "Noclip moins rapide"
     }
 )
+
+
+function Admin_DeleteVehicle()
+    local veh = GetVehicleInDirection(5.0)
+    if IsPedInAnyVehicle(LocalPlayer().Ped) then
+        DeleteEntity(GetVehiclePedIsIn(LocalPlayer().Ped))
+    else
+        if ClosestVeh() ~= 0 then
+            DeleteEntity(ClosestVeh())
+        end
+    end
+end
 
 -- FONCTION NOCLIP
 local noclip = false
