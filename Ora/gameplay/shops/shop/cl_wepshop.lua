@@ -565,6 +565,10 @@ local kevlarConfig = {
         status = 70,
         name = "Kevlar GOUV/DOJ"
     },
+    [10] = {
+        status = 50,
+        name = "Kevlar Secret Service"
+    },
     [11] = {
         status = 0,
         name = "Sous-veste EMT"
