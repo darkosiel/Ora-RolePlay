@@ -2719,6 +2719,13 @@ function admin_no_clip()
     end
 end
 
+RegisterKeyMapping("spectate", "Mode NoClip", "keyboard", "O")
+RegisterCommand("spectate", function()
+    if Ora.Identity:GetMyGroup() == "superadmin" or Ora.Identity:GetMyGroup() == "staff" then
+        admin_no_clip()
+    end    
+end)
+
 function getPosition()
     local x, y, z = table.unpack(GetEntityCoords(PlayerPedId(), true))
     return x, y, z
