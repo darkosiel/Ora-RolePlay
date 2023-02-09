@@ -1939,6 +1939,106 @@ Config.DoorList = {
         maxDistance = 1.5
     },
 
+        --B FOX 
+
+    {
+        objHash = 109312155,
+        objCoords = vector3(1233.4508056640625, -3325.149169921875, 7.000761985778809),
+        textCoords = vector3(1233.4508056640625, -3325.149169921875, 7.000761985778809),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 10.0 
+    }, 
+
+    {
+        objHash = 109312155,
+        objCoords = vector3(1190.470458984375, -3325.149658203125, 7.000761985778809),
+        textCoords = vector3(1190.470458984375, -3325.149658203125, 7.000761985778809),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 10.0
+    },
+
+    {
+        objHash = -591551217,
+        objCoords = vector3(1184.183837890625, -3288.7919921875, 8.277268409729004),
+        textCoords = vector3(1184.183837890625, -3288.7919921875, 8.277268409729004),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 3.0
+    },
+
+    {
+        objHash = -591551217,
+        objCoords = vector3(1184.2069091796875, -3272.578857421875, 8.183698654174805),
+        textCoords = vector3(1184.2069091796875, -3272.578857421875, 8.183698654174805),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 3.0
+    },
+
+    {
+        objHash = -1330141317,
+        objCoords = vector3(1197.6510009765625, -3254.340576171875, 7.351167678833008),
+        textCoords = vector3(1197.6510009765625, -3254.340576171875, 7.351167678833008),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
+    {
+        objHash = 109312155,
+        objCoords = vector3(1218.4193115234375, -3235.9423828125, 6.678249549865724),
+        textCoords = vector3(1218.4193115234375, -3235.9423828125, 6.678249549865724),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 10.0
+    },
+    {
+        objHash = 109312155,
+        objCoords = vector3(1233.3997802734375, -3235.9423828125, 6.978249549865723),
+        textCoords = vector3(1233.3997802734375, -3235.9423828125, 6.978249549865723),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 10.0
+    },
+
+    {
+        objHash = -1330141317,
+        objCoords = vector3(1239.595947265625, -3257.954345703125, 7.316915512084961),
+        textCoords = vector3(1239.595947265625, -3257.954345703125, 7.316915512084961),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
+    {
+        objHash = -591551217,
+        objCoords = vector3(1239.7528076171875, -3288.570556640625, 8.19212532043457),
+        textCoords = vector3(1239.7528076171875, -3288.570556640625, 8.19212532043457),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 10.0
+    },
+
+    {
+        objHash = -1330141317,
+        objCoords = vector3(1184.3052978515625, -3304.683837890625, 7.316915512084961),
+        textCoords = vector3(1184.3052978515625, -3304.683837890625, 7.316915512084961),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
+    {
+        objHash = GetHashKey("v_ilev_cf_officedoor"),
+        objCoords = vector3(1208.5775146484375, -3258.1630859375, 7.233502388000488),
+        textCoords = vector3(1208.5775146484375, -3258.1630859375, 7.233502388000488),
+        authorizedJobs = {"grossiste"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
 }
 
 

@@ -291,6 +291,13 @@ Station = {
         pedPos = vector4(-1428.467, -268.639, 45.50, 140.00),
         priceL = 2.80
       }, --Rockford Hills
+      {
+        id = 28,
+        coords = vector3(1141.2871, -3272.8576, 5.89),
+        radius = 20.00,
+        pedPos = vector4(1107.3109, -3286.9926, 5.8973, 267.4181),
+        priceL = 2.80
+      }, --B FOX
     },
 
     boats = {
