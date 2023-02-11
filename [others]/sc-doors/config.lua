@@ -2058,6 +2058,24 @@ Config.DoorList = {
         maxDistance = 2.5
     },
 
+    {
+        objHash = 1546389727,
+        objCoords = vector3(-356.7233581542969, -93.97313690185547, 39.062259674072266),
+        textCoords = vector3(-356.7233581542969, -93.97313690185547, 39.062259674072266),
+        authorizedJobs = {"mecano"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
+    {
+        objHash = 1278022473,
+        objCoords = vector3(-356.19232177734375, -92.51394653320312, 39.062259674072266),
+        textCoords = vector3(-356.19232177734375, -92.51394653320312, 39.062259674072266),
+        authorizedJobs = {"mecano"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
 }
 
 
