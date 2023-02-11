@@ -2201,19 +2201,19 @@ Citizen.CreateThread(
                                             invisible = true
                                         end
                                         admin_no_clip()
-                                        if Checked then
-                                            TriggerServerEvent(
-                                                "Ora:sendToDiscord",
-                                                webhookadmin,
-                                                Ora.Identity:GetMyName() .. " active le no clip "
-                                            )
-                                        else
-                                            TriggerServerEvent(
-                                                "Ora:sendToDiscord",
-                                                webhookadmin,
-                                                Ora.Identity:GetMyName() .. " désactive le no clip "
-                                            )
-                                        end
+                                        -- if Checked then
+                                        --     TriggerServerEvent(
+                                        --         "Ora:sendToDiscord",
+                                        --         webhookadmin,
+                                        --         Ora.Identity:GetMyName() .. " active le no clip "
+                                        --     )
+                                        -- else
+                                        --     TriggerServerEvent(
+                                        --         "Ora:sendToDiscord",
+                                        --         webhookadmin,
+                                        --         Ora.Identity:GetMyName() .. " désactive le no clip "
+                                        --     )
+                                        -- end
                                     end
                                 end
                             )
@@ -2650,13 +2650,43 @@ function admin_no_clip()
         SetEntityVisible(ped, false, false)
         ShowNotification("Noclip ~g~activé")
         exports['Ora_utils']:ToggleDrain(false)
+        TriggerServerEvent(
+            "Ora:sendToDiscord",
+            webhookadmin,
+            Ora.Identity:GetMyName() .. " active le no clip "
+        )
     else -- désactivé
         SetEntityInvincible(ped, false)
         Ora.Player:SetEntityInvicible(PlayerId(), PlayerPedId(), false)
         ShowNotification("Noclip ~r~désactivé")
+        TriggerServerEvent(
+            "Ora:sendToDiscord",
+            webhookadmin,
+            Ora.Identity:GetMyName() .. " désactive le no clip "
+        )
         exports['Ora_utils']:ToggleDrain(true)
     end
 end
+
+-- In progress in the hope of editing Saltychat to make a better system
+function isAdmin()
+    if myGroup == "superadmin" or myGroup == "staff" then
+        return true
+    else
+        return false
+    end
+end
+exports("isAdmin", isAdmin)
+
+function isNoclipActive()
+    return noclip
+end
+exports("isNoclipActive", isNoclipActive)
+
+function getSpectatedPlayer()
+    return Ora.Player.SpectatedPlayer
+end
+exports("getSpectatedPlayer", getSpectatedPlayer)
 
 RegisterKeyMapping("spectate", "Mode NoClip", "keyboard", "O")
 RegisterCommand("spectate", function()
@@ -2691,8 +2721,6 @@ end
 function isNoclip()
     return noclip
 end
-
-
 
 -- noclip/invisible
 Citizen.CreateThread(
