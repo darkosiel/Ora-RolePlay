@@ -2076,6 +2076,15 @@ Config.DoorList = {
         maxDistance = 2.5
     },
 
+    {
+        objHash = GetHashKey("v_ilev_ct_door03"),
+        objCoords = vector3(-366.1983337402344, -92.62431335449219, 39.68939208984375),
+        textCoords = vector3(-366.1983337402344, -92.62431335449219, 39.68939208984375),
+        authorizedJobs = {"mecano"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
 }
 
 
