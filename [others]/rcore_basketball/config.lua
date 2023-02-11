@@ -447,6 +447,17 @@ BasketballHoops = {
 		threePointSideDist = 0.0,
 		threePointRadius = 5.95,
 	},
+
+	{
+		pos = vector3(68.1, -1772.999, 28.30), 
+		rot = vector4(0, 0, -0.50, 1.9396927),
+		State = nil,
+		Model = `prop_basketball_net`,
+		IsSubscribed = false,
+		threePointFwdDist = 0.0,
+		threePointSideDist = 0.0,
+		threePointRadius = 5.95,
+	},
 		
 }
 
