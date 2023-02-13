@@ -12171,7 +12171,7 @@ Jobs = {
             {
                 Pos = {x = 131.47, y = -1285.02, z = 28.27},
                 Limit = 1000,
-                Name = "Frigo Unicorn"
+                Name = "New Frigo Unicorn"
             },
             {
                 Pos = {x = 93.21, y = -1291.99, z = 28.27},
