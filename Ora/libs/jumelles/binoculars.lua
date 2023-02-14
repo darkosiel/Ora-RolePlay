@@ -35,29 +35,33 @@ local storeBinoclarKey = Keys["BACKSPACE"]
 Citizen.CreateThread(function()
 	while true do
 
-		Citizen.Wait(0)
+        Citizen.Wait(0)
 
-		local lPed = LocalPlayer().Ped
+		local lPed = GetPlayerPed(-1)
 		local vehicle = GetVehiclePedIsIn(lPed)
+		
+		if binoculars then
 
-		if binoculars or (keybindEnabled and IsControlJustReleased(1, binocularKey)) then
-			binoculars = true
-			if not vehicle then
-				Citizen.CreateThread(function()
-					TaskStartScenarioInPlace(lPed, "WORLD_HUMAN_BINOCULARS", 0, 1)
-					PlayAmbientSpeech1(lPed, "GENERIC_CURSE_MED", "SPEECH_PARAMS_FORCE")
-				end)
-			end
+			if not ( IsPedSittingInAnyVehicle( lPed ) ) then
 
-			Wait(2000)
-			SetTimecycleModifier("default")
+					Citizen.CreateThread(function()
+		                TaskStartScenarioInPlace(GetPlayerPed(-1), "WORLD_HUMAN_BINOCULARS", 0, 1)
+						PlayAmbientSpeech1(GetPlayerPed(-1), "GENERIC_CURSE_MED", "SPEECH_PARAMS_FORCE")
+					end)
+				else
+				end	
+
+				Wait(2000)
+				SetTimecycleModifier("default")
 			SetTimecycleModifierStrength(0.3)
 			local scaleform = RequestScaleformMovie("BINOCULARS")
 
 			while not HasScaleformMovieLoaded(scaleform) do
-				Citizen.Wait(10)
+				Citizen.Wait(0)
 			end
 
+			local lPed = GetPlayerPed(-1)
+			local vehicle = GetVehiclePedIsIn(lPed)
 			local cam = CreateCam("DEFAULT_SCRIPTED_FLY_CAMERA", true)
 			AttachCamToEntity(cam, lPed, 0.0,0.0,1.0, true)
 			SetCamRot(cam, 0.0,0.0,GetEntityHeading(lPed))
@@ -67,10 +71,13 @@ Citizen.CreateThread(function()
 			PushScaleformMovieFunctionParameterInt(0) -- 0 for nothing, 1 for LSPD logo
 			PopScaleformMovieFunctionVoid()
 
+			local locked_on_vehicle = nil
+
 			while binoculars and not IsEntityDead(lPed) and (GetVehiclePedIsIn(lPed) == vehicle) and true do
-				if IsControlJustPressed(0, storeBinoclarKey) then -- Toggle binoculars
+
+				if IsControlJustPressed(0, 177) then -- Toggle binoculars
 					PlaySoundFrontend(-1, "SELECT", "HUD_FRONTEND_DEFAULT_SOUNDSET", false)
-					ClearPedTasks(lPed)
+					ClearPedTasks(GetPlayerPed(-1))
 					binoculars = false
 				end
 
@@ -95,7 +102,6 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
 --EVENTS--
 
 -- Activate binoculars
@@ -142,28 +148,28 @@ function HandleZoom(cam)
 	local lPed = GetPlayerPed(-1)
 	if not ( IsPedSittingInAnyVehicle( lPed ) ) then
 
-		if IsControlJustPressed(0,241) then -- Scrollup
+		if IsControlJustPressed(0,32) then 
 			fov = math.max(fov - zoomspeed, fov_min)
 		end
-		if IsControlJustPressed(0,242) then
-			fov = math.min(fov + zoomspeed, fov_max) -- ScrollDown
+		if IsControlJustPressed(0,8) then
+			fov = math.min(fov + zoomspeed, fov_max) 	
 		end
 		local current_fov = GetCamFov(cam)
 		if math.abs(fov-current_fov) < 0.1 then
 			fov = current_fov
 		end
-		SetCamFov(cam, current_fov + (fov - current_fov)*0.05)
+		SetCamFov(cam, current_fov + (fov - current_fov)*0.05) 
 	else
-		if IsControlJustPressed(0,17) then -- Scrollup
+		if IsControlJustPressed(0,241) then -- Scrollup
 			fov = math.max(fov - zoomspeed, fov_min)
 		end
-		if IsControlJustPressed(0,16) then
-			fov = math.min(fov + zoomspeed, fov_max) -- ScrollDown
+		if IsControlJustPressed(0,242) then -- ScrollDown
+			fov = math.min(fov + zoomspeed, fov_max)
 		end
 		local current_fov = GetCamFov(cam)
-		if math.abs(fov-current_fov) < 0.1 then -- the difference is too small, just set the value directly to avoid unneeded updates to FOV of order 10^-5
+		if math.abs(fov-current_fov) < 0.1 then
 			fov = current_fov
 		end
-		SetCamFov(cam, current_fov + (fov - current_fov)*0.05) -- Smoothing of camera zoom
+		SetCamFov(cam, current_fov + (fov - current_fov)*0.05)-- Smoothing of camera zoom
 	end
 end
