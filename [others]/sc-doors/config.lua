@@ -2046,7 +2046,7 @@ Config.DoorList = {
         textCoords = vector3(-320.50592041015625, -105.45513153076172, 38.011165618896484),
         authorizedJobs = {"mecano"},
         locked = true,
-        maxDistance = 2.5
+        maxDistance = 7.0
     },
 
     {
@@ -2055,7 +2055,7 @@ Config.DoorList = {
         textCoords = vector3(-325.670654296875, -103.57523345947266, 38.011165618896484),
         authorizedJobs = {"mecano"},
         locked = true,
-        maxDistance = 2.5
+        maxDistance = 7.0
     },
 
     {
