@@ -1,4 +1,12 @@
 Items = {
+    baril_vide = {
+        label = "Baril Vide",
+        weight = 3.0
+    },
+    baril_de_petrole = {
+        label = "Baril de Pétrole",
+        weight = 3.0
+    },
     cone = {
         label = "Cône",
         weight = 1.0,

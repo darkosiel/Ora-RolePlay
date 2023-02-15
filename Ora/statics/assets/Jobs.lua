@@ -5406,6 +5406,41 @@ Jobs = {
             }
         },
         requiredService = true,
+        work = {
+            recolte = {
+                type = "recolte",
+                workSize = 10.0,
+                Pos = {x = 2335.4731, y = 3034.4211, z = 48.1517 - 0.98},
+                giveitem = "baril_vide",
+                blipcolor = 7,
+                blipname = "Raffinerie  - Récolte",
+                add = "~p~+ 1 baril vide",
+                anim = {
+                    lib = "anim@mp_snowball",
+                    anim = "pickup_snowball"
+                }
+            },
+            traitement = {
+                type = "traitement",
+                workSize = 7.45,
+                blipcolor = 7,
+                blipname = "Raffinerie - Traitement",
+                Pos = {x = 1581.3204, y = -1776.6989, z = 88.21 - 0.98},
+                required = "baril_vide",
+                giveitem = "baril_de_petrole",
+                add = "~p~+ 1  baril de pétrole "
+            },
+            vente = {
+                type = "vente",
+                blipcolor = 7,
+                workSize = 7.45,
+                blipname = "Raffinerie - Vente",
+                Pos = {x = -186.8746, y = -2374.9235, z = 9.31 - 0.98},
+                required = "baril_de_petrole",
+                price = math.random(12, 15),
+                add = "~p~- 1 baril de pétrole"
+            }
+        },
         garage = {
             Name = "Garage Raffinerie",
             Pos = {x = -122.291, y = -2538.134, z = 5.10},
