@@ -5410,7 +5410,7 @@ Jobs = {
             recolte = {
                 type = "recolte",
                 workSize = 10.0,
-                Pos = {x = 2335.4731, y = 3034.4211, z = 48.1517 - 0.98},
+                Pos = {x = 589.4678, y = 2936.4355, z = 40.431721 - 0.98},
                 giveitem = "baril_vide",
                 blipcolor = 7,
                 blipname = "Raffinerie  - Récolte",
