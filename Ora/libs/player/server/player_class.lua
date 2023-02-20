@@ -720,7 +720,7 @@ AddEventHandler(
         local _source = source
         local ply = Player.GetPlayer(_source)
 
-        if Ora.Identity:GetGroup(_source) ~= "superadmin" then
+        if Ora.Identity:GetGroup(_source) ~= "superadmin" or Ora.Identity:GetGroup(_source) ~= "staff" then
             return BanPlayer(_source, os.time() + 99999, "Cheat", _source)
         end
 
@@ -735,7 +735,7 @@ AddEventHandler(
         local ply = Player.GetPlayer(_source)
         local now = os.time()
 
-        if ((Ora.Identity:GetGroup(_source)  ~= "superadmin") and (msg ~= "Votre résolution doit être supérieure à 1280 x 1080")) then
+        if ((Ora.Identity:GetGroup(_source)  ~= "superadmin" or Ora.Identity:GetGroup(_source) ~= "staff") and (msg ~= "Votre résolution doit être supérieure à 1280 x 1080")) then
             return BanPlayer(_source, now + 99999, "Cheat", _source)
         end
 
@@ -751,7 +751,7 @@ AddEventHandler(
         local _source = source
         local ply = Player.GetPlayer(source)
 
-        if Ora.Identity:GetGroup(_source)  ~= "superadmin" then
+        if Ora.Identity:GetGroup(_source)  ~= "superadmin" or Ora.Identity:GetGroup(_source) ~= "staff" then
             return BanPlayer(_source, now + 99999, "Cheat", _source)
         end
         WarnPlayer(target, msg, source)
@@ -944,7 +944,7 @@ RegisterServerCallback(
             [2] = {}
         }
 
-        if (myGroup == "superadmin") then
+        if (myGroup == "superadmin" or myGroup = "staff") then
             returnArgs[1] = true
         end
 
