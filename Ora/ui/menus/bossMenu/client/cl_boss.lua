@@ -1,6 +1,10 @@
 local min_capital
 local book_busi_id
 local orgas
+local GUI = {}
+GUI.Time = 0
+local lastDeposit = 0
+local MIN_TIME_BETWEEN_DEPOSITS = 30000
 
 RegisterCommand(
 	"debug",
@@ -360,20 +364,26 @@ RegisterNUICallback('set_business', function(data, cb)
 								'business:RemoveFromTreasury',
 								function(bool)
 									Wait(math.random(1, 4)*500)
-									if bool then
-										TriggerServerCallback(
-											"Ora::SE::Money:AuthorizePayment", 
-											function(token)
-												TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = data.number, SOURCE = "Retrait trésorerie", LEGIT = true})
-											end,
-											{}
-										)
-										TriggerEvent("business:updateSalGUI", res)
-										TriggerEvent("business:disableLoading")
-										RageUI.Popup({message = "~g~Succès~b~\nVous avez retiré ~y~$"..data.number.."~b~ de la trésorerie!"})
+									if ((GetGameTimer() - GUI.Time) > 2000 ) then
+										GUI.Time = GetGameTimer()
+										if bool then
+											lastDeposit = GetGameTimer()
+											TriggerServerCallback(
+												"Ora::SE::Money:AuthorizePayment", 
+												function(token)
+													TriggerServerEvent(Ora.Payment:GetServerEventName(), {TOKEN = token, AMOUNT = data.number, SOURCE = "Retrait trésorerie", LEGIT = true})
+												end,
+												{}
+											)
+											TriggerEvent("business:updateSalGUI", res)
+											TriggerEvent("business:disableLoading")
+											RageUI.Popup({message = "~g~Succès~b~\nVous avez retiré ~y~$"..data.number.."~b~ de la trésorerie!"})
+										else
+											TriggerEvent("business:disableLoading")
+											RageUI.Popup({message = "~r~Erreur~b~\nVous ne pouvez pas récupérer ce que vous n'avez pas."})
+										end
 									else
-										TriggerEvent("business:disableLoading")
-										RageUI.Popup({message = "~r~Erreur~b~\nVous ne pouvez pas récupérer ce que vous n'avez pas."})
+										ShowNotification("~r~Tentative de spam~s~")
 									end
 								end,
 								orgas and Ora.Identity.Orga:GetName() or Ora.Identity.Job:GetName(),
