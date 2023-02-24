@@ -2832,8 +2832,8 @@ Items = {
         faim = 25,
         category = "food"
     },
-        boissontaco = {
-        label = "Boisson taco loco",
+    boissontaco = {
+        label = "Cocktail B.Fox",
         weight = 0.2,
         actionCl = "miam:Drink",
         props = "prop_tequsunrise",
