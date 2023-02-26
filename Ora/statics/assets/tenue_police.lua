@@ -2853,7 +2853,7 @@ TenueLSPD = {
             ['tshirt_1'] = 94,  ['tshirt_2'] = 0,
             ['torso_1'] = 101,   ['torso_2'] = 1,
             ['decals_1'] = -1,   ['decals_2'] = 0,
-            ['arms'] = 2,
+            ['arms'] = 1,
             ['pants_1'] = 87,   ['pants_2'] = 12,
             ['shoes_1'] = 25,   ['shoes_2'] = 0,
             ['helmet_1'] = -1,  ['helmet_2'] = 0,

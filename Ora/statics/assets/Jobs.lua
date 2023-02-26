@@ -6612,6 +6612,11 @@ Jobs = {
                 Name = "coffre cellules"
             },
             {
+                Pos = {x = 449.7123, y  = -977.900, z = 30.6894}, -- Coffre sale de pause
+                Limit = 99999999,
+                Name = "coffre pause"
+            },
+            {
                 Pos = {x = 464.0292, y = -1000.1713, z = 25.20753}, -- Saisie LSPD
                 Limit = 5000,
                 Name = "coffre des saisies"
