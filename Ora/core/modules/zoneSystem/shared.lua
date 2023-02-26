@@ -13,7 +13,7 @@ Ora.ZoneSystem.Bars = {
   ["Unicorn"] = { Pos = vector3(121.03, -1288.75, 28.26), JobName = "unicorn", MoneyPerHour = 500, MaxDistance = 30.0 },
   ["Miror"] = { Pos = vector3(-1348.2995, -1070.0476, 11.4665), JobName = "restaurant", MoneyPerHour = 500, MaxDistance = 30.0 },
   ["Tequilala"] = { Pos = vector3(-560.29, 286.08, 82.17), JobName = "tequilala", MoneyPerHour = 500, MaxDistance = 15.0 },
-  ["Galaxy"] = { Pos = vector3(367.0758, 277.9312, 90.93), JobName = "night", MoneyPerHour = 500, MaxDistance = 40.0 },
+  ["Galaxy"] = { Pos = vector3(356.18, 304.66, 103.72), JobName = "night", MoneyPerHour = 500, MaxDistance = 40.0 },
   ["HenHouse"] = { Pos = vector3(-304.56, 6265.54, 31.49), JobName = "henhouse", MoneyPerHour = 500, MaxDistance = 20.0 },
   ["Pearl's"] = { Pos = vector3(-1832.50, -1191.68, 12.92), JobName = "pearls", MoneyPerHour = 500, MaxDistance = 20.0 },
   ["YellowJack"] = { Pos = vector3(1987.99, 3050.73, 47.21), JobName = "yellowjack" , MoneyPerHour = 500, MaxDistance = 5.0 },
