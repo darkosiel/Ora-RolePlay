@@ -442,9 +442,9 @@ vehCoffres = {
     ["cognoscenti"] = 62,
     ["xls2"] = 80,
     ["cognoscenti2"] = 57,
-    ["lspdswattruck"] = 200,
-    ["lspdswatutil"] = 200,
-    ["lspdspeedo"] = 200,
+    ["lspdswttr"] = 500,
+    ["lspswtut"] = 500,
+    ["lspspex"] = 500,
     -- SAHP
     ["sahpalamao"] = 200,
     ["sahpalamao2"] = 200,
