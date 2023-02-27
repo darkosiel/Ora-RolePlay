@@ -6612,7 +6612,7 @@ Jobs = {
                 Name = "coffre cellules"
             },
             {
-                Pos = {x = 449.7123, y  = -977.900, z = 30.6894}, -- Coffre sale de pause
+                Pos = {x = 449.7123, y  = -977.900, z = 29.6894}, -- Coffre sale de pause
                 Limit = 99999999,
                 Name = "coffre pause"
             },
