@@ -5425,7 +5425,7 @@ Jobs = {
                 workSize = 7.45,
                 blipcolor = 7,
                 blipname = "Raffinerie - Traitement",
-                Pos = {x = 1581.3204, y = -1776.6989, z = 88.21 - 0.98},
+                Pos = {x = 2776.6367, y = -1445.8681, z = 24.52 - 0.98},
                 required = "baril_vide",
                 giveitem = "baril_de_petrole",
                 add = "~p~+ 1  baril de pétrole "
@@ -5435,7 +5435,7 @@ Jobs = {
                 blipcolor = 7,
                 workSize = 7.45,
                 blipname = "Raffinerie - Vente",
-                Pos = {x = -186.8746, y = -2374.9235, z = 9.31 - 0.98},
+                Pos = {x = -206.0438, y = -2388.7077, z = 6.00 - 0.98},
                 required = "baril_de_petrole",
                 price = math.random(12, 15),
                 add = "~p~- 1 baril de pétrole"
