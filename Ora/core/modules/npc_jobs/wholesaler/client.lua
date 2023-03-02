@@ -5,12 +5,6 @@ Ora.NpcJobs.Wholesaler.Peds = {
         PedModel = "s_m_m_ups_01",
         Pos = {x = 1235.6014, y = -3277.5278, z = 5.7165 - 0.98, a = 90.0048},
         Blip = {name = "Grossiste Général SUD", color = 47, size = 0.8, sprite = 52}
-    },
-    {
-        Name = "Didier",
-        PedModel = "s_m_y_dockwork_01",
-        Pos = {x = 2746.93, y = 3466.94, z = 55.67 - 0.98, a = 291.01},
-        Blip = {name = "Grossiste Général NORD", color = 47, size = 0.8, sprite = 52},
     }
 }
 
