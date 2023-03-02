@@ -1095,6 +1095,14 @@ Config.DoorList = {
         locked = false,
         maxDistance = 1.5
     },
+    {
+        objHash = GetHashKey("prop_fnclink_03gate1"),
+        objCoords = vector3(-547.6880493164062, 305.9925537109375, 82.16709899902344),
+        textCoords = vector3(-547.6880493164062, 305.9925537109375, 382.16709899902344),
+        authorizedJobs = {"tequilala"},
+        locked = true,
+        maxDistance = 10.0
+    },
     --- BINCO
     {
         textCoords = vector3(-817.779, -1079.00, 11.48),

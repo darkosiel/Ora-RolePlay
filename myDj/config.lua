@@ -215,6 +215,13 @@ Config.DJPositions = {
         range = 13.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
+    {
+        name = 'FUllravenevent',
+        pos = vector3(1732.49, 3242.23, 44.59 - 0.98),
+        requiredJob = nil, 
+        range = 15.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
     
     -----------
     -- Event Halloween ; Domaine Viticole
