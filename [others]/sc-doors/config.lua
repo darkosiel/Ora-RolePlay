@@ -2024,6 +2024,60 @@ Config.DoorList = {
         maxDistance = 2.5
     },
 
+    --LOS SANTOS EVENT
+
+    {
+        objHash = -1911661372,
+        objCoords = vector3(-255.77438354492188, -2027.6739501953125, 30.25301742553711),
+        textCoords = vector3(-255.77438354492188, -2027.6739501953125, 30.25301742553711),
+        authorizedJobs = {"lsevent"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = 160224187,
+        objCoords = vector3(-254.23153686523438, -2025.835205078125, 30.25301742553711),
+        textCoords = vector3(-254.23153686523438, -2025.835205078125, 30.25301742553711),
+        authorizedJobs = {"lsevent"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    --
+    {
+        objHash = -1911661372,
+        objCoords = vector3(-282.5875549316406, -1924.78369140625, 30.25301742553711),
+        textCoords = vector3(-282.5875549316406, -1924.78369140625, 30.25301742553711),
+        authorizedJobs = {"lsevent"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = 160224187,
+        objCoords = vector3(-284.4262390136719, -1923.2408447265625, 30.25301742553711),
+        textCoords = vector3(-284.4262390136719, -1923.2408447265625, 30.25301742553711),
+        authorizedJobs = {"lsevent"},
+        locked = true,
+        maxDistance = 2.5
+    },
+
+    --
+
+    {
+        objHash = -1911661372,
+        objCoords = vector3(-286.56707763671875, -1921.4444580078125, 30.25301742553711),
+        textCoords = vector3(-286.56707763671875, -1921.4444580078125, 30.25301742553711),
+        authorizedJobs = {"lsevent"},
+        locked = true,
+        maxDistance = 2.5
+    },
+    {
+        objHash = 160224187,
+        objCoords = vector3(-288.4057922363281, -1919.901611328125, 30.25301742553711),
+        textCoords = vector3(-288.4057922363281, -1919.901611328125, 30.25301742553711),
+        authorizedJobs = {"lsevent"},
+        locked = true,
+        maxDistance = 2.5
+    },
 }
 
 
