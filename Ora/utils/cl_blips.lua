@@ -105,7 +105,7 @@ local Blips = {
     {name = "B.Fox", color = 21, sprite = 616, Pos = {x = 1218.5623, y = -3274.3474, z = 29.7969}},
    -- {name = "Fujiwara Tofu", color = 63, sprite = 210, size = 1.0, Pos = {x = -165.19, y = 290.42, z = 93.76}},
     --{name = "Car Wash", color = 27, sprite = 100, Pos = {x = 169.58, y = -1718.31, z = 29.29}},
-    {name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},
+    --{name = "Casino", color = 26, sprite = 89, Pos = {x = 937.8317, y = 32.8164, z = 112.4599}},
     --{name = "Koi", color = 49, sprite = 439, Pos = {x = -1040.4300, y = -1475.1987, z = 5.5802}},
     {name = "San-Inn", color = 59, sprite = 93, Pos = {x = -172.66, y = 291.57, z = 92.76}},
     --{name = "Taco Loco", color = 46, sprite = 79, Pos = {x = 417.2778, y = -1911.7052, z = 25.47}},
