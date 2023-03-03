@@ -4129,60 +4129,72 @@ Jobs = {
             }
         },
     },
-    -- avocat2 = {
-    --     label = "Cabinet Lysias",
-    --     label2 = "Cabinet Lysias",
-    --     iban = "avocat2",
-    --     FreeAccess = false,
-    --     grade = {
-    --         {
-    --             label = "AVOCAT",
-    --             salary = 150,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "ASSOCIE",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "Avocat",
-    --             subtitle = "Actions",
-    --             name = "avocat_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("avocat2")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "Cabinet Lysias", "Annonce", text, "CHAR_WALTER", 8, "Cabinet Lysias")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     },
-    -- },
+    avocat2 = {
+        label = "Cabinet Willum",
+        label2 = "Cabinet Willum",
+        iban = "avocat2",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "Secretaire",
+                salary = 120,
+                name = "cdd",
+                show = true
+            },
+            {
+                label = "Avocat",
+                salary = 140,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Secretaire assistant juridique",
+                salary = 160,
+                name = "chef",
+                show = true
+            },
+            {
+                label = "DRH",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat2")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Cabinet Willum", "Annonce", text, "CHAR_WALTER", 8, "Cabinet Willum")
+                        end
+                    end
+                }
+            }
+        },
+    },
     avocat6 = {
         label = "Cabinet Mordvinov",
         label2 = "Cabinet Mordvinov",
