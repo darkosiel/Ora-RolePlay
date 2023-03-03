@@ -5423,7 +5423,7 @@ Jobs = {
             },
             traitement = {
                 type = "traitement",
-                workSize = 7.45,
+                workSize = 20.0,
                 blipcolor = 7,
                 blipname = "Raffinerie - Traitement",
                 Pos = {x = 2776.6367, y = 1445.8681, z = 24.52 - 0.98},
