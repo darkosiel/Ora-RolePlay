@@ -5426,7 +5426,7 @@ Jobs = {
                 workSize = 7.45,
                 blipcolor = 7,
                 blipname = "Raffinerie - Traitement",
-                Pos = {x = 2776.6367, y = -1445.8681, z = 24.52 - 0.98},
+                Pos = {x = 2776.6367, y = 1445.8681, z = 24.52 - 0.98},
                 required = "baril_vide",
                 giveitem = "baril_de_petrole",
                 add = "~p~+ 1  baril de pétrole "
