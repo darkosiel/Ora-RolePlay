@@ -4183,87 +4183,88 @@ Jobs = {
     --         }
     --     },
     -- },
-    -- avocat3 = {
-    --     label = "Cabinet Genovese",
-    --     label2 = "Cabinet Genovese",
-    --     iban = "avocat3",
-    --     FreeAccess = false,
-    --     grade = {
-    --         {
-    --             label = "AVOCAT",
-    --             salary = 150,
-    --             name = "cdi",
-    --             show = true
-    --         },
-    --         {
-    --             label = "ASSOCIE",
-    --             salary = 180,
-    --             name = "drh",
-    --             show = true
-    --         },
-    --         {
-    --             label = "PDG",
-    --             salary = 200,
-    --             name = "boss",
-    --             show = true
-    --         }
-    --     },
-    --     Menu = {
-    --         menu = {
-    --             title = "Avocat",
-    --             subtitle = "Actions",
-    --             name = "avocat_menuperso"
-    --         },
-    --         buttons = {
-    --             {
-    --                 label = "Facturation",
-    --                 onSelected = function()
-    --                     CreateFacture("avocat3")
-    --                 end,
-    --                 ActiveFct = function()
-    --                     HoverPlayer()
-    --                 end
-    --             },
-    --             {
-    --                 label = "Annonce",
-    --                 onSelected = function()
-    --                     exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
-    --                     local text = exports['Snoupinput']:GetInput()
-    --                     if text ~= false and text ~= "" then
-    --                         TriggerServerEvent("Job:Annonce", "Cabinet Genovese", "Annonce", text, "CHAR_GENOVESE", 8, "Cabinet Genovese")
-    --                     end
-    --                 end
-    --             }
-    --         }
-    --     },
-    --     garage = {
-    --         Name = "Garage Avocat",
-    --         Pos = {x = -1171.73, y = -1390.28, z = 4.20},
-    --         Properties = {
-    --             type = 3,
-    --             Limit = 20,
-    --             vehicles = {},
-    --             spawnpos = {x = -1171.73, y = -1390.28, z = 4.20, h = 166.45}
-    --         },
-    --         Blipdata = {
-    --             Pos = {x = -1171.73, y = -1390.28, z = 4.20},
-    --             Blipcolor = 5,
-    --             Blipname = "Garage"
-    --         }
-    --     },
-    --     Storage = {
-    --         {
-    --             Pos = {x = -1180.58, y = -1406.70, z = 13.22},
-    --             Limit = 500,
-    --             Name = "coffre_avocatge"
-    --         },
-    --         {
-    --             Pos = {x = -1194.90, y = -1397.00, z = 9.80},
-    --             Limit = 500,
-    --             Name = "coffre_avocatge2"
-    --         }
-    --     },
-    -- },
+    avocat6 = {
+        label = "Cabinet Mordvinov",
+        label2 = "Cabinet Mordvinov",
+        iban = "avocat6",
+        FreeAccess = false,
+        grade = {
+            {
+                label = "AVOCAT",
+                salary = 150,
+                name = "cdi",
+                show = true
+            },
+            {
+                label = "Assistant Juridique",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "ASSOCIE",
+                salary = 180,
+                name = "drh",
+                show = true
+            },
+            {
+                label = "PDG",
+                salary = 200,
+                name = "boss",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Avocat",
+                subtitle = "Actions",
+                name = "avocat_menuperso"
+            },
+            buttons = {
+                {
+                    label = "Facturation",
+                    onSelected = function()
+                        CreateFacture("avocat6")
+                    end,
+                    ActiveFct = function()
+                        HoverPlayer()
+                    end
+                },
+                {
+                    label = "Annonce",
+                    onSelected = function()
+                        exports['Snoupinput']:ShowInput("Texte de l'annonce", 90, "text")
+                        local text = exports['Snoupinput']:GetInput()
+                        if text ~= false and text ~= "" then
+                            TriggerServerEvent("Job:Annonce", "Cabinet Mordvinov", "Annonce", text, "CHAR_HERMERION", 8, "Cabinet Mordvinov")
+                        end
+                    end
+                }
+            }
+        },
+        garage = {
+            Name = "Garage Avocat",
+            Pos = {x = -599.26, y = -334.35, z = 34.87},
+            Properties = {
+                type = 3,
+                Limit = 20,
+                vehicles = {},
+                spawnpos = {x = -599.26, y = -334.35, z = 34.87, h = 297.4}
+            },
+            Blipdata = {
+                Pos = {x = -599.26, y = -334.35, z = 34.87},
+                Blipcolor = 5,
+                Blipname = "Garage"
+            }
+        },
+        Storage = {
+            {
+                Pos = {x = -587.39, y = -344.62, z = 35.15},
+                Limit = 500,
+                Name = "coffre_avocatmo"
+            }
+        },
+    },
     -- avocat4 = {
     --     label = "Cabinet Wistaria",
     --     label2 = "Cabinet Wistaria",

@@ -94,7 +94,7 @@ local Blips = {
     --{name = "Yellow Jack", color = 46, sprite = 93, size = 0.80, Pos = {x = 1990.88, y = 3054.02, z = 47.21}},
     --{name = "Cabinet Lysias", color = 25, sprite = 77, Pos = {x = -1568.2102, y = -571.6326, z = 36.2807}},
     --{name = "Cabinet Hermerion", color = 25, sprite = 805, Pos = {x = -1038.0477, y = -411.1166, z = 39.27}},
-    --{name = "Cabinet Genovese", color = 25, sprite = 738, Pos = {x = -1184.18, y = -1408.50, z = 4.47}},
+    {name = "Cabinet Mordvinov", color = 25, sprite = 124, Pos = {x = -603.28, y = -347.99, z = 35.24}},
    -- {name = "Cabinet Nemesis Associate", color = 10, sprite = 351, size = 1.1, Pos = {x = 235.97, y = -408.42, z = 47.92}},
    -- {name = "SubUrban", color = 64, sprite = 366, Pos = {x = 618.1, y = 2759.32, z = 40.98}},
     {name = "Salon de tatouage", color = 1, sprite = 75, Pos = {x = -1149.7503, y = -1428.5909, z = 3.95}},
