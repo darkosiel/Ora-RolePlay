@@ -32,11 +32,34 @@ function HasNoLtdSouth()
             if nb == 0 then
                 result = true
             else
-                RageUI.Popup({message = "~r~Aller voir un LTD joueur Sud"})
+                RageUI.Popup({message = "~r~Aller voir un LTD joueur Sud, 24/7 Vinewood"})
                 result = false
             end
         end,
         "ltdsud"
+    )
+
+    while (result == nil) do
+        Wait(10)
+    end
+
+    return result
+end
+
+function HasNoVinewoord()
+    local result = nil
+    TriggerServerCallback(
+        "Ora::SE::Service:GetInServiceCount",
+        function(nb)
+            if nb == 0 then
+                result = true
+            else
+                RageUI.Popup({message = "~r~Aller voir un LTD joueur Sud, 24/7 Vinewood"})
+                result = false
+            end
+        end,
+        "vinewood247"
+        --{"ltdsud", "vinewood247"}
     )
 
     while (result == nil) do
@@ -190,6 +213,7 @@ local BasicShopsSouth = {
         fct = GeneratePhoneNumber,
         type = "number",
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     --    {
@@ -212,6 +236,7 @@ local BasicShopsSouth = {
         price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -219,6 +244,7 @@ local BasicShopsSouth = {
         price = 80,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     -- {
@@ -231,6 +257,7 @@ local BasicShopsSouth = {
         price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -238,6 +265,7 @@ local BasicShopsSouth = {
         price = 100,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -245,6 +273,7 @@ local BasicShopsSouth = {
         price = 130,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -252,6 +281,7 @@ local BasicShopsSouth = {
         price = 500,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -267,6 +297,7 @@ local BasicShopsSouth = {
         price = 200,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -274,6 +305,7 @@ local BasicShopsSouth = {
         price = 500,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     }
     -- {
@@ -298,6 +330,7 @@ local LittleSeoulShop = {
         fct = GeneratePhoneNumber,
         type = "number",
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -305,6 +338,7 @@ local LittleSeoulShop = {
         price = 80,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -312,6 +346,7 @@ local LittleSeoulShop = {
         price = 100,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -319,6 +354,7 @@ local LittleSeoulShop = {
         price = 15,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -326,6 +362,7 @@ local LittleSeoulShop = {
         price = 120,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -333,6 +370,7 @@ local LittleSeoulShop = {
         price = 130,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -340,6 +378,7 @@ local LittleSeoulShop = {
         price = 500,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     },
     {
@@ -355,6 +394,7 @@ local LittleSeoulShop = {
         price = 200,
         data = {},
         beforePayment = HasNoLtdSouth,
+        beforePaymentVinewood = HasNoVinewoord,
         tax = 1.00
     }
     -- {
@@ -4989,6 +5029,13 @@ Citizen.CreateThread(
 
                                             if (Shops[CurrentZone].Items[i].beforePayment ~= nil) then
                                                 local beforePayementResult = Shops[CurrentZone].Items[i].beforePayment()
+                                                if beforePayementResult == false then
+                                                    return
+                                                end
+                                            end
+
+                                            if (Shops[CurrentZone].Items[i].beforePaymentVinewood ~= nil) then
+                                                local beforePayementResult = Shops[CurrentZone].Items[i].beforePaymentVinewood()
                                                 if beforePayementResult == false then
                                                     return
                                                 end
