@@ -285,18 +285,7 @@ local verticalOffsetX = 0.0
 local verticalOffsetY = 0.0
 local verticalOffsetZ = -0.45
 local direction = 180.0 
-local cam = nil
 
-function CheckInputRotation(cam, zoomvalue)
-	local rightAxisX = GetDisabledControlNormal(0, 220)
-	local rightAxisY = GetDisabledControlNormal(0, 221)
-	local rotation = GetCamRot(cam, 2)
-	if rightAxisX ~= 0.0 or rightAxisY ~= 0.0 then
-		new_z = rotation.z + rightAxisX*-1.0*(5.0)*(zoomvalue+0.1)
-		new_x = math.max(math.min(20.0, rotation.x + rightAxisY*-1.0*(5.0)*(zoomvalue+0.1)), -89.5)
-		SetCamRot(cam, new_x, 0.0, new_z, 2)
-	end
-end
 
 
 function SitChair()
@@ -306,9 +295,6 @@ function SitChair()
         ClearPedTasks(pPed)
         SetEntityCoords(pPed, oldCoords.x, oldCoords.y, oldCoords.z - 1.0, 0.0, 0.0, 0.0, 0)
         FreezeEntityPosition(pPed, false)
-        RenderScriptCams(0, 1, 1000, 1, 1)
-        SetCamActive(cam, false)
-        DestroyCam(cam, true)
     else
         local closetObj = nil
         local closetDst = 100
@@ -348,19 +334,11 @@ function SitChair()
             isSit = true
             TaskStartScenarioAtPosition(pPed, "PROP_HUMAN_SEAT_CHAIR_MP_PLAYER", objCoords.x + verticalOffsetX, objCoords.y + verticalOffsetY, dimZ, GetEntityHeading(closetObj) + direction, 0, true, true)
              
-            cam = CreateCam("DEFAULT_SCRIPTED_CAMERA", 1)
-            SetCamCoord(cam, GetOffsetFromEntityInWorldCoords(pPed, 0.0, -1.0, 1.0))
-            SetCamActive(cam, true)
-            RenderScriptCams(1, 1, 1000, 1, 1)
-            PointCamAtEntity(cam, pPed, 1, 1, 1, 1)
-            Wait(500)
-            StopCamPointing(cam)
             
             Citizen.CreateThread(function()
                 
                 while isSit do
                     ShowNotification("Faire /sit pour se lever de nouveau")
-                    CheckInputRotation(cam, 1.0)
                     Wait(1)
 
                 end
@@ -370,5 +348,3 @@ function SitChair()
         end
     end
 end
-
-
