@@ -209,17 +209,17 @@ Config.DJPositions = {
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
-        name = 'Label',
-        pos = vector3(722.2350, 2534.0502, 73.50 - 0.98),
+        name = 'Tatoo Empayeur',
+        pos = vector3(320.2938, 183.2700, 103.58 - 0.98),
         requiredJob = nil, 
         range = 13.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
-        name = 'FUllravenevent',
-        pos = vector3(1732.49, 3242.23, 44.59 - 0.98),
+        name = 'Label',
+        pos = vector3(722.2350, 2534.0502, 73.50 - 0.98),
         requiredJob = nil, 
-        range = 15.0, 
+        range = 13.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     
