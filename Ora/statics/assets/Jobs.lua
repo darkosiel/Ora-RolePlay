@@ -12222,12 +12222,12 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 131.47, y = -1285.02, z = 28.27},
+                Pos = {x = 92.50, y = -1273.08, z = 21.11},
                 Limit = 1000,
                 Name = "New Frigo Unicorn"
             },
             {
-                Pos = {x = 93.21, y = -1291.99, z = 28.27},
+                Pos = {x = 90.00, y = -1290.83, z = 29.32},
                 Limit = 100,
                 Name = "Coffre Patron"
             }
@@ -12262,13 +12262,13 @@ Jobs = {
                     label = "Faire travailler les danseuses",
                     onSelected = function()
                         local foodPeds = {
-                            -- { model="s_f_y_stripper_02", x=112.68, y=-1288.3, z=28.46, a=238.85, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
-                            -- { model="s_f_y_stripperlite", x=111.99, y=-1286.03, z=28.46, a=308.8, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
-                          --  { model="s_f_y_stripperlite", x=113.00, y=-1287.01, z=28.46, a=294.26, animation="mini@strip_club@pole_dance@pole_dance1", animationName="pd_dance_01"}
-                            { model="csb_stripper_01", x=109.18, y=-1289.12, z=28.25, a=299.15, animation="mini@strip_club@private_dance@part2", animationName="priv_dance_p2"},
-                            { model="s_f_y_stripper_01", x=103.21, y=-1292.59, z=29.26, a=296.21, animation="mini@strip_club@private_dance@part1", animationName="priv_dance_p1"},
-                            { model="s_f_y_stripper_02", x=104.66, y=-1294.46, z=29.26, a=287.12, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
-                            { model="a_f_y_topless_01", x=102.26, y=-1289.92, z=29.26, a=292.05, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
+                            { model="s_f_y_stripper_02", x=105.73, y=-1280.06, z=22.91 - 0.98, a=72.35, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
+                            { model="s_f_y_stripperlite", x=105.65, y=-1292.20, z=22.07 - 0.98, a=121.28, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
+                            { model="s_f_y_stripperlite", x=107.44, y=-1291.36, z=22.07 - 0.98, a=304.54, animation="mini@strip_club@private_dance@part2", animationName="priv_dance_p2"},
+                            { model="csb_stripper_01", x=104.23, y=-1288.40, z=22.07 - 0.98, a=118.93, animation="mini@strip_club@pole_dance@pole_dance1", animationName="pd_dance_01"},
+                            { model="s_f_y_stripper_01", x=114.55, y=-1296.47, z=22.07 - 0.98, a=336.13, animation="mini@strip_club@private_dance@part1", animationName="priv_dance_p1"},
+                            { model="s_f_y_stripper_02", x=106.04, y=-1301.01, z=22.07 - 0.98, a=85.98, animation="mini@strip_club@lap_dance@ld_girl_a_song_a_p1", animationName="ld_girl_a_song_a_p1_f"},
+                            { model="a_f_y_topless_01", x=109.88, y=-1297.55, z=22.07 - 0.98, a=26.20, animation="mini@strip_club@private_dance@idle", animationName="priv_dance_idle"},
                         }
                         local spawnedPeds = {}
                         TriggerServerCallback(
