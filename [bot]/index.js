@@ -116,7 +116,7 @@ client.on("message", async message => {
         }
         if (command == "deban") {
             if (args[0] !== undefined) {
-                var sql1 = `SELECT identifier, pound FROM whitelist WHERE identifier = '${args[0]}'`;
+                var sql1 = `SELECT identifier, permanent_ban FROM whitelist WHERE identifier = '${args[0]}'`;
                 con.query(sql1, function (err, result) {
                     if (err) { console.log('Error while performing Query.'); } 
                     if (result[0] !== undefined) {
