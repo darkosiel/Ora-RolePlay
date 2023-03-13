@@ -37,7 +37,7 @@ Config.DJPositions = {
         name = 'unicorn',
         pos = vector3(111.42, -1299.72, 22.07 - 0.98),
         requiredJob = nil, 
-        range = 28.0, 
+        range = 35.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
