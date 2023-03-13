@@ -114,6 +114,23 @@ client.on("message", async message => {
                 });
             }
         }
+        if (command == "deban") {
+            if (args[0] !== undefined) {
+                var sql1 = `SELECT identifier, pound FROM whitelist WHERE identifier = '${args[0]}'`;
+                con.query(sql1, function (err, result) {
+                    if (err) { console.log('Error while performing Query.'); } 
+                    if (result[0] !== undefined) {
+                        if (result[0].permanent_ban == 1) {
+                            var sql = "UPDATE whitelist SET permanent_ban = '0' WHERE identifier = '"+args[0]+"'";
+                            con.query(sql, function (err, result) {
+                                if (err) console.log(err);
+                                msg = "Utilisateur ("+args[0]+") déban !"
+                            });
+                        } 
+                    } 
+                });
+            }
+        }
         if (command == "debugorga") {
             if (args[0] != undefined) {
                 var sql = "DELETE FROM organisation_member WHERE uuid ='"+args[0]+"'";
