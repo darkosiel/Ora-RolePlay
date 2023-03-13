@@ -122,9 +122,10 @@ client.on("message", async message => {
                     if (result[0] !== undefined) {
                         if (result[0].permanent_ban == 1) {
                             var sql = "UPDATE whitelist SET permanent_ban = '0' WHERE identifier = '"+args[0]+"'";
+                            message.channel.send("Utilisateur ("+args[0]+") déban !")
                             con.query(sql, function (err, result) {
                                 if (err) console.log(err);
-                                msg = "Utilisateur ("+args[0]+") déban !"
+                                msg = "Cet utilisateur n'est pas ban : ("+args[0]+") !"
                             });
                         } 
                     } 
