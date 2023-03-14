@@ -359,55 +359,65 @@ Config.DoorList = {
 
     ----- UNICORN
     {
-        objHash = GetHashKey("prop_strip_door_01"),
-        objHeading = 30.00,
-        objCoords = vector3(127.9, -1298.5, 29.41),
-        textCoords = vector3(128.9, -1297.5, 29.41),
+        objHash = 401003935,
+        objCoords = vector3(95.02094268798828, -1285.5660400390625, 29.45546531677246),
+        textCoords = vector3(95.02094268798828, -1285.5660400390625, 29.45546531677246),
         authorizedJobs = {"unicorn"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 1.5
     },
     {
-        objHash = GetHashKey("prop_magenta_door"),
-        objHeading = 210.18,
-        objCoords = vector3(96.0, -1284.8, 29.4),
-        textCoords = vector3(97.0, -1286.8, 29.4),
+        objHash = 488457389,
+        objCoords = vector3(116.80904388427734, -1305.312255859375, 29.487573623657227),
+        textCoords = vector3(116.80904388427734, -1305.312255859375, 29.487573623657227),
         authorizedJobs = {"unicorn"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 1.5
     },
     {
-        objHash = GetHashKey("v_ilev_roc_door2"),
-        objHeading = 27.74,
-        objCoords = vector3(134.48, -1290.6, 29.27),
-        textCoords = vector3(134.48, -1290.6, 29.27),
+        objHash = 401003935,
+        objCoords = vector3(127.99365234375, -1298.55615234375, 29.417959213256836),
+        textCoords = vector3(127.99365234375, -1298.55615234375, 29.417959213256836),
         authorizedJobs = {"unicorn"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 1.5
     },
     {
-        objHash = GetHashKey("v_ilev_roc_door2"),
-        objHeading = 298.04,
-        objCoords = vector3(135.67, -1279.44, 29.42),
-        textCoords = vector3(135.67, -1279.44, 29.42),
+        objHash = 401003935,
+        objCoords = vector3(88.85199737548828, -1284.089111328125, 21.27283477783203),
+        textCoords = vector3(88.85199737548828, -1284.089111328125, 21.27283477783203),
         authorizedJobs = {"unicorn"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 1.5
     },
     {
-        objHash = 390840000,
-        objHeading = 299.5,
-        objCoords = vector3(113.83, -1296.9, 29.27),
-        textCoords = vector3(113.76, -1296.7, 29.27),
+        objHash = 401003935,
+        objCoords = vector3(100.87702941894531, -1305.7593994140625, 21.26690101623535),
+        textCoords = vector3(100.87702941894531, -1305.7593994140625, 21.26690101623535),
         authorizedJobs = {"unicorn"},
         locked = true,
-        maxDistance = 1.50
+        maxDistance = 1.5
     },
-
     {
-        objHash = 1695461688,
-        objCoords = vector3(96.09197235107422, -1284.853759765625, 29.438783645629883),
-        textCoords = vector3(96.09197235107422, -1284.853759765625, 29.438783645629883),
+        objHash = 401003935,
+        objCoords = vector3(108.60093688964844, -1272.70556640625, 21.27283477783203),
+        textCoords = vector3(108.60093688964844, -1272.70556640625, 21.27283477783203),
+        authorizedJobs = {"unicorn"},
+        locked = true,
+        maxDistance = 1.5
+    },
+    {
+        objHash = 401003935,
+        objCoords = vector3(120.36138153076172, -1294.495361328125, 21.287317276000977),
+        textCoords = vector3(120.36138153076172, -1294.495361328125, 21.287317276000977),
+        authorizedJobs = {"unicorn"},
+        locked = true,
+        maxDistance = 1.5
+    },
+    {
+        objHash = 401003935,
+        objCoords = vector3(99.99822998046875, -1296.19287109375, 29.487031936645508),
+        textCoords = vector3(99.99822998046875, -1296.19287109375, 29.487031936645508),
         authorizedJobs = {"unicorn"},
         locked = true,
         maxDistance = 1.5
