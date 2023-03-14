@@ -525,6 +525,7 @@ async function refreshContacts(data) {
         { id: -1, phoneId: data.phoneId, name: "LTD Nord", number: "ltdnord", avatar: "50-Supermarket-Icons_5" },
         { id: -1, phoneId: data.phoneId, name: "LTD Davis", number: "ltdsud", avatar: "50-Supermarket-Icons_5" },
         { id: -1, phoneId: data.phoneId, name: "LTD Grove Street", number: "ltdsud2", avatar: "50-Supermarket-Icons_5" },
+        { id: -1, phoneId: data.phoneId, name: "Empayeur Tatoo's", number: "tatoo", avatar: "tatoo_1" },
     ];
     return [...defaultContacts, ...contactsResponse];
 }
@@ -1291,7 +1292,7 @@ onNet('OraPhone:server:lifeinvader_delete_user', async (data) => {
     emitNet('OraPhone:client:refresh_lifeinvader_user', src, await refreshLifeinvaderUser(data.phoneId));
 });
 
-// Create new phone
+// Create new phone 
 
 function RegisterNewPhone(phoneNumber, identity) {
     let playerUuid = "inconnu";

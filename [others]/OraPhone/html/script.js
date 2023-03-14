@@ -4949,6 +4949,9 @@ const config = {
         },
         {
             "title": "Rent_40"
+        },
+        {
+            "title": "tatoo_1"
         }
     ]
 }
