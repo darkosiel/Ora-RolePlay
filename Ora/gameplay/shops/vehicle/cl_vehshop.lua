@@ -515,6 +515,7 @@ local VehShop =
                     {name = "youga3", price = 11260},
                     {name = "minivan2", price = 9360},
                     {name = "burrito3", price = 10400},
+                    {name = "burrito4", price = 10400},
                     {name = "surfer2", price = 6300},
                     {name = "speedo4", price = 12400},
                     {name = "pony", price = 10400},

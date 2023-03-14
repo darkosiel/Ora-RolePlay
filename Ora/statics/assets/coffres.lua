@@ -670,6 +670,7 @@ vehCoffres = {
     ["specter2"] = 55,
     ["gauntlet2"] = 60,
     ["burrito"] = 100,
+    ["burrito4"] = 200,
     ["surfer2"] = 80,
     ["deathbike"] = 12,
     ["imperator"] = 60,
