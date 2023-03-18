@@ -37,7 +37,7 @@ Config.DJPositions = {
         name = 'unicorn',
         pos = vector3(111.42, -1299.72, 22.07 - 0.98),
         requiredJob = nil, 
-        range = 35.0, 
+        range = 45.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
@@ -227,6 +227,13 @@ Config.DJPositions = {
         pos = vector3(1051.8131, -2395.9929, 25.89 - 0.98),
         requiredJob = nil, 
         range = 20.0, 
+        volume = 1.0 --[[ do not touch the volume! --]]
+    },
+    {
+        name = 'Paleto',
+        pos = vector3(170.89, 6446.63, 31.63),
+        requiredJob = nil, 
+        range = 30.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     
