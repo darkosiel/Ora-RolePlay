@@ -677,9 +677,9 @@ local weapon_config = {
 }
 
 local weapon_configrancho = {
-    Pos = {x = 812.2151, y = -2153.5764, z = 28.6191},
+    Pos = {x = -924.0371, y = -2026.1047, z = 9.4787},
     Ped = {
-        Pos = {x = 814.0516, y = -2153.5090, z = 28.6191, a = 87.4582},
+        Pos = {x = -924.0371, y = -2026.1047, z = 9.4787 - 0.98, a = 39.9986},
         model = "s_m_y_ammucity_01",
         name = "Harry"
     },
@@ -767,9 +767,9 @@ local private_conf = {
 }
 
 local private_confrancho = {
-    Pos = {x = 809.7175, y = -2152.1591, z = 28.6191},
+    Pos = {x = -925.6823, y = -2029.9206, z = 9.4787},
     Ped = {
-        Pos = {x = 808.6508, y = -2152.3415, z = 28.6191, a = 277.2904},
+        Pos = {x = -925.6823, y = -2029.9206, z = 9.4787, a = 131.1420},
         model = "s_m_y_ammucity_01",
         name = "John"
     },

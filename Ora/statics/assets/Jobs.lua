@@ -1214,21 +1214,21 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = 818.11, y = -2155.71, z = 28.71},
+                Pos = {x = -933.79, y = -2022.56, z = 8.53},
                 Limit = 700,
                 Name = "coffre_ammunation"
             }
         },
         garage = {
             Name = "Garage Ammunation",
-            Pos = {x = 822.65, y = -2145.30, z = 27.71},
+            Pos = {x = -896.91, y = -2036.08, z = 8.31},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {
                     {}
                 },
-                spawnpos = {x = 822.65, y = -2145.30, z = 27.71, h = 0.04}
+                spawnpos = {x = -891.92, y = -2043.82, z = 8.99, h = 135.70}
             },
             Blipdata = {
                 Pos = {},
@@ -1239,7 +1239,7 @@ Jobs = {
         Extrapos = {
             CraftWeapon = {
                 Pos = {
-                    {x = 813.088, y = -2155.940, z = 29.619}
+                    {x = -932.38, y = -2020.94, z = 8.53}
                 },
                 restricted = {2, 3, 4, 5},
                 Enter = function()

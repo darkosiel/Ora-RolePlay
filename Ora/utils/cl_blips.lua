@@ -81,7 +81,7 @@ local Blips = {
     --{name = "Tribunal", color = 2, sprite = 79, Pos = {x = 243.34, y = -1073.30, z = 29.28}},
     {name = "Gouvernement", color = 0, sprite = 419, Pos = {x = -1296.13, y = -575.13, z = 30.56}},
     {name = "DOJ", color = 0, sprite = 419, Pos = {x = -544.45, y = -205.01, z = 38.214}},
-    {name = "Armurerie - Los Santos", color = 49, sprite = 313, Pos = {x = 812.04, y = -2145.56, z = 29.33}},
+    {name = "Armurerie - Los Santos", color = 49, sprite = 313, Pos = {x = -925.6823, y = -2029.9206, z = 9.4787}},
    -- {name = "Armurerie - Sandy Shores", color = 49, sprite = 313, Pos = {x = 1695.8284, y = 3755.8576, z = 34.7053}},
     {name = "Stand de tir", color = 49, sprite = 458, Pos = {x = 17.3187, y = -1105.2624, z = 29.7969}},
     --{name = "Armurerie - Sandy Shores", color = 49, sprite = 313, Pos = {x = 1704.63, y = 3757.21, z = 34.34}},
