@@ -4281,7 +4281,7 @@ const config = {
         // },
         {
             "name": "richtermotorsport",
-            "label": "Hiretsuna Motorsport"
+            "label": "Evans Motorsport"
         },
         {
             "name": "maps",
