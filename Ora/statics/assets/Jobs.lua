@@ -12828,6 +12828,11 @@ Jobs = {
                 Name = "Frigo Tequilala"
             },
             {
+                Pos = {x = -567.7842, y = 277.8424, z = 77.67},
+                Limit = 1000,
+                Name = "Frigo Tequilala33"
+            },
+            {
                 Pos = {x = -573.45, y = 292.75, z = 78.17},
                 Limit = 100,
                 Name = "Coffre Boss Tequilala"
