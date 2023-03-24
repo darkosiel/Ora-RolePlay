@@ -346,7 +346,7 @@ local PawnShops = {
         }
     },
     pawnshop_8 = {
-        position = vector3(-1593.00, -5202.89, 4.31 - 0.98),
+        position = vector3(-1593.00, 5202.89, 4.31 - 0.98),
         heading = 294.35,
         seller_ped = "s_f_y_factory_01",
         seller_name = "Maria",
