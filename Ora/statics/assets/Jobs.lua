@@ -1945,19 +1945,6 @@ Jobs = {
             --         anim = "pickup_snowball"
             --     }
             -- },
-            recolte7 = {
-                type = "recolte",
-                workSize = 10.0,
-                Pos = {x = 1935.30, y = 5044.97, z = 43.52},
-                giveitem = "tomate",
-                blipcolor = 7,
-                blipname = "Fermier - Récupérer de la Tomate",
-                add = "~p~+ 1 Tomate",
-                anim = {
-                    lib = "anim@mp_snowball",
-                    anim = "pickup_snowball"
-                }
-            },
             recolte8 = {
                 type = "recolte",
                 workSize = 10.0,
@@ -3259,7 +3246,7 @@ Jobs = {
         },
         Storage = {
             {
-                Pos = {x = -708.30, y = -904.05, z = 19.21 - 0.98},
+                Pos = {x = -706.4874, y = -914.9199, z = 19.21 - 0.98},
                 Limit = 2000,
                 Name = "coffre_ltdsud"
             }
@@ -3489,15 +3476,15 @@ Jobs = {
         },
         garage = {
             Name = "Garage BurgerShot",
-            Pos = {x = -1171.692505, y = -893.373413, z = 13.28 - 0.98},
+            Pos = {x = -1174.5466, y = -887.1805, z = 13.28 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1171.692505, y = -893.373413, z = 13.28 - 0.98, h = 32.3272209}
+                spawnpos = {x = -1174.5466, y = -887.1805, z = 13.28 - 0.98, h = 32.3272209}
             },
             Blipdata = {
-                Pos = {x = 1248.37, y = -341.43, z = 69.08 - 0.98, h = 75.27},
+                Pos = {x = -1174.5466, y = -887.1805, z = 69.08 - 0.98, h = 75.27},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
@@ -3514,15 +3501,15 @@ Jobs = {
                 Name = "coffre_restaurantfood1"
             },
             {
-                Pos = {x = -1193.0552, y = -897.1772, z = 13.97 - 0.98},
-                Limit = 1000,
-                Name = "coffre_restaurantfood2"
-            } ,
-            {
                 Pos = {x = -1179.2254, y = -894.7935, z = 13.97 - 0.98},
                 Limit = 100,
                 Name = "coffre_restaurantfood3"
-            } 
+            },
+            {
+                Pos = {x = -1193.0552, y = -897.1772, z = 13.97 - 0.98},
+                Limit = 1000,
+                Name = "coffre_restaurantfood2"
+            }
         },
         Extrapos = {
             CraftSpiritueux = {
@@ -12225,6 +12212,11 @@ Jobs = {
                 Pos = {x = 92.50, y = -1273.08, z = 21.11},
                 Limit = 1000,
                 Name = "New Frigo Unicorn"
+            },
+            {
+                Pos = {x = 100.0991, y = -1311.0034, z = 21.13},
+                Limit = 1000,
+                Name = "New Frigo Unicorn2"
             },
             {
                 Pos = {x = 90.00, y = -1290.83, z = 29.32},

@@ -331,7 +331,7 @@ Items = {
     },
     pommeterre = {
         label = "Pomme de terre",
-        weight = 0.2
+        weight = 0.5
         --category = "food"
     },
     cereale = {
@@ -417,7 +417,7 @@ Items = {
     },
     milk = {
         label = "Lait",
-        weight = 0.2,
+        weight = 1.0,
         actionCl = "miam:Drink",
         props = "prop_cs_milk_01",
         soif = 20,
@@ -425,7 +425,7 @@ Items = {
     },
     chicken = {
         label = "Poulet",
-        weight = 0.2,
+        weight = 1.0,
         actionCl = "miam:Eat",
         props = "ng_proc_food_burg01a",
         faim = 15,
