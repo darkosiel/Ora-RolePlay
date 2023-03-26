@@ -50,7 +50,7 @@ const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
 
-con.connect(function(err) {
+connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
 });
@@ -110,17 +110,17 @@ client.on("message", async message => {
         if (command == "tow") {
             if (args[0] !== undefined) {
                 var sql1 = `SELECT plate, pound FROM players_vehicles WHERE plate = '${args[0]}'`;
-                con.query(sql1, function (err, result) {
+                connection.query(sql1, function (err, result) {
                     if (err) { console.log('Error while performing Query.'); } 
                     if (result[0] !== undefined) {
                         if (result[0].pound == 0) {
                             var sql = "UPDATE players_vehicles SET pound = '1' WHERE plate = '"+args[0]+"'";
-                            con.query(sql, function (err, result) {
+                            connection.query(sql, function (err, result) {
                                 if (err) console.log(err);
                                 msg = "Plaque ("+args[0]+") envoyée en fourrière !"
 
                                 var sql2 = "DELETE FROM players_parking WHERE plate LIKE '%"+args[0]+"'";
-                                    con.query(sql2, function (err, result) {
+                                connection.query(sql2, function (err, result) {
                                     if (err) console.log(err);
                                     if (result.affectedRows > 0) {
                                         message.channel.send(msg + "\nPlaque ("+args[0]+") supprimée de " + result.affectedRows + " garages !")
@@ -142,13 +142,13 @@ client.on("message", async message => {
         if (command == "deban") {
             if (args[0] !== undefined) {
                 var sql1 = `SELECT identifier, permanent_ban FROM whitelist WHERE identifier = '${args[0]}'`;
-                con.query(sql1, function (err, result) {
+                connection.query(sql1, function (err, result) {
                     if (err) { console.log('Error while performing Query.'); } 
                     if (result[0] !== undefined) {
                         if (result[0].permanent_ban == 1) {
                             var sql = "UPDATE whitelist SET permanent_ban = '0' WHERE identifier = '"+args[0]+"'";
                             message.channel.send("Utilisateur ("+args[0]+") déban !")
-                            con.query(sql, function (err, result) {
+                            connection.query(sql, function (err, result) {
                                 if (err) console.log(err);
                                 msg = "Cet utilisateur n'est pas ban : ("+args[0]+") !"
                             });
@@ -160,7 +160,7 @@ client.on("message", async message => {
         if (command == "debugorga") {
             if (args[0] != undefined) {
                 var sql = "DELETE FROM organisation_member WHERE uuid ='"+args[0]+"'";
-                con.query(sql, function (err, result) {
+                connection.query(sql, function (err, result) {
                     if (err) { 
                         message.channel.send("Erreur : "+err.message);
                     } else {
@@ -172,7 +172,7 @@ client.on("message", async message => {
         if (command == "unwl") {
             if (args[0] != undefined) {
                 var sql = "DELETE FROM whitelist WHERE identifier ='"+args[0]+"'";
-                con.query(sql, function (err, result) {
+                connection.query(sql, function (err, result) {
                     if (err) { 
                         message.channel.send("Erreur : "+err.message);
                     } else {
@@ -184,41 +184,41 @@ client.on("message", async message => {
         if (command == "wipe") {
             if(args[0] != undefined){
                 var sql = "UPDATE whitelist SET character_count = 0 WHERE identifier = '"+args[0]+"'";
-                con.query("SELECT uuid FROM users WHERE identifier = '"+args[0]+"'", function (err, result, fields){
+                connection.query("SELECT uuid FROM users WHERE identifier = '"+args[0]+"'", function (err, result, fields){
                     if (result[0] != undefined && result[0].uuid != undefined) {
                         if (err) message.channel.send("Erreur : "+err.message);
                         var sql = "DELETE FROM players_jobs WHERE uuid = '"+result[0].uuid+"'";
-                        con.query(sql, function (err, result) {
+                        connection.query(sql, function (err, result) {
                             if (err) message.channel.send("Erreur : "+err.message);
                         });
                         var sql = "DELETE FROM players_identity WHERE uuid = '"+result[0].uuid+"'";
-                        con.query(sql, function (err, result) {
+                        connection.query(sql, function (err, result) {
                             if (err) message.channel.send("Erreur : "+err.message);
                         });
                         var sql = "DELETE FROM players_vehicles WHERE uuid = '"+result[0].uuid+"'";
-                        con.query(sql, function (err, result) {
+                        connection.query(sql, function (err, result) {
                             if (err) message.channel.send("Erreur : "+err.message);
                         });
                         
                         var sql = "DELETE FROM players_parking WHERE uuid = '"+result[0].uuid+"'";
-                        con.query(sql, function (err, result) {
+                        connection.query(sql, function (err, result) {
                             if (err) message.channel.send("Erreur : "+err.message);
                         });
                         
                         var sql = "DELETE FROM players_appearance WHERE uuid = '"+result[0].uuid+"'";
-                        con.query(sql, function (err, result) {
+                        connection.query(sql, function (err, result) {
                             if (err) message.channel.send("Erreur : "+err.message);
                         });
                         
-                        con.query("SELECT uuid, coowner FROM banking_account WHERE uuid = '"+result[0].uuid+"'", (err, res)=>{
+                        connection.query("SELECT uuid, coowner FROM banking_account WHERE uuid = '"+result[0].uuid+"'", (err, res)=>{
                             if(err)message.channel.send("Erreur : "+err.message)
                             if(res.length == 1){ // if there's only a bank account created for the user
                                 if(res['coowner'] != null){ // if there's a coowner on the bank account, switch coowner to owner
-                                    con.query("UPDATE banking_account SET uuid = banking_account.coowner WHERE uuid = '"+result[0].uuid+"'", (err)=>{
+                                    connection.query("UPDATE banking_account SET uuid = banking_account.coowner WHERE uuid = '"+result[0].uuid+"'", (err)=>{
                                         if (err) message.channel.send("Erreur : "+err.message)
                                     })
                                 }else{ // if there's no coowner on it, delete the account
-                                    con.query("DELETE FROM banking_account WHERE uuid = '"+result[0].uuid+"'", (err)=>{
+                                    connection.query("DELETE FROM banking_account WHERE uuid = '"+result[0].uuid+"'", (err)=>{
                                         if (err) message.channel.send("Erreur : "+err.message)
                                     })
                                 }
@@ -226,9 +226,9 @@ client.on("message", async message => {
                             if(res.length > 1){ // if the user have multiple bank accounts
                                 res.forEach(el => {
                                     if(el['coowner'] != null){// if there is a coowner
-                                        con.query('UPDATE banking_account SET uuid = coowner WHERE uuid = "'+el['uuid']+'" AND coowner = "'+el['coowner']+'"', err=>{if (err) message.channel.send("Erreur : "+err.message)})
+                                        connection.query('UPDATE banking_account SET uuid = coowner WHERE uuid = "'+el['uuid']+'" AND coowner = "'+el['coowner']+'"', err=>{if (err) message.channel.send("Erreur : "+err.message)})
                                     }else{// if there is no coowner
-                                        con.query('DELETE FROM banking_account WHERE uuid = "'+el['uuid']+'" AND coowner IS NULL', err=>{if (err) message.channel.send("Erreur : "+err.message)})
+                                        connection.query('DELETE FROM banking_account WHERE uuid = "'+el['uuid']+'" AND coowner IS NULL', err=>{if (err) message.channel.send("Erreur : "+err.message)})
                                     }
                                 })
                             }
@@ -238,9 +238,9 @@ client.on("message", async message => {
                     }
                 });
                 var sql2 = "DELETE FROM users WHERE identifier = '"+args[0]+"'";
-                con.query(sql, function (err, result) {
+                connection.query(sql, function (err, result) {
                     if (err) message.channel.send("Erreur : "+err.message);
-                    con.query(sql2, function (err, result) {
+                    connection.query(sql2, function (err, result) {
                         if (err) message.channel.send("Erreur : "+err.message);
                         if (result.affectedRows == 1) {
                             message.channel.send("Joueur ("+args[0]+") wipe !")
@@ -256,7 +256,7 @@ client.on("message", async message => {
                 if (args[0] == "id") {
                         //var sql = `SELECT pi.first_name AS firstName, pi.last_name AS lastName, pi.uuid AS uuid, u.identifier AS identifier, u.last_connected_at AS lastConnected, u.is_active AS isActive, ba.amount AS amountInBank FROM banking_account As ba, users AS u, players_identity AS pi WHERE pi.uuid = u.uuid AND (u.identifier = ${args[1]} OR (pi.first_name = ${args[1]} AND pi.last_name = ${args[2]}) OR (pi.last_name = ${args[1]} AND pi.first_name = ${args[2]}));`;
                         var sql = `SELECT pi.first_name, pi.last_name, u.identifier, u.uuid, u.phone_number, u.group FROM players_identity AS pi, users AS u WHERE u.uuid = pi.uuid AND ((pi.first_name LIKE '${args[1]}' AND pi.last_name LIKE '${args[2]}') OR (pi.last_name LIKE '${args[1]}' AND pi.first_name LIKE '${args[2]}') OR (u.uuid = '${args[1]}') OR (u.identifier = '${args[1]}'));`;
-                        con.query(sql, (err, res)=>{                            
+                        connection.query(sql, (err, res)=>{                            
                             if (err) console.log(err.message);
                             if(res.length == 1){
                                 
@@ -274,7 +274,7 @@ client.on("message", async message => {
                                     {name : "Groupe", value : result.group, inline : true},
                                     )
                                 var sql_bank = `SELECT amount FROM banking_account WHERE uuid = '${result.uuid}';`;
-                                con.query(sql_bank, (err, res)=>{
+                                connection.query(sql_bank, (err, res)=>{
                                     if (err) console.log(err.message);
                                     if(res.length == 1){
                                         result.amountInBank = res[0].amount;
@@ -286,7 +286,7 @@ client.on("message", async message => {
                                     }
                                         
                                     var sql_job = `SELECT name AS job1_name, rank AS job1_rank, orga AS job2_name, rank AS job2_rank FROM players_jobs WHERE uuid = '${result.uuid}';`;	
-                                    con.query(sql_job, (err, res)=>{
+                                    connection.query(sql_job, (err, res)=>{
                                         if (err) console.log(err.message);
                                         if(res.length >= 1){
                                             result.job1_name = res[0].job1_name;
@@ -304,7 +304,7 @@ client.on("message", async message => {
                                             )
                                         }
                                         var sql_orga = `SELECT orga.id AS "Id Orga", orga.name AS 'Name', orga_r.name AS 'Rank' FROM organisation AS orga, organisation_member AS orga_m, organisation_rank AS orga_r WHERE orga.id = orga_m.organisation_id AND orga_m.rank_id = orga_r.id AND orga_m.uuid = '${result.uuid}';`;
-                                        con.query(sql_orga, (err, res)=>{
+                                        connection.query(sql_orga, (err, res)=>{
                                             if (err) console.log(err.message);
                                             if(res.length == 1){
                                                 result.organizationId = res[0]["Id Orga"];
@@ -330,7 +330,7 @@ client.on("message", async message => {
                     // select uuid owner
                     if (args[1] != undefined) {
                         var sql = `SELECT uuid, pound, label, plate_identifier FROM players_vehicles WHERE plate = '${args[1]}';`;
-                        con.query(sql, (err, res)=>{
+                        connection.query(sql, (err, res)=>{
                             if (err) console.log(err.message);
                             if(res != undefined && res.length == 1){
                                 var result = res[0];
@@ -340,7 +340,7 @@ client.on("message", async message => {
                                 .setColor(discordColor)
 
                                 var sql = `SELECT pi.first_name AS first_name, pi.last_name AS last_name, u.identifier AS identifier, u.uuid AS uuid FROM players_identity AS pi, users AS u WHERE u.uuid = pi.uuid AND pi.uuid LIKE '${result.uuid}%';`;
-                                con.query(sql, (err, res)=>{
+                                connection.query(sql, (err, res)=>{
                                     if (err) console.log(err.message);
                                     if(res.length == 1){
                                         embed.addFields(
@@ -351,7 +351,7 @@ client.on("message", async message => {
                                         )
                                             
                                         var sql_more_details = `SELECT pound FROM players_vehicles WHERE plate = '${args[1]}';`;
-                                        con.query(sql_more_details, (err, res)=>{   
+                                        connection.query(sql_more_details, (err, res)=>{   
                                             if (err) console.log(err.message);
                                             if(res.length == 1 && res[0].pound == 1){
                                                 result.pounded = res[0].pound;
@@ -362,7 +362,7 @@ client.on("message", async message => {
                                                 message.channel.send(embed);
                                             } else {
                                                 sql_more_details_2 = `SELECT uuid AS uuidPlayerPuttedVehicle, garage FROM players_parking WHERE plate LIKE '%${result.plate_identifier}%';`;
-                                                con.query(sql_more_details_2, (err, res)=>{
+                                                connection.query(sql_more_details_2, (err, res)=>{
                                                     if (err) console.log(err.message);
                                                     // To do : clean players_parking when duplicates
                                                     if(res.length >= 1){
@@ -373,7 +373,7 @@ client.on("message", async message => {
                                                         )
 
                                                         var sql_more_details_3 = `SELECT first_name, last_name FROM players_identity WHERE uuid = '${result.uuidPlayerPuttedVehicle}';`;
-                                                        con.query(sql_more_details_3, (err, res)=>{
+                                                        connection.query(sql_more_details_3, (err, res)=>{
                                                             if (err) console.log(err.message);
                                                             if(res.length == 1){
                                                                 embed.addFields(
@@ -398,14 +398,14 @@ client.on("message", async message => {
                                         })
                                     } else {
                                         sql_company = `SELECT label FROM business WHERE label = '${result.uuid}';`;
-                                        con.query(sql_company, (err, res)=>{
+                                        connection.query(sql_company, (err, res)=>{
                                             if (err) console.log(err.message);
                                             if(res.length == 1){
                                                 result.company = res[0].name;
                                                 embed.setDescription("Le propriétaire de ce véhicule est un entreprise : **" + result.company + "**");
 
                                                 var sql_more_details = `SELECT pound FROM players_vehicles WHERE plate = '${args[1]}';`;
-                                                con.query(sql_more_details, (err, res)=>{
+                                                connection.query(sql_more_details, (err, res)=>{
                                                     if (err) console.log(err.message);
                                                     if(res.length == 1){
                                                         result.pounded = res[0].pound;
@@ -416,7 +416,7 @@ client.on("message", async message => {
                                                         message.channel.send(embed);
                                                     } else {
                                                         sql_more_details_2 = `SELECT uuid AS uuidPlayerPuttedVehicle, garage FROM players_vehicles WHERE plate LIKE '%${args[1]}%';`;
-                                                        con.query(sql_more_details_2, (err, res)=>{
+                                                        connection.query(sql_more_details_2, (err, res)=>{
                                                             if (err) console.log(err.message);
                                                             if(res.length == 1){
                                                                 result.uuidPlayerPuttedVehicle = res[0].uuidPlayerPuttedVehicle;
@@ -426,7 +426,7 @@ client.on("message", async message => {
                                                                 )
 
                                                                 var sql_more_details_3 = `SELECT first_name, last_name FROM players_identity WHERE uuid = '${result.uuidPlayerPuttedVehicle}';`;
-                                                                con.query(sql_more_details_3, (err, res)=>{
+                                                                connection.query(sql_more_details_3, (err, res)=>{
                                                                     if (err) console.log(err.message);
                                                                     if(res.length == 1){
                                                                         embed.addFields(
@@ -462,7 +462,7 @@ client.on("message", async message => {
                 } else if (args[0] == "bank") {
                     if (args[1] != undefined) {
                         var sql = `SELECT label, uuid AS uuid_owner, coowner AS uuid_coowner FROM banking_account WHERE iban = '${args[1]}';`;
-                        con.query(sql, (err, res)=>{
+                        connection.query(sql, (err, res)=>{
                             if (err) console.log(err.message);
                             if(res.length == 1){
                                 var result = {}
@@ -479,7 +479,7 @@ client.on("message", async message => {
 
                                 if (result.uuid_owner != null) {
                                     sql_owner = `SELECT first_name, last_name FROM players_identity WHERE uuid = '${result.uuid_owner}';`;
-                                    con.query(sql_owner, (err, res)=>{
+                                    connection.query(sql_owner, (err, res)=>{
                                         if (err) console.log(err.message);
                                         if(res.length == 1){
                                             embed.addFields(
@@ -490,7 +490,7 @@ client.on("message", async message => {
                                         }
                                         if (result.uuid_coowner != null) {
                                             var sql_coowner = `SELECT first_name, last_name FROM players_identity WHERE uuid = '${result.uuid_coowner}';`;
-                                            con.query(sql_coowner, (err, res)=>{
+                                            connection.query(sql_coowner, (err, res)=>{
                                                 if (err) console.log(err.message);
                                                 if(res.length == 1){
                                                     embed.addFields(
@@ -518,7 +518,7 @@ client.on("message", async message => {
                                     )
                                     if (result.coowner != null) {
                                         var sql_coowner = `SELECT first_name, last_name FROM players_identity WHERE uuid = '${result.uuid_coowner}';`;
-                                        con.query(sql_coowner, (err, res)=>{
+                                        connection.query(sql_coowner, (err, res)=>{
                                             if (err) console.log(err.message);
                                             if(res.length == 1){
                                                 embed.addFields(
@@ -554,7 +554,7 @@ client.on("message", async message => {
                     //
                     if (args[1] != undefined) {
                         var sql = `SELECT first_name, last_name FROM players_identity, players_inventory WHERE players_identity.uuid = players_inventory.uuid AND players_inventory.inventory LIKE '%"num":"${args[1]}"%';`;
-                        con.query(sql, (err, res)=>{
+                        connection.query(sql, (err, res)=>{
                             if (err) console.log(err.message);
                             if(res.length == 1){
                                 var embed = new Discord.MessageEmbed()
@@ -603,7 +603,7 @@ client.on("message", async message => {
 
             if (args[0] == "list") {
                 var sql = `SELECT orga.id, orga.name, orga.label, COUNT(orga_m.uuid) AS memberCount FROM organisation AS orga, organisation_member AS orga_m WHERE orga.id = orga_m.organisation_id GROUP BY orga.id, orga.name, orga.label ORDER by orga.id;`;
-                con.query(sql, (err, res)=>{
+                connection.query(sql, (err, res)=>{
                     if (err) console.log(err.message);
                     if(res.length == 0){
                         message.channel.send("Aucune organisation");
@@ -622,13 +622,13 @@ client.on("message", async message => {
                 })
             } else if (args[0] == "members") {
                 var sql = "SELECT id, name FROM organisation WHERE (id LIKE '" + args[1] + "' OR name LIKE '"+args[1]+"');";
-                con.query(sql, (err, res)=>{
+                connection.query(sql, (err, res)=>{
                     if (err) console.log(err.message);
                     if(res.length == 1){
                         var id = res[0].id;
                         var name = res[0].name;
                         var sql = `SELECT first_name, last_name, players_identity.uuid, organisation_rank.name AS rank_label FROM players_identity, organisation_member, organisation, organisation_rank WHERE organisation_member.rank_id = organisation_rank.id AND organisation.id = organisation_member.organisation_id AND players_identity.uuid = organisation_member.uuid AND ((organisation_member.organisation_id = '${args[1]}') OR (organisation.name LIKE '${args[1]}')) ORDER BY organisation_rank.id ASC;`;
-                        con.query(sql, (err, res)=>{
+                        connection.query(sql, (err, res)=>{
                             if (err) console.log(err.message);
                             if(res.length == 0){
                                 message.channel.send("Aucun membre dans l'organisation");
@@ -665,7 +665,7 @@ client.on("message", async message => {
                     } else {
                         sql = `UPDATE players_jobs SET orga = ${args[3]}, orga_rank = ${args[4]} WHERE (uuid = ${args[2]} OR uuid = (SELECT uuid FROM users WHERE (identifier = ${args[2]}))`;
                     }
-                    con.query(sql, (err, res)=>{
+                    connection.query(sql, (err, res)=>{
                         if (err) console.log(err.message);
                         if(res.length == 1){
                             message.channel.send("Le job a bien été défini");
