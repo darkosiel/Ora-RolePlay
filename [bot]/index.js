@@ -10,12 +10,37 @@ const { pass } = require('./secret.js')
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
 // this is what we're refering to. Your client.
 const client = new Discord.Client();
-var con = mysql.createConnection({
+
+var db_config = {
     host: "localhost",
     user: "admin",
     password: "orabdd",
     database: "ora"
-});
+};
+
+var connection;
+
+function handleDisconnect() {
+    connection = mysql.createConnection(db_config);
+
+    connection.connect(function(err) {
+        if(err) {
+            console.log('error when connection to db :', err);
+            setTimeout(handleDisconnect, 2000);
+        }
+    });
+
+    connection.on('error', function(err) {
+        console.log('db error', err);
+        if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+            handleDisconnect();
+        } else {
+            throw err;
+        }
+    });
+}
+
+handleDisconnect();
 
 // Ora's color
 const discordColor = "#ffdb4d"
