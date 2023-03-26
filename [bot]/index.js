@@ -28,6 +28,7 @@ function handleDisconnect() {
             console.log('error when connection to db :', err);
             setTimeout(handleDisconnect, 2000);
         }
+        console.log("Connected!");
     });
 
     connection.on('error', function(err) {
@@ -49,11 +50,6 @@ const discordColor = "#ffdb4d"
 const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
-
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
 
 client.on("message", async message => {
     // This event will run on every single message received, from any channel or DM.
