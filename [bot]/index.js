@@ -91,7 +91,7 @@ client.on("message", async message => {
                 // args[0] should be equal to something like that : steam:1100001199ebce0 
                 if (args[0].match(/steam:/) && (args[0].length == 21)) {
                     var sql = "INSERT INTO whitelist (identifier) VALUES ('"+args[0]+"')";
-                    con.query(sql, function (err, result) {
+                    connection.query(sql, function (err, result) {
                         if (err) {
                             message.channel.send(`**Erreur** \`\`\`${err.message}\`\`\``);
                         } else {
