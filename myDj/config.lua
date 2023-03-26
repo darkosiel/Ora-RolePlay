@@ -230,10 +230,10 @@ Config.DJPositions = {
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     {
-        name = 'Paleto',
-        pos = vector3(170.89, 6446.63, 31.63),
+        name = 'Investiture',
+        pos = vector3(-543.985, -206.278, 37.499),
         requiredJob = nil, 
-        range = 30.0, 
+        range = 35.0, 
         volume = 1.0 --[[ do not touch the volume! --]]
     },
     
