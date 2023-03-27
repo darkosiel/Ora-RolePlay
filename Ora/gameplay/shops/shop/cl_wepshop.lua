@@ -614,7 +614,7 @@ local kevlarConfig = {
         name = "Plaque étoilée"
     },
     [24] = {
-        status = 5,
+        status = 50,
         name = "Badge"
     },
     [25] = {
