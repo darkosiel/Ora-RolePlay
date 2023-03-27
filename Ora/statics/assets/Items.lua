@@ -798,7 +798,7 @@ Items = {
     },
     -- to create outfit
     fabric = {
-        label = "Tissu",
+        label = "Cintre",
         weight = 0.2,
         actionCl = nil
     },
