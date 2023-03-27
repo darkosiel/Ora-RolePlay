@@ -87,6 +87,14 @@ Config.DoorList = {
 
     -- Main Cells
     {
+        objHash = GetHashKey("v_ilev_bs_door"),
+        objCoords = vector3(1207.8740234375, -470.0365295410156, 66.35810089111328),
+        textCoords = vector3(1207.8740234375, -470.0365295410156, 66.35810089111328),
+        authorizedJobs = {"coiffeur3"},
+        locked = true,
+        maxDistance = 1.5
+    },
+    {
         objHash = -801376572,
         objHeading = 270.0,
         objCoords = vector3(484.32, -1004.28, 26.21),
@@ -1095,7 +1103,6 @@ Config.DoorList = {
         locked = true,
         maxDistance = 1.5
     },
-
     {
         objHash = GetHashKey("v_ilev_roc_door2"),
         objHeading = 264.99,
