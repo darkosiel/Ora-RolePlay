@@ -5458,6 +5458,11 @@ Jobs = {
         },
         Storage = {
             {
+                Pos = {x = -97.55499, y = -2545.5905, z = 6.00 - 0.98},
+                Limit = 500,
+                Name = "coffre raffinerie1"
+            },
+            {
                 Pos = {x = -62.096, y = -2516.604, z = 6.40},
                 Limit = 500,
                 Name = "coffre raffinerie"
