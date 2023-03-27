@@ -11366,21 +11366,13 @@ Jobs = {
                 {
                     label = "Sortir la remorque à voitures",
                     onSelected = function()
-                        if (Ora.Identity.Job:GetRank() >= 3) then
-                            Mecano.SpawnCarRemorque()
-                        else
-                            RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
-                        end
+                        Mecano.SpawnCarRemorque()
                     end
                 },
                 {
                     label = "Sortir la remorque à camions",
                     onSelected = function()
-                        if (Ora.Identity.Job:GetRank() >= 3) then
-                            Mecano.SpawnTruckRemorque()
-                        else
-                            RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
-                        end
+                        Mecano.SpawnTruckRemorque()
                     end
                 },
                 {
@@ -11753,11 +11745,7 @@ Jobs = {
                 {
                     label = "Sortir la remorque à camions",
                     onSelected = function()
-                        if (Ora.Identity.Job:GetRank() >= 3) then
-                            Mecano.SpawnTruckRemorqueN()
-                        else
-                            RageUI.Popup({message = "~r~Vous ne pouvez pas faire ça !"})
-                        end
+                        Mecano.SpawnTruckRemorqueN()
                     end
                 },
                 {
