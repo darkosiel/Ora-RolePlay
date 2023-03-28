@@ -3476,37 +3476,37 @@ Jobs = {
         },
         garage = {
             Name = "Garage BurgerShot",
-            Pos = {x = -1174.5466, y = -887.1805, z = 13.28 - 0.98},
+            Pos = {x = -1200.52, y = -908.96, z = 13.63 - 0.98},
             Properties = {
                 type = 3,
                 Limit = 20,
                 vehicles = {},
-                spawnpos = {x = -1174.5466, y = -887.1805, z = 13.28 - 0.98, h = 32.3272209}
+                spawnpos = {x = -1203.48, y = -904.63, z = 13.26 - 0.98, h = 34.07}
             },
             Blipdata = {
-                Pos = {x = -1174.5466, y = -887.1805, z = 69.08 - 0.98, h = 75.27},
+                Pos = {x = -1200.52, y = -908.96, z = 13.63 - 0.98, h = 27.65},
                 Blipcolor = 5,
                 Blipname = "Garage"
             }
         },
         Storage = {
             {
-                Pos = {x = -1200.6992, y = -901.47088, z = 13.97 - 0.98},
+                Pos = {x = -1202.32, y = -897.43, z = 13.89 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood"
             },
             {
-                Pos = {x = -1182.4001, y = -899.5428, z = 13.97 - 0.98},
+                Pos = {x = -1191.17, y = -898.32, z = 13.89 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood1"
             },
             {
-                Pos = {x = -1179.2254, y = -894.7935, z = 13.97 - 0.98},
+                Pos = {x = -1194.86, y = -895.85, z = 13.89 - 0.98},
                 Limit = 100,
                 Name = "coffre_restaurantfood3"
             },
             {
-                Pos = {x = -1193.0552, y = -897.1772, z = 13.97 - 0.98},
+                Pos = {x = -1196.73, y = -901.98, z = 13.89 - 0.98},
                 Limit = 1000,
                 Name = "coffre_restaurantfood2"
             }
@@ -3514,7 +3514,7 @@ Jobs = {
         Extrapos = {
             CraftSpiritueux = {
                 Pos = {
-                    {x = -1198.1027, y = -896.0474, z = 13.97}
+                    {x = -1194.63, y = -898.36, z = 13.89}
                 },
                 restricted = {1, 2, 3, 4, 5},
                 Enter = function()
