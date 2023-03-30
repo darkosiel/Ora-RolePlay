@@ -8986,6 +8986,63 @@ Jobs = {
             }
         }
     },
+    lsmsillegal = {
+        label = "Médecin Illegal",
+        label2 = "Médecin Illegal",
+        iban = "llsmsillegalsms",
+        grade = {
+            {
+                label = "Ambulancier",
+                salary = 0,
+                name = "ambulancier",
+                show = true
+            }
+        },
+        Menu = {
+            menu = {
+                title = "Médecin Illegal",
+                subtitle = "Actions disponibles",
+                name = "ambulance_menuperso"
+            },
+            submenus = {
+                ["Soins"] = {
+                    submenu = "ambulance_menuperso",
+                    title = "Soins",
+                    menus = {
+                        buttons = {
+                            {
+                                label = "Petite blessure",
+                                onSelected = function()
+                                    Ambulance.Heal(25)
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Blessure grave",
+                                onSelected = function()
+                                    Ambulance.Heal(200)
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            },
+                            {
+                                label = "Réanimation",
+                                onSelected = function()
+                                    Ambulance.Revive()
+                                end,
+                                ActiveFct = function()
+                                    HoverPlayer()
+                                end
+                            }
+                        }
+                    }
+                },
+            },
+        }, 
+    },
 
     lsfd = {
         label = "LSFD",
