@@ -1,5 +1,3 @@
-Ora RolePlay
-
 
 Hello, j'ai décidé de release cette base inédite d'un ancien projet qui à fermé.
 Cette base contient son propre framework (un peu coder avec le cu) 
